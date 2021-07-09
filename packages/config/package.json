@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@frontify/eslint-config-react": "^0.7.0",
-    "@frontify/frontify-cli": "^1.0.0",
+    "@frontify/frontify-cli": "^1.1.1",
     "@types/react": "^17.0.14",
     "eslint": "^7.30.0",
     "prettier": "^2.3.2",
