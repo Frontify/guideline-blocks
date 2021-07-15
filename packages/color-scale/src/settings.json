@@ -1,0 +1,36 @@
+[
+    {
+        "id": "style",
+        "label": "Style",
+        "type": "dropdown",
+        "options": [
+            {
+                "value": "COLOR_AND_LABEL",
+                "name": "Color & Label"
+            },
+            {
+                "value": "COLOR_ONLY",
+                "name": "Color only"
+            }
+        ]
+    },
+    {
+        "id": "size",
+        "label": "Size",
+        "type": "dropdown",
+        "options": [
+            {
+                "value": "S",
+                "name": "S"
+            },
+            {
+                "value": "M",
+                "name": "M"
+            },
+            {
+                "value": "L",
+                "name": "L"
+            }
+        ]
+    }
+]

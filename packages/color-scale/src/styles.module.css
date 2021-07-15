@@ -1,0 +1,154 @@
+.colors {
+    display: flex;
+    height: 50px;
+    flex-direction: row;
+}
+
+.colorsSmall {
+    height: 20px;
+}
+
+.colorsMedium {
+    height: 40px;
+}
+
+.colorsLarge {
+    height: 80px;
+}
+
+.color {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.colorElement {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.colorBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.colorName {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--f-white);
+}
+
+.colorAddOverlay {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    display: flex;
+    width: 20px;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.75;
+    transform: translateX(50%);
+    transition: all 125ms ease-in-out;
+}
+
+.colorAddOverlayIconTop,
+.colorAddOverlayIconBottom {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    width: 16px;
+    height: 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--f-violet-60);
+    border-radius: var(--f-corner-4px);
+    color: var(--f-white);
+    opacity: 0;
+    transition: all 125ms ease-in-out;
+}
+
+.colorAddOverlayIconTop {
+    top: 0;
+    transform: translateY(calc(-100% - 4px));
+}
+
+.colorAddOverlayIconBottom {
+    bottom: 0;
+    transform: translateY(calc(100% + 4px));
+}
+
+.colorAddOverlayIconTopAngle,
+.colorAddOverlayIconBottomAngle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--f-violet-60);
+    opacity: 0;
+    transition: all 150ms ease-in-out;
+}
+
+.colorAddOverlayIconTopAngle {
+    top: 0;
+    transform: rotate(45deg) translateY(-6px) translateX(-6px);
+}
+
+.colorAddOverlayIconBottomAngle {
+    bottom: 0;
+    transform: rotate(45deg) translateY(6px) translateX(6px);
+}
+
+.colorAddOverlayStroke {
+    position: relative;
+    width: 2px;
+    height: 100%;
+    background-color: var(--f-white);
+}
+
+.colorAddOverlayBar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 24px;
+    background-color: var(--f-violet-60);
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%);
+    transition: all 125ms ease-in-out;
+}
+
+.color:first-child .colorBackground {
+    border-bottom-left-radius: var(--f-corner-4px);
+    border-top-left-radius: var(--f-corner-4px);
+}
+
+.color:last-child .colorBackground {
+    border-bottom-right-radius: var(--f-corner-4px);
+    border-top-right-radius: var(--f-corner-4px);
+}
+
+.colorAddOverlay:hover {
+    opacity: 1;
+}
+
+.colorAddOverlay:hover .colorAddOverlayBar,
+.colorAddOverlay:hover .colorAddOverlayIconTop,
+.colorAddOverlay:hover .colorAddOverlayIconBottom,
+.colorAddOverlay:hover .colorAddOverlayIconTopAngle,
+.colorAddOverlay:hover .colorAddOverlayIconBottomAngle {
+    opacity: 1;
+}
