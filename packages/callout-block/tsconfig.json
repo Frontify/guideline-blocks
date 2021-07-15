@@ -1,19 +1,7 @@
 {
     "compilerOptions": {
-        "esModuleInterop": true,
-        "isolatedModules": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
         "outDir": "./dist/server",
-        "sourceMap": true,
-        "strict": true,
-        "target": "ES2020",
-        "jsx": "react-jsx",
-        "resolveJsonModule": true,
         "rootDir": "src"
     },
-    "exclude": ["dist", "node_modules"]
+    "extends": "../../tsconfig.json"
 }
