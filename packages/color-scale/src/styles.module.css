@@ -58,16 +58,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    opacity: 0.75;
     transform: translateX(50%);
     transition: all 125ms ease-in-out;
 }
 
-.colorAddOverlayIconTop,
-.colorAddOverlayIconBottom {
+.colorAddOverlayIconTop {
     position: absolute;
     z-index: 1;
+    top: 0;
     display: flex;
     width: 16px;
     height: 16px;
@@ -77,38 +75,21 @@
     background-color: var(--f-violet-60);
     border-radius: var(--f-corner-4px);
     color: var(--f-white);
+    cursor: pointer;
     opacity: 0;
+    transform: translateY(calc(-100% - 4px));
     transition: all 125ms ease-in-out;
 }
 
-.colorAddOverlayIconTop {
-    top: 0;
-    transform: translateY(calc(-100% - 4px));
-}
-
-.colorAddOverlayIconBottom {
-    bottom: 0;
-    transform: translateY(calc(100% + 4px));
-}
-
-.colorAddOverlayIconTopAngle,
-.colorAddOverlayIconBottomAngle {
+.colorAddOverlayIconTopAngle {
     position: absolute;
+    top: 0;
     width: 8px;
     height: 8px;
     background-color: var(--f-violet-60);
     opacity: 0;
-    transition: all 150ms ease-in-out;
-}
-
-.colorAddOverlayIconTopAngle {
-    top: 0;
     transform: rotate(45deg) translateY(-6px) translateX(-6px);
-}
-
-.colorAddOverlayIconBottomAngle {
-    bottom: 0;
-    transform: rotate(45deg) translateY(6px) translateX(6px);
+    transition: all 150ms ease-in-out;
 }
 
 .colorAddOverlayStroke {
@@ -116,6 +97,7 @@
     width: 2px;
     height: 100%;
     background-color: var(--f-white);
+    cursor: col-resize;
 }
 
 .colorAddOverlayBar {
@@ -147,8 +129,44 @@
 
 .colorAddOverlay:hover .colorAddOverlayBar,
 .colorAddOverlay:hover .colorAddOverlayIconTop,
-.colorAddOverlay:hover .colorAddOverlayIconBottom,
-.colorAddOverlay:hover .colorAddOverlayIconTopAngle,
-.colorAddOverlay:hover .colorAddOverlayIconBottomAngle {
+.colorAddOverlay:hover .colorAddOverlayIconTopAngle {
     opacity: 1;
+}
+
+.addMoreColorsOverlay {
+    display: none;
+    padding: var(--f-spacing-2x);
+    cursor: default;
+}
+
+.addMoreColorsOverlayVisible {
+    display: block;
+}
+
+.addMoreColors {
+    display: flex;
+    flex-direction: row;
+    padding: var(--f-spacing-4x);
+    background-color: var(--f-white);
+}
+
+.addMoreColorsColor {
+    width: 24px;
+    height: 24px;
+}
+
+.addMoreColorsColor:not(:last-child) {
+    margin-right: var(--f-spacing-1x);
+    border-radius: 2px;
+}
+
+.addMoreColorsArrowContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addMoreColorsArrow {
+    background-color: var(--f-white);
 }

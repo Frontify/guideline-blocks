@@ -10,7 +10,7 @@ interface Props {
     color: Color;
     index: number;
     editingEnabled: boolean;
-    onClick: () => void;
+    onAddColor: (color: Color) => void;
 }
 
 export default function ColorElement(props: Props): ReactElement {
@@ -24,7 +24,7 @@ export default function ColorElement(props: Props): ReactElement {
         <div className={css.colorElement}>
             <div className={css.colorBackground} style={{ backgroundColor: `${props.color.hex}` }}></div>
             <ColorLabel></ColorLabel>
-            {props.editingEnabled ? <AddOverlay onClick={() => props.onClick()}></AddOverlay> : ''}
+            {props.editingEnabled ? <AddOverlay onAddColor={props.onAddColor}></AddOverlay> : ''}
         </div>
     );
 }
