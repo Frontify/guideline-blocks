@@ -5,5 +5,9 @@
     "main": "index.js",
     "scripts": {
         "serve:block": "frontify-cli block serve --blockDir $(PWD)"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.9.2",
+        "react-popper": "^2.2.5"
     }
 }
