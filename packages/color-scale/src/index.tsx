@@ -4,6 +4,7 @@ import css from './styles.module.css';
 import { Color } from './Color';
 import ColorElement from './ColorElement';
 import { BlockSettings } from './BlockSettings';
+import { ColorScaleSize } from './ColorScaleSize';
 
 interface Props {
     editor: Editor;
@@ -24,13 +25,13 @@ export default function ColorScale(props: Props): ReactElement {
 
     const getSizeClass = () => {
         switch (props.blockSettings.size) {
-            case 'S':
+            case ColorScaleSize.Small:
                 return css.colorsSmall;
 
-            case 'L':
+            case ColorScaleSize.Large:
                 return css.colorsLarge;
 
-            case 'M':
+            case ColorScaleSize.Medium:
             default:
                 return css.colorsMedium;
         }

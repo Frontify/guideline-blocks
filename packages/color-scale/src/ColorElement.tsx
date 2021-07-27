@@ -3,6 +3,7 @@ import AddOverlay from './AddOverlay';
 import css from 'styles.module.css';
 import { Color } from './Color';
 import { BlockSettings } from './BlockSettings';
+import { ColorScaleStyle } from './ColorScaleStyle';
 
 interface Props {
     blockSettings: BlockSettings;
@@ -14,7 +15,9 @@ interface Props {
 
 export default function ColorElement(props: Props): ReactElement {
     const ColorLabel = (): ReactElement => (
-        <div className={css.colorName}>{props.blockSettings.style === 'COLOR_AND_LABEL' ? props.color.name : ''}</div>
+        <div className={css.colorName}>
+            {props.blockSettings.style === ColorScaleStyle.ColorAndLabel ? props.color.name : ''}
+        </div>
     );
 
     return (

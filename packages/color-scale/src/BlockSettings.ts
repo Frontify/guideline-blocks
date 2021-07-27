@@ -1,4 +1,7 @@
+import { ColorScaleSize } from './ColorScaleSize';
+import { ColorScaleStyle } from './ColorScaleStyle';
+
 export interface BlockSettings {
-    style: 'COLOR_AND_LABEL' | 'COLOR_ONLY';
-    size: 'S' | 'M' | 'L';
+    style: ColorScaleStyle;
+    size: ColorScaleSize;
 }
