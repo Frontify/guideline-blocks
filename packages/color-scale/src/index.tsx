@@ -1,41 +1,31 @@
 import { ReactElement, useState } from 'react';
-import { Editor } from '@frontify/frontify-cli/types';
-import css from './styles.module.css';
+import { Editor, HttpClient, Context } from '@frontify/frontify-cli/types';
 import { Color } from './Color';
-import ColorElement from './ColorElement';
 import { BlockSettings } from './BlockSettings';
-import { ColorScaleSize } from './ColorScaleSize';
+import ColorList from './ColorList';
+import Empty from './Empty';
 
 interface Props {
+    blockId: number;
     editor: Editor;
     blockSettings: BlockSettings;
+    updateSettings: (updatedBlockSettings: BlockSettings) => void;
+    httpClient: HttpClient;
+    context: Context;
 }
 
 export default function ColorScale(props: Props): ReactElement {
+    console.log('render');
+
     const [editingEnabled, editingEnabledToggled] = useState<boolean>(props.editor.editingEnabled);
     props.editor.onEditingEnabledToggled = (value) => editingEnabledToggled(value);
 
     const [colors, setColors] = useState<Color[]>([
-        { id: 1, hex: '#CC2C48', name: 'Red 1' },
-        { id: 2, hex: '#FF375A', name: 'Red 2' },
-        { id: 3, hex: '#FF8066', name: 'Red 3' },
+        { id: 1, hex: 'CC2C48', name: 'Red 1' },
+        { id: 2, hex: 'FF375A', name: 'Red 2' },
+        { id: 3, hex: 'FF8066', name: 'Red 3' },
     ]);
-
-    const getSizeClass = () => {
-        switch (props.blockSettings.size) {
-            case ColorScaleSize.Small:
-                return css.colorsSmall;
-
-            case ColorScaleSize.Large:
-                return css.colorsLarge;
-
-            case ColorScaleSize.Medium:
-            default:
-                return css.colorsMedium;
-        }
-    };
-
-    const colorClasses = [css.colors, getSizeClass()];
+    const update = (updatedColors: Color[]): void => console.log('update', updatedColors);
 
     const addColorAfter = (index: number, addedColor: Color): void => {
         const updatedColors: Color[] = [];
@@ -48,21 +38,35 @@ export default function ColorScale(props: Props): ReactElement {
         });
 
         setColors(updatedColors);
+        update(updatedColors);
+    };
+
+    const removeColorAt = (index: number): void => {
+        const updatedColors: Color[] = [];
+
+        colors.forEach((c, i) => {
+            if (i !== index) {
+                updatedColors.push(c);
+            }
+        });
+
+        setColors(updatedColors);
+        update(updatedColors);
     };
 
     return (
-        <div className={colorClasses.join(' ')}>
-            {colors.map((color, index) => (
-                <div className={css.color} key={`color-${color.id}`}>
-                    <ColorElement
-                        blockSettings={props.blockSettings}
-                        color={color}
-                        editingEnabled={editingEnabled}
-                        index={index}
-                        onAddColor={(addedColor) => addColorAfter(index, addedColor)}
-                    ></ColorElement>
-                </div>
-            ))}
+        <div>
+            {colors.length > 0 ? (
+                <ColorList
+                    addColorAfter={addColorAfter}
+                    removeColorAt={removeColorAt}
+                    blockSettings={props.blockSettings}
+                    editingEnabled={editingEnabled}
+                    colors={colors}
+                ></ColorList>
+            ) : (
+                <Empty editingEnabled={editingEnabled}></Empty>
+            )}
         </div>
     );
 }

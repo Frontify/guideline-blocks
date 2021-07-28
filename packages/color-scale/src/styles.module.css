@@ -28,6 +28,33 @@
     height: 100%;
 }
 
+.removeButton {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: var(--f-spacing-2x);
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--f-spacing-1x);
+    background-color: var(--f-white);
+    border-radius: 2px;
+    color: var(--f-black);
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: all var(--f-transition-ease-in-out);
+}
+
+.removeButton:hover {
+    background-color: var(--f-black-10);
+}
+
+.removeButton:active {
+    background-color: var(--f-black-20);
+}
+
 .colorBackground {
     position: absolute;
     top: 0;
