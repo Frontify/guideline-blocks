@@ -14,10 +14,19 @@ interface Props {
 }
 
 export default function ColorElement(props: Props): ReactElement {
+    const showColorName = (colorScaleStyle: ColorScaleStyle) => {
+        switch (colorScaleStyle) {
+            case ColorScaleStyle.ColorOnly:
+                return false;
+
+            case ColorScaleStyle.ColorAndLabel:
+            default:
+                return true;
+        }
+    };
+
     const ColorLabel = (): ReactElement => (
-        <div className={css.colorName}>
-            {props.blockSettings.style === ColorScaleStyle.ColorAndLabel ? props.color.name : ''}
-        </div>
+        <div className={css.colorName}>{showColorName(props.blockSettings.style) ? props.color.name : ''}</div>
     );
 
     return (
