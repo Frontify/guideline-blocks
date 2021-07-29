@@ -8,9 +8,9 @@ interface Props {
 
 export default function AddMoreColors(props: Props): ReactElement {
     const colors: Color[] = [
-        { name: 'red', hex: '#FF0000', id: 17 },
-        { name: 'blue', hex: '#0000FF', id: 18 },
-        { name: 'green', hex: '#00FF00', id: 19 },
+        { name: 'red', hex: 'FF0000', id: 17 },
+        { name: 'blue', hex: '0000FF', id: 18 },
+        { name: 'green', hex: '00FF00', id: 19 },
     ];
 
     return (
@@ -21,7 +21,7 @@ export default function AddMoreColors(props: Props): ReactElement {
                         className={css.addMoreColorsColor}
                         onClick={() => props.onConfirm(color)}
                         key={color.id}
-                        style={{ backgroundColor: color.hex }}
+                        style={{ backgroundColor: `#${color.hex}` }}
                     ></div>
                 );
             })}

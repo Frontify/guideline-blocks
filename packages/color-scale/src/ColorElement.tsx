@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import AddOverlay from './AddOverlay';
 import css from 'styles.module.css';
 import { Color } from './Color';
 import { BlockSettings } from './BlockSettings';
@@ -36,7 +35,6 @@ export default function ColorElement(props: Props): ReactElement {
             <div className={css.colorBackground} style={{ backgroundColor: `#${props.color.hex}` }}></div>
             <ColorLabel></ColorLabel>
             {props.editingEnabled ? <RemoveButton onRemove={props.onRemove}></RemoveButton> : ''}
-            {props.editingEnabled ? <AddOverlay onAddColor={props.onAddColor}></AddOverlay> : ''}
         </div>
     );
 }

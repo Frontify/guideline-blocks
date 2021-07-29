@@ -74,72 +74,6 @@
     color: var(--f-white);
 }
 
-.colorAddOverlay {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    right: 0;
-    display: flex;
-    width: 20px;
-    height: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    transform: translateX(50%);
-    transition: all 125ms ease-in-out;
-}
-
-.colorAddOverlayIconTop {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    display: flex;
-    width: 16px;
-    height: 16px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--f-violet-60);
-    border-radius: var(--f-corner-4px);
-    color: var(--f-white);
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(calc(-100% - 4px));
-    transition: all 125ms ease-in-out;
-}
-
-.colorAddOverlayIconTopAngle {
-    position: absolute;
-    top: 0;
-    width: 8px;
-    height: 8px;
-    background-color: var(--f-violet-60);
-    opacity: 0;
-    transform: rotate(45deg) translateY(-6px) translateX(-6px);
-    transition: all 150ms ease-in-out;
-}
-
-.colorAddOverlayStroke {
-    position: relative;
-    width: 2px;
-    height: 100%;
-    background-color: var(--f-white);
-    cursor: col-resize;
-}
-
-.colorAddOverlayBar {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 8px;
-    height: 24px;
-    background-color: var(--f-violet-60);
-    border-radius: 20px;
-    opacity: 0;
-    transform: translateX(-50%) translateY(-50%);
-    transition: all 125ms ease-in-out;
-}
-
 .color:first-child .colorBackground {
     border-bottom-left-radius: var(--f-corner-4px);
     border-top-left-radius: var(--f-corner-4px);
@@ -150,50 +84,49 @@
     border-top-right-radius: var(--f-corner-4px);
 }
 
-.colorAddOverlay:hover {
-    opacity: 1;
-}
-
-.colorAddOverlay:hover .colorAddOverlayBar,
-.colorAddOverlay:hover .colorAddOverlayIconTop,
-.colorAddOverlay:hover .colorAddOverlayIconTopAngle {
-    opacity: 1;
-}
-
-.addMoreColorsOverlay {
-    display: none;
-    padding: var(--f-spacing-2x);
-    cursor: default;
-}
-
-.addMoreColorsOverlayVisible {
-    display: block;
-}
-
 .addMoreColors {
     display: flex;
     flex-direction: row;
     padding: var(--f-spacing-4x);
-    background-color: var(--f-white);
+    background-color: var(--f-black);
+    border-radius: var(--f-corner-4px);
 }
 
 .addMoreColorsColor {
     width: 24px;
     height: 24px;
+    border-radius: 2px;
 }
 
 .addMoreColorsColor:not(:last-child) {
     margin-right: var(--f-spacing-1x);
-    border-radius: 2px;
+}
+
+.addMoreColorsFlyout {
+    z-index: 1;
+}
+
+.addButtonContainer {
+    position: relative;
+}
+
+.addMoreColorsContainer {
+    position: relative;
+    box-sizing: border-box;
+    padding: 16px;
 }
 
 .addMoreColorsArrowContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) translateX(12px);
 }
 
 .addMoreColorsArrow {
-    background-color: var(--f-white);
+    width: 16px;
+    height: 16px;
+    background-color: var(--f-black);
+    transform: rotate(45deg);
 }

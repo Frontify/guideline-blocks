@@ -4,6 +4,7 @@ import { Color } from './Color';
 import { BlockSettings } from './BlockSettings';
 import ColorList from './ColorList';
 import Empty from './Empty';
+import AddButton from './AddButton';
 
 interface Props {
     blockId: number;
@@ -15,8 +16,6 @@ interface Props {
 }
 
 export default function ColorScale(props: Props): ReactElement {
-    console.log('render');
-
     const [editingEnabled, editingEnabledToggled] = useState<boolean>(props.editor.editingEnabled);
     props.editor.onEditingEnabledToggled = (value) => editingEnabledToggled(value);
 
@@ -36,6 +35,10 @@ export default function ColorScale(props: Props): ReactElement {
                 updatedColors.push(addedColor);
             }
         });
+
+        if (index === colors.length) {
+            updatedColors.push(addedColor);
+        }
 
         setColors(updatedColors);
         update(updatedColors);
@@ -66,6 +69,11 @@ export default function ColorScale(props: Props): ReactElement {
                 ></ColorList>
             ) : (
                 <Empty editingEnabled={editingEnabled}></Empty>
+            )}
+            {editingEnabled ? (
+                <AddButton onConfirm={(addedColor) => addColorAfter(colors.length, addedColor)}></AddButton>
+            ) : (
+                ''
             )}
         </div>
     );
