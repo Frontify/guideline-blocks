@@ -1,1 +1,1 @@
-# Frontify Block Boilerplate
+# Callout Block

@@ -1,0 +1,16 @@
+.public-DraftEditorPlaceholder-root {
+    z-index: 2;
+}
+
+.block .public-DraftEditorPlaceholder-inner {
+    color: var(--f-black-20);
+    font-family: redacted, sans-serif;
+    pointer-events: none;
+    user-select: none;
+}
+
+.editor-enabled .public-DraftEditorPlaceholder-root:hover,
+.editor-enabled .public-DraftEditor-content:hover {
+    background: var(--f-special-color-editing);
+    cursor: text;
+}

@@ -1,0 +1,9 @@
+{
+    "name": "text-block",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "serve:block": "frontify-cli block serve --blockDir $(PWD)"
+    }
+}
