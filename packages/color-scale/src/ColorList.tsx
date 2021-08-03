@@ -14,26 +14,30 @@ interface Props {
 }
 
 export default function ColorList(props: Props): ReactElement {
-    const getSizeClass = () => {
+    const getColorSizeClass = () => {
         switch (props.blockSettings.size) {
             case ColorScaleSize.Small:
-                return css.colorsSmall;
+                return css.colorSmall;
 
             case ColorScaleSize.Large:
-                return css.colorsLarge;
+                return css.colorLarge;
 
             case ColorScaleSize.Medium:
             default:
-                return css.colorsMedium;
+                return css.colorMedium;
         }
     };
 
-    const colorClasses = [css.colors, getSizeClass()];
+    const colorClasses = [css.color, getColorSizeClass()];
+
+    if (props.editingEnabled) {
+        colorClasses.push(css.colorResizable);
+    }
 
     return (
-        <div className={colorClasses.join(' ')}>
+        <div className={css.colors}>
             {props.colors.map((color, index) => (
-                <div className={css.color} key={`color-${color.id}`}>
+                <div className={colorClasses.join(' ')} key={`color-${color.id}`}>
                     <ColorElement
                         blockSettings={props.blockSettings}
                         color={color}

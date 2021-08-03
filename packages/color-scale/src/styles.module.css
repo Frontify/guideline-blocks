@@ -1,25 +1,29 @@
 .colors {
     display: flex;
-    height: 50px;
     flex-direction: row;
-}
-
-.colorsSmall {
-    height: 20px;
-}
-
-.colorsMedium {
-    height: 40px;
-}
-
-.colorsLarge {
-    height: 80px;
+    flex-wrap: wrap;
 }
 
 .color {
     display: flex;
-    height: 100%;
-    flex-grow: 1;
+    min-width: 40px;
+}
+
+.colorSmall {
+    height: 20px;
+}
+
+.colorMedium {
+    height: 40px;
+}
+
+.colorLarge {
+    height: 80px;
+}
+
+.colorResizable {
+    overflow: hidden;
+    resize: horizontal;
 }
 
 .colorElement {
