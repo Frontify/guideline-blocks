@@ -17,8 +17,8 @@
         "typescript": "^4.3.5"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^1.0.45",
-        "@frontify/arcade": "^0.1.2",
+        "@frontify/app-bridge": "^1.2.0",
+        "@frontify/arcade": "^0.2.0",
         "draft-js": "^0.11.7",
         "react-popper": "^2.2.5"
     }
