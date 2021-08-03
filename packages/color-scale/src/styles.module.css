@@ -90,20 +90,31 @@
 
 .addMoreColors {
     display: flex;
+    max-width: 280px;
     flex-direction: row;
+    flex-wrap: wrap;
     padding: var(--f-spacing-4x);
     background-color: var(--f-black);
     border-radius: var(--f-corner-4px);
+    color: var(--f-white);
 }
 
 .addMoreColorsColor {
     width: 24px;
     height: 24px;
+    margin-bottom: var(--f-spacing-1x);
     border-radius: 2px;
+    cursor: pointer;
+    opacity: 1;
+    transition: all var(--f-transition-ease-in-out);
 }
 
 .addMoreColorsColor:not(:last-child) {
     margin-right: var(--f-spacing-1x);
+}
+
+.addMoreColorsColor:hover {
+    opacity: 0.75;
 }
 
 .addMoreColorsFlyout {

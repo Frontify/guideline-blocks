@@ -9,7 +9,6 @@ interface Props {
     colors: Color[];
     editingEnabled: boolean;
     blockSettings: BlockSettings;
-    addColorAfter: (index: number, color: Color) => void;
     removeColorAt: (index: number) => void;
 }
 
@@ -37,15 +36,14 @@ export default function ColorList(props: Props): ReactElement {
     return (
         <div className={css.colors}>
             {props.colors.map((color, index) => (
-                <div className={colorClasses.join(' ')} key={`color-${color.id}`}>
+                <div className={colorClasses.join(' ')} style={{ width: color.width }} key={`color-${color.id}`}>
                     <ColorElement
                         blockSettings={props.blockSettings}
                         color={color}
                         editingEnabled={props.editingEnabled}
                         index={index}
-                        onAddColor={(addedColor) => props.addColorAfter(index, addedColor)}
                         onRemove={() => props.removeColorAt(index)}
-                    ></ColorElement>
+                    />
                 </div>
             ))}
         </div>

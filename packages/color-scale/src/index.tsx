@@ -5,6 +5,8 @@ import { BlockSettings } from './BlockSettings';
 import ColorList from './ColorList';
 import Empty from './Empty';
 import AddButton from './AddButton';
+import { defaultColorWidth } from './Constants';
+import { ColorApiResponse } from './ApiResponse';
 
 interface Props {
     blockId: number;
@@ -19,26 +21,23 @@ export default function ColorScale(props: Props): ReactElement {
     const [editingEnabled, editingEnabledToggled] = useState<boolean>(props.editor.editingEnabled);
     props.editor.onEditingEnabledToggled = (value) => editingEnabledToggled(value);
 
-    const [colors, setColors] = useState<Color[]>([
-        { id: 1, hex: 'CC2C48', name: 'Red 1' },
-        { id: 2, hex: 'FF375A', name: 'Red 2' },
-        { id: 3, hex: 'FF8066', name: 'Red 3' },
-    ]);
-    const update = (updatedColors: Color[]): void => console.log('update', updatedColors);
+    const [colors, setColors] = useState<Color[]>(props.blockSettings.colors || []);
 
-    const addColorAfter = (index: number, addedColor: Color): void => {
-        const updatedColors: Color[] = [];
-
-        colors.forEach((c, i) => {
-            updatedColors.push(c);
-            if (i === index) {
-                updatedColors.push(addedColor);
-            }
+    const update = (updatedColors: Color[]): void => {
+        props.updateSettings({
+            colors: updatedColors,
+            size: props.blockSettings.size,
+            style: props.blockSettings.style,
         });
+    };
 
-        if (index === colors.length) {
-            updatedColors.push(addedColor);
-        }
+    const appendColor = (addedColor: ColorApiResponse): void => {
+        const updatedColors: Color[] = colors.map((color) => color);
+
+        updatedColors.push({
+            id: Number(addedColor.id),
+            width: defaultColorWidth,
+        });
 
         setColors(updatedColors);
         update(updatedColors);
@@ -61,20 +60,15 @@ export default function ColorScale(props: Props): ReactElement {
         <div>
             {colors.length > 0 ? (
                 <ColorList
-                    addColorAfter={addColorAfter}
                     removeColorAt={removeColorAt}
                     blockSettings={props.blockSettings}
                     editingEnabled={editingEnabled}
                     colors={colors}
-                ></ColorList>
+                />
             ) : (
-                <Empty editingEnabled={editingEnabled}></Empty>
+                <Empty editingEnabled={editingEnabled} />
             )}
-            {editingEnabled ? (
-                <AddButton onConfirm={(addedColor) => addColorAfter(colors.length, addedColor)}></AddButton>
-            ) : (
-                ''
-            )}
+            {editingEnabled ? <AddButton httpClient={props.httpClient} onConfirm={appendColor} /> : ''}
         </div>
     );
 }

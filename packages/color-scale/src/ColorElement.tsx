@@ -10,7 +10,6 @@ interface Props {
     color: Color;
     index: number;
     editingEnabled: boolean;
-    onAddColor: (color: Color) => void;
     onRemove: () => void;
 }
 
@@ -26,15 +25,13 @@ export default function ColorElement(props: Props): ReactElement {
         }
     };
 
-    const ColorLabel = (): ReactElement => (
-        <div className={css.colorName}>{showColorName(props.blockSettings.style) ? props.color.name : ''}</div>
-    );
-
     return (
         <div className={css.colorElement}>
-            <div className={css.colorBackground} style={{ backgroundColor: `#${props.color.hex}` }}></div>
-            <ColorLabel></ColorLabel>
-            {props.editingEnabled ? <RemoveButton onRemove={props.onRemove}></RemoveButton> : ''}
+            <div className={css.colorBackground} style={{ backgroundColor: `#CCC` }}></div>
+            <div className={css.colorName}>
+                {showColorName(props.blockSettings.style) ? `Color ${props.color.id}` : ''}
+            </div>
+            {props.editingEnabled ? <RemoveButton onRemove={props.onRemove} /> : ''}
         </div>
     );
 }

@@ -1,22 +1,47 @@
 import { ReactElement, useState } from 'react';
 import { usePopper } from 'react-popper';
 import AddMoreColors from './AddMoreColors';
-import { Color } from './Color';
 import css from './styles.module.css';
 import useClickOutsideNotify from './useClickOutsideNotify';
+import { Button, ButtonSize, ButtonStyle } from '@frontify/arcade';
+import { HttpClient } from '@frontify/frontify-cli/types';
+import { ApiReponse, ColorApiResponse } from './ApiResponse';
 
 interface Props {
-    onConfirm: (color: Color) => void;
+    httpClient: HttpClient;
+    onConfirm: (color: ColorApiResponse) => void;
 }
 
 export default function AddButton(props: Props): ReactElement {
-    const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
+    const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
     const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
-
     const [flyoutVisible, setFlyoutVisible] = useState<boolean>(false);
-    const toggleFlyout = () => setFlyoutVisible(!flyoutVisible);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [colors, setColors] = useState<ColorApiResponse[]>([]);
+
+    const showFlyout = () => {
+        setFlyoutVisible(true);
+        setIsLoading(true);
+
+        props.httpClient
+            .get<ApiReponse>('/api/color/library/28')
+            .then((response) => {
+                const c: ColorApiResponse[] = [];
+                response.palettes.forEach((colorPalette) => colorPalette.colors.forEach((color) => c.push(color)));
+                setColors(c);
+                setIsLoading(false);
+            })
+            .catch(() => setIsLoading(false));
+    };
+
     const hideFlyout = () => setFlyoutVisible(false);
+    const toggleFlyout = () => (flyoutVisible ? hideFlyout() : showFlyout());
+
+    const confirmSelection = (color: ColorApiResponse): void => {
+        hideFlyout();
+        props.onConfirm(color);
+    };
 
     const { styles, attributes } = usePopper(referenceElement, popperElement, {
         placement: 'right',
@@ -27,7 +52,7 @@ export default function AddButton(props: Props): ReactElement {
 
     const flyout: ReactElement = (
         <div className={css.addMoreColorsContainer}>
-            <AddMoreColors onConfirm={props.onConfirm}></AddMoreColors>
+            <AddMoreColors colors={colors} onConfirm={(color) => confirmSelection(color)} isLoading={isLoading} />
             <div ref={setArrowElement} className={css.addMoreColorsArrowContainer}>
                 <div className={css.addMoreColorsArrow}></div>
             </div>
@@ -38,9 +63,17 @@ export default function AddButton(props: Props): ReactElement {
 
     return (
         <div className={css.addButtonContainer}>
-            <button ref={setReferenceElement} onClick={() => toggleFlyout()}>
-                <i className="ca-icon ca-icon--add-simple"></i> Add Color
-            </button>
+            <div ref={setReferenceElement} style={{ display: 'inline-flex', position: 'relative' }}>
+                <Button
+                    disabled={false}
+                    size={ButtonSize.Medium}
+                    style={ButtonStyle.Secondary}
+                    solid={true}
+                    onClick={() => toggleFlyout()}
+                >
+                    + Add Color
+                </Button>
+            </div>
             <div
                 ref={setPopperElement}
                 className={popperElementClassNames.join(' ')}
