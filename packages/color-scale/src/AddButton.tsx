@@ -3,6 +3,7 @@ import { usePopper } from 'react-popper';
 import AddMoreColors from './AddMoreColors';
 import { Color } from './Color';
 import css from './styles.module.css';
+import useClickOutsideNotify from './useClickOutsideNotify';
 
 interface Props {
     onConfirm: (color: Color) => void;
@@ -15,6 +16,7 @@ export default function AddButton(props: Props): ReactElement {
 
     const [flyoutVisible, setFlyoutVisible] = useState<boolean>(false);
     const toggleFlyout = () => setFlyoutVisible(!flyoutVisible);
+    const hideFlyout = () => setFlyoutVisible(false);
 
     const { styles, attributes } = usePopper(referenceElement, popperElement, {
         placement: 'right',
@@ -31,6 +33,8 @@ export default function AddButton(props: Props): ReactElement {
             </div>
         </div>
     );
+
+    useClickOutsideNotify(popperElement, () => hideFlyout());
 
     return (
         <div className={css.addButtonContainer}>
