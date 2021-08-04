@@ -68,7 +68,11 @@ export default function ColorScale(props: Props): ReactElement {
             ) : (
                 <Empty editingEnabled={editingEnabled} />
             )}
-            {editingEnabled ? <AddButton httpClient={props.httpClient} onConfirm={appendColor} /> : ''}
+            {editingEnabled ? (
+                <AddButton projectId={props.context.project.id} httpClient={props.httpClient} onConfirm={appendColor} />
+            ) : (
+                ''
+            )}
         </div>
     );
 }

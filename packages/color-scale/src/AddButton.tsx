@@ -9,6 +9,7 @@ import { ApiReponse, ColorApiResponse } from './ApiResponse';
 
 interface Props {
     httpClient: HttpClient;
+    projectId: number;
     onConfirm: (color: ColorApiResponse) => void;
 }
 
@@ -25,7 +26,7 @@ export default function AddButton(props: Props): ReactElement {
         setIsLoading(true);
 
         props.httpClient
-            .get<ApiReponse>('/api/color/library/28')
+            .get<ApiReponse>(`/api/color/library/${props.projectId}`)
             .then((response) => {
                 const c: ColorApiResponse[] = [];
                 response.palettes.forEach((colorPalette) => colorPalette.colors.forEach((color) => c.push(color)));
