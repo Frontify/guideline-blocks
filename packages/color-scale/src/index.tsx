@@ -56,11 +56,25 @@ export default function ColorScale(props: Props): ReactElement {
         update(updatedColors);
     };
 
+    const resizeColorAt = (index: number, width: number): void => {
+        const updatedColors: Color[] = [];
+
+        colors.forEach((c, i) => {
+            if (i === index) {
+                c.width = width;
+            }
+            updatedColors.push(c);
+        });
+
+        update(updatedColors);
+    };
+
     return (
         <div>
             {colors.length > 0 ? (
                 <ColorList
                     removeColorAt={removeColorAt}
+                    resizeColorAt={resizeColorAt}
                     blockSettings={props.blockSettings}
                     editingEnabled={editingEnabled}
                     colors={colors}

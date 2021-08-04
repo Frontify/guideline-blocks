@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useRef, RefObject } from 'react';
 import { BlockSettings } from './BlockSettings';
 import { Color } from './Color';
 import ColorElement from './ColorElement';
@@ -10,6 +10,7 @@ interface Props {
     editingEnabled: boolean;
     blockSettings: BlockSettings;
     removeColorAt: (index: number) => void;
+    resizeColorAt: (index: number, width: number) => void;
 }
 
 export default function ColorList(props: Props): ReactElement {
@@ -33,19 +34,39 @@ export default function ColorList(props: Props): ReactElement {
         colorClasses.push(css.colorResizable);
     }
 
+    const onResize = (index: number, ref: RefObject<HTMLDivElement>) => {
+        if (!props.editingEnabled) {
+            return;
+        }
+
+        const width = ref.current?.clientWidth;
+        if (width) {
+            props.resizeColorAt(index, width);
+        }
+    };
+
     return (
         <div className={css.colors}>
-            {props.colors.map((color, index) => (
-                <div className={colorClasses.join(' ')} style={{ width: color.width }} key={`color-${color.id}`}>
-                    <ColorElement
-                        blockSettings={props.blockSettings}
-                        color={color}
-                        editingEnabled={props.editingEnabled}
-                        index={index}
-                        onRemove={() => props.removeColorAt(index)}
-                    />
-                </div>
-            ))}
+            {props.colors.map((color, index) => {
+                const ref = useRef<HTMLDivElement>(null);
+                return (
+                    <div
+                        className={colorClasses.join(' ')}
+                        style={{ width: color.width }}
+                        key={`color-${color.id}`}
+                        onMouseUp={() => onResize(index, ref)}
+                        ref={ref}
+                    >
+                        <ColorElement
+                            blockSettings={props.blockSettings}
+                            color={color}
+                            editingEnabled={props.editingEnabled}
+                            index={index}
+                            onRemove={() => props.removeColorAt(index)}
+                        />
+                    </div>
+                );
+            })}
         </div>
     );
 }
