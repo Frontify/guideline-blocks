@@ -13,7 +13,6 @@ export default function AddMoreColors(props: Props): ReactElement {
         <div
             className={css.addMoreColorsColor}
             onClick={() => props.onConfirm(color)}
-            key={color.id}
             style={{ backgroundColor: `#${color.hex}` }}
         ></div>
     );

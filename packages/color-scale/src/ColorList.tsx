@@ -1,4 +1,4 @@
-import { ReactElement, useRef, RefObject } from 'react';
+import { ReactElement, useRef, createRef, RefObject } from 'react';
 import { BlockSettings } from './BlockSettings';
 import { Color } from './Color';
 import ColorElement from './ColorElement';
@@ -14,6 +14,9 @@ interface Props {
 }
 
 export default function ColorList(props: Props): ReactElement {
+    const refs = useRef<RefObject<HTMLDivElement>[]>([]);
+    refs.current = props.colors.map(() => createRef<HTMLDivElement>());
+
     const getColorSizeClass = () => {
         switch (props.blockSettings.size) {
             case ColorScaleSize.Small:
@@ -48,14 +51,13 @@ export default function ColorList(props: Props): ReactElement {
     return (
         <div className={css.colors}>
             {props.colors.map((color, index) => {
-                const ref = useRef<HTMLDivElement>(null);
                 return (
                     <div
                         className={colorClasses.join(' ')}
                         style={{ width: color.width }}
-                        key={`color-${color.id}`}
-                        onMouseUp={() => onResize(index, ref)}
-                        ref={ref}
+                        key={`color-${index}-${color.id}`}
+                        onMouseUp={() => onResize(index, refs.current[index])}
+                        ref={refs.current[index]}
                     >
                         <ColorElement
                             blockSettings={props.blockSettings}
