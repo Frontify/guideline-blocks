@@ -20,6 +20,10 @@ export default function AddButton(props: Props): ReactElement {
     const [flyoutVisible, setFlyoutVisible] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [colors, setColors] = useState<ColorApiResponse[]>([]);
+    const { styles, attributes, update } = usePopper(referenceElement, popperElement, {
+        placement: 'right',
+        modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
+    });
 
     const showFlyout = () => {
         setFlyoutVisible(true);
@@ -32,6 +36,10 @@ export default function AddButton(props: Props): ReactElement {
                 response.palettes.forEach((colorPalette) => colorPalette.colors.forEach((color) => c.push(color)));
                 setColors(c);
                 setIsLoading(false);
+
+                if (update) {
+                    update();
+                }
             })
             .catch(() => setIsLoading(false));
     };
@@ -43,11 +51,6 @@ export default function AddButton(props: Props): ReactElement {
         hideFlyout();
         props.onConfirm(color);
     };
-
-    const { styles, attributes } = usePopper(referenceElement, popperElement, {
-        placement: 'right',
-        modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
-    });
 
     const popperElementClassNames = [css.addMoreColorsFlyout];
 
