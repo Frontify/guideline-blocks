@@ -8,6 +8,7 @@ import AddButton from './AddButton';
 import '../../../node_modules/@frontify/arcade/dist/index.css';
 import { ColorViewModel } from './ColorViewModel';
 import { Color } from './Color';
+import css from './styles.module.css';
 
 interface Props {
     blockId: number;
@@ -102,17 +103,19 @@ export default function ColorScale(props: Props): ReactElement {
     const loaded = (): ReactElement => {
         return (
             <>
-                {colors.length > 0 ? (
-                    <ColorList
-                        removeColorAt={removeColorAt}
-                        resizeColorAt={resizeColorAt}
-                        blockSettings={props.blockSettings}
-                        editingEnabled={editingEnabled}
-                        colors={colors}
-                    />
-                ) : (
-                    <Empty editingEnabled={editingEnabled} />
-                )}
+                <div className={css.colorListContainer}>
+                    {colors.length > 0 ? (
+                        <ColorList
+                            removeColorAt={removeColorAt}
+                            resizeColorAt={resizeColorAt}
+                            blockSettings={props.blockSettings}
+                            editingEnabled={editingEnabled}
+                            colors={colors}
+                        />
+                    ) : (
+                        <Empty editingEnabled={editingEnabled} />
+                    )}
+                </div>
                 {editingEnabled ? (
                     <AddButton
                         projectId={props.context.project.id}
@@ -126,7 +129,7 @@ export default function ColorScale(props: Props): ReactElement {
         );
     };
 
-    const loading = (): ReactElement => <>Loading</>;
+    const loading = (): ReactElement => <>Loading...</>;
 
     return <div>{isLoading ? loading() : loaded()}</div>;
 }

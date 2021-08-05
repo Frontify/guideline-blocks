@@ -1,3 +1,7 @@
+.colorListContainer {
+    margin-bottom: var(--f-spacing-4x);
+}
+
 .colors {
     display: flex;
     flex-direction: row;
