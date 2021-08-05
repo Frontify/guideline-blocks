@@ -49,7 +49,6 @@ export default function ColorScale(props: Props): ReactElement {
 
                     setColors(colorViewModels);
                 })
-                .catch((error) => console.log(error))
                 .finally(() => setIsLoading(false));
         }
     }, []);

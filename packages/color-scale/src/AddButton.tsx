@@ -34,14 +34,13 @@ export default function AddButton(props: Props): ReactElement {
 
         appBridge.colors
             .getAvailableColors()
-            .then((result) => {
-                setColors(result);
+            .then((result) => setColors(result))
+            .finally(() => {
+                setIsLoading(false);
                 if (update) {
                     update();
                 }
-            })
-            .catch((error) => console.log(error))
-            .finally(() => setIsLoading(false));
+            });
     };
 
     const hideFlyout = () => setFlyoutVisible(false);
