@@ -5,21 +5,24 @@ import css from './styles.module.css';
 import useClickOutsideNotify from './useClickOutsideNotify';
 import { Button, ButtonSize, ButtonStyle } from '@frontify/arcade';
 import { HttpClient } from '@frontify/frontify-cli/types';
-import { ApiReponse, ColorApiResponse } from './ApiResponse';
+import { ColorViewModel } from './ColorViewModel';
+import { defaultColorWidth } from './Constants';
+import { createNativeAppBridge, Color } from '@frontify/app-bridge';
 
 interface Props {
     httpClient: HttpClient;
     projectId: number;
-    onConfirm: (color: ColorApiResponse) => void;
+    onConfirm: (color: ColorViewModel) => void;
 }
 
 export default function AddButton(props: Props): ReactElement {
+    const appBridge = createNativeAppBridge();
     const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
     const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
     const [flyoutVisible, setFlyoutVisible] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [colors, setColors] = useState<ColorApiResponse[]>([]);
+    const [colors, setColors] = useState<Color[]>([]);
     const { styles, attributes, update } = usePopper(referenceElement, popperElement, {
         placement: 'right',
         modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
@@ -29,27 +32,24 @@ export default function AddButton(props: Props): ReactElement {
         setFlyoutVisible(true);
         setIsLoading(true);
 
-        props.httpClient
-            .get<ApiReponse>(`/api/color/library/${props.projectId}`)
-            .then((response) => {
-                const c: ColorApiResponse[] = [];
-                response.palettes.forEach((colorPalette) => colorPalette.colors.forEach((color) => c.push(color)));
-                setColors(c);
-                setIsLoading(false);
-
+        appBridge.colors
+            .getAvailableColors()
+            .then((result) => {
+                setColors(result);
                 if (update) {
                     update();
                 }
             })
-            .catch(() => setIsLoading(false));
+            .catch((error) => console.log(error))
+            .finally(() => setIsLoading(false));
     };
 
     const hideFlyout = () => setFlyoutVisible(false);
     const toggleFlyout = () => (flyoutVisible ? hideFlyout() : showFlyout());
 
-    const confirmSelection = (color: ColorApiResponse): void => {
+    const confirmSelection = (color: Color): void => {
         hideFlyout();
-        props.onConfirm(color);
+        props.onConfirm({ color, width: defaultColorWidth });
     };
 
     const popperElementClassNames = [css.addMoreColorsFlyout];

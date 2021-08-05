@@ -1,13 +1,13 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useState, useEffect } from 'react';
 import { Editor, HttpClient, Context } from '@frontify/frontify-cli/types';
-import { Color } from './Color';
+import { createNativeAppBridge } from '@frontify/app-bridge';
 import { BlockSettings } from './BlockSettings';
 import ColorList from './ColorList';
 import Empty from './Empty';
 import AddButton from './AddButton';
-import { defaultColorWidth } from './Constants';
-import { ColorApiResponse } from './ApiResponse';
 import '../../../node_modules/@frontify/arcade/dist/index.css';
+import { ColorViewModel } from './ColorViewModel';
+import { Color } from './Color';
 
 interface Props {
     blockId: number;
@@ -19,33 +19,62 @@ interface Props {
 }
 
 export default function ColorScale(props: Props): ReactElement {
-    const [editingEnabled, editingEnabledToggled] = useState<boolean>(props.editor.editingEnabled);
-    props.editor.onEditingEnabledToggled = (value) => editingEnabledToggled(value);
+    const appBridge = createNativeAppBridge();
+    const [isLoading, setIsLoading] = useState(false);
+    const [colors, setColors] = useState<ColorViewModel[]>([]);
+    const [editingEnabled, setEditingEnabled] = useState<boolean>(props.editor.editingEnabled);
+    props.editor.onEditingEnabledToggled = (value) => setEditingEnabled(value);
 
-    const [colors, setColors] = useState<Color[]>(props.blockSettings.colors || []);
+    useEffect(() => {
+        if (props.blockSettings.colors) {
+            appBridge.colors
+                .getColorsByIds(props.blockSettings.colors.map((c) => c.id))
+                .then((result) => {
+                    if (!props.blockSettings.colors) {
+                        return;
+                    }
 
-    const update = (updatedColors: Color[]): void => {
+                    const colorViewModels: ColorViewModel[] = [];
+
+                    for (const color of props.blockSettings.colors) {
+                        const match = result.find((r) => Number(r.id) === color.id);
+                        if (match) {
+                            colorViewModels.push({
+                                color: match,
+                                width: color.width,
+                            });
+                        }
+                    }
+
+                    setColors(colorViewModels);
+                })
+                .catch((error) => console.log(error))
+                .finally(() => setIsLoading(false));
+        }
+    }, []);
+
+    const update = (updatedColors: ColorViewModel[]): void => {
         props.updateSettings({
-            colors: updatedColors,
+            colors: updatedColors.map((c): Color => {
+                return {
+                    id: Number(c.color.id),
+                    width: c.width,
+                };
+            }),
             size: props.blockSettings.size,
             style: props.blockSettings.style,
         });
     };
 
-    const appendColor = (addedColor: ColorApiResponse): void => {
-        const updatedColors: Color[] = colors.map((color) => color);
-
-        updatedColors.push({
-            id: Number(addedColor.id),
-            width: defaultColorWidth,
-        });
-
+    const appendColor = (addedColor: ColorViewModel): void => {
+        const updatedColors: ColorViewModel[] = colors.map((color) => color);
+        updatedColors.push(addedColor);
         setColors(updatedColors);
         update(updatedColors);
     };
 
     const removeColorAt = (index: number): void => {
-        const updatedColors: Color[] = [];
+        const updatedColors: ColorViewModel[] = [];
 
         colors.forEach((c, i) => {
             if (i !== index) {
@@ -58,7 +87,7 @@ export default function ColorScale(props: Props): ReactElement {
     };
 
     const resizeColorAt = (index: number, width: number): void => {
-        const updatedColors: Color[] = [];
+        const updatedColors: ColorViewModel[] = [];
 
         colors.forEach((c, i) => {
             if (i === index) {
@@ -70,24 +99,34 @@ export default function ColorScale(props: Props): ReactElement {
         update(updatedColors);
     };
 
-    return (
-        <div>
-            {colors.length > 0 ? (
-                <ColorList
-                    removeColorAt={removeColorAt}
-                    resizeColorAt={resizeColorAt}
-                    blockSettings={props.blockSettings}
-                    editingEnabled={editingEnabled}
-                    colors={colors}
-                />
-            ) : (
-                <Empty editingEnabled={editingEnabled} />
-            )}
-            {editingEnabled ? (
-                <AddButton projectId={props.context.project.id} httpClient={props.httpClient} onConfirm={appendColor} />
-            ) : (
-                ''
-            )}
-        </div>
-    );
+    const loaded = (): ReactElement => {
+        return (
+            <>
+                {colors.length > 0 ? (
+                    <ColorList
+                        removeColorAt={removeColorAt}
+                        resizeColorAt={resizeColorAt}
+                        blockSettings={props.blockSettings}
+                        editingEnabled={editingEnabled}
+                        colors={colors}
+                    />
+                ) : (
+                    <Empty editingEnabled={editingEnabled} />
+                )}
+                {editingEnabled ? (
+                    <AddButton
+                        projectId={props.context.project.id}
+                        httpClient={props.httpClient}
+                        onConfirm={appendColor}
+                    />
+                ) : (
+                    ''
+                )}
+            </>
+        );
+    };
+
+    const loading = (): ReactElement => <>Loading</>;
+
+    return <div>{isLoading ? loading() : loaded()}</div>;
 }

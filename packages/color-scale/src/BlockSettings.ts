@@ -5,6 +5,5 @@ import { ColorScaleStyle } from './ColorScaleStyle';
 export interface BlockSettings {
     style: ColorScaleStyle;
     size: ColorScaleSize;
-    _colorIds?: number[];
     colors?: Color[];
 }

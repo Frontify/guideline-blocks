@@ -6,7 +6,18 @@
 
 .color {
     display: flex;
+    overflow: hidden;
     min-width: 40px;
+}
+
+.color:first-child {
+    border-bottom-left-radius: var(--f-corner-4px);
+    border-top-left-radius: var(--f-corner-4px);
+}
+
+.color:last-child {
+    border-bottom-right-radius: var(--f-corner-4px);
+    border-top-right-radius: var(--f-corner-4px);
 }
 
 .colorSmall {
@@ -22,7 +33,6 @@
 }
 
 .colorResizable {
-    overflow: hidden;
     resize: horizontal;
 }
 
@@ -57,14 +67,6 @@
 
 .removeButton:active {
     background-color: var(--f-black-20);
-}
-
-.colorBackground {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 .colorName {

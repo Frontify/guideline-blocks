@@ -1,13 +1,13 @@
 import { ReactElement } from 'react';
 import css from 'styles.module.css';
-import { Color } from './Color';
 import { BlockSettings } from './BlockSettings';
 import { ColorScaleStyle } from './ColorScaleStyle';
 import RemoveButton from './RemoveButton';
+import { ColorViewModel } from './ColorViewModel';
 
 interface Props {
     blockSettings: BlockSettings;
-    color: Color;
+    color: ColorViewModel;
     index: number;
     editingEnabled: boolean;
     onRemove: () => void;
@@ -26,10 +26,9 @@ export default function ColorElement(props: Props): ReactElement {
     };
 
     return (
-        <div className={css.colorElement}>
-            <div className={css.colorBackground} style={{ backgroundColor: `#CCC` }}></div>
+        <div className={css.colorElement} style={{ backgroundColor: `#${props.color.color.hex}` }}>
             <div className={css.colorName}>
-                {showColorName(props.blockSettings.style) ? `Color ${props.color.id}` : ''}
+                {showColorName(props.blockSettings.style) ? `Color ${props.color.color.id}` : ''}
             </div>
             {props.editingEnabled ? <RemoveButton onRemove={props.onRemove} /> : ''}
         </div>

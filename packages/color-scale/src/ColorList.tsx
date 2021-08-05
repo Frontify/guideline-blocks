@@ -1,12 +1,12 @@
 import { ReactElement, useRef, createRef, RefObject } from 'react';
 import { BlockSettings } from './BlockSettings';
-import { Color } from './Color';
 import ColorElement from './ColorElement';
 import { ColorScaleSize } from './ColorScaleSize';
+import { ColorViewModel } from './ColorViewModel';
 import css from './styles.module.css';
 
 interface Props {
-    colors: Color[];
+    colors: ColorViewModel[];
     editingEnabled: boolean;
     blockSettings: BlockSettings;
     removeColorAt: (index: number) => void;
@@ -55,7 +55,7 @@ export default function ColorList(props: Props): ReactElement {
                     <div
                         className={colorClasses.join(' ')}
                         style={{ width: color.width }}
-                        key={`color-${index}-${color.id}`}
+                        key={`color-${index}-${color.color.id}`}
                         onMouseUp={() => onResize(index, refs.current[index])}
                         ref={refs.current[index]}
                     >
