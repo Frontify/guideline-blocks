@@ -7,6 +7,7 @@ import Empty from './Empty';
 import AddButton from './AddButton';
 import { defaultColorWidth } from './Constants';
 import { ColorApiResponse } from './ApiResponse';
+import '../../../node_modules/@frontify/arcade/dist/index.css';
 
 interface Props {
     blockId: number;
