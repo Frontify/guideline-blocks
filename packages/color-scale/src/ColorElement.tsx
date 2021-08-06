@@ -28,7 +28,7 @@ export default function ColorElement(props: Props): ReactElement {
     return (
         <div className={css.colorElement} style={{ backgroundColor: `#${props.color.color.hex}` }}>
             <div className={css.colorName}>
-                {showColorName(props.blockSettings.style) ? `Color ${props.color.color.id}` : ''}
+                {showColorName(props.blockSettings.style) ? props.color.color.name : ''}
             </div>
             {props.editingEnabled ? <RemoveButton onRemove={props.onRemove} /> : ''}
         </div>
