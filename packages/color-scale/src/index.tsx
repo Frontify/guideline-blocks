@@ -124,5 +124,5 @@ export default function ColorScale(props: Props): ReactElement {
 
     const loading = <>Loading...</>;
 
-    return <div>{isLoading ? loading : loaded}</div>;
+    return <>{isLoading ? loading : loaded}</>;
 }
