@@ -99,36 +99,30 @@ export default function ColorScale(props: Props): ReactElement {
         update(updatedColors);
     };
 
-    const loaded = (): ReactElement => {
-        return (
-            <>
-                <div className={css.colorListContainer}>
-                    {colors.length > 0 ? (
-                        <ColorList
-                            removeColorAt={removeColorAt}
-                            resizeColorAt={resizeColorAt}
-                            blockSettings={props.blockSettings}
-                            editingEnabled={editingEnabled}
-                            colors={colors}
-                        />
-                    ) : (
-                        <Empty editingEnabled={editingEnabled} />
-                    )}
-                </div>
-                {editingEnabled ? (
-                    <AddButton
-                        projectId={props.context.project.id}
-                        httpClient={props.httpClient}
-                        onConfirm={appendColor}
+    const loaded = (
+        <>
+            <div className={css.colorListContainer}>
+                {colors.length > 0 ? (
+                    <ColorList
+                        removeColorAt={removeColorAt}
+                        resizeColorAt={resizeColorAt}
+                        blockSettings={props.blockSettings}
+                        editingEnabled={editingEnabled}
+                        colors={colors}
                     />
                 ) : (
-                    ''
+                    <Empty editingEnabled={editingEnabled} />
                 )}
-            </>
-        );
-    };
+            </div>
+            {editingEnabled ? (
+                <AddButton projectId={props.context.project.id} httpClient={props.httpClient} onConfirm={appendColor} />
+            ) : (
+                ''
+            )}
+        </>
+    );
 
-    const loading = (): ReactElement => <>Loading...</>;
+    const loading = <>Loading...</>;
 
-    return <div>{isLoading ? loading() : loaded()}</div>;
+    return <div>{isLoading ? loading : loaded}</div>;
 }

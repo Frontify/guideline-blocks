@@ -18,11 +18,11 @@ export default function AddMoreColors(props: Props): ReactElement {
         ></div>
     );
 
-    const loading = () => <span>Loading...</span>;
+    const loading = <span>Loading...</span>;
 
     return (
         <div className={css.addMoreColors}>
-            {props.isLoading ? loading() : props.colors.map((color, index) => listItem(color, index))}
+            {props.isLoading ? loading : props.colors.map((color, index) => listItem(color, index))}
         </div>
     );
 }
