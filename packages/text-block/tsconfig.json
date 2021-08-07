@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/server",
+        "outDir": "./dist",
         "rootDir": "src"
     },
     "extends": "../../tsconfig.json"
