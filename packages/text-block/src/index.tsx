@@ -10,12 +10,9 @@ import {
 import { convertFromHTML } from 'draft-convert';
 import { createNativeAppBridge } from '@frontify/app-bridge';
 import { useEditorState } from '@frontify/app-bridge/dist/react';
+import { RichTextEditor } from '@frontify/arcade';
 import { PLACEHOLDER } from './constant';
 import './TextBlock.css';
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-const { RichTextEditor } = window.DesignSystemComponents;
 
 export default function TextBlock(): ReactElement {
     const [blockRef, setBlockRef] = useState<HTMLElement | null>(null);
