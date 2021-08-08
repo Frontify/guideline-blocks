@@ -37,6 +37,7 @@ export default function TextBlock(): ReactElement {
                 console.log('HTML converted ContentState');
 
                 textFromSettings = convertFromHTML({
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     htmlToEntity: (nodeName: string, element: Element, createEntity: any) => {
                         if (nodeName === 'a') {
                             return createEntity('LINK', 'MUTABLE', {
