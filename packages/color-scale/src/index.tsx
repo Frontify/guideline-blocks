@@ -69,27 +69,21 @@ const ColorScale: FC<Props> = (props: Props) => {
     };
 
     const removeColorAt = (index: number): void => {
-        const updatedColors: ColorViewModel[] = [];
-
-        colors.forEach((c, i) => {
-            if (i !== index) {
-                updatedColors.push(c);
-            }
-        });
-
+        const updatedColors = colors.reduce<ColorViewModel[]>(
+            (all, current, i) => (i === index ? all : [...all, current]),
+            []
+        );
         setColors(updatedColors);
         update(updatedColors);
     };
 
     const resizeColorAt = (index: number, width: number): void => {
-        const updatedColors: ColorViewModel[] = [];
-
-        colors.forEach((c, i) => {
+        const updatedColors = colors.reduce<ColorViewModel[]>((all, current, i) => {
             if (i === index) {
-                c.width = width;
+                current.width = width;
             }
-            updatedColors.push(c);
-        });
+            return [...all, current];
+        }, []);
 
         update(updatedColors);
     };
