@@ -1,56 +1,60 @@
-import { ReactElement, useState, useEffect } from 'react';
-import { Editor, HttpClient, Context } from '@frontify/frontify-cli/types';
-import { createNativeAppBridge } from '@frontify/app-bridge';
-import { BlockSettings } from './BlockSettings';
-import ColorList from './ColorList';
-import Empty from './Empty';
-import AddButton from './AddButton';
 import '../../../node_modules/@frontify/arcade/dist/index.css';
-import { ColorViewModel } from './ColorViewModel';
+import { AddButton } from './AddButton';
+import { BlockSettings } from './BlockSettings';
 import { Color } from './Color';
+import { ColorList } from './ColorList';
+import { ColorViewModel } from './ColorViewModel';
+import { createNativeAppBridge } from '@frontify/app-bridge';
+import { Editor, Context } from '@frontify/frontify-cli/types';
+import { FC, ReactElement, useState, useEffect } from 'react';
 import css from './styles.module.css';
 
-interface Props {
-    blockId: number;
+type Props = {
     editor: Editor;
     blockSettings: BlockSettings;
     updateSettings: (updatedBlockSettings: BlockSettings) => void;
-    httpClient: HttpClient;
     context: Context;
-}
+};
 
-export default function ColorScale(props: Props): ReactElement {
+const ColorScale: FC<Props> = (props: Props) => {
     const appBridge = createNativeAppBridge();
     const [isLoading, setIsLoading] = useState(false);
     const [colors, setColors] = useState<ColorViewModel[]>([]);
     const [editingEnabled, setEditingEnabled] = useState<boolean>(props.editor.editingEnabled);
     props.editor.onEditingEnabledToggled = (value) => setEditingEnabled(value);
 
-    useEffect(() => {
-        if (props.blockSettings.colors) {
-            appBridge.colors
-                .getColorsByIds(props.blockSettings.colors.map((c) => c.id))
-                .then((result) => {
-                    if (!props.blockSettings.colors) {
-                        return;
-                    }
-
-                    const colorViewModels: ColorViewModel[] = [];
-
-                    for (const color of props.blockSettings.colors) {
-                        const match = result.find((r) => Number(r.id) === color.id);
-                        if (match) {
-                            colorViewModels.push({
-                                color: match,
-                                width: color.width,
-                            });
-                        }
-                    }
-
-                    setColors(colorViewModels);
-                })
-                .finally(() => setIsLoading(false));
+    const loadColors = async (): Promise<void> => {
+        if (!props.blockSettings.colors) {
+            return;
         }
+
+        try {
+            const result = await appBridge.colors.getColorsByIds(props.blockSettings.colors.map((c) => c.id));
+
+            if (!props.blockSettings.colors) {
+                return;
+            }
+
+            const colorViewModels: ColorViewModel[] = [];
+
+            for (const color of props.blockSettings.colors) {
+                const match = result.find((r) => Number(r.id) === color.id);
+                if (match) {
+                    colorViewModels.push({
+                        color: match,
+                        width: color.width,
+                    });
+                }
+            }
+
+            setColors(colorViewModels);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect((): void => {
+        loadColors();
     }, []);
 
     const update = (updatedColors: ColorViewModel[]): void => {
@@ -99,7 +103,7 @@ export default function ColorScale(props: Props): ReactElement {
         update(updatedColors);
     };
 
-    const loaded = (
+    const loaded: ReactElement = (
         <>
             <div className={css.colorListContainer}>
                 {colors.length > 0 ? (
@@ -111,18 +115,14 @@ export default function ColorScale(props: Props): ReactElement {
                         colors={colors}
                     />
                 ) : (
-                    <Empty editingEnabled={editingEnabled} />
+                    editingEnabled && 'Empty. Please add colors.'
                 )}
             </div>
-            {editingEnabled ? (
-                <AddButton projectId={props.context.project.id} httpClient={props.httpClient} onConfirm={appendColor} />
-            ) : (
-                ''
-            )}
+            {editingEnabled && <AddButton projectId={props.context.project.id} onConfirm={appendColor} />}
         </>
     );
 
-    const loading = <>Loading...</>;
+    return <>{isLoading ? <>Loading...</> : loaded}</>;
+};
 
-    return <>{isLoading ? loading : loaded}</>;
-}
+export default ColorScale;

@@ -1,15 +1,15 @@
-import { ReactElement } from 'react';
-import css from './styles.module.css';
 import { Color } from '@frontify/app-bridge';
+import { FC, ReactElement } from 'react';
+import css from './styles.module.css';
 
-interface Props {
+type Props = {
     colors: Color[];
     onConfirm: (color: Color) => void;
     isLoading: boolean;
-}
+};
 
-export default function AddMoreColors(props: Props): ReactElement {
-    const listItem = (color: Color, index: number) => (
+export const AddMoreColors: FC<Props> = (props: Props) => {
+    const listItem = (color: Color, index: number): ReactElement => (
         <div
             className={css.addMoreColorsColor}
             onClick={() => props.onConfirm(color)}
@@ -18,11 +18,9 @@ export default function AddMoreColors(props: Props): ReactElement {
         ></div>
     );
 
-    const loading = <span>Loading...</span>;
-
     return (
         <div className={css.addMoreColors}>
-            {props.isLoading ? loading : props.colors.map((color, index) => listItem(color, index))}
+            {props.isLoading ? <span>Loading...</span> : props.colors.map((color, index) => listItem(color, index))}
         </div>
     );
-}
+};

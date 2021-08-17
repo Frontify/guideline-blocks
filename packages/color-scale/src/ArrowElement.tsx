@@ -1,12 +1,12 @@
-import { CSSProperties, ReactElement, Ref } from 'react';
+import { CSSProperties, FC, Ref } from 'react';
 import css from './styles.module.css';
 
-interface Props {
+type Props = {
     arrowElementReference: Ref<HTMLDivElement>;
     style: CSSProperties;
-}
+};
 
-export default function ArrowElement(props: Props): ReactElement {
+export const ArrowElement: FC<Props> = (props: Props) => {
     return (
         <div ref={props.arrowElementReference} className={css.addMoreColorsArrowContainer} style={props.style}>
             <div className={css.addMoreColorsArrow}>
@@ -14,4 +14,4 @@ export default function ArrowElement(props: Props): ReactElement {
             </div>
         </div>
     );
-}
+};

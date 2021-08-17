@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function useClickOutsideNotify(reference: HTMLElement | null, callback: () => void): void {
+export const useClickOutsideNotify = (reference: HTMLElement | null, callback: () => void): void => {
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (!reference?.contains(event.target as Node)) {
@@ -13,4 +13,4 @@ export default function useClickOutsideNotify(reference: HTMLElement | null, cal
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [reference, callback]);
-}
+};

@@ -1,6 +1,6 @@
 import { Color } from '@frontify/app-bridge';
 
-export interface ColorViewModel {
+export type ColorViewModel = {
     color: Color;
     width: number;
-}
+};

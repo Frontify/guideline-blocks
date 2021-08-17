@@ -1,21 +1,19 @@
-import { ReactElement, useState } from 'react';
-import { usePopper } from 'react-popper';
-import AddMoreColors from './AddMoreColors';
-import css from './styles.module.css';
-import useClickOutsideNotify from './useClickOutsideNotify';
+import { AddMoreColors } from './AddMoreColors';
 import { Button, ButtonSize, ButtonStyle } from '@frontify/arcade';
-import { HttpClient } from '@frontify/frontify-cli/types';
 import { ColorViewModel } from './ColorViewModel';
-import { defaultColorWidth } from './Constants';
 import { createNativeAppBridge, Color } from '@frontify/app-bridge';
+import { defaultColorWidth } from './Constants';
+import { ReactElement, useState, FC } from 'react';
+import { usePopper } from 'react-popper';
+import { useClickOutsideNotify } from './useClickOutsideNotify';
+import css from './styles.module.css';
 
-interface Props {
-    httpClient: HttpClient;
+type Props = {
     projectId: number;
     onConfirm: (color: ColorViewModel) => void;
-}
+};
 
-export default function AddButton(props: Props): ReactElement {
+export const AddButton: FC<Props> = (props) => {
     const appBridge = createNativeAppBridge();
     const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
@@ -28,19 +26,19 @@ export default function AddButton(props: Props): ReactElement {
         modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
     });
 
-    const showFlyout = () => {
+    const showFlyout = async (): Promise<void> => {
         setFlyoutVisible(true);
         setIsLoading(true);
 
-        appBridge.colors
-            .getAvailableColors()
-            .then((result) => setColors(result))
-            .finally(() => {
-                setIsLoading(false);
-                if (update) {
-                    update();
-                }
-            });
+        try {
+            const result = await appBridge.colors.getAvailableColors();
+            setColors(result);
+        } finally {
+            setIsLoading(false);
+            if (update) {
+                update();
+            }
+        }
     };
 
     const hideFlyout = () => setFlyoutVisible(false);
@@ -78,13 +76,13 @@ export default function AddButton(props: Props): ReactElement {
                 </Button>
             </div>
             <div
+                {...attributes.popper}
                 ref={setPopperElement}
                 className={popperElementClassNames.join(' ')}
                 style={styles.popper}
-                {...attributes.popper}
             >
-                {flyoutVisible ? flyout : ''}
+                {flyoutVisible && flyout}
             </div>
         </div>
     );
-}
+};

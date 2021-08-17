@@ -1,4 +1,4 @@
-export interface Color {
+export type Color = {
     id: number;
     width: number;
-}
+};

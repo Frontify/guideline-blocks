@@ -1,20 +1,20 @@
-import { ReactElement } from 'react';
-import css from 'styles.module.css';
 import { BlockSettings } from './BlockSettings';
 import { ColorScaleStyle } from './ColorScaleStyle';
-import RemoveButton from './RemoveButton';
 import { ColorViewModel } from './ColorViewModel';
+import { FC } from 'react';
+import { RemoveButton } from './RemoveButton';
+import css from 'styles.module.css';
 
-interface Props {
+type Props = {
     blockSettings: BlockSettings;
     color: ColorViewModel;
     index: number;
     editingEnabled: boolean;
     onRemove: () => void;
-}
+};
 
-export default function ColorElement(props: Props): ReactElement {
-    const showColorName = (colorScaleStyle: ColorScaleStyle) => {
+export const ColorElement: FC<Props> = (props: Props) => {
+    const showColorName = (colorScaleStyle: ColorScaleStyle): boolean => {
         switch (colorScaleStyle) {
             case ColorScaleStyle.ColorOnly:
                 return false;
@@ -27,10 +27,8 @@ export default function ColorElement(props: Props): ReactElement {
 
     return (
         <div className={css.colorElement} style={{ backgroundColor: `#${props.color.color.hex}` }}>
-            <div className={css.colorName}>
-                {showColorName(props.blockSettings.style) ? props.color.color.name : ''}
-            </div>
-            {props.editingEnabled ? <RemoveButton onRemove={props.onRemove} /> : ''}
+            <div className={css.colorName}>{showColorName(props.blockSettings.style) && props.color.color.name}</div>
+            {props.editingEnabled && <RemoveButton onRemove={props.onRemove} />}
         </div>
     );
-}
+};

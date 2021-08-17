@@ -1,14 +1,14 @@
-import { ReactElement } from 'react';
+import { FC } from 'react';
 import css from './styles.module.css';
 
-interface Props {
+type Props = {
     onRemove: () => void;
-}
+};
 
-export default function RemoveButton(props: Props): ReactElement {
+export const RemoveButton: FC<Props> = (props: Props) => {
     return (
         <div className={css.removeButton} onClick={() => props.onRemove()}>
             <i className="ca-icon ca-icon--trash"></i>
         </div>
     );
-}
+};

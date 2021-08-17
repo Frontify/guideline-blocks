@@ -1,23 +1,23 @@
-import { ReactElement, useRef, createRef, RefObject } from 'react';
 import { BlockSettings } from './BlockSettings';
-import ColorElement from './ColorElement';
+import { ColorElement } from './ColorElement';
 import { ColorScaleSize } from './ColorScaleSize';
 import { ColorViewModel } from './ColorViewModel';
+import { FC, useRef, createRef, RefObject } from 'react';
 import css from './styles.module.css';
 
-interface Props {
+type Props = {
     colors: ColorViewModel[];
     editingEnabled: boolean;
     blockSettings: BlockSettings;
     removeColorAt: (index: number) => void;
     resizeColorAt: (index: number, width: number) => void;
-}
+};
 
-export default function ColorList(props: Props): ReactElement {
+export const ColorList: FC<Props> = (props: Props) => {
     const refs = useRef<RefObject<HTMLDivElement>[]>([]);
     refs.current = props.colors.map(() => createRef<HTMLDivElement>());
 
-    const getColorSizeClass = () => {
+    const getColorSizeClass = (): string => {
         switch (props.blockSettings.size) {
             case ColorScaleSize.Small:
                 return css.colorSmall;
@@ -37,7 +37,7 @@ export default function ColorList(props: Props): ReactElement {
         colorClasses.push(css.colorResizable);
     }
 
-    const onResize = (index: number, ref: RefObject<HTMLDivElement>) => {
+    const onResize = (index: number, ref: RefObject<HTMLDivElement>): void => {
         if (!props.editingEnabled) {
             return;
         }
@@ -71,4 +71,4 @@ export default function ColorList(props: Props): ReactElement {
             })}
         </div>
     );
-}
+};
