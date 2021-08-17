@@ -35,14 +35,12 @@ const ColorScale: FC<Props> = (props: Props) => {
                 return;
             }
 
-            const colorViewModels: ColorViewModel[] = [];
-
-            for (const color of props.blockSettings.colors) {
-                const match = result.find((r) => Number(r.id) === color.id);
-                if (match) {
-                    colorViewModels.push({ color: match, width: color.width });
-                }
-            }
+            const colorViewModels = props.blockSettings.colors
+                ? props.blockSettings.colors.reduce<ColorViewModel[]>((all, { id, width }) => {
+                      const match = result.find((r) => Number(r.id) === id);
+                      return match ? [...all, { color: match, width }] : all;
+                  }, [])
+                : [];
 
             setColors(colorViewModels);
         } finally {
