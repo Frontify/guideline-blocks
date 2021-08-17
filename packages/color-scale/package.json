@@ -1,8 +1,10 @@
 {
-    "name": "color-scale",
+    "name": "@frontify/color-scale",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "dist/index.js",
+    "license": "UNLICENSED",
+    "private": true,
     "scripts": {
         "serve:block": "frontify-cli block serve --blockDir $(PWD)"
     },
