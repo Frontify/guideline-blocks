@@ -14,20 +14,11 @@ type Props = {
 };
 
 export const ColorElement: FC<Props> = (props: Props) => {
-    const showColorName = (colorScaleStyle: ColorScaleStyle): boolean => {
-        switch (colorScaleStyle) {
-            case ColorScaleStyle.ColorOnly:
-                return false;
-
-            case ColorScaleStyle.ColorAndLabel:
-            default:
-                return true;
-        }
-    };
-
     return (
         <div className={css.colorElement} style={{ backgroundColor: `#${props.color.color.hex}` }}>
-            <div className={css.colorName}>{showColorName(props.blockSettings.style) && props.color.color.name}</div>
+            <div className={css.colorName}>
+                {props.blockSettings.style !== ColorScaleStyle.ColorOnly && props.color.color.name}
+            </div>
             {props.editingEnabled && <RemoveButton onRemove={props.onRemove} />}
         </div>
     );

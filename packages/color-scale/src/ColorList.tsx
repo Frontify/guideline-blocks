@@ -17,25 +17,14 @@ export const ColorList: FC<Props> = (props: Props) => {
     const refs = useRef<RefObject<HTMLDivElement>[]>([]);
     refs.current = props.colors.map(() => createRef<HTMLDivElement>());
 
-    const getColorSizeClass = (): string => {
-        switch (props.blockSettings.size) {
-            case ColorScaleSize.Small:
-                return css.colorSmall;
-
-            case ColorScaleSize.Large:
-                return css.colorLarge;
-
-            case ColorScaleSize.Medium:
-            default:
-                return css.colorMedium;
-        }
+    const colorSizeClasses: Record<ColorScaleSize, string> = {
+        S: css.colorSmall,
+        M: css.colorMedium,
+        L: css.colorLarge,
     };
 
-    const colorClasses = [css.color, getColorSizeClass()];
-
-    if (props.editingEnabled) {
-        colorClasses.push(css.colorResizable);
-    }
+    const colorClasses = [css.color, colorSizeClasses[props.blockSettings.size || ColorScaleSize.Medium]];
+    props.editingEnabled && colorClasses.push(css.colorResizable);
 
     const onResize = (index: number, ref: RefObject<HTMLDivElement>): void => {
         if (!props.editingEnabled) {
