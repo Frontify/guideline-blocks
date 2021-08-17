@@ -1,6 +1,5 @@
 import { Color } from '@frontify/app-bridge';
 import { FC } from 'react';
-import { AddMoreColorsListItem } from './AddMoreColorsListItem';
 import css from './styles.module.css';
 
 type Props = {
@@ -16,11 +15,12 @@ export const AddMoreColors: FC<Props> = (props: Props) => {
                 <span>Loading...</span>
             ) : (
                 props.colors.map((color, index) => (
-                    <AddMoreColorsListItem
-                        color={color}
-                        onClick={() => props.onConfirm(color)}
+                    <div
+                        className={css.addMoreColorsColor}
                         key={`color-${color}-${index}`}
-                    />
+                        onClick={() => props.onConfirm(color)}
+                        style={{ backgroundColor: `#${color.hex}` }}
+                    ></div>
                 ))
             )}
         </div>
