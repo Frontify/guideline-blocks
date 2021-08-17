@@ -40,10 +40,7 @@ const ColorScale: FC<Props> = (props: Props) => {
             for (const color of props.blockSettings.colors) {
                 const match = result.find((r) => Number(r.id) === color.id);
                 if (match) {
-                    colorViewModels.push({
-                        color: match,
-                        width: color.width,
-                    });
+                    colorViewModels.push({ color: match, width: color.width });
                 }
             }
 
@@ -59,12 +56,7 @@ const ColorScale: FC<Props> = (props: Props) => {
 
     const update = (updatedColors: ColorViewModel[]): void => {
         props.updateSettings({
-            colors: updatedColors.map((c): Color => {
-                return {
-                    id: Number(c.color.id),
-                    width: c.width,
-                };
-            }),
+            colors: updatedColors.map(({ color, width }): Color => ({ id: Number(color.id), width })),
             size: props.blockSettings.size,
             style: props.blockSettings.style,
         });
