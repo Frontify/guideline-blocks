@@ -3,7 +3,7 @@ import { Button, ButtonSize, ButtonStyle } from '@frontify/arcade';
 import { ColorViewModel } from './ColorViewModel';
 import { createNativeAppBridge, Color } from '@frontify/app-bridge';
 import { defaultColorWidth } from './Constants';
-import { ReactElement, useState, FC } from 'react';
+import { useState, FC } from 'react';
 import { usePopper } from 'react-popper';
 import { useClickOutsideNotify } from './useClickOutsideNotify';
 import css from './styles.module.css';
@@ -49,17 +49,6 @@ export const AddButton: FC<Props> = (props) => {
         props.onConfirm({ color, width: defaultColorWidth });
     };
 
-    const popperElementClassNames = [css.addMoreColorsFlyout];
-
-    const flyout: ReactElement = (
-        <div className={css.addMoreColorsContainer}>
-            <AddMoreColors colors={colors} onConfirm={(color) => confirmSelection(color)} isLoading={isLoading} />
-            <div ref={setArrowElement} className={css.addMoreColorsArrowContainer}>
-                <div className={css.addMoreColorsArrow}></div>
-            </div>
-        </div>
-    );
-
     useClickOutsideNotify(popperElement, () => hideFlyout());
 
     return (
@@ -78,10 +67,21 @@ export const AddButton: FC<Props> = (props) => {
             <div
                 {...attributes.popper}
                 ref={setPopperElement}
-                className={popperElementClassNames.join(' ')}
+                className={css.addMoreColorsFlyout}
                 style={styles.popper}
             >
-                {flyoutVisible && flyout}
+                {flyoutVisible && (
+                    <div className={css.addMoreColorsContainer}>
+                        <AddMoreColors
+                            colors={colors}
+                            onConfirm={(color) => confirmSelection(color)}
+                            isLoading={isLoading}
+                        />
+                        <div ref={setArrowElement} className={css.addMoreColorsArrowContainer}>
+                            <div className={css.addMoreColorsArrow}></div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
