@@ -63,8 +63,7 @@ const ColorScale: FC<Props> = (props: Props) => {
     };
 
     const appendColor = (addedColor: ColorViewModel): void => {
-        const updatedColors: ColorViewModel[] = colors.map((color) => color);
-        updatedColors.push(addedColor);
+        const updatedColors: ColorViewModel[] = [...colors, addedColor];
         setColors(updatedColors);
         update(updatedColors);
     };
