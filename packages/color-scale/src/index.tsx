@@ -5,7 +5,7 @@ import { Color } from './Color';
 import { ColorList } from './ColorList';
 import { ColorViewModel } from './ColorViewModel';
 import { createNativeAppBridge } from '@frontify/app-bridge';
-import { FC, ReactElement, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useEditorState } from '@frontify/app-bridge/dist/react';
 import css from './styles.module.css';
 
@@ -76,7 +76,11 @@ const ColorScale: FC<Props> = (props) => {
         update(updatedColors);
     };
 
-    const loaded: ReactElement = (
+    if (isLoading) {
+        return <>Loading...</>;
+    }
+
+    return (
         <>
             <div className={css.colorListContainer}>
                 {colors.length > 0 ? (
@@ -94,8 +98,6 @@ const ColorScale: FC<Props> = (props) => {
             {editingEnabled && <AddButton projectId={appBridge.context.getProjectId()} onConfirm={appendColor} />}
         </>
     );
-
-    return <>{isLoading ? <>Loading...</> : loaded}</>;
 };
 
 export default ColorScale;
