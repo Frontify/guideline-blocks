@@ -13,7 +13,7 @@ type Props = {
     onRemove: () => void;
 };
 
-export const ColorElement: FC<Props> = (props: Props) => {
+export const ColorElement: FC<Props> = (props) => {
     return (
         <div className={css.colorElement} style={{ backgroundColor: `#${props.color.color.hex}` }}>
             <div className={css.colorName}>

@@ -1,4 +1,4 @@
-import '../../../node_modules/@frontify/arcade/dist/index.css';
+import '@frontify/arcade/dist/index.css';
 import { AddButton } from './AddButton';
 import { BlockSettings } from './BlockSettings';
 import { Color } from './Color';
@@ -14,7 +14,7 @@ type Props = {
     updateSettings: (updatedBlockSettings: BlockSettings) => void;
 };
 
-const ColorScale: FC<Props> = (props: Props) => {
+const ColorScale: FC<Props> = (props) => {
     const appBridge = createNativeAppBridge();
     const editingEnabled = useEditorState();
     const [isLoading, setIsLoading] = useState(false);

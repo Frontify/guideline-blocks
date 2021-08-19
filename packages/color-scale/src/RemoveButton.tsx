@@ -5,7 +5,7 @@ type Props = {
     onRemove: () => void;
 };
 
-export const RemoveButton: FC<Props> = (props: Props) => {
+export const RemoveButton: FC<Props> = (props) => {
     return (
         <div className={css.removeButton} onClick={() => props.onRemove()}>
             <i className="ca-icon ca-icon--trash"></i>

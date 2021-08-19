@@ -13,7 +13,7 @@ type Props = {
     resizeColorAt: (index: number, width: number) => void;
 };
 
-export const ColorList: FC<Props> = (props: Props) => {
+export const ColorList: FC<Props> = (props) => {
     const refs = useRef<RefObject<HTMLDivElement>[]>([]);
     refs.current = props.colors.map(() => createRef<HTMLDivElement>());
 

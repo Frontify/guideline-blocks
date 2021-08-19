@@ -6,7 +6,7 @@ type Props = {
     style: CSSProperties;
 };
 
-export const ArrowElement: FC<Props> = (props: Props) => {
+export const ArrowElement: FC<Props> = (props) => {
     return (
         <div ref={props.arrowElementReference} className={css.addMoreColorsArrowContainer} style={props.style}>
             <div className={css.addMoreColorsArrow}>

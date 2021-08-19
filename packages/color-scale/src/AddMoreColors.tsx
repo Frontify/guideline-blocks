@@ -8,7 +8,7 @@ type Props = {
     isLoading: boolean;
 };
 
-export const AddMoreColors: FC<Props> = (props: Props) => {
+export const AddMoreColors: FC<Props> = (props) => {
     return (
         <div className={css.addMoreColors}>
             {props.isLoading ? (
