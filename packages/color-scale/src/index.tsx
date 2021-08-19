@@ -1,4 +1,4 @@
-import '@frontify/arcade/dist/index.css';
+import '@frontify/arcade/style';
 import { AddButton } from './AddButton';
 import { BlockSettings } from './BlockSettings';
 import { Color } from './Color';
