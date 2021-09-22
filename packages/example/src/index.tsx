@@ -1,4 +1,5 @@
 import { CSSProperties, ReactElement } from 'react';
+import style from './style.module.css';
 
 export default function AnExampleBlock(): ReactElement {
     const customStyle: CSSProperties = {
@@ -7,7 +8,9 @@ export default function AnExampleBlock(): ReactElement {
 
     return (
         <div>
-            <span style={customStyle}>A custom block in blue</span>
+            <span className={style.underline} style={customStyle}>
+                A custom block in blue and underlined
+            </span>
         </div>
     );
 }
