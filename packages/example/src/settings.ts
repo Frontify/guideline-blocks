@@ -1,5 +1,3 @@
-import { DropdownSize } from '@frontify/arcade';
-
 export default {
     main: [
         {
