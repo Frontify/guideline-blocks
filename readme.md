@@ -48,7 +48,7 @@ If you encounter this error: `Error: Cannot find module 'open'` try to solve the
     ```
     $ npm link .
     ```
-5. Link the `frontify-cli` in `guideline-blocks`
+5. Link the frontify cli (in `guideline-blocks`)
     ```
     $ npm link @frontify/frontify-cli
     ```
