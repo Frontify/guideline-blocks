@@ -5,6 +5,7 @@
         "lerna": "^4.0.0"
     },
     "scripts": {
-        "bootstrap": "npx lerna bootstrap"
+        "bootstrap": "npx lerna bootstrap",
+        "serve": "npx lerna run serve:block --stream --scope"
     }
 }
