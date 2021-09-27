@@ -17,9 +17,9 @@
     ```
     $ npm install && npm run bootstrap
     ```
-3. Start your block. If you encounter any errors see the [troubleshooting](#troubleshooting) section.
+3. Start your block.
     ```
-    $ npx lerna run serve:block --scope=example --stream
+    $ npm run serve example
     ```
 4. Go to your Frontify styleguide
 5. Switch to edit mode
@@ -30,7 +30,7 @@
 
 ### Troubleshooting
 
-If you encounter this error: `Error: Cannot find module 'open'` try to solve the problem with the following steps:
+If you encounter any error with the CLI, you can troubleshoot the problem with the following steps:
 
 1. Clone the `frontify-cli` repository
     ```
@@ -52,4 +52,4 @@ If you encounter this error: `Error: Cannot find module 'open'` try to solve the
     ```
     $ npm link @frontify/frontify-cli
     ```
-6. Try again running your block
+6. Try to run your local CLI build
