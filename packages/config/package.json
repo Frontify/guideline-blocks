@@ -11,17 +11,18 @@
         "@frontify/stylelint-config": "^0.1.0",
         "@types/draft-js": "^0.11.5",
         "@types/react": "^17.0.24",
-        "autoprefixer": "^10.3.6",
+        "autoprefixer": "^10.3.7",
         "eslint": "^7.32.0",
-        "prettier": "^2.4.1",
-        "postcss": "^8.3.8",
+        "postcss": "^8.3.9",
         "postcss-modules": "^4.2.2",
+        "prettier": "^2.4.1",
         "stylelint": "^13.13.1",
+        "tailwindcss": "^2.2.16",
         "typescript": "^4.4.3"
     },
     "dependencies": {
         "@frontify/app-bridge": "^1.4.0",
-        "@frontify/arcade": "^0.7.0",
+        "@frontify/arcade": "^0.7.1",
         "draft-js": "^0.11.7",
         "react-popper": "^2.2.5"
     }
