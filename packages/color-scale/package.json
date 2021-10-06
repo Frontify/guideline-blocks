@@ -9,7 +9,7 @@
         "serve:block": "frontify-cli block serve --blockDir $(PWD)"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^1.4.0",
+        "@frontify/app-bridge": "^2.0.1",
         "@frontify/arcade": "^0.7.3",
         "@popperjs/core": "^2.10.2",
         "react-popper": "^2.2.5"

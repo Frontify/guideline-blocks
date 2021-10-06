@@ -4,18 +4,17 @@ import { BlockSettings } from './BlockSettings';
 import { Color } from './Color';
 import { ColorList } from './ColorList';
 import { ColorViewModel } from './ColorViewModel';
-import { createNativeAppBridge } from '@frontify/app-bridge';
+import { AppBridgeNative } from '@frontify/app-bridge';
 import { FC, useState, useEffect } from 'react';
-import { useEditorState } from '@frontify/app-bridge/dist/react';
+import { useEditorState } from '@frontify/app-bridge/react';
 import css from './styles.module.css';
 
 type Props = {
-    blockId: number;
+    appBridge: AppBridgeNative;
 };
 
-const ColorScale: FC<Props> = (props) => {
-    const appBridge = createNativeAppBridge();
-    const blockSettings = appBridge.block.getBlockSettings<BlockSettings>(props.blockId);
+const ColorScale: FC<Props> = ({ appBridge }) => {
+    const blockSettings = appBridge.getBlockSettings<BlockSettings>();
     const editingEnabled = useEditorState();
     const [isLoading, setIsLoading] = useState(false);
     const [colors, setColors] = useState<ColorViewModel[]>([]);
@@ -26,7 +25,7 @@ const ColorScale: FC<Props> = (props) => {
         }
 
         try {
-            const result = await appBridge.colors.getColorsByIds(blockSettings.colors.map((c) => c.id));
+            const result = await appBridge.getColorsByIds(blockSettings.colors.map((c) => c.id));
             const colorViewModels = blockSettings.colors.reduce<ColorViewModel[]>((all, { id, width }) => {
                 const match = result.find((r) => Number(r.id) === id);
                 return match ? [...all, { color: match, width }] : all;
@@ -43,7 +42,7 @@ const ColorScale: FC<Props> = (props) => {
     }, []);
 
     const update = (updatedColors: ColorViewModel[]): void => {
-        appBridge.block.updateBlockSettings(props.blockId, {
+        appBridge.updateBlockSettings({
             colors: updatedColors.map(({ color, width }): Color => ({ id: Number(color.id), width })),
             size: blockSettings.size,
             style: blockSettings.style,
@@ -95,7 +94,9 @@ const ColorScale: FC<Props> = (props) => {
                     editingEnabled && 'Empty. Please add colors.'
                 )}
             </div>
-            {editingEnabled && <AddButton projectId={appBridge.context.getProjectId()} onConfirm={appendColor} />}
+            {editingEnabled && (
+                <AddButton appBridge={appBridge} projectId={appBridge.getProjectId()} onConfirm={appendColor} />
+            )}
         </>
     );
 };

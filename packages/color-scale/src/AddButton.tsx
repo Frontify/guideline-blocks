@@ -1,7 +1,7 @@
 import { AddMoreColors } from './AddMoreColors';
 import { Button, ButtonSize, ButtonStyle } from '@frontify/arcade';
 import { ColorViewModel } from './ColorViewModel';
-import { createNativeAppBridge, Color } from '@frontify/app-bridge';
+import { Color, AppBridgeNative } from '@frontify/app-bridge';
 import { defaultColorWidth } from './Constants';
 import { useState, FC } from 'react';
 import { usePopper } from 'react-popper';
@@ -11,10 +11,10 @@ import css from './styles.module.css';
 type Props = {
     projectId: number;
     onConfirm: (color: ColorViewModel) => void;
+    appBridge: AppBridgeNative;
 };
 
 export const AddButton: FC<Props> = (props) => {
-    const appBridge = createNativeAppBridge();
     const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
     const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
@@ -31,7 +31,7 @@ export const AddButton: FC<Props> = (props) => {
         setIsLoading(true);
 
         try {
-            const result = await appBridge.colors.getAvailableColors();
+            const result = await props.appBridge.getAvailableColors();
             setColors(result);
         } finally {
             setIsLoading(false);
