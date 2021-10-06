@@ -2,7 +2,6 @@
     "name": "root",
     "private": true,
     "devDependencies": {
-        "@frontify/frontify-cli": "^2.0.4",
         "lerna": "^4.0.0"
     },
     "scripts": {
