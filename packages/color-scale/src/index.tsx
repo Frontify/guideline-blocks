@@ -10,24 +10,24 @@ import { useEditorState } from '@frontify/app-bridge/dist/react';
 import css from './styles.module.css';
 
 type Props = {
-    blockSettings: BlockSettings;
-    updateSettings: (updatedBlockSettings: BlockSettings) => void;
+    blockId: number;
 };
 
 const ColorScale: FC<Props> = (props) => {
     const appBridge = createNativeAppBridge();
+    const blockSettings = appBridge.block.getBlockSettings<BlockSettings>(props.blockId);
     const editingEnabled = useEditorState();
     const [isLoading, setIsLoading] = useState(false);
     const [colors, setColors] = useState<ColorViewModel[]>([]);
 
     const loadColors = async (): Promise<void> => {
-        if (!props.blockSettings.colors) {
+        if (!blockSettings.colors) {
             return;
         }
 
         try {
-            const result = await appBridge.colors.getColorsByIds(props.blockSettings.colors.map((c) => c.id));
-            const colorViewModels = props.blockSettings.colors.reduce<ColorViewModel[]>((all, { id, width }) => {
+            const result = await appBridge.colors.getColorsByIds(blockSettings.colors.map((c) => c.id));
+            const colorViewModels = blockSettings.colors.reduce<ColorViewModel[]>((all, { id, width }) => {
                 const match = result.find((r) => Number(r.id) === id);
                 return match ? [...all, { color: match, width }] : all;
             }, []);
@@ -43,10 +43,10 @@ const ColorScale: FC<Props> = (props) => {
     }, []);
 
     const update = (updatedColors: ColorViewModel[]): void => {
-        props.updateSettings({
+        appBridge.block.updateBlockSettings(props.blockId, {
             colors: updatedColors.map(({ color, width }): Color => ({ id: Number(color.id), width })),
-            size: props.blockSettings.size,
-            style: props.blockSettings.style,
+            size: blockSettings.size,
+            style: blockSettings.style,
         });
     };
 
@@ -87,7 +87,7 @@ const ColorScale: FC<Props> = (props) => {
                     <ColorList
                         removeColorAt={removeColorAt}
                         resizeColorAt={resizeColorAt}
-                        blockSettings={props.blockSettings}
+                        blockSettings={blockSettings}
                         editingEnabled={editingEnabled}
                         colors={colors}
                     />

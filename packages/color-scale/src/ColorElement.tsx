@@ -3,7 +3,7 @@ import { ColorScaleStyle } from './ColorScaleStyle';
 import { ColorViewModel } from './ColorViewModel';
 import { FC } from 'react';
 import { RemoveButton } from './RemoveButton';
-import css from 'styles.module.css';
+import css from './styles.module.css';
 
 type Props = {
     blockSettings: BlockSettings;

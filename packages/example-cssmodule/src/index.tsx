@@ -3,7 +3,7 @@ import style from './style.module.css';
 
 export default function AnExampleBlock(): ReactElement {
     const customStyle: CSSProperties = {
-        color: 'blue',
+        color: 'red',
     };
 
     return (
