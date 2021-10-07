@@ -9,23 +9,23 @@
         "serve:block": "frontify-cli block serve --blockDir $(PWD)"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^2.0.1",
-        "@frontify/arcade": "^0.7.3",
-        "@popperjs/core": "^2.10.2",
-        "react-popper": "^2.2.5"
+        "@frontify/app-bridge": "2.0.1",
+        "@frontify/arcade": "0.7.3",
+        "@popperjs/core": "2.10.2",
+        "react-popper": "2.2.5"
     },
     "devDependencies": {
-        "@frontify/eslint-config-react": "^0.11.0",
-        "@frontify/frontify-cli": "^2.1.0",
-        "@frontify/stylelint-config": "^0.1.0",
-        "@types/react": "^17.0.27",
-        "autoprefixer": "^10.3.7",
-        "eslint": "^7.32.0",
-        "postcss": "^8.3.9",
-        "postcss-modules": "^4.2.2",
-        "prettier": "^2.4.1",
-        "stylelint": "^13.13.1",
-        "typescript": "^4.4.3"
+        "@frontify/eslint-config-react": "0.11.0",
+        "@frontify/frontify-cli": "2.1.0",
+        "@frontify/stylelint-config": "0.1.0",
+        "@types/react": "17.0.27",
+        "autoprefixer": "10.3.7",
+        "eslint": "7.32.0",
+        "postcss": "8.3.9",
+        "postcss-modules": "4.2.2",
+        "prettier": "2.4.1",
+        "stylelint": "13.13.1",
+        "typescript": "4.4.3"
     },
     "peerDependencies": {
         "react": "^17.0.2"
