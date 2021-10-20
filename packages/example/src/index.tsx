@@ -4,7 +4,7 @@ import { ReactElement } from 'react';
 export default function AnExampleBlock(): ReactElement {
     return (
         <div>
-            <span className="text-violet-60 underline">A custom block in blue and underlined</span>
+            <span className="tw-text-violet-60 tw-underline">A custom block in violet and underlined</span>
         </div>
     );
 }
