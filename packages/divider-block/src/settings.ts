@@ -1,18 +1,49 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { DividerStyle, DividerHeight } from '@frontify/arcade';
+
 export default {
     main: [
         {
-            id: 'main-dropdown',
+            id: 'style',
             type: 'dropdown',
-            defaultValue: 'custom_block',
+            defaultValue: DividerStyle.Solid,
             size: 'large',
-            disabled: true,
             choices: [
                 {
-                    value: 'custom_block',
-                    icon: 'snippet',
-                    label: 'Custom Block',
+                    value: DividerStyle.NoLine,
+                    icon: 'divider',
+                    label: 'Spacer (no line)',
+                },
+                {
+                    value: DividerStyle.Solid,
+                    icon: 'divider',
+                    label: 'Line',
                 },
             ],
+        },
+    ],
+    layout: [
+        {
+            id: 'height',
+            label: 'Block Height',
+            type: 'slider',
+            defaultValue: DividerHeight.Small,
+            choices: [
+                {
+                    value: DividerHeight.Small,
+                    label: 'S',
+                },
+                {
+                    value: DividerHeight.Medium,
+                    label: 'M',
+                },
+                {
+                    value: DividerHeight.Large,
+                    label: 'L',
+                },
+            ],
+            info: 'Lorem ipsum dolor sit amet',
         },
     ],
 };

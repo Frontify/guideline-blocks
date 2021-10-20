@@ -1,10 +1,19 @@
-import { ReactElement } from 'react';
-import 'tailwindcss/tailwind.css';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export default function AnExampleBlock(): ReactElement {
-    return (
-        <div>
-            <span className="tw-text-violet-60 tw-underline">A custom block in violet and underlined</span>
-        </div>
-    );
-}
+import { FC } from 'react';
+import 'tailwindcss/tailwind.css';
+import { Divider } from '@frontify/arcade';
+import { AppBridgeNative } from '@frontify/app-bridge';
+import { useBlockSettings } from '@frontify/app-bridge/react';
+
+type Props = {
+    appBridge: AppBridgeNative;
+};
+
+const DividerBlock: FC<Props> = ({ appBridge }) => {
+    const [blockSettings] = useBlockSettings(appBridge);
+
+    return <Divider style={blockSettings.style} height={blockSettings.height} />;
+};
+
+export default DividerBlock;
