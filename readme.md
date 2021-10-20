@@ -19,7 +19,7 @@
     ```
 3. Start your block.
     ```
-    $ npm run serve example
+    $ npm run serve example-tailwind
     ```
 4. Go to your Frontify styleguide
 5. Switch to edit mode
