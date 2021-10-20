@@ -1,4 +1,0 @@
-{
-    "extends": "@frontify/stylelint-config",
-    "ignoreFiles": ["application/client/**/*.tsx"]
-}
