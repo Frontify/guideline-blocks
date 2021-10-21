@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DividerStyle, DividerHeight } from '@frontify/arcade';
+import { DividerWidth } from './DividerWidth';
 
 const mainDropdownId = 'main-dropdown';
 
@@ -28,6 +29,45 @@ export default {
         },
     ],
     layout: [
+        {
+            id: 'isWidthCustom',
+            type: 'switch',
+            label: 'Width',
+            switchLabel: 'Custom',
+            info: 'Lorem ipsum dolor sit amet',
+            on: [
+                {
+                    id: 'widthCustom',
+                    type: 'input',
+                    placeholder: '50%',
+                },
+            ],
+            off: [
+                {
+                    id: 'widthSimple',
+                    type: 'slider',
+                    defaultValue: '100%',
+                    choices: [
+                        {
+                            value: DividerWidth['10%'],
+                            label: DividerWidth['10%'],
+                        },
+                        {
+                            value: DividerWidth['25%'],
+                            label: DividerWidth['25%'],
+                        },
+                        {
+                            value: DividerWidth['50%'],
+                            label: DividerWidth['50%'],
+                        },
+                        {
+                            value: DividerWidth['100%'],
+                            label: DividerWidth['100%'],
+                        },
+                    ],
+                },
+            ],
+        },
         {
             id: 'isBlockHeightCustom',
             type: 'switch',
