@@ -5,6 +5,7 @@ import 'tailwindcss/tailwind.css';
 import { Divider } from '@frontify/arcade';
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { useBlockSettings } from '@frontify/app-bridge/react';
+import { DividerAlignment, dividerAlignment } from './DividerAlignment';
 
 type Props = {
     appBridge: AppBridgeNative;
@@ -16,8 +17,10 @@ const DividerBlock: FC<Props> = ({ appBridge }) => {
     const { isWidthCustom, widthCustom, widthSimple } = blockSettings;
     const { isBlockHeightCustom, blockHeightCustom, blockHeightSimple } = blockSettings;
 
+    const { alignment }: { alignment: DividerAlignment } = blockSettings;
+
     return (
-        <div className="tw-flex tw-justify-center">
+        <div className={`tw-flex ${dividerAlignment[alignment]}`}>
             <div
                 className="tw-transition-all"
                 style={{

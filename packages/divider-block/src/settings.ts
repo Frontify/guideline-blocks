@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DividerStyle, DividerHeight } from '@frontify/arcade';
+import { dividerAlignment, DividerAlignment } from './DividerAlignment';
 import { DividerWidth } from './DividerWidth';
 
 const mainDropdownId = 'main-dropdown';
@@ -65,6 +66,27 @@ export default {
                             label: DividerWidth['100%'],
                         },
                     ],
+                },
+            ],
+        },
+        {
+            id: 'alignment',
+            type: 'slider',
+            label: 'Alignment',
+            info: 'Lorem ipsum dolor sit amet',
+            defaultValue: DividerAlignment.Left,
+            choices: [
+                {
+                    value: DividerAlignment.Left,
+                    icon: 'align-left',
+                },
+                {
+                    value: DividerAlignment.Center,
+                    icon: 'align-center',
+                },
+                {
+                    value: DividerAlignment.Right,
+                    icon: 'align-right',
                 },
             ],
         },
