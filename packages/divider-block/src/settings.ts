@@ -7,17 +7,17 @@ export default {
         {
             id: 'style',
             type: 'dropdown',
-            defaultValue: DividerStyle.Solid,
             size: 'large',
+            defaultValue: DividerStyle.Solid,
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: 'divider',
+                    icon: 'line-spacer',
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: 'divider',
+                    icon: 'line-solid',
                     label: 'Line',
                 },
             ],
@@ -25,25 +25,68 @@ export default {
     ],
     layout: [
         {
-            id: 'height',
+            id: 'isBlockHeightCustom',
+            type: 'switch',
             label: 'Block Height',
-            type: 'slider',
-            defaultValue: DividerHeight.Small,
-            choices: [
+            switchLabel: 'Custom',
+            info: 'Lorem ipsum dolor sit amet',
+            on: [
                 {
-                    value: DividerHeight.Small,
-                    label: 'S',
-                },
-                {
-                    value: DividerHeight.Medium,
-                    label: 'M',
-                },
-                {
-                    value: DividerHeight.Large,
-                    label: 'L',
+                    id: 'blockHeightCustom',
+                    type: 'input',
+                    placeholder: '24px',
                 },
             ],
+            off: [
+                {
+                    id: 'blockHeightSimple',
+                    type: 'slider',
+                    defaultValue: DividerHeight.Small,
+                    choices: [
+                        {
+                            value: DividerHeight.Small,
+                            label: 'S',
+                        },
+                        {
+                            value: DividerHeight.Medium,
+                            label: 'M',
+                        },
+                        {
+                            value: DividerHeight.Large,
+                            label: 'L',
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+    style: [
+        {
+            id: 'style',
+            type: 'slider',
+            label: 'Type',
             info: 'Lorem ipsum dolor sit amet',
+            defaultValue: DividerStyle.Solid,
+            choices: [
+                {
+                    value: DividerStyle.Solid,
+                    label: 'Solid',
+                },
+                {
+                    value: DividerStyle.Dashed,
+                    label: 'Dashes',
+                },
+                {
+                    value: DividerStyle.Dotted,
+                    label: 'Dots',
+                },
+            ],
+        },
+        {
+            id: 'color',
+            type: 'dropdown',
+            label: 'Color',
+            choices: [],
         },
     ],
 };

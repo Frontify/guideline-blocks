@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
 import { Divider } from '@frontify/arcade';
 import { AppBridgeNative } from '@frontify/app-bridge';
@@ -13,7 +13,11 @@ type Props = {
 const DividerBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings(appBridge);
 
-    return <Divider style={blockSettings.style} height={blockSettings.height} />;
+    const blockHeight = blockSettings.isBlockHeightCustom
+        ? blockSettings.blockHeightCustom
+        : blockSettings.blockHeightSimple;
+
+    return <Divider style={blockSettings.style} height={blockHeight} />;
 };
 
 export default DividerBlock;
