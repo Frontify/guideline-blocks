@@ -2,10 +2,14 @@
 
 import { DividerStyle, DividerHeight } from '@frontify/arcade';
 
+const mainDropdownId = 'main-dropdown';
+
+const solidStyleIsSelected = (bundle: any) => bundle.getBlock(mainDropdownId).value === DividerStyle.Solid;
+
 export default {
     main: [
         {
-            id: 'style',
+            id: mainDropdownId,
             type: 'dropdown',
             size: 'large',
             defaultValue: DividerStyle.Solid,
@@ -81,12 +85,14 @@ export default {
                     label: 'Dots',
                 },
             ],
+            show: solidStyleIsSelected,
         },
         {
             id: 'color',
             type: 'dropdown',
             label: 'Color',
             choices: [],
+            show: solidStyleIsSelected,
         },
     ],
 };
