@@ -68,6 +68,7 @@ export default {
                     ],
                 },
             ],
+            show: solidStyleIsSelected,
         },
         {
             id: 'alignment',
@@ -89,6 +90,7 @@ export default {
                     icon: 'align-right',
                 },
             ],
+            show: solidStyleIsSelected,
         },
         {
             id: 'isBlockHeightCustom',
