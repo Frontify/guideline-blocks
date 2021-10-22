@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DividerWidth, DividerAlignment } from './types';
-import { DividerStyle, DividerHeight } from '@frontify/arcade';
+import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment } from './types';
 
 const mainDropdownId = 'main-dropdown';
 
