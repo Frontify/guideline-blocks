@@ -1,18 +1,117 @@
 export default {
     main: [
         {
-            id: 'main-dropdown',
+            id: 'layout',
             type: 'dropdown',
-            defaultValue: 'custom_block',
+            defaultValue: 'icons',
             size: 'large',
-            disabled: true,
             choices: [
                 {
-                    value: 'custom_block',
-                    icon: 'snippet',
-                    label: 'Custom Block',
+                    value: 'icons',
+                    icon: 'icons',
+                    label: 'Icons',
+                },
+                {
+                    value: 'underline',
+                    icon: 'underline',
+                    label: 'Underline',
+                },
+                {
+                    value: 'text',
+                    icon: 'text-align-left',
+                    label: 'Text',
                 },
             ],
+        },
+    ],
+    layout: [
+        {
+            id: 'arrange',
+            label: 'Arrange',
+            info: 'Here comes the info',
+            type: 'slider',
+            defaultValue: 'sideBySide',
+            choices: [
+                {
+                    value: 'sideBySide',
+                    label: 'Side by side',
+                },
+                {
+                    value: 'stacked',
+                    label: 'Stacked',
+                },
+            ],
+        },
+        {
+            id: 'columns',
+            label: 'Columns',
+            info: 'Here comes the info',
+            type: 'slider',
+            defaultValue: 'columns-2',
+            choices: [
+                {
+                    value: 'columns-1',
+                    label: '1',
+                },
+                {
+                    value: 'columns-2',
+                    label: '2',
+                },
+                {
+                    value: 'columns-3',
+                    label: '3',
+                },
+                {
+                    value: 'columns-4',
+                    label: '4',
+                },
+            ],
+        },
+        {
+            id: 'columnGap',
+            label: 'Column gap',
+            info: 'Here comes the infooo',
+            type: 'switch',
+            switchLabel: 'Custom',
+            on: [
+                {
+                    id: 'columnGapValue',
+                    type: 'input',
+                },
+            ],
+            off: [
+                {
+                    id: 'columnGapChoice',
+                    type: 'slider',
+                    defaultValue: 'padding-s',
+                    choices: [
+                        {
+                            value: 'padding-s',
+                            label: 'S',
+                        },
+                        {
+                            value: 'padding-m',
+                            label: 'M',
+                        },
+                        {
+                            value: 'padding-l',
+                            label: 'L',
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+    style: [
+        {
+            id: 'doColor',
+            type: 'input',
+            label: 'Do color',
+        },
+        {
+            id: 'dontColor',
+            type: 'input',
+            label: "Don't color",
         },
     ],
 };
