@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment } from './types';
+import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThickness } from './types';
 
 const isLine = 'isLine';
 
@@ -145,6 +145,42 @@ export default {
                 {
                     value: DividerStyle.Dotted,
                     label: 'Dots',
+                },
+            ],
+            show: solidStyleIsSelected,
+        },
+        {
+            id: 'isThicknessCustom',
+            type: 'switch',
+            label: 'Thickness',
+            switchLabel: 'Custom',
+            info: 'Lorem ipsum dolor sit amet',
+            on: [
+                {
+                    id: 'thicknessCustom',
+                    type: 'input',
+                    placeholder: '8px',
+                },
+            ],
+            off: [
+                {
+                    id: 'thicknessSimple',
+                    type: 'slider',
+                    defaultValue: DividerThickness.Small,
+                    choices: [
+                        {
+                            value: DividerThickness.Small,
+                            label: 'S',
+                        },
+                        {
+                            value: DividerThickness.Medium,
+                            label: 'M',
+                        },
+                        {
+                            value: DividerThickness.Large,
+                            label: 'L',
+                        },
+                    ],
                 },
             ],
             show: solidStyleIsSelected,

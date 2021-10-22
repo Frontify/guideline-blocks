@@ -14,11 +14,22 @@ type Props = {
 const DividerBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings(appBridge);
 
-    const { isLine, color, isWidthCustom, widthCustom, widthSimple, isHeightCustom, heightCustom, heightSimple } =
-        blockSettings;
+    const {
+        isLine,
+        color,
+        isWidthCustom,
+        widthCustom,
+        widthSimple,
+        isHeightCustom,
+        heightCustom,
+        heightSimple,
+        isThicknessCustom,
+        thicknessCustom,
+        thicknessSimple,
+    } = blockSettings;
+
     const { alignment }: { alignment: DividerAlignment } = blockSettings;
     const { style }: { style: DividerStyle } = blockSettings;
-    const borderTopColor = color ? color : '#CCC';
 
     return (
         <div className={`tw-flex ${dividerAlignment[alignment]}`}>
@@ -33,7 +44,10 @@ const DividerBlock: FC<Props> = ({ appBridge }) => {
                     className={`tw-border-t tw-m-0 tw-w-full ${
                         isLine === DividerStyle.Solid ? dividerStyle[style] : dividerStyle[DividerStyle.NoLine]
                     }`}
-                    style={{ borderTopColor }}
+                    style={{
+                        borderTopWidth: isThicknessCustom ? thicknessCustom : thicknessSimple,
+                        borderTopColor: color ? color : '#CCC',
+                    }}
                 />
             </div>
         </div>

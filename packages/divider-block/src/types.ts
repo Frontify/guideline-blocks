@@ -38,3 +38,9 @@ export const dividerAlignment = {
     [DividerAlignment.Right]: 'tw-justify-end',
     [DividerAlignment.Left]: 'tw-justify-start',
 };
+
+export enum DividerThickness {
+    Small = '1px',
+    Medium = '2px',
+    Large = '4px',
+}
