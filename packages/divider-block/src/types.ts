@@ -1,5 +1,25 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+export enum DividerStyle {
+    NoLine = 'noline',
+    Dashed = 'dashed',
+    Solid = 'solid',
+    Dotted = 'dotted',
+}
+
+export enum DividerHeight {
+    Small = '36px',
+    Medium = '60px',
+    Large = '96px',
+}
+
+export const dividerStyle = {
+    [DividerStyle.NoLine]: 'tw-border-none',
+    [DividerStyle.Dashed]: 'tw-border-dashed',
+    [DividerStyle.Solid]: 'tw-border-solid',
+    [DividerStyle.Dotted]: 'tw-border-dotted',
+};
+
 export enum DividerWidth {
     '10%' = '10%',
     '25%' = '25%',
