@@ -28,11 +28,7 @@ const DividerBlock: FC<Props> = ({ appBridge }) => {
                     height: isHeightCustom ? heightCustom : heightSimple,
                 }}
             >
-                <hr
-                    className={`tw-border-t tw-m-0 tw-w-full ${dividerStyle[style]}`}
-                    style={{ borderTopColor }}
-                    data-test-id="divider-hr"
-                />
+                <hr className={`tw-border-t tw-m-0 tw-w-full ${dividerStyle[style]}`} style={{ borderTopColor }} />
             </div>
         </div>
     );
