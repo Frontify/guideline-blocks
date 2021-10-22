@@ -2,14 +2,14 @@
 
 import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment } from './types';
 
-const mainDropdownId = 'main-dropdown';
+const isLine = 'isLine';
 
-const solidStyleIsSelected = (bundle: any) => bundle.getBlock(mainDropdownId).value === DividerStyle.Solid;
+const solidStyleIsSelected = (bundle: any) => bundle.getBlock(isLine).value === DividerStyle.Solid;
 
 export default {
     main: [
         {
-            id: mainDropdownId,
+            id: isLine,
             type: 'dropdown',
             size: 'large',
             defaultValue: DividerStyle.Solid,
