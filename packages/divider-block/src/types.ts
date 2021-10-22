@@ -1,3 +1,10 @@
+export enum DividerWidth {
+    '10%' = '10%',
+    '25%' = '25%',
+    '50%' = '50%',
+    '100%' = '100%',
+}
+
 export enum DividerAlignment {
     Center = 'center',
     Right = 'right',
