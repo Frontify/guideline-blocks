@@ -28,7 +28,14 @@ const DividerBlock: FC<Props> = ({ appBridge }) => {
                     height: isHeightCustom ? heightCustom : heightSimple,
                 }}
             >
-                <hr className={`tw-border-t tw-m-0 tw-w-full ${dividerStyle[style]}`} style={{ borderTopColor }} />
+                <hr
+                    className={`tw-border-t tw-m-0 tw-w-full ${
+                        blockSettings['main-dropdown'] === DividerStyle.Solid
+                            ? dividerStyle[style]
+                            : dividerStyle[DividerStyle.NoLine]
+                    }`}
+                    style={{ borderTopColor }}
+                />
             </div>
         </div>
     );
