@@ -2,11 +2,10 @@
 
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { Divider } from './Divider';
 import { AppBridgeNative } from '@frontify/app-bridge';
 // @ts-ignore
 import { useBlockSettings } from '@frontify/app-bridge/react';
-import { DividerAlignment, dividerAlignment } from './types';
+import { DividerAlignment, dividerAlignment, DividerStyle, dividerStyle } from './types';
 
 type Props = {
     appBridge: AppBridgeNative;
@@ -15,22 +14,24 @@ type Props = {
 const DividerBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings(appBridge);
 
-    const { isWidthCustom, widthCustom, widthSimple } = blockSettings;
-    const { isBlockHeightCustom, blockHeightCustom, blockHeightSimple } = blockSettings;
-
+    const { isWidthCustom, widthCustom, widthSimple, isHeightCustom, heightCustom, heightSimple } = blockSettings;
     const { alignment }: { alignment: DividerAlignment } = blockSettings;
+    const { style }: { style: DividerStyle } = blockSettings;
+    const borderTopColor = blockSettings.color ? blockSettings.color : '#CCC';
 
     return (
         <div className={`tw-flex ${dividerAlignment[alignment]}`}>
             <div
-                className="tw-transition-all"
+                className="tw-flex tw-items-center tw-transition-all"
                 style={{
                     width: isWidthCustom ? widthCustom : widthSimple,
+                    height: isHeightCustom ? heightCustom : heightSimple,
                 }}
             >
-                <Divider
-                    style={blockSettings.style}
-                    height={isBlockHeightCustom ? blockHeightCustom : blockHeightSimple}
+                <hr
+                    className={`tw-border-t tw-m-0 tw-w-full ${dividerStyle[style]}`}
+                    style={{ borderTopColor }}
+                    data-test-id="divider-hr"
                 />
             </div>
         </div>

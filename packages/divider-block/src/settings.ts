@@ -92,21 +92,21 @@ export default {
             show: solidStyleIsSelected,
         },
         {
-            id: 'isBlockHeightCustom',
+            id: 'isHeightCustom',
             type: 'switch',
             label: 'Block Height',
             switchLabel: 'Custom',
             info: 'Lorem ipsum dolor sit amet',
             on: [
                 {
-                    id: 'blockHeightCustom',
+                    id: 'heightCustom',
                     type: 'input',
                     placeholder: '24px',
                 },
             ],
             off: [
                 {
-                    id: 'blockHeightSimple',
+                    id: 'heightSimple',
                     type: 'slider',
                     defaultValue: DividerHeight.Small,
                     choices: [
