@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { Divider } from '@frontify/arcade';
+import { Divider } from './Divider';
 import { AppBridgeNative } from '@frontify/app-bridge';
 // @ts-ignore
 import { useBlockSettings } from '@frontify/app-bridge/react';

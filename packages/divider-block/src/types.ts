@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export enum DividerWidth {
     '10%' = '10%',
     '25%' = '25%',
