@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { numericalPixelValueRule } from './rules';
 import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThickness } from './types';
 
 const isLine = 'isLine';
@@ -100,7 +101,14 @@ export default {
                 {
                     id: 'heightCustom',
                     type: 'input',
-                    placeholder: '24px',
+                    placeholder: '100px',
+                    rules: [numericalPixelValueRule],
+                    onChange: (bundle: any): void => {
+                        const blockHeight = Number(bundle.getBlock('heightCustom').value);
+                        if (!Number.isNaN(blockHeight)) {
+                            bundle.setBlockValue('heightCustom', `${blockHeight}px`);
+                        }
+                    },
                 },
             ],
             off: [
