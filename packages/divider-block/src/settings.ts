@@ -52,7 +52,7 @@ export default {
                         maximumNumericalPercentValueOrAuto(100),
                     ],
                     onChange: (bundle: any): void => {
-                        const blockWidth = Number(bundle.getBlock('widthCustom').value);
+                        const blockWidth = Number(bundle.getBlock('widthCustom')?.value);
                         if (!Number.isNaN(blockWidth)) {
                             bundle.setBlockValue('widthCustom', `${blockWidth}%`);
                         }
@@ -121,7 +121,7 @@ export default {
                     placeholder: '100px',
                     rules: [numericalPixelValueRule],
                     onChange: (bundle: any): void => {
-                        const blockHeight = Number(bundle.getBlock('heightCustom').value);
+                        const blockHeight = Number(bundle.getBlock('heightCustom')?.value);
                         if (!Number.isNaN(blockHeight)) {
                             bundle.setBlockValue('heightCustom', `${blockHeight}px`);
                         }
@@ -187,7 +187,7 @@ export default {
                     placeholder: '8px',
                     rules: [numericalPixelValueRule, minimumNumericalPixelValueOrAuto(1)],
                     onChange: (bundle: any): void => {
-                        const borderThickness = Number(bundle.getBlock('thicknessCustom').value);
+                        const borderThickness = Number(bundle.getBlock('thicknessCustom')?.value);
                         if (!Number.isNaN(borderThickness)) {
                             bundle.setBlockValue('thicknessCustom', `${borderThickness}px`);
                         }
@@ -219,9 +219,8 @@ export default {
         },
         {
             id: 'color',
-            type: 'dropdown',
+            type: 'input',
             label: 'Color',
-            choices: [],
             show: solidStyleIsSelected,
         },
     ],
