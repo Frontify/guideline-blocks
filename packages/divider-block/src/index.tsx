@@ -11,42 +11,48 @@ type Props = {
     appBridge: AppBridgeNative;
 };
 
+type Settings = {
+    alignment: DividerAlignment;
+    style: DividerStyle;
+    isLine: boolean;
+    color: string;
+    isWidthCustom: boolean;
+    widthCustom: string;
+    widthSimple: string;
+    isHeightCustom: boolean;
+    heightCustom: string;
+    heightSimple: string;
+    isThicknessCustom: boolean;
+    thicknessCustom: string;
+    thicknessSimple: string;
+};
+
 const DividerBlock: FC<Props> = ({ appBridge }) => {
-    const [blockSettings] = useBlockSettings(appBridge);
+    const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const {
-        isLine,
-        color,
-        isWidthCustom,
-        widthCustom,
-        widthSimple,
-        isHeightCustom,
-        heightCustom,
-        heightSimple,
-        isThicknessCustom,
-        thicknessCustom,
-        thicknessSimple,
-    } = blockSettings;
-
-    const { alignment }: { alignment: DividerAlignment } = blockSettings;
-    const { style }: { style: DividerStyle } = blockSettings;
+    const alignment: DividerAlignment = blockSettings.alignment;
+    const style: DividerStyle = blockSettings.style;
 
     return (
         <div className={`tw-flex ${dividerAlignment[alignment]}`}>
             <div
                 className="tw-flex tw-items-center tw-transition-all"
                 style={{
-                    width: isWidthCustom ? widthCustom : widthSimple,
-                    height: isHeightCustom ? heightCustom : heightSimple,
+                    width: blockSettings.isWidthCustom ? blockSettings.widthCustom : blockSettings.widthSimple,
+                    height: blockSettings.isHeightCustom ? blockSettings.heightCustom : blockSettings.heightSimple,
                 }}
             >
                 <hr
                     className={`tw-border-t tw-m-0 tw-w-full ${
-                        isLine === DividerStyle.Solid ? dividerStyle[style] : dividerStyle[DividerStyle.NoLine]
+                        blockSettings.isLine === DividerStyle.Solid
+                            ? dividerStyle[style]
+                            : dividerStyle[DividerStyle.NoLine]
                     }`}
                     style={{
-                        borderTopWidth: isThicknessCustom ? thicknessCustom : thicknessSimple,
-                        borderTopColor: color ? color : '#CCC',
+                        borderTopWidth: blockSettings.isThicknessCustom
+                            ? blockSettings.thicknessCustom
+                            : blockSettings.thicknessSimple,
+                        borderTopColor: blockSettings.color ? blockSettings.color : '#CCC',
                     }}
                 />
             </div>
