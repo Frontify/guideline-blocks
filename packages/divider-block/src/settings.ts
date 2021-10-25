@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    maximumNumericalPercentValueOrAuto,
-    minimumNumericalPercentValueOrAuto,
-    numericalPercentValueRule,
     numericalPixelValueRule,
+    numericalPercentValueRule,
+    minimumNumericalPixelValueOrAuto,
+    minimumNumericalPercentValueOrAuto,
+    maximumNumericalPercentValueOrAuto,
 } from './rules';
 import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThickness } from './types';
 
@@ -184,6 +185,13 @@ export default {
                     id: 'thicknessCustom',
                     type: 'input',
                     placeholder: '8px',
+                    rules: [numericalPixelValueRule, minimumNumericalPixelValueOrAuto(1)],
+                    onChange: (bundle: any): void => {
+                        const borderThickness = Number(bundle.getBlock('thicknessCustom').value);
+                        if (!Number.isNaN(borderThickness)) {
+                            bundle.setBlockValue('thicknessCustom', `${borderThickness}px`);
+                        }
+                    },
                 },
             ],
             off: [
