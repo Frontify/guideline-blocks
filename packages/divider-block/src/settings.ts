@@ -1,6 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { numericalPixelValueRule } from './rules';
+import {
+    maximumNumericalPercentValueOrAuto,
+    minimumNumericalPercentValueOrAuto,
+    numericalPercentValueRule,
+    numericalPixelValueRule,
+} from './rules';
 import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThickness } from './types';
 
 const isLine = 'isLine';
@@ -39,7 +44,18 @@ export default {
                 {
                     id: 'widthCustom',
                     type: 'input',
-                    placeholder: '50%',
+                    placeholder: '73%',
+                    rules: [
+                        numericalPercentValueRule,
+                        minimumNumericalPercentValueOrAuto(0),
+                        maximumNumericalPercentValueOrAuto(100),
+                    ],
+                    onChange: (bundle: any): void => {
+                        const blockWidth = Number(bundle.getBlock('widthCustom').value);
+                        if (!Number.isNaN(blockWidth)) {
+                            bundle.setBlockValue('widthCustom', `${blockWidth}%`);
+                        }
+                    },
                 },
             ],
             off: [
