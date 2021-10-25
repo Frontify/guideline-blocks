@@ -1,25 +1,27 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { DoDontStyle, DoDontLayout, DoDontSpacing } from './types';
+
 export default {
     main: [
         {
             id: 'style',
             type: 'dropdown',
-            defaultValue: 'icons',
+            defaultValue: DoDontStyle.Icons,
             size: 'large',
             choices: [
                 {
-                    value: 'icons',
-                    icon: 'text-align-right',
+                    value: DoDontStyle.Icons,
+                    icon: 'dos-text',
                     label: 'Icons',
                 },
                 {
-                    value: 'underline',
-                    icon: 'underline',
+                    value: DoDontStyle.Underline,
+                    icon: 'dos-donts-underline',
                     label: 'Underline',
                 },
                 {
-                    value: 'text',
+                    value: DoDontStyle.Text,
                     icon: 'text-align-left',
                     label: 'Text',
                 },
@@ -28,18 +30,18 @@ export default {
     ],
     layout: [
         {
-            id: 'arrange',
+            id: 'layout',
             label: 'Arrange',
             info: 'Here comes the info',
             type: 'slider',
-            defaultValue: 'sideBySide',
+            defaultValue: DoDontLayout.SideBySide,
             choices: [
                 {
-                    value: 'sideBySide',
+                    value: DoDontLayout.SideBySide,
                     label: 'Side by side',
                 },
                 {
-                    value: 'stacked',
+                    value: DoDontLayout.Stacked,
                     label: 'Stacked',
                 },
             ],
@@ -49,54 +51,54 @@ export default {
             label: 'Columns',
             info: 'Here comes the info',
             type: 'slider',
-            defaultValue: 'columns-2',
+            defaultValue: 2,
             choices: [
                 {
-                    value: 'columns-1',
+                    value: 1,
                     label: '1',
                 },
                 {
-                    value: 'columns-2',
+                    value: 2,
                     label: '2',
                 },
                 {
-                    value: 'columns-3',
+                    value: 3,
                     label: '3',
                 },
                 {
-                    value: 'columns-4',
+                    value: 4,
                     label: '4',
                 },
             ],
         },
         {
-            id: 'columnGap',
+            id: 'spacing',
             label: 'Column gap',
             info: 'Here comes the infooo',
             type: 'switch',
             switchLabel: 'Custom',
             on: [
                 {
-                    id: 'columnGapValue',
+                    id: 'spacingValue',
                     type: 'input',
                 },
             ],
             off: [
                 {
-                    id: 'columnGapChoice',
+                    id: 'spacingChoice',
                     type: 'slider',
-                    defaultValue: 'padding-s',
+                    defaultValue: DoDontSpacing.Medium,
                     choices: [
                         {
-                            value: 'padding-s',
+                            value: DoDontSpacing.Small,
                             label: 'S',
                         },
                         {
-                            value: 'padding-m',
+                            value: DoDontSpacing.Medium,
                             label: 'M',
                         },
                         {
-                            value: 'padding-l',
+                            value: DoDontSpacing.Large,
                             label: 'L',
                         },
                     ],

@@ -10,3 +10,19 @@ export enum DoDontStyle {
     Underline = 'underline',
     Text = 'text',
 }
+
+export enum DoDontLayout {
+    SideBySide = 'side-by-side',
+    Stacked = 'stacked',
+}
+
+export enum DoDontColumns {
+    SideBySide = 'side-by-side',
+    Stacked = 'stacked',
+}
+
+export enum DoDontSpacing {
+    Small = 'small',
+    Medium = 'medium',
+    Large = 'large',
+}
