@@ -2,9 +2,7 @@
 
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { AppBridgeNative } from '@frontify/app-bridge';
-// @ts-ignore
-import { useBlockSettings } from '@frontify/app-bridge/react';
+import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
 import { DividerAlignment, dividerAlignment, DividerStyle, dividerStyle } from './types';
 
 type Props = {
@@ -14,7 +12,7 @@ type Props = {
 type Settings = {
     alignment: DividerAlignment;
     style: DividerStyle;
-    isLine: boolean;
+    isLine: string;
     color: string;
     isWidthCustom: boolean;
     widthCustom: string;
@@ -30,11 +28,8 @@ type Settings = {
 const DividerBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const alignment: DividerAlignment = blockSettings.alignment;
-    const style: DividerStyle = blockSettings.style;
-
     return (
-        <div className={`tw-flex ${dividerAlignment[alignment]}`}>
+        <div className={`tw-flex ${dividerAlignment[blockSettings.alignment]}`}>
             <div
                 className="tw-flex tw-items-center tw-transition-all"
                 style={{
@@ -45,7 +40,7 @@ const DividerBlock: FC<Props> = ({ appBridge }) => {
                 <hr
                     className={`tw-border-t tw-m-0 tw-w-full ${
                         blockSettings.isLine === DividerStyle.Solid
-                            ? dividerStyle[style]
+                            ? dividerStyle[blockSettings.style]
                             : dividerStyle[DividerStyle.NoLine]
                     }`}
                     style={{
