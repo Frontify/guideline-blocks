@@ -1,9 +1,13 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import 'tailwindcss/tailwind.css';
-import { ReactElement } from 'react';
+import { ReactElement, FC } from 'react';
+import { RichTextEditor } from '@frontify/arcade';
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { useBlockSettings } from '@frontify/app-bridge/react';
+import { DoDontType, DoDontStyle } from './types';
 
-type Props = {
+type DosDontsBlockProps = {
     appBridge: AppBridgeNative;
 };
 
@@ -13,14 +17,32 @@ type Settings = {
     showBorder: boolean;
 };
 
-export default function DosDontsBlock({ appBridge }: Props): ReactElement {
+type ItemProps = {
+    type: DoDontType;
+    style: DoDontStyle;
+};
+
+const Item: FC<ItemProps> = ({ type, style }) => {
+    console.log({ style });
+    return (
+        <div>
+            <h3>Add Title</h3>
+            <RichTextEditor placeholder="Add a description" />
+        </div>
+    );
+};
+
+const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    console.log(blockSettings);
+    const { style }: { style: DoDontStyle } = blockSettings;
 
     return (
         <div>
-            <span className="tw-text-violet-60 tw-underline">Dos and donts!</span>
+            <Item type={DoDontType.Do} style={style} />
+            <Item type={DoDontType.Dont} style={style} />
         </div>
     );
-}
+};
+
+export default DosDontsBlock;

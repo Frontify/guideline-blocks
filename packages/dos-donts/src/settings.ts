@@ -1,14 +1,16 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export default {
     main: [
         {
-            id: 'layout',
+            id: 'style',
             type: 'dropdown',
             defaultValue: 'icons',
             size: 'large',
             choices: [
                 {
                     value: 'icons',
-                    icon: 'icons',
+                    icon: 'text-align-right',
                     label: 'Icons',
                 },
                 {
@@ -107,11 +109,13 @@ export default {
             id: 'doColor',
             type: 'input',
             label: 'Do color',
+            defaultValue: '#00C8A5',
         },
         {
             id: 'dontColor',
             type: 'input',
             label: "Don't color",
+            defaultValue: '#FF375A',
         },
     ],
 };
