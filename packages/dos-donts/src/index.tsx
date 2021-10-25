@@ -2,7 +2,7 @@
 
 import 'tailwindcss/tailwind.css';
 import { ReactElement, FC } from 'react';
-import { RichTextEditor, IconApprove, IconRejectCircle } from '@frontify/arcade';
+import { RichTextEditor, IconApprove, IconRejectCircle, IconSize } from '@frontify/arcade';
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { useBlockSettings } from '@frontify/app-bridge/react';
 import { DoDontType, DoDontStyle, DoDontLayout, DoDontSpacing } from './types';
@@ -22,12 +22,29 @@ type ItemProps = {
     style: DoDontStyle;
 };
 
-const Item: FC<ItemProps> = ({ type, style }) => {
+const Item: FC<ItemProps> = ({ type, style, doColor, dontColor }) => {
+    const headingStyles = {
+        color: type === DoDontType.Do ? doColor : dontColor,
+    };
+
+    const dividerStyles = {
+        backgroundColor: type === DoDontType.Do ? doColor : dontColor,
+    };
+
     return (
         <div>
-            {style === DoDontStyle.Icons && type === DoDontType.Do && <IconApprove />}
-            {style === DoDontStyle.Icons && type === DoDontType.Dont && <IconRejectCircle />}
-            <h3>Add Title</h3>
+            <div style={headingStyles} className="tw-flex tw-content-center">
+                <div className="tw-mr-2">
+                    {style === DoDontStyle.Icons && type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
+                    {style === DoDontStyle.Icons && type === DoDontType.Dont && (
+                        <IconRejectCircle size={IconSize.Size24} />
+                    )}
+                </div>
+                <RichTextEditor placeholder="Add title" />
+            </div>
+            {style === DoDontStyle.Underline && (
+                <hr style={dividerStyles} className="tw-w-full tw-my-4 tw-h-1 tw-border-none tw-rounded" />
+            )}
             <RichTextEditor placeholder="Add a description" />
         </div>
     );
@@ -42,15 +59,21 @@ const spacingClasses: Record<DoDontSpacing, string> = {
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { columns } = blockSettings;
+    console.log(blockSettings);
+
+    const { columns, spacing, spacingValue, doColor, dontColor } = blockSettings;
     const { layout }: { layout: DoDontLayout } = blockSettings;
     const { style }: { style: DoDontStyle } = blockSettings;
     const { spacingChoice }: { spacingChoice: DoDontSpacing } = blockSettings;
 
     return (
-        <div className={`tw-grid tw-grid-cols-${columns} ${spacingClasses[spacingChoice]}`}>
-            <Item type={DoDontType.Do} style={style} />
-            <Item type={DoDontType.Dont} style={style} />
+        <div
+            className={`tw-grid tw-grid-cols-${columns} ${
+                spacing ? `tw-gap-[${spacingValue}]` : spacingClasses[spacingChoice]
+            }`}
+        >
+            <Item type={DoDontType.Do} style={style} doColor={doColor} dontColor={dontColor} />
+            <Item type={DoDontType.Dont} style={style} doColor={doColor} dontColor={dontColor} />
         </div>
     );
 };
