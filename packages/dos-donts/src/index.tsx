@@ -34,12 +34,12 @@ const Item: FC<ItemProps> = ({ type, style, doColor, dontColor }) => {
     return (
         <div>
             <div style={headingStyles} className="tw-flex tw-content-center">
-                <div className="tw-mr-2">
-                    {style === DoDontStyle.Icons && type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
-                    {style === DoDontStyle.Icons && type === DoDontType.Dont && (
-                        <IconRejectCircle size={IconSize.Size24} />
-                    )}
-                </div>
+                {style === DoDontStyle.Icons && (
+                    <div className="tw-mr-2">
+                        {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
+                        {type === DoDontType.Dont && <IconRejectCircle size={IconSize.Size24} />}
+                    </div>
+                )}
                 <RichTextEditor placeholder="Add title" />
             </div>
             {style === DoDontStyle.Underline && (
@@ -59,8 +59,6 @@ const spacingClasses: Record<DoDontSpacing, string> = {
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    console.log(blockSettings);
-
     const { columns, spacing, spacingValue, doColor, dontColor } = blockSettings;
     const { layout }: { layout: DoDontLayout } = blockSettings;
     const { style }: { style: DoDontStyle } = blockSettings;
@@ -74,6 +72,10 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         >
             <Item type={DoDontType.Do} style={style} doColor={doColor} dontColor={dontColor} />
             <Item type={DoDontType.Dont} style={style} doColor={doColor} dontColor={dontColor} />
+            {(columns === 3 || columns === 4) && (
+                <Item type={DoDontType.Do} style={style} doColor={doColor} dontColor={dontColor} />
+            )}
+            {columns === 4 && <Item type={DoDontType.Dont} style={style} doColor={doColor} dontColor={dontColor} />}
         </div>
     );
 };

@@ -51,6 +51,7 @@ export default {
             label: 'Columns',
             info: 'Here comes the info',
             type: 'slider',
+            // show: (bundle) => bundle.getBlock('layout') === DoDontLayout.SideBySide
             defaultValue: 2,
             choices: [
                 {
