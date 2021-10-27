@@ -41,8 +41,19 @@ const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitl
         }
     };
 
-    const dividerStyles = {
-        backgroundColor: type === DoDontType.Do ? doColor : dontColor,
+    const dividerStyles = (isEditing, type) => {
+        if (!isEditing) {
+            if (type === DoDontType.Do) {
+                return {
+                    backgroundColor: doColor,
+                };
+            }
+            if (type === DoDontType.Dont) {
+                return {
+                    backgroundColor: dontColor,
+                };
+            }
+        }
     };
 
     return (
@@ -63,13 +74,18 @@ const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitl
                 </div>
             </div>
             {style === DoDontStyle.Underline && (
-                <hr style={dividerStyles} className="tw-w-full tw-my-4 tw-h-1 tw-border-none tw-rounded" />
+                <hr
+                    style={dividerStyles(isEditing, type)}
+                    className="tw-w-full tw-mt-4 tw-mb-5 tw-h-1 tw-border-none tw-rounded tw-bg-black-40"
+                />
             )}
-            <RichTextEditor
-                onTextChange={(value) => setContent && setContent(value, itemKey)}
-                value={content}
-                placeholder="Add a description"
-            />
+            <div className="tw-mt-2">
+                <RichTextEditor
+                    onTextChange={(value) => setContent && setContent(value, itemKey)}
+                    value={content}
+                    placeholder="Add a description"
+                />
+            </div>
         </div>
     );
 };
