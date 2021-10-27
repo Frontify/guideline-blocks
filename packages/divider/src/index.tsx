@@ -25,7 +25,7 @@ type Settings = {
     thicknessSimple: string;
 };
 
-const DividerBlock: FC<Props> = ({ appBridge }) => {
+const Divider: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     return (
@@ -55,4 +55,4 @@ const DividerBlock: FC<Props> = ({ appBridge }) => {
     );
 };
 
-export default DividerBlock;
+export default Divider;
