@@ -40,7 +40,6 @@ export default {
             type: 'switch',
             label: 'Width',
             switchLabel: 'Custom',
-            info: 'Lorem ipsum dolor sit amet',
             on: [
                 {
                     id: 'widthCustom',
@@ -90,7 +89,7 @@ export default {
             id: 'alignment',
             type: 'slider',
             label: 'Alignment',
-            info: 'Lorem ipsum dolor sit amet',
+            info: 'Anchors the dividing line to the left, centre, or right of the page.',
             defaultValue: DividerAlignment.Left,
             choices: [
                 {
@@ -113,7 +112,7 @@ export default {
             type: 'switch',
             label: 'Block Height',
             switchLabel: 'Custom',
-            info: 'Lorem ipsum dolor sit amet',
+            info: 'Determines the block height. This will not affect the dividing line in any way.',
             on: [
                 {
                     id: 'heightCustom',
@@ -156,7 +155,6 @@ export default {
             id: 'style',
             type: 'slider',
             label: 'Type',
-            info: 'Lorem ipsum dolor sit amet',
             defaultValue: DividerStyle.Solid,
             choices: [
                 {
@@ -179,7 +177,6 @@ export default {
             type: 'switch',
             label: 'Thickness',
             switchLabel: 'Custom',
-            info: 'Lorem ipsum dolor sit amet',
             on: [
                 {
                     id: 'thicknessCustom',
