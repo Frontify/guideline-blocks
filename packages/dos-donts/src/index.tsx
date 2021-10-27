@@ -26,8 +26,19 @@ type ItemProps = {
 const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitle, setContent, title, content }) => {
     const isEditing = useEditorState();
 
-    const headingStyles = {
-        color: type === DoDontType.Do ? doColor : dontColor,
+    const headingStyles = (isEditing, type) => {
+        if (!isEditing) {
+            if (type === DoDontType.Do) {
+                return {
+                    color: doColor,
+                };
+            }
+            if (type === DoDontType.Dont) {
+                return {
+                    color: dontColor,
+                };
+            }
+        }
     };
 
     const dividerStyles = {
@@ -36,7 +47,7 @@ const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitl
 
     return (
         <div>
-            <div style={headingStyles} className="tw-flex">
+            <div style={headingStyles(isEditing, type)} className="tw-flex">
                 {style === DoDontStyle.Icons && (
                     <div className="tw-mr-2 tw-w-auto">
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
@@ -72,8 +83,6 @@ const spacingClasses: Record<DoDontSpacing, string> = {
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
-    console.log({ blockSettings });
-
     const { columns, spacing, spacingValue, doColor, dontColor, doTitle } = blockSettings;
     const { layout }: { layout: DoDontLayout } = blockSettings;
     const { style }: { style: DoDontStyle } = blockSettings;
@@ -87,6 +96,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                 [item]: value,
             },
         });
+        console.log('setContent ', blockSettings);
     };
 
     const setTitle = (value, item) => {
@@ -97,15 +107,15 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                 [item]: value,
             },
         });
+        console.log('setTitle ', blockSettings);
     };
 
     const numberOfItems = 4;
 
     return (
         <div
-            className={`tw-grid tw-grid-cols-${columns} ${
-                spacing ? `tw-gap-[${spacingValue}]` : spacingClasses[spacingChoice]
-            }`}
+            className={`tw-grid tw-grid-cols-${columns} ${!spacing && spacingClasses[spacingChoice]}`}
+            style={spacing ? { gap: spacingValue } : {}}
         >
             {[...Array(numberOfItems)].map((_, i) => {
                 i * i;
@@ -117,7 +127,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                         setTitle={setTitle}
                         title={blockSettings.itemsTitle[i]}
                         content={blockSettings.itemsContent[i]}
-                        type={DoDontType.Do}
+                        type={i % 2 ? DoDontType.Dont : DoDontType.Do}
                         style={style}
                         doColor={doColor}
                         dontColor={dontColor}
