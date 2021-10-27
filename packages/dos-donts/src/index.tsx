@@ -1,32 +1,49 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import 'draft-js/dist/Draft.css';
-import { ReactElement, FC } from 'react';
-import { RichTextEditor, IconApprove, IconRejectCircle, IconSize, TextInput } from '@frontify/arcade';
-import { AppBridgeNative } from '@frontify/app-bridge';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge/react';
-import { DoDontType, DoDontStyle, DoDontLayout, DoDontSpacing } from './types';
+import '@frontify/arcade/style';
+import { FC } from 'react';
+import { debounce } from './utilities/debounce';
+import { RichTextEditor, IconApprove, IconRejectCircle, IconSize } from '@frontify/arcade';
+import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { DoDontType, DoDontStyle, DoDontLayout, DoDontSpacing, DoDontContent } from './types';
 
 type DosDontsBlockProps = {
     appBridge: AppBridgeNative;
 };
 
 type Settings = {
-    backgroundColor: string;
-    borderColor: string;
-    showBorder: boolean;
+    columns: number;
+    spacing: boolean;
+    spacingValue: string;
+    doColor: string;
+    dontColor: string;
+    layout: DoDontLayout;
+    style: DoDontStyle;
+    spacingChoice: DoDontSpacing;
+    items: any;
+};
+
+type saveItemProps = {
+    itemKey: number;
+    value: any;
+    type: DoDontContent;
 };
 
 type ItemProps = {
+    itemKey: number;
     type: DoDontType;
     style: DoDontStyle;
+    doColor: string;
+    dontColor: string;
+    saveItem: any;
+    content: { title: any; body: any };
 };
 
-const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitle, setContent, title, content }) => {
+const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, saveItem, content }) => {
     const isEditing = useEditorState();
 
-    const headingStyles = (isEditing, type) => {
+    const headingStyles = (isEditing: boolean, type: DoDontType) => {
         if (!isEditing) {
             if (type === DoDontType.Do) {
                 return {
@@ -39,9 +56,10 @@ const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitl
                 };
             }
         }
+        return {};
     };
 
-    const dividerStyles = (isEditing, type) => {
+    const dividerStyles = (isEditing: boolean, type: DoDontType) => {
         if (!isEditing) {
             if (type === DoDontType.Do) {
                 return {
@@ -54,6 +72,7 @@ const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitl
                 };
             }
         }
+        return {};
     };
 
     return (
@@ -67,8 +86,8 @@ const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitl
                 )}
                 <div className="tw-w-full">
                     <RichTextEditor
-                        onTextChange={(value) => setTitle && setTitle(value, itemKey)}
-                        value={title}
+                        value={content.title}
+                        onTextChange={debounce((value) => saveItem(itemKey, value, DoDontContent.Title), 500)}
                         placeholder="Add a title"
                     />
                 </div>
@@ -81,8 +100,8 @@ const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, setTitl
             )}
             <div className="tw-mt-2">
                 <RichTextEditor
-                    onTextChange={(value) => setContent && setContent(value, itemKey)}
-                    value={content}
+                    value={content.body}
+                    onTextChange={debounce((value) => saveItem(itemKey, value, DoDontContent.Body), 500)}
                     placeholder="Add a description"
                 />
             </div>
@@ -99,31 +118,28 @@ const spacingClasses: Record<DoDontSpacing, string> = {
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { columns, spacing, spacingValue, doColor, dontColor, doTitle } = blockSettings;
-    const { layout }: { layout: DoDontLayout } = blockSettings;
-    const { style }: { style: DoDontStyle } = blockSettings;
-    const { spacingChoice }: { spacingChoice: DoDontSpacing } = blockSettings;
+    const { columns, spacing, spacingValue, doColor, dontColor, layout, style, spacingChoice } = blockSettings;
 
-    const setContent = (value, item) => {
+    const saveItem = (itemKey: number, value: string, type: DoDontContent) => {
+        let newItem = {};
+
+        if (blockSettings.items && blockSettings.items[itemKey]) {
+            newItem = {
+                ...blockSettings.items[itemKey],
+                [type === DoDontContent.Title ? DoDontContent.Title : DoDontContent.Body]: value,
+            };
+        } else {
+            newItem = {
+                [type === DoDontContent.Title ? DoDontContent.Title : DoDontContent.Body]: value,
+            };
+        }
+
+        const mergeItems = { ...blockSettings.items, [itemKey]: newItem };
+
         setBlockSettings({
             ...blockSettings,
-            itemsContent: {
-                ...blockSettings.itemsContent,
-                [item]: value,
-            },
+            items: { ...mergeItems },
         });
-        console.log('setContent ', blockSettings);
-    };
-
-    const setTitle = (value, item) => {
-        setBlockSettings({
-            ...blockSettings,
-            itemsTitle: {
-                ...blockSettings.itemsTitle,
-                [item]: value,
-            },
-        });
-        console.log('setTitle ', blockSettings);
     };
 
     const numberOfItems = 4;
@@ -139,17 +155,9 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                     <Item
                         key={i}
                         itemKey={i}
-                        setContent={setContent}
-                        setTitle={setTitle}
-                        title={
-                            blockSettings.itemsTitle && blockSettings.itemsTitle[i] !== 'undefined'
-                                ? blockSettings.itemsTitle[i]
-                                : ''
-                        }
+                        saveItem={saveItem}
                         content={
-                            blockSettings.itemsContent && blockSettings.itemsContent[i] !== 'undefined'
-                                ? blockSettings.itemsContent[i]
-                                : ''
+                            blockSettings.items && blockSettings.items[i] !== 'undefined' ? blockSettings.items[i] : {}
                         }
                         type={i % 2 ? DoDontType.Dont : DoDontType.Do}
                         style={style}

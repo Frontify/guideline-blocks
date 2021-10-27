@@ -26,3 +26,8 @@ export enum DoDontSpacing {
     Medium = 'medium',
     Large = 'large',
 }
+
+export enum DoDontContent {
+    Title = 'title',
+    Body = 'body',
+}
