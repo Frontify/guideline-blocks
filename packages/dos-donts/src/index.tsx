@@ -37,10 +37,18 @@ type ItemProps = {
     doColor: string;
     dontColor: string;
     saveItem: any;
-    content: { title: any; body: any };
+    content: { title?: any; body?: any };
 };
 
-const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, saveItem, content }) => {
+const Item: FC<ItemProps> = ({
+    itemKey,
+    type,
+    style,
+    doColor,
+    dontColor,
+    saveItem,
+    content = { title: '', body: '' },
+}) => {
     const isEditing = useEditorState();
 
     const headingStyles = (isEditing: boolean, type: DoDontType) => {
@@ -110,15 +118,26 @@ const Item: FC<ItemProps> = ({ itemKey, type, style, doColor, dontColor, saveIte
 };
 
 const spacingClasses: Record<DoDontSpacing, string> = {
-    [DoDontSpacing.Small]: 'tw-gap-3',
-    [DoDontSpacing.Medium]: 'tw-gap-4',
-    [DoDontSpacing.Large]: 'tw-gap-6',
+    [DoDontSpacing.Small]: 'tw-gap-4',
+    [DoDontSpacing.Medium]: 'tw-gap-6',
+    [DoDontSpacing.Large]: 'tw-gap-8',
 };
 
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { columns, spacing, spacingValue, doColor, dontColor, layout, style, spacingChoice } = blockSettings;
+    console.log(blockSettings);
+
+    const {
+        columns = 2,
+        spacing = false,
+        spacingValue = '',
+        doColor = '#00C8A5',
+        dontColor = '#FF375A',
+        layout,
+        style = DoDontStyle.Icons,
+        spacingChoice = DoDontSpacing.Medium,
+    } = blockSettings;
 
     const saveItem = (itemKey: number, value: string, type: DoDontContent) => {
         let newItem = {};
