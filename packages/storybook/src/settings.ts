@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { StorybookStyle, StorybookTheme, StorybookBorderRadius } from './types';
+import { MultiInputLayout } from '@frontify/arcade';
 
 export default {
     main: [
@@ -45,6 +46,28 @@ export default {
                 {
                     value: StorybookTheme.Dark,
                     label: StorybookTheme.Dark,
+                },
+            ],
+        },
+        { id: 'border', label: 'Border', type: 'switch' },
+        {
+            id: 'borderSelection',
+            type: 'multiInput',
+            layout: MultiInputLayout.Columns,
+            lastItemFullWidth: true,
+            show: (bundle) => bundle.getBlock('border').value === true,
+            inputs: [
+                {
+                    id: 'test1',
+                    type: 'input',
+                },
+                {
+                    id: 'test2',
+                    type: 'input',
+                },
+                {
+                    id: 'test3',
+                    type: 'input',
                 },
             ],
         },
