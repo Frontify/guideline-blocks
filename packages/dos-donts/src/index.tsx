@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC } from 'react';
 import { debounce } from './utilities/debounce';
-import { RichTextEditor, IconApprove, IconRejectCircle, IconSize } from '@frontify/arcade';
+import { IconApprove, IconRejectCircle, IconSize } from '@frontify/arcade';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { DoDontType, DoDontStyle, DoDontLayout, DoDontSpacing, DoDontContent } from './types';
 
@@ -93,11 +93,21 @@ const Item: FC<ItemProps> = ({
                     </div>
                 )}
                 <div className="tw-w-full">
-                    <RichTextEditor
-                        value={content.title}
-                        onTextChange={debounce((value) => saveItem(itemKey, value, DoDontContent.Title), 500)}
-                        placeholder="Add a title"
-                    />
+                    {isEditing && (
+                        <textarea
+                            className="tw-w-full tw-outline-none tw-resize-none tw-text-m tw-font-bold"
+                            onChange={debounce(
+                                (event) => saveItem(itemKey, event.target.value, DoDontContent.Title),
+                                500
+                            )}
+                            placeholder="Add a title"
+                            rows={1}
+                        >
+                            {content.title}
+                        </textarea>
+                    )}
+
+                    {!isEditing && <p className="tw-text-current tw-text-m tw-font-bold">{content.title}</p>}
                 </div>
             </div>
             {style === DoDontStyle.Underline && (
@@ -107,11 +117,17 @@ const Item: FC<ItemProps> = ({
                 />
             )}
             <div className="tw-mt-2">
-                <RichTextEditor
-                    value={content.body}
-                    onTextChange={debounce((value) => saveItem(itemKey, value, DoDontContent.Body), 500)}
-                    placeholder="Add a description"
-                />
+                {isEditing && (
+                    <textarea
+                        className="tw-w-full tw-outline-none tw-resize-y"
+                        onChange={debounce((event) => saveItem(itemKey, event.target.value, DoDontContent.Body), 500)}
+                        placeholder="Add a description"
+                    >
+                        {content.body}
+                    </textarea>
+                )}
+
+                {!isEditing && <p>{content.body}</p>}
             </div>
         </div>
     );
