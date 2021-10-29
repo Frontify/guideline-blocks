@@ -1,16 +1,87 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { StorybookStyle, StorybookTheme, StorybookBorderRadius } from './types';
+
 export default {
     main: [
         {
-            id: 'main-dropdown',
+            id: 'style',
             type: 'dropdown',
-            defaultValue: 'custom_block',
+            defaultValue: StorybookStyle.Default,
             size: 'large',
-            disabled: true,
             choices: [
                 {
-                    value: 'custom_block',
-                    icon: 'snippet',
-                    label: 'Custom Block',
+                    value: StorybookStyle.Default,
+                    icon: 'dos-text',
+                    label: 'Icons',
+                },
+                {
+                    value: StorybookStyle.WithoutAddons,
+                    icon: 'dos-donts-underline',
+                    label: 'Underline',
+                },
+            ],
+        },
+    ],
+    content: [
+        {
+            id: 'url',
+            label: 'Storybook-URL',
+            type: 'input',
+        },
+    ],
+    style: [
+        {
+            id: 'theme',
+            label: 'Theme',
+            info: 'Here comes the info',
+            type: 'slider',
+            defaultValue: StorybookTheme.Light,
+            choices: [
+                {
+                    value: StorybookTheme.Light,
+                    label: StorybookTheme.Light,
+                },
+                {
+                    value: StorybookTheme.Dark,
+                    label: StorybookTheme.Dark,
+                },
+            ],
+        },
+        {
+            id: 'borderRadius',
+            label: 'Corner radius',
+            type: 'switch',
+            switchLabel: 'Custom',
+            on: [
+                {
+                    id: 'borderRadiusValue',
+                    type: 'input',
+                },
+            ],
+            off: [
+                {
+                    id: 'borderRadiusChoice',
+                    type: 'slider',
+                    defaultValue: StorybookBorderRadius.None,
+                    choices: [
+                        {
+                            value: StorybookBorderRadius.None,
+                            label: 'None',
+                        },
+                        {
+                            value: StorybookBorderRadius.Small,
+                            label: 'S',
+                        },
+                        {
+                            value: StorybookBorderRadius.Medium,
+                            label: 'M',
+                        },
+                        {
+                            value: StorybookBorderRadius.Large,
+                            label: 'L',
+                        },
+                    ],
                 },
             ],
         },
