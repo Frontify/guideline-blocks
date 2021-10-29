@@ -11,6 +11,11 @@ import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThi
 
 const IS_LINE_ID = 'isLine';
 
+export const ALIGNMENT_DEFAULT_VALUE = DividerAlignment.Left;
+export const STYLE_DEFAULT_VALUE = DividerStyle.Solid;
+export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
+export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
+
 const solidStyleIsSelected = (bundle: any) => bundle.getBlock(IS_LINE_ID).value === DividerStyle.Solid;
 
 export default {
@@ -62,7 +67,7 @@ export default {
                 {
                     id: 'widthSimple',
                     type: 'slider',
-                    defaultValue: '100%',
+                    defaultValue: WIDTH_DEFAULT_VALUE,
                     choices: [
                         {
                             value: DividerWidth['10%'],
@@ -90,7 +95,7 @@ export default {
             type: 'slider',
             label: 'Alignment',
             info: 'Anchors the dividing line to the left, centre, or right of the page.',
-            defaultValue: DividerAlignment.Left,
+            defaultValue: ALIGNMENT_DEFAULT_VALUE,
             choices: [
                 {
                     value: DividerAlignment.Left,
@@ -131,7 +136,7 @@ export default {
                 {
                     id: 'heightSimple',
                     type: 'slider',
-                    defaultValue: DividerHeight.Small,
+                    defaultValue: HEIGHT_DEFAULT_VALUE,
                     choices: [
                         {
                             value: DividerHeight.Small,
@@ -155,7 +160,7 @@ export default {
             id: 'style',
             type: 'slider',
             label: 'Type',
-            defaultValue: DividerStyle.Solid,
+            defaultValue: STYLE_DEFAULT_VALUE,
             choices: [
                 {
                     value: DividerStyle.Solid,
