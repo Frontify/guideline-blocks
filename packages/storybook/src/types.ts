@@ -23,3 +23,8 @@ export enum StorybookHeight {
     Medium = 'Medium',
     Large = 'Large',
 }
+
+export enum StorybookPosition {
+    Vertical = 'Vertical',
+    Horizontal = 'Horizontal',
+}

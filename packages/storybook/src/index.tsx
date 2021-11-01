@@ -4,7 +4,13 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { StorybookBorderRadius, StorybookBorderStyle, StorybookStyle, StorybookHeight } from './types';
+import {
+    StorybookBorderRadius,
+    StorybookBorderStyle,
+    StorybookStyle,
+    StorybookHeight,
+    StorybookPosition,
+} from './types';
 
 type StorybookBlockProps = {
     appBridge: AppBridgeNative;
@@ -16,6 +22,7 @@ type Settings = {
     height: boolean;
     heightChoice: StorybookHeight;
     heightValue: string;
+    positioning: StorybookPosition;
     border: boolean;
     borderStyle: StorybookBorderStyle;
     borderWidth: string;
@@ -23,6 +30,34 @@ type Settings = {
     borderRadius: boolean;
     borderRadiusChoice: StorybookBorderRadius;
     borderRadiusValue: string;
+};
+
+const iframeStyles = (
+    borderStyle: StorybookBorderStyle,
+    borderWidth: string,
+    borderColor: string,
+    borderRadius: boolean,
+    borderRadiusValue: string
+) => {
+    return {
+        borderStyle: borderStyle,
+        borderWidth: borderWidth,
+        borderColor: borderColor,
+        borderRadius: borderRadius ? borderRadiusValue : '',
+    };
+};
+
+const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
+    [StorybookBorderRadius.None]: 'tw-rounded-none',
+    [StorybookBorderRadius.Small]: 'tw-rounded',
+    [StorybookBorderRadius.Medium]: 'tw-rounded-md',
+    [StorybookBorderRadius.Large]: 'tw-rounded-lg',
+};
+
+const heights: Record<StorybookHeight, string> = {
+    [StorybookHeight.Small]: '400px',
+    [StorybookHeight.Medium]: '600px',
+    [StorybookHeight.Large]: '800px',
 };
 
 const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
@@ -34,6 +69,7 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         height = false,
         heightChoice = StorybookHeight.Medium,
         heightValue = '',
+        positioning = StorybookPosition.Horizontal,
         border = false,
         borderStyle = StorybookBorderStyle.Solid,
         borderWidth = '1px',
@@ -46,36 +82,12 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
     let iframeUrl = new URL(url);
     iframeUrl.searchParams.set('nav', 'false');
     if (style === StorybookStyle.WithoutAddons) {
-        iframeUrl.searchParams.set('full', 'true');
+        iframeUrl.searchParams.set('panel', 'false');
+    } else if (positioning === StorybookPosition.Horizontal) {
+        iframeUrl.searchParams.set('panel', 'right');
+    } else {
+        iframeUrl.searchParams.set('panel', 'bottom');
     }
-
-    const iframeStyles = (
-        borderStyle: StorybookBorderStyle,
-        borderWidth: string,
-        borderColor: string,
-        borderRadius: boolean,
-        borderRadiusValue: string
-    ) => {
-        return {
-            borderStyle: borderStyle,
-            borderWidth: borderWidth,
-            borderColor: borderColor,
-            borderRadius: borderRadius ? borderRadiusValue : '',
-        };
-    };
-
-    const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
-        [StorybookBorderRadius.None]: 'tw-rounded-none',
-        [StorybookBorderRadius.Small]: 'tw-rounded',
-        [StorybookBorderRadius.Medium]: 'tw-rounded-md',
-        [StorybookBorderRadius.Large]: 'tw-rounded-lg',
-    };
-
-    const heights: Record<StorybookHeight, string> = {
-        [StorybookHeight.Small]: '400px',
-        [StorybookHeight.Medium]: '600px',
-        [StorybookHeight.Large]: '800px',
-    };
 
     return (
         <div>

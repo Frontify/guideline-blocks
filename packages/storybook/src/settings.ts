@@ -1,6 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { StorybookStyle, StorybookBorderRadius, StorybookBorderStyle, StorybookHeight } from './types';
+import {
+    StorybookStyle,
+    StorybookBorderRadius,
+    StorybookBorderStyle,
+    StorybookHeight,
+    StorybookPosition,
+} from './types';
 import { MultiInputLayout } from '@frontify/arcade';
 
 export default {
@@ -62,6 +68,23 @@ export default {
                             label: 'L',
                         },
                     ],
+                },
+            ],
+        },
+        {
+            id: 'positioning',
+            label: 'Positioning',
+            type: 'slider',
+            defaultValue: StorybookPosition.Horizontal,
+            show: (bundle) => bundle.getBlock('style').value === StorybookStyle.Default,
+            choices: [
+                {
+                    value: StorybookPosition.Horizontal,
+                    icon: 'figure-text-right',
+                },
+                {
+                    value: StorybookPosition.Vertical,
+                    icon: 'figure-text-bottom',
                 },
             ],
         },
