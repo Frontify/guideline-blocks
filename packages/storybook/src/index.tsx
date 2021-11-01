@@ -2,8 +2,9 @@
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { TextInput, IconReject, IconSize } from '@frontify/arcade';
 import {
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -61,7 +62,9 @@ const heights: Record<StorybookHeight, string> = {
 };
 
 const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
-    const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const isEditing = useEditorState();
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [localUrl, setLocalUrl] = useState('');
 
     const {
         style = StorybookStyle.Default,
@@ -79,29 +82,76 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         borderRadiusValue = '',
     } = blockSettings;
 
-    let iframeUrl = new URL(url);
-    iframeUrl.searchParams.set('nav', 'false');
-    if (style === StorybookStyle.WithoutAddons) {
-        iframeUrl.searchParams.set('panel', 'false');
-    } else if (positioning === StorybookPosition.Horizontal) {
-        iframeUrl.searchParams.set('panel', 'right');
-    } else {
-        iframeUrl.searchParams.set('panel', 'bottom');
+    let iframeUrl;
+
+    if (url !== '') {
+        iframeUrl = new URL(url);
+        iframeUrl.searchParams.set('nav', 'false');
+        if (style === StorybookStyle.WithoutAddons) {
+            iframeUrl.searchParams.set('panel', 'false');
+        } else if (positioning === StorybookPosition.Horizontal) {
+            iframeUrl.searchParams.set('panel', 'right');
+        } else {
+            iframeUrl.searchParams.set('panel', 'bottom');
+        }
     }
 
+    const deleteUrl = () => {
+        setBlockSettings({
+            ...blockSettings,
+            url: '',
+        });
+    };
+
+    const saveLink = () => {
+        setBlockSettings({
+            ...blockSettings,
+            url: localUrl,
+        });
+    };
+
     return (
-        <div>
-            <iframe
-                className={`tw-w-full ${!borderRadius && borderRadiusClasses[borderRadiusChoice]}`}
-                style={
-                    border === true
-                        ? iframeStyles(borderStyle, borderWidth, borderColor, borderRadius, borderRadiusValue)
-                        : {}
-                }
-                height={height ? heightValue : heights[heightChoice]}
-                src={iframeUrl.toString()}
-                frameBorder="0"
-            ></iframe>
+        <div className="tw-relative">
+            {iframeUrl && isEditing && (
+                <button
+                    onClick={deleteUrl}
+                    className="tw-absolute tw-w-9 tw-h-9 tw-flex tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-top-4 tw-right-4 tw-text-black"
+                >
+                    <IconReject size={IconSize.Size20} />
+                </button>
+            )}
+            {iframeUrl && (
+                <iframe
+                    className={`tw-w-full ${!borderRadius && borderRadiusClasses[borderRadiusChoice]}`}
+                    style={
+                        border === true
+                            ? iframeStyles(borderStyle, borderWidth, borderColor, borderRadius, borderRadiusValue)
+                            : {}
+                    }
+                    height={height ? heightValue : heights[heightChoice]}
+                    src={iframeUrl.toString()}
+                    frameBorder="0"
+                ></iframe>
+            )}
+            {!iframeUrl && isEditing && (
+                <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-16">
+                    <div className="tw-w-full">
+                        <TextInput
+                            value={localUrl}
+                            onChange={(value) => setLocalUrl(value)}
+                            placeholder="Add your Storybook-URL"
+                        />
+                    </div>
+                    <button onClick={saveLink} className="tw-p-2 tw-mx-2 tw-bg-black-40">
+                        Save
+                    </button>
+                </div>
+            )}
+            {!iframeUrl && !isEditing && (
+                <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-16">
+                    No Storybook-URL defined.
+                </div>
+            )}
         </div>
     );
 };
