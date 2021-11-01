@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { StorybookStyle, StorybookTheme, StorybookBorderRadius } from './types';
+import { StorybookStyle, StorybookBorderRadius, StorybookBorderStyle } from './types';
 import { MultiInputLayout } from '@frontify/arcade';
 
 export default {
@@ -13,13 +13,13 @@ export default {
             choices: [
                 {
                     value: StorybookStyle.Default,
-                    icon: 'dos-text',
-                    label: 'Icons',
+                    icon: 'iframe',
+                    label: 'Story (with add-ons)',
                 },
                 {
                     value: StorybookStyle.WithoutAddons,
-                    icon: 'dos-donts-underline',
-                    label: 'Underline',
+                    icon: 'iframe',
+                    label: 'Story (no add-ons)',
                 },
             ],
         },
@@ -32,23 +32,6 @@ export default {
         },
     ],
     style: [
-        {
-            id: 'theme',
-            label: 'Theme',
-            info: 'Here comes the info',
-            type: 'slider',
-            defaultValue: StorybookTheme.Light,
-            choices: [
-                {
-                    value: StorybookTheme.Light,
-                    label: StorybookTheme.Light,
-                },
-                {
-                    value: StorybookTheme.Dark,
-                    label: StorybookTheme.Dark,
-                },
-            ],
-        },
         { id: 'border', label: 'Border', type: 'switch' },
         {
             id: 'borderSelection',
@@ -58,16 +41,33 @@ export default {
             show: (bundle) => bundle.getBlock('border').value === true,
             inputs: [
                 {
-                    id: 'test1',
-                    type: 'input',
+                    id: 'borderStyle',
+                    type: 'dropdown',
+                    defaultValue: StorybookBorderStyle.Solid,
+                    choices: [
+                        {
+                            value: StorybookBorderStyle.Solid,
+                            label: StorybookBorderStyle.Solid,
+                        },
+                        {
+                            value: StorybookBorderStyle.Dotted,
+                            label: StorybookBorderStyle.Dotted,
+                        },
+                        {
+                            value: StorybookBorderStyle.Dashed,
+                            label: StorybookBorderStyle.Dashed,
+                        },
+                    ],
                 },
                 {
-                    id: 'test2',
+                    id: 'borderWidth',
                     type: 'input',
+                    defaultValue: '1px',
                 },
                 {
-                    id: 'test3',
+                    id: 'borderColor',
                     type: 'input',
+                    defaultValue: '#CCCCCC',
                 },
             ],
         },

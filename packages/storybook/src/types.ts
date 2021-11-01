@@ -5,14 +5,15 @@ export enum StorybookStyle {
     WithoutAddons = 'WithoutAddons',
 }
 
-export enum StorybookTheme {
-    Light = 'Light',
-    Dark = 'Dark',
-}
-
 export enum StorybookBorderRadius {
     None = 'None',
     Small = 'Small',
     Medium = 'Medium',
     Large = 'Large',
+}
+
+export enum StorybookBorderStyle {
+    Solid = 'Solid',
+    Dotted = 'Dotted',
+    Dashed = 'Dashed',
 }
