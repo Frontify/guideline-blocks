@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { StorybookStyle, StorybookBorderRadius, StorybookBorderStyle } from './types';
+import { StorybookStyle, StorybookBorderRadius, StorybookBorderStyle, StorybookHeight } from './types';
 import { MultiInputLayout } from '@frontify/arcade';
 
 export default {
@@ -29,6 +29,41 @@ export default {
             id: 'url',
             label: 'Storybook-URL',
             type: 'input',
+        },
+    ],
+    layout: [
+        {
+            id: 'height',
+            label: 'Height',
+            type: 'switch',
+            switchLabel: 'Custom',
+            on: [
+                {
+                    id: 'heightValue',
+                    type: 'input',
+                },
+            ],
+            off: [
+                {
+                    id: 'heightChoice',
+                    type: 'slider',
+                    defaultValue: StorybookHeight.Medium,
+                    choices: [
+                        {
+                            value: StorybookHeight.Small,
+                            label: 'S',
+                        },
+                        {
+                            value: StorybookHeight.Medium,
+                            label: 'M',
+                        },
+                        {
+                            value: StorybookHeight.Large,
+                            label: 'L',
+                        },
+                    ],
+                },
+            ],
         },
     ],
     style: [

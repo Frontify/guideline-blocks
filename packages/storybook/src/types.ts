@@ -17,3 +17,9 @@ export enum StorybookBorderStyle {
     Dotted = 'Dotted',
     Dashed = 'Dashed',
 }
+
+export enum StorybookHeight {
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+}
