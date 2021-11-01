@@ -147,8 +147,6 @@ const spacingClasses: Record<DoDontSpacing, string> = {
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
-    console.log(blockSettings);
-
     const {
         columns = 2,
         spacing = false,
@@ -161,24 +159,18 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     } = blockSettings;
 
     const saveItem = (itemKey: number, value: string, type: DoDontContent) => {
-        let newItem = {};
-
-        if (blockSettings.items && blockSettings.items[itemKey]) {
-            newItem = {
-                ...blockSettings.items[itemKey],
-                [type === DoDontContent.Title ? DoDontContent.Title : DoDontContent.Body]: value,
-            };
-        } else {
-            newItem = {
-                [type === DoDontContent.Title ? DoDontContent.Title : DoDontContent.Body]: value,
-            };
-        }
-
-        const mergeItems = { ...blockSettings.items, [itemKey]: newItem };
+        const existingItem = blockSettings.items?.[itemKey] || null;
+        const newItem = {
+            ...existingItem,
+            [type]: value,
+        };
 
         setBlockSettings({
             ...blockSettings,
-            items: { ...mergeItems },
+            items: {
+                ...blockSettings.items,
+                [itemKey]: newItem,
+            },
         });
     };
 
