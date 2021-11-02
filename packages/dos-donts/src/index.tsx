@@ -72,21 +72,18 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
             } ${!spacing && spacingClasses[spacingChoice]}`}
             style={spacing ? { gap: spacingValue } : {}}
         >
-            {[...Array(numberOfItems)].map((_, i) => {
-                i * i;
-                return (
-                    <DoDontItem
-                        key={i}
-                        itemKey={i}
-                        saveItem={saveItem}
-                        content={items?.[i]}
-                        type={i % 2 ? DoDontType.Dont : DoDontType.Do}
-                        style={style}
-                        doColor={doColor}
-                        dontColor={dontColor}
-                    />
-                );
-            })}
+            {[...Array(numberOfItems)].map((_, index) => (
+                <DoDontItem
+                    key={index}
+                    itemKey={index}
+                    saveItem={saveItem}
+                    content={items?.[index]}
+                    type={index % 2 ? DoDontType.Dont : DoDontType.Do}
+                    style={style}
+                    doColor={doColor}
+                    dontColor={dontColor}
+                />
+            ))}
         </div>
     );
 };
