@@ -14,7 +14,7 @@ type ItemProps = {
     doColor: string;
     dontColor: string;
     saveItem: any;
-    content: { title?: any; body?: any };
+    content: { title?: string; body?: string };
 };
 
 export const DoDontItem: FC<ItemProps> = ({
@@ -48,7 +48,7 @@ export const DoDontItem: FC<ItemProps> = ({
                     </div>
                 )}
                 <div className="tw-w-full">
-                    {isEditing && (
+                    {isEditing ? (
                         <textarea
                             className="tw-w-full tw-outline-none tw-resize-none tw-text-m tw-font-bold"
                             onChange={(event) => saveItem(itemKey, event.target.value, DoDontContent.Title)}
@@ -57,9 +57,9 @@ export const DoDontItem: FC<ItemProps> = ({
                         >
                             {content.title}
                         </textarea>
+                    ) : (
+                        <p className="tw-text-current tw-text-m tw-font-bold">{content.title}</p>
                     )}
-
-                    {!isEditing && <p className="tw-text-current tw-text-m tw-font-bold">{content.title}</p>}
                 </div>
             </div>
             {style === DoDontStyle.Underline && (
@@ -69,7 +69,7 @@ export const DoDontItem: FC<ItemProps> = ({
                 />
             )}
             <div className="tw-mt-2">
-                {isEditing && (
+                {isEditing ? (
                     <textarea
                         className="tw-w-full tw-outline-none tw-resize-y"
                         onChange={(event) => saveItem(itemKey, event.target.value, DoDontContent.Body)}
@@ -77,9 +77,9 @@ export const DoDontItem: FC<ItemProps> = ({
                     >
                         {content.body}
                     </textarea>
+                ) : (
+                    <p>{content.body}</p>
                 )}
-
-                {!isEditing && <p>{content.body}</p>}
             </div>
         </div>
     );

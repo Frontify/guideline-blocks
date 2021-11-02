@@ -79,9 +79,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                         key={i}
                         itemKey={i}
                         saveItem={saveItem}
-                        content={
-                            blockSettings.items && blockSettings.items[i] !== 'undefined' ? blockSettings.items[i] : {}
-                        }
+                        content={items?.[i]}
                         type={i % 2 ? DoDontType.Dont : DoDontType.Do}
                         style={style}
                         doColor={doColor}

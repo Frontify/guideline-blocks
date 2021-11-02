@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 export enum DoDontType {
-    Do = 'Do',
-    Dont = 'Dont',
+    Do = 'do',
+    Dont = 'dont',
 }
 
 export enum DoDontStyle {
