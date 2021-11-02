@@ -34,7 +34,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const {
-        items,
+        items = [],
         columns = 2,
         isCustomSpacing = false,
         spacingValue = '',
@@ -46,18 +46,17 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     } = blockSettings;
 
     const saveItem = (itemKey: number, value: string, type: DoDontContent) => {
-        const existingItem = items?.[itemKey] || null;
-        const newItem = {
-            ...existingItem,
-            [type]: value,
-        };
+        let updatedItems = items;
+        const existingItemIndex = items.findIndex((item) => item.key === itemKey);
+        if (existingItemIndex === -1) {
+            updatedItems.push({ key: itemKey, [type]: value });
+        } else {
+            updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], [type]: value };
+        }
 
         setBlockSettings({
             ...blockSettings,
-            items: {
-                ...items,
-                [itemKey]: newItem,
-            },
+            items: updatedItems,
         });
     };
 
