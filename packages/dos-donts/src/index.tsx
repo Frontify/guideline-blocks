@@ -24,12 +24,6 @@ type Settings = {
     items: any;
 };
 
-type saveItemProps = {
-    itemKey: number;
-    value: any;
-    type: DoDontContent;
-};
-
 type ItemProps = {
     itemKey: number;
     type: DoDontType;
@@ -51,41 +45,19 @@ const Item: FC<ItemProps> = ({
 }) => {
     const isEditing = useEditorState();
 
-    const headingStyles = (isEditing: boolean, type: DoDontType) => {
-        if (!isEditing) {
-            if (type === DoDontType.Do) {
-                return {
-                    color: doColor,
-                };
-            }
-            if (type === DoDontType.Dont) {
-                return {
-                    color: dontColor,
-                };
-            }
-        }
-        return {};
+    const headingStyles: Record<DoDontType, object> = {
+        [DoDontType.Do]: { color: doColor },
+        [DoDontType.Dont]: { color: dontColor },
     };
 
-    const dividerStyles = (isEditing: boolean, type: DoDontType) => {
-        if (!isEditing) {
-            if (type === DoDontType.Do) {
-                return {
-                    backgroundColor: doColor,
-                };
-            }
-            if (type === DoDontType.Dont) {
-                return {
-                    backgroundColor: dontColor,
-                };
-            }
-        }
-        return {};
+    const dividerStyles: Record<DoDontType, object> = {
+        [DoDontType.Do]: { backgroundColor: doColor },
+        [DoDontType.Dont]: { backgroundColor: dontColor },
     };
 
     return (
         <div>
-            <div style={headingStyles(isEditing, type)} className="tw-flex">
+            <div style={isEditing ? {} : headingStyles[type]} className="tw-flex">
                 {style === DoDontStyle.Icons && (
                     <div className="tw-mr-2 tw-w-auto">
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
@@ -112,7 +84,7 @@ const Item: FC<ItemProps> = ({
             </div>
             {style === DoDontStyle.Underline && (
                 <hr
-                    style={dividerStyles(isEditing, type)}
+                    style={isEditing ? {} : dividerStyles[type]}
                     className="tw-w-full tw-mt-4 tw-mb-5 tw-h-1 tw-border-none tw-rounded tw-bg-black-40"
                 />
             )}
