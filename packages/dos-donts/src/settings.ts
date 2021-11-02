@@ -32,7 +32,6 @@ export default {
         {
             id: 'layout',
             label: 'Arrange',
-            info: 'Here comes the info',
             type: 'slider',
             defaultValue: DoDontLayout.SideBySide,
             choices: [
@@ -49,7 +48,6 @@ export default {
         {
             id: 'columns',
             label: 'Columns',
-            info: 'Here comes the info',
             type: 'slider',
             show: (bundle) => bundle.getBlock('layout').value === DoDontLayout.Stacked,
             defaultValue: 2,
@@ -73,9 +71,8 @@ export default {
             ],
         },
         {
-            id: 'spacing',
+            id: 'isCustomSpacing',
             label: 'Column gap',
-            info: 'Here comes the infooo',
             type: 'switch',
             switchLabel: 'Custom',
             on: [

@@ -13,7 +13,7 @@ type ItemProps = {
     style: DoDontStyle;
     doColor: string;
     dontColor: string;
-    saveItem: any;
+    saveItem: (key: number, value: string, type: DoDontContent) => void;
     content: { title?: string; body?: string };
 };
 

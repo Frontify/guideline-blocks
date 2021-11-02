@@ -14,7 +14,7 @@ type DosDontsBlockProps = {
 
 type Settings = {
     columns: number;
-    spacing: boolean;
+    isCustomSpacing: boolean;
     spacingValue: string;
     doColor: string;
     dontColor: string;
@@ -36,7 +36,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const {
         items,
         columns = 2,
-        spacing = false,
+        isCustomSpacing = false,
         spacingValue = '',
         doColor = '#00C8A5',
         dontColor = '#FF375A',
@@ -67,10 +67,10 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         <div
             className={`tw-grid ${
                 layout === DoDontLayout.Stacked
-                    ? 'tw-grid-flow-col tw-grid-rows-2 tw-grid-cols-' + columns
+                    ? `tw-grid-flow-col tw-grid-rows-2 tw-grid-cols-${columns}`
                     : 'tw-grid-cols-2'
-            } ${!spacing && spacingClasses[spacingChoice]}`}
-            style={spacing ? { gap: spacingValue } : {}}
+            } ${!isCustomSpacing && spacingClasses[spacingChoice]}`}
+            style={isCustomSpacing ? { gap: spacingValue } : {}}
         >
             {[...Array(numberOfItems)].map((_, index) => (
                 <DoDontItem
