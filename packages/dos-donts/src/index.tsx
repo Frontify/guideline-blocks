@@ -3,10 +3,10 @@
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC } from 'react';
-import { debounce } from './utilities/debounce';
-import { IconApprove, IconRejectCircle, IconSize } from '@frontify/arcade';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
 import { DoDontType, DoDontStyle, DoDontLayout, DoDontSpacing, DoDontContent } from './types';
+
+import { DoDontItem } from './DoDontItem';
 
 type DosDontsBlockProps = {
     appBridge: AppBridgeNative;
@@ -24,87 +24,6 @@ type Settings = {
     items: any;
 };
 
-type ItemProps = {
-    itemKey: number;
-    type: DoDontType;
-    style: DoDontStyle;
-    doColor: string;
-    dontColor: string;
-    saveItem: any;
-    content: { title?: any; body?: any };
-};
-
-const Item: FC<ItemProps> = ({
-    itemKey,
-    type,
-    style,
-    doColor,
-    dontColor,
-    saveItem,
-    content = { title: '', body: '' },
-}) => {
-    const isEditing = useEditorState();
-
-    const headingStyles: Record<DoDontType, object> = {
-        [DoDontType.Do]: { color: doColor },
-        [DoDontType.Dont]: { color: dontColor },
-    };
-
-    const dividerStyles: Record<DoDontType, object> = {
-        [DoDontType.Do]: { backgroundColor: doColor },
-        [DoDontType.Dont]: { backgroundColor: dontColor },
-    };
-
-    return (
-        <div>
-            <div style={isEditing ? {} : headingStyles[type]} className="tw-flex">
-                {style === DoDontStyle.Icons && (
-                    <div className="tw-mr-2 tw-w-auto">
-                        {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
-                        {type === DoDontType.Dont && <IconRejectCircle size={IconSize.Size24} />}
-                    </div>
-                )}
-                <div className="tw-w-full">
-                    {isEditing && (
-                        <textarea
-                            className="tw-w-full tw-outline-none tw-resize-none tw-text-m tw-font-bold"
-                            onChange={debounce(
-                                (event) => saveItem(itemKey, event.target.value, DoDontContent.Title),
-                                500
-                            )}
-                            placeholder="Add a title"
-                            rows={1}
-                        >
-                            {content.title}
-                        </textarea>
-                    )}
-
-                    {!isEditing && <p className="tw-text-current tw-text-m tw-font-bold">{content.title}</p>}
-                </div>
-            </div>
-            {style === DoDontStyle.Underline && (
-                <hr
-                    style={isEditing ? {} : dividerStyles[type]}
-                    className="tw-w-full tw-mt-4 tw-mb-5 tw-h-1 tw-border-none tw-rounded tw-bg-black-40"
-                />
-            )}
-            <div className="tw-mt-2">
-                {isEditing && (
-                    <textarea
-                        className="tw-w-full tw-outline-none tw-resize-y"
-                        onChange={debounce((event) => saveItem(itemKey, event.target.value, DoDontContent.Body), 500)}
-                        placeholder="Add a description"
-                    >
-                        {content.body}
-                    </textarea>
-                )}
-
-                {!isEditing && <p>{content.body}</p>}
-            </div>
-        </div>
-    );
-};
-
 const layoutClasses: Record<DoDontLayout, string> = {
     [DoDontLayout.SideBySide]: 'tw-grid',
     [DoDontLayout.Stacked]: 'tw-grid tw-grid-flow-col tw-grid-rows-2',
@@ -120,6 +39,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const {
+        items,
         columns = 2,
         spacing = false,
         spacingValue = '',
@@ -131,7 +51,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     } = blockSettings;
 
     const saveItem = (itemKey: number, value: string, type: DoDontContent) => {
-        const existingItem = blockSettings.items?.[itemKey] || null;
+        const existingItem = items?.[itemKey] || null;
         const newItem = {
             ...existingItem,
             [type]: value,
@@ -140,7 +60,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         setBlockSettings({
             ...blockSettings,
             items: {
-                ...blockSettings.items,
+                ...items,
                 [itemKey]: newItem,
             },
         });
@@ -172,7 +92,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
             {[...Array(numberOfItems)].map((_, i) => {
                 i * i;
                 return (
-                    <Item
+                    <DoDontItem
                         key={i}
                         itemKey={i}
                         saveItem={saveItem}
