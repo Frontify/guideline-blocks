@@ -3,7 +3,7 @@
 import 'tailwindcss/tailwind.css';
 import './styles.css';
 import { FC, useEffect, useMemo } from 'react';
-import { RichTextEditor } from '@frontify/arcade';
+import { Color, RichTextEditor } from '@frontify/arcade';
 import { AppBridgeNative, useEditorState, useBlockSettings } from '@frontify/app-bridge';
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER, TIME_TO_DEBOUNCE } from './constant';
 import { RawDraftContentState } from 'draft-js';
@@ -20,6 +20,7 @@ type Settings = {
     columnNumber: number;
     isColumnGutterCustom: boolean;
     content?: RawDraftContentState[];
+    'color-input-in-sidebar': Color;
 };
 
 const Text: FC<Props> = ({ appBridge }) => {
@@ -28,7 +29,7 @@ const Text: FC<Props> = ({ appBridge }) => {
 
     useEffect(() => {
         if (!Object.keys(blockSettings).length) {
-            const newSettings = cloneDeep(blockSettings);
+            const newSettings = cloneDeep(blockSettings) as Settings;
             newSettings.columnGutterSimple = DEFAULT_COLUMN_GUTTER;
             newSettings.columnNumber = DEFAULT_COLUMN_NUMBER;
             newSettings.content = Array(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER);
@@ -37,7 +38,7 @@ const Text: FC<Props> = ({ appBridge }) => {
     }, []);
 
     const onTextChange = (value: RawDraftContentState, index: number) => {
-        const newSettings = cloneDeep(blockSettings);
+        const newSettings = cloneDeep(blockSettings) as Settings;
         if (!newSettings.content) {
             throw new Error('The block has been not correctly setup during initialization.');
         }
@@ -48,14 +49,14 @@ const Text: FC<Props> = ({ appBridge }) => {
 
     return (
         <div
-            className={merge(['guideline-text '])}
+            className={merge(['guideline-text'])}
             style={{
                 gap: blockSettings.isColumnGutterCustom
                     ? blockSettings.columnGutterCustom
                     : blockSettings.columnGutterSimple,
             }}
         >
-            {[...Array(blockSettings.columnNumber)].map((_, index) => {
+            {Array(blockSettings.columnNumber).map((_, index) => {
                 const editorValue = useMemo(() => {
                     if (blockSettings.content?.[index] && 'blocks' in blockSettings.content[index]) {
                         return {
@@ -69,7 +70,7 @@ const Text: FC<Props> = ({ appBridge }) => {
                 return (
                     <RichTextEditor
                         key={index}
-                        value={editorValue}
+                        value={editorValue as RawDraftContentState}
                         placeholder={PLACEHOLDER}
                         readonly={!isEditing}
                         onTextChange={debounce(
