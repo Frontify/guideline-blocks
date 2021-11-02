@@ -14,7 +14,8 @@ type ItemProps = {
     doColor: string;
     dontColor: string;
     saveItem: (key: number, value: string, type: DoDontContent) => void;
-    content: { title?: string; body?: string };
+    title?: string;
+    body?: string;
 };
 
 export const DoDontItem: FC<ItemProps> = ({
@@ -24,7 +25,8 @@ export const DoDontItem: FC<ItemProps> = ({
     doColor,
     dontColor,
     saveItem,
-    content = { title: '', body: '' },
+    title = '',
+    body = '',
 }) => {
     const isEditing = useEditorState();
 
@@ -55,10 +57,10 @@ export const DoDontItem: FC<ItemProps> = ({
                             placeholder="Add a title"
                             rows={1}
                         >
-                            {content.title}
+                            {title}
                         </textarea>
                     ) : (
-                        <p className="tw-text-current tw-text-m tw-font-bold">{content.title}</p>
+                        <p className="tw-text-current tw-text-m tw-font-bold">{title}</p>
                     )}
                 </div>
             </div>
@@ -75,10 +77,10 @@ export const DoDontItem: FC<ItemProps> = ({
                         onChange={(event) => saveItem(itemKey, event.target.value, DoDontContent.Body)}
                         placeholder="Add a description"
                     >
-                        {content.body}
+                        {body}
                     </textarea>
                 ) : (
-                    <p>{content.body}</p>
+                    <p>{body}</p>
                 )}
             </div>
         </div>
