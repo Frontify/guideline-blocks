@@ -1,4 +1,4 @@
-import { AssetStyle, LineType, LineWidth, QuoteSize, QuoteType } from './types';
+import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
 
 const QUOTE_TYPE_ID = 'type';
 
@@ -27,18 +27,18 @@ export default {
     ],
     content: [
         {
-            id: 'quoteAsset',
+            id: 'quoteStyle',
             label: 'Quotes',
             type: 'dropdown',
-            defaultValue: AssetStyle.GermanMarks,
+            defaultValue: QuoteStyle.GermanMarks,
             choices: [
                 {
-                    value: AssetStyle.GermanMarks,
+                    value: QuoteStyle.GermanMarks,
                     icon: 'quote',
                     label: 'German quotes',
                 },
                 {
-                    value: AssetStyle.EnglishMarks,
+                    value: QuoteStyle.EnglishMarks,
                     icon: 'quote',
                     label: 'English quotes',
                 },
