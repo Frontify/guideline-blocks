@@ -24,11 +24,6 @@ type Settings = {
     items: any;
 };
 
-const layoutClasses: Record<DoDontLayout, string> = {
-    [DoDontLayout.SideBySide]: 'tw-grid',
-    [DoDontLayout.Stacked]: 'tw-grid tw-grid-flow-col tw-grid-rows-2',
-};
-
 const spacingClasses: Record<DoDontSpacing, string> = {
     [DoDontSpacing.Small]: 'tw-gap-4',
     [DoDontSpacing.Medium]: 'tw-gap-6',
@@ -66,27 +61,15 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         });
     };
 
-    let numberOfItems = 4;
-    if (layout === DoDontLayout.Stacked) {
-        if (columns === 1) {
-            numberOfItems = 2;
-        }
-        if (columns === 3) {
-            numberOfItems = 6;
-        }
-        if (columns === 4) {
-            numberOfItems = 8;
-        }
-    }
-    if (layout === DoDontLayout.SideBySide) {
-        if (columns === 1) {
-            numberOfItems = 2;
-        }
-    }
+    const numberOfItems = layout === DoDontLayout.Stacked ? columns * 2 : 2;
 
     return (
         <div
-            className={`${layoutClasses[layout]} tw-grid-cols-${columns} ${!spacing && spacingClasses[spacingChoice]}`}
+            className={`tw-grid ${
+                layout === DoDontLayout.Stacked
+                    ? 'tw-grid-flow-col tw-grid-rows-2 tw-grid-cols-' + columns
+                    : 'tw-grid-cols-2'
+            } ${!spacing && spacingClasses[spacingChoice]}`}
             style={spacing ? { gap: spacingValue } : {}}
         >
             {[...Array(numberOfItems)].map((_, i) => {
