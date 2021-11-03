@@ -19,6 +19,6 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^2.2.3",
-        "@frontify/arcade": "^0.8.2"
+        "@frontify/arcade": "^0.10.0"
     }
 }
