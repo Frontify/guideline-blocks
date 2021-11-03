@@ -31,7 +31,7 @@ export enum CalloutPadding {
   L = 'tw-p-9',
 }
 
-export type CalloutBlockSettings = {
+export type BlockSettings = {
   type: CalloutType;
   alignment: CalloutAlignment;
   iconSwitch: boolean;
