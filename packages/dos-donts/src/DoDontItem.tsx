@@ -7,27 +7,19 @@ import { IconApprove, IconRejectCircle, IconSize } from '@frontify/arcade';
 import { useEditorState } from '@frontify/app-bridge';
 import { DoDontType, DoDontStyle, DoDontContent } from './types';
 
-type ItemProps = {
-    itemKey: number;
+export type ItemProps = {
+    id: number;
     type: DoDontType;
     style: DoDontStyle;
     doColor: string;
     dontColor: string;
-    saveItem: (key: number, value: string, type: DoDontContent) => void;
+    saveItem: (id: number, value: string, type: DoDontContent) => void;
     title?: string;
     body?: string;
 };
 
-export const DoDontItem: FC<ItemProps> = ({
-    itemKey,
-    type,
-    style,
-    doColor,
-    dontColor,
-    saveItem,
-    title = '',
-    body = '',
-}) => {
+export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor, saveItem, title = '', body = '' }) => {
+    console.log(id);
     const isEditing = useEditorState();
 
     const headingStyles: Record<DoDontType, object> = {
@@ -53,7 +45,7 @@ export const DoDontItem: FC<ItemProps> = ({
                     {isEditing ? (
                         <textarea
                             className="tw-w-full tw-outline-none tw-resize-none tw-text-m tw-font-bold"
-                            onChange={(event) => saveItem(itemKey, event.target.value, DoDontContent.Title)}
+                            onChange={(event) => saveItem(id, event.target.value, DoDontContent.Title)}
                             placeholder="Add a title"
                             rows={1}
                         >
@@ -74,7 +66,7 @@ export const DoDontItem: FC<ItemProps> = ({
                 {isEditing ? (
                     <textarea
                         className="tw-w-full tw-outline-none tw-resize-y"
-                        onChange={(event) => saveItem(itemKey, event.target.value, DoDontContent.Body)}
+                        onChange={(event) => saveItem(id, event.target.value, DoDontContent.Body)}
                         placeholder="Add a description"
                     >
                         {body}
