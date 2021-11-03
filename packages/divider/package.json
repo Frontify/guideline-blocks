@@ -11,7 +11,7 @@
         "@frontify/frontify-cli": "2.2.0",
         "@frontify/app-bridge": "^2.1.2",
         "@frontify/arcade": "^0.7.3",
-        "@types/react": "17.0.30",
+        "@types/react": "17.0.34",
         "autoprefixer": "10.3.7",
         "eslint": "7.32.0",
         "postcss": "8.3.9",
