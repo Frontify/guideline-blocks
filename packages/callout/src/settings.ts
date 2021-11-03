@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { CalloutAlignment, CalloutCornerRadius, CalloutPadding, CalloutType, CalloutWidth } from "./types";
 
 export default {
