@@ -44,25 +44,21 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         spacingChoice = DoDontSpacing.Medium,
     } = blockSettings;
 
-    const setItems = (amountOfItems: number) => {
-        let existingItems = items;
-        let newItems = [...new Array(amountOfItems)].map((_, index) => {
-            return { id: index, [DoDontContent.Title]: '', [DoDontContent.Body]: '' };
-        });
+    const setItems = (numberOfItems: number) => {
+        let updatedItems = items;
 
-        // Merge existing and empty items and remove duplicates by id
-        for (let i = 0, l = newItems.length; i < l; i++) {
-            for (let j = 0, ll = existingItems.length; j < ll; j++) {
-                if (newItems[i].id === existingItems[j].id) {
-                    newItems.splice(i, 1, existingItems[j]);
-                    break;
-                }
-            }
+        // Check whether to add or remove items
+        if(Math.sign(updatedItems.length - numberOfItems) === -1){
+          for (let index= updatedItems.length; index < numberOfItems; index++) {
+            updatedItems.push({ id: index, [DoDontContent.Title]: '', [DoDontContent.Body]: '' });
+          }
+        } else {
+          updatedItems = updatedItems.slice(0, numberOfItems);
         }
 
         setBlockSettings({
             ...blockSettings,
-            items: newItems,
+            items: updatedItems,
         });
     };
 
@@ -78,8 +74,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     };
 
     useEffect(() => {
-        const numberOfItems = layout === DoDontLayout.Stacked ? columns * 2 : 2;
-        setItems(numberOfItems);
+        setItems(layout === DoDontLayout.Stacked ? columns * 2 : 2);
     }, [columns]);
 
     return (
