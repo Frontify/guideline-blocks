@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { TextInput, IconReject, IconSize } from '@frontify/arcade';
+import { TextInput, IconReject, IconStorybook, IconSize } from '@frontify/arcade';
 import {
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -134,8 +134,9 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
                 ></iframe>
             )}
             {!iframeUrl && isEditing && (
-                <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-16">
-                    <div className="tw-w-full">
+                <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">
+                    <div className="tw-w-72">
+                        <IconStorybook size={IconSize.Size20} />
                         <TextInput
                             value={localUrl}
                             onChange={(value) => setLocalUrl(value)}
@@ -148,7 +149,7 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
                 </div>
             )}
             {!iframeUrl && !isEditing && (
-                <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-16">
+                <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">
                     No Storybook-URL defined.
                 </div>
             )}
