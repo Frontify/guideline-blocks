@@ -48,7 +48,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         const updatedItems = items;
 
         // Check whether to add or remove items
-        if (updatedItems.length - numberOfItems <= 0) {
+        if (updatedItems.length - numberOfItems < 0) {
             for (let index = updatedItems.length; index < numberOfItems; index++) {
                 updatedItems.push({ id: index, [DoDontContent.Title]: '', [DoDontContent.Body]: '' });
             }
