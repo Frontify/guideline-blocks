@@ -45,10 +45,10 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     } = blockSettings;
 
     const setItems = (numberOfItems: number) => {
-        let updatedItems = items;
+        const updatedItems = items;
 
         // Check whether to add or remove items
-        if (Math.sign(updatedItems.length - numberOfItems) === -1) {
+        if (updatedItems.length - numberOfItems <= 0) {
             for (let index = updatedItems.length; index < numberOfItems; index++) {
                 updatedItems.push({ id: index, [DoDontContent.Title]: '', [DoDontContent.Body]: '' });
             }
@@ -63,7 +63,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     };
 
     const saveItem = (id: number, value: string, type: DoDontContent) => {
-        let updatedItems = items;
+        const updatedItems = items;
         const existingItemIndex = items.findIndex((item) => item.id === id);
         updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], [type]: value };
 
@@ -73,9 +73,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         });
     };
 
-    useEffect(() => {
-        setItems(layout === DoDontLayout.Stacked ? columns * 2 : 2);
-    }, [layout, columns]);
+    useEffect(() => setItems(layout === DoDontLayout.Stacked ? columns * 2 : 2), [layout, columns]);
 
     return (
         <div
