@@ -18,8 +18,8 @@
         "typescript": "4.4.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^2.2.3",
-        "@frontify/arcade": "^0.9.0"
+        "@frontify/app-bridge": "^2.5.1",
+        "@frontify/arcade": "^0.10.0"
     },
     "peerDependencies": {
         "react": "^17.0.2"
