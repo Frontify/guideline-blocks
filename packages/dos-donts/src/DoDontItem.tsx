@@ -19,7 +19,6 @@ export type ItemProps = {
 };
 
 export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor, saveItem, title = '', body = '' }) => {
-    console.log(id);
     const isEditing = useEditorState();
 
     const headingStyles: Record<DoDontType, object> = {
