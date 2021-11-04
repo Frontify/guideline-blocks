@@ -48,12 +48,12 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         let updatedItems = items;
 
         // Check whether to add or remove items
-        if(Math.sign(updatedItems.length - numberOfItems) === -1){
-          for (let index= updatedItems.length; index < numberOfItems; index++) {
-            updatedItems.push({ id: index, [DoDontContent.Title]: '', [DoDontContent.Body]: '' });
-          }
+        if (Math.sign(updatedItems.length - numberOfItems) === -1) {
+            for (let index = updatedItems.length; index < numberOfItems; index++) {
+                updatedItems.push({ id: index, [DoDontContent.Title]: '', [DoDontContent.Body]: '' });
+            }
         } else {
-          updatedItems = updatedItems.slice(0, numberOfItems);
+            updatedItems = updatedItems.slice(0, numberOfItems);
         }
 
         setBlockSettings({
