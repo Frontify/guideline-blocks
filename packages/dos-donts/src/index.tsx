@@ -75,7 +75,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         setItems(layout === DoDontLayout.Stacked ? columns * 2 : 2);
-    }, [columns]);
+    }, [layout, columns]);
 
     return (
         <div
