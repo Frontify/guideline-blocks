@@ -90,13 +90,17 @@ export default {
         },
     ],
     style: [
-        { id: 'hasBorder', label: 'Border', type: 'switch' },
+        {
+            id: 'hasBorder',
+            label: 'Border',
+            type: 'switch',
+        },
         {
             id: 'borderSelection',
             type: 'multiInput',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle) => bundle.getBlock('hasBorder').value === true,
+            show: (bundle) => bundle.getBlock('hasBorder').value,
             inputs: [
                 {
                     id: 'borderStyle',
@@ -105,15 +109,15 @@ export default {
                     choices: [
                         {
                             value: StorybookBorderStyle.Solid,
-                            label: StorybookBorderStyle.Solid,
+                            label: 'Solid',
                         },
                         {
                             value: StorybookBorderStyle.Dotted,
-                            label: StorybookBorderStyle.Dotted,
+                            label: 'Dotted',
                         },
                         {
                             value: StorybookBorderStyle.Dashed,
-                            label: StorybookBorderStyle.Dashed,
+                            label: 'Dashed',
                         },
                     ],
                 },
@@ -134,7 +138,7 @@ export default {
             label: 'Corner radius',
             type: 'switch',
             switchLabel: 'Custom',
-            show: (bundle) => bundle.getBlock('hasBorder').value === true,
+            show: (bundle) => bundle.getBlock('hasBorder').value,
             on: [
                 {
                     id: 'borderRadiusValue',

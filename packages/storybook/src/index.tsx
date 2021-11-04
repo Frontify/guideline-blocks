@@ -17,6 +17,8 @@ type StorybookBlockProps = {
     appBridge: AppBridgeNative;
 };
 
+type borderSelectionType = [StorybookBorderStyle, string, string];
+
 type Settings = {
     style: StorybookStyle;
     url: string;
@@ -25,20 +27,22 @@ type Settings = {
     heightValue: string;
     positioning: StorybookPosition;
     hasBorder: boolean;
-    borderSelection: [];
+    borderSelection: borderSelectionType;
     hasCustomBorderRadius: boolean;
     borderRadiusChoice: StorybookBorderRadius;
     borderRadiusValue: string;
 };
 
-const iframeStyles = (borderSelection: [], hasCustomBorderRadius: boolean, borderRadiusValue: string) => {
-    return {
-        borderStyle: borderSelection[0],
-        borderWidth: borderSelection[1],
-        borderColor: borderSelection[2],
-        borderRadius: hasCustomBorderRadius ? borderRadiusValue : '',
-    };
-};
+const iframeStyles = (
+    borderSelection: borderSelectionType,
+    hasCustomBorderRadius: boolean,
+    borderRadiusValue: string
+) => ({
+    borderStyle: borderSelection[0],
+    borderWidth: borderSelection[1],
+    borderColor: borderSelection[2],
+    borderRadius: hasCustomBorderRadius ? borderRadiusValue : '',
+});
 
 const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
     [StorybookBorderRadius.None]: 'tw-rounded-none',
