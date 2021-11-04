@@ -39,7 +39,7 @@ export default {
     ],
     layout: [
         {
-            id: 'height',
+            id: 'isCustomHeight',
             label: 'Height',
             type: 'switch',
             switchLabel: 'Custom',
@@ -90,13 +90,13 @@ export default {
         },
     ],
     style: [
-        { id: 'border', label: 'Border', type: 'switch' },
+        { id: 'hasBorder', label: 'Border', type: 'switch' },
         {
             id: 'borderSelection',
             type: 'multiInput',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle) => bundle.getBlock('border').value === true,
+            show: (bundle) => bundle.getBlock('hasBorder').value === true,
             inputs: [
                 {
                     id: 'borderStyle',
@@ -130,10 +130,11 @@ export default {
             ],
         },
         {
-            id: 'borderRadius',
+            id: 'hasCustomBorderRadius',
             label: 'Corner radius',
             type: 'switch',
             switchLabel: 'Custom',
+            show: (bundle) => bundle.getBlock('hasBorder').value === true,
             on: [
                 {
                     id: 'borderRadiusValue',

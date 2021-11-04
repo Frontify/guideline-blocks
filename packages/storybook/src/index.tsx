@@ -20,31 +20,23 @@ type StorybookBlockProps = {
 type Settings = {
     style: StorybookStyle;
     url: string;
-    height: boolean;
+    isCustomHeight: boolean;
     heightChoice: StorybookHeight;
     heightValue: string;
     positioning: StorybookPosition;
-    border: boolean;
-    borderStyle: StorybookBorderStyle;
-    borderWidth: string;
-    borderColor: string;
-    borderRadius: boolean;
+    hasBorder: boolean;
+    borderSelection: [];
+    hasCustomBorderRadius: boolean;
     borderRadiusChoice: StorybookBorderRadius;
     borderRadiusValue: string;
 };
 
-const iframeStyles = (
-    borderStyle: StorybookBorderStyle,
-    borderWidth: string,
-    borderColor: string,
-    borderRadius: boolean,
-    borderRadiusValue: string
-) => {
+const iframeStyles = (borderSelection: [], hasCustomBorderRadius: boolean, borderRadiusValue: string) => {
     return {
-        borderStyle: borderStyle,
-        borderWidth: borderWidth,
-        borderColor: borderColor,
-        borderRadius: borderRadius ? borderRadiusValue : '',
+        borderStyle: borderSelection[0],
+        borderWidth: borderSelection[1],
+        borderColor: borderSelection[2],
+        borderRadius: hasCustomBorderRadius ? borderRadiusValue : '',
     };
 };
 
@@ -69,15 +61,13 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
     const {
         style = StorybookStyle.Default,
         url = '',
-        height = false,
+        isCustomHeight = false,
         heightChoice = StorybookHeight.Medium,
         heightValue = '',
         positioning = StorybookPosition.Horizontal,
-        border = false,
-        borderStyle = StorybookBorderStyle.Solid,
-        borderWidth = '1px',
-        borderColor = '#CCCCCC',
-        borderRadius = false,
+        hasBorder = false,
+        borderSelection = [StorybookBorderStyle.Solid, '1px', '#CCCCCC'],
+        hasCustomBorderRadius = false,
         borderRadiusChoice = StorybookBorderRadius.None,
         borderRadiusValue = '',
     } = blockSettings;
@@ -112,42 +102,47 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
 
     return (
         <div className="tw-relative">
-            {iframeUrl && isEditing && (
-                <button
-                    onClick={deleteUrl}
-                    className="tw-absolute tw-w-9 tw-h-9 tw-flex tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-top-4 tw-right-4 tw-text-black"
-                >
-                    <IconReject size={IconSize.Size20} />
-                </button>
-            )}
-            {iframeUrl && (
-                <iframe
-                    className={`tw-w-full ${!borderRadius && borderRadiusClasses[borderRadiusChoice]}`}
-                    style={
-                        border === true
-                            ? iframeStyles(borderStyle, borderWidth, borderColor, borderRadius, borderRadiusValue)
-                            : {}
-                    }
-                    height={height ? heightValue : heights[heightChoice]}
-                    src={iframeUrl.toString()}
-                    frameBorder="0"
-                ></iframe>
-            )}
-            {!iframeUrl && isEditing && (
-                <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2">
-                    <IconStorybook size={IconSize.Size32} />
-                    <TextInput
-                        value={localUrl}
-                        onChange={(value) => setLocalUrl(value)}
-                        placeholder="Add your Storybook-URL"
-                    />
-                    <Button onClick={saveLink}>Save</Button>
-                </div>
-            )}
-            {!iframeUrl && !isEditing && (
-                <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">
-                    No Storybook-URL defined.
-                </div>
+            {iframeUrl ? (
+                <>
+                    {isEditing && (
+                        <button
+                            onClick={deleteUrl}
+                            className="tw-absolute tw-w-9 tw-h-9 tw-flex tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-top-4 tw-right-4 tw-text-black"
+                        >
+                            <IconReject size={IconSize.Size20} />
+                        </button>
+                    )}
+
+                    <iframe
+                        className={`tw-w-full ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
+                        style={
+                            hasBorder === true
+                                ? iframeStyles(borderSelection, hasCustomBorderRadius, borderRadiusValue)
+                                : {}
+                        }
+                        height={isCustomHeight ? heightValue : heights[heightChoice]}
+                        src={iframeUrl.toString()}
+                        frameBorder="0"
+                    ></iframe>
+                </>
+            ) : (
+                <>
+                    {isEditing ? (
+                        <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2">
+                            <IconStorybook size={IconSize.Size32} />
+                            <TextInput
+                                value={localUrl}
+                                onChange={(value) => setLocalUrl(value)}
+                                placeholder="Add your Storybook-URL"
+                            />
+                            <Button onClick={saveLink}>Save</Button>
+                        </div>
+                    ) : (
+                        <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">
+                            No Storybook-URL defined.
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );
