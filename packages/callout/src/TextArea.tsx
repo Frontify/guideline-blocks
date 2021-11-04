@@ -2,7 +2,7 @@
 
 import { AppBridgeNative, useBlockSettings, useEditorState } from "@frontify/app-bridge";
 import { ChangeEvent, FC } from "react";
-import { CalloutBlockSettings } from "./types";
+import { BlockSettings } from "./types";
 
 type TextAreaProps = {
   className: string;
@@ -10,12 +10,11 @@ type TextAreaProps = {
 }
 
 export const TextArea: FC<TextAreaProps> = ({className, appBridge}) => {
-  const [blockSettings, setBlockSettings] = useBlockSettings<CalloutBlockSettings>(appBridge);
+  const [{textValue}, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
   const isEditing = useEditorState();
-  const {textValue} = blockSettings;
 
   const onTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setBlockSettings({textValue: e.target.value} as CalloutBlockSettings);
+    setBlockSettings({textValue: e.target.value} as BlockSettings); // TODO use Partial<BlockSettings> when new version of app-bridge is available
   }
 
   return (

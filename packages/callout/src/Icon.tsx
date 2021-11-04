@@ -3,11 +3,11 @@
 import { FC } from "react";
 
 type IconProps = {
-  iconUrl: string;
+  url: string;
 }
 
-export const Icon: FC<IconProps> = ({ iconUrl }) => (
+export const Icon: FC<IconProps> = ({ url }) => (
   <span className="tw-pr-3">
-    <img alt={"icon"} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
+    <img alt={"icon"} src={url} className="tw-inline tw-w-6 tw-h-6" />
   </span>
 );

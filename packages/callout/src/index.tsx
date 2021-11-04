@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import { FC, useEffect, useState } from "react";
 import { AppBridgeNative, useBlockSettings } from "@frontify/app-bridge";
 import { TextArea } from "./TextArea";
-import { CalloutBlockSettings } from "./types";
+import { BlockSettings } from "./types";
 import { Icon } from "./Icon";
 
 type CustomPadding = {
@@ -23,7 +23,7 @@ type CalloutBlockProps = {
 }
 
 const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
-  const [blockSettings] = useBlockSettings<CalloutBlockSettings>(appBridge);
+  const [blockSettings] = useBlockSettings<BlockSettings>(appBridge);
   const {
     type,
     alignment,
@@ -70,7 +70,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
 
     return (
         <div className={getClassName()} style={{...customPaddingStyle, ...customCornerRadiusStyle}}>
-          {iconSwitch && iconUrl && <Icon iconUrl={iconUrl} />}
+          {iconSwitch && iconUrl && <Icon url={iconUrl} />}
           <TextArea className={`tw-text-white ${type}`} appBridge={appBridge} />
         </div>
     );
