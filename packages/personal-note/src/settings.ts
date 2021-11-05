@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { NoteStyle, NoteBorderRadius, NoteBorderStyle } from './types';
+import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { MultiInputLayout } from '@frontify/arcade';
 
 export default {
@@ -30,6 +30,43 @@ export default {
             label: 'Date last edited',
             type: 'switch',
         },
+        {
+            id: 'hasCustomPadding',
+            label: 'Padding',
+            type: 'switch',
+            switchLabel: 'Custom',
+            on: [
+                {
+                    id: 'paddingValue',
+                    type: 'input',
+                },
+            ],
+            off: [
+                {
+                    id: 'paddingChoice',
+                    type: 'slider',
+                    defaultValue: NotePadding.None,
+                    choices: [
+                        {
+                            value: NotePadding.None,
+                            label: 'None',
+                        },
+                        {
+                            value: NotePadding.Small,
+                            label: 'S',
+                        },
+                        {
+                            value: NotePadding.Medium,
+                            label: 'M',
+                        },
+                        {
+                            value: NotePadding.Large,
+                            label: 'L',
+                        },
+                    ],
+                },
+            ],
+        },
     ],
     style: [
         {
@@ -39,7 +76,7 @@ export default {
         },
         {
             id: 'backgroundColor',
-            type: 'input',
+            type: 'colorInput',
             defaultValue: '#CCCCCC',
             show: (bundle) => bundle.getBlock('hasBackground').value,
         },
@@ -81,7 +118,7 @@ export default {
                 },
                 {
                     id: 'borderColor',
-                    type: 'input',
+                    type: 'colorInput',
                     defaultValue: '#CCCCCC',
                 },
             ],
@@ -121,6 +158,27 @@ export default {
                             label: 'L',
                         },
                     ],
+                },
+            ],
+        },
+    ],
+    security: [
+        {
+            id: 'visibility',
+            type: 'slider',
+            defaultValue: NoteVisibility.YouOnly,
+            choices: [
+                {
+                    value: NoteVisibility.YouOnly,
+                    label: 'You only',
+                },
+                {
+                    value: NoteVisibility.Editors,
+                    label: 'Editors',
+                },
+                {
+                    value: NoteVisibility.Everyone,
+                    label: 'Everyone',
                 },
             ],
         },
