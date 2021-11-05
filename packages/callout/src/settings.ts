@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CalloutAlignment, CalloutCornerRadius, CalloutPadding, CalloutType, CalloutWidth } from "./types";
+import { CalloutAlignment, CalloutCornerRadius, CalloutPadding, CalloutType, CalloutWidth } from './types';
 
 export default {
     main: [
@@ -45,7 +45,7 @@ export default {
                     id: 'icon',
                     type: 'assetInput',
                     allowedExtensions: ['svg'],
-                }
+                },
             ],
         },
     ],
@@ -95,7 +95,7 @@ export default {
             type: 'switch',
             defaultValue: false,
             switchLabel: 'Custom',
-            label:'Padding',
+            label: 'Padding',
             on: [
                 {
                     id: 'customPadding',
@@ -154,7 +154,7 @@ export default {
             type: 'switch',
             defaultValue: false,
             switchLabel: 'Custom',
-            label:'Corner radius',
+            label: 'Corner radius',
             on: [
                 {
                     id: 'customCornerRadius',
@@ -192,7 +192,7 @@ export default {
                     choices: [
                         {
                             value: CalloutCornerRadius.NONE,
-                            label: 'None'
+                            label: 'None',
                         },
                         {
                             value: CalloutCornerRadius.S,
