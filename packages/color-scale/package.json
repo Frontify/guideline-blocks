@@ -6,7 +6,11 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "serve:block": "frontify-cli block serve --blockDir $(PWD)"
+        "serve:block": "frontify-cli block serve --blockDir $(PWD)",
+        "lint": "eslint src",
+        "lint:fix": "eslint --fix src",
+        "prettier": "prettier --check src",
+        "prettier:fix": "prettier --write src"
     },
     "dependencies": {
         "@frontify/app-bridge": "2.2.3",
@@ -15,12 +19,10 @@
         "react-popper": "2.2.5"
     },
     "devDependencies": {
-        "@frontify/eslint-config-react": "0.11.0",
         "@frontify/frontify-cli": "2.2.0",
         "@frontify/stylelint-config": "0.1.0",
         "@types/react": "17.0.34",
         "autoprefixer": "10.4.0",
-        "eslint": "7.32.0",
         "postcss": "8.3.11",
         "postcss-modules": "4.2.2",
         "prettier": "2.4.1",

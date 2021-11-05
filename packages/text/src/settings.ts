@@ -3,7 +3,6 @@
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
 import { numericalPixelValueRule, betweenPixelValue } from './rules';
 
-
 export const columnGutterChoices = [
     {
         value: DEFAULT_COLUMN_GUTTER,
