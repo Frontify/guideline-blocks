@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import { FC, useEffect, useState } from 'react';
 import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
 import { TextArea } from './TextArea';
-import { BlockSettings } from './types';
+import { alignmentMap, BlockSettings, cornerRadiusMap, paddingMap, typeMap, widthMap } from './types';
 import { Icon } from './Icon';
 
 type CustomPadding = {
@@ -66,14 +66,14 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     }, [blockSettings]);
 
     const getClassName = () => {
-        let className = `tw-text-white ${type} ${alignment} ${width} `;
+        let className = `tw-text-white ${typeMap[type]} ${alignmentMap[alignment]} ${widthMap[width]} `;
 
         if (!customPaddingSwitch && padding) {
-            className += `${padding} `;
+            className += `${paddingMap[padding]} `;
         }
 
         if (!customCornerRadiusSwitch && cornerRadius) {
-            className += `${cornerRadius} `;
+            className += `${cornerRadiusMap[cornerRadius]} `;
         }
 
         return className;
@@ -82,7 +82,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     return (
         <div className={getClassName()} style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}>
             {iconSwitch && iconUrl && <Icon url={iconUrl} />}
-            <TextArea className={`tw-text-white ${type}`} appBridge={appBridge} />
+            <TextArea className={`tw-text-white ${typeMap[type]}`} appBridge={appBridge} />
         </div>
     );
 };

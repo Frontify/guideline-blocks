@@ -1,33 +1,33 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CalloutAlignment, CalloutCornerRadius, CalloutPadding, CalloutType, CalloutWidth } from './types';
+import { Alignment, CornerRadius, Padding, Type, Width } from './types';
 
 export default {
     main: [
         {
             id: 'type',
             type: 'dropdown',
-            defaultValue: CalloutType.WARNING,
+            defaultValue: Type.Warning,
             size: 'large',
             disabled: false,
             choices: [
                 {
-                    value: CalloutType.WARNING,
+                    value: Type.Warning,
                     icon: 'callout',
                     label: 'Warning',
                 },
                 {
-                    value: CalloutType.TIP,
+                    value: Type.Tip,
                     icon: 'check',
                     label: 'Tip',
                 },
                 {
-                    value: CalloutType.NOTE,
+                    value: Type.Note,
                     icon: 'briefing',
                     label: 'Note',
                 },
                 {
-                    value: CalloutType.INFO,
+                    value: Type.Info,
                     icon: 'info',
                     label: 'Info',
                 },
@@ -55,15 +55,15 @@ export default {
             type: 'slider',
             label: 'Width',
             info: 'TBD',
-            defaultValue: CalloutWidth.FULL_WIDTH,
+            defaultValue: Width.FullWidth,
             choices: [
                 {
                     label: 'Full Width',
-                    value: CalloutWidth.FULL_WIDTH,
+                    value: Width.FullWidth,
                 },
                 {
                     label: 'Hug Contents',
-                    value: CalloutWidth.HUG_CONTENTS,
+                    value: Width.HugContents,
                 },
             ],
         },
@@ -71,20 +71,20 @@ export default {
             id: 'alignment',
             type: 'slider',
             label: 'Alignment',
-            defaultValue: CalloutAlignment.LEFT,
+            defaultValue: Alignment.Left,
             choices: [
                 {
-                    value: CalloutAlignment.LEFT,
+                    value: Alignment.Left,
                     label: '',
                     icon: 'align-left',
                 },
                 {
-                    value: CalloutAlignment.CENTER,
+                    value: Alignment.Center,
                     label: '',
                     icon: 'align-center',
                 },
                 {
-                    value: CalloutAlignment.RIGHT,
+                    value: Alignment.Right,
                     label: '',
                     icon: 'align-right',
                 },
@@ -129,18 +129,18 @@ export default {
                 {
                     id: 'padding',
                     type: 'slider',
-                    defaultValue: CalloutPadding.M,
+                    defaultValue: Padding.M,
                     choices: [
                         {
-                            value: CalloutPadding.S,
+                            value: Padding.S,
                             label: 'S',
                         },
                         {
-                            value: CalloutPadding.M,
+                            value: Padding.M,
                             label: 'M',
                         },
                         {
-                            value: CalloutPadding.L,
+                            value: Padding.L,
                             label: 'L',
                         },
                     ],
@@ -188,22 +188,22 @@ export default {
                 {
                     id: 'cornerRadius',
                     type: 'slider',
-                    defaultValue: CalloutCornerRadius.NONE,
+                    defaultValue: CornerRadius.None,
                     choices: [
                         {
-                            value: CalloutCornerRadius.NONE,
+                            value: CornerRadius.None,
                             label: 'None',
                         },
                         {
-                            value: CalloutCornerRadius.S,
+                            value: CornerRadius.S,
                             label: 'S',
                         },
                         {
-                            value: CalloutCornerRadius.M,
+                            value: CornerRadius.M,
                             label: 'M',
                         },
                         {
-                            value: CalloutCornerRadius.L,
+                            value: CornerRadius.L,
                             label: 'L',
                         },
                     ],

@@ -18,9 +18,7 @@ export const TextArea: FC<TextAreaProps> = ({ className, appBridge }) => {
     };
 
     return isEditing ? (
-        <textarea className={className} onChange={onTextAreaChange}>
-            {textValue}
-        </textarea>
+        <textarea className={className} onChange={onTextAreaChange} value={textValue} />
     ) : (
         <span>{textValue}</span>
     );
