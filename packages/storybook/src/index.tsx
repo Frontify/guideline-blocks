@@ -137,9 +137,9 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
                             <TextInput
                                 value={localUrl}
                                 onChange={(value) => setLocalUrl(value)}
-                                placeholder="Add your Storybook-URL"
+                                placeholder="https://brand.storybook.com/?path=/story/buttons"
                             />
-                            <Button onClick={saveLink}>Save</Button>
+                            <Button onClick={saveLink}>Confirm</Button>
                         </div>
                     ) : (
                         <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">

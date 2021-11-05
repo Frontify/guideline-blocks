@@ -33,7 +33,7 @@ export default {
     content: [
         {
             id: 'url',
-            label: 'Storybook-URL',
+            label: 'Link',
             type: 'input',
         },
     ],
@@ -101,7 +101,7 @@ export default {
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
             show: (bundle) => bundle.getBlock('hasBorder').value,
-            inputs: [
+            blocks: [
                 {
                     id: 'borderStyle',
                     type: 'dropdown',
