@@ -46,4 +46,4 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
     );
 };
 
-export default DosDontsBlock;
+export default PersonalNoteBlock;
