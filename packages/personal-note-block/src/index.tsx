@@ -16,6 +16,7 @@ type Settings = {
     backgroundColor: string;
     borderRadiusChoice: NoteBorderRadius;
     borderSelection: borderSelectionType;
+    dateEdited: Date;
     hasAvatarName: boolean;
     hasBackground: boolean;
     hasCustomPadding: boolean;
@@ -35,6 +36,7 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         backgroundColor = '',
         borderRadiusChoice = NoteBorderRadius.Small,
         borderSelection = [NoteBorderStyle.Solid, '1px', '#EAEBEB'],
+        dateEdited = '',
         hasAvatarName = true,
         hasBackground = false,
         hasCustomPadding = false,
@@ -50,6 +52,7 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         setBlockSettings({
             ...blockSettings,
             note: value,
+            dateEdited: new Date(),
         });
     };
 
