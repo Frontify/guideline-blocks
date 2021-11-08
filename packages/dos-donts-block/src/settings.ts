@@ -107,15 +107,17 @@ export default {
     style: [
         {
             id: 'doColor',
-            type: 'input',
+            type: 'colorInput',
             label: 'Do color',
-            defaultValue: '#00C8A5',
+            value: { hex: '#00C8A5' },
+            defaultValue: { hex: '#00C8A5' },
         },
         {
             id: 'dontColor',
-            type: 'input',
+            type: 'colorInput',
             label: "Don't color",
-            defaultValue: '#FF375A',
+            value: { hex: '#FF375A' },
+            defaultValue: { hex: '#FF375A' },
         },
     ],
 };
