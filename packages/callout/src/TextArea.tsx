@@ -13,7 +13,7 @@ export const TextArea: FC<TextAreaProps> = ({ className, appBridge }) => {
     const [{ textValue }, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState();
 
-    const onTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const onTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setBlockSettings({ textValue: e.target.value } as BlockSettings); // TODO use Partial<BlockSettings> when new version of app-bridge is available
     };
 
