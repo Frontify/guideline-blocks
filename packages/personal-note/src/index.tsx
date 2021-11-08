@@ -10,15 +10,39 @@ type PersonalNoteBlockProps = {
     appBridge: AppBridgeNative;
 };
 
+type borderSelectionType = [NoteBorderStyle, string, string];
+
 type Settings = {
+    backgroundColor: string;
+    borderRadiusChoice: NoteBorderRadius;
+    borderSelection: borderSelectionType;
+    hasAvatarName: boolean;
+    hasBackground: boolean;
+    hasCustomPadding: boolean;
+    hasDateEdited: boolean;
     note: string;
+    paddingChoice: NotePadding;
+    visibility: NoteVisibility;
 };
 
 const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState();
 
-    const { note = '' } = blockSettings;
+    console.log({ blockSettings });
+
+    const {
+        backgroundColor = '',
+        borderRadiusChoice = NoteBorderRadius.Small,
+        borderSelection = [NoteBorderStyle.Solid, '1px', '#EAEBEB'],
+        hasAvatarName = true,
+        hasBackground = false,
+        hasCustomPadding = false,
+        hasDateEdited = true,
+        note = '',
+        paddingChoice = NotePadding.Small,
+        visibility = NoteVisibility.Everyone,
+    } = blockSettings;
 
     const saveNote = (value: string) => {
         console.log('save my note, dude: ', value);
