@@ -128,8 +128,8 @@ export default {
                 },
                 {
                     id: 'borderColor',
-                    type: 'input',
-                    defaultValue: '#CCCCCC',
+                    type: 'colorInput',
+                    defaultValue: { hex: '#CCCCCC' },
                 },
             ],
         },

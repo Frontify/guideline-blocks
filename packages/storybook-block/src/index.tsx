@@ -35,11 +35,17 @@ type Settings = {
 };
 
 const getIframeStyles = (borderSelection: borderSelectionType, borderRadius: string) => ({
-    borderStyle: borderSelection[0],
+    borderStyle: borderStyles[borderSelection[0]],
     borderWidth: borderSelection[1],
-    borderColor: borderSelection[2],
+    borderColor: `rgba(${Object.values(borderSelection[2].rgba).join(', ')})`,
     borderRadius,
 });
+
+const borderStyles: Record<StorybookBorderStyle, string> = {
+    [StorybookBorderStyle.Solid]: 'solid',
+    [StorybookBorderStyle.Dotted]: 'dotted',
+    [StorybookBorderStyle.Dashed]: 'dashed',
+};
 
 const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
     [StorybookBorderRadius.None]: 'tw-rounded-none',
