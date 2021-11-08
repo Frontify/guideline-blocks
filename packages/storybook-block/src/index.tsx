@@ -2,9 +2,10 @@
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, TextInput, IconReject, IconStorybook, IconSize } from '@frontify/arcade';
+import { Button, TextInput, IconStorybook, IconSize } from '@frontify/arcade';
+import { CloseButton } from './components/CloseButton';
 import {
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -33,15 +34,11 @@ type Settings = {
     borderRadiusValue: string;
 };
 
-const iframeStyles = (
-    borderSelection: borderSelectionType,
-    hasCustomBorderRadius: boolean,
-    borderRadiusValue: string
-) => ({
+const getIframeStyles = (borderSelection: borderSelectionType, borderRadius: string) => ({
     borderStyle: borderSelection[0],
     borderWidth: borderSelection[1],
     borderColor: borderSelection[2],
-    borderRadius: hasCustomBorderRadius ? borderRadiusValue : '',
+    borderRadius,
 });
 
 const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
@@ -61,6 +58,7 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [localUrl, setLocalUrl] = useState('');
+    const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
 
     const {
         style = StorybookStyle.Default,
@@ -76,21 +74,9 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         borderRadiusValue = '',
     } = blockSettings;
 
-    let iframeUrl;
-
-    if (url !== '') {
-        iframeUrl = new URL(url);
-        iframeUrl.searchParams.set('nav', 'false');
-        if (style === StorybookStyle.WithoutAddons) {
-            iframeUrl.searchParams.set('panel', 'false');
-        } else if (positioning === StorybookPosition.Horizontal) {
-            iframeUrl.searchParams.set('panel', 'right');
-        } else {
-            iframeUrl.searchParams.set('panel', 'bottom');
-        }
-    }
-
     const deleteUrl = () => {
+        setIframeUrl(null);
+        setLocalUrl('');
         setBlockSettings({
             ...blockSettings,
             url: '',
@@ -104,24 +90,34 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         });
     };
 
+    useEffect(() => {
+        if (url) {
+            let newIframeUrl = new URL(url);
+            newIframeUrl.searchParams.set('nav', 'false');
+
+            let panelValue = 'bottom';
+            if (style === StorybookStyle.WithoutAddons) {
+                panelValue = 'false';
+            } else if (positioning === StorybookPosition.Horizontal) {
+                panelValue = 'right';
+            }
+
+            newIframeUrl.searchParams.set('panel', panelValue);
+
+            setIframeUrl(newIframeUrl);
+        }
+    }, [url, style, positioning]);
+
     return (
         <div className="tw-relative">
             {iframeUrl ? (
                 <>
-                    {isEditing && (
-                        <button
-                            onClick={deleteUrl}
-                            className="tw-absolute tw-w-9 tw-h-9 tw-flex tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-top-4 tw-right-4 tw-text-black"
-                        >
-                            <IconReject size={IconSize.Size20} />
-                        </button>
-                    )}
-
+                    {isEditing && <CloseButton onClick={deleteUrl} />}
                     <iframe
                         className={`tw-w-full ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
                         style={
-                            hasBorder === true
-                                ? iframeStyles(borderSelection, hasCustomBorderRadius, borderRadiusValue)
+                            hasBorder
+                                ? getIframeStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')
                                 : {}
                         }
                         height={isCustomHeight ? heightValue : heights[heightChoice]}
