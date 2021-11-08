@@ -1,33 +1,28 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 export enum DoDontType {
-    Do = 'do',
-    Dont = 'dont',
+    Do = 'Do',
+    Dont = 'Dont',
 }
 
 export enum DoDontStyle {
-    Icons = 'icons',
-    Underline = 'underline',
-    Text = 'text',
+    Icons = 'Icons',
+    Underline = 'Underline',
+    Text = 'Text',
 }
 
 export enum DoDontLayout {
-    SideBySide = 'side-by-side',
-    Stacked = 'stacked',
-}
-
-export enum DoDontColumns {
-    SideBySide = 'side-by-side',
-    Stacked = 'stacked',
+    SideBySide = 'SideBySide',
+    Stacked = 'Stacked',
 }
 
 export enum DoDontSpacing {
-    Small = 'small',
-    Medium = 'medium',
-    Large = 'large',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
 }
 
 export enum DoDontContent {
-    Title = 'title',
-    Body = 'body',
+    Title = 'Title',
+    Body = 'Body',
 }
