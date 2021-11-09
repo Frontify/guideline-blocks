@@ -5,7 +5,7 @@ import '@frontify/arcade/style';
 import { FC, useState, useEffect } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, TextInput, IconStorybook, IconSize } from '@frontify/arcade';
-import { CloseButton } from './components/CloseButton';
+import { RemoveButton } from './components/RemoveButton';
 import {
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -118,7 +118,7 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         <div className="tw-relative">
             {iframeUrl ? (
                 <>
-                    {isEditing && <CloseButton onClick={deleteUrl} />}
+                    {isEditing && <RemoveButton onClick={deleteUrl} />}
                     <iframe
                         className={`tw-w-full ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
                         style={
@@ -134,13 +134,15 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
             ) : (
                 <>
                     {isEditing ? (
-                        <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2">
+                        <div className="tw-flex tw-items-stretch tw-justify-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2">
                             <IconStorybook size={IconSize.Size32} />
-                            <TextInput
-                                value={localUrl}
-                                onChange={(value) => setLocalUrl(value)}
-                                placeholder="https://brand.storybook.com/?path=/story/buttons"
-                            />
+                            <div className="tw-w-full tw-max-w-sm">
+                                <TextInput
+                                    value={localUrl}
+                                    onChange={(value) => setLocalUrl(value)}
+                                    placeholder="https://brand.storybook.com/?path=/story/buttons"
+                                />
+                            </div>
                             <Button onClick={saveLink}>Confirm</Button>
                         </div>
                     ) : (
