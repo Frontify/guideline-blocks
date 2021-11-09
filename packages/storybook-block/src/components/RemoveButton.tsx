@@ -28,7 +28,7 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
     const { isOpen } = state;
 
     const { styles, attributes } = usePopper(tooltipTriggerElement.current, tooltipElement.current, {
-        placement: 'right',
+        placement: 'auto',
         modifiers: [
             { name: 'offset', options: { offset: [TOOLTIP_SKIDDING, TOOLTIP_DISTANCE] } },
             { name: 'arrow', options: { element: tooltipArrowElement, padding: TOOLTIP_PADDING } },
