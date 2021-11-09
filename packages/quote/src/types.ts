@@ -10,8 +10,17 @@ export enum QuoteSize {
 }
 
 export enum QuoteStyle {
-    GermanMarks = 'GermanMarks',
-    EnglishMarks = 'EnglishMarks',
+    DoubleUp = 'DoubleUp',
+    DoubleDown = 'DoubleDown',
+    SingleUp = 'SingleUp',
+    SingleDown = 'SingleDown',
+    DoubleChevronLeft = 'DoubleChevronLeft',
+    DoubleChevronRight = 'DoubleChevronRight',
+    SingleChevronLeft = 'SingleChevronLeft',
+    SingleChevronRight = 'SingleChevronRight',
+    HookBracketLeft = 'HookBracketLeft',
+    HookBracketRight = 'HookBracketRight',
+    None = 'None',
 }
 
 export enum LineType {

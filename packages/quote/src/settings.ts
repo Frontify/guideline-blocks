@@ -1,6 +1,19 @@
 import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
 
 const QUOTE_TYPE_ID = 'type';
+const QUOTE_STYLE_CHOICES = [
+    { value: QuoteStyle.DoubleUp, icon: 'quote', label: 'Double Up' },
+    { value: QuoteStyle.DoubleDown, icon: 'quote', label: 'Double Down' },
+    { value: QuoteStyle.SingleUp, icon: 'quote', label: 'Single Up' },
+    { value: QuoteStyle.SingleDown, icon: 'quote', label: 'Single Down' },
+    { value: QuoteStyle.DoubleChevronLeft, icon: 'quote', label: 'Double Chevron Left' },
+    { value: QuoteStyle.DoubleChevronRight, icon: 'quote', label: 'Double Chevron Right' },
+    { value: QuoteStyle.SingleChevronLeft, icon: 'quote', label: 'Single Chevron Left' },
+    { value: QuoteStyle.SingleChevronRight, icon: 'quote', label: 'Single Chevron Right' },
+    { value: QuoteStyle.HookBracketLeft, icon: 'quote', label: 'Hook Bracket Left' },
+    { value: QuoteStyle.HookBracketRight, icon: 'quote', label: 'Hook Bracket Right' },
+    { value: QuoteStyle.None, icon: 'quote', label: 'None' },
+];
 
 const isSelected = (bundle: any, choice: QuoteType) => bundle.getBlock(QUOTE_TYPE_ID).value === choice;
 
@@ -27,22 +40,19 @@ export default {
     ],
     content: [
         {
-            id: 'quoteStyle',
-            label: 'Quotes',
+            id: 'quoteStyleLeft',
+            label: 'Left',
             type: 'dropdown',
-            defaultValue: QuoteStyle.GermanMarks,
-            choices: [
-                {
-                    value: QuoteStyle.GermanMarks,
-                    icon: 'quote',
-                    label: 'German quotes',
-                },
-                {
-                    value: QuoteStyle.EnglishMarks,
-                    icon: 'quote',
-                    label: 'English quotes',
-                },
-            ],
+            defaultValue: QuoteStyle.DoubleUp,
+            choices: QUOTE_STYLE_CHOICES,
+            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+        },
+        {
+            id: 'quoteStyleRight',
+            label: 'Left',
+            type: 'dropdown',
+            defaultValue: QuoteStyle.DoubleUp,
+            choices: QUOTE_STYLE_CHOICES,
             show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
@@ -51,7 +61,14 @@ export default {
             id: 'showAuthor',
             type: 'switch',
             label: 'Show author',
-            defaultValue: true,
+            defaultValue: false,
+            on: [
+                {
+                    id: 'authorName',
+                    type: 'input',
+                },
+            ],
+            off: [],
         },
     ],
     style: [

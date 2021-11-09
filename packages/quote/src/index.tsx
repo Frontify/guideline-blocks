@@ -3,7 +3,7 @@ import { useBlockSettings } from '@frontify/app-bridge/react';
 import '@frontify/arcade/style';
 import { ChangeEvent, FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { Quotes } from './quotes';
+import { QuoteIconMap } from './foundation/quote-icon-map';
 import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
 
 type Props = {
@@ -12,8 +12,10 @@ type Props = {
 
 type Settings = {
     type?: QuoteType;
-    quoteStyle?: QuoteStyle;
+    quoteStyleLeft?: QuoteStyle;
+    quoteStyleRight?: QuoteStyle;
     showAuthor: boolean;
+    authorName: string;
     isCustomSize?: boolean;
     sizeValue?: string;
     sizeChoice?: QuoteSize;
@@ -26,26 +28,27 @@ type Settings = {
     content?: string;
 };
 
-const quoteStyles: Record<'left' | 'right', Record<QuoteStyle, string>> = {
-    left: {
-        [QuoteStyle.GermanMarks]: 'tw-mt-auto',
-        [QuoteStyle.EnglishMarks]: 'tw-mb-auto tw-transform tw-rotate-180',
-    },
-    right: {
-        [QuoteStyle.GermanMarks]: 'tw-mb-auto tw-transform tw-rotate-180',
-        [QuoteStyle.EnglishMarks]: 'tw-mt-auto',
-    },
+type ContentWithAuthorProps = {
+    showAuthor: boolean;
+    authorName: string;
 };
+
+const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName, children }) => (
+    <div className="tw-flex-1">
+        {children}
+        {showAuthor && authorName && <p className="tw-text-right">{`- ${authorName}`}</p>}
+    </div>
+);
 
 const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState();
-
     const {
-        //TODO: if(showAuthor) display author beneath the quote
         showAuthor = false,
+        authorName = '',
         type = QuoteType.QuotationMarks,
-        quoteStyle = QuoteStyle.GermanMarks,
+        quoteStyleLeft = QuoteStyle.DoubleUp,
+        quoteStyleRight = QuoteStyle.DoubleDown,
         isCustomSize = false,
         sizeValue = '',
         sizeChoice = QuoteSize.Small,
@@ -76,37 +79,44 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
         <>
             {type === QuoteType.QuotationMarks && (
                 <div className="tw-flex tw-justify-between tw-items-center tw-gap-x-7">
-                    <div className={quoteStyles.left[quoteStyle]} style={{ color }}>
-                        <Quotes size={size} />
-                    </div>
+                    {QuoteIconMap(size)[quoteStyleLeft]}
+
                     {isEditing ? (
+                        <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
+                            <textarea
+                                className="tw-w-full"
+                                placeholder={placeholder}
+                                value={content}
+                                onChange={onChangeContent}
+                            />
+                        </ContentWithAuthor>
+                    ) : (
+                        <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
+                            <p className="tw-w-full">{content || placeholder}</p>
+                        </ContentWithAuthor>
+                    )}
+
+                    {QuoteIconMap(size)[quoteStyleRight]}
+                </div>
+            )}
+
+            {type === QuoteType.Indentation &&
+                (isEditing ? (
+                    <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
                         <textarea
-                            className="tw-flex-1"
-                            placeholder="Add your quote text here"
+                            className={borderClassNames}
+                            style={borderStyles}
+                            placeholder={placeholder}
                             value={content}
                             onChange={onChangeContent}
                         />
-                    ) : (
-                        <p className="tw-flex-1">{content}</p>
-                    )}
-                    <div className={quoteStyles.right[quoteStyle]} style={{ color }}>
-                        <Quotes size={size} />
-                    </div>
-                </div>
-            )}
-            {type === QuoteType.QuotationMarks &&
-                (isEditing ? (
-                    <textarea
-                        className={borderClassNames}
-                        style={borderStyles}
-                        placeholder={placeholder}
-                        value={content}
-                        onChange={onChangeContent}
-                    />
+                    </ContentWithAuthor>
                 ) : (
-                    <p className={borderClassNames} style={borderStyles}>
-                        {content || placeholder}
-                    </p>
+                    <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
+                        <p className={borderClassNames} style={borderStyles}>
+                            {content || placeholder}
+                        </p>
+                    </ContentWithAuthor>
                 ))}
         </>
     );
