@@ -171,12 +171,18 @@ export default {
                         },
                     ],
                 },
+                {
+                    id: 'color',
+                    label: 'Color',
+                    type: 'input',
+                },
             ],
         },
         {
             id: 'color',
             label: 'Color',
             type: 'input',
+            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
 };
