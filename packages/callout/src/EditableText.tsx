@@ -15,7 +15,7 @@ export const EditableText: FC<EditableTextProps> = ({ type, appBridge }) => {
     const className = `tw-text-white ${typeMap[type]}`;
 
     const onTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setBlockSettings({ textValue: event.target.value } as BlockSettings); // TODO use Partial<BlockSettings> when new version of app-bridge is available
+        setBlockSettings({ textValue: event.target.value });
     };
 
     return isEditing ? (
