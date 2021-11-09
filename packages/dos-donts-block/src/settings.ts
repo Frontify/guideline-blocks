@@ -2,6 +2,9 @@
 
 import { DoDontStyle, DoDontLayout, DoDontSpacing } from './types';
 
+export const DO_COLOR_DEFAULT_VALUE = { r: 0, g: 200, b: 165, a: 1 };
+export const DONT_COLOR_DEFAULT_VALUE = { r: 255, g: 55, b: 90, a: 1 };
+
 export default {
     main: [
         {
@@ -109,13 +112,13 @@ export default {
             id: 'doColor',
             type: 'colorInput',
             label: 'Do color',
-            defaultValue: { hex: '#00C8A5' },
+            defaultValue: { rgba: DO_COLOR_DEFAULT_VALUE },
         },
         {
             id: 'dontColor',
             type: 'colorInput',
             label: "Don't color",
-            defaultValue: { hex: '#FF375A' },
+            defaultValue: { rgba: DONT_COLOR_DEFAULT_VALUE },
         },
     ],
 };

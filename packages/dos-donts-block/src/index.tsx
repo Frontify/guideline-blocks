@@ -6,6 +6,7 @@ import { FC, useEffect } from 'react';
 import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
 import { DoDontType, DoDontStyle, DoDontLayout, DoDontSpacing, DoDontContent } from './types';
 import { DoDontItem, ItemProps } from './DoDontItem';
+import { DO_COLOR_DEFAULT_VALUE, DONT_COLOR_DEFAULT_VALUE } from './settings';
 
 type DosDontsBlockProps = {
     appBridge: AppBridgeNative;
@@ -37,8 +38,8 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         columns = 2,
         isCustomSpacing = false,
         spacingValue = '',
-        doColor = { rgba: { r: 0, g: 200, b: 165, a: 1 } },
-        dontColor = { rgba: { r: 255, g: 55, b: 90, a: 1 } },
+        doColor = { rgba: DO_COLOR_DEFAULT_VALUE },
+        dontColor = { rgba: DONT_COLOR_DEFAULT_VALUE },
         layout = DoDontLayout.SideBySide,
         style = DoDontStyle.Icons,
         spacingChoice = DoDontSpacing.Medium,
@@ -74,8 +75,6 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     };
 
     useEffect(() => setItems(layout === DoDontLayout.Stacked ? columns * 2 : 2), [layout, columns]);
-
-    console.log({ items });
 
     return (
         <div

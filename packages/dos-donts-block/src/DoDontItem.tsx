@@ -3,7 +3,7 @@
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC } from 'react';
-import { IconApprove, IconRejectCircle, IconSize } from '@frontify/arcade';
+import { IconApprove, IconRejectCircle, IconSize, Color } from '@frontify/arcade';
 import { useEditorState } from '@frontify/app-bridge';
 import { DoDontType, DoDontStyle, DoDontContent } from './types';
 
@@ -11,8 +11,8 @@ export type ItemProps = {
     id: number;
     type: DoDontType;
     style: DoDontStyle;
-    doColor: string;
-    dontColor: string;
+    doColor: Color;
+    dontColor: Color;
     saveItem: (id: number, value: string, type: DoDontContent) => void;
     title?: string;
     body?: string;
@@ -27,8 +27,8 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
     };
 
     const dividerStyles: Record<DoDontType, object> = {
-        [DoDontType.Do]: { backgroundColor: doColor },
-        [DoDontType.Dont]: { backgroundColor: dontColor },
+        [DoDontType.Do]: { backgroundColor: `rgba(${Object.values(doColor.rgba).join(', ')})` },
+        [DoDontType.Dont]: { backgroundColor: `rgba(${Object.values(dontColor.rgba).join(', ')})` },
     };
 
     return (
