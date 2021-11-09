@@ -3,11 +3,11 @@
 import 'tailwindcss/tailwind.css';
 import { FC, useEffect, useState } from 'react';
 import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
-import { TextArea } from './TextArea';
+import { EditableText } from './EditableText';
 import { alignmentMap, BlockSettings, cornerRadiusMap, paddingMap, typeMap, widthMap } from './types';
 import { Icon } from './Icon';
 
-type CustomPadding = {
+type CustomPaddingStyles = {
     paddingTop: string;
     paddingRight: string;
     paddingBottom: string;
@@ -37,7 +37,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         cornerRadius,
         customCornerRadius = [],
     } = blockSettings;
-    const [customPaddingStyle, setCustomPaddingStyle] = useState<CustomPadding>();
+    const [customPaddingStyle, setCustomPaddingStyle] = useState<CustomPaddingStyles>();
     const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CustomCornerRadius>();
     const [iconUrl, setIconUrl] = useState<string>();
 
@@ -82,7 +82,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     return (
         <div className={getClassName()} style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}>
             {iconSwitch && iconUrl && <Icon url={iconUrl} />}
-            <TextArea className={`tw-text-white ${typeMap[type]}`} appBridge={appBridge} />
+            <EditableText className={`tw-text-white ${typeMap[type]}`} appBridge={appBridge} />
         </div>
     );
 };

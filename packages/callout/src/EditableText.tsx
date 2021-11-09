@@ -4,12 +4,12 @@ import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app
 import { ChangeEvent, FC } from 'react';
 import { BlockSettings } from './types';
 
-type TextAreaProps = {
+type EditableTextProps = {
     className: string;
     appBridge: AppBridgeNative;
 };
 
-export const TextArea: FC<TextAreaProps> = ({ className, appBridge }) => {
+export const EditableText: FC<EditableTextProps> = ({ className, appBridge }) => {
     const [{ textValue }, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState();
 
