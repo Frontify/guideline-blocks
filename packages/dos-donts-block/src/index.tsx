@@ -4,6 +4,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC, useEffect } from 'react';
 import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
+import { Color } from '@frontify/arcade';
 import { DoDontType, DoDontStyle, DoDontLayout, DoDontSpacing, DoDontContent } from './types';
 import { DoDontItem, ItemProps } from './DoDontItem';
 import { DO_COLOR_DEFAULT_VALUE, DONT_COLOR_DEFAULT_VALUE } from './settings';
@@ -16,8 +17,8 @@ type Settings = {
     columns: number;
     isCustomSpacing: boolean;
     spacingValue: string;
-    doColor: string;
-    dontColor: string;
+    doColor: Color;
+    dontColor: Color;
     layout: DoDontLayout;
     style: DoDontStyle;
     spacingChoice: DoDontSpacing;
