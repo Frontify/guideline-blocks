@@ -22,8 +22,8 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
     const isEditing = useEditorState();
 
     const headingStyles: Record<DoDontType, object> = {
-        [DoDontType.Do]: { color: doColor },
-        [DoDontType.Dont]: { color: dontColor },
+        [DoDontType.Do]: { color: `rgba(${Object.values(doColor.rgba).join(', ')})` },
+        [DoDontType.Dont]: { color: `rgba(${Object.values(dontColor.rgba).join(', ')})` },
     };
 
     const dividerStyles: Record<DoDontType, object> = {

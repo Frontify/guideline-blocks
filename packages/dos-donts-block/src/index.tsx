@@ -37,8 +37,8 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         columns = 2,
         isCustomSpacing = false,
         spacingValue = '',
-        doColor = '#00C8A5',
-        dontColor = '#FF375A',
+        doColor = { rgba: { r: 0, g: 200, b: 165, a: 1 } },
+        dontColor = { rgba: { r: 255, g: 55, b: 90, a: 1 } },
         layout = DoDontLayout.SideBySide,
         style = DoDontStyle.Icons,
         spacingChoice = DoDontSpacing.Medium,
@@ -75,6 +75,8 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
 
     useEffect(() => setItems(layout === DoDontLayout.Stacked ? columns * 2 : 2), [layout, columns]);
 
+    console.log({ items });
+
     return (
         <div
             className={`tw-grid ${
@@ -91,8 +93,8 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                         key={index}
                         id={index}
                         saveItem={saveItem}
-                        title={item?.title}
-                        body={item?.body}
+                        title={item?.[DoDontContent.Title]}
+                        body={item?.[DoDontContent.Body]}
                         type={index % 2 ? DoDontType.Dont : DoDontType.Do}
                         style={style}
                         doColor={doColor}
