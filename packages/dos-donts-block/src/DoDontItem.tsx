@@ -20,15 +20,17 @@ export type ItemProps = {
 
 export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor, saveItem, title = '', body = '' }) => {
     const isEditing = useEditorState();
+    const doColorString = `rgba(${Object.values(doColor.rgba).join(', ')})`;
+    const dontColorString = `rgba(${Object.values(dontColor.rgba).join(', ')})`;
 
     const headingStyles: Record<DoDontType, object> = {
-        [DoDontType.Do]: { color: `rgba(${Object.values(doColor.rgba).join(', ')})` },
-        [DoDontType.Dont]: { color: `rgba(${Object.values(dontColor.rgba).join(', ')})` },
+        [DoDontType.Do]: { color: doColorString },
+        [DoDontType.Dont]: { color: dontColorString },
     };
 
     const dividerStyles: Record<DoDontType, object> = {
-        [DoDontType.Do]: { backgroundColor: `rgba(${Object.values(doColor.rgba).join(', ')})` },
-        [DoDontType.Dont]: { backgroundColor: `rgba(${Object.values(dontColor.rgba).join(', ')})` },
+        [DoDontType.Do]: { backgroundColor: doColorString },
+        [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
     return (
