@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^2.5.2",
-        "@frontify/arcade": "^0.11.0",
+        "@frontify/arcade": "^0.12.0",
         "@react-aria/button": "^3.3.4",
         "@react-aria/interactions": "^3.6.0",
         "@react-aria/tooltip": "^3.1.3",
