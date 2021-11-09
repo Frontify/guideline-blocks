@@ -3,7 +3,7 @@
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC } from 'react';
-import { IconApprove, IconRejectCircle, IconSize, Color } from '@frontify/arcade';
+import { RichTextEditor, IconApprove, IconRejectCircle, IconSize, Color } from '@frontify/arcade';
 import { useEditorState } from '@frontify/app-bridge';
 import { DoDontType, DoDontStyle, DoDontContent } from './types';
 
@@ -33,7 +33,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
 
     return (
         <div>
-            <div style={isEditing ? {} : headingStyles[type]} className="tw-flex">
+            <div style={headingStyles[type]} className="tw-flex">
                 {style === DoDontStyle.Icons && (
                     <div className="tw-mr-2 tw-w-auto">
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
@@ -41,38 +41,25 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                     </div>
                 )}
                 <div className="tw-w-full">
-                    {isEditing ? (
-                        <textarea
-                            className="tw-w-full tw-outline-none tw-resize-none tw-text-m tw-font-bold"
-                            onChange={(event) => saveItem(id, event.target.value, DoDontContent.Title)}
-                            placeholder="Add a title"
-                            rows={1}
-                        >
-                            {title}
-                        </textarea>
-                    ) : (
-                        <p className="tw-text-current tw-text-m tw-font-bold">{title}</p>
-                    )}
+                    <RichTextEditor
+                        value={title}
+                        onTextChange={(value) => saveItem(id, value, DoDontContent.Title)}
+                        placeholder="Add a description"
+                    />
                 </div>
             </div>
             {style === DoDontStyle.Underline && (
                 <hr
-                    style={isEditing ? {} : dividerStyles[type]}
+                    style={dividerStyles[type]}
                     className="tw-w-full tw-mt-4 tw-mb-5 tw-h-1 tw-border-none tw-rounded tw-bg-black-40"
                 />
             )}
             <div className="tw-mt-2">
-                {isEditing ? (
-                    <textarea
-                        className="tw-w-full tw-outline-none tw-resize-y"
-                        onChange={(event) => saveItem(id, event.target.value, DoDontContent.Body)}
-                        placeholder="Add a description"
-                    >
-                        {body}
-                    </textarea>
-                ) : (
-                    <p>{body}</p>
-                )}
+                <RichTextEditor
+                    value={body}
+                    onTextChange={(value) => saveItem(id, value, DoDontContent.Body)}
+                    placeholder="Add a description"
+                />
             </div>
         </div>
     );
