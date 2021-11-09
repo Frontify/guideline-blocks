@@ -35,7 +35,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
 
     return (
         <div>
-            <div style={headingStyles[type]} className="tw-flex">
+            <div style={headingStyles[type]} className="tw-flex tw-items-center">
                 {style === DoDontStyle.Icons && (
                     <div className="tw-mr-2 tw-w-auto">
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
