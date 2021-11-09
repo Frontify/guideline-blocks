@@ -5,7 +5,6 @@ import { FC, useEffect, useState } from 'react';
 import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
 import { EditableText } from './EditableText';
 import { alignmentMap, BlockSettings, cornerRadiusMap, paddingMap, typeMap, widthMap } from './types';
-import { Icon } from './Icon';
 
 type CustomPaddingStyles = {
     paddingTop: string;
@@ -40,6 +39,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [customPaddingStyle, setCustomPaddingStyle] = useState<CustomPaddingStyles>();
     const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CustomCornerRadius>();
     const [iconUrl, setIconUrl] = useState<string>();
+    const [iconAltText, setIconAltText] = useState<string>();
 
     useEffect(() => {
         const paddingStyle = customPaddingSwitch
@@ -61,6 +61,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         if (iconSwitch && icon) {
             appBridge.getAssetById(icon).then((iconAsset) => {
                 setIconUrl(iconAsset.generic_url);
+                setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
             });
         }
     }, [blockSettings]);
@@ -81,7 +82,11 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
 
     return (
         <div className={getClassName()} style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}>
-            {iconSwitch && iconUrl && <Icon url={iconUrl} />}
+            {iconSwitch && iconUrl && (
+                <span className="tw-pr-3">
+                    <img alt={iconAltText} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
+                </span>
+            )}
             <EditableText type={type} appBridge={appBridge} />
         </div>
     );
