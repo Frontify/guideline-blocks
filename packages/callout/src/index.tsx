@@ -82,7 +82,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     return (
         <div className={getClassName()} style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}>
             {iconSwitch && iconUrl && <Icon url={iconUrl} />}
-            <EditableText className={`tw-text-white ${typeMap[type]}`} appBridge={appBridge} />
+            <EditableText type={type} appBridge={appBridge} />
         </div>
     );
 };

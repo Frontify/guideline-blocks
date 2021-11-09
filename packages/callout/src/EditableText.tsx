@@ -2,16 +2,17 @@
 
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { ChangeEvent, FC } from 'react';
-import { BlockSettings } from './types';
+import { BlockSettings, Type, typeMap } from './types';
 
 type EditableTextProps = {
-    className: string;
+    type: Type;
     appBridge: AppBridgeNative;
 };
 
-export const EditableText: FC<EditableTextProps> = ({ className, appBridge }) => {
+export const EditableText: FC<EditableTextProps> = ({ type, appBridge }) => {
     const [{ textValue }, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState();
+    const className = `tw-text-white ${typeMap[type]}`;
 
     const onTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setBlockSettings({ textValue: event.target.value } as BlockSettings); // TODO use Partial<BlockSettings> when new version of app-bridge is available
