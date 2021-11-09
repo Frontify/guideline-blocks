@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC, useState, useEffect } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, TextInput, IconStorybook, IconSize } from '@frontify/arcade';
+import { Button, TextInput, IconStorybook, IconSize, Color } from '@frontify/arcade';
 import { RemoveButton } from './components/RemoveButton';
 import {
     StorybookBorderRadius,
@@ -18,7 +18,7 @@ type StorybookBlockProps = {
     appBridge: AppBridgeNative;
 };
 
-type borderSelectionType = [StorybookBorderStyle, string, string];
+type borderSelectionType = [StorybookBorderStyle, string, Color];
 
 type Settings = {
     style: StorybookStyle;
