@@ -1,9 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export type DividerColor = {
-    rgba: string;
-};
-
 export enum DividerStyle {
     NoLine = 'noline',
     Dashed = 'dashed',

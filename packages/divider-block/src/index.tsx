@@ -3,7 +3,8 @@
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
-import { DividerAlignment, dividerAlignment, DividerColor, DividerStyle, dividerStyle } from './types';
+import { Color } from '@frontify/arcade';
+import { DividerAlignment, dividerAlignment, DividerStyle, dividerStyle } from './types';
 import {
     ALIGNMENT_DEFAULT_VALUE,
     COLOR_DEFAULT_RGBA_VALUE,
@@ -20,7 +21,7 @@ type Settings = {
     alignment?: DividerAlignment;
     style?: DividerStyle;
     isLine?: string;
-    color?: DividerColor;
+    color?: Color;
     isWidthCustom?: boolean;
     widthCustom?: string;
     widthSimple?: string;
