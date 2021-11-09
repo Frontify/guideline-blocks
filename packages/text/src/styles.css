@@ -1,2 +1,4 @@
-.editor-enabled .guideline-text .public-DraftEditorPlaceholder-inner {
+span[data-slate-placeholder="true"] {
+    font-family: redacted;
+    opacity: 0.8;
 }

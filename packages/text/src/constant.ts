@@ -5,5 +5,3 @@ export const PLACEHOLDER =
 
 export const DEFAULT_COLUMN_NUMBER = 1;
 export const DEFAULT_COLUMN_GUTTER = '24px';
-
-export const TIME_TO_DEBOUNCE = 400;

@@ -2,13 +2,11 @@
 
 import 'tailwindcss/tailwind.css';
 import './styles.css';
-import { FC, useEffect, useMemo } from 'react';
-import { Color, RichTextEditor } from '@frontify/arcade';
+import { FC, useEffect } from 'react';
+import { RichTextEditor } from '@frontify/arcade';
 import { AppBridgeNative, useEditorState, useBlockSettings } from '@frontify/app-bridge';
-import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER, TIME_TO_DEBOUNCE } from './constant';
-import { RawDraftContentState } from 'draft-js';
-import { cloneDeep, debounce } from 'lodash-es';
-import { merge } from './utilities';
+import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './constant';
+import { cloneDeep, isEqual } from 'lodash-es';
 
 type Props = {
     appBridge: AppBridgeNative;
@@ -19,8 +17,7 @@ type Settings = {
     columnGutterSimple: string;
     columnNumber: number;
     isColumnGutterCustom: boolean;
-    content?: RawDraftContentState[];
-    'color-input-in-sidebar': Color;
+    content?: string[];
 };
 
 const Text: FC<Props> = ({ appBridge }) => {
@@ -28,55 +25,40 @@ const Text: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     useEffect(() => {
-        if (!Object.keys(blockSettings).length) {
-            const newSettings = cloneDeep(blockSettings) as Settings;
-            newSettings.columnGutterSimple = DEFAULT_COLUMN_GUTTER;
-            newSettings.columnNumber = DEFAULT_COLUMN_NUMBER;
-            newSettings.content = Array(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER);
+        const newSettings = cloneDeep(blockSettings) as Settings;
+        newSettings.columnGutterSimple ??= DEFAULT_COLUMN_GUTTER;
+        newSettings.columnNumber ??= DEFAULT_COLUMN_NUMBER;
+        newSettings.content ??= Array(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER).fill(undefined);
+
+        if (!isEqual(newSettings, blockSettings)) {
             setBlockSettings(newSettings);
         }
     }, []);
 
-    const onTextChange = (value: RawDraftContentState, index: number) => {
+    const onTextChange = (value: string, index: number) => {
         const newSettings = cloneDeep(blockSettings) as Settings;
-        if (!newSettings.content) {
-            throw new Error('The block has been not correctly setup during initialization.');
+        if (newSettings.content) {
+            newSettings.content[index] = value;
+            setBlockSettings(newSettings);
         }
-
-        newSettings.content[index] = value;
-        setBlockSettings(newSettings);
     };
 
     return (
         <div
-            className={merge(['guideline-text'])}
             style={{
                 gap: blockSettings.isColumnGutterCustom
                     ? blockSettings.columnGutterCustom
                     : blockSettings.columnGutterSimple,
             }}
         >
-            {Array(blockSettings.columnNumber).map((_, index) => {
-                const editorValue = useMemo(() => {
-                    if (blockSettings.content?.[index] && 'blocks' in blockSettings.content[index]) {
-                        return {
-                            blocks: blockSettings.content[index].blocks,
-                            entityMap: blockSettings.content[index].entityMap,
-                        };
-                    }
-                    return undefined;
-                }, [index, blockSettings.content]);
-
+            {[...Array(blockSettings.columnNumber)].map((_, index) => {
                 return (
                     <RichTextEditor
                         key={index}
-                        value={editorValue as RawDraftContentState}
+                        value={blockSettings.content?.[index]}
                         placeholder={PLACEHOLDER}
-                        readonly={!isEditing}
-                        onTextChange={debounce(
-                            (value: RawDraftContentState) => onTextChange(value, index),
-                            TIME_TO_DEBOUNCE
-                        )}
+                        //readonly={!isEditing}
+                        onTextChange={(value) => onTextChange(value, index)}
                     />
                 );
             })}
