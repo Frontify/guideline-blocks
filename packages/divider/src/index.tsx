@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
+import { AppBridgeNative, Color, useBlockSettings } from '@frontify/app-bridge';
 import { DividerAlignment, dividerAlignment, DividerStyle, dividerStyle } from './types';
 import { ALIGNMENT_DEFAULT_VALUE, HEIGHT_DEFAULT_VALUE, STYLE_DEFAULT_VALUE, WIDTH_DEFAULT_VALUE } from './settings';
 
@@ -14,7 +14,7 @@ type Settings = {
     alignment?: DividerAlignment;
     style?: DividerStyle;
     isLine?: string;
-    color?: string;
+    color?: Color;
     isWidthCustom?: boolean;
     widthCustom?: string;
     widthSimple?: string;
@@ -52,7 +52,7 @@ const Divider: FC<Props> = ({ appBridge }) => {
                         borderTopWidth: blockSettings.isThicknessCustom
                             ? blockSettings.thicknessCustom
                             : blockSettings.thicknessSimple,
-                        borderTopColor: blockSettings.color ? blockSettings.color : '#CCC',
+                        borderTopColor: blockSettings.color?.hex ? blockSettings.color.hex : '#CCC',
                     }}
                 />
             </div>

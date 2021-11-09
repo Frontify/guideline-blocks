@@ -221,7 +221,7 @@ export default {
         },
         {
             id: 'color',
-            type: 'input',
+            type: 'colorInput',
             label: 'Color',
             show: solidStyleIsSelected,
         },
