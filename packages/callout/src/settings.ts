@@ -100,7 +100,7 @@ export default {
                     id: 'customPadding',
                     type: 'multiInput',
                     layout: 'Spider',
-                    inputs: [
+                    blocks: [
                         {
                             id: 'top-input',
                             type: 'input',
@@ -159,7 +159,7 @@ export default {
                     id: 'customCornerRadius',
                     type: 'multiInput',
                     layout: 'Columns',
-                    inputs: [
+                    blocks: [
                         {
                             id: 'top-left-input',
                             type: 'input',
