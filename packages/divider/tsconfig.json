@@ -1,7 +1,0 @@
-{
-    "compilerOptions": {
-        "outDir": "../divider-block/dist/server",
-        "rootDir": "../divider-block/src"
-    },
-    "extends": "../../tsconfig.json"
-}
