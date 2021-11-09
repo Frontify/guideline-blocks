@@ -14,7 +14,7 @@ export const EditableText: FC<EditableTextProps> = ({ className, appBridge }) =>
     const isEditing = useEditorState();
 
     const onTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setBlockSettings({ textValue: e.target.value } as BlockSettings); // TODO use Partial<BlockSettings> when new version of app-bridge is available
+        setBlockSettings({ textValue: event.target.value } as BlockSettings); // TODO use Partial<BlockSettings> when new version of app-bridge is available
     };
 
     return isEditing ? (
