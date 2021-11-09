@@ -46,7 +46,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                     <RichTextEditor
                         value={title}
                         onTextChange={(value) => saveItem(id, value, DoDontContent.Title)}
-                        placeholder="Add a description"
+                        placeholder="Add a title"
                     />
                 </div>
             </div>
