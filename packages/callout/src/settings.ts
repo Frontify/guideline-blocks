@@ -44,7 +44,7 @@ export default {
                 {
                     id: 'icon',
                     type: 'assetInput',
-                    allowedExtensions: ['svg'],
+                    allowedExtensions: [FileExtension.Svg],
                 },
             ],
         },
