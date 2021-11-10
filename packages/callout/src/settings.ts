@@ -13,7 +13,7 @@ export default {
             choices: [
                 {
                     value: Type.Warning,
-                    icon: 'callout',
+                    icon: IconEnum.Callout,
                     label: 'Warning',
                 },
                 {
