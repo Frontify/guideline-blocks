@@ -2,12 +2,11 @@
 
 import { IconEnum } from '@frontify/arcade';
 import {
-    numericalPixelValueRule,
-    numericalPercentValueRule,
-    minimumNumericalPixelValueOrAuto,
-    minimumNumericalPercentValueOrAuto,
-    maximumNumericalPercentValueOrAuto,
-} from './rules';
+    numericalOrPixelRule,
+    numericalOrPercentRule,
+    betweenNumericalOrPercentOrAutoRule,
+    minimumNumericalOrPixelOrAutoRule,
+} from '@frontify/guideline-blocks-shared';
 import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThickness } from './types';
 
 const IS_LINE_ID = 'isLine';
@@ -52,11 +51,7 @@ export default {
                     id: 'widthCustom',
                     type: 'input',
                     placeholder: '73%',
-                    rules: [
-                        numericalPercentValueRule,
-                        minimumNumericalPercentValueOrAuto(0),
-                        maximumNumericalPercentValueOrAuto(100),
-                    ],
+                    rules: [numericalOrPercentRule, betweenNumericalOrPercentOrAutoRule(0, 100)],
                     onChange: (bundle: any): void => {
                         const blockWidth = Number(bundle.getBlock('widthCustom')?.value);
                         if (!Number.isNaN(blockWidth)) {
@@ -125,7 +120,7 @@ export default {
                     id: 'heightCustom',
                     type: 'input',
                     placeholder: '100px',
-                    rules: [numericalPixelValueRule],
+                    rules: [numericalOrPixelRule],
                     onChange: (bundle: any): void => {
                         const blockHeight = Number(bundle.getBlock('heightCustom')?.value);
                         if (!Number.isNaN(blockHeight)) {
@@ -189,7 +184,7 @@ export default {
                     id: 'thicknessCustom',
                     type: 'input',
                     placeholder: '8px',
-                    rules: [numericalPixelValueRule, minimumNumericalPixelValueOrAuto(1)],
+                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                     onChange: (bundle: any): void => {
                         const borderThickness = Number(bundle.getBlock('thicknessCustom')?.value);
                         if (!Number.isNaN(borderThickness)) {
