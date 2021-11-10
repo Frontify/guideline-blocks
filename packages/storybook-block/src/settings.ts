@@ -7,7 +7,7 @@ import {
     StorybookHeight,
     StorybookPosition,
 } from './types';
-import { MultiInputLayout } from '@frontify/arcade';
+import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 
 export default {
     main: [
@@ -19,12 +19,12 @@ export default {
             choices: [
                 {
                     value: StorybookStyle.Default,
-                    icon: 'iframe',
+                    icon: IconEnum.Iframe,
                     label: 'Story (with add-ons)',
                 },
                 {
                     value: StorybookStyle.WithoutAddons,
-                    icon: 'iframe',
+                    icon: IconEnum.Iframe,
                     label: 'Story (no add-ons)',
                 },
             ],
@@ -80,11 +80,11 @@ export default {
             choices: [
                 {
                     value: StorybookPosition.Horizontal,
-                    icon: 'figure-text-right',
+                    icon: IconEnum.FigureTextRight,
                 },
                 {
                     value: StorybookPosition.Vertical,
-                    icon: 'figure-text-bottom',
+                    icon: IconEnum.FigureTextBottom,
                 },
             ],
         },
