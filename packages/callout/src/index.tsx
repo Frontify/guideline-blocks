@@ -2,9 +2,9 @@
 
 import 'tailwindcss/tailwind.css';
 import { FC, useEffect, useState } from 'react';
-import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
-import { EditableText } from './EditableText';
+import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { alignmentMap, BlockSettings, cornerRadiusMap, paddingMap, typeMap, widthMap } from './types';
+import { RichTextEditor } from '@frontify/arcade';
 
 type CustomPaddingStyles = {
     paddingTop: string;
@@ -22,7 +22,8 @@ type CalloutBlockProps = {
 };
 
 const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
-    const [blockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const isEditing = useEditorState();
     const {
         type,
         alignment,
@@ -35,6 +36,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         customPadding = [],
         cornerRadius,
         customCornerRadius = [],
+        textValue,
     } = blockSettings;
     const [customPaddingStyle, setCustomPaddingStyle] = useState<CustomPaddingStyles>();
     const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CustomCornerRadius>();
@@ -66,6 +68,10 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         }
     }, [blockSettings]);
 
+    const onTextChange = (value: string): void => {
+        setBlockSettings({ textValue: value });
+    };
+
     const getClassName = () => {
         let className = `tw-text-white ${typeMap[type]} ${alignmentMap[alignment]} ${widthMap[width]} `;
 
@@ -87,7 +93,14 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     <img alt={iconAltText} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
                 </span>
             )}
-            <EditableText type={type} appBridge={appBridge} />
+            <div className={'tw-w-full'}>
+                <RichTextEditor
+                    onTextChange={onTextChange}
+                    readonly={!isEditing}
+                    value={textValue}
+                    placeholder={'foo'}
+                />
+            </div>
         </div>
     );
 };
