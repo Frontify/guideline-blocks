@@ -1,6 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Alignment, CornerRadius, Padding, Type, Width } from './types';
+import { FileExtension } from '@frontify/app-bridge';
+import { DropdownSize, IconEnum } from '@frontify/arcade';
 
 export default {
     main: [
