@@ -18,7 +18,7 @@ export default {
                 },
                 {
                     value: Type.Tip,
-                    icon: 'check',
+                    icon: IconEnum.Check,
                     label: 'Tip',
                 },
                 {
