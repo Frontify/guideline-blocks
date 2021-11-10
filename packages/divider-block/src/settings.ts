@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { IconEnum } from '@frontify/arcade';
 import {
     numericalPixelValueRule,
     numericalPercentValueRule,
@@ -29,12 +30,12 @@ export default {
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: 'line-spacer',
+                    icon: IconEnum.LineSpacer,
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: 'line-solid',
+                    icon: IconEnum.LineSolid,
                     label: 'Line',
                 },
             ],
@@ -100,15 +101,15 @@ export default {
             choices: [
                 {
                     value: DividerAlignment.Left,
-                    icon: 'align-left',
+                    icon: IconEnum.AlignLeft,
                 },
                 {
                     value: DividerAlignment.Center,
-                    icon: 'align-center',
+                    icon: IconEnum.AlignCenter,
                 },
                 {
                     value: DividerAlignment.Right,
-                    icon: 'align-right',
+                    icon: IconEnum.AlignRight,
                 },
             ],
             show: solidStyleIsSelected,
