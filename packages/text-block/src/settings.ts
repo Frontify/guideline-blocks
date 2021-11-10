@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
-import { numericalPixelValueRule, betweenPixelValue } from '';
+import { numericalOrPixelValueRule, betweenPixelValues } from '@frontify/guideline-blocks-shared';
 
 export const columnGutterChoices = [
     {
@@ -72,7 +72,7 @@ export default {
                     id: 'columnGutterCustom',
                     type: 'input',
                     defaultValue: DEFAULT_COLUMN_GUTTER,
-                    rules: [numericalPixelValueRule, betweenPixelValue(0, 200)],
+                    rules: [numericalOrPixelValueRule, betweenPixelValues(0, 200)],
                     onChange: (bundle: any): void => {
                         const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
                         if (!isNaN(gutter)) {
