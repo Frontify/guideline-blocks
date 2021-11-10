@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/arcade';
+import { RichTextEditor, Color } from '@frontify/arcade';
 import { NoteHeader } from './components/NoteHeader';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
@@ -13,10 +13,10 @@ type PersonalNoteBlockProps = {
     appBridge: AppBridgeNative;
 };
 
-type borderSelectionType = [NoteBorderStyle, string, string];
+type borderSelectionType = [NoteBorderStyle, string, Color];
 
 type Settings = {
-    backgroundColor: string;
+    backgroundColor: Color;
     borderRadiusChoice: NoteBorderRadius;
     borderSelection: borderSelectionType;
     dateEdited: Date;
@@ -29,11 +29,19 @@ type Settings = {
     visibility: NoteVisibility;
 };
 
-const getBorderStyles = (borderSelection: borderSelectionType, borderRadius: string) => ({
+const getStyles = (
+    hasBorder: boolean,
+    borderSelection: borderSelectionType,
+    hasCustomBorderRadius: boolean,
+    borderRadiusValue: string,
+    hasBackground: boolean,
+    backgroundColor: Color
+) => ({
     borderStyle: borderStyles[borderSelection[0]],
     borderWidth: borderSelection[1],
     borderColor: `rgba(${Object.values(borderSelection[2].rgba).join(', ')})`,
-    borderRadius,
+    borderRadius: hasCustomBorderRadius ? borderRadiusValue : '',
+    backgroundColor: hasBackground ? `rgba(${Object.values(backgroundColor.rgba).join(', ')})` : 'none',
 });
 
 const borderStyles: Record<NoteBorderStyle, string> = {
@@ -90,7 +98,14 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
             className={`tw-space-y-4
               ${!hasCustomPadding && paddingClasses[paddingChoice]}
               ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
-            style={hasBorder ? getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '') : {}}
+            style={getStyles(
+                hasBorder,
+                borderSelection,
+                hasCustomBorderRadius,
+                borderRadiusValue,
+                hasBackground,
+                backgroundColor
+            )}
         >
             <NoteHeader hasAvatarName={hasAvatarName} hasDateEdited={hasDateEdited} dateEdited={dateEdited} />
             <RichTextEditor
