@@ -3,6 +3,9 @@
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { MultiInputLayout } from '@frontify/arcade';
 
+export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 } };
+export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 } };
+
 export default {
     main: [
         {
@@ -77,7 +80,7 @@ export default {
         {
             id: 'backgroundColor',
             type: 'colorInput',
-            defaultValue: '#CCCCCC',
+            defaultValue: BACKGROUND_COLOR_DEFAULT_VALUE,
             show: (bundle) => bundle.getBlock('hasBackground').value,
         },
         {
@@ -119,7 +122,7 @@ export default {
                 {
                     id: 'borderColor',
                     type: 'colorInput',
-                    defaultValue: '#CCCCCC',
+                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
                 },
             ],
         },

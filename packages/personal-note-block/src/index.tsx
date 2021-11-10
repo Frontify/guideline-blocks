@@ -3,7 +3,8 @@
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC } from 'react';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/arcade';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 
 type PersonalNoteBlockProps = {
@@ -26,16 +27,22 @@ type Settings = {
     visibility: NoteVisibility;
 };
 
+const paddingClasses: Record<NotePadding, string> = {
+    [NotePadding.None]: 'tw-p-0',
+    [NotePadding.Small]: 'tw-p-6',
+    [NotePadding.Medium]: 'tw-p-9',
+    [NotePadding.Large]: 'tw-p-12',
+};
+
 const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const isEditing = useEditorState();
 
     console.log({ blockSettings });
 
     const {
         backgroundColor = '',
         borderRadiusChoice = NoteBorderRadius.Small,
-        borderSelection = [NoteBorderStyle.Solid, '1px', '#EAEBEB'],
+        borderSelection = [NoteBorderStyle.Solid, '1px', ''],
         dateEdited = '',
         hasAvatarName = true,
         hasBackground = false,
@@ -47,8 +54,6 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
     } = blockSettings;
 
     const saveNote = (value: string) => {
-        console.log('save my note, dude: ', value);
-
         setBlockSettings({
             ...blockSettings,
             note: value,
@@ -57,18 +62,12 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
     };
 
     return (
-        <div>
-            {isEditing ? (
-                <textarea
-                    className="tw-w-full tw-outline-none tw-resize-y"
-                    onChange={(event) => saveNote(event.target.value)}
-                    placeholder="Write personal note here..."
-                >
-                    {note}
-                </textarea>
-            ) : (
-                <p>{note}</p>
-            )}
+        <div className={`tw-grid ${paddingClasses[paddingChoice]}`}>
+            <RichTextEditor
+                value={note}
+                onTextChange={(value) => saveNote(value)}
+                placeholder="Write personal note here ..."
+            />
         </div>
     );
 };
