@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { betweenPixelValuesRule } from './betweenPixelValuesRule';
+import { betweenPixelRule } from './betweenPixelRule';
 
-describe('betweenPixelValuesRule', () => {
+describe('betweenPixelRule', () => {
     const data = [
         { a: 1, b: 5, value: '4', expected: true },
         { a: 1, b: 5, value: '4px', expected: true },
@@ -22,7 +22,7 @@ describe('betweenPixelValuesRule', () => {
     ];
 
     it.each(data)('validate correctly values', ({ a, b, value, expected }) => {
-        const rule = betweenPixelValuesRule(a, b);
+        const rule = betweenPixelRule(a, b);
         expect(rule.validate(value)).toBe(expected);
     });
 });

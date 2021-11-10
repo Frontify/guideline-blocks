@@ -9,7 +9,7 @@ import { Rule } from './types';
  * @param {number} maximumValue Maximum value
  * @returns {Rule} Rule object with validator and error message.
  */
-export const betweenPixelValuesRule = (minimumValue: number, maximumValue: number): Rule<string> => ({
+export const betweenPixelRule = (minimumValue: number, maximumValue: number): Rule<string> => ({
     errorMessage: `Please use a value between ${minimumValue} and ${maximumValue}.`,
     validate: (value: string): boolean =>
         Number(value.replace(/px/, '')) >= minimumValue && Number(value.replace(/px/, '')) <= maximumValue,
