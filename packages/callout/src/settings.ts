@@ -53,7 +53,6 @@ export default {
             id: 'width',
             type: 'slider',
             label: 'Width',
-            info: 'TBD',
             defaultValue: Width.FullWidth,
             choices: [
                 {
@@ -74,17 +73,14 @@ export default {
             choices: [
                 {
                     value: Alignment.Left,
-                    label: '',
                     icon: 'align-left',
                 },
                 {
                     value: Alignment.Center,
-                    label: '',
                     icon: 'align-center',
                 },
                 {
                     value: Alignment.Right,
-                    label: '',
                     icon: 'align-right',
                 },
             ],
