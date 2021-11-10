@@ -39,7 +39,9 @@ const Text: FC<Props> = ({ appBridge }) => {
                     ? blockSettings.columnGutterCustom
                     : blockSettings.columnGutterSimple,
             }}
-            className={`tw-grid ${GRID_CLASSES[blockSettings.columnNumber] ?? GRID_CLASSES[DEFAULT_COLUMN_NUMBER]}`}
+            className={`text-block tw-grid ${
+                GRID_CLASSES[blockSettings.columnNumber] ?? GRID_CLASSES[DEFAULT_COLUMN_NUMBER]
+            }`}
         >
             {[...Array(blockSettings.columnNumber)].map((_, index) => {
                 return (
