@@ -24,12 +24,12 @@ export default {
                 },
                 {
                     value: Type.Note,
-                    icon: 'briefing',
+                    icon: IconEnum.Briefing,
                     label: 'Note',
                 },
                 {
                     value: Type.Info,
-                    icon: 'info',
+                    icon: IconEnum.Info,
                     label: 'Info',
                 },
             ],
