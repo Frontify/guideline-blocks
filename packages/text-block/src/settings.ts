@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
-import { numericalPixelValueRule, betweenPixelValue } from './rules';
+import { numericalPixelValueRule, betweenPixelValue } from '';
 
 export const columnGutterChoices = [
     {

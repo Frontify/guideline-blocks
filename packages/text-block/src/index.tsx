@@ -4,21 +4,10 @@ import 'tailwindcss/tailwind.css';
 import './styles.css';
 import { FC, useEffect } from 'react';
 import { RichTextEditor } from '@frontify/arcade';
-import { AppBridgeNative, useEditorState, useBlockSettings } from '@frontify/app-bridge';
-import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './constant';
+import { useEditorState, useBlockSettings } from '@frontify/app-bridge';
+import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, GRID_CLASSES, PLACEHOLDER } from './constant';
 import { cloneDeep, isEqual } from 'lodash-es';
-
-type Props = {
-    appBridge: AppBridgeNative;
-};
-
-type Settings = {
-    columnGutterCustom: string;
-    columnGutterSimple: string;
-    columnNumber: number;
-    isColumnGutterCustom: boolean;
-    content?: string[];
-};
+import { Props, Settings } from './types';
 
 const Text: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState();
@@ -50,6 +39,7 @@ const Text: FC<Props> = ({ appBridge }) => {
                     ? blockSettings.columnGutterCustom
                     : blockSettings.columnGutterSimple,
             }}
+            className={`tw-grid ${GRID_CLASSES[blockSettings.columnNumber] ?? GRID_CLASSES[DEFAULT_COLUMN_NUMBER]}`}
         >
             {[...Array(blockSettings.columnNumber)].map((_, index) => {
                 return (
@@ -57,7 +47,7 @@ const Text: FC<Props> = ({ appBridge }) => {
                         key={index}
                         value={blockSettings.content?.[index]}
                         placeholder={PLACEHOLDER}
-                        //readonly={!isEditing}
+                        readonly={!isEditing}
                         onTextChange={(value) => onTextChange(value, index)}
                     />
                 );
