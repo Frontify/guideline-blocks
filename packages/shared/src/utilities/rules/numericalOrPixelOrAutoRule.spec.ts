@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { numericalOrPixelValueRule } from './numericalOrPixelValueRule';
+import { numericalOrPixelOrAutoRule } from './numericalOrPixelOrAutoRule';
 
-describe('numericalOrPixelValueRule', () => {
+describe('numericalOrPixelOrAutoRule', () => {
     const data = [
         { value: '4', expected: true },
         { value: '4px', expected: true },
@@ -10,11 +10,14 @@ describe('numericalOrPixelValueRule', () => {
         { value: '1px', expected: true },
         { value: '5', expected: true },
         { value: '5px', expected: true },
-        { value: '4rem', expected: false },
         { value: '10', expected: true },
         { value: '10px', expected: true },
         { value: '-1', expected: true },
         { value: '-1px', expected: true },
+        { value: 'auto', expected: true },
+        { value: '4rem', expected: false },
+        { value: '100%', expected: false },
+        { value: '%', expected: false },
         { value: ' 10px', expected: false },
         { value: '', expected: false },
         { value: 'abc', expected: false },
@@ -22,7 +25,7 @@ describe('numericalOrPixelValueRule', () => {
         { value: 'rem', expected: false },
     ];
 
-    it.each(data)('validate correctly values', ({ value, expected }) => {
-        expect(numericalOrPixelValueRule.validate(value)).toBe(expected);
+    it.each(data)('validate correctly values (value $value, expected $value)', ({ value, expected }) => {
+        expect(numericalOrPixelOrAutoRule.validate(value)).toBe(expected);
     });
 });
