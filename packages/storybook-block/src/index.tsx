@@ -5,6 +5,7 @@ import '@frontify/arcade/style';
 import { FC, useState, useEffect } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, TextInput, IconStorybook, IconSize, Color } from '@frontify/arcade';
+import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { RemoveButton } from './components/RemoveButton';
 import {
     StorybookBorderRadius,
@@ -18,7 +19,7 @@ type StorybookBlockProps = {
     appBridge: AppBridgeNative;
 };
 
-type borderSelectionType = [StorybookBorderStyle, string, Color];
+type BorderSelectionType = [StorybookBorderStyle, string, Color];
 
 type Settings = {
     style: StorybookStyle;
@@ -28,17 +29,17 @@ type Settings = {
     heightValue: string;
     positioning: StorybookPosition;
     hasBorder: boolean;
-    borderSelection: borderSelectionType;
+    borderSelection: BorderSelectionType;
     hasCustomBorderRadius: boolean;
     borderRadiusChoice: StorybookBorderRadius;
     borderRadiusValue: string;
 };
 
-const getIframeStyles = (borderSelection: borderSelectionType, borderRadius: string) => ({
+const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string) => ({
     borderStyle: borderStyles[borderSelection[0]],
     borderWidth: borderSelection[1],
-    borderColor: `rgba(${Object.values(borderSelection[2].rgba).join(', ')})`,
     borderRadius,
+    ...(borderSelection[2]?.rgba ? { borderColor: mapRgbaToString(borderSelection[2].rgba) } : {}),
 });
 
 const borderStyles: Record<StorybookBorderStyle, string> = {
@@ -74,7 +75,11 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         heightValue = '',
         positioning = StorybookPosition.Horizontal,
         hasBorder = false,
-        borderSelection = [StorybookBorderStyle.Solid, '1px', { rgba: { r: 100, g: 12, b: 0, a: 1 } }],
+        borderSelection = [
+            StorybookBorderStyle.Solid,
+            '1px',
+            { rgba: { r: 100, g: 12, b: 0, a: 1 } },
+        ] as BorderSelectionType,
         hasCustomBorderRadius = false,
         borderRadiusChoice = StorybookBorderRadius.None,
         borderRadiusValue = '',
