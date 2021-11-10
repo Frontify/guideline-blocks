@@ -9,7 +9,6 @@ export default {
             type: 'dropdown',
             defaultValue: Type.Warning,
             size: DropdownSize.Large,
-            disabled: false,
             choices: [
                 {
                     value: Type.Warning,
