@@ -4,7 +4,7 @@ import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibili
 import { MultiInputLayout } from '@frontify/arcade';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 } };
-export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 } };
+export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 } };
 
 export default {
     main: [
@@ -27,11 +27,13 @@ export default {
             id: 'hasAvatarName',
             label: 'Avatar and name',
             type: 'switch',
+            defaultValue: true,
         },
         {
             id: 'hasDateEdited',
             label: 'Date last edited',
             type: 'switch',
+            defaultValue: true,
         },
         {
             id: 'hasCustomPadding',
@@ -48,7 +50,7 @@ export default {
                 {
                     id: 'paddingChoice',
                     type: 'slider',
-                    defaultValue: NotePadding.None,
+                    defaultValue: NotePadding.Small,
                     choices: [
                         {
                             value: NotePadding.None,
