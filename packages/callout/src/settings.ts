@@ -8,7 +8,7 @@ export default {
             id: 'type',
             type: 'dropdown',
             defaultValue: Type.Warning,
-            size: 'large',
+            size: DropdownSize.Large,
             disabled: false,
             choices: [
                 {
