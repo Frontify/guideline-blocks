@@ -76,7 +76,7 @@ export default {
             label: 'Positioning',
             type: 'slider',
             defaultValue: StorybookPosition.Horizontal,
-            show: (bundle) => bundle.getBlock('style').value === StorybookStyle.Default,
+            show: (bundle: any) => bundle.getBlock('style').value === StorybookStyle.Default,
             choices: [
                 {
                     value: StorybookPosition.Horizontal,
@@ -100,7 +100,7 @@ export default {
             type: 'multiInput',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle) => bundle.getBlock('hasBorder').value,
+            show: (bundle: any) => bundle.getBlock('hasBorder').value,
             blocks: [
                 {
                     id: 'borderStyle',
@@ -138,7 +138,7 @@ export default {
             label: 'Corner radius',
             type: 'switch',
             switchLabel: 'Custom',
-            show: (bundle) => bundle.getBlock('hasBorder').value,
+            show: (bundle: any) => bundle.getBlock('hasBorder').value,
             on: [
                 {
                     id: 'borderRadiusValue',
