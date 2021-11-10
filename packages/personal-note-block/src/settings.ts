@@ -13,6 +13,9 @@ const HAS_BORDER_ID = 'hasBorder';
 const BORDER_WIDTH_ID = 'borderWidth';
 const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
 
+export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 } };
+export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 } };
+
 export default {
     main: [
         {
