@@ -47,6 +47,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                         value={title}
                         onTextChange={(value) => saveItem(id, value, DoDontContent.Title)}
                         placeholder="Add a title"
+                        readonly={!isEditing}
                     />
                 </div>
             </div>
@@ -61,6 +62,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                     value={body}
                     onTextChange={(value) => saveItem(id, value, DoDontContent.Body)}
                     placeholder="Add a description"
+                    readonly={!isEditing}
                 />
             </div>
         </div>
