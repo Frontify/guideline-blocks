@@ -3,7 +3,17 @@
 import 'tailwindcss/tailwind.css';
 import { FC, useEffect, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { alignmentMap, BlockSettings, cornerRadiusMap, paddingMap, typeMap, widthMap } from './types';
+import {
+    Alignment,
+    alignmentMap,
+    BlockSettings, CornerRadius,
+    cornerRadiusMap, Padding,
+    paddingMap,
+    Type,
+    typeMap,
+    Width,
+    widthMap
+} from "./types";
 import { RichTextEditor } from '@frontify/arcade';
 
 type CustomPaddingStyles = {
@@ -25,16 +35,16 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState();
     const {
-        type,
-        alignment,
+        type = Type.Warning,
+        alignment = Alignment.Left,
         iconSwitch,
-        width,
+        width = Width.FullWidth,
         customPaddingSwitch,
         customCornerRadiusSwitch,
         icon,
-        padding,
+        padding = Padding.M,
         customPadding = [],
-        cornerRadius,
+        cornerRadius = CornerRadius.None,
         customCornerRadius = [],
         textValue,
     } = blockSettings;
@@ -42,6 +52,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CustomCornerRadius>();
     const [iconUrl, setIconUrl] = useState<string>();
     const [iconAltText, setIconAltText] = useState<string>();
+    console.log('callout');
 
     useEffect(() => {
         const paddingStyle = customPaddingSwitch
@@ -98,7 +109,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     onTextChange={onTextChange}
                     readonly={!isEditing}
                     value={textValue}
-                    placeholder={'foo'}
+                    placeholder={'Type your text here'}
                 />
             </div>
         </div>
