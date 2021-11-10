@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { IconEnum } from '@frontify/arcade';
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
 import { numericalPixelValueRule, betweenPixelValue } from './rules';
 
@@ -48,7 +49,7 @@ export default {
             choices: [
                 {
                     value: 'text',
-                    icon: 'align-left',
+                    icon: IconEnum.AlignLeft,
                     label: 'Text',
                 },
             ],

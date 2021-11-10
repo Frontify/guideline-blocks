@@ -1,3 +1,5 @@
+import { IconEnum } from '@frontify/arcade';
+
 export default {
     main: [
         {
@@ -9,7 +11,7 @@ export default {
             choices: [
                 {
                     value: 'custom_block',
-                    icon: 'snippet',
+                    icon: IconEnum.Snippet,
                     label: 'Custom Block',
                 },
             ],
