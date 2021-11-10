@@ -3,8 +3,9 @@
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 import { FC } from 'react';
-import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
+import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
+import { NoteHeader } from './components/NoteHeader';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
@@ -56,6 +57,7 @@ const paddingClasses: Record<NotePadding, string> = {
 };
 
 const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
+    const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const {
@@ -70,7 +72,7 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         hasCustomBorderRadius = false,
         hasCustomPadding = false,
         hasDateEdited = true,
-        note = '',
+        note,
         paddingChoice = NotePadding.Small,
         visibility = NoteVisibility.Everyone,
     } = blockSettings;
@@ -83,29 +85,19 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         });
     };
 
-    console.log({ dateEdited });
-
     return (
         <div
-            className={`tw-space-y-4 ${paddingClasses[paddingChoice]} ${
-                !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]
-            }`}
+            className={`tw-space-y-4
+              ${!hasCustomPadding && paddingClasses[paddingChoice]}
+              ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
             style={hasBorder ? getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '') : {}}
         >
-            <div className="tw-flex tw-items-center tw-space-x-4">
-                {/* TODO: Replace with acutal user data */}
-                {hasAvatarName && (
-                    <img src="https://picsum.photos/200" width="32" height="32" className="tw-rounded-full" />
-                )}
-                <div className="tw-flex tw-flex-col tw-text-s">
-                    {hasAvatarName && <span className="tw-text-black-100">Leanne Simpson</span>}
-                    {hasDateEdited && <span>Added on 8/24/2021, 14:18:30</span>}
-                </div>
-            </div>
+            <NoteHeader hasAvatarName={hasAvatarName} hasDateEdited={hasDateEdited} dateEdited={dateEdited} />
             <RichTextEditor
                 value={note}
                 onTextChange={(value) => saveNote(value)}
                 placeholder="Write personal note here ..."
+                readonly={!isEditing}
             />
         </div>
     );

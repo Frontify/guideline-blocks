@@ -171,7 +171,8 @@ export default {
         {
             id: 'visibility',
             type: 'slider',
-            defaultValue: NoteVisibility.YouOnly,
+            label: 'Visible to',
+            defaultValue: NoteVisibility.Everyone,
             choices: [
                 {
                     value: NoteVisibility.YouOnly,
