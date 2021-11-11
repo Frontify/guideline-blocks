@@ -10,7 +10,7 @@ import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibili
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
 // TODO: Add this to shared package
-const shouldUseLightText = (color: Color): boolean => {
+const shouldUseLightText = (color: Pick<Color, 'rgba'>): boolean => {
     // https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/
     // Convert rgb to YIQ (https://en.wikipedia.org/wiki/YIQ)
     // If value is in upper half of spectrum, return dark

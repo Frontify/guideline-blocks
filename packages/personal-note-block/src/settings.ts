@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { numericalPixelValueRule } from './rules';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
