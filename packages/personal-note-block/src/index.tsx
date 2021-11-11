@@ -7,7 +7,17 @@ import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app
 import { RichTextEditor, Color } from '@frontify/arcade';
 import { NoteHeader } from './components/NoteHeader';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
-import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
+import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
+
+// TODO: Add this to shared package
+const shouldUseLightText = (color: Color): boolean => {
+    // https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/
+    // Convert rgb to YIQ (https://en.wikipedia.org/wiki/YIQ)
+    // If value is in upper half of spectrum, return dark
+    // If value is in lower half of spectrum, return light
+    const yiq = (color.rgba.r * 299 + color.rgba.g * 587 + color.rgba.b * 114) / 1000;
+    return yiq <= 128;
+};
 
 type PersonalNoteBlockProps = {
     appBridge: AppBridgeNative;
@@ -26,32 +36,24 @@ type Settings = {
     hasDateEdited: boolean;
     note: string;
     paddingChoice: NotePadding;
+    paddingValue: string;
     visibility: NoteVisibility;
 };
 
-const shouldUseLightText = (r, g, b) => {
-    // Convert rgb to YIQ (https://en.wikipedia.org/wiki/YIQ)
-    // If value is in upper half of spectrum, return dark
-    // If value is in lower half of spectrum, return light
-    var yiq = (r * 299 + g * 587 + b * 114) / 1000;
-    return yiq <= 128;
-};
+const getBorderStyles = (borderSelection: borderSelectionType, borderRadius: string) => ({
+    borderStyle: borderStyles[borderSelection[0]],
+    borderWidth: borderSelection[1],
+    borderColor: `rgba(${Object.values(borderSelection[2].rgba).join(', ')})`,
+    borderRadius,
+});
 
-console.log(shouldUseLightText(255, 255, 255));
-console.log(shouldUseLightText(45, 50, 50));
+const getBackgroundStyles = (backgroundColor: Color) => ({
+    backgroundColor: `rgba(${Object.values(backgroundColor.rgba).join(', ')})`,
+});
 
-const getBorderStyles = (hasborder: boolean, borderSelection: borderSelectionType, borderRadius: string) =>
-    hasborder
-        ? {
-              borderStyle: borderStyles[borderSelection[0]],
-              borderWidth: borderSelection[1],
-              borderColor: `rgba(${Object.values(borderSelection[2].rgba).join(', ')})`,
-              borderRadius,
-          }
-        : {};
-
-const getBackgroundStyles = (hasBackground: boolean, backgroundColor: Color) =>
-    hasBackground ? { backgroundColor: `rgba(${Object.values(backgroundColor.rgba).join(', ')})` } : {};
+const getPaddingStyles = (padding: string) => ({
+    padding,
+});
 
 const borderStyles: Record<NoteBorderStyle, string> = {
     [NoteBorderStyle.Solid]: 'solid',
@@ -78,7 +80,7 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const {
-        backgroundColor = '',
+        backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
         borderRadiusChoice = NoteBorderRadius.Small,
         borderRadiusValue = '',
         borderSelection = [NoteBorderStyle.Solid, '1px', BORDER_COLOR_DEFAULT_VALUE],
@@ -91,6 +93,7 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         hasDateEdited = true,
         note,
         paddingChoice = NotePadding.Small,
+        paddingValue = '',
         visibility = NoteVisibility.Everyone,
     } = blockSettings;
 
@@ -102,22 +105,24 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         });
     };
 
-    console.log({
-        ...getBorderStyles(hasBorder, borderSelection, hasCustomBorderRadius ? borderRadiusValue : ''),
-        ...getBackgroundStyles(hasBackground, backgroundColor),
-    });
-
     return (
         <div
             className={`tw-space-y-4
-              ${!hasCustomPadding && paddingClasses[paddingChoice]}
-              ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
+              ${!hasCustomPadding ? paddingClasses[paddingChoice] : ''}
+              ${!hasCustomBorderRadius ? borderRadiusClasses[borderRadiusChoice] : ''}
+              ${hasBackground && shouldUseLightText(backgroundColor) ? 'tw-text-white' : ''}`}
             style={{
-                ...getBorderStyles(hasBorder, borderSelection, hasCustomBorderRadius ? borderRadiusValue : ''),
-                ...getBackgroundStyles(hasBackground, backgroundColor),
+                ...(hasBorder && getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')),
+                ...(hasBackground && getBackgroundStyles(backgroundColor)),
+                ...(hasCustomPadding && getPaddingStyles(paddingValue)),
             }}
         >
-            <NoteHeader hasAvatarName={hasAvatarName} hasDateEdited={hasDateEdited} dateEdited={dateEdited} />
+            <NoteHeader
+                hasAvatarName={hasAvatarName}
+                hasDateEdited={hasDateEdited}
+                dateEdited={dateEdited}
+                useLightText={hasBackground ? shouldUseLightText(backgroundColor) : false}
+            />
             <RichTextEditor
                 value={note}
                 onTextChange={(value) => saveNote(value)}
