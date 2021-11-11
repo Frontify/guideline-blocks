@@ -15,7 +15,6 @@ export default defineConfig({
         alias,
     },
     plugins: [reactRefresh()],
-    
     build: {
         sourcemap: true,
         minify: true,
