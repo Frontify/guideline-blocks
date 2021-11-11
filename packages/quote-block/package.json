@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "^2.2.3",
-        "@frontify/arcade": "^0.10.0"
+        "@frontify/arcade": "^0.12.1"
     },
     "peerDependencies": {
         "react": "^17.0.2"
