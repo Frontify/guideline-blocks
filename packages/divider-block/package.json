@@ -11,7 +11,7 @@
         "prettier:fix": "prettier --write src"
     },
     "devDependencies": {
-        "@frontify/app-bridge": "2.5.2",
+        "@frontify/app-bridge": "2.6.0",
         "@frontify/arcade": "0.12.1",
         "@frontify/frontify-cli": "2.2.0",
         "@types/react": "17.0.34",
