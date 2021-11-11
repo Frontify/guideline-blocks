@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { numericalPixelValueRule } from './rules';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { MultiInputLayout } from '@frontify/arcade';
 
@@ -44,6 +45,14 @@ export default {
                 {
                     id: 'paddingValue',
                     type: 'input',
+                    placeholder: '20px',
+                    rules: [numericalPixelValueRule],
+                    onChange: (bundle: any): void => {
+                        const paddingValue = Number(bundle.getBlock('paddingValue')?.value);
+                        if (!Number.isNaN(paddingValue)) {
+                            bundle.setBlockValue('paddingValue', `${paddingValue}px`);
+                        }
+                    },
                 },
             ],
             off: [
@@ -120,6 +129,13 @@ export default {
                     id: 'borderWidth',
                     type: 'input',
                     defaultValue: '1px',
+                    rules: [numericalPixelValueRule],
+                    onChange: (bundle: any): void => {
+                        const borderWidth = Number(bundle.getBlock('borderWidth')?.value);
+                        if (!Number.isNaN(borderWidth)) {
+                            bundle.setBlockValue('borderWidth', `${borderWidth}px`);
+                        }
+                    },
                 },
                 {
                     id: 'borderColor',
@@ -138,6 +154,13 @@ export default {
                 {
                     id: 'borderRadiusValue',
                     type: 'input',
+                    rules: [numericalPixelValueRule],
+                    onChange: (bundle: any): void => {
+                        const borderRadiusValue = Number(bundle.getBlock('borderRadiusValue')?.value);
+                        if (!Number.isNaN(borderRadiusValue)) {
+                            bundle.setBlockValue('hasCustomBorderRadius', `${borderRadiusValue}px`);
+                        }
+                    },
                 },
             ],
             off: [
