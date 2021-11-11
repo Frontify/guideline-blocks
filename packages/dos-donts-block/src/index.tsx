@@ -83,7 +83,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                 layout === DoDontLayout.Stacked
                     ? `tw-grid-flow-col tw-grid-rows-2 tw-grid-cols-${columns}`
                     : 'tw-grid-cols-2'
-            } ${!isCustomSpacing && spacingClasses[spacingChoice]}`}
+            } ${!isCustomSpacing ? spacingClasses[spacingChoice] : ''}`}
             style={isCustomSpacing ? { gap: spacingValue } : {}}
         >
             {items.map((_, index) => {

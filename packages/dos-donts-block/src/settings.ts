@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DoDontStyle, DoDontLayout, DoDontSpacing } from './types';
+import { IconEnum } from '@frontify/arcade';
 
 export const DO_COLOR_DEFAULT_VALUE = { rgba: { r: 0, g: 200, b: 165, a: 1 } };
 export const DONT_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 55, b: 90, a: 1 } };
@@ -15,17 +16,17 @@ export default {
             choices: [
                 {
                     value: DoDontStyle.Icons,
-                    icon: 'dos-text',
+                    icon: IconEnum.DosText,
                     label: 'Icons',
                 },
                 {
                     value: DoDontStyle.Underline,
-                    icon: 'dos-donts-underline',
+                    icon: IconEnum.DoDontsUnderline,
                     label: 'Underline',
                 },
                 {
                     value: DoDontStyle.Text,
-                    icon: 'text-align-left',
+                    icon: IconEnum.TextAlignLeft,
                     label: 'Text',
                 },
             ],
