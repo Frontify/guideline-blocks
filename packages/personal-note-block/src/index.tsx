@@ -29,20 +29,29 @@ type Settings = {
     visibility: NoteVisibility;
 };
 
-const getStyles = (
-    hasBorder: boolean,
-    borderSelection: borderSelectionType,
-    hasCustomBorderRadius: boolean,
-    borderRadiusValue: string,
-    hasBackground: boolean,
-    backgroundColor: Color
-) => ({
-    borderStyle: borderStyles[borderSelection[0]],
-    borderWidth: borderSelection[1],
-    borderColor: `rgba(${Object.values(borderSelection[2].rgba).join(', ')})`,
-    borderRadius: hasCustomBorderRadius ? borderRadiusValue : '',
-    backgroundColor: hasBackground ? `rgba(${Object.values(backgroundColor.rgba).join(', ')})` : 'none',
-});
+const shouldUseLightText = (r, g, b) => {
+    // Convert rgb to YIQ (https://en.wikipedia.org/wiki/YIQ)
+    // If value is in upper half of spectrum, return dark
+    // If value is in lower half of spectrum, return light
+    var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq <= 128;
+};
+
+console.log(shouldUseLightText(255, 255, 255));
+console.log(shouldUseLightText(45, 50, 50));
+
+const getBorderStyles = (hasborder: boolean, borderSelection: borderSelectionType, borderRadius: string) =>
+    hasborder
+        ? {
+              borderStyle: borderStyles[borderSelection[0]],
+              borderWidth: borderSelection[1],
+              borderColor: `rgba(${Object.values(borderSelection[2].rgba).join(', ')})`,
+              borderRadius,
+          }
+        : {};
+
+const getBackgroundStyles = (hasBackground: boolean, backgroundColor: Color) =>
+    hasBackground ? { backgroundColor: `rgba(${Object.values(backgroundColor.rgba).join(', ')})` } : {};
 
 const borderStyles: Record<NoteBorderStyle, string> = {
     [NoteBorderStyle.Solid]: 'solid',
@@ -93,19 +102,20 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         });
     };
 
+    console.log({
+        ...getBorderStyles(hasBorder, borderSelection, hasCustomBorderRadius ? borderRadiusValue : ''),
+        ...getBackgroundStyles(hasBackground, backgroundColor),
+    });
+
     return (
         <div
             className={`tw-space-y-4
               ${!hasCustomPadding && paddingClasses[paddingChoice]}
               ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
-            style={getStyles(
-                hasBorder,
-                borderSelection,
-                hasCustomBorderRadius,
-                borderRadiusValue,
-                hasBackground,
-                backgroundColor
-            )}
+            style={{
+                ...getBorderStyles(hasBorder, borderSelection, hasCustomBorderRadius ? borderRadiusValue : ''),
+                ...getBackgroundStyles(hasBackground, backgroundColor),
+            }}
         >
             <NoteHeader hasAvatarName={hasAvatarName} hasDateEdited={hasDateEdited} dateEdited={dateEdited} />
             <RichTextEditor
