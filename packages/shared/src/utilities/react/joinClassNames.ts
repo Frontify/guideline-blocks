@@ -6,4 +6,4 @@
  * @param {Array} classNames Array of class names
  * @returns Clean string to be used for class name.
  */
-export const classname = (classNames: (string | undefined | boolean)[]): string => classNames.filter(Boolean).join(' ');
+export const joinClassNames = (classNames: (string | undefined | boolean)[]): string => classNames.filter(Boolean).join(' ');

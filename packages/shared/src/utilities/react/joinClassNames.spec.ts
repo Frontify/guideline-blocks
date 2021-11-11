@@ -1,8 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { classname } from './classname';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 
-describe('classname', () => {
+import { joinClassNames } from './joinClassNames';
+
+describe('joinClassNames', () => {
     const data = [
         { classes: ['lorem', undefined, false], expected: 'lorem' },
         { classes: ['lorem', 'ipsum'], expected: 'lorem ipsum' },
@@ -12,6 +14,6 @@ describe('classname', () => {
     ];
 
     it.each(data)('validate correctly values', ({ classes, expected }) => {
-        expect(classname(classes)).toBe(expected);
+        expect(joinClassNames(classes)).toBe(expected);
     });
 });
