@@ -1,0 +1,25 @@
+{
+    "ts-node": {
+        "files": true
+    },
+    "compilerOptions": {
+        "baseUrl": "./",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "noUnusedLocals": true,
+        "emitDeclarationOnly": true,
+        "declaration": true,
+        "declarationDir": "./dist",
+        "target": "es2016",
+        "jsx": "react",
+        "skipLibCheck": true,
+        "paths": {
+            "@components/*": ["./src/components/*"],
+            "@utilities/*": ["./src/utilities/*"],
+            "@hooks/*": ["./src/hooks/*"]
+        },
+        "typeRoots": ["./types"],
+        "types": ["vite/client"]
+    },
+    "include": ["types", "src/**/*"],
+    "extends": "../../tsconfig.json"
+}
