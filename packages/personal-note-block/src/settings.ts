@@ -3,7 +3,7 @@
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { MultiInputLayout } from '@frontify/arcade';
 
-export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 } };
+export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 } };
 export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 } };
 
 export default {
