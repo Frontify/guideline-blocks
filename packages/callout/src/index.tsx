@@ -1,19 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { FC, useEffect, useState } from 'react';
+import { CSSProperties, FC, useEffect, useState } from "react";
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Alignment,
     alignmentMap,
-    BlockSettings, CornerRadius,
-    cornerRadiusMap, Padding,
+    BlockSettings,
+    CornerRadius,
+    cornerRadiusMap,
+    Padding,
     paddingMap,
     Type,
     typeMap,
     Width,
-    widthMap
-} from "./types";
+    widthMap,
+} from './types';
 import { RichTextEditor } from '@frontify/arcade';
 
 type CustomPaddingStyles = {
@@ -52,7 +54,6 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CustomCornerRadius>();
     const [iconUrl, setIconUrl] = useState<string>();
     const [iconAltText, setIconAltText] = useState<string>();
-    console.log('callout');
 
     useEffect(() => {
         const paddingStyle = customPaddingSwitch
@@ -65,8 +66,8 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             : undefined;
         const cornerRadiusStyle = customCornerRadiusSwitch
             ? {
-                  borderRadius: `${customCornerRadius[0]} ${customCornerRadius[1]} ${customCornerRadius[3]} ${customCornerRadius[2]}`,
-              }
+                  borderRadius: `${customCornerRadius[0] ?? 0} ${customCornerRadius[1] ?? 0} ${customCornerRadius[3] ?? 0} ${customCornerRadius[2] ?? 0}`,
+              } as CSSProperties
             : undefined;
         setCustomPaddingStyle(paddingStyle);
         setCustomCornerRadiusStyle(cornerRadiusStyle);
