@@ -75,15 +75,15 @@ export default {
             choices: [
                 {
                     value: Alignment.Left,
-                    icon: 'align-left',
+                    icon: IconEnum.AlignLeft,
                 },
                 {
                     value: Alignment.Center,
-                    icon: 'align-center',
+                    icon: IconEnum.AlignCenter,
                 },
                 {
                     value: Alignment.Right,
-                    icon: 'align-right',
+                    icon: IconEnum.AlignRight,
                 },
             ],
         },
