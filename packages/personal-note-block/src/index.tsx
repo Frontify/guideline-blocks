@@ -105,6 +105,10 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         });
     };
 
+    if (visibility === NoteVisibility.Editors && !isEditing) {
+        return <></>;
+    }
+
     return (
         <div
             className={`tw-space-y-4
