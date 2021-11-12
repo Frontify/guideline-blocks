@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { shouldUseLightText } from './shouldUseLightText';
+import { isDark } from './isDark';
 
-describe('shouldUseLightText', () => {
+describe('isDark', () => {
     const data = [
         { rgbaObject: { r: 0, g: 0, b: 0 }, expected: true },
         { rgbaObject: { r: 255, g: 255, b: 255 }, expected: false },
@@ -10,6 +10,6 @@ describe('shouldUseLightText', () => {
     ];
 
     it.each(data)('validate correctly values', ({ rgbaObject, expected }) => {
-        expect(shouldUseLightText(rgbaObject)).toBe(expected);
+        expect(isDark(rgbaObject)).toBe(expected);
     });
 });
