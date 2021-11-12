@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { CSSProperties, FC, useEffect, useState } from "react";
+import { CSSProperties, FC, useEffect, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Alignment,
@@ -58,17 +58,20 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     useEffect(() => {
         const paddingStyle = customPaddingSwitch
             ? {
-                  paddingTop: customPadding[0],
-                  paddingRight: customPadding[2],
-                  paddingBottom: customPadding[3],
-                  paddingLeft: customPadding[1],
+                  paddingTop: customPadding[0] ?? 0,
+                  paddingRight: customPadding[2] ?? 0,
+                  paddingBottom: customPadding[3] ?? 0,
+                  paddingLeft: customPadding[1] ?? 0,
               }
             : undefined;
         const cornerRadiusStyle = customCornerRadiusSwitch
             ? {
-                  borderRadius: `${customCornerRadius[0] ?? 0} ${customCornerRadius[1] ?? 0} ${customCornerRadius[3] ?? 0} ${customCornerRadius[2] ?? 0}`,
-              } as CSSProperties
+                  borderRadius: `${customCornerRadius[0] ?? 0} ${customCornerRadius[1] ?? 0} ${
+                      customCornerRadius[3] ?? 0
+                  } ${customCornerRadius[2] ?? 0}`,
+              }
             : undefined;
+
         setCustomPaddingStyle(paddingStyle);
         setCustomCornerRadiusStyle(cornerRadiusStyle);
 
