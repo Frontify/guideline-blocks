@@ -29,6 +29,12 @@
         "typecheck": "tsc"
     },
     "author": "Frontify Developers <developers@frontify.com>",
+    "repository": {
+        "url": "https://github.com/Frontify/guideline-blocks.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Frontify/guideline-blocks/issues"
+    },
     "devDependencies": {
         "@storybook/addon-actions": "6.3.12",
         "@storybook/addon-essentials": "6.3.12",
@@ -61,7 +67,6 @@
     "dependencies": {
         "@frontify/app-bridge": "^2.6.0",
         "@frontify/arcade": "^0.12.0",
-        "@vitejs/plugin-react-refresh": "^1.3.6",
         "lodash-es": "^4.17.21"
     }
 }
