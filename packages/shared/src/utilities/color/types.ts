@@ -4,5 +4,5 @@ export type RgbaObject = {
     r: number;
     g: number;
     b: number;
-    a: number;
+    a?: number;
 };
