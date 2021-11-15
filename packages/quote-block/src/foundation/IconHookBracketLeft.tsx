@@ -1,16 +1,17 @@
 import { FC } from 'react';
-import { getIconSize, IconProps, ICON_CLASS_NAME } from './utilities';
+import { IconProps, ICON_CLASS_NAME } from './utilities';
 
-const IconHookBracketLeft: FC<IconProps> = ({ size }) => (
+const IconHookBracketLeft: FC<IconProps> = ({ style }) => (
     <svg
+        style={style}
         className={ICON_CLASS_NAME}
-        width={getIconSize(size)}
-        height={getIconSize(size)}
         viewBox="0 0 7 12"
         fill="currentColor"
+        width="100%"
+        height="100%"
         xmlns="http://www.w3.org/2000/svg"
     >
-        <path d="M6.07324 -4.06531e-07L0.212347 -9.18907e-07L0.212346 12L1.58483 12L1.58483 1.27975L6.07324 1.27975L6.07324 -4.06531e-07Z" />
+        <path d="M6.073 0H.213v12h1.372V1.28h4.488V0z" />
     </svg>
 );
 

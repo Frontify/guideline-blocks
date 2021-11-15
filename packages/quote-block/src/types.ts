@@ -4,9 +4,9 @@ export enum QuoteType {
 }
 
 export enum QuoteSize {
-    Small = 16,
-    Medium = 24,
-    Large = 32,
+    SmallSize = 'SmallSize',
+    MediumSize = 'MediumSize',
+    LargeSize = 'LargeSize',
 }
 
 export enum QuoteStyle {
@@ -30,7 +30,7 @@ export enum LineType {
 }
 
 export enum LineWidth {
-    Small = '2px',
-    Medium = '4px',
-    Large = '8px',
+    SmallWidth = 'SmallWidth',
+    MediumWidth = 'MediumWidth',
+    LargeWidth = 'LargeWidth',
 }

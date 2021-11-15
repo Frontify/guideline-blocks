@@ -1,13 +1,14 @@
 import { FC } from 'react';
-import { getIconSize, IconProps, ICON_CLASS_NAME } from './utilities';
+import { IconProps, ICON_CLASS_NAME } from './utilities';
 
-const IconNone: FC<IconProps> = ({ size }) => (
+const IconNone: FC<IconProps> = ({ style }) => (
     <svg
+        style={style}
         className={ICON_CLASS_NAME}
-        width={getIconSize(size)}
-        height={getIconSize(size)}
         viewBox="0 0 21 18"
         fill="currentColor"
+        width="100%"
+        height="100%"
         xmlns="http://www.w3.org/2000/svg"
     >
         <path

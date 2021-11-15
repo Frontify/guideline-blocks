@@ -1,21 +1,25 @@
+import { IconEnum } from '@frontify/arcade';
 import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
 
 const QUOTE_TYPE_ID = 'type';
+const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const QUOTE_STYLE_CHOICES = [
-    { value: QuoteStyle.DoubleUp, icon: 'quote', label: 'Double Up' },
-    { value: QuoteStyle.DoubleDown, icon: 'quote', label: 'Double Down' },
-    { value: QuoteStyle.SingleUp, icon: 'quote', label: 'Single Up' },
-    { value: QuoteStyle.SingleDown, icon: 'quote', label: 'Single Down' },
-    { value: QuoteStyle.DoubleChevronLeft, icon: 'quote', label: 'Double Chevron Left' },
-    { value: QuoteStyle.DoubleChevronRight, icon: 'quote', label: 'Double Chevron Right' },
-    { value: QuoteStyle.SingleChevronLeft, icon: 'quote', label: 'Single Chevron Left' },
-    { value: QuoteStyle.SingleChevronRight, icon: 'quote', label: 'Single Chevron Right' },
-    { value: QuoteStyle.HookBracketLeft, icon: 'quote', label: 'Hook Bracket Left' },
-    { value: QuoteStyle.HookBracketRight, icon: 'quote', label: 'Hook Bracket Right' },
-    { value: QuoteStyle.None, icon: 'quote', label: 'None' },
+    { value: QuoteStyle.DoubleUp, icon: IconEnum.DoubleQuotesUp, label: 'Double Up' },
+    { value: QuoteStyle.DoubleDown, icon: IconEnum.DoubleQuotesDown, label: 'Double Down' },
+    { value: QuoteStyle.SingleUp, icon: IconEnum.SingleQuoteUp, label: 'Single Up' },
+    { value: QuoteStyle.SingleDown, icon: IconEnum.SingleQuoteDown, label: 'Single Down' },
+    { value: QuoteStyle.DoubleChevronLeft, icon: IconEnum.DoubleChevronLeft, label: 'Double Chevron Left' },
+    { value: QuoteStyle.DoubleChevronRight, icon: IconEnum.DoubleChevronRight, label: 'Double Chevron Right' },
+    { value: QuoteStyle.SingleChevronLeft, icon: IconEnum.SingleChevronLeft, label: 'Single Chevron Left' },
+    { value: QuoteStyle.SingleChevronRight, icon: IconEnum.SingleChevronRight, label: 'Single Chevron Right' },
+    { value: QuoteStyle.HookBracketLeft, icon: IconEnum.HookBracketLeft, label: 'Hook Bracket Left' },
+    { value: QuoteStyle.HookBracketRight, icon: IconEnum.HookBracketRight, label: 'Hook Bracket Right' },
+    { value: QuoteStyle.None, icon: IconEnum.None, label: 'None' },
 ];
 
 const isSelected = (bundle: any, choice: QuoteType) => bundle.getBlock(QUOTE_TYPE_ID).value === choice;
+const showAccentLine = (bundle: any) =>
+    isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID).value === true;
 
 export default {
     main: [
@@ -27,12 +31,12 @@ export default {
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
-                    icon: 'quote',
+                    icon: IconEnum.Quote,
                     label: 'Quotation Marks',
                 },
                 {
                     value: QuoteType.Indentation,
-                    icon: 'quote',
+                    icon: IconEnum.ListIndented,
                     label: 'Indentation',
                 },
             ],
@@ -88,19 +92,19 @@ export default {
                 {
                     id: 'sizeChoice',
                     type: 'slider',
-                    defaultValue: QuoteSize.Small,
+                    defaultValue: QuoteSize.SmallSize,
                     choices: [
                         {
                             label: 'S',
-                            value: QuoteSize.Small,
+                            value: QuoteSize.SmallSize,
                         },
                         {
                             label: 'M',
-                            value: QuoteSize.Medium,
+                            value: QuoteSize.MediumSize,
                         },
                         {
                             label: 'L',
-                            value: QuoteSize.Large,
+                            value: QuoteSize.LargeSize,
                         },
                     ],
                 },
@@ -108,80 +112,79 @@ export default {
             show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
-            id: 'showAccentLine',
+            id: ACCENT_LINE_SWITCH_ID,
             type: 'switch',
             label: 'Accent line',
             defaultValue: true,
             show: (bundle: any) => isSelected(bundle, QuoteType.Indentation),
-            off: [],
-            on: [
+        },
+        {
+            id: 'lineType',
+            type: 'slider',
+            label: 'Type',
+            info: 'Choose between a solid, dashed and dotted accent line',
+            defaultValue: LineType.Solid,
+            show: showAccentLine,
+            choices: [
                 {
-                    id: 'lineType',
-                    type: 'slider',
-                    label: 'Type',
-                    info: 'Choose between a solid, dashed and dotted accent line',
-                    defaultValue: LineType.Solid,
-                    choices: [
-                        {
-                            label: 'Solid',
-                            value: LineType.Solid,
-                        },
-                        {
-                            label: 'Dashed',
-                            value: LineType.Dashed,
-                        },
-                        {
-                            label: 'Dotted',
-                            value: LineType.Dotted,
-                        },
-                    ],
+                    label: 'Solid',
+                    value: LineType.Solid,
                 },
                 {
-                    id: 'isCustomLineWidth',
-                    label: 'Width',
-                    type: 'switch',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
-                    info: 'Choose between small, medium, large or custom accent line width',
-                    on: [
-                        {
-                            id: 'lineWidthValue',
-                            type: 'input',
-                        },
-                    ],
-                    off: [
-                        {
-                            id: 'lineWidthChoice',
-                            type: 'slider',
-                            defaultValue: LineWidth.Small,
-                            choices: [
-                                {
-                                    label: 'S',
-                                    value: LineWidth.Small,
-                                },
-                                {
-                                    label: 'M',
-                                    value: LineWidth.Medium,
-                                },
-                                {
-                                    label: 'L',
-                                    value: LineWidth.Large,
-                                },
-                            ],
-                        },
-                    ],
+                    label: 'Dashed',
+                    value: LineType.Dashed,
                 },
                 {
-                    id: 'color',
-                    label: 'Color',
-                    type: 'input',
+                    label: 'Dotted',
+                    value: LineType.Dotted,
                 },
             ],
         },
         {
-            id: 'color',
+            id: 'isCustomLineWidth',
+            label: 'Width',
+            type: 'switch',
+            switchLabel: 'Custom',
+            info: 'Choose between small, medium, large or custom accent line width',
+            show: showAccentLine,
+            on: [
+                {
+                    id: 'lineWidthValue',
+                    type: 'input',
+                },
+            ],
+            off: [
+                {
+                    id: 'lineWidthChoice',
+                    type: 'slider',
+                    defaultValue: LineWidth.SmallWidth,
+                    choices: [
+                        {
+                            label: 'S',
+                            value: LineWidth.SmallWidth,
+                        },
+                        {
+                            label: 'M',
+                            value: LineWidth.MediumWidth,
+                        },
+                        {
+                            label: 'L',
+                            value: LineWidth.LargeWidth,
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: 'accentLinecolor',
             label: 'Color',
-            type: 'input',
+            type: 'colorInput',
+            show: showAccentLine,
+        },
+        {
+            id: 'quotesColor',
+            label: 'Color',
+            type: 'colorInput',
             show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
