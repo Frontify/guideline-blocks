@@ -3,6 +3,7 @@
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
+import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { Color } from '@frontify/arcade';
 import { DividerAlignment, dividerAlignment, DividerStyle, dividerStyle } from './types';
 import {
@@ -36,9 +37,6 @@ type Settings = {
 const Divider: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    // TODO: replace with shared utility after PR passes: https://github.com/Frontify/guideline-blocks/pull/37
-    const stringifyRGBA = (value: {}) => `rgba(${Object.values(value).join(', ')})`;
-
     return (
         <div className={`tw-flex ${dividerAlignment[blockSettings.alignment ?? ALIGNMENT_DEFAULT_VALUE]}`}>
             <div
@@ -63,8 +61,8 @@ const Divider: FC<Props> = ({ appBridge }) => {
                             ? blockSettings.thicknessCustom
                             : blockSettings.thicknessSimple,
                         borderTopColor: blockSettings.color?.rgba
-                            ? stringifyRGBA(blockSettings.color?.rgba)
-                            : stringifyRGBA(COLOR_DEFAULT_RGBA_VALUE),
+                            ? mapRgbaToString(blockSettings.color?.rgba)
+                            : mapRgbaToString(COLOR_DEFAULT_RGBA_VALUE),
                     }}
                 />
             </div>
