@@ -1,12 +1,11 @@
-import { AppBridgeNative, useEditorState } from '@frontify/app-bridge';
-import { useBlockSettings } from '@frontify/app-bridge/react';
+import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/arcade';
 import '@frontify/arcade/style';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { mapRgbaToString } from '../../shared/src';
-import { quoteIconMap, quoteSizeMap } from './foundation/utilities';
 import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
+import { quoteIconMap, quoteSizeMap } from './utilities';
 
 type Props = {
     appBridge: AppBridgeNative;
@@ -70,7 +69,7 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
         accentLinecolor = { hex: '' },
         quotesColor = { hex: '' },
         content = '',
-    }: Settings = blockSettings;
+    } = blockSettings;
 
     const placeholder = 'Add your quote text here';
     const size = isCustomSize ? sizeValue : quoteSizeMap[sizeChoice];
