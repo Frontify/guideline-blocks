@@ -4,6 +4,7 @@ import { Color, RichTextEditor } from '@frontify/arcade';
 import '@frontify/arcade/style';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
+import { mapRgbaToString } from '../../shared/src';
 import { quoteIconMap, quoteSizeMap } from './foundation/utilities';
 import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
 
@@ -73,11 +74,8 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const placeholder = 'Add your quote text here';
     const size = isCustomSize ? sizeValue : quoteSizeMap[sizeChoice];
-    // TODO: replace with shared utility after PR passes: https://github.com/Frontify/guideline-blocks/pull/37
-    const quotesRgba = quotesColor.rgba ? `rgba(${Object.values(quotesColor.rgba).join(', ')})` : quotesColor.hex;
-    const borderRgba = accentLinecolor.rgba
-        ? `rgba(${Object.values(accentLinecolor.rgba).join(', ')})`
-        : accentLinecolor.hex;
+    const quotesRgba = quotesColor.rgba ? mapRgbaToString(quotesColor.rgba) : quotesColor.hex;
+    const borderRgba = accentLinecolor.rgba ? mapRgbaToString(accentLinecolor.rgba) : accentLinecolor.hex;
     const borderStyles = showAccentLine
         ? {
               borderLeftStyle: lineType,
