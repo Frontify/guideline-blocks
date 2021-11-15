@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import reactRefresh from '@vitejs/plugin-react-refresh';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
@@ -14,7 +13,6 @@ export default defineConfig({
     resolve: {
         alias,
     },
-    plugins: [reactRefresh()],
     build: {
         sourcemap: true,
         minify: true,

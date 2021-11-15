@@ -5,6 +5,7 @@
     "compilerOptions": {
         "baseUrl": "./",
         "lib": ["dom", "dom.iterable", "esnext"],
+        "isolatedModules": false,
         "noUnusedLocals": true,
         "emitDeclarationOnly": true,
         "declaration": true,
