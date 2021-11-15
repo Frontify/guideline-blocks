@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IconProps, ICON_CLASS_NAME } from './utilities';
+import { IconProps, ICON_CLASS_NAME } from '../utilities';
 
 const IconDoubleQuotesDown: FC<IconProps> = ({ style }) => (
     <svg
