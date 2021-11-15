@@ -5,19 +5,10 @@ import '@frontify/arcade/style';
 import { FC } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor, Color } from '@frontify/arcade';
+import { mapRgbaToString, isDark } from '../../shared';
 import { NoteHeader } from './components/NoteHeader';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-
-// TODO: Add this to shared package
-const shouldUseLightText = (color: Pick<Color, 'rgba'>): boolean => {
-    // https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/
-    // Convert rgb to YIQ (https://en.wikipedia.org/wiki/YIQ)
-    // If value is in upper half of spectrum, return dark
-    // If value is in lower half of spectrum, return light
-    const yiq = (color.rgba.r * 299 + color.rgba.g * 587 + color.rgba.b * 114) / 1000;
-    return yiq <= 128;
-};
 
 type PersonalNoteBlockProps = {
     appBridge: AppBridgeNative;
@@ -43,12 +34,12 @@ type Settings = {
 const getBorderStyles = (borderSelection: borderSelectionType, borderRadius: string) => ({
     borderStyle: borderStyles[borderSelection[0]],
     borderWidth: borderSelection[1],
-    borderColor: `rgba(${Object.values(borderSelection[2].rgba).join(', ')})`,
+    borderColor: mapRgbaToString(borderSelection[2].rgba),
     borderRadius,
 });
 
 const getBackgroundStyles = (backgroundColor: Color) => ({
-    backgroundColor: `rgba(${Object.values(backgroundColor.rgba).join(', ')})`,
+    backgroundColor: mapRgbaToString(backgroundColor.rgba),
 });
 
 const getPaddingStyles = (padding: string) => ({
@@ -114,7 +105,7 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
             className={`tw-space-y-4
               ${!hasCustomPadding ? paddingClasses[paddingChoice] : ''}
               ${!hasCustomBorderRadius ? borderRadiusClasses[borderRadiusChoice] : ''}
-              ${hasBackground && shouldUseLightText(backgroundColor) ? 'tw-text-white' : ''}`}
+              ${hasBackground && isDark(backgroundColor.rgba) ? 'tw-text-white' : ''}`}
             style={{
                 ...(hasBorder && getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')),
                 ...(hasBackground && getBackgroundStyles(backgroundColor)),
@@ -125,7 +116,7 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
                 hasAvatarName={hasAvatarName}
                 hasDateEdited={hasDateEdited}
                 dateEdited={dateEdited}
-                useLightText={hasBackground ? shouldUseLightText(backgroundColor) : false}
+                useLightText={hasBackground ? isDark(backgroundColor.rgba) : false}
             />
             <RichTextEditor
                 value={note}
