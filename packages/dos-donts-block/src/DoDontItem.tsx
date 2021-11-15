@@ -5,6 +5,7 @@ import '@frontify/arcade/style';
 import { FC } from 'react';
 import { RichTextEditor, IconApprove, IconRejectCircle, IconSize, Color } from '@frontify/arcade';
 import { useEditorState } from '@frontify/app-bridge';
+import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { DoDontType, DoDontStyle, DoDontContent } from './types';
 
 export type ItemProps = {
@@ -20,8 +21,8 @@ export type ItemProps = {
 
 export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor, saveItem, title = '', body = '' }) => {
     const isEditing = useEditorState();
-    const doColorString = `rgba(${Object.values(doColor.rgba).join(', ')})`;
-    const dontColorString = `rgba(${Object.values(dontColor.rgba).join(', ')})`;
+    const doColorString = mapRgbaToString(doColor.rgba);
+    const dontColorString = mapRgbaToString(dontColor.rgba);
 
     const headingStyles: Record<DoDontType, object> = {
         [DoDontType.Do]: { color: doColorString },
