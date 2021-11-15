@@ -1,9 +1,10 @@
 import { AppBridgeNative, useEditorState } from '@frontify/app-bridge';
 import { useBlockSettings } from '@frontify/app-bridge/react';
+import { Color, RichTextEditor } from '@frontify/arcade';
 import '@frontify/arcade/style';
-import { ChangeEvent, FC } from 'react';
+import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { QuoteIconMap } from './foundation/quote-icon-map';
+import { quoteIconMap, quoteSizeMap } from './foundation/utilities';
 import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
 
 type Props = {
@@ -24,7 +25,8 @@ type Settings = {
     isCustomLineWidth?: boolean;
     lineWidthValue?: string;
     lineWidthChoice?: LineWidth;
-    color?: string;
+    accentLinecolor?: Color;
+    quotesColor?: Color;
     content?: string;
 };
 
@@ -34,15 +36,22 @@ type ContentWithAuthorProps = {
 };
 
 const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName, children }) => (
-    <div className="tw-flex-1">
+    <div className="tw-flex-1 tw-w-full">
         {children}
         {showAuthor && authorName && <p className="tw-text-right">{`- ${authorName}`}</p>}
     </div>
 );
 
+const lineWidthMap: Record<LineWidth, string> = {
+    [LineWidth.SmallWidth]: '2px',
+    [LineWidth.MediumWidth]: '4px',
+    [LineWidth.LargeWidth]: '8px',
+};
+
 const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState();
+
     const {
         showAuthor = false,
         authorName = '',
@@ -51,73 +60,63 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
         quoteStyleRight = QuoteStyle.DoubleDown,
         isCustomSize = false,
         sizeValue = '',
-        sizeChoice = QuoteSize.Small,
+        sizeChoice = QuoteSize.SmallSize,
         showAccentLine = false,
         lineType = LineType.Solid,
         isCustomLineWidth = false,
         lineWidthValue = '',
-        lineWidthChoice = LineWidth.Small,
-        color = '',
+        lineWidthChoice = LineWidth.SmallWidth,
+        accentLinecolor = { hex: '' },
+        quotesColor = { hex: '' },
         content = '',
     }: Settings = blockSettings;
 
-    const borderClassNames = ['tw-w-full', showAccentLine ? 'tw-pl-7' : 'tw-ml-7'].join(' ');
     const placeholder = 'Add your quote text here';
-    const size = isCustomSize ? sizeValue : sizeChoice;
+    const size = isCustomSize ? sizeValue : quoteSizeMap[sizeChoice];
+    // TODO: replace with shared utility after PR passes: https://github.com/Frontify/guideline-blocks/pull/37
+    const quotesRgba = quotesColor.rgba ? `rgba(${Object.values(quotesColor.rgba).join(', ')})` : quotesColor.hex;
+    const borderRgba = accentLinecolor.rgba
+        ? `rgba(${Object.values(accentLinecolor.rgba).join(', ')})`
+        : accentLinecolor.hex;
     const borderStyles = showAccentLine
         ? {
               borderLeftStyle: lineType,
-              borderLeftWidth: isCustomLineWidth ? lineWidthValue : lineWidthChoice,
-              borderLeftColor: color,
+              borderLeftWidth: isCustomLineWidth ? lineWidthValue : lineWidthMap[lineWidthChoice],
+              borderLeftColor: borderRgba,
           }
         : {};
 
-    const onChangeContent = (event: ChangeEvent<HTMLTextAreaElement>) =>
-        setBlockSettings({ ...blockSettings, content: event.target.value });
+    const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
     return (
         <>
             {type === QuoteType.QuotationMarks && (
-                <div className="tw-flex tw-justify-between tw-items-center tw-gap-x-7">
-                    {QuoteIconMap(size)[quoteStyleLeft]}
-
-                    {isEditing ? (
-                        <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
-                            <textarea
-                                className="tw-w-full"
-                                placeholder={placeholder}
-                                value={content}
-                                onChange={onChangeContent}
-                            />
-                        </ContentWithAuthor>
-                    ) : (
-                        <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
-                            <p className="tw-w-full">{content || placeholder}</p>
-                        </ContentWithAuthor>
-                    )}
-
-                    {QuoteIconMap(size)[quoteStyleRight]}
+                <div className="tw-flex tw-justify-between tw-gap-x-7">
+                    {quoteIconMap(size, quotesRgba)[quoteStyleLeft]}
+                    <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
+                        <RichTextEditor
+                            placeholder={placeholder}
+                            value={content}
+                            onTextChange={onChangeContent}
+                            readonly={!isEditing}
+                        />
+                    </ContentWithAuthor>
+                    {quoteIconMap(size, quotesRgba)[quoteStyleRight]}
                 </div>
             )}
 
-            {type === QuoteType.Indentation &&
-                (isEditing ? (
-                    <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
-                        <textarea
-                            className={borderClassNames}
-                            style={borderStyles}
+            {type === QuoteType.Indentation && (
+                <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
+                    <div style={borderStyles} className={showAccentLine ? 'tw-pl-7' : 'tw-ml-7'}>
+                        <RichTextEditor
                             placeholder={placeholder}
                             value={content}
-                            onChange={onChangeContent}
+                            onTextChange={onChangeContent}
+                            readonly={!isEditing}
                         />
-                    </ContentWithAuthor>
-                ) : (
-                    <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
-                        <p className={borderClassNames} style={borderStyles}>
-                            {content || placeholder}
-                        </p>
-                    </ContentWithAuthor>
-                ))}
+                    </div>
+                </ContentWithAuthor>
+            )}
         </>
     );
 };
