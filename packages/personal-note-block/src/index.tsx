@@ -88,13 +88,12 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         visibility = NoteVisibility.Everyone,
     } = blockSettings;
 
-    const saveNote = (value: string) => {
+    const saveNote = (value: string) =>
         setBlockSettings({
             ...blockSettings,
             note: value,
             dateEdited: new Date(),
         });
-    };
 
     if (visibility === NoteVisibility.Editors && !isEditing) {
         return <></>;
@@ -116,11 +115,11 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
                 hasAvatarName={hasAvatarName}
                 hasDateEdited={hasDateEdited}
                 dateEdited={dateEdited}
-                useLightText={hasBackground ? isDark(backgroundColor.rgba) : false}
+                useLightText={hasBackground && isDark(backgroundColor.rgba)}
             />
             <RichTextEditor
                 value={note}
-                onTextChange={(value) => saveNote(value)}
+                onTextChange={saveNote}
                 placeholder="Write personal note here ..."
                 readonly={!isEditing}
             />
