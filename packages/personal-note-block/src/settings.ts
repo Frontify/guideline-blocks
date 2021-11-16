@@ -2,7 +2,7 @@
 
 import { numericalPixelValueRule } from './rules';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
-import { MultiInputLayout } from '@frontify/arcade';
+import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 } };
 export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 } };
@@ -17,7 +17,7 @@ export default {
             choices: [
                 {
                     value: NoteStyle.Card,
-                    icon: 'card',
+                    icon: IconEnum.Cards,
                     label: 'Card',
                 },
             ],
