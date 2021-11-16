@@ -1,34 +1,11 @@
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Color, RichTextEditor } from '@frontify/arcade';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/arcade';
 import '@frontify/arcade/style';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { mapRgbaToString } from '../../shared/src';
-import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
+import { LineType, LineWidth, Props, QuoteSize, QuoteStyle, QuoteType, Settings } from './types';
 import { quoteIconMap, quoteSizeMap } from './utilities';
-
-type Props = {
-    appBridge: AppBridgeNative;
-};
-
-type Settings = {
-    type?: QuoteType;
-    quoteStyleLeft?: QuoteStyle;
-    quoteStyleRight?: QuoteStyle;
-    showAuthor: boolean;
-    authorName: string;
-    isCustomSize?: boolean;
-    sizeValue?: string;
-    sizeChoice?: QuoteSize;
-    showAccentLine?: boolean;
-    lineType?: LineType;
-    isCustomLineWidth?: boolean;
-    lineWidthValue?: string;
-    lineWidthChoice?: LineWidth;
-    accentLinecolor?: Color;
-    quotesColor?: Color;
-    content?: string;
-};
 
 type ContentWithAuthorProps = {
     showAuthor: boolean;
@@ -61,7 +38,7 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
         isCustomSize = false,
         sizeValue = '',
         sizeChoice = QuoteSize.SmallSize,
-        showAccentLine = false,
+        showAccentLine = true,
         lineType = LineType.Solid,
         isCustomLineWidth = false,
         lineWidthValue = '',
