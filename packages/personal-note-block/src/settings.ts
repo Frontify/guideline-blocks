@@ -1,21 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { numericalPixelValueRule } from './rules';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 }, name: 'White' };
 export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 }, name: 'Light Grey' };
-
-const PADDING_VALUE_ID = 'paddingValue';
-const HAS_BACKGROUND_ID = 'hasBackground';
-const HAS_BORDER_ID = 'hasBorder';
-const BORDER_WIDTH_ID = 'borderWidth';
-const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
-
-export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 } };
-export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 } };
 
 const PADDING_VALUE_ID = 'paddingValue';
 const HAS_BACKGROUND_ID = 'hasBackground';
