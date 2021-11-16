@@ -5,7 +5,7 @@ import '@frontify/arcade/style';
 import { FC, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor, Color } from '@frontify/arcade';
-import { mapRgbaToString, isDark } from '@frontify/guideline-blocks-shared';
+import { mapRgbaToString, isDark, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { NoteHeader } from './components/NoteHeader';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
@@ -108,10 +108,12 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
 
     return (
         <div
-            className={`tw-space-y-4
-              ${!hasCustomPadding ? paddingClasses[paddingChoice] : ''}
-              ${!hasCustomBorderRadius ? borderRadiusClasses[borderRadiusChoice] : ''}
-              ${hasBackground && isDark(backgroundColor.rgba) ? 'tw-text-white' : ''}`}
+            className={joinClassNames([
+                'tw-space-y-4',
+                !hasCustomPadding ? paddingClasses[paddingChoice] : '',
+                !hasCustomBorderRadius ? borderRadiusClasses[borderRadiusChoice] : '',
+                hasBackground && isDark(backgroundColor.rgba) ? 'tw-text-white' : '',
+            ])}
             style={{
                 ...(hasBorder && getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')),
                 ...(hasBackground && getBackgroundStyles(backgroundColor)),
