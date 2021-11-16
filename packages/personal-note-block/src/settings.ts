@@ -7,6 +7,12 @@ import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 } };
 export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 } };
 
+const PADDING_VALUE_ID = 'paddingValue';
+const HAS_BACKGROUND_ID = 'hasBackground';
+const HAS_BORDER_ID = 'hasBorder';
+const BORDER_WIDTH_ID = 'borderWidth';
+const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
+
 export default {
     main: [
         {
@@ -43,14 +49,14 @@ export default {
             switchLabel: 'Custom',
             on: [
                 {
-                    id: 'paddingValue',
+                    id: PADDING_VALUE_ID,
                     type: 'input',
                     placeholder: '20px',
                     rules: [numericalPixelValueRule],
                     onChange: (bundle: any): void => {
-                        const paddingValue = Number(bundle.getBlock('paddingValue')?.value);
-                        if (!Number.isNaN(paddingValue)) {
-                            bundle.setBlockValue('paddingValue', `${paddingValue}px`);
+                        const value = Number(bundle.getBlock(PADDING_VALUE_ID)?.value);
+                        if (!Number.isNaN(value)) {
+                            bundle.setBlockValue(PADDING_VALUE_ID, `${value}px`);
                         }
                     },
                 },
@@ -84,27 +90,29 @@ export default {
     ],
     style: [
         {
-            id: 'hasBackground',
+            id: HAS_BACKGROUND_ID,
             label: 'Background',
             type: 'switch',
+            defaultValue: false,
         },
         {
             id: 'backgroundColor',
             type: 'colorInput',
             defaultValue: BACKGROUND_COLOR_DEFAULT_VALUE,
-            show: (bundle) => bundle.getBlock('hasBackground').value,
+            show: (bundle) => bundle.getBlock(HAS_BACKGROUND_ID).value,
         },
         {
-            id: 'hasBorder',
+            id: HAS_BORDER_ID,
             label: 'Border',
             type: 'switch',
+            defaultValue: true,
         },
         {
             id: 'borderSelection',
             type: 'multiInput',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle) => bundle.getBlock('hasBorder').value,
+            show: (bundle) => bundle.getBlock(HAS_BORDER_ID).value,
             blocks: [
                 {
                     id: 'borderStyle',
@@ -126,14 +134,14 @@ export default {
                     ],
                 },
                 {
-                    id: 'borderWidth',
+                    id: BORDER_WIDTH_ID,
                     type: 'input',
                     defaultValue: '1px',
                     rules: [numericalPixelValueRule],
                     onChange: (bundle: any): void => {
-                        const borderWidth = Number(bundle.getBlock('borderWidth')?.value);
-                        if (!Number.isNaN(borderWidth)) {
-                            bundle.setBlockValue('borderWidth', `${borderWidth}px`);
+                        const value = Number(bundle.getBlock(BORDER_WIDTH_ID)?.value);
+                        if (!Number.isNaN(value)) {
+                            bundle.setBlockValue(BORDER_WIDTH_ID, `${value}px`);
                         }
                     },
                 },
@@ -149,16 +157,16 @@ export default {
             label: 'Corner radius',
             type: 'switch',
             switchLabel: 'Custom',
-            show: (bundle) => bundle.getBlock('hasBorder').value,
+            show: (bundle) => bundle.getBlock(HAS_BORDER_ID).value,
             on: [
                 {
-                    id: 'borderRadiusValue',
+                    id: BORDER_RADIUS_VALUE_ID,
                     type: 'input',
                     rules: [numericalPixelValueRule],
                     onChange: (bundle: any): void => {
-                        const borderRadiusValue = Number(bundle.getBlock('borderRadiusValue')?.value);
-                        if (!Number.isNaN(borderRadiusValue)) {
-                            bundle.setBlockValue('hasCustomBorderRadius', `${borderRadiusValue}px`);
+                        const value = Number(bundle.getBlock(BORDER_RADIUS_VALUE_ID)?.value);
+                        if (!Number.isNaN(value)) {
+                            bundle.setBlockValue(BORDER_RADIUS_VALUE_ID, `${value}px`);
                         }
                     },
                 },
