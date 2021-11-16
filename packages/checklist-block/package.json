@@ -1,0 +1,30 @@
+{
+    "name": "example",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "serve:block": "frontify-cli block serve --blockDir $(PWD)",
+        "lint": "eslint src",
+        "lint:fix": "eslint --fix src",
+        "prettier": "prettier --check src",
+        "prettier:fix": "prettier --write src"
+    },
+    "devDependencies": {
+        "@frontify/frontify-cli": "2.2.0",
+        "@types/react": "17.0.35",
+        "autoprefixer": "10.4.0",
+        "postcss": "8.3.11",
+        "prettier": "2.4.1",
+        "tailwindcss": "2.2.19",
+        "typescript": "4.4.4"
+    },
+    "dependencies": {
+        "@frontify/app-bridge": "^2.6.0",
+        "@frontify/arcade": "^0.12.1",
+        "@frontify/guideline-blocks-shared": "1.0.0"
+    },
+    "peerDependencies": {
+        "react": "^17.0.2"
+    }
+}
