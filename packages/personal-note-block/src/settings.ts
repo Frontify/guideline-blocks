@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { numericalPixelValueRule } from './rules';
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 } };
 export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 } };
@@ -52,7 +52,7 @@ export default {
                     id: PADDING_VALUE_ID,
                     type: 'input',
                     placeholder: '20px',
-                    rules: [numericalPixelValueRule],
+                    rules: [numericalOrPixelRule],
                     onChange: (bundle: any): void => {
                         const value = Number(bundle.getBlock(PADDING_VALUE_ID)?.value);
                         if (!Number.isNaN(value)) {
@@ -137,7 +137,7 @@ export default {
                     id: BORDER_WIDTH_ID,
                     type: 'input',
                     defaultValue: '1px',
-                    rules: [numericalPixelValueRule],
+                    rules: [numericalOrPixelRule],
                     onChange: (bundle: any): void => {
                         const value = Number(bundle.getBlock(BORDER_WIDTH_ID)?.value);
                         if (!Number.isNaN(value)) {
@@ -162,7 +162,7 @@ export default {
                 {
                     id: BORDER_RADIUS_VALUE_ID,
                     type: 'input',
-                    rules: [numericalPixelValueRule],
+                    rules: [numericalOrPixelRule],
                     onChange: (bundle: any): void => {
                         const value = Number(bundle.getBlock(BORDER_RADIUS_VALUE_ID)?.value);
                         if (!Number.isNaN(value)) {
