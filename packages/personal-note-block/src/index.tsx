@@ -2,7 +2,7 @@
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor, Color } from '@frontify/arcade';
 import { mapRgbaToString, isDark } from '@frontify/guideline-blocks-shared';
@@ -69,6 +69,13 @@ const paddingClasses: Record<NotePadding, string> = {
 const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [name, setName] = useState<string>('');
+    const [avatar, setAvatar] = useState<string>('');
+
+    const currentUser = appBridge.getCurrentLoggedUser().then((data) => {
+        setName(data?.name);
+        setAvatar(data?.image?.image);
+    });
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
@@ -113,6 +120,8 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         >
             <NoteHeader
                 hasAvatarName={hasAvatarName}
+                name={name}
+                avatar={avatar}
                 hasDateEdited={hasDateEdited}
                 dateEdited={dateEdited}
                 useLightText={hasBackground && isDark(backgroundColor.rgba)}
