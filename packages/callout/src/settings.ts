@@ -76,14 +76,17 @@ export default {
                 {
                     value: Alignment.Left,
                     icon: IconEnum.AlignLeft,
+                    label: 'Left',
                 },
                 {
                     value: Alignment.Center,
                     icon: IconEnum.AlignCenter,
+                    label: 'Center',
                 },
                 {
                     value: Alignment.Right,
                     icon: IconEnum.AlignRight,
+                    label: 'Right',
                 },
             ],
         },

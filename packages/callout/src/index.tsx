@@ -51,7 +51,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         textValue,
     } = blockSettings;
     const [customPaddingStyle, setCustomPaddingStyle] = useState<CustomPaddingStyles>();
-    const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CustomCornerRadius>();
+    const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CSSProperties>();
     const [iconUrl, setIconUrl] = useState<string>();
     const [iconAltText, setIconAltText] = useState<string>();
 
