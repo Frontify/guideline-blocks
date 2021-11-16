@@ -2,7 +2,7 @@
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor, Color } from '@frontify/arcade';
 import { mapRgbaToString, isDark, joinClassNames } from '@frontify/guideline-blocks-shared';
@@ -28,6 +28,7 @@ type Settings = {
     note: string;
     paddingChoice: NotePadding;
     paddingValue: string;
+    userId: string;
     visibility: NoteVisibility;
 };
 
@@ -69,13 +70,9 @@ const paddingClasses: Record<NotePadding, string> = {
 const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [user, setUser] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [avatar, setAvatar] = useState<string>('');
-
-    const currentUser = appBridge.getCurrentLoggedUser().then((data) => {
-        setName(data?.name);
-        setAvatar(data?.image?.image);
-    });
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
@@ -92,17 +89,46 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         note,
         paddingChoice = NotePadding.Small,
         paddingValue = '',
+        createdByUser,
         visibility = NoteVisibility.Everyone,
     } = blockSettings;
 
-    const saveNote = (value: string) =>
+    const saveNote = (value: string) => {
         setBlockSettings({
             ...blockSettings,
             note: value,
             dateEdited: new Date(),
         });
+    };
+
+    const saveUser = (userId: string) => {
+        setUser(userId);
+        if (!createdByUser) {
+            setBlockSettings({
+                ...blockSettings,
+                createdByUser: userId,
+            });
+        }
+    };
+
+    useEffect(() => {
+        async function getUserData() {
+            await appBridge.getCurrentLoggedUser().then((data) => {
+                saveUser(data?.id);
+                setName(data?.name);
+                setAvatar(data?.image?.image);
+            });
+        }
+        getUserData();
+    }, []);
 
     if (visibility === NoteVisibility.Editors && !isEditing) {
+        // If visibility "editors" is selected, hide block when not in editing mode
+        return <></>;
+    }
+
+    if (visibility === NoteVisibility.YouOnly && createdByUser !== user) {
+        // If visibility "you only" is selected, hide block when current user is not matching user who created the block
         return <></>;
     }
 
@@ -110,9 +136,9 @@ const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
         <div
             className={joinClassNames([
                 'tw-space-y-4',
-                !hasCustomPadding ? paddingClasses[paddingChoice] : '',
-                !hasCustomBorderRadius ? borderRadiusClasses[borderRadiusChoice] : '',
-                hasBackground && isDark(backgroundColor.rgba) ? 'tw-text-white' : '',
+                !hasCustomPadding && paddingClasses[paddingChoice],
+                !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
+                hasBackground && isDark(backgroundColor.rgba) && 'tw-text-white',
             ])}
             style={{
                 ...(hasBorder && getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')),
