@@ -1,68 +1,57 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { useBlockSettings } from '@frontify/app-bridge';
+import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
-import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { Color } from '@frontify/arcade';
-import { DividerAlignment, dividerAlignment, DividerStyle, dividerStyle } from './types';
 import {
     ALIGNMENT_DEFAULT_VALUE,
     COLOR_DEFAULT_RGBA_VALUE,
     HEIGHT_DEFAULT_VALUE,
     STYLE_DEFAULT_VALUE,
+    THICKNESS_DEFAULT_VALUE,
     WIDTH_DEFAULT_VALUE,
 } from './settings';
-
-type Props = {
-    appBridge: AppBridgeNative;
-};
-
-type Settings = {
-    alignment?: DividerAlignment;
-    style?: DividerStyle;
-    isLine?: string;
-    color?: Color;
-    isWidthCustom?: boolean;
-    widthCustom?: string;
-    widthSimple?: string;
-    isHeightCustom?: boolean;
-    heightCustom?: string;
-    heightSimple?: string;
-    isThicknessCustom?: boolean;
-    thicknessCustom?: string;
-    thicknessSimple?: string;
-};
+import { dividerAlignment, DividerStyle, dividerStyle, Props, Settings } from './types';
 
 const Divider: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
+    const {
+        isLine = DividerStyle.Solid,
+        alignment = ALIGNMENT_DEFAULT_VALUE,
+        style = STYLE_DEFAULT_VALUE,
+        color = COLOR_DEFAULT_RGBA_VALUE,
+        isWidthCustom = false,
+        widthCustom = '',
+        widthSimple = WIDTH_DEFAULT_VALUE,
+        isHeightCustom = false,
+        heightCustom = '',
+        heightSimple = HEIGHT_DEFAULT_VALUE,
+        isThicknessCustom = false,
+        thicknessCustom = '',
+        thicknessSimple = THICKNESS_DEFAULT_VALUE,
+    } = blockSettings;
+
     return (
-        <div className={`tw-flex ${dividerAlignment[blockSettings.alignment ?? ALIGNMENT_DEFAULT_VALUE]}`}>
+        <div className={joinClassNames(['tw-flex', dividerAlignment[alignment]])}>
             <div
                 className="tw-flex tw-items-center tw-transition-all"
                 style={{
-                    width: blockSettings.isWidthCustom
-                        ? blockSettings.widthCustom
-                        : blockSettings.widthSimple ?? WIDTH_DEFAULT_VALUE,
-                    height: blockSettings.isHeightCustom
-                        ? blockSettings.heightCustom
-                        : blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE,
+                    width: isWidthCustom ? widthCustom : widthSimple,
+                    height: isHeightCustom ? heightCustom : heightSimple,
                 }}
             >
                 <hr
-                    className={`tw-border-t tw-m-0 tw-w-full ${
-                        blockSettings.isLine === DividerStyle.Solid || !blockSettings.isLine
-                            ? dividerStyle[blockSettings.style ?? STYLE_DEFAULT_VALUE]
-                            : dividerStyle[DividerStyle.NoLine]
-                    }`}
+                    className={joinClassNames([
+                        'tw-border-t tw-m-0 tw-w-full',
+                        isLine === DividerStyle.Solid || !isLine
+                            ? dividerStyle[style]
+                            : dividerStyle[DividerStyle.NoLine],
+                    ])}
                     style={{
-                        borderTopWidth: blockSettings.isThicknessCustom
-                            ? blockSettings.thicknessCustom
-                            : blockSettings.thicknessSimple,
-                        borderTopColor: blockSettings.color?.rgba
-                            ? mapRgbaToString(blockSettings.color?.rgba)
-                            : mapRgbaToString(COLOR_DEFAULT_RGBA_VALUE),
+                        borderTopWidth: isThicknessCustom ? thicknessCustom : thicknessSimple,
+                        borderTopColor: color.rgba ? mapRgbaToString(color.rgba) : color.hex,
                     }}
                 />
             </div>

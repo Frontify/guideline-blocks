@@ -1,5 +1,28 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeNative } from '@frontify/app-bridge';
+import { Color } from '@frontify/arcade';
+
+export type Props = {
+    appBridge: AppBridgeNative;
+};
+
+export type Settings = {
+    alignment?: DividerAlignment;
+    style?: DividerStyle;
+    isLine?: string;
+    color?: Color;
+    isWidthCustom?: boolean;
+    widthCustom?: string;
+    widthSimple?: string;
+    isHeightCustom?: boolean;
+    heightCustom?: string;
+    heightSimple?: string;
+    isThicknessCustom?: boolean;
+    thicknessCustom?: string;
+    thicknessSimple?: string;
+};
+
 export enum DividerStyle {
     NoLine = 'noline',
     Dashed = 'dashed',

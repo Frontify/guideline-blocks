@@ -1,21 +1,22 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
+import { Color, IconEnum } from '@frontify/arcade';
 import {
-    numericalOrPixelRule,
-    numericalOrPercentRule,
     betweenNumericalOrPercentOrAutoRule,
     minimumNumericalOrPixelOrAutoRule,
+    numericalOrPercentRule,
+    numericalOrPixelRule,
 } from '@frontify/guideline-blocks-shared';
-import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThickness } from './types';
+import { DividerAlignment, DividerHeight, DividerStyle, DividerThickness, DividerWidth } from './types';
 
 const IS_LINE_ID = 'isLine';
 
 export const ALIGNMENT_DEFAULT_VALUE = DividerAlignment.Left;
 export const STYLE_DEFAULT_VALUE = DividerStyle.Solid;
+export const THICKNESS_DEFAULT_VALUE = DividerThickness.Small;
 export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
 export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
-export const COLOR_DEFAULT_RGBA_VALUE = { r: 100, g: 12, b: 0, a: 1 };
+export const COLOR_DEFAULT_RGBA_VALUE: Color = { hex: '640c00', rgba: { r: 100, g: 12, b: 0, a: 1 } };
 
 const solidStyleIsSelected = (bundle: any) => bundle.getBlock(IS_LINE_ID).value === DividerStyle.Solid;
 
@@ -46,6 +47,7 @@ export default {
             type: 'switch',
             label: 'Width',
             switchLabel: 'Custom',
+            defaultValue: false,
             on: [
                 {
                     id: 'widthCustom',
@@ -115,6 +117,7 @@ export default {
             label: 'Block Height',
             switchLabel: 'Custom',
             info: 'Determines the block height. This will not affect the dividing line in any way.',
+            defaultValue: false,
             on: [
                 {
                     id: 'heightCustom',
@@ -179,6 +182,7 @@ export default {
             type: 'switch',
             label: 'Thickness',
             switchLabel: 'Custom',
+            defaultValue: false,
             on: [
                 {
                     id: 'thicknessCustom',
@@ -197,7 +201,7 @@ export default {
                 {
                     id: 'thicknessSimple',
                     type: 'slider',
-                    defaultValue: DividerThickness.Small,
+                    defaultValue: THICKNESS_DEFAULT_VALUE,
                     choices: [
                         {
                             value: DividerThickness.Small,
