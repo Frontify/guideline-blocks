@@ -10,17 +10,17 @@ export type Props = {
 export type Settings = {
     alignment?: DividerAlignment;
     style?: DividerStyle;
-    isLine?: string;
+    isLine?: DividerStyle;
     color?: Color;
     isWidthCustom?: boolean;
     widthCustom?: string;
-    widthSimple?: string;
+    widthSimple?: DividerWidth;
     isHeightCustom?: boolean;
     heightCustom?: string;
-    heightSimple?: string;
+    heightSimple?: DividerHeight;
     isThicknessCustom?: boolean;
     thicknessCustom?: string;
-    thicknessSimple?: string;
+    thicknessSimple?: DividerThickness;
 };
 
 export enum DividerStyle {
@@ -31,17 +31,10 @@ export enum DividerStyle {
 }
 
 export enum DividerHeight {
-    Small = '36px',
-    Medium = '60px',
-    Large = '96px',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
 }
-
-export const dividerStyle = {
-    [DividerStyle.NoLine]: 'tw-border-none',
-    [DividerStyle.Dashed]: 'tw-border-dashed',
-    [DividerStyle.Solid]: 'tw-border-solid',
-    [DividerStyle.Dotted]: 'tw-border-dotted',
-};
 
 export enum DividerWidth {
     '10%' = '10%',
@@ -51,19 +44,38 @@ export enum DividerWidth {
 }
 
 export enum DividerAlignment {
-    Center = 'center',
-    Right = 'right',
-    Left = 'left',
+    Center = 'Center',
+    Right = 'Right',
+    Left = 'Left',
 }
 
-export const dividerAlignment = {
+export enum DividerThickness {
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+}
+
+export const dividerHeightMap: Record<DividerHeight, string> = {
+    [DividerHeight.Small]: '36px',
+    [DividerHeight.Medium]: '60px',
+    [DividerHeight.Large]: '96px',
+};
+
+export const dividerStyleMap: Record<DividerStyle, string> = {
+    [DividerStyle.NoLine]: 'tw-border-none',
+    [DividerStyle.Dashed]: 'tw-border-dashed',
+    [DividerStyle.Solid]: 'tw-border-solid',
+    [DividerStyle.Dotted]: 'tw-border-dotted',
+};
+
+export const dividerAlignmentMap: Record<DividerAlignment, string> = {
     [DividerAlignment.Center]: 'tw-justify-center',
     [DividerAlignment.Right]: 'tw-justify-end',
     [DividerAlignment.Left]: 'tw-justify-start',
 };
 
-export enum DividerThickness {
-    Small = '1px',
-    Medium = '2px',
-    Large = '4px',
-}
+export const dividerThicknessMap: Record<DividerThickness, string> = {
+    [DividerThickness.Small]: '1px',
+    [DividerThickness.Medium]: '2px',
+    [DividerThickness.Large]: '4px',
+};

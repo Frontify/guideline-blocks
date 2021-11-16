@@ -12,7 +12,15 @@ import {
     THICKNESS_DEFAULT_VALUE,
     WIDTH_DEFAULT_VALUE,
 } from './settings';
-import { dividerAlignment, DividerStyle, dividerStyle, Props, Settings } from './types';
+import {
+    dividerAlignmentMap,
+    dividerHeightMap,
+    DividerStyle,
+    dividerStyleMap,
+    dividerThicknessMap,
+    Props,
+    Settings,
+} from './types';
 
 const Divider: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -34,23 +42,21 @@ const Divider: FC<Props> = ({ appBridge }) => {
     } = blockSettings;
 
     return (
-        <div className={joinClassNames(['tw-flex', dividerAlignment[alignment]])}>
+        <div className={joinClassNames(['tw-flex', dividerAlignmentMap[alignment]])}>
             <div
                 className="tw-flex tw-items-center tw-transition-all"
                 style={{
                     width: isWidthCustom ? widthCustom : widthSimple,
-                    height: isHeightCustom ? heightCustom : heightSimple,
+                    height: isHeightCustom ? heightCustom : dividerHeightMap[heightSimple],
                 }}
             >
                 <hr
                     className={joinClassNames([
                         'tw-border-t tw-m-0 tw-w-full',
-                        isLine === DividerStyle.Solid || !isLine
-                            ? dividerStyle[style]
-                            : dividerStyle[DividerStyle.NoLine],
+                        dividerStyleMap[isLine === DividerStyle.Solid ? style : DividerStyle.NoLine],
                     ])}
                     style={{
-                        borderTopWidth: isThicknessCustom ? thicknessCustom : thicknessSimple,
+                        borderTopWidth: isThicknessCustom ? thicknessCustom : dividerThicknessMap[thicknessSimple],
                         borderTopColor: color.rgba ? mapRgbaToString(color.rgba) : color.hex,
                     }}
                 />
