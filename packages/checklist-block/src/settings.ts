@@ -1,4 +1,4 @@
-import { IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { IconEnum, InlineStyles, MultiInputLayout } from '@frontify/arcade';
 
 const showProgressStyles = (bundle: any): boolean => {
     return bundle.getBlock('progressBarVisible').value === true && bundle.getBlock('progressBarType').value === 'bar';
@@ -20,7 +20,7 @@ export default {
                 },
                 {
                     value: 'strikethrough',
-                    icon: IconEnum.Symbols,
+                    icon: InlineStyles.Strikethrough,
                     label: 'Strikethrough',
                 },
                 {
