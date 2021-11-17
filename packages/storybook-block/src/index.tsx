@@ -1,26 +1,26 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/arcade/style';
-import { FC, useState, useEffect, CSSProperties, KeyboardEvent } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, TextInput, IconStorybook, IconSize } from '@frontify/arcade';
+import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
+import '@frontify/arcade/style';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { CSSProperties, FC, KeyboardEvent, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
+import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
 import {
     BlockProps,
+    borderRadiusClasses,
     BorderSelectionType,
+    borderStyles,
+    heights,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
-    StorybookStyle,
     StorybookHeight,
     StorybookPosition,
-    borderStyles,
-    borderRadiusClasses,
-    heights,
+    StorybookStyle,
 } from './types';
-import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
 const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => ({
     borderStyle: borderStyles[borderSelection[0]],

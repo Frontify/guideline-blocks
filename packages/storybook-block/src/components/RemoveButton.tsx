@@ -1,15 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
+import { IconReject, IconSize, Tooltip, TooltipArrow } from '@frontify/arcade';
 import '@frontify/arcade/style';
-import { FC, useRef, useState } from 'react';
-import { Tooltip, TooltipProps, TooltipArrow, IconReject, IconSize } from '@frontify/arcade';
-import { mergeProps } from '@react-aria/utils';
 import { useButton } from '@react-aria/button';
 import { useHover } from '@react-aria/interactions';
 import { useTooltipTrigger } from '@react-aria/tooltip';
+import { mergeProps } from '@react-aria/utils';
 import { useTooltipTriggerState } from '@react-stately/tooltip';
+import { FC, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
+import 'tailwindcss/tailwind.css';
 
 type RemoveButtonProps = {
     onClick: () => void;
@@ -35,9 +35,12 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
         ],
     });
 
-    const { buttonProps } = useButton({
-        onPress: () => onClick(),
-    });
+    const { buttonProps } = useButton(
+        {
+            onPress: () => onClick(),
+        },
+        tooltipTriggerElement
+    );
 
     const { hoverProps } = useHover({
         onHoverStart: () => state.open(),
