@@ -8,7 +8,7 @@
  * @returns {string} Set block value to string with "px"
  */
 
-export const pxAutocomplete = (bundle: any, blockId: string) => {
+export const pxAutocomplete = (bundle: any, blockId: number) => {
     const value = Number(bundle.getBlock(blockId)?.value);
     if (!Number.isNaN(value)) {
         bundle.setBlockValue(blockId, `${value}px`);
