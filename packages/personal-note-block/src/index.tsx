@@ -7,30 +7,20 @@ import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app
 import { RichTextEditor, Color } from '@frontify/arcade';
 import { mapRgbaToString, isDark, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { NoteHeader } from './components/NoteHeader';
-import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
+import {
+    BlockProps,
+    borderSelectionType,
+    Settings,
+    NoteStyle,
+    NoteBorderRadius,
+    NoteBorderStyle,
+    NotePadding,
+    NoteVisibility,
+    borderStyles,
+    borderRadiusClasses,
+    paddingClasses,
+} from './types';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-
-type PersonalNoteBlockProps = {
-    appBridge: AppBridgeNative;
-};
-
-type borderSelectionType = [NoteBorderStyle, string, Color];
-
-type Settings = {
-    backgroundColor: Color;
-    borderRadiusChoice: NoteBorderRadius;
-    borderSelection: borderSelectionType;
-    dateEdited: Date;
-    hasAvatarName: boolean;
-    hasBackground: boolean;
-    hasCustomPadding: boolean;
-    hasDateEdited: boolean;
-    note: string;
-    paddingChoice: NotePadding;
-    paddingValue: string;
-    userId: string;
-    visibility: NoteVisibility;
-};
 
 const getBorderStyles = (borderSelection: borderSelectionType, borderRadius: string) => ({
     borderStyle: borderStyles[borderSelection[0]],
@@ -47,27 +37,7 @@ const getPaddingStyles = (padding: string) => ({
     padding,
 });
 
-const borderStyles: Record<NoteBorderStyle, string> = {
-    [NoteBorderStyle.Solid]: 'solid',
-    [NoteBorderStyle.Dotted]: 'dotted',
-    [NoteBorderStyle.Dashed]: 'dashed',
-};
-
-const borderRadiusClasses: Record<NoteBorderRadius, string> = {
-    [NoteBorderRadius.None]: 'tw-rounded-none',
-    [NoteBorderRadius.Small]: 'tw-rounded',
-    [NoteBorderRadius.Medium]: 'tw-rounded-md',
-    [NoteBorderRadius.Large]: 'tw-rounded-lg',
-};
-
-const paddingClasses: Record<NotePadding, string> = {
-    [NotePadding.None]: 'tw-p-0',
-    [NotePadding.Small]: 'tw-p-6',
-    [NotePadding.Medium]: 'tw-p-9',
-    [NotePadding.Large]: 'tw-p-12',
-};
-
-const PersonalNoteBlock: FC<PersonalNoteBlockProps> = ({ appBridge }) => {
+const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [user, setUser] = useState<string>('');
