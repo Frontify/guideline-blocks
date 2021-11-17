@@ -9,16 +9,15 @@ import { mapRgbaToString, isDark, joinClassNames } from '@frontify/guideline-blo
 import { NoteHeader } from './components/NoteHeader';
 import {
     BlockProps,
+    borderRadiusClasses,
     borderSelectionType,
-    Settings,
-    NoteStyle,
+    borderStyles,
     NoteBorderRadius,
     NoteBorderStyle,
     NotePadding,
     NoteVisibility,
-    borderStyles,
-    borderRadiusClasses,
     paddingClasses,
+    Settings,
 } from './types';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
