@@ -1,15 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { ApiSettings } from '@frontify/guideline-blocks-settings';
 import {
-    StorybookStyle,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
     StorybookPosition,
+    StorybookStyle,
 } from './types';
-import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 
-export default {
+const settings: ApiSettings = {
     main: [
         {
             id: 'style',
@@ -43,6 +44,7 @@ export default {
             label: 'Height',
             type: 'switch',
             switchLabel: 'Custom',
+            defaultValue: false,
             on: [
                 {
                     id: 'heightValue',
@@ -76,7 +78,7 @@ export default {
             label: 'Positioning',
             type: 'slider',
             defaultValue: StorybookPosition.Horizontal,
-            show: (bundle: any) => bundle.getBlock('style').value === StorybookStyle.Default,
+            show: (bundle) => bundle.getBlock('style')?.value === StorybookStyle.Default,
             choices: [
                 {
                     value: StorybookPosition.Horizontal,
@@ -94,13 +96,14 @@ export default {
             id: 'hasBorder',
             label: 'Border',
             type: 'switch',
+            defaultValue: false,
         },
         {
             id: 'borderSelection',
             type: 'multiInput',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle: any) => bundle.getBlock('hasBorder').value,
+            show: (bundle) => !!bundle.getBlock('hasBorder')?.value,
             blocks: [
                 {
                     id: 'borderStyle',
@@ -138,7 +141,8 @@ export default {
             label: 'Corner radius',
             type: 'switch',
             switchLabel: 'Custom',
-            show: (bundle: any) => bundle.getBlock('hasBorder').value,
+            show: (bundle) => !!bundle.getBlock('hasBorder')?.value,
+            defaultValue: false,
             on: [
                 {
                     id: 'borderRadiusValue',
@@ -173,3 +177,5 @@ export default {
         },
     ],
 };
+
+export default settings;

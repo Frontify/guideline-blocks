@@ -1,9 +1,9 @@
-import { Bundle } from '../bundle';
+import { ApiBundle } from '../bundle';
 
 export type BaseBlock = {
     id: string;
     label?: string;
     info?: string;
-    show?: (bundle: Bundle) => boolean;
-    onChange?: (bundle: Bundle) => void;
+    show?: (bundle: ApiBundle) => boolean;
+    onChange?: (bundle: ApiBundle) => void;
 };

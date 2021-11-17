@@ -4,7 +4,7 @@ type ApiField = {
     value?: ApiBlock['value'];
 };
 
-export type Bundle = {
+export type ApiBundle = {
     getBlock: (id: string) => ApiField | null;
     setBlockValue: (key: string, value: ApiBlock['value']) => void;
 };

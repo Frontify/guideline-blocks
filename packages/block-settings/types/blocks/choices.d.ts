@@ -2,13 +2,13 @@ import { IconEnum } from '@frontify/arcade';
 import { BaseBlock } from './base';
 
 export type Choice = {
-    label: string;
+    label?: string | number;
     icon?: IconEnum;
-    value: string;
+    value: string | number;
 };
 
 export type ChoicesType = {
     choices: Choice[];
-    value?: string;
-    defaultValue: string;
+    value?: string | number;
+    defaultValue: string | number;
 } & BaseBlock;

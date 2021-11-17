@@ -1,11 +1,21 @@
-import { ApiBlock, SectionIds } from './blocks';
+import { ApiBlock } from './blocks';
 
 export { BaseBlock } from './blocks/base';
+export { ApiBundle } from './bundle';
+
+export enum Sections {
+    Main = 'main',
+    Content = 'content',
+    Layout = 'layout',
+    Style = 'style',
+    Security = 'security',
+    Targets = 'targets',
+}
 
 export type ApiSettings = {
-    [SectionIds.Main]?: ApiBlock[];
-    [SectionIds.Content]?: ApiBlock[];
-    [SectionIds.Layout]?: ApiBlock[];
-    [SectionIds.Style]?: ApiBlock[];
-    [SectionIds.Security]?: ApiBlock[];
+    [Sections.Main]?: ApiBlock[];
+    [Sections.Content]?: ApiBlock[];
+    [Sections.Layout]?: ApiBlock[];
+    [Sections.Style]?: ApiBlock[];
+    [Sections.Security]?: ApiBlock[];
 };

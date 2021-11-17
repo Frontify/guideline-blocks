@@ -8,6 +8,7 @@ import {
     minimumNumericalOrPixelOrAutoRule,
 } from '@frontify/guideline-blocks-shared';
 import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThickness } from './types';
+import { ApiBundle, ApiSettings, BaseBlock } from '@frontify/guideline-blocks-settings';
 
 const IS_LINE_ID = 'isLine';
 
@@ -15,11 +16,11 @@ export const ALIGNMENT_DEFAULT_VALUE = DividerAlignment.Left;
 export const STYLE_DEFAULT_VALUE = DividerStyle.Solid;
 export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
 export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
-export const COLOR_DEFAULT_RGBA_VALUE = { r: 100, g: 12, b: 0, a: 1 };
+export const COLOR_DEFAULT_RGBA_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 }, hex: '#640c00' };
 
-const solidStyleIsSelected = (bundle: any) => bundle.getBlock(IS_LINE_ID).value === DividerStyle.Solid;
+const solidStyleIsSelected: BaseBlock['show'] = (bundle) => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
 
-export default {
+const Settings: ApiSettings = {
     main: [
         {
             id: IS_LINE_ID,
@@ -38,6 +39,12 @@ export default {
                     label: 'Line',
                 },
             ],
+            onChange: (bundle: ApiBundle): void => {
+                const blockWidth = Number(bundle.getBlock('widthCustom')?.value);
+                if (!Number.isNaN(blockWidth)) {
+                    bundle.setBlockValue('widthCustom', `${blockWidth}%`);
+                }
+            },
         },
     ],
     layout: [
@@ -46,13 +53,14 @@ export default {
             type: 'switch',
             label: 'Width',
             switchLabel: 'Custom',
+            defaultValue: false,
             on: [
                 {
                     id: 'widthCustom',
                     type: 'input',
                     placeholder: '73%',
                     rules: [numericalOrPercentRule, betweenNumericalOrPercentOrAutoRule(0, 100)],
-                    onChange: (bundle: any): void => {
+                    onChange: (bundle: ApiBundle): void => {
                         const blockWidth = Number(bundle.getBlock('widthCustom')?.value);
                         if (!Number.isNaN(blockWidth)) {
                             bundle.setBlockValue('widthCustom', `${blockWidth}%`);
@@ -115,13 +123,14 @@ export default {
             label: 'Block Height',
             switchLabel: 'Custom',
             info: 'Determines the block height. This will not affect the dividing line in any way.',
+            defaultValue: false,
             on: [
                 {
                     id: 'heightCustom',
                     type: 'input',
                     placeholder: '100px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: any): void => {
+                    onChange: (bundle: ApiBundle): void => {
                         const blockHeight = Number(bundle.getBlock('heightCustom')?.value);
                         if (!Number.isNaN(blockHeight)) {
                             bundle.setBlockValue('heightCustom', `${blockHeight}px`);
@@ -179,13 +188,14 @@ export default {
             type: 'switch',
             label: 'Thickness',
             switchLabel: 'Custom',
+            defaultValue: false,
             on: [
                 {
                     id: 'thicknessCustom',
                     type: 'input',
                     placeholder: '8px',
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
-                    onChange: (bundle: any): void => {
+                    onChange: (bundle: ApiBundle): void => {
                         const borderThickness = Number(bundle.getBlock('thicknessCustom')?.value);
                         if (!Number.isNaN(borderThickness)) {
                             bundle.setBlockValue('thicknessCustom', `${borderThickness}px`);
@@ -225,3 +235,5 @@ export default {
         },
     ],
 };
+
+export default Settings;

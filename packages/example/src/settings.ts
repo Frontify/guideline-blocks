@@ -1,6 +1,7 @@
 import { IconEnum } from '@frontify/arcade';
+import { ApiSettings } from '@frontify/guideline-blocks-settings';
 
-export default {
+const settings: ApiSettings = {
     main: [
         {
             id: 'main-dropdown',
@@ -18,3 +19,5 @@ export default {
         },
     ],
 };
+
+export default settings;
