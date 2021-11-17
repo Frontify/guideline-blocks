@@ -20,6 +20,7 @@ import {
     borderRadiusClasses,
     heights,
 } from './types';
+import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
 const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string) => ({
     borderStyle: borderStyles[borderSelection[0]],
@@ -42,11 +43,7 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         heightValue = '',
         positioning = StorybookPosition.Horizontal,
         hasBorder = false,
-        borderSelection = [
-            StorybookBorderStyle.Solid,
-            '1px',
-            { rgba: { r: 100, g: 12, b: 0, a: 1 } },
-        ] as BorderSelectionType,
+        borderSelection = [StorybookBorderStyle.Solid, '1px', BORDER_COLOR_DEFAULT_VALUE],
         hasCustomBorderRadius = false,
         borderRadiusChoice = StorybookBorderRadius.None,
         borderRadiusValue = '',

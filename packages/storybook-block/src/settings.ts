@@ -13,7 +13,7 @@ import {
 const settings: ApiSettings = {
     main: [
         {
-            id: 'style',
+            id: STYLE_ID,
             type: 'dropdown',
             defaultValue: StorybookStyle.Default,
             size: 'Large',
@@ -93,7 +93,7 @@ const settings: ApiSettings = {
     ],
     style: [
         {
-            id: 'hasBorder',
+            id: HAS_BORDER_ID,
             label: 'Border',
             type: 'switch',
             defaultValue: false,
@@ -132,7 +132,7 @@ const settings: ApiSettings = {
                 {
                     id: 'borderColor',
                     type: 'colorInput',
-                    defaultValue: { hex: '#CCCCCC' },
+                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
                 },
             ],
         },
