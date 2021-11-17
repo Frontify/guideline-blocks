@@ -41,8 +41,6 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [user, setUser] = useState<string>('');
-    const [name, setName] = useState<string>('');
-    const [avatar, setAvatar] = useState<string>('');
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
@@ -60,6 +58,8 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         paddingChoice = NotePadding.Small,
         paddingValue = '',
         createdByUser,
+        username,
+        avatar,
         visibility = NoteVisibility.Everyone,
     } = blockSettings;
 
@@ -71,12 +71,14 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         });
     };
 
-    const saveUser = (userId: string) => {
+    const saveUserData = (userId: string, username: string, avatar: string) => {
         setUser(userId);
         if (!createdByUser) {
             setBlockSettings({
                 ...blockSettings,
                 createdByUser: userId,
+                username,
+                avatar,
             });
         }
     };
@@ -84,9 +86,7 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     useEffect(() => {
         async function getUserData() {
             await appBridge.getCurrentLoggedUser().then((data) => {
-                saveUser(data?.id);
-                setName(data?.name);
-                setAvatar(data?.image?.image);
+                saveUserData(data?.id, data?.name, data?.image?.image);
             });
         }
         getUserData();
@@ -117,7 +117,7 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         >
             <NoteHeader
                 hasAvatarName={hasAvatarName}
-                name={name}
+                name={username}
                 avatar={avatar}
                 hasDateEdited={hasDateEdited}
                 dateEdited={dateEdited}

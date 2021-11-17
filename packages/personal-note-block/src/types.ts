@@ -9,16 +9,21 @@ export type BorderSelectionType = [NoteBorderStyle, string, Color];
 export type Settings = {
     backgroundColor?: Color;
     borderRadiusChoice?: NoteBorderRadius;
+    borderRadiusValue?: string;
     borderSelection?: borderSelectionType;
     dateEdited?: string;
     hasAvatarName?: boolean;
     hasBackground?: boolean;
+    hasBorder?: boolean;
+    hasCustomBorderRadius?: boolean;
     hasCustomPadding?: boolean;
     hasDateEdited?: boolean;
     note?: string;
     paddingChoice?: NotePadding;
     paddingValue?: string;
-    userId?: string;
+    createdByUser?: string;
+    username?: string;
+    avatar?: string;
     visibility?: NoteVisibility;
 };
 
