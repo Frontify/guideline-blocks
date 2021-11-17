@@ -90,9 +90,9 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     }}
                     highlightColor={highlightColor?.hex}
                     strikethroughStyle={{
-                        color: strikethroughMultiInput?.[2]?.hex,
-                        width: strikethroughMultiInput?.[1],
-                        style: strikethroughMultiInput?.[0],
+                        color: strikethroughMultiInput[2].hex,
+                        width: strikethroughMultiInput[1],
+                        style: strikethroughMultiInput[0],
                     }}
                     dateCompleted={updatedAt}
                     dateVisible={dateVisible}
@@ -112,8 +112,12 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     }
                 />
             ))}
-            <Divider />
-            <ChecklistItemCreator onBlur={addNewItem} readonly={!isEditing} />
+            {isEditing && (
+                <>
+                    <Divider />
+                    <ChecklistItemCreator onBlur={addNewItem} readonly={false} color={incompleteTextColor.hex} />
+                </>
+            )}
         </div>
     );
 }
