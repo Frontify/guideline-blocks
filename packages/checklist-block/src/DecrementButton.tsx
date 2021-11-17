@@ -1,5 +1,5 @@
-import React, { ReactElement, useRef } from 'react';
-import { Button, ButtonSize, IconCaretDown, IconSize } from '@frontify/arcade';
+import React, { ReactElement } from 'react';
+import { Button, IconCaretDown, IconSize } from '@frontify/arcade';
 import { ChecklistButtonProps } from './types';
 
 export default function DecrementButton({ onClick, disabled }: ChecklistButtonProps): ReactElement {

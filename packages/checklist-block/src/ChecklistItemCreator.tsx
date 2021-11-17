@@ -4,9 +4,10 @@ import ChecklistItem from './ChecklistItem';
 
 type ChecklistItemCreatorProps = {
     onBlur: (text: string) => void;
+    readonly: boolean;
 };
 
-export default function ChecklistItemCreator({ onBlur }: ChecklistItemCreatorProps): ReactElement {
+export default function ChecklistItemCreator({ onBlur, readonly }: ChecklistItemCreatorProps): ReactElement {
     const [text, setText] = useState('');
     const createItem = (text: string) => {
         onBlur(text);
@@ -14,12 +15,15 @@ export default function ChecklistItemCreator({ onBlur }: ChecklistItemCreatorPro
     };
     return (
         <ChecklistItem
+            id="Create new Checklist Item"
+            completed={false}
             text={text}
+            readonly={readonly}
             dateVisible={false}
             checkboxDisabled
             onChange={setText}
             onBlur={createItem}
-            incompleteStyle={{ color: '#fff', checkbox: '#fff' }}
+            incompleteStyle={{ color: '#000', checkbox: '#000' }}
         />
     );
 }

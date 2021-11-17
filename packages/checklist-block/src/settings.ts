@@ -1,8 +1,11 @@
 import { IconEnum, InlineStyles, MultiInputLayout } from '@frontify/arcade';
-import { ChecklistDecoration, StrikethroughType } from './types';
+import { ChecklistDecoration, ChecklistPadding, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const showProgressStyles = (bundle: any): boolean => {
-    return bundle.getBlock('progressBarVisible').value === true && bundle.getBlock('progressBarType').value === 'bar';
+    return (
+        bundle.getBlock('progressBarVisible').value === true &&
+        bundle.getBlock('progressBarType').value === ProgressBarType.Bar
+    );
 };
 
 export default {
@@ -10,7 +13,7 @@ export default {
         {
             id: 'completedDecoration',
             type: 'dropdown',
-            defaultValue: ChecklistDecoration.Checkbox,
+            defaultValue: DefaultValues.completedDecoration,
             size: 'large',
             disabled: false,
             choices: [
@@ -34,7 +37,7 @@ export default {
     ],
     layout: [
         {
-            id: 'paddingSwitch',
+            id: 'paddingAdvanced',
             label: 'Padding',
             type: 'switch',
             switchLabel: 'Custom',
@@ -42,6 +45,7 @@ export default {
                 {
                     id: 'paddingCustom',
                     type: 'input',
+                    defaultValue: DefaultValues.paddingCustom,
                     placeholder: '0px',
                 },
             ],
@@ -49,22 +53,22 @@ export default {
                 {
                     id: 'paddingBasic',
                     type: 'slider',
-                    defaultValue: 'padding-s',
+                    defaultValue: DefaultValues.paddingBasic,
                     choices: [
                         {
-                            value: 'padding-none',
+                            value: ChecklistPadding.None,
                             label: 'None',
                         },
                         {
-                            value: 'padding-s',
+                            value: ChecklistPadding.Small,
                             label: 'S',
                         },
                         {
-                            value: 'padding-m',
+                            value: ChecklistPadding.Medium,
                             label: 'M',
                         },
                         {
-                            value: 'padding-l',
+                            value: ChecklistPadding.Large,
                             label: 'L',
                         },
                     ],
@@ -75,22 +79,23 @@ export default {
             id: 'progressBarVisible',
             label: 'Progress Indicator',
             type: 'switch',
+            defaultValue: DefaultValues.progressBarVisible,
             on: [
                 {
                     id: 'progressBarType',
                     type: 'slider',
-                    defaultValue: 'percentage',
+                    defaultValue: DefaultValues.progressBarType,
                     choices: [
                         {
-                            value: 'percentage',
+                            value: ProgressBarType.Percentage,
                             label: 'Percentage',
                         },
                         {
-                            value: 'fraction',
+                            value: ProgressBarType.Fraction,
                             label: 'Fraction',
                         },
                         {
-                            value: 'bar',
+                            value: ProgressBarType.Bar,
                             label: 'Bar',
                         },
                     ],
@@ -102,6 +107,7 @@ export default {
             id: 'dateVisible',
             label: 'Date completed',
             type: 'switch',
+            defaultValue: DefaultValues.dateVisible,
         },
     ],
     style: [
@@ -109,26 +115,31 @@ export default {
             id: 'incompleteTextColor',
             type: 'colorInput',
             label: 'Incomplete Text',
+            defaultValue: DefaultValues.incompleteTextColor,
         },
         {
             id: 'incompleteCheckboxColor',
             type: 'colorInput',
             label: 'Incomplete Checkbox',
+            defaultValue: DefaultValues.incompleteCheckboxColor,
         },
         {
             id: 'completeTextColor',
             type: 'colorInput',
             label: 'Complete Text',
+            defaultValue: DefaultValues.completeTextColor,
         },
         {
-            id: 'completeTextColor',
+            id: 'completeCheckboxColor',
             type: 'colorInput',
-            label: 'Complete Text',
+            label: 'Complete Checkbox',
+            defaultValue: DefaultValues.completeCheckboxColor,
         },
         {
             id: 'highlightColor',
             type: 'colorInput',
             label: 'Highlight',
+            defaultValue: DefaultValues.highlightColor,
             show: (bundle: any) => bundle.getBlock('completedDecoration').value === ChecklistDecoration.Highlight,
         },
         {
@@ -142,7 +153,7 @@ export default {
                 {
                     id: 'strikethroughStyle',
                     type: 'dropdown',
-                    defaultValue: 'solid',
+                    defaultValue: DefaultValues.strikethroughMultiInput[0],
                     choices: [
                         {
                             label: 'Solid',
@@ -169,11 +180,12 @@ export default {
                 {
                     id: 'strikethroughWidth',
                     type: 'input',
-                    defaultValue: '1px',
+                    defaultValue: DefaultValues.strikethroughMultiInput[1],
                 },
                 {
                     id: 'strikethroughColor',
                     type: 'colorInput',
+                    defaultValue: DefaultValues.strikethroughMultiInput[2],
                 },
             ],
         },
@@ -182,12 +194,14 @@ export default {
             type: 'colorInput',
             label: 'Progress Bar Fill',
             show: showProgressStyles,
+            defaultValue: DefaultValues.progressBarFillColor,
         },
         {
             id: 'progressBarTrackColor',
             type: 'colorInput',
             label: 'Progress Bar Track',
             show: showProgressStyles,
+            defaultValue: DefaultValues.progressBarTrackColor,
         },
     ],
 };
