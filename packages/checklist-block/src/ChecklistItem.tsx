@@ -56,12 +56,16 @@ export default function ChecklistItem({
                 checkedColor={completeStyle?.checkbox}
                 uncheckedColor={incompleteStyle?.checkbox}
             />
-            <div className="tw-flex-auto">
+            <div className="tw-flex-auto tw-pl-2">
                 {completed ? (
-                    <span>
-                        <p style={{ color: completeStyle.color, ...decorationStyle }}>{text}</p>
-                        {dateVisible && <small style={{ color: completeStyle.color }}>{dateCompleted}</small>}
-                    </span>
+                    <div>
+                        <p>
+                            <span className="tw-px-1" style={{ color: completeStyle.color, ...decorationStyle }}>
+                                {text}
+                            </span>
+                        </p>
+                        {dateVisible && <small className="tw-black-80">{dateCompleted}</small>}
+                    </div>
                 ) : (
                     <MockTextEditor
                         color={incompleteStyle.color}
@@ -73,7 +77,7 @@ export default function ChecklistItem({
                     />
                 )}
             </div>
-            <div className={`tw-flex-none tw-flex ${isHovered ? 'tw-visible' : 'tw-invisible'}`}>
+            <div className={`tw-flex-none tw-flex ${isHovered && !readonly ? 'tw-visible' : 'tw-invisible'}`}>
                 <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup>
             </div>
         </div>

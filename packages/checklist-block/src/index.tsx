@@ -1,14 +1,12 @@
 import 'tailwindcss/tailwind.css';
 import { ReactElement } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Divider } from '@frontify/arcade';
+import { Divider, IconCaretDown, IconCaretUp, IconReject, IconSize } from '@frontify/arcade';
 import { ChecklistContent, ChecklistProps, DefaultValues, Settings } from './types';
 import ChecklistItemCreator from './ChecklistItemCreator';
-import IncrementButton from './IncrementButton';
-import DecrementButton from './DecrementButton';
-import RemoveButton from './RemoveButton';
 import ChecklistItem from './ChecklistItem';
 import { provideDefaults } from './utilities/provideDefaults';
+import ChecklistButton from './ChecklistButton';
 
 export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
@@ -67,7 +65,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
 
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
-    console.log(blockSettings);
+
     return (
         <div>
             {content.map(({ id, text, updatedAt, completed }, index, ctx) => (
@@ -99,15 +97,20 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     readonly={!isEditing}
                     controlButtons={
                         <>
-                            <IncrementButton
+                            <ChecklistButton
                                 disabled={index < 1}
+                                icon={<IconCaretUp size={IconSize.Size16} />}
                                 onClick={() => modifyListPosition(index, index - 1)}
                             />
-                            <DecrementButton
+                            <ChecklistButton
                                 disabled={index === ctx.length - 1}
+                                icon={<IconCaretDown size={IconSize.Size16} />}
                                 onClick={() => modifyListPosition(index, index + 1)}
                             />
-                            <RemoveButton onClick={() => removeItem(id)} />
+                            <ChecklistButton
+                                icon={<IconReject size={IconSize.Size16} />}
+                                onClick={() => removeItem(id)}
+                            />
                         </>
                     }
                 />
