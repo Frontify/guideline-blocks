@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { TextInputType } from '@frontify/arcade';
 import { Rule } from '../validation';
 import { BaseBlock } from './base';

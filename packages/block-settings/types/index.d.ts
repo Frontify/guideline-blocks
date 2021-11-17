@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { ApiBlock } from './blocks';
 
 export { BaseBlock } from './blocks/base';

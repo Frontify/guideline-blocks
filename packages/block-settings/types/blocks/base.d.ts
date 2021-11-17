@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { ApiBundle } from '../bundle';
 
 export type BaseBlock = {

@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { AssetInputBlock } from './assetInput';
 import { ChecklistBlock } from './checklist';
 import { ColorInputBlock } from './colorInput';

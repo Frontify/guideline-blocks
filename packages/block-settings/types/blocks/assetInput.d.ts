@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { FileExtension } from '@frontify/app-bridge';
 import { AssetInputProps } from '@frontify/arcade';
 import { BaseBlock } from './base';

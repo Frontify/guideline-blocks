@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { BaseBlock } from './base';
 import { Checkbox } from './checkbox';
 

@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { MultiInputLayout } from '@frontify/arcade';
 import { BaseBlock } from './base';
 import { ColorInputBlock } from './colorInput';

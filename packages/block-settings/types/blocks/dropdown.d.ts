@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { ChoicesType } from './choices';
 
 export type DropdownBlock = {
