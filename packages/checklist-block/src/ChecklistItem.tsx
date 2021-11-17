@@ -1,51 +1,66 @@
 import 'tailwindcss/tailwind.css';
 import { ReactElement } from 'react';
-import { IconCaretDown, IconCaretUp, IconSize } from '@frontify/arcade';
-import RemoveButton from './RemoveButton';
+import { ButtonGroup, ButtonSize } from '@frontify/arcade';
 import MockTextEditor from './MockTextEditor';
-import IncrementButton from './IncrementButton';
-import DecrementButton from './DecrementButton';
-
-type ChecklistItemProps = {
-    text: string;
-    createdAt?: string;
-    updatedAt?: string;
-    completed: boolean;
-    textColor: string;
-    checkboxColor: string;
-    readonly: boolean;
-    onChange?: (text: string) => void;
-    onBlur?: (text: string) => void;
-    onRemove: () => void;
-    onIncrement?: () => void;
-    onDecrement?: () => void;
-};
+import { ChecklistDecoration, ChecklistItemProps } from './types';
 
 export default function ChecklistItem({
     text,
     completed,
+    dateCompleted,
     readonly,
+    controlButtons,
+    strikethroughStyle,
+    highlightColor,
+    completedDecoration,
+    completeStyle,
+    incompleteStyle,
+    dateVisible,
     onChange,
     onBlur,
-    onRemove,
-    onIncrement,
-    onDecrement,
 }: ChecklistItemProps): ReactElement {
+    const incompleteStyles = {};
+    let decorationStyle;
+
+    switch (completedDecoration) {
+        case ChecklistDecoration.Highlight:
+            decorationStyle = {
+                backgroundColor: highlightColor,
+            };
+            break;
+        case ChecklistDecoration.Strikethrough:
+            decorationStyle = {
+                textDecorationLine: 'line-through',
+                textDecorationThickness: strikethroughStyle?.width,
+                textDecorationColor: strikethroughStyle?.color,
+                textDecorationStyle: strikethroughStyle?.style,
+            };
+            break;
+        default:
+            break;
+    }
+
     return (
         <div className="tw-flex">
             <div className="tw-flex-auto">
-                <MockTextEditor
-                    readonly={readonly}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    value={text}
-                    placeholder="Add new checklist item"
-                />
+                {completed ? (
+                    <span>
+                        <p style={{ color: completeStyle.color, ...decorationStyle }}>{text}</p>
+                        {dateVisible && <small style={{ color: completeStyle.color }}>{dateCompleted}</small>}
+                    </span>
+                ) : (
+                    <MockTextEditor
+                        color={incompleteStyle.color}
+                        readonly={readonly}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        value={text}
+                        placeholder="Add new checklist item"
+                    />
+                )}
             </div>
             <div className="tw-flex-none tw-flex">
-                <IncrementButton onClick={onIncrement} />
-                <DecrementButton onClick={onDecrement} />
-                <RemoveButton onClick={onRemove} />
+                <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup>
             </div>
         </div>
     );

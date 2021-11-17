@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react';
-import { Button, IconCaretUp, IconSize } from '@frontify/arcade';
+import { Button, ButtonSize, IconCaretUp, IconSize } from '@frontify/arcade';
+import { ChecklistButtonProps } from './types';
 
-type IncrementButtonProps = {
-    onClick: (e: any) => void;
-};
-
-export default function IncrementButton({ onClick }: IncrementButtonProps): ReactElement {
-    return <Button onClick={onClick} icon={<IconCaretUp size={IconSize.Size16} />}></Button>;
+export default function IncrementButton({ onClick, disabled }: ChecklistButtonProps): ReactElement {
+    return (
+        <Button inverted disabled={disabled} onClick={onClick} icon={<IconCaretUp size={IconSize.Size16} />}></Button>
+    );
 }

@@ -1,4 +1,5 @@
 import { IconEnum, InlineStyles, MultiInputLayout } from '@frontify/arcade';
+import { ChecklistDecoration, StrikethroughType } from './types';
 
 const showProgressStyles = (bundle: any): boolean => {
     return bundle.getBlock('progressBarVisible').value === true && bundle.getBlock('progressBarType').value === 'bar';
@@ -9,22 +10,22 @@ export default {
         {
             id: 'completedDecoration',
             type: 'dropdown',
-            defaultValue: 'checkbox',
+            defaultValue: ChecklistDecoration.Checkbox,
             size: 'large',
             disabled: false,
             choices: [
                 {
-                    value: 'checkbox',
+                    value: ChecklistDecoration.Checkbox,
                     icon: IconEnum.Symbols,
                     label: 'Checkbox',
                 },
                 {
-                    value: 'strikethrough',
+                    value: ChecklistDecoration.Strikethrough,
                     icon: InlineStyles.Strikethrough,
                     label: 'Strikethrough',
                 },
                 {
-                    value: 'highlight',
+                    value: ChecklistDecoration.Highlight,
                     icon: IconEnum.Symbols,
                     label: 'Highlight',
                 },
@@ -128,7 +129,7 @@ export default {
             id: 'highlightColor',
             type: 'colorInput',
             label: 'Highlight',
-            show: (bundle: any) => bundle.getBlock('completedDecoration').value === 'highlight',
+            show: (bundle: any) => bundle.getBlock('completedDecoration').value === ChecklistDecoration.Highlight,
         },
         {
             id: 'strikethroughMultiInput',
@@ -136,7 +137,7 @@ export default {
             label: 'Line',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle: any) => bundle.getBlock('completedDecoration').value === 'strikethrough',
+            show: (bundle: any) => bundle.getBlock('completedDecoration').value === ChecklistDecoration.Strikethrough,
             blocks: [
                 {
                     id: 'strikethroughStyle',
@@ -145,11 +146,23 @@ export default {
                     choices: [
                         {
                             label: 'Solid',
-                            value: 'solid',
+                            value: StrikethroughType.Solid,
                         },
                         {
                             label: 'Dashed',
-                            value: 'dashed',
+                            value: StrikethroughType.Dashed,
+                        },
+                        {
+                            label: 'Double',
+                            value: StrikethroughType.Double,
+                        },
+                        {
+                            label: 'Dotted',
+                            value: StrikethroughType.Dotted,
+                        },
+                        {
+                            label: 'Wavy',
+                            value: StrikethroughType.Wavy,
                         },
                     ],
                 },

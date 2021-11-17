@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactEventHandler, useState } from 'react';
 
 type MockTextEditorProps = {
     value?: string;
@@ -6,6 +6,7 @@ type MockTextEditorProps = {
     onBlur?: (text: string) => void;
     placeholder?: string;
     readonly?: boolean;
+    color: string;
 };
 
 export default function MockTextEditor({
@@ -14,13 +15,24 @@ export default function MockTextEditor({
     onBlur,
     readonly,
     placeholder,
+    color,
 }: MockTextEditorProps): ReactElement {
+    const [internalValue, setInternalValue] = useState(value);
+
     const isControlled = value !== undefined && onChange !== undefined;
+
+    const handleChange = (e: any) => {
+        setInternalValue(e.target.value);
+        onChange && onChange(e.target.value);
+    };
 
     return (
         <textarea
-            value={isControlled ? value : undefined}
-            onChange={(e) => onChange && onChange(e.target.value)}
+            className="tw-w-full tw-resize-none"
+            rows={1}
+            value={isControlled ? value : internalValue}
+            style={{ color }}
+            onChange={handleChange}
             onBlur={(e) => onBlur && onBlur(e.target.value)}
             readOnly={readonly}
             placeholder={placeholder}

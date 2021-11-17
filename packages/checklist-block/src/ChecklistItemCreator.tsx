@@ -3,14 +3,21 @@ import { ReactElement, useState } from 'react';
 import ChecklistItem from './ChecklistItem';
 
 type ChecklistItemCreatorProps = {
-    onChange: (text: string) => void;
+    onBlur: (text: string) => void;
 };
 
-export default function ChecklistItemCreator({ onChange }: ChecklistItemCreatorProps): ReactElement {
+export default function ChecklistItemCreator({ onBlur }: ChecklistItemCreatorProps): ReactElement {
     const [text, setText] = useState('');
     const createItem = (text: string) => {
-        onChange(text);
+        onBlur(text);
         setText('');
     };
-    return <ChecklistItem text={text} onChange={setText} onBlur={createItem} />;
+    return (
+        <ChecklistItem
+            text={text}
+            onChange={setText}
+            onBlur={createItem}
+            incompleteStyle={{ color: '#fff', checkbox: '#fff' }}
+        />
+    );
 }

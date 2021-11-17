@@ -1,10 +1,9 @@
-import React, { ReactElement } from 'react';
-import { Button, IconCaretUp, IconSize } from '@frontify/arcade';
+import React, { ReactElement, useRef } from 'react';
+import { Button, ButtonSize, IconCaretDown, IconSize } from '@frontify/arcade';
+import { ChecklistButtonProps } from './types';
 
-type DecrementButtonProps = {
-    onClick: (e: any) => void;
-};
-
-export default function DecrementButton({ onClick }: DecrementButtonProps): ReactElement {
-    return <Button onClick={onClick} icon={<IconCaretUp size={IconSize.Size16} />}></Button>;
+export default function DecrementButton({ onClick, disabled }: ChecklistButtonProps): ReactElement {
+    return (
+        <Button inverted disabled={disabled} onClick={onClick} icon={<IconCaretDown size={IconSize.Size16} />}></Button>
+    );
 }
