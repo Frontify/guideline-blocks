@@ -1,9 +1,9 @@
 {
     "name": "text-block",
+    "private": true,
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "private": true,
     "scripts": {
         "serve:block": "frontify-cli block serve --blockDir $(PWD)",
         "lint": "eslint src",
@@ -14,6 +14,7 @@
     "devDependencies": {
         "@frontify/eslint-config-react": "0.11.0",
         "@frontify/frontify-cli": "2.2.0",
+        "@frontify/guideline-blocks-settings": "^0.0.1",
         "@types/lodash-es": "4.17.5",
         "@types/react": "17.0.34",
         "autoprefixer": "10.4.0",
