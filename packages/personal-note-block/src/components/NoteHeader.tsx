@@ -1,7 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/arcade/style';
 import { FC } from 'react';
 import dayjs from 'dayjs';
 

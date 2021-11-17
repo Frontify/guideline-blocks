@@ -22,18 +22,18 @@ import {
 } from './types';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
-const getBorderStyles = (borderSelection: borderSelectionType, borderRadius: string) => ({
+const getBorderStyles = (borderSelection: borderSelectionType, borderRadius: string): CSSProperties => ({
     borderStyle: borderStyles[borderSelection[0]],
     borderWidth: borderSelection[1],
     borderColor: mapRgbaToString(borderSelection[2].rgba),
     borderRadius,
 });
 
-const getBackgroundStyles = (backgroundColor: Color) => ({
+const getBackgroundStyles = (backgroundColor: Color): CSSProperties => ({
     backgroundColor: mapRgbaToString(backgroundColor.rgba),
 });
 
-const getPaddingStyles = (padding: string) => ({
+const getPaddingStyles = (padding: string): CSSProperties => ({
     padding,
 });
 

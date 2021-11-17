@@ -4,22 +4,22 @@ export type BlockProps = {
     appBridge: AppBridgeNative;
 };
 
-export type borderSelectionType = [NoteBorderStyle, string, Color];
+export type BorderSelectionType = [NoteBorderStyle, string, Color];
 
 export type Settings = {
-    backgroundColor: Color;
-    borderRadiusChoice: NoteBorderRadius;
-    borderSelection: borderSelectionType;
-    dateEdited: Date;
-    hasAvatarName: boolean;
-    hasBackground: boolean;
-    hasCustomPadding: boolean;
-    hasDateEdited: boolean;
-    note: string;
-    paddingChoice: NotePadding;
-    paddingValue: string;
-    userId: string;
-    visibility: NoteVisibility;
+    backgroundColor?: Color;
+    borderRadiusChoice?: NoteBorderRadius;
+    borderSelection?: borderSelectionType;
+    dateEdited?: string;
+    hasAvatarName?: boolean;
+    hasBackground?: boolean;
+    hasCustomPadding?: boolean;
+    hasDateEdited?: boolean;
+    note?: string;
+    paddingChoice?: NotePadding;
+    paddingValue?: string;
+    userId?: string;
+    visibility?: NoteVisibility;
 };
 
 export enum NoteStyle {
@@ -27,23 +27,23 @@ export enum NoteStyle {
 }
 
 export enum NotePadding {
-    None = 'none',
-    Small = 'small',
-    Medium = 'medium',
-    Large = 'large',
+    None = 'None',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
 }
 
 export enum NoteBorderRadius {
-    None = 'none',
-    Small = 'small',
-    Medium = 'medium',
-    Large = 'large',
+    None = 'None',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
 }
 
 export enum NoteBorderStyle {
-    Solid = 'solid',
-    Dotted = 'dotted',
-    Dashed = 'dashed',
+    Solid = 'Solid',
+    Dotted = 'Dotted',
+    Dashed = 'Dashed',
 }
 
 export enum NoteVisibility {
