@@ -49,7 +49,7 @@ export default {
             choices: [
                 {
                     value: 'text',
-                    icon: IconEnum.AlignLeft,
+                    icon: IconEnum.TextAlignLeft,
                     label: 'Text',
                 },
             ],
