@@ -16,7 +16,7 @@ export const ALIGNMENT_DEFAULT_VALUE = DividerAlignment.Left;
 export const STYLE_DEFAULT_VALUE = DividerStyle.Solid;
 export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
 export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
-export const COLOR_DEFAULT_RGBA_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 }, hex: '#640c00' };
+export const COLOR_DEFAULT_RGBA_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 }, hex: '640c00' };
 
 const solidStyleIsSelected: BaseBlock['show'] = (bundle) => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
 
