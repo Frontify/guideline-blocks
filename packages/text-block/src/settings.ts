@@ -2,6 +2,7 @@
 
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
 import { numericalOrPixelRule, betweenPixelRule } from '@frontify/guideline-blocks-shared';
+import { IconEnum } from '@frontify/arcade';
 
 export const columnGutterChoices = [
     {
@@ -48,7 +49,7 @@ export default {
             choices: [
                 {
                     value: 'text',
-                    icon: 'align-left',
+                    icon: IconEnum.AlignLeft,
                     label: 'Text',
                 },
             ],
