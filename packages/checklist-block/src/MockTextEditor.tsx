@@ -28,7 +28,7 @@ export default function MockTextEditor({
 
     return (
         <textarea
-            className="tw-w-full tw-resize-none"
+            className="tw-w-full tw-resize-none tw-placeholder-black-60 tw-background-transparent"
             rows={1}
             value={isControlled ? value : internalValue}
             style={{ color }}
