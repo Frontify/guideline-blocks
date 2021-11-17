@@ -2,9 +2,9 @@
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
-import { FC, useState, useEffect } from 'react';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, TextInput, IconStorybook, IconSize, Color } from '@frontify/arcade';
+import { FC, useState, useEffect, CSSProperties, KeyboardEvent } from 'react';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { Button, TextInput, IconStorybook, IconSize } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { RemoveButton } from './components/RemoveButton';
 import {
@@ -22,14 +22,14 @@ import {
 } from './types';
 import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
-const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string) => ({
+const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => ({
     borderStyle: borderStyles[borderSelection[0]],
     borderWidth: borderSelection[1],
     borderRadius,
     ...(borderSelection[2]?.rgba ? { borderColor: mapRgbaToString(borderSelection[2].rgba) } : {}),
 });
 
-const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
+const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [localUrl, setLocalUrl] = useState('');
@@ -83,15 +83,16 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         }
     }, [url, style, positioning]);
 
+    const handleKeydown = (event: KeyboardEvent): any => {
+        if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+            event.preventDefault();
+            saveLink();
+        }
+    };
+
     useEffect(() => {
-        const listener = (event) => {
-            if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-                event.preventDefault();
-                saveLink();
-            }
-        };
-        document.addEventListener('keydown', listener);
-        return () => document.removeEventListener('keydown', listener);
+        document.addEventListener('keydown', handleKeydown);
+        return () => document.removeEventListener('keydown', handleKeydown);
     }, [localUrl]);
 
     return (
