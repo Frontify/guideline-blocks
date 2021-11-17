@@ -1,6 +1,5 @@
 **/node_modules
 **/.idea
 **/dist
-**/storybook-static
 
 lerna-debug.log
