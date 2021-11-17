@@ -83,6 +83,17 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         }
     }, [url, style, positioning]);
 
+    useEffect(() => {
+        const listener = (event) => {
+            if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+                event.preventDefault();
+                saveLink();
+            }
+        };
+        document.addEventListener('keydown', listener);
+        return () => document.removeEventListener('keydown', listener);
+    }, [localUrl]);
+
     return (
         <div className="tw-relative">
             {iframeUrl ? (
