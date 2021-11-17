@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const PLACEHOLDER =
-    'Your text here';
+export const PLACEHOLDER = 'Your text here';
 
 export const DEFAULT_COLUMN_NUMBER = 1;
 export const DEFAULT_COLUMN_GUTTER = '24px';

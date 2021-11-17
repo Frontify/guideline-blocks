@@ -73,6 +73,7 @@ export default {
                     type: 'input',
                     defaultValue: DEFAULT_COLUMN_GUTTER,
                     rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     onChange: (bundle: any): void => {
                         const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
                         if (!isNaN(gutter)) {
