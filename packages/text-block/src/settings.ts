@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
-import { numericalOrPixelRule, betweenPixelRule } from '@frontify/guideline-blocks-shared';
 import { IconEnum } from '@frontify/arcade';
+import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
 
 export const columnGutterChoices = [
     {
@@ -38,13 +39,13 @@ export const columnNumberChoices = [
     },
 ];
 
-export default {
+const settings: ApiSettings = {
     main: [
         {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'text',
-            size: 'large',
+            size: 'Large',
             disabled: true,
             choices: [
                 {
@@ -74,8 +75,7 @@ export default {
                     type: 'input',
                     defaultValue: DEFAULT_COLUMN_GUTTER,
                     rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    onChange: (bundle: any): void => {
+                    onChange: (bundle: ApiBundle): void => {
                         const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
                         if (!isNaN(gutter)) {
                             bundle.setBlockValue('columnGutterCustom', `${gutter}px`);
@@ -94,3 +94,5 @@ export default {
         },
     ],
 };
+
+export default settings;

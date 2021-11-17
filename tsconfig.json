@@ -11,7 +11,7 @@
         "strict": true,
         "target": "es6",
         "jsx": "react-jsx",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
     },
     "exclude": ["**/dist", "**/node_modules"]
 }

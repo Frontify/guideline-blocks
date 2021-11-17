@@ -2,17 +2,18 @@
 
 import { DoDontStyle, DoDontLayout, DoDontSpacing } from './types';
 import { IconEnum } from '@frontify/arcade';
+import { ApiBundle, ApiSettings, BaseBlock } from '@frontify/guideline-blocks-settings';
 
-export const DO_COLOR_DEFAULT_VALUE = { rgba: { r: 0, g: 200, b: 165, a: 1 } };
-export const DONT_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 55, b: 90, a: 1 } };
+export const DO_COLOR_DEFAULT_VALUE = { rgba: { r: 0, g: 200, b: 165, a: 1 }, hex: '00c8a5' };
+export const DONT_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 55, b: 90, a: 1 }, hex: 'ff375a' };
 
-export default {
+const settings: ApiSettings = {
     main: [
         {
             id: 'style',
             type: 'dropdown',
             defaultValue: DoDontStyle.Icons,
-            size: 'large',
+            size: 'Large',
             choices: [
                 {
                     value: DoDontStyle.Icons,
@@ -53,7 +54,7 @@ export default {
             id: 'columns',
             label: 'Columns',
             type: 'slider',
-            show: (bundle) => bundle.getBlock('layout').value === DoDontLayout.Stacked,
+            show: (bundle: ApiBundle) => bundle.getBlock('layout')?.value === DoDontLayout.Stacked,
             defaultValue: 2,
             choices: [
                 {
@@ -79,6 +80,7 @@ export default {
             label: 'Column gap',
             type: 'switch',
             switchLabel: 'Custom',
+            defaultValue: false,
             on: [
                 {
                     id: 'spacingValue',
@@ -123,3 +125,5 @@ export default {
         },
     ],
 };
+
+export default settings;

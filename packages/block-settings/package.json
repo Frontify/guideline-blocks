@@ -1,0 +1,17 @@
+{
+    "name": "@frontify/guideline-blocks-settings",
+    "version": "0.0.1",
+    "description": "Provides the types for the block settings",
+    "files": [
+        "types"
+    ],
+    "types": "types/index.d.ts",
+    "author": "Frontify Developers <developers@frontify.com>",
+    "devDependencies": {
+        "typescript": "4.4.4"
+    },
+    "dependencies": {
+        "@frontify/app-bridge": "^2.6.0",
+        "@frontify/arcade": "^0.12.0"
+    }
+}
