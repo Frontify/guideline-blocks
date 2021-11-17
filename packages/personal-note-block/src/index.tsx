@@ -105,7 +105,6 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     return (
         <div
             className={joinClassNames([
-                'tw-space-y-4',
                 !hasCustomPadding && paddingClasses[paddingChoice],
                 !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
                 hasBackground && isDark(backgroundColor.rgba) && 'tw-text-white',
