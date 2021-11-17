@@ -1,5 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeNative } from '@frontify/app-bridge';
+import { Color } from '@frontify/arcade';
+
 export type BlockProps = {
     appBridge: AppBridgeNative;
 };
@@ -10,7 +13,7 @@ export type Settings = {
     backgroundColor?: Color;
     borderRadiusChoice?: NoteBorderRadius;
     borderRadiusValue?: string;
-    borderSelection?: borderSelectionType;
+    borderSelection?: BorderSelectionType;
     dateEdited?: string;
     hasAvatarName?: boolean;
     hasBackground?: boolean;
@@ -21,7 +24,7 @@ export type Settings = {
     note?: string;
     paddingChoice?: NotePadding;
     paddingValue?: string;
-    createdByUser?: string;
+    createdByUser?: number;
     username?: string;
     avatar?: string;
     visibility?: NoteVisibility;

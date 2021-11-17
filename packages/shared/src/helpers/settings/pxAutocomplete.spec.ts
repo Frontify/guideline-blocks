@@ -1,31 +1,34 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-function */
+
 import { pxAutocomplete } from './pxAutocomplete';
 
 describe('pxAutocomplete', () => {
     test('it should call setBlockValue with correct string with 20px', () => {
         const bundle = {
-            getBlock(blockId: number) {
+            getBlock(settingId: string) {
                 return { value: 20 };
             },
-            setBlockValue(blockId: number, value: string) {},
+            setBlockValue(settingId: string, value: string) {},
         };
 
         const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
-        pxAutocomplete(bundle, 1);
+        pxAutocomplete(bundle, 'my_setting_id');
 
-        expect(setBlockValueSpy).toHaveBeenCalledWith(1, '20px');
+        expect(setBlockValueSpy).toHaveBeenCalledWith('my_setting_id', '20px');
     });
 
     test('it should not call setBlockValue', () => {
         const bundle = {
-            getBlock(blockId: number) {
+            getBlock(settingId: string) {
                 return { value: '20px' };
             },
-            setBlockValue(blockId: number, value: string) {},
+            setBlockValue(settingId: string, value: string) {},
         };
         const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
-        pxAutocomplete(bundle, 1);
-        expect(setBlockValueSpy).not.toHaveBeenCalledWith(1, '20px');
+        pxAutocomplete(bundle, 'my_setting_id');
+        expect(setBlockValueSpy).not.toHaveBeenCalledWith('my_setting_id', '20px');
     });
 });

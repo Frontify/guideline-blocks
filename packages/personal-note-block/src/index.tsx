@@ -2,15 +2,15 @@
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
-import { FC, useEffect, useState } from 'react';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { CSSProperties, FC, useEffect, useState } from 'react';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor, Color } from '@frontify/arcade';
 import { mapRgbaToString, isDark, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { NoteHeader } from './components/NoteHeader';
 import {
     BlockProps,
     borderRadiusClasses,
-    borderSelectionType,
+    BorderSelectionType,
     borderStyles,
     NoteBorderRadius,
     NoteBorderStyle,
@@ -21,7 +21,7 @@ import {
 } from './types';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
-const getBorderStyles = (borderSelection: borderSelectionType, borderRadius: string): CSSProperties => ({
+const getBorderStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => ({
     borderStyle: borderStyles[borderSelection[0]],
     borderWidth: borderSelection[1],
     borderColor: mapRgbaToString(borderSelection[2].rgba),
@@ -39,7 +39,7 @@ const getPaddingStyles = (padding: string): CSSProperties => ({
 const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const [user, setUser] = useState<string>('');
+    const [user, setUser] = useState<number>();
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
@@ -70,7 +70,7 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         });
     };
 
-    const saveUserData = (userId: string, username: string, avatar: string) => {
+    const saveUserData = (userId: number, username: string, avatar: string) => {
         setUser(userId);
         if (!createdByUser) {
             setBlockSettings({
