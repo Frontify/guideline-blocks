@@ -5,6 +5,7 @@ import MockTextEditor from './MockTextEditor';
 import { useHover } from '@react-aria/interactions/src/useHover';
 import { ChecklistDecoration, ChecklistItemProps } from './types';
 import { Checkbox } from './Checkbox';
+import { merge } from './utilities/merge';
 
 export default function ChecklistItem({
     id,
@@ -46,36 +47,45 @@ export default function ChecklistItem({
     }
 
     return (
-        <div className={`tw-flex tw-cursor-pointer ${isHovered ? 'tw-bg-black-5' : 'tw-bg-white'}`} {...hoverProps}>
-            <Checkbox
-                checked={completed}
-                onChange={toggleCompleted}
-                id={id}
-                ariaLabel={text}
-                disabled={checkboxDisabled}
-                checkedColor={completeStyle?.checkbox}
-                uncheckedColor={incompleteStyle?.checkbox}
-            />
-            <div className="tw-flex-auto tw-pl-2">
-                {completed ? (
-                    <div>
-                        <p>
-                            <span className="tw-px-1" style={{ color: completeStyle.color, ...decorationStyle }}>
-                                {text}
-                            </span>
-                        </p>
-                        {dateVisible && <small className="tw-black-80">{dateCompleted}</small>}
-                    </div>
-                ) : (
-                    <MockTextEditor
-                        color={incompleteStyle.color}
-                        readonly={readonly}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        value={text}
-                        placeholder="Add new checklist item"
-                    />
-                )}
+        <div
+            className={merge([
+                'tw-flex',
+                isHovered && !checkboxDisabled && !readonly && 'tw-bg-black-5 tw-cursor-pointer',
+                (!isHovered || readonly || checkboxDisabled) && 'tw-bg-white',
+            ])}
+            {...hoverProps}
+        >
+            <div className="tw-p-1 tw-flex tw-flex-auto">
+                <Checkbox
+                    checked={completed}
+                    onChange={toggleCompleted}
+                    id={id}
+                    ariaLabel={text}
+                    disabled={checkboxDisabled}
+                    checkedColor={completeStyle?.checkbox}
+                    uncheckedColor={incompleteStyle?.checkbox}
+                />
+                <div className="tw-flex-auto tw-pl-2">
+                    {completed ? (
+                        <div>
+                            <p>
+                                <span className="tw-px-1" style={{ color: completeStyle.color, ...decorationStyle }}>
+                                    {text}
+                                </span>
+                            </p>
+                            {dateVisible && <small className="tw-black-80">{dateCompleted}</small>}
+                        </div>
+                    ) : (
+                        <MockTextEditor
+                            color={incompleteStyle.color}
+                            readonly={readonly}
+                            onChange={onChange}
+                            onBlur={onBlur}
+                            value={text}
+                            placeholder="Add new checklist item"
+                        />
+                    )}
+                </div>
             </div>
             <div className={`tw-flex-none tw-flex ${isHovered && !readonly ? 'tw-visible' : 'tw-invisible'}`}>
                 <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup>

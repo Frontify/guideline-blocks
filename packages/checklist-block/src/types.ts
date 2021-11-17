@@ -8,6 +8,12 @@ export type ChecklistButtonProps = {
     icon: ReactElement;
 };
 
+export type ProgressBarProps = {
+    trackColor: string;
+    fillColor: string;
+    percentage: number;
+};
+
 export type Settings = {
     content: ChecklistContent[];
     paddingAdvanced: boolean;
