@@ -56,4 +56,4 @@ If you encounter any error with the CLI, you can troubleshoot the problem with t
 
 ### Create a new release
 
-`npm publish`
+Use `npm run publish` to create a new version.

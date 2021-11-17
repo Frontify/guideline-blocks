@@ -1,7 +1,9 @@
 # Block Settings
+
 Provides the block settings types for the guideline-blocks.
 
 ## Example
+
 ```ts
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import { IconEnum } from '@frontify/arcade';
@@ -11,7 +13,7 @@ const Settings: ApiSettings = {
         {
             id: 'example',
             type: 'dropdown',
-            size: 'large',
+            size: 'Large',
             defaultValue: 'solid',
             choices: [
                 {
@@ -34,6 +36,3 @@ const Settings: ApiSettings = {
         },
     ],
 ```
-
-## Publish a new version to npm
-Use `npm publish` from root of the monorepo to create a new version.
