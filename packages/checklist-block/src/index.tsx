@@ -11,7 +11,7 @@ import ChecklistItem from './ChecklistItem';
 
 export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
-
+    console.log(isEditing);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const addNewItem = (text: string): void => {
@@ -33,12 +33,11 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         setBlockSettings({ ...blockSettings, content: blockSettings.content.filter(({ id }) => id !== idToDelete) });
     };
 
-    const editLabel = (text: string, idToEdit: string) => {
+    const updateItem = (idToUpdate: string, properties: any) => {
         const updatedContent = blockSettings.content.reduce((acc: ChecklistContent[], item: ChecklistContent) => {
-            if (item.id === idToEdit) return [...acc, { ...item, text }];
+            if (item.id === idToUpdate) return [...acc, { ...item, ...properties }];
             return [...acc, item];
         }, []);
-
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
@@ -49,15 +48,18 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
 
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
-
+    console.log(blockSettings);
     return (
         <div>
-            {blockSettings.content.map(({ id, text, updatedAt }, index, ctx) => (
+            {blockSettings.content.map(({ id, text, updatedAt, completed }, index, ctx) => (
                 <ChecklistItem
                     key={id}
+                    id={id}
                     text={text}
-                    completed={true}
-                    onBlur={(text) => editLabel(text, id)}
+                    checkboxDisabled={!isEditing}
+                    completed={completed}
+                    toggleCompleted={(value: boolean) => updateItem(id, { completed: value })}
+                    onBlur={(text) => updateItem(id, { text })}
                     completeStyle={{
                         color: blockSettings.completeTextColor?.hex,
                         checkbox: blockSettings.completeCheckboxColor?.hex,

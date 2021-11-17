@@ -16,6 +16,7 @@ export default function ChecklistItemCreator({ onBlur }: ChecklistItemCreatorPro
         <ChecklistItem
             text={text}
             dateVisible={false}
+            checkboxDisabled
             onChange={setText}
             onBlur={createItem}
             incompleteStyle={{ color: '#fff', checkbox: '#fff' }}

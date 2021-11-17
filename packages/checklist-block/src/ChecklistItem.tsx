@@ -4,10 +4,14 @@ import { ButtonGroup, ButtonSize } from '@frontify/arcade';
 import MockTextEditor from './MockTextEditor';
 import { useHover } from '@react-aria/interactions/src/useHover';
 import { ChecklistDecoration, ChecklistItemProps } from './types';
+import { Checkbox } from './Checkbox';
 
 export default function ChecklistItem({
+    id,
     text,
     completed,
+    toggleCompleted,
+    checkboxDisabled,
     dateCompleted,
     readonly,
     controlButtons,
@@ -21,7 +25,6 @@ export default function ChecklistItem({
     onBlur,
 }: ChecklistItemProps): ReactElement {
     let { hoverProps, isHovered } = useHover({});
-    const incompleteStyles = {};
     let decorationStyle;
 
     switch (completedDecoration) {
@@ -44,6 +47,15 @@ export default function ChecklistItem({
 
     return (
         <div className={`tw-flex tw-cursor-pointer ${isHovered ? 'tw-bg-black-5' : 'tw-bg-white'}`} {...hoverProps}>
+            <Checkbox
+                checked={completed}
+                onChange={toggleCompleted}
+                id={id}
+                ariaLabel={text}
+                disabled={checkboxDisabled}
+                checkedColor={completeStyle?.checkbox}
+                uncheckedColor={incompleteStyle?.checkbox}
+            />
             <div className="tw-flex-auto">
                 {completed ? (
                     <span>
