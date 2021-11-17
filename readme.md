@@ -53,3 +53,7 @@ If you encounter any error with the CLI, you can troubleshoot the problem with t
     $ npm link @frontify/frontify-cli
     ```
 6. Try to run your local CLI build
+
+### Create a new release
+
+`npm publish`

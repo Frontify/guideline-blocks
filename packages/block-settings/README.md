@@ -34,3 +34,6 @@ const Settings: ApiSettings = {
         },
     ],
 ```
+
+## Publish a new version to npm
+Use `npm publish` from root of the monorepo to create a new version.
