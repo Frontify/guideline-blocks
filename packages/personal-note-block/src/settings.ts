@@ -2,7 +2,7 @@
 
 import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
-import { numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 } };
 export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 } };
@@ -53,12 +53,7 @@ export default {
                     type: 'input',
                     placeholder: '20px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: any): void => {
-                        const value = Number(bundle.getBlock(PADDING_VALUE_ID)?.value);
-                        if (!Number.isNaN(value)) {
-                            bundle.setBlockValue(PADDING_VALUE_ID, `${value}px`);
-                        }
-                    },
+                    onChange: (bundle: any): void => pxAutocomplete(bundle, PADDING_VALUE_ID),
                 },
             ],
             off: [
@@ -138,12 +133,7 @@ export default {
                     type: 'input',
                     defaultValue: '1px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: any): void => {
-                        const value = Number(bundle.getBlock(BORDER_WIDTH_ID)?.value);
-                        if (!Number.isNaN(value)) {
-                            bundle.setBlockValue(BORDER_WIDTH_ID, `${value}px`);
-                        }
-                    },
+                    onChange: (bundle: any): void => pxAutocomplete(bundle, BORDER_WIDTH_ID),
                 },
                 {
                     id: 'borderColor',
@@ -163,12 +153,7 @@ export default {
                     id: BORDER_RADIUS_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: any): void => {
-                        const value = Number(bundle.getBlock(BORDER_RADIUS_VALUE_ID)?.value);
-                        if (!Number.isNaN(value)) {
-                            bundle.setBlockValue(BORDER_RADIUS_VALUE_ID, `${value}px`);
-                        }
-                    },
+                    onChange: (bundle: any): void => pxAutocomplete(bundle, BORDER_RADIUS_VALUE_ID),
                 },
             ],
             off: [
