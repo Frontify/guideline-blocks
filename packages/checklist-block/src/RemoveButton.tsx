@@ -1,10 +1,7 @@
 import React, { ReactElement } from 'react';
-import { Button, IconReject, IconSize } from '@frontify/arcade';
+import { Button, ButtonSize, IconReject, IconSize } from '@frontify/arcade';
+import { ChecklistButtonProps } from './types';
 
-type RemoveButtonProps = {
-    onClick: (e: any) => void;
-};
-
-export default function RemoveButton({ onClick }: RemoveButtonProps): ReactElement {
-    return <Button onClick={onClick} icon={<IconReject size={IconSize.Size16} />}></Button>;
+export default function RemoveButton({ onClick }: ChecklistButtonProps): ReactElement {
+    return <Button inverted onClick={onClick} icon={<IconReject size={IconSize.Size16} />}></Button>;
 }
