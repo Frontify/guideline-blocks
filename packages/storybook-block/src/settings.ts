@@ -49,6 +49,8 @@ const settings: ApiSettings = {
                 {
                     id: 'heightValue',
                     type: 'input',
+                    placeholder: '400px',
+                    rules: [numericalOrPixelRule],
                 },
             ],
             off: [
@@ -128,6 +130,7 @@ const settings: ApiSettings = {
                     id: 'borderWidth',
                     type: 'input',
                     defaultValue: '1px',
+                    rules: [numericalOrPixelRule],
                 },
                 {
                     id: 'borderColor',
@@ -147,6 +150,8 @@ const settings: ApiSettings = {
                 {
                     id: 'borderRadiusValue',
                     type: 'input',
+                    placeholder: '1px',
+                    rules: [numericalOrPixelRule],
                 },
             ],
             off: [

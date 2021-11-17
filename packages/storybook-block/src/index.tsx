@@ -42,7 +42,7 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         heightChoice = StorybookHeight.Medium,
         heightValue = '',
         positioning = StorybookPosition.Horizontal,
-        hasBorder = false,
+        hasBorder = true,
         borderSelection = [StorybookBorderStyle.Solid, '1px', BORDER_COLOR_DEFAULT_VALUE],
         hasCustomBorderRadius = false,
         borderRadiusChoice = StorybookBorderRadius.None,
