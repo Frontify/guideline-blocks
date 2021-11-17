@@ -2,15 +2,7 @@
 
 import { FC } from 'react';
 import dayjs from 'dayjs';
-
-type NoteHeaderProps = {
-    name: string;
-    avatar: string;
-    hasAvatarName: boolean;
-    hasDateEdited: boolean;
-    dateEdited: Date;
-    useLightText: boolean;
-};
+import { NoteHeaderProps } from '../types';
 
 export const NoteHeader: FC<NoteHeaderProps> = ({
     name,

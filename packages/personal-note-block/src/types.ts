@@ -22,6 +22,15 @@ export type Settings = {
     visibility?: NoteVisibility;
 };
 
+export type NoteHeaderProps = {
+    name: string;
+    avatar: string;
+    hasAvatarName: boolean;
+    hasDateEdited: boolean;
+    dateEdited: Date;
+    useLightText: boolean;
+};
+
 export enum NoteStyle {
     Card = 'Card',
 }
