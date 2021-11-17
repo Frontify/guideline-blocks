@@ -7,7 +7,7 @@ const settings: ApiSettings = {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'custom_block',
-            size: 'large',
+            size: 'Large',
             disabled: true,
             choices: [
                 {

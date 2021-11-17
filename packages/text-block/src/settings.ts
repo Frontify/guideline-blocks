@@ -45,7 +45,7 @@ const settings: ApiSettings = {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'text',
-            size: 'large',
+            size: 'Large',
             disabled: true,
             choices: [
                 {

@@ -16,7 +16,7 @@ const settings: ApiSettings = {
                     label: 'Color only',
                 },
             ],
-            size: 'large',
+            size: 'Large',
         },
     ],
     style: [

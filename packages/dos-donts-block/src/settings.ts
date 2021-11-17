@@ -13,7 +13,7 @@ const settings: ApiSettings = {
             id: 'style',
             type: 'dropdown',
             defaultValue: DoDontStyle.Icons,
-            size: 'large',
+            size: 'Large',
             choices: [
                 {
                     value: DoDontStyle.Icons,

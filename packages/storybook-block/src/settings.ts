@@ -16,7 +16,7 @@ const settings: ApiSettings = {
             id: 'style',
             type: 'dropdown',
             defaultValue: StorybookStyle.Default,
-            size: 'large',
+            size: 'Large',
             choices: [
                 {
                     value: StorybookStyle.Default,

@@ -6,5 +6,5 @@ export type DropdownBlock = {
     type: 'dropdown';
     disabled?: boolean;
     placeholder?: string;
-    size?: 'small' | 'large';
+    size?: 'Small' | 'Large';
 } & ChoicesType;

@@ -27,7 +27,7 @@ export default {
             id: QUOTE_TYPE_ID,
             type: 'dropdown',
             defaultValue: QuoteType.QuotationMarks,
-            size: 'large',
+            size: 'Large',
             choices: [
                 {
                     value: QuoteType.QuotationMarks,

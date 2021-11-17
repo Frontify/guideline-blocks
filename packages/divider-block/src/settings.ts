@@ -25,7 +25,7 @@ const Settings: ApiSettings = {
         {
             id: IS_LINE_ID,
             type: 'dropdown',
-            size: 'large',
+            size: 'Large',
             defaultValue: DividerStyle.Solid,
             choices: [
                 {
