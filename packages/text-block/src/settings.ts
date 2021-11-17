@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
-import { numericalPixelValueRule, betweenPixelValue } from './rules';
+import { numericalOrPixelRule, betweenPixelRule } from '@frontify/guideline-blocks-shared';
+import { IconEnum } from '@frontify/arcade';
 
 export const columnGutterChoices = [
     {
@@ -49,7 +49,7 @@ export default {
             choices: [
                 {
                     value: 'text',
-                    icon: IconEnum.AlignLeft,
+                    icon: IconEnum.TextAlignLeft,
                     label: 'Text',
                 },
             ],
@@ -73,7 +73,8 @@ export default {
                     id: 'columnGutterCustom',
                     type: 'input',
                     defaultValue: DEFAULT_COLUMN_GUTTER,
-                    rules: [numericalPixelValueRule, betweenPixelValue(0, 200)],
+                    rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     onChange: (bundle: any): void => {
                         const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
                         if (!isNaN(gutter)) {
