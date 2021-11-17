@@ -14,7 +14,7 @@
         "prettier": "prettier --check 'packages/*/src/*.{ts,tsx}'",
         "serve": "lerna run serve:block --stream --scope",
         "test": "lerna run test",
-        "publish": "lerna publish",
+        "publish": "lerna publish --no-private",
         "typecheck": "tsc"
     }
 }
