@@ -4,8 +4,8 @@ import { DoDontStyle, DoDontLayout, DoDontSpacing } from './types';
 import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings, BaseBlock } from '@frontify/guideline-blocks-settings';
 
-export const DO_COLOR_DEFAULT_VALUE = { rgba: { r: 0, g: 200, b: 165, a: 1 }, hex: '#00c8a5' };
-export const DONT_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 55, b: 90, a: 1 }, hex: '#ff375a' };
+export const DO_COLOR_DEFAULT_VALUE = { rgba: { r: 0, g: 200, b: 165, a: 1 }, hex: '00c8a5' };
+export const DONT_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 55, b: 90, a: 1 }, hex: 'ff375a' };
 
 const settings: ApiSettings = {
     main: [
