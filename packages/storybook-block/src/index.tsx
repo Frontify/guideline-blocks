@@ -8,32 +8,18 @@ import { Button, TextInput, IconStorybook, IconSize, Color } from '@frontify/arc
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { RemoveButton } from './components/RemoveButton';
 import {
+    BlockProps,
+    BorderSelectionType,
+    Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookStyle,
     StorybookHeight,
     StorybookPosition,
+    borderStyles,
+    borderRadiusClasses,
+    heights,
 } from './types';
-
-type StorybookBlockProps = {
-    appBridge: AppBridgeNative;
-};
-
-type BorderSelectionType = [StorybookBorderStyle, string, Color];
-
-type Settings = {
-    style: StorybookStyle;
-    url: string;
-    isCustomHeight: boolean;
-    heightChoice: StorybookHeight;
-    heightValue: string;
-    positioning: StorybookPosition;
-    hasBorder: boolean;
-    borderSelection: BorderSelectionType;
-    hasCustomBorderRadius: boolean;
-    borderRadiusChoice: StorybookBorderRadius;
-    borderRadiusValue: string;
-};
 
 const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string) => ({
     borderStyle: borderStyles[borderSelection[0]],
@@ -41,25 +27,6 @@ const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: str
     borderRadius,
     ...(borderSelection[2]?.rgba ? { borderColor: mapRgbaToString(borderSelection[2].rgba) } : {}),
 });
-
-const borderStyles: Record<StorybookBorderStyle, string> = {
-    [StorybookBorderStyle.Solid]: 'solid',
-    [StorybookBorderStyle.Dotted]: 'dotted',
-    [StorybookBorderStyle.Dashed]: 'dashed',
-};
-
-const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
-    [StorybookBorderRadius.None]: 'tw-rounded-none',
-    [StorybookBorderRadius.Small]: 'tw-rounded',
-    [StorybookBorderRadius.Medium]: 'tw-rounded-md',
-    [StorybookBorderRadius.Large]: 'tw-rounded-lg',
-};
-
-const heights: Record<StorybookHeight, string> = {
-    [StorybookHeight.Small]: '400px',
-    [StorybookHeight.Medium]: '600px',
-    [StorybookHeight.Large]: '800px',
-};
 
 const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
