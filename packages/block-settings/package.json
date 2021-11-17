@@ -5,6 +5,9 @@
     "files": [
         "types"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "types": "types/index.d.ts",
     "author": "Frontify Developers <developers@frontify.com>",
     "devDependencies": {
