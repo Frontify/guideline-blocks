@@ -9,7 +9,9 @@ export type ChecklistButtonProps = {
 
 export type Settings = {
     content: ChecklistContent[];
-    padding: string;
+    paddingAdvanced: boolean;
+    paddingBasic: ChecklistPadding;
+    paddingCustom: string;
     incompleteTextColor: Color;
     incompleteCheckboxColor: Color;
     completeTextColor: Color;
@@ -49,6 +51,38 @@ export enum StrikethroughType {
     Dotted = 'dotted',
     Wavy = 'wavy',
 }
+
+export enum ChecklistPadding {
+    None = 'none',
+    Small = 'sm',
+    Medium = 'med',
+    Large = 'lg',
+}
+
+export enum ProgressBarType {
+    Percentage = 'Percentage',
+    Bar = 'Bar',
+    Fraction = 'Fraction',
+}
+
+export const DefaultValues = {
+    content: [],
+    paddingAdvanced: false,
+    paddingBasic: ChecklistPadding.Medium,
+    paddingCustom: '0px',
+    incompleteTextColor: { hex: '#2D3232' },
+    incompleteCheckboxColor: { hex: '#6C7070' },
+    completeTextColor: { hex: '#FF375A' },
+    completeCheckboxColor: { hex: '#FF375A' },
+    completedDecoration: ChecklistDecoration.Strikethrough,
+    highlightColor: { hex: '#BEE1D4' },
+    dateVisible: true,
+    progressBarVisible: true,
+    progressBarType: ProgressBarType.Bar,
+    progressBarFillColor: { hex: '#00C8A5' },
+    progressBarTrackColor: { hex: '#DEF0E9' },
+    strikethroughMultiInput: [StrikethroughType.Solid, '1px', { hex: '#FF375A' }],
+};
 
 export type StrikethroughStyle = {
     color?: string;

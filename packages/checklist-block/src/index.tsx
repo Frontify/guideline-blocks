@@ -1,19 +1,38 @@
 import 'tailwindcss/tailwind.css';
-import { ReactElement, useState } from 'react';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { ReactElement } from 'react';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Divider } from '@frontify/arcade';
-import { ChecklistContent, ChecklistProps, Settings } from './types';
+import { ChecklistContent, ChecklistProps, DefaultValues, Settings } from './types';
 import ChecklistItemCreator from './ChecklistItemCreator';
 import IncrementButton from './IncrementButton';
 import DecrementButton from './DecrementButton';
 import RemoveButton from './RemoveButton';
 import ChecklistItem from './ChecklistItem';
+import { provideDefaults } from './utilities/provideDefaults';
 
 export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
-    console.log(isEditing);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
+    const {
+        content,
+        paddingSwitch,
+        paddingBasic,
+        paddingCustom,
+        incompleteTextColor,
+        incompleteCheckboxColor,
+        completeTextColor,
+        completeCheckboxColor,
+        completedDecoration,
+        highlightColor,
+        dateVisible,
+        progressBarVisible,
+        progressBarType,
+        progressBarFillColor,
+        progressBarTrackColor,
+        strikethroughMultiInput,
+    } = provideDefaults(DefaultValues, blockSettings);
+    console.log(blockSettings);
     const addNewItem = (text: string): void => {
         if (!text) return;
         const creationDate = Date.now();
@@ -25,7 +44,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
             updatedAt: creationDate,
             completed: false,
         };
-        const updatedContent = [...blockSettings.content, newChecklistItem];
+        const updatedContent = [...(blockSettings.content || []), newChecklistItem];
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
@@ -51,7 +70,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     console.log(blockSettings);
     return (
         <div>
-            {blockSettings.content.map(({ id, text, updatedAt, completed }, index, ctx) => (
+            {content.map(({ id, text, updatedAt, completed }, index, ctx) => (
                 <ChecklistItem
                     key={id}
                     id={id}
@@ -61,22 +80,22 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     toggleCompleted={(value: boolean) => updateItem(id, { completed: value })}
                     onBlur={(text) => updateItem(id, { text })}
                     completeStyle={{
-                        color: blockSettings.completeTextColor?.hex,
-                        checkbox: blockSettings.completeCheckboxColor?.hex,
+                        color: completeTextColor.hex,
+                        checkbox: completeCheckboxColor.hex,
                     }}
-                    completedDecoration={blockSettings.completedDecoration}
+                    completedDecoration={completedDecoration}
                     incompleteStyle={{
-                        color: blockSettings.incompleteTextColor?.hex,
-                        checkbox: blockSettings.incompleteCheckboxColor?.hex,
+                        color: incompleteTextColor.hex,
+                        checkbox: incompleteCheckboxColor.hex,
                     }}
-                    highlightColor={blockSettings.highlightColor?.hex}
+                    highlightColor={highlightColor?.hex}
                     strikethroughStyle={{
-                        color: blockSettings.strikethroughMultiInput?.[2]?.hex,
-                        width: blockSettings.strikethroughMultiInput?.[1],
-                        style: blockSettings.strikethroughMultiInput?.[0],
+                        color: strikethroughMultiInput?.[2]?.hex,
+                        width: strikethroughMultiInput?.[1],
+                        style: strikethroughMultiInput?.[0],
                     }}
                     dateCompleted={updatedAt}
-                    dateVisible={blockSettings.dateVisible}
+                    dateVisible={dateVisible}
                     readonly={!isEditing}
                     controlButtons={
                         <>
@@ -94,7 +113,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                 />
             ))}
             <Divider />
-            <ChecklistItemCreator onBlur={addNewItem} />
+            <ChecklistItemCreator onBlur={addNewItem} readonly={!isEditing} />
         </div>
     );
 }

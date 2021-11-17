@@ -1,4 +1,4 @@
-import { ReactElement, ReactEventHandler, useState } from 'react';
+import { ReactElement, useState } from 'react';
 
 type MockTextEditorProps = {
     value?: string;
