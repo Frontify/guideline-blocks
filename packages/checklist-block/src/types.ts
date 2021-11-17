@@ -62,10 +62,13 @@ export type ChecklistItemStyle = {
 };
 
 export type ChecklistItemProps = {
+    id: string;
     text: string;
     createdAt?: string;
     updatedAt?: string;
     completed: boolean;
+    checkboxDisabled: boolean;
+    toggleCompleted: () => void;
     dateCompleted?: number;
     dateVisible: boolean;
     readonly: boolean;
