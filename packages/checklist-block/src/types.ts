@@ -1,10 +1,11 @@
 import { AppBridgeNative } from '@frontify/app-bridge';
-import { Color } from '@frontify/arcade';
+import { Color, IconEnum } from '@frontify/arcade';
 import { ReactElement } from 'react';
 
 export type ChecklistButtonProps = {
     disabled?: boolean;
     onClick: (e: any) => void;
+    icon: ReactElement;
 };
 
 export type Settings = {
