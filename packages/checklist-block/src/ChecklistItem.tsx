@@ -2,6 +2,7 @@ import 'tailwindcss/tailwind.css';
 import { ReactElement } from 'react';
 import { ButtonGroup, ButtonSize } from '@frontify/arcade';
 import MockTextEditor from './MockTextEditor';
+import { useHover } from '@react-aria/interactions/src/useHover';
 import { ChecklistDecoration, ChecklistItemProps } from './types';
 
 export default function ChecklistItem({
@@ -19,6 +20,7 @@ export default function ChecklistItem({
     onChange,
     onBlur,
 }: ChecklistItemProps): ReactElement {
+    let { hoverProps, isHovered } = useHover({});
     const incompleteStyles = {};
     let decorationStyle;
 
@@ -41,7 +43,7 @@ export default function ChecklistItem({
     }
 
     return (
-        <div className="tw-flex">
+        <div className={`tw-flex tw-cursor-pointer ${isHovered ? 'tw-bg-black-5' : 'tw-bg-white'}`} {...hoverProps}>
             <div className="tw-flex-auto">
                 {completed ? (
                     <span>
@@ -59,7 +61,7 @@ export default function ChecklistItem({
                     />
                 )}
             </div>
-            <div className="tw-flex-none tw-flex">
+            <div className={`tw-flex-none tw-flex ${isHovered ? 'tw-visible' : 'tw-invisible'}`}>
                 <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup>
             </div>
         </div>
