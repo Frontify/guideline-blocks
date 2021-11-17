@@ -80,6 +80,8 @@ const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
             newIframeUrl.searchParams.set('panel', panelValue);
 
             setIframeUrl(newIframeUrl);
+        } else if (url === '') {
+            deleteUrl();
         }
     }, [url, style, positioning]);
 
