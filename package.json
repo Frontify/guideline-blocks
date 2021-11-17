@@ -2,10 +2,18 @@
     "name": "root",
     "private": true,
     "devDependencies": {
-        "lerna": "4.0.0"
+        "@frontify/eslint-config-react": "0.11.0",
+        "eslint": "7.32.0",
+        "husky": "^7.0.4",
+        "lerna": "4.0.0",
+        "prettier": "^2.4.1"
     },
     "scripts": {
         "bootstrap": "lerna bootstrap",
-        "serve": "lerna run serve:block --stream --scope"
+        "lint": "lerna run lint",
+        "prettier": "prettier --check 'packages/*/src/*.{ts,tsx}'",
+        "serve": "lerna run serve:block --stream --scope",
+        "test": "lerna run test",
+        "typecheck": "tsc"
     }
 }
