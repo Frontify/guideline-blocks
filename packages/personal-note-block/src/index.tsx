@@ -70,24 +70,20 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         });
     };
 
-    const saveUserData = (userId: number, username: string, avatar: string) => {
-        setUserId(userId);
-        if (!createdByUser) {
-            setBlockSettings({
-                ...blockSettings,
-                createdByUser: userId,
-                username,
-                avatar,
-            });
-        }
-    };
-
     useEffect(() => {
         async function getUserData() {
             await appBridge.getCurrentLoggedUser().then((data) => {
                 if (data) {
                     const { id, name, image } = data;
-                    saveUserData(id, name, image?.image);
+                    setUserId(userId);
+                    if (!createdByUser) {
+                        setBlockSettings({
+                            ...blockSettings,
+                            createdByUser: id,
+                            username: name,
+                            avatar: image?.image || '',
+                        });
+                    }
                 }
             });
         }

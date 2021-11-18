@@ -32,7 +32,7 @@ export type Settings = {
 
 export type NoteHeaderProps = {
     name: string;
-    avatar: string;
+    avatar?: string;
     hasAvatarName: boolean;
     hasDateEdited: boolean;
     dateEdited: Date;
