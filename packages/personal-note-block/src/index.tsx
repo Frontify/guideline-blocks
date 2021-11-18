@@ -39,7 +39,7 @@ const getPaddingStyles = (padding: string): CSSProperties => ({
 const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const [user, setUser] = useState<number>();
+    const [userId, setUserId] = useState<number | null>(null);
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
@@ -71,7 +71,7 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const saveUserData = (userId: number, username: string, avatar: string) => {
-        setUser(userId);
+        setUserId(userId);
         if (!createdByUser) {
             setBlockSettings({
                 ...blockSettings,
@@ -85,19 +85,19 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     useEffect(() => {
         async function getUserData() {
             await appBridge.getCurrentLoggedUser().then((data) => {
-                saveUserData(data?.id, data?.name, data?.image?.image);
+                if (data) {
+                    const { id, name, image } = data;
+                    saveUserData(id, name, image?.image);
+                }
             });
         }
         getUserData();
     }, []);
 
-    if (visibility === NoteVisibility.Editors && !isEditing) {
-        // If visibility "editors" is selected, hide block when not in editing mode
-        return <></>;
-    }
-
-    if (visibility === NoteVisibility.YouOnly && createdByUser !== user) {
-        // If visibility "you only" is selected, hide block when current user is not matching user who created the block
+    if (
+        (visibility === NoteVisibility.Editors && !isEditing) || // If visibility "editors" is selected, hide block when not in editing mode
+        (visibility === NoteVisibility.YouOnly && createdByUser !== userId) // If visibility "you only" is selected, hide block when current user is not matching user who created the block
+    ) {
         return <></>;
     }
 
