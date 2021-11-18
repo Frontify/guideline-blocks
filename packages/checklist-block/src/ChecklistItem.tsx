@@ -2,7 +2,7 @@ import 'tailwindcss/tailwind.css';
 import { ReactElement } from 'react';
 import { ButtonGroup, ButtonSize } from '@frontify/arcade';
 import MockTextEditor from './MockTextEditor';
-import { useHover } from '@react-aria/interactions/src/useHover';
+import { useHover } from '@react-aria/interactions';
 import { ChecklistDecoration, ChecklistItemProps } from './types';
 import { Checkbox } from './Checkbox';
 import { merge } from './utilities/merge';

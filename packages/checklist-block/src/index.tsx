@@ -1,7 +1,17 @@
 import 'tailwindcss/tailwind.css';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Divider, IconCaretDown, IconCaretUp, IconReject, IconSize } from '@frontify/arcade';
+import {
+    Button,
+    ButtonSize,
+    Divider,
+    IconCaretDown,
+    IconCaretUp,
+    IconReject,
+    IconSize,
+    IconView,
+    IconViewSlash,
+} from '@frontify/arcade';
 import { ChecklistContent, ChecklistProps, DefaultValues, PaddingClasses, ProgressBarType, Settings } from './types';
 import ChecklistItemCreator from './ChecklistItemCreator';
 import ChecklistItem from './ChecklistItem';
@@ -9,12 +19,14 @@ import { provideDefaults } from './utilities/provideDefaults';
 import ChecklistButton from './ChecklistButton';
 import ProgressBar from './ProgressBar';
 import ProgressHeader from './ProgressHeader';
+import { useHover } from '@react-aria/interactions';
 import { merge } from './utilities/merge';
 
 export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-
+    const [showCompleted, setShowCompleted] = useState(true);
+    let { hoverProps, isHovered } = useHover({});
     const {
         content,
         paddingAdvanced,
@@ -80,78 +92,112 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         return `${totalCompletedCount(c)}/${c.length}`;
     };
 
+    const toggleCompletedVisibility = () => {
+        setShowCompleted((prev) => !prev);
+    };
+
+    const completionFilter = ({ completed }: ChecklistContent): boolean => {
+        if (!isEditing && !showCompleted && completed) return false;
+        return true;
+    };
+
     return (
         <div
-            className={merge([paddingAdvanced && PaddingClasses[paddingBasic]])}
+            className={merge([!paddingAdvanced && PaddingClasses[paddingBasic]])}
             style={{ padding: paddingAdvanced ? paddingCustom : '' }}
         >
-            {progressBarVisible && progressBarType === ProgressBarType.Bar && (
-                <ProgressBar
-                    fillColor={progressBarFillColor.hex}
-                    trackColor={progressBarTrackColor.hex}
-                    percentage={calculatePercentage(content)}
-                />
-            )}
-            {progressBarVisible && progressBarType === ProgressBarType.Fraction && (
-                <ProgressHeader value={`${calculatePercentage(content)}%`} />
-            )}
-            {progressBarVisible && progressBarType === ProgressBarType.Percentage && (
-                <ProgressHeader value={calculateFraction(content)} />
-            )}
-            <div className="tw-my-3"></div>
-            {content.map(({ id, text, updatedAt, completed }, index, ctx) => (
-                <ChecklistItem
-                    key={id}
-                    id={id}
-                    text={text}
-                    checkboxDisabled={!isEditing}
-                    completed={completed}
-                    toggleCompleted={(value: boolean) => updateItem(id, { completed: value, updatedAt: Date.now() })}
-                    onBlur={(text) => updateItem(id, { text })}
-                    completeStyle={{
-                        color: completeTextColor.hex,
-                        checkbox: completeCheckboxColor.hex,
-                    }}
-                    completedDecoration={completedDecoration}
-                    incompleteStyle={{
-                        color: incompleteTextColor.hex,
-                        checkbox: incompleteCheckboxColor.hex,
-                    }}
-                    highlightColor={highlightColor?.hex}
-                    strikethroughStyle={{
-                        color: strikethroughMultiInput[2].hex,
-                        width: strikethroughMultiInput[1],
-                        style: strikethroughMultiInput[0],
-                    }}
-                    dateCompleted={updatedAt}
-                    dateVisible={dateVisible}
-                    readonly={!isEditing}
-                    controlButtons={
-                        <>
-                            <ChecklistButton
-                                disabled={index < 1}
-                                icon={<IconCaretUp size={IconSize.Size16} />}
-                                onClick={() => modifyListPosition(index, index - 1)}
-                            />
-                            <ChecklistButton
-                                disabled={index === ctx.length - 1}
-                                icon={<IconCaretDown size={IconSize.Size16} />}
-                                onClick={() => modifyListPosition(index, index + 1)}
-                            />
-                            <ChecklistButton
-                                icon={<IconReject size={IconSize.Size16} />}
-                                onClick={() => removeItem(id)}
-                            />
-                        </>
-                    }
-                />
-            ))}
-            {isEditing && (
-                <>
-                    <Divider />
-                    <ChecklistItemCreator onBlur={addNewItem} readonly={false} color={incompleteTextColor.hex} />
-                </>
-            )}
+            <div {...hoverProps} className="tw-relative">
+                {progressBarVisible && progressBarType === ProgressBarType.Bar && (
+                    <ProgressBar
+                        fillColor={progressBarFillColor.hex}
+                        trackColor={progressBarTrackColor.hex}
+                        percentage={calculatePercentage(content)}
+                    />
+                )}
+                {progressBarVisible && progressBarType === ProgressBarType.Fraction && (
+                    <ProgressHeader value={`${calculatePercentage(content)}%`} />
+                )}
+                {progressBarVisible && progressBarType === ProgressBarType.Percentage && (
+                    <ProgressHeader value={calculateFraction(content)} />
+                )}
+                <div
+                    className={merge([
+                        'tw-absolute tw-right-0 tw-top-0',
+                        isHovered && !isEditing && 'tw-visible',
+                        (!isHovered || isEditing) && 'tw-invisible',
+                    ])}
+                >
+                    <Button
+                        size={ButtonSize.Small}
+                        icon={
+                            showCompleted ? (
+                                <IconView size={IconSize.Size16} />
+                            ) : (
+                                <IconViewSlash size={IconSize.Size16} />
+                            )
+                        }
+                        onClick={toggleCompletedVisibility}
+                    >
+                        {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
+                    </Button>
+                </div>
+                <div className="tw-my-3"></div>
+                {content.filter(completionFilter).map(({ id, text, updatedAt, completed }, index, ctx) => (
+                    <ChecklistItem
+                        key={id}
+                        id={id}
+                        text={text}
+                        checkboxDisabled={!isEditing}
+                        completed={completed}
+                        toggleCompleted={(value: boolean) =>
+                            updateItem(id, { completed: value, updatedAt: Date.now() })
+                        }
+                        onBlur={(text) => updateItem(id, { text })}
+                        completeStyle={{
+                            color: completeTextColor.hex,
+                            checkbox: completeCheckboxColor.hex,
+                        }}
+                        completedDecoration={completedDecoration}
+                        incompleteStyle={{
+                            color: incompleteTextColor.hex,
+                            checkbox: incompleteCheckboxColor.hex,
+                        }}
+                        highlightColor={highlightColor?.hex}
+                        strikethroughStyle={{
+                            color: strikethroughMultiInput[2].hex,
+                            width: strikethroughMultiInput[1],
+                            style: strikethroughMultiInput[0],
+                        }}
+                        dateCompleted={updatedAt}
+                        dateVisible={dateVisible}
+                        readonly={!isEditing}
+                        controlButtons={
+                            <>
+                                <ChecklistButton
+                                    disabled={index < 1}
+                                    icon={<IconCaretUp size={IconSize.Size16} />}
+                                    onClick={() => modifyListPosition(index, index - 1)}
+                                />
+                                <ChecklistButton
+                                    disabled={index === ctx.length - 1}
+                                    icon={<IconCaretDown size={IconSize.Size16} />}
+                                    onClick={() => modifyListPosition(index, index + 1)}
+                                />
+                                <ChecklistButton
+                                    icon={<IconReject size={IconSize.Size16} />}
+                                    onClick={() => removeItem(id)}
+                                />
+                            </>
+                        }
+                    />
+                ))}
+                {isEditing && (
+                    <>
+                        <Divider />
+                        <ChecklistItemCreator onBlur={addNewItem} readonly={false} color={incompleteTextColor.hex} />
+                    </>
+                )}
+            </div>
         </div>
     );
 }
