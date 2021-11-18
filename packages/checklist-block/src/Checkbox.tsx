@@ -53,10 +53,10 @@ export const Checkbox = ({
     );
 
     return (
-        <div className="tw-flex tw-flex-col tw-gap-1 tw-transition-colors tw-flex-auto" data-test-id="checkbox">
+        <div className="tw-flex tw-items-center tw-transition-colors tw-flex-auto" data-test-id="checkbox">
             <label
                 className={merge([
-                    'tw-group tw-flex tw-items-center tw-gap-2 tw-select-none tw-outline-none tw-flex-auto',
+                    'tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none tw-flex-auto ',
                     !disabled && 'hover:tw-cursor-pointer',
                 ])}
             >

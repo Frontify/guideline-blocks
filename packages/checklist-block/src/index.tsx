@@ -57,17 +57,18 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     console.log(blockSettings);
 
     const addNewItem = (text: string): void => {
-        if (!text) return;
+        const trimmed = text.trim();
+        if (!trimmed) return;
         const creationDate = Date.now();
         const id = Math.ceil(Math.random() * creationDate).toString();
         const newChecklistItem = {
             id,
-            text,
+            text: trimmed,
             createdAt: creationDate,
             updatedAt: creationDate,
             completed: false,
         };
-        const updatedContent = [...(blockSettings.content || []), newChecklistItem];
+        const updatedContent = [...content, newChecklistItem];
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
@@ -171,7 +172,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                         {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
                     </Button>
                 </div>
-                <div className="tw-my-3"></div>
+                <div className="tw-my-1.5"></div>
                 {content.filter(completionFilter).map(({ id, text, updatedAt, completed }, index, ctx) => (
                     <ChecklistItem
                         key={id}
@@ -183,7 +184,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                             updateItem(id, { completed: value, updatedAt: Date.now() })
                         }
                         decorationStyle={decorationStyles}
-                        onBlur={(text) => updateItem(id, { text })}
+                        onBlur={(text) => updateItem(id, { text: text.trim() })}
                         checkboxStyle={{
                             checked: completeCheckboxColor.hex,
                             unchecked: incompleteCheckboxColor.hex,
@@ -217,7 +218,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                 ))}
                 {isEditing && (
                     <>
-                        <Divider />
+                        <hr className="tw-my-2 tw-border-black-40" />
                         <ChecklistItemCreator
                             onBlur={addNewItem}
                             readonly={false}
