@@ -32,7 +32,7 @@ export default function MockTextEditor({
     return (
         <textarea
             className={merge([
-                'tw-w-full tw-bg-transparent tw-resize-none tw-py-2 tw-border-none tw-text-s tw-outline-none tw-transition tw-placeholder-black-60',
+                'tw-inline-block tw-bg-transparent tw-resize-none tw-py-2 tw-border-none tw-text-s tw-outline-none tw-transition tw-placeholder-black-60',
                 ' hover:tw-border-black-90',
                 isFocusVisible && FOCUS_STYLE,
             ])}
