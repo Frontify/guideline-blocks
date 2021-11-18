@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
-
 import { pxAutocomplete } from './pxAutocomplete';
 
 describe('pxAutocomplete', () => {
@@ -10,6 +9,7 @@ describe('pxAutocomplete', () => {
             getBlock() {
                 return { value: 20 };
             },
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
 
@@ -24,6 +24,7 @@ describe('pxAutocomplete', () => {
             getBlock() {
                 return { value: '20px' };
             },
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
         const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
