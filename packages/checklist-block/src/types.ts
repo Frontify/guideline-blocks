@@ -112,24 +112,3 @@ export type ChecklistItemStyle = {
     checkbox: string;
     color: string;
 };
-
-export type ChecklistItemProps = {
-    id: string;
-    text: string;
-    createdAt?: string;
-    updatedAt?: string;
-    completed: boolean;
-    checkboxDisabled: boolean;
-    toggleCompleted: (value: boolean) => void;
-    dateCompleted?: number;
-    dateVisible: boolean;
-    readonly: boolean;
-    controlButtons: ReactElement;
-    strikethroughStyle?: StrikethroughStyle;
-    highlightColor: string;
-    completedDecoration: ChecklistDecoration;
-    completeStyle: ChecklistItemStyle;
-    incompleteStyle: ChecklistItemStyle;
-    onChange?: (text: string) => void;
-    onBlur?: (text: string) => void;
-};

@@ -4,23 +4,21 @@ import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
 import React, { HTMLAttributes, ReactElement, useRef } from 'react';
+import { InputLabel } from './CheckboxLabel';
 import { FOCUS_STYLE } from './utilities/focusStyle';
 import { merge } from './utilities/merge';
 
 export enum CheckboxState {
     Checked = 'Checked',
     Unchecked = 'Unchecked',
-    Mixed = 'Mixed',
 }
 
 export type CheckboxProps = {
     id?: string;
     disabled?: boolean;
-    required?: boolean;
     checked: boolean;
     onChange?: (isChecked: boolean) => void;
-    label?: string;
-    note?: string;
+    labelComponent?: ReactElement;
     ariaLabel?: string;
     groupInputProps?: HTMLAttributes<HTMLElement>;
     checkedColor: string;
@@ -30,8 +28,7 @@ export type CheckboxProps = {
 export const Checkbox = ({
     id,
     disabled,
-    required,
-    label,
+    labelComponent,
     ariaLabel,
     checked,
     groupInputProps,
@@ -48,18 +45,18 @@ export const Checkbox = ({
     const { inputProps } = useCheckbox(
         {
             isDisabled: disabled,
-            isRequired: required,
-            'aria-label': ariaLabel || label,
+            isRequired: false,
+            'aria-label': ariaLabel,
         },
         toggleState,
         inputRef
     );
 
     return (
-        <div className="tw-flex tw-flex-col tw-gap-1 tw-transition-colors" data-test-id="checkbox">
+        <div className="tw-flex tw-flex-col tw-gap-1 tw-transition-colors tw-flex-auto" data-test-id="checkbox">
             <label
                 className={merge([
-                    'tw-group tw-flex tw-items-center tw-gap-2 tw-select-none tw-outline-none',
+                    'tw-group tw-flex tw-items-center tw-gap-2 tw-select-none tw-outline-none tw-flex-auto',
                     !disabled && 'hover:tw-cursor-pointer',
                 ])}
             >
@@ -90,14 +87,8 @@ export const Checkbox = ({
                 >
                     {checked && <IconCheck />}
                 </span>
-                {/* 
-                {label && (
-                    <InputLabel disabled={disabled} htmlFor={id} tooltip={undefined} required={required} bold={value}>
-                        {label}
-                    </InputLabel>
-                )} */}
+                {labelComponent}
             </label>
-            {/*note && <span className="tw-text-black-60 tw-font-sans tw-text-xs tw-font-normal">{note}</span>*/}
         </div>
     );
 };

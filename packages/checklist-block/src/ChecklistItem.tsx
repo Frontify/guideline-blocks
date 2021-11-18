@@ -1,12 +1,32 @@
 import 'tailwindcss/tailwind.css';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { ButtonGroup, ButtonSize } from '@frontify/arcade';
 import MockTextEditor from './MockTextEditor';
 import { useHover } from '@react-aria/interactions';
-import { ChecklistDecoration, ChecklistItemProps } from './types';
+import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
 import { merge } from './utilities/merge';
 import dayjs from './utilities/day';
+import { CheckboxLabel } from './CheckboxLabel';
+
+export type ChecklistItemProps = {
+    id: string;
+    text: string;
+    createdAt?: string;
+    updatedAt?: string;
+    completed: boolean;
+    checkboxDisabled: boolean;
+    toggleCompleted: (value: boolean) => void;
+    dateCompleted?: number;
+    dateVisible: boolean;
+    readonly: boolean;
+    controlButtons: ReactElement;
+    decorationStyle: any;
+    checkboxStyle: any;
+    labelStyle: any;
+    onChange?: (text: string) => void;
+    onBlur?: (text: string) => void;
+};
 
 export default function ChecklistItem({
     id,
@@ -17,78 +37,68 @@ export default function ChecklistItem({
     dateCompleted,
     readonly,
     controlButtons,
-    strikethroughStyle,
-    highlightColor,
-    completedDecoration,
-    completeStyle,
-    incompleteStyle,
     dateVisible,
     onChange,
     onBlur,
+    decorationStyle,
+    labelStyle,
+    checkboxStyle,
 }: ChecklistItemProps): ReactElement {
-    let { hoverProps, isHovered } = useHover({});
-    let decorationStyle;
+    const [focused, setFocused] = useState(false);
 
-    switch (completedDecoration) {
-        case ChecklistDecoration.Highlight:
-            decorationStyle = {
-                backgroundColor: highlightColor,
-            };
-            break;
-        case ChecklistDecoration.Strikethrough:
-            decorationStyle = {
-                textDecorationLine: 'line-through',
-                textDecorationThickness: strikethroughStyle?.width,
-                textDecorationColor: strikethroughStyle?.color,
-                textDecorationStyle: strikethroughStyle?.style,
-            };
-            break;
-        default:
-            break;
-    }
+    const { hoverProps, isHovered } = useHover({});
+    const { focusWithinProps } = useFocusWithin({
+        onFocusWithinChange: setFocused,
+    });
+
+    const shouldDisplayControlPanel = () => {
+        return (isHovered || focused) && !checkboxDisabled && !readonly;
+    };
 
     return (
         <div
             className={merge([
-                'tw-flex',
-                isHovered && !checkboxDisabled && !readonly && 'tw-bg-black-5 tw-cursor-pointer',
-                (!isHovered || readonly || checkboxDisabled) && 'tw-bg-white',
+                'tw-flex tw-content-center',
+                shouldDisplayControlPanel() && 'tw-bg-black-5 tw-cursor-pointer',
+                !shouldDisplayControlPanel && 'tw-bg-white',
             ])}
             {...hoverProps}
+            {...focusWithinProps}
         >
-            <div className="tw-p-1 tw-flex tw-flex-auto">
+            <div className="tw-p-1 tw-flex tw-flex-auto tw-content-center">
                 <Checkbox
                     checked={completed}
                     onChange={toggleCompleted}
                     id={id}
                     ariaLabel={text}
                     disabled={checkboxDisabled}
-                    checkedColor={completeStyle?.checkbox}
-                    uncheckedColor={incompleteStyle?.checkbox}
+                    checkedColor={checkboxStyle.checked}
+                    uncheckedColor={checkboxStyle.unchecked}
+                    labelComponent={
+                        completed ? (
+                            <CheckboxLabel
+                                disabled={checkboxDisabled}
+                                htmlFor={id}
+                                color={labelStyle.checked}
+                                decoration={decorationStyle}
+                                date={dateVisible && completed && dayjs(dateCompleted).fromNow()}
+                            >
+                                {text}
+                            </CheckboxLabel>
+                        ) : (
+                            <MockTextEditor
+                                color={labelStyle.unchecked}
+                                readonly={readonly}
+                                onChange={onChange}
+                                onBlur={onBlur}
+                                value={text}
+                                placeholder="Add new checklist item"
+                            />
+                        )
+                    }
                 />
-                <div className="tw-flex-auto tw-pl-2">
-                    {completed ? (
-                        <div>
-                            <p>
-                                <span className="tw-px-1" style={{ color: completeStyle.color, ...decorationStyle }}>
-                                    {text}
-                                </span>
-                            </p>
-                            {dateVisible && <small className="tw-black-80">{dayjs(dateCompleted).fromNow()}</small>}
-                        </div>
-                    ) : (
-                        <MockTextEditor
-                            color={incompleteStyle.color}
-                            readonly={readonly}
-                            onChange={onChange}
-                            onBlur={onBlur}
-                            value={text}
-                            placeholder="Add new checklist item"
-                        />
-                    )}
-                </div>
             </div>
-            <div className={`tw-flex-none tw-flex ${isHovered && !readonly ? 'tw-visible' : 'tw-invisible'}`}>
+            <div className={`tw-flex-none tw-flex ${shouldDisplayControlPanel() ? 'tw-visible' : 'tw-invisible'}`}>
                 <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup>
             </div>
         </div>
