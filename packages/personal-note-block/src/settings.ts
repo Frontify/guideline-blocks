@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { NoteStyle, NoteBorderRadius, NoteBorderStyle, NotePadding, NoteVisibility } from './types';
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
+import { NoteBorderRadius, NoteBorderStyle, NotePadding, NoteStyle, NoteVisibility } from './types';
 
-export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 }, name: 'White' };
-export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 }, name: 'Light Grey' };
+export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 }, name: 'White', hex: 'ffffff' };
+export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 }, name: 'Light Grey', hex: 'eaebeb' };
 
 const PADDING_VALUE_ID = 'paddingValue';
 const HAS_BACKGROUND_ID = 'hasBackground';
@@ -13,7 +14,7 @@ const HAS_BORDER_ID = 'hasBorder';
 const BORDER_WIDTH_ID = 'borderWidth';
 const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
 
-export default {
+const Settings: ApiSettings = {
     main: [
         {
             id: 'style',
@@ -48,14 +49,14 @@ export default {
             label: 'Padding',
             type: 'switch',
             switchLabel: 'Custom',
+            defaultValue: false,
             on: [
                 {
                     id: PADDING_VALUE_ID,
                     type: 'input',
                     placeholder: '20px',
                     rules: [numericalOrPixelRule],
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    onChange: (bundle: any): void => pxAutocomplete(bundle, PADDING_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, PADDING_VALUE_ID),
                 },
             ],
             off: [
@@ -96,8 +97,7 @@ export default {
             id: 'backgroundColor',
             type: 'colorInput',
             defaultValue: BACKGROUND_COLOR_DEFAULT_VALUE,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            show: (bundle: any): void => bundle.getBlock(HAS_BACKGROUND_ID).value,
+            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BACKGROUND_ID).value,
         },
         {
             id: HAS_BORDER_ID,
@@ -110,8 +110,7 @@ export default {
             type: 'multiInput',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            show: (bundle: any): void => bundle.getBlock(HAS_BORDER_ID).value,
+            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID).value,
             blocks: [
                 {
                     id: 'borderStyle',
@@ -137,8 +136,7 @@ export default {
                     type: 'input',
                     defaultValue: '1px',
                     rules: [numericalOrPixelRule],
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    onChange: (bundle: any): void => pxAutocomplete(bundle, BORDER_WIDTH_ID),
+                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, BORDER_WIDTH_ID),
                 },
                 {
                     id: 'borderColor',
@@ -152,15 +150,14 @@ export default {
             label: 'Corner radius',
             type: 'switch',
             switchLabel: 'Custom',
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            show: (bundle: any): void => bundle.getBlock(HAS_BORDER_ID).value,
+            defaultValue: false,
+            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID).value,
             on: [
                 {
                     id: BORDER_RADIUS_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    onChange: (bundle: any): void => pxAutocomplete(bundle, BORDER_RADIUS_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, BORDER_RADIUS_VALUE_ID),
                 },
             ],
             off: [
@@ -213,3 +210,5 @@ export default {
         },
     ],
 };
+
+export default Settings;
