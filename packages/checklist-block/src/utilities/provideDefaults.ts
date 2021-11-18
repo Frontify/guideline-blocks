@@ -5,7 +5,7 @@ export const provideDefaults = (defaultObject: Settings, overrider: Settings): S
         ...defaultObject,
         ...overrider,
         strikethroughMultiInput: defaultObject.strikethroughMultiInput.reduce((acc, item, index) => {
-            return [...acc, overrider.strikethroughMultiInput[index] || item];
+            return [...acc, overrider.strikethroughMultiInput?.[index] || item];
         }, []),
     };
     return newObj;
