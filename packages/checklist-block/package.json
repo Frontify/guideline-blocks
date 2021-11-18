@@ -22,7 +22,9 @@
     "dependencies": {
         "@frontify/app-bridge": "^2.6.0",
         "@frontify/arcade": "^0.12.1",
-        "@frontify/guideline-blocks-shared": "1.0.0"
+        "@frontify/guideline-blocks-shared": "1.0.0",
+        "@react-aria/dnd": "^3.0.0-alpha.3",
+        "dayjs": "^1.10.7"
     },
     "peerDependencies": {
         "react": "^17.0.2"

@@ -6,6 +6,7 @@ import { useHover } from '@react-aria/interactions/src/useHover';
 import { ChecklistDecoration, ChecklistItemProps } from './types';
 import { Checkbox } from './Checkbox';
 import { merge } from './utilities/merge';
+import dayjs from './utilities/day';
 
 export default function ChecklistItem({
     id,
@@ -73,7 +74,7 @@ export default function ChecklistItem({
                                     {text}
                                 </span>
                             </p>
-                            {dateVisible && <small className="tw-black-80">{dateCompleted}</small>}
+                            {dateVisible && <small className="tw-black-80">{dayjs(dateCompleted).fromNow()}</small>}
                         </div>
                     ) : (
                         <MockTextEditor
