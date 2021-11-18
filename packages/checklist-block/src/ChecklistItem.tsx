@@ -81,7 +81,7 @@ export default function ChecklistItem({
                                 htmlFor={id}
                                 color={labelStyle.checked}
                                 decoration={decorationStyle}
-                                date={dateVisible && completed && dayjs(dateCompleted).fromNow()}
+                                date={dateVisible && completed ? dayjs(dateCompleted).fromNow() : undefined}
                             >
                                 {text}
                             </CheckboxLabel>
