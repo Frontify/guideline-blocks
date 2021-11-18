@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { createRef, CSSProperties, FC, useEffect, useMemo, useState } from "react";
+import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Alignment,
@@ -108,7 +108,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     <img alt={iconAltText} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
                 </span>
             )}
-            <div className={placeholderVisible ? 'tw-w-1/4' : ''}>
+            <div style={placeholderVisible ? { minWidth: '130px' } : undefined}>
                 <RichTextEditor
                     onTextChange={onTextChange}
                     readonly={!isEditing}
