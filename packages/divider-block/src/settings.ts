@@ -1,24 +1,43 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconEnum } from '@frontify/arcade';
+import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import {
-    numericalOrPixelRule,
-    numericalOrPercentRule,
     betweenNumericalOrPercentOrAutoRule,
     minimumNumericalOrPixelOrAutoRule,
+    numericalOrPercentRule,
+    numericalOrPixelRule,
 } from '@frontify/guideline-blocks-shared';
-import { DividerStyle, DividerWidth, DividerHeight, DividerAlignment, DividerThickness } from './types';
-import { ApiBundle, ApiSettings, BaseBlock } from '@frontify/guideline-blocks-settings';
+import {
+    DividerAlignment,
+    dividerHeight,
+    DividerHeight,
+    DividerStyle,
+    dividerThickness,
+    DividerThickness,
+    DividerWidth,
+} from './types';
 
 const IS_LINE_ID = 'isLine';
+const WIDTH_CUSTOM_ID = 'widthCustom';
+const HEIGHT_CUSTOM_ID = 'heightCustom';
+const THICKNESS_CUSTOM_ID = 'thicknessCustom';
+const THICKNESS_SIMPLE_ID = 'thicknessSimple';
+const HEIGHT_SIMPLE_ID = 'heightSimple';
 
+export const IS_LINE_DEFAULT_VALUE = DividerStyle.Solid;
 export const ALIGNMENT_DEFAULT_VALUE = DividerAlignment.Left;
 export const STYLE_DEFAULT_VALUE = DividerStyle.Solid;
 export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
 export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
-export const COLOR_DEFAULT_RGBA_VALUE = { rgba: { r: 100, g: 12, b: 0, a: 1 }, hex: '640c00' };
+export const THICKNESS_DEFAULT_VALUE = DividerThickness.Small;
+export const COLOR_DEFAULT_RGBA_VALUE = {
+    hex: 'd5d6d6',
+    rgba: { r: 213, g: 214, b: 214, a: 1 },
+    name: 'Light Grey',
+};
 
-const solidStyleIsSelected: BaseBlock['show'] = (bundle) => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
+const solidStyleIsSelected = (bundle: ApiBundle): boolean => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
 
 const Settings: ApiSettings = {
     main: [
@@ -26,7 +45,7 @@ const Settings: ApiSettings = {
             id: IS_LINE_ID,
             type: 'dropdown',
             size: 'Large',
-            defaultValue: DividerStyle.Solid,
+            defaultValue: IS_LINE_DEFAULT_VALUE,
             choices: [
                 {
                     value: DividerStyle.NoLine,
@@ -39,12 +58,6 @@ const Settings: ApiSettings = {
                     label: 'Line',
                 },
             ],
-            onChange: (bundle: ApiBundle): void => {
-                const blockWidth = Number(bundle.getBlock('widthCustom')?.value);
-                if (!Number.isNaN(blockWidth)) {
-                    bundle.setBlockValue('widthCustom', `${blockWidth}%`);
-                }
-            },
         },
     ],
     layout: [
@@ -56,14 +69,14 @@ const Settings: ApiSettings = {
             defaultValue: false,
             on: [
                 {
-                    id: 'widthCustom',
+                    id: WIDTH_CUSTOM_ID,
                     type: 'input',
-                    placeholder: '73%',
+                    placeholder: '75%',
                     rules: [numericalOrPercentRule, betweenNumericalOrPercentOrAutoRule(0, 100)],
                     onChange: (bundle: ApiBundle): void => {
-                        const blockWidth = Number(bundle.getBlock('widthCustom')?.value);
+                        const blockWidth = Number(bundle.getBlock(WIDTH_CUSTOM_ID)?.value);
                         if (!Number.isNaN(blockWidth)) {
-                            bundle.setBlockValue('widthCustom', `${blockWidth}%`);
+                            bundle.setBlockValue(WIDTH_CUSTOM_ID, `${blockWidth}%`);
                         }
                     },
                 },
@@ -124,23 +137,29 @@ const Settings: ApiSettings = {
             switchLabel: 'Custom',
             info: 'Determines the block height. This will not affect the dividing line in any way.',
             defaultValue: false,
+            onChange: (bundle: ApiBundle): void => {
+                const sliderValue: DividerHeight = bundle.getBlock(HEIGHT_SIMPLE_ID)?.value;
+                if (sliderValue) {
+                    bundle.setBlockValue(HEIGHT_CUSTOM_ID, dividerHeight[sliderValue]);
+                }
+            },
             on: [
                 {
-                    id: 'heightCustom',
+                    id: HEIGHT_CUSTOM_ID,
                     type: 'input',
                     placeholder: '100px',
                     rules: [numericalOrPixelRule],
                     onChange: (bundle: ApiBundle): void => {
-                        const blockHeight = Number(bundle.getBlock('heightCustom')?.value);
+                        const blockHeight = Number(bundle.getBlock(HEIGHT_CUSTOM_ID)?.value);
                         if (!Number.isNaN(blockHeight)) {
-                            bundle.setBlockValue('heightCustom', `${blockHeight}px`);
+                            bundle.setBlockValue(HEIGHT_CUSTOM_ID, `${blockHeight}px`);
                         }
                     },
                 },
             ],
             off: [
                 {
-                    id: 'heightSimple',
+                    id: HEIGHT_SIMPLE_ID,
                     type: 'slider',
                     defaultValue: HEIGHT_DEFAULT_VALUE,
                     choices: [
@@ -189,25 +208,30 @@ const Settings: ApiSettings = {
             label: 'Thickness',
             switchLabel: 'Custom',
             defaultValue: false,
+            onChange: (bundle: ApiBundle): void => {
+                const sliderValue: DividerThickness = bundle.getBlock(THICKNESS_SIMPLE_ID)?.value;
+                if (sliderValue) {
+                    bundle.setBlockValue(THICKNESS_CUSTOM_ID, dividerThickness[sliderValue]);
+                }
+            },
             on: [
                 {
-                    id: 'thicknessCustom',
+                    id: THICKNESS_CUSTOM_ID,
                     type: 'input',
-                    placeholder: '8px',
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                     onChange: (bundle: ApiBundle): void => {
-                        const borderThickness = Number(bundle.getBlock('thicknessCustom')?.value);
+                        const borderThickness = Number(bundle.getBlock(THICKNESS_CUSTOM_ID)?.value);
                         if (!Number.isNaN(borderThickness)) {
-                            bundle.setBlockValue('thicknessCustom', `${borderThickness}px`);
+                            bundle.setBlockValue(THICKNESS_CUSTOM_ID, `${borderThickness}px`);
                         }
                     },
                 },
             ],
             off: [
                 {
-                    id: 'thicknessSimple',
+                    id: THICKNESS_SIMPLE_ID,
                     type: 'slider',
-                    defaultValue: DividerThickness.Small,
+                    defaultValue: THICKNESS_DEFAULT_VALUE,
                     choices: [
                         {
                             value: DividerThickness.Small,
