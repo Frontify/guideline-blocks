@@ -139,7 +139,8 @@ const Settings: ApiSettings = {
             defaultValue: false,
             onChange: (bundle: ApiBundle): void => {
                 const sliderValue: DividerHeight = bundle.getBlock(HEIGHT_SIMPLE_ID)?.value;
-                if (sliderValue) {
+                const customValue = bundle.getBlock(HEIGHT_CUSTOM_ID)?.value;
+                if (sliderValue && !customValue) {
                     bundle.setBlockValue(HEIGHT_CUSTOM_ID, dividerHeight[sliderValue]);
                 }
             },
@@ -210,7 +211,8 @@ const Settings: ApiSettings = {
             defaultValue: false,
             onChange: (bundle: ApiBundle): void => {
                 const sliderValue: DividerThickness = bundle.getBlock(THICKNESS_SIMPLE_ID)?.value;
-                if (sliderValue) {
+                const customValue = bundle.getBlock(THICKNESS_CUSTOM_ID)?.value;
+                if (sliderValue && !customValue) {
                     bundle.setBlockValue(THICKNESS_CUSTOM_ID, dividerThickness[sliderValue]);
                 }
             },
