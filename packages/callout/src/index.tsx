@@ -64,9 +64,12 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             : undefined;
         const cornerRadiusStyle = customCornerRadiusSwitch
             ? {
-                  borderRadius: `${customCornerRadius[0] ?? 0} ${customCornerRadius[1] ?? 0} ${
-                      customCornerRadius[3] ?? 0
-                  } ${customCornerRadius[2] ?? 0}`,
+                  borderRadius: `
+                    ${customCornerRadius[0] ?? 0}
+                    ${customCornerRadius[1] ?? 0}
+                    ${customCornerRadius[3] ?? 0}
+                    ${customCornerRadius[2] ?? 0}
+                  `,
               }
             : undefined;
 
