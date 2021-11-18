@@ -2,7 +2,10 @@
     "name": "root",
     "private": true,
     "devDependencies": {
+        "@cypress/react": "^5.10.3",
+        "@cypress/vite-dev-server": "^2.2.0",
         "@frontify/eslint-config-react": "0.11.0",
+        "cypress": "^9.0.0",
         "eslint": "7.32.0",
         "husky": "7.0.4",
         "lerna": "4.0.0",
@@ -13,7 +16,7 @@
         "lint": "lerna run lint",
         "prettier": "prettier --check 'packages/*/src/*.{ts,tsx}'",
         "serve": "lerna run serve:block --stream --scope",
-        "test": "lerna run test",
+        "test": "cypress open-ct",
         "publish": "lerna publish --no-private",
         "typecheck": "tsc"
     }
