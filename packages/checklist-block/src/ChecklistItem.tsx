@@ -65,7 +65,7 @@ export default function ChecklistItem({
             {...hoverProps}
             {...focusWithinProps}
         >
-            <div className="tw-p-1 tw-flex tw-flex-auto tw-content-center">
+            <div className="tw-p-1.5 tw-flex tw-flex-auto tw-content-center">
                 <Checkbox
                     checked={completed}
                     onChange={toggleCompleted}
@@ -98,7 +98,11 @@ export default function ChecklistItem({
                     }
                 />
             </div>
-            <div className={`tw-flex-none tw-flex ${shouldDisplayControlPanel() ? 'tw-visible' : 'tw-invisible'}`}>
+            <div
+                className={`tw-flex-none tw-flex tw-items-center ${
+                    shouldDisplayControlPanel() ? 'tw-visible' : 'tw-invisible'
+                }`}
+            >
                 <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup>
             </div>
         </div>
