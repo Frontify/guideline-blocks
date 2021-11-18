@@ -5,10 +5,10 @@ export default function ProgressBar({ trackColor, fillColor, percentage }: Progr
     const outerRef = useRef();
 
     return (
-        <div className="tw-relative tw-w-1/2" style={{ backgroundColor: trackColor, height: '20px' }} ref={outerRef}>
+        <div className="tw-relative tw-w-1/4 tw-h-2" style={{ backgroundColor: trackColor }} ref={outerRef}>
             <div
-                className="tw-absolute tw-duration-200 tw-top-0 tw-left-0 tw-h-100"
-                style={{ backgroundColor: fillColor, width: `${percentage}%`, height: '20px' }}
+                className="tw-absolute tw-duration-200 tw-top-0 tw-left-0 tw-bottom-0"
+                style={{ backgroundColor: fillColor, width: `${percentage}%` }}
             ></div>
         </div>
     );

@@ -6,9 +6,16 @@ type ChecklistItemCreatorProps = {
     onBlur: (text: string) => void;
     readonly: boolean;
     color: string;
+    checkboxStyle: any;
+    labelStyle: any;
 };
 
-export default function ChecklistItemCreator({ onBlur, readonly, color }: ChecklistItemCreatorProps): ReactElement {
+export default function ChecklistItemCreator({
+    onBlur,
+    readonly,
+    checkboxStyle,
+    labelStyle,
+}: ChecklistItemCreatorProps): ReactElement {
     const [text, setText] = useState('');
     const createItem = (text: string) => {
         onBlur(text);
@@ -24,7 +31,8 @@ export default function ChecklistItemCreator({ onBlur, readonly, color }: Checkl
             checkboxDisabled
             onChange={setText}
             onBlur={createItem}
-            incompleteStyle={{ color, checkbox: '#b3b5b5' }}
+            checkboxStyle={checkboxStyle}
+            labelStyle={labelStyle}
         />
     );
 }

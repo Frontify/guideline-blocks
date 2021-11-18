@@ -12,7 +12,15 @@ import {
     IconView,
     IconViewSlash,
 } from '@frontify/arcade';
-import { ChecklistContent, ChecklistProps, DefaultValues, PaddingClasses, ProgressBarType, Settings } from './types';
+import {
+    ChecklistContent,
+    ChecklistDecoration,
+    ChecklistProps,
+    DefaultValues,
+    PaddingClasses,
+    ProgressBarType,
+    Settings,
+} from './types';
 import ChecklistItemCreator from './ChecklistItemCreator';
 import ChecklistItem from './ChecklistItem';
 import { provideDefaults } from './utilities/provideDefaults';
@@ -26,7 +34,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [showCompleted, setShowCompleted] = useState(true);
-    let { hoverProps, isHovered } = useHover({});
+    const { hoverProps, isHovered } = useHover({});
     const {
         content,
         paddingAdvanced,
@@ -45,7 +53,9 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         progressBarTrackColor,
         strikethroughMultiInput,
     } = provideDefaults(DefaultValues, blockSettings);
+
     console.log(blockSettings);
+
     const addNewItem = (text: string): void => {
         if (!text) return;
         const creationDate = Date.now();
@@ -101,23 +111,43 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         return true;
     };
 
+    const decorationStyles = ((type: ChecklistDecoration): Record<string, string> => {
+        switch (type) {
+            case ChecklistDecoration.Strikethrough:
+                return {
+                    textDecoration: 'line-through',
+                    textDecorationStyle: strikethroughMultiInput[0],
+                    textDecorationThickness: strikethroughMultiInput[1],
+                    textDecorationColor: strikethroughMultiInput[2].hex,
+                };
+            case ChecklistDecoration.Highlight:
+                return {
+                    backgroundColor: highlightColor.hex,
+                };
+            default:
+                return {};
+        }
+    })(completedDecoration);
+
+    const shouldShowProgress = !!content.length && progressBarVisible;
+
     return (
         <div
             className={merge([!paddingAdvanced && PaddingClasses[paddingBasic]])}
             style={{ padding: paddingAdvanced ? paddingCustom : '' }}
         >
             <div {...hoverProps} className="tw-relative">
-                {progressBarVisible && progressBarType === ProgressBarType.Bar && (
+                {shouldShowProgress && progressBarType === ProgressBarType.Bar && (
                     <ProgressBar
                         fillColor={progressBarFillColor.hex}
                         trackColor={progressBarTrackColor.hex}
                         percentage={calculatePercentage(content)}
                     />
                 )}
-                {progressBarVisible && progressBarType === ProgressBarType.Fraction && (
+                {shouldShowProgress && progressBarType === ProgressBarType.Fraction && (
                     <ProgressHeader value={`${calculatePercentage(content)}%`} />
                 )}
-                {progressBarVisible && progressBarType === ProgressBarType.Percentage && (
+                {shouldShowProgress && progressBarType === ProgressBarType.Percentage && (
                     <ProgressHeader value={calculateFraction(content)} />
                 )}
                 <div
@@ -152,21 +182,15 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                         toggleCompleted={(value: boolean) =>
                             updateItem(id, { completed: value, updatedAt: Date.now() })
                         }
+                        decorationStyle={decorationStyles}
                         onBlur={(text) => updateItem(id, { text })}
-                        completeStyle={{
-                            color: completeTextColor.hex,
-                            checkbox: completeCheckboxColor.hex,
+                        checkboxStyle={{
+                            checked: completeCheckboxColor.hex,
+                            unchecked: incompleteCheckboxColor.hex,
                         }}
-                        completedDecoration={completedDecoration}
-                        incompleteStyle={{
-                            color: incompleteTextColor.hex,
-                            checkbox: incompleteCheckboxColor.hex,
-                        }}
-                        highlightColor={highlightColor?.hex}
-                        strikethroughStyle={{
-                            color: strikethroughMultiInput[2].hex,
-                            width: strikethroughMultiInput[1],
-                            style: strikethroughMultiInput[0],
+                        labelStyle={{
+                            checked: completeTextColor.hex,
+                            unchecked: incompleteTextColor.hex,
                         }}
                         dateCompleted={updatedAt}
                         dateVisible={dateVisible}
@@ -194,7 +218,19 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                 {isEditing && (
                     <>
                         <Divider />
-                        <ChecklistItemCreator onBlur={addNewItem} readonly={false} color={incompleteTextColor.hex} />
+                        <ChecklistItemCreator
+                            onBlur={addNewItem}
+                            readonly={false}
+                            color={incompleteTextColor.hex}
+                            checkboxStyle={{
+                                checked: DefaultValues.completeCheckboxColor.hex,
+                                unchecked: '#b3b5b5',
+                            }}
+                            labelStyle={{
+                                checked: DefaultValues.completeTextColor.hex,
+                                unchecked: DefaultValues.incompleteTextColor.hex,
+                            }}
+                        />
                     </>
                 )}
             </div>
