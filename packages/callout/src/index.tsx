@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { CSSProperties, FC, useEffect, useState } from 'react';
+import { createRef, CSSProperties, FC, useEffect, useMemo, useState } from "react";
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Alignment,
@@ -23,10 +23,6 @@ type CustomPaddingStyles = {
     paddingRight: string;
     paddingBottom: string;
     paddingLeft: string;
-};
-
-type CustomCornerRadius = {
-    borderRadius: string;
 };
 
 type CalloutBlockProps = {
@@ -54,6 +50,8 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CSSProperties>();
     const [iconUrl, setIconUrl] = useState<string>();
     const [iconAltText, setIconAltText] = useState<string>();
+    const [placeholderVisible, setPlaceholderVisible] = useState<boolean>();
+    const blockRef = createRef<HTMLDivElement>();
 
     useEffect(() => {
         const paddingStyle = customPaddingSwitch
@@ -81,6 +79,8 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                 setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
             });
         }
+
+        setPlaceholderVisible(blockRef.current?.querySelector('[data-slate-placeholder="true"]') !== null);
     }, [blockSettings]);
 
     const onTextChange = (value: string): void => {
@@ -102,13 +102,13 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     };
 
     return (
-        <div className={getClassName()} style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}>
+        <div className={getClassName()} style={{ ...customPaddingStyle, ...customCornerRadiusStyle }} ref={blockRef}>
             {iconSwitch && iconUrl && (
                 <span className="tw-pr-3">
                     <img alt={iconAltText} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
                 </span>
             )}
-            <div className={'tw-w-full'}>
+            <div className={placeholderVisible ? 'tw-w-1/4' : ''}>
                 <RichTextEditor
                     onTextChange={onTextChange}
                     readonly={!isEditing}
