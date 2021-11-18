@@ -4,7 +4,6 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "private": true,
     "scripts": {
         "serve:block": "frontify-cli block serve --blockDir $(PWD)",
         "lint": "eslint src",
@@ -14,7 +13,7 @@
     },
     "devDependencies": {
         "@frontify/frontify-cli": "2.2.0",
-        "@frontify/guideline-blocks-settings": "^0.0.1",
+        "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/react": "17.0.35",
         "autoprefixer": "10.4.0",
         "postcss": "8.3.11",
