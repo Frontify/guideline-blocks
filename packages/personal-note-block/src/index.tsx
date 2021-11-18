@@ -22,6 +22,7 @@ import {
 } from './types';
 
 const getBorderStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => {
+    // TODO: This check could be removed if defaultValue are returned from blockSettings
     const style = borderSelection[0] ? borderSelection[0] : NoteBorderStyle.Solid;
     const width = borderSelection[1] ? borderSelection[1] : '1px';
     const rgba = borderSelection[2]?.rgba ? borderSelection[2]?.rgba : BORDER_COLOR_DEFAULT_VALUE;
@@ -66,8 +67,6 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         avatar,
         visibility = NoteVisibility.Everyone,
     } = blockSettings;
-
-    console.log({ borderSelection });
 
     const saveNote = (value: string) => {
         setBlockSettings({
