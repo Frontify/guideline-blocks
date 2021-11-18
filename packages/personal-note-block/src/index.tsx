@@ -1,12 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/arcade/style';
-import { CSSProperties, FC, useEffect, useState } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor, Color } from '@frontify/arcade';
-import { mapRgbaToString, isDark, joinClassNames } from '@frontify/guideline-blocks-shared';
+import { Color, FormControlStyle, RichTextEditor } from '@frontify/arcade';
+import '@frontify/arcade/style';
+import { isDark, joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { CSSProperties, FC, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';
+import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 import {
     BlockProps,
     borderRadiusClasses,
@@ -19,14 +20,18 @@ import {
     paddingClasses,
     Settings,
 } from './types';
-import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 
-const getBorderStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => ({
-    borderStyle: borderStyles[borderSelection[0]],
-    borderWidth: borderSelection[1],
-    borderColor: mapRgbaToString(borderSelection[2].rgba),
-    borderRadius,
-});
+const getBorderStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => {
+    const style = borderSelection[0] ? borderSelection[0] : NoteBorderStyle.Solid;
+    const width = borderSelection[1] ? borderSelection[1] : '1px';
+    const rgba = borderSelection[2]?.rgba ? borderSelection[2]?.rgba : BORDER_COLOR_DEFAULT_VALUE;
+    return {
+        borderStyle: borderStyles[style],
+        borderWidth: width,
+        borderColor: mapRgbaToString(rgba),
+        borderRadius,
+    };
+};
 
 const getBackgroundStyles = (backgroundColor: Color): CSSProperties => ({
     backgroundColor: mapRgbaToString(backgroundColor.rgba),
@@ -61,6 +66,8 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         avatar,
         visibility = NoteVisibility.Everyone,
     } = blockSettings;
+
+    console.log({ borderSelection });
 
     const saveNote = (value: string) => {
         setBlockSettings({
