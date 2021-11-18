@@ -1,24 +1,40 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeNative } from '@frontify/app-bridge';
+import { Color } from '@frontify/arcade';
+
+export type Props = {
+    appBridge: AppBridgeNative;
+};
+
+export type Settings = {
+    alignment?: DividerAlignment;
+    style?: DividerStyle;
+    isLine?: DividerStyle;
+    color?: Color;
+    isWidthCustom?: boolean;
+    widthCustom?: string;
+    widthSimple?: DividerWidth;
+    isHeightCustom?: boolean;
+    heightCustom?: string;
+    heightSimple?: DividerHeight;
+    isThicknessCustom?: boolean;
+    thicknessCustom?: string;
+    thicknessSimple?: DividerThickness;
+};
+
 export enum DividerStyle {
-    NoLine = 'noline',
-    Dashed = 'dashed',
-    Solid = 'solid',
-    Dotted = 'dotted',
+    NoLine = 'NoLine',
+    Dashed = 'Dashed',
+    Solid = 'Solid',
+    Dotted = 'Dotted',
 }
 
 export enum DividerHeight {
-    Small = '36px',
-    Medium = '60px',
-    Large = '96px',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
 }
-
-export const dividerStyle = {
-    [DividerStyle.NoLine]: 'tw-border-none',
-    [DividerStyle.Dashed]: 'tw-border-dashed',
-    [DividerStyle.Solid]: 'tw-border-solid',
-    [DividerStyle.Dotted]: 'tw-border-dotted',
-};
 
 export enum DividerWidth {
     '10%' = '10%',
@@ -28,19 +44,38 @@ export enum DividerWidth {
 }
 
 export enum DividerAlignment {
-    Center = 'center',
-    Right = 'right',
-    Left = 'left',
+    Center = 'Center',
+    Right = 'Right',
+    Left = 'Left',
 }
 
-export const dividerAlignment = {
+export enum DividerThickness {
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+}
+
+export const dividerHeight: Record<DividerHeight, string> = {
+    [DividerHeight.Small]: '36px',
+    [DividerHeight.Medium]: '60px',
+    [DividerHeight.Large]: '96px',
+};
+
+export const dividerStyle: Record<DividerStyle, string> = {
+    [DividerStyle.NoLine]: 'tw-border-none',
+    [DividerStyle.Dashed]: 'tw-border-dashed',
+    [DividerStyle.Solid]: 'tw-border-solid',
+    [DividerStyle.Dotted]: 'tw-border-dotted',
+};
+
+export const dividerAlignment: Record<DividerAlignment, string> = {
     [DividerAlignment.Center]: 'tw-justify-center',
     [DividerAlignment.Right]: 'tw-justify-end',
     [DividerAlignment.Left]: 'tw-justify-start',
 };
 
-export enum DividerThickness {
-    Small = '1px',
-    Medium = '2px',
-    Large = '4px',
-}
+export const dividerThickness: Record<DividerThickness, string> = {
+    [DividerThickness.Small]: '1px',
+    [DividerThickness.Medium]: '2px',
+    [DividerThickness.Large]: '4px',
+};
