@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Color, FormControlStyle, RichTextEditor } from '@frontify/arcade';
+import { Color, RichTextEditor } from '@frontify/arcade';
 import '@frontify/arcade/style';
 import { isDark, joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
@@ -25,7 +25,7 @@ const getBorderStyles = (borderSelection: BorderSelectionType, borderRadius: str
     // TODO: This check could be removed if defaultValue are returned from blockSettings
     const style = borderSelection[0] ? borderSelection[0] : NoteBorderStyle.Solid;
     const width = borderSelection[1] ? borderSelection[1] : '1px';
-    const rgba = borderSelection[2]?.rgba ? borderSelection[2]?.rgba : BORDER_COLOR_DEFAULT_VALUE;
+    const rgba = borderSelection[2]?.rgba ? borderSelection[2]?.rgba : BORDER_COLOR_DEFAULT_VALUE.rgba;
     return {
         borderStyle: borderStyles[style],
         borderWidth: width,
@@ -72,7 +72,7 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         setBlockSettings({
             ...blockSettings,
             note: value,
-            dateEdited: new Date(),
+            dateEdited: new Date().toString(),
         });
     };
 

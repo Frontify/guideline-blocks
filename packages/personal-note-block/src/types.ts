@@ -31,11 +31,11 @@ export type Settings = {
 };
 
 export type NoteHeaderProps = {
-    name: string;
+    name?: string;
     avatar?: string;
     hasAvatarName: boolean;
     hasDateEdited: boolean;
-    dateEdited: Date;
+    dateEdited?: string;
     useLightText: boolean;
 };
 
