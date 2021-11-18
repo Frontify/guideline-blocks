@@ -24,6 +24,7 @@
         "@frontify/arcade": "^0.12.1",
         "@frontify/guideline-blocks-shared": "1.0.0",
         "@react-aria/dnd": "^3.0.0-alpha.3",
+        "@react-aria/interactions": "^3.6.0",
         "dayjs": "^1.10.7"
     },
     "peerDependencies": {
