@@ -19,9 +19,14 @@ export enum Width {
     HugContents = 'hugContents',
 }
 
-export const widthMap: Record<Width, string> = {
+export const outerWidthMap: Record<Width, string> = {
+    [Width.FullWidth]: 'tw-block',
+    [Width.HugContents]: 'tw-flex',
+};
+
+export const innerWidthMap: Record<Width, string> = {
     [Width.FullWidth]: 'tw-flex',
-    [Width.HugContents]: 'tw-inline-flex',
+    [Width.HugContents]: 'tw-block',
 };
 
 export enum Alignment {
