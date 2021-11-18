@@ -138,7 +138,7 @@ const Settings: ApiSettings = {
             info: 'Determines the block height. This will not affect the dividing line in any way.',
             defaultValue: false,
             onChange: (bundle: ApiBundle): void => {
-                const sliderValue: DividerHeight = bundle.getBlock(HEIGHT_SIMPLE_ID)?.value;
+                const sliderValue = bundle.getBlock(HEIGHT_SIMPLE_ID)?.value as DividerHeight;
                 const customValue = bundle.getBlock(HEIGHT_CUSTOM_ID)?.value;
                 if (sliderValue && !customValue) {
                     bundle.setBlockValue(HEIGHT_CUSTOM_ID, dividerHeight[sliderValue]);
@@ -210,7 +210,7 @@ const Settings: ApiSettings = {
             switchLabel: 'Custom',
             defaultValue: false,
             onChange: (bundle: ApiBundle): void => {
-                const sliderValue: DividerThickness = bundle.getBlock(THICKNESS_SIMPLE_ID)?.value;
+                const sliderValue = bundle.getBlock(THICKNESS_SIMPLE_ID)?.value as DividerThickness;
                 const customValue = bundle.getBlock(THICKNESS_CUSTOM_ID)?.value;
                 if (sliderValue && !customValue) {
                     bundle.setBlockValue(THICKNESS_CUSTOM_ID, dividerThickness[sliderValue]);
