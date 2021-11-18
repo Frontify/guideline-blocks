@@ -1,35 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
+import 'tailwindcss/tailwind.css';
+import { useBlockSettings } from '@frontify/app-bridge';
 import { FC, useEffect } from 'react';
-import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
-import { Color } from '@frontify/arcade';
-import { DoDontType, DoDontStyle, DoDontLayout, DoDontSpacing, DoDontContent } from './types';
-import { DoDontItem, ItemProps } from './DoDontItem';
-import { DO_COLOR_DEFAULT_VALUE, DONT_COLOR_DEFAULT_VALUE } from './settings';
-
-type DosDontsBlockProps = {
-    appBridge: AppBridgeNative;
-};
-
-type Settings = {
-    columns: number;
-    isCustomSpacing: boolean;
-    spacingValue: string;
-    doColor: Color;
-    dontColor: Color;
-    layout: DoDontLayout;
-    style: DoDontStyle;
-    spacingChoice: DoDontSpacing;
-    items: Pick<ItemProps, 'id' | 'title' | 'body'>[];
-};
-
-const spacingClasses: Record<DoDontSpacing, string> = {
-    [DoDontSpacing.Small]: 'tw-gap-4',
-    [DoDontSpacing.Medium]: 'tw-gap-6',
-    [DoDontSpacing.Large]: 'tw-gap-8',
-};
+import { DoDontItem } from './DoDontItem';
+import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
+import {
+    DoDontContent,
+    DoDontLayout,
+    DoDontSpacing,
+    DoDontStyle,
+    DoDontType,
+    DosDontsBlockProps,
+    Settings,
+    spacingClasses,
+} from './types';
 
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -52,7 +38,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         // Check whether to add or remove items
         if (updatedItems.length - numberOfItems < 0) {
             for (let index = updatedItems.length; index < numberOfItems; index++) {
-                updatedItems.push({ id: index, [DoDontContent.Title]: '', [DoDontContent.Body]: '' });
+                updatedItems.push({ id: index, title: '', body: '' });
             }
         } else {
             updatedItems = updatedItems.slice(0, numberOfItems);
@@ -93,8 +79,8 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                         key={index}
                         id={index}
                         saveItem={saveItem}
-                        title={item?.[DoDontContent.Title]}
-                        body={item?.[DoDontContent.Body]}
+                        title={item?.title}
+                        body={item?.body}
                         type={index % 2 ? DoDontType.Dont : DoDontType.Do}
                         style={style}
                         doColor={doColor}
