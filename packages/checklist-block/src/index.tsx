@@ -2,12 +2,14 @@ import 'tailwindcss/tailwind.css';
 import { ReactElement } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Divider, IconCaretDown, IconCaretUp, IconReject, IconSize } from '@frontify/arcade';
-import { ChecklistContent, ChecklistProps, DefaultValues, ProgressBarType, Settings } from './types';
+import { ChecklistContent, ChecklistProps, DefaultValues, PaddingClasses, ProgressBarType, Settings } from './types';
 import ChecklistItemCreator from './ChecklistItemCreator';
 import ChecklistItem from './ChecklistItem';
 import { provideDefaults } from './utilities/provideDefaults';
 import ChecklistButton from './ChecklistButton';
 import ProgressBar from './ProgressBar';
+import ProgressHeader from './ProgressHeader';
+import { merge } from './utilities/merge';
 
 export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
@@ -15,7 +17,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
 
     const {
         content,
-        paddingSwitch,
+        paddingAdvanced,
         paddingBasic,
         paddingCustom,
         incompleteTextColor,
@@ -67,12 +69,22 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
+    const totalCompletedCount = (array: ChecklistContent[]) =>
+        array.reduce((acc, item) => (item.completed ? acc + 1 : acc), 0);
+
     const calculatePercentage = (c: ChecklistContent[]): number => {
-        return (c.reduce((acc, item) => (item.completed ? acc + 1 : acc), 0) / c.length) * 100;
+        return +((totalCompletedCount(c) / c.length) * 100).toFixed(0);
+    };
+
+    const calculateFraction = (c: ChecklistContent[]): string => {
+        return `${totalCompletedCount(c)}/${c.length}`;
     };
 
     return (
-        <div>
+        <div
+            className={merge([paddingAdvanced && PaddingClasses[paddingBasic]])}
+            style={{ padding: paddingAdvanced ? paddingCustom : '' }}
+        >
             {progressBarVisible && progressBarType === ProgressBarType.Bar && (
                 <ProgressBar
                     fillColor={progressBarFillColor.hex}
@@ -80,6 +92,13 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     percentage={calculatePercentage(content)}
                 />
             )}
+            {progressBarVisible && progressBarType === ProgressBarType.Fraction && (
+                <ProgressHeader value={`${calculatePercentage(content)}%`} />
+            )}
+            {progressBarVisible && progressBarType === ProgressBarType.Percentage && (
+                <ProgressHeader value={calculateFraction(content)} />
+            )}
+            <div className="tw-my-3"></div>
             {content.map(({ id, text, updatedAt, completed }, index, ctx) => (
                 <ChecklistItem
                     key={id}
@@ -87,7 +106,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     text={text}
                     checkboxDisabled={!isEditing}
                     completed={completed}
-                    toggleCompleted={(value: boolean) => updateItem(id, { completed: value })}
+                    toggleCompleted={(value: boolean) => updateItem(id, { completed: value, updatedAt: Date.now() })}
                     onBlur={(text) => updateItem(id, { text })}
                     completeStyle={{
                         color: completeTextColor.hex,

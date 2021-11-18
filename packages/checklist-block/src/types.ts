@@ -14,6 +14,10 @@ export type ProgressBarProps = {
     percentage: number;
 };
 
+export type ProgressHeaderProps = {
+    value: string;
+};
+
 export type Settings = {
     content: ChecklistContent[];
     paddingAdvanced: boolean;
@@ -66,6 +70,13 @@ export enum ChecklistPadding {
     Large = 'lg',
 }
 
+export const PaddingClasses = {
+    [ChecklistPadding.None]: 'tw-p-0',
+    [ChecklistPadding.Small]: 'tw-p-1',
+    [ChecklistPadding.Medium]: 'tw-p-2',
+    [ChecklistPadding.Large]: 'tw-p-3',
+};
+
 export enum ProgressBarType {
     Percentage = 'Percentage',
     Bar = 'Bar',
@@ -109,7 +120,7 @@ export type ChecklistItemProps = {
     updatedAt?: string;
     completed: boolean;
     checkboxDisabled: boolean;
-    toggleCompleted: () => void;
+    toggleCompleted: (value: boolean) => void;
     dateCompleted?: number;
     dateVisible: boolean;
     readonly: boolean;
