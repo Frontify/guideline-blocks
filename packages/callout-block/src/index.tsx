@@ -132,7 +132,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                         onTextChange={onTextChange}
                         readonly={!isEditing}
                         value={textValue}
-                        placeholder={'Type your text here'}
+                        placeholder="Type your text here"
                     />
                 </div>
             </div>
