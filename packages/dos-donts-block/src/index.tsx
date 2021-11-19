@@ -7,7 +7,6 @@ import { FC, useEffect } from 'react';
 import { DoDontItem } from './DoDontItem';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import {
-    DoDontContent,
     DoDontLayout,
     DoDontSpacing,
     DoDontStyle,
@@ -50,7 +49,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         });
     };
 
-    const saveItem = (id: number, value: string, type: DoDontContent) => {
+    const saveItem = (id: number, value: string, type: 'title' | 'body') => {
         const updatedItems = items;
         const existingItemIndex = items.findIndex((item) => item.id === id);
         updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], [type]: value };
