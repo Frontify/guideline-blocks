@@ -11,7 +11,7 @@
     "types": "types/index.d.ts",
     "author": "Frontify Developers <developers@frontify.com>",
     "devDependencies": {
-        "typescript": "4.4.4"
+        "typescript": "4.5.2"
     },
     "dependencies": {
         "@frontify/app-bridge": "2.8.0",
