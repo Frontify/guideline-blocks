@@ -23,7 +23,7 @@
         "@frontify/app-bridge": "^2.6.0",
         "@frontify/arcade": "^0.12.1",
         "@frontify/guideline-blocks-shared": "1.0.0",
-        "@react-aria/dnd": "^3.0.0-alpha.3",
+        "react-beautiful-dnd":"13.1.0",
         "@react-aria/interactions": "^3.6.0",
         "react-textarea-autosize":"8.3.3",
         "dayjs": "^1.10.7"
