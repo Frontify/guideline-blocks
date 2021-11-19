@@ -22,12 +22,18 @@ import {
     StorybookStyle,
 } from './types';
 
-const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => ({
-    borderStyle: borderStyles[borderSelection[0]],
-    borderWidth: borderSelection[1],
-    borderRadius,
-    ...(borderSelection[2]?.rgba ? { borderColor: mapRgbaToString(borderSelection[2].rgba) } : {}),
-});
+const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => {
+    // TODO: This check could be removed if defaultValue are returned from blockSettings
+    const style = borderSelection[0] ? borderSelection[0] : StorybookBorderStyle.Solid;
+    const width = borderSelection[1] ? borderSelection[1] : '1px';
+    const rgba = borderSelection[2]?.rgba ? borderSelection[2]?.rgba : BORDER_COLOR_DEFAULT_VALUE.rgba;
+    return {
+        borderStyle: borderStyles[style],
+        borderWidth: width,
+        borderColor: mapRgbaToString(rgba),
+        borderRadius,
+    };
+};
 
 const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
