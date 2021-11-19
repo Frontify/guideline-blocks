@@ -256,14 +256,13 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                         <ChecklistItemCreator
                             onBlur={addNewItem}
                             readonly={false}
-                            color={incompleteTextColor.hex}
                             checkboxStyle={{
                                 checked: DefaultValues.completeCheckboxColor.hex,
                                 unchecked: '#b3b5b5',
                             }}
                             labelStyle={{
                                 checked: DefaultValues.completeTextColor.hex,
-                                unchecked: DefaultValues.incompleteTextColor.hex,
+                                unchecked: incompleteTextColor.hex,
                             }}
                         />
                     </>

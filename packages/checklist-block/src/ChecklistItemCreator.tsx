@@ -20,6 +20,8 @@ export default function ChecklistItemCreator({
         onBlur(text);
         setText('');
     };
+
+    console.log(labelStyle);
     return (
         <ChecklistItem
             id="Create new Checklist Item"
