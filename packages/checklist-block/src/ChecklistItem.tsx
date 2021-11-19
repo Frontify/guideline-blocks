@@ -1,4 +1,3 @@
-import 'tailwindcss/tailwind.css';
 import { ReactElement, useState } from 'react';
 import { ButtonGroup, ButtonSize } from '@frontify/arcade';
 import MockTextEditor from './MockTextEditor';

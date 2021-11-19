@@ -1,4 +1,3 @@
-import 'tailwindcss/tailwind.css';
 import { ReactElement, useState } from 'react';
 import ChecklistItem from './ChecklistItem';
 
