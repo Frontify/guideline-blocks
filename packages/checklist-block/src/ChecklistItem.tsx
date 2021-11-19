@@ -24,6 +24,7 @@ export type ChecklistItemProps = {
     decorationStyle: any;
     checkboxStyle: any;
     labelStyle: any;
+    isBeingDragged: boolean;
     onChange?: (text: string) => void;
     onBlur?: (text: string) => void;
 };
@@ -38,6 +39,7 @@ export default function ChecklistItem({
     readonly,
     controlButtons,
     dateVisible,
+    isBeingDragged,
     onChange,
     onBlur,
     decorationStyle,
@@ -52,14 +54,14 @@ export default function ChecklistItem({
     });
 
     const shouldDisplayControlPanel = () => {
-        return (isHovered || focused) && !checkboxDisabled && !readonly;
+        return (isHovered || focused) && !checkboxDisabled && !readonly && !isBeingDragged;
     };
 
     return (
         <div
             className={merge([
                 'tw-flex tw-content-center',
-                shouldDisplayControlPanel() && 'tw-bg-black-5 tw-cursor-pointer',
+                shouldDisplayControlPanel() && 'tw-bg-black-5',
                 !shouldDisplayControlPanel && 'tw-bg-white',
             ])}
             {...hoverProps}
@@ -103,7 +105,7 @@ export default function ChecklistItem({
                     shouldDisplayControlPanel() ? 'tw-visible' : 'tw-invisible'
                 }`}
             >
-                <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup>
+                {controlButtons ? <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup> : null}
             </div>
         </div>
     );

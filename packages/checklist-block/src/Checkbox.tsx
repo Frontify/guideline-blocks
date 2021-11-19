@@ -56,7 +56,7 @@ export const Checkbox = ({
         <div className="tw-flex tw-items-center tw-transition-colors tw-flex-auto" data-test-id="checkbox">
             <label
                 className={merge([
-                    'tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none tw-flex-auto ',
+                    'tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none',
                     !disabled && 'hover:tw-cursor-pointer',
                 ])}
             >
