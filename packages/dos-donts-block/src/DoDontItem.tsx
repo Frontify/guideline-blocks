@@ -6,7 +6,7 @@ import { FC } from 'react';
 import { RichTextEditor, IconApprove, IconRejectCircle, IconSize, Color } from '@frontify/arcade';
 import { useEditorState } from '@frontify/app-bridge';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { DoDontType, DoDontStyle, DoDontContent } from './types';
+import { DoDontType, DoDontStyle } from './types';
 
 export type ItemProps = {
     id: number;
@@ -14,7 +14,7 @@ export type ItemProps = {
     style: DoDontStyle;
     doColor: Color;
     dontColor: Color;
-    saveItem: (id: number, value: string, type: DoDontContent) => void;
+    saveItem: (id: number, value: string, type: 'title' | 'body') => void;
     title?: string;
     body?: string;
 };
@@ -46,7 +46,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                 <div className="tw-w-full">
                     <RichTextEditor
                         value={title}
-                        onTextChange={(value) => saveItem(id, value, DoDontContent.Title)}
+                        onTextChange={(value) => saveItem(id, value, 'title')}
                         placeholder="Add a title"
                         readonly={!isEditing}
                     />
@@ -61,7 +61,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
             <div className="tw-mt-2">
                 <RichTextEditor
                     value={body}
-                    onTextChange={(value) => saveItem(id, value, DoDontContent.Body)}
+                    onTextChange={(value) => saveItem(id, value, 'body')}
                     placeholder="Add a description"
                     readonly={!isEditing}
                 />

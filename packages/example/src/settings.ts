@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { IconEnum } from '@frontify/arcade';
 import { ApiSettings } from '@frontify/guideline-blocks-settings';
 
