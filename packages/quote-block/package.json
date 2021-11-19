@@ -19,8 +19,8 @@
         "typescript": "4.4.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^2.8.0",
-        "@frontify/arcade": "^0.12.1",
+        "@frontify/app-bridge": "2.8.0",
+        "@frontify/arcade": "0.12.1",
         "@frontify/guideline-blocks-shared": "1.0.0"
     },
     "peerDependencies": {
