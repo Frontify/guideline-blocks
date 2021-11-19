@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeNative } from '@frontify/app-bridge';
+
 export enum Type {
     Warning = 'warning',
     Tip = 'tip',
@@ -80,4 +82,15 @@ export type BlockSettings = {
     customPadding?: string[];
     cornerRadius?: CornerRadius;
     customCornerRadius?: string[];
+};
+
+export type CustomPaddingStyles = {
+    paddingTop: string;
+    paddingRight: string;
+    paddingBottom: string;
+    paddingLeft: string;
+};
+
+export type CalloutBlockProps = {
+    appBridge: AppBridgeNative;
 };

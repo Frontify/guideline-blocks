@@ -2,13 +2,20 @@
 
 import 'tailwindcss/tailwind.css';
 import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+
+import '@frontify/arcade/style';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/arcade';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
+
 import {
     Alignment,
     alignmentMap,
     BlockSettings,
+    CalloutBlockProps,
     CornerRadius,
     cornerRadiusMap,
+    CustomPaddingStyles,
     innerWidthMap,
     outerWidthMap,
     Padding,
@@ -17,18 +24,6 @@ import {
     typeMap,
     Width,
 } from './types';
-import { RichTextEditor } from '@frontify/arcade';
-
-type CustomPaddingStyles = {
-    paddingTop: string;
-    paddingRight: string;
-    paddingBottom: string;
-    paddingLeft: string;
-};
-
-type CalloutBlockProps = {
-    appBridge: AppBridgeNative;
-};
 
 const getInnerDivClassName = (
     type: Type,
@@ -39,31 +34,16 @@ const getInnerDivClassName = (
     customCornerRadiusSwitch: boolean,
     cornerRadius: CornerRadius
 ): string => {
-    let className = `tw-text-white ${typeMap[type]} ${innerWidthMap[width]}`;
-
-    if (width === Width.FullWidth) {
-        className += ` ${alignmentMap[alignment]}`;
-    }
-
-    if (!customPaddingSwitch && padding) {
-        className += ` ${paddingMap[padding]} `;
-    }
-
-    if (!customCornerRadiusSwitch && cornerRadius) {
-        className += ` ${cornerRadiusMap[cornerRadius]} `;
-    }
-
-    return className;
+    return joinClassNames([
+        `tw-text-white ${typeMap[type]} ${innerWidthMap[width]}`,
+        width === Width.FullWidth && alignmentMap[alignment],
+        !customPaddingSwitch && padding && paddingMap[padding],
+        !customCornerRadiusSwitch && cornerRadius && cornerRadiusMap[cornerRadius],
+    ]);
 };
 
 const getOuterDivClassName = (width: Width, alignment: Alignment): string => {
-    let className = outerWidthMap[width];
-
-    if (width === Width.HugContents) {
-        className += ` ${alignmentMap[alignment]}`;
-    }
-
-    return className;
+    return joinClassNames([outerWidthMap[width], width === Width.HugContents && alignmentMap[alignment]]);
 };
 
 const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
@@ -147,7 +127,7 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                         <img alt={iconAltText} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
                     </span>
                 )}
-                <div style={placeholderVisible ? { minWidth: '130px' } : undefined} className="tw-inline-block">
+                <div className={joinClassNames(['tw-inline-block', placeholderVisible && 'tw-min-w-[130px]'])}>
                     <RichTextEditor
                         onTextChange={onTextChange}
                         readonly={!isEditing}
