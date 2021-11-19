@@ -1,13 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import '@frontify/arcade/style';
 import 'tailwindcss/tailwind.css';
 import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
-
-import '@frontify/arcade/style';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/arcade';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-
+import { RichTextEditor } from '@frontify/arcade';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Alignment,
     alignmentMap,
