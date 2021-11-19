@@ -1,5 +1,5 @@
 import 'tailwindcss/tailwind.css';
-import { createContext, ReactElement, useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
