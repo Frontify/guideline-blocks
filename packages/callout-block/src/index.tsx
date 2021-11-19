@@ -125,7 +125,8 @@ const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                         <img alt={iconAltText} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
                     </span>
                 )}
-                <div className={joinClassNames(['tw-inline-block', placeholderVisible && 'tw-min-w-[130px]'])}>
+                {/* TODO replace hardcoded min-width with a solution integrated in RTE */}
+                <div className={joinClassNames(['tw-inline-block', placeholderVisible && 'tw-min-w-[140px]'])}>
                     <RichTextEditor
                         onTextChange={onTextChange}
                         readonly={!isEditing}
