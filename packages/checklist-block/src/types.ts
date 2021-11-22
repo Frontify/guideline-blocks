@@ -87,7 +87,7 @@ export const DefaultValues = {
     content: [],
     paddingAdvanced: false,
     paddingBasic: ChecklistPadding.Medium,
-    paddingCustom: '0px',
+    paddingCustom: ['0px', '0px', '0px', '0px'],
     incompleteTextColor: { hex: '#2D3232' },
     incompleteCheckboxColor: { hex: '#6C7070' },
     completeTextColor: { hex: '#FF375A' },
@@ -111,4 +111,9 @@ export type StrikethroughStyle = {
 export type ChecklistItemStyle = {
     checkbox: string;
     color: string;
+};
+
+export type ToggleableStyle = {
+    checked: string;
+    unchecked: string;
 };

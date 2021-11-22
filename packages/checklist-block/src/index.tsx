@@ -142,7 +142,12 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     return (
         <div
             className={merge([!paddingAdvanced && PaddingClasses[paddingBasic]])}
-            style={{ padding: paddingAdvanced ? paddingCustom : '' }}
+            style={{
+                paddingTop: paddingAdvanced ? paddingCustom[0] : '',
+                paddingLeft: paddingAdvanced ? paddingCustom[1] : '',
+                paddingRight: paddingAdvanced ? paddingCustom[2] : '',
+                paddingBottom: paddingAdvanced ? paddingCustom[3] : '',
+            }}
         >
             <div {...hoverProps} className="tw-relative">
                 {shouldShowProgress && progressBarType === ProgressBarType.Bar && (
