@@ -22,6 +22,8 @@ export type CheckboxProps = {
     groupInputProps?: HTMLAttributes<HTMLElement>;
     checkedColor: string;
     uncheckedColor: string;
+    editorComponent: ReactElement;
+    showLabel: boolean;
 };
 
 export const Checkbox = ({
@@ -33,6 +35,7 @@ export const Checkbox = ({
     groupInputProps,
     checkedColor,
     uncheckedColor,
+    showLabel,
     onChange,
 }: CheckboxProps): ReactElement => {
     let inputRef = useRef();
@@ -52,42 +55,40 @@ export const Checkbox = ({
     );
 
     return (
-        <div className="tw-flex tw-items-center tw-transition-colors tw-flex-auto" data-test-id="checkbox">
-            <label
+        <label
+            className={merge([
+                'tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none',
+                !disabled && 'hover:tw-cursor-pointer',
+            ])}
+        >
+            <input
+                {...mergeProps(groupInputProps || inputProps, focusProps)}
+                id={id}
+                ref={inputRef}
+                className="tw-sr-only"
+                data-test-id="checkbox-input"
+            />
+            <span
+                aria-hidden="true"
                 className={merge([
-                    'tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none',
-                    !disabled && 'hover:tw-cursor-pointer',
+                    'tw-relative tw-flex tw-w-4 tw-h-4 tw-items-center tw-justify-center tw-rounded tw-border tw-flex-shrink-0',
+                    isFocusVisible && FOCUS_STYLE,
+                    disabled
+                        ? merge(['tw-text-white tw-pointer-events-none', !checked && 'tw-bg-white'])
+                        : merge([
+                              !checked &&
+                                  'tw-border-black-80 tw-bg-white hover:tw-border-black dark:tw-border-white dark:tw-bg-black dark:hover:tw-border-black-20 dark:hover:tw-bg-black-90 group-hover:tw-bg-white group-hover:tw-border-black dark:group-hover:tw-border-black-20 dark:group-hover:tw-bg-black-90',
+                              checked && 'tw-text-white group-hover:tw-text-white  ',
+                          ]),
                 ])}
+                style={{
+                    background: checked ? checkedColor : '',
+                    border: merge(['1px', 'solid', checked ? checkedColor : uncheckedColor]),
+                }}
             >
-                <input
-                    {...mergeProps(groupInputProps || inputProps, focusProps)}
-                    id={id}
-                    ref={inputRef}
-                    className="tw-sr-only"
-                    data-test-id="checkbox-input"
-                />
-                <span
-                    aria-hidden="true"
-                    className={merge([
-                        'tw-relative tw-flex tw-w-4 tw-h-4 tw-items-center tw-justify-center tw-rounded tw-border tw-flex-shrink-0',
-                        isFocusVisible && FOCUS_STYLE,
-                        disabled
-                            ? merge(['tw-text-white tw-pointer-events-none', !checked && 'tw-bg-white'])
-                            : merge([
-                                  !checked &&
-                                      'tw-border-black-80 tw-bg-white hover:tw-border-black dark:tw-border-white dark:tw-bg-black dark:hover:tw-border-black-20 dark:hover:tw-bg-black-90 group-hover:tw-bg-white group-hover:tw-border-black dark:group-hover:tw-border-black-20 dark:group-hover:tw-bg-black-90',
-                                  checked && 'tw-text-white group-hover:tw-text-white  ',
-                              ]),
-                    ])}
-                    style={{
-                        background: checked ? checkedColor : '',
-                        border: merge(['1px', 'solid', checked ? checkedColor : uncheckedColor]),
-                    }}
-                >
-                    {checked && <IconCheck />}
-                </span>
-                {labelComponent}
-            </label>
-        </div>
+                {checked && <IconCheck />}
+            </span>
+            {showLabel && labelComponent}
+        </label>
     );
 };

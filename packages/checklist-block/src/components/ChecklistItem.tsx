@@ -27,6 +27,7 @@ export type ChecklistItemProps = {
     isBeingDragged?: boolean;
     onChange?: (text: string) => void;
     onBlur?: (text: string) => void;
+    resetOnChange: boolean;
 };
 
 export default function ChecklistItem({
@@ -40,8 +41,8 @@ export default function ChecklistItem({
     controlButtons,
     dateVisible,
     isBeingDragged,
+    resetOnChange,
     onChange,
-    onBlur,
     decorationStyle,
     labelStyle,
     checkboxStyle,
@@ -68,16 +69,20 @@ export default function ChecklistItem({
             {...focusWithinProps}
         >
             <div className="tw-p-1.5 tw-flex tw-flex-auto tw-content-center">
-                <Checkbox
-                    checked={completed}
-                    onChange={toggleCompleted}
-                    id={id}
-                    ariaLabel={text}
-                    disabled={checkboxDisabled}
-                    checkedColor={checkboxStyle.checked}
-                    uncheckedColor={checkboxStyle.unchecked}
-                    labelComponent={
-                        completed ? (
+                <div
+                    className="tw-flex tw-items-center tw-transition-colors tw-flex-auto tw-gap-2"
+                    data-test-id="checkbox"
+                >
+                    <Checkbox
+                        checked={completed}
+                        onChange={toggleCompleted}
+                        id={id}
+                        ariaLabel={text}
+                        disabled={checkboxDisabled}
+                        checkedColor={checkboxStyle.checked}
+                        uncheckedColor={checkboxStyle.unchecked}
+                        showLabel={completed}
+                        labelComponent={
                             <CheckboxLabel
                                 disabled={checkboxDisabled}
                                 htmlFor={id}
@@ -87,18 +92,19 @@ export default function ChecklistItem({
                             >
                                 {text}
                             </CheckboxLabel>
-                        ) : (
-                            <MockTextEditor
-                                color={labelStyle.unchecked}
-                                readonly={readonly}
-                                onChange={onChange}
-                                onBlur={onBlur}
-                                value={text}
-                                placeholder="Add new checklist item"
-                            />
-                        )
-                    }
-                />
+                        }
+                    />
+                    {!completed && (
+                        <MockTextEditor
+                            resetOnChange={resetOnChange}
+                            color={labelStyle.unchecked}
+                            readonly={readonly}
+                            onChange={onChange}
+                            value={text}
+                            placeholder="Add new checklist item"
+                        />
+                    )}
+                </div>
             </div>
             <div
                 className={`tw-flex-none tw-flex tw-items-center ${

@@ -1,49 +1,62 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useRef } from 'react';
 import { useFocusRing } from '@react-aria/focus';
 import { merge } from '../utilities/merge';
 import { FOCUS_STYLE } from '../utilities/focusStyle';
-import TextareaAutosize from 'react-textarea-autosize';
 
 type MockTextEditorProps = {
-    value?: string;
+    value: string;
     onChange?: (text: string) => void;
     onBlur?: (text: string) => void;
     placeholder?: string;
     readonly?: boolean;
     color: string;
+    resetOnChange: boolean;
 };
 
 export default function MockTextEditor({
     value,
     onChange,
-    onBlur,
     readonly,
     placeholder,
     color,
+    resetOnChange,
 }: MockTextEditorProps): ReactElement {
-    const [internalValue, setInternalValue] = useState(value);
     const { isFocusVisible } = useFocusRing({ isTextInput: true });
-    const isControlled = value !== undefined && onChange !== undefined;
+    const editorRef = useRef();
 
     const handleChange = (e: any) => {
-        setInternalValue(e.target.value);
-        onChange && onChange(e.target.value);
+        const trimmedText = e.target.innerText.trim();
+        onChange && onChange(trimmedText);
+        if (resetOnChange) {
+            editorRef.current.innerText = '';
+        }
+    };
+    const handleKeyPress = (e: any) => {
+        if (e.code === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            e.target.blur();
+        }
     };
 
     return (
-        <TextareaAutosize
-            className={merge([
-                'tw-inline-block tw-bg-transparent tw-resize-none tw-border-none tw-text-s tw-outline-none tw-transition tw-placeholder-black-60',
-                ' hover:tw-border-black-90',
-                isFocusVisible && FOCUS_STYLE,
-            ])}
-            rows={1}
-            value={isControlled ? value : internalValue}
-            style={{ color }}
-            onChange={handleChange}
-            onBlur={(e) => onBlur && onBlur(e.target.value)}
-            readOnly={readonly}
-            placeholder={placeholder}
-        />
+        <div className="tw-inline-block">
+            <div
+                role="textbox"
+                contentEditable={!readonly}
+                className={merge([
+                    'tw-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none tw-transition tw-placeholder-black-60',
+                    ' hover:tw-border-black-90 hover:tw-cursor-text tw-whitespace-pre-wrap',
+                    isFocusVisible && FOCUS_STYLE,
+                ])}
+                data-placeholder={placeholder}
+                style={{ color }}
+                onKeyPress={handleKeyPress}
+                onChange={handleChange}
+                onBlur={handleChange}
+                ref={editorRef}
+            >
+                {value}
+            </div>
+        </div>
     );
 }
