@@ -23,11 +23,10 @@
         "@frontify/app-bridge": "^2.6.0",
         "@frontify/arcade": "^0.12.1",
         "@frontify/guideline-blocks-shared": "1.0.0",
-        "react-beautiful-dnd":"13.1.0",
         "@react-aria/interactions": "^3.6.0",
-        "react-textarea-autosize":"8.3.3",
         "dayjs": "^1.10.7",
-        "@types/react-beautiful-dnd":"13.1.2"
+        "@dnd-kit/core":"4.0.2",
+        "@dnd-kit/sortable": "5.1.0"
     },
     "peerDependencies": {
         "react": "^17.0.2"
