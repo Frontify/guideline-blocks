@@ -9,8 +9,14 @@ const showProgressStyles = (bundle: any): boolean => {
     );
 };
 
-const setValueToPixels = (bundle: any, property: string): void => {
-    const inputValue = Number(bundle.getBlock(property)?.value);
+const setValueToPixels = (bundle: any, property: string, multiInputIndex: number): void => {
+    let inputValue;
+    if (multiInputIndex === undefined) {
+        inputValue = Number(bundle.getBlock(property)?.value);
+    } else {
+        inputValue = Number(bundle.getBlock(property)?.[multiInputIndex]?.value);
+    }
+    console.log('input Value', inputValue);
     if (!Number.isNaN(inputValue)) {
         bundle.setBlockValue(property, `${inputValue}px`);
     }
@@ -59,7 +65,7 @@ export default {
                             id: 'paddingCustomTop',
                             type: 'input',
                             label: 'Top',
-                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustomTop'),
+                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustom', 0),
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             defaultValue: DefaultValues.paddingCustom[0],
                         },
@@ -68,7 +74,7 @@ export default {
                             id: 'paddingCustomLeft',
                             type: 'input',
                             label: 'Left',
-                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustomLeft'),
+                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustom', 1),
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             defaultValue: DefaultValues.paddingCustom[1],
                         },
@@ -76,7 +82,7 @@ export default {
                             id: 'paddingCustomRight',
                             type: 'input',
                             label: 'Right',
-                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustomRight'),
+                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustom', 2),
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             defaultValue: DefaultValues.paddingCustom[2],
                         },
@@ -84,7 +90,7 @@ export default {
                             id: 'paddingCustomBottom',
                             type: 'input',
                             label: 'Bottom',
-                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustomBottom'),
+                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustom', 3),
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             defaultValue: DefaultValues.paddingCustom[3],
                         },
@@ -223,6 +229,8 @@ export default {
                     id: 'strikethroughWidth',
                     type: 'input',
                     defaultValue: DefaultValues.strikethroughMultiInput[1],
+                    onChange: (bundle: any): void => setValueToPixels(bundle, 'strikethroughMultiInput', 1),
+                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                 },
                 {
                     id: 'strikethroughColor',
