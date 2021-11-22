@@ -10,7 +10,7 @@
     "devDependencies": {
         "@frontify/eslint-config-react": "0.11.0",
         "@frontify/frontify-cli": "2.2.0",
-        "@types/react": "17.0.34",
+        "@types/react": "17.0.36",
         "autoprefixer": "10.4.0",
         "eslint": "7.32.0",
         "postcss": "8.3.11",
