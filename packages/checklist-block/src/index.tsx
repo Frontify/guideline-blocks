@@ -29,6 +29,7 @@ import ProgressHeader from './components/ProgressHeader';
 import { useHover } from '@react-aria/interactions';
 import { merge } from './utilities/merge';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import './index.css';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
@@ -212,6 +213,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                                                         id={id}
                                                         key={id}
                                                         text={text}
+                                                        resetOnChange={false}
                                                         isBeingDragged={snapshot.isDragging}
                                                         checkboxDisabled={!isEditing}
                                                         completed={completed}
@@ -219,7 +221,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                                                             updateItem(id, { completed: value, updatedAt: Date.now() })
                                                         }
                                                         decorationStyle={decorationStyles}
-                                                        onBlur={(text) => updateItem(id, { text: text.trim() })}
+                                                        onChange={(text) => updateItem(id, { text })}
                                                         checkboxStyle={{
                                                             checked: completeCheckboxColor.hex,
                                                             unchecked: incompleteCheckboxColor.hex,
@@ -262,9 +264,15 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                 {isEditing && (
                     <>
                         <hr className="tw-my-2 tw-border-black-40" />
-                        <ChecklistItemCreator
-                            onBlur={addNewItem}
+                        <ChecklistItem
+                            resetOnChange
+                            id="Create new Checklist Item"
+                            completed={false}
+                            text={''}
                             readonly={false}
+                            dateVisible={false}
+                            checkboxDisabled
+                            onChange={addNewItem}
                             checkboxStyle={{
                                 checked: DefaultValues.completeCheckboxColor.hex,
                                 unchecked: '#b3b5b5',
