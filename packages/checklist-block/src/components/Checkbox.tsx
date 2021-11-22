@@ -4,8 +4,8 @@ import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
 import React, { HTMLAttributes, ReactElement, useRef } from 'react';
-import { FOCUS_STYLE } from './utilities/focusStyle';
-import { merge } from './utilities/merge';
+import { FOCUS_STYLE } from '../utilities/focusStyle';
+import { merge } from '../utilities/merge';
 
 export enum CheckboxState {
     Checked = 'Checked',

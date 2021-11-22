@@ -1,6 +1,11 @@
 import React, { ReactElement } from 'react';
 import { Button, ButtonStyle } from '@frontify/arcade';
-import { ChecklistButtonProps } from './types';
+
+export type ChecklistButtonProps = {
+    disabled?: boolean;
+    onClick: (e: any) => void;
+    icon: ReactElement;
+};
 
 export default function ChecklistButton({ onClick, icon, disabled }: ChecklistButtonProps): ReactElement {
     return (

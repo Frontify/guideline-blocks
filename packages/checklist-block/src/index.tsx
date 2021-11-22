@@ -1,6 +1,6 @@
 import 'tailwindcss/tailwind.css';
 import { ReactElement, useState } from 'react';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
     ButtonSize,
@@ -14,21 +14,25 @@ import {
 import {
     ChecklistContent,
     ChecklistDecoration,
-    ChecklistProps,
+    DecorationStyle,
     DefaultValues,
     PaddingClasses,
     ProgressBarType,
     Settings,
 } from './types';
-import ChecklistItemCreator from './ChecklistItemCreator';
-import ChecklistItem from './ChecklistItem';
+import ChecklistItemCreator from './components/ChecklistItemCreator';
+import ChecklistItem from './components/ChecklistItem';
 import { provideDefaults } from './utilities/provideDefaults';
-import ChecklistButton from './ChecklistButton';
-import ProgressBar from './ProgressBar';
-import ProgressHeader from './ProgressHeader';
+import ChecklistButton from './components/ChecklistButton';
+import ProgressBar from './components/ProgressBar';
+import ProgressHeader from './components/ProgressHeader';
 import { useHover } from '@react-aria/interactions';
 import { merge } from './utilities/merge';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+export type ChecklistProps = {
+    appBridge: AppBridgeNative;
+};
 
 export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
@@ -112,7 +116,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         return true;
     };
 
-    const decorationStyles = ((type: ChecklistDecoration): Record<string, string> => {
+    const decorationStyles = ((type: ChecklistDecoration): DecorationStyle => {
         switch (type) {
             case ChecklistDecoration.Strikethrough:
                 return {

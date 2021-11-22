@@ -1,11 +1,12 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { merge } from './utilities/merge';
+import { DecorationStyle } from '../types';
+import { merge } from '../utilities/merge';
 export type InputLabelProps = PropsWithChildren<{
     htmlFor: string;
     disabled?: boolean;
     bold?: boolean;
     color: string;
-    decoration: any;
+    decoration: DecorationStyle;
     date?: string;
 }>;
 

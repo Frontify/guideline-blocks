@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react';
 import { useFocusRing } from '@react-aria/focus';
-import { merge } from './utilities/merge';
-import { FOCUS_STYLE } from './utilities/focusStyle';
+import { merge } from '../utilities/merge';
+import { FOCUS_STYLE } from '../utilities/focusStyle';
 import TextareaAutosize from 'react-textarea-autosize';
 
 type MockTextEditorProps = {
