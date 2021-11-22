@@ -1,11 +1,12 @@
 import { ReactElement, useState } from 'react';
 import ChecklistItem from './ChecklistItem';
+import { ToggleableStyle } from '../types';
 
 type ChecklistItemCreatorProps = {
     onBlur: (text: string) => void;
     readonly: boolean;
-    checkboxStyle: any;
-    labelStyle: any;
+    checkboxStyle: ToggleableStyle;
+    labelStyle: ToggleableStyle;
 };
 
 export default function ChecklistItemCreator({

@@ -1,5 +1,8 @@
 import React, { ReactElement } from 'react';
-import { ProgressHeaderProps } from './types';
+
+export type ProgressHeaderProps = {
+    value: string;
+};
 
 export default function ProgressHeader({ value }: ProgressHeaderProps): ReactElement {
     return (

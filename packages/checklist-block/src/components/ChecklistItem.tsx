@@ -4,9 +4,10 @@ import MockTextEditor from './MockTextEditor';
 import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
-import { merge } from './utilities/merge';
-import dayjs from './utilities/day';
+import { merge } from '../utilities/merge';
+import dayjs from '../utilities/day';
 import { CheckboxLabel } from './CheckboxLabel';
+import { DecorationStyle, ToggleableStyle } from '../types';
 
 export type ChecklistItemProps = {
     id: string;
@@ -15,15 +16,15 @@ export type ChecklistItemProps = {
     updatedAt?: string;
     completed: boolean;
     checkboxDisabled: boolean;
-    toggleCompleted: (value: boolean) => void;
+    toggleCompleted?: (value: boolean) => void;
     dateCompleted?: number;
     dateVisible: boolean;
     readonly: boolean;
-    controlButtons: ReactElement;
-    decorationStyle: any;
-    checkboxStyle: any;
-    labelStyle: any;
-    isBeingDragged: boolean;
+    controlButtons?: ReactElement;
+    decorationStyle?: DecorationStyle;
+    checkboxStyle: ToggleableStyle;
+    labelStyle: ToggleableStyle;
+    isBeingDragged?: boolean;
     onChange?: (text: string) => void;
     onBlur?: (text: string) => void;
 };

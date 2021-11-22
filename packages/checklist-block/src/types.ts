@@ -1,45 +1,4 @@
-import { AppBridgeNative } from '@frontify/app-bridge';
-import { Color, IconEnum } from '@frontify/arcade';
-import { ReactElement } from 'react';
-
-export type ChecklistButtonProps = {
-    disabled?: boolean;
-    onClick: (e: any) => void;
-    icon: ReactElement;
-};
-
-export type ProgressBarProps = {
-    trackColor: string;
-    fillColor: string;
-    percentage: number;
-};
-
-export type ProgressHeaderProps = {
-    value: string;
-};
-
-export type Settings = {
-    content: ChecklistContent[];
-    paddingAdvanced: boolean;
-    paddingBasic: ChecklistPadding;
-    paddingCustom: string;
-    incompleteTextColor: Color;
-    incompleteCheckboxColor: Color;
-    completeTextColor: Color;
-    completeCheckboxColor: Color;
-    completedDecoration: ChecklistDecoration;
-    highlightColor: Color;
-    dateVisible: boolean;
-    progressBarVisible: boolean;
-    progressBarType: string;
-    progressBarFillColor: Color;
-    progressBarTrackColor: Color;
-    strikethroughMultiInput?: any;
-};
-
-export type ChecklistProps = {
-    appBridge: AppBridgeNative;
-};
+import { Color } from '@frontify/arcade';
 
 export type ChecklistContent = {
     text: string;
@@ -83,6 +42,45 @@ export enum ProgressBarType {
     Fraction = 'Fraction',
 }
 
+export type StrikethroughStyle = {
+    color?: string;
+    width?: string;
+    style?: string;
+};
+
+export type ChecklistItemStyle = {
+    checkbox: string;
+    color: string;
+};
+
+export type ToggleableStyle = {
+    checked: string;
+    unchecked: string;
+};
+
+export type DecorationStyle = {
+    [key: string]: string;
+};
+
+export type Settings = {
+    content: ChecklistContent[];
+    paddingAdvanced: boolean;
+    paddingBasic: ChecklistPadding;
+    paddingCustom: string[];
+    incompleteTextColor: Color;
+    incompleteCheckboxColor: Color;
+    completeTextColor: Color;
+    completeCheckboxColor: Color;
+    completedDecoration: ChecklistDecoration;
+    highlightColor: Color;
+    dateVisible: boolean;
+    progressBarVisible: boolean;
+    progressBarType: string;
+    progressBarFillColor: Color;
+    progressBarTrackColor: Color;
+    strikethroughMultiInput?: (string | Color | null)[];
+};
+
 export const DefaultValues = {
     content: [],
     paddingAdvanced: false,
@@ -100,20 +98,4 @@ export const DefaultValues = {
     progressBarFillColor: { hex: '#00C8A5' },
     progressBarTrackColor: { hex: '#DEF0E9' },
     strikethroughMultiInput: [StrikethroughType.Solid, '1px', { hex: '#FF375A' }],
-};
-
-export type StrikethroughStyle = {
-    color?: string;
-    width?: string;
-    style?: string;
-};
-
-export type ChecklistItemStyle = {
-    checkbox: string;
-    color: string;
-};
-
-export type ToggleableStyle = {
-    checked: string;
-    unchecked: string;
 };

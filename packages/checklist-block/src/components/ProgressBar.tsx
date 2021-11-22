@@ -1,5 +1,10 @@
 import React, { ReactElement, useRef } from 'react';
-import { ProgressBarProps } from './types';
+
+export type ProgressBarProps = {
+    trackColor: string;
+    fillColor: string;
+    percentage: number;
+};
 
 export default function ProgressBar({ trackColor, fillColor, percentage }: ProgressBarProps): ReactElement {
     const outerRef = useRef();
