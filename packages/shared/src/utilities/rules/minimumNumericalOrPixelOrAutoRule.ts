@@ -4,7 +4,7 @@ import { numericalOrPixelRule } from './numericalOrPixelRule';
 import { Rule } from './types';
 
 export const minimumNumericalOrPixelOrAutoRule = (minimumValue: number): Rule<string> => ({
-    errorMessage: `Please use a value bigger or than ${minimumValue}`,
+    errorMessage: `Please use a value bigger or equal to ${minimumValue}`,
     validate: (value: string): boolean =>
         value === 'auto' || (numericalOrPixelRule.validate(value) && Number(value.replace(/px/, '')) >= minimumValue),
 });
