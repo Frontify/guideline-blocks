@@ -4,7 +4,6 @@ import ChecklistItem from './ChecklistItem';
 type ChecklistItemCreatorProps = {
     onBlur: (text: string) => void;
     readonly: boolean;
-    color: string;
     checkboxStyle: any;
     labelStyle: any;
 };
@@ -20,8 +19,6 @@ export default function ChecklistItemCreator({
         onBlur(text);
         setText('');
     };
-
-    console.log(labelStyle);
     return (
         <ChecklistItem
             id="Create new Checklist Item"

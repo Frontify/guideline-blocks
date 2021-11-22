@@ -1,4 +1,5 @@
 import { IconEnum, InlineStyles, MultiInputLayout } from '@frontify/arcade';
+import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { ChecklistDecoration, ChecklistPadding, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const showProgressStyles = (bundle: any): boolean => {
@@ -6,6 +7,13 @@ const showProgressStyles = (bundle: any): boolean => {
         bundle.getBlock('progressBarVisible').value === true &&
         bundle.getBlock('progressBarType').value === ProgressBarType.Bar
     );
+};
+
+const setValueToPixels = (bundle: any, property: string): void => {
+    const inputValue = Number(bundle.getBlock(property)?.value);
+    if (!Number.isNaN(inputValue)) {
+        bundle.setBlockValue(property, `${inputValue}px`);
+    }
 };
 
 export default {
@@ -44,9 +52,43 @@ export default {
             on: [
                 {
                     id: 'paddingCustom',
-                    type: 'input',
-                    defaultValue: DefaultValues.paddingCustom,
-                    placeholder: '0px',
+                    type: 'multiInput',
+                    layout: MultiInputLayout.Spider,
+                    blocks: [
+                        {
+                            id: 'paddingCustomTop',
+                            type: 'input',
+                            label: 'Top',
+                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustomTop'),
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            defaultValue: DefaultValues.paddingCustom[0],
+                        },
+
+                        {
+                            id: 'paddingCustomLeft',
+                            type: 'input',
+                            label: 'Left',
+                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustomLeft'),
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            defaultValue: DefaultValues.paddingCustom[1],
+                        },
+                        {
+                            id: 'paddingCustomRight',
+                            type: 'input',
+                            label: 'Right',
+                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustomRight'),
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            defaultValue: DefaultValues.paddingCustom[2],
+                        },
+                        {
+                            id: 'paddingCustomBottom',
+                            type: 'input',
+                            label: 'Bottom',
+                            onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustomBottom'),
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            defaultValue: DefaultValues.paddingCustom[3],
+                        },
+                    ],
                 },
             ],
             off: [
