@@ -3,7 +3,6 @@
 import { IconReject, IconSize, Tooltip, TooltipArrow } from '@frontify/arcade';
 import '@frontify/arcade/style';
 import { useButton } from '@react-aria/button';
-import { useHover } from '@react-aria/interactions';
 import { useTooltipTrigger } from '@react-aria/tooltip';
 import { mergeProps } from '@react-aria/utils';
 import { useTooltipTriggerState } from '@react-stately/tooltip';
@@ -42,13 +41,8 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
         tooltipTriggerElement
     );
 
-    const { hoverProps } = useHover({
-        onHoverStart: () => state.open(),
-        onHoverEnd: () => state.close(),
-    });
-
     return (
-        <div className="tw-absolute tw-top-4 tw-right-4 tw-w-9 tw-h-9" {...hoverProps}>
+        <div className="tw-absolute tw-top-4 tw-right-4 tw-w-9 tw-h-9">
             <button
                 ref={tooltipTriggerElement}
                 className="tw-flex tw-w-9 tw-h-9 tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-text-black"
