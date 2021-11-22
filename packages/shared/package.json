@@ -1,21 +1,25 @@
 {
-    "name": "@frontify/guideline-blocks-shared",
-    "version": "1.0.0",
-    "main": "src/index.ts",
-    "scripts": {
-        "test": "jest"
-    },
-    "private": true,
-    "author": "Frontify Developers <developers@frontify.com>",
-    "devDependencies": {
-        "@frontify/eslint-config-react": "0.11.0",
-        "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
-        "@types/jest": "27.0.3",
-        "@types/react": "17.0.37",
-        "eslint": "7.32.0",
-        "prettier": "2.4.1",
-        "ts-jest": "27.0.7",
-        "ts-node": "10.4.0",
-        "typescript": "4.5.2"
-    }
+  "name": "@frontify/guideline-blocks-shared",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "private": true,
+  "author": "Frontify Developers <developers@frontify.com>",
+  "devDependencies": {
+    "@cypress/react": "^5.10.3",
+    "@frontify/app-bridge": "^2.8.0",
+    "@frontify/eslint-config-react": "0.11.0",
+    "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
+    "@types/jest": "27.0.3",
+    "@types/react": "17.0.37",
+    "@types/sinon": "^10.0.6",
+    "eslint": "7.32.0",
+    "prettier": "2.4.1",
+    "sinon": "^12.0.1",
+    "ts-jest": "27.0.7",
+    "ts-node": "10.4.0",
+    "typescript": "4.5.2"
+  }
 }

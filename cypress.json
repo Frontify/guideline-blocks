@@ -1,6 +1,6 @@
 {
     "component": {
-        "testFiles": "*/src/**/*.spec.{js,ts,jsx,tsx}",
+        "testFiles": "*/src/**/index.spec.{ts,tsx}",
         "componentFolder": "packages"
     }
 }
