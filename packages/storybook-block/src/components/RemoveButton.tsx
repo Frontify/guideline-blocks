@@ -55,7 +55,7 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
                     content="Remove link"
                     popperAttributes={attributes.popper}
                     ref={tooltipElement}
-                    style={styles.popper}
+                    style={{ ...styles.popper, minWidth: '108px' }}
                     tooltipAriaProps={tooltipProps}
                 >
                     <TooltipArrow
