@@ -14,7 +14,7 @@ export type ChecklistItemProps = {
     text: string;
     createdAt?: string;
     updatedAt?: string;
-    completed: boolean;
+    checked: boolean;
     checkboxDisabled: boolean;
     toggleCompleted?: (value: boolean) => void;
     dateCompleted?: number;
@@ -33,7 +33,7 @@ export type ChecklistItemProps = {
 export default function ChecklistItem({
     id,
     text,
-    completed,
+    checked,
     toggleCompleted,
     checkboxDisabled,
     dateCompleted,
@@ -69,41 +69,40 @@ export default function ChecklistItem({
             {...focusWithinProps}
         >
             <div className="tw-p-1.5 tw-flex tw-flex-auto tw-content-center">
-                <div
-                    className="tw-flex tw-items-center tw-transition-colors tw-flex-auto tw-gap-2"
-                    data-test-id="checkbox"
-                >
-                    <Checkbox
-                        checked={completed}
-                        onChange={toggleCompleted}
-                        id={id}
-                        ariaLabel={text}
-                        disabled={checkboxDisabled}
-                        checkedColor={checkboxStyle.checked}
-                        uncheckedColor={checkboxStyle.unchecked}
-                        showLabel={completed}
-                        labelComponent={
-                            <CheckboxLabel
-                                disabled={checkboxDisabled}
-                                htmlFor={id}
-                                color={labelStyle.checked}
-                                decoration={decorationStyle}
-                                date={dateVisible && completed ? dayjs(dateCompleted).fromNow() : undefined}
-                            >
-                                {text}
-                            </CheckboxLabel>
-                        }
-                    />
-                    {!completed && (
-                        <MockTextEditor
-                            resetOnChange={resetOnChange}
-                            color={labelStyle.unchecked}
-                            readonly={readonly}
-                            onChange={onChange}
-                            value={text}
-                            placeholder="Add new checklist item"
+                <div className="tw-flex tw-items-center tw-transition-colors tw-flex-auto tw-gap-2">
+                    <div className="tw-flex tw-gap-2 tw-flex-auto">
+                        <Checkbox
+                            checked={checked}
+                            onChange={toggleCompleted}
+                            id={id}
+                            ariaLabel={text}
+                            disabled={checkboxDisabled}
+                            checkedColor={checkboxStyle.checked}
+                            uncheckedColor={checkboxStyle.unchecked}
+                            showLabel={checked}
+                            labelComponent={
+                                <CheckboxLabel
+                                    disabled={checkboxDisabled}
+                                    htmlFor={id}
+                                    color={labelStyle.checked}
+                                    decoration={decorationStyle}
+                                    date={dateVisible && checked ? dayjs(dateCompleted).fromNow() : undefined}
+                                >
+                                    {text}
+                                </CheckboxLabel>
+                            }
                         />
-                    )}
+                        {!checked && (
+                            <MockTextEditor
+                                resetOnChange={resetOnChange}
+                                color={labelStyle.unchecked}
+                                readonly={readonly}
+                                onChange={onChange}
+                                value={text}
+                                placeholder="Add new checklist item"
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
             <div

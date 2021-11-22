@@ -45,7 +45,7 @@ export default function MockTextEditor({
                 contentEditable={!readonly}
                 className={merge([
                     'tw-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none tw-transition tw-placeholder-black-60',
-                    ' hover:tw-border-black-90 hover:tw-cursor-text tw-whitespace-pre-wrap',
+                    ' hover:tw-border-black-90 hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5',
                     isFocusVisible && FOCUS_STYLE,
                 ])}
                 data-placeholder={placeholder}
