@@ -7,11 +7,6 @@ import React, { HTMLAttributes, ReactElement, useRef } from 'react';
 import { FOCUS_STYLE } from '../utilities/focusStyle';
 import { merge } from '../utilities/merge';
 
-export enum CheckboxState {
-    Checked = 'Checked',
-    Unchecked = 'Unchecked',
-}
-
 export type CheckboxProps = {
     id?: string;
     disabled?: boolean;
@@ -22,7 +17,6 @@ export type CheckboxProps = {
     groupInputProps?: HTMLAttributes<HTMLElement>;
     checkedColor: string;
     uncheckedColor: string;
-    editorComponent: ReactElement;
     showLabel: boolean;
 };
 

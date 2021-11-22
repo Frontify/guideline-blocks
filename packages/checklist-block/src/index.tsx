@@ -216,7 +216,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                                                         resetOnChange={false}
                                                         isBeingDragged={snapshot.isDragging}
                                                         checkboxDisabled={!isEditing}
-                                                        completed={completed}
+                                                        checked={completed}
                                                         toggleCompleted={(value: boolean) =>
                                                             updateItem(id, { completed: value, updatedAt: Date.now() })
                                                         }
@@ -267,7 +267,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                         <ChecklistItem
                             resetOnChange
                             id="Create new Checklist Item"
-                            completed={false}
+                            checked={false}
                             text={''}
                             readonly={false}
                             dateVisible={false}
