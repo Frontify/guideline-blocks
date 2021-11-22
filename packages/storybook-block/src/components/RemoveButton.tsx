@@ -1,14 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconReject, IconSize, Tooltip, TooltipArrow } from '@frontify/arcade';
-import '@frontify/arcade/style';
 import { useButton } from '@react-aria/button';
 import { useTooltipTrigger } from '@react-aria/tooltip';
 import { mergeProps } from '@react-aria/utils';
 import { useTooltipTriggerState } from '@react-stately/tooltip';
 import { FC, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
-import 'tailwindcss/tailwind.css';
 
 type RemoveButtonProps = {
     onClick: () => void;
