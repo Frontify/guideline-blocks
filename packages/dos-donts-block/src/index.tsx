@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade/style';
-import 'tailwindcss/tailwind.css';
 import { useBlockSettings } from '@frontify/app-bridge';
+import '@frontify/arcade/style';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect } from 'react';
+import 'tailwindcss/tailwind.css';
 import { DoDontItem } from './DoDontItem';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import {
@@ -13,7 +14,7 @@ import {
     DoDontType,
     DosDontsBlockProps,
     Settings,
-    spacingClasses,
+    spacingValues,
 } from './types';
 
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
@@ -64,12 +65,13 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
 
     return (
         <div
-            className={`tw-grid ${
+            className={joinClassNames([
+                'tw-grid',
                 layout === DoDontLayout.Stacked
                     ? `tw-grid-flow-col tw-grid-rows-2 tw-grid-cols-${columns}`
-                    : 'tw-grid-cols-2'
-            } ${!isCustomSpacing ? spacingClasses[spacingChoice] : ''}`}
-            style={isCustomSpacing ? { gap: spacingValue } : {}}
+                    : 'tw-grid-cols-2',
+            ])}
+            style={{ gap: isCustomSpacing ? spacingValue : spacingValues[spacingChoice] }}
         >
             {items.map((_, index) => {
                 const item = items.find(({ id }) => id === index);
