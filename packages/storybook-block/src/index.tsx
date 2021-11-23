@@ -3,7 +3,7 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
 import '@frontify/arcade/style';
-import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { CSSProperties, FC, KeyboardEvent, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -111,7 +111,10 @@ const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                 <div {...hoverProps}>
                     {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
                     <iframe
-                        className={`tw-w-full ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
+                        className={joinClassNames([
+                            'tw-w-full',
+                            !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
+                        ])}
                         style={
                             hasBorder
                                 ? getIframeStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')
