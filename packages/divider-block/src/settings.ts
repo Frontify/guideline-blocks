@@ -142,8 +142,7 @@ const Settings: ApiSettings = {
             defaultValue: false,
             onChange: (bundle: ApiBundle): void => {
                 const sliderValue = bundle.getBlock(HEIGHT_SIMPLE_ID)?.value as DividerHeight;
-                const customValue = bundle.getBlock(HEIGHT_CUSTOM_ID)?.value;
-                if (sliderValue && !customValue) {
+                if (sliderValue) {
                     bundle.setBlockValue(HEIGHT_CUSTOM_ID, dividerHeight[sliderValue]);
                 }
             },
