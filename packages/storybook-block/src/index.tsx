@@ -5,7 +5,7 @@ import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
 import '@frontify/arcade/style';
 import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { CSSProperties, FC, KeyboardEvent, useEffect, useState } from 'react';
+import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
@@ -93,18 +93,6 @@ const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         }
     }, [url, style, positioning]);
 
-    const handleKeydown = (event: KeyboardEvent): any => {
-        if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-            event.preventDefault();
-            saveLink();
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('keydown', handleKeydown);
-        return () => document.removeEventListener('keydown', handleKeydown);
-    }, [localUrl]);
-
     return (
         <div className="tw-relative">
             {iframeUrl ? (
@@ -134,6 +122,7 @@ const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <TextInput
                                     value={localUrl}
                                     onChange={(value) => setLocalUrl(value)}
+                                    onEnterPressed={saveLink}
                                     placeholder="https://brand.storybook.com/?path=/story/buttons"
                                 />
                             </div>
