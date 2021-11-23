@@ -19,6 +19,7 @@ import {
 } from './types';
 
 const IS_LINE_ID = 'isLine';
+const WIDTH_SIMPLE_ID = 'widthSimple';
 const WIDTH_CUSTOM_ID = 'widthCustom';
 const HEIGHT_CUSTOM_ID = 'heightCustom';
 const THICKNESS_CUSTOM_ID = 'thicknessCustom';
@@ -38,6 +39,8 @@ export const COLOR_DEFAULT_RGBA_VALUE = {
 };
 
 const solidStyleIsSelected = (bundle: ApiBundle): boolean => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
+const limitedWidthIsSelected = (bundle: ApiBundle): boolean =>
+    bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'];
 
 const Settings: ApiSettings = {
     main: [
@@ -128,7 +131,7 @@ const Settings: ApiSettings = {
                     icon: IconEnum.AlignRight,
                 },
             ],
-            show: solidStyleIsSelected,
+            show: (bundle: ApiBundle): boolean => solidStyleIsSelected(bundle) && limitedWidthIsSelected(bundle),
         },
         {
             id: 'isHeightCustom',
