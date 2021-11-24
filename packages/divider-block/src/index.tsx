@@ -14,10 +14,10 @@ import {
     WIDTH_DEFAULT_VALUE,
 } from './settings';
 import {
-    DividerAlignmentValues,
+    DividerAlignmentClasses,
     DividerHeightValues,
     DividerStyle,
-    DividerStyleValues,
+    DividerStyleClasses,
     DividerThicknessValues,
     Props,
     Settings,
@@ -43,7 +43,7 @@ const Divider: FC<Props> = ({ appBridge }) => {
     } = blockSettings;
 
     return (
-        <div className={joinClassNames(['tw-flex', DividerAlignmentValues[alignment]])}>
+        <div className={joinClassNames(['tw-flex', DividerAlignmentClasses[alignment]])}>
             <div
                 className="tw-flex tw-items-center tw-transition-all"
                 style={{
@@ -54,7 +54,7 @@ const Divider: FC<Props> = ({ appBridge }) => {
                 <hr
                     className={joinClassNames([
                         'tw-border-t tw-m-0 tw-w-full',
-                        DividerStyleValues[isLine === DividerStyle.Solid ? style : DividerStyle.NoLine],
+                        DividerStyleClasses[isLine === DividerStyle.Solid ? style : DividerStyle.NoLine],
                     ])}
                     style={{
                         borderTopWidth: isThicknessCustom ? thicknessCustom : DividerThicknessValues[thicknessSimple],
