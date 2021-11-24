@@ -2,7 +2,7 @@
 
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
+import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 import {
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -60,7 +60,7 @@ const settings: ApiSettings = {
                     type: 'input',
                     placeholder: '400px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, HEIGHT_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
                 },
             ],
             off: [
@@ -141,7 +141,7 @@ const settings: ApiSettings = {
                     type: 'input',
                     defaultValue: '1px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, BORDER_WIDTH_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
                 },
                 {
                     id: 'borderColor',
@@ -163,7 +163,7 @@ const settings: ApiSettings = {
                     type: 'input',
                     placeholder: '1px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, BORDER_RADIUS_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_RADIUS_VALUE_ID),
                 },
             ],
             off: [

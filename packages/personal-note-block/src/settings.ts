@@ -2,7 +2,7 @@
 
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
+import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 import { NoteBorderRadius, NoteBorderStyle, NotePadding, NoteStyle, NoteVisibility } from './types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 }, name: 'White', hex: 'ffffff' };
@@ -56,7 +56,7 @@ const Settings: ApiSettings = {
                     type: 'input',
                     placeholder: '20px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, PADDING_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, PADDING_VALUE_ID),
                 },
             ],
             off: [
@@ -136,7 +136,7 @@ const Settings: ApiSettings = {
                     type: 'input',
                     defaultValue: '1px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, BORDER_WIDTH_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
                 },
                 {
                     id: 'borderColor',
@@ -157,7 +157,7 @@ const Settings: ApiSettings = {
                     id: BORDER_RADIUS_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, BORDER_RADIUS_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_RADIUS_VALUE_ID),
                 },
             ],
             off: [
