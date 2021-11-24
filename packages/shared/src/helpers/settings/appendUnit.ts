@@ -11,11 +11,7 @@ import { ApiBundle } from '@frontify/guideline-blocks-settings';
  * @returns {string} Set block value to string with unit
  */
 
-export const unitAutocomplete = (
-    bundle: ApiBundle,
-    settingId: string,
-    unit: 'px' | 'em' | 'rem' | '%' = 'px'
-): void => {
+export const appendUnit = (bundle: ApiBundle, settingId: string, unit: 'px' | 'em' | 'rem' | '%' = 'px'): void => {
     const value = Number(bundle.getBlock(settingId)?.value);
     if (!Number.isNaN(value)) {
         bundle.setBlockValue(settingId, `${value}${unit}`);

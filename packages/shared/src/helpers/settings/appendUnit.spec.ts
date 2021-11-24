@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { unitAutocomplete } from './unitAutocomplete';
+import { appendUnit } from './appendUnit';
 
-describe('unitAutocomplete', () => {
+describe('appendUnit', () => {
     test('it should set correct value with "px" when entering a number', () => {
         const bundle: ApiBundle = {
             getBlock() {
@@ -14,7 +14,7 @@ describe('unitAutocomplete', () => {
         };
 
         const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
-        unitAutocomplete(bundle, 'my_setting_id');
+        appendUnit(bundle, 'my_setting_id');
 
         expect(setBlockValueSpy).toHaveBeenCalledWith('my_setting_id', '20px');
     });
@@ -29,7 +29,7 @@ describe('unitAutocomplete', () => {
         };
 
         const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
-        unitAutocomplete(bundle, 'my_setting_id', '%');
+        appendUnit(bundle, 'my_setting_id', '%');
 
         expect(setBlockValueSpy).toHaveBeenCalledWith('my_setting_id', '40%');
     });
@@ -43,7 +43,7 @@ describe('unitAutocomplete', () => {
             setBlockValue(): void {},
         };
         const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
-        unitAutocomplete(bundle, 'my_setting_id');
+        appendUnit(bundle, 'my_setting_id');
         expect(setBlockValueSpy).not.toHaveBeenCalledWith('my_setting_id', '20px');
     });
 });

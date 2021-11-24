@@ -2,7 +2,7 @@
 
 import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule, unitAutocomplete } from '@frontify/guideline-blocks-shared';
+import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
 export const DO_COLOR_DEFAULT_VALUE = { hex: '00c8a5', rgba: { r: 0, g: 200, b: 165, a: 1 }, name: 'Do Color' };
@@ -100,7 +100,7 @@ const settings: ApiSettings = {
                     id: SPACING_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => unitAutocomplete(bundle, SPACING_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, SPACING_VALUE_ID),
                 },
             ],
             off: [
