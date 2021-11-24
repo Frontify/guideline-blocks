@@ -25,7 +25,8 @@ const QUOTE_STYLE_CHOICES = [
     { value: QuoteStyle.None, icon: IconEnum.None, label: 'None' },
 ];
 
-export const COLOR_DEFAULT_VALUE = { rgba: { r: 179, g: 181, b: 181, a: 1 }, name: 'Light Grey', hex: 'B3B5B5' };
+export const DEFAULT_COLOR_VALUE = { rgba: { r: 179, g: 181, b: 181, a: 1 }, name: 'Light Grey', hex: 'B3B5B5' };
+export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
 const isSelected = (bundle: ApiBundle, choice: QuoteType) => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
 const showAccentLine = (bundle: ApiBundle) =>
@@ -215,14 +216,14 @@ const Settings: ApiSettings = {
             id: 'accentLinecolor',
             label: 'Color',
             type: 'colorInput',
-            defaultValue: COLOR_DEFAULT_VALUE,
+            defaultValue: DEFAULT_COLOR_VALUE,
             show: showAccentLine,
         },
         {
             id: 'quotesColor',
             label: 'Color',
             type: 'colorInput',
-            defaultValue: COLOR_DEFAULT_VALUE,
+            defaultValue: DEFAULT_COLOR_VALUE,
             show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],

@@ -6,7 +6,7 @@ import '@frontify/arcade/style';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { COLOR_DEFAULT_VALUE } from './settings';
+import { DEFAULT_COLOR_VALUE, DEFAULT_AUTHOR_NAME } from './settings';
 import {
     ContentWithAuthorProps,
     LineType,
@@ -34,7 +34,7 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const {
         showAuthor = false,
-        authorName = '',
+        authorName = DEFAULT_AUTHOR_NAME,
         type = QuoteType.QuotationMarks,
         quoteStyleLeft = QuoteStyle.DoubleUp,
         quoteStyleRight = QuoteStyle.DoubleDown,
@@ -46,8 +46,8 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
         isCustomLineWidth = false,
         lineWidthValue = '',
         lineWidthChoice = LineWidth.SmallWidth,
-        accentLinecolor = COLOR_DEFAULT_VALUE,
-        quotesColor = COLOR_DEFAULT_VALUE,
+        accentLinecolor = DEFAULT_COLOR_VALUE,
+        quotesColor = DEFAULT_COLOR_VALUE,
         content = '',
     } = blockSettings;
 
@@ -66,7 +66,7 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
     return (
-        <>
+        <div className={isEditing ? '' : 'tw-text-black'}>
             {type === QuoteType.QuotationMarks && (
                 <div className="tw-flex tw-justify-between tw-gap-x-7">
                     {quoteIconMap(size, quotesRgba)[quoteStyleLeft]}
@@ -94,7 +94,7 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
                     </div>
                 </ContentWithAuthor>
             )}
-        </>
+        </div>
     );
 };
 
