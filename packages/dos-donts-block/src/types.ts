@@ -42,8 +42,8 @@ export enum DoDontSpacing {
     Large = 'Large',
 }
 
-export const spacingClasses: Record<DoDontSpacing, string> = {
-    [DoDontSpacing.Small]: 'tw-gap-4',
-    [DoDontSpacing.Medium]: 'tw-gap-6',
-    [DoDontSpacing.Large]: 'tw-gap-8',
+export const spacingValues: Record<DoDontSpacing, string> = {
+    [DoDontSpacing.Small]: '16px',
+    [DoDontSpacing.Medium]: '24px',
+    [DoDontSpacing.Large]: '32px',
 };

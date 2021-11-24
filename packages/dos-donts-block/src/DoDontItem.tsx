@@ -1,12 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/arcade/style';
-import { FC } from 'react';
-import { RichTextEditor, IconApprove, IconRejectCircle, IconSize, Color } from '@frontify/arcade';
 import { useEditorState } from '@frontify/app-bridge';
+import { Color, IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { DoDontType, DoDontStyle } from './types';
+import { FC } from 'react';
+import { DoDontStyle, DoDontType } from './types';
 
 export type ItemProps = {
     id: number;
@@ -36,7 +34,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
 
     return (
         <div>
-            <div style={headingStyles[type]} className="tw-flex tw-items-center">
+            <div style={headingStyles[type]} className="tw-flex tw-items-center tw-font-semibold tw-text-l">
                 {style === DoDontStyle.Icons && (
                     <div className="tw-mr-2 tw-w-auto">
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
