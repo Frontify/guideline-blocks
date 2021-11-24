@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
-import { ApiSettings } from '@frontify/guideline-blocks-settings';
+import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
 import {
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -10,10 +11,18 @@ import {
     StorybookStyle,
 } from './types';
 
+export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 }, name: 'Light Grey', hex: 'eaebeb' };
+
+const STYLE_ID = 'style';
+const HAS_BORDER_ID = 'hasBorder';
+const HEIGHT_VALUE_ID = 'heightValue';
+const BORDER_WIDTH_ID = 'borderWidth';
+const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
+
 const settings: ApiSettings = {
     main: [
         {
-            id: 'style',
+            id: STYLE_ID,
             type: 'dropdown',
             defaultValue: StorybookStyle.Default,
             size: 'Large',
@@ -47,8 +56,11 @@ const settings: ApiSettings = {
             defaultValue: false,
             on: [
                 {
-                    id: 'heightValue',
+                    id: HEIGHT_VALUE_ID,
                     type: 'input',
+                    placeholder: '400px',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, HEIGHT_VALUE_ID),
                 },
             ],
             off: [
@@ -78,7 +90,7 @@ const settings: ApiSettings = {
             label: 'Positioning',
             type: 'slider',
             defaultValue: StorybookPosition.Horizontal,
-            show: (bundle) => bundle.getBlock('style')?.value === StorybookStyle.Default,
+            show: (bundle: ApiBundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.Default,
             choices: [
                 {
                     value: StorybookPosition.Horizontal,
@@ -93,17 +105,17 @@ const settings: ApiSettings = {
     ],
     style: [
         {
-            id: 'hasBorder',
+            id: HAS_BORDER_ID,
             label: 'Border',
             type: 'switch',
-            defaultValue: false,
+            defaultValue: true,
         },
         {
             id: 'borderSelection',
             type: 'multiInput',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle) => !!bundle.getBlock('hasBorder')?.value,
+            show: (bundle: ApiBundle): boolean => !!bundle.getBlock(HAS_BORDER_ID)?.value,
             blocks: [
                 {
                     id: 'borderStyle',
@@ -125,14 +137,16 @@ const settings: ApiSettings = {
                     ],
                 },
                 {
-                    id: 'borderWidth',
+                    id: BORDER_WIDTH_ID,
                     type: 'input',
                     defaultValue: '1px',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, BORDER_WIDTH_ID),
                 },
                 {
                     id: 'borderColor',
                     type: 'colorInput',
-                    defaultValue: { hex: '#CCCCCC' },
+                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
                 },
             ],
         },
@@ -141,12 +155,15 @@ const settings: ApiSettings = {
             label: 'Corner radius',
             type: 'switch',
             switchLabel: 'Custom',
-            show: (bundle) => !!bundle.getBlock('hasBorder')?.value,
+            show: (bundle: ApiBundle): boolean => !!bundle.getBlock('hasBorder')?.value,
             defaultValue: false,
             on: [
                 {
-                    id: 'borderRadiusValue',
+                    id: BORDER_RADIUS_VALUE_ID,
                     type: 'input',
+                    placeholder: '1px',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, BORDER_RADIUS_VALUE_ID),
                 },
             ],
             off: [

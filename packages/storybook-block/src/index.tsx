@@ -1,71 +1,49 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
 import '@frontify/arcade/style';
-import { FC, useState, useEffect } from 'react';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, TextInput, IconStorybook, IconSize, Color } from '@frontify/arcade';
-import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { useHover } from '@react-aria/interactions';
+import { CSSProperties, FC, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
+import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
 import {
+    BlockProps,
+    borderRadiusClasses,
+    BorderSelectionType,
+    borderStyles,
+    heights,
+    Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
-    StorybookStyle,
     StorybookHeight,
     StorybookPosition,
+    StorybookStyle,
 } from './types';
 
-type StorybookBlockProps = {
-    appBridge: AppBridgeNative;
+const DEFAULT_BORDER_WIDTH = '1px';
+
+const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => {
+    // TODO: This check could be removed if defaultValue are returned from blockSettings (ticket: https://app.clickup.com/t/1p69p6a)
+    const style = borderSelection[0] ?? StorybookBorderStyle.Solid;
+    const width = borderSelection[1] ?? DEFAULT_BORDER_WIDTH;
+    const rgba = borderSelection[2]?.rgba ?? BORDER_COLOR_DEFAULT_VALUE.rgba;
+    return {
+        borderStyle: borderStyles[style],
+        borderWidth: width,
+        borderColor: mapRgbaToString(rgba),
+        borderRadius,
+    };
 };
 
-type BorderSelectionType = [StorybookBorderStyle, string, Color];
-
-type Settings = {
-    style: StorybookStyle;
-    url: string;
-    isCustomHeight: boolean;
-    heightChoice: StorybookHeight;
-    heightValue: string;
-    positioning: StorybookPosition;
-    hasBorder: boolean;
-    borderSelection: BorderSelectionType;
-    hasCustomBorderRadius: boolean;
-    borderRadiusChoice: StorybookBorderRadius;
-    borderRadiusValue: string;
-};
-
-const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string) => ({
-    borderStyle: borderStyles[borderSelection[0]],
-    borderWidth: borderSelection[1],
-    borderRadius,
-    ...(borderSelection[2]?.rgba ? { borderColor: mapRgbaToString(borderSelection[2].rgba) } : {}),
-});
-
-const borderStyles: Record<StorybookBorderStyle, string> = {
-    [StorybookBorderStyle.Solid]: 'solid',
-    [StorybookBorderStyle.Dotted]: 'dotted',
-    [StorybookBorderStyle.Dashed]: 'dashed',
-};
-
-const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
-    [StorybookBorderRadius.None]: 'tw-rounded-none',
-    [StorybookBorderRadius.Small]: 'tw-rounded',
-    [StorybookBorderRadius.Medium]: 'tw-rounded-md',
-    [StorybookBorderRadius.Large]: 'tw-rounded-lg',
-};
-
-const heights: Record<StorybookHeight, string> = {
-    [StorybookHeight.Small]: '400px',
-    [StorybookHeight.Medium]: '600px',
-    [StorybookHeight.Large]: '800px',
-};
-
-const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
+const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [localUrl, setLocalUrl] = useState('');
     const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
+    const { hoverProps, isHovered } = useHover({});
 
     const {
         style = StorybookStyle.Default,
@@ -74,12 +52,8 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
         heightChoice = StorybookHeight.Medium,
         heightValue = '',
         positioning = StorybookPosition.Horizontal,
-        hasBorder = false,
-        borderSelection = [
-            StorybookBorderStyle.Solid,
-            '1px',
-            { rgba: { r: 100, g: 12, b: 0, a: 1 } },
-        ] as BorderSelectionType,
+        hasBorder = true,
+        borderSelection = [StorybookBorderStyle.Solid, DEFAULT_BORDER_WIDTH, BORDER_COLOR_DEFAULT_VALUE],
         hasCustomBorderRadius = false,
         borderRadiusChoice = StorybookBorderRadius.None,
         borderRadiusValue = '',
@@ -116,16 +90,21 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
             newIframeUrl.searchParams.set('panel', panelValue);
 
             setIframeUrl(newIframeUrl);
+        } else if (url === '') {
+            deleteUrl();
         }
     }, [url, style, positioning]);
 
     return (
         <div className="tw-relative">
             {iframeUrl ? (
-                <>
-                    {isEditing && <RemoveButton onClick={deleteUrl} />}
+                <div {...hoverProps}>
+                    {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
                     <iframe
-                        className={`tw-w-full ${!hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice]}`}
+                        className={joinClassNames([
+                            'tw-w-full',
+                            !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
+                        ])}
                         style={
                             hasBorder
                                 ? getIframeStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')
@@ -135,7 +114,7 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
                         src={iframeUrl.toString()}
                         frameBorder="0"
                     ></iframe>
-                </>
+                </div>
             ) : (
                 <>
                     {isEditing ? (
@@ -145,6 +124,7 @@ const StorybookBlock: FC<StorybookBlockProps> = ({ appBridge }) => {
                                 <TextInput
                                     value={localUrl}
                                     onChange={(value) => setLocalUrl(value)}
+                                    onEnterPressed={saveLink}
                                     placeholder="https://brand.storybook.com/?path=/story/buttons"
                                 />
                             </div>

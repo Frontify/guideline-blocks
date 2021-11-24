@@ -1,14 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/arcade/style';
-import { FC, useRef, useState } from 'react';
-import { Tooltip, TooltipProps, TooltipArrow, IconReject, IconSize } from '@frontify/arcade';
-import { mergeProps } from '@react-aria/utils';
+import { IconReject, IconSize, Tooltip, TooltipArrow } from '@frontify/arcade';
 import { useButton } from '@react-aria/button';
-import { useHover } from '@react-aria/interactions';
 import { useTooltipTrigger } from '@react-aria/tooltip';
+import { mergeProps } from '@react-aria/utils';
 import { useTooltipTriggerState } from '@react-stately/tooltip';
+import { FC, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
 
 type RemoveButtonProps = {
@@ -18,6 +15,7 @@ type RemoveButtonProps = {
 const TOOLTIP_DISTANCE = 15;
 const TOOLTIP_SKIDDING = 0;
 const TOOLTIP_PADDING = 15;
+const TOOLTIP_MIN_WIDTH = '108px';
 
 export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
     const tooltipElement = useRef<HTMLDivElement | null>(null);
@@ -35,17 +33,15 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
         ],
     });
 
-    const { buttonProps } = useButton({
-        onPress: () => onClick(),
-    });
-
-    const { hoverProps } = useHover({
-        onHoverStart: () => state.open(),
-        onHoverEnd: () => state.close(),
-    });
+    const { buttonProps } = useButton(
+        {
+            onPress: () => onClick(),
+        },
+        tooltipTriggerElement
+    );
 
     return (
-        <div className="tw-absolute tw-top-4 tw-right-4 tw-w-9 tw-h-9" {...hoverProps}>
+        <div className="tw-absolute tw-top-4 tw-right-4 tw-w-9 tw-h-9">
             <button
                 ref={tooltipTriggerElement}
                 className="tw-flex tw-w-9 tw-h-9 tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-text-black"
@@ -58,7 +54,7 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
                     content="Remove link"
                     popperAttributes={attributes.popper}
                     ref={tooltipElement}
-                    style={styles.popper}
+                    style={{ ...styles.popper, minWidth: TOOLTIP_MIN_WIDTH }}
                     tooltipAriaProps={tooltipProps}
                 >
                     <TooltipArrow
