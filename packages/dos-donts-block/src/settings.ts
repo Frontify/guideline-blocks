@@ -85,16 +85,8 @@ const settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void => {
-                const sliderValue = bundle.getBlock(SPACING_CHOICE_ID)?.value as DoDontSpacing;
-                const customValue = bundle.getBlock(SPACING_VALUE_ID)?.value;
-                const spacingKey = (Object.keys(spacingValues) as Array<DoDontSpacing>).find(
-                    (key) => spacingValues[key] === customValue
-                );
-                if ((sliderValue && spacingKey) || (sliderValue && !customValue)) {
-                    bundle.setBlockValue(SPACING_VALUE_ID, spacingValues[sliderValue]);
-                }
-            },
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
             on: [
                 {
                     id: SPACING_VALUE_ID,
