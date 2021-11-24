@@ -2,9 +2,14 @@
 
 import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
+import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
+import { LineType, LineWidth, lineWidthMap, QuoteSize, quoteSizeMap, QuoteStyle, QuoteType } from './types';
 
 const QUOTE_TYPE_ID = 'type';
+const SIZE_CHOICE_ID = 'sizeChoice';
+const SIZE_VALUE_ID = 'sizeValue';
+const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
+const LINE_WIDTH_CHOICE_ID = 'lineWidthChoice';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const QUOTE_STYLE_CHOICES = [
     { value: QuoteStyle.DoubleUp, icon: IconEnum.DoubleQuotesUp, label: 'Double Up' },
@@ -86,17 +91,29 @@ const Settings: ApiSettings = {
             id: 'isCustomSize',
             label: 'Size',
             type: 'switch',
-            defaultValue: false,
             switchLabel: 'Custom',
+            defaultValue: false,
+            onChange: (bundle: ApiBundle): void => {
+                const sliderValue = bundle.getBlock(SIZE_CHOICE_ID)?.value as QuoteSize;
+                const customValue = bundle.getBlock(SIZE_VALUE_ID)?.value;
+                const dividerHeightKey = (Object.keys(quoteSizeMap) as Array<QuoteSize>).find(
+                    (key) => quoteSizeMap[key] === customValue
+                );
+                if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
+                    bundle.setBlockValue(SIZE_VALUE_ID, quoteSizeMap[sliderValue]);
+                }
+            },
             on: [
                 {
-                    id: 'sizeValue',
+                    id: SIZE_VALUE_ID,
                     type: 'input',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, SIZE_VALUE_ID),
                 },
             ],
             off: [
                 {
-                    id: 'sizeChoice',
+                    id: SIZE_CHOICE_ID,
                     type: 'slider',
                     defaultValue: QuoteSize.SmallSize,
                     choices: [
@@ -154,15 +171,27 @@ const Settings: ApiSettings = {
             defaultValue: false,
             info: 'Choose between small, medium, large or custom accent line width',
             show: showAccentLine,
+            onChange: (bundle: ApiBundle): void => {
+                const sliderValue = bundle.getBlock(LINE_WIDTH_CHOICE_ID)?.value as LineWidth;
+                const customValue = bundle.getBlock(LINE_WIDTH_VALUE_ID)?.value;
+                const dividerHeightKey = (Object.keys(lineWidthMap) as Array<LineWidth>).find(
+                    (key) => lineWidthMap[key] === customValue
+                );
+                if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
+                    bundle.setBlockValue(LINE_WIDTH_VALUE_ID, lineWidthMap[sliderValue]);
+                }
+            },
             on: [
                 {
-                    id: 'lineWidthValue',
+                    id: LINE_WIDTH_VALUE_ID,
                     type: 'input',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, LINE_WIDTH_VALUE_ID),
                 },
             ],
             off: [
                 {
-                    id: 'lineWidthChoice',
+                    id: LINE_WIDTH_CHOICE_ID,
                     type: 'slider',
                     defaultValue: LineWidth.SmallWidth,
                     choices: [
