@@ -202,7 +202,10 @@ const Settings: ApiSettings = {
             onChange: (bundle: ApiBundle): void => {
                 const sliderValue = bundle.getBlock(THICKNESS_SIMPLE_ID)?.value as DividerThickness;
                 const customValue = bundle.getBlock(THICKNESS_CUSTOM_ID)?.value;
-                if (sliderValue && !customValue) {
+                const dividerThicknessKey = (Object.keys(dividerThickness) as Array<DividerThickness>).find(
+                    (key) => dividerThickness[key] === customValue
+                );
+                if ((sliderValue && dividerThicknessKey) || (sliderValue && !customValue)) {
                     bundle.setBlockValue(THICKNESS_CUSTOM_ID, dividerThickness[sliderValue]);
                 }
             },
