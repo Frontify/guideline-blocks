@@ -3,13 +3,13 @@
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 
 /**
- * Checks if value is a numeric value without "px" and creates string from value with "px"
+ * Sets value of custom input to predefined value from the slider, if no custom value is set already
  *
  * @param {ApiBundle} bundle Sidebar bundle object
  * @param {string} sliderId Setting id of the slider
  * @param {string} inputId Setting id of the input
  * @param {Object} map Map of enum and values
- * @returns {string} Set block value to string with "px"
+ * @returns Set value of custom input to predefined value from the slider
  */
 
 export const presetCustomValue = (
