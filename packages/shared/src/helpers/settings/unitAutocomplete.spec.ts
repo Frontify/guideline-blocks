@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { pxAutocomplete } from './pxAutocomplete';
+import { unitAutocomplete } from './unitAutocomplete';
 
-describe('pxAutocomplete', () => {
+describe('unitAutocomplete', () => {
     test('it should set correct value with "px" when entering a number', () => {
         const bundle: ApiBundle = {
             getBlock() {
@@ -14,9 +14,24 @@ describe('pxAutocomplete', () => {
         };
 
         const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
-        pxAutocomplete(bundle, 'my_setting_id');
+        unitAutocomplete(bundle, 'my_setting_id');
 
         expect(setBlockValueSpy).toHaveBeenCalledWith('my_setting_id', '20px');
+    });
+
+    test('it should set correct value with "%" when entering a number', () => {
+        const bundle: ApiBundle = {
+            getBlock() {
+                return { value: 40 };
+            },
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            setBlockValue(): void {},
+        };
+
+        const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
+        unitAutocomplete(bundle, 'my_setting_id', '%');
+
+        expect(setBlockValueSpy).toHaveBeenCalledWith('my_setting_id', '40%');
     });
 
     test('it should not call setBlockValue when entering a px-value', () => {
@@ -28,7 +43,7 @@ describe('pxAutocomplete', () => {
             setBlockValue(): void {},
         };
         const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
-        pxAutocomplete(bundle, 'my_setting_id');
+        unitAutocomplete(bundle, 'my_setting_id');
         expect(setBlockValueSpy).not.toHaveBeenCalledWith('my_setting_id', '20px');
     });
 });
