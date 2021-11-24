@@ -91,7 +91,7 @@ const settings: ApiSettings = {
                 const spacingKey = (Object.keys(spacingValues) as Array<DoDontSpacing>).find(
                     (key) => spacingValues[key] === customValue
                 );
-                if (sliderValue && spacingKey) {
+                if ((sliderValue && spacingKey) || (sliderValue && !customValue)) {
                     bundle.setBlockValue(SPACING_VALUE_ID, spacingValues[sliderValue]);
                 }
             },
