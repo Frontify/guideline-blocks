@@ -97,7 +97,7 @@ const Settings: ApiSettings = {
             onChange: (bundle: ApiBundle): void => {
                 const sliderValue = bundle.getBlock(SIZE_CHOICE_ID)?.value as QuoteSize;
                 const customValue = bundle.getBlock(SIZE_VALUE_ID)?.value;
-                const dividerHeightKey = (Object.keys(quoteSizeMap) as Array<QuoteSize>).find(
+                const dividerHeightKey = (Object.keys(quoteSizeMap) as QuoteSize[]).find(
                     (key) => quoteSizeMap[key] === customValue
                 );
                 if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
@@ -175,7 +175,7 @@ const Settings: ApiSettings = {
             onChange: (bundle: ApiBundle): void => {
                 const sliderValue = bundle.getBlock(LINE_WIDTH_CHOICE_ID)?.value as LineWidth;
                 const customValue = bundle.getBlock(LINE_WIDTH_VALUE_ID)?.value;
-                const dividerHeightKey = (Object.keys(lineWidthMap) as Array<LineWidth>).find(
+                const dividerHeightKey = (Object.keys(lineWidthMap) as LineWidth[]).find(
                     (key) => lineWidthMap[key] === customValue
                 );
                 if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
