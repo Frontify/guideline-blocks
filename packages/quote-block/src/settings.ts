@@ -58,7 +58,7 @@ const Settings: ApiSettings = {
         },
         {
             id: 'quoteStyleRight',
-            label: 'Left',
+            label: 'Right',
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,

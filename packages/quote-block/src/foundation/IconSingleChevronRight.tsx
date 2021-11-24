@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC } from 'react';
-import { IconProps, ICON_CLASS_NAME } from '../utilities';
+import { ICON_CLASS_NAME } from '../utilities';
+import { IconProps } from '../types';
 
 const IconSingleChevronRight: FC<IconProps> = ({ style }) => (
     <svg

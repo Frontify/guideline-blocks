@@ -3,16 +3,23 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
 import '@frontify/arcade/style';
+import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { LineType, LineWidth, Props, QuoteSize, QuoteStyle, QuoteType, Settings } from './types';
-import { quoteIconMap, quoteSizeMap } from './utilities';
-
-type ContentWithAuthorProps = {
-    showAuthor: boolean;
-    authorName: string;
-};
+import { COLOR_DEFAULT_VALUE } from './settings';
+import {
+    ContentWithAuthorProps,
+    LineType,
+    LineWidth,
+    lineWidthMap,
+    Props,
+    QuoteSize,
+    quoteSizeMap,
+    QuoteStyle,
+    QuoteType,
+    Settings,
+} from './types';
+import { quoteIconMap } from './utilities';
 
 const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName, children }) => (
     <div className="tw-flex-1 tw-w-full">
@@ -20,12 +27,6 @@ const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName,
         {showAuthor && authorName && <p className="tw-text-right">{`- ${authorName}`}</p>}
     </div>
 );
-
-const lineWidthMap: Record<LineWidth, string> = {
-    [LineWidth.SmallWidth]: '2px',
-    [LineWidth.MediumWidth]: '4px',
-    [LineWidth.LargeWidth]: '8px',
-};
 
 const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -45,8 +46,8 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
         isCustomLineWidth = false,
         lineWidthValue = '',
         lineWidthChoice = LineWidth.SmallWidth,
-        accentLinecolor = { hex: '' },
-        quotesColor = { hex: '' },
+        accentLinecolor = COLOR_DEFAULT_VALUE,
+        quotesColor = COLOR_DEFAULT_VALUE,
         content = '',
     } = blockSettings;
 
