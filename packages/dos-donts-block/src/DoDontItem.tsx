@@ -2,10 +2,8 @@
 
 import { useEditorState } from '@frontify/app-bridge';
 import { Color, IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
-import '@frontify/arcade/style';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
-import 'tailwindcss/tailwind.css';
 import { DoDontStyle, DoDontType } from './types';
 
 export type ItemProps = {
