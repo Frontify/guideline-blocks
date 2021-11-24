@@ -146,7 +146,7 @@ const Settings: ApiSettings = {
                 const dividerHeightKey = (Object.keys(dividerHeight) as Array<DividerHeight>).find(
                     (key) => dividerHeight[key] === customValue
                 );
-                if (sliderValue && dividerHeightKey) {
+                if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
                     bundle.setBlockValue(HEIGHT_CUSTOM_ID, dividerHeight[sliderValue]);
                 }
             },
