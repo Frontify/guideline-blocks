@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { CSSProperties, ReactNode } from 'react';
 import IconDoubleChevronLeft from './foundation/IconDoubleChevronLeft';
 import IconDoubleChevronRight from './foundation/IconDoubleChevronRight';

@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { FC } from 'react';
 import { IconProps, ICON_CLASS_NAME } from '../utilities';
 

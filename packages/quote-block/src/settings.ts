@@ -1,4 +1,7 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { IconEnum } from '@frontify/arcade';
+import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
 
 const QUOTE_TYPE_ID = 'type';
@@ -17,11 +20,13 @@ const QUOTE_STYLE_CHOICES = [
     { value: QuoteStyle.None, icon: IconEnum.None, label: 'None' },
 ];
 
-const isSelected = (bundle: any, choice: QuoteType) => bundle.getBlock(QUOTE_TYPE_ID).value === choice;
-const showAccentLine = (bundle: any) =>
-    isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID).value === true;
+export const COLOR_DEFAULT_VALUE = { rgba: { r: 179, g: 181, b: 181, a: 1 }, name: 'Light Grey', hex: 'B3B5B5' };
 
-export default {
+const isSelected = (bundle: ApiBundle, choice: QuoteType) => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
+const showAccentLine = (bundle: ApiBundle) =>
+    isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID)?.value === true;
+
+const Settings: ApiSettings = {
     main: [
         {
             id: QUOTE_TYPE_ID,
@@ -49,7 +54,7 @@ export default {
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: ApiBundle) => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: 'quoteStyleRight',
@@ -57,19 +62,20 @@ export default {
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: ApiBundle) => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
     layout: [
         {
             id: 'showAuthor',
             type: 'switch',
-            label: 'Show author',
+            label: 'Author',
             defaultValue: false,
             on: [
                 {
                     id: 'authorName',
                     type: 'input',
+                    placeholder: 'John Doe',
                 },
             ],
             off: [],
@@ -109,14 +115,14 @@ export default {
                     ],
                 },
             ],
-            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: ACCENT_LINE_SWITCH_ID,
             type: 'switch',
             label: 'Accent line',
             defaultValue: true,
-            show: (bundle: any) => isSelected(bundle, QuoteType.Indentation),
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.Indentation),
         },
         {
             id: 'lineType',
@@ -145,6 +151,7 @@ export default {
             label: 'Width',
             type: 'switch',
             switchLabel: 'Custom',
+            defaultValue: false,
             info: 'Choose between small, medium, large or custom accent line width',
             show: showAccentLine,
             on: [
@@ -179,13 +186,17 @@ export default {
             id: 'accentLinecolor',
             label: 'Color',
             type: 'colorInput',
+            defaultValue: COLOR_DEFAULT_VALUE,
             show: showAccentLine,
         },
         {
             id: 'quotesColor',
             label: 'Color',
             type: 'colorInput',
-            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+            defaultValue: COLOR_DEFAULT_VALUE,
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
 };
+
+export default Settings;

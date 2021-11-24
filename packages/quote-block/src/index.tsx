@@ -1,9 +1,11 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
 import '@frontify/arcade/style';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { mapRgbaToString } from '../../shared/src';
+import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { LineType, LineWidth, Props, QuoteSize, QuoteStyle, QuoteType, Settings } from './types';
 import { quoteIconMap, quoteSizeMap } from './utilities';
 
