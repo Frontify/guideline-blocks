@@ -6,7 +6,7 @@ import '@frontify/arcade/style';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { DEFAULT_COLOR_VALUE, DEFAULT_AUTHOR_NAME } from './settings';
+import { DEFAULT_AUTHOR_NAME, DEFAULT_COLOR_VALUE } from './settings';
 import {
     ContentWithAuthorProps,
     LineType,

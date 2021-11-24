@@ -28,8 +28,8 @@ const QUOTE_STYLE_CHOICES = [
 export const DEFAULT_COLOR_VALUE = { rgba: { r: 179, g: 181, b: 181, a: 1 }, name: 'Light Grey', hex: 'B3B5B5' };
 export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
-const isSelected = (bundle: ApiBundle, choice: QuoteType) => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
-const showAccentLine = (bundle: ApiBundle) =>
+const isSelected = (bundle: ApiBundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
+const showAccentLine = (bundle: ApiBundle): boolean =>
     isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID)?.value === true;
 
 const Settings: ApiSettings = {
@@ -60,7 +60,7 @@ const Settings: ApiSettings = {
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: ApiBundle) => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: 'quoteStyleRight',
@@ -68,7 +68,7 @@ const Settings: ApiSettings = {
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: ApiBundle) => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
     layout: [
