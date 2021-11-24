@@ -8,6 +8,7 @@ import {
     numericalOrPercentRule,
     numericalOrPixelRule,
     presetCustomValue,
+    appendUnit,
 } from '@frontify/guideline-blocks-shared';
 import {
     DividerAlignment,
@@ -77,12 +78,7 @@ const Settings: ApiSettings = {
                     type: 'input',
                     placeholder: '75%',
                     rules: [numericalOrPercentRule, betweenNumericalOrPercentOrAutoRule(0, 100)],
-                    onChange: (bundle: ApiBundle): void => {
-                        const blockWidth = Number(bundle.getBlock(WIDTH_CUSTOM_ID)?.value);
-                        if (!Number.isNaN(blockWidth)) {
-                            bundle.setBlockValue(WIDTH_CUSTOM_ID, `${blockWidth}%`);
-                        }
-                    },
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
                 },
             ],
             off: [
@@ -149,12 +145,7 @@ const Settings: ApiSettings = {
                     type: 'input',
                     placeholder: '100px',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => {
-                        const blockHeight = Number(bundle.getBlock(HEIGHT_CUSTOM_ID)?.value);
-                        if (!Number.isNaN(blockHeight)) {
-                            bundle.setBlockValue(HEIGHT_CUSTOM_ID, `${blockHeight}px`);
-                        }
-                    },
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
                 },
             ],
             off: [
@@ -220,12 +211,7 @@ const Settings: ApiSettings = {
                     id: THICKNESS_CUSTOM_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
-                    onChange: (bundle: ApiBundle): void => {
-                        const borderThickness = Number(bundle.getBlock(THICKNESS_CUSTOM_ID)?.value);
-                        if (!Number.isNaN(borderThickness)) {
-                            bundle.setBlockValue(THICKNESS_CUSTOM_ID, `${borderThickness}px`);
-                        }
-                    },
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, THICKNESS_CUSTOM_ID),
                 },
             ],
             off: [
