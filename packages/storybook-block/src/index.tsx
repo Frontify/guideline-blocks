@@ -23,11 +23,13 @@ import {
     StorybookStyle,
 } from './types';
 
+const DEFAULT_BORDER_WIDTH = '1px';
+
 const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => {
-    // TODO: This check could be removed if defaultValue are returned from blockSettings
-    const style = borderSelection[0] ? borderSelection[0] : StorybookBorderStyle.Solid;
-    const width = borderSelection[1] ? borderSelection[1] : '1px';
-    const rgba = borderSelection[2]?.rgba ? borderSelection[2]?.rgba : BORDER_COLOR_DEFAULT_VALUE.rgba;
+    // TODO: This check could be removed if defaultValue are returned from blockSettings (ticket: https://app.clickup.com/t/1p69p6a)
+    const style = borderSelection[0] ?? StorybookBorderStyle.Solid;
+    const width = borderSelection[1] ?? DEFAULT_BORDER_WIDTH;
+    const rgba = borderSelection[2]?.rgba ?? BORDER_COLOR_DEFAULT_VALUE.rgba;
     return {
         borderStyle: borderStyles[style],
         borderWidth: width,
@@ -51,7 +53,7 @@ const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         heightValue = '',
         positioning = StorybookPosition.Horizontal,
         hasBorder = true,
-        borderSelection = [StorybookBorderStyle.Solid, '1px', BORDER_COLOR_DEFAULT_VALUE],
+        borderSelection = [StorybookBorderStyle.Solid, DEFAULT_BORDER_WIDTH, BORDER_COLOR_DEFAULT_VALUE],
         hasCustomBorderRadius = false,
         borderRadiusChoice = StorybookBorderRadius.None,
         borderRadiusValue = '',

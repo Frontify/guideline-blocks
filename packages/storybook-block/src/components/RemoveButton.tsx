@@ -15,6 +15,7 @@ type RemoveButtonProps = {
 const TOOLTIP_DISTANCE = 15;
 const TOOLTIP_SKIDDING = 0;
 const TOOLTIP_PADDING = 15;
+const TOOLTIP_MIN_WIDTH = '108px';
 
 export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
     const tooltipElement = useRef<HTMLDivElement | null>(null);
@@ -53,7 +54,7 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
                     content="Remove link"
                     popperAttributes={attributes.popper}
                     ref={tooltipElement}
-                    style={{ ...styles.popper, minWidth: '108px' }}
+                    style={{ ...styles.popper, minWidth: TOOLTIP_MIN_WIDTH }}
                     tooltipAriaProps={tooltipProps}
                 >
                     <TooltipArrow
