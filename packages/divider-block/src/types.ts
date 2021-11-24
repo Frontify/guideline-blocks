@@ -55,26 +55,26 @@ export enum DividerThickness {
     Large = 'Large',
 }
 
-export const dividerHeight: Record<DividerHeight, string> = {
+export const DividerHeightValues: Record<DividerHeight, string> = {
     [DividerHeight.Small]: '36px',
     [DividerHeight.Medium]: '60px',
     [DividerHeight.Large]: '96px',
 };
 
-export const dividerStyle: Record<DividerStyle, string> = {
+export const DividerStyleValues: Record<DividerStyle, string> = {
     [DividerStyle.NoLine]: 'tw-border-none',
     [DividerStyle.Dashed]: 'tw-border-dashed',
     [DividerStyle.Solid]: 'tw-border-solid',
     [DividerStyle.Dotted]: 'tw-border-dotted',
 };
 
-export const dividerAlignment: Record<DividerAlignment, string> = {
+export const DividerAlignmentValues: Record<DividerAlignment, string> = {
     [DividerAlignment.Center]: 'tw-justify-center',
     [DividerAlignment.Right]: 'tw-justify-end',
     [DividerAlignment.Left]: 'tw-justify-start',
 };
 
-export const dividerThickness: Record<DividerThickness, string> = {
+export const DividerThicknessValues: Record<DividerThickness, string> = {
     [DividerThickness.Small]: '1px',
     [DividerThickness.Medium]: '2px',
     [DividerThickness.Large]: '4px',
