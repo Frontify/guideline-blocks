@@ -2,7 +2,7 @@
 
 import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
+import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 import { LineType, LineWidth, lineWidthMap, QuoteSize, quoteSizeMap, QuoteStyle, QuoteType } from './types';
 
 const QUOTE_TYPE_ID = 'type';
@@ -109,7 +109,7 @@ const Settings: ApiSettings = {
                     id: SIZE_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, SIZE_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, SIZE_VALUE_ID),
                 },
             ],
             off: [
@@ -187,7 +187,7 @@ const Settings: ApiSettings = {
                     id: LINE_WIDTH_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => pxAutocomplete(bundle, LINE_WIDTH_VALUE_ID),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
                 },
             ],
             off: [
