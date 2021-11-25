@@ -9,7 +9,7 @@
   "author": "Frontify Developers <developers@frontify.com>",
   "devDependencies": {
     "@cypress/react": "^5.10.3",
-    "@frontify/app-bridge": "^2.8.0",
+    "@frontify/app-bridge": "^2.10.0",
     "@frontify/eslint-config-react": "0.11.0",
     "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
     "@types/jest": "27.0.3",

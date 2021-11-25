@@ -1,59 +1,32 @@
-import { AppBridgeNative } from '@frontify/app-bridge';
-import Sinon from 'sinon';
+import { AppBridgeNativeMock, IAppBridgeNative } from '@frontify/app-bridge';
+import { stub } from 'sinon';
 
-type AppBridgeEvents = {
-    onGetBlockSettings?: () => Record<number, Record<string, unknown>>;
-    onGetEditorState?: () => boolean;
+type useStubedAppBridgeProps = {
+    blockSettings?: Record<string, unknown>;
+    editorState?: boolean;
 };
-const GetEditorStateDefault = true;
 
-const useStubedAppBridge = ({
-    onGetBlockSettings,
-    onGetEditorState,
-}: AppBridgeEvents): Sinon.SinonStubbedInstance<AppBridgeNative> => {
-    const appBridge = Sinon.createStubInstance(AppBridgeNative);
-    appBridge.blockId = 0;
-    appBridge.sectionId = 0;
+const useStubedAppBridge = ({ blockSettings = {}, editorState = false }: useStubedAppBridgeProps): IAppBridgeNative => {
+    const appBridge = new AppBridgeNativeMock(0, 0);
 
-    const blockSettings = onGetBlockSettings ? onGetBlockSettings() : {};
     cy.window().then((window) => {
-        window.blockSettings = {
-            [appBridge.blockId?.toString() ?? 0]: blockSettings,
-        };
-        window.application = {
-            connectors: {
-                events: {
-                    components: {
-                        appBridge: {
-                            component: {
-                                onAssetChooserAssetChosen: () => console.log('on asset chooser asset chosen'),
-                                onTemplateChooserTemplateChosen: () =>
-                                    console.log('on template chooser template chosen'),
-                            },
-                        },
-                    },
-                    notify: () => console.log('notify'),
-                    registerComponent: () => console.log('register'),
-                },
-            },
-        };
+        window.blockSettings = { 0: blockSettings };
     });
-    appBridge.getBlockSettings.returns(new Promise(() => blockSettings));
-    appBridge.getEditorState.returns(onGetEditorState ? onGetEditorState() : GetEditorStateDefault);
+    stub(appBridge, 'getBlockSettings').returns(new Promise((resolve) => resolve(blockSettings)));
+    stub(appBridge, 'getEditorState').returns(editorState);
 
     return appBridge;
 };
 
-type withAppBridgeStubsProps = { appBridge: AppBridgeNative };
+type withAppBridgeStubsProps = { appBridge: IAppBridgeNative };
 
-export function withAppBridgeStubs<T extends withAppBridgeStubsProps = withAppBridgeStubsProps>(
+export function withAppBridgeStubs<T>(
     WrappedComponent: React.ComponentType<T>,
-    events: AppBridgeEvents
-): [React.ComponentType<Omit<T, keyof withAppBridgeStubsProps>>, Sinon.SinonStubbedInstance<AppBridgeNative>] {
-    const appBridge = useStubedAppBridge(events);
-    const appBridgeProps = { appBridge };
+    props: useStubedAppBridgeProps
+): [React.ComponentType<Omit<T, keyof withAppBridgeStubsProps>>, IAppBridgeNative] {
+    const appBridge = useStubedAppBridge(props);
     const ComponentWithAppBridgeStubs = (props: Omit<T, keyof withAppBridgeStubsProps>) => {
-        return <WrappedComponent {...appBridgeProps} {...(props as T)} />;
+        return <WrappedComponent appBridge={appBridge} {...(props as T)} />;
     };
 
     const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';

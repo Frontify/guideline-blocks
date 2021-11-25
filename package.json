@@ -17,7 +17,8 @@
         "lint": "lerna run lint",
         "prettier": "prettier --check 'packages/*/src/*.{ts,tsx}'",
         "serve": "lerna run serve:block --stream --scope",
-        "test": "cypress open-ct",
+        "test:functional": "cypress run-ct",
+        "test:browser": "cypress open-ct",
         "publish": "lerna publish --no-private",
         "typecheck": "tsc"
     }

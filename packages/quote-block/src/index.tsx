@@ -30,7 +30,7 @@ const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName,
 
 const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const isEditing = useEditorState();
+    const isEditing = useEditorState(appBridge);
 
     const {
         showAuthor = false,
