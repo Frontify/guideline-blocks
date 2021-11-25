@@ -6,7 +6,7 @@ const pluginConfig: Cypress.PluginConfig = (on, config) => {
         startDevServer({
             options,
             viteConfig: {
-                configFile: path.resolve(__dirname, '..', '..', 'vite.dev.config.ts'),
+                configFile: path.resolve(__dirname, '..', '..', 'vite.test.config.ts'),
             },
         })
     );
