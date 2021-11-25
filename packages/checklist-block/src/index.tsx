@@ -1,16 +1,16 @@
-import 'tailwindcss/tailwind.css';
-import { ReactElement, useState } from 'react';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import {
-    Button,
-    ButtonSize,
-    IconCaretDown,
-    IconCaretUp,
-    IconReject,
-    IconSize,
-    IconView,
-    IconViewSlash,
-} from '@frontify/arcade';
+import { IconReject } from '@frontify/arcade';
+import { IconCaretUp } from '@frontify/arcade';
+import { IconCaretDown, DragState } from '@frontify/arcade';
+import { Button, ButtonSize, IconSize, IconView, IconViewSlash, OrderableList } from '@frontify/arcade';
+import { useHover } from '@react-aria/interactions';
+import { ReactElement, useState } from 'react';
+import 'tailwindcss/tailwind.css';
+import ChecklistButton from './components/ChecklistButton';
+import ChecklistItem from './components/ChecklistItem';
+import ProgressBar from './components/ProgressBar';
+import ProgressHeader from './components/ProgressHeader';
+import './index.css';
 import {
     ChecklistContent,
     ChecklistDecoration,
@@ -20,16 +20,8 @@ import {
     ProgressBarType,
     Settings,
 } from './types';
-import ChecklistItemCreator from './components/ChecklistItemCreator';
-import ChecklistItem from './components/ChecklistItem';
-import { provideDefaults } from './utilities/provideDefaults';
-import ChecklistButton from './components/ChecklistButton';
-import ProgressBar from './components/ProgressBar';
-import ProgressHeader from './components/ProgressHeader';
-import { useHover } from '@react-aria/interactions';
 import { merge } from './utilities/merge';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import './index.css';
+import { provideDefaults } from './utilities/provideDefaults';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
@@ -58,8 +50,6 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         progressBarTrackColor,
         strikethroughMultiInput,
     } = provideDefaults(DefaultValues, blockSettings);
-
-    console.log(blockSettings);
 
     const addNewItem = (text: string): void => {
         const trimmed = text.trim();
@@ -137,13 +127,17 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
 
     const shouldShowProgress = !!content.length && progressBarVisible;
 
-    const onDragEnd = (result) => {
-        if (!result.destination) {
-            return;
+    const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
+        console.log(selectedGridItemKeys, gridItemLocation);
+        let newIndex = content.findIndex((c) => c.id === gridItemLocation.key);
+        const oldIndex = content.findIndex((c) => c.id === selectedGridItemKeys[0]);
+        if (oldIndex < newIndex) newIndex--;
+        if (gridItemLocation.dropPosition === 'before') {
+            modifyListPosition(oldIndex, newIndex);
+        } else {
+            modifyListPosition(oldIndex, newIndex + 1);
         }
-        modifyListPosition(result.source.index, result.destination.index);
     };
-
     return (
         <div
             className={merge([!paddingAdvanced && PaddingClasses[paddingBasic]])}
@@ -190,12 +184,63 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     </Button>
                 </div>
                 <div className="tw-my-1.5"></div>
-                <DragDropContext onDragEnd={onDragEnd}>
+                <OrderableList
+                    items={content
+                        .filter(completionFilter)
+                        .map((c) => ({ ...c, alt: c.text, type: 'item', key: c.id }))}
+                    onMove={onMove}
+                    showFocusRing={true}
+                    dragDisabled={!isEditing}
+                    renderContent={(
+                        { value: { id, text, completed, updatedAt }, prevKey, nextKey },
+                        { componentDragState }
+                    ) => (
+                        <ChecklistItem
+                            id={id}
+                            key={id}
+                            text={text}
+                            resetOnChange={false}
+                            isDragging={componentDragState === DragState.Dragging}
+                            checkboxDisabled={!isEditing}
+                            checked={completed}
+                            toggleCompleted={(value: boolean) =>
+                                updateItem(id, { completed: value, updatedAt: Date.now() })
+                            }
+                            decorationStyle={decorationStyles}
+                            onChange={(text) => updateItem(id, { text })}
+                            checkboxStyle={{
+                                checked: completeCheckboxColor.hex,
+                                unchecked: incompleteCheckboxColor.hex,
+                            }}
+                            labelStyle={{
+                                checked: completeTextColor.hex,
+                                unchecked: incompleteTextColor.hex,
+                            }}
+                            dateCompleted={updatedAt}
+                            dateVisible={dateVisible}
+                            readonly={!isEditing}
+                            controlButtons={
+                                <>
+                                    <ChecklistButton
+                                        disabled={!prevKey}
+                                        icon={<IconCaretUp size={IconSize.Size16} />}
+                                    />
+                                    <ChecklistButton
+                                        disabled={!nextKey}
+                                        icon={<IconCaretDown size={IconSize.Size16} />}
+                                    />
+                                    <ChecklistButton icon={<IconReject size={IconSize.Size16} />} />
+                                </>
+                            }
+                        />
+                    )}
+                />
+                {/* <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="droppable">
                         {(provided) => (
                             <div {...provided.droppableProps} ref={provided.innerRef}>
                                 {content
-                                    .filter(completionFilter)
+                                    .filter(completionFilter)s
                                     .map(({ id, text, updatedAt, completed }, index, ctx) => (
                                         <Draggable key={id} draggableId={id} index={index} isDragDisabled={!isEditing}>
                                             {(provided, snapshot) => (
@@ -209,49 +254,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                                                     ])}
                                                     style={{ ...provided.draggableProps.style }}
                                                 >
-                                                    <ChecklistItem
-                                                        id={id}
-                                                        key={id}
-                                                        text={text}
-                                                        resetOnChange={false}
-                                                        isBeingDragged={snapshot.isDragging}
-                                                        checkboxDisabled={!isEditing}
-                                                        checked={completed}
-                                                        toggleCompleted={(value: boolean) =>
-                                                            updateItem(id, { completed: value, updatedAt: Date.now() })
-                                                        }
-                                                        decorationStyle={decorationStyles}
-                                                        onChange={(text) => updateItem(id, { text })}
-                                                        checkboxStyle={{
-                                                            checked: completeCheckboxColor.hex,
-                                                            unchecked: incompleteCheckboxColor.hex,
-                                                        }}
-                                                        labelStyle={{
-                                                            checked: completeTextColor.hex,
-                                                            unchecked: incompleteTextColor.hex,
-                                                        }}
-                                                        dateCompleted={updatedAt}
-                                                        dateVisible={dateVisible}
-                                                        readonly={!isEditing}
-                                                        controlButtons={
-                                                            <>
-                                                                <ChecklistButton
-                                                                    disabled={index < 1}
-                                                                    icon={<IconCaretUp size={IconSize.Size16} />}
-                                                                    onClick={() => modifyListPosition(index, index - 1)}
-                                                                />
-                                                                <ChecklistButton
-                                                                    disabled={index === ctx.length - 1}
-                                                                    icon={<IconCaretDown size={IconSize.Size16} />}
-                                                                    onClick={() => modifyListPosition(index, index + 1)}
-                                                                />
-                                                                <ChecklistButton
-                                                                    icon={<IconReject size={IconSize.Size16} />}
-                                                                    onClick={() => removeItem(id)}
-                                                                />
-                                                            </>
-                                                        }
-                                                    />
+                                                    
                                                 </div>
                                             )}
                                         </Draggable>
@@ -260,7 +263,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                             </div>
                         )}
                     </Droppable>
-                </DragDropContext>
+                </DragDropContext> */}
                 {isEditing && (
                     <>
                         <hr className="tw-my-2 tw-border-black-40" />

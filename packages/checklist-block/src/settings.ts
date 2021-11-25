@@ -1,5 +1,5 @@
 import { IconEnum, InlineStyles, MultiInputLayout } from '@frontify/arcade';
-import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+// import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { ChecklistDecoration, ChecklistPadding, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const showProgressStyles = (bundle: any): boolean => {
@@ -66,7 +66,7 @@ export default {
                             type: 'input',
                             label: 'Top',
                             onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustom', 0),
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            // rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             defaultValue: DefaultValues.paddingCustom[0],
                         },
 
@@ -75,7 +75,7 @@ export default {
                             type: 'input',
                             label: 'Left',
                             onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustom', 1),
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            // rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             defaultValue: DefaultValues.paddingCustom[1],
                         },
                         {
@@ -83,7 +83,7 @@ export default {
                             type: 'input',
                             label: 'Right',
                             onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustom', 2),
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            // rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             defaultValue: DefaultValues.paddingCustom[2],
                         },
                         {
@@ -91,7 +91,7 @@ export default {
                             type: 'input',
                             label: 'Bottom',
                             onChange: (bundle: any): void => setValueToPixels(bundle, 'paddingCustom', 3),
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            // rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             defaultValue: DefaultValues.paddingCustom[3],
                         },
                     ],
@@ -230,7 +230,7 @@ export default {
                     type: 'input',
                     defaultValue: DefaultValues.strikethroughMultiInput[1],
                     onChange: (bundle: any): void => setValueToPixels(bundle, 'strikethroughMultiInput', 1),
-                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                    // rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                 },
                 {
                     id: 'strikethroughColor',
