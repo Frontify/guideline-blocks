@@ -1,13 +1,17 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import path from 'path';
 import { startDevServer } from '@cypress/vite-dev-server';
 
-export default (on: any, config: any): any => {
-    on('dev-server:start', (options: any) => {
-        return startDevServer({
+const pluginConfig: Cypress.PluginConfig = (on, config) => {
+    on('dev-server:start', async (options) =>
+        startDevServer({
             options,
-        });
-    });
+            viteConfig: {
+                configFile: path.resolve(__dirname, '..', '..', 'vite.dev.config.ts'),
+            },
+        })
+    );
 
     return config;
 };
+
+module.exports = pluginConfig;
