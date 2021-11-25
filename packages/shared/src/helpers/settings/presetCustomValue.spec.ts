@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
+import { ApiField } from '@frontify/guideline-blocks-settings/types/bundle';
 import { presetCustomValue } from './presetCustomValue';
 
 const exampleMap: Record<string, string> = {
@@ -15,12 +16,13 @@ describe('presetCustomValue', () => {
         const INPUT_ID = 'inputId';
 
         const bundle: ApiBundle = {
-            getBlock(id): any {
+            getBlock(id): ApiField | null {
                 if (id === SLIDER_ID) {
                     return { value: 'large' };
                 } else if (id === INPUT_ID) {
                     return { value: '20px' };
                 }
+                return null;
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
@@ -37,12 +39,13 @@ describe('presetCustomValue', () => {
         const INPUT_ID = 'inputId';
 
         const bundle: ApiBundle = {
-            getBlock(id): any {
+            getBlock(id): ApiField | null {
                 if (id === SLIDER_ID) {
                     return { value: 'small' };
                 } else if (id === INPUT_ID) {
                     return { value: '16px' };
                 }
+                return null;
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
