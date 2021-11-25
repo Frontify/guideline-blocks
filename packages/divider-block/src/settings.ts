@@ -7,6 +7,7 @@ import {
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPercentRule,
     numericalOrPixelRule,
+    presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
 import {
     DividerAlignment,
@@ -140,16 +141,8 @@ const Settings: ApiSettings = {
             switchLabel: 'Custom',
             info: 'Determines the block height. This will not affect the dividing line in any way.',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void => {
-                const sliderValue = bundle.getBlock(HEIGHT_SIMPLE_ID)?.value as DividerHeight;
-                const customValue = bundle.getBlock(HEIGHT_CUSTOM_ID)?.value;
-                const dividerHeightKey = (Object.keys(dividerHeight) as Array<DividerHeight>).find(
-                    (key) => dividerHeight[key] === customValue
-                );
-                if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
-                    bundle.setBlockValue(HEIGHT_CUSTOM_ID, dividerHeight[sliderValue]);
-                }
-            },
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeight),
             on: [
                 {
                     id: HEIGHT_CUSTOM_ID,
