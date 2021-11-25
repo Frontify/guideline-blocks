@@ -1,16 +1,25 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
 import '@frontify/arcade/style';
+import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { mapRgbaToString } from '../../shared/src';
-import { LineType, LineWidth, Props, QuoteSize, QuoteStyle, QuoteType, Settings } from './types';
-import { quoteIconMap, quoteSizeMap } from './utilities';
-
-type ContentWithAuthorProps = {
-    showAuthor: boolean;
-    authorName: string;
-};
+import { DEFAULT_AUTHOR_NAME, DEFAULT_COLOR_VALUE } from './settings';
+import {
+    ContentWithAuthorProps,
+    LineType,
+    LineWidth,
+    lineWidthMap,
+    Props,
+    QuoteSize,
+    quoteSizeMap,
+    QuoteStyle,
+    QuoteType,
+    Settings,
+} from './types';
+import { quoteIconMap } from './utilities';
 
 const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName, children }) => (
     <div className="tw-flex-1 tw-w-full">
@@ -19,19 +28,13 @@ const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName,
     </div>
 );
 
-const lineWidthMap: Record<LineWidth, string> = {
-    [LineWidth.SmallWidth]: '2px',
-    [LineWidth.MediumWidth]: '4px',
-    [LineWidth.LargeWidth]: '8px',
-};
-
 const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState();
 
     const {
         showAuthor = false,
-        authorName = '',
+        authorName = DEFAULT_AUTHOR_NAME,
         type = QuoteType.QuotationMarks,
         quoteStyleLeft = QuoteStyle.DoubleUp,
         quoteStyleRight = QuoteStyle.DoubleDown,
@@ -43,8 +46,8 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
         isCustomLineWidth = false,
         lineWidthValue = '',
         lineWidthChoice = LineWidth.SmallWidth,
-        accentLinecolor = { hex: '' },
-        quotesColor = { hex: '' },
+        accentLinecolor = DEFAULT_COLOR_VALUE,
+        quotesColor = DEFAULT_COLOR_VALUE,
         content = '',
     } = blockSettings;
 
@@ -63,7 +66,7 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
     return (
-        <>
+        <div className={isEditing ? '' : 'tw-text-black'}>
             {type === QuoteType.QuotationMarks && (
                 <div className="tw-flex tw-justify-between tw-gap-x-7">
                     {quoteIconMap(size, quotesRgba)[quoteStyleLeft]}
@@ -91,7 +94,7 @@ const QuoteBlock: FC<Props> = ({ appBridge }) => {
                     </div>
                 </ContentWithAuthor>
             )}
-        </>
+        </div>
     );
 };
 

@@ -1,7 +1,15 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { IconEnum } from '@frontify/arcade';
-import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType } from './types';
+import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
+import { LineType, LineWidth, lineWidthMap, QuoteSize, quoteSizeMap, QuoteStyle, QuoteType } from './types';
 
 const QUOTE_TYPE_ID = 'type';
+const SIZE_CHOICE_ID = 'sizeChoice';
+const SIZE_VALUE_ID = 'sizeValue';
+const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
+const LINE_WIDTH_CHOICE_ID = 'lineWidthChoice';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const QUOTE_STYLE_CHOICES = [
     { value: QuoteStyle.DoubleUp, icon: IconEnum.DoubleQuotesUp, label: 'Double Up' },
@@ -17,11 +25,14 @@ const QUOTE_STYLE_CHOICES = [
     { value: QuoteStyle.None, icon: IconEnum.None, label: 'None' },
 ];
 
-const isSelected = (bundle: any, choice: QuoteType) => bundle.getBlock(QUOTE_TYPE_ID).value === choice;
-const showAccentLine = (bundle: any) =>
-    isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID).value === true;
+export const DEFAULT_COLOR_VALUE = { rgba: { r: 179, g: 181, b: 181, a: 1 }, name: 'Light Grey', hex: 'B3B5B5' };
+export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
-export default {
+const isSelected = (bundle: ApiBundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
+const showAccentLine = (bundle: ApiBundle): boolean =>
+    isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID)?.value === true;
+
+const Settings: ApiSettings = {
     main: [
         {
             id: QUOTE_TYPE_ID,
@@ -49,27 +60,28 @@ export default {
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: 'quoteStyleRight',
-            label: 'Left',
+            label: 'Right',
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
     layout: [
         {
             id: 'showAuthor',
             type: 'switch',
-            label: 'Show author',
+            label: 'Author',
             defaultValue: false,
             on: [
                 {
                     id: 'authorName',
                     type: 'input',
+                    placeholder: 'John Doe',
                 },
             ],
             off: [],
@@ -80,17 +92,29 @@ export default {
             id: 'isCustomSize',
             label: 'Size',
             type: 'switch',
-            defaultValue: false,
             switchLabel: 'Custom',
+            defaultValue: false,
+            onChange: (bundle: ApiBundle): void => {
+                const sliderValue = bundle.getBlock(SIZE_CHOICE_ID)?.value as QuoteSize;
+                const customValue = bundle.getBlock(SIZE_VALUE_ID)?.value;
+                const dividerHeightKey = (Object.keys(quoteSizeMap) as QuoteSize[]).find(
+                    (key) => quoteSizeMap[key] === customValue
+                );
+                if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
+                    bundle.setBlockValue(SIZE_VALUE_ID, quoteSizeMap[sliderValue]);
+                }
+            },
             on: [
                 {
-                    id: 'sizeValue',
+                    id: SIZE_VALUE_ID,
                     type: 'input',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, SIZE_VALUE_ID),
                 },
             ],
             off: [
                 {
-                    id: 'sizeChoice',
+                    id: SIZE_CHOICE_ID,
                     type: 'slider',
                     defaultValue: QuoteSize.SmallSize,
                     choices: [
@@ -109,14 +133,14 @@ export default {
                     ],
                 },
             ],
-            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: ACCENT_LINE_SWITCH_ID,
             type: 'switch',
             label: 'Accent line',
             defaultValue: true,
-            show: (bundle: any) => isSelected(bundle, QuoteType.Indentation),
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.Indentation),
         },
         {
             id: 'lineType',
@@ -145,17 +169,30 @@ export default {
             label: 'Width',
             type: 'switch',
             switchLabel: 'Custom',
+            defaultValue: false,
             info: 'Choose between small, medium, large or custom accent line width',
             show: showAccentLine,
+            onChange: (bundle: ApiBundle): void => {
+                const sliderValue = bundle.getBlock(LINE_WIDTH_CHOICE_ID)?.value as LineWidth;
+                const customValue = bundle.getBlock(LINE_WIDTH_VALUE_ID)?.value;
+                const dividerHeightKey = (Object.keys(lineWidthMap) as LineWidth[]).find(
+                    (key) => lineWidthMap[key] === customValue
+                );
+                if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
+                    bundle.setBlockValue(LINE_WIDTH_VALUE_ID, lineWidthMap[sliderValue]);
+                }
+            },
             on: [
                 {
-                    id: 'lineWidthValue',
+                    id: LINE_WIDTH_VALUE_ID,
                     type: 'input',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
                 },
             ],
             off: [
                 {
-                    id: 'lineWidthChoice',
+                    id: LINE_WIDTH_CHOICE_ID,
                     type: 'slider',
                     defaultValue: LineWidth.SmallWidth,
                     choices: [
@@ -179,13 +216,17 @@ export default {
             id: 'accentLinecolor',
             label: 'Color',
             type: 'colorInput',
+            defaultValue: DEFAULT_COLOR_VALUE,
             show: showAccentLine,
         },
         {
             id: 'quotesColor',
             label: 'Color',
             type: 'colorInput',
-            show: (bundle: any) => isSelected(bundle, QuoteType.QuotationMarks),
+            defaultValue: DEFAULT_COLOR_VALUE,
+            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
 };
+
+export default Settings;

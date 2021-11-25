@@ -5,11 +5,16 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "serve:block": "frontify-cli block serve --blockDir $(PWD)"
+        "serve:block": "frontify-cli block serve --blockDir $(PWD)",
+        "lint": "eslint src",
+        "lint:fix": "eslint --fix src",
+        "prettier": "prettier --check src",
+        "prettier:fix": "prettier --write src"
     },
     "devDependencies": {
         "@frontify/eslint-config-react": "0.11.0",
         "@frontify/frontify-cli": "2.2.0",
+        "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/react": "17.0.36",
         "autoprefixer": "10.4.0",
         "eslint": "7.32.0",

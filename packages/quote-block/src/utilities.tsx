@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { CSSProperties, ReactNode } from 'react';
 import IconDoubleChevronLeft from './foundation/IconDoubleChevronLeft';
 import IconDoubleChevronRight from './foundation/IconDoubleChevronRight';
@@ -10,19 +12,9 @@ import IconSingleChevronLeft from './foundation/IconSingleChevronLeft';
 import IconSingleChevronRight from './foundation/IconSingleChevronRight';
 import IconSingleQuoteDown from './foundation/IconSingleQuoteDown';
 import IconSingleQuoteUp from './foundation/IconSingleQuoteUp';
-import { QuoteSize, QuoteStyle } from './types';
+import { QuoteStyle } from './types';
 
 export const ICON_CLASS_NAME = 'tw-flex tw-items-center tw-justify-center tw-fill-current';
-
-export type IconProps = {
-    style: CSSProperties;
-};
-
-export const quoteSizeMap: Record<QuoteSize, string> = {
-    [QuoteSize.SmallSize]: '16px',
-    [QuoteSize.MediumSize]: '24px',
-    [QuoteSize.LargeSize]: '32px',
-};
 
 export const quoteIconMap = (size: string, color: string): Record<QuoteStyle, ReactNode> => {
     const style: CSSProperties = {

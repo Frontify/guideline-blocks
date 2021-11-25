@@ -1,5 +1,8 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { Color } from '@frontify/arcade';
+import { CSSProperties } from 'react';
 
 export type Props = {
     appBridge: AppBridgeNative;
@@ -22,6 +25,15 @@ export type Settings = {
     accentLinecolor?: Color;
     quotesColor?: Color;
     content?: string;
+};
+
+export type ContentWithAuthorProps = {
+    showAuthor: boolean;
+    authorName: string;
+};
+
+export type IconProps = {
+    style: CSSProperties;
 };
 
 export enum QuoteType {
@@ -60,3 +72,15 @@ export enum LineWidth {
     MediumWidth = 'MediumWidth',
     LargeWidth = 'LargeWidth',
 }
+
+export const quoteSizeMap: Record<QuoteSize, string> = {
+    [QuoteSize.SmallSize]: '16px',
+    [QuoteSize.MediumSize]: '24px',
+    [QuoteSize.LargeSize]: '32px',
+};
+
+export const lineWidthMap: Record<LineWidth, string> = {
+    [LineWidth.SmallWidth]: '2px',
+    [LineWidth.MediumWidth]: '4px',
+    [LineWidth.LargeWidth]: '8px',
+};
