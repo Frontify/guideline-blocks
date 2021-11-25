@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import { ButtonGroup, ButtonSize } from '@frontify/arcade';
+import { ButtonGroup, ButtonSize, DragState } from '@frontify/arcade';
 import MockTextEditor from './MockTextEditor';
 import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
@@ -24,7 +24,7 @@ export type ChecklistItemProps = {
     decorationStyle?: DecorationStyle;
     checkboxStyle: ToggleableStyle;
     labelStyle: ToggleableStyle;
-    isBeingDragged?: boolean;
+    dragState?: DragState;
     onChange?: (text: string) => void;
     onBlur?: (text: string) => void;
     resetOnChange: boolean;
@@ -38,9 +38,10 @@ export default function ChecklistItem({
     checkboxDisabled,
     dateCompleted,
     readonly,
+    isDragging,
     controlButtons,
     dateVisible,
-    isBeingDragged,
+    dragState,
     resetOnChange,
     onChange,
     decorationStyle,
@@ -55,7 +56,7 @@ export default function ChecklistItem({
     });
 
     const shouldDisplayControlPanel = () => {
-        return (isHovered || focused) && !checkboxDisabled && !readonly && !isBeingDragged;
+        return (isHovered || focused) && !checkboxDisabled && !readonly && !isDragging;
     };
 
     return (
@@ -64,6 +65,7 @@ export default function ChecklistItem({
                 'tw-flex tw-content-center',
                 shouldDisplayControlPanel() && 'tw-bg-black-5',
                 !shouldDisplayControlPanel && 'tw-bg-white',
+                isDragging && 'tw-opacity-70 tw-bg-black-5',
             ])}
             {...hoverProps}
             {...focusWithinProps}
