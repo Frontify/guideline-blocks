@@ -6,11 +6,15 @@ type useStubedAppBridgeProps = {
     editorState?: boolean;
 };
 
+interface Window {
+    blockSettings: Record<number, Record<string, unknown>>;
+}
+
 const useStubedAppBridge = ({ blockSettings = {}, editorState = false }: useStubedAppBridgeProps): IAppBridgeNative => {
     const appBridge = new AppBridgeNativeMock(0, 0);
 
     cy.window().then((window) => {
-        window.blockSettings = { 0: blockSettings };
+        (window as unknown as Window).blockSettings = { 0: blockSettings };
     });
     stub(appBridge, 'getBlockSettings').returns(new Promise((resolve) => resolve(blockSettings)));
     stub(appBridge, 'getEditorState').returns(editorState);
