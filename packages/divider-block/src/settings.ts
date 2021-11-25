@@ -12,10 +12,10 @@ import {
 } from '@frontify/guideline-blocks-shared';
 import {
     DividerAlignment,
-    DividerHeightValues,
+    dividerHeightValues,
     DividerHeight,
     DividerStyle,
-    DividerThicknessValues,
+    dividerThicknessValues,
     DividerThickness,
     DividerWidth,
 } from './types';
@@ -138,7 +138,7 @@ const Settings: ApiSettings = {
             info: 'Determines the block height. This will not affect the dividing line in any way.',
             defaultValue: false,
             onChange: (bundle: ApiBundle): void =>
-                presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, DividerHeightValues),
+                presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeightValues),
             on: [
                 {
                     id: HEIGHT_CUSTOM_ID,
@@ -199,16 +199,8 @@ const Settings: ApiSettings = {
             label: 'Thickness',
             switchLabel: 'Custom',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void => {
-                const sliderValue = bundle.getBlock(THICKNESS_SIMPLE_ID)?.value as DividerThickness;
-                const customValue = bundle.getBlock(THICKNESS_CUSTOM_ID)?.value;
-                const DividerThicknessValuesKey = (Object.keys(DividerThicknessValues) as Array<DividerThickness>).find(
-                    (key) => DividerThicknessValues[key] === customValue
-                );
-                if ((sliderValue && DividerThicknessValuesKey) || (sliderValue && !customValue)) {
-                    bundle.setBlockValue(THICKNESS_CUSTOM_ID, DividerThicknessValues[sliderValue]);
-                }
-            },
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, THICKNESS_SIMPLE_ID, THICKNESS_CUSTOM_ID, dividerThicknessValues),
             on: [
                 {
                     id: THICKNESS_CUSTOM_ID,
