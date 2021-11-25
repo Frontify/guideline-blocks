@@ -22,7 +22,7 @@
         "@frontify/frontify-cli": "2.2.0",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@frontify/stylelint-config": "0.1.0",
-        "@types/react": "17.0.36",
+        "@types/react": "17.0.37",
         "autoprefixer": "10.4.0",
         "postcss": "8.3.11",
         "postcss-modules": "4.2.2",
