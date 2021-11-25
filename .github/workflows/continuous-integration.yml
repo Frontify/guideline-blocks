@@ -43,8 +43,8 @@ jobs:
             - name: Typecheck files
               run: npm run typecheck
 
-            - name: Lint files (JS/TS & CSS)
-              run: npm run lint
+            # - name: Lint files (JS/TS & CSS)
+            #   run: npm run lint
 
             - name: Test Functionality
               run: npm run test:unit
