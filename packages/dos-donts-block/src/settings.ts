@@ -2,11 +2,11 @@
 
 import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule, appendUnit, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
-export const DO_COLOR_DEFAULT_VALUE = { hex: '#00c8a5', rgba: { r: 0, g: 200, b: 165, a: 1 }, name: 'Do Color' };
-export const DONT_COLOR_DEFAULT_VALUE = { hex: '#ff375a', rgba: { r: 255, g: 55, b: 90, a: 1 }, name: "Don't Color" };
+export const DO_COLOR_DEFAULT_VALUE = { hex: '#00c8a5', rgba: { r: 0, g: 200, b: 165, a: 1 } };
+export const DONT_COLOR_DEFAULT_VALUE = { hex: '#ff375a', rgba: { r: 255, g: 55, b: 90, a: 1 } };
 
 const SPACING_VALUE_ID = 'spacingValue';
 const SPACING_CHOICE_ID = 'spacingChoice';
