@@ -66,12 +66,12 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     return (
         <div
             className={joinClassNames([
-                'tw-grid',
+                'tw-grid tw-gap-y-8',
                 layout === DoDontLayout.Stacked
                     ? `tw-grid-flow-col tw-grid-rows-2 tw-grid-cols-${columns}`
                     : 'tw-grid-cols-2',
             ])}
-            style={{ gap: isCustomSpacing ? spacingValue : spacingValues[spacingChoice] }}
+            style={{ columnGap: isCustomSpacing ? spacingValue : spacingValues[spacingChoice] }}
         >
             {items.map((_, index) => {
                 const item = items.find(({ id }) => id === index);
