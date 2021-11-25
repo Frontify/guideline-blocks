@@ -55,7 +55,7 @@ jobs:
               run: npm run lint
 
             - name: Test Functionality
-              run: npm run unit
+              run: npm run test:unit
 
             - name: Test Components
-              run: npm run functional:ci
+              run: npm run test:functional:ci
