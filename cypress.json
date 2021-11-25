@@ -1,6 +1,9 @@
 {
+    "video": false,
     "component": {
         "testFiles": "*/src/index.spec.{ts,tsx}",
-        "componentFolder": "packages"
+        "componentFolder": "packages",
+        "viewportHeight": 1280,
+        "viewportWidth": 800
     }
 }
