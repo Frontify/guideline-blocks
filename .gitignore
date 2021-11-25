@@ -3,3 +3,7 @@
 **/dist
 
 lerna-debug.log
+
+cypress/support
+cypress/videos
+cypress/screenshots
