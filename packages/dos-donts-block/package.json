@@ -14,7 +14,7 @@
         "@types/react": "17.0.36",
         "autoprefixer": "10.3.7",
         "eslint": "7.32.0",
-        "postcss": "8.3.9",
+        "postcss": "8.4.1",
         "prettier": "2.4.1",
         "tailwindcss": "2.2.17",
         "typescript": "4.5.2"
