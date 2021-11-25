@@ -54,5 +54,8 @@ jobs:
             - name: Lint files (JS/TS & CSS)
               run: npm run lint
 
+            - name: Test Functionality
+              run: npm run unit
+
             - name: Test Components
-              run: npm run test
+              run: npm run functional:ci
