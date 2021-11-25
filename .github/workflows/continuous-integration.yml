@@ -1,6 +1,10 @@
 name: Continuous Integration
 
 on:
+    push:
+        branches:
+            - 'main'
+            - 'feat/add-testing'
     pull_request:
         branches:
             - 'main'
