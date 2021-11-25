@@ -11,7 +11,7 @@
         "@frontify/eslint-config-react": "0.11.0",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/jest": "27.0.3",
-        "@types/react": "17.0.36",
+        "@types/react": "17.0.37",
         "eslint": "7.32.0",
         "prettier": "2.4.1",
         "ts-jest": "27.0.7",
