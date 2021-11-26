@@ -4,9 +4,9 @@ import MockTextEditor from './MockTextEditor';
 import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
-import { merge } from '../utilities/merge';
 import ChecklistButton from './ChecklistButton';
 import { ChecklistItemMode } from '../types';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 export type ChecklistItemProps = {
     id: string;
@@ -57,7 +57,7 @@ export default function ChecklistItem({
 
     return (
         <div
-            className={merge([
+            className={joinClassNames([
                 'tw-flex tw-content-center ',
                 shouldDisplayControlPanel() && 'tw-bg-black-5',
                 (dragState === DragState.Preview || !shouldDisplayControlPanel) && 'tw-bg-white',
@@ -74,7 +74,7 @@ export default function ChecklistItem({
                             onChange={toggleCompleted}
                             id={id}
                             ariaLabel={text}
-                            disabled={mode === ChecklistItemMode.Create}
+                            disabled={mode !== ChecklistItemMode.Edit}
                             showLabel={checked}
                             label={text}
                             dateCompleted={dateCompleted}
@@ -91,7 +91,7 @@ export default function ChecklistItem({
                     </div>
                 </div>
             </div>
-            {mode === ChecklistItemMode.Edit && (
+            {mode !== ChecklistItemMode.Create && (
                 <div
                     className={`tw-flex-none tw-flex tw-items-center ${
                         shouldDisplayControlPanel() ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none'

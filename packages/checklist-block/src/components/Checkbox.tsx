@@ -7,11 +7,11 @@ import React, { ReactElement, useContext, useRef } from 'react';
 import { SettingsContext } from '..';
 import { DefaultValues } from '../types';
 import { FOCUS_STYLE } from '../utilities/focusStyle';
-import { merge } from '../utilities/merge';
 import { CheckboxLabel } from './CheckboxLabel';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 export type CheckboxProps = {
-    id?: string;
+    id: string;
     disabled?: boolean;
     checked: boolean;
     onChange?: (isChecked: boolean) => void;
@@ -33,11 +33,14 @@ export const Checkbox = ({
     onChange,
 }: CheckboxProps): ReactElement => {
     const inputRef = useRef(null);
+
     const { isFocusVisible, focusProps } = useFocusRing();
+
     const toggleState = useToggleState({
         onChange: disabled ? undefined : onChange,
         isSelected: checked,
     });
+
     const { inputProps } = useCheckbox(
         {
             isDisabled: disabled,
@@ -52,7 +55,7 @@ export const Checkbox = ({
 
     return (
         <label
-            className={merge([
+            className={joinClassNames([
                 'tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none',
                 !disabled && 'hover:tw-cursor-pointer',
             ])}
@@ -66,12 +69,12 @@ export const Checkbox = ({
             />
             <span
                 aria-hidden="true"
-                className={merge([
+                className={joinClassNames([
                     'tw-relative tw-flex tw-w-4 tw-h-4 tw-items-center tw-justify-center tw-rounded tw-border tw-flex-shrink-0',
                     isFocusVisible && FOCUS_STYLE,
                     disabled
-                        ? merge(['tw-text-white tw-pointer-events-none', !checked && 'tw-bg-white'])
-                        : merge([
+                        ? joinClassNames(['tw-text-white tw-pointer-events-none', !checked && 'tw-bg-white'])
+                        : joinClassNames([
                               !checked &&
                                   'tw-border-black-80 tw-bg-white hover:tw-border-black dark:tw-border-white dark:tw-bg-black dark:hover:tw-border-black-20 dark:hover:tw-bg-black-90 group-hover:tw-bg-white group-hover:tw-border-black dark:group-hover:tw-border-black-20 dark:group-hover:tw-bg-black-90',
                               checked && 'tw-text-white group-hover:tw-text-white  ',
@@ -79,7 +82,7 @@ export const Checkbox = ({
                 ])}
                 style={{
                     background: checked ? completeCheckboxColor.hex : '',
-                    border: merge([
+                    border: joinClassNames([
                         '1px',
                         'solid',
                         checked && !disabled && completeCheckboxColor.hex,

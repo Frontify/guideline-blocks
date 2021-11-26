@@ -21,8 +21,8 @@ import ProgressHeader from './components/ProgressHeader';
 import './index.css';
 import { ChecklistContent, ChecklistItemMode, DefaultValues, PaddingClasses, ProgressBarType, Settings } from './types';
 import { generatePaddingString } from './utilities/generatePaddingString';
-import { merge } from './utilities/merge';
 import { provideDefaults } from './utilities/provideDefaults';
+import { joinClassNames } from '../../divider-block/node_modules/@frontify/guideline-blocks-shared/src';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
@@ -117,7 +117,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     return (
         <SettingsContext.Provider value={settings}>
             <div
-                className={merge([!paddingAdvanced && PaddingClasses[paddingBasic]])}
+                className={joinClassNames([!paddingAdvanced && PaddingClasses[paddingBasic]])}
                 style={{ padding: paddingAdvanced ? generatePaddingString(paddingCustom) : '' }}
             >
                 <div {...hoverProps} className="tw-relative">
@@ -135,7 +135,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                         <ProgressHeader value={calculateFraction(settings.content)} />
                     )}
                     <div
-                        className={merge([
+                        className={joinClassNames([
                             'tw-absolute tw-right-0 tw-top-0',
                             isHovered && !isEditing && 'tw-visible',
                             (!isHovered || isEditing) && 'tw-invisible',
@@ -157,14 +157,16 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     </div>
                     <div className="tw-my-1.5"></div>
                     <OrderableList
-                        items={content
-                            .filter(completionFilter)
-                            .map((c) => ({ ...c, alt: c.text, type: 'item', key: c.id }))}
+                        items={content.filter(completionFilter).map((c) => ({ ...c, alt: c.text, type: 'item' }))}
                         onMove={onMove}
                         showFocusRing={true}
                         dragDisabled={!isEditing}
                         renderContent={(
-                            { value: { id, text, completed, updatedAt }, prevKey, nextKey }: GridNode<AcceptedItem>,
+                            {
+                                value: { id, text, completed, updatedAt },
+                                prevKey,
+                                nextKey,
+                            }: GridNode<AcceptedItem<ChecklistContent>>,
                             { componentDragState, isFocusVisible }: DragProperties
                         ) => {
                             const content = (
