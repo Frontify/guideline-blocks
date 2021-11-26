@@ -2,7 +2,8 @@ import dayjs from '../utilities/day';
 import React, { FC, PropsWithChildren, useContext } from 'react';
 import { SettingsContext } from '..';
 import { ChecklistDecoration, DecorationStyle } from '../types';
-import { merge } from '../utilities/merge';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
+
 export type InputLabelProps = PropsWithChildren<{
     htmlFor: string;
     disabled?: boolean;
@@ -33,7 +34,7 @@ export const CheckboxLabel: FC<InputLabelProps> = ({ children, htmlFor, disabled
 
     return (
         <div
-            className={merge([
+            className={joinClassNames([
                 'tw-inline-flex tw-flex-col tw-justify-center tw-gap-1  tw-text-s tw-max-w-full',
                 disabled
                     ? 'tw-text-black-40 hover:tw-text-black-40 dark:tw-text-black-60 dark:hover:tw-text-black-60'
@@ -43,7 +44,7 @@ export const CheckboxLabel: FC<InputLabelProps> = ({ children, htmlFor, disabled
         >
             <label
                 htmlFor={htmlFor}
-                className={merge([
+                className={joinClassNames([
                     'tw-select-none tw-whitespace-pre-wrap',
                     disabled
                         ? 'hover:tw-cursor-not-allowed tw-pointer-events-none'
