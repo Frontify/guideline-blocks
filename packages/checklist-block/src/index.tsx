@@ -1,25 +1,13 @@
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { IconReject } from '@frontify/arcade';
-import { IconCaretUp } from '@frontify/arcade';
-import { IconCaretDown, DragState } from '@frontify/arcade';
-import { Button, ButtonSize, IconSize, IconView, IconViewSlash, OrderableList } from '@frontify/arcade';
+import { Button, ButtonSize, IconSize, IconView, IconViewSlash, OrderableList, DragState } from '@frontify/arcade';
 import { useHover } from '@react-aria/interactions';
-import { ReactElement, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import ChecklistButton from './components/ChecklistButton';
 import ChecklistItem from './components/ChecklistItem';
 import ProgressBar from './components/ProgressBar';
 import ProgressHeader from './components/ProgressHeader';
 import './index.css';
-import {
-    ChecklistContent,
-    ChecklistDecoration,
-    DecorationStyle,
-    DefaultValues,
-    PaddingClasses,
-    ProgressBarType,
-    Settings,
-} from './types';
+import { ChecklistContent, ChecklistItemMode, DefaultValues, PaddingClasses, ProgressBarType, Settings } from './types';
 import { merge } from './utilities/merge';
 import { provideDefaults } from './utilities/provideDefaults';
 
@@ -27,29 +15,17 @@ export type ChecklistProps = {
     appBridge: AppBridgeNative;
 };
 
+export const SettingsContext = React.createContext(DefaultValues);
+
 export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [showCompleted, setShowCompleted] = useState(true);
     const { hoverProps, isHovered } = useHover({});
-    const {
-        content,
-        paddingAdvanced,
-        paddingBasic,
-        paddingCustom,
-        incompleteTextColor,
-        incompleteCheckboxColor,
-        completeTextColor,
-        completeCheckboxColor,
-        completedDecoration,
-        highlightColor,
-        dateVisible,
-        progressBarVisible,
-        progressBarType,
-        progressBarFillColor,
-        progressBarTrackColor,
-        strikethroughMultiInput,
-    } = provideDefaults(DefaultValues, blockSettings);
+
+    const settings = provideDefaults(DefaultValues, blockSettings);
+
+    const { paddingAdvanced, paddingCustom, paddingBasic, content, progressBarVisible } = settings;
 
     const addNewItem = (text: string): void => {
         const trimmed = text.trim();
@@ -107,28 +83,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         return true;
     };
 
-    const decorationStyles = ((type: ChecklistDecoration): DecorationStyle => {
-        switch (type) {
-            case ChecklistDecoration.Strikethrough:
-                return {
-                    textDecoration: 'line-through',
-                    textDecorationStyle: strikethroughMultiInput[0],
-                    textDecorationThickness: strikethroughMultiInput[1],
-                    textDecorationColor: strikethroughMultiInput[2].hex,
-                };
-            case ChecklistDecoration.Highlight:
-                return {
-                    backgroundColor: highlightColor.hex,
-                };
-            default:
-                return {};
-        }
-    })(completedDecoration);
-
-    const shouldShowProgress = !!content.length && progressBarVisible;
-
     const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
-        console.log(selectedGridItemKeys, gridItemLocation);
         let newIndex = content.findIndex((c) => c.id === gridItemLocation.key);
         const oldIndex = content.findIndex((c) => c.id === selectedGridItemKeys[0]);
         if (oldIndex < newIndex) newIndex--;
@@ -138,156 +93,106 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
             modifyListPosition(oldIndex, newIndex + 1);
         }
     };
+
+    const moveByIncrement = (id: string, positionChange: number) => {
+        const index = content.findIndex((c) => c.id === id);
+        modifyListPosition(index, index + positionChange);
+    };
+
+    const shouldShowProgress = !!content.length && progressBarVisible;
+
     return (
-        <div
-            className={merge([!paddingAdvanced && PaddingClasses[paddingBasic]])}
-            style={{
-                paddingTop: paddingAdvanced ? paddingCustom[0] : '',
-                paddingLeft: paddingAdvanced ? paddingCustom[1] : '',
-                paddingRight: paddingAdvanced ? paddingCustom[2] : '',
-                paddingBottom: paddingAdvanced ? paddingCustom[3] : '',
-            }}
-        >
-            <div {...hoverProps} className="tw-relative">
-                {shouldShowProgress && progressBarType === ProgressBarType.Bar && (
-                    <ProgressBar
-                        fillColor={progressBarFillColor.hex}
-                        trackColor={progressBarTrackColor.hex}
-                        percentage={calculatePercentage(content)}
-                    />
-                )}
-                {shouldShowProgress && progressBarType === ProgressBarType.Fraction && (
-                    <ProgressHeader value={`${calculatePercentage(content)}%`} />
-                )}
-                {shouldShowProgress && progressBarType === ProgressBarType.Percentage && (
-                    <ProgressHeader value={calculateFraction(content)} />
-                )}
-                <div
-                    className={merge([
-                        'tw-absolute tw-right-0 tw-top-0',
-                        isHovered && !isEditing && 'tw-visible',
-                        (!isHovered || isEditing) && 'tw-invisible',
-                    ])}
-                >
-                    <Button
-                        size={ButtonSize.Small}
-                        icon={
-                            showCompleted ? (
-                                <IconView size={IconSize.Size16} />
-                            ) : (
-                                <IconViewSlash size={IconSize.Size16} />
-                            )
-                        }
-                        onClick={toggleCompletedVisibility}
-                    >
-                        {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
-                    </Button>
-                </div>
-                <div className="tw-my-1.5"></div>
-                <OrderableList
-                    items={content
-                        .filter(completionFilter)
-                        .map((c) => ({ ...c, alt: c.text, type: 'item', key: c.id }))}
-                    onMove={onMove}
-                    showFocusRing={true}
-                    dragDisabled={!isEditing}
-                    renderContent={(
-                        { value: { id, text, completed, updatedAt }, prevKey, nextKey },
-                        { componentDragState }
-                    ) => (
-                        <ChecklistItem
-                            id={id}
-                            key={id}
-                            text={text}
-                            resetOnChange={false}
-                            isDragging={componentDragState === DragState.Dragging}
-                            checkboxDisabled={!isEditing}
-                            checked={completed}
-                            toggleCompleted={(value: boolean) =>
-                                updateItem(id, { completed: value, updatedAt: Date.now() })
-                            }
-                            decorationStyle={decorationStyles}
-                            onChange={(text) => updateItem(id, { text })}
-                            checkboxStyle={{
-                                checked: completeCheckboxColor.hex,
-                                unchecked: incompleteCheckboxColor.hex,
-                            }}
-                            labelStyle={{
-                                checked: completeTextColor.hex,
-                                unchecked: incompleteTextColor.hex,
-                            }}
-                            dateCompleted={updatedAt}
-                            dateVisible={dateVisible}
-                            readonly={!isEditing}
-                            controlButtons={
-                                <>
-                                    <ChecklistButton
-                                        disabled={!prevKey}
-                                        icon={<IconCaretUp size={IconSize.Size16} />}
-                                    />
-                                    <ChecklistButton
-                                        disabled={!nextKey}
-                                        icon={<IconCaretDown size={IconSize.Size16} />}
-                                    />
-                                    <ChecklistButton icon={<IconReject size={IconSize.Size16} />} />
-                                </>
-                            }
+        <SettingsContext.Provider value={settings}>
+            <div
+                className={merge([!paddingAdvanced && PaddingClasses[paddingBasic]])}
+                style={{
+                    paddingTop: paddingAdvanced ? paddingCustom[0] : '',
+                    paddingLeft: paddingAdvanced ? paddingCustom[1] : '',
+                    paddingRight: paddingAdvanced ? paddingCustom[2] : '',
+                    paddingBottom: paddingAdvanced ? paddingCustom[3] : '',
+                }}
+            >
+                <div {...hoverProps} className="tw-relative">
+                    {shouldShowProgress && settings.progressBarType === ProgressBarType.Bar && (
+                        <ProgressBar
+                            fillColor={settings.progressBarFillColor.hex}
+                            trackColor={settings.progressBarTrackColor.hex}
+                            percentage={calculatePercentage(settings.content)}
                         />
                     )}
-                />
-                {/* <DragDropContext onDragEnd={onDragEnd}>
-                    <Droppable droppableId="droppable">
-                        {(provided) => (
-                            <div {...provided.droppableProps} ref={provided.innerRef}>
-                                {content
-                                    .filter(completionFilter)s
-                                    .map(({ id, text, updatedAt, completed }, index, ctx) => (
-                                        <Draggable key={id} draggableId={id} index={index} isDragDisabled={!isEditing}>
-                                            {(provided, snapshot) => (
-                                                <div
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    className={merge([
-                                                        snapshot.isDragging && 'tw-bg-white tw-shadow-mid-bottom',
-                                                        !snapshot.isDragging && isEditing && 'tw-cursor-grab',
-                                                    ])}
-                                                    style={{ ...provided.draggableProps.style }}
-                                                >
-                                                    
-                                                </div>
-                                            )}
-                                        </Draggable>
-                                    ))}
-                                {provided.placeholder}
-                            </div>
+                    {shouldShowProgress && settings.progressBarType === ProgressBarType.Fraction && (
+                        <ProgressHeader value={`${calculatePercentage(settings.content)}%`} />
+                    )}
+                    {shouldShowProgress && settings.progressBarType === ProgressBarType.Percentage && (
+                        <ProgressHeader value={calculateFraction(settings.content)} />
+                    )}
+                    <div
+                        className={merge([
+                            'tw-absolute tw-right-0 tw-top-0',
+                            isHovered && !isEditing && 'tw-visible',
+                            (!isHovered || isEditing) && 'tw-invisible',
+                        ])}
+                    >
+                        <Button
+                            size={ButtonSize.Small}
+                            icon={
+                                showCompleted ? (
+                                    <IconView size={IconSize.Size16} />
+                                ) : (
+                                    <IconViewSlash size={IconSize.Size16} />
+                                )
+                            }
+                            onClick={toggleCompletedVisibility}
+                        >
+                            {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
+                        </Button>
+                    </div>
+                    <div className="tw-my-1.5"></div>
+                    <OrderableList
+                        items={content
+                            .filter(completionFilter)
+                            .map((c) => ({ ...c, alt: c.text, type: 'item', key: c.id }))}
+                        onMove={onMove}
+                        showFocusRing={true}
+                        dragDisabled={!isEditing}
+                        renderContent={(
+                            { value: { id, text, completed, updatedAt }, prevKey, nextKey },
+                            { componentDragState, isFocusVisible }
+                        ) => (
+                            <ChecklistItem
+                                id={id}
+                                key={id}
+                                text={text}
+                                isDragFocusVisible={isFocusVisible}
+                                isFirst={!prevKey}
+                                isLast={!nextKey}
+                                dateCompleted={updatedAt}
+                                mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
+                                checked={completed}
+                                toggleCompleted={(value: boolean) =>
+                                    updateItem(id, { completed: value, updatedAt: Date.now() })
+                                }
+                                dragState={componentDragState}
+                                onMoveItem={moveByIncrement}
+                                onRemoveItem={removeItem}
+                                onChange={(text) => updateItem(id, { text })}
+                            />
                         )}
-                    </Droppable>
-                </DragDropContext> */}
-                {isEditing && (
-                    <>
-                        <hr className="tw-my-2 tw-border-black-40" />
-                        <ChecklistItem
-                            resetOnChange
-                            id="Create new Checklist Item"
-                            checked={false}
-                            text={''}
-                            readonly={false}
-                            dateVisible={false}
-                            checkboxDisabled
-                            onChange={addNewItem}
-                            checkboxStyle={{
-                                checked: DefaultValues.completeCheckboxColor.hex,
-                                unchecked: '#b3b5b5',
-                            }}
-                            labelStyle={{
-                                checked: DefaultValues.completeTextColor.hex,
-                                unchecked: incompleteTextColor.hex,
-                            }}
-                        />
-                    </>
-                )}
+                    />
+                    {isEditing && (
+                        <>
+                            <hr className="tw-my-2 tw-border-black-40" />
+                            <ChecklistItem
+                                id="Create new Checklist Item"
+                                checked={false}
+                                text={''}
+                                mode={ChecklistItemMode.Create}
+                                onChange={addNewItem}
+                            />
+                        </>
+                    )}
+                </div>
             </div>
-        </div>
+        </SettingsContext.Provider>
     );
 }

@@ -3,9 +3,12 @@ import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
-import React, { HTMLAttributes, ReactElement, useRef } from 'react';
+import React, { ReactElement, useContext, useRef } from 'react';
+import { SettingsContext } from '..';
+import { DefaultValues } from '../types';
 import { FOCUS_STYLE } from '../utilities/focusStyle';
 import { merge } from '../utilities/merge';
+import { CheckboxLabel } from './CheckboxLabel';
 
 export type CheckboxProps = {
     id?: string;
@@ -14,25 +17,22 @@ export type CheckboxProps = {
     onChange?: (isChecked: boolean) => void;
     labelComponent?: ReactElement;
     ariaLabel?: string;
-    groupInputProps?: HTMLAttributes<HTMLElement>;
-    checkedColor: string;
-    uncheckedColor: string;
     showLabel: boolean;
+    label: string;
+    dateCompleted?: number;
 };
 
 export const Checkbox = ({
     id,
     disabled,
-    labelComponent,
+    label,
+    dateCompleted,
     ariaLabel,
     checked,
-    groupInputProps,
-    checkedColor,
-    uncheckedColor,
     showLabel,
     onChange,
 }: CheckboxProps): ReactElement => {
-    let inputRef = useRef();
+    const inputRef = useRef(null);
     const { isFocusVisible, focusProps } = useFocusRing();
     const toggleState = useToggleState({
         onChange: disabled ? undefined : onChange,
@@ -42,11 +42,13 @@ export const Checkbox = ({
         {
             isDisabled: disabled,
             isRequired: false,
-            'aria-label': ariaLabel,
+            'aria-label': ariaLabel || label,
         },
         toggleState,
         inputRef
     );
+
+    const { completeCheckboxColor, incompleteCheckboxColor } = useContext(SettingsContext);
 
     return (
         <label
@@ -56,7 +58,7 @@ export const Checkbox = ({
             ])}
         >
             <input
-                {...mergeProps(groupInputProps || inputProps, focusProps)}
+                {...mergeProps(inputProps, focusProps)}
                 id={id}
                 ref={inputRef}
                 className="tw-sr-only"
@@ -76,13 +78,23 @@ export const Checkbox = ({
                           ]),
                 ])}
                 style={{
-                    background: checked ? checkedColor : '',
-                    border: merge(['1px', 'solid', checked ? checkedColor : uncheckedColor]),
+                    background: checked ? completeCheckboxColor.hex : '',
+                    border: merge([
+                        '1px',
+                        'solid',
+                        checked && !disabled && completeCheckboxColor.hex,
+                        !checked && !disabled && incompleteCheckboxColor.hex,
+                        disabled && DefaultValues.incompleteCheckboxColor.hex,
+                    ]),
                 }}
             >
                 {checked && <IconCheck />}
             </span>
-            {showLabel && labelComponent}
+            {showLabel && (
+                <CheckboxLabel disabled={disabled} htmlFor={id} dateInMs={dateCompleted}>
+                    {label}
+                </CheckboxLabel>
+            )}
         </label>
     );
 };
