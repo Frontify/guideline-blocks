@@ -4,6 +4,7 @@ import { ApiBlock } from './blocks';
 
 export { BaseBlock } from './blocks/base';
 export { ApiBundle } from './bundle';
+export { ApiField } from './bundle';
 
 export enum Sections {
     Main = 'main',

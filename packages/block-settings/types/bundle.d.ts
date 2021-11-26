@@ -2,7 +2,7 @@
 
 import { ApiBlock } from './blocks';
 
-type ApiField = {
+export type ApiField = {
     value?: ApiBlock['value'];
 };
 
