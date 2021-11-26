@@ -2,7 +2,7 @@
 
 import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
+import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { LineType, LineWidth, lineWidthMap, QuoteSize, quoteSizeMap, QuoteStyle, QuoteType } from './types';
 
 const QUOTE_TYPE_ID = 'type';
@@ -94,16 +94,8 @@ const Settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void => {
-                const sliderValue = bundle.getBlock(SIZE_CHOICE_ID)?.value as QuoteSize;
-                const customValue = bundle.getBlock(SIZE_VALUE_ID)?.value;
-                const dividerHeightKey = (Object.keys(quoteSizeMap) as QuoteSize[]).find(
-                    (key) => quoteSizeMap[key] === customValue
-                );
-                if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
-                    bundle.setBlockValue(SIZE_VALUE_ID, quoteSizeMap[sliderValue]);
-                }
-            },
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
             on: [
                 {
                     id: SIZE_VALUE_ID,
@@ -172,16 +164,8 @@ const Settings: ApiSettings = {
             defaultValue: false,
             info: 'Choose between small, medium, large or custom accent line width',
             show: showAccentLine,
-            onChange: (bundle: ApiBundle): void => {
-                const sliderValue = bundle.getBlock(LINE_WIDTH_CHOICE_ID)?.value as LineWidth;
-                const customValue = bundle.getBlock(LINE_WIDTH_VALUE_ID)?.value;
-                const dividerHeightKey = (Object.keys(lineWidthMap) as LineWidth[]).find(
-                    (key) => lineWidthMap[key] === customValue
-                );
-                if ((sliderValue && dividerHeightKey) || (sliderValue && !customValue)) {
-                    bundle.setBlockValue(LINE_WIDTH_VALUE_ID, lineWidthMap[sliderValue]);
-                }
-            },
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, LINE_WIDTH_CHOICE_ID, LINE_WIDTH_VALUE_ID, lineWidthMap),
             on: [
                 {
                     id: LINE_WIDTH_VALUE_ID,
