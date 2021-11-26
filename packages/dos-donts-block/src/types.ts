@@ -2,7 +2,6 @@
 
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { Color } from '@frontify/arcade';
-import { ItemProps } from './DoDontItem';
 
 export type DosDontsBlockProps = {
     appBridge: AppBridgeNative;
@@ -17,7 +16,24 @@ export type Settings = {
     layout: DoDontLayout;
     style: DoDontStyle;
     spacingChoice: DoDontSpacing;
-    items: Pick<ItemProps, 'id' | 'title' | 'body'>[];
+    items: Item[];
+};
+
+export type DoDontItemProps = {
+    id: number;
+    type: DoDontType;
+    style: DoDontStyle;
+    doColor: Color;
+    dontColor: Color;
+    saveItem: (id: number, value: string, type: 'title' | 'body') => void;
+    title?: string;
+    body?: string;
+};
+
+export type Item = {
+    id: number;
+    title: string;
+    body: string;
 };
 
 export enum DoDontType {

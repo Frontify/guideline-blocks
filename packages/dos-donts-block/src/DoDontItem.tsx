@@ -1,23 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEditorState } from '@frontify/app-bridge';
-import { Color, IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
+import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { FC, CSSProperties } from 'react';
-import { DoDontStyle, DoDontType } from './types';
+import { DoDontItemProps, DoDontStyle, DoDontType } from './types';
 
-export type ItemProps = {
-    id: number;
-    type: DoDontType;
-    style: DoDontStyle;
-    doColor: Color;
-    dontColor: Color;
-    saveItem: (id: number, value: string, type: 'title' | 'body') => void;
-    title?: string;
-    body?: string;
-};
-
-export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor, saveItem, title = '', body = '' }) => {
+export const DoDontItem: FC<DoDontItemProps> = ({
+    id,
+    type,
+    style,
+    doColor,
+    dontColor,
+    saveItem,
+    title = '',
+    body = '',
+}) => {
     const isEditing = useEditorState();
     const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
     const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
