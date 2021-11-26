@@ -91,10 +91,10 @@ export default function ChecklistItem({
                     </div>
                 </div>
             </div>
-            {mode !== ChecklistItemMode.Create && (
+            {mode === ChecklistItemMode.Edit && (
                 <div
                     className={`tw-flex-none tw-flex tw-items-center ${
-                        shouldDisplayControlPanel() ? 'tw-visible' : 'tw-invisible tw-pointer-events-none'
+                        shouldDisplayControlPanel() ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none'
                     }`}
                 >
                     <ButtonGroup size={ButtonSize.Small}>
