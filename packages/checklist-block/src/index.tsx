@@ -1,13 +1,26 @@
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, ButtonSize, IconSize, IconView, IconViewSlash, OrderableList, DragState } from '@frontify/arcade';
+import {
+    Button,
+    ButtonSize,
+    IconSize,
+    IconView,
+    IconViewSlash,
+    OrderableList,
+    DragState,
+    DragProperties,
+    AcceptedItem,
+} from '@frontify/arcade';
+import { ItemDropTarget } from '@react-types/shared';
 import { useHover } from '@react-aria/interactions';
 import React, { ReactElement, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import ChecklistItem from './components/ChecklistItem';
 import ProgressBar from './components/ProgressBar';
+import { GridNode } from '@react-types/grid';
 import ProgressHeader from './components/ProgressHeader';
 import './index.css';
 import { ChecklistContent, ChecklistItemMode, DefaultValues, PaddingClasses, ProgressBarType, Settings } from './types';
+import { generatePaddingString } from './utilities/generatePaddingString';
 import { merge } from './utilities/merge';
 import { provideDefaults } from './utilities/provideDefaults';
 
@@ -15,7 +28,7 @@ export type ChecklistProps = {
     appBridge: AppBridgeNative;
 };
 
-export const SettingsContext = React.createContext(DefaultValues);
+export const SettingsContext = React.createContext<Settings>(DefaultValues);
 
 export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
     const isEditing = useEditorState();
@@ -105,12 +118,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
         <SettingsContext.Provider value={settings}>
             <div
                 className={merge([!paddingAdvanced && PaddingClasses[paddingBasic]])}
-                style={{
-                    paddingTop: paddingAdvanced ? paddingCustom[0] : '',
-                    paddingLeft: paddingAdvanced ? paddingCustom[1] : '',
-                    paddingRight: paddingAdvanced ? paddingCustom[2] : '',
-                    paddingBottom: paddingAdvanced ? paddingCustom[3] : '',
-                }}
+                style={{ padding: paddingAdvanced ? generatePaddingString(paddingCustom) : '' }}
             >
                 <div {...hoverProps} className="tw-relative">
                     {shouldShowProgress && settings.progressBarType === ProgressBarType.Bar && (
@@ -156,28 +164,36 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                         showFocusRing={true}
                         dragDisabled={!isEditing}
                         renderContent={(
-                            { value: { id, text, completed, updatedAt }, prevKey, nextKey },
-                            { componentDragState, isFocusVisible }
-                        ) => (
-                            <ChecklistItem
-                                id={id}
-                                key={id}
-                                text={text}
-                                isDragFocusVisible={isFocusVisible}
-                                isFirst={!prevKey}
-                                isLast={!nextKey}
-                                dateCompleted={updatedAt}
-                                mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
-                                checked={completed}
-                                toggleCompleted={(value: boolean) =>
-                                    updateItem(id, { completed: value, updatedAt: Date.now() })
-                                }
-                                dragState={componentDragState}
-                                onMoveItem={moveByIncrement}
-                                onRemoveItem={removeItem}
-                                onChange={(text) => updateItem(id, { text })}
-                            />
-                        )}
+                            { value: { id, text, completed, updatedAt }, prevKey, nextKey }: GridNode<AcceptedItem>,
+                            { componentDragState, isFocusVisible }: DragProperties
+                        ) => {
+                            const content = (
+                                <ChecklistItem
+                                    id={id}
+                                    key={id}
+                                    text={text}
+                                    isDragFocusVisible={isFocusVisible}
+                                    isFirst={!prevKey}
+                                    isLast={!nextKey}
+                                    dateCompleted={updatedAt}
+                                    mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
+                                    checked={completed}
+                                    toggleCompleted={(value: boolean) =>
+                                        updateItem(id, { completed: value, updatedAt: Date.now() })
+                                    }
+                                    dragState={componentDragState}
+                                    onMoveItem={moveByIncrement}
+                                    onRemoveItem={removeItem}
+                                    onChange={(text) => updateItem(id, { text })}
+                                />
+                            );
+                            //Preview is rendered in external DOM, requires own context provider
+                            return componentDragState === DragState.Preview ? (
+                                <SettingsContext.Provider value={settings}>{content}</SettingsContext.Provider>
+                            ) : (
+                                content
+                            );
+                        }}
                     />
                     {isEditing && (
                         <>
