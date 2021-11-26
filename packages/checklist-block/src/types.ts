@@ -8,6 +8,12 @@ export type ChecklistContent = {
     completed: boolean;
 };
 
+export enum ChecklistItemMode {
+    Edit = 'Edit',
+    View = 'View',
+    Create = 'Create',
+}
+
 export enum ChecklistDecoration {
     Checkbox = 'Checkbox',
     Strikethrough = 'Strikethrough',

@@ -1,33 +1,28 @@
 import { ReactElement, useState } from 'react';
-import { ButtonGroup, ButtonSize, DragState } from '@frontify/arcade';
+import { ButtonGroup, ButtonSize, DragState, IconCaretUp, IconCaretDown, IconSize, IconReject } from '@frontify/arcade';
 import MockTextEditor from './MockTextEditor';
 import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
 import { merge } from '../utilities/merge';
-import dayjs from '../utilities/day';
-import { CheckboxLabel } from './CheckboxLabel';
-import { DecorationStyle, ToggleableStyle } from '../types';
+import ChecklistButton from './ChecklistButton';
+import { ChecklistItemMode } from '../types';
 
 export type ChecklistItemProps = {
     id: string;
     text: string;
-    createdAt?: string;
-    updatedAt?: string;
     checked: boolean;
-    checkboxDisabled: boolean;
     toggleCompleted?: (value: boolean) => void;
+    isDragFocusVisible?: boolean;
     dateCompleted?: number;
-    dateVisible: boolean;
-    readonly: boolean;
-    controlButtons?: ReactElement;
-    decorationStyle?: DecorationStyle;
-    checkboxStyle: ToggleableStyle;
-    labelStyle: ToggleableStyle;
     dragState?: DragState;
     onChange?: (text: string) => void;
     onBlur?: (text: string) => void;
-    resetOnChange: boolean;
+    mode: ChecklistItemMode;
+    isFirst?: boolean;
+    isLast?: boolean;
+    onMoveItem?: (id: string, num: number) => void;
+    onRemoveItem?: (id: string) => void;
 };
 
 export default function ChecklistItem({
@@ -35,18 +30,15 @@ export default function ChecklistItem({
     text,
     checked,
     toggleCompleted,
-    checkboxDisabled,
     dateCompleted,
-    readonly,
-    isDragging,
-    controlButtons,
-    dateVisible,
-    dragState,
-    resetOnChange,
+    isDragFocusVisible,
+    isFirst,
+    isLast,
     onChange,
-    decorationStyle,
-    labelStyle,
-    checkboxStyle,
+    mode,
+    onMoveItem,
+    onRemoveItem,
+    dragState,
 }: ChecklistItemProps): ReactElement {
     const [focused, setFocused] = useState(false);
 
@@ -56,16 +48,20 @@ export default function ChecklistItem({
     });
 
     const shouldDisplayControlPanel = () => {
-        return (isHovered || focused) && !checkboxDisabled && !readonly && !isDragging;
+        return (
+            (isHovered || focused || isDragFocusVisible) &&
+            mode === ChecklistItemMode.Edit &&
+            dragState === DragState.Idle
+        );
     };
 
     return (
         <div
             className={merge([
-                'tw-flex tw-content-center',
+                'tw-flex tw-content-center ',
                 shouldDisplayControlPanel() && 'tw-bg-black-5',
-                !shouldDisplayControlPanel && 'tw-bg-white',
-                isDragging && 'tw-opacity-70 tw-bg-black-5',
+                (dragState === DragState.Preview || !shouldDisplayControlPanel) && 'tw-bg-white',
+                dragState === DragState.Dragging && 'tw-opacity-70 tw-bg-black-5',
             ])}
             {...hoverProps}
             {...focusWithinProps}
@@ -78,27 +74,15 @@ export default function ChecklistItem({
                             onChange={toggleCompleted}
                             id={id}
                             ariaLabel={text}
-                            disabled={checkboxDisabled}
-                            checkedColor={checkboxStyle.checked}
-                            uncheckedColor={checkboxStyle.unchecked}
+                            disabled={mode === ChecklistItemMode.Create}
                             showLabel={checked}
-                            labelComponent={
-                                <CheckboxLabel
-                                    disabled={checkboxDisabled}
-                                    htmlFor={id}
-                                    color={labelStyle.checked}
-                                    decoration={decorationStyle}
-                                    date={dateVisible && checked ? dayjs(dateCompleted).fromNow() : undefined}
-                                >
-                                    {text}
-                                </CheckboxLabel>
-                            }
+                            label={text}
+                            dateCompleted={dateCompleted}
                         />
                         {!checked && (
                             <MockTextEditor
-                                resetOnChange={resetOnChange}
-                                color={labelStyle.unchecked}
-                                readonly={readonly}
+                                resetOnChange={mode === ChecklistItemMode.Create}
+                                readonly={mode === ChecklistItemMode.View}
                                 onChange={onChange}
                                 value={text}
                                 placeholder="Add new checklist item"
@@ -107,13 +91,30 @@ export default function ChecklistItem({
                     </div>
                 </div>
             </div>
-            <div
-                className={`tw-flex-none tw-flex tw-items-center ${
-                    shouldDisplayControlPanel() ? 'tw-visible' : 'tw-invisible'
-                }`}
-            >
-                {controlButtons ? <ButtonGroup size={ButtonSize.Small}>{controlButtons}</ButtonGroup> : null}
-            </div>
+            {mode !== ChecklistItemMode.Create && (
+                <div
+                    className={`tw-flex-none tw-flex tw-items-center ${
+                        shouldDisplayControlPanel() ? 'tw-visible' : 'tw-invisible tw-pointer-events-none'
+                    }`}
+                >
+                    <ButtonGroup size={ButtonSize.Small}>
+                        <ChecklistButton
+                            disabled={isFirst}
+                            icon={<IconCaretUp size={IconSize.Size16} />}
+                            onClick={() => onMoveItem && onMoveItem(id, -1)}
+                        />
+                        <ChecklistButton
+                            disabled={isLast}
+                            icon={<IconCaretDown size={IconSize.Size16} />}
+                            onClick={() => onMoveItem && onMoveItem(id, 1)}
+                        />
+                        <ChecklistButton
+                            icon={<IconReject size={IconSize.Size16} />}
+                            onClick={() => onRemoveItem && onRemoveItem(id)}
+                        />
+                    </ButtonGroup>
+                </div>
+            )}
         </div>
     );
 }
