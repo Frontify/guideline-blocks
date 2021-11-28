@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.9.1",
-        "@frontify/arcade": "0.14.0-beta.2",
+        "@frontify/arcade": "0.14.0-beta.3",
         "@popperjs/core": "2.10.2",
         "react-popper": "2.2.5"
     },
