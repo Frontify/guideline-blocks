@@ -2,9 +2,10 @@
 
 import { Alignment, CornerRadius, Padding, Type, Width } from './types';
 import { FileExtension } from '@frontify/app-bridge';
-import { DropdownSize, IconEnum } from '@frontify/arcade';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { ApiSettings } from '@frontify/guideline-blocks-settings';
 
-export default {
+const settings: ApiSettings = {
     main: [
         {
             id: 'type',
@@ -100,7 +101,7 @@ export default {
                 {
                     id: 'customPadding',
                     type: 'multiInput',
-                    layout: 'Spider',
+                    layout: MultiInputLayout.Spider,
                     blocks: [
                         {
                             id: 'top-input',
@@ -159,7 +160,7 @@ export default {
                 {
                     id: 'customCornerRadius',
                     type: 'multiInput',
-                    layout: 'Columns',
+                    layout: MultiInputLayout.Columns,
                     blocks: [
                         {
                             id: 'top-left-input',
@@ -212,3 +213,5 @@ export default {
         },
     ],
 };
+
+export default settings;
