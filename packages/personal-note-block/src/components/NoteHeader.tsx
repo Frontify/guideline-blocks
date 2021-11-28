@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { FC } from 'react';
 import { NoteHeaderProps } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
