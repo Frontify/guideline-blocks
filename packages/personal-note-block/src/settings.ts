@@ -2,7 +2,7 @@
 
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
+import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { NoteBorderRadius, NoteBorderStyle, NotePadding, NoteStyle, NoteVisibility } from './types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 }, name: 'White', hex: '#ffffff' };
