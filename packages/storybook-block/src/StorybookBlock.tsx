@@ -122,7 +122,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                             <div className="tw-w-full tw-max-w-sm">
                                 <TextInput
                                     value={localUrl}
-                                    onChange={(value) => setLocalUrl(value)}
+                                    onChange={setLocalUrl}
                                     onEnterPressed={saveLink}
                                     placeholder="https://brand.storybook.com/?path=/story/buttons"
                                 />
