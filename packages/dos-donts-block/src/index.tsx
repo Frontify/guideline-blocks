@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings } from '@frontify/app-bridge';
-import '@frontify/arcade/style';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';

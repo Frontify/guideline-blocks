@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
+import { IconEnum } from '@frontify/arcade/icons/IconEnum';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared/src/utilities/rules';
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
 
 export const columnGutterChoices = [

@@ -2,7 +2,6 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/arcade';
-import '@frontify/arcade/style';
 import { isDark, joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';

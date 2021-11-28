@@ -2,7 +2,6 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
-import '@frontify/arcade/style';
 import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { CSSProperties, FC, useEffect, useState } from 'react';

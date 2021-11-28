@@ -9,7 +9,7 @@
     },
     "devDependencies": {
         "@frontify/eslint-config-react": "0.11.0",
-        "@frontify/frontify-cli": "2.2.0",
+        "@frontify/frontify-cli": "^2.3.0",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/react": "17.0.37",
         "autoprefixer": "10.3.7",
@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.9.1",
-        "@frontify/arcade": "0.12.1",
+        "@frontify/arcade": "0.14.0-beta.2",
         "@frontify/guideline-blocks-shared": "1.0.0"
     }
 }
