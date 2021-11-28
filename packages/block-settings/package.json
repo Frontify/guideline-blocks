@@ -14,8 +14,7 @@
         "lint": "eslint types",
         "lint:fix": "eslint --fix types",
         "prettier": "prettier --check types",
-        "prettier:fix": "prettier --write types",
-        "typecheck": "tsc --noEmit"
+        "prettier:fix": "prettier --write types"
     },
     "devDependencies": {
         "@frontify/eslint-config-typescript": "^0.12.0",

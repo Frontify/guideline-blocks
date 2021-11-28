@@ -5,8 +5,12 @@ import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 import { NoteBorderRadius, NoteBorderStyle, NotePadding, NoteStyle, NoteVisibility } from './types';
 
-export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 }, name: 'White', hex: 'ffffff' };
-export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 }, name: 'Light Grey', hex: 'eaebeb' };
+export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 }, name: 'White', hex: '#ffffff' };
+export const BORDER_COLOR_DEFAULT_VALUE = {
+    rgba: { r: 234, g: 235, b: 235, a: 1 },
+    name: 'Light Grey',
+    hex: '#eaebeb',
+};
 
 const PADDING_VALUE_ID = 'paddingValue';
 const HAS_BACKGROUND_ID = 'hasBackground';
@@ -97,7 +101,7 @@ const Settings: ApiSettings = {
             id: 'backgroundColor',
             type: 'colorInput',
             defaultValue: BACKGROUND_COLOR_DEFAULT_VALUE,
-            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BACKGROUND_ID).value,
+            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BACKGROUND_ID)?.value === true,
         },
         {
             id: HAS_BORDER_ID,
@@ -110,7 +114,7 @@ const Settings: ApiSettings = {
             type: 'multiInput',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID).value,
+            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID)?.value === true,
             blocks: [
                 {
                     id: 'borderStyle',
@@ -151,7 +155,7 @@ const Settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID).value,
+            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID)?.value === true,
             on: [
                 {
                     id: BORDER_RADIUS_VALUE_ID,

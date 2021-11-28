@@ -1,4 +1,5 @@
 import { AppBridgeNativeMock, IAppBridgeNative } from '@frontify/app-bridge';
+import { ComponentType } from 'react';
 import { stub } from 'sinon';
 
 type useStubedAppBridgeProps = {
@@ -25,9 +26,9 @@ const useStubedAppBridge = ({ blockSettings = {}, editorState = false }: useStub
 type withAppBridgeStubsProps = { appBridge: IAppBridgeNative };
 
 export function withAppBridgeStubs<T>(
-    WrappedComponent: React.ComponentType<T>,
+    WrappedComponent: ComponentType<T>,
     props: useStubedAppBridgeProps
-): [React.ComponentType<Omit<T, keyof withAppBridgeStubsProps>>, IAppBridgeNative] {
+): [ComponentType<Omit<T, keyof withAppBridgeStubsProps>>, IAppBridgeNative] {
     const appBridge = useStubedAppBridge(props);
     const ComponentWithAppBridgeStubs = (props: Omit<T, keyof withAppBridgeStubsProps>) => {
         return <WrappedComponent appBridge={appBridge} {...(props as T)} />;
