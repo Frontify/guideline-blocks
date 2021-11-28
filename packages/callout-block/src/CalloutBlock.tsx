@@ -45,7 +45,7 @@ const getOuterDivClassName = (width: Width, alignment: Alignment): string => {
 
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
-    const isEditing = useEditorState();
+    const isEditing = useEditorState(appBridge);
     const {
         type = Type.Warning,
         alignment = Alignment.Left,
