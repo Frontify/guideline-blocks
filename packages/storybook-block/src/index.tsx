@@ -76,7 +76,7 @@ const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         if (url) {
-            let newIframeUrl = new URL(url);
+            const newIframeUrl = new URL(url);
             newIframeUrl.searchParams.set('nav', 'false');
 
             let panelValue = 'bottom';

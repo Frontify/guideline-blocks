@@ -9,9 +9,9 @@
         "noImplicitThis": true,
         "sourceMap": true,
         "strict": true,
-        "target": "es6",
         "jsx": "react-jsx",
         "resolveJsonModule": true,
+        "types": ["cypress"]
     },
     "exclude": ["**/dist", "**/node_modules"]
 }

@@ -5,17 +5,23 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "serve:block": "frontify-cli block serve --blockDir $(PWD)"
+        "serve:block": "frontify-cli block serve --blockDir $(PWD)",
+        "lint": "eslint src",
+        "lint:fix": "eslint --fix src",
+        "prettier": "prettier --check src",
+        "prettier:fix": "prettier --write src",
+        "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@frontify/eslint-config-react": "0.11.0",
-        "@frontify/frontify-cli": "^2.3.0",
+        "@frontify/eslint-config-react": "0.12.0",
+        "@frontify/frontify-cli": "2.3.0",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/react": "17.0.37",
         "autoprefixer": "10.4.0",
-        "eslint": "7.32.0",
+        "eslint": "8.3.0",
         "postcss": "8.4.1",
-        "prettier": "2.4.1",
+        "prettier": "2.5.0",
+        "react": "^17.0.2",
         "tailwindcss": "2.2.19",
         "typescript": "4.5.2"
     },
@@ -29,8 +35,5 @@
         "@react-aria/utils": "3.10.0",
         "@react-stately/tooltip": "3.0.5",
         "react-popper": "2.2.5"
-    },
-    "peerDependencies": {
-        "react": "^17.0.2"
     }
 }
