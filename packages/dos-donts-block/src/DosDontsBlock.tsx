@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings } from '@frontify/app-bridge';
-import '@frontify/arcade/style';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -19,6 +18,7 @@ import {
 
 export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const isEditing = useEditorState(appBridge);
 
     const {
         items = [],
@@ -65,6 +65,7 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
 
     return (
         <div
+            data-test-id="dos-donts-block"
             className={joinClassNames([
                 'tw-grid',
                 layout === DoDontLayout.Stacked
@@ -86,6 +87,7 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                         style={style}
                         doColor={doColor}
                         dontColor={dontColor}
+                        editing={isEditing}
                     />
                 );
             })}

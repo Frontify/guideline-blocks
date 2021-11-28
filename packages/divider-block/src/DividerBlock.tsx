@@ -43,7 +43,7 @@ export const DividerBlock: FC<Props> = ({ appBridge }) => {
     } = blockSettings;
 
     return (
-        <div className={joinClassNames(['tw-flex', dividerAlignmentClasses[alignment]])}>
+        <div data-test-id="divider-block" className={joinClassNames(['tw-flex', dividerAlignmentClasses[alignment]])}>
             <div
                 className="tw-flex tw-items-center tw-transition-all"
                 style={{

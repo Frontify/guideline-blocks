@@ -2,7 +2,6 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
-import '@frontify/arcade/style';
 import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { CSSProperties, FC, useEffect, useState } from 'react';
@@ -39,7 +38,7 @@ const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: str
 };
 
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
-    const isEditing = useEditorState();
+    const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [localUrl, setLocalUrl] = useState('');
     const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
@@ -77,7 +76,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         if (url) {
-            let newIframeUrl = new URL(url);
+            const newIframeUrl = new URL(url);
             newIframeUrl.searchParams.set('nav', 'false');
 
             let panelValue = 'bottom';
@@ -96,7 +95,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [url, style, positioning]);
 
     return (
-        <div className="tw-relative">
+        <div data-test-id="storybook-block" className="tw-relative">
             {iframeUrl ? (
                 <div {...hoverProps}>
                     {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}

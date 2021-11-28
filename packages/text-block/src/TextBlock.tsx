@@ -10,7 +10,7 @@ import { cloneDeep, isEqual } from 'lodash-es';
 import { Props, Settings } from './types';
 
 export const TextBlock: FC<Props> = ({ appBridge }) => {
-    const isEditing = useEditorState();
+    const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     useEffect(() => {
@@ -34,6 +34,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
 
     return (
         <div
+            data-test-id="text-block"
             style={{
                 gap: blockSettings.isColumnGutterCustom
                     ? blockSettings.columnGutterCustom

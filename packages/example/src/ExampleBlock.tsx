@@ -5,7 +5,7 @@ import { FC } from 'react';
 
 export const ExampleBlock: FC = () => {
     return (
-        <div>
+        <div data-test-id="example-block">
             <span className="tw-text-violet-60 tw-underline">A custom block in violet and underlined</span>
         </div>
     );

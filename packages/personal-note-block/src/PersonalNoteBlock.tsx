@@ -2,7 +2,6 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/arcade';
-import '@frontify/arcade/style';
 import { isDark, joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -42,7 +41,7 @@ const getPaddingStyles = (padding: string): CSSProperties => ({
 });
 
 export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
-    const isEditing = useEditorState();
+    const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [userId, setUserId] = useState<number | null>(null);
 
@@ -104,6 +103,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <div
+            data-test-id="personal-note-block"
             className={joinClassNames([
                 !hasCustomPadding && paddingClasses[paddingChoice],
                 !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
