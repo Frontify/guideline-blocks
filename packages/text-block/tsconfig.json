@@ -11,7 +11,8 @@
         "strict": true,
         "target": "es6",
         "jsx": "react-jsx",
-        "lib": ["ES2021", "DOM"]
+        "lib": ["ES2021", "DOM"],
+        "skipLibCheck": true
     },
     "exclude": ["**/dist", "**/node_modules"]
 }
