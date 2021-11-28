@@ -1,28 +1,26 @@
 {
-    "name": "root",
-    "private": true,
-    "devDependencies": {
-        "@cypress/react": "^5.10.3",
-        "@cypress/vite-dev-server": "^2.2.0",
-        "@frontify/eslint-config-react": "0.11.0",
-        "cypress": "^9.0.0",
-        "eslint": "7.32.0",
-        "husky": "7.0.4",
-        "lerna": "4.0.0",
-        "prettier": "2.4.1",
-        "regenerator-runtime": "^0.13.9"
-    },
-    "scripts": {
-        "bootstrap": "lerna bootstrap",
-        "lint": "lerna run lint --stream",
-        "prettier": "prettier --check 'packages/*/src/*.{ts,tsx}'",
-        "serve": "lerna run serve:block --stream --scope",
-        "test": "npm run test:unit && npm run test:functional",
-        "test:ci": "npm run test:unit && npm run test:functional:ci",
-        "test:unit": "lerna run test --stream",
-        "test:functional:ci": "cypress run-ct",
-        "test:functional": "cypress open-ct",
-        "publish": "lerna publish --no-private",
-        "typecheck": "lerna run typecheck --stream"
-    }
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@cypress/react": "^5.10.3",
+    "@cypress/vite-dev-server": "^2.2.0",
+    "cypress": "^9.0.0",
+    "husky": "7.0.4",
+    "lerna": "4.0.0",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "lint": "lerna run lint --stream",
+    "lint:fix": "lerna run lint:fix --stream",
+    "prettier": "prettier --check 'packages/*/src/*.{ts,tsx}'",
+    "serve": "lerna run serve:block --stream --scope",
+    "test": "npm run test:unit && npm run test:functional",
+    "test:ci": "npm run test:unit && npm run test:functional:ci",
+    "test:unit": "lerna run test --stream",
+    "test:functional:ci": "cypress run-ct",
+    "test:functional": "cypress open-ct",
+    "publish": "lerna publish --no-private",
+    "typecheck": "lerna run typecheck --stream"
+  }
 }
