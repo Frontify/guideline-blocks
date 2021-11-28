@@ -3,6 +3,8 @@
 import 'tailwindcss/tailwind.css';
 import './styles.css';
 import { FC, useEffect } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
 import { RichTextEditor } from '@frontify/arcade/components/RichTextEditor';
 import { useEditorState, useBlockSettings } from '@frontify/app-bridge';
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, GRID_CLASSES, PLACEHOLDER } from './constant';
@@ -51,6 +53,8 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
                         value={blockSettings.content?.[index]}
                         placeholder={PLACEHOLDER}
                         readonly={!isEditing}
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        //@ts-ignore
                         onTextChange={(value) => onTextChange(value, index)}
                     />
                 );
