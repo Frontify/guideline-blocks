@@ -5,7 +5,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "serve:block": "frontify-cli block serve --blockDir $(PWD) --minify false",
+        "serve:block": "frontify-cli block serve --blockDir $(PWD)",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
         "prettier": "prettier --check src",
