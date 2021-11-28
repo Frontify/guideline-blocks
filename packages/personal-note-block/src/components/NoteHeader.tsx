@@ -5,6 +5,8 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { NoteHeaderProps } from '../types';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
 dayjs.extend(localizedFormat).locale(navigator.language || navigator.userLanguage);
 
 export const NoteHeader: FC<NoteHeaderProps> = ({

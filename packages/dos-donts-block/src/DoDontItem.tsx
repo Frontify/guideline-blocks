@@ -19,8 +19,8 @@ export type ItemProps = {
 
 export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor, saveItem, title = '', body = '' }) => {
     const isEditing = useEditorState();
-    const doColorString = mapRgbaToString(doColor.rgba);
-    const dontColorString = mapRgbaToString(dontColor.rgba);
+    const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
+    const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
 
     const headingStyles: Record<DoDontType, object> = {
         [DoDontType.Do]: { color: doColorString },

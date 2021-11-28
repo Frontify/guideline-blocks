@@ -34,7 +34,7 @@ const getBorderStyles = (borderSelection: BorderSelectionType, borderRadius: str
 };
 
 const getBackgroundStyles = (backgroundColor: Color): CSSProperties => ({
-    backgroundColor: mapRgbaToString(backgroundColor.rgba),
+    backgroundColor: backgroundColor.rgba ? mapRgbaToString(backgroundColor.rgba) : undefined,
 });
 
 const getPaddingStyles = (padding: string): CSSProperties => ({
@@ -107,7 +107,7 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             className={joinClassNames([
                 !hasCustomPadding && paddingClasses[paddingChoice],
                 !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
-                hasBackground && isDark(backgroundColor.rgba) && 'tw-text-white',
+                hasBackground && backgroundColor.rgba && isDark(backgroundColor.rgba) && 'tw-text-white',
             ])}
             style={{
                 ...(hasBorder && getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')),
@@ -121,7 +121,7 @@ const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                 avatar={avatar}
                 hasDateEdited={hasDateEdited}
                 dateEdited={dateEdited}
-                useLightText={hasBackground && isDark(backgroundColor.rgba)}
+                useLightText={hasBackground && backgroundColor.rgba ? isDark(backgroundColor.rgba) : false}
             />
             <RichTextEditor
                 value={note}
