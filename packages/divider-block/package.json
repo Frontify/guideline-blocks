@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.10.0",
-        "@frontify/arcade": "0.12.1",
+        "@frontify/arcade": "0.13.0",
         "@frontify/guideline-blocks-shared": "1.0.0"
     }
 }
