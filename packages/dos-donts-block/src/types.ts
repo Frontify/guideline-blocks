@@ -28,6 +28,7 @@ export type DoDontItemProps = {
     saveItem: (id: number, value: string, type: 'title' | 'body') => void;
     title?: string;
     body?: string;
+    editing: boolean;
 };
 
 export type Item = {

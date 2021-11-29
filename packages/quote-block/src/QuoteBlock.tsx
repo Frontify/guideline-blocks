@@ -2,7 +2,6 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
-import '@frontify/arcade/style';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';

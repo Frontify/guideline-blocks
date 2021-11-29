@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEditorState } from '@frontify/app-bridge';
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC } from 'react';
@@ -15,8 +14,8 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     saveItem,
     title = '',
     body = '',
+    editing = false,
 }) => {
-    const isEditing = useEditorState();
     const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
     const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
 
@@ -44,7 +43,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                         value={title}
                         onTextChange={(value) => saveItem(id, value, 'title')}
                         placeholder="Add a title"
-                        readonly={!isEditing}
+                        readonly={!editing}
                     />
                 </div>
             </div>
@@ -59,7 +58,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                     value={body}
                     onTextChange={(value) => saveItem(id, value, 'body')}
                     placeholder="Add a description"
-                    readonly={!isEditing}
+                    readonly={!editing}
                 />
             </div>
         </div>
