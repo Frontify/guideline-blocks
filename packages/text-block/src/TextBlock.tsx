@@ -13,7 +13,7 @@ import isEqual from 'lodash-es/isEqual';
 import { Props, Settings } from './types';
 
 export const TextBlock: FC<Props> = ({ appBridge }) => {
-    const isEditing = useEditorState();
+    const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     useEffect(() => {
