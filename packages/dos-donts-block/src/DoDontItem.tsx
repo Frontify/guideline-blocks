@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEditorState } from '@frontify/app-bridge';
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC } from 'react';
