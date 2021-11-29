@@ -4,7 +4,7 @@
 //@ts-ignore
 import { IconEnum } from '@frontify/arcade/icons/IconEnum';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared/src/utilities/rules';
+import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
 
 export const columnGutterChoices = [
