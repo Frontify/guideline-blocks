@@ -2,16 +2,18 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem } from './DoDontItem';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import {
+    columnsClasses,
     DoDontLayout,
     DoDontSpacing,
     DoDontStyle,
     DoDontType,
     DosDontsBlockProps,
+    Item,
     Settings,
     spacingValues,
 } from './types';
@@ -31,10 +33,10 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         style = DoDontStyle.Icons,
         spacingChoice = DoDontSpacing.Medium,
     } = blockSettings;
+    const [localItems, setLocalItems] = useState<Item[]>(items);
 
     const setItems = (numberOfItems: number) => {
-        let updatedItems = items;
-
+        let updatedItems = localItems;
         // Check whether to add or remove items
         if (updatedItems.length - numberOfItems < 0) {
             for (let index = updatedItems.length; index < numberOfItems; index++) {
@@ -43,21 +45,17 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         } else {
             updatedItems = updatedItems.slice(0, numberOfItems);
         }
-
-        setBlockSettings({
-            ...blockSettings,
-            items: updatedItems,
-        });
+        setLocalItems([...updatedItems]);
     };
 
     const saveItem = (id: number, value: string, type: 'title' | 'body') => {
-        const updatedItems = items;
-        const existingItemIndex = items.findIndex((item) => item.id === id);
+        const updatedItems = localItems;
+        const existingItemIndex = localItems.findIndex((item) => item.id === id);
         updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], [type]: value };
 
         setBlockSettings({
             ...blockSettings,
-            items: updatedItems,
+            items: [...updatedItems],
         });
     };
 
@@ -67,14 +65,14 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         <div
             data-test-id="dos-donts-block"
             className={joinClassNames([
-                'tw-grid',
+                'tw-grid tw-gap-y-8',
                 layout === DoDontLayout.Stacked
-                    ? `tw-grid-flow-col tw-grid-rows-2 tw-grid-cols-${columns}`
+                    ? `tw-grid-flow-col tw-grid-rows-2 ${columnsClasses[columns]}`
                     : 'tw-grid-cols-2',
             ])}
-            style={{ gap: isCustomSpacing ? spacingValue : spacingValues[spacingChoice] }}
+            style={{ columnGap: isCustomSpacing ? spacingValue : spacingValues[spacingChoice] }}
         >
-            {items.map((_, index) => {
+            {localItems.map((_, index) => {
                 const item = items.find(({ id }) => id === index);
                 return (
                     <DoDontItem
@@ -94,3 +92,5 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         </div>
     );
 };
+
+export default DosDontsBlock;
