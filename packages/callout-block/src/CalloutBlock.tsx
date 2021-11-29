@@ -2,7 +2,6 @@
 
 import 'tailwindcss/tailwind.css';
 import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { RichTextEditor } from '@frontify/arcade';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
@@ -21,6 +20,7 @@ import {
     typeMap,
     Width,
 } from './types';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 const getInnerDivClassName = (
     type: Type,
@@ -30,18 +30,16 @@ const getInnerDivClassName = (
     padding: Padding,
     customCornerRadiusSwitch: boolean,
     cornerRadius: CornerRadius
-): string => {
-    return joinClassNames([
+): string =>
+    joinClassNames([
         `tw-text-white ${typeMap[type]} ${innerWidthMap[width]}`,
         width === Width.FullWidth && alignmentMap[alignment],
         !customPaddingSwitch && padding && paddingMap[padding],
         !customCornerRadiusSwitch && cornerRadius && cornerRadiusMap[cornerRadius],
     ]);
-};
 
-const getOuterDivClassName = (width: Width, alignment: Alignment): string => {
-    return joinClassNames([outerWidthMap[width], width === Width.HugContents && alignmentMap[alignment]]);
-};
+const getOuterDivClassName = (width: Width, alignment: Alignment): string =>
+    joinClassNames([outerWidthMap[width], width === Width.HugContents && alignmentMap[alignment]]);
 
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -64,7 +62,6 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CSSProperties>();
     const [iconUrl, setIconUrl] = useState<string>();
     const [iconAltText, setIconAltText] = useState<string>();
-    const [placeholderVisible, setPlaceholderVisible] = useState<boolean>(true);
     const blockRef = createRef<HTMLDivElement>();
 
     useEffect(() => {
@@ -96,13 +93,9 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                 setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
             });
         }
-
-        setPlaceholderVisible(blockRef.current?.querySelector('[data-slate-placeholder="true"]') !== null);
     }, [blockSettings]);
 
-    const onTextChange = (value: string): void => {
-        setBlockSettings({ textValue: value });
-    };
+    const onTextChange = (value: string): Promise<void> => setBlockSettings({ textValue: value });
 
     return (
         <div data-test-id="callout-block" className={getOuterDivClassName(width, alignment)}>
@@ -124,15 +117,12 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                         <img alt={iconAltText} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
                     </span>
                 )}
-                {/* TODO replace hardcoded min-width with a solution integrated in RTE */}
-                <div className={joinClassNames(['tw-inline-block', placeholderVisible && 'tw-min-w-[140px]'])}>
-                    <RichTextEditor
-                        onTextChange={onTextChange}
-                        readonly={!isEditing}
-                        value={textValue}
-                        placeholder="Type your text here"
-                    />
-                </div>
+                <RichTextEditor
+                    onTextChange={onTextChange}
+                    readonly={!isEditing}
+                    value={textValue}
+                    placeholder="Type your text here"
+                />
             </div>
         </div>
     );

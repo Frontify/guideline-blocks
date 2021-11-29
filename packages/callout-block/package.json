@@ -28,6 +28,6 @@
         "@frontify/app-bridge": "^2.10.0",
         "@frontify/arcade": "0.14.0-beta.5",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
-        "@frontify/guideline-blocks-shared": "^1.0.0"
+        "@frontify/guideline-blocks-shared": "1.0.0"
     }
 }
