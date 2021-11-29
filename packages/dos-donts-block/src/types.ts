@@ -63,3 +63,10 @@ export const spacingValues: Record<DoDontSpacing, string> = {
     [DoDontSpacing.Medium]: '24px',
     [DoDontSpacing.Large]: '32px',
 };
+
+export const columnsClasses: Record<number, string> = {
+    1: 'tw-grid-cols-1',
+    2: 'tw-grid-cols-2',
+    3: 'tw-grid-cols-3',
+    4: 'tw-grid-cols-4',
+};

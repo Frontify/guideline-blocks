@@ -16,6 +16,7 @@ import {
     Item,
     Settings,
     spacingValues,
+    columnsClasses,
 } from './types';
 
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
@@ -64,7 +65,7 @@ const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
             className={joinClassNames([
                 'tw-grid tw-gap-y-8',
                 layout === DoDontLayout.Stacked
-                    ? `tw-grid-flow-col tw-grid-rows-2 tw-grid-cols-${columns}`
+                    ? `tw-grid-flow-col tw-grid-rows-2 ${columnsClasses[columns]}`
                     : 'tw-grid-cols-2',
             ])}
             style={{ columnGap: isCustomSpacing ? spacingValue : spacingValues[spacingChoice] }}
