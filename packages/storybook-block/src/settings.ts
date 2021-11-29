@@ -9,15 +9,19 @@ import {
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
 import {
+    heights,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
-    heights,
 } from './types';
 
-export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 }, name: 'Light Grey', hex: '#eaebeb' };
+export const BORDER_COLOR_DEFAULT_VALUE = {
+    rgba: { r: 234, g: 235, b: 235, a: 1 },
+    name: 'Light Grey',
+    hex: '#eaebeb',
+};
 export const URL_INPUT_PLACEHOLDER = 'https://brand.storybook.com/?path=/story/buttons';
 
 const STYLE_ID = 'style';
@@ -54,7 +58,6 @@ const settings: ApiSettings = {
             label: 'Link',
             type: 'input',
             placeholder: URL_INPUT_PLACEHOLDER,
-            clearable: true,
         },
     ],
     layout: [
