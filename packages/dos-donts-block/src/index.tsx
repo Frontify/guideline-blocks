@@ -8,6 +8,7 @@ import 'tailwindcss/tailwind.css';
 import { DoDontItem } from './DoDontItem';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import {
+    columnsClasses,
     DoDontLayout,
     DoDontSpacing,
     DoDontStyle,
@@ -16,7 +17,6 @@ import {
     Item,
     Settings,
     spacingValues,
-    columnsClasses,
 } from './types';
 
 const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {

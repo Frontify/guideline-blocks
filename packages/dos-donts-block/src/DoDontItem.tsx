@@ -3,7 +3,7 @@
 import { useEditorState } from '@frontify/app-bridge';
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { FC, CSSProperties } from 'react';
+import { CSSProperties, FC } from 'react';
 import { DoDontItemProps, DoDontStyle, DoDontType } from './types';
 
 export const DoDontItem: FC<DoDontItemProps> = ({
