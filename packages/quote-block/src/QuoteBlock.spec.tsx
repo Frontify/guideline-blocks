@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import QuoteBlock from '.';

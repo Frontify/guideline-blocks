@@ -1,33 +1,30 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEditorState } from '@frontify/app-bridge';
-import { Color, IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
+import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { FC } from 'react';
-import { DoDontStyle, DoDontType } from './types';
+import { CSSProperties, FC } from 'react';
+import { DoDontItemProps, DoDontStyle, DoDontType } from './types';
 
-export type ItemProps = {
-    id: number;
-    type: DoDontType;
-    style: DoDontStyle;
-    doColor: Color;
-    dontColor: Color;
-    saveItem: (id: number, value: string, type: 'title' | 'body') => void;
-    title?: string;
-    body?: string;
-};
-
-export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor, saveItem, title = '', body = '' }) => {
-    const isEditing = useEditorState();
+export const DoDontItem: FC<DoDontItemProps> = ({
+    id,
+    type,
+    style,
+    doColor,
+    dontColor,
+    saveItem,
+    title = '',
+    body = '',
+    editing = false,
+}) => {
     const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
     const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
 
-    const headingStyles: Record<DoDontType, object> = {
+    const headingStyles: Record<DoDontType, CSSProperties> = {
         [DoDontType.Do]: { color: doColorString },
         [DoDontType.Dont]: { color: dontColorString },
     };
 
-    const dividerStyles: Record<DoDontType, object> = {
+    const dividerStyles: Record<DoDontType, CSSProperties> = {
         [DoDontType.Do]: { backgroundColor: doColorString },
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
@@ -46,7 +43,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                         value={title}
                         onTextChange={(value) => saveItem(id, value, 'title')}
                         placeholder="Add a title"
-                        readonly={!isEditing}
+                        readonly={!editing}
                     />
                 </div>
             </div>
@@ -61,7 +58,7 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                     value={body}
                     onTextChange={(value) => saveItem(id, value, 'body')}
                     placeholder="Add a description"
-                    readonly={!isEditing}
+                    readonly={!editing}
                 />
             </div>
         </div>

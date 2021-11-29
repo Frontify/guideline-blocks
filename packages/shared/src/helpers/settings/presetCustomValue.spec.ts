@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { ApiField } from '@frontify/guideline-blocks-settings/types/bundle';
+import { ApiBundle, ApiField } from '@frontify/guideline-blocks-settings';
 import { presetCustomValue } from './presetCustomValue';
 
 const exampleMap: Record<string, string> = {

@@ -37,6 +37,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
 
     return (
         <div
+            data-test-id="text-block"
             style={{
                 gap: blockSettings.isColumnGutterCustom
                     ? blockSettings.columnGutterCustom
@@ -53,8 +54,6 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
                         value={blockSettings.content?.[index]}
                         placeholder={PLACEHOLDER}
                         readonly={!isEditing}
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        //@ts-ignore
                         onTextChange={(value) => onTextChange(value, index)}
                     />
                 );
