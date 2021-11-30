@@ -160,6 +160,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                         items={content.filter(completionFilter).map((c) => ({ ...c, alt: c.text, type: 'item' }))}
                         onMove={onMove}
                         showFocusRing={true}
+                        disableTypeAhead
                         dragDisabled={!isEditing}
                         renderContent={(
                             {
