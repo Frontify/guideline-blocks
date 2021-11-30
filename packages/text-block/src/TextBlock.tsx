@@ -54,6 +54,8 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
                         value={blockSettings.content?.[index]}
                         placeholder={PLACEHOLDER}
                         readonly={!isEditing}
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        //@ts-ignore
                         onTextChange={(value) => onTextChange(value, index)}
                     />
                 );
