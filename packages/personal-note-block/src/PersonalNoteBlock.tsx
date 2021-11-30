@@ -41,7 +41,7 @@ const getPaddingStyles = (padding: string): CSSProperties => ({
 });
 
 export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
-    const isEditing = useEditorState();
+    const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [userId, setUserId] = useState<number | null>(null);
 
