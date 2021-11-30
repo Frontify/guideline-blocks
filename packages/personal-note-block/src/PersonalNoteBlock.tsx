@@ -41,13 +41,13 @@ const getPaddingStyles = (padding: string): CSSProperties => ({
 });
 
 export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
-    const isEditing = useEditorState(appBridge);
+    const isEditing = useEditorState();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [userId, setUserId] = useState<number | null>(null);
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
-        borderRadiusChoice = NoteBorderRadius.Small,
+        borderRadiusChoice = NoteBorderRadius.None,
         borderRadiusValue = '',
         borderSelection = [NoteBorderStyle.Solid, '1px', BORDER_COLOR_DEFAULT_VALUE],
         dateEdited = '',
@@ -79,7 +79,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             await appBridge.getCurrentLoggedUser().then((data) => {
                 if (data) {
                     const { id, name, image } = data;
-                    setUserId(userId);
+                    setUserId(id);
                     if (!createdByUser) {
                         setBlockSettings({
                             ...blockSettings,
