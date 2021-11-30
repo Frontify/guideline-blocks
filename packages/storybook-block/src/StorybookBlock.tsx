@@ -7,7 +7,7 @@ import { useHover } from '@react-aria/interactions';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
-import { BORDER_COLOR_DEFAULT_VALUE } from './settings';
+import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
     borderRadiusClasses,
@@ -124,7 +124,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                                     value={localUrl}
                                     onChange={setLocalUrl}
                                     onEnterPressed={saveLink}
-                                    placeholder="https://brand.storybook.com/?path=/story/buttons"
+                                    placeholder={URL_INPUT_PLACEHOLDER}
                                 />
                             </div>
                             <Button onClick={saveLink}>Confirm</Button>

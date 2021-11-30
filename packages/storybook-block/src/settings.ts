@@ -2,8 +2,14 @@
 
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 import {
+    appendUnit,
+    maximumNumericalOrPixelOrAutoRule,
+    numericalOrPixelRule,
+    presetCustomValue,
+} from '@frontify/guideline-blocks-shared';
+import {
+    heights,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
@@ -16,10 +22,12 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
     name: 'Light Grey',
     hex: '#eaebeb',
 };
+export const URL_INPUT_PLACEHOLDER = 'https://brand.storybook.com/?path=/story/buttons';
 
 const STYLE_ID = 'style';
 const HAS_BORDER_ID = 'hasBorder';
 const HEIGHT_VALUE_ID = 'heightValue';
+const HEIGHT_CHOICE_ID = 'heightChoice';
 const BORDER_WIDTH_ID = 'borderWidth';
 const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
 
@@ -49,6 +57,7 @@ const settings: ApiSettings = {
             id: 'url',
             label: 'Link',
             type: 'input',
+            placeholder: URL_INPUT_PLACEHOLDER,
         },
     ],
     layout: [
@@ -58,18 +67,21 @@ const settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
+
             on: [
                 {
                     id: HEIGHT_VALUE_ID,
                     type: 'input',
                     placeholder: '400px',
-                    rules: [numericalOrPixelRule],
+                    rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(5000)],
                     onChange: (bundle: ApiBundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
                 },
             ],
             off: [
                 {
-                    id: 'heightChoice',
+                    id: HEIGHT_CHOICE_ID,
                     type: 'slider',
                     defaultValue: StorybookHeight.Medium,
                     choices: [
@@ -113,46 +125,48 @@ const settings: ApiSettings = {
             label: 'Border',
             type: 'switch',
             defaultValue: true,
-        },
-        {
-            id: 'borderSelection',
-            type: 'multiInput',
-            layout: MultiInputLayout.Columns,
-            lastItemFullWidth: true,
-            show: (bundle: ApiBundle): boolean => !!bundle.getBlock(HAS_BORDER_ID)?.value,
-            blocks: [
+            on: [
                 {
-                    id: 'borderStyle',
-                    type: 'dropdown',
-                    defaultValue: StorybookBorderStyle.Solid,
-                    choices: [
+                    id: 'borderSelection',
+                    type: 'multiInput',
+                    layout: MultiInputLayout.Columns,
+                    lastItemFullWidth: true,
+                    blocks: [
                         {
-                            value: StorybookBorderStyle.Solid,
-                            label: 'Solid',
+                            id: 'borderStyle',
+                            type: 'dropdown',
+                            defaultValue: StorybookBorderStyle.Solid,
+                            choices: [
+                                {
+                                    value: StorybookBorderStyle.Solid,
+                                    label: 'Solid',
+                                },
+                                {
+                                    value: StorybookBorderStyle.Dotted,
+                                    label: 'Dotted',
+                                },
+                                {
+                                    value: StorybookBorderStyle.Dashed,
+                                    label: 'Dashed',
+                                },
+                            ],
                         },
                         {
-                            value: StorybookBorderStyle.Dotted,
-                            label: 'Dotted',
+                            id: BORDER_WIDTH_ID,
+                            type: 'input',
+                            defaultValue: '1px',
+                            rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
+                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
                         },
                         {
-                            value: StorybookBorderStyle.Dashed,
-                            label: 'Dashed',
+                            id: 'borderColor',
+                            type: 'colorInput',
+                            defaultValue: BORDER_COLOR_DEFAULT_VALUE,
                         },
                     ],
                 },
-                {
-                    id: BORDER_WIDTH_ID,
-                    type: 'input',
-                    defaultValue: '1px',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
-                },
-                {
-                    id: 'borderColor',
-                    type: 'colorInput',
-                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
-                },
             ],
+            off: [],
         },
         {
             id: 'hasCustomBorderRadius',

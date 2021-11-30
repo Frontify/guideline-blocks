@@ -2,7 +2,7 @@
     "compilerOptions": {
         "esModuleInterop": true,
         "isolatedModules": true,
-        "module": "commonjs",
+        "module": "esnext",
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noImplicitReturns": true,
