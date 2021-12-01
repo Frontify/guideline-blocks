@@ -148,25 +148,25 @@ export type DecorationStyle = {
 };
 
 export type Settings = {
-    content: ChecklistContent[];
-    paddingAdvanced: boolean;
-    paddingBasic: ChecklistPadding;
-    paddingCustom: string[];
-    incompleteTextColor: Color;
-    incompleteCheckboxColor: Color;
-    completeTextColor: Color;
-    completeCheckboxColor: Color;
-    completedDecoration: ChecklistDecoration;
-    highlightColor: Color;
-    dateVisible: boolean;
-    progressBarVisible: boolean;
-    progressBarType: string;
-    progressBarFillColor: Color;
-    progressBarTrackColor: Color;
-    strikethroughMultiInput: any[];
+    content?: ChecklistContent[];
+    paddingAdvanced?: boolean;
+    paddingBasic?: ChecklistPadding;
+    paddingCustom?: string[];
+    incompleteTextColor?: Color;
+    incompleteCheckboxColor?: Color;
+    completeTextColor?: Color;
+    completeCheckboxColor?: Color;
+    completedDecoration?: ChecklistDecoration;
+    highlightColor?: Color;
+    dateVisible?: boolean;
+    progressBarVisible?: boolean;
+    progressBarType?: string;
+    progressBarFillColor?: Color;
+    progressBarTrackColor?: Color;
+    strikethroughMultiInput?: any[];
 };
 
-export const DefaultValues = {
+export const DefaultValues: Settings = {
     content: [],
     paddingAdvanced: false,
     paddingBasic: ChecklistPadding.Medium,
