@@ -42,7 +42,8 @@ export const COLOR_DEFAULT_RGBA_VALUE = {
 
 const solidStyleIsSelected = (bundle: ApiBundle): boolean => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
 const limitedWidthIsSelected = (bundle: ApiBundle): boolean =>
-    bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'];
+    bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'] &&
+    bundle.getBlock(WIDTH_CUSTOM_ID)?.value !== '100%';
 
 const Settings: ApiSettings = {
     main: [
