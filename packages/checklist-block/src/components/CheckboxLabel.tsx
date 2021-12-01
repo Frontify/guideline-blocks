@@ -42,7 +42,7 @@ export const CheckboxLabel: FC<InputLabelProps> = ({ children, htmlFor, disabled
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
-                    'tw-select-none tw-whitespace-pre-wrap',
+                    'tw-select-none tw-whitespace-pre-wrap tw-w-min',
                     disabled
                         ? 'hover:tw-cursor-not-allowed tw-pointer-events-none'
                         : 'hover:tw-cursor-pointer tw-px-0.5',
