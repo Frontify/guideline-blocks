@@ -13,4 +13,8 @@ describe('generatePaddingString', () => {
         const result = generatePaddingString([]);
         expect(result).toEqual('0px');
     });
+    test('It should not fail if array is smaller than 4 items', () => {
+        const result = generatePaddingString(['4px', null, '1px']);
+        expect(result).toEqual('4px 1px 0px 0px');
+    });
 });
