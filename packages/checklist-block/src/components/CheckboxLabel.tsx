@@ -32,9 +32,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
 
     return (
         <div
-            className={joinClassNames([
-                'tw-inline-flex tw-flex-col tw-justify-center tw-gap-1 tw-text-s tw-max-w-full',
-            ])}
+            className={'tw-inline-flex tw-flex-col tw-justify-center tw-gap-1 tw-text-s tw-max-w-full'}
             data-test-id="input-label-container"
         >
             <label
