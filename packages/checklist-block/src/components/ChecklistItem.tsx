@@ -1,27 +1,25 @@
-import { ReactElement, useState } from 'react';
-import { ButtonGroup, ButtonSize, DragState, IconCaretUp, IconCaretDown, IconSize, IconReject } from '@frontify/arcade';
-import { MockTextEditor } from './MockTextEditor';
-import { useHover } from '@react-aria/interactions';
-import { useFocusWithin } from '@react-aria/interactions';
-import { Checkbox } from './Checkbox';
-import ChecklistButton from './ChecklistButton';
-import { ChecklistContent, ChecklistItemMode, DefaultChecklistItem } from '../types';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { FocusController } from './FocusController';
-
-export type ChecklistItemProps = {
-    item?: ChecklistContent;
-    toggleCompleted?: (value: boolean) => void;
-    isDragFocusVisible?: boolean;
-    dragState?: DragState;
-    onChange?: (text: string) => void;
-    onBlur?: (text: string) => void;
-    mode: ChecklistItemMode;
-    isFirst?: boolean;
-    isLast?: boolean;
-    onMoveItem?: (id: string, num: number) => void;
-    onRemoveItem?: (id: string) => void;
-};
+import { ReactElement, useState } from "react";
+import {
+    ButtonGroup,
+    ButtonSize,
+    DragState,
+    IconCaretUp,
+    IconCaretDown,
+    IconSize,
+    IconReject,
+} from "@frontify/arcade";
+import { MockTextEditor } from "./MockTextEditor";
+import { useHover } from "@react-aria/interactions";
+import { useFocusWithin } from "@react-aria/interactions";
+import { Checkbox } from "./Checkbox";
+import ChecklistButton from "./ChecklistButton";
+import {
+    ChecklistItemMode,
+    ChecklistItemProps,
+    DefaultChecklistItem,
+} from "../types";
+import { joinClassNames } from "@frontify/guideline-blocks-shared";
+import { FocusController } from "./FocusController";
 
 export default function ChecklistItem({
     item,
@@ -55,10 +53,13 @@ export default function ChecklistItem({
     return (
         <div
             className={joinClassNames([
-                'tw-flex tw-content-center ',
-                shouldDisplayControlPanel() && 'tw-bg-black-5',
-                (dragState === DragState.Preview || !shouldDisplayControlPanel) && 'tw-bg-white',
-                dragState === DragState.Dragging && 'tw-opacity-70 tw-bg-black-5',
+                "tw-flex tw-content-center ",
+                shouldDisplayControlPanel() && "tw-bg-black-5",
+                (dragState === DragState.Preview ||
+                    !shouldDisplayControlPanel) &&
+                    "tw-bg-white",
+                dragState === DragState.Dragging &&
+                    "tw-opacity-70 tw-bg-black-5",
             ])}
             {...hoverProps}
             {...focusWithinProps}
@@ -79,7 +80,9 @@ export default function ChecklistItem({
                         {!completed && (
                             <FocusController>
                                 <MockTextEditor
-                                    resetOnChange={mode === ChecklistItemMode.Create}
+                                    resetOnChange={
+                                        mode === ChecklistItemMode.Create
+                                    }
                                     readonly={mode === ChecklistItemMode.View}
                                     onChange={onChange}
                                     value={text}
@@ -93,7 +96,9 @@ export default function ChecklistItem({
             {mode !== ChecklistItemMode.Create && (
                 <div
                     className={`tw-flex-none tw-flex tw-items-center ${
-                        shouldDisplayControlPanel() ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none'
+                        shouldDisplayControlPanel()
+                            ? "tw-opacity-1"
+                            : "tw-opacity-0 tw-pointer-events-none"
                     }`}
                 >
                     <ButtonGroup size={ButtonSize.Small}>

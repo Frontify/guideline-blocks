@@ -1,8 +1,4 @@
-import {
-    AppBridgeNative,
-    useBlockSettings,
-    useEditorState,
-} from "@frontify/app-bridge";
+import { useBlockSettings, useEditorState } from "@frontify/app-bridge";
 import {
     Button,
     ButtonSize,
@@ -17,15 +13,15 @@ import {
 import { ItemDropTarget } from "@react-types/shared";
 import { useHover } from "@react-aria/interactions";
 import React, { ReactElement, useState } from "react";
-import "tailwindcss/tailwind.css";
 import ChecklistItem from "./components/ChecklistItem";
 import ProgressBar from "./components/ProgressBar";
 import { GridNode } from "@react-types/grid";
-import ProgressHeader from "./components/ProgressHeader";
+import { ProgressHeader } from "./components/ProgressHeader";
 import "./index.css";
 import {
     ChecklistContent,
     ChecklistItemMode,
+    ChecklistProps,
     DefaultValues,
     PaddingClasses,
     ProgressBarType,
@@ -34,10 +30,7 @@ import {
 import { generatePaddingString } from "@frontify/guideline-blocks-shared";
 import { provideDefaults } from "./utilities/provideDefaults";
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
-
-export type ChecklistProps = {
-    appBridge: AppBridgeNative;
-};
+import "tailwindcss/tailwind.css";
 
 export const SettingsContext = React.createContext<Settings>(DefaultValues);
 
