@@ -11,7 +11,7 @@
         "jsx": "react-jsx",
         "skipLibCheck": true,
         "resolveJsonModule": true,
-        "types": ["jest"]
+        "types": ["jest", "cypress"]
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist"]

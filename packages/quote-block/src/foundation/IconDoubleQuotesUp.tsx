@@ -1,0 +1,21 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { FC } from 'react';
+import { ICON_CLASS_NAME } from '../utilities';
+import { IconProps } from '../types';
+
+const IconDoubleQuotesUp: FC<IconProps> = ({ style }) => (
+    <svg
+        style={style}
+        className={ICON_CLASS_NAME}
+        viewBox="0 0 16 12"
+        fill="currentColor"
+        width="100%"
+        height="100%"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M14.85 0v2.439h-1.414c-1.171 0-1.756.585-1.756 1.756v1.561h.683c.943 0 1.723.293 2.341.878.65.586.976 1.317.976 2.195 0 .943-.326 1.708-.976 2.293-.618.585-1.398.878-2.341.878-.944 0-1.724-.309-2.342-.927-.618-.618-.927-1.398-.927-2.341V4.195C9.094 1.398 10.493 0 13.29 0h1.561zM6.363 0v2.439H4.948c-1.17 0-1.756.585-1.756 1.756v1.561h.683c.943 0 1.723.293 2.341.878.65.586.976 1.317.976 2.195 0 .943-.325 1.708-.976 2.293-.618.585-1.398.878-2.341.878-.943 0-1.724-.309-2.342-.927-.618-.618-.927-1.398-.927-2.341V4.195C.606 1.398 2.005 0 4.802 0h1.56z" />
+    </svg>
+);
+
+export default IconDoubleQuotesUp;

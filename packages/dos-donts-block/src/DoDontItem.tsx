@@ -1,42 +1,37 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/arcade/style';
-import { FC } from 'react';
-import { RichTextEditor, IconApprove, IconRejectCircle, IconSize, Color } from '@frontify/arcade';
-import { useEditorState } from '@frontify/app-bridge';
+import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { DoDontType, DoDontStyle, DoDontContent } from './types';
+import { CSSProperties, FC } from 'react';
+import { DoDontItemProps, DoDontStyle, DoDontType } from './types';
 
-export type ItemProps = {
-    id: number;
-    type: DoDontType;
-    style: DoDontStyle;
-    doColor: Color;
-    dontColor: Color;
-    saveItem: (id: number, value: string, type: DoDontContent) => void;
-    title?: string;
-    body?: string;
-};
+export const DoDontItem: FC<DoDontItemProps> = ({
+    id,
+    type,
+    style,
+    doColor,
+    dontColor,
+    saveItem,
+    title = '',
+    body = '',
+    editing = false,
+}) => {
+    const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
+    const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
 
-export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor, saveItem, title = '', body = '' }) => {
-    const isEditing = useEditorState();
-    const doColorString = mapRgbaToString(doColor.rgba);
-    const dontColorString = mapRgbaToString(dontColor.rgba);
-
-    const headingStyles: Record<DoDontType, object> = {
+    const headingStyles: Record<DoDontType, CSSProperties> = {
         [DoDontType.Do]: { color: doColorString },
         [DoDontType.Dont]: { color: dontColorString },
     };
 
-    const dividerStyles: Record<DoDontType, object> = {
+    const dividerStyles: Record<DoDontType, CSSProperties> = {
         [DoDontType.Do]: { backgroundColor: doColorString },
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
     return (
         <div>
-            <div style={headingStyles[type]} className="tw-flex tw-items-center">
+            <div style={headingStyles[type]} className="tw-flex tw-items-center tw-font-semibold tw-text-l">
                 {style === DoDontStyle.Icons && (
                     <div className="tw-mr-2 tw-w-auto">
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
@@ -46,9 +41,9 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                 <div className="tw-w-full">
                     <RichTextEditor
                         value={title}
-                        onTextChange={(value) => saveItem(id, value, DoDontContent.Title)}
-                        placeholder="Add a title"
-                        readonly={!isEditing}
+                        onTextChange={(value) => saveItem(id, value, 'title')}
+                        placeholder={editing ? 'Add a title' : ''}
+                        readonly={!editing}
                     />
                 </div>
             </div>
@@ -58,12 +53,12 @@ export const DoDontItem: FC<ItemProps> = ({ id, type, style, doColor, dontColor,
                     className="tw-w-full tw-mt-4 tw-mb-5 tw-h-1 tw-border-none tw-rounded tw-bg-black-40"
                 />
             )}
-            <div className="tw-mt-2">
+            <div className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
                 <RichTextEditor
                     value={body}
-                    onTextChange={(value) => saveItem(id, value, DoDontContent.Body)}
-                    placeholder="Add a description"
-                    readonly={!isEditing}
+                    onTextChange={(value) => saveItem(id, value, 'body')}
+                    placeholder={editing ? 'Add a description' : ''}
+                    readonly={!editing}
                 />
             </div>
         </div>

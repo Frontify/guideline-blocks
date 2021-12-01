@@ -1,18 +1,23 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DoDontStyle, DoDontLayout, DoDontSpacing } from './types';
 import { IconEnum } from '@frontify/arcade';
+import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
-export const DO_COLOR_DEFAULT_VALUE = { rgba: { r: 0, g: 200, b: 165, a: 1 } };
-export const DONT_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 55, b: 90, a: 1 } };
+export const DO_COLOR_DEFAULT_VALUE = { hex: '#00c8a5', rgba: { r: 0, g: 200, b: 165, a: 1 } };
+export const DONT_COLOR_DEFAULT_VALUE = { hex: '#ff375a', rgba: { r: 255, g: 55, b: 90, a: 1 } };
 
-export default {
+const SPACING_VALUE_ID = 'spacingValue';
+const SPACING_CHOICE_ID = 'spacingChoice';
+
+const settings: ApiSettings = {
     main: [
         {
             id: 'style',
             type: 'dropdown',
             defaultValue: DoDontStyle.Icons,
-            size: 'large',
+            size: 'Large',
             choices: [
                 {
                     value: DoDontStyle.Icons,
@@ -53,7 +58,7 @@ export default {
             id: 'columns',
             label: 'Columns',
             type: 'slider',
-            show: (bundle) => bundle.getBlock('layout').value === DoDontLayout.Stacked,
+            show: (bundle: ApiBundle) => bundle.getBlock('layout')?.value === DoDontLayout.Stacked,
             defaultValue: 2,
             choices: [
                 {
@@ -79,15 +84,20 @@ export default {
             label: 'Column gap',
             type: 'switch',
             switchLabel: 'Custom',
+            defaultValue: false,
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
             on: [
                 {
-                    id: 'spacingValue',
+                    id: SPACING_VALUE_ID,
                     type: 'input',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, SPACING_VALUE_ID),
                 },
             ],
             off: [
                 {
-                    id: 'spacingChoice',
+                    id: SPACING_CHOICE_ID,
                     type: 'slider',
                     defaultValue: DoDontSpacing.Medium,
                     choices: [
@@ -123,3 +133,5 @@ export default {
         },
     ],
 };
+
+export default settings;
