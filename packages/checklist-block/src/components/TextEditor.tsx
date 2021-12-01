@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 import { ReactElement, useContext, useRef, KeyboardEvent, FocusEvent, forwardRef, useImperativeHandle } from 'react';
-import { SettingsContext } from '..';
-import { ImperativeFocusHandle, MockTextEditorProps } from '../types';
+import { SettingsContext } from '../SettingsContext';
+import { ImperativeFocusHandle, TextEditorProps } from '../types';
 
-const TextEditor = forwardRef<ImperativeFocusHandle, MockTextEditorProps>(
+const Editor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
     ({ value, onChange, readonly, placeholder, resetOnChange }, ref): ReactElement => {
         const { incompleteTextColor } = useContext(SettingsContext);
         const editorRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -53,6 +53,6 @@ const TextEditor = forwardRef<ImperativeFocusHandle, MockTextEditorProps>(
     }
 );
 
-TextEditor.displayName = 'MockTextEditor';
+Editor.displayName = 'TextEditor';
 
-export const MockTextEditor = TextEditor;
+export const TextEditor = Editor;

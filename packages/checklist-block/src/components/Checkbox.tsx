@@ -5,11 +5,11 @@ import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
 import React, { useContext, useRef, FC } from 'react';
-import { SettingsContext } from '..';
 import { CheckboxProps, DefaultValues } from '../types';
 import { FOCUS_STYLE } from '../utilities/focusStyle';
 import { CheckboxLabel } from './CheckboxLabel';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { SettingsContext } from '../SettingsContext';
 
 export const Checkbox: FC<CheckboxProps> = ({
     id,
