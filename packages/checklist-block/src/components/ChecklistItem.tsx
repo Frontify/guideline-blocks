@@ -1,16 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
-import { ReactElement, useState } from 'react';
+import { ReactElement, useState, FC } from 'react';
 import { ButtonGroup, ButtonSize, DragState, IconCaretUp, IconCaretDown, IconSize, IconReject } from '@frontify/arcade';
 import { MockTextEditor } from './MockTextEditor';
 import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
-import ChecklistButton from './ChecklistButton';
+import { ChecklistButton } from './ChecklistButton';
 import { ChecklistItemMode, ChecklistItemProps, DefaultChecklistItem } from '../types';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FocusController } from './FocusController';
 
-export default function ChecklistItem({
+export const ChecklistItem: FC<ChecklistItemProps> = ({
     item,
     toggleCompleted,
     isDragFocusVisible,
@@ -21,7 +21,7 @@ export default function ChecklistItem({
     onMoveItem,
     onRemoveItem,
     dragState,
-}: ChecklistItemProps): ReactElement {
+}) => {
     const [focused, setFocused] = useState(false);
 
     const { hoverProps, isHovered } = useHover({});
@@ -103,4 +103,4 @@ export default function ChecklistItem({
             )}
         </div>
     );
-}
+};

@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { ReactElement } from 'react';
+import React, { FC } from 'react';
 import { ProgressBarProps } from '../types';
 
-export default function ProgressBar({ trackColor, fillColor, percentage }: ProgressBarProps): ReactElement {
+export const ProgressBar: FC<ProgressBarProps> = ({ trackColor, fillColor, percentage }) => {
     return (
         <div className="tw-relative tw-w-1/4 tw-h-2" style={{ backgroundColor: trackColor }}>
             <div
@@ -12,4 +12,4 @@ export default function ProgressBar({ trackColor, fillColor, percentage }: Progr
             ></div>
         </div>
     );
-}
+};
