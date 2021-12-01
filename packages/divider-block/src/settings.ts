@@ -72,6 +72,8 @@ const Settings: ApiSettings = {
             label: 'Width',
             switchLabel: 'Custom',
             defaultValue: false,
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, WIDTH_SIMPLE_ID, WIDTH_CUSTOM_ID, DividerWidth),
             on: [
                 {
                     id: WIDTH_CUSTOM_ID,
@@ -83,7 +85,7 @@ const Settings: ApiSettings = {
             ],
             off: [
                 {
-                    id: 'widthSimple',
+                    id: WIDTH_SIMPLE_ID,
                     type: 'slider',
                     defaultValue: WIDTH_DEFAULT_VALUE,
                     choices: [
@@ -144,6 +146,7 @@ const Settings: ApiSettings = {
                     id: HEIGHT_CUSTOM_ID,
                     type: 'input',
                     placeholder: '100px',
+                    clearable: false,
                     rules: [numericalOrPixelRule],
                     onChange: (bundle: ApiBundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
                 },
@@ -205,6 +208,7 @@ const Settings: ApiSettings = {
                 {
                     id: THICKNESS_CUSTOM_ID,
                     type: 'input',
+                    clearable: false,
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                     onChange: (bundle: ApiBundle): void => appendUnit(bundle, THICKNESS_CUSTOM_ID),
                 },
