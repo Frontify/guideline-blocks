@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Settings, VariableSettings } from '../types';
+import { Settings } from '../types';
 
-export const provideDefaults = (defaultObject: Settings, overrider: VariableSettings): Settings => {
+export const provideDefaults = (defaultObject: Settings, overrider: Partial<Settings>): Settings => {
     const arrayReplacer = (property: string) => {
         return defaultObject[property].reduce((acc: unknown[], item: unknown, index: number) => {
             return [...acc, overrider[property]?.[index] || item];
