@@ -29,13 +29,8 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
         onFocusWithinChange: setFocused,
     });
 
-    const shouldDisplayControlPanel = () => {
-        return (
-            (isHovered || focused || isDragFocusVisible) &&
-            mode === ChecklistItemMode.Edit &&
-            dragState === DragState.Idle
-        );
-    };
+    const shouldDisplayControlPanel =
+        (isHovered || focused || isDragFocusVisible) && mode === ChecklistItemMode.Edit && dragState === DragState.Idle;
 
     const { completed, updatedAt, id, text } = item || DefaultChecklistItem;
 
@@ -43,7 +38,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
         <div
             className={joinClassNames([
                 'tw-flex tw-content-center ',
-                shouldDisplayControlPanel() && 'tw-bg-black-5',
+                shouldDisplayControlPanel && 'tw-bg-black-5',
                 (dragState === DragState.Preview || !shouldDisplayControlPanel) && 'tw-bg-white',
                 dragState === DragState.Dragging && 'tw-opacity-70 tw-bg-black-5',
             ])}
@@ -80,7 +75,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
             {mode !== ChecklistItemMode.Create && (
                 <div
                     className={`tw-flex-none tw-flex tw-items-center ${
-                        shouldDisplayControlPanel() ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none'
+                        shouldDisplayControlPanel ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none'
                     }`}
                 >
                     <ButtonGroup size={ButtonSize.Small}>
