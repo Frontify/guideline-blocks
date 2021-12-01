@@ -42,7 +42,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                     <RichTextEditor
                         value={title}
                         onTextChange={(value) => saveItem(id, value, 'title')}
-                        placeholder="Add a title"
+                        placeholder={editing ? 'Add a title' : ''}
                         readonly={!editing}
                     />
                 </div>
@@ -57,7 +57,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                 <RichTextEditor
                     value={body}
                     onTextChange={(value) => saveItem(id, value, 'body')}
-                    placeholder="Add a description"
+                    placeholder={editing ? 'Add a description' : ''}
                     readonly={!editing}
                 />
             </div>
