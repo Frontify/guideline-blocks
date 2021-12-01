@@ -1,3 +1,4 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 import React, { FC, useContext } from "react";
 import { SettingsContext } from "..";
 import {

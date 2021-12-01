@@ -1,3 +1,4 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 import React, { ReactElement } from "react";
 import { Button, ButtonStyle } from "@frontify/arcade";
 import { ChecklistButtonProps } from "../types";

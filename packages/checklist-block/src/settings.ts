@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { IconEnum, InlineStyles, MultiInputLayout } from "@frontify/arcade";
 import { ApiBundle } from "@frontify/guideline-blocks-settings";
 import {

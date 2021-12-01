@@ -1,3 +1,4 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 import { IconCheck } from "@frontify/arcade";
 import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
