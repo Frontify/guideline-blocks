@@ -37,9 +37,9 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
     return (
         <div
             className={joinClassNames([
-                'tw-flex tw-content-center ',
+                'tw-flex tw-content-center',
                 shouldDisplayControlPanel && 'tw-bg-black-5',
-                (dragState === DragState.Preview || !shouldDisplayControlPanel) && 'tw-bg-white',
+                dragState === DragState.Preview && 'tw-bg-white',
                 dragState === DragState.Dragging && 'tw-opacity-70 tw-bg-black-5',
             ])}
             {...hoverProps}
