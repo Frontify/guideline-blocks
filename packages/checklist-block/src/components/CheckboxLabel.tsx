@@ -1,8 +1,11 @@
-import dayjs from '../utilities/day';
 import React, { FC, PropsWithChildren, useContext } from 'react';
 import { SettingsContext } from '..';
 import { ChecklistDecoration, DecorationStyle } from '../types';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 export type InputLabelProps = PropsWithChildren<{
     htmlFor: string;
