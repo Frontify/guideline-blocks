@@ -5,17 +5,14 @@ import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
 import ChecklistButton from './ChecklistButton';
-import { ChecklistItemMode } from '../types';
+import { ChecklistContent, ChecklistItemMode, DefaultChecklistItem } from '../types';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FocusController } from './FocusController';
 
 export type ChecklistItemProps = {
-    id: string;
-    text: string;
-    checked: boolean;
+    item?: ChecklistContent;
     toggleCompleted?: (value: boolean) => void;
     isDragFocusVisible?: boolean;
-    dateCompleted?: number;
     dragState?: DragState;
     onChange?: (text: string) => void;
     onBlur?: (text: string) => void;
@@ -27,11 +24,8 @@ export type ChecklistItemProps = {
 };
 
 export default function ChecklistItem({
-    id,
-    text,
-    checked,
+    item,
     toggleCompleted,
-    dateCompleted,
     isDragFocusVisible,
     isFirst,
     isLast,
@@ -56,6 +50,8 @@ export default function ChecklistItem({
         );
     };
 
+    const { completed, updatedAt, id, text } = item || DefaultChecklistItem;
+
     return (
         <div
             className={joinClassNames([
@@ -68,19 +64,19 @@ export default function ChecklistItem({
             {...focusWithinProps}
         >
             <div className="tw-p-1.5 tw-flex tw-flex-auto tw-content-center">
-                <div className="tw-flex tw-items-center tw-transition-colors tw-flex-auto tw-gap-2">
+                <div className="tw-flex tw-items-center tw-flex-auto tw-gap-2">
                     <div className="tw-flex tw-gap-2 tw-flex-auto">
                         <Checkbox
-                            checked={checked}
+                            checked={completed}
                             onChange={toggleCompleted}
                             id={id}
                             ariaLabel={text}
                             disabled={mode !== ChecklistItemMode.Edit}
-                            showLabel={checked}
+                            showLabel={completed}
                             label={text}
-                            dateCompleted={dateCompleted}
+                            dateCompleted={updatedAt}
                         />
-                        {!checked && (
+                        {!completed && (
                             <FocusController>
                                 <MockTextEditor
                                     resetOnChange={mode === ChecklistItemMode.Create}

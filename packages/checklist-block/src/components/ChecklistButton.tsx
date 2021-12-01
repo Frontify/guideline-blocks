@@ -3,7 +3,7 @@ import { Button, ButtonStyle } from '@frontify/arcade';
 
 export type ChecklistButtonProps = {
     disabled?: boolean;
-    onClick: (e: MouseEvent) => void;
+    onClick: (e?: MouseEvent<HTMLButtonElement>) => void;
     icon: ReactElement;
 };
 
