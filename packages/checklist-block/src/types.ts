@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { AppBridgeNative } from "@frontify/app-bridge";
 import { Color, DragState } from "@frontify/arcade";
 import { ReactElement, MouseEvent } from "react";

@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export const generatePaddingString = (paddingSpiderInput: (string | null)[]): string => {
     if (!paddingSpiderInput.length) return '0px';
     const [top, left, right, bottom] = paddingSpiderInput;

@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { useBlockSettings, useEditorState } from "@frontify/app-bridge";
 import {
     Button,

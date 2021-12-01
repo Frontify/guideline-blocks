@@ -1,3 +1,4 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 import { ReactElement, useState } from "react";
 import {
     ButtonGroup,

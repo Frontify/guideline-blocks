@@ -1,3 +1,4 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
 import { useFocusRing } from "@react-aria/focus";
 import React, { FC, useRef } from "react";
