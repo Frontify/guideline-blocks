@@ -42,10 +42,8 @@ export const CheckboxLabel: FC<InputLabelProps> = ({ children, htmlFor, disabled
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
-                    'tw-select-none tw-whitespace-pre-wrap tw-w-max',
-                    disabled
-                        ? 'hover:tw-cursor-not-allowed tw-pointer-events-none'
-                        : 'hover:tw-cursor-pointer tw-px-0.5',
+                    'tw-select-none tw-whitespace-pre-wrap tw-w-max tw-px-0.5',
+                    disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
                 style={{ color: completeTextColor.hex, ...decorationStyles }}
                 data-test-id="input-label"
