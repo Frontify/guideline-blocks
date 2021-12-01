@@ -6,11 +6,11 @@ import { ImperativeFocusHandle, TextEditorProps } from '../types';
 const Editor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
     ({ value, onChange, readonly, placeholder, resetOnChange }, ref): ReactElement => {
         const { incompleteTextColor } = useContext(SettingsContext);
-        const editorRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+        const editorRef = useRef<HTMLDivElement>(null);
 
         useImperativeHandle(ref, () => ({
             focus: () => {
-                editorRef.current.focus();
+                editorRef.current?.focus();
             },
         }));
 
@@ -26,7 +26,7 @@ const Editor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
                 if (event.shiftKey) {
                     event.stopPropagation();
                 } else {
-                    editorRef.current.blur();
+                    editorRef.current?.blur();
                 }
             }
         };
