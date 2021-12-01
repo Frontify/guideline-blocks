@@ -22,7 +22,7 @@ import './index.css';
 import { ChecklistContent, ChecklistItemMode, DefaultValues, PaddingClasses, ProgressBarType, Settings } from './types';
 import { generatePaddingString } from './utilities/generatePaddingString';
 import { provideDefaults } from './utilities/provideDefaults';
-import { joinClassNames } from '../../divider-block/node_modules/@frontify/guideline-blocks-shared/src';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;

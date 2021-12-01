@@ -41,6 +41,7 @@ const TextEditor = (
         <div className="tw-inline-block">
             <div
                 role="textbox"
+                tabIndex={-1}
                 contentEditable={!readonly}
                 className={joinClassNames([
                     'tw-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none tw-transition tw-placeholder-black-60',
