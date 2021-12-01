@@ -15,8 +15,8 @@ import {
 import { ItemDropTarget } from '@react-types/shared';
 import { useHover } from '@react-aria/interactions';
 import React, { ReactElement, useState } from 'react';
-import ChecklistItem from './components/ChecklistItem';
-import ProgressBar from './components/ProgressBar';
+import { ChecklistItem } from './components/ChecklistItem';
+import { ProgressBar } from './components/ProgressBar';
 import { GridNode } from '@react-types/grid';
 import { ProgressHeader } from './components/ProgressHeader';
 import './index.css';
