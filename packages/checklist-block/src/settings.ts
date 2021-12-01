@@ -20,7 +20,6 @@ export default {
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
             size: 'large',
-            disabled: false,
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,

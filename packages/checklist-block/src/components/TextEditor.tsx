@@ -38,7 +38,7 @@ const Editor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
                     tabIndex={-1}
                     contentEditable={!readonly}
                     className={
-                        'tw-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none tw-placeholder-black-60 hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5'
+                        'tw-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5'
                     }
                     data-placeholder={placeholder}
                     style={{ color: incompleteTextColor.hex }}
