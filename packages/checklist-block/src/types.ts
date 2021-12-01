@@ -49,7 +49,7 @@ export type FocusControllerProps = {
     children: ReactElement;
 };
 
-export type MockTextEditorProps = {
+export type TextEditorProps = {
     value: string;
     onChange?: (text: string) => void;
     placeholder?: string;

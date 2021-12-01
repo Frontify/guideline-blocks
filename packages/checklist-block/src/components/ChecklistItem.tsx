@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 import { ReactElement, useState, FC } from 'react';
 import { ButtonGroup, ButtonSize, DragState, IconCaretUp, IconCaretDown, IconSize, IconReject } from '@frontify/arcade';
-import { MockTextEditor } from './MockTextEditor';
+import { TextEditor } from './TextEditor';
 import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
@@ -60,7 +60,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                         />
                         {!completed && (
                             <FocusController>
-                                <MockTextEditor
+                                <TextEditor
                                     resetOnChange={mode === ChecklistItemMode.Create}
                                     readonly={mode === ChecklistItemMode.View}
                                     onChange={onChange}
