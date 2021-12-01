@@ -2,6 +2,8 @@
     "name": "@frontify/guideline-blocks-shared",
     "version": "1.0.0",
     "main": "src/index.ts",
+    "sideEffects": false,
+    "module": "index.ts",
     "scripts": {
         "test": "jest",
         "lint": "eslint src",
