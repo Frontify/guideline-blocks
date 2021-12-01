@@ -5,8 +5,8 @@ import React, { FC, useRef } from 'react';
 import { FocusControllerProps } from '../types';
 import { FOCUS_STYLE } from '../utilities/focusStyle';
 
-export const FocusController: FC<FocusControllerProps> = ({ children: child }) => {
-    if (typeof child !== 'object') return child;
+export const FocusController: FC<FocusControllerProps> = ({ children }) => {
+    if (typeof children !== 'object') return children;
 
     const { isFocused, focusProps } = useFocusRing();
 
@@ -57,7 +57,7 @@ export const FocusController: FC<FocusControllerProps> = ({ children: child }) =
             {...focusProps}
         >
             <span hidden={true} className="tw-inline-block">
-                {{ ...child, ref: childRef }}
+                {{ ...children, ref: childRef }}
             </span>
         </div>
     );
