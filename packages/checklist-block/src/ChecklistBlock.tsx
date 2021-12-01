@@ -28,6 +28,7 @@ import {
     PaddingClasses,
     ProgressBarType,
     Settings,
+    VariableSettings,
 } from './types';
 import { generatePaddingString } from '@frontify/guideline-blocks-shared';
 import { provideDefaults } from './utilities/provideDefaults';
@@ -37,7 +38,7 @@ import { SettingsContext } from './SettingsContext';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
     const isEditing = useEditorState();
-    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<VariableSettings>(appBridge);
     const [showCompleted, setShowCompleted] = useState(true);
     const { hoverProps, isHovered } = useHover({});
 
@@ -64,12 +65,12 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const removeItem = (idToDelete: string): void => {
         setBlockSettings({
             ...blockSettings,
-            content: blockSettings.content.filter(({ id }) => id !== idToDelete),
+            content: content.filter(({ id }) => id !== idToDelete),
         });
     };
 
     const updateItem = (idToUpdate: string, properties: any) => {
-        const updatedContent = blockSettings.content.reduce((acc: ChecklistContent[], item: ChecklistContent) => {
+        const updatedContent = content.reduce((acc: ChecklistContent[], item: ChecklistContent) => {
             if (item.id === idToUpdate) return [...acc, { ...item, ...properties }];
             return [...acc, item];
         }, []);
@@ -77,7 +78,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     };
 
     const modifyListPosition = (originalIndex: number, newIndex: number) => {
-        const updatedContent = blockSettings.content.slice();
+        const updatedContent = content.slice();
         const [itemToSwap] = updatedContent.splice(originalIndex, 1);
         updatedContent.splice(newIndex, 0, itemToSwap);
 

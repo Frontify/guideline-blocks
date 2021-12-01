@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Settings } from '../types';
+import { Settings, VariableSettings } from '../types';
 
-export const provideDefaults = (defaultObject: Settings, overrider: Settings): Settings => {
+export const provideDefaults = (defaultObject: Settings, overrider: VariableSettings): Settings => {
     const arrayReplacer = (property: string) => {
-        return defaultObject[property].reduce((acc, item, index) => {
+        return defaultObject[property].reduce((acc: unknown[], item: unknown, index: number) => {
             return [...acc, overrider[property]?.[index] || item];
         }, []);
     };
