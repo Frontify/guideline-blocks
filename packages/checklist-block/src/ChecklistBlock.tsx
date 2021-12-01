@@ -28,7 +28,6 @@ import {
     PaddingClasses,
     ProgressBarType,
     Settings,
-    VariableSettings,
 } from './types';
 import { generatePaddingString } from '@frontify/guideline-blocks-shared';
 import { provideDefaults } from './utilities/provideDefaults';
@@ -38,7 +37,7 @@ import { SettingsContext } from './SettingsContext';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
     const isEditing = useEditorState();
-    const [blockSettings, setBlockSettings] = useBlockSettings<VariableSettings>(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<Partial<Settings>>(appBridge);
     const [showCompleted, setShowCompleted] = useState(true);
     const { hoverProps, isHovered } = useHover({});
 

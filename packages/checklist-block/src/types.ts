@@ -147,25 +147,6 @@ export type DecorationStyle = {
     [key: string]: string;
 };
 
-export type VariableSettings = {
-    content?: ChecklistContent[];
-    paddingAdvanced?: boolean;
-    paddingBasic?: ChecklistPadding;
-    paddingCustom?: string[];
-    incompleteTextColor?: Color;
-    incompleteCheckboxColor?: Color;
-    completeTextColor?: Color;
-    completeCheckboxColor?: Color;
-    completedDecoration?: ChecklistDecoration;
-    highlightColor?: Color;
-    dateVisible?: boolean;
-    progressBarVisible?: boolean;
-    progressBarType?: string;
-    progressBarFillColor?: Color;
-    progressBarTrackColor?: Color;
-    strikethroughMultiInput?: any[];
-};
-
 export type Settings = {
     content: ChecklistContent[];
     paddingAdvanced: boolean;
