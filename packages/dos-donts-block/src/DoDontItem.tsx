@@ -42,7 +42,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                     <RichTextEditor
                         value={title}
                         onTextChange={(value) => saveItem(id, value, 'title')}
-                        placeholder="Add a title"
+                        placeholder={editing ? 'Add a title' : ''}
                         readonly={!editing}
                     />
                 </div>
@@ -53,11 +53,11 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                     className="tw-w-full tw-mt-4 tw-mb-5 tw-h-1 tw-border-none tw-rounded tw-bg-black-40"
                 />
             )}
-            <div className="tw-mt-2">
+            <div className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
                 <RichTextEditor
                     value={body}
                     onTextChange={(value) => saveItem(id, value, 'body')}
-                    placeholder="Add a description"
+                    placeholder={editing ? 'Add a description' : ''}
                     readonly={!editing}
                 />
             </div>
