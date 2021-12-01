@@ -1,6 +1,4 @@
-import { ReactElement, useContext, useRef, KeyboardEvent, FocusEvent } from 'react';
-import { useFocusRing } from '@react-aria/focus';
-import { FOCUS_STYLE } from '../utilities/focusStyle';
+import { ReactElement, useContext, useRef, KeyboardEvent, FocusEvent, forwardRef, useImperativeHandle } from 'react';
 import { SettingsContext } from '..';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
@@ -12,16 +10,18 @@ type MockTextEditorProps = {
     resetOnChange: boolean;
 };
 
-export default function MockTextEditor({
-    value,
-    onChange,
-    readonly,
-    placeholder,
-    resetOnChange,
-}: MockTextEditorProps): ReactElement {
-    const { isFocusVisible } = useFocusRing({ isTextInput: true });
+const TextEditor = (
+    { value, onChange, readonly, placeholder, resetOnChange }: MockTextEditorProps,
+    ref: any
+): ReactElement => {
     const { incompleteTextColor } = useContext(SettingsContext);
     const editorRef = useRef<HTMLDivElement>(null);
+
+    useImperativeHandle(ref, () => ({
+        focus: () => {
+            editorRef.current.focus();
+        },
+    }));
 
     const handleChange = (event: FocusEvent) => {
         const trimmedText = (event.target as HTMLDivElement).innerText.trim();
@@ -45,7 +45,6 @@ export default function MockTextEditor({
                 className={joinClassNames([
                     'tw-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none tw-transition tw-placeholder-black-60',
                     'hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5',
-                    isFocusVisible && FOCUS_STYLE,
                 ])}
                 data-placeholder={placeholder}
                 style={{ color: incompleteTextColor.hex }}
@@ -57,4 +56,6 @@ export default function MockTextEditor({
             </div>
         </div>
     );
-}
+};
+
+export const MockTextEditor = forwardRef(TextEditor);
