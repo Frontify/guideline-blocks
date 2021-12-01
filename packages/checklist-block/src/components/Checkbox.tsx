@@ -1,26 +1,14 @@
-import { IconCheck } from '@frontify/arcade';
-import { useCheckbox } from '@react-aria/checkbox';
-import { useFocusRing } from '@react-aria/focus';
-import { mergeProps } from '@react-aria/utils';
-import { useToggleState } from '@react-stately/toggle';
-import React, { ReactElement, useContext, useRef } from 'react';
-import { SettingsContext } from '..';
-import { DefaultValues } from '../types';
-import { FOCUS_STYLE } from '../utilities/focusStyle';
-import { CheckboxLabel } from './CheckboxLabel';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
-
-export type CheckboxProps = {
-    id: string;
-    disabled?: boolean;
-    checked: boolean;
-    onChange?: (isChecked: boolean) => void;
-    labelComponent?: ReactElement;
-    ariaLabel?: string;
-    showLabel: boolean;
-    label: string;
-    dateCompleted?: number;
-};
+import { IconCheck } from "@frontify/arcade";
+import { useCheckbox } from "@react-aria/checkbox";
+import { useFocusRing } from "@react-aria/focus";
+import { mergeProps } from "@react-aria/utils";
+import { useToggleState } from "@react-stately/toggle";
+import React, { ReactElement, useContext, useRef } from "react";
+import { SettingsContext } from "..";
+import { CheckboxProps, DefaultValues } from "../types";
+import { FOCUS_STYLE } from "../utilities/focusStyle";
+import { CheckboxLabel } from "./CheckboxLabel";
+import { joinClassNames } from "@frontify/guideline-blocks-shared";
 
 export const Checkbox = ({
     id,
@@ -45,19 +33,20 @@ export const Checkbox = ({
         {
             isDisabled: disabled,
             isRequired: false,
-            'aria-label': ariaLabel || label,
+            "aria-label": ariaLabel || label,
         },
         toggleState,
         inputRef
     );
 
-    const { completeCheckboxColor, incompleteCheckboxColor } = useContext(SettingsContext);
+    const { completeCheckboxColor, incompleteCheckboxColor } =
+        useContext(SettingsContext);
 
     return (
         <label
             className={joinClassNames([
-                'tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none',
-                !disabled && 'hover:tw-cursor-pointer',
+                "tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none",
+                !disabled && "hover:tw-cursor-pointer",
             ])}
         >
             <input
@@ -70,15 +59,15 @@ export const Checkbox = ({
             <span
                 aria-hidden="true"
                 className={joinClassNames([
-                    'tw-relative tw-flex tw-w-4 tw-h-4 tw-items-center tw-justify-center tw-rounded tw-border tw-flex-shrink-0 tw-bg-white tw-text-white',
+                    "tw-relative tw-flex tw-w-4 tw-h-4 tw-items-center tw-justify-center tw-rounded tw-border tw-flex-shrink-0 tw-bg-white tw-text-white",
                     isFocusVisible && FOCUS_STYLE,
-                    disabled && joinClassNames(['tw-pointer-events-none']),
+                    disabled && joinClassNames(["tw-pointer-events-none"]),
                 ])}
                 style={{
-                    background: checked ? completeCheckboxColor.hex : '',
+                    background: checked ? completeCheckboxColor.hex : "",
                     border: joinClassNames([
-                        '1px',
-                        'solid',
+                        "1px",
+                        "solid",
                         checked && !disabled && completeCheckboxColor.hex,
                         !checked && !disabled && incompleteCheckboxColor.hex,
                         disabled && DefaultValues.incompleteCheckboxColor.hex,
@@ -88,7 +77,11 @@ export const Checkbox = ({
                 {checked && <IconCheck />}
             </span>
             {showLabel && (
-                <CheckboxLabel disabled={disabled} htmlFor={id} dateInMs={dateCompleted}>
+                <CheckboxLabel
+                    disabled={disabled}
+                    htmlFor={id}
+                    dateInMs={dateCompleted}
+                >
                     {label}
                 </CheckboxLabel>
             )}

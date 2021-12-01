@@ -1,20 +1,20 @@
-import { ReactElement, useContext, useRef, KeyboardEvent, FocusEvent, forwardRef, useImperativeHandle } from 'react';
-import { SettingsContext } from '..';
+import {
+    ReactElement,
+    useContext,
+    useRef,
+    KeyboardEvent,
+    FocusEvent,
+    forwardRef,
+    useImperativeHandle,
+} from "react";
+import { SettingsContext } from "..";
+import { ImperativeFocusHandle, MockTextEditorProps } from "../types";
 
-type MockTextEditorProps = {
-    value: string;
-    onChange?: (text: string) => void;
-    placeholder?: string;
-    readonly?: boolean;
-    resetOnChange: boolean;
-};
-
-type ImperativeHandle = {
-    focus: () => void;
-};
-
-const TextEditor = forwardRef<ImperativeHandle, MockTextEditorProps>(
-    ({ value, onChange, readonly, placeholder, resetOnChange }, ref): ReactElement => {
+const TextEditor = forwardRef<ImperativeFocusHandle, MockTextEditorProps>(
+    (
+        { value, onChange, readonly, placeholder, resetOnChange },
+        ref
+    ): ReactElement => {
         const { incompleteTextColor } = useContext(SettingsContext);
         const editorRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
@@ -25,14 +25,16 @@ const TextEditor = forwardRef<ImperativeHandle, MockTextEditorProps>(
         }));
 
         const handleChange = (event: FocusEvent) => {
-            const trimmedText = (event.target as HTMLDivElement).innerText.trim();
+            const trimmedText = (
+                event.target as HTMLDivElement
+            ).innerText.trim();
             onChange && onChange(trimmedText);
             if (resetOnChange && editorRef.current) {
-                editorRef.current.innerText = '';
+                editorRef.current.innerText = "";
             }
         };
         const handleKeyPress = (event: KeyboardEvent) => {
-            if (event.code === 'Enter') {
+            if (event.code === "Enter") {
                 if (event.shiftKey) {
                     event.stopPropagation();
                 } else {
@@ -48,7 +50,7 @@ const TextEditor = forwardRef<ImperativeHandle, MockTextEditorProps>(
                     tabIndex={-1}
                     contentEditable={!readonly}
                     className={
-                        'tw-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none tw-placeholder-black-60 hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5'
+                        "tw-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none tw-placeholder-black-60 hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5"
                     }
                     data-placeholder={placeholder}
                     style={{ color: incompleteTextColor.hex }}
@@ -63,6 +65,6 @@ const TextEditor = forwardRef<ImperativeHandle, MockTextEditorProps>(
     }
 );
 
-TextEditor.displayName = 'MockTextEditor';
+TextEditor.displayName = "MockTextEditor";
 
 export const MockTextEditor = TextEditor;
