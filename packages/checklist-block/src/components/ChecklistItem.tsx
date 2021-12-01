@@ -1,12 +1,13 @@
 import { ReactElement, useState } from 'react';
 import { ButtonGroup, ButtonSize, DragState, IconCaretUp, IconCaretDown, IconSize, IconReject } from '@frontify/arcade';
-import MockTextEditor from './MockTextEditor';
+import { MockTextEditor } from './MockTextEditor';
 import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
 import ChecklistButton from './ChecklistButton';
 import { ChecklistItemMode } from '../types';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { FocusController } from './FocusController';
 
 export type ChecklistItemProps = {
     id: string;
@@ -80,13 +81,15 @@ export default function ChecklistItem({
                             dateCompleted={dateCompleted}
                         />
                         {!checked && (
-                            <MockTextEditor
-                                resetOnChange={mode === ChecklistItemMode.Create}
-                                readonly={mode === ChecklistItemMode.View}
-                                onChange={onChange}
-                                value={text}
-                                placeholder="Add new checklist item"
-                            />
+                            <FocusController>
+                                <MockTextEditor
+                                    resetOnChange={mode === ChecklistItemMode.Create}
+                                    readonly={mode === ChecklistItemMode.View}
+                                    onChange={onChange}
+                                    value={text}
+                                    placeholder="Add new checklist item"
+                                />
+                            </FocusController>
                         )}
                     </div>
                 </div>
