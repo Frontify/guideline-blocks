@@ -8,6 +8,14 @@ export type ChecklistContent = {
     completed: boolean;
 };
 
+export const DefaultChecklistItem = {
+    text: '',
+    id: '',
+    createdAt: 0,
+    updatedAt: 0,
+    completed: false,
+};
+
 export enum ChecklistItemMode {
     Edit = 'Edit',
     View = 'View',

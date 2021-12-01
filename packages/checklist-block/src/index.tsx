@@ -8,7 +8,7 @@ import {
     OrderableList,
     DragState,
     DragProperties,
-    AcceptedItem,
+    OrderableListItem,
 } from '@frontify/arcade';
 import { ItemDropTarget } from '@react-types/shared';
 import { useHover } from '@react-aria/interactions';
@@ -163,31 +163,24 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                         disableTypeAhead
                         dragDisabled={!isEditing}
                         renderContent={(
-                            {
-                                value: { id, text, completed, updatedAt },
-                                prevKey,
-                                nextKey,
-                            }: GridNode<AcceptedItem<ChecklistContent>>,
+                            { value, prevKey, nextKey }: GridNode<OrderableListItem<ChecklistContent>>,
                             { componentDragState, isFocusVisible }: DragProperties
                         ) => {
                             const content = (
                                 <ChecklistItem
-                                    id={id}
-                                    key={id}
-                                    text={text}
+                                    item={value}
+                                    key={value.id}
                                     isDragFocusVisible={isFocusVisible}
                                     isFirst={!prevKey}
                                     isLast={!nextKey}
-                                    dateCompleted={updatedAt}
                                     mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
-                                    checked={completed}
-                                    toggleCompleted={(value: boolean) =>
-                                        updateItem(id, { completed: value, updatedAt: Date.now() })
+                                    toggleCompleted={(completed: boolean) =>
+                                        updateItem(value.id, { completed, updatedAt: Date.now() })
                                     }
                                     dragState={componentDragState}
                                     onMoveItem={moveByIncrement}
                                     onRemoveItem={removeItem}
-                                    onChange={(text) => updateItem(id, { text })}
+                                    onChange={(text) => updateItem(value.id, { text })}
                                 />
                             );
                             //Preview is rendered in external DOM, requires own context provider
@@ -201,13 +194,7 @@ export default function Checklist({ appBridge }: ChecklistProps): ReactElement {
                     {isEditing && (
                         <>
                             <hr className="tw-my-2 tw-border-black-40" />
-                            <ChecklistItem
-                                id="Create new Checklist Item"
-                                checked={false}
-                                text={''}
-                                mode={ChecklistItemMode.Create}
-                                onChange={addNewItem}
-                            />
+                            <ChecklistItem mode={ChecklistItemMode.Create} onChange={addNewItem} />
                         </>
                     )}
                 </div>

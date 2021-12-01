@@ -35,10 +35,7 @@ export const CheckboxLabel: FC<InputLabelProps> = ({ children, htmlFor, disabled
     return (
         <div
             className={joinClassNames([
-                'tw-inline-flex tw-flex-col tw-justify-center tw-gap-1  tw-text-s tw-max-w-full',
-                disabled
-                    ? 'tw-text-black-40 hover:tw-text-black-40 dark:tw-text-black-60 dark:hover:tw-text-black-60'
-                    : 'tw-text-black-90 dark:tw-text-white',
+                'tw-inline-flex tw-flex-col tw-justify-center tw-gap-1 tw-text-s tw-max-w-full',
             ])}
             data-test-id="input-label-container"
         >
@@ -48,7 +45,7 @@ export const CheckboxLabel: FC<InputLabelProps> = ({ children, htmlFor, disabled
                     'tw-select-none tw-whitespace-pre-wrap',
                     disabled
                         ? 'hover:tw-cursor-not-allowed tw-pointer-events-none'
-                        : 'hover:tw-cursor-pointer hover:tw-text-black dark:hover:tw-text-white group-hover:tw-text-black dark:group-hover:tw-text-white tw-px-0.5',
+                        : 'hover:tw-cursor-pointer tw-px-0.5',
                 ])}
                 style={{ color: completeTextColor.hex, ...decorationStyles }}
                 data-test-id="input-label"

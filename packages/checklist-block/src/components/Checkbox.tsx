@@ -70,15 +70,9 @@ export const Checkbox = ({
             <span
                 aria-hidden="true"
                 className={joinClassNames([
-                    'tw-relative tw-flex tw-w-4 tw-h-4 tw-items-center tw-justify-center tw-rounded tw-border tw-flex-shrink-0',
+                    'tw-relative tw-flex tw-w-4 tw-h-4 tw-items-center tw-justify-center tw-rounded tw-border tw-flex-shrink-0 tw-bg-white tw-text-white',
                     isFocusVisible && FOCUS_STYLE,
-                    disabled
-                        ? joinClassNames(['tw-text-white tw-pointer-events-none', !checked && 'tw-bg-white'])
-                        : joinClassNames([
-                              !checked &&
-                                  'tw-border-black-80 tw-bg-white hover:tw-border-black dark:tw-border-white dark:tw-bg-black dark:hover:tw-border-black-20 dark:hover:tw-bg-black-90 group-hover:tw-bg-white group-hover:tw-border-black dark:group-hover:tw-border-black-20 dark:group-hover:tw-bg-black-90',
-                              checked && 'tw-text-white group-hover:tw-text-white  ',
-                          ]),
+                    disabled && joinClassNames(['tw-pointer-events-none']),
                 ])}
                 style={{
                     background: checked ? completeCheckboxColor.hex : '',
