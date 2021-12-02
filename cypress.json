@@ -6,5 +6,6 @@
         "componentFolder": "packages",
         "viewportHeight": 1280,
         "viewportWidth": 800
-    }
+    },
+    "runMode": 2
 }
