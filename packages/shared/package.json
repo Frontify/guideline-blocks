@@ -1,10 +1,17 @@
 {
     "name": "@frontify/guideline-blocks-shared",
     "version": "1.0.0",
-    "main": "src/index.ts",
+    "main": "./dist/index.js",
     "sideEffects": false,
-    "module": "index.ts",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": "./dist/index.js"
+    },
     "scripts": {
+        "clean": "rimraf dist",
+        "build": "npm run clean && tsc && npm run build:types",
+        "build:types": "tsc --declaration --emitDeclarationOnly",
         "test": "jest",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
@@ -26,6 +33,7 @@
         "eslint": "8.3.0",
         "jest": "27.4.3",
         "prettier": "2.5.1",
+        "rimraf": "^3.0.2",
         "sinon": "12.0.1",
         "ts-jest": "27.1.1",
         "ts-node": "10.4.0",
