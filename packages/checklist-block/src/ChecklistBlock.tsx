@@ -105,7 +105,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     };
 
     const moveByIncrement = (id: string, positionChange: number) => {
-        const index = content.findIndex((c) => c.id === id);
+        const index = content.findIndex((item) => item.id === id);
         modifyListPosition(index, index + positionChange);
     };
 
