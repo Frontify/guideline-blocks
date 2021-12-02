@@ -1,5 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
-import { ReactElement, useState, FC } from 'react';
+import { useState, FC } from 'react';
 import { ButtonGroup, ButtonSize, DragState, IconCaretUp, IconCaretDown, IconSize, IconReject } from '@frontify/arcade';
 import { TextEditor } from './TextEditor';
 import { useHover } from '@react-aria/interactions';
