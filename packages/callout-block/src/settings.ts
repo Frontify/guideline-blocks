@@ -6,14 +6,14 @@ import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { Alignment, CornerRadius, Padding, Type, Width } from './types';
 
-const PADDING_TOP_ID = 'top-input';
-const PADDING_LEFT_ID = 'left-input';
-const PADDING_RIGHT_ID = 'right-input';
-const PADDING_BOTTOM_ID = 'bottom-input';
-const RADIUS_TOPLEFT_ID = 'top-left-input';
-const RADIUS_TOPRIGHT_ID = 'top-right-input';
-const RADIUS_BOTTOMLEFT_ID = 'bottom-left-input';
-const RADIUS_BOTTOMRIGHT_ID = 'bottom-right-input';
+const PADDING_TOP_ID = 'padding-top';
+const PADDING_LEFT_ID = 'padding-left';
+const PADDING_RIGHT_ID = 'padding-right';
+const PADDING_BOTTOM_ID = 'padding-bottom';
+const RADIUS_TOPLEFT_ID = 'radius-top-left';
+const RADIUS_TOPRIGHT_ID = 'radius-top-right';
+const RADIUS_BOTTOMLEFT_ID = 'radius-bottom-left';
+const RADIUS_BOTTOMRIGHT_ID = 'radius-bottom-right';
 
 const settings: ApiSettings = {
     main: [
