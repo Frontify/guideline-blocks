@@ -24,6 +24,7 @@
         "test:functional:ci": "cypress run-ct",
         "test:functional": "cypress open-ct",
         "publish": "lerna publish --no-private",
-        "typecheck": "lerna run typecheck --stream"
+        "typecheck": "lerna run typecheck --stream",
+        "build:shared": "lerna run build --stream --scope=@frontify/guideline-blocks-shared"
     }
 }

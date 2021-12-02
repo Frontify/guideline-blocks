@@ -37,6 +37,9 @@ jobs:
               if: steps.npm_cache.outputs.cache-hit != 'true'
               run: npm run bootstrap
 
+            - name: Install NPM dependencies from packages
+              run: npm run build:shared
+
             - name: Cache Cypress binary
               id: cypress_cache
               uses: actions/cache@v2
