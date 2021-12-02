@@ -168,7 +168,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                                     dragState={componentDragState}
                                     onMoveItem={moveByIncrement}
                                     onRemoveItem={removeItem}
-                                    onChange={(text) => updateItem(value.id, { text })}
+                                    onTextModified={(text) => updateItem(value.id, { text })}
                                 />
                             );
                             //Preview is rendered in external DOM, requires own context provider
@@ -182,7 +182,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     {isEditing && (
                         <>
                             <hr className="tw-my-2 tw-border-black-40" />
-                            <ChecklistItem mode={ChecklistItemMode.Create} onChange={addNewItem} />
+                            <ChecklistItem mode={ChecklistItemMode.Create} onTextModified={addNewItem} />
                         </>
                     )}
                 </div>
