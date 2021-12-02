@@ -19,7 +19,6 @@ import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { GridNode } from '@react-types/grid';
 import { ProgressHeader } from './components/ProgressHeader';
-import './index.css';
 import {
     ChecklistContent,
     ChecklistItemMode,
@@ -32,8 +31,8 @@ import {
 import { generatePaddingString } from '@frontify/guideline-blocks-shared';
 import { provideDefaults } from './utilities/provideDefaults';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import 'tailwindcss/tailwind.css';
 import { SettingsContext } from './SettingsContext';
+import 'tailwindcss/tailwind.css';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
     const isEditing = useEditorState();
