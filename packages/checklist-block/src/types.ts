@@ -14,7 +14,7 @@ export type ChecklistItemProps = {
     toggleCompleted?: (value: boolean) => void;
     isDragFocusVisible?: boolean;
     dragState?: DragState;
-    onChange?: (text: string) => void;
+    onTextModified?: (text: string) => void;
     mode: ChecklistItemMode;
     isFirst?: boolean;
     isLast?: boolean;
@@ -51,10 +51,10 @@ export type FocusControllerProps = {
 
 export type TextEditorProps = {
     value: string;
-    onChange?: (text: string) => void;
+    onTextModified?: (text: string) => void;
     placeholder?: string;
     readonly?: boolean;
-    resetOnChange: boolean;
+    resetOnSave: boolean;
 };
 
 export type ImperativeFocusHandle = {

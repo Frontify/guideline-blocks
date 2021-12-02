@@ -16,7 +16,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
     isDragFocusVisible,
     isFirst,
     isLast,
-    onChange,
+    onTextModified,
     mode,
     onMoveItem,
     onRemoveItem,
@@ -58,9 +58,9 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                         {!completed && (
                             <FocusController>
                                 <TextEditor
-                                    resetOnChange={mode === ChecklistItemMode.Create}
+                                    resetOnSave={mode === ChecklistItemMode.Create}
                                     readonly={mode === ChecklistItemMode.View}
-                                    onChange={onChange}
+                                    onTextModified={onTextModified}
                                     value={text}
                                     placeholder="Add new checklist item"
                                 />
