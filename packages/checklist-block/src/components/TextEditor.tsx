@@ -4,7 +4,7 @@ import { SettingsContext } from '../SettingsContext';
 import { ImperativeFocusHandle, TextEditorProps } from '../types';
 
 export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
-    ({ value, onChange, readonly, placeholder, resetOnChange }, ref) => {
+    ({ value, onTextModified, readonly, placeholder, resetOnSave }, ref) => {
         const { incompleteTextColor } = useContext(SettingsContext);
         const editorRef = useRef<HTMLDivElement>(null);
 
@@ -16,8 +16,8 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
 
         const handleChange = (event: FocusEvent) => {
             const trimmedText = (event.target as HTMLDivElement).innerText.trim();
-            onChange && onChange(trimmedText);
-            if (resetOnChange && editorRef.current) {
+            onTextModified && onTextModified(trimmedText);
+            if (resetOnSave && editorRef.current) {
                 editorRef.current.innerText = '';
             }
         };
