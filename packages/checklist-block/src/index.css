@@ -1,0 +1,8 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+/* [contenteditable]:empty:before {
+    content: attr(data-placeholder);
+    color: grey;
+    display: inline-block;
+}
+ */

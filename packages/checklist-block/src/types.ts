@@ -74,9 +74,12 @@ export type ProgressHeaderProps = {
 export type ChecklistContent = {
     text: string;
     id: string;
-    createdAt: number;
     updatedAt: number;
     completed: boolean;
+};
+
+export type UpdateableItem<T = Record<string, unknown>> = T & {
+    id: string;
 };
 
 export const DefaultChecklistItem = {

@@ -34,6 +34,9 @@ import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
 import 'tailwindcss/tailwind.css';
 import { calculateFraction, calculatePercentage } from './utilities/calculations';
+import { filterCompleteItems } from './utilities/filterCompletedItems';
+import { reorderList } from './utilities/reorderList';
+import { createItem, findIndexById, updateItemById } from './utilities/contentHelpers';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
     const isEditing = useEditorState();
@@ -48,16 +51,8 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const addNewItem = (text: string): void => {
         const trimmed = text.trim();
         if (!trimmed) return;
-        const creationDate = Date.now();
-        const id = Math.ceil(Math.random() * creationDate).toString();
-        const newChecklistItem = {
-            id,
-            text: trimmed,
-            createdAt: creationDate,
-            updatedAt: creationDate,
-            completed: false,
-        };
-        const updatedContent = [...content, newChecklistItem];
+        const newItem = createItem(trimmed);
+        const updatedContent = [...content, newItem];
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
@@ -68,34 +63,23 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         });
     };
 
-    const updateItem = (idToUpdate: string, properties: any) => {
-        const updatedContent = content.reduce((acc: ChecklistContent[], item: ChecklistContent) => {
-            if (item.id === idToUpdate) return [...acc, { ...item, ...properties }];
-            return [...acc, item];
-        }, []);
+    const updateItem = (idToUpdate: string, properties: Partial<ChecklistContent>) => {
+        const updatedContent = updateItemById(content, idToUpdate, properties);
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
     const modifyListPosition = (originalIndex: number, newIndex: number) => {
-        const updatedContent = content.slice();
-        const [itemToSwap] = updatedContent.splice(originalIndex, 1);
-        updatedContent.splice(newIndex, 0, itemToSwap);
-
-        setBlockSettings({ ...blockSettings, content: updatedContent });
+        const newList = reorderList(content, originalIndex, newIndex);
+        setBlockSettings({ ...blockSettings, content: newList });
     };
 
     const toggleCompletedVisibility = () => {
         setShowCompleted((prev) => !prev);
     };
 
-    const completionFilter = ({ completed }: ChecklistContent): boolean => {
-        if (!isEditing && !showCompleted && completed) return false;
-        return true;
-    };
-
     const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
-        let newIndex = content.findIndex((item) => item.id === gridItemLocation.key);
-        const oldIndex = content.findIndex((item) => item.id === selectedGridItemKeys[0]);
+        let newIndex = findIndexById(content, gridItemLocation.key);
+        const oldIndex = findIndexById(content, selectedGridItemKeys[0]);
         if (oldIndex < newIndex) newIndex--;
         if (gridItemLocation.dropPosition === 'before') {
             modifyListPosition(oldIndex, newIndex);
@@ -105,11 +89,13 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     };
 
     const moveByIncrement = (id: string, positionChange: number) => {
-        const index = content.findIndex((item) => item.id === id);
+        const index = findIndexById(content, id);
         modifyListPosition(index, index + positionChange);
     };
 
     const shouldShowProgress = !!content.length && progressBarVisible;
+
+    const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
 
     return (
         <SettingsContext.Provider value={settings}>
@@ -156,7 +142,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     </div>
                     <div className="tw-my-1.5"></div>
                     <OrderableList
-                        items={content.filter(completionFilter).map((c) => ({ ...c, alt: c.text, type: 'item' }))}
+                        items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
                         onMove={onMove}
                         showFocusRing={true}
                         disableTypeAhead
