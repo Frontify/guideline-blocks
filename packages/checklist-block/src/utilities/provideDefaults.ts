@@ -3,7 +3,7 @@
 import { Settings } from '../types';
 
 export const provideDefaults = (defaultObject: Settings, overrider: Partial<Settings>): Settings => {
-    const arrayReplacer = (property: string) => {
+    const arrayReplacer = (property: keyof Settings) => {
         return defaultObject[property].reduce((acc: unknown[], item: unknown, index: number) => {
             return [...acc, overrider[property]?.[index] || item];
         }, []);
