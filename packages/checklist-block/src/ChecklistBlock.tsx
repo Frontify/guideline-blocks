@@ -33,6 +33,7 @@ import { provideDefaults } from './utilities/provideDefaults';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
 import 'tailwindcss/tailwind.css';
+import { calculateFraction, calculatePercentage } from './utilities/calculations';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
     const isEditing = useEditorState();
@@ -83,17 +84,6 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
-    const totalCompletedCount = (array: ChecklistContent[]) =>
-        array.reduce((acc, item) => (item.completed ? acc + 1 : acc), 0);
-
-    const calculatePercentage = (c: ChecklistContent[]): number => {
-        return +((totalCompletedCount(c) / c.length) * 100).toFixed(0);
-    };
-
-    const calculateFraction = (c: ChecklistContent[]): string => {
-        return `${totalCompletedCount(c)}/${c.length}`;
-    };
-
     const toggleCompletedVisibility = () => {
         setShowCompleted((prev) => !prev);
     };
@@ -104,8 +94,8 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     };
 
     const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
-        let newIndex = content.findIndex((c) => c.id === gridItemLocation.key);
-        const oldIndex = content.findIndex((c) => c.id === selectedGridItemKeys[0]);
+        let newIndex = content.findIndex((item) => item.id === gridItemLocation.key);
+        const oldIndex = content.findIndex((item) => item.id === selectedGridItemKeys[0]);
         if (oldIndex < newIndex) newIndex--;
         if (gridItemLocation.dropPosition === 'before') {
             modifyListPosition(oldIndex, newIndex);

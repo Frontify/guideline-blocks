@@ -47,7 +47,7 @@ export const Checkbox: FC<CheckboxProps> = ({
         borderColor: DefaultValues.incompleteCheckboxColor.hex,
     };
 
-    if (!checked && !disabled) checkboxStyles.borderColor = incompleteCheckboxColor.hex;
+    if (!checked) checkboxStyles.borderColor = incompleteCheckboxColor.hex;
     else if (checked) checkboxStyles.borderColor = completeCheckboxColor.hex;
 
     return (

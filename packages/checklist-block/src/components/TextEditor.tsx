@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
-import { ReactElement, useContext, useRef, KeyboardEvent, FocusEvent, forwardRef, useImperativeHandle } from 'react';
+import { useContext, useRef, KeyboardEvent, FocusEvent, forwardRef, useImperativeHandle } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import { ImperativeFocusHandle, TextEditorProps } from '../types';
 
-const Editor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
-    ({ value, onChange, readonly, placeholder, resetOnChange }, ref): ReactElement => {
+export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
+    ({ value, onChange, readonly, placeholder, resetOnChange }, ref) => {
         const { incompleteTextColor } = useContext(SettingsContext);
         const editorRef = useRef<HTMLDivElement>(null);
 
@@ -53,6 +53,4 @@ const Editor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
     }
 );
 
-Editor.displayName = 'TextEditor';
-
-export const TextEditor = Editor;
+TextEditor.displayName = 'TextEditor';
