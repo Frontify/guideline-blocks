@@ -51,7 +51,9 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
 
     const addNewItem = (text: string): void => {
         const trimmed = text.trim();
-        if (!trimmed) return;
+        if (!trimmed) {
+            return;
+        }
         const newItem = createItem(trimmed);
         const updatedContent = [...content, newItem];
         setBlockSettings({ ...blockSettings, content: updatedContent });

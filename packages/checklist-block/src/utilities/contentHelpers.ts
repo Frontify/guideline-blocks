@@ -9,7 +9,9 @@ export const updateItemById = (
     properties: Partial<ChecklistContent>
 ): ChecklistContent[] => {
     return array.reduce((acc: ChecklistContent[], item: ChecklistContent) => {
-        if (item.id === idToUpdate) return [...acc, { ...item, ...properties }];
+        if (item.id === idToUpdate) {
+            return [...acc, { ...item, ...properties }];
+        }
         return [...acc, item];
     }, []);
 };
