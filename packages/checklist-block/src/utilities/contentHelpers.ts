@@ -1,3 +1,4 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 import { Key } from 'react';
 import { ChecklistContent } from '../types';
 import { ItemDropTarget } from '@react-types/shared';
