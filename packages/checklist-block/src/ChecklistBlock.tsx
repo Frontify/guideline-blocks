@@ -36,7 +36,6 @@ import { calculateFraction, calculatePercentage } from './utilities/calculations
 import { filterCompleteItems } from './utilities/filterCompletedItems';
 import { reorderList } from './utilities/reorderList';
 import { createItem, findIndexById, updateItemById } from './utilities/contentHelpers';
-import '@frontify/arcade/style';
 import 'tailwindcss/tailwind.css';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
