@@ -35,8 +35,9 @@ import { SettingsContext } from './SettingsContext';
 import { calculateFraction, calculatePercentage } from './utilities/calculations';
 import { filterCompleteItems } from './utilities/filterCompletedItems';
 import { reorderList } from './utilities/reorderList';
-import { createItem, findIndexById, updateItemById } from './utilities/contentHelpers';
+import { createItem, findIndexById, findIndexesForMove, updateItemById } from './utilities/contentHelpers';
 import 'tailwindcss/tailwind.css';
+import '@frontify/arcade/style';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
     const isEditing = useEditorState();
@@ -68,31 +69,18 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
-    const modifyListPosition = (originalIndex: number, newIndex: number) => {
-        const newList = reorderList(content, originalIndex, newIndex);
-        setBlockSettings({ ...blockSettings, content: newList });
-    };
-
     const toggleCompletedVisibility = () => {
         setShowCompleted((prev) => !prev);
     };
 
     const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
-        let newIndex = findIndexById(content, gridItemLocation.key);
-        const oldIndex = findIndexById(content, selectedGridItemKeys[0]);
-        if (oldIndex < newIndex) {
-            newIndex--;
-        }
-        if (gridItemLocation.dropPosition === 'before') {
-            modifyListPosition(oldIndex, newIndex);
-        } else {
-            modifyListPosition(oldIndex, newIndex + 1);
-        }
+        const [oldIndex, newIndex] = findIndexesForMove(content, selectedGridItemKeys, gridItemLocation);
+        setBlockSettings({ ...blockSettings, content: reorderList(content, oldIndex, newIndex) });
     };
 
     const moveByIncrement = (id: string, positionChange: number) => {
         const index = findIndexById(content, id);
-        modifyListPosition(index, index + positionChange);
+        setBlockSettings({ ...blockSettings, content: reorderList(content, index, index + positionChange) });
     };
 
     const shouldShowProgress = !!content.length && progressBarVisible;

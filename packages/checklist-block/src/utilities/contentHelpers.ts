@@ -1,5 +1,6 @@
 import { Key } from 'react';
 import { ChecklistContent } from '../types';
+import { ItemDropTarget } from '@react-types/shared';
 
 export const updateItemById = (
     array: ChecklistContent[],
@@ -25,3 +26,19 @@ export const createItem = (text: string): ChecklistContent => {
 
 export const findIndexById = (content: ChecklistContent[], id: Key): number =>
     content.findIndex((item) => item.id === id);
+
+export const findIndexesForMove = (
+    content: ChecklistContent[],
+    selectedGridItemKeys: React.Key[],
+    gridItemLocation: ItemDropTarget
+) => {
+    let newIndex = findIndexById(content, gridItemLocation.key);
+    const oldIndex = findIndexById(content, selectedGridItemKeys[0]);
+    if (oldIndex < newIndex) {
+        newIndex--;
+    }
+    if (gridItemLocation.dropPosition === 'after') {
+        newIndex++;
+    }
+    return [oldIndex, newIndex];
+};
