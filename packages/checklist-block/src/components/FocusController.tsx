@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
+import { FOCUS_STYLE } from '@frontify/arcade';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
 import React, { FC, useRef } from 'react';
 import { FocusControllerProps } from '../types';
-import { FOCUS_STYLE } from '../utilities/focusStyle';
 
 export const FocusController: FC<FocusControllerProps> = ({ children }) => {
     if (typeof children !== 'object') return children;

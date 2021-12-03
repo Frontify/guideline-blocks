@@ -1,12 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
-import { IconCheck } from '@frontify/arcade';
+import { IconCheck, FOCUS_STYLE } from '@frontify/arcade';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
 import React, { useContext, useRef, FC } from 'react';
 import { CheckboxProps, DefaultValues } from '../types';
-import { FOCUS_STYLE } from '../utilities/focusStyle';
 import { CheckboxLabel } from './CheckboxLabel';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from '../SettingsContext';
