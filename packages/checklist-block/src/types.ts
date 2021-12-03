@@ -166,7 +166,7 @@ export type Settings = {
     progressBarType: string;
     progressBarFillColor: Color;
     progressBarTrackColor: Color;
-    strikethroughMultiInput: any[];
+    strikethroughMultiInput: [string, string, Color];
 };
 
 export const DefaultValues: Settings = {

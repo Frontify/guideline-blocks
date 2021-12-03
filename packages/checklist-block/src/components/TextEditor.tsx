@@ -32,7 +32,7 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
         };
 
         return (
-            <div className="tw-inline-block">
+            <div className="tw-inline-flex">
                 <div
                     role="textbox"
                     tabIndex={-1}

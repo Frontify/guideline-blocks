@@ -1,6 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 import { useState, FC } from 'react';
-import { ButtonGroup, ButtonSize, DragState, IconCaretUp, IconCaretDown, IconSize, IconReject } from '@frontify/arcade';
+import {
+    ButtonGroup,
+    ButtonSize,
+    ItemDragState,
+    IconCaretUp,
+    IconCaretDown,
+    IconSize,
+    IconReject,
+} from '@frontify/arcade';
 import { TextEditor } from './TextEditor';
 import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
@@ -30,21 +38,23 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
     });
 
     const shouldDisplayControlPanel =
-        (isHovered || focused || isDragFocusVisible) && mode === ChecklistItemMode.Edit && dragState === DragState.Idle;
+        (isHovered || focused || isDragFocusVisible) &&
+        mode === ChecklistItemMode.Edit &&
+        dragState === ItemDragState.Idle;
 
     const { completed, updatedAt, id, text } = item || DefaultChecklistItem;
 
     const containerClasses = ['tw-flex tw-content-center'];
 
-    if (dragState === DragState.Preview) containerClasses.push('tw-bg-white');
-    else if (dragState === DragState.Dragging) containerClasses.push('tw-bg-black-5 tw-opacity-70');
+    if (dragState === ItemDragState.Preview) containerClasses.push('tw-bg-white');
+    else if (dragState === ItemDragState.Dragging) containerClasses.push('tw-bg-black-5 tw-opacity-70');
     else if (shouldDisplayControlPanel) containerClasses.push('tw-bg-black-5');
 
     return (
         <div className={joinClassNames(containerClasses)} {...hoverProps} {...focusWithinProps}>
-            <div className="tw-p-1.5 tw-flex tw-flex-auto tw-content-center">
-                <div className="tw-flex tw-items-center tw-flex-auto tw-gap-2">
-                    <div className="tw-flex tw-gap-2 tw-flex-auto">
+            <div className="tw-p-2 tw-flex tw-flex-auto tw-content-center">
+                <div className="tw-flex tw-flex-auto tw-items-center">
+                    <div className="tw-flex tw-flex-auto tw-items-start">
                         <Checkbox
                             checked={completed}
                             onChange={toggleCompleted}

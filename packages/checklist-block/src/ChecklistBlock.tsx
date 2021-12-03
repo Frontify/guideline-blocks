@@ -8,7 +8,7 @@ import {
     IconView,
     IconViewSlash,
     OrderableList,
-    DragState,
+    ItemDragState,
     DragProperties,
     OrderableListItem,
 } from '@frontify/arcade';
@@ -32,11 +32,12 @@ import { generatePaddingString } from '@frontify/guideline-blocks-shared';
 import { provideDefaults } from './utilities/provideDefaults';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
-import 'tailwindcss/tailwind.css';
 import { calculateFraction, calculatePercentage } from './utilities/calculations';
 import { filterCompleteItems } from './utilities/filterCompletedItems';
 import { reorderList } from './utilities/reorderList';
 import { createItem, findIndexById, updateItemById } from './utilities/contentHelpers';
+import '@frontify/arcade/style';
+import 'tailwindcss/tailwind.css';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
     const isEditing = useEditorState();
@@ -80,7 +81,9 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
         let newIndex = findIndexById(content, gridItemLocation.key);
         const oldIndex = findIndexById(content, selectedGridItemKeys[0]);
-        if (oldIndex < newIndex) newIndex--;
+        if (oldIndex < newIndex) {
+            newIndex--;
+        }
         if (gridItemLocation.dropPosition === 'before') {
             modifyListPosition(oldIndex, newIndex);
         } else {
@@ -140,7 +143,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                             {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
                         </Button>
                     </div>
-                    <div className="tw-my-1.5"></div>
+                    <div className="tw-my-2"></div>
                     <OrderableList
                         items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
                         onMove={onMove}
@@ -172,7 +175,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                                 />
                             );
                             //Preview is rendered in external DOM, requires own context provider
-                            return componentDragState === DragState.Preview ? (
+                            return componentDragState === ItemDragState.Preview ? (
                                 <SettingsContext.Provider value={settings}>{content}</SettingsContext.Provider>
                             ) : (
                                 content
