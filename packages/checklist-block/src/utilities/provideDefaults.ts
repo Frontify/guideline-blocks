@@ -7,6 +7,7 @@ export const provideDefaults = (defaultObject: Settings, overrider: Partial<Sett
     const arrayReplacer = (property: keyof Settings) => {
         //TODO: Fix this types
         //@ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return defaultObject[property].reduce((acc: any, item: any, index: number) => {
             //@ts-ignore
             return [...acc, overrider[property]?.[index] || item];

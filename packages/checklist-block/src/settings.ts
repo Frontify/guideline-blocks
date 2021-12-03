@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, MultiInputLayout } from '@frontify/arcade';
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
-
+import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import { ChecklistDecoration, ChecklistPadding, DefaultValues, ProgressBarType, StrikethroughType } from './types';
+import { IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 
 const showProgressStyles = (bundle: ApiBundle): boolean => {
     return (
@@ -13,13 +12,13 @@ const showProgressStyles = (bundle: ApiBundle): boolean => {
     );
 };
 
-export default {
+const settings: ApiSettings = {
     main: [
         {
             id: 'completedDecoration',
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
-            size: 'large',
+            size: 'Large',
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,
@@ -44,6 +43,7 @@ export default {
             id: 'paddingAdvanced',
             label: 'Padding',
             type: 'switch',
+            defaultValue: false,
             switchLabel: 'Custom',
             on: [
                 {
@@ -247,3 +247,6 @@ export default {
         },
     ],
 };
+
+// eslint-disable-next-line import/no-default-export
+export default settings;
