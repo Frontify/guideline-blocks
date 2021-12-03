@@ -4,7 +4,7 @@
     "devDependencies": {
         "@cypress/react": "5.10.3",
         "@cypress/vite-dev-server": "2.2.1",
-        "@frontify/arcade": "0.14.0-beta.7",
+        "@frontify/arcade": "0.14.0-beta.8",
         "cypress": "9.1.0",
         "husky": "7.0.4",
         "lerna": "4.0.0",
