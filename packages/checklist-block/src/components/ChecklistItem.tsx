@@ -46,9 +46,13 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
 
     const containerClasses = ['tw-flex tw-content-center'];
 
-    if (dragState === ItemDragState.Preview) containerClasses.push('tw-bg-white');
-    else if (dragState === ItemDragState.Dragging) containerClasses.push('tw-bg-black-5 tw-opacity-70');
-    else if (shouldDisplayControlPanel) containerClasses.push('tw-bg-black-5');
+    if (dragState === ItemDragState.Preview) {
+        containerClasses.push('tw-bg-white');
+    } else if (dragState === ItemDragState.Dragging) {
+        containerClasses.push('tw-bg-black-5 tw-opacity-70');
+    } else if (shouldDisplayControlPanel) {
+        containerClasses.push('tw-bg-black-5');
+    }
 
     return (
         <div className={joinClassNames(containerClasses)} {...hoverProps} {...focusWithinProps}>

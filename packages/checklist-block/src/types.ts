@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeNative } from '@frontify/app-bridge';
-import { Color, DragState } from '@frontify/arcade';
+import { Color, ItemDragState } from '@frontify/arcade';
 import { ReactElement, MouseEvent } from 'react';
 import { PropsWithChildren } from 'react';
 
@@ -13,7 +13,7 @@ export type ChecklistItemProps = {
     item?: ChecklistContent;
     toggleCompleted?: (value: boolean) => void;
     isDragFocusVisible?: boolean;
-    dragState?: DragState;
+    dragState?: ItemDragState;
     onTextModified?: (text: string) => void;
     mode: ChecklistItemMode;
     isFirst?: boolean;

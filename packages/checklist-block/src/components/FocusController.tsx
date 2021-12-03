@@ -6,7 +6,9 @@ import React, { FC, useRef } from 'react';
 import { FocusControllerProps } from '../types';
 
 export const FocusController: FC<FocusControllerProps> = ({ children }) => {
-    if (typeof children !== 'object') return children;
+    if (typeof children !== 'object') {
+        return children;
+    }
 
     const { isFocused, focusProps } = useFocusRing();
 
