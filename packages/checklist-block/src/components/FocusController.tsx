@@ -53,12 +53,12 @@ export const FocusController: FC<FocusControllerProps> = ({ children }) => {
             onKeyDown={handleKeyDown}
             onMouseDown={handleMouseDown}
             ref={focusControllerRef}
-            className={joinClassNames([isFocused && FOCUS_STYLE, 'tw-inline-block'])}
+            className={joinClassNames([isFocused && FOCUS_STYLE, 'tw-flex'])}
             {...focusProps}
         >
-            <span hidden={true} className="tw-inline-block">
+            <div hidden={true} className="tw-flex">
                 {{ ...children, ref: childRef }}
-            </span>
+            </div>
         </div>
     );
 };

@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Settings } from '../types';
 
 export const provideDefaults = (defaultObject: Settings, overrider: Partial<Settings>): Settings => {
     const arrayReplacer = (property: keyof Settings) => {
-        return defaultObject[property].reduce((acc: unknown[], item: unknown, index: number) => {
+        //TODO: Fix this types
+        //@ts-ignore
+        return defaultObject[property].reduce((acc: any, item: any, index: number) => {
+            //@ts-ignore
             return [...acc, overrider[property]?.[index] || item];
         }, []);
     };

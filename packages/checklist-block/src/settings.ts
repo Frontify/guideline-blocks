@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, InlineStyles, MultiInputLayout } from '@frontify/arcade';
+import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 
@@ -28,7 +28,7 @@ export default {
                 },
                 {
                     value: ChecklistDecoration.Strikethrough,
-                    icon: InlineStyles.Strikethrough,
+                    icon: IconEnum.Symbols,
                     label: 'Strikethrough',
                 },
                 {

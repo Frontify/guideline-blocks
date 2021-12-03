@@ -53,7 +53,7 @@ export const Checkbox: FC<CheckboxProps> = ({
     return (
         <label
             className={joinClassNames([
-                'tw-group tw-flex tw-gap-2 tw-select-none tw-outline-none',
+                'tw-flex tw-select-none tw-outline-none tw-self-start tw-items-start',
                 !disabled && 'hover:tw-cursor-pointer',
             ])}
         >
@@ -67,7 +67,7 @@ export const Checkbox: FC<CheckboxProps> = ({
             <span
                 aria-hidden="true"
                 className={joinClassNames([
-                    'tw-relative tw-flex tw-w-4 tw-h-4 tw-items-center tw-justify-center tw-rounded tw-border tw-border-solid tw-flex-shrink-0 tw-bg-white tw-text-white',
+                    'tw-relative tw-flex tw-w-4 tw-h-4 tw-mr-2 tw-items-center tw-justify-center tw-rounded tw-border tw-border-solid tw-flex-shrink-0 tw-bg-white tw-text-white',
                     isFocusVisible && FOCUS_STYLE,
                     disabled && 'tw-pointer-events-none',
                 ])}
