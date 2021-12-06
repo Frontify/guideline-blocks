@@ -13,7 +13,7 @@ import {
     THICKNESS_DEFAULT_VALUE,
     WIDTH_DEFAULT_VALUE,
 } from './settings';
-import './styles.css';
+import css from './styles.module.css';
 import {
     dividerAlignmentClasses,
     dividerHeightValues,
@@ -46,7 +46,7 @@ export const DividerBlock: FC<Props> = ({ appBridge }) => {
     return (
         <div
             data-test-id="divider-block"
-            className={joinClassNames(['divider-block tw-flex', dividerAlignmentClasses[alignment]])}
+            className={joinClassNames(['tw-flex', css.dividerBlock, dividerAlignmentClasses[alignment]])}
         >
             <div
                 className="tw-flex tw-items-center tw-transition-all"
