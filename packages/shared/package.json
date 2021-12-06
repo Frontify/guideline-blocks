@@ -20,7 +20,7 @@
         "@types/jest": "27.0.3",
         "@types/react": "17.0.37",
         "@types/sinon": "10.0.6",
-        "cypress": "9.1.0",
+        "cypress": "9.1.1",
         "eslint": "8.3.0",
         "jest": "27.4.3",
         "prettier": "2.5.1",
