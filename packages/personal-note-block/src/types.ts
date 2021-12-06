@@ -82,9 +82,9 @@ export const borderRadiusClasses: Record<NoteBorderRadius, string> = {
     [NoteBorderRadius.Large]: 'tw-rounded-lg',
 };
 
-export const paddingClasses: Record<NotePadding, string> = {
-    [NotePadding.None]: 'tw-p-0',
-    [NotePadding.Small]: 'tw-p-6',
-    [NotePadding.Medium]: 'tw-p-9',
-    [NotePadding.Large]: 'tw-p-12',
+export const paddingValues: Record<NotePadding, string> = {
+    [NotePadding.None]: '0px',
+    [NotePadding.Small]: '24px',
+    [NotePadding.Medium]: '36px',
+    [NotePadding.Large]: '48px',
 };

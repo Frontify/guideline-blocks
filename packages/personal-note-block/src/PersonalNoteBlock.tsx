@@ -16,7 +16,7 @@ import {
     NoteBorderStyle,
     NotePadding,
     NoteVisibility,
-    paddingClasses,
+    paddingValues,
     Settings,
 } from './types';
 
@@ -105,14 +105,13 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         <div
             data-test-id="personal-note-block"
             className={joinClassNames([
-                !hasCustomPadding && paddingClasses[paddingChoice],
                 !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
                 hasBackground && !!backgroundColor.rgba && isDark(backgroundColor.rgba) && 'tw-text-white',
             ])}
             style={{
                 ...(hasBorder && getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')),
                 ...(hasBackground && getBackgroundStyles(backgroundColor)),
-                ...(hasCustomPadding && getPaddingStyles(paddingValue)),
+                ...getPaddingStyles(hasCustomPadding ? paddingValue : paddingValues[paddingChoice]),
             }}
         >
             <NoteHeader
