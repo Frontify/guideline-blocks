@@ -31,7 +31,7 @@ const getInnerDivClassName = (
     cornerRadius: CornerRadius
 ): string =>
     joinClassNames([
-        `tw-flex tw-text-white ${typeMap[type]}`,
+        `tw-flex tw-items-center tw-text-white ${typeMap[type]}`,
         width === Width.FullWidth && alignmentMap[alignment],
         !customPaddingSwitch && padding && paddingMap[padding],
         !customCornerRadiusSwitch && cornerRadius && cornerRadiusMap[cornerRadius],
