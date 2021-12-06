@@ -32,7 +32,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     return (
         <div>
             <div style={headingStyles[type]} className="tw-flex tw-items-center tw-font-semibold tw-text-l">
-                {style === DoDontStyle.Icons && (
+                {style === DoDontStyle.Icons && (editing || title || body) && (
                     <div className="tw-mr-2 tw-w-auto">
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
                         {type === DoDontType.Dont && <IconRejectCircle size={IconSize.Size24} />}
