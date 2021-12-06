@@ -136,7 +136,6 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     <OrderableList
                         items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
                         onMove={onMove}
-                        showFocusRing={true}
                         disableTypeAhead
                         dragDisabled={!isEditing}
                         renderContent={(
