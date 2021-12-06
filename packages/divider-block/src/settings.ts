@@ -4,7 +4,7 @@ import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
-    betweenPercentResponsiveRule,
+    betweenPercentRule,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPercentRule,
     numericalOrPixelRule,
@@ -81,7 +81,7 @@ const Settings: ApiSettings = {
                     type: 'input',
                     placeholder: '75%',
                     clearable: false,
-                    rules: [numericalOrPercentRule, betweenPercentResponsiveRule(0, 100)],
+                    rules: [numericalOrPercentRule, betweenPercentRule(0, 100)],
                     onChange: (bundle: ApiBundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
                 },
             ],

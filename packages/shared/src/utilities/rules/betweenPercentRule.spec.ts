@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { betweenPercentResponsiveRule } from './betweenPercentResponsiveRule';
+import { betweenPercentRule } from './betweenPercentRule';
 
-describe('betweenPercentResponsiveRule', () => {
+describe('betweenPercentRule', () => {
     const data = [
         { a: 1, b: 5, value: '4', expected: true },
         { a: 1, b: 5, value: '1', expected: true },
@@ -27,7 +27,7 @@ describe('betweenPercentResponsiveRule', () => {
     ];
 
     it.each(data)('validate correctly values ($a $b $value $expected)', ({ a, b, value, expected }) => {
-        const rule = betweenPercentResponsiveRule(a, b);
+        const rule = betweenPercentRule(a, b);
         expect(rule.validate(value)).toBe(expected);
     });
 });
