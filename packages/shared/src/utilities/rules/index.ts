@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 export * from './betweenNumericalOrPercentOrAutoRule';
+export * from './betweenPercentResponsiveRule';
 export * from './betweenPixelRule';
 export * from './maximumNumericalOrPercentOrAutoRule';
 export * from './maximumNumericalOrPixelOrAutoRule';
