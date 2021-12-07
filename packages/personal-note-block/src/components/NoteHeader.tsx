@@ -17,7 +17,10 @@ export const NoteHeader: FC<NoteHeaderProps> = ({
     dateEdited,
     useLightText,
 }) => (
-    <div className={`tw-flex tw-items-center tw-space-x-4 ${hasAvatarName || hasDateEdited ? 'tw-mb-4' : ''}`}>
+    <div
+        className={`tw-flex tw-items-center tw-space-x-4 ${hasAvatarName || hasDateEdited ? 'tw-mb-4' : ''}`}
+        data-test-id="personal-note-header"
+    >
         {hasAvatarName && avatar && <img src={avatar} width="32" height="32" className="tw-rounded-full" />}
         <div className="tw-flex tw-flex-col tw-text-s">
             {hasAvatarName && <span className={useLightText ? 'tw-text-white' : 'tw-text-black'}>{name}</span>}
