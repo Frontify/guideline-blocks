@@ -14,11 +14,10 @@ export const provideDefaults = (defaultObject: Settings, overrider: Partial<Sett
         }, []);
     };
 
-    const newObj = {
+    return {
         ...defaultObject,
         ...overrider,
         paddingCustom: arrayReplacer('paddingCustom'),
         strikethroughMultiInput: arrayReplacer('strikethroughMultiInput'),
     };
-    return newObj;
 };

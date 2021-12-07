@@ -8,14 +8,12 @@ export const updateItemById = (
     array: ChecklistContent[],
     idToUpdate: string,
     properties: Partial<ChecklistContent>
-): ChecklistContent[] => {
-    return array.reduce((acc: ChecklistContent[], item: ChecklistContent) => {
-        if (item.id === idToUpdate) {
-            return [...acc, { ...item, ...properties }];
-        }
-        return [...acc, item];
-    }, []);
-};
+): ChecklistContent[] =>
+    array.reduce(
+        (acc: ChecklistContent[], item: ChecklistContent) =>
+            item.id === idToUpdate ? [...acc, { ...item, ...properties }] : [...acc, item],
+        []
+    );
 
 export const createItem = (text: string): ChecklistContent => {
     const creationDate = Date.now();
