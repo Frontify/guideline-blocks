@@ -82,6 +82,38 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         setBlockSettings({ ...blockSettings, content: reorderList(content, index, index + positionChange) });
     };
 
+    const renderChecklistItem = (
+        { value, prevKey, nextKey }: GridNode<OrderableListItem<ChecklistContent>>,
+        { componentDragState, isFocusVisible }: DragProperties
+    ) => {
+        const content = (
+            <ChecklistItem
+                item={value}
+                key={value.id}
+                isDragFocusVisible={isFocusVisible}
+                isFirst={!prevKey}
+                isLast={!nextKey}
+                mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
+                toggleCompleted={(completed: boolean) =>
+                    updateItem(value.id, {
+                        completed,
+                        updatedAt: Date.now(),
+                    })
+                }
+                dragState={componentDragState}
+                onMoveItem={moveByIncrement}
+                onRemoveItem={removeItem}
+                onTextModified={(text) => updateItem(value.id, { text })}
+            />
+        );
+        //Preview is rendered in external DOM, requires own context provider
+        return componentDragState === ItemDragState.Preview ? (
+            <SettingsContext.Provider value={settings}>{content}</SettingsContext.Provider>
+        ) : (
+            content
+        );
+    };
+
     const shouldShowProgress = !!content.length && progressBarVisible;
 
     const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
@@ -135,37 +167,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                             onMove={onMove}
                             disableTypeAhead
                             dragDisabled={!isEditing}
-                            renderContent={(
-                                { value, prevKey, nextKey }: GridNode<OrderableListItem<ChecklistContent>>,
-                                { componentDragState, isFocusVisible }: DragProperties
-                            ) => {
-                                const content = (
-                                    <ChecklistItem
-                                        item={value}
-                                        key={value.id}
-                                        isDragFocusVisible={isFocusVisible}
-                                        isFirst={!prevKey}
-                                        isLast={!nextKey}
-                                        mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
-                                        toggleCompleted={(completed: boolean) =>
-                                            updateItem(value.id, {
-                                                completed,
-                                                updatedAt: Date.now(),
-                                            })
-                                        }
-                                        dragState={componentDragState}
-                                        onMoveItem={moveByIncrement}
-                                        onRemoveItem={removeItem}
-                                        onTextModified={(text) => updateItem(value.id, { text })}
-                                    />
-                                );
-                                //Preview is rendered in external DOM, requires own context provider
-                                return componentDragState === ItemDragState.Preview ? (
-                                    <SettingsContext.Provider value={settings}>{content}</SettingsContext.Provider>
-                                ) : (
-                                    content
-                                );
-                            }}
+                            renderContent={renderChecklistItem}
                         />
                     </div>
                     {isEditing && (

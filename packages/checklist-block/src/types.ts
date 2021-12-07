@@ -93,20 +93,27 @@ export enum ChecklistDecoration {
     Strikethrough = 'Strikethrough',
     Highlight = 'Highlight',
 }
-
 export enum StrikethroughType {
-    Solid = 'solid',
-    Dashed = 'dashed',
-    Double = 'double',
-    Dotted = 'dotted',
-    Wavy = 'wavy',
+    Solid = 'Solid',
+    Dashed = 'Dashed',
+    Double = 'Double',
+    Dotted = 'Dotted',
+    Wavy = 'Wavy',
 }
 
+export const StrikethroughStyleType: Record<StrikethroughType, string> = {
+    [StrikethroughType.Solid]: 'solid',
+    [StrikethroughType.Dashed]: 'dashed',
+    [StrikethroughType.Double]: 'double',
+    [StrikethroughType.Dotted]: 'dotted',
+    [StrikethroughType.Wavy]: 'wavy',
+};
+
 export enum ChecklistPadding {
-    None = 'none',
-    Small = 'sm',
-    Medium = 'med',
-    Large = 'lg',
+    None = 'None',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
 }
 
 export const PaddingClasses = {
@@ -142,6 +149,8 @@ export type DecorationStyle = {
     [key: string]: string;
 };
 
+export type StrikethroughMultiInputType = [StrikethroughType, string, Color];
+
 export type Settings = {
     content: ChecklistContent[];
     paddingAdvanced: boolean;
@@ -158,7 +167,7 @@ export type Settings = {
     progressBarType: string;
     progressBarFillColor: Color;
     progressBarTrackColor: Color;
-    strikethroughMultiInput: [string, string, Color];
+    strikethroughMultiInput: StrikethroughMultiInputType;
 };
 
 export const DefaultValues: Settings = {
