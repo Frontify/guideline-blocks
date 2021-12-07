@@ -155,6 +155,7 @@ const settings: ApiSettings = {
                             id: BORDER_WIDTH_ID,
                             type: 'input',
                             defaultValue: '1px',
+                            clearable: false,
                             rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                             onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
                         },

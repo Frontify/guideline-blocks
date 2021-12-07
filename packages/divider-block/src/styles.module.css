@@ -1,0 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+:global(.editor-enabled) .dividerBlock:hover {
+    background-color: rgba(40, 80, 220, 0.2);
+}

@@ -1,10 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 export * from './betweenNumericalOrPercentOrAutoRule';
+export * from './betweenPercentRule';
 export * from './betweenPixelRule';
 export * from './maximumNumericalOrPercentOrAutoRule';
+export * from './maximumNumericalOrPercentRule';
 export * from './maximumNumericalOrPixelOrAutoRule';
 export * from './minimumNumericalOrPercentOrAutoRule';
+export * from './minimumNumericalOrPercentRule';
 export * from './minimumNumericalOrPixelOrAutoRule';
 export * from './numericalOrPercentRule';
 export * from './numericalOrPixelOrAutoRule';

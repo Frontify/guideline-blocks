@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
-import { RichTextEditor } from '@frontify/arcade';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/arcade';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import {
     Alignment,
     alignmentMap,
@@ -12,7 +13,6 @@ import {
     CornerRadius,
     cornerRadiusMap,
     CustomPaddingStyles,
-    innerWidthMap,
     outerWidthMap,
     Padding,
     paddingMap,
@@ -20,7 +20,6 @@ import {
     typeMap,
     Width,
 } from './types';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 const getInnerDivClassName = (
     type: Type,
@@ -32,7 +31,7 @@ const getInnerDivClassName = (
     cornerRadius: CornerRadius
 ): string =>
     joinClassNames([
-        `tw-text-white ${typeMap[type]} ${innerWidthMap[width]}`,
+        `tw-flex tw-items-center tw-text-white ${typeMap[type]}`,
         width === Width.FullWidth && alignmentMap[alignment],
         !customPaddingSwitch && padding && paddingMap[padding],
         !customCornerRadiusSwitch && cornerRadius && cornerRadiusMap[cornerRadius],

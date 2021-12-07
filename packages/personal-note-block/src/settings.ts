@@ -2,10 +2,19 @@
 
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
-import { NoteBorderRadius, NoteBorderStyle, NotePadding, NoteStyle, NoteVisibility } from './types';
+import {
+    appendUnit,
+    maximumNumericalOrPixelOrAutoRule,
+    numericalOrPixelRule,
+    presetCustomValue,
+} from '@frontify/guideline-blocks-shared';
+import { NoteBorderRadius, NoteBorderStyle, NotePadding, NoteStyle, NoteVisibility, paddingValues } from './types';
 
-export const BACKGROUND_COLOR_DEFAULT_VALUE = { rgba: { r: 255, g: 255, b: 255, a: 1 }, name: 'White', hex: '#ffffff' };
+export const BACKGROUND_COLOR_DEFAULT_VALUE = {
+    rgba: { r: 247, g: 247, b: 247, a: 1 },
+    name: 'Light Grey',
+    hex: '#F7F7F7',
+};
 export const BORDER_COLOR_DEFAULT_VALUE = {
     rgba: { r: 234, g: 235, b: 235, a: 1 },
     name: 'Light Grey',
@@ -13,6 +22,7 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
 };
 
 const PADDING_VALUE_ID = 'paddingValue';
+const PADDING_CHOICE_ID = 'paddingChoice';
 const HAS_BACKGROUND_ID = 'hasBackground';
 const HAS_BORDER_ID = 'hasBorder';
 const BORDER_WIDTH_ID = 'borderWidth';
@@ -54,18 +64,21 @@ const Settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
+            onChange: (bundle: ApiBundle): void =>
+                presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_VALUE_ID, paddingValues),
+
             on: [
                 {
                     id: PADDING_VALUE_ID,
                     type: 'input',
-                    placeholder: '20px',
-                    rules: [numericalOrPixelRule],
+                    placeholder: '24px',
+                    rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     onChange: (bundle: ApiBundle): void => appendUnit(bundle, PADDING_VALUE_ID),
                 },
             ],
             off: [
                 {
-                    id: 'paddingChoice',
+                    id: PADDING_CHOICE_ID,
                     type: 'slider',
                     defaultValue: NotePadding.Small,
                     choices: [
@@ -96,58 +109,64 @@ const Settings: ApiSettings = {
             label: 'Background',
             type: 'switch',
             defaultValue: false,
+            on: [
+                {
+                    id: 'backgroundColor',
+                    type: 'colorInput',
+                    defaultValue: BACKGROUND_COLOR_DEFAULT_VALUE,
+                },
+            ],
+            off: [],
         },
-        {
-            id: 'backgroundColor',
-            type: 'colorInput',
-            defaultValue: BACKGROUND_COLOR_DEFAULT_VALUE,
-            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BACKGROUND_ID)?.value === true,
-        },
+
         {
             id: HAS_BORDER_ID,
             label: 'Border',
             type: 'switch',
             defaultValue: true,
-        },
-        {
-            id: 'borderSelection',
-            type: 'multiInput',
-            layout: MultiInputLayout.Columns,
-            lastItemFullWidth: true,
-            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID)?.value === true,
-            blocks: [
+            on: [
                 {
-                    id: 'borderStyle',
-                    type: 'dropdown',
-                    defaultValue: NoteBorderStyle.Solid,
-                    choices: [
+                    id: 'borderSelection',
+                    type: 'multiInput',
+                    layout: MultiInputLayout.Columns,
+                    lastItemFullWidth: true,
+                    show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID)?.value === true,
+                    blocks: [
                         {
-                            value: NoteBorderStyle.Solid,
-                            label: 'Solid',
+                            id: 'borderStyle',
+                            type: 'dropdown',
+                            defaultValue: NoteBorderStyle.Solid,
+                            choices: [
+                                {
+                                    value: NoteBorderStyle.Solid,
+                                    label: 'Solid',
+                                },
+                                {
+                                    value: NoteBorderStyle.Dotted,
+                                    label: 'Dotted',
+                                },
+                                {
+                                    value: NoteBorderStyle.Dashed,
+                                    label: 'Dashed',
+                                },
+                            ],
                         },
                         {
-                            value: NoteBorderStyle.Dotted,
-                            label: 'Dotted',
+                            id: BORDER_WIDTH_ID,
+                            type: 'input',
+                            defaultValue: '1px',
+                            rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
+                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
                         },
                         {
-                            value: NoteBorderStyle.Dashed,
-                            label: 'Dashed',
+                            id: 'borderColor',
+                            type: 'colorInput',
+                            defaultValue: BORDER_COLOR_DEFAULT_VALUE,
                         },
                     ],
                 },
-                {
-                    id: BORDER_WIDTH_ID,
-                    type: 'input',
-                    defaultValue: '1px',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
-                },
-                {
-                    id: 'borderColor',
-                    type: 'colorInput',
-                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
-                },
             ],
+            off: [],
         },
         {
             id: 'hasCustomBorderRadius',

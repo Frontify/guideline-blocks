@@ -19,17 +19,17 @@
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/react": "17.0.37",
         "autoprefixer": "10.4.0",
-        "cypress": "9.1.0",
+        "cypress": "9.1.1",
         "eslint": "8.3.0",
         "postcss": "8.4.4",
-        "prettier": "2.5.0",
+        "prettier": "2.5.1",
         "react": "17.0.2",
         "tailwindcss": "2.2.19",
         "typescript": "4.5.2"
     },
     "dependencies": {
         "@frontify/app-bridge": "2.10.0",
-        "@frontify/arcade": "0.13.0",
+        "@frontify/arcade": "0.14.0-beta.8",
         "@frontify/guideline-blocks-shared": "1.0.0"
     }
 }

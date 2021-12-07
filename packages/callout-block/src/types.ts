@@ -26,11 +26,6 @@ export const outerWidthMap: Record<Width, string> = {
     [Width.HugContents]: 'tw-flex',
 };
 
-export const innerWidthMap: Record<Width, string> = {
-    [Width.FullWidth]: 'tw-flex',
-    [Width.HugContents]: 'tw-block',
-};
-
 export enum Alignment {
     Left = 'left',
     Center = 'center',

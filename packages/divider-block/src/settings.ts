@@ -3,20 +3,20 @@
 import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import {
-    betweenNumericalOrPercentOrAutoRule,
+    appendUnit,
+    betweenPercentRule,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPercentRule,
     numericalOrPixelRule,
     presetCustomValue,
-    appendUnit,
 } from '@frontify/guideline-blocks-shared';
 import {
     DividerAlignment,
-    dividerHeightValues,
     DividerHeight,
+    dividerHeightValues,
     DividerStyle,
-    dividerThicknessValues,
     DividerThickness,
+    dividerThicknessValues,
     DividerWidth,
 } from './types';
 
@@ -80,7 +80,8 @@ const Settings: ApiSettings = {
                     id: WIDTH_CUSTOM_ID,
                     type: 'input',
                     placeholder: '75%',
-                    rules: [numericalOrPercentRule, betweenNumericalOrPercentOrAutoRule(0, 100)],
+                    clearable: false,
+                    rules: [numericalOrPercentRule, betweenPercentRule(0, 100)],
                     onChange: (bundle: ApiBundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
                 },
             ],
