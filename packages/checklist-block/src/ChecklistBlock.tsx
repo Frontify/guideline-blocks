@@ -59,21 +59,18 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
-    const removeItem = (idToDelete: string): void => {
+    const removeItem = (idToDelete: string): Promise<void> =>
         setBlockSettings({
             ...blockSettings,
             content: content.filter(({ id }) => id !== idToDelete),
         });
-    };
 
     const updateItem = (idToUpdate: string, properties: Partial<ChecklistContent>) => {
         const updatedContent = updateItemById(content, idToUpdate, properties);
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
 
-    const toggleCompletedVisibility = () => {
-        setShowCompleted((prev) => !prev);
-    };
+    const toggleCompletedVisibility = () => setShowCompleted((prev) => !prev);
 
     const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
         const [oldIndex, newIndex] = findIndexesForMove(content, selectedGridItemKeys, gridItemLocation);
@@ -132,44 +129,45 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                             {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
                         </Button>
                     </div>
-                    <div className="tw-my-2"></div>
-                    <OrderableList
-                        items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
-                        onMove={onMove}
-                        disableTypeAhead
-                        dragDisabled={!isEditing}
-                        renderContent={(
-                            { value, prevKey, nextKey }: GridNode<OrderableListItem<ChecklistContent>>,
-                            { componentDragState, isFocusVisible }: DragProperties
-                        ) => {
-                            const content = (
-                                <ChecklistItem
-                                    item={value}
-                                    key={value.id}
-                                    isDragFocusVisible={isFocusVisible}
-                                    isFirst={!prevKey}
-                                    isLast={!nextKey}
-                                    mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
-                                    toggleCompleted={(completed: boolean) =>
-                                        updateItem(value.id, {
-                                            completed,
-                                            updatedAt: Date.now(),
-                                        })
-                                    }
-                                    dragState={componentDragState}
-                                    onMoveItem={moveByIncrement}
-                                    onRemoveItem={removeItem}
-                                    onTextModified={(text) => updateItem(value.id, { text })}
-                                />
-                            );
-                            //Preview is rendered in external DOM, requires own context provider
-                            return componentDragState === ItemDragState.Preview ? (
-                                <SettingsContext.Provider value={settings}>{content}</SettingsContext.Provider>
-                            ) : (
-                                content
-                            );
-                        }}
-                    />
+                    <div className="tw-mt-4">
+                        <OrderableList
+                            items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
+                            onMove={onMove}
+                            disableTypeAhead
+                            dragDisabled={!isEditing}
+                            renderContent={(
+                                { value, prevKey, nextKey }: GridNode<OrderableListItem<ChecklistContent>>,
+                                { componentDragState, isFocusVisible }: DragProperties
+                            ) => {
+                                const content = (
+                                    <ChecklistItem
+                                        item={value}
+                                        key={value.id}
+                                        isDragFocusVisible={isFocusVisible}
+                                        isFirst={!prevKey}
+                                        isLast={!nextKey}
+                                        mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
+                                        toggleCompleted={(completed: boolean) =>
+                                            updateItem(value.id, {
+                                                completed,
+                                                updatedAt: Date.now(),
+                                            })
+                                        }
+                                        dragState={componentDragState}
+                                        onMoveItem={moveByIncrement}
+                                        onRemoveItem={removeItem}
+                                        onTextModified={(text) => updateItem(value.id, { text })}
+                                    />
+                                );
+                                //Preview is rendered in external DOM, requires own context provider
+                                return componentDragState === ItemDragState.Preview ? (
+                                    <SettingsContext.Provider value={settings}>{content}</SettingsContext.Provider>
+                                ) : (
+                                    content
+                                );
+                            }}
+                        />
+                    </div>
                     {isEditing && (
                         <>
                             <hr className="tw-my-2 tw-border-black-40" />
