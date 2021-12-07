@@ -101,6 +101,8 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         return <></>;
     }
 
+    console.log({ blockSettings });
+
     return (
         <div
             data-test-id="personal-note-block"
