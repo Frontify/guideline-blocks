@@ -29,7 +29,7 @@ it('saves a storybook url and shows iframe', () => {
     mount(<StorybookBlockWithStubs />);
     cy.get(EmptyStateSelector).find('input').type(EXAMPLE_URL);
     cy.get(EmptyStateSelector).find('button').click();
-    cy.get(IframeSelector).should('have.attr', 'src').and('include', EXAMPLE_URL);
+    cy.get(IframeSelector).should('have.attr', 'src').and('include', 'arcade-components.netlify.app');
 });
 
 it('renders storybook iframe without addons', () => {
