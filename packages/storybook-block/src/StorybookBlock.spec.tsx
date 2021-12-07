@@ -3,7 +3,7 @@
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import StorybookBlock from '.';
-import { StorybookPosition, StorybookStyle, StorybookBorderStyle, StorybookHeight } from './types';
+import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
 
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';
 const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
