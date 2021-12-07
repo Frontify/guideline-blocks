@@ -6,7 +6,7 @@ import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
 import { useContext, useRef, FC } from 'react';
-import { CheckboxProps, DefaultValues } from '../types';
+import { CheckboxProps } from '../types';
 import { CheckboxLabel } from './CheckboxLabel';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from '../SettingsContext';
@@ -44,14 +44,8 @@ export const Checkbox: FC<CheckboxProps> = ({
 
     const checkboxStyles = {
         background: checked ? completeCheckboxColor.hex : '',
-        borderColor: DefaultValues.incompleteCheckboxColor.hex,
+        borderColor: checked ? completeCheckboxColor.hex : incompleteCheckboxColor.hex,
     };
-
-    if (!checked) {
-        checkboxStyles.borderColor = incompleteCheckboxColor.hex;
-    } else if (checked) {
-        checkboxStyles.borderColor = completeCheckboxColor.hex;
-    }
 
     return (
         <label
