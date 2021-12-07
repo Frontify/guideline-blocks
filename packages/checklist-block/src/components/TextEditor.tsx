@@ -24,11 +24,7 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
         };
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.code === 'Enter') {
-                if (event.shiftKey) {
-                    event.stopPropagation();
-                } else {
-                    editorRef.current?.blur();
-                }
+                event.shiftKey ? event.stopPropagation() : editorRef.current?.blur();
             }
         };
 
