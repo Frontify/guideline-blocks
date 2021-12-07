@@ -3,7 +3,7 @@
 import { FOCUS_STYLE } from '@frontify/arcade';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
-import { FC, useRef } from 'react';
+import { FC, KeyboardEvent, MouseEvent, useRef } from 'react';
 import { FocusControllerProps } from '../types';
 
 export const FocusController: FC<FocusControllerProps> = ({ children }) => {
@@ -15,7 +15,7 @@ export const FocusController: FC<FocusControllerProps> = ({ children }) => {
 
     const focusControllerRef = useRef<HTMLDivElement | null>(null);
     const childRef = useRef<HTMLElement | null>(null);
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
         const isChildsEvent = event.currentTarget !== event.target;
 
         switch (event.code) {
@@ -45,7 +45,7 @@ export const FocusController: FC<FocusControllerProps> = ({ children }) => {
         }
     };
 
-    const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
         childRef?.current?.focus();
     };

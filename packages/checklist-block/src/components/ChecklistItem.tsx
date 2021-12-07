@@ -15,9 +15,17 @@ import { useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
 import { ChecklistButton } from './ChecklistButton';
-import { ChecklistItemMode, ChecklistItemProps, DefaultChecklistItem } from '../types';
+import { ChecklistItemMode, ChecklistItemProps } from '../types';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FocusController } from './FocusController';
+
+const DefaultChecklistItem = {
+    text: '',
+    id: '',
+    createdAt: 0,
+    updatedAt: 0,
+    completed: false,
+};
 
 export const ChecklistItem: FC<ChecklistItemProps> = ({
     item,

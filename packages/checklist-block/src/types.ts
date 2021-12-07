@@ -82,14 +82,6 @@ export type UpdateableItem<T = Record<string, unknown>> = T & {
     id: string;
 };
 
-export const DefaultChecklistItem = {
-    text: '',
-    id: '',
-    createdAt: 0,
-    updatedAt: 0,
-    completed: false,
-};
-
 export enum ChecklistItemMode {
     Edit = 'Edit',
     View = 'View',

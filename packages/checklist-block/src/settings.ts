@@ -5,12 +5,8 @@ import { ChecklistDecoration, ChecklistPadding, DefaultValues, ProgressBarType, 
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
 
-const showProgressStyles = (bundle: ApiBundle): boolean => {
-    return (
-        bundle.getBlock('progressBarVisible')?.value === true &&
-        bundle.getBlock('progressBarType')?.value === ProgressBarType.Bar
-    );
-};
+const showProgressStyles = (bundle: ApiBundle): boolean =>
+    !!bundle.getBlock('progressBarVisible')?.value && bundle.getBlock('progressBarType')?.value === ProgressBarType.Bar;
 
 const settings: ApiSettings = {
     main: [
