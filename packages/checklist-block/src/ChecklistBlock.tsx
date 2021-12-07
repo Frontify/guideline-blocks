@@ -14,7 +14,7 @@ import {
 } from '@frontify/arcade';
 import { ItemDropTarget } from '@react-types/shared';
 import { useHover } from '@react-aria/interactions';
-import React, { useState, FC } from 'react';
+import { useState, FC } from 'react';
 import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { GridNode } from '@react-types/grid';

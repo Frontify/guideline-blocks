@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
-import React, { FC, useContext } from 'react';
+
+import { FC, useContext } from 'react';
 import { CheckboxLabelProps, ChecklistDecoration, DecorationStyle } from '../types';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import dayjs from 'dayjs';

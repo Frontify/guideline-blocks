@@ -1,5 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Button, ButtonStyle } from '@frontify/arcade';
 import { ChecklistButtonProps } from '../types';
 

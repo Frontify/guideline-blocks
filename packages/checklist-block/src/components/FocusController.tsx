@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { FOCUS_STYLE } from '@frontify/arcade';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
-import React, { FC, useRef } from 'react';
+import { FC, useRef } from 'react';
 import { FocusControllerProps } from '../types';
 
 export const FocusController: FC<FocusControllerProps> = ({ children }) => {
@@ -12,27 +13,27 @@ export const FocusController: FC<FocusControllerProps> = ({ children }) => {
 
     const { isFocused, focusProps } = useFocusRing();
 
-    const focusControllerRef = useRef() as React.MutableRefObject<HTMLDivElement>;
-    const childRef = useRef() as React.MutableRefObject<HTMLElement>;
+    const focusControllerRef = useRef<HTMLDivElement | null>(null);
+    const childRef = useRef<HTMLElement | null>(null);
     const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
         const isChildsEvent = event.currentTarget !== event.target;
 
         switch (event.code) {
             case 'Space':
                 if (!isChildsEvent) {
-                    childRef.current.focus();
+                    childRef?.current?.focus();
                 }
                 break;
             case 'Enter':
                 if (isChildsEvent) {
                     event.stopPropagation();
                 } else {
-                    childRef.current.focus();
+                    childRef?.current?.focus();
                 }
                 break;
             case 'Escape':
                 if (isChildsEvent) {
-                    focusControllerRef.current.focus();
+                    focusControllerRef?.current?.focus();
                 }
                 break;
             case 'ArrowLeft':
@@ -46,7 +47,7 @@ export const FocusController: FC<FocusControllerProps> = ({ children }) => {
 
     const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-        childRef.current.focus();
+        childRef?.current?.focus();
     };
 
     return (
