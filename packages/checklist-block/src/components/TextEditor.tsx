@@ -6,7 +6,7 @@ import { ImperativeFocusHandle, TextEditorProps } from '../types';
 export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
     ({ value, onTextModified, readonly, placeholder, resetOnSave }, ref) => {
         const { incompleteTextColor } = useContext(SettingsContext);
-        const editorRef = useRef<HTMLDivElement>(null);
+        const editorRef = useRef<HTMLDivElement | null>(null);
 
         useImperativeHandle(ref, () => ({
             focus: () => {
