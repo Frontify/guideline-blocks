@@ -112,12 +112,16 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                         height={isCustomHeight ? heightValue : heights[heightChoice]}
                         src={iframeUrl.toString()}
                         frameBorder="0"
+                        data-test-id="storybook-iframe"
                     ></iframe>
                 </div>
             ) : (
                 <>
                     {isEditing ? (
-                        <div className="tw-flex tw-items-stretch tw-justify-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2">
+                        <div
+                            className="tw-flex tw-items-stretch tw-justify-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2"
+                            data-test-id="storybook-empty-wrapper"
+                        >
                             <IconStorybook size={IconSize.Size32} />
                             <div className="tw-w-full tw-max-w-sm">
                                 <TextInput
