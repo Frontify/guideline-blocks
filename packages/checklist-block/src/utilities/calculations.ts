@@ -1,4 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { ChecklistContent } from '../types';
 
 export const totalCompletedCount = (array: ChecklistContent[]): number =>

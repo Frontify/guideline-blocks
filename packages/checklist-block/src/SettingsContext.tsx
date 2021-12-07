@@ -1,4 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { createContext } from 'react';
 import { DefaultValues, Settings } from './types';
 

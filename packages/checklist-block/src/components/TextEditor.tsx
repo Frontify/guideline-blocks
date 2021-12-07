@@ -1,4 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { useContext, useRef, KeyboardEvent, FocusEvent, forwardRef, useImperativeHandle } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import { ImperativeFocusHandle, TextEditorProps } from '../types';
