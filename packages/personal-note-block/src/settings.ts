@@ -26,6 +26,9 @@ const HAS_BORDER_ID = 'hasBorder';
 const BORDER_WIDTH_ID = 'borderWidth';
 const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
 
+const showBorderRadius = (bundle: ApiBundle): boolean =>
+    bundle.getBlock(HAS_BACKGROUND_ID)?.value === true || bundle.getBlock(HAS_BORDER_ID)?.value === true;
+
 const Settings: ApiSettings = {
     main: [
         {
@@ -172,7 +175,7 @@ const Settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID)?.value === true,
+            show: showBorderRadius,
             on: [
                 {
                     id: BORDER_RADIUS_VALUE_ID,
