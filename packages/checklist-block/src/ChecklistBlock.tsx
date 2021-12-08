@@ -134,10 +134,10 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                         percentage={calculatePercentage(settings.content)}
                     />
                 )}
-                {shouldShowProgress && settings.progressBarType === ProgressBarType.Fraction && (
+                {shouldShowProgress && settings.progressBarType === ProgressBarType.Percentage && (
                     <ProgressHeader value={`${calculatePercentage(settings.content)}%`} />
                 )}
-                {shouldShowProgress && settings.progressBarType === ProgressBarType.Percentage && (
+                {shouldShowProgress && settings.progressBarType === ProgressBarType.Fraction && (
                     <ProgressHeader value={calculateFraction(settings.content)} />
                 )}
                 <div
