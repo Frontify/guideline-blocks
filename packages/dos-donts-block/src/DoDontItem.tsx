@@ -2,7 +2,7 @@
 
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, useEffect, useState } from 'react';
 import { DoDontItemProps, DoDontStyle, DoDontType } from './types';
 
 export const DoDontItem: FC<DoDontItemProps> = ({
@@ -16,6 +16,8 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     body = '',
     editing = false,
 }) => {
+    const [shouldBlurIcon, setShouldBlurIcon] = useState<boolean>(true);
+
     const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
     const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
 
@@ -29,11 +31,13 @@ export const DoDontItem: FC<DoDontItemProps> = ({
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
+    useEffect(() => setShouldBlurIcon(title === ''), [title]);
+
     return (
         <div>
             <div style={headingStyles[type]} className="tw-flex tw-items-center tw-font-semibold tw-text-l">
                 {style === DoDontStyle.Icons && (editing || title || body) && (
-                    <div className="tw-mr-2 tw-w-auto">
+                    <div className={`tw-mr-2 tw-w-auto ${shouldBlurIcon ? 'tw-opacity-30' : ''}`}>
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
                         {type === DoDontType.Dont && <IconRejectCircle size={IconSize.Size24} />}
                     </div>
@@ -41,7 +45,10 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                 <div className="tw-w-full">
                     <RichTextEditor
                         value={title}
-                        onTextChange={(value) => saveItem(id, value, 'title')}
+                        onTextChange={(value) => {
+                            setShouldBlurIcon(false);
+                            saveItem(id, value, 'title');
+                        }}
                         placeholder={editing ? 'Add a title' : ''}
                         readonly={!editing}
                     />
