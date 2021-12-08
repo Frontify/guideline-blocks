@@ -34,7 +34,6 @@ export const appendUnit = (bundle: ApiBundle, settingId: string, unit: Unit = 'p
 
 export const appendUnitToArray = (bundle: ApiBundle, settingId: string, unit: Unit = 'px'): void => {
     const blockValue = bundle.getBlock(settingId)?.value;
-    console.log('appendUnitToArray');
     if (Array.isArray(blockValue)) {
         const newValue = blockValue.map((singleValue: ApiBlock['value']): ApiBlock['value'] => {
             if (!Number.isNaN(Number(singleValue)) && singleValue !== '') {
