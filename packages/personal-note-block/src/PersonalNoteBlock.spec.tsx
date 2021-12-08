@@ -33,6 +33,7 @@ it('write content to personal note block', () => {
 
     mount(<PersonalNoteBlockWithStubs />);
     cy.get(RichTextEditor).find('[contenteditable=true]').type('Hello world');
+    cy.get(RichTextEditor).find('[contenteditable=true]').contains('Hello world');
 });
 
 it('renders personal note block without header', () => {
