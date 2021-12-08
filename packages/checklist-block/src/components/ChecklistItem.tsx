@@ -60,8 +60,16 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
         shouldDisplayControlPanel && 'tw-bg-black-5',
     ]);
 
+    const notEditable = mode !== ChecklistItemMode.Edit;
+
     return (
-        <div className={containerClasses} {...hoverProps} {...focusWithinProps}>
+        <div
+            className={containerClasses}
+            {...hoverProps}
+            {...focusWithinProps}
+            data-test-id="checklist-item"
+            data-mode={mode}
+        >
             <div className="tw-p-2 tw-flex tw-flex-auto tw-content-center">
                 <div className="tw-flex tw-flex-auto tw-items-center">
                     <div className="tw-flex tw-flex-auto tw-items-start">
@@ -95,19 +103,21 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                         'tw-flex-none tw-flex tw-items-center',
                         shouldDisplayControlPanel ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none',
                     ])}
+                    data-cy="control-buttons"
                 >
                     <ButtonGroup size={ButtonSize.Small}>
                         <ChecklistButton
-                            disabled={isFirst}
+                            disabled={isFirst || notEditable}
                             icon={<IconCaretUp size={IconSize.Size16} />}
                             onClick={() => onMoveItem && onMoveItem(id, -1)}
                         />
                         <ChecklistButton
-                            disabled={isLast}
+                            disabled={isLast || notEditable}
                             icon={<IconCaretDown size={IconSize.Size16} />}
                             onClick={() => onMoveItem && onMoveItem(id, 1)}
                         />
                         <ChecklistButton
+                            disabled={notEditable}
                             icon={<IconReject size={IconSize.Size16} />}
                             onClick={() => onRemoveItem && onRemoveItem(id)}
                         />

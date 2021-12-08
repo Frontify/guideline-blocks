@@ -12,26 +12,29 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
+        "@cypress/react": "5.10.3",
         "@frontify/eslint-config-react": "0.13.2",
         "@frontify/frontify-cli": "2.3.1",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/react": "17.0.37",
         "autoprefixer": "10.4.0",
+        "cypress":"9.1.1",
+        "cypress-real-events":"1.6.0",
         "postcss": "8.4.4",
-        "prettier": "2.5.0",
+        "prettier": "2.5.1",
         "react": "^17.0.2",
         "tailwindcss": "2.2.19",
         "typescript": "4.5.2"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^2.10.0",
-        "@frontify/arcade": "0.14.0-beta.8",
-        "@react-aria/interactions": "^3.7.0",
-        "@react-aria/focus": "^3.5.0",
-        "@react-aria/utils":"^3.10.0",
+        "@frontify/app-bridge": "2.10.0",
+        "@frontify/arcade": "0.14.0-beta.10",
         "@react-aria/checkbox":"^3.2.3",
+        "@react-aria/focus": "^3.5.0",
+        "@react-aria/interactions": "^3.7.0",
+        "@react-aria/utils":"^3.10.0",
+        "@react-stately/toggle": "^3.2.3",
         "dayjs": "^1.10.7",
-        "react-aria": "^3.11.0",
-        "@react-stately/toggle": "^3.2.3"
+        "react-aria": "^3.11.0"
     }
 }
