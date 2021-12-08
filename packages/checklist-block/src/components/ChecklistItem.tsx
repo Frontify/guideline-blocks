@@ -103,7 +103,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                         'tw-flex-none tw-flex tw-items-center',
                         shouldDisplayControlPanel ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none',
                     ])}
-                    data-cy="control-buttons"
+                    data-test-id="control-buttons"
                 >
                     <ButtonGroup size={ButtonSize.Small}>
                         <ChecklistButton
