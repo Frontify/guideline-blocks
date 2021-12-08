@@ -3,9 +3,11 @@
 import { FileExtension } from '@frontify/app-bridge';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { appendUnitToArray, numericalOrPixelRule } from "@frontify/guideline-blocks-shared";
 import { Alignment, CornerRadius, Padding, Type, Width } from './types';
 
+const CUSTOM_PADDING_ID = 'customPadding';
+const CUSTOM_RADIUS_ID = 'customCornerRadius';
 const PADDING_TOP_ID = 'padding-top';
 const PADDING_LEFT_ID = 'padding-left';
 const PADDING_RIGHT_ID = 'padding-right';
@@ -109,37 +111,34 @@ const settings: ApiSettings = {
             label: 'Padding',
             on: [
                 {
-                    id: 'customPadding',
+                    id: CUSTOM_PADDING_ID,
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
+                    onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, CUSTOM_PADDING_ID),
                     blocks: [
                         {
                             id: PADDING_TOP_ID,
                             type: 'input',
                             label: 'Top',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, PADDING_TOP_ID),
                         },
                         {
                             id: PADDING_LEFT_ID,
                             type: 'input',
                             label: 'Left',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, PADDING_LEFT_ID),
                         },
                         {
                             id: PADDING_RIGHT_ID,
                             type: 'input',
                             label: 'Right',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, PADDING_RIGHT_ID),
                         },
                         {
                             id: PADDING_BOTTOM_ID,
                             type: 'input',
                             label: 'Bottom',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, PADDING_BOTTOM_ID),
                         },
                     ],
                 },
@@ -176,37 +175,34 @@ const settings: ApiSettings = {
             label: 'Corner radius',
             on: [
                 {
-                    id: 'customCornerRadius',
+                    id: CUSTOM_RADIUS_ID,
                     type: 'multiInput',
                     layout: MultiInputLayout.Columns,
+                    onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, CUSTOM_RADIUS_ID),
                     blocks: [
                         {
                             id: RADIUS_TOPLEFT_ID,
                             type: 'input',
                             label: 'Top Left',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, RADIUS_TOPLEFT_ID),
                         },
                         {
                             id: RADIUS_TOPRIGHT_ID,
                             type: 'input',
                             label: 'Top Right',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, RADIUS_TOPRIGHT_ID),
                         },
                         {
                             id: RADIUS_BOTTOMLEFT_ID,
                             type: 'input',
                             label: 'Bottom Left',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, RADIUS_BOTTOMLEFT_ID),
                         },
                         {
                             id: RADIUS_BOTTOMRIGHT_ID,
                             type: 'input',
                             label: 'Bottom Right',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, RADIUS_BOTTOMRIGHT_ID),
                         },
                     ],
                 },
