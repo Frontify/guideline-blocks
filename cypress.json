@@ -7,5 +7,7 @@
         "viewportHeight": 1280,
         "viewportWidth": 800
     },
-    "runMode": 2
+    "retries": {
+        "runMode": 2
+    }
 }
