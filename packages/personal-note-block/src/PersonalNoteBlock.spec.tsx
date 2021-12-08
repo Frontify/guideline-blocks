@@ -35,7 +35,7 @@ it('write content to personal note block', () => {
     cy.get(RichTextEditor).find('[contenteditable=true]').type('Hello world');
 });
 
-it('renders personal note block without name, avatar and date', () => {
+it('renders personal note block without header', () => {
     const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
         blockSettings: {
             hasAvatarName: false,
