@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 
 type Unit = 'px' | 'em' | 'rem' | '%';
 
@@ -35,13 +34,13 @@ export const appendUnit = (bundle: ApiBundle, settingId: string, unit: Unit = 'p
 export const appendUnitToArray = (bundle: ApiBundle, settingId: string, unit: Unit = 'px'): void => {
     const blockValue = bundle.getBlock(settingId)?.value;
     if (Array.isArray(blockValue)) {
-        const newValue = blockValue.map((singleValue: ApiBlock['value']): ApiBlock['value'] => {
+        const newValue = blockValue.map((singleValue) => {
             if (!Number.isNaN(Number(singleValue)) && singleValue !== '') {
                 return `${singleValue}${unit}`;
             } else {
                 return singleValue;
             }
-        }) as ApiBlock['value'];
+        });
         bundle.setBlockValue(settingId, newValue);
     }
 };
