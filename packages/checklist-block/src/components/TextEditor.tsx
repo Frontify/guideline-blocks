@@ -40,6 +40,7 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
                     onKeyDown={handleKeyPress}
                     onBlur={handleChange}
                     ref={editorRef}
+                    data-test-id="text-editor"
                 >
                     {value}
                 </div>
