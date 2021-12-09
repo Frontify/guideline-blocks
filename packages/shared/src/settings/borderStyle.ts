@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MultiInputLayout } from '@frontify/arcade';
-import { numericalOrPixelRule, pxAutocomplete } from '@frontify/guideline-blocks-shared';
+import { ApiBundle } from '@frontify/guideline-blocks-settings';
+import { appendUnit, numericalOrPixelRule } from '../';
 
 export const BORDER_COLOR_DEFAULT_VALUE = { rgba: { r: 234, g: 235, b: 235, a: 1 }, name: 'Light Grey' };
 
@@ -20,7 +21,7 @@ export const BorderStyleSettings = [
         type: 'multiInput',
         layout: MultiInputLayout.Columns,
         lastItemFullWidth: true,
-        show: (bundle) => bundle.getBlock(HAS_BORDER_ID).value,
+        show: (bundle: ApiBundle) => bundle.getBlock(HAS_BORDER_ID)?.value,
         blocks: [
             {
                 id: 'borderStyle',
@@ -46,7 +47,7 @@ export const BorderStyleSettings = [
                 type: 'input',
                 defaultValue: '1px',
                 rules: [numericalOrPixelRule],
-                onChange: (bundle: any): void => pxAutocomplete(bundle, BORDER_WIDTH_ID),
+                onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
             },
             {
                 id: 'borderColor',
