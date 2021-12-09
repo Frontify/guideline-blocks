@@ -114,7 +114,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 onTextModified={(text) => updateItem(value.id, { text })}
             />
         );
-        //Preview is rendered in external DOM, requires own context provider
+        // Preview is rendered in external DOM, requires own context provider
         return componentDragState === ItemDragState.Preview ? (
             <SettingsContext.Provider value={settings}>{content}</SettingsContext.Provider>
         ) : (
