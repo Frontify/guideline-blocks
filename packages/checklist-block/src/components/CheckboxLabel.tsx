@@ -2,7 +2,7 @@
 
 import { FC, useContext } from 'react';
 import { CheckboxLabelProps, ChecklistDecoration, DecorationStyle, StrikethroughStyleType } from '../types';
-import { colorToHex, joinClassNames } from '@frontify/guideline-blocks-shared';
+import { colorToHexAlpha, joinClassNames } from '@frontify/guideline-blocks-shared';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { SettingsContext } from '../SettingsContext';
@@ -20,11 +20,11 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
                     textDecoration: 'line-through',
                     textDecorationStyle: StrikethroughStyleType[strikethroughMultiInput[0]],
                     textDecorationThickness: strikethroughMultiInput[1],
-                    textDecorationColor: colorToHex(strikethroughMultiInput[2]),
+                    textDecorationColor: colorToHexAlpha(strikethroughMultiInput[2]),
                 };
             case ChecklistDecoration.Highlight:
                 return {
-                    backgroundColor: colorToHex(highlightColor),
+                    backgroundColor: colorToHexAlpha(highlightColor),
                 };
             default:
                 return {};
@@ -39,7 +39,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
                     'tw-select-none tw-whitespace-pre-wrap tw-w-max',
                     disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
-                style={{ color: colorToHex(completeTextColor), ...decorationStyles }}
+                style={{ color: colorToHexAlpha(completeTextColor), ...decorationStyles }}
                 data-test-id="checkbox-label"
             >
                 {children}

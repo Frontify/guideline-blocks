@@ -10,3 +10,5 @@ export const calculatePercentage = (content: ChecklistContent[]): number =>
 
 export const calculateFraction = (content: ChecklistContent[]): string =>
     `${totalCompletedCount(content)}/${content.length}`;
+
+export const randomInteger = (min: number, max: number) => Math.ceil(Math.random() * (max - min) + min);

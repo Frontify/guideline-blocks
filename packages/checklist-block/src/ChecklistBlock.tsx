@@ -28,7 +28,7 @@ import {
     ProgressBarType,
     Settings,
 } from './types';
-import { colorToHex, generatePaddingString } from '@frontify/guideline-blocks-shared';
+import { colorToHexAlpha, generatePaddingString } from '@frontify/guideline-blocks-shared';
 import { provideDefaults } from './utilities/provideDefaults';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
@@ -138,8 +138,8 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
             >
                 {shouldShowProgress && progressBarType === ProgressBarType.Bar && (
                     <ProgressBar
-                        fillColor={colorToHex(progressBarFillColor)}
-                        trackColor={colorToHex(progressBarTrackColor)}
+                        fillColor={colorToHexAlpha(progressBarFillColor)}
+                        trackColor={colorToHexAlpha(progressBarTrackColor)}
                         percentage={calculatePercentage(content)}
                     />
                 )}
