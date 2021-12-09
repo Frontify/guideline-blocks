@@ -3,7 +3,17 @@
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import ChecklistBlock from '.';
-import { ChecklistContent, ChecklistItemMode, ProgressBarType } from './types';
+import {
+    ChecklistContent,
+    ChecklistDecoration,
+    ChecklistItemMode,
+    ChecklistPadding,
+    PaddingClasses,
+    ProgressBarType,
+    Settings,
+    StrikethroughStyleType,
+    StrikethroughType,
+} from './types';
 import { createItem } from './utilities/contentHelpers';
 
 const CHECKLIST_BLOCK_SELECTOR = '[data-test-id="checklist-block"]';
@@ -14,7 +24,11 @@ const CHECKLIST_CONTAINER = '[data-test-id="checklist-container"]';
 const TEXT_EDITOR = '[data-test-id="text-editor"]';
 const CONTROL_BUTTONS = '[data-test-id="control-buttons"]';
 const PROGRESS_BAR = '[data-test-id="progress-bar"]';
+const PROGRESS_BAR_FILL = '[data-test-id="progress-bar-fill"]';
 const PROGRESS_HEADER_VALUE = '[data-test-id="progress-header-value"]';
+const CHECKBOX = '[data-test-id="checkbox"]';
+const CHECKBOX_LABEL = '[data-test-id="checkbox-label"]';
+const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 
 const DRAGGABLE_ITEM = '[data-test-id=draggable-item]';
 const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
@@ -30,6 +44,18 @@ const createContentArray = (length: number, fixedParams?: Partial<ChecklistConte
     return new Array(length).fill(0).map(() => createRandomItem(fixedParams));
 };
 
+const getRGBColor = (color: string) => {
+    const tempElement = document.createElement('div');
+    tempElement.style.color = color;
+    tempElement.style.display = 'none'; // make sure it doesn't actually render
+    document.body.appendChild(tempElement); // append so that `getComputedStyle` actually works
+
+    const tempColor = getComputedStyle(tempElement).color;
+
+    document.body.removeChild(tempElement); // remove it because we're done with it
+    return tempColor;
+};
+
 it('Renders a checklist block', () => {
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {});
 
@@ -39,8 +65,8 @@ it('Renders a checklist block', () => {
 
 it('Displays the correct number of checklist items in View Mode', () => {
     const length = randomInteger(0, 10);
-    const contentArray = createContentArray(length);
-    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, { blockSettings: { content: contentArray } });
+    const content = createContentArray(length);
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, { blockSettings: { content } });
 
     mount(<ChecklistBlockWithStubs />);
     cy.get(CHECKLIST_ITEM).should('have.length', length);
@@ -48,9 +74,9 @@ it('Displays the correct number of checklist items in View Mode', () => {
 
 it('Displays the correct number of checklist items in Edit Mode', () => {
     const length = Math.ceil(Math.random() * 10);
-    const contentArray = createContentArray(length);
+    const content = createContentArray(length);
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray },
+        blockSettings: { content },
         editorState: true,
     });
 
@@ -72,9 +98,9 @@ it('Allows users to create new item in Edit Mode', () => {
 });
 
 it('Allows users to remove item in Edit Mode', () => {
-    const contentArray = createContentArray(5);
+    const content = createContentArray(5);
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray },
+        blockSettings: { content },
         editorState: true,
     });
     mount(<ChecklistBlockWithStubs />);
@@ -84,33 +110,34 @@ it('Allows users to remove item in Edit Mode', () => {
 });
 
 it('Allows users to move item up or down in Edit Mode', () => {
-    const contentArray = createContentArray(3);
+    const content = createContentArray(3);
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray },
+        blockSettings: { content },
         editorState: true,
     });
 
     mount(<ChecklistBlockWithStubs />);
+    cy.get(CHECKLIST_CONTAINER).find(CHECKLIST_ITEM).first().realHover();
     cy.get(CHECKLIST_CONTAINER)
         .find(DRAGGABLE_ITEM)
         .first()
         .then(($firstItem) => {
-            const firstItemKey = $firstItem.attr('data-key');
-            cy.wrap($firstItem).find(CONTROL_BUTTONS).find('button').eq(1).focus().click();
+            const firstItemKey = $firstItem.data('key');
+            cy.wrap($firstItem).find(CONTROL_BUTTONS).should('be.visible').find('button').eq(1).click();
             cy.get(CHECKLIST_CONTAINER)
                 .find(DRAGGABLE_ITEM)
                 .first()
                 .then(($newFirstItem) => {
-                    const newFirstItemKey = $newFirstItem.attr('data-key');
+                    const newFirstItemKey = $newFirstItem.data('key');
                     expect(newFirstItemKey).not.to.equal(firstItemKey);
                 });
         });
 });
 
 it('Disables List modifications in View Mode', () => {
-    const contentArray = createContentArray(5);
+    const content = createContentArray(5);
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray },
+        blockSettings: { content },
         editorState: false,
     });
 
@@ -127,9 +154,9 @@ it('Disables List modifications in View Mode', () => {
 });
 
 it('Disables Up arrow if first item and Down arrow if last item', () => {
-    const contentArray = createContentArray(3);
+    const content = createContentArray(3);
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray },
+        blockSettings: { content },
         editorState: true,
     });
 
@@ -163,8 +190,8 @@ it('Disables Up arrow if first item and Down arrow if last item', () => {
 it('Can hide/show completed tasks in View mode', () => {
     const completedItems = createContentArray(5, { completed: true });
     const incompleteItems = createContentArray(5, { completed: false });
-    const contentArray = [...completedItems, ...incompleteItems];
-    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, { blockSettings: { content: contentArray } });
+    const content = [...completedItems, ...incompleteItems];
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, { blockSettings: { content } });
 
     mount(<ChecklistBlockWithStubs />);
     cy.get(CHECKLIST_ITEM).should('have.length', 10);
@@ -186,9 +213,9 @@ it('Can hide/show completed tasks in View mode', () => {
 it('Cannot hide/show completed tasks in Edit mode', () => {
     const completedItems = createContentArray(5, { completed: true });
     const incompleteItems = createContentArray(5, { completed: false });
-    const contentArray = [...completedItems, ...incompleteItems];
+    const content = [...completedItems, ...incompleteItems];
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray },
+        blockSettings: { content },
         editorState: true,
     });
 
@@ -208,9 +235,9 @@ it('Hides progress bar if no checklist items', () => {
 });
 
 it('Shows progress bar if setting is true and checklist is not empty', () => {
-    const contentArray = createContentArray(1);
+    const content = createContentArray(1);
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray, progressBarType: ProgressBarType.Bar, progressBarVisible: true },
+        blockSettings: { content, progressBarType: ProgressBarType.Bar, progressBarVisible: true },
     });
 
     mount(<ChecklistBlockWithStubs />);
@@ -220,13 +247,13 @@ it('Shows progress bar if setting is true and checklist is not empty', () => {
 it('Correctly displays calculated percentage in fraction', () => {
     const completedItems = createContentArray(randomInteger(0, 10), { completed: true });
     const incompleteItems = createContentArray(randomInteger(0, 10), { completed: false });
-    const contentArray = [...completedItems, ...incompleteItems];
+    const content = [...completedItems, ...incompleteItems];
 
     const completedLength = completedItems.length;
-    const totalLength = contentArray.length;
+    const totalLength = content.length;
 
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray, progressBarType: ProgressBarType.Fraction, progressBarVisible: true },
+        blockSettings: { content, progressBarType: ProgressBarType.Fraction, progressBarVisible: true },
     });
 
     mount(<ChecklistBlockWithStubs />);
@@ -236,16 +263,118 @@ it('Correctly displays calculated percentage in fraction', () => {
 it('Correctly displays calculated percentage in percentage', () => {
     const completedItems = createContentArray(randomInteger(0, 10), { completed: true });
     const incompleteItems = createContentArray(randomInteger(0, 10), { completed: false });
-    const contentArray = [...completedItems, ...incompleteItems];
+    const content = [...completedItems, ...incompleteItems];
 
     const completedLength = completedItems.length;
-    const totalLength = contentArray.length;
+    const totalLength = content.length;
     const percentage = ((completedLength / totalLength) * 100).toFixed(0);
 
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
-        blockSettings: { content: contentArray, progressBarType: ProgressBarType.Percentage, progressBarVisible: true },
+        blockSettings: { content, progressBarType: ProgressBarType.Percentage, progressBarVisible: true },
     });
 
     mount(<ChecklistBlockWithStubs />);
     cy.get(PROGRESS_HEADER_VALUE).should('be.visible').and('have.text', `${percentage}%`);
+});
+
+it('Correctly renders styles provided by settings', () => {
+    const settings: Settings = {
+        content: [],
+        paddingAdvanced: false,
+        paddingBasic: ChecklistPadding.Large,
+        paddingCustom: [],
+        incompleteTextColor: { hex: '#111111' },
+        incompleteCheckboxColor: { hex: '#222222' },
+        completeTextColor: { hex: '#333333' },
+        completeCheckboxColor: { hex: '#444444' },
+        completedDecoration: ChecklistDecoration.Strikethrough,
+        highlightColor: { hex: '#555555' },
+        dateVisible: true,
+        progressBarVisible: true,
+        progressBarType: ProgressBarType.Bar,
+        progressBarFillColor: { hex: '#666666' },
+        progressBarTrackColor: { hex: '#777777' },
+        strikethroughMultiInput: [StrikethroughType.Dashed, '5px', { hex: '#888888' }],
+    };
+    const completedItems = createContentArray(5, { completed: true });
+    const incompleteItems = createContentArray(5, { completed: false });
+    const content = [...completedItems, ...incompleteItems];
+
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        blockSettings: { ...settings, content },
+    });
+
+    mount(<ChecklistBlockWithStubs />);
+    cy.get(CHECKBOX).each(($item) => {
+        const border = $item.css('border-color');
+        const fill = $item.css('background-color');
+        const checked = $item.data('checked');
+        if (checked) {
+            expect(border).to.equal(getRGBColor(settings.completeCheckboxColor.hex));
+            expect(fill).to.equal(getRGBColor(settings.completeCheckboxColor.hex));
+        } else {
+            expect(border).to.equal(getRGBColor(settings.incompleteCheckboxColor.hex));
+            expect(fill).to.equal(getRGBColor('white'));
+        }
+    });
+    cy.get(TEXT_EDITOR).each(($editor) => {
+        const color = $editor.css('color');
+        expect(color).to.equal(getRGBColor(settings.incompleteTextColor.hex));
+    });
+    cy.get(CHECKBOX_LABEL).each(($label) => {
+        const color = $label.css('color');
+        const textDecoration = $label.css('text-decoration-line');
+        const strikethroughStyle = $label.css('text-decoration-style');
+        const strikethroughThickness = $label.css('text-decoration-thickness');
+        const strikethroughColor = $label.css('text-decoration-color');
+        const [lineStyle, lineThickness, lineColor] = settings.strikethroughMultiInput;
+        expect(color).to.equal(getRGBColor(settings.completeTextColor.hex));
+        expect(textDecoration).to.equal('line-through');
+        expect(strikethroughStyle).to.equal(StrikethroughStyleType[lineStyle]);
+        expect(strikethroughThickness).to.equal(lineThickness);
+        expect(strikethroughColor).to.equal(getRGBColor(lineColor.hex));
+    });
+    cy.get(PROGRESS_BAR).should('have.css', 'background-color', getRGBColor(settings.progressBarTrackColor.hex));
+    cy.get(PROGRESS_BAR_FILL).should('have.css', 'background-color', getRGBColor(settings.progressBarFillColor.hex));
+    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.class', PaddingClasses[settings.paddingBasic]);
+
+    cy.get(CHECKBOX_DATE).should('have.length', 5);
+});
+
+it('Uses custom padding if advanced it set to true', () => {
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        blockSettings: {
+            paddingAdvanced: true,
+            paddingBasic: ChecklistPadding.Large,
+            paddingCustom: ['3px', '4px', '5px', '6px'],
+        },
+    });
+    mount(<ChecklistBlockWithStubs />);
+    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', '3px 5px 6px 4px');
+});
+
+it('Does not show date if visibility is off', () => {
+    const content = createContentArray(5, { completed: true });
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        blockSettings: {
+            content,
+            dateVisible: false,
+        },
+    });
+    mount(<ChecklistBlockWithStubs />);
+    cy.get(CHECKBOX_DATE).should('have.length', 0);
+});
+
+it('Correctly displays highlight color', () => {
+    const content = createContentArray(5, { completed: true });
+    const highlightColor = { hex: '#555555' };
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        blockSettings: {
+            content,
+            completedDecoration: ChecklistDecoration.Highlight,
+            highlightColor,
+        },
+    });
+    mount(<ChecklistBlockWithStubs />);
+    cy.get(CHECKBOX_LABEL).should('have.css', 'background-color', getRGBColor(highlightColor.hex));
 });

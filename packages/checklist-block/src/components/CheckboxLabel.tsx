@@ -2,7 +2,7 @@
 
 import { FC, useContext } from 'react';
 import { CheckboxLabelProps, ChecklistDecoration, DecorationStyle, StrikethroughStyleType } from '../types';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { colorToHex, joinClassNames } from '@frontify/guideline-blocks-shared';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { SettingsContext } from '../SettingsContext';
@@ -20,11 +20,11 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
                     textDecoration: 'line-through',
                     textDecorationStyle: StrikethroughStyleType[strikethroughMultiInput[0]],
                     textDecorationThickness: strikethroughMultiInput[1],
-                    textDecorationColor: strikethroughMultiInput[2].hex,
+                    textDecorationColor: colorToHex(strikethroughMultiInput[2]),
                 };
             case ChecklistDecoration.Highlight:
                 return {
-                    backgroundColor: highlightColor.hex,
+                    backgroundColor: colorToHex(highlightColor),
                 };
             default:
                 return {};
@@ -39,13 +39,13 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
                     'tw-select-none tw-whitespace-pre-wrap tw-w-max',
                     disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
-                style={{ color: completeTextColor.hex, ...decorationStyles }}
-                data-test-id="input-label"
+                style={{ color: colorToHex(completeTextColor), ...decorationStyles }}
+                data-test-id="checkbox-label"
             >
                 {children}
             </label>
             {dateVisible && Boolean(dateInMs) && (
-                <span className="tw-text-black-60 tw-font-sans tw-text-xs tw-font-normal">
+                <span className="tw-text-black-60 tw-font-sans tw-text-xxs tw-font-normal" data-test-id="checkbox-date">
                     {dayjs(dateInMs).fromNow()}
                 </span>
             )}

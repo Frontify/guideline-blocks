@@ -8,7 +8,7 @@ import { useToggleState } from '@react-stately/toggle';
 import { useContext, useRef, FC } from 'react';
 import { CheckboxProps } from '../types';
 import { CheckboxLabel } from './CheckboxLabel';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { colorToHex, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from '../SettingsContext';
 
 export const Checkbox: FC<CheckboxProps> = ({
@@ -43,10 +43,9 @@ export const Checkbox: FC<CheckboxProps> = ({
     const { completeCheckboxColor, incompleteCheckboxColor } = useContext(SettingsContext);
 
     const checkboxStyles = {
-        background: checked ? completeCheckboxColor.hex : '',
-        borderColor: checked ? completeCheckboxColor.hex : incompleteCheckboxColor.hex,
+        background: checked ? colorToHex(completeCheckboxColor) : '',
+        borderColor: checked ? colorToHex(completeCheckboxColor) : colorToHex(incompleteCheckboxColor),
     };
-
     return (
         <label
             className={joinClassNames([
@@ -69,6 +68,8 @@ export const Checkbox: FC<CheckboxProps> = ({
                     disabled && 'tw-pointer-events-none',
                 ])}
                 style={checkboxStyles}
+                data-test-id="checkbox"
+                data-checked={checked}
             >
                 {checked && <IconCheck />}
             </span>
