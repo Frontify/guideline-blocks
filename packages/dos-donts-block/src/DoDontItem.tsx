@@ -16,7 +16,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     body = '',
     editing = false,
 }) => {
-    const [shouldBlurIcon, setShouldBlurIcon] = useState<boolean>(true);
+    const [shouldBlurIcon, setShouldBlurIcon] = useState(true);
 
     const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
     const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
