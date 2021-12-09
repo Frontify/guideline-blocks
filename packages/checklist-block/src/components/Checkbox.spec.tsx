@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { Checkbox } from './Checkbox';
 import { mount } from '@cypress/react';
 import { CheckboxProps } from '../types';
