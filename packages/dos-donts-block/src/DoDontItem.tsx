@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
-import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import { DoDontItemProps, DoDontStyle, DoDontType } from './types';
 
@@ -37,7 +37,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
         <div>
             <div style={headingStyles[type]} className="tw-flex tw-items-center tw-font-semibold tw-text-l">
                 {style === DoDontStyle.Icons && (editing || title || body) && (
-                    <div className={`tw-mr-2 tw-w-auto ${shouldBlurIcon ? 'tw-opacity-30' : ''}`}>
+                    <div className={joinClassNames(['tw-mr-2 tw-w-auto', shouldBlurIcon ? 'tw-opacity-30' : ''])}>
                         {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
                         {type === DoDontType.Dont && <IconRejectCircle size={IconSize.Size24} />}
                     </div>
