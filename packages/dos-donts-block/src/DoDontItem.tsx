@@ -45,10 +45,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                 <div className="tw-w-full">
                     <RichTextEditor
                         value={title}
-                        onTextChange={(value) => {
-                            setShouldBlurIcon(false);
-                            saveItem(id, value, 'title');
-                        }}
+                        onTextChange={(value) => saveItem(id, value, 'title')}
                         placeholder={editing ? 'Add a title' : ''}
                         readonly={!editing}
                     />
