@@ -40,13 +40,6 @@ jobs:
             - name: Build Shared Package
               run: npm run build
 
-            - name: Cache Cypress binary
-              id: cypress_cache
-              uses: actions/cache@v2
-              with:
-                  path: ~/.cache/Cypress
-                  key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
-
             - name: Typecheck files
               run: npm run typecheck
 

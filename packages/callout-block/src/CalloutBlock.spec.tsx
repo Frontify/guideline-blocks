@@ -6,7 +6,7 @@ import CalloutBlock from '.';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 
-it.skip('renders a callout block', () => {
+it('renders a callout block', () => {
     const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {});
 
     mount(<CalloutBlockWithStubs />);
