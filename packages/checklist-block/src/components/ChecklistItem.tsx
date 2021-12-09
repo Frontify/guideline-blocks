@@ -9,6 +9,7 @@ import {
     IconCaretDown,
     IconSize,
     IconReject,
+    FocusController,
 } from '@frontify/arcade';
 import { TextEditor } from './TextEditor';
 import { useHover } from '@react-aria/interactions';
@@ -17,7 +18,6 @@ import { Checkbox } from './Checkbox';
 import { ChecklistButton } from './ChecklistButton';
 import { ChecklistItemMode, ChecklistItemProps } from '../types';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { FocusController } from './FocusController';
 
 const DefaultChecklistItem = {
     text: '',

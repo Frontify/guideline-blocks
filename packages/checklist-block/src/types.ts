@@ -45,10 +45,6 @@ export type ChecklistButtonProps = {
     icon: ReactElement;
 };
 
-export type FocusControllerProps = {
-    children: ReactElement;
-};
-
 export type TextEditorProps = {
     value: string;
     onTextModified?: (text: string) => void;
