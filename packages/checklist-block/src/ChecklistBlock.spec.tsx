@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { getRgbCSSFromHex, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import ChecklistBlock from '.';
 import {
     ChecklistContent,
@@ -41,18 +41,6 @@ const createContentArray = (length: number, fixedParams?: Partial<ChecklistConte
         return { ...item, ...fixedParams };
     };
     return new Array(length).fill(0).map(() => createRandomItem(fixedParams));
-};
-
-const getRGBColor = (color: string) => {
-    const tempElement = document.createElement('div');
-    tempElement.style.color = color;
-    tempElement.style.display = 'none'; // make sure it doesn't actually render
-    document.body.appendChild(tempElement); // append so that `getComputedStyle` actually works
-
-    const tempColor = getComputedStyle(tempElement).color;
-
-    document.body.removeChild(tempElement); // remove it because we're done with it
-    return tempColor;
 };
 
 it('Renders a checklist block', () => {
@@ -309,16 +297,16 @@ it('Correctly renders styles provided by settings', () => {
         const fill = $item.css('background-color');
         const checked = $item.data('checked');
         if (checked) {
-            expect(border).to.equal(getRGBColor(settings.completeCheckboxColor.hex));
-            expect(fill).to.equal(getRGBColor(settings.completeCheckboxColor.hex));
+            expect(border).to.equal(getRgbCSSFromHex(settings.completeCheckboxColor.hex));
+            expect(fill).to.equal(getRgbCSSFromHex(settings.completeCheckboxColor.hex));
         } else {
-            expect(border).to.equal(getRGBColor(settings.incompleteCheckboxColor.hex));
-            expect(fill).to.equal(getRGBColor('white'));
+            expect(border).to.equal(getRgbCSSFromHex(settings.incompleteCheckboxColor.hex));
+            expect(fill).to.equal('rgb(255, 255, 255)');
         }
     });
     cy.get(TEXT_EDITOR).each(($editor) => {
         const color = $editor.css('color');
-        expect(color).to.equal(getRGBColor(settings.incompleteTextColor.hex));
+        expect(color).to.equal(getRgbCSSFromHex(settings.incompleteTextColor.hex));
     });
     cy.get(CHECKBOX_LABEL).each(($label) => {
         const color = $label.css('color');
@@ -327,14 +315,18 @@ it('Correctly renders styles provided by settings', () => {
         const strikethroughThickness = $label.css('text-decoration-thickness');
         const strikethroughColor = $label.css('text-decoration-color');
         const [lineStyle, lineThickness, lineColor] = settings.strikethroughMultiInput;
-        expect(color).to.equal(getRGBColor(settings.completeTextColor.hex));
+        expect(color).to.equal(getRgbCSSFromHex(settings.completeTextColor.hex));
         expect(textDecoration).to.equal('line-through');
         expect(strikethroughStyle).to.equal(StrikethroughStyleType[lineStyle]);
         expect(strikethroughThickness).to.equal(lineThickness);
-        expect(strikethroughColor).to.equal(getRGBColor(lineColor.hex));
+        expect(strikethroughColor).to.equal(getRgbCSSFromHex(lineColor.hex));
     });
-    cy.get(PROGRESS_BAR).should('have.css', 'background-color', getRGBColor(settings.progressBarTrackColor.hex));
-    cy.get(PROGRESS_BAR_FILL).should('have.css', 'background-color', getRGBColor(settings.progressBarFillColor.hex));
+    cy.get(PROGRESS_BAR).should('have.css', 'background-color', getRgbCSSFromHex(settings.progressBarTrackColor.hex));
+    cy.get(PROGRESS_BAR_FILL).should(
+        'have.css',
+        'background-color',
+        getRgbCSSFromHex(settings.progressBarFillColor.hex)
+    );
     cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.class', PaddingClasses[settings.paddingBasic]);
 
     cy.get(CHECKBOX_DATE).should('have.length', 5);
@@ -375,5 +367,5 @@ it('Correctly displays highlight color', () => {
         },
     });
     mount(<ChecklistBlockWithStubs />);
-    cy.get(CHECKBOX_LABEL).should('have.css', 'background-color', getRGBColor(highlightColor.hex));
+    cy.get(CHECKBOX_LABEL).should('have.css', 'background-color', getRgbCSSFromHex(highlightColor.hex));
 });
