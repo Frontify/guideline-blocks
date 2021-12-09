@@ -17,7 +17,6 @@ import {
 import { randomInteger } from './utilities/calculations';
 import { createItem } from './utilities/contentHelpers';
 
-//component selectors
 const CHECKLIST_BLOCK_SELECTOR = '[data-test-id="checklist-block"]';
 const CHECKLIST_ITEM = '[data-test-id="checklist-item"]';
 const COMPLETED_VISIBILITY_BUTTON = '[data-test-id="toggle-completed-visibility"]';
@@ -32,7 +31,6 @@ const CHECKBOX = '[data-test-id="checkbox"]';
 const CHECKBOX_LABEL = '[data-test-id="checkbox-label"]';
 const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 
-//external component selectors
 const DRAGGABLE_ITEM = '[data-test-id=draggable-item]';
 const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
 
