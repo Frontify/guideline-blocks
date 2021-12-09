@@ -40,24 +40,6 @@ export type CheckboxLabelProps = PropsWithChildren<{
     dateInMs?: number;
 }>;
 
-export const labelDecorationStylesMap = (
-    style: StrikethroughType,
-    thickness: string,
-    color: Color,
-    highlightColor: Color
-): Record<ChecklistDecoration, DecorationStyle> => ({
-    [ChecklistDecoration.Strikethrough]: {
-        textDecoration: 'line-through',
-        textDecorationStyle: StrikethroughStyleType[style],
-        textDecorationThickness: thickness,
-        textDecorationColor: colorToHexAlpha(color),
-    },
-    [ChecklistDecoration.Highlight]: {
-        backgroundColor: colorToHexAlpha(highlightColor),
-    },
-    [ChecklistDecoration.Checkbox]: {},
-});
-
 export type ChecklistButtonProps = {
     disabled?: boolean;
     onClick: (e?: MouseEvent<HTMLButtonElement>) => void;
