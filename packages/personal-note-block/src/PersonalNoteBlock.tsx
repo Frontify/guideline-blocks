@@ -20,7 +20,7 @@ import {
     Settings,
 } from './types';
 
-const getBorderStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => {
+const getBorderStyles = (borderSelection: BorderSelectionType): CSSProperties => {
     // TODO: This check could be removed if defaultValue are returned from blockSettings
     const style = borderSelection[0] ? borderSelection[0] : NoteBorderStyle.Solid;
     const width = borderSelection[1] ? borderSelection[1] : '1px';
@@ -29,9 +29,12 @@ const getBorderStyles = (borderSelection: BorderSelectionType, borderRadius: str
         borderStyle: borderStyles[style],
         borderWidth: width,
         borderColor: mapRgbaToString(rgba),
-        borderRadius,
     };
 };
+
+const getRadiusStyles = (borderRadius: string): CSSProperties => ({
+    borderRadius,
+});
 
 const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
     backgroundColor.rgba ? { backgroundColor: mapRgbaToString(backgroundColor.rgba) } : {};
@@ -109,8 +112,9 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                 hasBackground && !!backgroundColor.rgba && isDark(backgroundColor.rgba) && 'tw-text-white',
             ])}
             style={{
-                ...(hasBorder && getBorderStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')),
+                ...(hasBorder && getBorderStyles(borderSelection)),
                 ...(hasBackground && getBackgroundStyles(backgroundColor)),
+                ...((hasBorder || hasBackground) && getRadiusStyles(hasCustomBorderRadius ? borderRadiusValue : '')),
                 ...getPaddingStyles(hasCustomPadding ? paddingValue : paddingValues[paddingChoice]),
             }}
         >
