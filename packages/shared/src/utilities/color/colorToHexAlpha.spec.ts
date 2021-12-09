@@ -10,7 +10,7 @@ describe('colorToHexAlpha', () => {
         { color: { hex: '#EE2354', alpha: 0.4 }, expected: '#EE235466' },
     ];
 
-    it.each(data)('validate correctly values', ({ color, expected }) => {
+    it.each(data)('validates against expected values', ({ color, expected }) => {
         expect(colorToHexAlpha(color)).toBe(expected);
     });
 });
