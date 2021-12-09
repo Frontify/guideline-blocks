@@ -17,9 +17,9 @@
     ```
     $ npm install && npm run bootstrap
     ```
-3. Build the shared package
+3. Build the packages
     ```
-    $ npm run build:shared
+    $ npm run build
     ```
 4. Start your block.
     ```

@@ -3,11 +3,9 @@
     "version": "1.0.0",
     "main": "./dist/index.js",
     "sideEffects": false,
+    "type": "module",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "exports": {
-        ".": "./dist/index.js"
-    },
     "scripts": {
         "clean": "rimraf dist",
         "build": "npm run clean && tsc && npm run build:types",

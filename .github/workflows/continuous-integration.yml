@@ -38,7 +38,7 @@ jobs:
               run: npm run bootstrap
 
             - name: Build Shared Package
-              run: npm run build:shared
+              run: npm run build
 
             - name: Cache Cypress binary
               id: cypress_cache
