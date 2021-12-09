@@ -114,14 +114,17 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                 ...getPaddingStyles(hasCustomPadding ? paddingValue : paddingValues[paddingChoice]),
             }}
         >
-            <NoteHeader
-                hasAvatarName={hasAvatarName}
-                name={username}
-                avatar={avatar}
-                hasDateEdited={hasDateEdited}
-                dateEdited={dateEdited}
-                useLightText={hasBackground && !!backgroundColor.rgba && isDark(backgroundColor.rgba)}
-            />
+            {(hasAvatarName || hasDateEdited) && (
+                <NoteHeader
+                    hasAvatarName={hasAvatarName}
+                    name={username}
+                    avatar={avatar}
+                    hasDateEdited={hasDateEdited}
+                    dateEdited={dateEdited}
+                    useLightText={hasBackground && !!backgroundColor.rgba && isDark(backgroundColor.rgba)}
+                />
+            )}
+
             <RichTextEditor
                 value={note}
                 onTextChange={saveNote}
