@@ -8,6 +8,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({ trackColor, fillColor, perce
         <div
             className="tw-absolute tw-duration-200 tw-top-0 tw-left-0 tw-bottom-0"
             style={{ backgroundColor: fillColor, width: `${percentage}%` }}
+            data-test-id="progress-bar-fill"
         ></div>
     </div>
 );

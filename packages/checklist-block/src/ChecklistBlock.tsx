@@ -28,7 +28,7 @@ import {
     ProgressBarType,
     Settings,
 } from './types';
-import { generatePaddingString } from '@frontify/guideline-blocks-shared';
+import { colorToHex, generatePaddingString } from '@frontify/guideline-blocks-shared';
 import { provideDefaults } from './utilities/provideDefaults';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
@@ -47,7 +47,16 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
 
     const settings = provideDefaults(DefaultValues, blockSettings);
 
-    const { paddingAdvanced, paddingCustom, paddingBasic, content, progressBarVisible } = settings;
+    const {
+        paddingAdvanced,
+        paddingCustom,
+        paddingBasic,
+        content,
+        progressBarVisible,
+        progressBarFillColor,
+        progressBarTrackColor,
+        progressBarType,
+    } = settings;
 
     const addNewItem = (text: string): void => {
         const trimmed = text.trim();
@@ -127,18 +136,18 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 }}
                 {...hoverProps}
             >
-                {shouldShowProgress && settings.progressBarType === ProgressBarType.Bar && (
+                {shouldShowProgress && progressBarType === ProgressBarType.Bar && (
                     <ProgressBar
-                        fillColor={settings.progressBarFillColor.hex}
-                        trackColor={settings.progressBarTrackColor.hex}
-                        percentage={calculatePercentage(settings.content)}
+                        fillColor={colorToHex(progressBarFillColor)}
+                        trackColor={colorToHex(progressBarTrackColor)}
+                        percentage={calculatePercentage(content)}
                     />
                 )}
-                {shouldShowProgress && settings.progressBarType === ProgressBarType.Percentage && (
-                    <ProgressHeader value={`${calculatePercentage(settings.content)}%`} />
+                {shouldShowProgress && progressBarType === ProgressBarType.Percentage && (
+                    <ProgressHeader value={`${calculatePercentage(content)}%`} />
                 )}
-                {shouldShowProgress && settings.progressBarType === ProgressBarType.Fraction && (
-                    <ProgressHeader value={calculateFraction(settings.content)} />
+                {shouldShowProgress && progressBarType === ProgressBarType.Fraction && (
+                    <ProgressHeader value={calculateFraction(content)} />
                 )}
                 <div
                     className={joinClassNames([
