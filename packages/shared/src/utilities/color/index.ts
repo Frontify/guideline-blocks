@@ -2,4 +2,4 @@
 
 export * from './isDark';
 export * from './mapRgbaToString';
-export * from './appendAlphaToHex';
+export * from './colorToHexAlpha';

@@ -1,6 +1,8 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { Color } from '@frontify/arcade';
 
-export const colorToHex = ({ hex, alpha }: Color) => {
+export const colorToHexAlpha = ({ hex, alpha }: Color) => {
     if (!alpha) {
         return `${hex}FF`;
     } else {
