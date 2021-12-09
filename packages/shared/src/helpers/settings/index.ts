@@ -1,4 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export * from './presetCustomValue';
 export * from './appendUnit';
+export * from './appendUnitToArray';
+export * from './presetCustomValue';

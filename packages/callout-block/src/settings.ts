@@ -3,7 +3,7 @@
 import { FileExtension } from '@frontify/app-bridge';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { appendUnitToArray, numericalOrPixelRule } from "@frontify/guideline-blocks-shared";
+import { appendUnitToArray, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { Alignment, CornerRadius, Padding, Type, Width } from './types';
 
 const CUSTOM_PADDING_ID = 'customPadding';
