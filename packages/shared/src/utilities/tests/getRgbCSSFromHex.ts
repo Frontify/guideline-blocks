@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const getRgbCSSFromHex = (hex: string) => {
+export const getRgbCssFromHex = (hex: string) => {
     const colorValue = hex.slice(1, 7);
     const base10Hex = parseInt(colorValue, 16);
     const r = (base10Hex >> 16) & 255;

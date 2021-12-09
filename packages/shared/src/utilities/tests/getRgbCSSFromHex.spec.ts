@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { getRgbCSSFromHex } from './getRgbCSSFromHex';
+import { getRgbCssFromHex } from './getRgbCssFromHex';
 
 describe('getRgbCSSFromHex', () => {
     const data = [
@@ -10,6 +10,6 @@ describe('getRgbCSSFromHex', () => {
     ];
 
     it.each(data)('validate correctly values', ({ hex, expected }) => {
-        expect(getRgbCSSFromHex(hex)).toBe(expected);
+        expect(getRgbCssFromHex(hex)).toBe(expected);
     });
 });

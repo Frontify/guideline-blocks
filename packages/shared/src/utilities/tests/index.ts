@@ -1,2 +1,2 @@
 export { withAppBridgeStubs } from './withAppBridgeStubs';
-export { getRgbCSSFromHex } from './getRgbCSSFromHex';
+export { getRgbCssFromHex } from './getRgbCssFromHex';
