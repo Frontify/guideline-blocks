@@ -173,7 +173,7 @@ const Settings: ApiSettings = {
             switchLabel: 'Custom',
             defaultValue: false,
             show: (bundle: ApiBundle): boolean =>
-                bundle.getBlock(HAS_BACKGROUND_ID)?.value || bundle.getBlock(HAS_BORDER_ID)?.value,
+                bundle.getBlock(HAS_BACKGROUND_ID)?.value === true || bundle.getBlock(HAS_BORDER_ID)?.value === true,
             on: [
                 {
                     id: BORDER_RADIUS_VALUE_ID,
