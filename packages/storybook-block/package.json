@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.10.0",
-        "@frontify/arcade": "0.14.0-beta.8",
+        "@frontify/arcade": "0.14.0-beta.12",
         "@frontify/guideline-blocks-shared": "1.0.0",
         "@popperjs/core": "2.11.0",
         "@react-aria/button": "3.3.4",

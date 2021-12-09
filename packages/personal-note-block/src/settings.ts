@@ -12,12 +12,10 @@ import { NoteBorderRadius, NoteBorderStyle, NotePadding, NoteStyle, NoteVisibili
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = {
     rgba: { r: 247, g: 247, b: 247, a: 1 },
-    name: 'Light Grey',
     hex: '#F7F7F7',
 };
 export const BORDER_COLOR_DEFAULT_VALUE = {
     rgba: { r: 234, g: 235, b: 235, a: 1 },
-    name: 'Light Grey',
     hex: '#eaebeb',
 };
 
@@ -174,7 +172,8 @@ const Settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID)?.value === true,
+            show: (bundle: ApiBundle): boolean =>
+                bundle.getBlock(HAS_BACKGROUND_ID)?.value === true || bundle.getBlock(HAS_BORDER_ID)?.value === true,
             on: [
                 {
                     id: BORDER_RADIUS_VALUE_ID,
