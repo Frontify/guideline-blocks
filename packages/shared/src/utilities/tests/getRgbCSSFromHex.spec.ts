@@ -9,7 +9,7 @@ describe('getRgbCSSFromHex', () => {
         { hex: '#000000', expected: 'rgb(0, 0, 0)' },
     ];
 
-    it.each(data)('validate correctly values', ({ hex, expected }) => {
+    it.each(data)('validates against expected values', ({ hex, expected }) => {
         expect(getRgbCssFromHex(hex)).toBe(expected);
     });
 });
