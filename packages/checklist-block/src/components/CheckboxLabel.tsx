@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC, useContext } from 'react';
-import { CheckboxLabelProps, ChecklistDecoration, DecorationStyle, StrikethroughStyleType } from '../types';
+import { CheckboxLabelProps, labelDecorationStylesMap } from '../types';
 import { colorToHexAlpha, joinClassNames } from '@frontify/guideline-blocks-shared';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -13,23 +13,9 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
     const { strikethroughMultiInput, highlightColor, completedDecoration, completeTextColor, dateVisible } =
         useContext(SettingsContext);
 
-    const decorationStyles = ((type: ChecklistDecoration): DecorationStyle => {
-        switch (type) {
-            case ChecklistDecoration.Strikethrough:
-                return {
-                    textDecoration: 'line-through',
-                    textDecorationStyle: StrikethroughStyleType[strikethroughMultiInput[0]],
-                    textDecorationThickness: strikethroughMultiInput[1],
-                    textDecorationColor: colorToHexAlpha(strikethroughMultiInput[2]),
-                };
-            case ChecklistDecoration.Highlight:
-                return {
-                    backgroundColor: colorToHexAlpha(highlightColor),
-                };
-            default:
-                return {};
-        }
-    })(completedDecoration);
+    const [type, thickness, color] = strikethroughMultiInput;
+
+    const decorationStyles = labelDecorationStylesMap(type, thickness, color, highlightColor)[completedDecoration];
 
     return (
         <div className="tw-inline-flex tw-flex-col tw-text-s tw-max-w-full" data-test-id="input-label-container">

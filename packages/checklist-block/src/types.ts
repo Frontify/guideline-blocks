@@ -4,6 +4,7 @@ import { AppBridgeNative } from '@frontify/app-bridge';
 import { Color, ItemDragState } from '@frontify/arcade';
 import { ReactElement, MouseEvent } from 'react';
 import { PropsWithChildren } from 'react';
+import { colorToHexAlpha } from '../../callout-block/node_modules/@frontify/guideline-blocks-shared/src';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
@@ -38,6 +39,24 @@ export type CheckboxLabelProps = PropsWithChildren<{
     disabled?: boolean;
     dateInMs?: number;
 }>;
+
+export const labelDecorationStylesMap = (
+    style: StrikethroughType,
+    thickness: string,
+    color: Color,
+    highlightColor: Color
+): Record<ChecklistDecoration, DecorationStyle> => ({
+    [ChecklistDecoration.Strikethrough]: {
+        textDecoration: 'line-through',
+        textDecorationStyle: StrikethroughStyleType[style],
+        textDecorationThickness: thickness,
+        textDecorationColor: colorToHexAlpha(color),
+    },
+    [ChecklistDecoration.Highlight]: {
+        backgroundColor: colorToHexAlpha(highlightColor),
+    },
+    [ChecklistDecoration.Checkbox]: {},
+});
 
 export type ChecklistButtonProps = {
     disabled?: boolean;
