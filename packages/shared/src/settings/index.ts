@@ -1,4 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export * from './borderStyle';
-export * from './radiusStyle';
+export * from './border';
+export * from './border-radius';
+export * from './padding';
