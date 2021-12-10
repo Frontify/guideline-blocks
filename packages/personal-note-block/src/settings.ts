@@ -5,11 +5,10 @@ import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getBorderSettings,
-    maximumNumericalOrPixelOrAutoRule,
+    getPaddingSettings,
     numericalOrPixelRule,
-    presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { NoteBorderRadius, NotePadding, NoteStyle, NoteVisibility, paddingValues } from './types';
+import { NoteBorderRadius, NoteStyle, NoteVisibility } from './types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = {
     rgba: { r: 247, g: 247, b: 247, a: 1 },
@@ -20,8 +19,6 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
     hex: '#eaebeb',
 };
 
-const PADDING_VALUE_ID = 'paddingValue';
-const PADDING_CHOICE_ID = 'paddingChoice';
 const HAS_BACKGROUND_ID = 'hasBackground';
 const HAS_BORDER_ID = 'hasBorder';
 const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
@@ -56,50 +53,7 @@ const Settings: ApiSettings = {
             type: 'switch',
             defaultValue: true,
         },
-        {
-            id: 'hasCustomPadding',
-            label: 'Padding',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            onChange: (bundle: ApiBundle): void =>
-                presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_VALUE_ID, paddingValues),
-
-            on: [
-                {
-                    id: PADDING_VALUE_ID,
-                    type: 'input',
-                    placeholder: '24px',
-                    rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, PADDING_VALUE_ID),
-                },
-            ],
-            off: [
-                {
-                    id: PADDING_CHOICE_ID,
-                    type: 'slider',
-                    defaultValue: NotePadding.Small,
-                    choices: [
-                        {
-                            value: NotePadding.None,
-                            label: 'None',
-                        },
-                        {
-                            value: NotePadding.Small,
-                            label: 'S',
-                        },
-                        {
-                            value: NotePadding.Medium,
-                            label: 'M',
-                        },
-                        {
-                            value: NotePadding.Large,
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
-        },
+        getPaddingSettings(),
     ],
     style: [
         {
