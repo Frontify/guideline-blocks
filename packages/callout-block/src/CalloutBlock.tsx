@@ -112,8 +112,8 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                 ref={blockRef}
             >
                 {iconSwitch && iconUrl && (
-                    <span className="tw-pr-3">
-                        <img alt={iconAltText} src={iconUrl} className="tw-inline tw-w-6 tw-h-6" />
+                    <span className="tw-mr-3 tw-flex-none tw-w-6 tw-h-6">
+                        <img alt={iconAltText} src={iconUrl} />
                     </span>
                 )}
                 <RichTextEditor

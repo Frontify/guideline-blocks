@@ -46,4 +46,26 @@ describe('appendUnit', () => {
         appendUnit(bundle, 'my_setting_id');
         expect(setBlockValueSpy).not.toHaveBeenCalledWith('my_setting_id', '20px');
     });
+
+    test('it should handle undefined', () => {
+        const bundle: ApiBundle = {
+            getBlock() {
+                return { value: undefined };
+            },
+            setBlockValue: jest.fn(),
+        };
+        appendUnit(bundle, 'my_setting_id');
+        expect(bundle.setBlockValue).not.toHaveBeenCalled();
+    });
+
+    test('it should handle empty string', () => {
+        const bundle: ApiBundle = {
+            getBlock() {
+                return { value: '' };
+            },
+            setBlockValue: jest.fn(),
+        };
+        appendUnit(bundle, 'my_setting_id');
+        expect(bundle.setBlockValue).not.toHaveBeenCalled();
+    });
 });
