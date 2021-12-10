@@ -4,9 +4,10 @@ import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, numericalOrPixelRule } from '..';
 
-export const getRadiusStyleSettings = (id: string): ApiBlock[] => {
-    const HAS_RADIUS_ID = `hasRadius_${id}`;
-    const RADIUS_VALUE_ID = `radiusValue_${id}`;
+export const getRadiusStyleSettings = (id?: string): ApiBlock[] => {
+    const HAS_RADIUS_ID = id ? `hasRadius_${id}` : 'hasRadius';
+    const RADIUS_VALUE_ID = id ? `radiusValue_${id}` : 'radiusValue';
+    const RADIUS_CHOICE_ID = id ? `radiusChoice_${id}` : 'radiusChoice';
 
     return [
         {
@@ -25,7 +26,7 @@ export const getRadiusStyleSettings = (id: string): ApiBlock[] => {
             ],
             off: [
                 {
-                    id: 'borderRadiusChoice',
+                    id: RADIUS_CHOICE_ID,
                     type: 'slider',
                     defaultValue: 'None',
                     choices: [

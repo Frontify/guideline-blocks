@@ -10,9 +10,12 @@ const BORDER_COLOR_DEFAULT_VALUE = {
     hex: '#eaebeb',
 };
 
-export const getBorderStyleSettings = (id: string): ApiBlock[] => {
-    const HAS_BORDER_ID = `hasBorder_${id}`;
-    const BORDER_WIDTH_ID = `borderWidth_${id}`;
+export const getBorderStyleSettings = (id?: string): ApiBlock[] => {
+    const HAS_BORDER_ID = id ? `hasBorder_${id}` : 'hasBorder';
+    const SELECTION_ID = id ? `borderSelection_${id}` : 'borderSelection';
+    const STYLE_ID = id ? `borderStyle_${id}` : 'borderStyle';
+    const WIDTH_ID = id ? `borderWidth_${id}` : 'borderWidth';
+    const COLOR_ID = id ? `borderColor_${id}` : 'borderColor';
 
     return [
         {
@@ -22,14 +25,14 @@ export const getBorderStyleSettings = (id: string): ApiBlock[] => {
             defaultValue: true,
             on: [
                 {
-                    id: 'borderSelection',
+                    id: SELECTION_ID,
                     type: 'multiInput',
                     layout: MultiInputLayout.Columns,
                     lastItemFullWidth: true,
                     show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_BORDER_ID)?.value === true,
                     blocks: [
                         {
-                            id: 'borderStyle',
+                            id: STYLE_ID,
                             type: 'dropdown',
                             defaultValue: 'Solid',
                             choices: [
@@ -48,14 +51,14 @@ export const getBorderStyleSettings = (id: string): ApiBlock[] => {
                             ],
                         },
                         {
-                            id: BORDER_WIDTH_ID,
+                            id: WIDTH_ID,
                             type: 'input',
                             defaultValue: '1px',
                             rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
+                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, WIDTH_ID),
                         },
                         {
-                            id: 'borderColor',
+                            id: COLOR_ID,
                             type: 'colorInput',
                             defaultValue: BORDER_COLOR_DEFAULT_VALUE,
                         },
