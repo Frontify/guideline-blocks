@@ -141,7 +141,9 @@ it('Allows users to move item up or down in Edit Mode', () => {
 });
 
 it('Disables List modifications in View Mode', () => {
-    const content = createContentArray(5);
+    const completedItems = createContentArray(1, { completed: true });
+    const incompleteItems = createContentArray(1, { completed: false });
+    const content = [...completedItems, ...incompleteItems];
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
         blockSettings: { content },
         editorState: false,
@@ -190,7 +192,9 @@ it('Can hide/show completed tasks in View mode', () => {
     mount(<ChecklistBlockWithStubs />);
     cy.get(CHECKLIST_ITEM).should('have.length', 10);
     cy.get('[checked]').should('have.length', 5);
-    cy.get(CHECKLIST_BLOCK_SELECTOR).realHover();
+    cy.get(CHECKLIST_BLOCK_SELECTOR)
+        .realHover()
+        .then(() => console.log('TEST'));
     cy.get(COMPLETED_VISIBILITY_BUTTON).should('be.visible');
     cy.get(COMPLETED_VISIBILITY_BUTTON)
         .find('button')
