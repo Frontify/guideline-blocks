@@ -1,8 +1,15 @@
 {
     "name": "@frontify/guideline-blocks-shared",
     "version": "1.0.0",
-    "main": "src/index.ts",
+    "main": "./dist/index.js",
+    "sideEffects": false,
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "scripts": {
+        "clean": "rimraf dist",
+        "build": "npm run clean && tsc && npm run build:types",
+        "build:watch": "npm run clean && tsc -w --declaration",
+        "build:types": "tsc --declaration --emitDeclarationOnly",
         "test": "jest",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
@@ -14,7 +21,6 @@
     "author": "Frontify Developers <developers@frontify.com>",
     "devDependencies": {
         "@cypress/react": "5.10.3",
-        "@frontify/app-bridge": "2.10.0",
         "@frontify/eslint-config-typescript": "0.12.0",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/jest": "27.0.3",
@@ -24,9 +30,13 @@
         "eslint": "8.3.0",
         "jest": "27.4.4",
         "prettier": "2.5.1",
-        "sinon": "12.0.1",
+        "rimraf": "^3.0.2",
         "ts-jest": "27.1.1",
         "ts-node": "10.4.0",
         "typescript": "4.5.2"
+    },
+    "dependencies": {
+        "@frontify/app-bridge": "^2.10.0",
+        "sinon": "12.0.1"
     }
 }
