@@ -27,6 +27,7 @@
 6. Click on the plus icon and add a "Local Block Development" block
    ![Local block development](./docs/local-block-development.png)
 7. Choose port (default is 5600) and click OK
+
 ### Troubleshooting
 
 If you encounter any error with the CLI, you can troubleshoot the problem with the following steps:
