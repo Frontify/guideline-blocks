@@ -4,7 +4,6 @@ import { AppBridgeNative } from '@frontify/app-bridge';
 import { Color, ItemDragState } from '@frontify/arcade';
 import { ReactElement, MouseEvent } from 'react';
 import { PropsWithChildren } from 'react';
-import { colorToHexAlpha } from '../../callout-block/node_modules/@frontify/guideline-blocks-shared/src';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
