@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { getRgbCssFromHex } from './_getRgbCssFromHexx';
+import { getRgbCssFromHex } from './getRgbCssFromHex';
 
 describe('getRgbCSSFromHex', () => {
     const data = [
