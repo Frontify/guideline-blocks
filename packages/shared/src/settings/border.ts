@@ -4,11 +4,7 @@ import { MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
-
-const BORDER_COLOR_DEFAULT_VALUE = {
-    rgba: { r: 234, g: 235, b: 235, a: 1 },
-    hex: '#eaebeb',
-};
+import { BORDER_COLOR_DEFAULT_VALUE } from './defaultValues';
 
 export const getBorderSettings = (id?: string): ApiBlock => {
     const HAS_ID = id ? `hasBorder_${id}` : 'hasBorder';
