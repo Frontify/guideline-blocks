@@ -17,21 +17,16 @@
     ```
     $ npm install && npm run bootstrap
     ```
-3. Build the packages
-    ```
-    $ npm run build
-    ```
-4. Start your block.
+3. Start your block.
     ```
     $ npm run serve example
     ```
-5. Go to your Frontify styleguide
-6. Switch to edit mode
+4. Go to your Frontify styleguide
+5. Switch to edit mode
    ![Styleguide Edit mode](./docs/styleguide-edit-mode.png)
-7. Click on the plus icon and add a "Local Block Development" block
+6. Click on the plus icon and add a "Local Block Development" block
    ![Local block development](./docs/local-block-development.png)
-8. Choose port (default is 5600) and click OK
-
+7. Choose port (default is 5600) and click OK
 ### Troubleshooting
 
 If you encounter any error with the CLI, you can troubleshoot the problem with the following steps:

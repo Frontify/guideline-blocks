@@ -14,6 +14,7 @@
     },
     "scripts": {
         "bootstrap": "lerna bootstrap",
+        "postbootstrap": "npm run build",
         "lint": "lerna run lint --stream",
         "lint:fix": "lerna run lint:fix --stream",
         "prettier": "prettier --check 'packages/*/src/*.{ts,tsx}'",
@@ -25,6 +26,7 @@
         "test:functional": "cypress open-ct",
         "publish": "lerna publish --no-private",
         "typecheck": "lerna run typecheck --stream",
-        "build": "lerna run build --stream --scope=@frontify/guideline-blocks-shared"
+        "build": "lerna run build --stream --scope=@frontify/guideline-blocks-shared",
+        "build:watch": "lerna run build:watch --stream --scope=@frontify/guideline-blocks-shared"
     }
 }

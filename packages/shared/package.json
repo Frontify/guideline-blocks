@@ -8,6 +8,7 @@
     "scripts": {
         "clean": "rimraf dist",
         "build": "npm run clean && tsc && npm run build:types",
+        "build:watch": "npm run clean && tsc -w --declaration",
         "build:types": "tsc --declaration --emitDeclarationOnly",
         "test": "jest",
         "lint": "eslint src",
