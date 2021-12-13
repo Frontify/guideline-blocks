@@ -3,6 +3,7 @@
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, numericalOrPixelRule } from '..';
+import { Radius } from './defaultValues';
 
 export const getBorderRadiusSettings = (id?: string): ApiBlock => {
     const HAS_ID = id ? `hasRadius_${id}` : 'hasRadius';
@@ -27,22 +28,22 @@ export const getBorderRadiusSettings = (id?: string): ApiBlock => {
             {
                 id: CHOICE_ID,
                 type: 'slider',
-                defaultValue: 'None',
+                defaultValue: Radius.None,
                 choices: [
                     {
-                        value: 'None',
+                        value: Radius.None,
                         label: 'None',
                     },
                     {
-                        value: 'Small',
+                        value: Radius.Small,
                         label: 'S',
                     },
                     {
-                        value: 'Medium',
+                        value: Radius.Medium,
                         label: 'M',
                     },
                     {
-                        value: 'Large',
+                        value: Radius.Large,
                         label: 'L',
                     },
                 ],

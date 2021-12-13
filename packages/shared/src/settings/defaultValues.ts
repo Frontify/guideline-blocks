@@ -5,6 +5,13 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
     hex: '#eaebeb',
 };
 
+export enum Radius {
+    None = 'None',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+}
+
 export enum Padding {
     None = 'None',
     Small = 'Small',
