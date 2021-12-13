@@ -3,7 +3,12 @@
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import { ChecklistDecoration, ChecklistPadding, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
-import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule, appendUnit } from '@frontify/guideline-blocks-shared';
+import {
+    minimumNumericalOrPixelOrAutoRule,
+    numericalOrPixelRule,
+    appendUnit,
+    appendUnitToArray,
+} from '@frontify/guideline-blocks-shared';
 
 const showProgressStyles = (bundle: ApiBundle): boolean =>
     !!bundle.getBlock('progressBarVisible')?.value && bundle.getBlock('progressBarType')?.value === ProgressBarType.Bar;
@@ -46,13 +51,13 @@ const settings: ApiSettings = {
                     id: 'paddingCustom',
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
+                    onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, 'paddingCustom'),
                     blocks: [
                         {
                             id: 'paddingCustomTop',
                             type: 'input',
                             label: 'Top',
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, 'paddingCustomTop'),
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(0)],
                             defaultValue: DefaultValues.paddingCustom[0],
                         },
 
@@ -60,24 +65,21 @@ const settings: ApiSettings = {
                             id: 'paddingCustomLeft',
                             type: 'input',
                             label: 'Left',
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, 'paddingCustomLeft'),
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(0)],
                             defaultValue: DefaultValues.paddingCustom[1],
                         },
                         {
                             id: 'paddingCustomRight',
                             type: 'input',
                             label: 'Right',
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, 'paddingCustomRight'),
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(0)],
                             defaultValue: DefaultValues.paddingCustom[2],
                         },
                         {
                             id: 'paddingCustomBottom',
                             type: 'input',
                             label: 'Bottom',
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, 'paddingCustomBottom'),
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(0)],
                             defaultValue: DefaultValues.paddingCustom[3],
                         },
                     ],
