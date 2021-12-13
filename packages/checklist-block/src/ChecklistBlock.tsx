@@ -35,7 +35,7 @@ import { SettingsContext } from './SettingsContext';
 import { calculateFraction, calculatePercentage } from './utilities/calculations';
 import { filterCompleteItems } from './utilities/filterCompletedItems';
 import { reorderList } from './utilities/reorderList';
-import { createItem, findIndexById, findIndexesForMove, updateItemById } from './utilities/contentHelpers';
+import { createItem, findIndexById, findIndexesForMove, updateItemById } from './utilities/helpers';
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 
