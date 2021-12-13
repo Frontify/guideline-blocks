@@ -43,7 +43,10 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
     const decorationStyles = getLabelDecorationStylesMap(type, thickness, color, highlightColor)[completedDecoration];
 
     return (
-        <div className="tw-inline-flex tw-flex-col tw-text-s tw-max-w-full" data-test-id="input-label-container">
+        <div
+            className="tw-inline-flex tw-flex-col tw-text-s tw-max-w-full tw-px-0.5"
+            data-test-id="input-label-container"
+        >
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
