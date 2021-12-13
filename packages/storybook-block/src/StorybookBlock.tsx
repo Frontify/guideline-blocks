@@ -53,9 +53,9 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         positioning = StorybookPosition.Horizontal,
         hasBorder = true,
         borderSelection = [StorybookBorderStyle.Solid, DEFAULT_BORDER_WIDTH, BORDER_COLOR_DEFAULT_VALUE],
-        hasCustomBorderRadius = false,
-        borderRadiusChoice = StorybookBorderRadius.None,
-        borderRadiusValue = '',
+        hasRadius = false,
+        radiusChoice = StorybookBorderRadius.None,
+        radiusValue = '',
     } = blockSettings;
 
     const deleteUrl = () => {
@@ -100,15 +100,8 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                 <div {...hoverProps}>
                     {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
                     <iframe
-                        className={joinClassNames([
-                            'tw-w-full',
-                            !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
-                        ])}
-                        style={
-                            hasBorder
-                                ? getIframeStyles(borderSelection, hasCustomBorderRadius ? borderRadiusValue : '')
-                                : {}
-                        }
+                        className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
+                        style={hasBorder ? getIframeStyles(borderSelection, hasRadius ? radiusValue : '') : {}}
                         height={isCustomHeight ? heightValue : heights[heightChoice]}
                         src={iframeUrl.toString()}
                         frameBorder="0"

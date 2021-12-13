@@ -18,9 +18,9 @@ export type Settings = {
     positioning?: StorybookPosition;
     hasBorder?: boolean;
     borderSelection?: BorderSelectionType;
-    hasCustomBorderRadius?: boolean;
-    borderRadiusChoice?: StorybookBorderRadius;
-    borderRadiusValue?: string;
+    hasRadius?: boolean;
+    radiusChoice?: StorybookBorderRadius;
+    radiusValue?: string;
 };
 
 export enum StorybookStyle {
