@@ -17,7 +17,6 @@ export const getPaddingSettings = (id?: string): ApiBlock => {
         switchLabel: 'Custom',
         defaultValue: false,
         onChange: (bundle: ApiBundle): void => presetCustomValue(bundle, CHOICE_ID, VALUE_ID, paddingValues),
-
         on: [
             {
                 id: VALUE_ID,

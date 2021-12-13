@@ -6,7 +6,7 @@ import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
 import { BORDER_COLOR_DEFAULT_VALUE } from './defaultValues';
 
-export const getBorderSettings = (id?: string): ApiBlock => {
+export const getBorderSettings = (id?: string, defaultValue = true): ApiBlock => {
     const HAS_ID = id ? `hasBorder_${id}` : 'hasBorder';
     const SELECTION_ID = id ? `borderSelection_${id}` : 'borderSelection';
     const STYLE_ID = id ? `borderStyle_${id}` : 'borderStyle';
@@ -17,7 +17,7 @@ export const getBorderSettings = (id?: string): ApiBlock => {
         id: HAS_ID,
         label: 'Border',
         type: 'switch',
-        defaultValue: true,
+        defaultValue,
         on: [
             {
                 id: SELECTION_ID,
