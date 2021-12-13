@@ -29,13 +29,19 @@ import {
     Settings,
 } from './types';
 import { colorToHexAlpha, generatePaddingString } from '@frontify/guideline-blocks-shared';
-import { provideDefaults } from './utilities/provideDefaults';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
-import { calculateFraction, calculatePercentage } from './utilities/calculations';
-import { filterCompleteItems } from './utilities/filterCompletedItems';
-import { reorderList } from './utilities/reorderList';
-import { createItem, findIndexById, findIndexesForMove, updateItemById } from './utilities/helpers';
+import { reorderList } from './utilities';
+import {
+    createItem,
+    calculateFraction,
+    calculatePercentage,
+    findIndexById,
+    findIndexesForMove,
+    updateItemById,
+    provideDefaults,
+    filterCompleteItems,
+} from './helpers';
 import 'tailwindcss/tailwind.css';
 import '@frontify/arcade/style';
 

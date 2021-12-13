@@ -14,8 +14,8 @@ import {
     StrikethroughStyleType,
     StrikethroughType,
 } from './types';
-import { randomInteger } from './utilities/calculations';
-import { createItem } from './utilities/contentHelpers';
+import { randomInteger } from './utilities';
+import { createItem } from './helpers';
 
 const CHECKLIST_BLOCK_SELECTOR = '[data-test-id="checklist-block"]';
 const CHECKLIST_ITEM = '[data-test-id="checklist-item"]';
