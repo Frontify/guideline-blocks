@@ -13,7 +13,7 @@ import {
     OrderableListItem,
 } from '@frontify/arcade';
 import { ItemDropTarget } from '@react-types/shared';
-import { useHover } from './utilities/useHover';
+import { useHover } from '@react-aria/interactions';
 import { useState, FC } from 'react';
 import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
@@ -50,7 +50,6 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const [blockSettings, setBlockSettings] = useBlockSettings<Partial<Settings>>(appBridge);
     const [showCompleted, setShowCompleted] = useState(true);
     const { hoverProps, isHovered } = useHover({});
-    if (isHovered) console.log('ISHOVERED');
     const settings = provideDefaults(DefaultValues, blockSettings);
 
     const {

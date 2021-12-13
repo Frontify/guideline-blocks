@@ -192,9 +192,7 @@ it('Can hide/show completed tasks in View mode', () => {
     mount(<ChecklistBlockWithStubs />);
     cy.get(CHECKLIST_ITEM).should('have.length', 10);
     cy.get('[checked]').should('have.length', 5);
-    cy.get(CHECKLIST_BLOCK_SELECTOR)
-        .realHover()
-        .then(() => console.log('TEST'));
+    cy.get(CHECKLIST_BLOCK_SELECTOR).realHover();
     cy.get(COMPLETED_VISIBILITY_BUTTON).should('be.visible');
     cy.get(COMPLETED_VISIBILITY_BUTTON)
         .find('button')
