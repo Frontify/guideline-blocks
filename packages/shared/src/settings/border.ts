@@ -15,7 +15,12 @@ import { BORDER_COLOR_DEFAULT_VALUE } from './defaultValues';
  * @returns {ApiBlock} Returns border settings
  */
 
-export const getBorderSettings = (options?: { id?: string; defaultValue?: boolean }): ApiBlock => {
+type BorderSettingsType = {
+    id?: string;
+    defaultValue?: boolean;
+};
+
+export const getBorderSettings = (options?: BorderSettingsType): ApiBlock => {
     const HAS_ID = options?.id ? `hasBorder_${options?.id}` : 'hasBorder';
     const SELECTION_ID = options?.id ? `borderSelection_${options?.id}` : 'borderSelection';
     const STYLE_ID = options?.id ? `borderStyle_${options?.id}` : 'borderStyle';

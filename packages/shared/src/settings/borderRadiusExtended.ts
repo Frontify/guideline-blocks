@@ -15,7 +15,12 @@ import { Radius } from './defaultValues';
  * @returns {ApiBlock} Returns border settings
  */
 
-export const getBorderRadiusSettings = (options?: { id?: string; dependencyId?: string }): ApiBlock => {
+type BorderRadiusSettingsType = {
+    id?: string;
+    dependencyId?: string;
+};
+
+export const getBorderRadiusExtendedSettings = (options?: BorderRadiusSettingsType): ApiBlock => {
     const HAS_ID = options?.id ? `hasRadius_${options?.id}` : 'hasRadius';
     const VALUE_ID = options?.id ? `radiusValue_${options?.id}` : 'radiusValue';
     const CHOICE_ID = options?.id ? `radiusChoice_${options?.id}` : 'radiusChoice';

@@ -13,7 +13,11 @@ import { Padding, paddingValues } from './defaultValues';
  * @returns {ApiBlock} Returns border settings
  */
 
-export const getPaddingSettings = (options?: { id?: string }): ApiBlock => {
+type PaddingSettingsType = {
+    id?: string;
+};
+
+export const getPaddingSettings = (options?: PaddingSettingsType): ApiBlock => {
     const HAS_ID = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
     const VALUE_ID = options?.id ? `paddingValue_${options?.id}` : 'paddingValue';
     const CHOICE_ID = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
