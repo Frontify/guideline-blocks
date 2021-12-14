@@ -6,25 +6,33 @@ import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
 import { BORDER_COLOR_DEFAULT_VALUE } from './defaultValues';
 
-export const getBorderSettings = (id?: string, defaultValue = true): ApiBlock => {
-    const HAS_ID = id ? `hasBorder_${id}` : 'hasBorder';
-    const SELECTION_ID = id ? `borderSelection_${id}` : 'borderSelection';
-    const STYLE_ID = id ? `borderStyle_${id}` : 'borderStyle';
-    const WIDTH_ID = id ? `borderWidth_${id}` : 'borderWidth';
-    const COLOR_ID = id ? `borderColor_${id}` : 'borderColor';
+/**
+ * Returns border settings: border switch, border-style, border-width & border-color
+ *
+ * @param options Options for the settings
+ * @param options.id Custom suffix for the setting ids
+ * @param options.defaultValue Default value for the border switch
+ * @returns {ApiBlock} Returns border settings
+ */
+
+export const getBorderSettings = (options?: { id?: string; defaultValue?: boolean }): ApiBlock => {
+    const HAS_ID = options?.id ? `hasBorder_${options?.id}` : 'hasBorder';
+    const SELECTION_ID = options?.id ? `borderSelection_${options?.id}` : 'borderSelection';
+    const STYLE_ID = options?.id ? `borderStyle_${options?.id}` : 'borderStyle';
+    const WIDTH_ID = options?.id ? `borderWidth_${options?.id}` : 'borderWidth';
+    const COLOR_ID = options?.id ? `borderColor_${options?.id}` : 'borderColor';
 
     return {
         id: HAS_ID,
         label: 'Border',
         type: 'switch',
-        defaultValue,
+        defaultValue: options?.defaultValue === false ? false : true,
         on: [
             {
                 id: SELECTION_ID,
                 type: 'multiInput',
                 layout: MultiInputLayout.Columns,
                 lastItemFullWidth: true,
-                show: (bundle: ApiBundle): boolean => bundle.getBlock(HAS_ID)?.value === true,
                 blocks: [
                     {
                         id: STYLE_ID,

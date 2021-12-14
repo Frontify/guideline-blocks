@@ -6,14 +6,22 @@ import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnitToArray, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
 import { Padding } from './defaultValues';
 
-export const getPaddingExtendedSettings = (id?: string): ApiBlock => {
-    const HAS_ID = id ? `hasCustomPadding_${id}` : 'hasCustomPadding';
-    const VALUE_ID = id ? `paddingValues_${id}` : 'paddingValues';
-    const CHOICE_ID = id ? `paddingChoice_${id}` : 'paddingChoice';
-    const TOP_ID = id ? `paddingTop_${id}` : 'paddingTop';
-    const LEFT_ID = id ? `paddingLeft_${id}` : 'paddingLeft';
-    const RIGHT_ID = id ? `paddingRight_${id}` : 'paddingRight';
-    const BOTTOM_ID = id ? `paddingBottom_${id}` : 'paddingBottom';
+/**
+ * Returns padding settings: padding switch, padding slider, custom padding input for every direction
+ *
+ * @param options Options for the settings
+ * @param options.id Custom suffix for the setting ids
+ * @returns {ApiBlock} Returns border settings
+ */
+
+export const getPaddingExtendedSettings = (options?: { id?: string }): ApiBlock => {
+    const HAS_ID = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
+    const VALUE_ID = options?.id ? `paddingValues_${options?.id}` : 'paddingValues';
+    const CHOICE_ID = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
+    const TOP_ID = options?.id ? `paddingTop_${options?.id}` : 'paddingTop';
+    const LEFT_ID = options?.id ? `paddingLeft_${options?.id}` : 'paddingLeft';
+    const RIGHT_ID = options?.id ? `paddingRight_${options?.id}` : 'paddingRight';
+    const BOTTOM_ID = options?.id ? `paddingBottom_${options?.id}` : 'paddingBottom';
 
     return {
         id: HAS_ID,

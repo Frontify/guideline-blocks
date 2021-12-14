@@ -111,7 +111,7 @@ const settings: ApiSettings = {
             ],
         },
     ],
-    style: [getBorderSettings(), getBorderRadiusSettings(undefined, 'hasBorder')],
+    style: [getBorderSettings(), getBorderRadiusSettings({ dependencyId: 'hasBorder' })],
 };
 
 export default settings;

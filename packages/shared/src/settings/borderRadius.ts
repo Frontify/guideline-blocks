@@ -5,10 +5,19 @@ import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, numericalOrPixelRule } from '..';
 import { Radius } from './defaultValues';
 
-export const getBorderRadiusSettings = (id?: string, dependencyId?: string): ApiBlock => {
-    const HAS_ID = id ? `hasRadius_${id}` : 'hasRadius';
-    const VALUE_ID = id ? `radiusValue_${id}` : 'radiusValue';
-    const CHOICE_ID = id ? `radiusChoice_${id}` : 'radiusChoice';
+/**
+ * Returns border radius settings: border radius switch, radius slider, custom radius input
+ *
+ * @param options Options for the settings
+ * @param options.id Custom suffix for the setting ids
+ * @param options.dependencyId Id of setting which the border radius is dependend on
+ * @returns {ApiBlock} Returns border settings
+ */
+
+export const getBorderRadiusSettings = (options?: { id?: string; dependencyId?: string }): ApiBlock => {
+    const HAS_ID = options?.id ? `hasRadius_${options?.id}` : 'hasRadius';
+    const VALUE_ID = options?.id ? `radiusValue_${options?.id}` : 'radiusValue';
+    const CHOICE_ID = options?.id ? `radiusChoice_${options?.id}` : 'radiusChoice';
 
     return {
         id: HAS_ID,
@@ -16,7 +25,8 @@ export const getBorderRadiusSettings = (id?: string, dependencyId?: string): Api
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
-        show: (bundle: ApiBundle): boolean => (dependencyId ? !!bundle.getBlock(dependencyId)?.value : true),
+        show: (bundle: ApiBundle): boolean =>
+            options?.dependencyId ? !!bundle.getBlock(options?.dependencyId)?.value : true,
         on: [
             {
                 id: VALUE_ID,

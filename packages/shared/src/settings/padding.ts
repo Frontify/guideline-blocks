@@ -5,10 +5,18 @@ import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomValue } from '..';
 import { Padding, paddingValues } from './defaultValues';
 
-export const getPaddingSettings = (id?: string): ApiBlock => {
-    const HAS_ID = id ? `hasCustomPadding_${id}` : 'hasCustomPadding';
-    const VALUE_ID = id ? `paddingValue_${id}` : 'paddingValue';
-    const CHOICE_ID = id ? `paddingChoice_${id}` : 'paddingChoice';
+/**
+ * Returns padding settings: padding switch, padding slider, custom padding input
+ *
+ * @param options Options for the settings
+ * @param options.id Custom suffix for the setting ids
+ * @returns {ApiBlock} Returns border settings
+ */
+
+export const getPaddingSettings = (options?: { id?: string }): ApiBlock => {
+    const HAS_ID = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
+    const VALUE_ID = options?.id ? `paddingValue_${options?.id}` : 'paddingValue';
+    const CHOICE_ID = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
 
     return {
         id: HAS_ID,
