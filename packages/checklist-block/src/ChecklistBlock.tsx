@@ -11,10 +11,7 @@ import {
     ItemDragState,
     DragProperties,
     OrderableListItem,
-<<<<<<< HEAD
     ButtonStyle,
-=======
->>>>>>> 942298fcd1b6b91e7a89e88f941020dcd203d097
 } from '@frontify/arcade';
 import { ItemDropTarget } from '@react-types/shared';
 import { useHover } from '@react-aria/interactions';
