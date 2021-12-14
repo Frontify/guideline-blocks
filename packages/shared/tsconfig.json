@@ -2,16 +2,16 @@
     "compilerOptions": {
         "esModuleInterop": true,
         "lib": ["dom", "dom.iterable", "esnext"],
-        "module": "commonjs",
+        "module": "ESNext",
         "moduleResolution": "node",
         "noUnusedLocals": true,
-        "noEmit": true,
         "strict": true,
-        "target": "esnext",
+        "target": "ES6",
         "jsx": "react-jsx",
         "skipLibCheck": true,
         "resolveJsonModule": true,
-        "types": ["jest", "cypress"]
+        "types": ["jest", "cypress"],
+        "outDir": "dist"
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist"]
