@@ -5,6 +5,7 @@
 
 lerna-debug.log
 
+cypress/fixtures/example.json
 cypress/support
 cypress/videos
 cypress/screenshots
