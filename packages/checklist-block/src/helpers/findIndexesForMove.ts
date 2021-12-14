@@ -17,5 +17,6 @@ export const findIndexesForMove = (
     if (gridItemLocation.dropPosition === 'after') {
         newIndex++;
     }
+
     return [oldIndex, newIndex];
 };

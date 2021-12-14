@@ -46,6 +46,7 @@ export const Checkbox: FC<CheckboxProps> = ({
         background: checked ? colorToHexAlpha(completeCheckboxColor) : '',
         borderColor: checked ? colorToHexAlpha(completeCheckboxColor) : colorToHexAlpha(incompleteCheckboxColor),
     };
+
     return (
         <label
             className={joinClassNames([

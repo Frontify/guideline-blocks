@@ -5,6 +5,7 @@ import { ChecklistContent } from '../types';
 export const createItem = (text: string): ChecklistContent => {
     const creationDate = Date.now();
     const id = Math.ceil(Math.random() * creationDate).toString();
+
     return {
         id,
         text,
