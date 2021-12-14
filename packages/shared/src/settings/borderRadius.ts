@@ -19,6 +19,30 @@ type BorderRadiusSettingsType = {
     dependentSettingId?: string;
 };
 
+export const BorderRadiusSlider = (id: string): ApiBlock => ({
+    id: id,
+    type: 'slider',
+    defaultValue: Radius.None,
+    choices: [
+        {
+            value: Radius.None,
+            label: 'None',
+        },
+        {
+            value: Radius.Small,
+            label: 'S',
+        },
+        {
+            value: Radius.Medium,
+            label: 'M',
+        },
+        {
+            value: Radius.Large,
+            label: 'L',
+        },
+    ],
+});
+
 export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): ApiBlock => {
     const HAS_ID = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
     const VALUE_ID = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
@@ -40,30 +64,6 @@ export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): Api
                 onChange: (bundle: ApiBundle): void => appendUnit(bundle, VALUE_ID),
             },
         ],
-        off: [
-            {
-                id: CHOICE_ID,
-                type: 'slider',
-                defaultValue: Radius.None,
-                choices: [
-                    {
-                        value: Radius.None,
-                        label: 'None',
-                    },
-                    {
-                        value: Radius.Small,
-                        label: 'S',
-                    },
-                    {
-                        value: Radius.Medium,
-                        label: 'M',
-                    },
-                    {
-                        value: Radius.Large,
-                        label: 'L',
-                    },
-                ],
-            },
-        ],
+        off: [BorderRadiusSlider(CHOICE_ID)],
     };
 };

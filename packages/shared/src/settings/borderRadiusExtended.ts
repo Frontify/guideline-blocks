@@ -4,7 +4,7 @@ import { MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnitToArray, numericalOrPixelRule } from '..';
-import { Radius } from './defaultValues';
+import { BorderRadiusSlider } from './borderRadius';
 
 /**
  * Returns border radius settings: border radius switch, radius slider, custom radius inputs for every corner
@@ -71,30 +71,6 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
                 ],
             },
         ],
-        off: [
-            {
-                id: CHOICE_ID,
-                type: 'slider',
-                defaultValue: Radius.None,
-                choices: [
-                    {
-                        value: Radius.None,
-                        label: 'None',
-                    },
-                    {
-                        value: Radius.Small,
-                        label: 'S',
-                    },
-                    {
-                        value: Radius.Medium,
-                        label: 'M',
-                    },
-                    {
-                        value: Radius.Large,
-                        label: 'L',
-                    },
-                ],
-            },
-        ],
+        off: [BorderRadiusSlider(CHOICE_ID)],
     };
 };

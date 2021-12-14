@@ -4,7 +4,7 @@ import { MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnitToArray, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
-import { Padding } from './defaultValues';
+import { PaddingSlider } from './padding';
 
 /**
  * Returns padding settings: padding switch, padding slider, custom padding input for every direction
@@ -67,30 +67,6 @@ export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBl
                 ],
             },
         ],
-        off: [
-            {
-                id: CHOICE_ID,
-                type: 'slider',
-                defaultValue: Padding.Medium,
-                choices: [
-                    {
-                        value: Padding.None,
-                        label: 'None',
-                    },
-                    {
-                        value: Padding.Small,
-                        label: 'S',
-                    },
-                    {
-                        value: Padding.Medium,
-                        label: 'M',
-                    },
-                    {
-                        value: Padding.Large,
-                        label: 'L',
-                    },
-                ],
-            },
-        ],
+        off: [PaddingSlider(CHOICE_ID)],
     };
 };

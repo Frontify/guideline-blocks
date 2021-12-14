@@ -17,6 +17,30 @@ type PaddingSettingsType = {
     id?: string;
 };
 
+export const PaddingSlider = (id: string): ApiBlock => ({
+    id: id,
+    type: 'slider',
+    defaultValue: Padding.Small,
+    choices: [
+        {
+            value: Padding.None,
+            label: 'None',
+        },
+        {
+            value: Padding.Small,
+            label: 'S',
+        },
+        {
+            value: Padding.Medium,
+            label: 'M',
+        },
+        {
+            value: Padding.Large,
+            label: 'L',
+        },
+    ],
+});
+
 export const getPaddingSettings = (options?: PaddingSettingsType): ApiBlock => {
     const HAS_ID = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
     const VALUE_ID = options?.id ? `paddingValue_${options?.id}` : 'paddingValue';
@@ -38,30 +62,6 @@ export const getPaddingSettings = (options?: PaddingSettingsType): ApiBlock => {
                 onChange: (bundle: ApiBundle): void => appendUnit(bundle, VALUE_ID),
             },
         ],
-        off: [
-            {
-                id: CHOICE_ID,
-                type: 'slider',
-                defaultValue: Padding.Small,
-                choices: [
-                    {
-                        value: Padding.None,
-                        label: 'None',
-                    },
-                    {
-                        value: Padding.Small,
-                        label: 'S',
-                    },
-                    {
-                        value: Padding.Medium,
-                        label: 'M',
-                    },
-                    {
-                        value: Padding.Large,
-                        label: 'L',
-                    },
-                ],
-            },
-        ],
+        off: [PaddingSlider(CHOICE_ID)],
     };
 };
