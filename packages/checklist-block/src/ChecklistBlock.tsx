@@ -80,10 +80,8 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
             content: content.filter(({ id }) => id !== idToDelete),
         });
 
-    const updateItem = (idToUpdate: string, properties: Partial<ChecklistContent>) => {
-        const updatedContent = updateItemById(content, idToUpdate, properties);
-        setBlockSettings({ ...blockSettings, content: updatedContent });
-    };
+    const updateItem = (idToUpdate: string, properties: Partial<ChecklistContent>) =>
+        setBlockSettings({ ...blockSettings, content: updateItemById(content, idToUpdate, properties) });
 
     const toggleCompletedVisibility = () => setShowCompleted((prev) => !prev);
 
