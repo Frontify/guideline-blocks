@@ -11,6 +11,7 @@ import {
     ItemDragState,
     DragProperties,
     OrderableListItem,
+    ButtonStyle,
 } from '@frontify/arcade';
 import { ItemDropTarget } from '@react-types/shared';
 import { useHover } from '@react-aria/interactions';
@@ -164,6 +165,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 >
                     <Button
                         size={ButtonSize.Small}
+                        style={ButtonStyle.Secondary}
                         icon={
                             showCompleted ? (
                                 <IconView size={IconSize.Size16} />
