@@ -5,6 +5,12 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
     hex: '#eaebeb',
 };
 
+export enum BorderStyle {
+    Solid = 'Solid',
+    Dashed = 'Dashed',
+    Dotted = 'Dotted',
+}
+
 export enum Radius {
     None = 'None',
     Small = 'Small',

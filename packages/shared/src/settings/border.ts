@@ -4,7 +4,7 @@ import { MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
-import { BORDER_COLOR_DEFAULT_VALUE } from './defaultValues';
+import { BorderStyle, BORDER_COLOR_DEFAULT_VALUE } from './defaultValues';
 
 /**
  * Returns border settings: border switch, border style, border width, border color
@@ -42,19 +42,19 @@ export const getBorderSettings = (options?: BorderSettingsType): ApiBlock => {
                     {
                         id: STYLE_ID,
                         type: 'dropdown',
-                        defaultValue: 'Solid',
+                        defaultValue: BorderStyle.Solid,
                         choices: [
                             {
-                                value: 'Solid',
-                                label: 'Solid',
+                                value: BorderStyle.Solid,
+                                label: BorderStyle.Solid,
                             },
                             {
-                                value: 'Dotted',
-                                label: 'Dotted',
+                                value: BorderStyle.Dotted,
+                                label: BorderStyle.Dotted,
                             },
                             {
-                                value: 'Dashed',
-                                label: 'Dashed',
+                                value: BorderStyle.Dashed,
+                                label: BorderStyle.Dashed,
                             },
                         ],
                     },
