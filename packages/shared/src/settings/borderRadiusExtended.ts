@@ -11,23 +11,23 @@ import { Radius } from './defaultValues';
  *
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
- * @param options.dependencyId Id of setting which the border radius is dependend on
+ * @param options.dependentSettingId Id of setting which the border radius is dependent on
  * @returns {ApiBlock} Returns border settings
  */
 
 type BorderRadiusSettingsType = {
     id?: string;
-    dependencyId?: string;
+    dependentSettingId?: string;
 };
 
-export const getBorderRadiusExtendedSettings = (options?: BorderRadiusSettingsType): ApiBlock => {
-    const HAS_ID = options?.id ? `hasRadius_${options?.id}` : 'hasRadius';
-    const VALUE_ID = options?.id ? `radiusValue_${options?.id}` : 'radiusValue';
-    const CHOICE_ID = options?.id ? `radiusChoice_${options?.id}` : 'radiusChoice';
-    const TOP_LEFT_ID = options?.id ? `radiusTopLeft_${options?.id}` : 'radiusTopLeft';
-    const TOP_RIGHT_ID = options?.id ? `radiusTopRight_${options?.id}` : 'radiusTopRight';
-    const BOTTOM_LEFT_ID = options?.id ? `radiusBottomLeft_${options?.id}` : 'radiusBottomLeft';
-    const BOTTOM_RIGHT_ID = options?.id ? `radiusBottomRight_${options?.id}` : 'radiusBottomRight';
+export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsType): ApiBlock => {
+    const HAS_ID = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
+    const VALUE_ID = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
+    const CHOICE_ID = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
+    const TOP_LEFT_ID = options?.id ? `radiusTopLeft_${options.id}` : 'radiusTopLeft';
+    const TOP_RIGHT_ID = options?.id ? `radiusTopRight_${options.id}` : 'radiusTopRight';
+    const BOTTOM_LEFT_ID = options?.id ? `radiusBottomLeft_${options.id}` : 'radiusBottomLeft';
+    const BOTTOM_RIGHT_ID = options?.id ? `radiusBottomRight_${options.id}` : 'radiusBottomRight';
 
     return {
         id: HAS_ID,
@@ -36,7 +36,7 @@ export const getBorderRadiusExtendedSettings = (options?: BorderRadiusSettingsTy
         switchLabel: 'Custom',
         defaultValue: false,
         show: (bundle: ApiBundle): boolean =>
-            options?.dependencyId ? !!bundle.getBlock(options?.dependencyId)?.value : true,
+            options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
         on: [
             {
                 id: VALUE_ID,

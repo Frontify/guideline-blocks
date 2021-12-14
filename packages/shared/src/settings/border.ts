@@ -7,7 +7,7 @@ import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } f
 import { BORDER_COLOR_DEFAULT_VALUE } from './defaultValues';
 
 /**
- * Returns border settings: border switch, border-style, border-width & border-color
+ * Returns border settings: border switch, border style, border width, border color
  *
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
@@ -21,17 +21,17 @@ type BorderSettingsType = {
 };
 
 export const getBorderSettings = (options?: BorderSettingsType): ApiBlock => {
-    const HAS_ID = options?.id ? `hasBorder_${options?.id}` : 'hasBorder';
-    const SELECTION_ID = options?.id ? `borderSelection_${options?.id}` : 'borderSelection';
-    const STYLE_ID = options?.id ? `borderStyle_${options?.id}` : 'borderStyle';
-    const WIDTH_ID = options?.id ? `borderWidth_${options?.id}` : 'borderWidth';
-    const COLOR_ID = options?.id ? `borderColor_${options?.id}` : 'borderColor';
+    const HAS_ID = options?.id ? `hasBorder_${options.id}` : 'hasBorder';
+    const SELECTION_ID = options?.id ? `borderSelection_${options.id}` : 'borderSelection';
+    const STYLE_ID = options?.id ? `borderStyle_${options.id}` : 'borderStyle';
+    const WIDTH_ID = options?.id ? `borderWidth_${options.id}` : 'borderWidth';
+    const COLOR_ID = options?.id ? `borderColor_${options.id}` : 'borderColor';
 
     return {
         id: HAS_ID,
         label: 'Border',
         type: 'switch',
-        defaultValue: options?.defaultValue === false ? false : true,
+        defaultValue: !!options?.defaultValue,
         on: [
             {
                 id: SELECTION_ID,
