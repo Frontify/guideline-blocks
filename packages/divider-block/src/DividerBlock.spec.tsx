@@ -9,6 +9,12 @@ const DividerBlockSelector = '[data-test-id="divider-block"]';
 const DividerWrapper = '[data-test-id="divider-wrapper"]';
 const DividerLine = '[data-test-id="divider-line"]';
 
+const EXAMPLE_COLOR = {
+    rgba: { r: 22, g: 181, b: 181, a: 1 },
+    name: 'Java',
+    hex: '#16b5b5',
+};
+
 it('renders a divider block', () => {
     const [DividerBlockWithStubs] = withAppBridgeStubs(DividerBlock, {});
 
@@ -38,4 +44,19 @@ it('renders a divider block with the correct layout', () => {
     mount(<DividerBlockWithStubs />);
     cy.get(DividerBlockSelector).should('have.class', 'tw-justify-center');
     cy.get(DividerWrapper).should('have.css', 'height').and('eq', '60px');
+});
+
+it('renders a divider block with the correct styling', () => {
+    const [DividerBlockWithStubs] = withAppBridgeStubs(DividerBlock, {
+        blockSettings: {
+            color: EXAMPLE_COLOR,
+            style: DividerStyle.Dashed,
+            thicknessSimple: DividerHeight.Large,
+        },
+    });
+
+    mount(<DividerBlockWithStubs />);
+    cy.get(DividerLine).should('have.class', 'tw-border-dashed');
+    cy.get(DividerLine).should('have.css', 'border-top-width', '4px');
+    cy.get(DividerLine).should('have.css', 'border-top-color', 'rgb(22, 181, 181)');
 });

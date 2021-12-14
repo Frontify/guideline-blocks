@@ -43,8 +43,6 @@ export const DividerBlock: FC<Props> = ({ appBridge }) => {
         thicknessSimple = THICKNESS_DEFAULT_VALUE,
     } = blockSettings;
 
-    console.log({ blockSettings });
-
     return (
         <div
             data-test-id="divider-block"
