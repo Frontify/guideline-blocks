@@ -43,12 +43,15 @@ export const DividerBlock: FC<Props> = ({ appBridge }) => {
         thicknessSimple = THICKNESS_DEFAULT_VALUE,
     } = blockSettings;
 
+    console.log({ blockSettings });
+
     return (
         <div
             data-test-id="divider-block"
             className={joinClassNames(['tw-flex', css.dividerBlock, dividerAlignmentClasses[alignment]])}
         >
             <div
+                data-test-id="divider-wrapper"
                 className="tw-flex tw-items-center tw-transition-all"
                 style={{
                     width: isWidthCustom ? widthCustom : widthSimple,
@@ -56,6 +59,7 @@ export const DividerBlock: FC<Props> = ({ appBridge }) => {
                 }}
             >
                 <hr
+                    data-test-id="divider-line"
                     className={joinClassNames([
                         'tw-border-t tw-m-0 tw-w-full',
                         dividerStyleClasses[isLine === DividerStyle.Solid ? style : DividerStyle.NoLine],
