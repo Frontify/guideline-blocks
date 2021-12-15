@@ -7,6 +7,7 @@ import { Type, Alignment, Padding, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 const CalloutWrapper = '[data-test-id="callout-wrapper"]';
+const CalloutIcon = '[data-test-id="callout-icon"]';
 
 it('renders a callout block', () => {
     const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {});
@@ -53,13 +54,14 @@ it('renders a callout block with the correct border radius style', () => {
     cy.get(CalloutWrapper).should('have.css', 'border-radius').and('eq', '10px 20px 30px 40px');
 });
 
-// it('renders a callout block with an icon', () => {
-//     const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
-//         blockSettings: {
-//             iconSwitch: true,
-//             icon: 6180,
-//         },
-//     });
+it('renders a callout block with an icon', () => {
+    const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
+        blockSettings: {
+            iconSwitch: true,
+            icon: 123,
+        },
+    });
 
-//     mount(<CalloutBlockWithStubs />);
-// });
+    mount(<CalloutBlockWithStubs />);
+    cy.get(CalloutIcon).should('exist');
+});
