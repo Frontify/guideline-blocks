@@ -4,7 +4,7 @@ import { MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
-import { BorderStyle, BORDER_COLOR_DEFAULT_VALUE } from './defaultValues';
+import { BorderStyle, BORDER_COLOR_DEFAULT_VALUE, BORDER_WIDTH_DEFAULT_VALUE } from './defaultValues';
 
 /**
  * Returns border settings: border switch, border style, border width, border color
@@ -61,7 +61,7 @@ export const getBorderSettings = (options?: BorderSettingsType): ApiBlock => {
                     {
                         id: WIDTH_ID,
                         type: 'input',
-                        defaultValue: '1px',
+                        defaultValue: BORDER_WIDTH_DEFAULT_VALUE,
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                         onChange: (bundle: ApiBundle): void => appendUnit(bundle, WIDTH_ID),
                     },

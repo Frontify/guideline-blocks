@@ -3,7 +3,7 @@
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomValue } from '..';
-import { Padding, paddingValues } from './defaultValues';
+import { Padding, paddingValues, PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 
 /**
  * Returns padding settings: padding switch, padding slider, custom padding input
@@ -17,7 +17,7 @@ type PaddingSettingsType = {
     id?: string;
 };
 
-export const PaddingSlider = (id: string): ApiBlock => ({
+export const getPaddingSlider = (id: string): ApiBlock => ({
     id: id,
     type: 'slider',
     defaultValue: Padding.Small,
@@ -57,11 +57,11 @@ export const getPaddingSettings = (options?: PaddingSettingsType): ApiBlock => {
             {
                 id: VALUE_ID,
                 type: 'input',
-                placeholder: '24px',
+                placeholder: PADDING_DEFAULT_PLACEHOLDER,
                 rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                 onChange: (bundle: ApiBundle): void => appendUnit(bundle, VALUE_ID),
             },
         ],
-        off: [PaddingSlider(CHOICE_ID)],
+        off: [getPaddingSlider(CHOICE_ID)],
     };
 };

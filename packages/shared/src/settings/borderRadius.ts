@@ -19,7 +19,7 @@ type BorderRadiusSettingsType = {
     dependentSettingId?: string;
 };
 
-export const BorderRadiusSlider = (id: string): ApiBlock => ({
+export const getBorderRadiusSlider = (id: string): ApiBlock => ({
     id: id,
     type: 'slider',
     defaultValue: Radius.None,
@@ -64,6 +64,6 @@ export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): Api
                 onChange: (bundle: ApiBundle): void => appendUnit(bundle, VALUE_ID),
             },
         ],
-        off: [BorderRadiusSlider(CHOICE_ID)],
+        off: [getBorderRadiusSlider(CHOICE_ID)],
     };
 };

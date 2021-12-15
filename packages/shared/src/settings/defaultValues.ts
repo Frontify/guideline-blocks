@@ -5,6 +5,10 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
     hex: '#eaebeb',
 };
 
+export const BORDER_WIDTH_DEFAULT_VALUE = '1px';
+
+export const PADDING_DEFAULT_PLACEHOLDER = '24px';
+
 export enum BorderStyle {
     Solid = 'Solid',
     Dashed = 'Dashed',
