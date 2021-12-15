@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCheck, FOCUS_STYLE, useMemoizedId } from '@frontify/arcade';
+import { IconCheck, FOCUS_STYLE } from '@frontify/arcade';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
@@ -10,6 +10,7 @@ import { CheckboxProps } from '../types';
 import { CheckboxLabel } from './CheckboxLabel';
 import { colorToHexAlpha, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from '../SettingsContext';
+import { getInteractionModality } from '@react-aria/interactions';
 
 export const Checkbox: FC<CheckboxProps> = ({
     id,
@@ -22,9 +23,9 @@ export const Checkbox: FC<CheckboxProps> = ({
     onChange,
 }) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const inputId = useMemoizedId(id);
 
     const { isFocusVisible, focusProps } = useFocusRing();
+    const isKeyboard = getInteractionModality() === 'keyboard';
 
     const toggleState = useToggleState({
         onChange: disabled ? undefined : onChange,
@@ -57,7 +58,7 @@ export const Checkbox: FC<CheckboxProps> = ({
         >
             <input
                 {...mergeProps(inputProps, focusProps)}
-                id={inputId}
+                id={id}
                 ref={inputRef}
                 className="tw-sr-only"
                 data-test-id="checkbox-input"
@@ -66,7 +67,7 @@ export const Checkbox: FC<CheckboxProps> = ({
                 aria-hidden="true"
                 className={joinClassNames([
                     'tw-relative tw-flex tw-w-4 tw-h-4 tw-mr-2 tw-items-center tw-justify-center tw-rounded tw-border tw-border-solid tw-flex-shrink-0 tw-bg-white tw-text-white',
-                    isFocusVisible && FOCUS_STYLE,
+                    isFocusVisible && isKeyboard && FOCUS_STYLE,
                     disabled && 'tw-pointer-events-none',
                 ])}
                 style={checkboxStyles}
