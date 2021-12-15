@@ -176,13 +176,15 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     </Button>
                 </div>
                 <div className="tw-mt-4" data-test-id="checklist-container">
-                    <OrderableList
-                        items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
-                        onMove={onMove}
-                        disableTypeAhead
-                        dragDisabled={!isEditing}
-                        renderContent={renderChecklistItem}
-                    />
+                    {!!displayableItems.length && (
+                        <OrderableList
+                            items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
+                            onMove={onMove}
+                            disableTypeAhead
+                            dragDisabled={!isEditing}
+                            renderContent={renderChecklistItem}
+                        />
+                    )}
                 </div>
                 {isEditing && (
                     <>

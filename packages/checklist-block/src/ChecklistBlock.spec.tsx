@@ -33,6 +33,7 @@ const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 
 const DRAGGABLE_ITEM = '[data-test-id=draggable-item]';
 const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
+const FOCUS_CONTROLLER = 'div[tabindex=0][role="button"]';
 
 const createContentArray = (length: number, fixedParams?: Partial<ChecklistContent>) => {
     const createRandomItem = (fixedParams?: Partial<ChecklistContent>) => {
@@ -138,6 +139,84 @@ it('Allows users to move item up or down in Edit Mode', () => {
                     expect(newFirstItemKey).not.to.equal(firstItemKey);
                 });
         });
+});
+
+it('Allows users to move item with keyboard', () => {
+    const content = createContentArray(3, { completed: false });
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        blockSettings: { content },
+        editorState: true,
+    });
+
+    mount(<ChecklistBlockWithStubs />);
+    cy.window().focus();
+    cy.get('body').realPress('Tab');
+    cy.get(DRAGGABLE_ITEM)
+        .first()
+        .then(($firstItem) => {
+            const firstItemKey = $firstItem.data('key');
+            cy.wrap($firstItem).should('be.focused').realPress('ArrowLeft');
+            cy.get(CONTROL_BUTTONS).first().find('button').last().should('be.focused').realPress('ArrowLeft');
+            cy.get(CONTROL_BUTTONS).first().find('button').eq(1).should('be.focused').click();
+            cy.get(CHECKLIST_CONTAINER)
+                .find(DRAGGABLE_ITEM)
+                .first()
+                .then(($newFirstItem) => {
+                    const newFirstItemKey = $newFirstItem.data('key');
+                    expect(newFirstItemKey).not.to.equal(firstItemKey);
+                });
+            cy.get(CHECKLIST_CONTAINER)
+                .find(DRAGGABLE_ITEM)
+                .eq(1)
+                .then(($secondItem) => {
+                    const secondItemKey = $secondItem.data('key');
+                    expect(firstItemKey).to.equal(secondItemKey);
+                });
+        });
+});
+
+it('Allows users to remove item with keyboard', () => {
+    const length = randomInteger(3, 10);
+    const content = createContentArray(length, { completed: false });
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        blockSettings: { content },
+        editorState: true,
+    });
+
+    mount(<ChecklistBlockWithStubs />);
+    cy.window().focus();
+    cy.get('body').realPress('Tab');
+    cy.get(DRAGGABLE_ITEM)
+        .should('have.length', length)
+        .first()
+        .then(($firstItem) => {
+            const firstItemKey = $firstItem.data('key');
+            cy.wrap($firstItem).should('be.focused').realPress('ArrowLeft');
+            cy.get(CONTROL_BUTTONS).first().find('button').last().should('be.focused').click();
+            cy.get(CHECKLIST_CONTAINER)
+                .find(DRAGGABLE_ITEM)
+                .should('have.length', length - 1)
+                .first()
+                .then(($newFirstItem) => {
+                    const newFirstItemKey = $newFirstItem.data('key');
+                    expect(newFirstItemKey).not.to.equal(firstItemKey);
+                });
+        });
+});
+
+it('Allows users to create item with keyboard', () => {
+    const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        blockSettings: { content: [] },
+        editorState: true,
+    });
+
+    mount(<ChecklistBlockWithStubs />);
+    cy.window().focus();
+    cy.get('body').realPress('Tab');
+    cy.get(DRAGGABLE_ITEM).should('have.length', 0);
+    cy.get(CHECKLIST_ITEM_CREATOR).find(FOCUS_CONTROLLER).should('be.focused').realPress('Space');
+    cy.get(CHECKLIST_ITEM_CREATOR).find(TEXT_EDITOR).should('be.focused').type('TEXT{Enter}');
+    cy.get(DRAGGABLE_ITEM).should('have.length', 1).find(TEXT_EDITOR).should('have.text', 'TEXT');
 });
 
 it('Disables List modifications in View Mode', () => {
