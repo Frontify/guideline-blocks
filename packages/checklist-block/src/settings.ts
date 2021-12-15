@@ -13,10 +13,14 @@ import {
 const showProgressStyles = (bundle: ApiBundle): boolean =>
     !!bundle.getBlock('progressBarVisible')?.value && bundle.getBlock('progressBarType')?.value === ProgressBarType.Bar;
 
+const COMPLETED_DECORATION = 'completedDecoration';
+const PADDING_CUSTOM = 'paddingCustom';
+const STRIKETHROUGH_WIDTH = 'strikethroughWidth';
+
 const settings: ApiSettings = {
     main: [
         {
-            id: 'completedDecoration',
+            id: COMPLETED_DECORATION,
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
             size: 'Large',
@@ -48,10 +52,10 @@ const settings: ApiSettings = {
             switchLabel: 'Custom',
             on: [
                 {
-                    id: 'paddingCustom',
+                    id: PADDING_CUSTOM,
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
-                    onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, 'paddingCustom'),
+                    onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, PADDING_CUSTOM),
                     blocks: [
                         {
                             id: 'paddingCustomTop',
@@ -176,8 +180,7 @@ const settings: ApiSettings = {
             type: 'colorInput',
             label: 'Highlight',
             defaultValue: DefaultValues.highlightColor,
-            show: (bundle: ApiBundle) =>
-                bundle.getBlock('completedDecoration')?.value === ChecklistDecoration.Highlight,
+            show: (bundle: ApiBundle) => bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
         },
         {
             id: 'strikethroughMultiInput',
@@ -186,7 +189,7 @@ const settings: ApiSettings = {
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
             show: (bundle: ApiBundle) =>
-                bundle.getBlock('completedDecoration')?.value === ChecklistDecoration.Strikethrough,
+                bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,
             blocks: [
                 {
                     id: 'strikethroughStyle',
@@ -216,10 +219,10 @@ const settings: ApiSettings = {
                     ],
                 },
                 {
-                    id: 'strikethroughWidth',
+                    id: STRIKETHROUGH_WIDTH,
                     type: 'input',
                     defaultValue: DefaultValues.strikethroughMultiInput[1],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, 'strikethroughWidth'),
+                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                 },
                 {

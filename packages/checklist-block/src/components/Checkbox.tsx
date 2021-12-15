@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCheck, FOCUS_STYLE } from '@frontify/arcade';
+import { IconCheck, FOCUS_STYLE, useMemoizedId } from '@frontify/arcade';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
@@ -22,6 +22,7 @@ export const Checkbox: FC<CheckboxProps> = ({
     onChange,
 }) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputId = useMemoizedId(id);
 
     const { isFocusVisible, focusProps } = useFocusRing();
 
@@ -56,7 +57,7 @@ export const Checkbox: FC<CheckboxProps> = ({
         >
             <input
                 {...mergeProps(inputProps, focusProps)}
-                id={id}
+                id={inputId}
                 ref={inputRef}
                 className="tw-sr-only"
                 data-test-id="checkbox-input"
