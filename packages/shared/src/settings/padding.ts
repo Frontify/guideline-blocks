@@ -42,26 +42,26 @@ export const getPaddingSlider = (id: string): ApiBlock => ({
 });
 
 export const getPaddingSettings = (options?: PaddingSettingsType): ApiBlock => {
-    const HAS_ID = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
-    const VALUE_ID = options?.id ? `paddingValue_${options?.id}` : 'paddingValue';
-    const CHOICE_ID = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
+    const hasId = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
+    const valueId = options?.id ? `paddingValue_${options?.id}` : 'paddingValue';
+    const choiceId = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
 
     return {
-        id: HAS_ID,
+        id: hasId,
         label: 'Padding',
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
-        onChange: (bundle: ApiBundle): void => presetCustomValue(bundle, CHOICE_ID, VALUE_ID, paddingValues),
+        onChange: (bundle: ApiBundle): void => presetCustomValue(bundle, choiceId, valueId, paddingValues),
         on: [
             {
-                id: VALUE_ID,
+                id: valueId,
                 type: 'input',
                 placeholder: PADDING_DEFAULT_PLACEHOLDER,
                 rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                onChange: (bundle: ApiBundle): void => appendUnit(bundle, VALUE_ID),
+                onChange: (bundle: ApiBundle): void => appendUnit(bundle, valueId),
             },
         ],
-        off: [getPaddingSlider(CHOICE_ID)],
+        off: [getPaddingSlider(choiceId)],
     };
 };

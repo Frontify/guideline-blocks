@@ -44,12 +44,12 @@ export const getBorderRadiusSlider = (id: string): ApiBlock => ({
 });
 
 export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): ApiBlock => {
-    const HAS_ID = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
-    const VALUE_ID = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
-    const CHOICE_ID = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
+    const hasId = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
+    const valueId = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
+    const choiceId = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
 
     return {
-        id: HAS_ID,
+        id: hasId,
         label: 'Corner radius',
         type: 'switch',
         switchLabel: 'Custom',
@@ -58,12 +58,12 @@ export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): Api
             options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
         on: [
             {
-                id: VALUE_ID,
+                id: valueId,
                 type: 'input',
                 rules: [numericalOrPixelRule],
-                onChange: (bundle: ApiBundle): void => appendUnit(bundle, VALUE_ID),
+                onChange: (bundle: ApiBundle): void => appendUnit(bundle, valueId),
             },
         ],
-        off: [getBorderRadiusSlider(CHOICE_ID)],
+        off: [getBorderRadiusSlider(choiceId)],
     };
 };

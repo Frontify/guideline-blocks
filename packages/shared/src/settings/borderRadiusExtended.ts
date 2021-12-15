@@ -21,16 +21,16 @@ type BorderRadiusSettingsType = {
 };
 
 export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsType): ApiBlock => {
-    const HAS_ID = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
-    const VALUE_ID = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
-    const CHOICE_ID = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
-    const TOP_LEFT_ID = options?.id ? `radiusTopLeft_${options.id}` : 'radiusTopLeft';
-    const TOP_RIGHT_ID = options?.id ? `radiusTopRight_${options.id}` : 'radiusTopRight';
-    const BOTTOM_LEFT_ID = options?.id ? `radiusBottomLeft_${options.id}` : 'radiusBottomLeft';
-    const BOTTOM_RIGHT_ID = options?.id ? `radiusBottomRight_${options.id}` : 'radiusBottomRight';
+    const hasId = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
+    const valueId = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
+    const choiceId = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
+    const topLeftId = options?.id ? `radiusTopLeft_${options.id}` : 'radiusTopLeft';
+    const topRightId = options?.id ? `radiusTopRight_${options.id}` : 'radiusTopRight';
+    const bottomLeftId = options?.id ? `radiusBottomLeft_${options.id}` : 'radiusBottomLeft';
+    const bottomRightId = options?.id ? `radiusBottomRight_${options.id}` : 'radiusBottomRight';
 
     return {
-        id: HAS_ID,
+        id: hasId,
         label: 'Corner radius',
         type: 'switch',
         switchLabel: 'Custom',
@@ -39,31 +39,31 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
             options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
         on: [
             {
-                id: VALUE_ID,
+                id: valueId,
                 type: 'multiInput',
                 layout: MultiInputLayout.Columns,
-                onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, VALUE_ID),
+                onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, valueId),
                 blocks: [
                     {
-                        id: TOP_LEFT_ID,
+                        id: topLeftId,
                         type: 'input',
                         label: 'Top Left',
                         rules: [numericalOrPixelRule],
                     },
                     {
-                        id: TOP_RIGHT_ID,
+                        id: topRightId,
                         type: 'input',
                         label: 'Top Right',
                         rules: [numericalOrPixelRule],
                     },
                     {
-                        id: BOTTOM_LEFT_ID,
+                        id: bottomLeftId,
                         type: 'input',
                         label: 'Bottom Left',
                         rules: [numericalOrPixelRule],
                     },
                     {
-                        id: BOTTOM_RIGHT_ID,
+                        id: bottomRightId,
                         type: 'input',
                         label: 'Bottom Right',
                         rules: [numericalOrPixelRule],
@@ -71,6 +71,6 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
                 ],
             },
         ],
-        off: [getBorderRadiusSlider(CHOICE_ID)],
+        off: [getBorderRadiusSlider(choiceId)],
     };
 };

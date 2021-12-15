@@ -19,47 +19,47 @@ type PaddingSettingsType = {
 };
 
 export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBlock => {
-    const HAS_ID = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
-    const VALUE_ID = options?.id ? `paddingValues_${options?.id}` : 'paddingValues';
-    const CHOICE_ID = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
-    const TOP_ID = options?.id ? `paddingTop_${options?.id}` : 'paddingTop';
-    const LEFT_ID = options?.id ? `paddingLeft_${options?.id}` : 'paddingLeft';
-    const RIGHT_ID = options?.id ? `paddingRight_${options?.id}` : 'paddingRight';
-    const BOTTOM_ID = options?.id ? `paddingBottom_${options?.id}` : 'paddingBottom';
+    const hasId = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
+    const valueId = options?.id ? `paddingValues_${options?.id}` : 'paddingValues';
+    const choiceId = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
+    const topId = options?.id ? `paddingTop_${options?.id}` : 'paddingTop';
+    const leftId = options?.id ? `paddingLeft_${options?.id}` : 'paddingLeft';
+    const rightId = options?.id ? `paddingRight_${options?.id}` : 'paddingRight';
+    const bottomId = options?.id ? `paddingBottom_${options?.id}` : 'paddingBottom';
 
     return {
-        id: HAS_ID,
+        id: hasId,
         label: 'Padding',
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
         on: [
             {
-                id: VALUE_ID,
+                id: valueId,
                 type: 'multiInput',
                 layout: MultiInputLayout.Spider,
-                onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, VALUE_ID),
+                onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, valueId),
                 blocks: [
                     {
-                        id: TOP_ID,
+                        id: topId,
                         type: 'input',
                         label: 'Top',
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
-                        id: LEFT_ID,
+                        id: leftId,
                         type: 'input',
                         label: 'Left',
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
-                        id: RIGHT_ID,
+                        id: rightId,
                         type: 'input',
                         label: 'Right',
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
-                        id: BOTTOM_ID,
+                        id: bottomId,
                         type: 'input',
                         label: 'Bottom',
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
@@ -67,6 +67,6 @@ export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBl
                 ],
             },
         ],
-        off: [getPaddingSlider(CHOICE_ID)],
+        off: [getPaddingSlider(choiceId)],
     };
 };
