@@ -1,21 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { IconEnum } from '@frontify/arcade';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
+    getBorderRadiusSettings,
+    getBorderSettings,
     maximumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import {
-    heights,
-    StorybookBorderRadius,
-    StorybookBorderStyle,
-    StorybookHeight,
-    StorybookPosition,
-    StorybookStyle,
-} from './types';
+import { heights, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
     rgba: { r: 234, g: 235, b: 235, a: 1 },
@@ -25,11 +20,8 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
 export const URL_INPUT_PLACEHOLDER = 'https://brand.storybook.com/?path=/story/buttons';
 
 const STYLE_ID = 'style';
-const HAS_BORDER_ID = 'hasBorder';
 const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
-const BORDER_WIDTH_ID = 'borderWidth';
-const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
 
 const settings: ApiSettings = {
     main: [
@@ -119,99 +111,7 @@ const settings: ApiSettings = {
             ],
         },
     ],
-    style: [
-        {
-            id: HAS_BORDER_ID,
-            label: 'Border',
-            type: 'switch',
-            defaultValue: true,
-            on: [
-                {
-                    id: 'borderSelection',
-                    type: 'multiInput',
-                    layout: MultiInputLayout.Columns,
-                    lastItemFullWidth: true,
-                    blocks: [
-                        {
-                            id: 'borderStyle',
-                            type: 'dropdown',
-                            defaultValue: StorybookBorderStyle.Solid,
-                            choices: [
-                                {
-                                    value: StorybookBorderStyle.Solid,
-                                    label: 'Solid',
-                                },
-                                {
-                                    value: StorybookBorderStyle.Dotted,
-                                    label: 'Dotted',
-                                },
-                                {
-                                    value: StorybookBorderStyle.Dashed,
-                                    label: 'Dashed',
-                                },
-                            ],
-                        },
-                        {
-                            id: BORDER_WIDTH_ID,
-                            type: 'input',
-                            defaultValue: '1px',
-                            clearable: false,
-                            rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                            onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_WIDTH_ID),
-                        },
-                        {
-                            id: 'borderColor',
-                            type: 'colorInput',
-                            defaultValue: BORDER_COLOR_DEFAULT_VALUE,
-                        },
-                    ],
-                },
-            ],
-            off: [],
-        },
-        {
-            id: 'hasCustomBorderRadius',
-            label: 'Corner radius',
-            type: 'switch',
-            switchLabel: 'Custom',
-            show: (bundle: ApiBundle): boolean => !!bundle.getBlock('hasBorder')?.value,
-            defaultValue: false,
-            on: [
-                {
-                    id: BORDER_RADIUS_VALUE_ID,
-                    type: 'input',
-                    placeholder: '1px',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_RADIUS_VALUE_ID),
-                },
-            ],
-            off: [
-                {
-                    id: 'borderRadiusChoice',
-                    type: 'slider',
-                    defaultValue: StorybookBorderRadius.None,
-                    choices: [
-                        {
-                            value: StorybookBorderRadius.None,
-                            label: 'None',
-                        },
-                        {
-                            value: StorybookBorderRadius.Small,
-                            label: 'S',
-                        },
-                        {
-                            value: StorybookBorderRadius.Medium,
-                            label: 'M',
-                        },
-                        {
-                            value: StorybookBorderRadius.Large,
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
-        },
-    ],
+    style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: 'hasBorder' })],
 };
 
 export default settings;

@@ -54,8 +54,8 @@ it('renders storybook iframe with correct styling', () => {
     const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, {
         blockSettings: {
             url: EXAMPLE_URL,
-            hasCustomBorderRadius: true,
-            borderRadiusValue: '5px',
+            hasRadius: true,
+            radiusValue: '5px',
             borderSelection: [StorybookBorderStyle.Dotted, '2px', EXAMPLE_COLOR],
             heightChoice: StorybookHeight.Small,
         },
