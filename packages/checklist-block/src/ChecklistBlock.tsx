@@ -29,8 +29,7 @@ import {
     ProgressBarType,
     Settings,
 } from './types';
-import { colorToHexAlpha, generatePaddingString } from '@frontify/guideline-blocks-shared';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { colorToHexAlpha, generatePaddingString, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
 import { reorderList } from './utilities';
 import {
