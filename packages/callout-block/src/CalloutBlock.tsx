@@ -99,6 +99,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     return (
         <div data-test-id="callout-block" className={getOuterDivClassName(width, alignment)}>
             <div
+                data-test-id="callout-wrapper"
                 className={getInnerDivClassName(
                     type,
                     width,
