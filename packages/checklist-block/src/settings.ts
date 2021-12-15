@@ -10,12 +10,14 @@ import {
     appendUnitToArray,
 } from '@frontify/guideline-blocks-shared';
 
-const showProgressStyles = (bundle: ApiBundle): boolean =>
-    !!bundle.getBlock('progressBarVisible')?.value && bundle.getBlock('progressBarType')?.value === ProgressBarType.Bar;
-
 const COMPLETED_DECORATION = 'completedDecoration';
 const PADDING_CUSTOM = 'paddingCustom';
 const STRIKETHROUGH_WIDTH = 'strikethroughWidth';
+const PROGRESS_BAR_VISIBLE = 'progressBarVisible';
+const PROGRESS_BAR_TYPE = 'progressBarType';
+
+const showProgressStyles = (bundle: ApiBundle): boolean =>
+    !!bundle.getBlock(PROGRESS_BAR_VISIBLE)?.value && bundle.getBlock(PROGRESS_BAR_TYPE)?.value === ProgressBarType.Bar;
 
 const settings: ApiSettings = {
     main: [
@@ -116,13 +118,13 @@ const settings: ApiSettings = {
             ],
         },
         {
-            id: 'progressBarVisible',
+            id: PROGRESS_BAR_VISIBLE,
             label: 'Progress Indicator',
             type: 'switch',
             defaultValue: DefaultValues.progressBarVisible,
             on: [
                 {
-                    id: 'progressBarType',
+                    id: PROGRESS_BAR_TYPE,
                     type: 'slider',
                     defaultValue: DefaultValues.progressBarType,
                     choices: [
