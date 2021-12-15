@@ -99,6 +99,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     return (
         <div data-test-id="callout-block" className={getOuterDivClassName(width, alignment)}>
             <div
+                data-test-id="callout-wrapper"
                 className={getInnerDivClassName(
                     type,
                     width,
@@ -113,7 +114,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             >
                 {iconSwitch && iconUrl && (
                     <span className="tw-mr-3 tw-flex-none tw-w-6 tw-h-6">
-                        <img alt={iconAltText} src={iconUrl} />
+                        <img data-test-id="callout-icon" alt={iconAltText} src={iconUrl} />
                     </span>
                 )}
                 <RichTextEditor
