@@ -21,7 +21,7 @@ import {
 import { quoteIconMap } from './utilities';
 
 const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName, children }) => (
-    <div className="tw-flex-1 tw-w-full">
+    <div data-test-id="quote-block-author" className="tw-flex-1 tw-w-full">
         {children}
         {showAuthor && authorName && <p className="tw-text-right">{`- ${authorName}`}</p>}
     </div>
@@ -63,6 +63,8 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
         : {};
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
+
+    console.log({ blockSettings });
 
     return (
         <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-black'}>
