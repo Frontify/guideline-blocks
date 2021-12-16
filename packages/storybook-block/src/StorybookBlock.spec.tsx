@@ -27,7 +27,7 @@ it('saves a storybook url and shows iframe', () => {
     const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, { editorState: true });
 
     mount(<StorybookBlockWithStubs />);
-    cy.get(EmptyStateSelector).find('input').type(EXAMPLE_URL);
+    cy.get(EmptyStateSelector).find('input').type(EXAMPLE_URL).blur();
     cy.get(EmptyStateSelector).find('button').click();
     cy.get(IframeSelector).should('have.attr', 'src').and('include', 'arcade-components.netlify.app');
 });
