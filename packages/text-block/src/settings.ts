@@ -5,7 +5,10 @@
 import { IconEnum } from '@frontify/arcade/icons/IconEnum';
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
-import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER } from './constant';
+
+export const PLACEHOLDER = 'Your text here';
+export const DEFAULT_COLUMN_NUMBER = 1;
+export const DEFAULT_COLUMN_GUTTER = '24px';
 
 export const columnGutterChoices = [
     {

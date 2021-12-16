@@ -1,16 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import './styles.css';
-import { FC, useEffect } from 'react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-import { RichTextEditor } from '@frontify/arcade/components/RichTextEditor';
-import { useEditorState, useBlockSettings } from '@frontify/app-bridge';
-import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, GRID_CLASSES, PLACEHOLDER } from './constant';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/arcade';
 import cloneDeep from 'lodash-es/cloneDeep';
 import isEqual from 'lodash-es/isEqual';
-import { Props, Settings } from './types';
+import { FC, useEffect } from 'react';
+import 'tailwindcss/tailwind.css';
+import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
+import './styles.css';
+import { GRID_CLASSES, Props, Settings } from './types';
 
 export const TextBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
