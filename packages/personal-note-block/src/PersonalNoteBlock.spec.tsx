@@ -32,7 +32,7 @@ it('write content to personal note block', () => {
     const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, { editorState: true });
 
     mount(<PersonalNoteBlockWithStubs />);
-    cy.get(RichTextEditor).find('[contenteditable=true]').type('Hello world');
+    cy.get(RichTextEditor).find('[contenteditable=true]').type('Hello world').blur();
     cy.get(RichTextEditor).find('[contenteditable=true]').contains('Hello world');
 });
 

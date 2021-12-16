@@ -35,7 +35,11 @@ export const DoDontItem: FC<DoDontItemProps> = ({
 
     return (
         <div>
-            <div style={headingStyles[type]} className="tw-flex tw-items-center tw-font-semibold tw-text-l">
+            <div
+                data-test-id="dos-donts-heading"
+                style={headingStyles[type]}
+                className="tw-flex tw-items-center tw-font-semibold tw-text-l"
+            >
                 {style === DoDontStyle.Icons && (editing || title || body) && (
                     <div
                         data-test-id="dos-donts-icon"
@@ -60,7 +64,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                     className="tw-w-full tw-mt-4 tw-mb-5 tw-h-1 tw-border-none tw-rounded tw-bg-black-40"
                 />
             )}
-            <div className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
+            <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
                 <RichTextEditor
                     value={body}
                     onTextChange={(value) => saveItem(id, value, 'body')}

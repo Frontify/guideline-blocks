@@ -4,9 +4,11 @@ import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import DosDontsBlock from '.';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
-import { DoDontLayout, DoDontSpacing } from './types';
+import { DoDontLayout, DoDontSpacing, DoDontStyle } from './types';
 
 const DosDontsBlockSelector = '[data-test-id="dos-donts-block"]';
+const DosDontsHeading = '[data-test-id="dos-donts-heading"]';
+const DosDontsContent = '[data-test-id="dos-donts-content"]';
 const DosDontsIcon = '[data-test-id="dos-donts-icon"]';
 
 it("renders a do's & dont's block", () => {
@@ -33,7 +35,19 @@ it("renders an empty do's & dont's block in edit mode", () => {
     cy.get(DosDontsIcon).should('have.class', 'tw-opacity-30');
 });
 
-it("renders an do's & dont's block with the correct layout", () => {
+it("renders a do's & dont's block with the underline style", () => {
+    const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
+        blockSettings: {
+            style: DoDontStyle.Underline,
+        },
+    });
+
+    mount(<DosDontsBlockWithStubs />);
+    cy.get(DosDontsIcon).should('not.exist');
+    cy.get(DosDontsHeading).next('hr').should('exist');
+});
+
+it("renders a do's & dont's block with the correct layout", () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
         blockSettings: {
             columns: 3,
@@ -49,13 +63,35 @@ it("renders an do's & dont's block with the correct layout", () => {
     cy.get(DosDontsBlockSelector).should('have.css', 'column-gap', '32px');
 });
 
-it("renders an do's & dont's block with the correct colors", () => {
+it("renders a do's & dont's block with the correct colors", () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
         blockSettings: {
+            columns: 2,
+            layout: DoDontLayout.Stacked,
             doColor: DO_COLOR_DEFAULT_VALUE,
             dontColor: DONT_COLOR_DEFAULT_VALUE,
         },
     });
 
     mount(<DosDontsBlockWithStubs />);
+    cy.get(DosDontsHeading).first().should('have.css', 'color', 'rgb(0, 200, 165)');
+    cy.get(DosDontsHeading).eq(1).should('have.css', 'color', 'rgb(255, 55, 90)');
+    cy.get(DosDontsHeading).eq(2).should('have.css', 'color', 'rgb(0, 200, 165)');
+    cy.get(DosDontsHeading).eq(3).should('have.css', 'color', 'rgb(255, 55, 90)');
+});
+
+it("writes content to a do's & dont's block", () => {
+    const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
+        editorState: true,
+    });
+
+    mount(<DosDontsBlockWithStubs />);
+    cy.get(DosDontsHeading).first().find('[contenteditable=true]').type('Do this').blur();
+    cy.get(DosDontsHeading).first().find('[contenteditable=true]').contains('Do this');
+    cy.get(DosDontsContent).first().find('[contenteditable=true]').type('This is an example do description.').blur();
+    cy.get(DosDontsContent).first().find('[contenteditable=true]').contains('This is an example do description.');
+    cy.get(DosDontsHeading).eq(1).find('[contenteditable=true]').type('Dont do this').blur();
+    cy.get(DosDontsHeading).eq(1).find('[contenteditable=true]').contains('Dont do this');
+    cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').type('This is an example dont description.').blur();
+    cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').contains('This is an example dont description.');
 });
