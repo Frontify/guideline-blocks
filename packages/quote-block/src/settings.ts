@@ -22,7 +22,7 @@ const QUOTE_STYLE_CHOICES = [
     { value: QuoteStyle.SingleChevronRight, icon: IconEnum.SingleChevronRight, label: 'Single Chevron Right' },
     { value: QuoteStyle.HookBracketLeft, icon: IconEnum.HookBracketLeft, label: 'Hook Bracket Left' },
     { value: QuoteStyle.HookBracketRight, icon: IconEnum.HookBracketRight, label: 'Hook Bracket Right' },
-    { value: QuoteStyle.None, icon: IconEnum.None, label: 'None' },
+    { value: QuoteStyle.None, label: 'None' },
 ];
 
 export const DEFAULT_COLOR_VALUE = { rgba: { r: 179, g: 181, b: 181, a: 1 }, name: 'Light Grey', hex: '#B3B5B5' };
