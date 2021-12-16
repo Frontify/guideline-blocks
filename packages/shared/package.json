@@ -21,23 +21,23 @@
     "author": "Frontify Developers <developers@frontify.com>",
     "devDependencies": {
         "@cypress/react": "5.10.3",
-        "@frontify/eslint-config-typescript": "0.12.0",
+        "@frontify/eslint-config-typescript": "0.13.2",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/jest": "27.0.3",
         "@types/react": "17.0.37",
         "@types/sinon": "10.0.6",
         "cypress": "9.1.1",
-        "eslint": "8.3.0",
+        "eslint": "8.4.1",
         "jest": "27.4.5",
         "prettier": "2.5.1",
         "rimraf": "^3.0.2",
-        "ts-jest": "27.1.1",
+        "ts-jest": "27.1.2",
         "ts-node": "10.4.0",
-        "typescript": "4.5.2"
+        "typescript": "4.5.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "^2.10.0",
-        "@frontify/arcade": "0.14.0-beta.14",
+        "@frontify/app-bridge": "2.11.0-beta.3",
+        "@frontify/arcade": "0.14.0-beta.15",
         "sinon": "12.0.1"
     }
 }
