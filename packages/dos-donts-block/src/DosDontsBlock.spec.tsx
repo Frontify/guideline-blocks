@@ -11,14 +11,14 @@ const DosDontsHeading = '[data-test-id="dos-donts-heading"]';
 const DosDontsContent = '[data-test-id="dos-donts-content"]';
 const DosDontsIcon = '[data-test-id="dos-donts-icon"]';
 
-it("renders a do's & dont's block", () => {
+it('renders a dos donts block', () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {});
 
     mount(<DosDontsBlockWithStubs />);
     cy.get(DosDontsBlockSelector).should('exist');
 });
 
-it("renders an empty do's & dont's block in view mode", () => {
+it('renders an empty dos donts block in view mode', () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {});
 
     mount(<DosDontsBlockWithStubs />);
@@ -26,7 +26,7 @@ it("renders an empty do's & dont's block in view mode", () => {
     cy.get(DosDontsIcon).should('not.exist');
 });
 
-it("renders an empty do's & dont's block in edit mode", () => {
+it('renders an empty dos donts block in edit mode', () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, { editorState: true });
 
     mount(<DosDontsBlockWithStubs />);
@@ -35,7 +35,7 @@ it("renders an empty do's & dont's block in edit mode", () => {
     cy.get(DosDontsIcon).should('have.class', 'tw-opacity-30');
 });
 
-it("renders a do's & dont's block with the underline style", () => {
+it('renders a dos donts block with the underline style', () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
         blockSettings: {
             style: DoDontStyle.Underline,
@@ -47,7 +47,7 @@ it("renders a do's & dont's block with the underline style", () => {
     cy.get(DosDontsHeading).next('hr').should('exist');
 });
 
-it("renders a do's & dont's block with the correct layout", () => {
+it('renders a dos donts block with the correct layout', () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
         blockSettings: {
             columns: 3,
@@ -63,7 +63,7 @@ it("renders a do's & dont's block with the correct layout", () => {
     cy.get(DosDontsBlockSelector).should('have.css', 'column-gap', '32px');
 });
 
-it("renders a do's & dont's block with the correct colors", () => {
+it('renders a dos donts block with the correct colors', () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
         blockSettings: {
             columns: 2,
@@ -80,7 +80,7 @@ it("renders a do's & dont's block with the correct colors", () => {
     cy.get(DosDontsHeading).eq(3).should('have.css', 'color', 'rgb(255, 55, 90)');
 });
 
-it("writes content to a do's & dont's block", () => {
+it('writes content to a dos donts block', () => {
     const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
         editorState: true,
     });
