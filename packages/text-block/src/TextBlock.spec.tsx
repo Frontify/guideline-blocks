@@ -21,7 +21,7 @@ it('should not be able to input to a text block when in view mode', () => {
     cy.get(RichTextEditor).find('[contenteditable=true]').should('not.exist');
 });
 
-it('should not be able input to two text blocks when in edit mode', () => {
+it('should be able input to two text blocks when in edit mode', () => {
     const [TextBlockWithStubs] = withAppBridgeStubs(TextBlock, {
         blockSettings: {
             columnNumber: 2,
