@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DEFAULT_COLUMN_NUMBER, GRID_CLASSES } from './constant';
+import { DEFAULT_COLUMN_NUMBER } from './settings';
+import { GRID_CLASSES } from './types';
 
 export const getGridClasses = (columnNumber: number): string => {
     if (columnNumber in GRID_CLASSES) {
