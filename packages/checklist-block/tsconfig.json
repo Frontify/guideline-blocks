@@ -9,9 +9,13 @@
         "noImplicitThis": true,
         "sourceMap": true,
         "strict": true,
+        "target": "es6",
         "jsx": "react-jsx",
+        "lib": ["ES2021", "DOM"],
         "resolveJsonModule": true,
-        "types": ["cypress", "cypress-real-events"]
+        "types": ["cypress", "cypress-real-events"],
+        "skipLibCheck": true
     },
-    "exclude": ["**/dist", "**/node_modules"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
 }

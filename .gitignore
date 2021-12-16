@@ -1,9 +1,10 @@
 **/node_modules
 **/.idea
 **/dist
+**/.DS_Store
 
 lerna-debug.log
 
-cypress/support
+cypress/fixtures/example.json
 cypress/videos
 cypress/screenshots
