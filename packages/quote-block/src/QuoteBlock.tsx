@@ -64,8 +64,6 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
-    console.log({ blockSettings });
-
     return (
         <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-black'}>
             {type === QuoteType.QuotationMarks && (
