@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeNative } from '@frontify/app-bridge';
-import { Color, ItemDragState } from '@frontify/arcade';
+import { ButtonSize, Color, ItemDragState } from '@frontify/arcade';
 import { ReactElement, MouseEvent } from 'react';
 import { PropsWithChildren } from 'react';
 
@@ -43,6 +43,7 @@ export type ChecklistButtonProps = {
     disabled?: boolean;
     onClick: (e?: MouseEvent<HTMLButtonElement>) => void;
     icon: ReactElement;
+    size?: ButtonSize;
 };
 
 export type TextEditorProps = {

@@ -5,7 +5,7 @@ import { ProgressBarProps } from '../types';
 
 export const ProgressBar: FC<ProgressBarProps> = ({ trackColor, fillColor, percentage }) => (
     <div
-        className="tw-relative tw-w-[200px] tw-h-3"
+        className="tw-relative tw-w-[200px] tw-h-3 tw-rounded-sm tw-overflow-hidden tw-ml-2"
         style={{ backgroundColor: trackColor }}
         data-test-id="progress-bar"
     >

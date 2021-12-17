@@ -27,11 +27,14 @@ const getLabelDecorationStylesMap = (
         textDecorationStyle: StrikethroughStyleType[style],
         textDecorationThickness: thickness,
         textDecorationColor: colorToHexAlpha(color),
+        fontWeight: '500',
     },
     [ChecklistDecoration.Highlight]: {
         backgroundColor: colorToHexAlpha(highlightColor),
     },
-    [ChecklistDecoration.Checkbox]: {},
+    [ChecklistDecoration.Checkbox]: {
+        fontWeight: '500',
+    },
 });
 
 export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disabled = false, dateInMs }) => {
@@ -50,7 +53,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
-                    'tw-select-none tw-whitespace-pre-wrap tw-w-max',
+                    'tw-select-none tw-whitespace-pre-wrap tw-w-max tw-rounded-sm tw-px-px tw--ml-px',
                     disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
                 style={{ color: colorToHexAlpha(completeTextColor), ...decorationStyles }}
@@ -59,7 +62,10 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
                 {children}
             </label>
             {dateVisible && Boolean(dateInMs) && (
-                <span className="tw-text-black-60 tw-font-sans tw-text-xxs tw-font-normal" data-test-id="checkbox-date">
+                <span
+                    className="tw-text-black-60 tw-font-sans tw-text-xxs tw-font-normal tw-inline-block tw-mt-[2px]"
+                    data-test-id="checkbox-date"
+                >
                     {dayjs(dateInMs).fromNow()}
                 </span>
             )}

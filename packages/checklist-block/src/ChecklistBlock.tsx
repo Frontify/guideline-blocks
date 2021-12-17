@@ -175,7 +175,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                         {showCompleted ? 'Hide completed tasks' : 'Show completed tasks'}
                     </Button>
                 </div>
-                <div className="tw-mt-4" data-test-id="checklist-container">
+                <div className="tw-mt-3" data-test-id="checklist-container">
                     {!!displayableItems.length && (
                         <OrderableList
                             items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
