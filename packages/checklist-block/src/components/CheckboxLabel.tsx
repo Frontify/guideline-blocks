@@ -47,13 +47,13 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
 
     return (
         <div
-            className="tw-inline tw-flex-col tw-text-s tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0"
+            className="tw-inline tw-text-s tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0"
             data-test-id="input-label-container"
         >
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
-                    'tw-select-none tw-whitespace-pre-wrap tw-inline tw-rounded-sm tw-px-px tw--ml-px tw-flex-initial tw-min-w-0',
+                    'tw-select-none tw-inline tw-whitespace-pre-wrap tw-self-start tw-rounded-sm tw-flex-initial tw-min-w-0',
                     disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
                 style={{ color: colorToHexAlpha(completeTextColor), ...decorationStyles }}
@@ -63,7 +63,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
             </label>
             {dateVisible && Boolean(dateInMs) && (
                 <span
-                    className="tw-text-black-60 tw-font-sans tw-text-xxs tw-font-normal tw-inline-block tw-mt-[2px]"
+                    className="tw-text-black-60 tw-font-sans tw-text-xxs tw-font-normal tw-block tw-mt-[2px]"
                     data-test-id="checkbox-date"
                 >
                     {dayjs(dateInMs).fromNow()}
