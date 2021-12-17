@@ -1,17 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { CSSProperties, ReactNode } from 'react';
-import IconDoubleChevronLeft from './foundation/IconDoubleChevronLeft';
-import IconDoubleChevronRight from './foundation/IconDoubleChevronRight';
-import IconDoubleQuotesDown from './foundation/IconDoubleQuotesDown';
-import IconDoubleQuotesUp from './foundation/IconDoubleQuotesUp';
-import IconHookBracketLeft from './foundation/IconHookBracketLeft';
-import IconHookBracketRight from './foundation/IconHookBracketRight';
-import IconNone from './foundation/IconNone';
-import IconSingleChevronLeft from './foundation/IconSingleChevronLeft';
-import IconSingleChevronRight from './foundation/IconSingleChevronRight';
-import IconSingleQuoteDown from './foundation/IconSingleQuoteDown';
-import IconSingleQuoteUp from './foundation/IconSingleQuoteUp';
+import { IconDoubleChevronLeft } from './foundation/IconDoubleChevronLeft';
+import { IconDoubleChevronRight } from './foundation/IconDoubleChevronRight';
+import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
+import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
+import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
+import { IconHookBracketRight } from './foundation/IconHookBracketRight';
+import { IconNone } from './foundation/IconNone';
+import { IconSingleChevronLeft } from './foundation/IconSingleChevronLeft';
+import { IconSingleChevronRight } from './foundation/IconSingleChevronRight';
+import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
+import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
 import { QuoteStyle } from './types';
 
 export const ICON_CLASS_NAME = 'tw-flex tw-items-center tw-justify-center tw-fill-current';
