@@ -47,13 +47,13 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
 
     return (
         <div
-            className="tw-inline-flex tw-flex-col tw-text-s tw-max-w-full tw-px-0.5"
+            className="tw-inline tw-flex-col tw-text-s tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0"
             data-test-id="input-label-container"
         >
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
-                    'tw-select-none tw-whitespace-pre-wrap tw-w-max tw-rounded-sm tw-px-px tw--ml-px',
+                    'tw-select-none tw-whitespace-pre-wrap tw-inline tw-rounded-sm tw-px-px tw--ml-px tw-flex-initial tw-min-w-0',
                     disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
                 style={{ color: colorToHexAlpha(completeTextColor), ...decorationStyles }}
