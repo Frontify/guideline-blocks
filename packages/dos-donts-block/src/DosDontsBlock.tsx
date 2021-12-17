@@ -92,5 +92,3 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         </div>
     );
 };
-
-export default DosDontsBlock;
