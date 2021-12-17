@@ -32,7 +32,7 @@ const isSelected = (bundle: ApiBundle, choice: QuoteType): boolean => bundle.get
 const showAccentLine = (bundle: ApiBundle): boolean =>
     isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID)?.value === true;
 
-const Settings: ApiSettings = {
+const settings: ApiSettings = {
     main: [
         {
             id: QUOTE_TYPE_ID,
@@ -213,4 +213,5 @@ const Settings: ApiSettings = {
     ],
 };
 
-export default Settings;
+// eslint-disable-next-line import/no-default-export
+export default settings;

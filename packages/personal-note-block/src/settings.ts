@@ -23,7 +23,7 @@ const HAS_BACKGROUND_ID = 'hasBackground';
 const HAS_BORDER_ID = 'hasBorder';
 const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
 
-const Settings: ApiSettings = {
+const settings: ApiSettings = {
     main: [
         {
             id: 'style',
@@ -138,4 +138,5 @@ const Settings: ApiSettings = {
     ],
 };
 
-export default Settings;
+// eslint-disable-next-line import/no-default-export
+export default settings;
