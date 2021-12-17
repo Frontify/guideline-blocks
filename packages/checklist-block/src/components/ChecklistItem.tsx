@@ -7,7 +7,6 @@ import {
     ItemDragState,
     IconCaretUp,
     IconCaretDown,
-    IconSize,
     IconReject,
     FocusController,
 } from '@frontify/arcade';
@@ -110,17 +109,17 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                     <ButtonGroup size={ButtonSize.Small}>
                         <ChecklistButton
                             disabled={isFirst || notEditable}
-                            icon={<IconCaretUp size={IconSize.Size20} />}
+                            icon={<IconCaretUp />}
                             onClick={() => onMoveItem && onMoveItem(id, -1)}
                         />
                         <ChecklistButton
                             disabled={isLast || notEditable}
-                            icon={<IconCaretDown size={IconSize.Size20} />}
+                            icon={<IconCaretDown />}
                             onClick={() => onMoveItem && onMoveItem(id, 1)}
                         />
                         <ChecklistButton
                             disabled={notEditable}
-                            icon={<IconReject size={IconSize.Size20} />}
+                            icon={<IconReject />}
                             onClick={() => onRemoveItem && onRemoveItem(id)}
                         />
                     </ButtonGroup>

@@ -30,12 +30,12 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
         };
 
         return (
-            <div className="tw-inline-flex">
+            <div className="tw-inline-flex tw-flex-initial tw-min-w-0">
                 <div
                     role="textbox"
                     tabIndex={-1}
                     contentEditable={!readonly}
-                    className="tw-block empty:before:tw-content-[attr(data-placeholder)] empty:before:tw-text-black-60 empty:before:tw-inline-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5"
+                    className="tw-block tw-max-w-full tw-flex-initial empty:before:tw-content-[attr(data-placeholder)] empty:before:tw-text-black-60 empty:before:tw-inline-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5"
                     data-placeholder={placeholder}
                     style={{ color: colorToHexAlpha(incompleteTextColor) }}
                     onKeyDown={handleKeyPress}
