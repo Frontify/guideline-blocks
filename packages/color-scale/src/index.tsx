@@ -4,7 +4,7 @@ import { BlockSettings } from './BlockSettings';
 import { Color } from './Color';
 import { ColorList } from './ColorList';
 import { ColorViewModel } from './ColorViewModel';
-import { AppBridgeNative } from '@frontify/app-bridge';
+import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
 import { FC, useState, useEffect } from 'react';
 import { useEditorState } from '@frontify/app-bridge/react';
 import css from './styles.module.css';
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const ColorScale: FC<Props> = ({ appBridge }) => {
-    const blockSettings = appBridge.getBlockSettings<BlockSettings>();
+    const [blockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const editingEnabled = useEditorState();
     const [isLoading, setIsLoading] = useState(false);
     const [colors, setColors] = useState<ColorViewModel[]>([]);
@@ -101,4 +101,5 @@ const ColorScale: FC<Props> = ({ appBridge }) => {
     );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default ColorScale;
