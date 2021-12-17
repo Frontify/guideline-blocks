@@ -50,6 +50,18 @@ it('renders a quote block with two selected quotation marks', () => {
     cy.get(QuoteBlockSelector).find('svg path').last().should('have.attr', 'd', RIGHT_ICON_PATH);
 });
 
+it('renders a quote block without quotation marks', () => {
+    const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {
+        blockSettings: {
+            quoteStyleLeft: QuoteStyle.None,
+            quoteStyleRight: QuoteStyle.None,
+        },
+    });
+
+    mount(<QuoteBlockWithStubs />);
+    cy.get(QuoteBlockSelector).find('svg').should('not.exist');
+});
+
 it('renders a quote block with a quote and an author', () => {
     const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {
         blockSettings: {
