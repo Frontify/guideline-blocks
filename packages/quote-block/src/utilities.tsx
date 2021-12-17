@@ -7,7 +7,6 @@ import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
 import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
 import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
 import { IconHookBracketRight } from './foundation/IconHookBracketRight';
-import { IconNone } from './foundation/IconNone';
 import { IconSingleChevronLeft } from './foundation/IconSingleChevronLeft';
 import { IconSingleChevronRight } from './foundation/IconSingleChevronRight';
 import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
@@ -34,6 +33,6 @@ export const quoteIconMap = (size: string, color: string): Record<QuoteStyle, Re
         SingleChevronRight: <IconSingleChevronRight style={style} />,
         HookBracketLeft: <IconHookBracketLeft style={style} />,
         HookBracketRight: <IconHookBracketRight style={style} />,
-        None: <IconNone style={style} />,
+        None: <></>,
     };
 };

@@ -21,7 +21,7 @@ import {
 import { quoteIconMap } from './utilities';
 
 const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName, children }) => (
-    <div className="tw-flex-1 tw-w-full">
+    <div data-test-id="quote-block-author" className="tw-flex-1 tw-w-full">
         {children}
         {showAuthor && authorName && <p className="tw-text-right">{`- ${authorName}`}</p>}
     </div>
