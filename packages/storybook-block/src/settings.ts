@@ -114,4 +114,5 @@ const settings: ApiSettings = {
     style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: 'hasBorder' })],
 };
 
+// eslint-disable-next-line import/no-default-export
 export default settings;

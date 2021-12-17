@@ -45,7 +45,7 @@ const limitedWidthIsSelected = (bundle: ApiBundle): boolean =>
     bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'] &&
     bundle.getBlock(WIDTH_CUSTOM_ID)?.value !== '100%';
 
-const Settings: ApiSettings = {
+const settings: ApiSettings = {
     main: [
         {
             id: IS_LINE_ID,
@@ -248,4 +248,5 @@ const Settings: ApiSettings = {
     ],
 };
 
-export default Settings;
+// eslint-disable-next-line import/no-default-export
+export default settings;
