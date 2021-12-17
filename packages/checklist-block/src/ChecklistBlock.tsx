@@ -154,7 +154,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 )}
                 <div
                     className={joinClassNames([
-                        'tw-absolute tw-right-0 tw-top-0',
+                        'tw-absolute tw-right-0 tw-top-0 tw-z-40',
                         isHovered && !isEditing && 'tw-visible',
                         (!isHovered || isEditing) && 'tw-invisible',
                     ])}
