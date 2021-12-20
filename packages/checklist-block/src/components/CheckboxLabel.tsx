@@ -41,10 +41,7 @@ const decorateLabelChildren = (children: string, style: CSSProperties) =>
     children.split('\n').map((child: string, index, ctx: string[]) => {
         const childWithWrapper =
             child !== '' ? (
-                <span
-                    className="tw-inline tw-rounded-sm tw-box-decoration-clone tw-px-[2px] tw-mx-[-2px]"
-                    style={style}
-                >
+                <span className="tw-inline-block tw-rounded-sm tw-px-[2px] tw-mx-[-2px]" style={style}>
                     {child}
                 </span>
             ) : (
@@ -82,7 +79,6 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
                     'tw-select-none tw-inline tw-whitespace-pre-wrap',
                     disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
-                style={{ color: colorToHexAlpha(completeTextColor), ...decorationStyles }}
                 data-test-id="checkbox-label"
             >
                 {decoratedChildren}
