@@ -31,7 +31,25 @@ export const DoDontItem: FC<DoDontItemProps> = ({
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
-    useEffect(() => setShouldBlurIcon(title === ''), [title]);
+    const isEmpty = (text: string): boolean => {
+        type ChildProps = {
+            text: string;
+        };
+
+        type ElementProps = {
+            children: ChildProps[];
+        };
+
+        if (text && text !== '') {
+            return JSON.parse(text).every((element: ElementProps) => {
+                const elementsWithText = element.children.filter((child: ChildProps) => child.text !== '');
+                return elementsWithText.length === 0;
+            });
+        }
+        return true;
+    };
+
+    useEffect(() => setShouldBlurIcon(isEmpty(title)), [title]);
 
     return (
         <div>
@@ -40,7 +58,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                 style={headingStyles[type]}
                 className="tw-flex tw-items-center tw-font-semibold tw-text-l"
             >
-                {style === DoDontStyle.Icons && (editing || title || body) && (
+                {style === DoDontStyle.Icons && (editing || !isEmpty(title) || !isEmpty(body)) && (
                     <div
                         data-test-id="dos-donts-icon"
                         className={joinClassNames(['tw-mr-2 tw-w-auto', shouldBlurIcon ? 'tw-opacity-30' : ''])}
