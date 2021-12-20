@@ -50,6 +50,7 @@ const decorateLabelChildren = (children: string, style: CSSProperties) =>
             ) : (
                 child
             );
+
         return (
             <Fragment key={`${child}--${index}`}>
                 {childWithWrapper}
