@@ -37,8 +37,8 @@ const getLabelDecorationStylesMap = (
     },
 });
 
-const decorateLabelChildren = (children: string, style: CSSProperties) => {
-    return children.split('\n').map((child: string, index, ctx: string[]) => {
+const decorateLabelChildren = (children: string, style: CSSProperties) =>
+    children.split('\n').map((child: string, index, ctx: string[]) => {
         const childWithWrapper =
             child !== '' ? (
                 <span
@@ -57,7 +57,6 @@ const decorateLabelChildren = (children: string, style: CSSProperties) => {
             </Fragment>
         );
     });
-};
 
 export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {
     const { strikethroughMultiInput, highlightColor, completedDecoration, completeTextColor, dateVisible } =
