@@ -38,7 +38,7 @@ const getLabelDecorationStylesMap = (
 });
 
 const decorateLabelChildren = (children: string, style: CSSProperties) => {
-    return children.split('\n').map((child: string, index) => {
+    return children.split('\n').map((child: string, index, ctx: string[]) => {
         const childWithWrapper =
             child !== '' ? (
                 <span
@@ -53,7 +53,7 @@ const decorateLabelChildren = (children: string, style: CSSProperties) => {
         return (
             <Fragment key={`${child}--${index}`}>
                 {childWithWrapper}
-                {index !== children.length - 1 && '\n'}
+                {index !== ctx.length - 1 && '\n'}
             </Fragment>
         );
     });
