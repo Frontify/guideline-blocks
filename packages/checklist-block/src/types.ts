@@ -3,7 +3,6 @@
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState } from '@frontify/arcade';
 import { ReactElement, MouseEvent } from 'react';
-import { PropsWithChildren } from 'react';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
@@ -33,11 +32,12 @@ export type CheckboxProps = {
     dateCompleted?: number;
 };
 
-export type CheckboxLabelProps = PropsWithChildren<{
+export type CheckboxLabelProps = {
     htmlFor: string;
     disabled?: boolean;
     dateInMs?: number;
-}>;
+    children: string;
+};
 
 export type ChecklistButtonProps = {
     disabled?: boolean;

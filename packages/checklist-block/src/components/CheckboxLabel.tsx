@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useContext } from 'react';
+import { CSSProperties, FC, Fragment, useContext } from 'react';
 import {
     CheckboxLabelProps,
     ChecklistDecoration,
@@ -37,13 +37,39 @@ const getLabelDecorationStylesMap = (
     },
 });
 
-export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disabled = false, dateInMs }) => {
+const decorateLabelChildren = (children: string, style: CSSProperties) => {
+    return children.split('\n').map((child: string, index) => {
+        const childWithWrapper =
+            child !== '' ? (
+                <span
+                    className="tw-inline tw-rounded-sm tw-box-decoration-clone tw-px-[2px] tw-mx-[-2px]"
+                    style={style}
+                >
+                    {child}
+                </span>
+            ) : (
+                child
+            );
+        return (
+            <Fragment key={`${child}--${index}`}>
+                {childWithWrapper}
+                {index !== children.length - 1 && '\n'}
+            </Fragment>
+        );
+    });
+};
+
+export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {
     const { strikethroughMultiInput, highlightColor, completedDecoration, completeTextColor, dateVisible } =
         useContext(SettingsContext);
 
     const [type, thickness, color] = strikethroughMultiInput;
 
     const decorationStyles = getLabelDecorationStylesMap(type, thickness, color, highlightColor)[completedDecoration];
+
+    const labelStyles = { color: colorToHexAlpha(completeTextColor), ...decorationStyles };
+
+    const decoratedChildren = decorateLabelChildren(children, labelStyles);
 
     return (
         <div
@@ -53,13 +79,13 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
-                    'tw-select-none tw-inline tw-whitespace-pre-wrap tw-rounded-sm',
+                    'tw-select-none tw-inline tw-whitespace-pre-wrap',
                     disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
                 style={{ color: colorToHexAlpha(completeTextColor), ...decorationStyles }}
                 data-test-id="checkbox-label"
             >
-                {children}
+                {decoratedChildren}
             </label>
             {dateVisible && Boolean(dateInMs) && (
                 <span
