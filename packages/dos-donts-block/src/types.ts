@@ -37,6 +37,14 @@ export type Item = {
     body: string;
 };
 
+export type EditorElement = {
+    children: EditorChild[];
+};
+
+export type EditorChild = {
+    text: string;
+};
+
 export enum DoDontType {
     Do = 'Do',
     Dont = 'Dont',

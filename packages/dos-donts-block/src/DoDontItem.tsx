@@ -2,8 +2,8 @@
 
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, FC, useEffect, useState } from 'react';
-import { DoDontItemProps, DoDontStyle, DoDontType } from './types';
+import { CSSProperties, FC, useMemo } from 'react';
+import { DoDontItemProps, DoDontStyle, DoDontType, EditorChild, EditorElement } from './types';
 
 export const DoDontItem: FC<DoDontItemProps> = ({
     id,
@@ -16,8 +16,6 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     body = '',
     editing = false,
 }) => {
-    const [shouldBlurIcon, setShouldBlurIcon] = useState(true);
-
     const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
     const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
 
@@ -32,24 +30,16 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     };
 
     const isEmpty = (text: string): boolean => {
-        type ChildProps = {
-            text: string;
-        };
-
-        type ElementProps = {
-            children: ChildProps[];
-        };
-
         if (text && text !== '') {
-            return JSON.parse(text).every((element: ElementProps) => {
-                const elementsWithText = element.children.filter((child: ChildProps) => child.text !== '');
+            return JSON.parse(text).every((element: EditorElement) => {
+                const elementsWithText = element.children.filter((child: EditorChild) => child.text !== '');
                 return elementsWithText.length === 0;
             });
         }
         return true;
     };
 
-    useEffect(() => setShouldBlurIcon(isEmpty(title)), [title]);
+    const shouldBlurIcon = useMemo(() => isEmpty(title), [title]);
 
     return (
         <div>
