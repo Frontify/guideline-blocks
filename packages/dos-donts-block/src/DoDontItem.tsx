@@ -2,8 +2,8 @@
 
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
 import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, FC, useEffect, useState } from 'react';
-import { DoDontItemProps, DoDontStyle, DoDontType } from './types';
+import { CSSProperties, FC, useMemo } from 'react';
+import { DoDontItemProps, DoDontStyle, DoDontType, EditorChild, EditorElement } from './types';
 
 export const DoDontItem: FC<DoDontItemProps> = ({
     id,
@@ -16,8 +16,6 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     body = '',
     editing = false,
 }) => {
-    const [shouldBlurIcon, setShouldBlurIcon] = useState(true);
-
     const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
     const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
 
@@ -31,7 +29,17 @@ export const DoDontItem: FC<DoDontItemProps> = ({
         [DoDontType.Dont]: { backgroundColor: dontColorString },
     };
 
-    useEffect(() => setShouldBlurIcon(title === ''), [title]);
+    const isEmpty = (text: string): boolean => {
+        if (text && text !== '') {
+            return JSON.parse(text).every((element: EditorElement) => {
+                const elementsWithText = element.children.filter((child: EditorChild) => child.text !== '');
+                return elementsWithText.length === 0;
+            });
+        }
+        return true;
+    };
+
+    const shouldBlurIcon = useMemo(() => isEmpty(title), [title]);
 
     return (
         <div>
@@ -40,7 +48,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                 style={headingStyles[type]}
                 className="tw-flex tw-items-center tw-font-semibold tw-text-l"
             >
-                {style === DoDontStyle.Icons && (editing || title || body) && (
+                {style === DoDontStyle.Icons && (editing || !isEmpty(title) || !isEmpty(body)) && (
                     <div
                         data-test-id="dos-donts-icon"
                         className={joinClassNames(['tw-mr-2 tw-w-auto', shouldBlurIcon ? 'tw-opacity-30' : ''])}
