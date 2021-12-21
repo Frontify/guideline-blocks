@@ -41,7 +41,7 @@ export type CheckboxLabelProps = {
 
 export type ChecklistButtonProps = {
     disabled?: boolean;
-    onClick: (e?: MouseEvent<HTMLButtonElement>) => void;
+    onClick: (event?: MouseEvent<HTMLButtonElement>) => void;
     icon: ReactElement;
     size?: ButtonSize;
 };

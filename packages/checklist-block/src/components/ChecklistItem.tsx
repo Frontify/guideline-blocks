@@ -63,6 +63,19 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
 
     const notEditable = mode !== ChecklistItemMode.Edit;
 
+    const textEditor = (
+        <TextEditor
+            resetOnSave={mode === ChecklistItemMode.Create}
+            readonly={mode === ChecklistItemMode.View}
+            onTextModified={onTextModified}
+            value={text}
+            placeholder="Add new checklist item"
+        />
+    );
+
+    const accessibleEditor =
+        mode === ChecklistItemMode.Create ? textEditor : <FocusController>{textEditor}</FocusController>;
+
     return (
         <div
             className={containerClasses}
@@ -84,17 +97,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                             label={text}
                             dateCompleted={updatedAt}
                         />
-                        {!completed && (
-                            <FocusController>
-                                <TextEditor
-                                    resetOnSave={mode === ChecklistItemMode.Create}
-                                    readonly={mode === ChecklistItemMode.View}
-                                    onTextModified={onTextModified}
-                                    value={text}
-                                    placeholder="Add new checklist item"
-                                />
-                            </FocusController>
-                        )}
+                        {!completed && accessibleEditor}
                     </div>
                 </div>
             </div>
