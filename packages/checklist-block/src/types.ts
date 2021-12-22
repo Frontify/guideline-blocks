@@ -3,6 +3,7 @@
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState } from '@frontify/arcade';
 import { ReactElement, MouseEvent } from 'react';
+import { PaddingBasic, paddingBasicStyleMap } from '@frontify/guideline-blocks-shared';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
@@ -106,20 +107,6 @@ export const StrikethroughStyleType: Record<StrikethroughType, string> = {
     [StrikethroughType.Wavy]: 'wavy',
 };
 
-export enum ChecklistPadding {
-    None = 'None',
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large',
-}
-
-export const PaddingClasses = {
-    [ChecklistPadding.None]: 'tw-p-0',
-    [ChecklistPadding.Small]: 'tw-p-1',
-    [ChecklistPadding.Medium]: 'tw-p-2',
-    [ChecklistPadding.Large]: 'tw-p-3',
-};
-
 export enum ProgressBarType {
     Percentage = 'Percentage',
     Bar = 'Bar',
@@ -150,9 +137,9 @@ export type StrikethroughMultiInputType = [StrikethroughType, string, Color];
 
 export type Settings = {
     content: ChecklistContent[];
-    paddingAdvanced: boolean;
-    paddingBasic: ChecklistPadding;
-    paddingCustom: string[];
+    hasCustomPadding: boolean;
+    paddingBasic: PaddingBasic;
+    paddingValues: string[];
     incompleteTextColor: Color;
     incompleteCheckboxColor: Color;
     completeTextColor: Color;
@@ -169,9 +156,9 @@ export type Settings = {
 
 export const DefaultValues: Settings = {
     content: [],
-    paddingAdvanced: false,
-    paddingBasic: ChecklistPadding.Medium,
-    paddingCustom: ['0px', '0px', '0px', '0px'],
+    hasCustomPadding: false,
+    paddingBasic: PaddingBasic.Small,
+    paddingValues: new Array(4).fill(paddingBasicStyleMap[PaddingBasic.Small]),
     incompleteTextColor: { hex: '#2D3232', rgba: { r: 45, g: 50, b: 50, a: 1 } },
     incompleteCheckboxColor: { hex: '#6C7070', rgba: { r: 108, g: 112, b: 112, a: 1 } },
     completeTextColor: { hex: '#FF375A', rgba: { r: 255, g: 55, b: 90, a: 1 } },

@@ -3,7 +3,8 @@
 import { MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
-import { appendUnitToArray, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
+import { paddingBasicStyleMap } from '.';
+import { appendUnitToArray, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomArrayValue } from '..';
 import { getPaddingSlider } from './padding';
 
 /**
@@ -21,7 +22,7 @@ type PaddingSettingsType = {
 export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBlock => {
     const hasId = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
     const valueId = options?.id ? `paddingValues_${options?.id}` : 'paddingValues';
-    const choiceId = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
+    const basicId = options?.id ? `paddingBasic_${options?.id}` : 'paddingBasic';
     const topId = options?.id ? `paddingTop_${options?.id}` : 'paddingTop';
     const leftId = options?.id ? `paddingLeft_${options?.id}` : 'paddingLeft';
     const rightId = options?.id ? `paddingRight_${options?.id}` : 'paddingRight';
@@ -33,6 +34,8 @@ export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBl
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
+        onChange: (bundle: ApiBundle): void =>
+            presetCustomArrayValue(bundle, basicId, valueId, paddingBasicStyleMap, 4),
         on: [
             {
                 id: valueId,
@@ -67,6 +70,6 @@ export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBl
                 ],
             },
         ],
-        off: [getPaddingSlider(choiceId)],
+        off: [getPaddingSlider(basicId)],
     };
 };

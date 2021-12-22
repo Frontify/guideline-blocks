@@ -17,7 +17,7 @@ export const provideDefaults = (defaultObject: Settings, overrider: Partial<Sett
     return {
         ...defaultObject,
         ...overrider,
-        paddingCustom: arrayReplacer('paddingCustom'),
+        paddingValues: arrayReplacer('paddingValues'),
         strikethroughMultiInput: arrayReplacer('strikethroughMultiInput'),
     };
 };

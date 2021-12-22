@@ -20,8 +20,8 @@ export const presetCustomValue = (
 ): void => {
     const sliderValue = bundle.getBlock(sliderId)?.value as string;
     const customValue = bundle.getBlock(inputId)?.value;
-    const dividerHeightKey = Object.keys(map).find((key) => map[key] === customValue);
-    const isPrefinedValue = sliderValue && dividerHeightKey;
+    const valueInMap = Object.keys(map).find((key) => map[key] === customValue);
+    const isPrefinedValue = sliderValue && valueInMap;
     const hasNoCustomValue = sliderValue && !customValue;
     if (isPrefinedValue || hasNoCustomValue) {
         bundle.setBlockValue(inputId, map[sliderValue]);
