@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties, FC, Fragment, useContext } from 'react';
+import { CSSProperties, FC, useContext } from 'react';
 import {
     CheckboxLabelProps,
     ChecklistDecoration,
@@ -38,23 +38,22 @@ const getLabelDecorationStylesMap = (
 });
 
 const decorateLabelChildren = (children: string, style: CSSProperties) =>
-    children.split('\n').map((child: string, index, ctx: string[]) => {
-        const childWithWrapper =
-            child !== '' ? (
-                <span className="tw-inline-block tw-rounded-sm tw-px-[2px] tw-mx-[-2px]" style={style}>
+    children.split('\n').map((child: string, index, ctx: string[]) => (
+        <>
+            {child !== '' ? (
+                <span
+                    className="tw-inline-block tw-rounded-sm tw-px-[2px] tw-mx-[-2px]"
+                    key={`${child}--${index}`}
+                    style={style}
+                >
                     {child}
                 </span>
             ) : (
                 child
-            );
-
-        return (
-            <Fragment key={`${child}--${index}`}>
-                {childWithWrapper}
-                {index !== ctx.length - 1 && '\n'}
-            </Fragment>
-        );
-    });
+            )}
+            {index !== ctx.length - 1 && '\n'}
+        </>
+    ));
 
 export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {
     const { strikethroughMultiInput, highlightColor, completedDecoration, completeTextColor, dateVisible } =
