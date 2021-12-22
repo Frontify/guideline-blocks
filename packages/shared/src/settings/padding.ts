@@ -4,7 +4,8 @@ import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { paddingBasicStyleMap } from '.';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomValue } from '..';
-import { PaddingBasic, PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
+import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
+import { PaddingBasic } from './types';
 
 /**
  * Returns padding settings: padding switch, padding slider, custom padding input

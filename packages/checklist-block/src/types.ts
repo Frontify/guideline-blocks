@@ -3,7 +3,7 @@
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState } from '@frontify/arcade';
 import { ReactElement, MouseEvent } from 'react';
-import { PaddingBasic, paddingBasicStyleMap } from '@frontify/guideline-blocks-shared';
+import { PaddingBasic, paddingBasicStyleMap, PaddingSettings } from '@frontify/guideline-blocks-shared';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
@@ -135,11 +135,8 @@ export type DecorationStyle = {
 
 export type StrikethroughMultiInputType = [StrikethroughType, string, Color];
 
-export type Settings = {
+export type Settings = PaddingSettings & {
     content: ChecklistContent[];
-    hasCustomPadding: boolean;
-    paddingBasic: PaddingBasic;
-    paddingValues: string[];
     incompleteTextColor: Color;
     incompleteCheckboxColor: Color;
     completeTextColor: Color;
