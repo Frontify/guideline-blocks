@@ -33,7 +33,6 @@ const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 
 const DRAGGABLE_ITEM = '[data-test-id=draggable-item]';
 const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
-const FOCUS_CONTROLLER = 'div[tabindex=0][role="button"]';
 
 const createContentArray = (length: number, fixedParams?: Partial<ChecklistContent>) => {
     const createRandomItem = (fixedParams?: Partial<ChecklistContent>) => {
