@@ -3,7 +3,7 @@
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 
 /**
- * Sets value of custom input to predefined value from the slider, if no custom value is set already
+ * Sets value of custom input array to predefined value from the slider, if no custom value is set already
  *
  * @param {ApiBundle} bundle Sidebar bundle object
  * @param {string} sliderId Setting id of the slider

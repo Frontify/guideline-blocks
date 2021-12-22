@@ -5,6 +5,7 @@ import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { paddingBasicStyleMap } from '.';
 import { appendUnitToArray, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomArrayValue } from '..';
+import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { getPaddingSlider } from './padding';
 
 /**
@@ -47,24 +48,28 @@ export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBl
                         id: topId,
                         type: 'input',
                         label: 'Top',
+                        placeholder: PADDING_DEFAULT_PLACEHOLDER,
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
                         id: leftId,
                         type: 'input',
                         label: 'Left',
+                        placeholder: PADDING_DEFAULT_PLACEHOLDER,
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
                         id: rightId,
                         type: 'input',
                         label: 'Right',
+                        placeholder: PADDING_DEFAULT_PLACEHOLDER,
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
                         id: bottomId,
                         type: 'input',
                         label: 'Bottom',
+                        placeholder: PADDING_DEFAULT_PLACEHOLDER,
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                 ],
