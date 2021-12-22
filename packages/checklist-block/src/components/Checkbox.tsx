@@ -5,12 +5,11 @@ import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
-import { useContext, useRef, FC } from 'react';
+import { useContext, useRef, FC, MouseEvent } from 'react';
 import { CheckboxProps } from '../types';
 import { CheckboxLabel } from './CheckboxLabel';
 import { colorToHexAlpha, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from '../SettingsContext';
-import { getInteractionModality } from '@react-aria/interactions';
 
 export const Checkbox: FC<CheckboxProps> = ({
     id,
@@ -25,7 +24,6 @@ export const Checkbox: FC<CheckboxProps> = ({
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     const { isFocusVisible, focusProps } = useFocusRing();
-    const isKeyboard = getInteractionModality() === 'keyboard';
 
     const toggleState = useToggleState({
         onChange: disabled ? undefined : onChange,
@@ -49,12 +47,18 @@ export const Checkbox: FC<CheckboxProps> = ({
         borderColor: checked ? colorToHexAlpha(completeCheckboxColor) : colorToHexAlpha(incompleteCheckboxColor),
     };
 
+    const handleLabelClick = (event: MouseEvent<HTMLLabelElement>) => {
+        event.preventDefault();
+        toggleState.toggle();
+    };
+
     return (
         <label
             className={joinClassNames([
                 'tw-flex tw-select-none tw-outline-none tw-self-start tw-items-start',
                 !disabled && 'hover:tw-cursor-pointer',
             ])}
+            onClick={handleLabelClick}
         >
             <input
                 {...mergeProps(inputProps, focusProps)}
@@ -67,7 +71,7 @@ export const Checkbox: FC<CheckboxProps> = ({
                 aria-hidden="true"
                 className={joinClassNames([
                     'tw-relative tw-flex tw-w-4 tw-h-4 tw-mr-2 tw-items-center tw-justify-center tw-rounded tw-border tw-border-solid tw-flex-shrink-0 tw-bg-white tw-text-white',
-                    isFocusVisible && isKeyboard && FOCUS_STYLE,
+                    isFocusVisible && FOCUS_STYLE,
                     disabled && 'tw-pointer-events-none',
                 ])}
                 style={checkboxStyles}
