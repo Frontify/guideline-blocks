@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { ICON_CLASS_NAME } from '../utilities';
 import { IconProps } from '../types';
 
-const IconSingleChevronLeft: FC<IconProps> = ({ style }) => (
+export const IconSingleChevronLeft: FC<IconProps> = ({ style }) => (
     <svg
         style={style}
         className={ICON_CLASS_NAME}
@@ -17,5 +17,3 @@ const IconSingleChevronLeft: FC<IconProps> = ({ style }) => (
         <path d="M9.506 12L.62 7.264V4.763L9.506 0h.16v2.235L2.695 5.854v.319l6.97 3.619V12h-.159z" />
     </svg>
 );
-
-export default IconSingleChevronLeft;

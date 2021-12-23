@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { ICON_CLASS_NAME } from '../utilities';
 import { IconProps } from '../types';
 
-const IconHookBracketLeft: FC<IconProps> = ({ style }) => (
+export const IconHookBracketLeft: FC<IconProps> = ({ style }) => (
     <svg
         style={style}
         className={ICON_CLASS_NAME}
@@ -17,5 +17,3 @@ const IconHookBracketLeft: FC<IconProps> = ({ style }) => (
         <path d="M6.073 0H.213v12h1.372V1.28h4.488V0z" />
     </svg>
 );
-
-export default IconHookBracketLeft;

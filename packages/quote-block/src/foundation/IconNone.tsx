@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { ICON_CLASS_NAME } from '../utilities';
 import { IconProps } from '../types';
 
-const IconNone: FC<IconProps> = ({ style }) => (
+export const IconNone: FC<IconProps> = ({ style }) => (
     <svg
         style={style}
         className={ICON_CLASS_NAME}
@@ -21,5 +21,3 @@ const IconNone: FC<IconProps> = ({ style }) => (
         />
     </svg>
 );
-
-export default IconNone;
