@@ -3,7 +3,7 @@
 import { MultiInputLayout } from '@frontify/arcade';
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
-import { paddingBasicStyleMap } from './types';
+import { paddingStyleMap } from './types';
 import { appendUnitToArray, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomArrayValue } from '..';
 import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { getPaddingSlider } from './padding';
@@ -35,8 +35,7 @@ export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBl
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
-        onChange: (bundle: ApiBundle): void =>
-            presetCustomArrayValue(bundle, basicId, valueId, paddingBasicStyleMap, 4),
+        onChange: (bundle: ApiBundle): void => presetCustomArrayValue(bundle, basicId, valueId, paddingStyleMap, 4),
         on: [
             {
                 id: valueId,

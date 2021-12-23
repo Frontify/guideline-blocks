@@ -11,22 +11,22 @@ export enum Radius {
     Large = 'Large',
 }
 
-export enum PaddingBasic {
+export enum Padding {
     None = 'None',
     Small = 'Small',
     Medium = 'Medium',
     Large = 'Large',
 }
 
-export const paddingBasicStyleMap: Record<PaddingBasic, string> = {
-    [PaddingBasic.None]: '0px',
-    [PaddingBasic.Small]: '24px',
-    [PaddingBasic.Medium]: '36px',
-    [PaddingBasic.Large]: '60px',
+export const paddingStyleMap: Record<Padding, string> = {
+    [Padding.None]: '0px',
+    [Padding.Small]: '24px',
+    [Padding.Medium]: '36px',
+    [Padding.Large]: '60px',
 };
 
 export type PaddingSettings = {
-    paddingBasic: PaddingBasic;
+    paddingBasic: Padding;
     hasCustomPadding: boolean;
     paddingValues: string[];
 };

@@ -3,7 +3,7 @@
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState } from '@frontify/arcade';
 import { ReactElement, MouseEvent } from 'react';
-import { PaddingBasic, paddingBasicStyleMap, PaddingSettings } from '@frontify/guideline-blocks-shared';
+import { Padding, paddingStyleMap, PaddingSettings } from '@frontify/guideline-blocks-shared';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;
@@ -154,8 +154,8 @@ export type Settings = PaddingSettings & {
 export const DefaultValues: Settings = {
     content: [],
     hasCustomPadding: false,
-    paddingBasic: PaddingBasic.Small,
-    paddingValues: new Array(4).fill(paddingBasicStyleMap[PaddingBasic.Small]),
+    paddingBasic: Padding.Small,
+    paddingValues: new Array(4).fill(paddingStyleMap[Padding.Small]),
     incompleteTextColor: { hex: '#2D3232', rgba: { r: 45, g: 50, b: 50, a: 1 } },
     incompleteCheckboxColor: { hex: '#6C7070', rgba: { r: 108, g: 112, b: 112, a: 1 } },
     completeTextColor: { hex: '#FF375A', rgba: { r: 255, g: 55, b: 90, a: 1 } },

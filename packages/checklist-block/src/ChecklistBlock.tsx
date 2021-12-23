@@ -25,7 +25,7 @@ import {
     colorToHexAlpha,
     generatePaddingString,
     joinClassNames,
-    paddingBasicStyleMap,
+    paddingStyleMap,
 } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
 import { reorderList } from './utilities';
@@ -132,9 +132,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 data-test-id="checklist-block"
                 className="tw-relative"
                 style={{
-                    padding: hasCustomPadding
-                        ? generatePaddingString(paddingValues)
-                        : paddingBasicStyleMap[paddingBasic],
+                    padding: hasCustomPadding ? generatePaddingString(paddingValues) : paddingStyleMap[paddingBasic],
                 }}
             >
                 <div className="tw-relative" {...hoverProps}>

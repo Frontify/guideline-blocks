@@ -1,12 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import {
-    getRgbCssFromHex,
-    PaddingBasic,
-    paddingBasicStyleMap,
-    withAppBridgeStubs,
-} from '@frontify/guideline-blocks-shared';
+import { getRgbCssFromHex, Padding, paddingStyleMap, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import ChecklistBlock from '.';
 import {
     ChecklistContent,
@@ -49,7 +44,7 @@ const createContentArray = (length: number, fixedParams?: Partial<ChecklistConte
 const testSettings: Settings = {
     content: [],
     hasCustomPadding: false,
-    paddingBasic: PaddingBasic.Large,
+    paddingBasic: Padding.Large,
     paddingValues: [],
     incompleteTextColor: { hex: '#111111' },
     incompleteCheckboxColor: { hex: '#222222' },
@@ -408,7 +403,7 @@ it('Correctly renders styles provided by settings', () => {
         'background-color',
         getRgbCssFromHex(testSettings.progressBarFillColor.hex)
     );
-    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingBasicStyleMap[testSettings.paddingBasic]);
+    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[testSettings.paddingBasic]);
     cy.get(CHECKBOX_DATE).should('have.length', 5);
 });
 
@@ -416,7 +411,7 @@ it('Uses custom padding if advanced it set to true', () => {
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
         blockSettings: {
             hasCustomPadding: true,
-            paddingBasic: PaddingBasic.Large,
+            paddingBasic: Padding.Large,
             paddingValues: ['3px', '4px', '5px', '6px'],
         },
     });
