@@ -2,7 +2,7 @@
 
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
-import { Radius } from '.';
+import { Radius } from './types';
 import { appendUnit, numericalOrPixelRule } from '..';
 
 /**

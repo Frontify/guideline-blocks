@@ -59,7 +59,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         progressBarTrackColor,
         progressBarType,
     } = settings;
-    console.log(blockSettings);
+
     const addNewItem = (text: string): void => {
         const trimmed = text.trim();
         if (!trimmed) {
