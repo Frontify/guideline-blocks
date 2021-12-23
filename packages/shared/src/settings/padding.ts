@@ -2,10 +2,8 @@
 
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
-import { paddingBasicStyleMap } from '.';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomValue } from '..';
-import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
-import { PaddingBasic } from './types';
+import { Padding, paddingValues, PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 
 /**
  * Returns padding settings: padding switch, padding slider, custom padding input
@@ -22,22 +20,22 @@ type PaddingSettingsType = {
 export const getPaddingSlider = (id: string): ApiBlock => ({
     id: id,
     type: 'slider',
-    defaultValue: PaddingBasic.Small,
+    defaultValue: Padding.Small,
     choices: [
         {
-            value: PaddingBasic.None,
+            value: Padding.None,
             label: 'None',
         },
         {
-            value: PaddingBasic.Small,
+            value: Padding.Small,
             label: 'S',
         },
         {
-            value: PaddingBasic.Medium,
+            value: Padding.Medium,
             label: 'M',
         },
         {
-            value: PaddingBasic.Large,
+            value: Padding.Large,
             label: 'L',
         },
     ],
@@ -46,7 +44,7 @@ export const getPaddingSlider = (id: string): ApiBlock => ({
 export const getPaddingSettings = (options?: PaddingSettingsType): ApiBlock => {
     const hasId = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
     const valueId = options?.id ? `paddingValue_${options?.id}` : 'paddingValue';
-    const basicId = options?.id ? `paddingBasic_${options?.id}` : 'paddingBasic';
+    const choiceId = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
 
     return {
         id: hasId,
@@ -54,7 +52,7 @@ export const getPaddingSettings = (options?: PaddingSettingsType): ApiBlock => {
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
-        onChange: (bundle: ApiBundle): void => presetCustomValue(bundle, basicId, valueId, paddingBasicStyleMap),
+        onChange: (bundle: ApiBundle): void => presetCustomValue(bundle, choiceId, valueId, paddingValues),
         on: [
             {
                 id: valueId,
@@ -64,6 +62,6 @@ export const getPaddingSettings = (options?: PaddingSettingsType): ApiBlock => {
                 onChange: (bundle: ApiBundle): void => appendUnit(bundle, valueId),
             },
         ],
-        off: [getPaddingSlider(basicId)],
+        off: [getPaddingSlider(choiceId)],
     };
 };

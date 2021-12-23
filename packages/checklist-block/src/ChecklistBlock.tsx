@@ -20,13 +20,16 @@ import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { GridNode } from '@react-types/grid';
 import { ProgressHeader } from './components/ProgressHeader';
-import { ChecklistContent, ChecklistItemMode, ChecklistProps, DefaultValues, ProgressBarType, Settings } from './types';
 import {
-    colorToHexAlpha,
-    generatePaddingString,
-    joinClassNames,
-    paddingBasicStyleMap,
-} from '@frontify/guideline-blocks-shared';
+    ChecklistContent,
+    ChecklistItemMode,
+    ChecklistProps,
+    DefaultValues,
+    PaddingClasses,
+    ProgressBarType,
+    Settings,
+} from './types';
+import { colorToHexAlpha, generatePaddingString, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
 import { reorderList } from './utilities';
 import {
@@ -50,8 +53,8 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const settings = provideDefaults(DefaultValues, blockSettings);
 
     const {
-        hasCustomPadding,
-        paddingValues,
+        paddingAdvanced,
+        paddingCustom,
         paddingBasic,
         content,
         progressBarVisible,
@@ -59,7 +62,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         progressBarTrackColor,
         progressBarType,
     } = settings;
-    console.log(blockSettings);
+
     const addNewItem = (text: string): void => {
         const trimmed = text.trim();
         if (!trimmed) {
@@ -130,11 +133,9 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         <SettingsContext.Provider value={settings}>
             <div
                 data-test-id="checklist-block"
-                className="tw-relative"
+                className={joinClassNames(['tw-relative', !paddingAdvanced && PaddingClasses[paddingBasic]])}
                 style={{
-                    padding: hasCustomPadding
-                        ? generatePaddingString(paddingValues)
-                        : paddingBasicStyleMap[paddingBasic],
+                    padding: paddingAdvanced ? generatePaddingString(paddingCustom) : '',
                 }}
             >
                 <div className="tw-relative" {...hoverProps}>

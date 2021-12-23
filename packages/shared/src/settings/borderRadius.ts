@@ -2,8 +2,8 @@
 
 import { ApiBundle } from '@frontify/guideline-blocks-settings';
 import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
-import { Radius } from '.';
 import { appendUnit, numericalOrPixelRule } from '..';
+import { Radius } from './defaultValues';
 
 /**
  * Returns border radius settings: border radius switch, radius slider, custom radius input
