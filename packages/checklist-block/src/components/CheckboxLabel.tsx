@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useContext } from 'react';
+import { CSSProperties, FC, useContext } from 'react';
 import {
     CheckboxLabelProps,
     ChecklistDecoration,
@@ -27,14 +27,35 @@ const getLabelDecorationStylesMap = (
         textDecorationStyle: StrikethroughStyleType[style],
         textDecorationThickness: thickness,
         textDecorationColor: colorToHexAlpha(color),
+        fontWeight: '500',
     },
     [ChecklistDecoration.Highlight]: {
         backgroundColor: colorToHexAlpha(highlightColor),
     },
-    [ChecklistDecoration.Checkbox]: {},
+    [ChecklistDecoration.Checkbox]: {
+        fontWeight: '500',
+    },
 });
 
-export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disabled = false, dateInMs }) => {
+const decorateLabelChildren = (children: string, style: CSSProperties) =>
+    children.split('\n').map((child: string, index, ctx: string[]) => (
+        <>
+            {child !== '' ? (
+                <span
+                    className="tw-inline-block tw-rounded-sm tw-px-[2px] tw-mx-[-2px]"
+                    key={`${child}--${index}`}
+                    style={style}
+                >
+                    {child}
+                </span>
+            ) : (
+                child
+            )}
+            {index !== ctx.length - 1 && '\n'}
+        </>
+    ));
+
+export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {
     const { strikethroughMultiInput, highlightColor, completedDecoration, completeTextColor, dateVisible } =
         useContext(SettingsContext);
 
@@ -42,24 +63,30 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children, htmlFor, disab
 
     const decorationStyles = getLabelDecorationStylesMap(type, thickness, color, highlightColor)[completedDecoration];
 
+    const labelStyles = { color: colorToHexAlpha(completeTextColor), ...decorationStyles };
+
+    const decoratedChildren = decorateLabelChildren(children, labelStyles);
+
     return (
         <div
-            className="tw-inline-flex tw-flex-col tw-text-s tw-max-w-full tw-px-0.5"
+            className="tw-text-s tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0"
             data-test-id="input-label-container"
         >
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
-                    'tw-select-none tw-whitespace-pre-wrap tw-w-max',
+                    'tw-select-none tw-whitespace-pre-wrap [word-break:break-word]',
                     disabled ? 'hover:tw-cursor-not-allowed tw-pointer-events-none' : 'hover:tw-cursor-pointer',
                 ])}
-                style={{ color: colorToHexAlpha(completeTextColor), ...decorationStyles }}
                 data-test-id="checkbox-label"
             >
-                {children}
+                {decoratedChildren}
             </label>
             {dateVisible && Boolean(dateInMs) && (
-                <span className="tw-text-black-60 tw-font-sans tw-text-xxs tw-font-normal" data-test-id="checkbox-date">
+                <span
+                    className="tw-text-black-60 tw-font-sans tw-text-xxs tw-font-normal tw-block tw-mt-[2px]"
+                    data-test-id="checkbox-date"
+                >
                     {dayjs(dateInMs).fromNow()}
                 </span>
             )}

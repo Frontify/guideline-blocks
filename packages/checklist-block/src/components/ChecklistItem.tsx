@@ -7,12 +7,11 @@ import {
     ItemDragState,
     IconCaretUp,
     IconCaretDown,
-    IconSize,
     IconReject,
     FocusController,
 } from '@frontify/arcade';
 import { TextEditor } from './TextEditor';
-import { useHover } from '@react-aria/interactions';
+import { getInteractionModality, useHover } from '@react-aria/interactions';
 import { useFocusWithin } from '@react-aria/interactions';
 import { Checkbox } from './Checkbox';
 import { ChecklistButton } from './ChecklistButton';
@@ -41,9 +40,11 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
 }) => {
     const [focused, setFocused] = useState(false);
 
+    const interaction = getInteractionModality();
+
     const { hoverProps, isHovered } = useHover({});
     const { focusWithinProps } = useFocusWithin({
-        onFocusWithinChange: setFocused,
+        onFocusWithinChange: (focused) => setFocused(focused && interaction === 'keyboard'),
     });
 
     const shouldDisplayControlPanel =
@@ -54,13 +55,26 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
     const { completed, updatedAt, id, text } = item || DefaultChecklistItem;
 
     const containerClasses = joinClassNames([
-        'tw-flex tw-content-center',
+        'tw-flex tw-content-center tw-rounded tw-p-1',
         dragState === ItemDragState.Preview && 'tw-bg-white',
         dragState === ItemDragState.Dragging && 'tw-bg-black-5 tw-opacity-70',
         shouldDisplayControlPanel && 'tw-bg-black-5',
     ]);
 
     const notEditable = mode !== ChecklistItemMode.Edit;
+
+    const textEditor = (
+        <TextEditor
+            resetOnSave={mode === ChecklistItemMode.Create}
+            readonly={mode === ChecklistItemMode.View}
+            onTextModified={onTextModified}
+            value={text}
+            placeholder="Add new checklist item"
+        />
+    );
+
+    const accessibleEditor =
+        mode === ChecklistItemMode.Create ? textEditor : <FocusController>{textEditor}</FocusController>;
 
     return (
         <div
@@ -70,7 +84,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
             data-test-id="checklist-item"
             data-mode={mode}
         >
-            <div className="tw-p-2 tw-flex tw-flex-auto tw-content-center">
+            <div className="tw-flex tw-flex-auto tw-content-center tw-p-1">
                 <div className="tw-flex tw-flex-auto tw-items-center">
                     <div className="tw-flex tw-flex-auto tw-items-start">
                         <Checkbox
@@ -83,17 +97,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                             label={text}
                             dateCompleted={updatedAt}
                         />
-                        {!completed && (
-                            <FocusController>
-                                <TextEditor
-                                    resetOnSave={mode === ChecklistItemMode.Create}
-                                    readonly={mode === ChecklistItemMode.View}
-                                    onTextModified={onTextModified}
-                                    value={text}
-                                    placeholder="Add new checklist item"
-                                />
-                            </FocusController>
-                        )}
+                        {!completed && accessibleEditor}
                     </div>
                 </div>
             </div>
@@ -108,17 +112,17 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                     <ButtonGroup size={ButtonSize.Small}>
                         <ChecklistButton
                             disabled={isFirst || notEditable}
-                            icon={<IconCaretUp size={IconSize.Size16} />}
+                            icon={<IconCaretUp />}
                             onClick={() => onMoveItem && onMoveItem(id, -1)}
                         />
                         <ChecklistButton
                             disabled={isLast || notEditable}
-                            icon={<IconCaretDown size={IconSize.Size16} />}
+                            icon={<IconCaretDown />}
                             onClick={() => onMoveItem && onMoveItem(id, 1)}
                         />
                         <ChecklistButton
                             disabled={notEditable}
-                            icon={<IconReject size={IconSize.Size16} />}
+                            icon={<IconReject />}
                             onClick={() => onRemoveItem && onRemoveItem(id)}
                         />
                     </ButtonGroup>

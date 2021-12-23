@@ -33,7 +33,6 @@ const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 
 const DRAGGABLE_ITEM = '[data-test-id=draggable-item]';
 const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
-const FOCUS_CONTROLLER = 'div[tabindex=0][role="button"]';
 
 const createContentArray = (length: number, fixedParams?: Partial<ChecklistContent>) => {
     const createRandomItem = (fixedParams?: Partial<ChecklistContent>) => {
@@ -214,9 +213,11 @@ it('Allows users to create item with keyboard', () => {
     cy.window().focus();
     cy.get('body').realPress('Tab');
     cy.get(DRAGGABLE_ITEM).should('have.length', 0);
-    cy.get(CHECKLIST_ITEM_CREATOR).find(FOCUS_CONTROLLER).should('be.focused').realPress('Space');
     cy.get(CHECKLIST_ITEM_CREATOR).find(TEXT_EDITOR).should('be.focused').type('TEXT{Enter}');
     cy.get(DRAGGABLE_ITEM).should('have.length', 1).find(TEXT_EDITOR).should('have.text', 'TEXT');
+    cy.get(CHECKLIST_ITEM_CREATOR).find(TEXT_EDITOR).should('be.focused');
+    cy.get(CHECKLIST_ITEM_CREATOR).find(TEXT_EDITOR).should('be.focused').type('{Enter}');
+    cy.get(CHECKLIST_ITEM_CREATOR).find(TEXT_EDITOR).should('not.be.focused');
 });
 
 it('Disables List modifications in View Mode', () => {
@@ -279,7 +280,8 @@ it('Can hide/show completed tasks in View mode', () => {
         .then(($button) => {
             const text = $button.text();
             expect(text).to.match(/Hide/);
-            cy.wrap($button).click();
+            // TODO: remove {force: true} when tailwind is bundled correctly in cypress
+            cy.wrap($button).click({ force: true });
         });
     cy.get(CHECKLIST_ITEM).should('have.length', 5);
     cy.get('[checked]').should('have.length', 0);
@@ -378,19 +380,21 @@ it('Correctly renders styles provided by settings', () => {
         const color = $editor.css('color');
         expect(color).to.equal(getRgbCssFromHex(testSettings.incompleteTextColor.hex));
     });
-    cy.get(CHECKBOX_LABEL).each(($label) => {
-        const color = $label.css('color');
-        const textDecoration = $label.css('text-decoration-line');
-        const strikethroughStyle = $label.css('text-decoration-style');
-        const strikethroughThickness = $label.css('text-decoration-thickness');
-        const strikethroughColor = $label.css('text-decoration-color');
-        const [lineStyle, lineThickness, lineColor] = testSettings.strikethroughMultiInput;
-        expect(color).to.equal(getRgbCssFromHex(testSettings.completeTextColor.hex));
-        expect(textDecoration).to.equal('line-through');
-        expect(strikethroughStyle).to.equal(StrikethroughStyleType[lineStyle]);
-        expect(strikethroughThickness).to.equal(lineThickness);
-        expect(strikethroughColor).to.equal(getRgbCssFromHex(lineColor.hex));
-    });
+    cy.get(CHECKBOX_LABEL)
+        .find('span')
+        .each(($labelSection) => {
+            const color = $labelSection.css('color');
+            const textDecoration = $labelSection.css('text-decoration-line');
+            const strikethroughStyle = $labelSection.css('text-decoration-style');
+            const strikethroughThickness = $labelSection.css('text-decoration-thickness');
+            const strikethroughColor = $labelSection.css('text-decoration-color');
+            const [lineStyle, lineThickness, lineColor] = testSettings.strikethroughMultiInput;
+            expect(color).to.equal(getRgbCssFromHex(testSettings.completeTextColor.hex));
+            expect(textDecoration).to.equal('line-through');
+            expect(strikethroughStyle).to.equal(StrikethroughStyleType[lineStyle]);
+            expect(strikethroughThickness).to.equal(lineThickness);
+            expect(strikethroughColor).to.equal(getRgbCssFromHex(lineColor.hex));
+        });
     cy.get(PROGRESS_BAR).should(
         'have.css',
         'background-color',
@@ -441,5 +445,5 @@ it('Correctly displays highlight color', () => {
         },
     });
     mount(<ChecklistBlockWithStubs />);
-    cy.get(CHECKBOX_LABEL).should('have.css', 'background-color', getRgbCssFromHex(highlightColor.hex));
+    cy.get(CHECKBOX_LABEL).find('span').should('have.css', 'background-color', getRgbCssFromHex(highlightColor.hex));
 });

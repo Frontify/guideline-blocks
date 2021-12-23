@@ -34,12 +34,12 @@ const settings: ApiSettings = {
                 },
                 {
                     value: ChecklistDecoration.Strikethrough,
-                    icon: IconEnum.Symbols,
+                    icon: IconEnum.Strikethrough,
                     label: 'Strikethrough',
                 },
                 {
                     value: ChecklistDecoration.Highlight,
-                    icon: IconEnum.Symbols,
+                    icon: IconEnum.Highlight,
                     label: 'Highlight',
                 },
             ],
