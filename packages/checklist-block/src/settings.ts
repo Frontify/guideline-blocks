@@ -1,17 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
-import { ChecklistDecoration, ChecklistPadding, DefaultValues, ProgressBarType, StrikethroughType } from './types';
+import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import {
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     appendUnit,
-    appendUnitToArray,
+    getPaddingExtendedSettings,
 } from '@frontify/guideline-blocks-shared';
 
 const COMPLETED_DECORATION = 'completedDecoration';
-const PADDING_CUSTOM = 'paddingCustom';
 const STRIKETHROUGH_WIDTH = 'strikethroughWidth';
 const PROGRESS_BAR_VISIBLE = 'progressBarVisible';
 const PROGRESS_BAR_TYPE = 'progressBarType';
@@ -46,77 +45,7 @@ const settings: ApiSettings = {
         },
     ],
     layout: [
-        {
-            id: 'paddingAdvanced',
-            label: 'Padding',
-            type: 'switch',
-            defaultValue: false,
-            switchLabel: 'Custom',
-            on: [
-                {
-                    id: PADDING_CUSTOM,
-                    type: 'multiInput',
-                    layout: MultiInputLayout.Spider,
-                    onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, PADDING_CUSTOM),
-                    blocks: [
-                        {
-                            id: 'paddingCustomTop',
-                            type: 'input',
-                            label: 'Top',
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(0)],
-                            defaultValue: DefaultValues.paddingCustom[0],
-                        },
-
-                        {
-                            id: 'paddingCustomLeft',
-                            type: 'input',
-                            label: 'Left',
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(0)],
-                            defaultValue: DefaultValues.paddingCustom[1],
-                        },
-                        {
-                            id: 'paddingCustomRight',
-                            type: 'input',
-                            label: 'Right',
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(0)],
-                            defaultValue: DefaultValues.paddingCustom[2],
-                        },
-                        {
-                            id: 'paddingCustomBottom',
-                            type: 'input',
-                            label: 'Bottom',
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(0)],
-                            defaultValue: DefaultValues.paddingCustom[3],
-                        },
-                    ],
-                },
-            ],
-            off: [
-                {
-                    id: 'paddingBasic',
-                    type: 'slider',
-                    defaultValue: DefaultValues.paddingBasic,
-                    choices: [
-                        {
-                            value: ChecklistPadding.None,
-                            label: 'None',
-                        },
-                        {
-                            value: ChecklistPadding.Small,
-                            label: 'S',
-                        },
-                        {
-                            value: ChecklistPadding.Medium,
-                            label: 'M',
-                        },
-                        {
-                            value: ChecklistPadding.Large,
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
-        },
+        getPaddingExtendedSettings(),
         {
             id: PROGRESS_BAR_VISIBLE,
             label: 'Progress Indicator',

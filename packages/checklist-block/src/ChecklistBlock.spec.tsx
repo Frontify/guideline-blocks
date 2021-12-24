@@ -1,14 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { getRgbCssFromHex, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { getRgbCssFromHex, Padding, paddingStyleMap, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import ChecklistBlock from '.';
 import {
     ChecklistContent,
     ChecklistDecoration,
     ChecklistItemMode,
-    ChecklistPadding,
-    PaddingClasses,
     ProgressBarType,
     Settings,
     StrikethroughStyleType,
@@ -45,9 +43,9 @@ const createContentArray = (length: number, fixedParams?: Partial<ChecklistConte
 
 const testSettings: Settings = {
     content: [],
-    paddingAdvanced: false,
-    paddingBasic: ChecklistPadding.Large,
-    paddingCustom: [],
+    hasCustomPadding: false,
+    paddingBasic: Padding.Large,
+    paddingValues: [],
     incompleteTextColor: { hex: '#111111' },
     incompleteCheckboxColor: { hex: '#222222' },
     completeTextColor: { hex: '#333333' },
@@ -405,17 +403,16 @@ it('Correctly renders styles provided by settings', () => {
         'background-color',
         getRgbCssFromHex(testSettings.progressBarFillColor.hex)
     );
-    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.class', PaddingClasses[testSettings.paddingBasic]);
-
+    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[testSettings.paddingBasic]);
     cy.get(CHECKBOX_DATE).should('have.length', 5);
 });
 
 it('Uses custom padding if advanced it set to true', () => {
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
         blockSettings: {
-            paddingAdvanced: true,
-            paddingBasic: ChecklistPadding.Large,
-            paddingCustom: ['3px', '4px', '5px', '6px'],
+            hasCustomPadding: true,
+            paddingBasic: Padding.Large,
+            paddingValues: ['3px', '4px', '5px', '6px'],
         },
     });
     mount(<ChecklistBlockWithStubs />);

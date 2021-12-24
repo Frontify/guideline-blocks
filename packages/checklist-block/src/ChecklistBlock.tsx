@@ -20,16 +20,13 @@ import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { GridNode } from '@react-types/grid';
 import { ProgressHeader } from './components/ProgressHeader';
+import { ChecklistContent, ChecklistItemMode, ChecklistProps, DefaultValues, ProgressBarType, Settings } from './types';
 import {
-    ChecklistContent,
-    ChecklistItemMode,
-    ChecklistProps,
-    DefaultValues,
-    PaddingClasses,
-    ProgressBarType,
-    Settings,
-} from './types';
-import { colorToHexAlpha, generatePaddingString, joinClassNames } from '@frontify/guideline-blocks-shared';
+    colorToHexAlpha,
+    generatePaddingString,
+    joinClassNames,
+    paddingStyleMap,
+} from '@frontify/guideline-blocks-shared';
 import { SettingsContext } from './SettingsContext';
 import { reorderList } from './utilities';
 import {
@@ -53,8 +50,8 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const settings = provideDefaults(DefaultValues, blockSettings);
 
     const {
-        paddingAdvanced,
-        paddingCustom,
+        hasCustomPadding,
+        paddingValues,
         paddingBasic,
         content,
         progressBarVisible,
@@ -133,9 +130,9 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         <SettingsContext.Provider value={settings}>
             <div
                 data-test-id="checklist-block"
-                className={joinClassNames(['tw-relative', !paddingAdvanced && PaddingClasses[paddingBasic]])}
+                className="tw-relative"
                 style={{
-                    padding: paddingAdvanced ? generatePaddingString(paddingCustom) : '',
+                    padding: hasCustomPadding ? generatePaddingString(paddingValues) : paddingStyleMap[paddingBasic],
                 }}
             >
                 <div className="tw-relative" {...hoverProps}>

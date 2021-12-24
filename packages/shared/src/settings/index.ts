@@ -4,3 +4,4 @@ export * from './border';
 export * from './borderRadius';
 export * from './padding';
 export * from './paddingExtended';
+export * from './types';
