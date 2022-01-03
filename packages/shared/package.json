@@ -20,7 +20,7 @@
     "private": true,
     "author": "Frontify Developers <developers@frontify.com>",
     "devDependencies": {
-        "@cypress/react": "5.10.3",
+        "@cypress/react": "5.12.0",
         "@frontify/eslint-config-typescript": "0.13.2",
         "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
         "@types/jest": "27.0.3",

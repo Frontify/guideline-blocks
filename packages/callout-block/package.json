@@ -12,7 +12,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@cypress/react": "5.10.3",
+        "@cypress/react": "5.12.0",
         "@frontify/eslint-config-react": "0.13.2",
         "@frontify/frontify-cli": "2.4.0",
         "@types/react": "17.0.37",
