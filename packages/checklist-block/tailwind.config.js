@@ -4,5 +4,10 @@ const tailwindConfig = arcadeTailwindConfig({
         preflight: false,
     },
 });
+
+// Convert Arcade Tailwind v2 to v3 config
+tailwindConfig.content = JSON.parse(JSON.stringify(tailwindConfig.purge));
 delete tailwindConfig.plugins;
+delete tailwindConfig.purge;
+
 module.exports = tailwindConfig;
