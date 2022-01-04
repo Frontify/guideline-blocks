@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBundle } from '../bundle';
+import { Bundle } from '../bundle';
 
 export type BaseBlock = {
     id: string;
     label?: string;
     info?: string;
-    show?: (bundle: ApiBundle) => boolean;
-    onChange?: (bundle: ApiBundle) => void;
+    show?: (bundle: Bundle) => boolean;
+    onChange?: (bundle: Bundle) => void;
 };

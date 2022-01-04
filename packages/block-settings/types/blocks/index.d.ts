@@ -9,7 +9,7 @@ import { MultiInputBlock } from './multiInput';
 import { SliderBlock } from './slider';
 import { SwitchBlock } from './switch';
 
-export type ApiBlock =
+export type SettingBlock =
     | AssetInputBlock
     | ColorInputBlock
     | SwitchBlock

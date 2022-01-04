@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBlock } from './blocks';
+import { SettingBlock } from './blocks';
 
 export { BaseBlock } from './blocks/base';
-export { ApiBundle, ApiField } from './bundle';
+export { Bundle, Field } from './bundle';
 
-export enum Sections {
+export enum SettingSection {
     Main = 'main',
     Content = 'content',
     Layout = 'layout',
@@ -14,10 +14,10 @@ export enum Sections {
     Targets = 'targets',
 }
 
-export type ApiSettings = {
-    [Sections.Main]?: ApiBlock[];
-    [Sections.Content]?: ApiBlock[];
-    [Sections.Layout]?: ApiBlock[];
-    [Sections.Style]?: ApiBlock[];
-    [Sections.Security]?: ApiBlock[];
+export type Settings = {
+    [SettingSection.Main]?: SettingBlock[];
+    [SettingSection.Content]?: SettingBlock[];
+    [SettingSection.Layout]?: SettingBlock[];
+    [SettingSection.Style]?: SettingBlock[];
+    [SettingSection.Security]?: SettingBlock[];
 };
