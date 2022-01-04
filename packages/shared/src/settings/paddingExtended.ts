@@ -1,26 +1,25 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MultiInputLayout } from '@frontify/arcade';
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
+import { Bundle } from '@frontify/guideline-blocks-settings';
+import { SettingBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { paddingStyleMap } from './types';
 import { appendUnitToArray, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomArrayValue } from '..';
 import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { getPaddingSlider } from './padding';
+
+type PaddingSettingsType = {
+    id?: string;
+};
 
 /**
  * Returns padding settings: padding switch, padding slider, custom padding input for every direction
  *
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
- * @returns {ApiBlock} Returns border settings
+ * @returns {SettingBlock} Returns border settings
  */
-
-type PaddingSettingsType = {
-    id?: string;
-};
-
-export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBlock => {
+export const getPaddingExtendedSettings = (options?: PaddingSettingsType): SettingBlock => {
     const hasId = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
     const valueId = options?.id ? `paddingValues_${options?.id}` : 'paddingValues';
     const basicId = options?.id ? `paddingBasic_${options?.id}` : 'paddingBasic';
@@ -35,13 +34,13 @@ export const getPaddingExtendedSettings = (options?: PaddingSettingsType): ApiBl
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
-        onChange: (bundle: ApiBundle): void => presetCustomArrayValue(bundle, basicId, valueId, paddingStyleMap, 4),
+        onChange: (bundle: Bundle): void => presetCustomArrayValue(bundle, basicId, valueId, paddingStyleMap, 4),
         on: [
             {
                 id: valueId,
                 type: 'multiInput',
                 layout: MultiInputLayout.Spider,
-                onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, valueId),
+                onChange: (bundle: Bundle): void => appendUnitToArray(bundle, valueId),
                 blocks: [
                     {
                         id: topId,

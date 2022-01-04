@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { Bundle, Settings } from '@frontify/guideline-blocks-settings';
 import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 import { IconEnum, MultiInputLayout } from '@frontify/arcade';
 import {
@@ -15,10 +15,10 @@ const STRIKETHROUGH_WIDTH = 'strikethroughWidth';
 const PROGRESS_BAR_VISIBLE = 'progressBarVisible';
 const PROGRESS_BAR_TYPE = 'progressBarType';
 
-const showProgressStyles = (bundle: ApiBundle): boolean =>
+const showProgressStyles = (bundle: Bundle): boolean =>
     !!bundle.getBlock(PROGRESS_BAR_VISIBLE)?.value && bundle.getBlock(PROGRESS_BAR_TYPE)?.value === ProgressBarType.Bar;
 
-const settings: ApiSettings = {
+const settings: Settings = {
     main: [
         {
             id: COMPLETED_DECORATION,
@@ -111,7 +111,7 @@ const settings: ApiSettings = {
             type: 'colorInput',
             label: 'Highlight',
             defaultValue: DefaultValues.highlightColor,
-            show: (bundle: ApiBundle) => bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
+            show: (bundle: Bundle) => bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
         },
         {
             id: 'strikethroughMultiInput',
@@ -119,7 +119,7 @@ const settings: ApiSettings = {
             label: 'Line',
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
-            show: (bundle: ApiBundle) =>
+            show: (bundle: Bundle) =>
                 bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,
             blocks: [
                 {
@@ -153,7 +153,7 @@ const settings: ApiSettings = {
                     id: STRIKETHROUGH_WIDTH,
                     type: 'input',
                     defaultValue: DefaultValues.strikethroughMultiInput[1],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                 },
                 {

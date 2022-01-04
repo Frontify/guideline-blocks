@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export enum BorderStyle {
     Solid = 'Solid',
     Dashed = 'Dashed',

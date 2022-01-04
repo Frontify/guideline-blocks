@@ -1,11 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MultiInputLayout } from '@frontify/arcade';
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
+import { Bundle } from '@frontify/guideline-blocks-settings';
+import { SettingBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { BorderStyle } from './types';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
 import { BORDER_COLOR_DEFAULT_VALUE, BORDER_WIDTH_DEFAULT_VALUE } from './defaultValues';
+
+type BorderSettingsType = {
+    id?: string;
+    defaultValue?: boolean;
+};
 
 /**
  * Returns border settings: border switch, border style, border width, border color
@@ -13,15 +18,9 @@ import { BORDER_COLOR_DEFAULT_VALUE, BORDER_WIDTH_DEFAULT_VALUE } from './defaul
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
  * @param options.defaultValue Default value for the border switch
- * @returns {ApiBlock} Returns border settings
+ * @returns {SettingBlock} Returns border settings
  */
-
-type BorderSettingsType = {
-    id?: string;
-    defaultValue?: boolean;
-};
-
-export const getBorderSettings = (options?: BorderSettingsType): ApiBlock => {
+export const getBorderSettings = (options?: BorderSettingsType): SettingBlock => {
     const hasId = options?.id ? `hasBorder_${options.id}` : 'hasBorder';
     const selectionId = options?.id ? `borderSelection_${options.id}` : 'borderSelection';
     const styleId = options?.id ? `borderStyle_${options.id}` : 'borderStyle';
@@ -64,7 +63,7 @@ export const getBorderSettings = (options?: BorderSettingsType): ApiBlock => {
                         type: 'input',
                         defaultValue: BORDER_WIDTH_DEFAULT_VALUE,
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                        onChange: (bundle: ApiBundle): void => appendUnit(bundle, widthId),
+                        onChange: (bundle: Bundle): void => appendUnit(bundle, widthId),
                     },
                     {
                         id: colorId,
