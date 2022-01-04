@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
+import { Bundle } from '@frontify/guideline-blocks-settings';
 
 /**
  * Sets value of custom input to predefined value from the slider, if no custom value is set already
  *
- * @param {ApiBundle} bundle Sidebar bundle object
+ * @param {Bundle} bundle Sidebar bundle object
  * @param {string} sliderId Setting id of the slider
  * @param {string} inputId Setting id of the input
  * @param {Object} map Map of enum and values
@@ -13,7 +13,7 @@ import { ApiBundle } from '@frontify/guideline-blocks-settings';
  */
 
 export const presetCustomValue = (
-    bundle: ApiBundle,
+    bundle: Bundle,
     sliderId: string,
     inputId: string,
     map: Record<string, string>

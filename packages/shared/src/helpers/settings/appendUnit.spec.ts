@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
+import { Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnit } from './appendUnit';
 
 describe('appendUnit', () => {
     test('it should set correct value with "px" when entering a number', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: 20 };
             },
@@ -20,7 +20,7 @@ describe('appendUnit', () => {
     });
 
     test('it should set correct value with "%" when entering a number', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: 40 };
             },
@@ -35,7 +35,7 @@ describe('appendUnit', () => {
     });
 
     test('it should not call setBlockValue when entering a px-value', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: '20px' };
             },
@@ -48,7 +48,7 @@ describe('appendUnit', () => {
     });
 
     test('it should handle undefined', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: undefined };
             },
@@ -59,7 +59,7 @@ describe('appendUnit', () => {
     });
 
     test('it should handle empty string', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: '' };
             },

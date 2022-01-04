@@ -2,7 +2,7 @@
 
 import { FileExtension } from '@frontify/app-bridge';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { Bundle, Settings } from '@frontify/guideline-blocks-settings';
 import { appendUnitToArray, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { Alignment, CornerRadius, Padding, Type, Width } from './types';
 
@@ -17,7 +17,7 @@ const RADIUS_TOPRIGHT_ID = 'radius-top-right';
 const RADIUS_BOTTOMLEFT_ID = 'radius-bottom-left';
 const RADIUS_BOTTOMRIGHT_ID = 'radius-bottom-right';
 
-const settings: ApiSettings = {
+const settings: Settings = {
     main: [
         {
             id: 'type',
@@ -114,7 +114,7 @@ const settings: ApiSettings = {
                     id: CUSTOM_PADDING_ID,
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
-                    onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, CUSTOM_PADDING_ID),
+                    onChange: (bundle: Bundle): void => appendUnitToArray(bundle, CUSTOM_PADDING_ID),
                     blocks: [
                         {
                             id: PADDING_TOP_ID,
@@ -178,7 +178,7 @@ const settings: ApiSettings = {
                     id: CUSTOM_RADIUS_ID,
                     type: 'multiInput',
                     layout: MultiInputLayout.Columns,
-                    onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, CUSTOM_RADIUS_ID),
+                    onChange: (bundle: Bundle): void => appendUnitToArray(bundle, CUSTOM_RADIUS_ID),
                     blocks: [
                         {
                             id: RADIUS_TOPLEFT_ID,

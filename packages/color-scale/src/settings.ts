@@ -1,6 +1,6 @@
-import { ApiSettings } from '@frontify/guideline-blocks-settings';
+import { Settings } from '@frontify/guideline-blocks-settings';
 
-const settings: ApiSettings = {
+const settings: Settings = {
     main: [
         {
             id: 'style',
