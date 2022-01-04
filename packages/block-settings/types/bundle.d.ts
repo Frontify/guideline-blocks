@@ -2,11 +2,11 @@
 
 import { SettingBlock } from './blocks';
 
-export type Field = {
+export type BlockSettingValue = {
     value?: SettingBlock['value'];
 };
 
 export type Bundle = {
-    getBlock: (id: string) => Field | null;
+    getBlock: (id: string) => BlockSettingValue | null;
     setBlockValue: (key: string, value: SettingBlock['value']) => void;
 };

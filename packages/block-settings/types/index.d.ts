@@ -3,7 +3,7 @@
 import { SettingBlock } from './blocks';
 
 export { BaseBlock } from './blocks/base';
-export { Bundle, Field } from './bundle';
+export { Bundle, BlockSettingValue } from './bundle';
 
 export enum SettingSection {
     Main = 'main',
