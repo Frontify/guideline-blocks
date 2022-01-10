@@ -24,7 +24,7 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
 
     const {
         items = [],
-        columns = 2,
+        columns = '2',
         isCustomSpacing = false,
         spacingValue = '',
         doColor = DO_COLOR_DEFAULT_VALUE,
@@ -59,7 +59,7 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         });
     };
 
-    useEffect(() => setItems(layout === DoDontLayout.Stacked ? columns * 2 : 2), [layout, columns]);
+    useEffect(() => setItems(layout === DoDontLayout.Stacked ? +columns * 2 : 2), [layout, columns]);
 
     return (
         <div
