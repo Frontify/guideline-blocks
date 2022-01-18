@@ -11,7 +11,7 @@
 
 1. Clone this repository
     ```
-    $ git clone git@github.com:Frontify/guideline-blocks.git`
+    $ git clone git@github.com:Frontify/guideline-blocks.git
     ```
 2. Install the dependencies
     ```
