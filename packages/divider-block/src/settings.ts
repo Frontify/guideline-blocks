@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
+import { IconEnum, DropdownSize } from '@frontify/arcade';
 import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
@@ -50,7 +50,7 @@ const settings: BlockSettings = {
         {
             id: IS_LINE_ID,
             type: 'dropdown',
-            size: 'Large',
+            size: DropdownSize.Large,
             defaultValue: IS_LINE_DEFAULT_VALUE,
             choices: [
                 {

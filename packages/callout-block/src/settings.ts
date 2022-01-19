@@ -58,7 +58,7 @@ const settings: BlockSettings = {
                 {
                     id: 'icon',
                     type: 'assetInput',
-                    allowedExtensions: [FileExtension.Svg],
+                    extensions: [FileExtension.Svg],
                 },
             ],
         },

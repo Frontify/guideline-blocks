@@ -5,6 +5,7 @@
 import { IconEnum } from '@frontify/arcade/icons/IconEnum';
 import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { DropdownSize } from '@frontify/arcade';
 
 export const PLACEHOLDER = 'Your text here';
 export const DEFAULT_COLUMN_NUMBER = 1;
@@ -50,7 +51,7 @@ const settings: BlockSettings = {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'text',
-            size: 'Large',
+            size: DropdownSize.Large,
             disabled: true,
             choices: [
                 {

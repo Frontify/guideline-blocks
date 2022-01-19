@@ -1,4 +1,5 @@
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
+import { DropdownSize } from '@frontify/arcade';
 
 const settings: BlockSettings = {
     main: [
@@ -16,7 +17,7 @@ const settings: BlockSettings = {
                     label: 'Color only',
                 },
             ],
-            size: 'Large',
+            size: DropdownSize.Large,
         },
     ],
     style: [

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
+import { IconEnum, DropdownSize } from '@frontify/arcade';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
 const settings: BlockSettings = {
@@ -9,7 +9,7 @@ const settings: BlockSettings = {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'custom_block',
-            size: 'Large',
+            size: DropdownSize.Large,
             disabled: true,
             choices: [
                 {

@@ -2,7 +2,7 @@
 
 import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
-import { IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { IconEnum, MultiInputLayout, DropdownSize } from '@frontify/arcade';
 import {
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
@@ -24,7 +24,7 @@ const settings: BlockSettings = {
             id: COMPLETED_DECORATION,
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
-            size: 'Large',
+            size: DropdownSize.Large,
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,

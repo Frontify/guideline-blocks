@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
+import { IconEnum, DropdownSize } from '@frontify/arcade';
 import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
@@ -29,7 +29,7 @@ const settings: BlockSettings = {
             id: STYLE_ID,
             type: 'dropdown',
             defaultValue: StorybookStyle.Default,
-            size: 'Large',
+            size: DropdownSize.Large,
             choices: [
                 {
                     value: StorybookStyle.Default,

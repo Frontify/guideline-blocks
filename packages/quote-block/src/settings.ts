@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
+import { IconEnum, DropdownSize } from '@frontify/arcade';
 import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { LineType, LineWidth, lineWidthMap, QuoteSize, quoteSizeMap, QuoteStyle, QuoteType } from './types';
@@ -38,7 +38,7 @@ const settings: BlockSettings = {
             id: QUOTE_TYPE_ID,
             type: 'dropdown',
             defaultValue: QuoteType.QuotationMarks,
-            size: 'Large',
+            size: DropdownSize.Large,
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
