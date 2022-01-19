@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Bundle } from '@frontify/guideline-blocks-settings';
-import { SettingBlock } from '@frontify/guideline-blocks-settings/types/blocks';
+import { SettingBlock } from '@frontify/guideline-blocks-settings';
 import { Radius } from './types';
 import { appendUnit, numericalOrPixelRule } from '..';
 

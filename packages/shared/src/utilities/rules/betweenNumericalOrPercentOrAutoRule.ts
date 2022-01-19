@@ -2,7 +2,7 @@
 
 import { minimumNumericalOrPercentOrAutoRule } from './minimumNumericalOrPercentOrAutoRule';
 import { maximumNumericalOrPercentOrAutoRule } from './maximumNumericalOrPercentOrAutoRule';
-import { Rule } from './types';
+import { Rule } from '@frontify/guideline-blocks-settings';
 
 /**
  * Rule to validate value is between two pixel values.
