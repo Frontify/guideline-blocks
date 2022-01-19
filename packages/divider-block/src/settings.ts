@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconEnum } from '@frontify/arcade';
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     betweenPercentRule,
@@ -40,12 +40,12 @@ export const COLOR_DEFAULT_RGBA_VALUE = {
     name: 'Light Grey',
 };
 
-const solidStyleIsSelected = (bundle: ApiBundle): boolean => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
-const limitedWidthIsSelected = (bundle: ApiBundle): boolean =>
+const solidStyleIsSelected = (bundle: Bundle): boolean => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
+const limitedWidthIsSelected = (bundle: Bundle): boolean =>
     bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'] &&
     bundle.getBlock(WIDTH_CUSTOM_ID)?.value !== '100%';
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: IS_LINE_ID,
@@ -73,7 +73,7 @@ const settings: ApiSettings = {
             label: 'Width',
             switchLabel: 'Custom',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void =>
+            onChange: (bundle: Bundle): void =>
                 presetCustomValue(bundle, WIDTH_SIMPLE_ID, WIDTH_CUSTOM_ID, DividerWidth),
             on: [
                 {
@@ -82,7 +82,7 @@ const settings: ApiSettings = {
                     placeholder: '75%',
                     clearable: false,
                     rules: [numericalOrPercentRule, betweenPercentRule(0, 100)],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
                 },
             ],
             off: [
@@ -132,7 +132,7 @@ const settings: ApiSettings = {
                     icon: IconEnum.AlignRight,
                 },
             ],
-            show: (bundle: ApiBundle): boolean => solidStyleIsSelected(bundle) && limitedWidthIsSelected(bundle),
+            show: (bundle: Bundle): boolean => solidStyleIsSelected(bundle) && limitedWidthIsSelected(bundle),
         },
         {
             id: 'isHeightCustom',
@@ -141,7 +141,7 @@ const settings: ApiSettings = {
             switchLabel: 'Custom',
             info: 'Determines the block height. This will not affect the dividing line in any way.',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void =>
+            onChange: (bundle: Bundle): void =>
                 presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeightValues),
             on: [
                 {
@@ -150,7 +150,7 @@ const settings: ApiSettings = {
                     placeholder: '100px',
                     clearable: false,
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
                 },
             ],
             off: [
@@ -204,7 +204,7 @@ const settings: ApiSettings = {
             label: 'Thickness',
             switchLabel: 'Custom',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void =>
+            onChange: (bundle: Bundle): void =>
                 presetCustomValue(bundle, THICKNESS_SIMPLE_ID, THICKNESS_CUSTOM_ID, dividerThicknessValues),
             on: [
                 {
@@ -212,7 +212,7 @@ const settings: ApiSettings = {
                     type: 'input',
                     clearable: false,
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, THICKNESS_CUSTOM_ID),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, THICKNESS_CUSTOM_ID),
                 },
             ],
             off: [

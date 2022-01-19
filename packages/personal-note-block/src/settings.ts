@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconEnum } from '@frontify/arcade';
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getBorderSettings,
@@ -23,7 +23,7 @@ const HAS_BACKGROUND_ID = 'hasBackground';
 const HAS_BORDER_ID = 'hasBorder';
 const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: 'style',
@@ -77,14 +77,14 @@ const settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            show: (bundle: ApiBundle): boolean =>
+            show: (bundle: Bundle): boolean =>
                 bundle.getBlock(HAS_BACKGROUND_ID)?.value === true || bundle.getBlock(HAS_BORDER_ID)?.value === true,
             on: [
                 {
                     id: BORDER_RADIUS_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, BORDER_RADIUS_VALUE_ID),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, BORDER_RADIUS_VALUE_ID),
                 },
             ],
             off: [

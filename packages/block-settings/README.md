@@ -5,10 +5,10 @@ Provides the block settings types for the guideline-blocks.
 ## Example
 
 ```ts
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { IconEnum } from '@frontify/arcade';
 
-const Settings: ApiSettings = {
+const Settings: BlockSettings = {
     main: [
         {
             id: 'example',
@@ -27,7 +27,7 @@ const Settings: ApiSettings = {
                     label: 'Line',
                 },
             ],
-            onChange: (bundle: ApiBundle): void => {
+            onChange: (bundle: Bundle): void => {
                 const blockWidth = Number(bundle.getBlock('widthCustom')?.value);
                 if (!Number.isNaN(blockWidth)) {
                     bundle.setBlockValue('widthCustom', `${blockWidth}%`);

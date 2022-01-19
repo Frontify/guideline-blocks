@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
+import { Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnitToArray } from './appendUnitToArray';
 
 describe('appendUnitToArray', () => {
     test('it should set correct value with "px" when entering a number', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: [20, 40] };
             },
@@ -17,7 +17,7 @@ describe('appendUnitToArray', () => {
     });
 
     test('it should set correct value with "%" when entering a number', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: [40, 20] };
             },
@@ -30,7 +30,7 @@ describe('appendUnitToArray', () => {
     });
 
     test('it should not call setBlockValue when entering a non-array', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: '20px' };
             },
@@ -41,7 +41,7 @@ describe('appendUnitToArray', () => {
     });
 
     test('it should not change the value when it already has unit', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: ['20px', '40px'] };
             },
@@ -52,7 +52,7 @@ describe('appendUnitToArray', () => {
     });
 
     test('it should handle undefined', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: [undefined, '40px'] };
             },
@@ -63,7 +63,7 @@ describe('appendUnitToArray', () => {
     });
 
     test('it should handle empty string', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: ['', '40px'] };
             },
@@ -74,7 +74,7 @@ describe('appendUnitToArray', () => {
     });
 
     test('it should handle mixed values with and without units', () => {
-        const bundle: ApiBundle = {
+        const bundle: Bundle = {
             getBlock() {
                 return { value: ['20', '40px', 85] };
             },

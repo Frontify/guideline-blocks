@@ -8,13 +8,15 @@ import { InputBlock } from './input';
 import { MultiInputBlock } from './multiInput';
 import { SliderBlock } from './slider';
 import { SwitchBlock } from './switch';
+import { TemplateInputBlock } from './templateInput';
 
-export type ApiBlock =
+export type SettingBlock =
     | AssetInputBlock
+    | ChecklistBlock
     | ColorInputBlock
-    | SwitchBlock
     | DropdownBlock
-    | SliderBlock
     | InputBlock
     | MultiInputBlock
-    | ChecklistBlock;
+    | SliderBlock
+    | SwitchBlock
+    | TemplateInputBlock;

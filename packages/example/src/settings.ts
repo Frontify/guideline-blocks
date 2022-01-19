@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconEnum } from '@frontify/arcade';
-import { ApiSettings } from '@frontify/guideline-blocks-settings';
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
