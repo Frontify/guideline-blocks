@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FileExtension } from '@frontify/app-bridge';
+import { FileExtension, AssetInputObjectType } from '@frontify/app-bridge';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { appendUnitToArray, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
@@ -59,6 +59,7 @@ const settings: BlockSettings = {
                     id: 'icon',
                     type: 'assetInput',
                     extensions: [FileExtension.Svg],
+                    objectTypes: [AssetInputObjectType.ImageVideo],
                 },
             ],
         },
