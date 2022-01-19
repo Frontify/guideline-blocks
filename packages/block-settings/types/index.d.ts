@@ -2,8 +2,10 @@
 
 import { SettingBlock } from './blocks';
 
+export * from './blocks';
 export { BaseBlock } from './blocks/base';
 export { Bundle, SettingValue } from './bundle';
+export { Rule } from './validation';
 
 export enum Sections {
     Main = 'main',

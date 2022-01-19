@@ -10,6 +10,16 @@ import { SliderBlock } from './slider';
 import { SwitchBlock } from './switch';
 import { TemplateInputBlock } from './templateInput';
 
+export * from './assetInput';
+export * from './checklist';
+export * from './colorInput';
+export * from './dropdown';
+export * from './input';
+export * from './multiInput';
+export * from './slider';
+export * from './switch';
+export * from './templateInput';
+
 export type SettingBlock =
     | AssetInputBlock
     | ChecklistBlock
