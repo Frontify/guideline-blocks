@@ -2,13 +2,14 @@
     "name": "@frontify/guideline-blocks-settings",
     "version": "0.1.0",
     "description": "Provides the types for the block settings",
+    "main": "types/index.ts",
     "files": [
         "types"
     ],
     "publishConfig": {
         "access": "public"
     },
-    "types": "types/index.d.ts",
+    "types": "types/index.ts",
     "author": "Frontify Developers <developers@frontify.com>",
     "scripts": {
         "lint": "eslint types",
