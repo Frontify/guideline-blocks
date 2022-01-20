@@ -22,7 +22,7 @@
     "devDependencies": {
         "@cypress/react": "5.10.3",
         "@frontify/eslint-config-typescript": "0.13.2",
-        "@frontify/guideline-blocks-settings": "^0.0.1-alpha.0",
+        "@frontify/guideline-blocks-settings": "*",
         "@types/jest": "27.0.3",
         "@types/react": "17.0.37",
         "@types/sinon": "10.0.6",
