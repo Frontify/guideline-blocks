@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBundle, ApiField } from '@frontify/guideline-blocks-settings';
+import { Bundle, SettingValue } from '@frontify/guideline-blocks-settings';
 import { presetCustomArrayValue } from './presetCustomArrayValue';
 
 const exampleMap: Record<string, string> = {
@@ -14,8 +14,8 @@ describe('presetCustomValue', () => {
         const SLIDER_ID = 'sliderId';
         const INPUT_ID = 'inputId';
 
-        const bundle: ApiBundle = {
-            getBlock(id): ApiField | null {
+        const bundle: Bundle = {
+            getBlock(id): SettingValue | null {
                 if (id === SLIDER_ID) {
                     return { value: 'large' };
                 } else if (id === INPUT_ID) {
@@ -37,8 +37,8 @@ describe('presetCustomValue', () => {
         const SLIDER_ID = 'sliderId';
         const INPUT_ID = 'inputId';
 
-        const bundle: ApiBundle = {
-            getBlock(id): ApiField | null {
+        const bundle: Bundle = {
+            getBlock(id): SettingValue | null {
                 if (id === SLIDER_ID) {
                     return { value: 'small' };
                 } else if (id === INPUT_ID) {

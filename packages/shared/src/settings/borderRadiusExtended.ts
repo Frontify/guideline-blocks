@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MultiInputLayout } from '@frontify/arcade';
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
+import { Bundle } from '@frontify/guideline-blocks-settings';
+import { SettingBlock } from '@frontify/guideline-blocks-settings/types/blocks';
 import { appendUnitToArray, numericalOrPixelRule } from '..';
 import { getBorderRadiusSlider } from './borderRadius';
 
@@ -12,7 +12,7 @@ import { getBorderRadiusSlider } from './borderRadius';
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
  * @param options.dependentSettingId Id of setting which the border radius is dependent on
- * @returns {ApiBlock} Returns border settings
+ * @returns {SettingBlock} Returns border settings
  */
 
 type BorderRadiusSettingsType = {
@@ -20,7 +20,7 @@ type BorderRadiusSettingsType = {
     dependentSettingId?: string;
 };
 
-export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsType): ApiBlock => {
+export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsType): SettingBlock => {
     const hasId = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
     const valueId = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
     const choiceId = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
@@ -35,14 +35,14 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
-        show: (bundle: ApiBundle): boolean =>
+        show: (bundle: Bundle): boolean =>
             options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
         on: [
             {
                 id: valueId,
                 type: 'multiInput',
                 layout: MultiInputLayout.Columns,
-                onChange: (bundle: ApiBundle): void => appendUnitToArray(bundle, valueId),
+                onChange: (bundle: Bundle): void => appendUnitToArray(bundle, valueId),
                 blocks: [
                     {
                         id: topLeftId,

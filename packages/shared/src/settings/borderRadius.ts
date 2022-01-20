@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBundle } from '@frontify/guideline-blocks-settings';
-import { ApiBlock } from '@frontify/guideline-blocks-settings/types/blocks';
+import { Bundle } from '@frontify/guideline-blocks-settings';
+import { SettingBlock } from '@frontify/guideline-blocks-settings';
 import { Radius } from './types';
 import { appendUnit, numericalOrPixelRule } from '..';
 
@@ -11,7 +11,7 @@ import { appendUnit, numericalOrPixelRule } from '..';
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
  * @param options.dependentSettingId Id of setting which the border radius is dependent on
- * @returns {ApiBlock} Returns border settings
+ * @returns {SettingBlock} Returns border settings
  */
 
 type BorderRadiusSettingsType = {
@@ -19,7 +19,7 @@ type BorderRadiusSettingsType = {
     dependentSettingId?: string;
 };
 
-export const getBorderRadiusSlider = (id: string): ApiBlock => ({
+export const getBorderRadiusSlider = (id: string): SettingBlock => ({
     id: id,
     type: 'slider',
     defaultValue: Radius.None,
@@ -43,7 +43,7 @@ export const getBorderRadiusSlider = (id: string): ApiBlock => ({
     ],
 });
 
-export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): ApiBlock => {
+export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): SettingBlock => {
     const hasId = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
     const valueId = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
     const choiceId = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
@@ -54,14 +54,14 @@ export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): Api
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
-        show: (bundle: ApiBundle): boolean =>
+        show: (bundle: Bundle): boolean =>
             options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
         on: [
             {
                 id: valueId,
                 type: 'input',
                 rules: [numericalOrPixelRule],
-                onChange: (bundle: ApiBundle): void => appendUnit(bundle, valueId),
+                onChange: (bundle: Bundle): void => appendUnit(bundle, valueId),
             },
         ],
         off: [getBorderRadiusSlider(choiceId)],

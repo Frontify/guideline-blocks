@@ -1,9 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ApiBlock } from './blocks';
+import { SettingBlock } from './blocks';
 
+export * from './blocks';
 export { BaseBlock } from './blocks/base';
-export { ApiBundle, ApiField } from './bundle';
+export { Bundle, SettingValue } from './bundle';
+export { Rule } from './validation';
 
 export enum Sections {
     Main = 'main',
@@ -14,10 +16,10 @@ export enum Sections {
     Targets = 'targets',
 }
 
-export type ApiSettings = {
-    [Sections.Main]?: ApiBlock[];
-    [Sections.Content]?: ApiBlock[];
-    [Sections.Layout]?: ApiBlock[];
-    [Sections.Style]?: ApiBlock[];
-    [Sections.Security]?: ApiBlock[];
+export type BlockSettings = {
+    [Sections.Main]?: SettingBlock[];
+    [Sections.Content]?: SettingBlock[];
+    [Sections.Layout]?: SettingBlock[];
+    [Sections.Style]?: SettingBlock[];
+    [Sections.Security]?: SettingBlock[];
 };

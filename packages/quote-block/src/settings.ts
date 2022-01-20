@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { IconEnum, DropdownSize } from '@frontify/arcade';
+import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { LineType, LineWidth, lineWidthMap, QuoteSize, quoteSizeMap, QuoteStyle, QuoteType } from './types';
 
@@ -28,17 +28,17 @@ const QUOTE_STYLE_CHOICES = [
 export const DEFAULT_COLOR_VALUE = { rgba: { r: 179, g: 181, b: 181, a: 1 }, name: 'Light Grey', hex: '#B3B5B5' };
 export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
-const isSelected = (bundle: ApiBundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
-const showAccentLine = (bundle: ApiBundle): boolean =>
+const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
+const showAccentLine = (bundle: Bundle): boolean =>
     isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID)?.value === true;
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: QUOTE_TYPE_ID,
             type: 'dropdown',
             defaultValue: QuoteType.QuotationMarks,
-            size: 'Large',
+            size: DropdownSize.Large,
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
@@ -60,7 +60,7 @@ const settings: ApiSettings = {
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: 'quoteStyleRight',
@@ -68,7 +68,7 @@ const settings: ApiSettings = {
             type: 'dropdown',
             defaultValue: QuoteStyle.DoubleUp,
             choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
     layout: [
@@ -94,14 +94,13 @@ const settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void =>
-                presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
+            onChange: (bundle: Bundle): void => presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
             on: [
                 {
                     id: SIZE_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, SIZE_VALUE_ID),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, SIZE_VALUE_ID),
                 },
             ],
             off: [
@@ -125,14 +124,14 @@ const settings: ApiSettings = {
                     ],
                 },
             ],
-            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: ACCENT_LINE_SWITCH_ID,
             type: 'switch',
             label: 'Accent line',
             defaultValue: true,
-            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.Indentation),
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.Indentation),
         },
         {
             id: 'lineType',
@@ -164,14 +163,14 @@ const settings: ApiSettings = {
             defaultValue: false,
             info: 'Choose between small, medium, large or custom accent line width',
             show: showAccentLine,
-            onChange: (bundle: ApiBundle): void =>
+            onChange: (bundle: Bundle): void =>
                 presetCustomValue(bundle, LINE_WIDTH_CHOICE_ID, LINE_WIDTH_VALUE_ID, lineWidthMap),
             on: [
                 {
                     id: LINE_WIDTH_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
                 },
             ],
             off: [
@@ -208,7 +207,7 @@ const settings: ApiSettings = {
             label: 'Color',
             type: 'colorInput',
             defaultValue: DEFAULT_COLOR_VALUE,
-            show: (bundle: ApiBundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
 };

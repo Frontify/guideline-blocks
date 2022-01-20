@@ -1,6 +1,7 @@
-import { ApiSettings } from '@frontify/guideline-blocks-settings';
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
+import { DropdownSize } from '@frontify/arcade';
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: 'style',
@@ -16,7 +17,7 @@ const settings: ApiSettings = {
                     label: 'Color only',
                 },
             ],
-            size: 'Large',
+            size: DropdownSize.Large,
         },
     ],
     style: [

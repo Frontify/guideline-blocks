@@ -6,7 +6,7 @@ import { ColorList } from './ColorList';
 import { ColorViewModel } from './ColorViewModel';
 import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
 import { FC, useState, useEffect } from 'react';
-import { useEditorState } from '@frontify/app-bridge/react';
+import { useEditorState } from '@frontify/app-bridge';
 import css from './styles.module.css';
 
 type Props = {

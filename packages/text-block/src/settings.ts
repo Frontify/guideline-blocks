@@ -3,8 +3,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import { IconEnum } from '@frontify/arcade/icons/IconEnum';
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { DropdownSize } from '@frontify/arcade';
 
 export const PLACEHOLDER = 'Your text here';
 export const DEFAULT_COLUMN_NUMBER = 1;
@@ -44,13 +45,13 @@ export const columnNumberChoices = [
     },
 ];
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'text',
-            size: 'Large',
+            size: DropdownSize.Large,
             disabled: true,
             choices: [
                 {
@@ -80,7 +81,7 @@ const settings: ApiSettings = {
                     type: 'input',
                     defaultValue: DEFAULT_COLUMN_GUTTER,
                     rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                    onChange: (bundle: ApiBundle): void => {
+                    onChange: (bundle: Bundle): void => {
                         const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
                         if (!isNaN(gutter)) {
                             bundle.setBlockValue('columnGutterCustom', `${gutter}px`);

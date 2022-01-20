@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { IconEnum, DropdownSize } from '@frontify/arcade';
+import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
@@ -11,13 +11,13 @@ export const DONT_COLOR_DEFAULT_VALUE = { hex: '#ff375a', rgba: { r: 255, g: 55,
 const SPACING_VALUE_ID = 'spacingValue';
 const SPACING_CHOICE_ID = 'spacingChoice';
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: 'style',
             type: 'dropdown',
             defaultValue: DoDontStyle.Icons,
-            size: 'Large',
+            size: DropdownSize.Large,
             choices: [
                 {
                     value: DoDontStyle.Icons,
@@ -58,7 +58,7 @@ const settings: ApiSettings = {
             id: 'columns',
             label: 'Columns',
             type: 'slider',
-            show: (bundle: ApiBundle) => bundle.getBlock('layout')?.value === DoDontLayout.Stacked,
+            show: (bundle: Bundle) => bundle.getBlock('layout')?.value === DoDontLayout.Stacked,
             defaultValue: 2,
             choices: [
                 {
@@ -85,14 +85,14 @@ const settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void =>
+            onChange: (bundle: Bundle): void =>
                 presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
             on: [
                 {
                     id: SPACING_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, SPACING_VALUE_ID),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, SPACING_VALUE_ID),
                 },
             ],
             off: [

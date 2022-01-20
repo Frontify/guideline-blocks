@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { maximumNumericalOrPercentRule, minimumNumericalOrPercentRule } from '.';
-import { Rule } from './types';
+import { Rule } from '@frontify/guideline-blocks-settings';
 
 /**
  * Rule to validate value is between two percent values.

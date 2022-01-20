@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { numericalOrPixelRule } from './numericalOrPixelRule';
-import { Rule } from './types';
+import { Rule } from '@frontify/guideline-blocks-settings';
 
 export const maximumNumericalOrPixelOrAutoRule = (maximumValue: number): Rule<string> => ({
     errorMessage: `Please use a value smaller than ${maximumValue}`,

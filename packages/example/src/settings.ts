@@ -1,15 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
-import { ApiSettings } from '@frontify/guideline-blocks-settings';
+import { IconEnum, DropdownSize } from '@frontify/arcade';
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'custom_block',
-            size: 'Large',
+            size: DropdownSize.Large,
             disabled: true,
             choices: [
                 {

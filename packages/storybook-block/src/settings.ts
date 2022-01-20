@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
-import { ApiBundle, ApiSettings } from '@frontify/guideline-blocks-settings';
+import { IconEnum, DropdownSize } from '@frontify/arcade';
+import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getBorderRadiusSettings,
@@ -23,13 +23,13 @@ const STYLE_ID = 'style';
 const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
 
-const settings: ApiSettings = {
+const settings: BlockSettings = {
     main: [
         {
             id: STYLE_ID,
             type: 'dropdown',
             defaultValue: StorybookStyle.Default,
-            size: 'Large',
+            size: DropdownSize.Large,
             choices: [
                 {
                     value: StorybookStyle.Default,
@@ -59,8 +59,7 @@ const settings: ApiSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
-            onChange: (bundle: ApiBundle): void =>
-                presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
+            onChange: (bundle: Bundle): void => presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
 
             on: [
                 {
@@ -68,7 +67,7 @@ const settings: ApiSettings = {
                     type: 'input',
                     placeholder: '400px',
                     rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(5000)],
-                    onChange: (bundle: ApiBundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
                 },
             ],
             off: [
@@ -98,7 +97,7 @@ const settings: ApiSettings = {
             label: 'Positioning',
             type: 'slider',
             defaultValue: StorybookPosition.Horizontal,
-            show: (bundle: ApiBundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.Default,
+            show: (bundle: Bundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.Default,
             choices: [
                 {
                     value: StorybookPosition.Horizontal,

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Rule } from './types';
+import { Rule } from '@frontify/guideline-blocks-settings';
 
 /**
  * Rule to validate value is a number or a number string with "px".
