@@ -4,14 +4,14 @@ import { FileExtension, AssetChooserProjectType, AssetChooserObjectType } from '
 import { BaseBlock } from './base';
 
 export enum AssetInputSource {
-    Library = 'library',
-    Upload = 'upload',
+    Library = 'Library',
+    Upload = 'Upload',
 }
 
 export enum AssetInputMode {
-    Both = 'both',
-    UploadOnly = 'uploadOnly',
-    BrowseOnly = 'browseOnly',
+    Both = 'Both',
+    UploadOnly = 'UploadOnly',
+    BrowseOnly = 'BrowseOnly',
 }
 
 export type AssetInputValue = {
