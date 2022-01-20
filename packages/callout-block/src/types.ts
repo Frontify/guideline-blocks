@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeNative } from '@frontify/app-bridge';
+import { AssetInputValue } from '@frontify/guideline-blocks-settings';
 
 export enum Type {
     Warning = 'warning',
@@ -72,7 +73,7 @@ export type BlockSettings = {
     customPaddingSwitch: boolean;
     customCornerRadiusSwitch: boolean;
     textValue?: string;
-    icon?: number;
+    icon?: AssetInputValue;
     padding?: Padding;
     customPadding?: string[];
     cornerRadius?: CornerRadius;
