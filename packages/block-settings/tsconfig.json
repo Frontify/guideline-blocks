@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "./types",
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "declarationDir": "./dist",
+        "alwaysStrict": true,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "es6",
+        "lib": ["ES2021", "DOM"],
+        "resolveJsonModule": true,
+        "declaration": true,
+        "skipLibCheck": true
+    },
+    "include": ["types/**/*"],
+    "exclude": ["node_modules", "dist"]
+}

@@ -19,7 +19,6 @@ export * from './multiInput';
 export * from './slider';
 export * from './switch';
 export * from './templateInput';
-export * from './choices';
 
 export type SettingBlock =
     | AssetInputBlock
