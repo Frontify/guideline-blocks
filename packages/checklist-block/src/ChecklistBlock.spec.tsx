@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { getRgbCssFromHex, Padding, paddingStyleMap, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { mapRgbaToString, Padding, paddingStyleMap, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import ChecklistBlock from '.';
+import { createItem } from './helpers';
 import {
     ChecklistContent,
     ChecklistDecoration,
@@ -13,7 +14,6 @@ import {
     StrikethroughType,
 } from './types';
 import { randomInteger } from './utilities';
-import { createItem } from './helpers';
 
 const CHECKLIST_BLOCK_SELECTOR = '[data-test-id="checklist-block"]';
 const CHECKLIST_ITEM = '[data-test-id="checklist-item"]';
@@ -46,18 +46,18 @@ const testSettings: Settings = {
     hasCustomPadding: false,
     paddingBasic: Padding.Large,
     paddingValues: [],
-    incompleteTextColor: { hex: '#111111' },
-    incompleteCheckboxColor: { hex: '#222222' },
-    completeTextColor: { hex: '#333333' },
-    completeCheckboxColor: { hex: '#444444' },
+    incompleteTextColor: { r: 45, g: 50, b: 50, a: 1 },
+    incompleteCheckboxColor: { r: 108, g: 112, b: 112, a: 1 },
+    completeTextColor: { r: 255, g: 55, b: 90, a: 1 },
+    completeCheckboxColor: { r: 255, g: 55, b: 90, a: 1 },
     completedDecoration: ChecklistDecoration.Strikethrough,
-    highlightColor: { hex: '#555555' },
+    highlightColor: { r: 190, g: 225, b: 212, a: 1 },
     dateVisible: true,
     progressBarVisible: true,
     progressBarType: ProgressBarType.Bar,
-    progressBarFillColor: { hex: '#666666' },
-    progressBarTrackColor: { hex: '#777777' },
-    strikethroughMultiInput: [StrikethroughType.Dashed, '5px', { hex: '#888888' }],
+    progressBarFillColor: { r: 0, g: 200, b: 165, a: 1 },
+    progressBarTrackColor: { r: 222, g: 240, b: 233, a: 1 },
+    strikethroughMultiInput: [StrikethroughType.Dashed, '5px', { r: 255, g: 55, b: 90, a: 1 }],
 };
 
 it('Renders a checklist block', () => {
@@ -367,16 +367,16 @@ it('Correctly renders styles provided by settings', () => {
         const fill = $item.css('background-color');
         const checked = $item.data('checked');
         if (checked) {
-            expect(border).to.equal(getRgbCssFromHex(testSettings.completeCheckboxColor.hex));
-            expect(fill).to.equal(getRgbCssFromHex(testSettings.completeCheckboxColor.hex));
+            expect(border).to.equal(mapRgbaToString(testSettings.completeCheckboxColor));
+            expect(fill).to.equal(mapRgbaToString(testSettings.completeCheckboxColor));
         } else {
-            expect(border).to.equal(getRgbCssFromHex(testSettings.incompleteCheckboxColor.hex));
+            expect(border).to.equal(mapRgbaToString(testSettings.incompleteCheckboxColor));
             expect(fill).to.equal('rgb(255, 255, 255)');
         }
     });
     cy.get(TEXT_EDITOR).each(($editor) => {
         const color = $editor.css('color');
-        expect(color).to.equal(getRgbCssFromHex(testSettings.incompleteTextColor.hex));
+        expect(color).to.equal(mapRgbaToString(testSettings.incompleteTextColor));
     });
     cy.get(CHECKBOX_LABEL)
         .find('span')
@@ -387,21 +387,17 @@ it('Correctly renders styles provided by settings', () => {
             const strikethroughThickness = $labelSection.css('text-decoration-thickness');
             const strikethroughColor = $labelSection.css('text-decoration-color');
             const [lineStyle, lineThickness, lineColor] = testSettings.strikethroughMultiInput;
-            expect(color).to.equal(getRgbCssFromHex(testSettings.completeTextColor.hex));
+            expect(color).to.equal(mapRgbaToString(testSettings.completeTextColor));
             expect(textDecoration).to.equal('line-through');
             expect(strikethroughStyle).to.equal(StrikethroughStyleType[lineStyle]);
             expect(strikethroughThickness).to.equal(lineThickness);
-            expect(strikethroughColor).to.equal(getRgbCssFromHex(lineColor.hex));
+            expect(strikethroughColor).to.equal(mapRgbaToString(lineColor));
         });
-    cy.get(PROGRESS_BAR).should(
-        'have.css',
-        'background-color',
-        getRgbCssFromHex(testSettings.progressBarTrackColor.hex)
-    );
+    cy.get(PROGRESS_BAR).should('have.css', 'background-color', mapRgbaToString(testSettings.progressBarTrackColor));
     cy.get(PROGRESS_BAR_FILL).should(
         'have.css',
         'background-color',
-        getRgbCssFromHex(testSettings.progressBarFillColor.hex)
+        mapRgbaToString(testSettings.progressBarFillColor)
     );
     cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[testSettings.paddingBasic]);
     cy.get(CHECKBOX_DATE).should('have.length', 5);
@@ -433,7 +429,7 @@ it('Does not show date if visibility is off', () => {
 
 it('Correctly displays highlight color', () => {
     const content = createContentArray(5, { completed: true });
-    const highlightColor = { hex: '#555555' };
+    const highlightColor = { r: 85, g: 85, b: 85 };
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
         blockSettings: {
             content,
@@ -442,5 +438,5 @@ it('Correctly displays highlight color', () => {
         },
     });
     mount(<ChecklistBlockWithStubs />);
-    cy.get(CHECKBOX_LABEL).find('span').should('have.css', 'background-color', getRgbCssFromHex(highlightColor.hex));
+    cy.get(CHECKBOX_LABEL).find('span').should('have.css', 'background-color', mapRgbaToString(highlightColor));
 });
