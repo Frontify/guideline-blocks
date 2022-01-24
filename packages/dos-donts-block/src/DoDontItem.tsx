@@ -16,8 +16,8 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     body = '',
     editing = false,
 }) => {
-    const doColorString = doColor.rgba && mapRgbaToString(doColor.rgba);
-    const dontColorString = dontColor.rgba && mapRgbaToString(dontColor.rgba);
+    const doColorString = mapRgbaToString(doColor);
+    const dontColorString = mapRgbaToString(dontColor);
 
     const headingStyles: Record<DoDontType, CSSProperties> = {
         [DoDontType.Do]: { color: doColorString },
