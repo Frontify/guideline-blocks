@@ -18,7 +18,8 @@
         "lint": "eslint types",
         "lint:fix": "eslint --fix types",
         "prettier": "prettier --check types",
-        "prettier:fix": "prettier --write types"
+        "prettier:fix": "prettier --write types",
+        "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
         "@frontify/eslint-config-typescript": "0.14.0",
@@ -28,6 +29,6 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.11.0",
-        "@frontify/arcade": "0.17.0"
+        "@frontify/arcade": "1.0.0"
     }
 }

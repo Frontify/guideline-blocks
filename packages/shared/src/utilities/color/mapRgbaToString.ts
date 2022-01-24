@@ -1,11 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { RgbaObject } from './types';
+import tinycolor from 'tinycolor2';
+import { Color } from '@frontify/arcade';
 
 /**
- * Maps object of rgba values to string.
+ * Maps color object of rgba values to rgba string.
  *
- * @param {Object} Object of RGBA values
+ * @param {Object} Color object
  * @returns {String} To be used as css value.
  */
-export const mapRgbaToString = (rgbaObject: RgbaObject): string => `rgba(${Object.values(rgbaObject).join(', ')})`;
+
+export const mapRgbaToString = (color: Color): string => tinycolor(color).toRgbString();

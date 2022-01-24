@@ -10,15 +10,19 @@ const PersonalNoteHeader = '[data-test-id="personal-note-header"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
 
 const EXAMPLE_COLOR = {
-    rgba: { r: 22, g: 181, b: 181, a: 1 },
+    r: 22,
+    g: 181,
+    b: 181,
+    a: 1,
     name: 'Java',
-    hex: '#16b5b5',
 };
 
 const EXAMPLE_COLOR_DARK = {
-    rgba: { r: 46, g: 95, b: 159, a: 1 },
+    r: 46,
+    g: 95,
+    b: 159,
+    a: 1,
     name: 'St Tropaz',
-    hex: '#2e5f9f',
 };
 
 it('renders a personal note block', () => {

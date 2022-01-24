@@ -52,8 +52,8 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const placeholder = 'Add your quote text here';
     const size = isCustomSize ? sizeValue : quoteSizeMap[sizeChoice];
-    const quotesRgba = quotesColor.rgba ? mapRgbaToString(quotesColor.rgba) : quotesColor.hex;
-    const borderRgba = accentLinecolor.rgba ? mapRgbaToString(accentLinecolor.rgba) : accentLinecolor.hex;
+    const quotesRgba = mapRgbaToString(quotesColor);
+    const borderRgba = mapRgbaToString(accentLinecolor);
     const borderStyles = showAccentLine
         ? {
               borderLeftStyle: lineType,

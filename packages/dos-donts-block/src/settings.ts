@@ -5,8 +5,8 @@ import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
-export const DO_COLOR_DEFAULT_VALUE = { hex: '#00c8a5', rgba: { r: 0, g: 200, b: 165, a: 1 } };
-export const DONT_COLOR_DEFAULT_VALUE = { hex: '#ff375a', rgba: { r: 255, g: 55, b: 90, a: 1 } };
+export const DO_COLOR_DEFAULT_VALUE = { r: 0, g: 200, b: 165, a: 1 };
+export const DONT_COLOR_DEFAULT_VALUE = { r: 255, g: 55, b: 90, a: 1 };
 
 const SPACING_VALUE_ID = 'spacingValue';
 const SPACING_CHOICE_ID = 'spacingChoice';
