@@ -25,7 +25,7 @@ const QUOTE_STYLE_CHOICES = [
     { value: QuoteStyle.None, icon: IconEnum.None, label: 'None' },
 ];
 
-export const DEFAULT_COLOR_VALUE = { rgba: { r: 179, g: 181, b: 181, a: 1 }, name: 'Light Grey', hex: '#B3B5B5' };
+export const DEFAULT_COLOR_VALUE = { r: 179, g: 181, b: 181, a: 1, name: 'Light Grey' };
 export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
 const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
