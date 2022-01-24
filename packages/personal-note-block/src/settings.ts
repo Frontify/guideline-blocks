@@ -11,12 +11,16 @@ import {
 import { NoteBorderRadius, NoteStyle, NoteVisibility } from './types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = {
-    rgba: { r: 247, g: 247, b: 247, a: 1 },
-    hex: '#F7F7F7',
+    r: 247,
+    g: 247,
+    b: 247,
+    a: 1,
 };
 export const BORDER_COLOR_DEFAULT_VALUE = {
-    rgba: { r: 234, g: 235, b: 235, a: 1 },
-    hex: '#eaebeb',
+    r: 234,
+    g: 235,
+    b: 235,
+    a: 1,
 };
 
 const HAS_BACKGROUND_ID = 'hasBackground';

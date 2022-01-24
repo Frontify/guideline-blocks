@@ -24,7 +24,7 @@ const getBorderStyles = (borderSelection: BorderSelectionType): CSSProperties =>
     // TODO: This check could be removed if defaultValue are returned from blockSettings
     const style = borderSelection[0] ? borderSelection[0] : NoteBorderStyle.Solid;
     const width = borderSelection[1] ? borderSelection[1] : '1px';
-    const rgba = borderSelection[2]?.rgba ? borderSelection[2]?.rgba : BORDER_COLOR_DEFAULT_VALUE.rgba;
+    const rgba = borderSelection[2] ? borderSelection[2] : BORDER_COLOR_DEFAULT_VALUE;
     return {
         borderStyle: borderStyles[style],
         borderWidth: width,
@@ -37,7 +37,7 @@ const getRadiusStyles = (borderRadius: string): CSSProperties => ({
 });
 
 const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
-    backgroundColor.rgba ? { backgroundColor: mapRgbaToString(backgroundColor.rgba) } : {};
+    backgroundColor ? { backgroundColor: mapRgbaToString(backgroundColor) } : {};
 
 const getPaddingStyles = (padding: string): CSSProperties => ({
     padding,
@@ -109,7 +109,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             data-test-id="personal-note-block"
             className={joinClassNames([
                 !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
-                hasBackground && !!backgroundColor.rgba && isDark(backgroundColor.rgba) && 'tw-text-white',
+                hasBackground && !!backgroundColor && isDark(backgroundColor) && 'tw-text-white',
             ])}
             style={{
                 ...(hasBorder && getBorderStyles(borderSelection)),
@@ -125,7 +125,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     avatar={avatar}
                     hasDateEdited={hasDateEdited}
                     dateEdited={dateEdited}
-                    useLightText={hasBackground && !!backgroundColor.rgba && isDark(backgroundColor.rgba)}
+                    useLightText={hasBackground && !!backgroundColor && isDark(backgroundColor)}
                 />
             )}
 
