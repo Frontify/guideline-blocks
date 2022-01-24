@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { mapRgbaToString, Padding, paddingStyleMap, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { Padding, paddingStyleMap, toRgbaString, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import ChecklistBlock from '.';
 import { createItem } from './helpers';
 import {
@@ -367,16 +367,16 @@ it('Correctly renders styles provided by settings', () => {
         const fill = $item.css('background-color');
         const checked = $item.data('checked');
         if (checked) {
-            expect(border).to.equal(mapRgbaToString(testSettings.completeCheckboxColor));
-            expect(fill).to.equal(mapRgbaToString(testSettings.completeCheckboxColor));
+            expect(border).to.equal(toRgbaString(testSettings.completeCheckboxColor));
+            expect(fill).to.equal(toRgbaString(testSettings.completeCheckboxColor));
         } else {
-            expect(border).to.equal(mapRgbaToString(testSettings.incompleteCheckboxColor));
+            expect(border).to.equal(toRgbaString(testSettings.incompleteCheckboxColor));
             expect(fill).to.equal('rgb(255, 255, 255)');
         }
     });
     cy.get(TEXT_EDITOR).each(($editor) => {
         const color = $editor.css('color');
-        expect(color).to.equal(mapRgbaToString(testSettings.incompleteTextColor));
+        expect(color).to.equal(toRgbaString(testSettings.incompleteTextColor));
     });
     cy.get(CHECKBOX_LABEL)
         .find('span')
@@ -387,18 +387,14 @@ it('Correctly renders styles provided by settings', () => {
             const strikethroughThickness = $labelSection.css('text-decoration-thickness');
             const strikethroughColor = $labelSection.css('text-decoration-color');
             const [lineStyle, lineThickness, lineColor] = testSettings.strikethroughMultiInput;
-            expect(color).to.equal(mapRgbaToString(testSettings.completeTextColor));
+            expect(color).to.equal(toRgbaString(testSettings.completeTextColor));
             expect(textDecoration).to.equal('line-through');
             expect(strikethroughStyle).to.equal(StrikethroughStyleType[lineStyle]);
             expect(strikethroughThickness).to.equal(lineThickness);
-            expect(strikethroughColor).to.equal(mapRgbaToString(lineColor));
+            expect(strikethroughColor).to.equal(toRgbaString(lineColor));
         });
-    cy.get(PROGRESS_BAR).should('have.css', 'background-color', mapRgbaToString(testSettings.progressBarTrackColor));
-    cy.get(PROGRESS_BAR_FILL).should(
-        'have.css',
-        'background-color',
-        mapRgbaToString(testSettings.progressBarFillColor)
-    );
+    cy.get(PROGRESS_BAR).should('have.css', 'background-color', toRgbaString(testSettings.progressBarTrackColor));
+    cy.get(PROGRESS_BAR_FILL).should('have.css', 'background-color', toRgbaString(testSettings.progressBarFillColor));
     cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[testSettings.paddingBasic]);
     cy.get(CHECKBOX_DATE).should('have.length', 5);
 });
@@ -438,5 +434,5 @@ it('Correctly displays highlight color', () => {
         },
     });
     mount(<ChecklistBlockWithStubs />);
-    cy.get(CHECKBOX_LABEL).find('span').should('have.css', 'background-color', mapRgbaToString(highlightColor));
+    cy.get(CHECKBOX_LABEL).find('span').should('have.css', 'background-color', toRgbaString(highlightColor));
 });

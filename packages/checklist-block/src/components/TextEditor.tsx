@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { colorToHexAlpha } from '@frontify/guideline-blocks-shared';
-import { useContext, useRef, KeyboardEvent, FocusEvent, forwardRef, useImperativeHandle } from 'react';
+import { toHex8String } from '@frontify/guideline-blocks-shared';
+import { FocusEvent, forwardRef, KeyboardEvent, useContext, useImperativeHandle, useRef } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import { ImperativeFocusHandle, TextEditorProps } from '../types';
 
@@ -43,7 +43,7 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
                     contentEditable={!readonly}
                     className="tw-block tw-max-w-full tw-flex-initial [word-break:break-word] empty:before:tw-content-[attr(data-placeholder)] empty:before:tw-text-black-60 empty:before:tw-inline-block tw-bg-transparent tw-border-none tw-text-s tw-outline-none hover:tw-cursor-text tw-whitespace-pre-wrap tw-px-0.5"
                     data-placeholder={placeholder}
-                    style={{ color: colorToHexAlpha(incompleteTextColor) }}
+                    style={{ color: toHex8String(incompleteTextColor) }}
                     onKeyDown={handleKeyPress}
                     onBlur={handleChange}
                     ref={editorRef}

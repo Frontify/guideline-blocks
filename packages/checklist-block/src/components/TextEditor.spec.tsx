@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { TextEditor } from './TextEditor';
 import { mount } from '@cypress/react';
 import { TextEditorProps } from '../types';
+import { TextEditor } from './TextEditor';
 
 const TEXT_EDITOR = '[data-test-id="text-editor"]';
 const TEXT_VALUE = 'TEXT';

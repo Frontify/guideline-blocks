@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { colorToHexAlpha } from '.';
+import { toHex8String } from './toHex8String';
 
-describe('colorToHexAlpha', () => {
+describe('toHex8String', () => {
     const data = [
         { color: { r: 255, g: 255, b: 255 }, expected: '#ffffffff' },
         { color: { r: 255, g: 221, b: 255, a: 1 }, expected: '#ffddffff' },
@@ -11,6 +11,6 @@ describe('colorToHexAlpha', () => {
     ];
 
     it.each(data)('validates against expected values', ({ color, expected }) => {
-        expect(colorToHexAlpha(color)).toBe(expected);
+        expect(toHex8String(color)).toBe(expected);
     });
 });

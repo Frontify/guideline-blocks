@@ -1,5 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 export * from './isDark';
-export * from './mapRgbaToString';
-export * from './colorToHexAlpha';
+export * from './toRgbaString';
+export * from './toHex8String';

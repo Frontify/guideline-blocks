@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Checkbox } from './Checkbox';
 import { mount } from '@cypress/react';
 import { CheckboxProps } from '../types';
+import { Checkbox } from './Checkbox';
 
 const CHECKBOX_DISPLAY = '[data-test-id="checkbox"]';
 const CHECKBOX_LABEL = '[data-test-id="checkbox-label"]';

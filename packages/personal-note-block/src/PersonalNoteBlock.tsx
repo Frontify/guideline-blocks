@@ -2,7 +2,7 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/arcade';
-import { isDark, joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { isDark, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';
@@ -28,7 +28,7 @@ const getBorderStyles = (borderSelection: BorderSelectionType): CSSProperties =>
     return {
         borderStyle: borderStyles[style],
         borderWidth: width,
-        borderColor: mapRgbaToString(rgba),
+        borderColor: toRgbaString(rgba),
     };
 };
 
@@ -37,7 +37,7 @@ const getRadiusStyles = (borderRadius: string): CSSProperties => ({
 });
 
 const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
-    backgroundColor ? { backgroundColor: mapRgbaToString(backgroundColor) } : {};
+    backgroundColor ? { backgroundColor: toRgbaString(backgroundColor) } : {};
 
 const getPaddingStyles = (padding: string): CSSProperties => ({
     padding,

@@ -1,14 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
-import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
-import { IconEnum, MultiInputLayout, DropdownSize } from '@frontify/arcade';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
-    minimumNumericalOrPixelOrAutoRule,
-    numericalOrPixelRule,
     appendUnit,
     getPaddingExtendedSettings,
+    minimumNumericalOrPixelOrAutoRule,
+    numericalOrPixelRule,
 } from '@frontify/guideline-blocks-shared';
+import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const COMPLETED_DECORATION = 'completedDecoration';
 const STRIKETHROUGH_WIDTH = 'strikethroughWidth';

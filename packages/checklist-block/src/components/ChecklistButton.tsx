@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
 import { Button, ButtonStyle } from '@frontify/arcade';
+import { FC } from 'react';
 import { ChecklistButtonProps } from '../types';
 
 export const ChecklistButton: FC<ChecklistButtonProps> = ({ onClick, icon, disabled, size }) => (

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, DropdownSize } from '@frontify/arcade';
-import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum } from '@frontify/arcade';
+import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getBorderSettings,
