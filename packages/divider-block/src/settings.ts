@@ -35,8 +35,10 @@ export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
 export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
 export const THICKNESS_DEFAULT_VALUE = DividerThickness.Small;
 export const COLOR_DEFAULT_RGBA_VALUE = {
-    hex: '#d5d6d6',
-    rgba: { r: 213, g: 214, b: 214, a: 1 },
+    r: 213,
+    g: 214,
+    b: 214,
+    a: 1,
     name: 'Light Grey',
 };
 

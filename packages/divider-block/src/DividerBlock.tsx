@@ -64,9 +64,7 @@ export const DividerBlock: FC<Props> = ({ appBridge }) => {
                     ])}
                     style={{
                         borderTopWidth: isThicknessCustom ? thicknessCustom : dividerThicknessValues[thicknessSimple],
-                        borderTopColor: color?.rgba
-                            ? mapRgbaToString(color?.rgba)
-                            : mapRgbaToString(COLOR_DEFAULT_RGBA_VALUE.rgba),
+                        borderTopColor: color ? mapRgbaToString(color) : mapRgbaToString(COLOR_DEFAULT_RGBA_VALUE),
                     }}
                 />
             </div>

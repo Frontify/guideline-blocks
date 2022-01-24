@@ -9,11 +9,7 @@ const DividerBlockSelector = '[data-test-id="divider-block"]';
 const DividerWrapper = '[data-test-id="divider-wrapper"]';
 const DividerLine = '[data-test-id="divider-line"]';
 
-const EXAMPLE_COLOR = {
-    rgba: { r: 22, g: 181, b: 181, a: 1 },
-    name: 'Java',
-    hex: '#16b5b5',
-};
+const EXAMPLE_COLOR = { r: 22, g: 181, b: 181, a: 1, name: 'Java' };
 
 it('renders a divider block', () => {
     const [DividerBlockWithStubs] = withAppBridgeStubs(DividerBlock, {});
