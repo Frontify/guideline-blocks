@@ -7,6 +7,7 @@ import { DropdownBlock } from './dropdown';
 import { InputBlock } from './input';
 import { MultiInputBlock } from './multiInput';
 import { SectionHeadingBlock } from './sectionHeading';
+import { ReferenceBlock } from './reference';
 import { SliderBlock } from './slider';
 import { SwitchBlock } from './switch';
 import { TemplateInputBlock } from './templateInput';
@@ -22,6 +23,7 @@ export * from './sectionHeading';
 export * from './slider';
 export * from './switch';
 export * from './templateInput';
+export * from './reference';
 
 export type SettingBlock =
     | AssetInputBlock
@@ -33,4 +35,5 @@ export type SettingBlock =
     | MultiInputBlock
     | SliderBlock
     | SwitchBlock
-    | TemplateInputBlock;
+    | TemplateInputBlock
+    | ReferenceBlock;
