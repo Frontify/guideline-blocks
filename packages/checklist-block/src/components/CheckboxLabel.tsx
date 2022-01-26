@@ -1,6 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { Color } from '@frontify/arcade';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { CSSProperties, FC, useContext } from 'react';
+import { SettingsContext } from '../SettingsContext';
 import {
     CheckboxLabelProps,
     ChecklistDecoration,
@@ -8,11 +13,6 @@ import {
     StrikethroughStyleType,
     StrikethroughType,
 } from '../types';
-import { colorToHexAlpha, joinClassNames } from '@frontify/guideline-blocks-shared';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import { SettingsContext } from '../SettingsContext';
-import { Color } from '@frontify/arcade';
 
 dayjs.extend(relativeTime);
 
@@ -26,11 +26,11 @@ const getLabelDecorationStylesMap = (
         textDecoration: 'line-through',
         textDecorationStyle: StrikethroughStyleType[style],
         textDecorationThickness: thickness,
-        textDecorationColor: colorToHexAlpha(color),
+        textDecorationColor: toHex8String(color),
         fontWeight: '500',
     },
     [ChecklistDecoration.Highlight]: {
-        backgroundColor: colorToHexAlpha(highlightColor),
+        backgroundColor: toHex8String(highlightColor),
     },
     [ChecklistDecoration.Checkbox]: {
         fontWeight: '500',
@@ -63,7 +63,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
 
     const decorationStyles = getLabelDecorationStylesMap(type, thickness, color, highlightColor)[completedDecoration];
 
-    const labelStyles = { color: colorToHexAlpha(completeTextColor), ...decorationStyles };
+    const labelStyles = { color: toHex8String(completeTextColor), ...decorationStyles };
 
     const decoratedChildren = decorateLabelChildren(children, labelStyles);
 

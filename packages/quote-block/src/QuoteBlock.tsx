@@ -2,7 +2,7 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
-import { mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DEFAULT_AUTHOR_NAME, DEFAULT_COLOR_VALUE } from './settings';
@@ -52,8 +52,8 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const placeholder = 'Add your quote text here';
     const size = isCustomSize ? sizeValue : quoteSizeMap[sizeChoice];
-    const quotesRgba = mapRgbaToString(quotesColor);
-    const borderRgba = mapRgbaToString(accentLinecolor);
+    const quotesRgba = toRgbaString(quotesColor);
+    const borderRgba = toRgbaString(accentLinecolor);
     const borderStyles = showAccentLine
         ? {
               borderLeftStyle: lineType,

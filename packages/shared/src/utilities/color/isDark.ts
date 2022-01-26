@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import tinycolor from 'tinycolor2';
 import { Color } from '@frontify/arcade';
+import tinycolor from 'tinycolor2';
 
 /**
  * Calculates if text should be in a light color depending on color (e.g. background-color)

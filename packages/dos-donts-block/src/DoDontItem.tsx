@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
-import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useMemo } from 'react';
 import { DoDontItemProps, DoDontStyle, DoDontType, EditorChild, EditorElement } from './types';
 
@@ -16,8 +16,8 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     body = '',
     editing = false,
 }) => {
-    const doColorString = mapRgbaToString(doColor);
-    const dontColorString = mapRgbaToString(dontColor);
+    const doColorString = toRgbaString(doColor);
+    const dontColorString = toRgbaString(dontColor);
 
     const headingStyles: Record<DoDontType, CSSProperties> = {
         [DoDontType.Do]: { color: doColorString },

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings } from '@frontify/app-bridge';
-import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import {
@@ -64,7 +64,7 @@ export const DividerBlock: FC<Props> = ({ appBridge }) => {
                     ])}
                     style={{
                         borderTopWidth: isThicknessCustom ? thicknessCustom : dividerThicknessValues[thicknessSimple],
-                        borderTopColor: color ? mapRgbaToString(color) : mapRgbaToString(COLOR_DEFAULT_RGBA_VALUE),
+                        borderTopColor: color ? toRgbaString(color) : toRgbaString(COLOR_DEFAULT_RGBA_VALUE),
                     }}
                 />
             </div>

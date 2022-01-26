@@ -2,7 +2,7 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
-import { joinClassNames, mapRgbaToString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -32,7 +32,7 @@ const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: str
     return {
         borderStyle: borderStyles[style],
         borderWidth: width,
-        borderColor: mapRgbaToString(rgba),
+        borderColor: toRgbaString(rgba),
         borderRadius,
     };
 };

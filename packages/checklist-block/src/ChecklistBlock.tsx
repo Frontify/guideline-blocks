@@ -4,43 +4,43 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
     ButtonSize,
+    ButtonStyle,
+    DragProperties,
     IconSize,
     IconView,
     IconViewSlash,
-    OrderableList,
     ItemDragState,
-    DragProperties,
+    OrderableList,
     OrderableListItem,
-    ButtonStyle,
 } from '@frontify/arcade';
-import { ItemDropTarget } from '@react-types/shared';
-import { useHover } from '@react-aria/interactions';
-import { useState, FC } from 'react';
-import { ChecklistItem } from './components/ChecklistItem';
-import { ProgressBar } from './components/ProgressBar';
-import { GridNode } from '@react-types/grid';
-import { ProgressHeader } from './components/ProgressHeader';
-import { ChecklistContent, ChecklistItemMode, ChecklistProps, DefaultValues, ProgressBarType, Settings } from './types';
+import '@frontify/arcade/style';
 import {
-    colorToHexAlpha,
     generatePaddingString,
     joinClassNames,
     paddingStyleMap,
+    toHex8String,
 } from '@frontify/guideline-blocks-shared';
-import { SettingsContext } from './SettingsContext';
-import { reorderList } from './utilities';
+import { useHover } from '@react-aria/interactions';
+import { GridNode } from '@react-types/grid';
+import { ItemDropTarget } from '@react-types/shared';
+import { FC, useState } from 'react';
+import 'tailwindcss/tailwind.css';
+import { ChecklistItem } from './components/ChecklistItem';
+import { ProgressBar } from './components/ProgressBar';
+import { ProgressHeader } from './components/ProgressHeader';
 import {
-    createItem,
     calculateFraction,
     calculatePercentage,
+    createItem,
+    filterCompleteItems,
     findIndexById,
     findIndexesForMove,
-    updateItemById,
     provideDefaults,
-    filterCompleteItems,
+    updateItemById,
 } from './helpers';
-import 'tailwindcss/tailwind.css';
-import '@frontify/arcade/style';
+import { SettingsContext } from './SettingsContext';
+import { ChecklistContent, ChecklistItemMode, ChecklistProps, DefaultValues, ProgressBarType, Settings } from './types';
+import { reorderList } from './utilities';
 
 export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
     const isEditing = useEditorState(appBridge);
@@ -138,8 +138,8 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 <div className="tw-relative" {...hoverProps}>
                     {shouldShowProgress && progressBarType === ProgressBarType.Bar && (
                         <ProgressBar
-                            fillColor={colorToHexAlpha(progressBarFillColor)}
-                            trackColor={colorToHexAlpha(progressBarTrackColor)}
+                            fillColor={toHex8String(progressBarFillColor)}
+                            trackColor={toHex8String(progressBarTrackColor)}
                             percentage={calculatePercentage(content)}
                         />
                     )}

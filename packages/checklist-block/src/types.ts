@@ -2,8 +2,8 @@
 
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState } from '@frontify/arcade';
-import { ReactElement, MouseEvent } from 'react';
-import { Padding, paddingStyleMap, PaddingSettings } from '@frontify/guideline-blocks-shared';
+import { Padding, PaddingSettings, paddingStyleMap } from '@frontify/guideline-blocks-shared';
+import { MouseEvent, ReactElement } from 'react';
 
 export type ChecklistProps = {
     appBridge: AppBridgeNative;

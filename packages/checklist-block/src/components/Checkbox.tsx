@@ -1,15 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCheck, FOCUS_STYLE } from '@frontify/arcade';
+import { FOCUS_STYLE, IconCheck } from '@frontify/arcade';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
-import { useContext, useRef, FC, MouseEvent } from 'react';
+import { FC, MouseEvent, useContext, useRef } from 'react';
+import { SettingsContext } from '../SettingsContext';
 import { CheckboxProps } from '../types';
 import { CheckboxLabel } from './CheckboxLabel';
-import { colorToHexAlpha, joinClassNames } from '@frontify/guideline-blocks-shared';
-import { SettingsContext } from '../SettingsContext';
 
 export const Checkbox: FC<CheckboxProps> = ({
     id,
@@ -43,8 +43,8 @@ export const Checkbox: FC<CheckboxProps> = ({
     const { completeCheckboxColor, incompleteCheckboxColor } = useContext(SettingsContext);
 
     const checkboxStyles = {
-        background: checked ? colorToHexAlpha(completeCheckboxColor) : '',
-        borderColor: checked ? colorToHexAlpha(completeCheckboxColor) : colorToHexAlpha(incompleteCheckboxColor),
+        background: checked ? toHex8String(completeCheckboxColor) : '',
+        borderColor: checked ? toHex8String(completeCheckboxColor) : toHex8String(incompleteCheckboxColor),
     };
 
     const handleLabelClick = (event: MouseEvent<HTMLLabelElement>) => {
