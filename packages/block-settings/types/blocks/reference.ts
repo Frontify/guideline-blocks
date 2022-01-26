@@ -20,5 +20,6 @@ export type ReferenceBlock = {
     title?: string;
     text?: string;
     style: ReferenceStyle;
-    value?: Link;
+    link?: Link;
+    value?: undefined;
 } & BaseBlock;
