@@ -87,7 +87,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         setCustomCornerRadiusStyle(cornerRadiusStyle);
 
         if (iconSwitch && icon) {
-            appBridge.getAssetById(icon).then((iconAsset) => {
+            appBridge.getAssetById(icon.value).then((iconAsset) => {
                 setIconUrl(iconAsset.generic_url);
                 setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
             });
