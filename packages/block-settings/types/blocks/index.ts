@@ -25,6 +25,7 @@ export * from './slider';
 export * from './switch';
 export * from './templateInput';
 export * from './reference';
+export * from './divider';
 
 export type SettingBlock =
     | AssetInputBlock
