@@ -11,8 +11,6 @@ import { ReferenceBlock } from './reference';
 import { SliderBlock } from './slider';
 import { SwitchBlock } from './switch';
 import { TemplateInputBlock } from './templateInput';
-import { DividerBlock } from './divider';
-
 export * from './assetInput';
 export * from './checklist';
 export * from './choices';
@@ -25,7 +23,6 @@ export * from './slider';
 export * from './switch';
 export * from './templateInput';
 export * from './reference';
-export * from './divider';
 
 export type SettingBlock =
     | AssetInputBlock
@@ -38,5 +35,4 @@ export type SettingBlock =
     | SliderBlock
     | SwitchBlock
     | TemplateInputBlock
-    | ReferenceBlock
-    | DividerBlock;
+    | ReferenceBlock;

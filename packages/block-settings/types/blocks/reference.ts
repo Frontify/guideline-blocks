@@ -15,11 +15,19 @@ export type Link = {
     target?: '_self' | '_blank';
 };
 
+export declare enum ReferenceBlockDividerPosition {
+    Top = 'Top',
+    Bottom = 'Bottom',
+    Both = 'Both',
+    None = 'None',
+}
+
 export type ReferenceBlock = {
     type: 'reference';
     title?: string;
     text?: string;
     style: ReferenceStyle;
     link?: Link;
+    divider?: ReferenceBlockDividerPosition;
     value?: undefined;
 } & BaseBlock;
