@@ -15,7 +15,7 @@ export type Link = {
     target?: '_self' | '_blank';
 };
 
-export declare enum ReferenceBlockDividerPosition {
+export enum ReferenceBlockDividerPosition {
     Top = 'Top',
     Bottom = 'Bottom',
     Both = 'Both',
