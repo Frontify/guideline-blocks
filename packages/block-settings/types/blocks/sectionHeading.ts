@@ -1,8 +1,9 @@
 import { BaseBlock } from './base';
 import { SettingBlock } from './index';
 
-export type GroupBlock = {
-    type: 'group';
-    title: string;
+export type SectionHeadingBlock = {
+    type: 'sectionHeading';
     blocks: SettingBlock[];
+    label: string;
+    value?: null;
 } & BaseBlock;
