@@ -2,7 +2,7 @@
 
 import { Bundle } from '../bundle';
 
-export type BaseBlock<T = string | undefined> = {
+export type BaseBlock<T = undefined> = {
     id: string;
     label?: string;
     info?: string;
