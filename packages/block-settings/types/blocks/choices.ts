@@ -11,6 +11,4 @@ export type Choice = {
 
 export type ChoicesType = {
     choices: Choice[];
-    value?: string | number;
-    defaultValue: string | number;
-} & BaseBlock;
+} & BaseBlock<string | number>;
