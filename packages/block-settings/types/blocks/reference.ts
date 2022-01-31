@@ -28,6 +28,7 @@ export type ReferenceBlock = {
     text?: string;
     style: ReferenceStyle;
     link?: Link;
-    divider?: ReferenceBlockDividerPosition;
-    value?: undefined;
+    styles: {
+        divider: ReferenceBlockDividerPosition;
+    };
 } & BaseBlock;
