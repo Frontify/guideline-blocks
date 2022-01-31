@@ -8,8 +8,6 @@ export type InputBlock = {
     type: 'input';
     inputType?: TextInputType;
     placeholder?: string;
-    value?: string;
-    defaultValue?: string;
     clearable?: boolean;
     rules?: Rule<string>[];
-} & BaseBlock;
+} & BaseBlock<string>;

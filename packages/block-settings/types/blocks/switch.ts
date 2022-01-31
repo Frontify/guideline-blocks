@@ -8,6 +8,4 @@ export type SwitchBlock = {
     switchLabel?: string;
     on?: SettingBlock[];
     off?: SettingBlock[];
-    value?: boolean;
-    defaultValue: boolean;
-} & BaseBlock;
+} & BaseBlock<boolean>;

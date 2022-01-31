@@ -7,5 +7,4 @@ export type SectionHeadingBlock = {
     type: 'sectionHeading';
     blocks: SettingBlock[];
     label: string;
-    value?: undefined;
 } & BaseBlock;

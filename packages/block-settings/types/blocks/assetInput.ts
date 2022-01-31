@@ -21,11 +21,9 @@ export type AssetInputValue = {
 
 export type AssetInputBlock = {
     type: 'assetInput';
-    value?: AssetInputValue | AssetInputValue['value'];
-    defaultValue?: AssetInputValue | AssetInputValue['value'];
     multiSelection?: boolean;
     extensions?: FileExtension[];
     projectTypes?: AssetChooserProjectType[];
     objectTypes?: AssetChooserObjectType[];
     mode?: AssetInputMode;
-} & BaseBlock;
+} & BaseBlock<AssetInputValue | AssetInputValue['value']>;
