@@ -2,7 +2,7 @@
 
 import { BaseBlock } from './base';
 
-export enum ReferenceStyle {
+export enum ReferenceStyleType {
     Warning = 'Warning',
     Negative = 'Negative',
     Positive = 'Positive',
@@ -26,9 +26,9 @@ export type ReferenceBlock = {
     type: 'reference';
     title?: string;
     text?: string;
-    style: ReferenceStyle;
     link?: Link;
-    styles?: {
+    styles: {
+        type: ReferenceStyleType;
         divider?: ReferenceBlockDividerPosition;
     };
 } & BaseBlock;
