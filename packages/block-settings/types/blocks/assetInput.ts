@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FileExtension, AssetChooserProjectType, AssetChooserObjectType } from '@frontify/app-bridge';
+import { AssetChooserObjectType, AssetChooserProjectType, FileExtension } from '@frontify/app-bridge';
 import { BaseBlock } from './base';
 
 export enum AssetInputSource {
