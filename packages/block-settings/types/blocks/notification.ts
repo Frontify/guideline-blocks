@@ -2,7 +2,7 @@
 
 import { BaseBlock } from './base';
 
-export enum NotificationStyle {
+export enum NotificationStyleType {
     Warning = 'Warning',
     Negative = 'Negative',
     Positive = 'Positive',
@@ -26,9 +26,9 @@ export type NotificationBlock = {
     type: 'notification';
     title?: string;
     text?: string;
-    style: NotificationStyle;
     link?: Link;
-    styles?: {
+    styles: {
+        type: NotificationStyleType;
         divider?: NotificationBlockDividerPosition;
     };
 } & BaseBlock;
