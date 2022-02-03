@@ -1,6 +1,6 @@
 {
     "name": "@frontify/guideline-blocks-settings",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "description": "Provides the types for the block settings",
     "sideEffects": false,
     "module": "dist/index.js",
