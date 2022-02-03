@@ -6,7 +6,7 @@ import { ColorInputBlock } from './colorInput';
 import { DropdownBlock } from './dropdown';
 import { InputBlock } from './input';
 import { MultiInputBlock } from './multiInput';
-import { ReferenceBlock } from './reference';
+import { NotificationBlock } from './notification';
 import { SectionHeadingBlock } from './sectionHeading';
 import { SliderBlock } from './slider';
 import { SwitchBlock } from './switch';
@@ -19,7 +19,7 @@ export * from './colorInput';
 export * from './dropdown';
 export * from './input';
 export * from './multiInput';
-export * from './reference';
+export * from './notification';
 export * from './sectionHeading';
 export * from './slider';
 export * from './switch';
@@ -36,4 +36,4 @@ export type SettingBlock =
     | SliderBlock
     | SwitchBlock
     | TemplateInputBlock
-    | ReferenceBlock;
+    | NotificationBlock;

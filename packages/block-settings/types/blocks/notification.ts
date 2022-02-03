@@ -2,7 +2,7 @@
 
 import { BaseBlock } from './base';
 
-export enum ReferenceStyle {
+export enum NotificationStyle {
     Warning = 'Warning',
     Negative = 'Negative',
     Positive = 'Positive',
@@ -15,20 +15,20 @@ export type Link = {
     target?: '_self' | '_blank';
 };
 
-export enum ReferenceBlockDividerPosition {
+export enum NotificationBlockDividerPosition {
     Top = 'Top',
     Bottom = 'Bottom',
     Both = 'Both',
     None = 'None',
 }
 
-export type ReferenceBlock = {
-    type: 'reference';
+export type NotificationBlock = {
+    type: 'notification';
     title?: string;
     text?: string;
-    style: ReferenceStyle;
+    style: NotificationStyle;
     link?: Link;
     styles?: {
-        divider?: ReferenceBlockDividerPosition;
+        divider?: NotificationBlockDividerPosition;
     };
 } & BaseBlock;
