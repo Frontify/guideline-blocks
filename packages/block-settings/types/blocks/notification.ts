@@ -29,6 +29,7 @@ export type NotificationBlock = {
     link?: Link;
     styles: {
         type: NotificationStyleType;
+        icon?: boolean;
         divider?: NotificationBlockDividerPosition;
     };
 } & BaseBlock;
