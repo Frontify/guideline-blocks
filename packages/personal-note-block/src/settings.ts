@@ -19,8 +19,6 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
 };
 
 const HAS_BACKGROUND_ID = 'hasBackground';
-const HAS_BORDER_ID = 'hasBorder';
-const BORDER_RADIUS_VALUE_ID = 'borderRadiusValue';
 
 const settings: BlockSettings = {
     main: [
