@@ -2,8 +2,7 @@
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-import { DropdownSize } from '@frontify/arcade';
-import { IconEnum } from '@frontify/arcade/icons/IconEnum';
+import { DropdownSize, IconEnum } from '@frontify/arcade';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 
