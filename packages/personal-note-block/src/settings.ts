@@ -1,14 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DropdownSize, IconEnum } from '@frontify/arcade';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
-import {
-    appendUnit,
-    getBorderSettings,
-    getPaddingSettings,
-    numericalOrPixelRule,
-} from '@frontify/guideline-blocks-shared';
-import { NoteBorderRadius, NoteStyle, NoteVisibility } from './types';
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
+import { getBorderRadiusSettings, getBorderSettings, getPaddingSettings } from '@frontify/guideline-blocks-shared';
+import { NoteStyle, NoteVisibility } from './types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE = {
     r: 247,
@@ -75,48 +70,7 @@ const settings: BlockSettings = {
             off: [],
         },
         getBorderSettings(),
-        {
-            id: 'hasCustomBorderRadius',
-            label: 'Corner radius',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            show: (bundle: Bundle): boolean =>
-                bundle.getBlock(HAS_BACKGROUND_ID)?.value === true || bundle.getBlock(HAS_BORDER_ID)?.value === true,
-            on: [
-                {
-                    id: BORDER_RADIUS_VALUE_ID,
-                    type: 'input',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle: Bundle): void => appendUnit(bundle, BORDER_RADIUS_VALUE_ID),
-                },
-            ],
-            off: [
-                {
-                    id: 'borderRadiusChoice',
-                    type: 'slider',
-                    defaultValue: NoteBorderRadius.None,
-                    choices: [
-                        {
-                            value: NoteBorderRadius.None,
-                            label: 'None',
-                        },
-                        {
-                            value: NoteBorderRadius.Small,
-                            label: 'S',
-                        },
-                        {
-                            value: NoteBorderRadius.Medium,
-                            label: 'M',
-                        },
-                        {
-                            value: NoteBorderRadius.Large,
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
-        },
+        getBorderRadiusSettings(),
     ],
     security: [
         {

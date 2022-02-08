@@ -90,3 +90,9 @@ export type CustomPaddingStyles = {
 export type CalloutBlockProps = {
     appBridge: AppBridgeNative;
 };
+
+export const paddingValuesMap: Record<Padding, string[]> = {
+    [Padding.S]: ['16px', '32px', '32px', '16px'],
+    [Padding.M]: ['24px', '32px', '32px', '24px'],
+    [Padding.L]: ['36px', '36px', '36px', '36px'],
+};
