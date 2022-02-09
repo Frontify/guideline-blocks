@@ -2,10 +2,9 @@
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-import { IconEnum } from '@frontify/arcade/icons/IconEnum';
-import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum } from '@frontify/arcade';
+import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
-import { DropdownSize } from '@frontify/arcade';
 
 export const PLACEHOLDER = 'Your text here';
 export const DEFAULT_COLUMN_NUMBER = 1;
@@ -64,37 +63,45 @@ const settings: BlockSettings = {
     ],
     layout: [
         {
-            id: 'columnNumber',
-            type: 'slider',
-            defaultValue: DEFAULT_COLUMN_NUMBER,
-            choices: columnNumberChoices,
-        },
-        {
-            id: 'isColumnGutterCustom',
-            label: 'Gutter',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            on: [
+            id: 'columnsSection',
+            type: 'sectionHeading',
+            label: 'Columns',
+            blocks: [
                 {
-                    id: 'columnGutterCustom',
-                    type: 'input',
-                    defaultValue: DEFAULT_COLUMN_GUTTER,
-                    rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                    onChange: (bundle: Bundle): void => {
-                        const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
-                        if (!isNaN(gutter)) {
-                            bundle.setBlockValue('columnGutterCustom', `${gutter}px`);
-                        }
-                    },
-                },
-            ],
-            off: [
-                {
-                    id: 'columnGutterSimple',
+                    id: 'columnNumber',
                     type: 'slider',
-                    defaultValue: DEFAULT_COLUMN_GUTTER,
-                    choices: columnGutterChoices,
+                    label: 'Number',
+                    defaultValue: DEFAULT_COLUMN_NUMBER,
+                    choices: columnNumberChoices,
+                },
+                {
+                    id: 'isColumnGutterCustom',
+                    label: 'Gutter',
+                    type: 'switch',
+                    switchLabel: 'Custom',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: 'columnGutterCustom',
+                            type: 'input',
+                            defaultValue: DEFAULT_COLUMN_GUTTER,
+                            rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
+                            onChange: (bundle: Bundle): void => {
+                                const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
+                                if (!isNaN(gutter)) {
+                                    bundle.setBlockValue('columnGutterCustom', `${gutter}px`);
+                                }
+                            },
+                        },
+                    ],
+                    off: [
+                        {
+                            id: 'columnGutterSimple',
+                            type: 'slider',
+                            defaultValue: DEFAULT_COLUMN_GUTTER,
+                            choices: columnGutterChoices,
+                        },
+                    ],
                 },
             ],
         },

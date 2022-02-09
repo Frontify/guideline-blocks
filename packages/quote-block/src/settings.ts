@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, DropdownSize } from '@frontify/arcade';
-import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum } from '@frontify/arcade';
+import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { LineType, LineWidth, lineWidthMap, QuoteSize, quoteSizeMap, QuoteStyle, QuoteType } from './types';
 
@@ -55,27 +55,33 @@ const settings: BlockSettings = {
     ],
     content: [
         {
-            id: 'quoteStyleLeft',
-            label: 'Left',
-            type: 'dropdown',
-            defaultValue: QuoteStyle.DoubleUp,
-            choices: QUOTE_STYLE_CHOICES,
+            id: 'quotationMarksContentSection',
+            type: 'sectionHeading',
+            label: 'Quotation marks',
             show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
-        },
-        {
-            id: 'quoteStyleRight',
-            label: 'Right',
-            type: 'dropdown',
-            defaultValue: QuoteStyle.DoubleUp,
-            choices: QUOTE_STYLE_CHOICES,
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            blocks: [
+                {
+                    id: 'quoteStyleLeft',
+                    label: 'Left',
+                    type: 'dropdown',
+                    defaultValue: QuoteStyle.DoubleUp,
+                    choices: QUOTE_STYLE_CHOICES,
+                },
+                {
+                    id: 'quoteStyleRight',
+                    label: 'Right',
+                    type: 'dropdown',
+                    defaultValue: QuoteStyle.DoubleUp,
+                    choices: QUOTE_STYLE_CHOICES,
+                },
+            ],
         },
     ],
     layout: [
         {
             id: 'showAuthor',
             type: 'switch',
-            label: 'Author',
+            label: 'Show author',
             defaultValue: false,
             on: [
                 {
@@ -89,42 +95,56 @@ const settings: BlockSettings = {
     ],
     style: [
         {
-            id: 'isCustomSize',
-            label: 'Size',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            onChange: (bundle: Bundle): void => presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
-            on: [
+            id: 'quotationMarksStyleSection',
+            type: 'sectionHeading',
+            label: 'Quotation marks',
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            blocks: [
                 {
-                    id: SIZE_VALUE_ID,
-                    type: 'input',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle: Bundle): void => appendUnit(bundle, SIZE_VALUE_ID),
-                },
-            ],
-            off: [
-                {
-                    id: SIZE_CHOICE_ID,
-                    type: 'slider',
-                    defaultValue: QuoteSize.SmallSize,
-                    choices: [
+                    id: 'isCustomSize',
+                    label: 'Size',
+                    type: 'switch',
+                    switchLabel: 'Custom',
+                    defaultValue: false,
+                    onChange: (bundle: Bundle): void =>
+                        presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
+                    on: [
                         {
-                            label: 'S',
-                            value: QuoteSize.SmallSize,
+                            id: SIZE_VALUE_ID,
+                            type: 'input',
+                            rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, SIZE_VALUE_ID),
                         },
+                    ],
+                    off: [
                         {
-                            label: 'M',
-                            value: QuoteSize.MediumSize,
-                        },
-                        {
-                            label: 'L',
-                            value: QuoteSize.LargeSize,
+                            id: SIZE_CHOICE_ID,
+                            type: 'slider',
+                            defaultValue: QuoteSize.SmallSize,
+                            choices: [
+                                {
+                                    label: 'S',
+                                    value: QuoteSize.SmallSize,
+                                },
+                                {
+                                    label: 'M',
+                                    value: QuoteSize.MediumSize,
+                                },
+                                {
+                                    label: 'L',
+                                    value: QuoteSize.LargeSize,
+                                },
+                            ],
                         },
                     ],
                 },
+                {
+                    id: 'quotesColor',
+                    label: 'Color',
+                    type: 'colorInput',
+                    defaultValue: DEFAULT_COLOR_VALUE,
+                },
             ],
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: ACCENT_LINE_SWITCH_ID,
@@ -201,13 +221,6 @@ const settings: BlockSettings = {
             type: 'colorInput',
             defaultValue: DEFAULT_COLOR_VALUE,
             show: showAccentLine,
-        },
-        {
-            id: 'quotesColor',
-            label: 'Color',
-            type: 'colorInput',
-            defaultValue: DEFAULT_COLOR_VALUE,
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
 };

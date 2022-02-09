@@ -83,99 +83,120 @@ const settings: BlockSettings = {
     ],
     style: [
         {
-            id: 'incompleteTextColor',
-            type: 'colorInput',
-            label: 'Incomplete Text',
-            defaultValue: DefaultValues.incompleteTextColor,
-        },
-        {
-            id: 'incompleteCheckboxColor',
-            type: 'colorInput',
-            label: 'Incomplete Checkbox',
-            defaultValue: DefaultValues.incompleteCheckboxColor,
-        },
-        {
-            id: 'completeTextColor',
-            type: 'colorInput',
-            label: 'Complete Text',
-            defaultValue: DefaultValues.completeTextColor,
-        },
-        {
-            id: 'completeCheckboxColor',
-            type: 'colorInput',
-            label: 'Complete Checkbox',
-            defaultValue: DefaultValues.completeCheckboxColor,
-        },
-        {
-            id: 'highlightColor',
-            type: 'colorInput',
-            label: 'Highlight',
-            defaultValue: DefaultValues.highlightColor,
-            show: (bundle: Bundle) => bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
-        },
-        {
-            id: 'strikethroughMultiInput',
-            type: 'multiInput',
-            label: 'Line',
-            layout: MultiInputLayout.Columns,
-            lastItemFullWidth: true,
-            show: (bundle: Bundle) =>
-                bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,
+            id: 'incompleteSection',
+            type: 'sectionHeading',
+            label: 'Incomplete',
             blocks: [
                 {
-                    id: 'strikethroughStyle',
-                    type: 'dropdown',
-                    defaultValue: DefaultValues.strikethroughMultiInput[0],
-                    choices: [
-                        {
-                            label: 'Solid',
-                            value: StrikethroughType.Solid,
-                        },
-                        {
-                            label: 'Dashed',
-                            value: StrikethroughType.Dashed,
-                        },
-                        {
-                            label: 'Double',
-                            value: StrikethroughType.Double,
-                        },
-                        {
-                            label: 'Dotted',
-                            value: StrikethroughType.Dotted,
-                        },
-                        {
-                            label: 'Wavy',
-                            value: StrikethroughType.Wavy,
-                        },
-                    ],
-                },
-                {
-                    id: STRIKETHROUGH_WIDTH,
-                    type: 'input',
-                    defaultValue: DefaultValues.strikethroughMultiInput[1],
-                    onChange: (bundle: Bundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
-                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
-                },
-                {
-                    id: 'strikethroughColor',
+                    id: 'incompleteTextColor',
                     type: 'colorInput',
-                    defaultValue: DefaultValues.strikethroughMultiInput[2],
+                    label: 'Incomplete Text',
+                    defaultValue: DefaultValues.incompleteTextColor,
+                },
+                {
+                    id: 'incompleteCheckboxColor',
+                    type: 'colorInput',
+                    label: 'Incomplete Checkbox',
+                    defaultValue: DefaultValues.incompleteCheckboxColor,
                 },
             ],
         },
         {
-            id: 'progressBarFillColor',
-            type: 'colorInput',
-            label: 'Progress Bar Fill',
-            show: showProgressStyles,
-            defaultValue: DefaultValues.progressBarFillColor,
+            id: 'completeSection',
+            type: 'sectionHeading',
+            label: 'Complete',
+            blocks: [
+                {
+                    id: 'completeTextColor',
+                    type: 'colorInput',
+                    label: 'Complete Text',
+                    defaultValue: DefaultValues.completeTextColor,
+                },
+                {
+                    id: 'completeCheckboxColor',
+                    type: 'colorInput',
+                    label: 'Complete Checkbox',
+                    defaultValue: DefaultValues.completeCheckboxColor,
+                },
+                {
+                    id: 'highlightColor',
+                    type: 'colorInput',
+                    label: 'Highlight',
+                    defaultValue: DefaultValues.highlightColor,
+                    show: (bundle: Bundle) =>
+                        bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
+                },
+                {
+                    id: 'strikethroughMultiInput',
+                    type: 'multiInput',
+                    label: 'Line',
+                    layout: MultiInputLayout.Columns,
+                    lastItemFullWidth: true,
+                    show: (bundle: Bundle) =>
+                        bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,
+                    blocks: [
+                        {
+                            id: 'strikethroughStyle',
+                            type: 'dropdown',
+                            defaultValue: DefaultValues.strikethroughMultiInput[0],
+                            choices: [
+                                {
+                                    label: 'Solid',
+                                    value: StrikethroughType.Solid,
+                                },
+                                {
+                                    label: 'Dashed',
+                                    value: StrikethroughType.Dashed,
+                                },
+                                {
+                                    label: 'Double',
+                                    value: StrikethroughType.Double,
+                                },
+                                {
+                                    label: 'Dotted',
+                                    value: StrikethroughType.Dotted,
+                                },
+                                {
+                                    label: 'Wavy',
+                                    value: StrikethroughType.Wavy,
+                                },
+                            ],
+                        },
+                        {
+                            id: STRIKETHROUGH_WIDTH,
+                            type: 'input',
+                            defaultValue: DefaultValues.strikethroughMultiInput[1],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                        },
+                        {
+                            id: 'strikethroughColor',
+                            type: 'colorInput',
+                            defaultValue: DefaultValues.strikethroughMultiInput[2],
+                        },
+                    ],
+                },
+            ],
         },
         {
-            id: 'progressBarTrackColor',
-            type: 'colorInput',
-            label: 'Progress Bar Track',
+            id: 'progressIndicatorSection',
+            type: 'sectionHeading',
+            label: 'Progress indicator',
             show: showProgressStyles,
-            defaultValue: DefaultValues.progressBarTrackColor,
+            blocks: [
+                {
+                    id: 'progressBarFillColor',
+                    type: 'colorInput',
+                    label: 'Progress Bar Fill',
+                    defaultValue: DefaultValues.progressBarFillColor,
+                },
+                {
+                    id: 'progressBarTrackColor',
+                    type: 'colorInput',
+                    label: 'Progress Bar Track',
+                    defaultValue: DefaultValues.progressBarTrackColor,
+                },
+            ],
         },
     ],
 };

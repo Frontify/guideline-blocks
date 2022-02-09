@@ -17,20 +17,22 @@ export const presetCustomArrayValue = (
     bundle: Bundle,
     sliderId: string,
     inputId: string,
-    map: Record<string, string>,
+    map: Record<string, string | string[]>,
     arrayLength: number
 ): void => {
     const sliderValue = bundle.getBlock(sliderId)?.value as string;
     const customValue = bundle.getBlock(inputId)?.value as string[];
+    const isMultiInputArrayMap = Object.keys(map).every((key) => Array.isArray(map[key]));
 
     const isEqualArray = customValue?.every((value) => value === customValue?.[0]);
-    const valueInMap = Object.keys(map).find((key) => map[key] === customValue?.[0]);
+    const valueInMap = Object.keys(map).find((key) => !isMultiInputArrayMap && map[key] === customValue?.[0]);
 
     const isPredefinedValue = sliderValue && isEqualArray && valueInMap;
-
     const hasNoCustomValue = sliderValue && !customValue;
 
     if (isPredefinedValue || hasNoCustomValue) {
-        bundle.setBlockValue(inputId, new Array(arrayLength).fill(map[sliderValue]));
+        isMultiInputArrayMap
+            ? bundle.setBlockValue(inputId, map[sliderValue])
+            : bundle.setBlockValue(inputId, new Array(arrayLength).fill(map[sliderValue]));
     }
 };
