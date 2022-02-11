@@ -10,11 +10,7 @@ const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
 const IframeSelector = '[data-test-id="storybook-iframe"]';
 
 const EXAMPLE_URL = 'https://arcade-components.netlify.app/?path=/story/components-tooltip--tooltip';
-const EXAMPLE_COLOR = {
-    rgba: { r: 22, g: 181, b: 181, a: 1 },
-    name: 'Java',
-    hex: '#16b5b5',
-};
+const EXAMPLE_COLOR = { r: 22, g: 181, b: 181, a: 1, name: 'Java' };
 
 it('renders a storybook block', () => {
     const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, {});
