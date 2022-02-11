@@ -28,7 +28,7 @@ const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: str
     // TODO: This check could be removed if defaultValue are returned from blockSettings (ticket: https://app.clickup.com/t/1p69p6a)
     const style = borderSelection[0] ?? StorybookBorderStyle.Solid;
     const width = borderSelection[1] ?? DEFAULT_BORDER_WIDTH;
-    const rgba = borderSelection[2]?.rgba ?? BORDER_COLOR_DEFAULT_VALUE.rgba;
+    const rgba = borderSelection[2] ?? BORDER_COLOR_DEFAULT_VALUE;
     return {
         borderStyle: borderStyles[style],
         borderWidth: width,
@@ -106,7 +106,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                         src={iframeUrl.toString()}
                         frameBorder="0"
                         data-test-id="storybook-iframe"
-                    ></iframe>
+                    />
                 </div>
             ) : (
                 <>

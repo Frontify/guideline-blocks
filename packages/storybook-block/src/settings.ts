@@ -13,9 +13,11 @@ import {
 import { heights, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
-    rgba: { r: 234, g: 235, b: 235, a: 1 },
+    r: 234,
+    g: 235,
+    b: 235,
+    a: 1,
     name: 'Light Grey',
-    hex: '#eaebeb',
 };
 export const URL_INPUT_PLACEHOLDER = 'https://brand.storybook.com/?path=/story/buttons';
 
