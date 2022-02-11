@@ -30,8 +30,8 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.11.0",
-        "@frontify/arcade": "0.14.0-beta.15",
-        "@frontify/guideline-blocks-shared": "1.0.0",
+        "@frontify/arcade": "1.1.0",
+        "@frontify/guideline-blocks-shared": "*",
         "lodash-es": "4.17.21"
     }
 }
