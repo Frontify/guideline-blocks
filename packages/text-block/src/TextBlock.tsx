@@ -20,7 +20,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
         const newSettings = cloneDeep(blockSettings) as Settings;
         newSettings.columnGutterSimple ??= DEFAULT_COLUMN_GUTTER;
         newSettings.columnNumber ??= DEFAULT_COLUMN_NUMBER;
-        newSettings.content ??= Array(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER).fill(undefined);
+        newSettings.content ??= Array(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER).fill('');
 
         if (!isEqual(newSettings, blockSettings)) {
             setBlockSettings(newSettings);
