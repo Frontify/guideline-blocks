@@ -14,6 +14,8 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
+    const columnsCount = Number(blockSettings.columnNumber);
+
     useEffect(() => {
         const newSettings = cloneDeep(blockSettings) as Settings;
         newSettings.columnGutterSimple ??= DEFAULT_COLUMN_GUTTER;
@@ -41,11 +43,9 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
                     ? blockSettings.columnGutterCustom
                     : blockSettings.columnGutterSimple,
             }}
-            className={`text-block tw-grid ${
-                GRID_CLASSES[blockSettings.columnNumber] ?? GRID_CLASSES[DEFAULT_COLUMN_NUMBER]
-            }`}
+            className={`text-block tw-grid ${GRID_CLASSES[columnsCount] ?? GRID_CLASSES[DEFAULT_COLUMN_NUMBER]}`}
         >
-            {[...Array(blockSettings.columnNumber)].map((_, index) => {
+            {[...Array(columnsCount)].map((_, index) => {
                 return (
                     <RichTextEditor
                         key={index}
