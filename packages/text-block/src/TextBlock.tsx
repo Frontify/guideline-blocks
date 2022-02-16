@@ -14,13 +14,13 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const columnCount = parseInt(blockSettings.columnNumber);
+    const columnCount = blockSettings.columnNumber ? parseInt(blockSettings.columnNumber) : 1;
 
     useEffect(() => {
         const newSettings = cloneDeep(blockSettings) as Settings;
         newSettings.columnGutterSimple ??= DEFAULT_COLUMN_GUTTER;
         newSettings.columnNumber ??= DEFAULT_COLUMN_NUMBER;
-        newSettings.content ??= Array(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER).fill('');
+        newSettings.content ??= Array(columnCount ?? DEFAULT_COLUMN_NUMBER);
 
         if (!isEqual(newSettings, blockSettings)) {
             setBlockSettings(newSettings);
@@ -47,17 +47,15 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
         >
             {[...Array(columnCount)].map((_, index) => {
                 return (
-                    <>
-                        <RichTextEditor
-                            key={`text-block-editor-${index}`}
-                            value={blockSettings.content?.[index]}
-                            placeholder={PLACEHOLDER}
-                            readonly={!isEditing}
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            //@ts-ignore
-                            onTextChange={(value) => onTextChange(value, index)}
-                        />
-                    </>
+                    <RichTextEditor
+                        key={`text-block-editor-${index}`}
+                        value={blockSettings.content?.[index]}
+                        placeholder={PLACEHOLDER}
+                        readonly={!isEditing}
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        //@ts-ignore
+                        onTextChange={(value) => onTextChange(value, index)}
+                    />
                 );
             })}
         </div>

@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import TextBlock from '.';
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import TextBlock from '.';
 
 const TextBlockSelector = '[data-test-id="text-block"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
