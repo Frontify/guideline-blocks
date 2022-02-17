@@ -7,7 +7,7 @@ import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 
 export const PLACEHOLDER = 'Your text here';
-export const DEFAULT_COLUMN_NUMBER = '1';
+export const DEFAULT_COLUMN_NUMBER = 1;
 export const DEFAULT_COLUMN_GUTTER = '24px';
 
 export const columnGutterChoices = [
@@ -31,15 +31,15 @@ export const columnNumberChoices = [
         label: `${DEFAULT_COLUMN_NUMBER}`,
     },
     {
-        value: '2',
+        value: 2,
         label: '2',
     },
     {
-        value: '3',
+        value: 3,
         label: '3',
     },
     {
-        value: '4',
+        value: 4,
         label: '4',
     },
 ];

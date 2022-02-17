@@ -9,7 +9,7 @@ export type Props = {
 export type Settings = {
     columnGutterCustom: string;
     columnGutterSimple: string;
-    columnNumber: string;
+    columnNumber: number;
     isColumnGutterCustom: boolean;
     content?: string[];
 };

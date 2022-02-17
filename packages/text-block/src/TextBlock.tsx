@@ -13,8 +13,7 @@ import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './set
 export const TextBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-
-    const columnCount = parseInt(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER);
+    const columnCount = blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER;
 
     useEffect(() => {
         const newSettings = cloneDeep(blockSettings) as Settings;
@@ -45,19 +44,22 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
             }}
             className={`text-block tw-grid ${GRID_CLASSES[columnCount] ?? GRID_CLASSES[DEFAULT_COLUMN_NUMBER]}`}
         >
-            {[...Array(columnCount)].map((_, index) => {
-                return (
-                    <RichTextEditor
-                        key={`text-block-editor-${index}`}
-                        value={blockSettings.content?.[index]}
-                        placeholder={PLACEHOLDER}
-                        readonly={!isEditing}
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        //@ts-ignore
-                        onTextChange={(value) => onTextChange(value, index)}
-                    />
-                );
-            })}
+            {
+                // TODO: parseInt and toString cast can be remove after https://app.clickup.com/t/263cwaw is done
+                [...Array(parseInt(columnCount.toString()))].map((_, index) => {
+                    return (
+                        <RichTextEditor
+                            key={`text-block-editor-${index}`}
+                            value={blockSettings.content?.[index]}
+                            placeholder={PLACEHOLDER}
+                            readonly={!isEditing}
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            //@ts-ignore
+                            onTextChange={(value) => onTextChange(value, index)}
+                        />
+                    );
+                })
+            }
         </div>
     );
 };

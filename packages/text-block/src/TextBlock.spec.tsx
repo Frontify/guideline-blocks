@@ -24,7 +24,7 @@ it('should not be able to input to a text block when in view mode', () => {
 it('should be able input to two text blocks when in edit mode', () => {
     const [TextBlockWithStubs] = withAppBridgeStubs(TextBlock, {
         blockSettings: {
-            columnNumber: '2',
+            columnNumber: 2,
         },
         editorState: true,
     });
@@ -39,7 +39,7 @@ it('should be able input to two text blocks when in edit mode', () => {
 it('should render a text block with the correct amount of columns and correct spacing', () => {
     const [TextBlockWithStubs] = withAppBridgeStubs(TextBlock, {
         blockSettings: {
-            columnNumber: '4',
+            columnNumber: 4,
             isColumnGutterCustom: true,
             columnGutterCustom: '13px',
         },
