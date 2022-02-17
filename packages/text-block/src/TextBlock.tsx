@@ -14,7 +14,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const columnCount = blockSettings.columnNumber ? parseInt(blockSettings.columnNumber) : 1;
+    const columnCount = parseInt(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER);
 
     useEffect(() => {
         const newSettings = cloneDeep(blockSettings) as Settings;
