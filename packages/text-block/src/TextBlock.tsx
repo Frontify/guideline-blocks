@@ -1,24 +1,25 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/arcade';
-import cloneDeep from 'lodash-es/cloneDeep';
-import isEqual from 'lodash-es/isEqual';
-import { FC, useEffect } from 'react';
-import 'tailwindcss/tailwind.css';
-import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
 import './styles.css';
+import 'tailwindcss/tailwind.css';
+import { FC, useEffect } from 'react';
+import isEqual from 'lodash-es/isEqual';
+import cloneDeep from 'lodash-es/cloneDeep';
+import { RichTextEditor } from '@frontify/arcade';
 import { GRID_CLASSES, Props, Settings } from './types';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
 
 export const TextBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const columnCount = blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER;
 
     useEffect(() => {
         const newSettings = cloneDeep(blockSettings) as Settings;
         newSettings.columnGutterSimple ??= DEFAULT_COLUMN_GUTTER;
         newSettings.columnNumber ??= DEFAULT_COLUMN_NUMBER;
-        newSettings.content ??= Array(blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER).fill(undefined);
+        newSettings.content ??= Array(columnCount ?? DEFAULT_COLUMN_NUMBER);
 
         if (!isEqual(newSettings, blockSettings)) {
             setBlockSettings(newSettings);
@@ -41,23 +42,24 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
                     ? blockSettings.columnGutterCustom
                     : blockSettings.columnGutterSimple,
             }}
-            className={`text-block tw-grid ${
-                GRID_CLASSES[blockSettings.columnNumber] ?? GRID_CLASSES[DEFAULT_COLUMN_NUMBER]
-            }`}
+            className={`text-block tw-grid ${GRID_CLASSES[columnCount] ?? GRID_CLASSES[DEFAULT_COLUMN_NUMBER]}`}
         >
-            {[...Array(blockSettings.columnNumber)].map((_, index) => {
-                return (
-                    <RichTextEditor
-                        key={index}
-                        value={blockSettings.content?.[index]}
-                        placeholder={PLACEHOLDER}
-                        readonly={!isEditing}
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        //@ts-ignore
-                        onTextChange={(value) => onTextChange(value, index)}
-                    />
-                );
-            })}
+            {
+                // TODO: parseInt and toString cast can be remove after https://app.clickup.com/t/263cwaw is done
+                [...Array(parseInt(columnCount.toString()))].map((_, index) => {
+                    return (
+                        <RichTextEditor
+                            key={`text-block-editor-${index}`}
+                            value={blockSettings.content?.[index]}
+                            placeholder={PLACEHOLDER}
+                            readonly={!isEditing}
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            //@ts-ignore
+                            onTextChange={(value) => onTextChange(value, index)}
+                        />
+                    );
+                })
+            }
         </div>
     );
 };
