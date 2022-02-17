@@ -51,6 +51,7 @@ const settings: BlockSettings = {
             label: 'Progress Indicator',
             type: 'switch',
             defaultValue: DefaultValues.progressBarVisible,
+            info: 'Change the type of progress indicator for your checklist',
             on: [
                 {
                     id: PROGRESS_BAR_TYPE,
@@ -78,6 +79,7 @@ const settings: BlockSettings = {
             id: 'dateVisible',
             label: 'Date completed',
             type: 'switch',
+            info: 'Show the completion date for each checklist item',
             defaultValue: DefaultValues.dateVisible,
         },
     ],

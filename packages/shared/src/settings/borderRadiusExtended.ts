@@ -35,6 +35,7 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
+        info: 'Determining how rounded the corners are',
         show: (bundle: Bundle): boolean =>
             options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
         on: [

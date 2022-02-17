@@ -76,6 +76,7 @@ const settings: BlockSettings = {
             type: 'slider',
             label: 'Visible to',
             defaultValue: NoteVisibility.Everyone,
+            info: 'Switch between Block visibility permissions',
             choices: [
                 {
                     value: NoteVisibility.YouOnly,

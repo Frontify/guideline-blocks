@@ -157,7 +157,7 @@ const settings: BlockSettings = {
             id: 'lineType',
             type: 'slider',
             label: 'Type',
-            info: 'Choose between a solid, dashed and dotted accent line',
+            info: 'Determines how the line looks',
             defaultValue: LineType.Solid,
             show: showAccentLine,
             choices: [
