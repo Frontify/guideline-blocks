@@ -83,10 +83,11 @@ const settings: BlockSettings = {
         },
         {
             id: 'isCustomSpacing',
-            label: 'Column gap',
+            label: 'Gutter',
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
+            info: "An official nerd's term for 'column gap'",
             onChange: (bundle: Bundle): void =>
                 presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
             on: [
