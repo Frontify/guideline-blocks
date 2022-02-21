@@ -53,6 +53,7 @@ export const getPaddingSettings = (options?: PaddingSettingsType): SettingBlock 
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
+        info: 'The spacing around UI elements to create more negative space',
         onChange: (bundle: Bundle): void => presetCustomValue(bundle, basicId, valueId, paddingStyleMap),
         on: [
             {

@@ -61,6 +61,7 @@ const settings: BlockSettings = {
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
+            info: 'Determines the maximum height. Height is predefined or restricted to make sure UI elements don’t look broken or strange when viewed on different devices',
             onChange: (bundle: Bundle): void => presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
 
             on: [
@@ -99,6 +100,7 @@ const settings: BlockSettings = {
             label: 'Positioning',
             type: 'slider',
             defaultValue: StorybookPosition.Horizontal,
+            info: 'Where the UI elements are in relation to one another',
             show: (bundle: Bundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.Default,
             choices: [
                 {

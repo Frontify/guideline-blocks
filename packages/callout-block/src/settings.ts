@@ -76,6 +76,7 @@ const settings: BlockSettings = {
                     type: 'slider',
                     label: 'Width',
                     defaultValue: Width.FullWidth,
+                    info: 'Determines the width of the content',
                     choices: [
                         {
                             label: 'Full Width',

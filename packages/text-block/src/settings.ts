@@ -80,6 +80,7 @@ const settings: BlockSettings = {
                     type: 'switch',
                     switchLabel: 'Custom',
                     defaultValue: false,
+                    info: "An official nerd's term for 'column gap",
                     on: [
                         {
                             id: 'columnGutterCustom',

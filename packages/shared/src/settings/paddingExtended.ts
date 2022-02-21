@@ -3,10 +3,10 @@
 import { MultiInputLayout } from '@frontify/arcade';
 import { Bundle } from '@frontify/guideline-blocks-settings';
 import { SettingBlock } from '@frontify/guideline-blocks-settings/types/blocks';
-import { paddingStyleMap } from './types';
 import { appendUnitToArray, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomArrayValue } from '..';
 import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { getPaddingSlider } from './padding';
+import { paddingStyleMap } from './types';
 
 /**
  * Returns padding settings: padding switch, padding slider, custom padding input for every direction
@@ -35,6 +35,7 @@ export const getPaddingExtendedSettings = (options?: PaddingSettingsType): Setti
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
+        info: 'The spacing around UI elements to create more negative space',
         onChange: (bundle: Bundle): void => presetCustomArrayValue(bundle, basicId, valueId, paddingStyleMap, 4),
         on: [
             {

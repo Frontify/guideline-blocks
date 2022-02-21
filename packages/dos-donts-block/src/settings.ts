@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, DropdownSize } from '@frontify/arcade';
-import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum } from '@frontify/arcade';
+import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
@@ -43,6 +43,7 @@ const settings: BlockSettings = {
             label: 'Arrange',
             type: 'slider',
             defaultValue: DoDontLayout.SideBySide,
+            info: "Side by Side: Do's & Don'ts are arranged in their respective categories next to one another. Stacked: Do's are arranged above, and Don'ts are below",
             choices: [
                 {
                     value: DoDontLayout.SideBySide,
@@ -60,6 +61,7 @@ const settings: BlockSettings = {
             type: 'slider',
             show: (bundle: Bundle) => bundle.getBlock('layout')?.value === DoDontLayout.Stacked,
             defaultValue: 2,
+            info: "The number of columns for Do's and Don'ts",
             choices: [
                 {
                     value: 1,
@@ -81,10 +83,11 @@ const settings: BlockSettings = {
         },
         {
             id: 'isCustomSpacing',
-            label: 'Column gap',
+            label: 'Gutter',
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
+            info: "An official nerd's term for 'column gap'",
             onChange: (bundle: Bundle): void =>
                 presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
             on: [
