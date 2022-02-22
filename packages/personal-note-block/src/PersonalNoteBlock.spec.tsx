@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import PersonalNoteBlock from '.';
-import { NoteBorderStyle } from './types';
 
 const PersonalNoteBlockSelector = '[data-test-id="personal-note-block"]';
 const PersonalNoteHeader = '[data-test-id="personal-note-header"]';
@@ -68,9 +67,11 @@ it('renders personal note block with dark background and light text color', () =
 it('renders personal note block with correct styling', () => {
     const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
         blockSettings: {
-            hasCustomBorderRadius: true,
-            borderRadiusValue: '5px',
-            borderSelection: [NoteBorderStyle.Dashed, '2px', EXAMPLE_COLOR],
+            hasRadius: true,
+            radiusValue: '5px',
+            borderStyle: BorderStyle.Dashed,
+            borderWidth: '2px',
+            borderColor: EXAMPLE_COLOR,
         },
     });
 
