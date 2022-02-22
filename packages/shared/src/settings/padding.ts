@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle } from '@frontify/guideline-blocks-settings';
-import { SettingBlock } from '@frontify/guideline-blocks-settings/types/blocks';
+import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomValue } from '..';
 import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { Padding, paddingStyleMap } from './types';
@@ -16,6 +15,7 @@ import { Padding, paddingStyleMap } from './types';
 
 type PaddingSettingsType = {
     id?: string;
+    paddingStyleMap?: Record<Padding, string>;
 };
 
 export const getPaddingSlider = (id: string): SettingBlock => ({
@@ -45,7 +45,7 @@ export const getPaddingSlider = (id: string): SettingBlock => ({
 export const getPaddingSettings = (options?: PaddingSettingsType): SettingBlock => {
     const hasId = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
     const valueId = options?.id ? `paddingValue_${options?.id}` : 'paddingValue';
-    const basicId = options?.id ? `paddingBasic_${options?.id}` : 'paddingBasic';
+    const choiceId = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
 
     return {
         id: hasId,
@@ -54,7 +54,8 @@ export const getPaddingSettings = (options?: PaddingSettingsType): SettingBlock 
         switchLabel: 'Custom',
         defaultValue: false,
         info: 'The spacing around UI elements to create more negative space',
-        onChange: (bundle: Bundle): void => presetCustomValue(bundle, basicId, valueId, paddingStyleMap),
+        onChange: (bundle: Bundle): void =>
+            presetCustomValue(bundle, choiceId, valueId, options?.paddingStyleMap || paddingStyleMap),
         on: [
             {
                 id: valueId,
@@ -64,6 +65,6 @@ export const getPaddingSettings = (options?: PaddingSettingsType): SettingBlock 
                 onChange: (bundle: Bundle): void => appendUnit(bundle, valueId),
             },
         ],
-        off: [getPaddingSlider(basicId)],
+        off: [getPaddingSlider(choiceId)],
     };
 };
