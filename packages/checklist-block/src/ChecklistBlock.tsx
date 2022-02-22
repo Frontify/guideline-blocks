@@ -35,7 +35,6 @@ import {
     filterCompleteItems,
     findIndexById,
     findIndexesForMove,
-    provideDefaults,
     updateItemById,
 } from './helpers';
 import { SettingsContext } from './SettingsContext';
@@ -47,12 +46,15 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const [blockSettings, setBlockSettings] = useBlockSettings<Partial<Settings>>(appBridge);
     const [showCompleted, setShowCompleted] = useState(true);
     const { hoverProps, isHovered } = useHover({});
-    const settings = provideDefaults(DefaultValues, blockSettings);
+    const settings = { ...DefaultValues, ...blockSettings };
 
     const {
         hasCustomPadding,
-        paddingValues,
-        paddingBasic,
+        paddingTop,
+        paddingRight,
+        paddingBottom,
+        paddingLeft,
+        paddingChoice,
         content,
         progressBarVisible,
         progressBarFillColor,
@@ -132,7 +134,9 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 data-test-id="checklist-block"
                 className="tw-relative"
                 style={{
-                    padding: hasCustomPadding ? generatePaddingString(paddingValues) : paddingStyleMap[paddingBasic],
+                    padding: hasCustomPadding
+                        ? generatePaddingString([paddingTop, paddingLeft, paddingRight, paddingBottom])
+                        : paddingStyleMap[paddingChoice],
                 }}
             >
                 <div className="tw-relative" {...hoverProps}>

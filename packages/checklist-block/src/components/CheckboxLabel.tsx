@@ -56,12 +56,22 @@ const decorateLabelChildren = (children: string, style: CSSProperties) =>
     ));
 
 export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {
-    const { strikethroughMultiInput, highlightColor, completedDecoration, completeTextColor, dateVisible } =
-        useContext(SettingsContext);
+    const {
+        strikethroughStyle,
+        strikethroughWidth,
+        strikethroughColor,
+        highlightColor,
+        completedDecoration,
+        completeTextColor,
+        dateVisible,
+    } = useContext(SettingsContext);
 
-    const [type, thickness, color] = strikethroughMultiInput;
-
-    const decorationStyles = getLabelDecorationStylesMap(type, thickness, color, highlightColor)[completedDecoration];
+    const decorationStyles = getLabelDecorationStylesMap(
+        strikethroughStyle,
+        strikethroughWidth,
+        strikethroughColor,
+        highlightColor
+    )[completedDecoration];
 
     const labelStyles = { color: toHex8String(completeTextColor), ...decorationStyles };
 

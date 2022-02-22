@@ -44,8 +44,11 @@ const createContentArray = (length: number, fixedParams?: Partial<ChecklistConte
 const testSettings: Settings = {
     content: [],
     hasCustomPadding: false,
-    paddingBasic: Padding.Large,
-    paddingValues: [],
+    paddingChoice: Padding.Large,
+    paddingTop: '0px',
+    paddingBottom: '0px',
+    paddingLeft: '0px',
+    paddingRight: '0px',
     incompleteTextColor: { r: 45, g: 50, b: 50, a: 1 },
     incompleteCheckboxColor: { r: 108, g: 112, b: 112, a: 1 },
     completeTextColor: { r: 255, g: 55, b: 90, a: 1 },
@@ -57,7 +60,9 @@ const testSettings: Settings = {
     progressBarType: ProgressBarType.Bar,
     progressBarFillColor: { r: 0, g: 200, b: 165, a: 1 },
     progressBarTrackColor: { r: 222, g: 240, b: 233, a: 1 },
-    strikethroughMultiInput: [StrikethroughType.Dashed, '5px', { r: 255, g: 55, b: 90, a: 1 }],
+    strikethroughStyle: StrikethroughType.Dashed,
+    strikethroughWidth: '5px',
+    strikethroughColor: { r: 255, g: 55, b: 90, a: 1 },
 };
 
 it('Renders a checklist block', () => {
@@ -386,16 +391,15 @@ it('Correctly renders styles provided by settings', () => {
             const strikethroughStyle = $labelSection.css('text-decoration-style');
             const strikethroughThickness = $labelSection.css('text-decoration-thickness');
             const strikethroughColor = $labelSection.css('text-decoration-color');
-            const [lineStyle, lineThickness, lineColor] = testSettings.strikethroughMultiInput;
             expect(color).to.equal(toRgbaString(testSettings.completeTextColor));
             expect(textDecoration).to.equal('line-through');
-            expect(strikethroughStyle).to.equal(StrikethroughStyleType[lineStyle]);
-            expect(strikethroughThickness).to.equal(lineThickness);
-            expect(strikethroughColor).to.equal(toRgbaString(lineColor));
+            expect(strikethroughStyle).to.equal(StrikethroughStyleType[testSettings.strikethroughStyle]);
+            expect(strikethroughThickness).to.equal(testSettings.strikethroughWidth);
+            expect(strikethroughColor).to.equal(toRgbaString(testSettings.strikethroughColor));
         });
     cy.get(PROGRESS_BAR).should('have.css', 'background-color', toRgbaString(testSettings.progressBarTrackColor));
     cy.get(PROGRESS_BAR_FILL).should('have.css', 'background-color', toRgbaString(testSettings.progressBarFillColor));
-    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[testSettings.paddingBasic]);
+    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[testSettings.paddingChoice]);
     cy.get(CHECKBOX_DATE).should('have.length', 5);
 });
 
@@ -403,8 +407,11 @@ it('Uses custom padding if advanced it set to true', () => {
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
         blockSettings: {
             hasCustomPadding: true,
-            paddingBasic: Padding.Large,
-            paddingValues: ['3px', '4px', '5px', '6px'],
+            paddingChoice: Padding.Large,
+            paddingTop: '3px',
+            paddingRight: '5px',
+            paddingBottom: '6px',
+            paddingLeft: '4px',
         },
     });
     mount(<ChecklistBlockWithStubs />);
