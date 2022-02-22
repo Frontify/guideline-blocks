@@ -2,6 +2,7 @@
 
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { AssetInputValue } from '@frontify/guideline-blocks-settings';
+import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
 
 export enum Type {
     Warning = 'warning',
@@ -39,20 +40,6 @@ export const alignmentMap: Record<Alignment, string> = {
     [Alignment.Right]: 'tw-justify-end',
 };
 
-export enum CornerRadius {
-    None = 'none',
-    S = 's',
-    M = 'm',
-    L = 'l',
-}
-
-export const cornerRadiusMap: Record<CornerRadius, string> = {
-    [CornerRadius.None]: 'tw-rounded-none',
-    [CornerRadius.S]: 'tw-rounded-sm',
-    [CornerRadius.M]: 'tw-rounded',
-    [CornerRadius.L]: 'tw-rounded-xl',
-};
-
 export enum Padding {
     S = 's',
     M = 'm',
@@ -70,15 +57,12 @@ export type BlockSettings = {
     alignment: Alignment;
     iconSwitch: boolean;
     width: Width;
-    customPaddingSwitch: boolean;
-    customCornerRadiusSwitch: boolean;
     textValue?: string;
     icon?: AssetInputValue;
-    padding?: Padding;
-    customPadding?: string[];
-    cornerRadius?: CornerRadius;
-    customCornerRadius?: string[];
-};
+    hasCustomPadding: boolean;
+    paddingChoice: Padding;
+} & RadiusExtendedSettings &
+    CustomPaddingStyles;
 
 export type CustomPaddingStyles = {
     paddingTop: string;
@@ -91,8 +75,14 @@ export type CalloutBlockProps = {
     appBridge: AppBridgeNative;
 };
 
-export const paddingValuesMap: Record<Padding, string[]> = {
-    [Padding.S]: ['16px', '32px', '32px', '16px'],
-    [Padding.M]: ['24px', '32px', '32px', '24px'],
-    [Padding.L]: ['36px', '36px', '36px', '36px'],
+export const topBottomPaddingMap: Record<Padding, string> = {
+    [Padding.S]: '16px',
+    [Padding.M]: '24px',
+    [Padding.L]: '36px',
+};
+
+export const leftRightPaddingMap: Record<Padding, string> = {
+    [Padding.S]: '32px',
+    [Padding.M]: '32px',
+    [Padding.L]: '36px',
 };

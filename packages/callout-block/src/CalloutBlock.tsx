@@ -2,7 +2,7 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
 import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import {
@@ -10,8 +10,6 @@ import {
     alignmentMap,
     BlockSettings,
     CalloutBlockProps,
-    CornerRadius,
-    cornerRadiusMap,
     CustomPaddingStyles,
     outerWidthMap,
     Padding,
@@ -25,16 +23,16 @@ const getInnerDivClassName = (
     type: Type,
     width: Width,
     alignment: Alignment,
-    customPaddingSwitch: boolean,
+    isCustomPadding: boolean,
     padding: Padding,
-    customCornerRadiusSwitch: boolean,
-    cornerRadius: CornerRadius
+    isCustomRadius: boolean,
+    cornerRadius: Radius
 ): string =>
     joinClassNames([
         `tw-flex tw-items-center tw-text-white ${typeMap[type]}`,
         width === Width.FullWidth && alignmentMap[alignment],
-        !customPaddingSwitch && padding && paddingMap[padding],
-        !customCornerRadiusSwitch && cornerRadius && cornerRadiusMap[cornerRadius],
+        !isCustomPadding && padding && paddingMap[padding],
+        !isCustomRadius && cornerRadius && radiusStyleMap[cornerRadius],
     ]);
 
 const getOuterDivClassName = (width: Width, alignment: Alignment): string =>
@@ -43,20 +41,28 @@ const getOuterDivClassName = (width: Width, alignment: Alignment): string =>
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
+
     const {
         type = Type.Warning,
         alignment = Alignment.Left,
         iconSwitch = true,
         width = Width.FullWidth,
-        customPaddingSwitch,
-        customCornerRadiusSwitch,
+        paddingChoice = Padding.M,
+        radiusChoice = Radius.None,
+        radiusTopLeft = '0px',
+        radiusTopRight = '0px',
+        radiusBottomLeft = '0px',
+        radiusBottomRight = '0px',
+        paddingTop = '0px',
+        paddingBottom = '0px',
+        paddingLeft = '0px',
+        paddingRight = '0px',
+        hasCustomPadding,
+        hasCustomRadius,
         icon,
-        padding = Padding.M,
-        customPadding = [],
-        cornerRadius = CornerRadius.None,
-        customCornerRadius = [],
         textValue,
     } = blockSettings;
+
     const [customPaddingStyle, setCustomPaddingStyle] = useState<CustomPaddingStyles>();
     const [customCornerRadiusStyle, setCustomCornerRadiusStyle] = useState<CSSProperties>();
     const [iconUrl, setIconUrl] = useState<string>();
@@ -64,27 +70,20 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const blockRef = createRef<HTMLDivElement>();
 
     useEffect(() => {
-        const paddingStyle = customPaddingSwitch
-            ? {
-                  paddingTop: customPadding[0] ?? 0,
-                  paddingRight: customPadding[2] ?? 0,
-                  paddingBottom: customPadding[3] ?? 0,
-                  paddingLeft: customPadding[1] ?? 0,
-              }
-            : undefined;
-        const cornerRadiusStyle = customCornerRadiusSwitch
-            ? {
-                  borderRadius: `
-                    ${customCornerRadius[0] ?? 0}
-                    ${customCornerRadius[1] ?? 0}
-                    ${customCornerRadius[3] ?? 0}
-                    ${customCornerRadius[2] ?? 0}
-                  `,
-              }
-            : undefined;
+        if (hasCustomPadding) {
+            setCustomPaddingStyle({
+                paddingTop,
+                paddingRight,
+                paddingBottom,
+                paddingLeft,
+            });
+        }
 
-        setCustomPaddingStyle(paddingStyle);
-        setCustomCornerRadiusStyle(cornerRadiusStyle);
+        if (hasCustomRadius) {
+            setCustomCornerRadiusStyle({
+                borderRadius: [radiusTopLeft, radiusTopRight, radiusBottomRight, radiusBottomLeft].join(' '),
+            });
+        }
 
         if (iconSwitch && icon) {
             appBridge.getAssetById(icon.value).then((iconAsset) => {
@@ -104,10 +103,10 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     type,
                     width,
                     alignment,
-                    customPaddingSwitch,
-                    padding,
-                    customCornerRadiusSwitch,
-                    cornerRadius
+                    hasCustomPadding,
+                    paddingChoice,
+                    hasCustomRadius,
+                    radiusChoice
                 )}
                 style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}
                 ref={blockRef}
