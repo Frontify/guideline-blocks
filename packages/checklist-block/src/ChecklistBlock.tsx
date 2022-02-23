@@ -49,12 +49,12 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const settings = { ...DefaultValues, ...blockSettings };
 
     const {
-        hasCustomPadding,
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        paddingLeft,
-        paddingChoice,
+        hasExtendedCustomPadding,
+        extendedPaddingTop,
+        extendedPaddingRight,
+        extendedPaddingBottom,
+        extendedPaddingLeft,
+        extendedPaddingChoice,
         content,
         progressBarVisible,
         progressBarFillColor,
@@ -134,9 +134,14 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 data-test-id="checklist-block"
                 className="tw-relative"
                 style={{
-                    padding: hasCustomPadding
-                        ? generatePaddingString([paddingTop, paddingLeft, paddingRight, paddingBottom])
-                        : paddingStyleMap[paddingChoice],
+                    padding: hasExtendedCustomPadding
+                        ? generatePaddingString([
+                              extendedPaddingTop,
+                              extendedPaddingLeft,
+                              extendedPaddingRight,
+                              extendedPaddingBottom,
+                          ])
+                        : paddingStyleMap[extendedPaddingChoice],
                 }}
             >
                 <div className="tw-relative" {...hoverProps}>

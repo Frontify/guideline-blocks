@@ -48,17 +48,17 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         iconSwitch = true,
         width = Width.FullWidth,
         paddingChoice = Padding.M,
-        radiusChoice = Radius.None,
-        radiusTopLeft = '0px',
-        radiusTopRight = '0px',
-        radiusBottomLeft = '0px',
-        radiusBottomRight = '0px',
+        extendedRadiusChoice = Radius.None,
+        extendedRadiusTopLeft = '0px',
+        extendedRadiusTopRight = '0px',
+        extendedRadiusBottomLeft = '0px',
+        extendedRadiusBottomRight = '0px',
         paddingTop = '0px',
         paddingBottom = '0px',
         paddingLeft = '0px',
         paddingRight = '0px',
         hasCustomPadding,
-        hasCustomRadius,
+        hasExtendedCustomRadius,
         icon,
         textValue,
     } = blockSettings;
@@ -79,9 +79,14 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             });
         }
 
-        if (hasCustomRadius) {
+        if (hasExtendedCustomRadius) {
             setCustomCornerRadiusStyle({
-                borderRadius: [radiusTopLeft, radiusTopRight, radiusBottomRight, radiusBottomLeft].join(' '),
+                borderRadius: [
+                    extendedRadiusTopLeft,
+                    extendedRadiusTopRight,
+                    extendedRadiusBottomRight,
+                    extendedRadiusBottomLeft,
+                ].join(' '),
             });
         }
 
@@ -105,8 +110,8 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     alignment,
                     hasCustomPadding,
                     paddingChoice,
-                    hasCustomRadius,
-                    radiusChoice
+                    hasExtendedCustomRadius,
+                    extendedRadiusChoice
                 )}
                 style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}
                 ref={blockRef}

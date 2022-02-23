@@ -21,13 +21,13 @@ type BorderRadiusSettingsType = {
 };
 
 export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsType): SettingBlock => {
-    const hasId = options?.id ? `hasCustomRadius_${options.id}` : 'hasCustomRadius';
-    const valueId = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
-    const choiceId = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
-    const topLeftId = options?.id ? `radiusTopLeft_${options.id}` : 'radiusTopLeft';
-    const topRightId = options?.id ? `radiusTopRight_${options.id}` : 'radiusTopRight';
-    const bottomLeftId = options?.id ? `radiusBottomLeft_${options.id}` : 'radiusBottomLeft';
-    const bottomRightId = options?.id ? `radiusBottomRight_${options.id}` : 'radiusBottomRight';
+    const hasId = options?.id ? `hasExtendedCustomRadius_${options.id}` : 'hasExtendedCustomRadius';
+    const valueId = options?.id ? `extendedRadiusValue_${options.id}` : 'extendedRadiusValue';
+    const choiceId = options?.id ? `extendedRadiusChoice_${options.id}` : 'extendedRadiusChoice';
+    const topLeftId = options?.id ? `extendedRadiusTopLeft_${options.id}` : 'extendedRadiusTopLeft';
+    const topRightId = options?.id ? `extendedRadiusTopRight_${options.id}` : 'extendedRadiusTopRight';
+    const bottomLeftId = options?.id ? `extendedRadiusBottomLeft_${options.id}` : 'extendedRadiusBottomLeft';
+    const bottomRightId = options?.id ? `extendedRadiusBottomRight_${options.id}` : 'extendedRadiusBottomRight';
 
     return {
         id: hasId,

@@ -43,12 +43,12 @@ const createContentArray = (length: number, fixedParams?: Partial<ChecklistConte
 
 const testSettings: Settings = {
     content: [],
-    hasCustomPadding: false,
-    paddingChoice: Padding.Large,
-    paddingTop: '0px',
-    paddingBottom: '0px',
-    paddingLeft: '0px',
-    paddingRight: '0px',
+    hasExtendedCustomPadding: false,
+    extendedPaddingChoice: Padding.Large,
+    extendedPaddingTop: '0px',
+    extendedPaddingBottom: '0px',
+    extendedPaddingLeft: '0px',
+    extendedPaddingRight: '0px',
     incompleteTextColor: { r: 45, g: 50, b: 50, a: 1 },
     incompleteCheckboxColor: { r: 108, g: 112, b: 112, a: 1 },
     completeTextColor: { r: 255, g: 55, b: 90, a: 1 },
@@ -406,12 +406,12 @@ it('Correctly renders styles provided by settings', () => {
 it('Uses custom padding if advanced it set to true', () => {
     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
         blockSettings: {
-            hasCustomPadding: true,
-            paddingChoice: Padding.Large,
-            paddingTop: '3px',
-            paddingRight: '5px',
-            paddingBottom: '6px',
-            paddingLeft: '4px',
+            hasExtendedCustomPadding: true,
+            extendedPaddingChoice: Padding.Large,
+            extendedPaddingTop: '3px',
+            extendedPaddingRight: '5px',
+            extendedPaddingBottom: '6px',
+            extendedPaddingLeft: '4px',
         },
     });
     mount(<ChecklistBlockWithStubs />);

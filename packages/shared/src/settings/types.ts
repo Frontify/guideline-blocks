@@ -47,21 +47,21 @@ export type PaddingSettings = {
 };
 
 export type PaddingExtendedSettings = {
-    hasCustomPadding: boolean;
-    paddingChoice: Padding;
-    paddingTop: string;
-    paddingRight: string;
-    paddingBottom: string;
-    paddingLeft: string;
+    hasExtendedCustomPadding: boolean;
+    extendedPaddingChoice: Padding;
+    extendedPaddingTop: string;
+    extendedPaddingRight: string;
+    extendedPaddingBottom: string;
+    extendedPaddingLeft: string;
 };
 
 export type RadiusExtendedSettings = {
-    hasCustomRadius: boolean;
-    radiusChoice: Radius;
-    radiusTopLeft: string;
-    radiusTopRight: string;
-    radiusBottomLeft: string;
-    radiusBottomRight: string;
+    hasExtendedCustomRadius: boolean;
+    extendedRadiusChoice: Radius;
+    extendedRadiusTopLeft: string;
+    extendedRadiusTopRight: string;
+    extendedRadiusBottomLeft: string;
+    extendedRadiusBottomRight: string;
 };
 
 export type BorderSettings = {

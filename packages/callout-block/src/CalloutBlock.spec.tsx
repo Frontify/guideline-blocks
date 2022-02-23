@@ -45,11 +45,11 @@ it('renders a callout block with the correct layout settings', () => {
 it('renders a callout block with the correct border radius style', () => {
     const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
         blockSettings: {
-            hasCustomRadius: true,
-            radiusTopLeft: '10px',
-            radiusTopRight: '20px',
-            radiusBottomLeft: '40px',
-            radiusBottomRight: '30px',
+            hasExtendedCustomRadius: true,
+            extendedRadiusTopLeft: '10px',
+            extendedRadiusTopRight: '20px',
+            extendedRadiusBottomLeft: '40px',
+            extendedRadiusBottomRight: '30px',
         },
     });
 

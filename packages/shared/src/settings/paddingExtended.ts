@@ -20,13 +20,13 @@ type PaddingSettingsType = {
 };
 
 export const getPaddingExtendedSettings = (options?: PaddingSettingsType): SettingBlock => {
-    const hasId = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
-    const valueId = options?.id ? `paddingValues_${options?.id}` : 'paddingValues';
-    const choiceId = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
-    const topId = options?.id ? `paddingTop_${options?.id}` : 'paddingTop';
-    const leftId = options?.id ? `paddingLeft_${options?.id}` : 'paddingLeft';
-    const rightId = options?.id ? `paddingRight_${options?.id}` : 'paddingRight';
-    const bottomId = options?.id ? `paddingBottom_${options?.id}` : 'paddingBottom';
+    const hasId = options?.id ? `hasExtendedCustomPadding_${options?.id}` : 'hasExtendedCustomPadding';
+    const valueId = options?.id ? `extendedPaddingValues_${options?.id}` : 'extendedPaddingValues';
+    const choiceId = options?.id ? `extendedPaddingChoice_${options?.id}` : 'extendedPaddingChoice';
+    const topId = options?.id ? `extendedPaddingTop_${options?.id}` : 'extendedPaddingTop';
+    const leftId = options?.id ? `extendedPaddingLeft_${options?.id}` : 'extendedPaddingLeft';
+    const rightId = options?.id ? `extendedPaddingRight_${options?.id}` : 'extendedPaddingRight';
+    const bottomId = options?.id ? `extendedPaddingBottom_${options?.id}` : 'extendedPaddingBottom';
 
     return {
         id: hasId,

@@ -153,12 +153,12 @@ export type Settings = PaddingExtendedSettings & {
 
 export const DefaultValues: Settings = {
     content: [],
-    hasCustomPadding: false,
-    paddingChoice: Padding.Small,
-    paddingTop: paddingStyleMap[Padding.Small],
-    paddingRight: paddingStyleMap[Padding.Small],
-    paddingBottom: paddingStyleMap[Padding.Small],
-    paddingLeft: paddingStyleMap[Padding.Small],
+    hasExtendedCustomPadding: false,
+    extendedPaddingChoice: Padding.Small,
+    extendedPaddingTop: paddingStyleMap[Padding.Small],
+    extendedPaddingRight: paddingStyleMap[Padding.Small],
+    extendedPaddingBottom: paddingStyleMap[Padding.Small],
+    extendedPaddingLeft: paddingStyleMap[Padding.Small],
     incompleteTextColor: { r: 45, g: 50, b: 50, a: 1 },
     incompleteCheckboxColor: { r: 108, g: 112, b: 112, a: 1 },
     completeTextColor: { r: 255, g: 55, b: 90, a: 1 },
