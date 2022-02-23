@@ -43,7 +43,7 @@ export const getPaddingSlider = (id: string): SettingBlock => ({
 });
 
 export const getPaddingSettings = (options?: PaddingSettingsType): SettingBlock => {
-    const hasId = options?.id ? `hasCustomPadding_${options?.id}` : 'hasCustomPadding';
+    const hasId = options?.id ? `hasCustomPaddingValue_${options?.id}` : 'hasCustomPaddingValue';
     const valueId = options?.id ? `paddingValue_${options?.id}` : 'paddingValue';
     const choiceId = options?.id ? `paddingChoice_${options?.id}` : 'paddingChoice';
 

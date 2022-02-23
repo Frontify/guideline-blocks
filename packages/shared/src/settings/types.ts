@@ -42,7 +42,7 @@ export const paddingStyleMap: Record<Padding, string> = {
 
 export type PaddingSettings = {
     paddingChoice: Padding;
-    hasCustomPadding: boolean;
+    hasCustomPaddingValue: boolean;
     paddingValue: string;
 };
 

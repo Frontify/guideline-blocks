@@ -47,7 +47,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         hasBackground = false,
         hasBorder = true,
         hasRadius = false,
-        hasCustomPadding = false,
+        hasCustomPaddingValue = false,
         hasDateEdited = true,
         note,
         paddingChoice = Padding.Small,
@@ -101,7 +101,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                 ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
                 ...(hasBackground && getBackgroundStyles(backgroundColor)),
                 borderRadius: hasRadius && (hasBorder || hasBackground) ? radiusValue : radiusStyleMap[radiusChoice],
-                padding: hasCustomPadding ? paddingValue : paddingStyleMap[paddingChoice],
+                padding: hasCustomPaddingValue ? paddingValue : paddingStyleMap[paddingChoice],
             }}
         >
             {(hasAvatarName || hasDateEdited) && (
