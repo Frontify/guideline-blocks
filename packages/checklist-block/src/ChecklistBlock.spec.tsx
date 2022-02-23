@@ -399,7 +399,7 @@ it('Correctly renders styles provided by settings', () => {
         });
     cy.get(PROGRESS_BAR).should('have.css', 'background-color', toRgbaString(testSettings.progressBarTrackColor));
     cy.get(PROGRESS_BAR_FILL).should('have.css', 'background-color', toRgbaString(testSettings.progressBarFillColor));
-    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[testSettings.paddingChoice]);
+    cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', paddingStyleMap[testSettings.extendedPaddingChoice]);
     cy.get(CHECKBOX_DATE).should('have.length', 5);
 });
 
