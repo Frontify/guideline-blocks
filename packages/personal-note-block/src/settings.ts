@@ -1,17 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/arcade';
+import { Color, DropdownSize, IconEnum } from '@frontify/arcade';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings, getPaddingSettings } from '@frontify/guideline-blocks-shared';
-import { NoteStyle, NoteVisibility } from './types';
+import { NoteStyle, NoteVisibility, paddingStyleMap } from './types';
 
-export const BACKGROUND_COLOR_DEFAULT_VALUE = {
+export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
     r: 247,
     g: 247,
     b: 247,
     a: 1,
 };
-export const BORDER_COLOR_DEFAULT_VALUE = {
+export const BORDER_COLOR_DEFAULT_VALUE: Color = {
     r: 234,
     g: 235,
     b: 235,
@@ -50,7 +50,7 @@ const settings: BlockSettings = {
             type: 'switch',
             defaultValue: true,
         },
-        getPaddingSettings(),
+        getPaddingSettings({ paddingStyleMap }),
     ],
     style: [
         {

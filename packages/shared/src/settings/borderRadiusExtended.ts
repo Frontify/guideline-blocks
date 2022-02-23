@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MultiInputLayout } from '@frontify/arcade';
-import { Bundle } from '@frontify/guideline-blocks-settings';
-import { SettingBlock } from '@frontify/guideline-blocks-settings/types/blocks';
-import { appendUnitToArray, numericalOrPixelRule } from '..';
+import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
+import { radiusStyleMap } from '.';
+import { appendUnit, numericalOrPixelRule, presetCustomValue } from '..';
 import { getBorderRadiusSlider } from './borderRadius';
 
 /**
@@ -21,13 +21,13 @@ type BorderRadiusSettingsType = {
 };
 
 export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsType): SettingBlock => {
-    const hasId = options?.id ? `hasRadius_${options.id}` : 'hasRadius';
-    const valueId = options?.id ? `radiusValue_${options.id}` : 'radiusValue';
-    const choiceId = options?.id ? `radiusChoice_${options.id}` : 'radiusChoice';
-    const topLeftId = options?.id ? `radiusTopLeft_${options.id}` : 'radiusTopLeft';
-    const topRightId = options?.id ? `radiusTopRight_${options.id}` : 'radiusTopRight';
-    const bottomLeftId = options?.id ? `radiusBottomLeft_${options.id}` : 'radiusBottomLeft';
-    const bottomRightId = options?.id ? `radiusBottomRight_${options.id}` : 'radiusBottomRight';
+    const hasId = options?.id ? `hasExtendedCustomRadius_${options.id}` : 'hasExtendedCustomRadius';
+    const valueId = options?.id ? `extendedRadiusValue_${options.id}` : 'extendedRadiusValue';
+    const choiceId = options?.id ? `extendedRadiusChoice_${options.id}` : 'extendedRadiusChoice';
+    const topLeftId = options?.id ? `extendedRadiusTopLeft_${options.id}` : 'extendedRadiusTopLeft';
+    const topRightId = options?.id ? `extendedRadiusTopRight_${options.id}` : 'extendedRadiusTopRight';
+    const bottomLeftId = options?.id ? `extendedRadiusBottomLeft_${options.id}` : 'extendedRadiusBottomLeft';
+    const bottomRightId = options?.id ? `extendedRadiusBottomRight_${options.id}` : 'extendedRadiusBottomRight';
 
     return {
         id: hasId,
@@ -38,36 +38,45 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
         info: 'Determining how rounded the corners are',
         show: (bundle: Bundle): boolean =>
             options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
+        onChange: (bundle: Bundle): void => {
+            presetCustomValue(bundle, choiceId, topLeftId, radiusStyleMap);
+            presetCustomValue(bundle, choiceId, topRightId, radiusStyleMap);
+            presetCustomValue(bundle, choiceId, bottomLeftId, radiusStyleMap);
+            presetCustomValue(bundle, choiceId, bottomRightId, radiusStyleMap);
+        },
         on: [
             {
                 id: valueId,
                 type: 'multiInput',
                 layout: MultiInputLayout.Columns,
-                onChange: (bundle: Bundle): void => appendUnitToArray(bundle, valueId),
                 blocks: [
                     {
                         id: topLeftId,
                         type: 'input',
                         label: 'Top Left',
                         rules: [numericalOrPixelRule],
+                        onChange: (bundle: Bundle): void => appendUnit(bundle, topLeftId),
                     },
                     {
                         id: topRightId,
                         type: 'input',
                         label: 'Top Right',
                         rules: [numericalOrPixelRule],
+                        onChange: (bundle: Bundle): void => appendUnit(bundle, topRightId),
                     },
                     {
                         id: bottomLeftId,
                         type: 'input',
                         label: 'Bottom Left',
                         rules: [numericalOrPixelRule],
+                        onChange: (bundle: Bundle): void => appendUnit(bundle, bottomLeftId),
                     },
                     {
                         id: bottomRightId,
                         type: 'input',
                         label: 'Bottom Right',
                         rules: [numericalOrPixelRule],
+                        onChange: (bundle: Bundle): void => appendUnit(bundle, bottomRightId),
                     },
                 ],
             },

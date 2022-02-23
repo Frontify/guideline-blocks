@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MultiInputLayout } from '@frontify/arcade';
-import { Bundle } from '@frontify/guideline-blocks-settings';
-import { SettingBlock } from '@frontify/guideline-blocks-settings/types/blocks';
+import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
 import { BorderStyle } from './types';
 import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
 import { BORDER_COLOR_DEFAULT_VALUE, BORDER_WIDTH_DEFAULT_VALUE } from './defaultValues';

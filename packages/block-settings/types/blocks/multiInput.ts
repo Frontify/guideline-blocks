@@ -11,4 +11,4 @@ export type MultiInputBlock = {
     layout: MultiInputLayout;
     blocks: (Omit<InputBlock, 'value'> | Omit<ColorInputBlock, 'value'> | Omit<DropdownBlock, 'value'>)[];
     lastItemFullWidth?: boolean;
-} & BaseBlock<(InputBlock['value'] | ColorInputBlock['value'] | DropdownBlock['value'])[]>;
+} & BaseBlock;

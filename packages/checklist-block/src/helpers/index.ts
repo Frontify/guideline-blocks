@@ -5,5 +5,4 @@ export * from './createItem';
 export * from './filterCompletedItems';
 export * from './findIndexById';
 export * from './findIndexesForMove';
-export * from './provideDefaults';
 export * from './updateItemById';

@@ -2,46 +2,33 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/arcade';
-import { isDark, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import {
+    BorderStyle,
+    borderStyleMap,
+    isDark,
+    Padding,
+    Radius,
+    radiusStyleMap,
+    toRgbaString,
+} from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-import {
-    BlockProps,
-    borderRadiusClasses,
-    BorderSelectionType,
-    borderStyles,
-    NoteBorderRadius,
-    NoteBorderStyle,
-    NotePadding,
-    NoteVisibility,
-    paddingValues,
-    Settings,
-} from './types';
+import { BlockProps, NoteVisibility, paddingStyleMap, Settings } from './types';
 
-const getBorderStyles = (borderSelection: BorderSelectionType): CSSProperties => {
-    // TODO: This check could be removed if defaultValue are returned from blockSettings
-    const style = borderSelection[0] ? borderSelection[0] : NoteBorderStyle.Solid;
-    const width = borderSelection[1] ? borderSelection[1] : '1px';
-    const rgba = borderSelection[2] ? borderSelection[2] : BORDER_COLOR_DEFAULT_VALUE;
-    return {
-        borderStyle: borderStyles[style],
-        borderWidth: width,
-        borderColor: toRgbaString(rgba),
-    };
-};
-
-const getRadiusStyles = (borderRadius: string): CSSProperties => ({
-    borderRadius,
+const getBorderStyles = (
+    style = BorderStyle.Solid,
+    width = '1px',
+    color = BORDER_COLOR_DEFAULT_VALUE
+): CSSProperties => ({
+    borderStyle: borderStyleMap[style],
+    borderWidth: width,
+    borderColor: toRgbaString(color),
 });
 
 const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
     backgroundColor ? { backgroundColor: toRgbaString(backgroundColor) } : {};
-
-const getPaddingStyles = (padding: string): CSSProperties => ({
-    padding,
-});
 
 export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
@@ -50,18 +37,20 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
-        borderRadiusChoice = NoteBorderRadius.None,
-        borderRadiusValue = '',
-        borderSelection = [NoteBorderStyle.Solid, '1px', BORDER_COLOR_DEFAULT_VALUE],
+        radiusChoice = Radius.None,
+        radiusValue = '',
+        borderStyle = BorderStyle.Solid,
+        borderWidth = '1px',
+        borderColor = BORDER_COLOR_DEFAULT_VALUE,
         dateEdited = '',
         hasAvatarName = true,
         hasBackground = false,
         hasBorder = true,
-        hasCustomBorderRadius = false,
-        hasCustomPadding = false,
+        hasRadius = false,
+        hasCustomPaddingValue = false,
         hasDateEdited = true,
         note,
-        paddingChoice = NotePadding.Small,
+        paddingChoice = Padding.Small,
         paddingValue = '',
         createdByUser,
         username,
@@ -107,15 +96,12 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     return (
         <div
             data-test-id="personal-note-block"
-            className={joinClassNames([
-                !hasCustomBorderRadius && borderRadiusClasses[borderRadiusChoice],
-                hasBackground && !!backgroundColor && isDark(backgroundColor) && 'tw-text-white',
-            ])}
+            className={hasBackground && !!backgroundColor && isDark(backgroundColor) ? 'tw-text-white' : ''}
             style={{
-                ...(hasBorder && getBorderStyles(borderSelection)),
+                ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
                 ...(hasBackground && getBackgroundStyles(backgroundColor)),
-                ...((hasBorder || hasBackground) && getRadiusStyles(hasCustomBorderRadius ? borderRadiusValue : '')),
-                ...getPaddingStyles(hasCustomPadding ? paddingValue : paddingValues[paddingChoice]),
+                borderRadius: hasRadius && (hasBorder || hasBackground) ? radiusValue : radiusStyleMap[radiusChoice],
+                padding: hasCustomPaddingValue ? paddingValue : paddingStyleMap[paddingChoice],
             }}
         >
             {(hasAvatarName || hasDateEdited) && (

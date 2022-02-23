@@ -4,19 +4,18 @@ import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
-    appendUnitToArray,
+    appendUnit,
     getExtendedBorderRadiusSettings,
     numericalOrPixelRule,
-    presetCustomArrayValue,
+    presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { Alignment, Padding, paddingValuesMap, Type, Width } from './types';
+import { Alignment, leftRightPaddingMap, Padding, topBottomPaddingMap, Type, Width } from './types';
 
-const CHOICE_PADDING_ID = 'padding';
-const CUSTOM_PADDING_ID = 'customPadding';
-const PADDING_TOP_ID = 'padding-top';
-const PADDING_LEFT_ID = 'padding-left';
-const PADDING_RIGHT_ID = 'padding-right';
-const PADDING_BOTTOM_ID = 'padding-bottom';
+const PADDING_CHOICE_ID = 'paddingChoice';
+const PADDING_TOP_ID = 'paddingTop';
+const PADDING_LEFT_ID = 'paddingLeft';
+const PADDING_RIGHT_ID = 'paddingRight';
+const PADDING_BOTTOM_ID = 'paddingBottom';
 
 const settings: BlockSettings = {
     main: [
@@ -112,42 +111,49 @@ const settings: BlockSettings = {
                     ],
                 },
                 {
-                    id: 'customPaddingSwitch',
+                    id: 'hasCustomPadding',
                     type: 'switch',
                     defaultValue: false,
                     switchLabel: 'Custom',
                     label: 'Padding',
-                    onChange: (bundle: Bundle): void =>
-                        presetCustomArrayValue(bundle, CHOICE_PADDING_ID, CUSTOM_PADDING_ID, paddingValuesMap, 4),
+                    onChange: (bundle: Bundle): void => {
+                        presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_TOP_ID, topBottomPaddingMap);
+                        presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_BOTTOM_ID, topBottomPaddingMap);
+                        presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_LEFT_ID, leftRightPaddingMap);
+                        presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_RIGHT_ID, leftRightPaddingMap);
+                    },
                     on: [
                         {
-                            id: CUSTOM_PADDING_ID,
+                            id: 'customPadding',
                             type: 'multiInput',
                             layout: MultiInputLayout.Spider,
-                            onChange: (bundle: Bundle): void => appendUnitToArray(bundle, CUSTOM_PADDING_ID),
                             blocks: [
                                 {
                                     id: PADDING_TOP_ID,
                                     type: 'input',
                                     label: 'Top',
+                                    onChange: (bundle: Bundle): void => appendUnit(bundle, PADDING_TOP_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_LEFT_ID,
                                     type: 'input',
                                     label: 'Left',
+                                    onChange: (bundle: Bundle): void => appendUnit(bundle, PADDING_LEFT_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_RIGHT_ID,
                                     type: 'input',
                                     label: 'Right',
+                                    onChange: (bundle: Bundle): void => appendUnit(bundle, PADDING_RIGHT_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_BOTTOM_ID,
                                     type: 'input',
                                     label: 'Bottom',
+                                    onChange: (bundle: Bundle): void => appendUnit(bundle, PADDING_BOTTOM_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                             ],
@@ -155,7 +161,7 @@ const settings: BlockSettings = {
                     ],
                     off: [
                         {
-                            id: CHOICE_PADDING_ID,
+                            id: PADDING_CHOICE_ID,
                             type: 'slider',
                             defaultValue: Padding.M,
                             choices: [

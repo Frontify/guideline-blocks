@@ -3,7 +3,7 @@
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import CalloutBlock from '.';
-import { Type, Alignment, Padding, Width } from './types';
+import { Alignment, Padding, Type, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 const CalloutWrapper = '[data-test-id="callout-wrapper"]';
@@ -31,7 +31,7 @@ it('renders a callout block with the correct layout settings', () => {
     const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
         blockSettings: {
             alignment: Alignment.Right,
-            padding: Padding.L,
+            paddingChoice: Padding.L,
             width: Width.HugContents,
         },
     });
@@ -45,8 +45,11 @@ it('renders a callout block with the correct layout settings', () => {
 it('renders a callout block with the correct border radius style', () => {
     const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
         blockSettings: {
-            customCornerRadiusSwitch: true,
-            customCornerRadius: ['10px', '20px', '40px', '30px'],
+            hasExtendedCustomRadius: true,
+            extendedRadiusTopLeft: '10px',
+            extendedRadiusTopRight: '20px',
+            extendedRadiusBottomLeft: '40px',
+            extendedRadiusBottomRight: '30px',
         },
     });
 

@@ -2,7 +2,7 @@
 
 import { AppBridgeNative } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState } from '@frontify/arcade';
-import { Padding, PaddingSettings, paddingStyleMap } from '@frontify/guideline-blocks-shared';
+import { Padding, PaddingExtendedSettings, paddingStyleMap } from '@frontify/guideline-blocks-shared';
 import { MouseEvent, ReactElement } from 'react';
 
 export type ChecklistProps = {
@@ -133,9 +133,7 @@ export type DecorationStyle = {
     [key: string]: string;
 };
 
-export type StrikethroughMultiInputType = [StrikethroughType, string, Color];
-
-export type Settings = PaddingSettings & {
+export type Settings = PaddingExtendedSettings & {
     content: ChecklistContent[];
     incompleteTextColor: Color;
     incompleteCheckboxColor: Color;
@@ -148,14 +146,19 @@ export type Settings = PaddingSettings & {
     progressBarType: string;
     progressBarFillColor: Color;
     progressBarTrackColor: Color;
-    strikethroughMultiInput: StrikethroughMultiInputType;
+    strikethroughStyle: StrikethroughType;
+    strikethroughWidth: string;
+    strikethroughColor: Color;
 };
 
 export const DefaultValues: Settings = {
     content: [],
-    hasCustomPadding: false,
-    paddingBasic: Padding.Small,
-    paddingValues: new Array(4).fill(paddingStyleMap[Padding.Small]),
+    hasExtendedCustomPadding: false,
+    extendedPaddingChoice: Padding.Small,
+    extendedPaddingTop: paddingStyleMap[Padding.Small],
+    extendedPaddingRight: paddingStyleMap[Padding.Small],
+    extendedPaddingBottom: paddingStyleMap[Padding.Small],
+    extendedPaddingLeft: paddingStyleMap[Padding.Small],
     incompleteTextColor: { r: 45, g: 50, b: 50, a: 1 },
     incompleteCheckboxColor: { r: 108, g: 112, b: 112, a: 1 },
     completeTextColor: { r: 255, g: 55, b: 90, a: 1 },
@@ -167,5 +170,7 @@ export const DefaultValues: Settings = {
     progressBarType: ProgressBarType.Bar,
     progressBarFillColor: { r: 0, g: 200, b: 165, a: 1 },
     progressBarTrackColor: { r: 222, g: 240, b: 233, a: 1 },
-    strikethroughMultiInput: [StrikethroughType.Solid, '1px', { r: 255, g: 55, b: 90, a: 1 }],
+    strikethroughStyle: StrikethroughType.Solid,
+    strikethroughWidth: '1px',
+    strikethroughColor: { r: 255, g: 55, b: 90, a: 1 },
 };

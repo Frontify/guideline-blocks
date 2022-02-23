@@ -140,7 +140,7 @@ const settings: BlockSettings = {
                         {
                             id: 'strikethroughStyle',
                             type: 'dropdown',
-                            defaultValue: DefaultValues.strikethroughMultiInput[0],
+                            defaultValue: DefaultValues.strikethroughStyle,
                             choices: [
                                 {
                                     label: 'Solid',
@@ -167,14 +167,14 @@ const settings: BlockSettings = {
                         {
                             id: STRIKETHROUGH_WIDTH,
                             type: 'input',
-                            defaultValue: DefaultValues.strikethroughMultiInput[1],
+                            defaultValue: DefaultValues.strikethroughWidth,
                             onChange: (bundle: Bundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                         },
                         {
                             id: 'strikethroughColor',
                             type: 'colorInput',
-                            defaultValue: DefaultValues.strikethroughMultiInput[2],
+                            defaultValue: DefaultValues.strikethroughColor,
                         },
                     ],
                 },
