@@ -37,3 +37,14 @@ export type SettingBlock =
     | SwitchBlock
     | TemplateInputBlock
     | NotificationBlock;
+
+export type DynamicBlock<T extends SettingBlock> = Omit<T, 'value' | 'defaultValue' | 'type'> & {
+    type: T['type'];
+    value?: T['value'][];
+    defaultValue?: T['defaultValue'][];
+    dynamic: {
+        addButtonLabel: string;
+    };
+};
+
+export declare type DynamicSettingBlock = SettingBlock | DynamicBlock<SettingBlock>;
