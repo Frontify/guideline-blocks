@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { DynamicSettingBlock } from '..';
 import { BaseBlock } from './base';
-import { SettingBlock } from './index';
 
 export type SectionHeadingBlock = {
     type: 'sectionHeading';
-    blocks: SettingBlock[];
+    blocks: DynamicSettingBlock[];
     label: string;
 } & BaseBlock;
