@@ -38,10 +38,8 @@ export type SettingBlock =
     | TemplateInputBlock
     | NotificationBlock;
 
-export type DynamicBlock<T extends SettingBlock> = Omit<T, 'value' | 'defaultValue' | 'type'> & {
-    type: T['type'];
+export type DynamicBlock<T extends SettingBlock> = Omit<T, 'value'> & {
     value?: T['value'][];
-    defaultValue?: T['defaultValue'][];
     dynamic: {
         addButtonLabel: string;
     };
