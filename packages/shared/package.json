@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.11.0",
-        "@frontify/arcade": "1.1.0",
+        "@frontify/arcade": "3.0.0",
         "sinon": "13.0.0",
         "tinycolor2": "^1.4.2"
     }
