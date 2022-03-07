@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DynamicSettingBlock } from './blocks';
+import { SettingBlock } from './blocks';
 
 export * from './blocks';
 export type { BaseBlock } from './blocks/base';
@@ -17,9 +17,9 @@ export enum Sections {
 }
 
 export type BlockSettings = {
-    [Sections.Main]?: DynamicSettingBlock[];
-    [Sections.Content]?: DynamicSettingBlock[];
-    [Sections.Layout]?: DynamicSettingBlock[];
-    [Sections.Style]?: DynamicSettingBlock[];
-    [Sections.Security]?: DynamicSettingBlock[];
+    [Sections.Main]?: SettingBlock[];
+    [Sections.Content]?: SettingBlock[];
+    [Sections.Layout]?: SettingBlock[];
+    [Sections.Style]?: SettingBlock[];
+    [Sections.Security]?: SettingBlock[];
 };

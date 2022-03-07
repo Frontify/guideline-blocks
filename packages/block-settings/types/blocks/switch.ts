@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DynamicSettingBlock } from '..';
+import { SettingBlock } from '..';
 import { BaseBlock } from './base';
 
 export type SwitchBlock = {
     type: 'switch';
     switchLabel?: string;
-    on?: DynamicSettingBlock[];
-    off?: DynamicSettingBlock[];
+    on?: SettingBlock[];
+    off?: SettingBlock[];
 } & BaseBlock<boolean>;
