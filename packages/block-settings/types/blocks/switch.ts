@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SettingBlock } from '..';
 import { BaseBlock } from './base';
+import { SettingBlock } from './index';
 
 export type SwitchBlock = {
     type: 'switch';
