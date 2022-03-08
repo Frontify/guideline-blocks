@@ -25,7 +25,7 @@ export * from './slider';
 export * from './switch';
 export * from './templateInput';
 
-export type SettingBlock =
+export type SimpleSettingBlock =
     | AssetInputBlock
     | ChecklistBlock
     | ColorInputBlock
@@ -37,3 +37,14 @@ export type SettingBlock =
     | SwitchBlock
     | TemplateInputBlock
     | NotificationBlock;
+
+export type DynamicSupportedBlock = InputBlock | ColorInputBlock | DropdownBlock;
+
+export type DynamicSettingBlock<T extends DynamicSupportedBlock = DynamicSupportedBlock> = Omit<T, 'value'> & {
+    value?: DynamicSupportedBlock['value'][];
+    dynamic: {
+        addButtonLabel: string;
+    };
+};
+
+export declare type SettingBlock = SimpleSettingBlock | DynamicSettingBlock;
