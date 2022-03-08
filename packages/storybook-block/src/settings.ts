@@ -7,6 +7,7 @@ import {
     getBorderRadiusSettings,
     getBorderSettings,
     maximumNumericalOrPixelOrAutoRule,
+    minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
@@ -69,7 +70,11 @@ const settings: BlockSettings = {
                     id: HEIGHT_VALUE_ID,
                     type: 'input',
                     placeholder: '400px',
-                    rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(5000)],
+                    rules: [
+                        numericalOrPixelRule,
+                        minimumNumericalOrPixelOrAutoRule(10),
+                        maximumNumericalOrPixelOrAutoRule(5000),
+                    ],
                     onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
                 },
             ],

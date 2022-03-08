@@ -163,7 +163,7 @@ const settings: BlockSettings = {
                             type: 'input',
                             placeholder: '100px',
                             clearable: false,
-                            rules: [numericalOrPixelRule],
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(10)],
                             onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
                         },
                     ],
