@@ -38,10 +38,10 @@ export type SimpleSettingBlock =
     | TemplateInputBlock
     | NotificationBlock;
 
-export type DynamicSupportedBlocks = InputBlock | ColorInputBlock | DropdownBlock;
+export type DynamicSupportedBlock = InputBlock | ColorInputBlock | DropdownBlock;
 
-export type DynamicSettingBlock<T extends DynamicSupportedBlocks = DynamicSupportedBlocks> = Omit<T, 'value'> & {
-    value?: DynamicSupportedBlocks['value'][];
+export type DynamicSettingBlock<T extends DynamicSupportedBlock = DynamicSupportedBlock> = Omit<T, 'value'> & {
+    value?: DynamicSupportedBlock['value'][];
     dynamic: {
         addButtonLabel: string;
     };
