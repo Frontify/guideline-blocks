@@ -23,6 +23,16 @@ const minimumNumericalRule = (min: number) => ({
     validate: (value: string) => !Number.isNaN(Number(value)) && Number(value) >= min,
 });
 
+const pitchRule = {
+    errorMessage: 'Value must be between -π/2 and π/2',
+    validate: (value: string) => !value || (!Number.isNaN(Number(value)) && Math.abs(Number(value)) <= Math.PI / 2),
+};
+
+const yawRule = {
+    errorMessage: 'Value must be between -π and π',
+    validate: (value: string) => !value || (!Number.isNaN(Number(value)) && Math.abs(Number(value)) <= Math.PI),
+};
+
 export const getUrlWithoutSearchParams = (url?: string) => {
     if (!url) {
         return '';
@@ -182,6 +192,12 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
         },
         {
+            id: 'startingSpin',
+            type: 'switch',
+            label: 'Starting Spin',
+            defaultValue: true,
+        },
+        {
             id: 'autoSpin',
             type: 'switch',
             label: 'Autospin',
@@ -223,8 +239,8 @@ const settings: BlockSettings & {
                             id: 'orbitConstraintPitchLimitsUp',
                             type: 'input',
                             inputType: TextInputType.Number,
-                            rules: [minimumNumericalRule(0)],
-                            placeholder: '20',
+                            rules: [pitchRule],
+                            placeholder: '1',
                             label: 'Up',
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                         },
@@ -232,9 +248,9 @@ const settings: BlockSettings & {
                             id: 'orbitConstraintPitchLimitsDown',
                             type: 'input',
                             inputType: TextInputType.Number,
-                            rules: [minimumNumericalRule(0)],
+                            rules: [pitchRule],
                             label: 'Down',
-                            placeholder: '20',
+                            placeholder: '-1',
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                         },
                     ],
@@ -257,19 +273,19 @@ const settings: BlockSettings & {
                             id: 'orbitConstraintYawLimitsLeft',
                             type: 'input',
                             inputType: TextInputType.Number,
-                            rules: [minimumNumericalRule(0)],
+                            rules: [yawRule],
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
-                            placeholder: '20',
+                            placeholder: '-2',
                             label: 'Left',
                         },
                         {
                             id: 'orbitConstraintYawLimitsRight',
                             type: 'input',
                             inputType: TextInputType.Number,
-                            rules: [minimumNumericalRule(0)],
+                            rules: [yawRule],
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                             label: 'Right',
-                            placeholder: '20',
+                            placeholder: '2',
                         },
                     ],
                 },

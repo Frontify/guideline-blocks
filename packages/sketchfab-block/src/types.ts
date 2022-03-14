@@ -8,8 +8,6 @@ export type Props = {
     appBridge: AppBridgeNative;
 };
 
-// removed starting spin
-
 export type Settings = {
     accountType: 'Basic' | 'Pro' | 'Premium';
     url: string;
@@ -36,6 +34,7 @@ export type Settings = {
     navigationMode: 'orbit' | 'fps';
     scrollWheel: boolean;
     doubleClick: boolean;
+    startingSpin: boolean;
     autoSpin: boolean;
     autoSpinCount: string;
     preventLightRotation: boolean;

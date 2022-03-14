@@ -45,7 +45,7 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
         isCustomHeight = false,
         height = SketchFabHeight.Medium,
         customHeight = '',
-        hasBorder = true,
+        hasBorder = false,
         borderColor = BORDER_COLOR_DEFAULT_VALUE,
         borderWidth = DEFAULT_BORDER_WIDTH,
         borderStyle = BorderStyle.Solid,
@@ -65,6 +65,7 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
         navigationMode = 'orbit',
         scrollWheel = true,
         doubleClick = true,
+        startingSpin = true,
         autoSpin = false,
         autoSpinCount = '0',
         preventLightRotation = false,
@@ -129,6 +130,7 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
                     api_log: apiLog && '1',
                     autospin: autoSpin && autoSpinCount,
                     autostart: autoStart && '1',
+                    camera: !startingSpin && '0',
                     dof_circle: !uiDOF && '0',
                     fps_speed: fps && fpsValue,
                     max_texture_size: textureSize && textureSizeValue,
@@ -137,7 +139,7 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
                     scrollwheel: !scrollWheel && '0',
                     ui_stop: !uiDisableViewer && '0',
                     ui_theme: uiTheme === 'dark' && uiTheme,
-                    tranparent: accountType !== 'Basic' && transparentBackground && '1',
+                    transparent: accountType !== 'Basic' && transparentBackground && '1',
                     double_click: accountType !== 'Basic' && !doubleClick && '0',
                     orbit_constraint_pan: accountType !== 'Basic' && orbitConstraintPan && '1',
                     orbit_constraint_pitch_down:
@@ -170,7 +172,7 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
                     ui_ar_help: accountType === 'Premium' && !uiAR && '0',
                     ui_ar_qrcode: accountType === 'Premium' && !uiQR && '0',
                     ui_watermark: accountType === 'Premium' && !uiWatermark && '0',
-                    ui_color: accountType === 'Premium' && toHex8String(uiColor).slice(1),
+                    ui_color: accountType === 'Premium' && toHex8String(uiColor).slice(1, 7),
                     dnt: !viewersTracking && '1',
                 })
             );
@@ -204,7 +206,7 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
                             className="tw-flex tw-flex-col tw-items-center tw-bg-black-5 tw-p-20 tw-gap-8"
                             data-test-id="storybook-empty-wrapper"
                         >
-                            <Text color="x-weak">Enter a URL to your 3D model from Sketchfab or Vectary.</Text>
+                            <Text color="x-weak">Enter a URL to your 3D model from Sketchfab.</Text>
                             <div className="tw-text-text-x-weak tw-flex tw-items-center tw-gap-3 tw-w-full tw-justify-center">
                                 <div className="tw-flex-none">
                                     <IconExternalAsset size={IconSize.Size32} />
