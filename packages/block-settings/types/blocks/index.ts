@@ -5,6 +5,7 @@ import { ChecklistBlock } from './checklist';
 import { ColorInputBlock } from './colorInput';
 import { DropdownBlock } from './dropdown';
 import { InputBlock } from './input';
+import { LinkChooserBlock } from './linkChooser';
 import { MultiInputBlock } from './multiInput';
 import { NotificationBlock } from './notification';
 import { SectionHeadingBlock } from './sectionHeading';
@@ -18,6 +19,7 @@ export * from './choices';
 export * from './colorInput';
 export * from './dropdown';
 export * from './input';
+export * from './linkChooser';
 export * from './multiInput';
 export * from './notification';
 export * from './sectionHeading';
@@ -36,7 +38,8 @@ export type SimpleSettingBlock =
     | SliderBlock
     | SwitchBlock
     | TemplateInputBlock
-    | NotificationBlock;
+    | NotificationBlock
+    | LinkChooserBlock;
 
 export type DynamicSupportedBlock = InputBlock | ColorInputBlock | DropdownBlock;
 
