@@ -6,6 +6,7 @@ import { ColorInputBlock } from './colorInput';
 import { DropdownBlock } from './dropdown';
 import { InputBlock } from './input';
 import { LinkChooserBlock } from './linkChooser';
+import { MultiAssetInputBlock } from './multiAssetInput';
 import { MultiInputBlock } from './multiInput';
 import { NotificationBlock } from './notification';
 import { SectionHeadingBlock } from './sectionHeading';
@@ -20,6 +21,7 @@ export * from './colorInput';
 export * from './dropdown';
 export * from './input';
 export * from './linkChooser';
+export * from './multiAssetInput';
 export * from './multiInput';
 export * from './notification';
 export * from './sectionHeading';
@@ -39,6 +41,7 @@ export type SimpleSettingBlock =
     | SwitchBlock
     | TemplateInputBlock
     | NotificationBlock
+    | MultiAssetInputBlock
     | LinkChooserBlock;
 
 export type DynamicSupportedBlock = InputBlock | ColorInputBlock | DropdownBlock;

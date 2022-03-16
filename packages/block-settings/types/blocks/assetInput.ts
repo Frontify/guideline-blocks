@@ -21,7 +21,6 @@ export type AssetInputValue = {
 
 export type AssetInputBlock = {
     type: 'assetInput';
-    multiSelection?: boolean;
     extensions?: FileExtension[];
     projectTypes?: AssetChooserProjectType[];
     objectTypes?: AssetChooserObjectType[];
