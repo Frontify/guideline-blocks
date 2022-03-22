@@ -12,4 +12,4 @@ export type LinkChooserBlock = {
     clearable?: boolean;
     required?: boolean;
     validation?: Validation;
-} & BaseBlock<{ link?: SearchResult | null; openInNewTab: boolean | null }>;
+} & BaseBlock<{ link: SearchResult | null; openInNewTab: boolean | null }>;
