@@ -5,7 +5,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "serve:block": "frontify-cli block serve --contentBlockPath .",
+        "serve": "frontify-cli block serve --contentBlockPath .",
+        "deploy": "frontify-cli block deploy --contentBlockPath .",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
         "prettier": "prettier --check src",
