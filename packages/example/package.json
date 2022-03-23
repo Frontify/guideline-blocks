@@ -5,7 +5,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "serve:block": "frontify-cli block serve --blockDir $(PWD)",
+        "serve:block": "frontify-cli block serve --contentBlockPath .",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
         "prettier": "prettier --check src",
@@ -15,7 +15,7 @@
     "devDependencies": {
         "@cypress/react": "5.10.3",
         "@frontify/eslint-config-react": "0.13.2",
-        "@frontify/frontify-cli": "2.4.0",
+        "@frontify/frontify-cli": "3.0.2",
         "@frontify/guideline-blocks-settings": "*",
         "@types/react": "17.0.37",
         "autoprefixer": "10.4.0",
