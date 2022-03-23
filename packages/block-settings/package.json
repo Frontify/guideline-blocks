@@ -15,6 +15,7 @@
     "author": "Frontify Developers <developers@frontify.com>",
     "scripts": {
         "build": "tsc",
+        "deploy": "npm publish",
         "lint": "eslint types",
         "lint:fix": "eslint --fix types",
         "prettier": "prettier --check types",
