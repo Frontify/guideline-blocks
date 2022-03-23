@@ -15,7 +15,7 @@
     "devDependencies": {
         "@cypress/react": "5.10.3",
         "@frontify/eslint-config-react": "0.13.2",
-        "@frontify/frontify-cli": "3.0.2",
+        "@frontify/frontify-cli": "3.0.3",
         "@frontify/guideline-blocks-settings": "*",
         "@types/lodash-es": "4.17.5",
         "@types/react": "17.0.37",
