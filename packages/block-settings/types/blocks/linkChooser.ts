@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Validation } from '@frontify/arcade';
+import { SearchResult, Validation } from '@frontify/arcade';
 import { BaseBlock } from './base';
 
 export type LinkChooserBlock = {
@@ -12,4 +12,4 @@ export type LinkChooserBlock = {
     clearable?: boolean;
     required?: boolean;
     validation?: Validation;
-} & BaseBlock<{ link: string | null; openInNewTab: boolean | null }>;
+} & BaseBlock<{ link: SearchResult | null; openInNewTab: boolean | null }>;
