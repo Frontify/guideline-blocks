@@ -2,21 +2,21 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
-import { joinClassNames, Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
-import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
+import { Radius, joinClassNames, radiusStyleMap } from '@frontify/guideline-blocks-shared';
+import { CSSProperties, FC, createRef, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import {
     Alignment,
-    alignmentMap,
     BlockSettings,
     CalloutBlockProps,
     CustomPaddingStyles,
-    outerWidthMap,
     Padding,
-    paddingMap,
     Type,
-    typeMap,
     Width,
+    alignmentMap,
+    outerWidthMap,
+    paddingMap,
+    typeMap,
 } from './types';
 
 const getInnerDivClassName = (
@@ -96,6 +96,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                 setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [blockSettings]);
 
     const onTextChange = (value: string): Promise<void> => setBlockSettings({ textValue: value });

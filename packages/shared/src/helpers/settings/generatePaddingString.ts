@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 export const generatePaddingString = (paddingSpiderInput: (string | null)[]): string => {
-    if (!paddingSpiderInput.length) {
+    if (paddingSpiderInput.length === 0) {
         return '0px';
     }
     const [top, left, right, bottom] = paddingSpiderInput;

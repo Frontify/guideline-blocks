@@ -24,6 +24,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
         if (!isEqual(newSettings, blockSettings)) {
             setBlockSettings(newSettings);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onTextChange = (value: string, index: number) => {

@@ -10,16 +10,16 @@ import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
-    borderRadiusClasses,
     BorderSelectionType,
-    borderStyles,
-    heights,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
+    borderRadiusClasses,
+    borderStyles,
+    heights,
 } from './types';
 
 const DEFAULT_BORDER_WIDTH = '1px';
@@ -92,6 +92,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         } else if (url === '') {
             deleteUrl();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url, style, positioning]);
 
     return (

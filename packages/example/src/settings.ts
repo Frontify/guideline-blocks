@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, DropdownSize } from '@frontify/arcade';
+import { DropdownSize, IconEnum } from '@frontify/arcade';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
 const settings: BlockSettings = {

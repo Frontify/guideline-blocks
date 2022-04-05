@@ -1,7 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
 import { DropdownSize, IconEnum } from '@frontify/arcade';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
@@ -109,5 +107,4 @@ const settings: BlockSettings = {
     ],
 };
 
-// eslint-disable-next-line import/no-default-export
 export default settings;
