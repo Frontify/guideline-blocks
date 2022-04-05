@@ -124,7 +124,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         );
     };
 
-    const shouldShowProgress = !!content.length && progressBarVisible;
+    const shouldShowProgress = content.length > 0 && progressBarVisible;
 
     const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
 
@@ -182,7 +182,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                         </Button>
                     </div>
                     <div className="tw-mt-3" data-test-id="checklist-container">
-                        {!!displayableItems.length && (
+                        {displayableItems.length > 0 && (
                             <OrderableList
                                 items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
                                 onMove={onMove}

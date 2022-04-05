@@ -13,11 +13,11 @@ import {
 import {
     DividerAlignment,
     DividerHeight,
-    dividerHeightValues,
     DividerStyle,
     DividerThickness,
-    dividerThicknessValues,
     DividerWidth,
+    dividerHeightValues,
+    dividerThicknessValues,
 } from './types';
 
 const IS_LINE_ID = 'isLine';
@@ -269,5 +269,4 @@ const settings: BlockSettings = {
     ],
 };
 
-// eslint-disable-next-line import/no-default-export
 export default settings;

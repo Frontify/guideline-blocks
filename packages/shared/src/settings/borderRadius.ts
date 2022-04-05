@@ -19,7 +19,7 @@ type BorderRadiusSettingsType = {
 };
 
 export const getBorderRadiusSlider = (id: string): SettingBlock => ({
-    id: id,
+    id,
     type: 'slider',
     defaultValue: Radius.None,
     choices: [

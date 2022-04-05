@@ -38,7 +38,9 @@ const createContentArray = (length: number, fixedParams?: Partial<ChecklistConte
         item.completed = Math.random() > 0.5;
         return { ...item, ...fixedParams };
     };
-    return new Array(length).fill(0).map(() => createRandomItem(fixedParams));
+    return Array.from({ length })
+        .fill(0)
+        .map(() => createRandomItem(fixedParams));
 };
 
 const testSettings: Settings = {

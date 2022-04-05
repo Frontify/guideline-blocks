@@ -10,13 +10,13 @@ import {
     ContentWithAuthorProps,
     LineType,
     LineWidth,
-    lineWidthMap,
     Props,
     QuoteSize,
-    quoteSizeMap,
     QuoteStyle,
     QuoteType,
     Settings,
+    lineWidthMap,
+    quoteSizeMap,
 } from './types';
 import { quoteIconMap } from './utilities';
 
