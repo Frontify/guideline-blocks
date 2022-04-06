@@ -3,7 +3,9 @@
 import { MultiInputLayout } from '@frontify/arcade';
 import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
 import { BorderStyle } from './types';
-import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '..';
+import { appendUnit } from '../helpers/settings/appendUnit';
+import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
+import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNumericalOrPixelOrAutoRule';
 import { BORDER_COLOR_DEFAULT_VALUE, BORDER_WIDTH_DEFAULT_VALUE } from './defaultValues';
 
 /**

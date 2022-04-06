@@ -2,8 +2,10 @@
 
 import { MultiInputLayout } from '@frontify/arcade';
 import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
-import { radiusStyleMap } from '.';
-import { appendUnit, numericalOrPixelRule, presetCustomValue } from '..';
+import { radiusStyleMap } from './types';
+import { appendUnit } from '../helpers/settings/appendUnit';
+import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
+import { presetCustomValue } from '../helpers/settings/presetCustomValue';
 import { getBorderRadiusSlider } from './borderRadius';
 
 /**

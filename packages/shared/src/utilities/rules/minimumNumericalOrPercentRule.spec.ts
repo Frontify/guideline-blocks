@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { minimumNumericalOrPercentRule } from '.';
+import { minimumNumericalOrPercentRule } from './minimumNumericalOrPercentRule';
 
 describe('minimumNumericalOrPercentRule', () => {
     const data = [
