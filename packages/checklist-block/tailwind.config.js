@@ -1,8 +1,6 @@
-const arcadeTailwindConfig = require('@frontify/arcade/config').tailwindConfig;
-const tailwindConfig = arcadeTailwindConfig({
+module.exports = {
+    presets: [require('@frontify/arcade/tailwind')],
     corePlugins: {
         preflight: false,
     },
-});
-delete tailwindConfig.plugins;
-module.exports = tailwindConfig;
+};

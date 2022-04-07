@@ -1,20 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    ButtonGroup,
-    ButtonSize,
-    FocusController,
-    IconCaretDown,
-    IconCaretUp,
-    IconReject,
-    ItemDragState,
-} from '@frontify/arcade';
+import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconReject, ItemDragState } from '@frontify/arcade';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { getInteractionModality, useFocusWithin, useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
 import { ChecklistItemMode, ChecklistItemProps } from '../types';
 import { Checkbox } from './Checkbox';
 import { ChecklistButton } from './ChecklistButton';
+import { FocusController } from './FocusController';
 import { TextEditor } from './TextEditor';
 
 const DefaultChecklistItem = {
