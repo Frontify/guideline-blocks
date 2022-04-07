@@ -26,4 +26,5 @@ export type AssetInputBlock = {
     projectTypes?: AssetChooserProjectType[];
     objectTypes?: AssetChooserObjectType[];
     mode?: AssetInputMode;
+    isLegacyApi?: boolean;
 } & BaseBlock<AssetInputValue | AssetInputValue['value']>;
