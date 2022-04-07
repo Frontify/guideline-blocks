@@ -3,7 +3,6 @@
 import TextBlock from '.';
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import { describe } from 'vitest';
 
 const TextBlockSelector = '[data-test-id="text-block"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
