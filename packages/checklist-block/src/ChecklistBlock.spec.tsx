@@ -2,7 +2,7 @@
 
 import { mount } from '@cypress/react';
 import { Padding, paddingStyleMap, toRgbaString, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import ChecklistBlock from '.';
+import { ChecklistBlock } from './ChecklistBlock';
 import { createItem } from './helpers';
 import {
     ChecklistContent,

@@ -2,6 +2,7 @@
 
 import { Bundle, SettingValue } from '@frontify/guideline-blocks-settings';
 import { presetCustomValue } from './presetCustomValue';
+import { describe, expect, test, vi } from 'vitest';
 
 const exampleMap: Record<string, string> = {
     small: '10px',
@@ -15,7 +16,7 @@ describe('presetCustomValue', () => {
         const INPUT_ID = 'inputId';
 
         const bundle: Bundle = {
-            getBlock(id): SettingValue | null {
+            getBlock(id: string): SettingValue | null {
                 if (id === SLIDER_ID) {
                     return { value: 'large' };
                 } else if (id === INPUT_ID) {
@@ -27,7 +28,7 @@ describe('presetCustomValue', () => {
             setBlockValue(): void {},
         };
 
-        const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
+        const setBlockValueSpy = vi.spyOn(bundle, 'setBlockValue');
         presetCustomValue(bundle, SLIDER_ID, INPUT_ID, exampleMap);
 
         expect(setBlockValueSpy).toHaveBeenCalledWith(INPUT_ID, '30px');
@@ -50,7 +51,7 @@ describe('presetCustomValue', () => {
             setBlockValue(): void {},
         };
 
-        const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
+        const setBlockValueSpy = vi.spyOn(bundle, 'setBlockValue');
         presetCustomValue(bundle, SLIDER_ID, INPUT_ID, exampleMap);
 
         expect(setBlockValueSpy).not.toHaveBeenCalled();

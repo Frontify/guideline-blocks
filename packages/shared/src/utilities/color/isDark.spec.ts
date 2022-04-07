@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { isDark } from './isDark';
+import { describe, expect, test } from 'vitest';
 
 describe('isDark', () => {
     const data = [
@@ -9,7 +10,7 @@ describe('isDark', () => {
         { color: { r: 130, g: 95, b: 255 }, expected: true },
     ];
 
-    it.each(data)('validate correctly values', ({ color, expected }) => {
+    test.each(data)('validate correctly values', ({ color, expected }) => {
         expect(isDark(color)).toBe(expected);
     });
 });

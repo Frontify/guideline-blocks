@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { numericalOrPercentRule } from './numericalOrPercentRule';
+import { describe, expect, test } from 'vitest';
 
 describe('numericalOrPercentRule', () => {
     const data = [
@@ -25,7 +26,7 @@ describe('numericalOrPercentRule', () => {
         { value: 'rem', expected: false },
     ];
 
-    it.each(data)('validate correctly values (value $value, expected $expected)', ({ value, expected }) => {
+    test.each(data)('validate correctly values (value $value, expected $expected)', ({ value, expected }) => {
         expect(numericalOrPercentRule.validate(value)).toBe(expected);
     });
 });

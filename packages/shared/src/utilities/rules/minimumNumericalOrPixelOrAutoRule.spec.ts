@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { minimumNumericalOrPixelOrAutoRule } from './minimumNumericalOrPixelOrAutoRule';
+import { describe, expect, test } from 'vitest';
 
 describe('minimumNumericalOrPixelOrAutoRule', () => {
     const data = [
@@ -25,7 +26,7 @@ describe('minimumNumericalOrPixelOrAutoRule', () => {
         { minimumValue: 5, value: 'rem', expected: false },
     ];
 
-    it.each(data)(
+    test.each(data)(
         'validate correctly values (minimum value $minimumValue, value $value, expected $expected)',
         ({ minimumValue, value, expected }) => {
             const rule = minimumNumericalOrPixelOrAutoRule(minimumValue);

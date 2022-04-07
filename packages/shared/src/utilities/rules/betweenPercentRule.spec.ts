@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { betweenPercentRule } from './betweenPercentRule';
+import { describe, expect, test } from 'vitest';
 
 describe('betweenPercentRule', () => {
     const data = [
@@ -26,7 +27,7 @@ describe('betweenPercentRule', () => {
         { a: 1, b: 5, value: '-1%', expected: false },
     ];
 
-    it.each(data)('validate correctly values ($a $b $value $expected)', ({ a, b, value, expected }) => {
+    test.each(data)('validate correctly values ($a $b $value $expected)', ({ a, b, value, expected }) => {
         const rule = betweenPercentRule(a, b);
         expect(rule.validate(value)).toBe(expected);
     });
