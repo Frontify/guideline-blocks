@@ -1,8 +1,7 @@
 {
     "video": false,
     "component": {
-        "testFiles": "*/src/**/*.spec.{ts,tsx}",
-        "ignoreTestFiles": "**/shared/**/*.spec.{ts,tsx}",
+        "testFiles": "*/src/**/*.spec.ct.{ts,tsx}",
         "componentFolder": "packages",
         "viewportHeight": 1280,
         "viewportWidth": 800
