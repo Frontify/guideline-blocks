@@ -24,70 +24,72 @@ const EXAMPLE_COLOR_DARK = {
     name: 'St Tropaz',
 };
 
-it('renders a personal note block', () => {
-    const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {});
+describe('Personal Note Block', () => {
+    it('renders a personal note block', () => {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {});
 
-    mount(<PersonalNoteBlockWithStubs />);
-    cy.get(PersonalNoteBlockSelector).should('exist');
-});
-
-it('write content to personal note block', () => {
-    const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, { editorState: true });
-
-    mount(<PersonalNoteBlockWithStubs />);
-    cy.get(RichTextEditor).find('[contenteditable=true]').type('Hello world').blur();
-    cy.get(RichTextEditor).find('[contenteditable=true]').contains('Hello world');
-});
-
-it('renders personal note block without header', () => {
-    const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
-        blockSettings: {
-            hasAvatarName: false,
-            hasDateEdited: false,
-        },
+        mount(<PersonalNoteBlockWithStubs />);
+        cy.get(PersonalNoteBlockSelector).should('exist');
     });
 
-    mount(<PersonalNoteBlockWithStubs />);
-    cy.get(PersonalNoteHeader).should('not.exist');
-});
+    it('write content to personal note block', () => {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, { editorState: true });
 
-it('renders personal note block with dark background and light text color', () => {
-    const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
-        blockSettings: {
-            hasBackground: true,
-            backgroundColor: EXAMPLE_COLOR_DARK,
-        },
+        mount(<PersonalNoteBlockWithStubs />);
+        cy.get(RichTextEditor).find('[contenteditable=true]').type('Hello world').blur();
+        cy.get(RichTextEditor).find('[contenteditable=true]').contains('Hello world');
     });
 
-    mount(<PersonalNoteBlockWithStubs />);
-    cy.get(PersonalNoteBlockSelector).should('have.css', 'background-color', 'rgb(46, 95, 159)');
-    cy.get(PersonalNoteBlockSelector).should('have.class', 'tw-text-white');
-});
+    it('renders personal note block without header', () => {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
+            blockSettings: {
+                hasAvatarName: false,
+                hasDateEdited: false,
+            },
+        });
 
-it('renders personal note block with correct styling', () => {
-    const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
-        blockSettings: {
-            hasRadius: true,
-            radiusValue: '5px',
-            borderStyle: BorderStyle.Dashed,
-            borderWidth: '2px',
-            borderColor: EXAMPLE_COLOR,
-        },
+        mount(<PersonalNoteBlockWithStubs />);
+        cy.get(PersonalNoteHeader).should('not.exist');
     });
 
-    mount(<PersonalNoteBlockWithStubs />);
-    cy.get(PersonalNoteBlockSelector).should('have.css', 'border-style', 'dashed');
-    cy.get(PersonalNoteBlockSelector).should('have.css', 'border-width', '2px');
-    cy.get(PersonalNoteBlockSelector).should('have.css', 'border-color', 'rgb(22, 181, 181)');
-    cy.get(PersonalNoteBlockSelector).should('have.css', 'border-radius', '5px');
-});
+    it('renders personal note block with dark background and light text color', () => {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
+            blockSettings: {
+                hasBackground: true,
+                backgroundColor: EXAMPLE_COLOR_DARK,
+            },
+        });
 
-it('does not render personal note block if permissions are set to editors only', () => {
-    const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
-        editorState: false,
-        blockSettings: { visibility: 'Editors' },
+        mount(<PersonalNoteBlockWithStubs />);
+        cy.get(PersonalNoteBlockSelector).should('have.css', 'background-color', 'rgb(46, 95, 159)');
+        cy.get(PersonalNoteBlockSelector).should('have.class', 'tw-text-white');
     });
 
-    mount(<PersonalNoteBlockWithStubs />);
-    cy.get(PersonalNoteBlockSelector).should('not.exist');
+    it('renders personal note block with correct styling', () => {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
+            blockSettings: {
+                hasRadius: true,
+                radiusValue: '5px',
+                borderStyle: BorderStyle.Dashed,
+                borderWidth: '2px',
+                borderColor: EXAMPLE_COLOR,
+            },
+        });
+
+        mount(<PersonalNoteBlockWithStubs />);
+        cy.get(PersonalNoteBlockSelector).should('have.css', 'border-style', 'dashed');
+        cy.get(PersonalNoteBlockSelector).should('have.css', 'border-width', '2px');
+        cy.get(PersonalNoteBlockSelector).should('have.css', 'border-color', 'rgb(22, 181, 181)');
+        cy.get(PersonalNoteBlockSelector).should('have.css', 'border-radius', '5px');
+    });
+
+    it('does not render personal note block if permissions are set to editors only', () => {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
+            editorState: false,
+            blockSettings: { visibility: 'Editors' },
+        });
+
+        mount(<PersonalNoteBlockWithStubs />);
+        cy.get(PersonalNoteBlockSelector).should('not.exist');
+    });
 });

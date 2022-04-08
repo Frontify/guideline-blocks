@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { generatePaddingString } from './generatePaddingString';
+import { describe, expect, test } from 'vitest';
 
 describe('generatePaddingString', () => {
     test('It should return the padding spider array as a sorted padding string', () => {

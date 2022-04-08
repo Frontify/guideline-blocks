@@ -10,7 +10,7 @@
         "jsx": "react-jsx",
         "skipLibCheck": true,
         "resolveJsonModule": true,
-        "types": ["jest", "cypress"],
+        "types": ["cypress"],
         "outDir": "dist"
     },
     "include": ["src/**/*"],

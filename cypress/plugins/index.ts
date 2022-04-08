@@ -1,8 +1,10 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import path from "path";
 import { startDevServer } from "@cypress/vite-dev-server";
 
 const pluginConfig: Cypress.PluginConfig = (on, config) => {
-    on("dev-server:start", async (options) =>
+    on("dev-server:start", (options) =>
         startDevServer({
             options,
             viteConfig: {
@@ -10,7 +12,7 @@ const pluginConfig: Cypress.PluginConfig = (on, config) => {
                     __dirname,
                     "..",
                     "..",
-                    "vite.test.config.ts"
+                    "vite.config.ts"
                 ),
             },
         })

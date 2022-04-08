@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { toHex8String } from './toHex8String';
+import { describe, expect, test } from 'vitest';
 
 describe('toHex8String', () => {
     const data = [
@@ -10,7 +11,7 @@ describe('toHex8String', () => {
         { color: { r: 238, g: 35, b: 84, a: 0.4 }, expected: '#ee235466' },
     ];
 
-    it.each(data)('validates against expected values', ({ color, expected }) => {
+    test.each(data)('validates against expected values', ({ color, expected }) => {
         expect(toHex8String(color)).toBe(expected);
     });
 });

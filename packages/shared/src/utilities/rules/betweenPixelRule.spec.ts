@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { betweenPixelRule } from './betweenPixelRule';
+import { describe, expect, test } from 'vitest';
 
 describe('betweenPixelRule', () => {
     const data = [
@@ -21,7 +22,7 @@ describe('betweenPixelRule', () => {
         { a: 1, b: 5, value: 'auto', expected: false },
     ];
 
-    it.each(data)('validate correctly values', ({ a, b, value, expected }) => {
+    test.each(data)('validate correctly values', ({ a, b, value, expected }) => {
         const rule = betweenPixelRule(a, b);
         expect(rule.validate(value)).toBe(expected);
     });

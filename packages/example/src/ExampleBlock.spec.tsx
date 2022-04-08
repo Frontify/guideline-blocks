@@ -6,9 +6,11 @@ import ExampleBlock from '.';
 
 const ExampleBlockSelector = '[data-test-id="example-block"]';
 
-it('renders an example block', () => {
-    const [ExampleBlockWithStubs] = withAppBridgeStubs(ExampleBlock, {});
+describe('Example Block', () => {
+    it('renders an example block', () => {
+        const [ExampleBlockWithStubs] = withAppBridgeStubs(ExampleBlock, {});
 
-    mount(<ExampleBlockWithStubs />);
-    cy.get(ExampleBlockSelector).should('exist');
+        mount(<ExampleBlockWithStubs />);
+        cy.get(ExampleBlockSelector).should('exist');
+    });
 });
