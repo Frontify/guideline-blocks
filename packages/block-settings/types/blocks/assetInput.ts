@@ -19,6 +19,11 @@ export type AssetInputValue = {
     value: number;
 };
 
+export enum ApiType {
+    FileUpload = 'FileUpload',
+    BlockAssets = 'BlockAssets',
+}
+
 export type AssetInputBlock = {
     type: 'assetInput';
     multiSelection?: boolean;
@@ -26,5 +31,5 @@ export type AssetInputBlock = {
     projectTypes?: AssetChooserProjectType[];
     objectTypes?: AssetChooserObjectType[];
     mode?: AssetInputMode;
-    isLegacyApi?: boolean;
+    api?: ApiType;
 } & BaseBlock<AssetInputValue | AssetInputValue['value']>;
