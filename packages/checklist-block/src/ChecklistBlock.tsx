@@ -21,7 +21,7 @@ import {
     toHex8String,
 } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { GridNode } from '@react-types/grid';
+import { chain } from '@react-aria/utils';
 import { ItemDropTarget } from '@react-types/shared';
 import { FC, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -93,19 +93,19 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         setBlockSettings({ ...blockSettings, content: reorderList(content, index, index + positionChange) });
     };
     const renderChecklistItem = (
-        { value, prevKey, nextKey }: GridNode<OrderableListItem<ChecklistContent>>,
+        { text, id, sort, completed, updatedAt }: OrderableListItem<ChecklistContent>,
         { componentDragState, isFocusVisible }: DragProperties
     ) => {
         const content = (
             <ChecklistItem
-                item={value}
-                key={value.id}
+                item={{ text, id, completed, updatedAt }}
+                key={id}
                 isDragFocusVisible={isFocusVisible}
-                isFirst={!prevKey}
-                isLast={!nextKey}
+                isFirst={sort === 0}
+                isLast={sort === displayableItems.length - 1}
                 mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
                 toggleCompleted={(completed: boolean) =>
-                    updateItem(value.id, {
+                    updateItem(id, {
                         completed,
                         updatedAt: Date.now(),
                     })
@@ -113,7 +113,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 dragState={componentDragState}
                 onMoveItem={moveByIncrement}
                 onRemoveItem={removeItem}
-                onTextModified={(text) => updateItem(value.id, { text })}
+                onTextModified={(text) => updateItem(id, { text })}
             />
         );
         // Preview is rendered in external DOM, requires own context provider
@@ -127,6 +127,18 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const shouldShowProgress = content.length > 0 && progressBarVisible;
 
     const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
+
+    const handleMove = (modifiedItems: ChecklistContent[]) => {
+        const modifiedArray = displayableItems.map((item) => {
+            const matchingModifiedItem = modifiedItems.find((modifiedItem) => modifiedItem.id === item.id);
+            if (matchingModifiedItem) {
+                return { ...matchingModifiedItem };
+            }
+
+            return { ...item };
+        });
+        setBlockSettings({ ...blockSettings, content: modifiedArray });
+    };
 
     return (
         <SettingsContext.Provider value={settings}>
@@ -184,11 +196,18 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     <div className="tw-mt-3" data-test-id="checklist-container">
                         {displayableItems.length > 0 && (
                             <OrderableList
-                                items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
-                                onMove={onMove}
-                                disableTypeAhead
+                                items={displayableItems.map((item, index) => ({
+                                    key: item.id,
+                                    completed: item.completed,
+                                    sort: index,
+                                    text: item.text,
+                                    updatedAt: item.updatedAt,
+                                    alt: item.text,
+                                    id: item.id,
+                                }))}
                                 dragDisabled={!isEditing}
                                 renderContent={renderChecklistItem}
+                                onMove={chain(handleMove, onMove)}
                             />
                         )}
                     </div>
