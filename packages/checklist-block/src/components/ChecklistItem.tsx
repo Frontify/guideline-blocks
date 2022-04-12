@@ -97,7 +97,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                 <div
                     className={joinClassNames([
                         'tw-flex-none tw-flex tw-items-center',
-                        shouldDisplayControlPanel ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none',
+                        shouldDisplayControlPanel ? 'tw-opacity-1' : 'tw-opacity-0',
                     ])}
                     data-test-id="control-buttons"
                 >

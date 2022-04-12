@@ -129,7 +129,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
 
     const handleMove = (modifiedItems: ChecklistContent[]) => {
-        const modifiedArray = displayableItems.map((item) => {
+        const modifiedArray = displayableItems.map((item: ChecklistContent) => {
             const matchingModifiedItem = modifiedItems.find((modifiedItem) => modifiedItem.id === item.id);
             if (matchingModifiedItem) {
                 return { ...matchingModifiedItem };
@@ -196,7 +196,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     <div className="tw-mt-3" data-test-id="checklist-container">
                         {displayableItems.length > 0 && (
                             <OrderableList
-                                items={displayableItems.map((item, index) => ({
+                                items={displayableItems.map((item: ChecklistContent, index: number) => ({
                                     key: item.id,
                                     completed: item.completed,
                                     sort: index,
