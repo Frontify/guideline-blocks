@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
+import { OrderableListItem } from '@frontify/arcade';
 import { Padding, paddingStyleMap, toRgbaString, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import { ChecklistBlock } from './ChecklistBlock';
 import { createItem } from './helpers';
@@ -32,11 +33,12 @@ const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 const DRAGGABLE_ITEM = '[data-test-id=draggable-item]';
 const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
 
-const createContentArray = (length: number, fixedParams?: Partial<ChecklistContent>) => {
-    const createRandomItem = (fixedParams?: Partial<ChecklistContent>) => {
+const createContentArray = (length: number, fixedParams?: Partial<OrderableListItem<ChecklistContent>>) => {
+    const createRandomItem = (fixedParams?: Partial<OrderableListItem<ChecklistContent>>) => {
         const item = createItem('text');
+
         item.completed = Math.random() > 0.5;
-        return { ...item, ...fixedParams };
+        return { ...item, ...fixedParams, key: item.id };
     };
     return Array.from({ length })
         .fill(0)
@@ -247,7 +249,7 @@ describe('Checklist Block', () => {
         cy.get(INSERTION_INDICATOR).should('have.length', 0);
     });
 
-    it('Disables Up arrow if first item and Down arrow if last item', () => {
+    it.only('Disables Up arrow if first item and Down arrow if last item', () => {
         const content = createContentArray(3);
         const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
             blockSettings: { content },

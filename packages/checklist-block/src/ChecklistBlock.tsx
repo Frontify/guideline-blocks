@@ -21,8 +21,6 @@ import {
     toHex8String,
 } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { chain } from '@react-aria/utils';
-import { ItemDropTarget } from '@react-types/shared';
 import { FC, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { ChecklistItem } from './components/ChecklistItem';
@@ -34,7 +32,6 @@ import {
     createItem,
     filterCompleteItems,
     findIndexById,
-    findIndexesForMove,
     updateItemById,
 } from './helpers';
 import { SettingsContext } from './SettingsContext';
@@ -83,19 +80,16 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
 
     const toggleCompletedVisibility = () => setShowCompleted((prev) => !prev);
 
-    const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
-        const [oldIndex, newIndex] = findIndexesForMove(content, selectedGridItemKeys, gridItemLocation);
-        setBlockSettings({ ...blockSettings, content: reorderList(content, oldIndex, newIndex) });
-    };
-
     const moveByIncrement = (id: string, positionChange: number) => {
         const index = findIndexById(content, id);
         setBlockSettings({ ...blockSettings, content: reorderList(content, index, index + positionChange) });
     };
+
     const renderChecklistItem = (
         { text, id, sort, completed, updatedAt }: OrderableListItem<ChecklistContent>,
         { componentDragState, isFocusVisible }: DragProperties
     ) => {
+        console.log('text', text);
         const content = (
             <ChecklistItem
                 item={{ text, id, completed, updatedAt }}
@@ -128,8 +122,9 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
 
     const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
 
-    const handleMove = (modifiedItems: ChecklistContent[]) => {
-        const modifiedArray = displayableItems.map((item: ChecklistContent) => {
+    const handleMove = (modifiedItems: OrderableListItem<ChecklistContent>[]) => {
+        console.log('modifiedItems', modifiedItems);
+        const modifiedArray = displayableItems.map((item) => {
             const matchingModifiedItem = modifiedItems.find((modifiedItem) => modifiedItem.id === item.id);
             if (matchingModifiedItem) {
                 return { ...matchingModifiedItem };
@@ -137,6 +132,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
 
             return { ...item };
         });
+        console.log('modifiedArray', modifiedArray);
         setBlockSettings({ ...blockSettings, content: modifiedArray });
     };
 
@@ -196,18 +192,24 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     <div className="tw-mt-3" data-test-id="checklist-container">
                         {displayableItems.length > 0 && (
                             <OrderableList
-                                items={displayableItems.map((item: ChecklistContent, index: number) => ({
-                                    key: item.id,
-                                    completed: item.completed,
-                                    sort: index,
-                                    text: item.text,
-                                    updatedAt: item.updatedAt,
-                                    alt: item.text,
-                                    id: item.id,
-                                }))}
+                                items={displayableItems.map(
+                                    (item: OrderableListItem<ChecklistContent>, index: number) => {
+                                        console.log(item);
+
+                                        return {
+                                            key: item.id,
+                                            completed: item.completed,
+                                            sort: item.sort !== undefined ? item.sort : index,
+                                            text: item.text,
+                                            updatedAt: item.updatedAt,
+                                            alt: item.text,
+                                            id: item.id,
+                                        };
+                                    }
+                                )}
                                 dragDisabled={!isEditing}
                                 renderContent={renderChecklistItem}
-                                onMove={chain(handleMove, onMove)}
+                                onMove={handleMove}
                             />
                         )}
                     </div>
