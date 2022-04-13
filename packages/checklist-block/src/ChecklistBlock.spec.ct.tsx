@@ -35,7 +35,7 @@ const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
 
 const createContentArray = (length: number, fixedParams?: Partial<OrderableListItem<ChecklistContent>>) => {
     const createRandomItem = (fixedParams?: Partial<OrderableListItem<ChecklistContent>>) => {
-        const item = createItem('text');
+        const item = createItem('text', null);
 
         item.completed = Math.random() > 0.5;
         return { ...item, ...fixedParams, key: item.id };

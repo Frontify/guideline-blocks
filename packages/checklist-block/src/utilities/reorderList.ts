@@ -1,9 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const reorderList = <T>(array: T[], originalIndex: number, newIndex: number): T[] => {
-    const newArray = array.slice();
-    const [itemToSwap] = newArray.splice(originalIndex, 1);
-    newArray.splice(newIndex, 0, itemToSwap);
+import { OrderableListItem } from '@frontify/arcade';
+import { ChecklistContent } from '../types';
 
-    return newArray;
+export const reorderList = <T extends OrderableListItem<ChecklistContent>>(
+    array: T[],
+    originalIndex: number,
+    newIndex: number
+): T[] => {
+    return array.map((value, index) => {
+        if (index === newIndex) {
+            return { ...value, sort: originalIndex };
+        }
+        if (index === originalIndex) {
+            return { ...value, sort: newIndex };
+        }
+        return value;
+    });
 };

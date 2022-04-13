@@ -64,7 +64,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         if (!trimmed) {
             return;
         }
-        const newItem = createItem(trimmed);
+        const newItem = createItem(trimmed, content.length | 0);
         const updatedContent = [...content, newItem];
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
@@ -90,6 +90,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         { componentDragState, isFocusVisible }: DragProperties
     ) => {
         const index = findIndexById(displayableItems, id);
+        displayableItems.sort((previousItem, currentItem) => previousItem.sort - currentItem.sort);
 
         const content = (
             <ChecklistItem
