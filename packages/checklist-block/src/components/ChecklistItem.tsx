@@ -65,6 +65,8 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
         />
     );
 
+    // console.log('text', item?.text, item?.id, isFirst, isLast);
+
     const accessibleEditor =
         mode === ChecklistItemMode.Create ? textEditor : <FocusController>{textEditor}</FocusController>;
 

@@ -249,7 +249,7 @@ describe('Checklist Block', () => {
         cy.get(INSERTION_INDICATOR).should('have.length', 0);
     });
 
-    it.only('Disables Up arrow if first item and Down arrow if last item', () => {
+    it('Disables Up arrow if first item and Down arrow if last item', () => {
         const content = createContentArray(3);
         const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
             blockSettings: { content },

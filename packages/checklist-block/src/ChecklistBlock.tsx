@@ -86,17 +86,18 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     };
 
     const renderChecklistItem = (
-        { text, id, sort, completed, updatedAt }: OrderableListItem<ChecklistContent>,
+        { text, id, completed, updatedAt }: OrderableListItem<ChecklistContent>,
         { componentDragState, isFocusVisible }: DragProperties
     ) => {
-        console.log('text', text);
+        const index = findIndexById(displayableItems, id);
+
         const content = (
             <ChecklistItem
                 item={{ text, id, completed, updatedAt }}
                 key={id}
                 isDragFocusVisible={isFocusVisible}
-                isFirst={sort === 0}
-                isLast={sort === displayableItems.length - 1}
+                isFirst={index === 0}
+                isLast={index === displayableItems.length - 1}
                 mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
                 toggleCompleted={(completed: boolean) =>
                     updateItem(id, {
@@ -123,7 +124,6 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
 
     const handleMove = (modifiedItems: OrderableListItem<ChecklistContent>[]) => {
-        console.log('modifiedItems', modifiedItems);
         const modifiedArray = displayableItems.map((item) => {
             const matchingModifiedItem = modifiedItems.find((modifiedItem) => modifiedItem.id === item.id);
             if (matchingModifiedItem) {
@@ -132,7 +132,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
 
             return { ...item };
         });
-        console.log('modifiedArray', modifiedArray);
+
         setBlockSettings({ ...blockSettings, content: modifiedArray });
     };
 
@@ -194,8 +194,6 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                             <OrderableList
                                 items={displayableItems.map(
                                     (item: OrderableListItem<ChecklistContent>, index: number) => {
-                                        console.log(item);
-
                                         return {
                                             key: item.id,
                                             completed: item.completed,
