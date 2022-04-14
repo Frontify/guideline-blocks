@@ -133,16 +133,16 @@ describe('Checklist Block', () => {
         mount(<ChecklistBlockWithStubs />);
         cy.get(CHECKLIST_CONTAINER).find(CHECKLIST_ITEM).first().realHover();
         cy.get(CHECKLIST_CONTAINER)
-            .find(DRAGGABLE_ITEM)
+            .find(CHECKLIST_ITEM)
             .first()
             .then(($firstItem) => {
-                const firstItemKey = $firstItem.data();
+                const firstItemKey = $firstItem.data('key');
                 cy.wrap($firstItem).find(CONTROL_BUTTONS).should('be.visible').find('button').eq(1).click();
                 cy.get(CHECKLIST_CONTAINER)
-                    .find(DRAGGABLE_ITEM)
+                    .find(CHECKLIST_ITEM)
                     .first()
                     .then(($newFirstItem) => {
-                        const newFirstItemKey = $newFirstItem.data();
+                        const newFirstItemKey = $newFirstItem.data('key');
                         expect(newFirstItemKey).not.to.equal(firstItemKey);
                     });
             });

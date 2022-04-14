@@ -77,6 +77,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
             {...focusWithinProps}
             data-test-id="checklist-item"
             data-mode={mode}
+            data-key={id}
         >
             <div className="tw-flex tw-flex-auto tw-content-center tw-p-1">
                 <div className="tw-flex tw-flex-auto tw-items-center">
