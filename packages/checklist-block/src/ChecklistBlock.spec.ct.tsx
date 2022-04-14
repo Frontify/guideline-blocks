@@ -148,6 +148,8 @@ describe('Checklist Block', () => {
             });
     });
 
+    //TODO: Tests should be there again as soon as OrderableList.spec.tsx has accessibility tests again
+
     // it('Allows users to move item with keyboard', () => {
     //     const content = createContentArray(3, { completed: false });
     //     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {

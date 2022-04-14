@@ -7,8 +7,8 @@ export const reorderList = <T extends OrderableListItem<ChecklistContent>>(
     array: T[],
     originalIndex: number,
     newIndex: number
-): T[] => {
-    return array.map((value, index) => {
+): T[] =>
+    array.map((value, index) => {
         if (index === newIndex) {
             return { ...value, sort: originalIndex };
         }
@@ -17,4 +17,3 @@ export const reorderList = <T extends OrderableListItem<ChecklistContent>>(
         }
         return value;
     });
-};

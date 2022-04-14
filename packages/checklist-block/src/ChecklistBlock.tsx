@@ -137,6 +137,20 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         setBlockSettings({ ...blockSettings, content: modifiedArray });
     };
 
+    const orderableListItems = displayableItems.map(
+        ({ id, completed, sort, text, updatedAt }: OrderableListItem<ChecklistContent>, index: number) => {
+            return {
+                id,
+                text,
+                updatedAt,
+                completed,
+                key: id,
+                alt: text,
+                sort: sort !== undefined ? sort : index,
+            };
+        }
+    );
+
     return (
         <SettingsContext.Provider value={settings}>
             <div
@@ -193,19 +207,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     <div className="tw-mt-3" data-test-id="checklist-container">
                         {displayableItems.length > 0 && (
                             <OrderableList
-                                items={displayableItems.map(
-                                    (item: OrderableListItem<ChecklistContent>, index: number) => {
-                                        return {
-                                            key: item.id,
-                                            completed: item.completed,
-                                            sort: item.sort !== undefined ? item.sort : index,
-                                            text: item.text,
-                                            updatedAt: item.updatedAt,
-                                            alt: item.text,
-                                            id: item.id,
-                                        };
-                                    }
-                                )}
+                                items={orderableListItems}
                                 dragDisabled={!isEditing}
                                 renderContent={renderChecklistItem}
                                 onMove={handleMove}

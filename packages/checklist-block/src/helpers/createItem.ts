@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { OrderableListItem } from '@frontify/arcade';
 import { ChecklistContent } from '../types';
 
