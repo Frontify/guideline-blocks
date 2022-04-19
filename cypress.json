@@ -6,5 +6,8 @@
         "componentFolder": "packages",
         "viewportHeight": 1280,
         "viewportWidth": 800
+    },
+    "retries": {
+        "runMode": 2
     }
 }
