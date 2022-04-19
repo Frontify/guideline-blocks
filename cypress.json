@@ -1,4 +1,5 @@
 {
+    "projectId": "atisaj",
     "video": false,
     "component": {
         "testFiles": "*/src/**/*.spec.ct.{ts,tsx}",
