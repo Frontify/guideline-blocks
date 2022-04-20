@@ -3,27 +3,27 @@
 import { AssetChooserObjectType, AssetChooserProjectType, FileExtension } from '@frontify/app-bridge';
 import { BaseBlock } from './base';
 
-export enum AssetInputSource {
+export enum LegacyAssetInputSource {
     Library = 'Library',
     Upload = 'Upload',
 }
 
-export enum AssetInputMode {
+export enum LegacyAssetInputMode {
     Both = 'Both',
     UploadOnly = 'UploadOnly',
     BrowseOnly = 'BrowseOnly',
 }
 
-export type AssetInputValue = {
-    source: AssetInputSource;
+export type LegacyAssetInputValue = {
+    source: LegacyAssetInputSource;
     value: number;
 };
 
-export type AssetInputBlock = {
-    type: 'assetInput';
+export type LegacyAssetInputBlock = {
+    type: 'legacyAssetInput';
     multiSelection?: boolean;
     extensions?: FileExtension[];
     projectTypes?: AssetChooserProjectType[];
     objectTypes?: AssetChooserObjectType[];
-    mode?: AssetInputMode;
-} & BaseBlock<AssetInputValue | AssetInputValue['value']>;
+    mode?: LegacyAssetInputMode;
+} & BaseBlock<LegacyAssetInputValue | LegacyAssetInputValue['value']>;
