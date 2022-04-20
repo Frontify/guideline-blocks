@@ -5,6 +5,7 @@ import { ChecklistBlock } from './checklist';
 import { ColorInputBlock } from './colorInput';
 import { DropdownBlock } from './dropdown';
 import { InputBlock } from './input';
+import { LegacyAssetInputBlock } from './legacyAssetInput';
 import { LinkChooserBlock } from './linkChooser';
 import { MultiInputBlock } from './multiInput';
 import { NotificationBlock } from './notification';
@@ -19,6 +20,7 @@ export * from './choices';
 export * from './colorInput';
 export * from './dropdown';
 export * from './input';
+export * from './legacyAssetInput';
 export * from './linkChooser';
 export * from './multiInput';
 export * from './notification';
@@ -32,9 +34,10 @@ export type SimpleSettingBlock =
     | ChecklistBlock
     | ColorInputBlock
     | DropdownBlock
-    | SectionHeadingBlock
     | InputBlock
+    | LegacyAssetInputBlock
     | MultiInputBlock
+    | SectionHeadingBlock
     | SliderBlock
     | SwitchBlock
     | TemplateInputBlock
