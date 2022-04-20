@@ -1,9 +1,13 @@
 {
+    "projectId": "atisaj",
     "video": false,
     "component": {
         "testFiles": "*/src/**/*.spec.ct.{ts,tsx}",
         "componentFolder": "packages",
         "viewportHeight": 1280,
         "viewportWidth": 800
+    },
+    "retries": {
+        "runMode": 2
     }
 }
