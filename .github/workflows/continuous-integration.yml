@@ -27,6 +27,8 @@ jobs:
 
             - name: Install NPM dependencies
               run: npm ci
+              env:
+                  CYPRESS_INSTALL_BINARY: 0
 
             - name: Install NPM dependencies from packages
               run: npm run bootstrap
