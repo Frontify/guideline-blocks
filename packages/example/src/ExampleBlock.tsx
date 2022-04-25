@@ -2,11 +2,23 @@
 
 import 'tailwindcss/tailwind.css';
 import { FC } from 'react';
+import { Asset, useBlockAssets } from '@frontify/app-bridge';
 
-export const ExampleBlock: FC = () => {
+export const ExampleBlock: FC = ({ appBridge }: any) => {
+    const { blockAssets } = useBlockAssets(appBridge);
+
     return (
         <div data-test-id="example-block">
-            <span className="tw-text-violet-60 tw-underline">A custom block in violet and underlined</span>
+            {blockAssets['images'] ? (
+                blockAssets['images'].map((asset: Asset) => (
+                    <div key={asset.id}>
+                        <img src={asset.preview_url} />
+                        <p>{asset.title}</p>
+                    </div>
+                ))
+            ) : (
+                <p>No image set</p>
+            )}
         </div>
     );
 };

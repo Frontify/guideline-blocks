@@ -19,6 +19,10 @@ const settings: BlockSettings = {
                 },
             ],
         },
+        {
+            id: 'images',
+            type: 'assetInput',
+        },
     ],
 };
 
