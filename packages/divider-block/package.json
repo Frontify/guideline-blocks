@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.12.0",
-        "@frontify/arcade": "6.1.4",
+        "@frontify/arcade": "6.4.1",
         "@frontify/guideline-blocks-settings": "*",
         "@frontify/guideline-blocks-shared": "*",
         "react": "17.0.2",
