@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { defineConfig } from 'vite';
-import { peerDependencies as peerDependenciesMap } from './package.json';
+import { dependencies as dependenciesMap, peerDependencies as peerDependenciesMap } from './package.json';
 import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 import react from '@vitejs/plugin-react';
 
+const dependencies = Object.keys(dependenciesMap);
 const peerDependencies = Object.keys(peerDependenciesMap);
 
 export const globals = {
@@ -25,7 +26,7 @@ export default defineConfig({
         sourcemap: true,
         minify: true,
         rollupOptions: {
-            external: [...peerDependencies],
+            external: [...dependencies, ...peerDependencies],
             output: {
                 globals,
             },

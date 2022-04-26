@@ -65,7 +65,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
     return (
-        <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-black'}>
+        <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
             {type === QuoteType.QuotationMarks && (
                 <div className="tw-flex tw-justify-between tw-gap-x-7">
                     {quoteIconMap(size, quotesRgba)[quoteStyleLeft]}
