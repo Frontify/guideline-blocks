@@ -13,7 +13,7 @@ import {
 } from '@frontify/app-bridge';
 import { Button } from '@frontify/arcade';
 
-export const ExampleBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge }) => {
+export const ExampleAssetOperationBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge }) => {
     // Manual upload demo
     const [loading, setLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
@@ -63,7 +63,7 @@ export const ExampleBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge })
                 <Button onClick={openFileDialog}>{loading ? 'Uploading...' : 'Upload'}</Button>
             </div>
 
-            <div data-test-id="example-block">
+            <div data-test-id="example-asset-operation-block">
                 {blockAssets['images'] ? (
                     blockAssets['images'].map((asset: Asset) => (
                         <div key={asset.id}>

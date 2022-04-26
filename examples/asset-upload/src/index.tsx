@@ -1,3 +1,3 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { ExampleBlock as default } from './ExampleBlock';
+export { ExampleAssetOperationBlock as default } from './ExampleAssetOperationBlock';
