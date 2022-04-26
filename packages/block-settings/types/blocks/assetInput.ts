@@ -9,7 +9,7 @@ export enum AssetInputSource {
 }
 
 export enum AssetInputMode {
-    Both = 'Both',
+    BrowseAndUpload = 'BrowseAndUpload',
     UploadOnly = 'UploadOnly',
     BrowseOnly = 'BrowseOnly',
 }

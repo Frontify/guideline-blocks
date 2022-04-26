@@ -9,7 +9,7 @@ export enum LegacyAssetInputSource {
 }
 
 export enum LegacyAssetInputMode {
-    Both = 'Both',
+    BrowseAndUpload = 'BrowseAndUpload',
     UploadOnly = 'UploadOnly',
     BrowseOnly = 'BrowseOnly',
 }
