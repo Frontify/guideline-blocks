@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import '@frontify/arcade-tokens/styles';
+import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { CSSProperties, FC, useEffect, useState } from 'react';
-import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
 import {

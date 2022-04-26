@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import '@frontify/arcade-tokens/styles';
+import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
@@ -22,7 +24,6 @@ import {
 } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
-import 'tailwindcss/tailwind.css';
 import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { ProgressHeader } from './components/ProgressHeader';
