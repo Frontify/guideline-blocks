@@ -1,7 +1,6 @@
 {
-    "name": "example",
+    "name": "example-asset-upload",
     "private": true,
-    "author": "Frontify Developers <developers@frontify.com>",
     "version": "1.0.0",
     "main": "dist/index.js",
     "scripts": {
@@ -16,7 +15,7 @@
     "devDependencies": {
         "@cypress/react": "5.12.4",
         "@frontify/eslint-config-react": "0.15.2",
-        "@frontify/frontify-cli": "^4.0.5",
+        "@frontify/frontify-cli": "4.0.5",
         "@frontify/guideline-blocks-settings": "*",
         "@types/react": "17.0.44",
         "autoprefixer": "10.4.4",
@@ -31,7 +30,6 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "2.13.0-beta.2",
-        "@frontify/arcade": "^7.0.1",
-        "@frontify/guideline-blocks-shared": "*"
+        "@frontify/arcade": "6.4.1"
     }
 }
