@@ -50,7 +50,7 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
         <div className="tw-absolute tw-top-4 tw-right-4 tw-w-9 tw-h-9" {...hoverProps}>
             <button
                 ref={tooltipTriggerElement}
-                className="tw-flex tw-w-9 tw-h-9 tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-text-black"
+                className="tw-flex tw-w-9 tw-h-9 tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-text-text"
                 {...mergeProps(triggerProps, buttonProps)}
             >
                 <IconReject size={IconSize.Size20} />

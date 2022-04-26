@@ -94,7 +94,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
             </label>
             {dateVisible && Boolean(dateInMs) && (
                 <span
-                    className="tw-text-black-60 tw-font-sans tw-text-xxs tw-font-normal tw-block tw-mt-[2px]"
+                    className="tw-text-x-weak tw-font-sans tw-text-xxs tw-font-normal tw-block tw-mt-[2px]"
                     data-test-id="checkbox-date"
                 >
                     {dayjs(dateInMs).fromNow()}
