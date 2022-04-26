@@ -22,7 +22,7 @@ export type LegacyAssetInputValue = {
 export type LegacyAssetInputBlock = {
     type: 'legacyAssetInput';
     multiSelection?: boolean;
-    extensions?: FileExtension[];
+    extensions?: (FileExtension | string)[];
     projectTypes?: AssetChooserProjectType[];
     objectTypes?: AssetChooserObjectType[];
     mode?: LegacyAssetInputMode;

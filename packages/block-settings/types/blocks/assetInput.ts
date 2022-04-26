@@ -22,7 +22,7 @@ export type AssetInputValue = {
 export type AssetInputBlock = {
     type: 'assetInput';
     multiSelection?: boolean;
-    extensions?: FileExtension[];
+    extensions?: (FileExtension | string)[];
     projectTypes?: AssetChooserProjectType[];
     objectTypes?: AssetChooserObjectType[];
     mode?: AssetInputMode;
