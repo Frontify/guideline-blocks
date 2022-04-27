@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import '@frontify/arcade-tokens/styles';
 import 'tailwindcss/tailwind.css';
 import { FC } from 'react';
 
