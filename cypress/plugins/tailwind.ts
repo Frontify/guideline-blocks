@@ -1,5 +1,5 @@
 before(() => {
-    cy.exec("npx tailwindcss -i ./{packages,examples}/*/src/**/*.css -m").then(
+    cy.exec("npx tailwindcss -m").then(
         ({ stdout }) => {
             if (!document.head.querySelector("#tailwind-style")) {
                 const link = document.createElement("style");
