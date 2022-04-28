@@ -1,5 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import "@frontify/arcade/style";
-import "tailwindcss/tailwind.css";
+import "../plugins/tailwind";
 import "cypress-real-events/support";
