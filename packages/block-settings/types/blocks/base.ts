@@ -8,6 +8,7 @@ export type BaseBlock<T = undefined> = {
     info?: string;
     value?: T;
     defaultValue?: T;
+    showInMainLanguageOnly?: boolean;
     show?: (bundle: Bundle) => boolean;
     onChange?: (bundle: Bundle) => void;
 };
