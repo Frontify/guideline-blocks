@@ -1,9 +1,9 @@
 {
     "name": "figma-block",
     "private": true,
+    "author": "Frontify Developers <developers@frontify.com>",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "main": "dist/index.js",
     "scripts": {
         "serve": "frontify-cli block serve",
         "deploy": "frontify-cli block deploy",
