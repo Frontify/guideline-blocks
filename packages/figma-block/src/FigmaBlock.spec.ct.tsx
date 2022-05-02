@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ASSET_ID } from './settings';
-import { AssetDummy, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import { BlockPreview, BlockProps } from './types';
-import { FigmaBlock } from './FigmaBlock';
 import { mount } from '@cypress/react';
+import { AssetDummy, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { FigmaBlock } from './FigmaBlock';
+import { ASSET_ID } from './settings';
+import { BlockPreview, BlockProps } from './types';
 
 const MAIN_BLOCK_SELECTOR = '[data-test-id="figma-block"]';
 const EMPTY_BLOCK_SELECTOR = '[data-test-id="figma-empty-block"]';

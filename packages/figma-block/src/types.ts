@@ -4,7 +4,6 @@ import { AppBridgeNative } from '@frontify/app-bridge';
 
 export type BlockProps = {
     appBridge: AppBridgeNative;
-    onClickOpenAssetChooser?: () => void;
 };
 
 export enum BlockPreview {

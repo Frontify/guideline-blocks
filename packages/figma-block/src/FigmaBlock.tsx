@@ -19,7 +19,7 @@ import { ASSET_ID } from './settings';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 
-export const FigmaBlock = ({ appBridge, onClickOpenAssetChooser }: BlockProps): ReactElement => {
+export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
@@ -54,7 +54,7 @@ export const FigmaBlock = ({ appBridge, onClickOpenAssetChooser }: BlockProps): 
         <div
             data-test-id="figma-empty-block"
             className="tw-group tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-line-x-strong hover:tw-border-black"
-            onClick={onClickOpenAssetChooser ?? onOpenAssetChooser}
+            onClick={onOpenAssetChooser}
         >
             <div className="tw-text-xl tw-mb-4 tw-flex tw-justify-center tw-text-black-40 group-hover:tw-text-violet-60">
                 <IconProjects size={IconSize.Size32} />
