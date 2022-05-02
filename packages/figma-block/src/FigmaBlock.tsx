@@ -4,7 +4,7 @@ import '@frontify/arcade-tokens/styles';
 import 'tailwindcss/tailwind.css';
 import { createPortal } from 'react-dom';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
-import { Button, ButtonStyle, IconExpand, IconProjects, IconSize, LoadingCircle } from '@frontify/arcade';
+import { Button, ButtonStyle, IconExpand, IconProjects, IconSize } from '@frontify/arcade';
 import {
     AssetChooserObjectType,
     AssetChooserProjectType,
@@ -28,7 +28,6 @@ export const FigmaBlock = ({ appBridge, onClickOpenAssetChooser }: BlockProps): 
 
     const asset = blockAssets?.['asset']?.[0];
     const isAssetAvailable = !!asset;
-    const isLoading = !isAssetAvailable;
 
     useEffect(() => {
         setIsLivePreview(blockSettings.figmaPreviewId === BlockPreview.Live);
@@ -122,7 +121,6 @@ export const FigmaBlock = ({ appBridge, onClickOpenAssetChooser }: BlockProps): 
 
     return (
         <div data-test-id="figma-block">
-            {isLoading && <LoadingCircle />}
             {isEditing && !isAssetAvailable && <FigmaEmptyBlock />}
             {isAssetAvailable && !isLivePreview && <ShowFigmaPreview />}
             {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
