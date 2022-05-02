@@ -13,7 +13,6 @@ export class AssetDummy {
             width: 1920,
             object_type: 'ASSET',
             generic_url: 'https://picsum.photos/1920/1080',
-            origin_url: 'https://picsum.photos/1920/1080',
             preview_url: 'https://picsum.photos/1920/1080',
             project_id: 123,
             name: `Asset ${id}`,
