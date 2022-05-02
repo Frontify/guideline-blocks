@@ -5,32 +5,25 @@ import { stub } from 'sinon';
 type useStubedAppBridgeProps = {
     blockSettings?: Record<string, unknown>;
     editorState?: boolean;
+    openAssetChooser?: () => void;
+    closeAssetChooser?: () => void;
 };
 
 interface Window {
     blockSettings: Record<number, Record<string, unknown>>;
-    application: {
-        connectors: {
-            events: {
-                components: { appBridge: any };
-            };
-        };
-    };
     emitter: Record<string, any>;
 }
 
-const useStubedAppBridge = ({ blockSettings = {}, editorState = false }: useStubedAppBridgeProps): IAppBridgeNative => {
+const useStubedAppBridge = ({
+    blockSettings = {},
+    editorState = false,
+    openAssetChooser = () => null,
+    closeAssetChooser = () => null,
+}: useStubedAppBridgeProps): IAppBridgeNative => {
     const appBridge = new AppBridgeNativeMock(0, 0);
 
     cy.window().then((window) => {
         (window as unknown as Window).blockSettings = { 0: blockSettings };
-        (window as unknown as Window).application = {
-            connectors: {
-                events: {
-                    components: { appBridge: {} },
-                },
-            },
-        };
         (window as unknown as Window).emitter = {
             on: () => null,
             off: () => null,
@@ -40,10 +33,11 @@ const useStubedAppBridge = ({ blockSettings = {}, editorState = false }: useStub
         stub((window as unknown as Window).emitter, 'off');
         stub((window as unknown as Window).emitter, 'emit');
     });
+
     stub(appBridge, 'getBlockSettings').returns(new Promise((resolve) => resolve(blockSettings)));
     stub(appBridge, 'getEditorState').returns(editorState);
-    stub(appBridge, 'openAssetChooser').returns();
-    stub(appBridge, 'closeAssetChooser').returns();
+    stub(appBridge, 'openAssetChooser').callsFake(openAssetChooser);
+    stub(appBridge, 'closeAssetChooser').callsFake(closeAssetChooser);
 
     return appBridge;
 };
