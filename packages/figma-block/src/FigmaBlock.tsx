@@ -15,6 +15,7 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { BlockPreview, BlockProps, Settings } from './types';
+import { ASSET_ID } from './settings';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 
@@ -26,7 +27,7 @@ export const FigmaBlock = ({ appBridge, onClickOpenAssetChooser }: BlockProps): 
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
 
-    const asset = blockAssets?.['asset']?.[0];
+    const asset = blockAssets?.[ASSET_ID]?.[0];
     const isAssetAvailable = !!asset;
 
     useEffect(() => {
@@ -37,7 +38,7 @@ export const FigmaBlock = ({ appBridge, onClickOpenAssetChooser }: BlockProps): 
         openAssetChooser(
             (result: AssetChooserResult) => {
                 const resultId = result.screenData[0].id;
-                updateAssetIdsFromKey('asset', [resultId]);
+                updateAssetIdsFromKey(ASSET_ID, [resultId]);
                 closeAssetChooser();
             },
             {

@@ -3,6 +3,7 @@
 import { mount } from '@cypress/react';
 import { AssetDummy, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import FigmaBlock from '.';
+import { ASSET_ID } from './settings';
 import { BlockPreview, BlockProps } from './types';
 
 const MAIN_BLOCK_SELECTOR = '[data-test-id="figma-block"]';
@@ -37,7 +38,7 @@ describe('Figma Block', () => {
     it('renders a Figma image preview', () => {
         const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
             blockAssets: {
-                asset: [AssetDummy.with(345)],
+                [ASSET_ID]: [AssetDummy.with(345)],
             },
             editorState: true,
         });
@@ -48,7 +49,7 @@ describe('Figma Block', () => {
     it('renders a Figma Live iframe preview', () => {
         const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
             blockAssets: {
-                asset: [AssetDummy.with(345)],
+                [ASSET_ID]: [AssetDummy.with(345)],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,
@@ -60,7 +61,7 @@ describe('Figma Block', () => {
     it('toggles Figma Live preview Full screen', () => {
         const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
             blockAssets: {
-                asset: [AssetDummy.with(345)],
+                [ASSET_ID]: [AssetDummy.with(345)],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,

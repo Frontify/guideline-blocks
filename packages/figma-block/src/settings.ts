@@ -4,6 +4,8 @@ import { AssetChooserObjectType, AssetChooserProjectType } from '@frontify/app-b
 import { AssetInputMode, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { BlockPreview } from './types';
 
+export const ASSET_ID = 'asset';
+
 const settings: BlockSettings = {
     main: [
         {
@@ -26,7 +28,7 @@ const settings: BlockSettings = {
     ],
     content: [
         {
-            id: 'asset',
+            id: ASSET_ID,
             type: 'assetInput',
             projectTypes: [AssetChooserProjectType.Workspace],
             objectTypes: [AssetChooserObjectType.Url],
