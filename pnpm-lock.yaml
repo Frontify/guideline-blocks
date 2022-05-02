@@ -92,16 +92,20 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2
       typescript: 4.6.4
+      vite: 2.9.7
+      vite-plugin-dts: 1.1.1
     dependencies:
       '@frontify/app-bridge': 2.13.1_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_sfoxds7t5ydpegc3knd667wn6m
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
     devDependencies:
       '@frontify/eslint-config-typescript': 0.15.2_gltuyiipm2t4bfmeodooqzc7fm
       eslint: 8.14.0
       prettier: 2.6.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
       typescript: 4.6.4
+      vite: 2.9.7
+      vite-plugin-dts: 1.1.1_vite@2.9.7
 
   packages/callout-block:
     specifiers:
@@ -15362,8 +15366,50 @@ packages:
       - supports-color
     dev: true
 
+  /vite-plugin-dts/1.1.1_vite@2.9.7:
+    resolution: {integrity: sha512-2aRLBppGCDhtrj+7uV3/Muvn4Pa35CQpZ5Js+z8HQRsTM1YMuvEkSGGQwHkSQdDSyaFv6O1zBqN0ln6hgqHvyw==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      vite: '>=2.4.4'
+    dependencies:
+      '@microsoft/api-extractor': 7.23.0
+      '@rushstack/node-core-library': 3.45.4
+      chalk: 4.1.2
+      debug: 4.3.4
+      fast-glob: 3.2.11
+      fs-extra: 10.1.0
+      ts-morph: 14.0.0
+      vite: 2.9.7
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /vite/2.9.6:
     resolution: {integrity: sha512-3IffdrByHW95Yjv0a13TQOQfJs7L5dVlSPuTt432XLbRMriWbThqJN2k/IS6kXn5WY4xBLhK9XoaWay1B8VzUw==}
+    engines: {node: '>=12.2.0'}
+    hasBin: true
+    peerDependencies:
+      less: '*'
+      sass: '*'
+      stylus: '*'
+    peerDependenciesMeta:
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+    dependencies:
+      esbuild: 0.14.38
+      postcss: 8.4.13
+      resolve: 1.22.0
+      rollup: 2.71.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vite/2.9.7:
+    resolution: {integrity: sha512-5hH7aNQe8rJiTTqCtPNX/6mIKlGw+1wg8UXwAxDIIN8XaSR+Zx3GT2zSu7QKa1vIaBqfUODGh3vpwY8r0AW/jw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
