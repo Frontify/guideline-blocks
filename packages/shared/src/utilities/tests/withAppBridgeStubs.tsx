@@ -9,6 +9,14 @@ type useStubedAppBridgeProps = {
 
 interface Window {
     blockSettings: Record<number, Record<string, unknown>>;
+    application: {
+        connectors: {
+            events: {
+                components: { appBridge: any };
+            };
+        };
+    };
+    emitter: Record<string, any>;
 }
 
 const useStubedAppBridge = ({ blockSettings = {}, editorState = false }: useStubedAppBridgeProps): IAppBridgeNative => {
@@ -16,9 +24,26 @@ const useStubedAppBridge = ({ blockSettings = {}, editorState = false }: useStub
 
     cy.window().then((window) => {
         (window as unknown as Window).blockSettings = { 0: blockSettings };
+        (window as unknown as Window).application = {
+            connectors: {
+                events: {
+                    components: { appBridge: {} },
+                },
+            },
+        };
+        (window as unknown as Window).emitter = {
+            on: () => null,
+            off: () => null,
+            emit: () => null,
+        };
+        stub((window as unknown as Window).emitter, 'on');
+        stub((window as unknown as Window).emitter, 'off');
+        stub((window as unknown as Window).emitter, 'emit');
     });
     stub(appBridge, 'getBlockSettings').returns(new Promise((resolve) => resolve(blockSettings)));
     stub(appBridge, 'getEditorState').returns(editorState);
+    stub(appBridge, 'openAssetChooser').returns();
+    stub(appBridge, 'closeAssetChooser').returns();
 
     return appBridge;
 };
