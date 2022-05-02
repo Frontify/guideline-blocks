@@ -13,6 +13,11 @@ export default defineConfig({
     },
     optimizeDeps: {
         // INFO: Remove possible linked packages from the optimization.
-        include: ["@frontify/arcade", "@frontify/app-bridge"],
+        include: [
+            "@frontify/arcade",
+            "@frontify/app-bridge",
+            "@frontify/guideline-blocks-settings",
+            "@frontify/guideline-blocks-shared",
+        ],
     },
 });
