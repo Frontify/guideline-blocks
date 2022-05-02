@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { AssetDummy, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import FigmaBlock from '.';
 import { BlockPreview, BlockProps } from './types';
 
@@ -10,12 +10,6 @@ const EMPTY_BLOCK_SELECTOR = '[data-test-id="figma-empty-block"]';
 const IMAGE_PREVIEW_SELECTOR = '[data-test-id="figma-image-preview"]';
 const LIVE_PREVIEW_SELECTOR = '[data-test-id="figma-live-preview"]';
 const FULL_SCREEN_SELECTOR = '[data-test-id="figma-full-screen"]';
-
-const blockSettings = {
-    figmaPreviewId: 'image',
-    project: 1,
-    asset: 7,
-};
 
 describe('Figma Block', () => {
     it('renders a Figma block', () => {
@@ -40,17 +34,22 @@ describe('Figma Block', () => {
         cy.get('@onClickOpenAssetChooser').should('have.been.calledOnce');
     });
 
-    it.skip('renders a Figma image preview', () => {
+    it('renders a Figma image preview', () => {
         const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
-            blockSettings,
+            blockAssets: {
+                asset: [AssetDummy.with(345)],
+            },
             editorState: true,
         });
         mount(<FigmaBlockWithStubs />);
         cy.get(IMAGE_PREVIEW_SELECTOR).should('exist');
     });
 
-    it.skip('renders a Figma Live iframe preview', () => {
+    it('renders a Figma Live iframe preview', () => {
         const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
+            blockAssets: {
+                asset: [AssetDummy.with(345)],
+            },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,
         });
@@ -58,8 +57,11 @@ describe('Figma Block', () => {
         cy.get(LIVE_PREVIEW_SELECTOR).should('exist');
     });
 
-    it.skip('toggles Figma Live preview Full screen', () => {
+    it('toggles Figma Live preview Full screen', () => {
         const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
+            blockAssets: {
+                asset: [AssetDummy.with(345)],
+            },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,
         });

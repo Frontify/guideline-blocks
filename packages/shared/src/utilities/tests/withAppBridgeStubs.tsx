@@ -1,9 +1,10 @@
-import { AppBridgeNativeMock, IAppBridgeNative } from '@frontify/app-bridge';
+import { AppBridgeNativeMock, Asset, IAppBridgeNative } from '@frontify/app-bridge';
 import { ComponentType } from 'react';
 import { stub } from 'sinon';
 
 type useStubedAppBridgeProps = {
     blockSettings?: Record<string, unknown>;
+    blockAssets?: Record<string, Asset[]>;
     editorState?: boolean;
     openAssetChooser?: () => void;
     closeAssetChooser?: () => void;
@@ -16,6 +17,7 @@ interface Window {
 
 const useStubedAppBridge = ({
     blockSettings = {},
+    blockAssets = {},
     editorState = false,
     openAssetChooser = () => null,
     closeAssetChooser = () => null,
@@ -38,6 +40,7 @@ const useStubedAppBridge = ({
     stub(appBridge, 'getEditorState').returns(editorState);
     stub(appBridge, 'openAssetChooser').callsFake(openAssetChooser);
     stub(appBridge, 'closeAssetChooser').callsFake(closeAssetChooser);
+    stub(appBridge, 'getBlockAssets').callsFake(() => new Promise((resolve) => resolve(blockAssets)));
 
     return appBridge;
 };
