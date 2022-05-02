@@ -16,6 +16,7 @@ const PADDING_TOP_ID = 'paddingTop';
 const PADDING_LEFT_ID = 'paddingLeft';
 const PADDING_RIGHT_ID = 'paddingRight';
 const PADDING_BOTTOM_ID = 'paddingBottom';
+export const ICON_ASSET_ID = 'icon';
 
 const settings: BlockSettings = {
     main: [
@@ -56,7 +57,7 @@ const settings: BlockSettings = {
             label: 'Icon',
             on: [
                 {
-                    id: 'icon',
+                    id: ICON_ASSET_ID,
                     type: 'assetInput',
                     extensions: [FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
