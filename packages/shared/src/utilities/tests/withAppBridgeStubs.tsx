@@ -49,9 +49,9 @@ type withAppBridgeStubsProps = { appBridge: IAppBridgeNative };
 
 export function withAppBridgeStubs<T>(
     WrappedComponent: ComponentType<T>,
-    props: useStubedAppBridgeProps
+    props?: useStubedAppBridgeProps
 ): [ComponentType<Omit<T, keyof withAppBridgeStubsProps>>, IAppBridgeNative] {
-    const appBridge = useStubedAppBridge(props);
+    const appBridge = useStubedAppBridge(props ?? {});
     const ComponentWithAppBridgeStubs = (props: Omit<T, keyof withAppBridgeStubsProps>) => {
         return <WrappedComponent appBridge={appBridge} {...(props as T)} />;
     };

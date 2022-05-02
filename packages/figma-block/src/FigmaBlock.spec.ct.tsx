@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
-import { AssetDummy, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import FigmaBlock from '.';
 import { ASSET_ID } from './settings';
+import { AssetDummy, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
 import { BlockPreview, BlockProps } from './types';
+import { FigmaBlock } from './FigmaBlock';
+import { mount } from '@cypress/react';
 
 const MAIN_BLOCK_SELECTOR = '[data-test-id="figma-block"]';
 const EMPTY_BLOCK_SELECTOR = '[data-test-id="figma-empty-block"]';
@@ -14,7 +14,7 @@ const FULL_SCREEN_SELECTOR = '[data-test-id="figma-full-screen"]';
 
 describe('Figma Block', () => {
     it('renders a Figma block', () => {
-        const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {});
+        const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock);
         mount(<FigmaBlockWithStubs />);
         cy.get(MAIN_BLOCK_SELECTOR).should('exist');
     });
