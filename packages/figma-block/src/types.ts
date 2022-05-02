@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { AppBridgeNative } from '@frontify/app-bridge';
 
 export type BlockProps = {
