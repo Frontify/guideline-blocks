@@ -29,7 +29,7 @@
         "typescript": "4.6.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "2.13.0-beta.6",
+        "@frontify/app-bridge": "2.13.2",
         "@frontify/arcade": "7.1.0",
         "@frontify/arcade-tokens": "3.0.0",
         "react": "17.0.2",
