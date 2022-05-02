@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeNative } from '@frontify/app-bridge';
-import { AssetInputValue } from '@frontify/guideline-blocks-settings';
 import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
 
 export enum Type {
@@ -58,7 +57,6 @@ export type BlockSettings = {
     iconSwitch: boolean;
     width: Width;
     textValue?: string;
-    icon?: AssetInputValue;
     hasCustomPadding: boolean;
     paddingChoice: Padding;
 } & RadiusExtendedSettings &
