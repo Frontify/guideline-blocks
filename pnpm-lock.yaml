@@ -43,7 +43,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': 7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -61,7 +61,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       react: 17.0.2
@@ -111,7 +111,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -129,7 +129,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -154,7 +154,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -180,7 +180,7 @@ importers:
       tailwindcss: 3.0.23
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -213,7 +213,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -231,7 +231,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -256,7 +256,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -274,7 +274,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -299,7 +299,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -317,7 +317,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -342,7 +342,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -361,7 +361,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -387,7 +387,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -405,7 +405,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -430,7 +430,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/eslint-config-typescript': 0.15.2
       '@frontify/guideline-blocks-settings': workspace:*
@@ -452,7 +452,7 @@ importers:
       vite-plugin-dts: 1.1.1
       vitest: 0.10.0
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_ixschf3dw4wmlpmtb6entddskm
       '@frontify/guideline-blocks-settings': link:../block-settings
       sinon: 13.0.2
@@ -481,7 +481,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -506,7 +506,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -538,7 +538,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.2
+      '@frontify/app-bridge': 2.13.3
       '@frontify/arcade': ^7.1.1
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
@@ -558,7 +558,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.2_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -2047,8 +2047,8 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /@frontify/app-bridge/2.13.2_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-1L7dDYIeNo1Vu0c7w7PIDChszSSbA0TyKP76eHn2BlLvtG9zWhINKDbPSCuUpmFiK/DbyNjrbceJaVp7mU3zXg==}
+  /@frontify/app-bridge/2.13.3_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-nOhLvhlRDss9Hw5ISulrXGTW1w4XPLBtx/sdHfhyrRE6qFG71a0w0lsN6CbtVZg1z1DLZHQqCQm8DQOZ586/zQ==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17.0.2
