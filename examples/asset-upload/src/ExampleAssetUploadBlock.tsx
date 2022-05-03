@@ -12,6 +12,7 @@ import {
     useFileUpload,
 } from '@frontify/app-bridge';
 import { Button } from '@frontify/arcade';
+import { IMAGE_SETTING_ID } from './settings';
 
 export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge }) => {
     // Manual upload demo
@@ -33,7 +34,7 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ a
         if (doneAll) {
             (async (uploadResults) => {
                 const assetsId = uploadResults.map((uploadResult) => uploadResult.id);
-                await updateAssetIdsFromKey('images', assetsId);
+                await updateAssetIdsFromKey(IMAGE_SETTING_ID, assetsId);
                 setLoading(false);
             })(uploadResults);
         }
@@ -47,11 +48,11 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ a
         appBridge.openAssetChooser(
             (result: AssetChooserResult) => {
                 const resultId = result.screenData[0].id;
-                updateAssetIdsFromKey('images', [resultId]);
+                updateAssetIdsFromKey(IMAGE_SETTING_ID, [resultId]);
                 appBridge.closeAssetChooser();
             },
             {
-                selectedValueId: blockAssets['images']?.[0]?.id,
+                selectedValueId: blockAssets[IMAGE_SETTING_ID]?.[0]?.id,
             }
         );
     };
@@ -71,11 +72,11 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ a
                 <Button onClick={openFileDialog}>{loading ? 'Uploading...' : 'Upload'}</Button>
             </div>
 
-            <div data-test-id="example-asset-operation-block">
-                {blockAssets['images'] ? (
-                    blockAssets['images'].map((asset: Asset) => (
+            <div data-test-id="example-asset-upload-block">
+                {blockAssets[IMAGE_SETTING_ID] ? (
+                    blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
                         <div key={asset.id}>
-                            <img src={asset.preview_url} />
+                            <img src={asset.preview_url} data-test-id="example-asset-upload-image" />
                             <div className="tw-flex tw-flex-col tw-gap-4">
                                 <strong>{asset.title}</strong>
                                 <div className="tw-flex tw-gap-4">

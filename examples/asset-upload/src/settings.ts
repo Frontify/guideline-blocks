@@ -3,6 +3,8 @@
 import { DropdownSize, IconEnum } from '@frontify/arcade';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
+export const IMAGE_SETTING_ID = 'image';
+
 const settings: BlockSettings = {
     main: [
         {
@@ -20,7 +22,7 @@ const settings: BlockSettings = {
             ],
         },
         {
-            id: 'images',
+            id: IMAGE_SETTING_ID,
             type: 'assetInput',
         },
     ],
