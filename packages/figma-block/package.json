@@ -20,7 +20,7 @@
         "@frontify/frontify-cli": "^4.0.5",
         "@types/react": "17.0.44",
         "@types/react-dom": "17.0.1",
-        "autoprefixer": "10.4.6",
+        "autoprefixer": "10.4.7",
         "cypress": "9.6.0",
         "eslint": "8.14.0",
         "postcss": "8.4.13",
@@ -29,7 +29,7 @@
         "typescript": "4.6.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "2.13.2",
+        "@frontify/app-bridge": "2.13.3",
         "@frontify/arcade": "7.1.1",
         "@frontify/arcade-tokens": "3.0.0",
         "@frontify/guideline-blocks-settings": "workspace:*",
