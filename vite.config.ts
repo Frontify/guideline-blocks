@@ -11,8 +11,4 @@ export default defineConfig({
             strict: false,
         },
     },
-    optimizeDeps: {
-        // INFO: Remove possible linked packages from the optimization.
-        include: ["@frontify/app-bridge", "@frontify/arcade"],
-    },
 });
