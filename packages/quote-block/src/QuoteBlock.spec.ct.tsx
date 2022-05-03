@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import QuoteBlock from '.';
+import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { QuoteBlock } from './QuoteBlock';
 import { QuoteSize, QuoteStyle, QuoteType } from './types';
 
 const QuoteBlockSelector = '[data-test-id="quote-block"]';

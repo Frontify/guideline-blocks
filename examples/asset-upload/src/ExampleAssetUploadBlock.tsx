@@ -13,7 +13,7 @@ import {
 } from '@frontify/app-bridge';
 import { Button } from '@frontify/arcade';
 
-export const ExampleAssetOperationBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge }) => {
+export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge }) => {
     // Manual upload demo
     const [loading, setLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({});

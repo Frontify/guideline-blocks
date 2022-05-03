@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import ExampleBlock from '.';
+import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { ExampleBlock } from './ExampleBlock';
 
 const ExampleBlockSelector = '[data-test-id="example-block"]';
 
