@@ -56,6 +56,14 @@ export const ExampleAssetOperationBlock: FC<{ appBridge: IAppBridgeNative }> = (
         );
     };
 
+    const Link = ({ link, text }: { link: string; text: string }) => {
+        return (
+            <a className="tw-text-text-interactive" href={link} target="_blank" rel="noopener noreferrer">
+                {text}
+            </a>
+        );
+    };
+
     return (
         <div className="tw-flex tw-flex-col tw-gap-4">
             <div className="tw-flex tw-gap-4">
@@ -68,7 +76,14 @@ export const ExampleAssetOperationBlock: FC<{ appBridge: IAppBridgeNative }> = (
                     blockAssets['images'].map((asset: Asset) => (
                         <div key={asset.id}>
                             <img src={asset.preview_url} />
-                            <p>{asset.title}</p>
+                            <div className="tw-flex tw-flex-col tw-gap-4">
+                                <strong>{asset.title}</strong>
+                                <div className="tw-flex tw-gap-4">
+                                    <Link link={asset.preview_url} text="Preview URL" />
+                                    <Link link={asset.generic_url} text="Generic URL" />
+                                    {asset.origin_url && <Link link={asset.origin_url} text="Origin URL" />}
+                                </div>
+                            </div>
                         </div>
                     ))
                 ) : (
