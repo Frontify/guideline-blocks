@@ -5,16 +5,16 @@
         "build": "npm run build:block-settings && npm run build:shared",
         "build:block-settings": "npm -C packages/block-settings run build",
         "build:shared": "npm -C packages/shared run build",
-        "lint:fix": "pnpm --stream --filter {packages} --parallel lint:fix",
-        "lint": "pnpm --stream --filter {packages} --parallel lint",
-        "prettier:fix": "pnpm --stream --filter {packages} --parallel prettier:fix",
-        "prettier": "pnpm --stream --filter {packages} --parallel prettier",
+        "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint:fix",
+        "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint",
+        "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier:fix",
+        "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier",
         "publish:block-settings": "cd packages/block-settings && pnpm publish",
         "test:components:browser": "cypress open-ct",
         "test:components": "pnpx cypress run-ct --browser chrome --record --parallel --group component-tests --tag component-tests",
-        "test:unit": "pnpm --stream --filter {packages} --parallel test",
+        "test:unit": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel test",
         "test": "pnpm run test:unit && pnpm run test:components",
-        "typecheck": "pnpm --stream --filter {packages} --parallel typecheck"
+        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel typecheck"
     },
     "devDependencies": {
         "@babel/core": "7.17.10",
@@ -32,7 +32,7 @@
         "vite": "2.9.6"
     },
     "dependencies": {
-        "@frontify/arcade": "7.1.1",
+        "@frontify/arcade": "7.2.0",
         "react": "17.0.2",
         "react-dom": "17.0.2"
     }

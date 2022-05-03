@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import DosDontsBlock from '.';
+import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { DosDontsBlock } from './DosDontsBlock';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import { DoDontLayout, DoDontSpacing, DoDontStyle } from './types';
 

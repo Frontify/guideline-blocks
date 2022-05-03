@@ -2,7 +2,8 @@
 
 import { mount } from '@cypress/react';
 import { OrderableListItem } from '@frontify/arcade';
-import { Padding, paddingStyleMap, toRgbaString, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { Padding, paddingStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { withAppBridgeStubs } from '@frontify/app-bridge';
 import { ChecklistBlock } from './ChecklistBlock';
 import { createItem } from './helpers';
 import {

@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import StorybookBlock from '.';
+import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { StorybookBlock } from './StorybookBlock';
 import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
 
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';

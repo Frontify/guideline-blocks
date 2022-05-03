@@ -1,6 +1,6 @@
 {
     "name": "@frontify/guideline-blocks-settings",
-    "version": "0.12.0",
+    "version": "0.13.0",
     "description": "Provides the types for the block settings",
     "sideEffects": false,
     "main": "dist/index.umd.js",
@@ -14,10 +14,10 @@
     "author": "Frontify Developers <developers@frontify.com>",
     "scripts": {
         "build": "vite build",
-        "lint": "eslint src",
-        "lint:fix": "eslint --fix src",
-        "prettier": "prettier --check src",
-        "prettier:fix": "prettier --write src",
+        "lint": "eslint types",
+        "lint:fix": "eslint --fix types",
+        "prettier": "prettier --check types",
+        "prettier:fix": "prettier --write types",
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {

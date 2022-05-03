@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import DividerBlock from '.';
+import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { DividerBlock } from './DividerBlock';
 import { DividerAlignment, DividerHeight, DividerStyle } from './types';
 
 const DividerBlockSelector = '[data-test-id="divider-block"]';

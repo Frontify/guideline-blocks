@@ -3,4 +3,3 @@
 export * from './color';
 export * from './react';
 export * from './rules';
-export * from './tests';
