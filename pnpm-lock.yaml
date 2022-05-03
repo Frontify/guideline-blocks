@@ -342,8 +342,8 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.13.3
-      '@frontify/arcade': 7.1.1
+      '@frontify/app-bridge': 2.14.0
+      '@frontify/arcade': 7.2.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/frontify-cli': ^4.0.5
@@ -361,8 +361,8 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.13.3_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 7.1.1_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/app-bridge': 2.14.0_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/arcade': 7.2.0_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
