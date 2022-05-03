@@ -338,6 +338,51 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
 
+  packages/figma-block:
+    specifiers:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4
+      '@frontify/app-bridge': 2.14.0
+      '@frontify/arcade': 7.2.0
+      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/eslint-config-react': 0.15.2
+      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/guideline-blocks-settings': workspace:*
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/react': 17.0.44
+      '@types/react-dom': 17.0.1
+      autoprefixer: 10.4.7
+      cypress: 9.6.0
+      eslint: 8.14.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+    dependencies:
+      '@frontify/app-bridge': 2.14.0_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/arcade': 7.2.0_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/guideline-blocks-settings': link:../block-settings
+      '@frontify/guideline-blocks-shared': link:../shared
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
+      '@frontify/eslint-config-react': 0.15.2_jtqhh7d6ptlo5zik42a6aruxke
+      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@types/react': 17.0.44
+      '@types/react-dom': 17.0.1
+      autoprefixer: 10.4.7_postcss@8.4.13
+      cypress: 9.6.0
+      eslint: 8.14.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+
   packages/personal-note-block:
     specifiers:
       '@babel/core': 7.17.10
@@ -3707,6 +3752,12 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+    dev: true
+
+  /@types/react-dom/17.0.1:
+    resolution: {integrity: sha512-yIVyopxQb8IDZ7SOHeTovurFq+fXiPICa+GV3gp0Xedsl+MwQlMLKmvrnEjFbQxjliH5YVAEWFh975eVNmKj7Q==}
+    dependencies:
+      '@types/react': 17.0.44
     dev: true
 
   /@types/react-dom/17.0.16:
