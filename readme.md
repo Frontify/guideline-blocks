@@ -20,7 +20,7 @@
     ```
 3. Create a build
     ```
-    $ npm run build
+    $ pnpm build
     ```
 4. Start your block (replace with actual name from package.json)
     ```
