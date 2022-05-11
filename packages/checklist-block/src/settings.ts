@@ -189,13 +189,13 @@ const settings: BlockSettings = {
                 {
                     id: 'progressBarFillColor',
                     type: 'colorInput',
-                    label: 'Bar Fill',
+                    label: 'Complete',
                     defaultValue: DefaultValues.progressBarFillColor,
                 },
                 {
                     id: 'progressBarTrackColor',
                     type: 'colorInput',
-                    label: 'Bar Track',
+                    label: 'Track',
                     defaultValue: DefaultValues.progressBarTrackColor,
                 },
             ],
