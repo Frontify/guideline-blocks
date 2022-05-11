@@ -4,7 +4,7 @@ import '@frontify/arcade-tokens/styles';
 import 'tailwindcss/tailwind.css';
 import { createPortal } from 'react-dom';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
-import { Button, ButtonStyle, IconExpand, IconProjects, IconSize } from '@frontify/arcade';
+import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/arcade';
 import {
     AssetChooserObjectType,
     AssetChooserProjectType,
@@ -102,7 +102,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             >
                 <div className="tw-fixed tw-flex tw-top-4 tw-right-4 tw-z-[200]">
                     <Button
-                        icon={<IconExpand />}
+                        icon={<IconReject />}
                         onClick={() => {
                             toggleFigmaLiveModal(false);
                             modalRoot?.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);
