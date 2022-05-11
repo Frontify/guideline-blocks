@@ -13,6 +13,7 @@ import { SectionHeadingBlock } from './sectionHeading';
 import { SliderBlock } from './slider';
 import { SwitchBlock } from './switch';
 import { TemplateInputBlock } from './templateInput';
+import { TextareaBlock } from './textarea';
 
 export * from './assetInput';
 export * from './checklist';
@@ -28,6 +29,7 @@ export * from './sectionHeading';
 export * from './slider';
 export * from './switch';
 export * from './templateInput';
+export * from './textarea';
 
 export type SimpleSettingBlock =
     | AssetInputBlock
@@ -36,13 +38,14 @@ export type SimpleSettingBlock =
     | DropdownBlock
     | InputBlock
     | LegacyAssetInputBlock
+    | LinkChooserBlock
     | MultiInputBlock
+    | NotificationBlock
     | SectionHeadingBlock
     | SliderBlock
     | SwitchBlock
     | TemplateInputBlock
-    | NotificationBlock
-    | LinkChooserBlock;
+    | TextareaBlock;
 
 export type DynamicSupportedBlock = InputBlock | ColorInputBlock | DropdownBlock;
 
