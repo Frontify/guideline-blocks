@@ -9,6 +9,7 @@ on:
 env:
     NODE_VERSION: 16
     CI: true
+    CYPRESS_CACHE_FOLDER: cypress_cache
 
 jobs:
     linting:
