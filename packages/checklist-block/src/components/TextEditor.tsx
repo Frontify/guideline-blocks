@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { toHex8String } from '@frontify/guideline-blocks-shared';
-import { FocusEvent, forwardRef, KeyboardEvent, useContext, useImperativeHandle, useRef } from 'react';
+import { FocusEvent, KeyboardEvent, forwardRef, useContext, useImperativeHandle, useRef } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import { ImperativeFocusHandle, TextEditorProps } from '../types';
 
