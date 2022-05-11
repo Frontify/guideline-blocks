@@ -92,13 +92,13 @@ const settings: BlockSettings = {
                 {
                     id: 'incompleteTextColor',
                     type: 'colorInput',
-                    label: 'Incomplete Text',
+                    label: 'Text',
                     defaultValue: DefaultValues.incompleteTextColor,
                 },
                 {
                     id: 'incompleteCheckboxColor',
                     type: 'colorInput',
-                    label: 'Incomplete Checkbox',
+                    label: 'Checkbox',
                     defaultValue: DefaultValues.incompleteCheckboxColor,
                 },
             ],
@@ -111,13 +111,13 @@ const settings: BlockSettings = {
                 {
                     id: 'completeTextColor',
                     type: 'colorInput',
-                    label: 'Complete Text',
+                    label: 'Text',
                     defaultValue: DefaultValues.completeTextColor,
                 },
                 {
                     id: 'completeCheckboxColor',
                     type: 'colorInput',
-                    label: 'Complete Checkbox',
+                    label: 'Checkbox',
                     defaultValue: DefaultValues.completeCheckboxColor,
                 },
                 {
@@ -189,13 +189,13 @@ const settings: BlockSettings = {
                 {
                     id: 'progressBarFillColor',
                     type: 'colorInput',
-                    label: 'Progress Bar Fill',
+                    label: 'Bar Fill',
                     defaultValue: DefaultValues.progressBarFillColor,
                 },
                 {
                     id: 'progressBarTrackColor',
                     type: 'colorInput',
-                    label: 'Progress Bar Track',
+                    label: 'Bar Track',
                     defaultValue: DefaultValues.progressBarTrackColor,
                 },
             ],
