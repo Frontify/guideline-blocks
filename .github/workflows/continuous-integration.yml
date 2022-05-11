@@ -9,7 +9,6 @@ on:
 env:
     NODE_VERSION: 16
     CI: true
-    CYPRESS_CACHE_FOLDER: cypress_cache
 
 jobs:
     linting:
@@ -135,6 +134,14 @@ jobs:
               with:
                   node-version: ${{ env.NODE_VERSION }}
                   cache: "pnpm"
+
+            - name: Cache Cypress binary
+              uses: actions/cache@v1
+              with:
+                path: ~/.cache/Cypress
+                key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+                restore-keys: |
+                  cypress-${{ runner.os }}-cypress-
 
             - name: Install npm dependencies
               run: pnpm i --frozen-lockfile
