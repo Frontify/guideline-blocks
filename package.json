@@ -11,7 +11,6 @@
         "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier",
         "publish:block-settings": "cd packages/block-settings && pnpm publish",
         "test:components:browser": "cypress open-ct",
-        "test:components:ci": "cypress run-ct --browser chrome --record --parallel --group component-tests --tag component-tests",
         "test:components": "cypress run-ct",
         "test:unit": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel test",
         "test": "pnpm run test:unit && pnpm run test:components",
