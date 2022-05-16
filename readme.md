@@ -24,7 +24,7 @@
     ```
 4. Start your block (replace with actual name from package.json)
     ```
-    $ ^ example-name serve
+    $ pnpm --filter example-name serve
     ```
 5. Go to your Frontify styleguide
 6. Switch to edit mode
