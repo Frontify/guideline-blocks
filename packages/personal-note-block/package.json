@@ -17,7 +17,7 @@
         "@babel/core": "7.17.10",
         "@cypress/react": "5.12.4",
         "@frontify/eslint-config-react": "0.15.2",
-        "@frontify/frontify-cli": "^4.0.5",
+        "@frontify/frontify-cli": "^4.0.6",
         "@types/react": "17.0.44",
         "autoprefixer": "10.4.6",
         "cypress": "9.6.0",
