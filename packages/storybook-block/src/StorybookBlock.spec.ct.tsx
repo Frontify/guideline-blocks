@@ -53,7 +53,9 @@ describe('Storybook Block', () => {
                 url: EXAMPLE_URL,
                 hasRadius: true,
                 radiusValue: '5px',
-                borderSelection: [StorybookBorderStyle.Dotted, '2px', EXAMPLE_COLOR],
+                borderColor: EXAMPLE_COLOR,
+                borderStyle: StorybookBorderStyle.Dotted,
+                borderWidth: '2px',
                 heightChoice: StorybookHeight.Small,
             },
         });
