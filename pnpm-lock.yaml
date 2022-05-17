@@ -45,7 +45,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': 4.0.5
+      '@frontify/frontify-cli': 4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -68,7 +68,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@frontify/guideline-blocks-settings': link:../../packages/block-settings
       '@frontify/guideline-blocks-shared': link:../../packages/shared
       '@types/react': 17.0.44
@@ -113,7 +113,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -138,7 +138,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/react': 17.0.44
       autoprefixer: 10.4.7_postcss@8.4.13
       cypress: 9.6.0
@@ -156,7 +156,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@react-aria/checkbox': ^3.3.3
@@ -195,7 +195,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@react-types/shared': 3.11.2_react@17.0.2
       '@types/react': 17.0.44
       autoprefixer: 10.4.7_postcss@8.4.13
@@ -215,7 +215,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -240,7 +240,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/react': 17.0.44
       autoprefixer: 10.4.6_postcss@8.4.13
       cypress: 9.6.0
@@ -258,7 +258,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -283,7 +283,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/react': 17.0.44
       autoprefixer: 10.4.6_postcss@8.4.13
       cypress: 9.6.0
@@ -301,7 +301,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -326,7 +326,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/react': 17.0.44
       autoprefixer: 10.4.6_postcss@8.4.13
       cypress: 9.6.0
@@ -344,7 +344,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -370,7 +370,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/react': 17.0.44
       '@types/react-dom': 17.0.1
       autoprefixer: 10.4.7_postcss@8.4.13
@@ -389,7 +389,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -416,7 +416,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/react': 17.0.44
       autoprefixer: 10.4.6_postcss@8.4.13
       cypress: 9.6.0
@@ -434,7 +434,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -459,7 +459,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/react': 17.0.44
       autoprefixer: 10.4.7_postcss@8.4.13
       cypress: 9.6.0
@@ -524,7 +524,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@react-aria/interactions': 3.7.0
@@ -551,7 +551,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/react': 17.0.44
       autoprefixer: 10.4.7_postcss@8.4.13
       cypress: 9.6.0
@@ -569,7 +569,7 @@ importers:
       '@frontify/arcade': 8.0.0
       '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/frontify-cli': ^4.0.5
+      '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/lodash-es': 4.17.6
@@ -597,7 +597,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 4.0.5_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
       '@types/lodash-es': 4.17.6
       '@types/react': 17.0.44
       autoprefixer: 10.4.7_postcss@8.4.13
@@ -889,6 +889,8 @@ packages:
     resolution: {integrity: sha512-n2Q6i+fnJqzOaq2VkdXxy2TCPCWQZHiCo0XqmrCvDWcZQKRyZzYi4Z0yxlBuN0w+r2ZHmre+Q087DSrw3pbJDQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.17.10
 
   /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/7.16.7_@babel+core@7.17.10:
     resolution: {integrity: sha512-anv/DObl7waiGEnC24O9zqL0pSuI9hljihqiDuFHC8d7/bjr/4RLGPWuc8rYOff/QPzbEPSkzG8wGG9aDuhHRg==}
@@ -1968,11 +1970,13 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/xvfb/1.2.4:
+  /@cypress/xvfb/1.2.4_supports-color@8.1.1:
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7_supports-color@8.1.1
       lodash.once: 4.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@emotion/is-prop-valid/0.8.8:
@@ -2461,8 +2465,8 @@ packages:
       - supports-color
     dev: true
 
-  /@frontify/frontify-cli/4.0.5_ri33gbvqd7vl4x44gsiyf2u75m:
-    resolution: {integrity: sha512-qHTcZeOPxk3433iKXZvKTz+piTuoKHBPiOEh29klqhyjWpQCg8w0QyI1MtEHF7lxscguz02wLWcwMskowVrjvg==}
+  /@frontify/frontify-cli/4.0.6_ri33gbvqd7vl4x44gsiyf2u75m:
+    resolution: {integrity: sha512-2Xp37uUYHn1vEQ5X8vh7knLCGwadb9NpqAo+rjt43SiG/RjteQrAiKLcxdwtzIW0uk4DxmbK21Fqhtb69kVMTA==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -2477,7 +2481,7 @@ packages:
       '@rollup/plugin-json': 4.1.0_rollup@2.70.1
       '@rollup/plugin-node-resolve': 13.1.3_rollup@2.70.1
       '@rollup/plugin-replace': 4.0.0_rollup@2.70.1
-      esbuild: 0.14.36
+      esbuild: 0.14.38
       fastify: 3.28.0
       fastify-cors: 6.0.3
       fastify-static: 4.6.1
@@ -2487,7 +2491,7 @@ packages:
       node-stdlib-browser: 1.2.0
       rollup: 2.70.1
       rollup-plugin-combine: 2.1.1
-      rollup-plugin-esbuild: 4.9.1_sqhbgdqmhbn6g3brwzcefirmfi
+      rollup-plugin-esbuild: 4.9.1_vioqp3gnyr4eeol67lf6zyna6a
       rollup-plugin-postcss: 4.0.2_postcss@8.4.13
     transitivePeerDependencies:
       - '@babel/core'
@@ -7856,7 +7860,7 @@ packages:
     dev: true
 
   /archy/1.0.0:
-    resolution: {integrity: sha1-+cjBN1fMHde8N5rHeyxipcKGjEA=}
+    resolution: {integrity: sha512-Xg+9RwCg/0p32teKdGMPTPnVXKD0w3DfHnFTficozsAgsvq2XenPJq/MYpzzQ/v8zrOyJn6Ds39VA4JIDwFfqw==}
     dev: true
 
   /arg/4.1.3:
@@ -7930,7 +7934,7 @@ packages:
     dev: true
 
   /arrify/1.0.1:
-    resolution: {integrity: sha1-iYUI2iIm84DfkEcoRWhJwVAaSw0=}
+    resolution: {integrity: sha512-3CYzex9M9FGQjCGMGyi6/31c8GJbgb0qGyrx5HWxPd0aCwh4cB2YjMb2Xf9UuoogrMrlO9cTqnB5rI5GHZTcUA==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -8168,7 +8172,7 @@ packages:
     dev: true
 
   /boolbase/1.0.0:
-    resolution: {integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=}
+    resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
   /brace-expansion/1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
@@ -8197,6 +8201,8 @@ packages:
       snapdragon-node: 2.1.1
       split-string: 3.1.0
       to-regex: 3.0.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /braces/3.0.2:
@@ -8206,7 +8212,7 @@ packages:
       fill-range: 7.0.1
 
   /brorand/1.1.0:
-    resolution: {integrity: sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=}
+    resolution: {integrity: sha512-cKV8tMCEpQs4hK/ik71d6LrPOnpkpGBR0wzxqr68g2m/LB2GxVYQroAjMJZRVM1Y4BCjCKc3vAamxSzOY2RP+w==}
     dev: true
 
   /browser-resolve/2.0.0:
@@ -8287,7 +8293,7 @@ packages:
     dev: true
 
   /buffer-xor/1.0.3:
-    resolution: {integrity: sha1-JuYe0UIvtw3ULm42cp7VHYVf6Nk=}
+    resolution: {integrity: sha512-571s0T7nZWK6vB67HI5dyUF7wXiNcfaPPPTl6zYCNApANjIvYJTg7hlud/+cJpdAhS7dVzqMLmfhfHR3rAcOjQ==}
     dev: true
 
   /buffer/5.7.1:
@@ -8303,7 +8309,7 @@ packages:
     dev: true
 
   /builtin-status-codes/3.0.0:
-    resolution: {integrity: sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=}
+    resolution: {integrity: sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==}
     dev: true
 
   /cache-base/1.0.1:
@@ -8864,7 +8870,7 @@ packages:
     requiresBuild: true
     dependencies:
       '@cypress/request': 2.88.10
-      '@cypress/xvfb': 1.2.4
+      '@cypress/xvfb': 1.2.4_supports-color@8.1.1
       '@types/node': 14.18.16
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.3
@@ -8924,19 +8930,35 @@ packages:
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.0.0
     dev: true
 
-  /debug/3.2.7:
+  /debug/3.2.7_supports-color@8.1.1:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.1.3
+      supports-color: 8.1.1
     dev: true
 
   /debug/4.1.1:
     resolution: {integrity: sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==}
     deprecated: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.1.3
     dev: true
@@ -9313,28 +9335,10 @@ packages:
     resolution: {integrity: sha1-wsNYJlYkfDnqEHyx5mUrb58kUjw=}
     dev: true
 
-  /esbuild-android-64/0.14.36:
-    resolution: {integrity: sha512-jwpBhF1jmo0tVCYC/ORzVN+hyVcNZUWuozGcLHfod0RJCedTDTvR4nwlTXdx1gtncDqjk33itjO+27OZHbiavw==}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [android]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-android-64/0.14.38:
     resolution: {integrity: sha512-aRFxR3scRKkbmNuGAK+Gee3+yFxkTJO/cx83Dkyzo4CnQl/2zVSurtG6+G86EQIZ+w+VYngVyK7P3HyTBKu3nw==}
     engines: {node: '>=12'}
     cpu: [x64]
-    os: [android]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-android-arm64/0.14.36:
-    resolution: {integrity: sha512-/hYkyFe7x7Yapmfv4X/tBmyKnggUmdQmlvZ8ZlBnV4+PjisrEhAvC3yWpURuD9XoB8Wa1d5dGkTsF53pIvpjsg==}
-    engines: {node: '>=12'}
-    cpu: [arm64]
     os: [android]
     requiresBuild: true
     dev: true
@@ -9349,28 +9353,10 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-darwin-64/0.14.36:
-    resolution: {integrity: sha512-kkl6qmV0dTpyIMKagluzYqlc1vO0ecgpviK/7jwPbRDEv5fejRTaBBEE2KxEQbTHcLhiiDbhG7d5UybZWo/1zQ==}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-darwin-64/0.14.38:
     resolution: {integrity: sha512-5JJvgXkX87Pd1Og0u/NJuO7TSqAikAcQQ74gyJ87bqWRVeouky84ICoV4sN6VV53aTW+NE87qLdGY4QA2S7KNA==}
     engines: {node: '>=12'}
     cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-darwin-arm64/0.14.36:
-    resolution: {integrity: sha512-q8fY4r2Sx6P0Pr3VUm//eFYKVk07C5MHcEinU1BjyFnuYz4IxR/03uBbDwluR6ILIHnZTE7AkTUWIdidRi1Jjw==}
-    engines: {node: '>=12'}
-    cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
@@ -9385,28 +9371,10 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-freebsd-64/0.14.36:
-    resolution: {integrity: sha512-Hn8AYuxXXRptybPqoMkga4HRFE7/XmhtlQjXFHoAIhKUPPMeJH35GYEUWGbjteai9FLFvBAjEAlwEtSGxnqWww==}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [freebsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-freebsd-64/0.14.38:
     resolution: {integrity: sha512-epnPbhZUt93xV5cgeY36ZxPXDsQeO55DppzsIgWM8vgiG/Rz+qYDLmh5ts3e+Ln1wA9dQ+nZmVHw+RjaW3I5Ig==}
     engines: {node: '>=12'}
     cpu: [x64]
-    os: [freebsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-freebsd-arm64/0.14.36:
-    resolution: {integrity: sha512-S3C0attylLLRiCcHiJd036eDEMOY32+h8P+jJ3kTcfhJANNjP0TNBNL30TZmEdOSx/820HJFgRrqpNAvTbjnDA==}
-    engines: {node: '>=12'}
-    cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
     dev: true
@@ -9421,28 +9389,10 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-linux-32/0.14.36:
-    resolution: {integrity: sha512-Eh9OkyTrEZn9WGO4xkI3OPPpUX7p/3QYvdG0lL4rfr73Ap2HAr6D9lP59VMF64Ex01LhHSXwIsFG/8AQjh6eNw==}
-    engines: {node: '>=12'}
-    cpu: [ia32]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-linux-32/0.14.38:
     resolution: {integrity: sha512-QfgfeNHRFvr2XeHFzP8kOZVnal3QvST3A0cgq32ZrHjSMFTdgXhMhmWdKzRXP/PKcfv3e2OW9tT9PpcjNvaq6g==}
     engines: {node: '>=12'}
     cpu: [ia32]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-64/0.14.36:
-    resolution: {integrity: sha512-vFVFS5ve7PuwlfgoWNyRccGDi2QTNkQo/2k5U5ttVD0jRFaMlc8UQee708fOZA6zTCDy5RWsT5MJw3sl2X6KDg==}
-    engines: {node: '>=12'}
-    cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
@@ -9457,28 +9407,10 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-linux-arm/0.14.36:
-    resolution: {integrity: sha512-NhgU4n+NCsYgt7Hy61PCquEz5aevI6VjQvxwBxtxrooXsxt5b2xtOUXYZe04JxqQo+XZk3d1gcr7pbV9MAQ/Lg==}
-    engines: {node: '>=12'}
-    cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-linux-arm/0.14.38:
     resolution: {integrity: sha512-FiFvQe8J3VKTDXG01JbvoVRXQ0x6UZwyrU4IaLBZeq39Bsbatd94Fuc3F1RGqPF5RbIWW7RvkVQjn79ejzysnA==}
     engines: {node: '>=12'}
     cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-arm64/0.14.36:
-    resolution: {integrity: sha512-24Vq1M7FdpSmaTYuu1w0Hdhiqkbto1I5Pjyi+4Cdw5fJKGlwQuw+hWynTcRI/cOZxBcBpP21gND7W27gHAiftw==}
-    engines: {node: '>=12'}
-    cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
@@ -9493,28 +9425,10 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-linux-mips64le/0.14.36:
-    resolution: {integrity: sha512-hZUeTXvppJN+5rEz2EjsOFM9F1bZt7/d2FUM1lmQo//rXh1RTFYzhC0txn7WV0/jCC7SvrGRaRz0NMsRPf8SIA==}
-    engines: {node: '>=12'}
-    cpu: [mips64el]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-linux-mips64le/0.14.38:
     resolution: {integrity: sha512-qd1dLf2v7QBiI5wwfil9j0HG/5YMFBAmMVmdeokbNAMbcg49p25t6IlJFXAeLzogv1AvgaXRXvgFNhScYEUXGQ==}
     engines: {node: '>=12'}
     cpu: [mips64el]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-ppc64le/0.14.36:
-    resolution: {integrity: sha512-1Bg3QgzZjO+QtPhP9VeIBhAduHEc2kzU43MzBnMwpLSZ890azr4/A9Dganun8nsqD/1TBcqhId0z4mFDO8FAvg==}
-    engines: {node: '>=12'}
-    cpu: [ppc64]
     os: [linux]
     requiresBuild: true
     dev: true
@@ -9529,28 +9443,10 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-linux-riscv64/0.14.36:
-    resolution: {integrity: sha512-dOE5pt3cOdqEhaufDRzNCHf5BSwxgygVak9UR7PH7KPVHwSTDAZHDoEjblxLqjJYpc5XaU9+gKJ9F8mp9r5I4A==}
-    engines: {node: '>=12'}
-    cpu: [riscv64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-linux-riscv64/0.14.38:
     resolution: {integrity: sha512-+p6YKYbuV72uikChRk14FSyNJZ4WfYkffj6Af0/Tw63/6TJX6TnIKE+6D3xtEc7DeDth1fjUOEqm+ApKFXbbVQ==}
     engines: {node: '>=12'}
     cpu: [riscv64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-s390x/0.14.36:
-    resolution: {integrity: sha512-g4FMdh//BBGTfVHjF6MO7Cz8gqRoDPzXWxRvWkJoGroKA18G9m0wddvPbEqcQf5Tbt2vSc1CIgag7cXwTmoTXg==}
-    engines: {node: '>=12'}
-    cpu: [s390x]
     os: [linux]
     requiresBuild: true
     dev: true
@@ -9565,29 +9461,11 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-netbsd-64/0.14.36:
-    resolution: {integrity: sha512-UB2bVImxkWk4vjnP62ehFNZ73lQY1xcnL5ZNYF3x0AG+j8HgdkNF05v67YJdCIuUJpBuTyCK8LORCYo9onSW+A==}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [netbsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-netbsd-64/0.14.38:
     resolution: {integrity: sha512-cljBAApVwkpnJZfnRVThpRBGzCi+a+V9Ofb1fVkKhtrPLDYlHLrSYGtmnoTVWDQdU516qYI8+wOgcGZ4XIZh0Q==}
     engines: {node: '>=12'}
     cpu: [x64]
     os: [netbsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-openbsd-64/0.14.36:
-    resolution: {integrity: sha512-NvGB2Chf8GxuleXRGk8e9zD3aSdRO5kLt9coTQbCg7WMGXeX471sBgh4kSg8pjx0yTXRt0MlrUDnjVYnetyivg==}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [openbsd]
     requiresBuild: true
     dev: true
     optional: true
@@ -9601,15 +9479,6 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-sunos-64/0.14.36:
-    resolution: {integrity: sha512-VkUZS5ftTSjhRjuRLp+v78auMO3PZBXu6xl4ajomGenEm2/rGuWlhFSjB7YbBNErOchj51Jb2OK8lKAo8qdmsQ==}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [sunos]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-sunos-64/0.14.38:
     resolution: {integrity: sha512-2mfIoYW58gKcC3bck0j7lD3RZkqYA7MmujFYmSn9l6TiIcAMpuEvqksO+ntBgbLep/eyjpgdplF7b+4T9VJGOA==}
     engines: {node: '>=12'}
@@ -9619,28 +9488,10 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-windows-32/0.14.36:
-    resolution: {integrity: sha512-bIar+A6hdytJjZrDxfMBUSEHHLfx3ynoEZXx/39nxy86pX/w249WZm8Bm0dtOAByAf4Z6qV0LsnTIJHiIqbw0w==}
-    engines: {node: '>=12'}
-    cpu: [ia32]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-windows-32/0.14.38:
     resolution: {integrity: sha512-L2BmEeFZATAvU+FJzJiRLFUP+d9RHN+QXpgaOrs2klshoAm1AE6Us4X6fS9k33Uy5SzScn2TpcgecbqJza1Hjw==}
     engines: {node: '>=12'}
     cpu: [ia32]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-windows-64/0.14.36:
-    resolution: {integrity: sha512-+p4MuRZekVChAeueT1Y9LGkxrT5x7YYJxYE8ZOTcEfeUUN43vktSn6hUNsvxzzATrSgq5QqRdllkVBxWZg7KqQ==}
-    engines: {node: '>=12'}
-    cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
@@ -9655,15 +9506,6 @@ packages:
     dev: true
     optional: true
 
-  /esbuild-windows-arm64/0.14.36:
-    resolution: {integrity: sha512-fBB4WlDqV1m18EF/aheGYQkQZHfPHiHJSBYzXIo8yKehek+0BtBwo/4PNwKGJ5T0YK0oc8pBKjgwPbzSrPLb+Q==}
-    engines: {node: '>=12'}
-    cpu: [arm64]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild-windows-arm64/0.14.38:
     resolution: {integrity: sha512-k3FGCNmHBkqdJXuJszdWciAH77PukEyDsdIryEHn9cKLQFxzhT39dSumeTuggaQcXY57UlmLGIkklWZo2qzHpw==}
     engines: {node: '>=12'}
@@ -9672,34 +9514,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /esbuild/0.14.36:
-    resolution: {integrity: sha512-HhFHPiRXGYOCRlrhpiVDYKcFJRdO0sBElZ668M4lh2ER0YgnkLxECuFe7uWCf23FrcLc59Pqr7dHkTqmRPDHmw==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    optionalDependencies:
-      esbuild-android-64: 0.14.36
-      esbuild-android-arm64: 0.14.36
-      esbuild-darwin-64: 0.14.36
-      esbuild-darwin-arm64: 0.14.36
-      esbuild-freebsd-64: 0.14.36
-      esbuild-freebsd-arm64: 0.14.36
-      esbuild-linux-32: 0.14.36
-      esbuild-linux-64: 0.14.36
-      esbuild-linux-arm: 0.14.36
-      esbuild-linux-arm64: 0.14.36
-      esbuild-linux-mips64le: 0.14.36
-      esbuild-linux-ppc64le: 0.14.36
-      esbuild-linux-riscv64: 0.14.36
-      esbuild-linux-s390x: 0.14.36
-      esbuild-netbsd-64: 0.14.36
-      esbuild-openbsd-64: 0.14.36
-      esbuild-sunos-64: 0.14.36
-      esbuild-windows-32: 0.14.36
-      esbuild-windows-64: 0.14.36
-      esbuild-windows-arm64: 0.14.36
-    dev: true
 
   /esbuild/0.14.38:
     resolution: {integrity: sha512-12fzJ0fsm7gVZX1YQ1InkOE5f9Tl7cgf6JPYXRJtPIoE0zkWAbHdPHVPPaLi9tYAcEBqheGzqLn/3RdTOyBfcA==}
@@ -10085,6 +9899,8 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /extend-shallow/2.0.1:
@@ -10117,6 +9933,8 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /extract-zip/2.0.1_supports-color@8.1.1:
@@ -10219,6 +10037,8 @@ packages:
       p-limit: 3.1.0
       readable-stream: 3.6.0
       send: 0.17.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /fastify-websocket/4.2.1:
@@ -10326,6 +10146,8 @@ packages:
       debug: 4.1.1
       find-yarn-workspace-root: 1.2.1
       mocked-env: 1.3.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /find-yarn-workspace-root/1.2.1:
@@ -10333,6 +10155,8 @@ packages:
     dependencies:
       fs-extra: 4.0.3
       micromatch: 3.1.10
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /find-yarn-workspace-root/2.0.0:
@@ -11781,6 +11605,8 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /micromatch/4.0.5:
@@ -11887,6 +11713,8 @@ packages:
       debug: 4.1.1
       lazy-ass: 1.6.0
       ramda: 0.26.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /ms/2.0.0:
@@ -11938,6 +11766,8 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /natural-compare/1.4.0:
@@ -13531,7 +13361,7 @@ packages:
       camelcase: 6.3.0
     dev: true
 
-  /rollup-plugin-esbuild/4.9.1_sqhbgdqmhbn6g3brwzcefirmfi:
+  /rollup-plugin-esbuild/4.9.1_vioqp3gnyr4eeol67lf6zyna6a:
     resolution: {integrity: sha512-qn/x7Wz9p3Xnva99qcb+nopH0d2VJwVnsxJTGEg+Sh2Z3tqQl33MhOwzekVo1YTKgv+yAmosjcBRJygMfGrtLw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -13541,7 +13371,7 @@ packages:
       '@rollup/pluginutils': 4.2.1
       debug: 4.3.4
       es-module-lexer: 0.9.3
-      esbuild: 0.14.36
+      esbuild: 0.14.38
       joycon: 3.1.1
       jsonc-parser: 3.0.0
       rollup: 2.70.1
@@ -13711,6 +13541,8 @@ packages:
       on-finished: 2.3.0
       range-parser: 1.2.1
       statuses: 1.5.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /set-cookie-parser/2.4.8:
@@ -13888,6 +13720,8 @@ packages:
       source-map: 0.5.7
       source-map-resolve: 0.5.3
       use: 3.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /sonic-boom/1.4.1:
