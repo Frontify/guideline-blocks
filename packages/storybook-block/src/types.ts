@@ -7,8 +7,6 @@ export type BlockProps = {
     appBridge: AppBridgeNative;
 };
 
-export type BorderSelectionType = [StorybookBorderStyle, string, Color];
-
 export type Settings = {
     style?: StorybookStyle;
     url?: string;
@@ -17,7 +15,9 @@ export type Settings = {
     heightValue?: string;
     positioning?: StorybookPosition;
     hasBorder?: boolean;
-    borderSelection?: BorderSelectionType;
+    borderColor: Color;
+    borderStyle: StorybookBorderStyle;
+    borderWidth: string;
     hasRadius?: boolean;
     radiusChoice?: StorybookBorderRadius;
     radiusValue?: string;

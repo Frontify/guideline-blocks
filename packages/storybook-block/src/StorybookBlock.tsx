@@ -6,12 +6,11 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { CSSProperties, FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
-    BorderSelectionType,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -19,24 +18,10 @@ import {
     StorybookPosition,
     StorybookStyle,
     borderRadiusClasses,
-    borderStyles,
     heights,
 } from './types';
 
 const DEFAULT_BORDER_WIDTH = '1px';
-
-const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => {
-    // TODO: This check could be removed if defaultValue are returned from blockSettings (ticket: https://app.clickup.com/t/1p69p6a)
-    const style = borderSelection[0] ?? StorybookBorderStyle.Solid;
-    const width = borderSelection[1] ?? DEFAULT_BORDER_WIDTH;
-    const rgba = borderSelection[2] ?? BORDER_COLOR_DEFAULT_VALUE;
-    return {
-        borderStyle: borderStyles[style],
-        borderWidth: width,
-        borderColor: toRgbaString(rgba),
-        borderRadius,
-    };
-};
 
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
@@ -53,7 +38,9 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         heightValue = '',
         positioning = StorybookPosition.Horizontal,
         hasBorder = true,
-        borderSelection = [StorybookBorderStyle.Solid, DEFAULT_BORDER_WIDTH, BORDER_COLOR_DEFAULT_VALUE],
+        borderColor = BORDER_COLOR_DEFAULT_VALUE,
+        borderStyle = StorybookBorderStyle.Solid,
+        borderWidth = DEFAULT_BORDER_WIDTH,
         hasRadius = false,
         radiusChoice = StorybookBorderRadius.None,
         radiusValue = '',
@@ -103,7 +90,16 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                     {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
                     <iframe
                         className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
-                        style={hasBorder ? getIframeStyles(borderSelection, hasRadius ? radiusValue : '') : {}}
+                        style={
+                            hasBorder
+                                ? {
+                                      borderColor: toRgbaString(borderColor),
+                                      borderStyle,
+                                      borderWidth,
+                                      borderRadius: radiusValue,
+                                  }
+                                : {}
+                        }
                         height={isCustomHeight ? heightValue : heights[heightChoice]}
                         src={iframeUrl.toString()}
                         frameBorder="0"
