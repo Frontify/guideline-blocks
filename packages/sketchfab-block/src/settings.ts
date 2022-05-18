@@ -451,14 +451,14 @@ const settings: BlockSettings & {
             label: 'Animation Menu / Timeline',
             type: 'switch',
             defaultValue: true,
-            info: 'Setting to 0 will hide the animation menu and timeline.',
+            info: 'Disabling this feature will hide the animation menu and timeline.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
             id: SketchFabSettings.UI_ANNOTATIONS,
             label: 'Annotation Menu',
             type: 'switch',
-            info: 'Setting to 0 will hide the Annotation menu.',
+            info: 'Disabling this feature will hide the Annotation menu.',
             defaultValue: true,
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
@@ -467,7 +467,7 @@ const settings: BlockSettings & {
             defaultValue: true,
             label: 'Controls Buttons',
             type: 'switch',
-            info: 'Setting to 0 will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).',
+            info: 'Disabling this feature will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -475,7 +475,7 @@ const settings: BlockSettings & {
             label: 'Fadeout UI Automatically',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will prevent the viewer controls from disappearing when the camera moves or when the viewer is inactive for a few seconds.',
+            info: 'Disabling this feature will prevent the viewer controls from disappearing when the camera moves or when the viewer is inactive for a few seconds.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -483,7 +483,7 @@ const settings: BlockSettings & {
             label: 'Fullscreen Button',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the Fullscreen button.',
+            info: 'Disabling this feature will hide the Fullscreen button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -491,7 +491,7 @@ const settings: BlockSettings & {
             label: 'General Controls',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).',
+            info: 'Disabling this feature will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -499,7 +499,7 @@ const settings: BlockSettings & {
             label: 'Help Button',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the Help button.',
+            info: 'Disabling this feature will hide the Help button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -507,7 +507,7 @@ const settings: BlockSettings & {
             label: 'Hint Animation',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will always hide the viewer hint animation ("click & hold to rotate").',
+            info: 'Disabling this feature will always hide the viewer hint animation ("click & hold to rotate").',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -515,7 +515,7 @@ const settings: BlockSettings & {
             label: 'Info Bar',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the model info bar at the top of the viewer.',
+            info: 'Disabling this feature will hide the model info bar at the top of the viewer.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -523,7 +523,7 @@ const settings: BlockSettings & {
             label: 'Inspector Button',
             defaultValue: true,
             type: 'switch',
-            info: "Setting to 0 will hide the inspector button. It will also prevent the Inspector from opening, and save loading time by not downloading the model's wireframe file unless wireframe is explicitly enabled in 3D Settings or the wireframe_preload option is enabled.",
+            info: "Disabling this feature will hide the inspector button. It will also prevent the Inspector from opening, and save loading time by not downloading the model's wireframe file unless wireframe is explicitly enabled in 3D Settings or the wireframe_preload option is enabled.",
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -531,7 +531,7 @@ const settings: BlockSettings & {
             label: 'Loading Bars',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the viewer loading bars.',
+            info: 'Disabling this feature will hide the viewer loading bars.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -539,7 +539,7 @@ const settings: BlockSettings & {
             label: 'Settings Button',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the Settings button.',
+            info: 'Disabling this feature will hide the Settings button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -547,7 +547,7 @@ const settings: BlockSettings & {
             label: 'Sound Button',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the Sound button.',
+            info: 'Disabling this feature will hide the Sound button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -555,7 +555,7 @@ const settings: BlockSettings & {
             label: 'Start / Play Button',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the start/play button.',
+            info: 'Disabling this feature will hide the start/play button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -563,7 +563,7 @@ const settings: BlockSettings & {
             label: 'VR Button',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the View in VR button.',
+            info: 'Disabling this feature will hide the View in VR button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -571,7 +571,7 @@ const settings: BlockSettings & {
             label: 'AR Button',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 will hide the AR button.',
+            info: 'Disabling this feature will hide the AR button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -579,7 +579,7 @@ const settings: BlockSettings & {
             label: 'AR Help Button',
             defaultValue: true,
             type: 'switch',
-            info: "Setting to 0 will hide the AR popup's help link.",
+            info: "Disabling this feature will hide the AR popup's help link.",
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -587,7 +587,7 @@ const settings: BlockSettings & {
             label: 'Qrcode Button',
             defaultValue: true,
             type: 'switch',
-            info: "Setting to 0 will hide the AR popup's QR code.",
+            info: "Disabling this feature will hide the AR popup's QR code.",
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -595,7 +595,7 @@ const settings: BlockSettings & {
             label: 'UI Watermark',
             defaultValue: true,
             type: 'switch',
-            info: 'Setting to 0 remove the Sketchfab logo watermark.',
+            info: 'Disabling this feature remove the Sketchfab logo watermark.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
     ],
