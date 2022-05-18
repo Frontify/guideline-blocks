@@ -116,6 +116,7 @@ const settings: BlockSettings & {
             id: 'autoStart',
             label: 'Autostart',
             type: 'switch',
+            info: 'Enabling this feature will make the model load immediately once the page is ready, rather than waiting for a user to click the Play button.',
         },
         {
             id: 'autoPlay',
@@ -128,6 +129,7 @@ const settings: BlockSettings & {
             id: 'textureSize',
             label: 'Max Texture Size',
             type: 'switch',
+            info: 'Setting to a positive number will limit all textures to that maximum resolution (longest side in pixels). This should be a "power of 2" value such as 32, 128, 256, 512, etc.',
             on: [
                 {
                     id: 'textureSizeValue',
@@ -154,13 +156,30 @@ const settings: BlockSettings & {
                 },
             ],
         },
-        { id: 'preloadTextures', type: 'switch', label: 'Preload Textures' },
-        { id: 'viewersTracking', type: 'switch', label: 'Viewers Tracking', defaultValue: true },
-        { id: 'apiLog', type: 'switch', label: 'API Log' },
+        {
+            id: 'preloadTextures',
+            type: 'switch',
+            label: 'Preload Textures',
+            info: 'Enabling this feature will force all resources (textures) to download before the scene is displayed.',
+        },
+        {
+            id: 'viewersTracking',
+            type: 'switch',
+            label: 'Viewers Tracking',
+            defaultValue: true,
+            info: 'Disabling this feature will prevent cookies, analytics, audience measurement / tracking, etc. in the embed.',
+        },
+        {
+            id: 'apiLog',
+            type: 'switch',
+            label: 'API Log',
+            info: 'When enabled, Data such as background UIDs, environment UIDs, annotation UIDs, and camera limit coordinates will be logged to the browser console.',
+        },
         {
             id: 'transparentBackground',
             type: 'switch',
             label: 'Transparent Background',
+            info: "Enabling this feature will make the model's background transparent.",
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
         },
     ],
@@ -169,6 +188,7 @@ const settings: BlockSettings & {
             id: 'navigationMode',
             label: 'Navigation Mode',
             type: 'slider',
+            info: 'Setting to First Person will start the model in First Person mode by default.',
             choices: [
                 { value: 'orbit', label: 'Orbit' },
                 { value: 'fps', label: 'First Person' },
@@ -178,6 +198,7 @@ const settings: BlockSettings & {
             id: 'fps',
             type: 'switch',
             label: 'First Person Navigation Speed',
+            info: 'Setting to a number [0-100] will define the default walk speed in First Person mode.',
             on: [
                 {
                     id: 'fpsValue',
@@ -189,12 +210,19 @@ const settings: BlockSettings & {
                 },
             ],
         },
-        { id: 'scrollWheel', type: 'switch', label: 'Allow Scrollwheel', defaultValue: true },
+        {
+            id: 'scrollWheel',
+            type: 'switch',
+            label: 'Allow Scrollwheel',
+            defaultValue: true,
+            info: 'Disabling this feature will prevent zooming with the scroll wheel.',
+        },
         {
             id: 'doubleClick',
             type: 'switch',
             label: 'Allow Double Click',
             defaultValue: true,
+            info: 'Disabling this feature will disable the double-clicking to focus the camera in the viewer.',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
         },
         {
@@ -202,11 +230,13 @@ const settings: BlockSettings & {
             type: 'switch',
             label: 'Starting Spin',
             defaultValue: true,
+            info: ' Disabling this feature will skip the initial animation that occurs when a model is loaded, and immediately show the model in its default position.',
         },
         {
             id: 'autoSpin',
             type: 'switch',
             label: 'Autospin',
+            info: 'Setting to a number higher than 0 will cause the model to automatically spin around the z-axis after loading.',
             on: [
                 {
                     id: 'autoSpinCount',
@@ -221,12 +251,14 @@ const settings: BlockSettings & {
             id: 'preventLightRotation',
             type: 'switch',
             label: 'Prevent User Light Rotation',
+            info: 'Enabling this feature will prevent using alt + click/drag to rotate the lights and environment.',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
         },
         {
             id: 'orbitConstraintPan',
             type: 'switch',
             label: 'Orbit Constraint Pan',
+            info: 'Enabling this feature will prevent panning the camera.',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
         },
         {
@@ -248,6 +280,7 @@ const settings: BlockSettings & {
                             rules: [pitchRule],
                             placeholder: '1',
                             label: 'Up',
+                            info: "Setting to [-π/2 – π/2] will define the camera's pitch up rotation limit.",
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                         },
                         {
@@ -256,6 +289,7 @@ const settings: BlockSettings & {
                             inputType: TextInputType.Number,
                             rules: [pitchRule],
                             label: 'Down',
+                            info: "Setting to [-π/2 – π/2] will define the camera's pitch down rotation limit.",
                             placeholder: '-1',
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                         },
@@ -280,6 +314,7 @@ const settings: BlockSettings & {
                             type: 'input',
                             inputType: TextInputType.Number,
                             rules: [yawRule],
+                            info: "Setting to [-π – π] will define the camera's yaw left rotation limit.",
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                             placeholder: '-2',
                             label: 'Left',
@@ -289,6 +324,7 @@ const settings: BlockSettings & {
                             type: 'input',
                             inputType: TextInputType.Number,
                             rules: [yawRule],
+                            info: "Setting to [-π – π] will define the camera's yaw right rotation limit.",
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                             label: 'Right',
                             placeholder: '2',
@@ -302,6 +338,7 @@ const settings: BlockSettings & {
             type: 'switch',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
             label: 'Orbit Constraint Zoom In',
+            info: 'Setting to a positive number will define the camera zoom in limit (minimum distance from the model).',
             on: [
                 {
                     id: 'orbitConstraintZoomInCount',
@@ -318,6 +355,7 @@ const settings: BlockSettings & {
             type: 'switch',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
             label: 'Orbit Constraint Zoom Out',
+            info: 'Setting to a positive number will define the camera zoom out limit (maximum distance from the model).',
             on: [
                 {
                     id: 'orbitConstraintZoomOutCount',
@@ -336,12 +374,14 @@ const settings: BlockSettings & {
             type: 'switch',
             defaultValue: true,
             label: 'Show Annotations',
+            info: 'Disabling this feature will hide annotations by default',
         },
         {
             id: 'annotationCycle',
             defaultValue: false,
             label: 'Annotation Cycle',
             type: 'switch',
+            info: 'Setting to any number will start the Autopilot cycle with that duration, in seconds, at each annotation',
             show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
             on: [
                 {
@@ -358,6 +398,7 @@ const settings: BlockSettings & {
             id: 'annotationTooltipVisible',
             defaultValue: true,
             label: 'Annotation Tooltip Visible',
+            info: 'Disabling this feature will hide annotation tooltips by default',
             type: 'switch',
             show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
         },
@@ -378,17 +419,31 @@ const settings: BlockSettings & {
             type: 'slider',
             label: 'UI Theme',
             defaultValue: 'default',
+            info: 'Setting to Dark will apply a darker appearance to the user interface.',
             choices: [
                 { value: 'default', label: 'Default' },
                 { value: 'dark', label: 'Dark' },
             ],
         },
-        { id: 'uiDOF', label: 'Depth of Field Cicle', type: 'switch', defaultValue: true },
-        { id: 'uiDisableViewer', label: '"Disable Viewer" Button', type: 'switch', defaultValue: true },
+        {
+            id: 'uiDOF',
+            label: 'Depth of Field Cicle',
+            type: 'switch',
+            defaultValue: true,
+            info: 'Disabling this feature will not show the depth of field refocus circle animation on click.',
+        },
+        {
+            id: 'uiDisableViewer',
+            label: '"Disable Viewer" Button',
+            type: 'switch',
+            defaultValue: true,
+            info: 'Disabling this feature will hide the "Disable Viewer" button in the top right so that users cannot stop the 3D render once it is started.',
+        },
         {
             id: 'uiColor',
             label: 'UI Color',
             type: 'colorInput',
+            info: 'Setting to a color will change the color of the viewer loading bar.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -396,12 +451,14 @@ const settings: BlockSettings & {
             label: 'Animation Menu / Timeline',
             type: 'switch',
             defaultValue: true,
+            info: 'Setting to 0 will hide the animation menu and timeline.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
             id: 'uiAnnotations',
             label: 'Annotation Menu',
             type: 'switch',
+            info: 'Setting to 0 will hide the Annotation menu.',
             defaultValue: true,
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
@@ -410,6 +467,7 @@ const settings: BlockSettings & {
             defaultValue: true,
             label: 'Controls Buttons',
             type: 'switch',
+            info: 'Setting to 0 will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -417,6 +475,7 @@ const settings: BlockSettings & {
             label: 'Fadeout UI Automatically',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will prevent the viewer controls from disappearing when the camera moves or when the viewer is inactive for a few seconds.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -424,6 +483,7 @@ const settings: BlockSettings & {
             label: 'Fullscreen Button',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the Fullscreen button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -431,6 +491,7 @@ const settings: BlockSettings & {
             label: 'General Controls',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -438,6 +499,7 @@ const settings: BlockSettings & {
             label: 'Help Button',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the Help button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -445,6 +507,7 @@ const settings: BlockSettings & {
             label: 'Hint Animation',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will always hide the viewer hint animation ("click & hold to rotate").',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -452,6 +515,7 @@ const settings: BlockSettings & {
             label: 'Info Bar',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the model info bar at the top of the viewer.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -459,6 +523,7 @@ const settings: BlockSettings & {
             label: 'Inspector Button',
             defaultValue: true,
             type: 'switch',
+            info: "Setting to 0 will hide the inspector button. It will also prevent the Inspector from opening, and save loading time by not downloading the model's wireframe file unless wireframe is explicitly enabled in 3D Settings or the wireframe_preload option is enabled.",
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -466,6 +531,7 @@ const settings: BlockSettings & {
             label: 'Loading Bars',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the viewer loading bars.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -473,6 +539,7 @@ const settings: BlockSettings & {
             label: 'Settings Button',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the Settings button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -480,6 +547,7 @@ const settings: BlockSettings & {
             label: 'Sound Button',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the Sound button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -487,6 +555,7 @@ const settings: BlockSettings & {
             label: 'Start / Play Button',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the start/play button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -494,6 +563,7 @@ const settings: BlockSettings & {
             label: 'VR Button',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the View in VR button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -501,6 +571,7 @@ const settings: BlockSettings & {
             label: 'AR Button',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 will hide the AR button.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -508,6 +579,7 @@ const settings: BlockSettings & {
             label: 'AR Help Button',
             defaultValue: true,
             type: 'switch',
+            info: "Setting to 0 will hide the AR popup's help link.",
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -515,6 +587,7 @@ const settings: BlockSettings & {
             label: 'Qrcode Button',
             defaultValue: true,
             type: 'switch',
+            info: "Setting to 0 will hide the AR popup's QR code.",
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
@@ -522,6 +595,7 @@ const settings: BlockSettings & {
             label: 'UI Watermark',
             defaultValue: true,
             type: 'switch',
+            info: 'Setting to 0 remove the Sketchfab logo watermark.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
     ],
