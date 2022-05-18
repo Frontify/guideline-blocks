@@ -63,18 +63,24 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     useEffect(() => {
-        if (url) {
+        if (url !== '') {
             const newIframeUrl = new URL(url);
             newIframeUrl.searchParams.set('nav', 'false');
 
             let panelValue = 'bottom';
+            let shouldAddIframeToUrl = false;
             if (style === StorybookStyle.WithoutAddons) {
                 panelValue = 'false';
+                shouldAddIframeToUrl = true;
             } else if (positioning === StorybookPosition.Horizontal) {
                 panelValue = 'right';
             }
 
             newIframeUrl.searchParams.set('panel', panelValue);
+
+            if (!newIframeUrl.pathname.toString().includes('iframe.html') && shouldAddIframeToUrl) {
+                newIframeUrl.pathname = '/iframe.html';
+            }
 
             setIframeUrl(newIframeUrl);
         } else if (url === '') {
