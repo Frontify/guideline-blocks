@@ -17,5 +17,6 @@ export type Settings = {
     heightCustom: string;
     heightSimple: string;
     buttonText: string;
+    showBorder: boolean;
     asset?: number;
 };

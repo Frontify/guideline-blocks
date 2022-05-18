@@ -35,6 +35,14 @@ const settings: BlockSettings = {
             mode: AssetInputMode.BrowseOnly,
         },
     ],
+    style: [
+        {
+            id: 'showBorder',
+            type: 'switch',
+            label: 'Show border',
+            defaultValue: true,
+        },
+    ],
 };
 
 export default settings;
