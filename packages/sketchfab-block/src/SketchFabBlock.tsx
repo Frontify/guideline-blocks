@@ -23,6 +23,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
     const [inputError, setInputError] = useState(false);
 
+    // Defaults reflected here https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
     const {
         url = '',
         isCustomHeight = false,

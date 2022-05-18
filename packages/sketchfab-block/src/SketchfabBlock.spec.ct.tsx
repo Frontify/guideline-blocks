@@ -23,6 +23,8 @@ const BORDER_COLOR_STRING = 'rgba(50, 45, 70, 0.2)';
 const BORDER_STYLE = 'solid';
 const BORDER_RADIUS = '10px';
 const CUSTOM_HEIGHT = '150px';
+const ANNOTATION_CYCLE_COUNT = '5';
+const AUTO_SPIN_COUNT = '3';
 
 describe('Sketchfab Block', () => {
     it('renders a Sketchfab block', () => {
@@ -108,9 +110,7 @@ describe('Sketchfab Block', () => {
         });
         mount(<SketchfabBlockWithStubs />);
 
-        cy.get(IFRAME_ID).should(($iframe) => {
-            expect($iframe.css('height')).to.equal(heights[SketchfabHeight.Large]);
-        });
+        cy.get(IFRAME_ID).should('have.css', 'height', heights[SketchfabHeight.Large]);
     });
 
     it('shows correct custom height', () => {
@@ -124,8 +124,27 @@ describe('Sketchfab Block', () => {
         });
         mount(<SketchfabBlockWithStubs />);
 
-        cy.get(IFRAME_ID).should(($iframe) => {
-            expect($iframe.css('height')).to.equal(CUSTOM_HEIGHT);
+        cy.get(IFRAME_ID).should('have.css', 'height', CUSTOM_HEIGHT);
+    });
+
+    it('appends parameters to url', () => {
+        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, {
+            editorState: true,
+            blockSettings: {
+                [SketchfabSettings.ANNOTATION_CYCLE]: true,
+                [SketchfabSettings.ANNOTATION_CYCLE_COUNT]: '5',
+                [SketchfabSettings.SHOW_ANNOTATIONS]: true,
+                [SketchfabSettings.AUTO_SPIN]: true,
+                [SketchfabSettings.AUTO_SPIN_COUNT]: '3',
+                [SketchfabSettings.URL]: SKETCHFAB_URL,
+            },
         });
+        mount(<SketchfabBlockWithStubs />);
+
+        cy.get(IFRAME_ID).should(
+            'have.attr',
+            'src',
+            `${SKETCHFAB_URL}?annotation_cycle=${ANNOTATION_CYCLE_COUNT}&autospin=${AUTO_SPIN_COUNT}`
+        );
     });
 });
