@@ -176,7 +176,7 @@ const settings: BlockSettings & {
         {
             id: SketchfabSettings.FPS,
             type: 'switch',
-            label: 'First Person Navigation Speed',
+            label: 'FPS Navigation Speed',
             info: 'Setting to a number [0-100] will define the default walk speed in First Person mode.',
             on: [
                 {
