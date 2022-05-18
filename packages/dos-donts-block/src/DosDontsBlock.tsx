@@ -1,13 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import '@frontify/arcade-tokens/styles';
+import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useState } from 'react';
-import 'tailwindcss/tailwind.css';
 import { DoDontItem } from './DoDontItem';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import {
-    columnsClasses,
     DoDontLayout,
     DoDontSpacing,
     DoDontStyle,
@@ -15,6 +15,7 @@ import {
     DosDontsBlockProps,
     Item,
     Settings,
+    columnsClasses,
     spacingValues,
 } from './types';
 
@@ -59,6 +60,7 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         });
     };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => setItems(layout === DoDontLayout.Stacked ? columns * 2 : 2), [layout, columns]);
 
     return (

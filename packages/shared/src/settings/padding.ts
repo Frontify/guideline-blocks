@@ -1,7 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
-import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomValue } from '..';
+import { appendUnit } from '../helpers/settings/appendUnit';
+import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
+import { presetCustomValue } from '../helpers/settings/presetCustomValue';
+import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNumericalOrPixelOrAutoRule';
 import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { Padding, paddingStyleMap } from './types';
 
@@ -19,7 +22,7 @@ type PaddingSettingsType = {
 };
 
 export const getPaddingSlider = (id: string): SettingBlock => ({
-    id: id,
+    id,
     type: 'slider',
     defaultValue: Padding.Small,
     choices: [

@@ -1,22 +1,23 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import '@frontify/arcade-tokens/styles';
+import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/arcade';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
-import 'tailwindcss/tailwind.css';
 import { DEFAULT_AUTHOR_NAME, DEFAULT_COLOR_VALUE } from './settings';
 import {
     ContentWithAuthorProps,
     LineType,
     LineWidth,
-    lineWidthMap,
     Props,
     QuoteSize,
-    quoteSizeMap,
     QuoteStyle,
     QuoteType,
     Settings,
+    lineWidthMap,
+    quoteSizeMap,
 } from './types';
 import { quoteIconMap } from './utilities';
 
@@ -65,7 +66,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
     return (
-        <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-black'}>
+        <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
             {type === QuoteType.QuotationMarks && (
                 <div className="tw-flex tw-justify-between tw-gap-x-7">
                     {quoteIconMap(size, quotesRgba)[quoteStyleLeft]}

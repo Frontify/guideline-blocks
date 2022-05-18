@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { minimumNumericalOrPercentOrAutoRule } from './minimumNumericalOrPercentOrAutoRule';
+import { describe, expect, test } from 'vitest';
 
 describe('minimumNumericalOrPercentOrAutoRule', () => {
     const data = [
@@ -31,7 +32,7 @@ describe('minimumNumericalOrPercentOrAutoRule', () => {
         { minimumValue: 5, value: 'rem', expected: false },
     ];
 
-    it.each(data)(
+    test.each(data)(
         'validate correctly values (minimum value $minimumValue, value $value, expected $expected)',
         ({ minimumValue, value, expected }) => {
             const rule = minimumNumericalOrPercentOrAutoRule(minimumValue);

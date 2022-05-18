@@ -11,7 +11,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { heights, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
+import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
     r: 234,
@@ -122,5 +122,4 @@ const settings: BlockSettings = {
     style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: 'hasBorder' })],
 };
 
-// eslint-disable-next-line import/no-default-export
 export default settings;

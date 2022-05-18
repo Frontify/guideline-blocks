@@ -3,7 +3,7 @@
 **/dist
 **/.DS_Store
 
-lerna-debug.log
+.pnpm-debug.log
 
 cypress/fixtures/example.json
 cypress/videos

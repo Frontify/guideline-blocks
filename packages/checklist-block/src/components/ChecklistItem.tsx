@@ -1,20 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    ButtonGroup,
-    ButtonSize,
-    FocusController,
-    IconCaretDown,
-    IconCaretUp,
-    IconReject,
-    ItemDragState,
-} from '@frontify/arcade';
+import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconReject, ItemDragState } from '@frontify/arcade';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { getInteractionModality, useFocusWithin, useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
 import { ChecklistItemMode, ChecklistItemProps } from '../types';
 import { Checkbox } from './Checkbox';
 import { ChecklistButton } from './ChecklistButton';
+import { FocusController } from './FocusController';
 import { TextEditor } from './TextEditor';
 
 const DefaultChecklistItem = {
@@ -82,6 +75,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
             {...focusWithinProps}
             data-test-id="checklist-item"
             data-mode={mode}
+            data-key={id}
         >
             <div className="tw-flex tw-flex-auto tw-content-center tw-p-1">
                 <div className="tw-flex tw-flex-auto tw-items-center">

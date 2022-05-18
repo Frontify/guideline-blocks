@@ -1,22 +1,24 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/arcade';
-import { joinClassNames, Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
-import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
+import '@frontify/arcade-tokens/styles';
 import 'tailwindcss/tailwind.css';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/arcade';
+import { Radius, joinClassNames, radiusStyleMap } from '@frontify/guideline-blocks-shared';
+import { CSSProperties, FC, createRef, useEffect, useState } from 'react';
+import { ICON_ASSET_ID } from './settings';
 import {
     Alignment,
-    alignmentMap,
     BlockSettings,
     CalloutBlockProps,
     CustomPaddingStyles,
-    outerWidthMap,
     Padding,
-    paddingMap,
     Type,
-    typeMap,
     Width,
+    alignmentMap,
+    outerWidthMap,
+    paddingMap,
+    typeMap,
 } from './types';
 
 const getInnerDivClassName = (
@@ -41,6 +43,7 @@ const getOuterDivClassName = (width: Width, alignment: Alignment): string =>
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
+    const { blockAssets } = useBlockAssets(appBridge);
 
     const {
         type = Type.Warning,
@@ -59,7 +62,6 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         paddingRight = '0px',
         hasCustomPadding,
         hasExtendedCustomRadius,
-        icon,
         textValue,
     } = blockSettings;
 
@@ -90,13 +92,13 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             });
         }
 
-        if (iconSwitch && icon) {
-            appBridge.getAssetById(icon.value).then((iconAsset) => {
-                setIconUrl(iconAsset.generic_url);
-                setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
-            });
+        if (iconSwitch && blockAssets[ICON_ASSET_ID]) {
+            const iconAsset = blockAssets[ICON_ASSET_ID][0];
+            setIconUrl(iconAsset.generic_url);
+            setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
         }
-    }, [blockSettings]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [blockSettings, blockAssets]);
 
     const onTextChange = (value: string): Promise<void> => setBlockSettings({ textValue: value });
 

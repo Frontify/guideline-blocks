@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { joinClassNames } from './joinClassNames';
+import { describe, expect, test } from 'vitest';
 
 describe('joinClassNames', () => {
     const data = [
@@ -11,7 +12,7 @@ describe('joinClassNames', () => {
         { classes: [], expected: '' },
     ];
 
-    it.each(data)('validate correctly values', ({ classes, expected }) => {
+    test.each(data)('validate correctly values', ({ classes, expected }) => {
         expect(joinClassNames(classes)).toBe(expected);
     });
 });

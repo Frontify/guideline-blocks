@@ -7,50 +7,192 @@ on:
             - main
 
 env:
+    NODE_VERSION: 16
     CI: true
+    NUMBER_OF_RUNNERS: 6
 
 jobs:
-    continuous-integration:
+    linting:
         runs-on: ubuntu-latest
+        timeout-minutes: 10
 
         steps:
             - name: Checkout current commit
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
-            - name: Use Node.js 16
-              uses: actions/setup-node@v2
+            - name: Use Node.js ${{ env.NODE_VERSION }}
+              uses: actions/setup-node@v3
               with:
-                  node-version: "16"
+                  node-version: ${{ env.NODE_VERSION }}
 
-            - name: Cache NPM dependencies
-              id: npm_cache
-              uses: actions/cache@v2
+            - name: Use pnpm
+              uses: pnpm/action-setup@v2.2.1
               with:
-                  path: "node_modules"
-                  key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+                  version: latest
+                  run_install: false
 
-            - name: Install NPM dependencies
-              if: steps.npm_cache.outputs.cache-hit != 'true'
-              run: npm ci
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
-            - name: Install NPM dependencies from packages
-              run: npm run bootstrap
-
-            - name: Cache Cypress binary
-              id: cypress_cache
-              uses: actions/cache@v2
+            - name: Setup pnpm cache
+              uses: actions/cache@v3
               with:
-                  path: ~/.cache/Cypress
-                  key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
+                  path: |
+                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+                      ~/.cache/Cypress
+                  key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
 
-            - name: Typecheck files
-              run: npm run typecheck
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
 
             - name: Lint files (JS/TS & CSS)
-              run: npm run lint
+              run: pnpm run lint
 
-            - name: Test Functionality
-              run: npm run test:unit
+    typecheck:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
 
-            - name: Test Components
-              run: npm run test:functional:ci
+        steps:
+            - name: Checkout current commit
+              uses: actions/checkout@v3
+
+            - name: Use Node.js ${{ env.NODE_VERSION }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+
+            - name: Use pnpm
+              uses: pnpm/action-setup@v2.2.1
+              with:
+                  version: latest
+                  run_install: false
+
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+            - name: Setup pnpm cache
+              uses: actions/cache@v3
+              with:
+                  path: |
+                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+                      ~/.cache/Cypress
+                  key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Build packages
+              run: pnpm run build
+
+            - name: Typecheck files
+              run: pnpm run typecheck
+
+    unit-tests:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Checkout current commit
+              uses: actions/checkout@v3
+
+            - name: Use Node.js ${{ env.NODE_VERSION }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+
+            - name: Use pnpm
+              uses: pnpm/action-setup@v2.2.1
+              with:
+                  version: latest
+                  run_install: false
+
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+            - name: Setup pnpm cache
+              uses: actions/cache@v3
+              with:
+                  path: |
+                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+                      ~/.cache/Cypress
+                  key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Unit Tests
+              run: pnpm run test:unit
+
+    prepare-tests:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+
+        outputs:
+            component-tests: ${{ steps.parse-specs.outputs.component-tests }}
+
+        steps:
+            - name: Checkout default branch
+              uses: actions/checkout@v3
+
+            - name: Parse test files for parallelization
+              id: parse-specs
+              uses: tgamauf/cypress-parallel@v1
+              with:
+                  count-runners: ${{ env.NUMBER_OF_RUNNERS }}
+
+    component-tests:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        needs: [prepare-tests]
+
+        strategy:
+            fail-fast: false
+            matrix:
+                spec: ${{ fromJson(needs.prepare-tests.outputs.component-tests) }}
+
+        steps:
+            - name: Checkout current commit
+              uses: actions/checkout@v3
+
+            - name: Use Node.js ${{ env.NODE_VERSION }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+
+            - name: Use pnpm
+              uses: pnpm/action-setup@v2.2.1
+              with:
+                  version: latest
+                  run_install: false
+
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+            - name: Setup pnpm cache
+              uses: actions/cache@v3
+              with:
+                  path: |
+                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+                      ~/.cache/Cypress
+                  key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Build packages
+              run: pnpm run build
+
+            - name: Component Tests
+              run: pnpm run test:components --spec ${{ matrix.spec }}
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

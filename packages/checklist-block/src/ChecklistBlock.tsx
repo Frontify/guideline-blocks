@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import '@frontify/arcade-tokens/styles';
+import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
@@ -21,10 +23,7 @@ import {
     toHex8String,
 } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { GridNode } from '@react-types/grid';
-import { ItemDropTarget } from '@react-types/shared';
 import { FC, useState } from 'react';
-import 'tailwindcss/tailwind.css';
 import { ChecklistItem } from './components/ChecklistItem';
 import { ProgressBar } from './components/ProgressBar';
 import { ProgressHeader } from './components/ProgressHeader';
@@ -34,7 +33,6 @@ import {
     createItem,
     filterCompleteItems,
     findIndexById,
-    findIndexesForMove,
     updateItemById,
 } from './helpers';
 import { SettingsContext } from './SettingsContext';
@@ -67,7 +65,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         if (!trimmed) {
             return;
         }
-        const newItem = createItem(trimmed);
+        const newItem = createItem(trimmed, content.length | 0);
         const updatedContent = [...content, newItem];
         setBlockSettings({ ...blockSettings, content: updatedContent });
     };
@@ -83,29 +81,28 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
 
     const toggleCompletedVisibility = () => setShowCompleted((prev) => !prev);
 
-    const onMove = (selectedGridItemKeys: React.Key[], gridItemLocation: ItemDropTarget) => {
-        const [oldIndex, newIndex] = findIndexesForMove(content, selectedGridItemKeys, gridItemLocation);
-        setBlockSettings({ ...blockSettings, content: reorderList(content, oldIndex, newIndex) });
-    };
-
     const moveByIncrement = (id: string, positionChange: number) => {
         const index = findIndexById(content, id);
         setBlockSettings({ ...blockSettings, content: reorderList(content, index, index + positionChange) });
     };
+
     const renderChecklistItem = (
-        { value, prevKey, nextKey }: GridNode<OrderableListItem<ChecklistContent>>,
+        { text, id, completed, updatedAt }: OrderableListItem<ChecklistContent>,
         { componentDragState, isFocusVisible }: DragProperties
     ) => {
+        const index = findIndexById(displayableItems, id);
+        displayableItems.sort((previousItem, currentItem) => previousItem.sort - currentItem.sort);
+
         const content = (
             <ChecklistItem
-                item={value}
-                key={value.id}
+                item={{ text, id, completed, updatedAt }}
+                key={id}
                 isDragFocusVisible={isFocusVisible}
-                isFirst={!prevKey}
-                isLast={!nextKey}
+                isFirst={index === 0}
+                isLast={index === displayableItems.length - 1}
                 mode={isEditing ? ChecklistItemMode.Edit : ChecklistItemMode.View}
                 toggleCompleted={(completed: boolean) =>
-                    updateItem(value.id, {
+                    updateItem(id, {
                         completed,
                         updatedAt: Date.now(),
                     })
@@ -113,7 +110,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                 dragState={componentDragState}
                 onMoveItem={moveByIncrement}
                 onRemoveItem={removeItem}
-                onTextModified={(text) => updateItem(value.id, { text })}
+                onTextModified={(text) => updateItem(id, { text })}
             />
         );
         // Preview is rendered in external DOM, requires own context provider
@@ -124,9 +121,36 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
         );
     };
 
-    const shouldShowProgress = !!content.length && progressBarVisible;
+    const shouldShowProgress = content.length > 0 && progressBarVisible;
 
     const displayableItems = isEditing || showCompleted ? content : filterCompleteItems(content);
+
+    const handleMove = (modifiedItems: OrderableListItem<ChecklistContent>[]) => {
+        const modifiedArray = displayableItems.map((item) => {
+            const matchingModifiedItem = modifiedItems.find((modifiedItem) => modifiedItem.id === item.id);
+            if (matchingModifiedItem) {
+                return { ...matchingModifiedItem };
+            }
+
+            return { ...item };
+        });
+
+        setBlockSettings({ ...blockSettings, content: modifiedArray });
+    };
+
+    const orderableListItems = displayableItems.map(
+        ({ id, completed, sort, text, updatedAt }: OrderableListItem<ChecklistContent>, index: number) => {
+            return {
+                id,
+                text,
+                updatedAt,
+                completed,
+                key: id,
+                alt: text,
+                sort: sort !== undefined ? sort : index,
+            };
+        }
+    );
 
     return (
         <SettingsContext.Provider value={settings}>
@@ -182,13 +206,12 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                         </Button>
                     </div>
                     <div className="tw-mt-3" data-test-id="checklist-container">
-                        {!!displayableItems.length && (
+                        {displayableItems.length > 0 && (
                             <OrderableList
-                                items={displayableItems.map((item) => ({ ...item, alt: item.text, type: 'item' }))}
-                                onMove={onMove}
-                                disableTypeAhead
+                                items={orderableListItems}
                                 dragDisabled={!isEditing}
                                 renderContent={renderChecklistItem}
+                                onMove={handleMove}
                             />
                         )}
                     </div>

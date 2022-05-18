@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { maximumNumericalOrPercentRule, minimumNumericalOrPercentRule } from '.';
+import { maximumNumericalOrPercentRule } from './maximumNumericalOrPercentRule';
+import { minimumNumericalOrPercentRule } from './minimumNumericalOrPercentRule';
 import { Rule } from '@frontify/guideline-blocks-settings';
 
 /**

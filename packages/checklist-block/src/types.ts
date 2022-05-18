@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeNative } from '@frontify/app-bridge';
-import { ButtonSize, Color, ItemDragState } from '@frontify/arcade';
+import { ButtonSize, Color, ItemDragState, OrderableListItem } from '@frontify/arcade';
 import { Padding, PaddingExtendedSettings, paddingStyleMap } from '@frontify/guideline-blocks-shared';
 import { MouseEvent, ReactElement } from 'react';
 
@@ -134,7 +134,7 @@ export type DecorationStyle = {
 };
 
 export type Settings = PaddingExtendedSettings & {
-    content: ChecklistContent[];
+    content: OrderableListItem<ChecklistContent>[];
     incompleteTextColor: Color;
     incompleteCheckboxColor: Color;
     completeTextColor: Color;

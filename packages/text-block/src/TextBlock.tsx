@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import './styles.css';
+import '@frontify/arcade-tokens/styles';
 import 'tailwindcss/tailwind.css';
+import './styles.css';
 import { FC, useEffect } from 'react';
 import isEqual from 'lodash-es/isEqual';
 import cloneDeep from 'lodash-es/cloneDeep';
@@ -24,6 +25,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
         if (!isEqual(newSettings, blockSettings)) {
             setBlockSettings(newSettings);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onTextChange = (value: string, index: number) => {

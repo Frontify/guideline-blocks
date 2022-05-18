@@ -2,6 +2,7 @@
 
 import { Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnit } from './appendUnit';
+import { describe, expect, test, vi } from 'vitest';
 
 describe('appendUnit', () => {
     test('it should set correct value with "px" when entering a number', () => {
@@ -13,7 +14,7 @@ describe('appendUnit', () => {
             setBlockValue(): void {},
         };
 
-        const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
+        const setBlockValueSpy = vi.spyOn(bundle, 'setBlockValue');
         appendUnit(bundle, 'my_setting_id');
 
         expect(setBlockValueSpy).toHaveBeenCalledWith('my_setting_id', '20px');
@@ -28,7 +29,7 @@ describe('appendUnit', () => {
             setBlockValue(): void {},
         };
 
-        const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
+        const setBlockValueSpy = vi.spyOn(bundle, 'setBlockValue');
         appendUnit(bundle, 'my_setting_id', '%');
 
         expect(setBlockValueSpy).toHaveBeenCalledWith('my_setting_id', '40%');
@@ -42,7 +43,7 @@ describe('appendUnit', () => {
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
-        const setBlockValueSpy = jest.spyOn(bundle, 'setBlockValue');
+        const setBlockValueSpy = vi.spyOn(bundle, 'setBlockValue');
         appendUnit(bundle, 'my_setting_id');
         expect(setBlockValueSpy).not.toHaveBeenCalledWith('my_setting_id', '20px');
     });
@@ -52,7 +53,7 @@ describe('appendUnit', () => {
             getBlock() {
                 return { value: undefined };
             },
-            setBlockValue: jest.fn(),
+            setBlockValue: vi.fn(),
         };
         appendUnit(bundle, 'my_setting_id');
         expect(bundle.setBlockValue).not.toHaveBeenCalled();
@@ -63,7 +64,7 @@ describe('appendUnit', () => {
             getBlock() {
                 return { value: '' };
             },
-            setBlockValue: jest.fn(),
+            setBlockValue: vi.fn(),
         };
         appendUnit(bundle, 'my_setting_id');
         expect(bundle.setBlockValue).not.toHaveBeenCalled();

@@ -7,5 +7,5 @@ import { Rule } from '@frontify/guideline-blocks-settings';
  */
 export const numericalOrPixelRule: Rule<string> = {
     errorMessage: "Please use a numerical value with or without 'px'",
-    validate: (value: string) => value.match(/^(?:-?\d+)(?:px)?$/g) !== null,
+    validate: (value: string) => value.match(/^-?\d+(?:px)?$/g) !== null,
 };

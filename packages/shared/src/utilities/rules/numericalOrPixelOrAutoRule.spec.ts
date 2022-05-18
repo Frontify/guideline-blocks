@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { numericalOrPixelOrAutoRule } from './numericalOrPixelOrAutoRule';
+import { describe, expect, test } from 'vitest';
 
 describe('numericalOrPixelOrAutoRule', () => {
     const data = [
@@ -25,7 +26,7 @@ describe('numericalOrPixelOrAutoRule', () => {
         { value: 'rem', expected: false },
     ];
 
-    it.each(data)('validate correctly values (value $value, expected $value)', ({ value, expected }) => {
+    test.each(data)('validate correctly values (value $value, expected $value)', ({ value, expected }) => {
         expect(numericalOrPixelOrAutoRule.validate(value)).toBe(expected);
     });
 });

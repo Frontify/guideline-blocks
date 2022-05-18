@@ -2,7 +2,10 @@
 
 import { MultiInputLayout } from '@frontify/arcade';
 import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
-import { appendUnit, maximumNumericalOrPixelOrAutoRule, numericalOrPixelRule, presetCustomValue } from '..';
+import { appendUnit } from '../helpers/settings/appendUnit';
+import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
+import { presetCustomValue } from '../helpers/settings/presetCustomValue';
+import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNumericalOrPixelOrAutoRule';
 import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { getPaddingSlider } from './padding';
 import { paddingStyleMap } from './types';

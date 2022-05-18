@@ -1,10 +1,13 @@
 {
+    "$schema": "https://raw.githubusercontent.com/cypress-io/cypress/develop/cli/schema/cypress.schema.json",
     "video": false,
+    "componentFolder": "./",
+    "testFiles": ["**/*.spec.ct.tsx", "**/*.spec.ct.ts"],
     "component": {
-        "testFiles": "*/src/**/*.spec.{ts,tsx}",
-        "ignoreTestFiles": "**/shared/**/*.spec.{ts,tsx}",
-        "componentFolder": "packages",
         "viewportHeight": 1280,
         "viewportWidth": 800
+    },
+    "retries": {
+        "runMode": 2
     }
 }

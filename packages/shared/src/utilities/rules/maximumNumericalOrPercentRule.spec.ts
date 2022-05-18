@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { maximumNumericalOrPercentRule } from '.';
+import { maximumNumericalOrPercentRule } from './maximumNumericalOrPercentRule';
+import { describe, expect, test } from 'vitest';
 
 describe('maximumNumericalOrPercentRule', () => {
     const data = [
@@ -32,7 +33,7 @@ describe('maximumNumericalOrPercentRule', () => {
         { maximumValue: 5, value: 'rem', expected: false },
     ];
 
-    it.each(data)(
+    test.each(data)(
         'validate correctly values (maximum value $maximumValue, value $value, expected $expected)',
         ({ maximumValue, value, expected }) => {
             const rule = maximumNumericalOrPercentRule(maximumValue);

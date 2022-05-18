@@ -1,14 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { OrderableListItem } from '@frontify/arcade';
 import { ChecklistContent } from '../types';
 
 export const updateItemById = (
-    array: ChecklistContent[],
+    array: OrderableListItem<ChecklistContent>[],
     idToUpdate: string,
     properties: Partial<ChecklistContent>
-): ChecklistContent[] =>
+): OrderableListItem<ChecklistContent>[] =>
     array.reduce(
-        (acc: ChecklistContent[], item: ChecklistContent) =>
+        (acc: OrderableListItem<ChecklistContent>[], item: OrderableListItem<ChecklistContent>) =>
             item.id === idToUpdate ? [...acc, { ...item, ...properties }] : [...acc, item],
         []
     );

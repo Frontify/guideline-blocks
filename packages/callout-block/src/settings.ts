@@ -9,13 +9,14 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { Alignment, leftRightPaddingMap, Padding, topBottomPaddingMap, Type, Width } from './types';
+import { Alignment, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_TOP_ID = 'paddingTop';
 const PADDING_LEFT_ID = 'paddingLeft';
 const PADDING_RIGHT_ID = 'paddingRight';
 const PADDING_BOTTOM_ID = 'paddingBottom';
+export const ICON_ASSET_ID = 'icon';
 
 const settings: BlockSettings = {
     main: [
@@ -56,7 +57,7 @@ const settings: BlockSettings = {
             label: 'Icon',
             on: [
                 {
-                    id: 'icon',
+                    id: ICON_ASSET_ID,
                     type: 'assetInput',
                     extensions: [FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
@@ -187,5 +188,4 @@ const settings: BlockSettings = {
     style: [getExtendedBorderRadiusSettings()],
 };
 
-// eslint-disable-next-line import/no-default-export
 export default settings;

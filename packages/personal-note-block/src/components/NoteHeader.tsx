@@ -25,7 +25,7 @@ export const NoteHeader: FC<NoteHeaderProps> = ({
         <div className="tw-flex tw-flex-col tw-text-s">
             {hasAvatarName && <span className={useLightText ? 'tw-text-white' : 'tw-text-black'}>{name}</span>}
             {hasDateEdited && dateEdited && (
-                <span className={useLightText ? 'tw-text-white tw-opacity-60' : 'tw-text-black-60'}>
+                <span className={useLightText ? 'tw-text-white tw-opacity-60' : 'tw-text-x-weak'}>
                     Last edited on {dayjs(dateEdited).format('L, LT')}
                 </span>
             )}
