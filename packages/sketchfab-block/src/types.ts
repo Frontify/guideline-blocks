@@ -4,11 +4,11 @@ import { AppBridgeNative } from '@frontify/app-bridge';
 import { Color } from '@frontify/arcade';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 
-export type Props = {
+export type SketchfabBlockProps = {
     appBridge: AppBridgeNative;
 };
 
-export enum SketchFabSettings {
+export enum SketchfabSettings {
     ACCOUNT_TYPE = 'accountType',
     URL = 'url',
     HEIGHT = 'height',
@@ -80,77 +80,77 @@ export enum SketchFabSettings {
 }
 
 export type Settings = {
-    [SketchFabSettings.ACCOUNT_TYPE]: 'Basic' | 'Pro' | 'Premium';
-    [SketchFabSettings.URL]: string;
-    [SketchFabSettings.HEIGHT]: SketchFabHeight;
-    [SketchFabSettings.HAS_BORDER]?: boolean;
-    [SketchFabSettings.BORDER_COLOR]: Color;
-    [SketchFabSettings.BORDER_STYLE]: BorderStyle;
-    [SketchFabSettings.BORDER_WIDTH]: string;
-    [SketchFabSettings.HAS_RADIUS]?: boolean;
-    [SketchFabSettings.RADIUS_VALUE]?: string;
-    [SketchFabSettings.RADIUS_CHOICE]?: Radius;
-    [SketchFabSettings.IS_CUSTOM_HEIGHT]: boolean;
-    [SketchFabSettings.CUSTOM_HEIGHT]: string;
-    [SketchFabSettings.AUTO_START]: boolean;
-    [SketchFabSettings.AUTO_PLAY]: boolean;
-    [SketchFabSettings.TEXTURE_SIZE]: boolean;
-    [SketchFabSettings.TEXTURE_SIZE_VALUE]: string;
-    [SketchFabSettings.FPS]: boolean;
-    [SketchFabSettings.FPS_VALUE]: string;
-    [SketchFabSettings.PRELOAD_TEXTURES]: boolean;
-    [SketchFabSettings.VIEWERS_TRACKING]: boolean;
-    [SketchFabSettings.API_LOG]: boolean;
-    [SketchFabSettings.TRANSPARENT_BACKGROUND]: boolean;
-    [SketchFabSettings.NAVIGATION_MODE]: 'orbit' | 'fps';
-    [SketchFabSettings.SCROLL_WHEEL]: boolean;
-    [SketchFabSettings.DOUBLE_CLICK]: boolean;
-    [SketchFabSettings.STARTING_SPIN]: boolean;
-    [SketchFabSettings.AUTO_SPIN]: boolean;
-    [SketchFabSettings.AUTO_SPIN_COUNT]: string;
-    [SketchFabSettings.PREVENT_LIGHT_ROTATION]: boolean;
-    [SketchFabSettings.ORBIT_CONSTRAINT_PAN]: boolean;
-    [SketchFabSettings.ORBIT_CONSTRAINT_PITCH]: boolean;
-    [SketchFabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_UP]: string;
-    [SketchFabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_DOWN]: string;
-    [SketchFabSettings.ORBIT_CONTRAINT_YAW]: boolean;
-    [SketchFabSettings.ORBIT_CONTRAINT_YAW_LIMITS_LEFT]: string;
-    [SketchFabSettings.ORBIT_CONTRAINT_YAW_LIMITS_RIGHT]: string;
-    [SketchFabSettings.ORBIT_CONTRAINT_ZOOM_IN]: boolean;
-    [SketchFabSettings.ORBIT_CONTRAINT_ZOOM_IN_COUNT]: string;
-    [SketchFabSettings.ORBIT_CONTRAINT_ZOOM_OUT]: boolean;
-    [SketchFabSettings.ORBIT_CONTRAINT_ZOOM_OUT_COUNT]: string;
-    [SketchFabSettings.SHOW_ANNOTATIONS]: boolean;
-    [SketchFabSettings.ANNOTATION_CYCLE]: boolean;
-    [SketchFabSettings.ANNOTATION_CYCLE_COUNT]: string;
-    [SketchFabSettings.ANNOTATION_TOOLTIP_VISIBLE]: boolean;
-    [SketchFabSettings.STARTING_ANNOTATION]: string;
-    [SketchFabSettings.UI_THEME]: 'default' | 'dark';
-    [SketchFabSettings.UI_DOF]: boolean;
-    [SketchFabSettings.UI_DISABLE_VIEWER]: boolean;
-    [SketchFabSettings.UI_COLOR]: Color;
-    [SketchFabSettings.UI_ANIMATIONS]: boolean;
-    [SketchFabSettings.UI_ANNOTATIONS]: boolean;
-    [SketchFabSettings.UI_CONTROLS]: boolean;
-    [SketchFabSettings.UI_FADEOUT]: boolean;
-    [SketchFabSettings.UI_FULLSCREEN]: boolean;
-    [SketchFabSettings.UI_GENERAL_CONTROLS]: boolean;
-    [SketchFabSettings.UI_HELP]: boolean;
-    [SketchFabSettings.UI_HINT]: boolean;
-    [SketchFabSettings.UI_INFOS]: boolean;
-    [SketchFabSettings.UI_INSPECTOR]: boolean;
-    [SketchFabSettings.UI_LOADING]: boolean;
-    [SketchFabSettings.UI_SETTINGS]: boolean;
-    [SketchFabSettings.UI_SOUND]: boolean;
-    [SketchFabSettings.UI_START]: boolean;
-    [SketchFabSettings.UI_VR]: boolean;
-    [SketchFabSettings.UI_AR]: boolean;
-    [SketchFabSettings.UI_AR_HELP]: boolean;
-    [SketchFabSettings.UI_QR]: boolean;
-    [SketchFabSettings.UI_WATERMARK]: boolean;
+    [SketchfabSettings.ACCOUNT_TYPE]: 'Basic' | 'Pro' | 'Premium';
+    [SketchfabSettings.URL]: string;
+    [SketchfabSettings.HEIGHT]: SketchfabHeight;
+    [SketchfabSettings.HAS_BORDER]?: boolean;
+    [SketchfabSettings.BORDER_COLOR]: Color;
+    [SketchfabSettings.BORDER_STYLE]: BorderStyle;
+    [SketchfabSettings.BORDER_WIDTH]: string;
+    [SketchfabSettings.HAS_RADIUS]?: boolean;
+    [SketchfabSettings.RADIUS_VALUE]?: string;
+    [SketchfabSettings.RADIUS_CHOICE]?: Radius;
+    [SketchfabSettings.IS_CUSTOM_HEIGHT]: boolean;
+    [SketchfabSettings.CUSTOM_HEIGHT]: string;
+    [SketchfabSettings.AUTO_START]: boolean;
+    [SketchfabSettings.AUTO_PLAY]: boolean;
+    [SketchfabSettings.TEXTURE_SIZE]: boolean;
+    [SketchfabSettings.TEXTURE_SIZE_VALUE]: string;
+    [SketchfabSettings.FPS]: boolean;
+    [SketchfabSettings.FPS_VALUE]: string;
+    [SketchfabSettings.PRELOAD_TEXTURES]: boolean;
+    [SketchfabSettings.VIEWERS_TRACKING]: boolean;
+    [SketchfabSettings.API_LOG]: boolean;
+    [SketchfabSettings.TRANSPARENT_BACKGROUND]: boolean;
+    [SketchfabSettings.NAVIGATION_MODE]: 'orbit' | 'fps';
+    [SketchfabSettings.SCROLL_WHEEL]: boolean;
+    [SketchfabSettings.DOUBLE_CLICK]: boolean;
+    [SketchfabSettings.STARTING_SPIN]: boolean;
+    [SketchfabSettings.AUTO_SPIN]: boolean;
+    [SketchfabSettings.AUTO_SPIN_COUNT]: string;
+    [SketchfabSettings.PREVENT_LIGHT_ROTATION]: boolean;
+    [SketchfabSettings.ORBIT_CONSTRAINT_PAN]: boolean;
+    [SketchfabSettings.ORBIT_CONSTRAINT_PITCH]: boolean;
+    [SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_UP]: string;
+    [SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_DOWN]: string;
+    [SketchfabSettings.ORBIT_CONTRAINT_YAW]: boolean;
+    [SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_LEFT]: string;
+    [SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_RIGHT]: string;
+    [SketchfabSettings.ORBIT_CONTRAINT_ZOOM_IN]: boolean;
+    [SketchfabSettings.ORBIT_CONTRAINT_ZOOM_IN_COUNT]: string;
+    [SketchfabSettings.ORBIT_CONTRAINT_ZOOM_OUT]: boolean;
+    [SketchfabSettings.ORBIT_CONTRAINT_ZOOM_OUT_COUNT]: string;
+    [SketchfabSettings.SHOW_ANNOTATIONS]: boolean;
+    [SketchfabSettings.ANNOTATION_CYCLE]: boolean;
+    [SketchfabSettings.ANNOTATION_CYCLE_COUNT]: string;
+    [SketchfabSettings.ANNOTATION_TOOLTIP_VISIBLE]: boolean;
+    [SketchfabSettings.STARTING_ANNOTATION]: string;
+    [SketchfabSettings.UI_THEME]: 'default' | 'dark';
+    [SketchfabSettings.UI_DOF]: boolean;
+    [SketchfabSettings.UI_DISABLE_VIEWER]: boolean;
+    [SketchfabSettings.UI_COLOR]: Color;
+    [SketchfabSettings.UI_ANIMATIONS]: boolean;
+    [SketchfabSettings.UI_ANNOTATIONS]: boolean;
+    [SketchfabSettings.UI_CONTROLS]: boolean;
+    [SketchfabSettings.UI_FADEOUT]: boolean;
+    [SketchfabSettings.UI_FULLSCREEN]: boolean;
+    [SketchfabSettings.UI_GENERAL_CONTROLS]: boolean;
+    [SketchfabSettings.UI_HELP]: boolean;
+    [SketchfabSettings.UI_HINT]: boolean;
+    [SketchfabSettings.UI_INFOS]: boolean;
+    [SketchfabSettings.UI_INSPECTOR]: boolean;
+    [SketchfabSettings.UI_LOADING]: boolean;
+    [SketchfabSettings.UI_SETTINGS]: boolean;
+    [SketchfabSettings.UI_SOUND]: boolean;
+    [SketchfabSettings.UI_START]: boolean;
+    [SketchfabSettings.UI_VR]: boolean;
+    [SketchfabSettings.UI_AR]: boolean;
+    [SketchfabSettings.UI_AR_HELP]: boolean;
+    [SketchfabSettings.UI_QR]: boolean;
+    [SketchfabSettings.UI_WATERMARK]: boolean;
 };
 
-export enum SketchFabHeight {
+export enum SketchfabHeight {
     Small = 'Small',
     Medium = 'Medium',
     Large = 'Large',
@@ -169,8 +169,8 @@ export const borderRadiusClasses: Record<Radius, string> = {
     [Radius.Large]: 'tw-rounded-lg',
 };
 
-export const heights: Record<SketchFabHeight, string> = {
-    [SketchFabHeight.Small]: '400px',
-    [SketchFabHeight.Medium]: '600px',
-    [SketchFabHeight.Large]: '800px',
+export const heights: Record<SketchfabHeight, string> = {
+    [SketchfabHeight.Small]: '400px',
+    [SketchfabHeight.Medium]: '600px',
+    [SketchfabHeight.Large]: '800px',
 };

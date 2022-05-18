@@ -1,49 +1,32 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import '@frontify/arcade-tokens/styles';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, Color, IconExternalAsset, IconSize, Text, TextInput } from '@frontify/arcade';
-import { BorderStyle, Radius, joinClassNames, toHex8String, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, FC, useEffect, useState } from 'react';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { Button, FormControl, FormControlStyle, IconExternalAsset, IconSize, Text, TextInput } from '@frontify/arcade';
+import { BorderStyle, Radius, joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER, getUrlWithoutSearchParams } from './settings';
-import { Settings, SketchFabHeight, borderRadiusClasses, borderStyles, heights } from './types';
+import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_BORDER_WIDTH, URL_INPUT_PLACEHOLDER } from './settings';
+import { Settings, SketchfabBlockProps, SketchfabHeight, borderRadiusClasses, heights } from './types';
+import {
+    SKETCHFAB_RULE_ERROR,
+    generateUrl,
+    getIframeStyles,
+    getUrlWithoutSearchParams,
+    isSketchfabUrl,
+} from './helpers';
 
-const DEFAULT_BORDER_WIDTH = '1px';
-
-const getIframeStyles = (borderSelection: [BorderStyle, string, Color], borderRadius: string): CSSProperties => {
-    // TODO: This check could be removed if defaultValue are returned from blockSettings (ticket: https://app.clickup.com/t/1p69p6a)
-    const style = borderSelection[0] ?? BorderStyle.Solid;
-    const width = borderSelection[1] ?? DEFAULT_BORDER_WIDTH;
-    const rgba = borderSelection[2] ?? BORDER_COLOR_DEFAULT_VALUE;
-    return {
-        borderStyle: borderStyles[style],
-        borderWidth: width,
-        borderColor: toRgbaString(rgba),
-        borderRadius,
-    };
-};
-
-const generateUrl = (href: string, params: Record<string, string | undefined | boolean>) => {
-    const url = new URL(href);
-    // eslint-disable-next-line unicorn/no-array-for-each
-    Object.entries(params).forEach(([key, value]) => {
-        if (typeof value === 'string') {
-            url.searchParams.set(key, value);
-        }
-    });
-    return url;
-};
-
-export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }) => {
+export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [localUrl, setLocalUrl] = useState('');
     const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
+    const [inputError, setInputError] = useState(false);
+
     const {
         url = '',
         isCustomHeight = false,
-        height = SketchFabHeight.Medium,
+        height = SketchfabHeight.Medium,
         customHeight = '',
         hasBorder = false,
         borderColor = BORDER_COLOR_DEFAULT_VALUE,
@@ -113,11 +96,15 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
 
     const saveLink = () => {
         const urlWithoutSearchParams = getUrlWithoutSearchParams(localUrl);
-
-        setBlockSettings({
-            ...blockSettings,
-            url: urlWithoutSearchParams,
-        });
+        if (isSketchfabUrl(urlWithoutSearchParams)) {
+            setBlockSettings({
+                ...blockSettings,
+                url: urlWithoutSearchParams,
+            });
+            setInputError(false);
+        } else {
+            setInputError(true);
+        }
     };
 
     useEffect(() => {
@@ -125,7 +112,7 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
             setIframeUrl(
                 generateUrl(url, {
                     animation_autoplay: !autoPlay && '0',
-                    annotation: showAnnotations && startingAnnotation,
+                    annotation: showAnnotations && Boolean(startingAnnotation) && startingAnnotation,
                     annotation_cycle: showAnnotations && annotationCycle && annotationCycleCount,
                     annotation_tooltip_visible: showAnnotations && !annotationTooltipVisible && '0',
                     annotations_visible: !showAnnotations && '0',
@@ -183,17 +170,77 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
             setLocalUrl('');
             setIframeUrl(null);
         }
-    }, [blockSettings]);
+    }, [
+        accountType,
+        annotationCycle,
+        annotationCycleCount,
+        annotationTooltipVisible,
+        apiLog,
+        autoPlay,
+        autoSpin,
+        autoSpinCount,
+        autoStart,
+        blockSettings,
+        doubleClick,
+        fps,
+        fpsValue,
+        navigationMode,
+        orbitConstraintPan,
+        orbitConstraintPitch,
+        orbitConstraintPitchLimitsDown,
+        orbitConstraintPitchLimitsUp,
+        orbitConstraintYaw,
+        orbitConstraintYawLimitsLeft,
+        orbitConstraintYawLimitsRight,
+        orbitConstraintZoomIn,
+        orbitConstraintZoomInCount,
+        orbitConstraintZoomOut,
+        orbitConstraintZoomOutCount,
+        preloadTextures,
+        preventLightRotation,
+        scrollWheel,
+        showAnnotations,
+        startingAnnotation,
+        startingSpin,
+        textureSize,
+        textureSizeValue,
+        transparentBackground,
+        uiAR,
+        uiARHelp,
+        uiAnimations,
+        uiAnnotations,
+        uiColor,
+        uiControls,
+        uiDOF,
+        uiDisableViewer,
+        uiFadeout,
+        uiFullscreen,
+        uiGeneralControls,
+        uiHelp,
+        uiHint,
+        uiInfos,
+        uiInspector,
+        uiLoading,
+        uiQR,
+        uiSettings,
+        uiSound,
+        uiStart,
+        uiTheme,
+        uiVR,
+        uiWatermark,
+        url,
+        viewersTracking,
+    ]);
 
     return (
-        <div data-test-id="storybook-block" className="tw-relative">
+        <div data-test-id="sketchfab-block" className="tw-relative">
             {iframeUrl ? (
                 <div>
                     <iframe
                         className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
                         style={
                             hasBorder
-                                ? getIframeStyles([borderStyle, borderWidth, borderColor], hasRadius ? radiusValue : '')
+                                ? getIframeStyles(borderStyle, borderWidth, borderColor, hasRadius ? radiusValue : '')
                                 : {}
                         }
                         height={isCustomHeight ? customHeight : heights[height]}
@@ -207,26 +254,34 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
                     {isEditing ? (
                         <div
                             className="tw-flex tw-flex-col tw-items-center tw-bg-black-5 tw-p-20 tw-gap-8"
-                            data-test-id="storybook-empty-wrapper"
+                            data-test-id="sketchfab-empty-block-edit"
                         >
                             <Text color="x-weak">Enter a URL to your 3D model from Sketchfab.</Text>
-                            <div className="tw-text-text-x-weak tw-flex tw-items-center tw-gap-3 tw-w-full tw-justify-center">
-                                <div className="tw-flex-none">
+                            <div className="tw-text-text-x-weak tw-flex tw-items-start tw-gap-3 tw-w-full tw-justify-center">
+                                <div className="tw-flex-none tw-mt-[2px]">
                                     <IconExternalAsset size={IconSize.Size32} />
                                 </div>
                                 <div className="tw-w-full tw-max-w-sm">
-                                    <TextInput
-                                        value={localUrl}
-                                        onChange={setLocalUrl}
-                                        onEnterPressed={saveLink}
-                                        placeholder={URL_INPUT_PLACEHOLDER}
-                                    />
+                                    <FormControl
+                                        helper={inputError ? { text: SKETCHFAB_RULE_ERROR } : undefined}
+                                        style={inputError ? FormControlStyle.Danger : FormControlStyle.Primary}
+                                    >
+                                        <TextInput
+                                            value={localUrl}
+                                            onChange={setLocalUrl}
+                                            onEnterPressed={saveLink}
+                                            placeholder={URL_INPUT_PLACEHOLDER}
+                                        />
+                                    </FormControl>
                                 </div>
                                 <Button onClick={saveLink}>Confirm</Button>
                             </div>
                         </div>
                     ) : (
-                        <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">
+                        <div
+                            className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20"
+                            data-test-id="sketchfab-empty-block-view"
+                        >
                             <Text color="x-weak">
                                 <IconExternalAsset size={IconSize.Size32} />
                             </Text>

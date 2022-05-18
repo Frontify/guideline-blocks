@@ -1,3 +1,3 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { SketchFabBlock as default } from './SketchFabBlock';
+export { SketchfabBlock as default } from './SketchfabBlock';
