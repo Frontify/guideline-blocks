@@ -6,7 +6,8 @@ export const isSketchfabUrl = (url: string) => {
     if (!url) {
         return false;
     }
-    const regex = /^https:\/\/sketchfab.com\/(show|models)\/\w+/;
+    const regex = /^https:\/\/(www\.)?sketchfab.com\/(show|models)\/\w+/;
+
     return regex.test(url);
 };
 
@@ -18,6 +19,7 @@ export const generateUrl = (href: string, params: Record<string, string | undefi
             url.searchParams.set(key, value);
         }
     });
+
     return url;
 };
 
@@ -26,6 +28,7 @@ export const getUrlWithoutSearchParams = (url?: string) => {
         return '';
     }
     const urlObj = new URL(url);
+
     return urlObj.origin + urlObj.pathname;
 };
 

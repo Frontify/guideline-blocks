@@ -112,6 +112,7 @@ const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.TEXTURE_SIZE_VALUE,
                     type: 'input',
+                    placeholder: '8192',
                     rules: [
                         {
                             errorMessage: 'Value must be a power of 2',
@@ -219,6 +220,7 @@ const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.AUTO_SPIN_COUNT,
                     placeholder: '3',
+                    defaultValue: '0',
                     type: 'input',
                     inputType: TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
@@ -389,6 +391,7 @@ const settings: BlockSettings & {
             info: 'Automatically load the selected annotation (1 to 100) when the viewer starts',
             show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
             type: 'input',
+            placeholder: '1',
         },
     ],
     UI: [
