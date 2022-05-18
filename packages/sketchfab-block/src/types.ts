@@ -51,6 +51,7 @@ export type Settings = {
     orbitConstraintZoomOutCount: string;
     showAnnotations: boolean;
     annotationCycle: boolean;
+    annotationCycleCount: string;
     annotationTooltipVisible: boolean;
     startingAnnotation: string;
     uiTheme: 'default' | 'dark';
@@ -73,6 +74,7 @@ export type Settings = {
     uiStart: boolean;
     uiVR: boolean;
     uiAR: boolean;
+    uiARHelp: boolean;
     uiQR: boolean;
     uiWatermark: boolean;
 };
