@@ -80,7 +80,7 @@ export enum SketchfabSettings {
 }
 
 export type Settings = {
-    [SketchfabSettings.ACCOUNT_TYPE]: 'Basic' | 'Pro' | 'Premium';
+    [SketchfabSettings.ACCOUNT_TYPE]: SketchfabAccount;
     [SketchfabSettings.URL]: string;
     [SketchfabSettings.HEIGHT]: SketchfabHeight;
     [SketchfabSettings.HAS_BORDER]?: boolean;
@@ -102,7 +102,7 @@ export type Settings = {
     [SketchfabSettings.VIEWERS_TRACKING]: boolean;
     [SketchfabSettings.API_LOG]: boolean;
     [SketchfabSettings.TRANSPARENT_BACKGROUND]: boolean;
-    [SketchfabSettings.NAVIGATION_MODE]: 'orbit' | 'fps';
+    [SketchfabSettings.NAVIGATION_MODE]: SketchfabNavigation;
     [SketchfabSettings.SCROLL_WHEEL]: boolean;
     [SketchfabSettings.DOUBLE_CLICK]: boolean;
     [SketchfabSettings.STARTING_SPIN]: boolean;
@@ -125,7 +125,7 @@ export type Settings = {
     [SketchfabSettings.ANNOTATION_CYCLE_COUNT]: string;
     [SketchfabSettings.ANNOTATION_TOOLTIP_VISIBLE]: boolean;
     [SketchfabSettings.STARTING_ANNOTATION]: string;
-    [SketchfabSettings.UI_THEME]: 'default' | 'dark';
+    [SketchfabSettings.UI_THEME]: SketchfabTheme;
     [SketchfabSettings.UI_DOF]: boolean;
     [SketchfabSettings.UI_DISABLE_VIEWER]: boolean;
     [SketchfabSettings.UI_COLOR]: Color;
@@ -184,4 +184,9 @@ export enum SketchfabAccount {
 export enum SketchfabTheme {
     Default = 'default',
     Dark = 'dark',
+}
+
+export enum SketchfabNavigation {
+    Orbit = 'orbit',
+    Fps = 'fps',
 }

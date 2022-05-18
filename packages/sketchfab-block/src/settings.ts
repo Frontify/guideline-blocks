@@ -15,7 +15,7 @@ import {
     sketchfabUrlRule,
     yawRule,
 } from './helpers';
-import { SketchfabAccount, SketchfabHeight, SketchfabSettings, SketchfabTheme } from './types';
+import { SketchfabAccount, SketchfabHeight, SketchfabNavigation, SketchfabSettings, SketchfabTheme } from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
     r: 234,
@@ -169,8 +169,8 @@ const settings: BlockSettings & {
             type: 'slider',
             info: 'Setting to First Person will start the model in First Person mode by default.',
             choices: [
-                { value: 'orbit', label: 'Orbit' },
-                { value: 'fps', label: 'First Person' },
+                { value: SketchfabNavigation.Orbit, label: 'Orbit' },
+                { value: SketchfabNavigation.Fps, label: 'First Person' },
             ],
         },
         {
