@@ -1,14 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-/* (c) Copyright Frontify Ltd., all rights reserved. */
-
+import '@frontify/arcade-tokens/styles';
 import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, Color, IconExternalAsset, IconSize, Text, TextInput } from '@frontify/arcade';
-import { BorderStyle, joinClassNames, Radius, toHex8String, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, Radius, joinClassNames, toHex8String, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import { BORDER_COLOR_DEFAULT_VALUE, getUrlWithoutSearchParams, URL_INPUT_PLACEHOLDER } from './settings';
-import { borderRadiusClasses, borderStyles, heights, Settings, SketchFabHeight } from './types';
+import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER, getUrlWithoutSearchParams } from './settings';
+import { Settings, SketchFabHeight, borderRadiusClasses, borderStyles, heights } from './types';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
@@ -27,6 +26,7 @@ const getIframeStyles = (borderSelection: [BorderStyle, string, Color], borderRa
 
 const generateUrl = (href: string, params: Record<string, string | undefined | boolean>) => {
     const url = new URL(href);
+    // eslint-disable-next-line unicorn/no-array-for-each
     Object.entries(params).forEach(([key, value]) => {
         if (typeof value === 'string') {
             url.searchParams.set(key, value);
@@ -227,7 +227,9 @@ export const SketchFabBlock: FC<{ appBridge: AppBridgeNative }> = ({ appBridge }
                         </div>
                     ) : (
                         <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">
-                            <Text color="x-weak">No SketchFab-URL defined.</Text>
+                            <Text color="x-weak">
+                                <IconExternalAsset size={IconSize.Size32} />
+                            </Text>
                         </div>
                     )}
                 </>

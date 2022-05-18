@@ -516,6 +516,51 @@ importers:
       vite-plugin-dts: 1.1.1_vite@2.9.8
       vitest: 0.12.1
 
+  packages/sketchfab-block:
+    specifiers:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4
+      '@frontify/app-bridge': 2.15.1
+      '@frontify/arcade': 8.0.0
+      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/eslint-config-react': 0.15.2
+      '@frontify/frontify-cli': ^4.0.6
+      '@frontify/guideline-blocks-settings': workspace:*
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/react': 17.0.44
+      '@types/react-dom': 17.0.1
+      autoprefixer: 10.4.7
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+    dependencies:
+      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/guideline-blocks-settings': link:../block-settings
+      '@frontify/guideline-blocks-shared': link:../shared
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
+      '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
+      '@types/react': 17.0.44
+      '@types/react-dom': 17.0.1
+      autoprefixer: 10.4.7_postcss@8.4.13
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+
   packages/storybook-block:
     specifiers:
       '@babel/core': 7.17.10
@@ -7954,7 +7999,7 @@ packages:
     dev: true
 
   /assert-plus/1.0.0:
-    resolution: {integrity: sha1-8S4PPF13sLHN2RRpQuTpbB5N1SU=}
+    resolution: {integrity: sha512-NfJ4UzBCcQGLDlQq7nHxH+tv3kyZ0hHQqF5BO6J7tNJeP5do1llPr8dZ8zHonfhAu0PHAdMkSo+8o0wxg9lZWw==}
     engines: {node: '>=0.8'}
     dev: true
 
@@ -7986,7 +8031,7 @@ packages:
     dev: true
 
   /asynckit/0.4.0:
-    resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=}
+    resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: true
 
   /at-least-node/1.0.0:
@@ -8054,7 +8099,7 @@ packages:
     dev: true
 
   /aws-sign2/0.7.0:
-    resolution: {integrity: sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=}
+    resolution: {integrity: sha512-08kcGqnYf/YmjoRhfxyu+CLxBjUtHLXLXX/vUfx9l2LYzG3c1m61nrpyFUZI6zeS+Li/wWMMidD9KgrqtGq3mA==}
     dev: true
 
   /aws4/1.11.0:
@@ -8146,7 +8191,7 @@ packages:
     dev: true
 
   /bcrypt-pbkdf/1.0.2:
-    resolution: {integrity: sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=}
+    resolution: {integrity: sha512-qeFIXtP4MSoi6NLqO12WfqARWWuCKi2Rn/9hJLEmtB5yTNr9DqFWkJRCf2qShWzPeAMRnOgCrq0sg/KLv5ES9w==}
     dependencies:
       tweetnacl: 0.14.5
     dev: true
@@ -8289,7 +8334,7 @@ packages:
     dev: true
 
   /buffer-crc32/0.2.13:
-    resolution: {integrity: sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=}
+    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
     dev: true
 
   /buffer-xor/1.0.3:
@@ -8371,7 +8416,7 @@ packages:
     dev: true
 
   /caseless/0.12.0:
-    resolution: {integrity: sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=}
+    resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
     dev: true
 
   /chai/4.3.6:
@@ -8420,7 +8465,7 @@ packages:
     dev: true
 
   /check-more-types/2.24.0:
-    resolution: {integrity: sha1-FCD/sQ/URNz8ebQ4kbv//TKoRgA=}
+    resolution: {integrity: sha512-Pj779qHxV2tuapviy1bSZNEL1maXr13bPYpsvSDB68HlYcYuhlDrmGd63i0JHMCLKzc7rUSNIrpdJlhVlNwrxA==}
     engines: {node: '>= 0.8.0'}
     dev: true
 

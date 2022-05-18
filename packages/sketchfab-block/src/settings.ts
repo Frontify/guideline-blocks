@@ -7,7 +7,7 @@ import {
     getBorderSettings,
     minimumNumericalOrPixelOrAutoRule,
 } from '@frontify/guideline-blocks-shared';
-import { SketchFabHeight } from './types';
+import { SketchFabHeight, SketchFabSettings } from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
     r: 234,
@@ -59,7 +59,7 @@ const settings: BlockSettings & {
 } = {
     main: [
         {
-            id: 'accountType',
+            id: SketchFabSettings.ACCOUNT_TYPE,
             type: 'dropdown',
             size: DropdownSize.Large,
             clearable: false,
@@ -73,7 +73,7 @@ const settings: BlockSettings & {
     ],
     content: [
         {
-            id: 'url',
+            id: SketchFabSettings.URL,
             label: '3D Model URL',
             type: 'input',
             clearable: true,
@@ -83,13 +83,13 @@ const settings: BlockSettings & {
     ],
     layout: [
         {
-            id: 'isCustomHeight',
+            id: SketchFabSettings.IS_CUSTOM_HEIGHT,
             type: 'switch',
             switchLabel: 'Custom',
             label: 'Height',
             on: [
                 {
-                    id: 'customHeight',
+                    id: SketchFabSettings.CUSTOM_HEIGHT,
                     type: 'input',
                     placeholder: '0px',
                     defaultValue: '200px',
@@ -98,7 +98,7 @@ const settings: BlockSettings & {
             ],
             off: [
                 {
-                    id: 'height',
+                    id: SketchFabSettings.HEIGHT,
                     type: 'slider',
                     defaultValue: SketchFabHeight.Medium,
                     choices: [
@@ -110,29 +110,29 @@ const settings: BlockSettings & {
             ],
         },
     ],
-    style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: 'hasBorder' })],
+    style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: SketchFabSettings.HAS_BORDER })],
     Player: [
         {
-            id: 'autoStart',
+            id: SketchFabSettings.AUTO_START,
             label: 'Autostart',
             type: 'switch',
             info: 'Enabling this feature will make the model load immediately once the page is ready, rather than waiting for a user to click the Play button.',
         },
         {
-            id: 'autoPlay',
+            id: SketchFabSettings.AUTO_PLAY,
             label: 'Animation Autoplay',
             type: 'switch',
             info: 'Automatically play animations when the viewer starts',
             defaultValue: true,
         },
         {
-            id: 'textureSize',
+            id: SketchFabSettings.TEXTURE_SIZE,
             label: 'Max Texture Size',
             type: 'switch',
             info: 'Setting to a positive number will limit all textures to that maximum resolution (longest side in pixels). This should be a "power of 2" value such as 32, 128, 256, 512, etc.',
             on: [
                 {
-                    id: 'textureSizeValue',
+                    id: SketchFabSettings.TEXTURE_SIZE_VALUE,
                     type: 'input',
                     rules: [
                         {
@@ -157,26 +157,26 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'preloadTextures',
+            id: SketchFabSettings.PRELOAD_TEXTURES,
             type: 'switch',
             label: 'Preload Textures',
             info: 'Enabling this feature will force all resources (textures) to download before the scene is displayed.',
         },
         {
-            id: 'viewersTracking',
+            id: SketchFabSettings.VIEWERS_TRACKING,
             type: 'switch',
             label: 'Viewers Tracking',
             defaultValue: true,
             info: 'Disabling this feature will prevent cookies, analytics, audience measurement / tracking, etc. in the embed.',
         },
         {
-            id: 'apiLog',
+            id: SketchFabSettings.API_LOG,
             type: 'switch',
             label: 'API Log',
             info: 'When enabled, Data such as background UIDs, environment UIDs, annotation UIDs, and camera limit coordinates will be logged to the browser console.',
         },
         {
-            id: 'transparentBackground',
+            id: SketchFabSettings.TRANSPARENT_BACKGROUND,
             type: 'switch',
             label: 'Transparent Background',
             info: "Enabling this feature will make the model's background transparent.",
@@ -185,7 +185,7 @@ const settings: BlockSettings & {
     ],
     'Navigation & Camera': [
         {
-            id: 'navigationMode',
+            id: SketchFabSettings.NAVIGATION_MODE,
             label: 'Navigation Mode',
             type: 'slider',
             info: 'Setting to First Person will start the model in First Person mode by default.',
@@ -195,13 +195,13 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'fps',
+            id: SketchFabSettings.FPS,
             type: 'switch',
             label: 'First Person Navigation Speed',
             info: 'Setting to a number [0-100] will define the default walk speed in First Person mode.',
             on: [
                 {
-                    id: 'fpsValue',
+                    id: SketchFabSettings.FPS_VALUE,
                     type: 'input',
                     defaultValue: '25',
                     placeholder: '25',
@@ -211,14 +211,14 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'scrollWheel',
+            id: SketchFabSettings.SCROLL_WHEEL,
             type: 'switch',
             label: 'Allow Scrollwheel',
             defaultValue: true,
             info: 'Disabling this feature will prevent zooming with the scroll wheel.',
         },
         {
-            id: 'doubleClick',
+            id: SketchFabSettings.DOUBLE_CLICK,
             type: 'switch',
             label: 'Allow Double Click',
             defaultValue: true,
@@ -226,20 +226,20 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
         },
         {
-            id: 'startingSpin',
+            id: SketchFabSettings.STARTING_SPIN,
             type: 'switch',
             label: 'Starting Spin',
             defaultValue: true,
             info: ' Disabling this feature will skip the initial animation that occurs when a model is loaded, and immediately show the model in its default position.',
         },
         {
-            id: 'autoSpin',
+            id: SketchFabSettings.AUTO_SPIN,
             type: 'switch',
             label: 'Autospin',
             info: 'Setting to a number higher than 0 will cause the model to automatically spin around the z-axis after loading.',
             on: [
                 {
-                    id: 'autoSpinCount',
+                    id: SketchFabSettings.AUTO_SPIN_COUNT,
                     placeholder: '3',
                     type: 'input',
                     inputType: TextInputType.Number,
@@ -248,21 +248,21 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'preventLightRotation',
+            id: SketchFabSettings.PREVENT_LIGHT_ROTATION,
             type: 'switch',
             label: 'Prevent User Light Rotation',
             info: 'Enabling this feature will prevent using alt + click/drag to rotate the lights and environment.',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
         },
         {
-            id: 'orbitConstraintPan',
+            id: SketchFabSettings.ORBIT_CONSTRAINT_PAN,
             type: 'switch',
             label: 'Orbit Constraint Pan',
             info: 'Enabling this feature will prevent panning the camera.',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
         },
         {
-            id: 'orbitConstraintPitch',
+            id: SketchFabSettings.ORBIT_CONSTRAINT_PITCH,
             type: 'switch',
             label: 'Orbit Constraint Pitch',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
@@ -274,7 +274,7 @@ const settings: BlockSettings & {
                     layout: MultiInputLayout.Columns,
                     blocks: [
                         {
-                            id: 'orbitConstraintPitchLimitsUp',
+                            id: SketchFabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_UP,
                             type: 'input',
                             inputType: TextInputType.Number,
                             rules: [pitchRule],
@@ -284,7 +284,7 @@ const settings: BlockSettings & {
                             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                         },
                         {
-                            id: 'orbitConstraintPitchLimitsDown',
+                            id: SketchFabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_DOWN,
                             type: 'input',
                             inputType: TextInputType.Number,
                             rules: [pitchRule],
@@ -298,7 +298,7 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'orbitConstraintYaw',
+            id: SketchFabSettings.ORBIT_CONTRAINT_YAW,
             type: 'switch',
             label: 'Orbit Constraint Yaw',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
@@ -310,7 +310,7 @@ const settings: BlockSettings & {
                     show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                     blocks: [
                         {
-                            id: 'orbitConstraintYawLimitsLeft',
+                            id: SketchFabSettings.ORBIT_CONTRAINT_YAW_LIMITS_LEFT,
                             type: 'input',
                             inputType: TextInputType.Number,
                             rules: [yawRule],
@@ -320,7 +320,7 @@ const settings: BlockSettings & {
                             label: 'Left',
                         },
                         {
-                            id: 'orbitConstraintYawLimitsRight',
+                            id: SketchFabSettings.ORBIT_CONTRAINT_YAW_LIMITS_RIGHT,
                             type: 'input',
                             inputType: TextInputType.Number,
                             rules: [yawRule],
@@ -334,14 +334,14 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'orbitConstraintZoomIn',
+            id: SketchFabSettings.ORBIT_CONTRAINT_ZOOM_IN,
             type: 'switch',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
             label: 'Orbit Constraint Zoom In',
             info: 'Setting to a positive number will define the camera zoom in limit (minimum distance from the model).',
             on: [
                 {
-                    id: 'orbitConstraintZoomInCount',
+                    id: SketchFabSettings.ORBIT_CONTRAINT_ZOOM_IN_COUNT,
                     type: 'input',
                     show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
                     placeholder: '3',
@@ -351,14 +351,14 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'orbitConstraintZoomOut',
+            id: SketchFabSettings.ORBIT_CONTRAINT_ZOOM_OUT,
             type: 'switch',
             show: (bundle) => bundle.getBlock('accountType')?.value !== 'Basic',
             label: 'Orbit Constraint Zoom Out',
             info: 'Setting to a positive number will define the camera zoom out limit (maximum distance from the model).',
             on: [
                 {
-                    id: 'orbitConstraintZoomOutCount',
+                    id: SketchFabSettings.ORBIT_CONTRAINT_ZOOM_OUT_COUNT,
                     type: 'input',
                     inputType: TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
@@ -370,14 +370,14 @@ const settings: BlockSettings & {
     ],
     Annotations: [
         {
-            id: 'showAnnotations',
+            id: SketchFabSettings.SHOW_ANNOTATIONS,
             type: 'switch',
             defaultValue: true,
             label: 'Show Annotations',
             info: 'Disabling this feature will hide annotations by default',
         },
         {
-            id: 'annotationCycle',
+            id: SketchFabSettings.ANNOTATION_CYCLE,
             defaultValue: false,
             label: 'Annotation Cycle',
             type: 'switch',
@@ -385,7 +385,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
             on: [
                 {
-                    id: 'annotationCycleCount',
+                    id: SketchFabSettings.ANNOTATION_CYCLE_COUNT,
                     placeholder: '1',
                     inputType: TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
@@ -395,7 +395,7 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'annotationTooltipVisible',
+            id: SketchFabSettings.ANNOTATION_TOOLTIP_VISIBLE,
             defaultValue: true,
             label: 'Annotation Tooltip Visible',
             info: 'Disabling this feature will hide annotation tooltips by default',
@@ -403,7 +403,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
         },
         {
-            id: 'startingAnnotation',
+            id: SketchFabSettings.STARTING_ANNOTATION,
             defaultValue: '1',
             inputType: TextInputType.Number,
             rules: [minimumNumericalRule(0), maximumNumericalRule(100)],
@@ -415,7 +415,7 @@ const settings: BlockSettings & {
     ],
     UI: [
         {
-            id: 'uiTheme',
+            id: SketchFabSettings.UI_THEME,
             type: 'slider',
             label: 'UI Theme',
             defaultValue: 'default',
@@ -426,28 +426,28 @@ const settings: BlockSettings & {
             ],
         },
         {
-            id: 'uiDOF',
+            id: SketchFabSettings.UI_DOF,
             label: 'Depth of Field Cicle',
             type: 'switch',
             defaultValue: true,
             info: 'Disabling this feature will not show the depth of field refocus circle animation on click.',
         },
         {
-            id: 'uiDisableViewer',
+            id: SketchFabSettings.UI_DISABLE_VIEWER,
             label: '"Disable Viewer" Button',
             type: 'switch',
             defaultValue: true,
             info: 'Disabling this feature will hide the "Disable Viewer" button in the top right so that users cannot stop the 3D render once it is started.',
         },
         {
-            id: 'uiColor',
+            id: SketchFabSettings.UI_COLOR,
             label: 'UI Color',
             type: 'colorInput',
             info: 'Setting to a color will change the color of the viewer loading bar.',
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiAnimations',
+            id: SketchFabSettings.UI_ANIMATIONS,
             label: 'Animation Menu / Timeline',
             type: 'switch',
             defaultValue: true,
@@ -455,7 +455,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiAnnotations',
+            id: SketchFabSettings.UI_ANNOTATIONS,
             label: 'Annotation Menu',
             type: 'switch',
             info: 'Setting to 0 will hide the Annotation menu.',
@@ -463,7 +463,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiControls',
+            id: SketchFabSettings.UI_CONTROLS,
             defaultValue: true,
             label: 'Controls Buttons',
             type: 'switch',
@@ -471,7 +471,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiFadeout',
+            id: SketchFabSettings.UI_FADEOUT,
             label: 'Fadeout UI Automatically',
             defaultValue: true,
             type: 'switch',
@@ -479,7 +479,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiFullscreen',
+            id: SketchFabSettings.UI_FULLSCREEN,
             label: 'Fullscreen Button',
             defaultValue: true,
             type: 'switch',
@@ -487,7 +487,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiGeneralControls',
+            id: SketchFabSettings.UI_GENERAL_CONTROLS,
             label: 'General Controls',
             defaultValue: true,
             type: 'switch',
@@ -495,7 +495,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiHelp',
+            id: SketchFabSettings.UI_HELP,
             label: 'Help Button',
             defaultValue: true,
             type: 'switch',
@@ -503,7 +503,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiHint',
+            id: SketchFabSettings.UI_HINT,
             label: 'Hint Animation',
             defaultValue: true,
             type: 'switch',
@@ -511,7 +511,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiInfos',
+            id: SketchFabSettings.UI_INFOS,
             label: 'Info Bar',
             defaultValue: true,
             type: 'switch',
@@ -519,7 +519,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiInspector',
+            id: SketchFabSettings.UI_INSPECTOR,
             label: 'Inspector Button',
             defaultValue: true,
             type: 'switch',
@@ -527,7 +527,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiLoading',
+            id: SketchFabSettings.UI_LOADING,
             label: 'Loading Bars',
             defaultValue: true,
             type: 'switch',
@@ -535,7 +535,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiSettings',
+            id: SketchFabSettings.UI_SETTINGS,
             label: 'Settings Button',
             defaultValue: true,
             type: 'switch',
@@ -543,7 +543,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiSound',
+            id: SketchFabSettings.UI_SOUND,
             label: 'Sound Button',
             defaultValue: true,
             type: 'switch',
@@ -551,7 +551,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiStart',
+            id: SketchFabSettings.UI_START,
             label: 'Start / Play Button',
             defaultValue: true,
             type: 'switch',
@@ -559,7 +559,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiVR',
+            id: SketchFabSettings.UI_VR,
             label: 'VR Button',
             defaultValue: true,
             type: 'switch',
@@ -567,7 +567,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiAR',
+            id: SketchFabSettings.UI_AR,
             label: 'AR Button',
             defaultValue: true,
             type: 'switch',
@@ -575,7 +575,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiARHelp',
+            id: SketchFabSettings.UI_AR_HELP,
             label: 'AR Help Button',
             defaultValue: true,
             type: 'switch',
@@ -583,7 +583,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiQR',
+            id: SketchFabSettings.UI_QR,
             label: 'Qrcode Button',
             defaultValue: true,
             type: 'switch',
@@ -591,7 +591,7 @@ const settings: BlockSettings & {
             show: (bundle) => bundle.getBlock('accountType')?.value === 'Premium',
         },
         {
-            id: 'uiWatermark',
+            id: SketchFabSettings.UI_WATERMARK,
             label: 'UI Watermark',
             defaultValue: true,
             type: 'switch',
@@ -601,5 +601,4 @@ const settings: BlockSettings & {
     ],
 };
 
-// eslint-disable-next-line import/no-default-export
 export default settings;
