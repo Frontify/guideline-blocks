@@ -174,3 +174,14 @@ export const heights: Record<SketchfabHeight, string> = {
     [SketchfabHeight.Medium]: '600px',
     [SketchfabHeight.Large]: '800px',
 };
+
+export enum SketchfabAccount {
+    Premium = 'Premium',
+    Pro = 'Pro',
+    Basic = 'Basic',
+}
+
+export enum SketchfabTheme {
+    Default = 'default',
+    Dark = 'dark',
+}

@@ -7,7 +7,15 @@ import { BorderStyle, Radius, joinClassNames, toHex8String } from '@frontify/gui
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_BORDER_WIDTH, URL_INPUT_PLACEHOLDER } from './settings';
-import { Settings, SketchfabBlockProps, SketchfabHeight, borderRadiusClasses, heights } from './types';
+import {
+    Settings,
+    SketchfabAccount,
+    SketchfabBlockProps,
+    SketchfabHeight,
+    SketchfabTheme,
+    borderRadiusClasses,
+    heights,
+} from './types';
 import {
     SKETCHFAB_RULE_ERROR,
     generateUrl,
@@ -128,42 +136,44 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     preload: preloadTextures && '1',
                     scrollwheel: !scrollWheel && '0',
                     ui_stop: !uiDisableViewer && '0',
-                    ui_theme: uiTheme === 'dark' && uiTheme,
-                    transparent: accountType !== 'Basic' && transparentBackground && '1',
-                    double_click: accountType !== 'Basic' && !doubleClick && '0',
-                    orbit_constraint_pan: accountType !== 'Basic' && orbitConstraintPan && '1',
+                    ui_theme: uiTheme === SketchfabTheme.Dark && uiTheme,
+                    transparent: accountType !== SketchfabAccount.Basic && transparentBackground && '1',
+                    double_click: accountType !== SketchfabAccount.Basic && !doubleClick && '0',
+                    orbit_constraint_pan: accountType !== SketchfabAccount.Basic && orbitConstraintPan && '1',
                     orbit_constraint_pitch_down:
-                        accountType !== 'Basic' && orbitConstraintPitch && orbitConstraintPitchLimitsDown,
-                    orbit_constraint_pitch_up: accountType !== 'Basic' && orbitConstraintPitchLimitsUp,
+                        accountType !== SketchfabAccount.Basic &&
+                        orbitConstraintPitch &&
+                        orbitConstraintPitchLimitsDown,
+                    orbit_constraint_pitch_up: accountType !== SketchfabAccount.Basic && orbitConstraintPitchLimitsUp,
                     orbit_constraint_yaw_left:
-                        accountType !== 'Basic' && orbitConstraintYaw && orbitConstraintYawLimitsLeft,
+                        accountType !== SketchfabAccount.Basic && orbitConstraintYaw && orbitConstraintYawLimitsLeft,
                     orbit_constraint_yaw_right:
-                        accountType !== 'Basic' && orbitConstraintYaw && orbitConstraintYawLimitsRight,
+                        accountType !== SketchfabAccount.Basic && orbitConstraintYaw && orbitConstraintYawLimitsRight,
                     orbit_constraint_zoom_in:
-                        accountType !== 'Basic' && orbitConstraintZoomIn && orbitConstraintZoomInCount,
+                        accountType !== SketchfabAccount.Basic && orbitConstraintZoomIn && orbitConstraintZoomInCount,
                     orbit_constraint_zoom_out:
-                        accountType !== 'Basic' && orbitConstraintZoomOut && orbitConstraintZoomOutCount,
-                    prevent_user_light_rotation: accountType !== 'Basic' && preventLightRotation && '1',
-                    ui_animations: accountType === 'Premium' && !uiAnimations && '0',
-                    ui_annotations: accountType === 'Premium' && !uiAnnotations && '0',
-                    ui_controls: accountType === 'Premium' && !uiControls && '0',
-                    ui_fadeout: accountType === 'Premium' && !uiFadeout && '0',
-                    ui_fullscreen: accountType === 'Premium' && !uiFullscreen && '0',
-                    ui_general_controls: accountType === 'Premium' && !uiGeneralControls && '0',
-                    ui_help: accountType === 'Premium' && !uiHelp && '0',
-                    ui_hint: accountType === 'Premium' && !uiHint && '0',
-                    ui_infos: accountType === 'Premium' && !uiInfos && '0',
-                    ui_inspector: accountType === 'Premium' && !uiInspector && '0',
-                    ui_loading: accountType === 'Premium' && !uiLoading && '0',
-                    ui_settings: accountType === 'Premium' && !uiSettings && '0',
-                    ui_sound: accountType === 'Premium' && !uiSound && '0',
-                    ui_start: accountType === 'Premium' && !uiStart && '0',
-                    ui_vr: accountType === 'Premium' && !uiVR && '0',
-                    ui_ar: accountType === 'Premium' && !uiAR && '0',
-                    ui_ar_help: accountType === 'Premium' && !uiARHelp && '0',
-                    ui_ar_qrcode: accountType === 'Premium' && !uiQR && '0',
-                    ui_watermark: accountType === 'Premium' && !uiWatermark && '0',
-                    ui_color: accountType === 'Premium' && toHex8String(uiColor).slice(1, 7),
+                        accountType !== SketchfabAccount.Basic && orbitConstraintZoomOut && orbitConstraintZoomOutCount,
+                    prevent_user_light_rotation: accountType !== SketchfabAccount.Basic && preventLightRotation && '1',
+                    ui_animations: accountType === SketchfabAccount.Premium && !uiAnimations && '0',
+                    ui_annotations: accountType === SketchfabAccount.Premium && !uiAnnotations && '0',
+                    ui_controls: accountType === SketchfabAccount.Premium && !uiControls && '0',
+                    ui_fadeout: accountType === SketchfabAccount.Premium && !uiFadeout && '0',
+                    ui_fullscreen: accountType === SketchfabAccount.Premium && !uiFullscreen && '0',
+                    ui_general_controls: accountType === SketchfabAccount.Premium && !uiGeneralControls && '0',
+                    ui_help: accountType === SketchfabAccount.Premium && !uiHelp && '0',
+                    ui_hint: accountType === SketchfabAccount.Premium && !uiHint && '0',
+                    ui_infos: accountType === SketchfabAccount.Premium && !uiInfos && '0',
+                    ui_inspector: accountType === SketchfabAccount.Premium && !uiInspector && '0',
+                    ui_loading: accountType === SketchfabAccount.Premium && !uiLoading && '0',
+                    ui_settings: accountType === SketchfabAccount.Premium && !uiSettings && '0',
+                    ui_sound: accountType === SketchfabAccount.Premium && !uiSound && '0',
+                    ui_start: accountType === SketchfabAccount.Premium && !uiStart && '0',
+                    ui_vr: accountType === SketchfabAccount.Premium && !uiVR && '0',
+                    ui_ar: accountType === SketchfabAccount.Premium && !uiAR && '0',
+                    ui_ar_help: accountType === SketchfabAccount.Premium && !uiARHelp && '0',
+                    ui_ar_qrcode: accountType === SketchfabAccount.Premium && !uiQR && '0',
+                    ui_watermark: accountType === SketchfabAccount.Premium && !uiWatermark && '0',
+                    ui_color: accountType === SketchfabAccount.Premium && toHex8String(uiColor).slice(1, 7),
                     dnt: !viewersTracking && '1',
                 })
             );
