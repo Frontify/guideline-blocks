@@ -1,15 +1,5 @@
 import { RefObject, useEffect, useRef, useState } from 'react';
-
-enum Zoom {
-    IN = -1,
-    OUT = 1,
-}
-
-enum Cursor {
-    GRAB = 'grab',
-    GRABBING = 'grabbing',
-    DEFAULT = 'default',
-}
+import { Cursor, ImageProperties, MousePosition, Zoom } from './types';
 
 const magnification = 0.2; // in percentage
 const stagePadding = 0; // in percentage
@@ -24,7 +14,7 @@ const initStage = (
         // stageRef.current.style.height = `${imageBoundingClientRect.height}px`;
 
         adjustImageContainerSize(imageBoundingClientRect, imageContainerRef.current);
-        centerImageContainerWithinStage(imageContainerRef.current, stageRef.current);
+        centerImageContainerWithinTheStage(imageContainerRef.current, stageRef.current);
     }
 };
 
@@ -33,64 +23,57 @@ const adjustImageContainerSize = (imageBoundingClientRect: ImageProperties, imag
     imageContainer.style.height = `${imageBoundingClientRect.height * (1 - stagePadding)}px`;
 };
 
-const centerImageContainerWithinStage = (imageContainer: HTMLDivElement, wrapper: HTMLDivElement) => {
+const centerImageContainerWithinTheStage = (imageContainer: HTMLDivElement, wrapper: HTMLDivElement) => {
     imageContainer.style.left = `${(wrapper.clientWidth - imageContainer.clientWidth) / 2}px`;
     imageContainer.style.top = `${(wrapper.clientHeight - imageContainer.clientHeight) / 2}px`;
 };
 
-const onZoom = (imageContainerRef: RefObject<HTMLDivElement>, zoom = Zoom.OUT) => {
-    if (imageContainerRef.current) {
-        imageContainerRef.current.style.width = `${
-            imageContainerRef.current.clientWidth * (1 + zoom * magnification)
-        }px`;
-        imageContainerRef.current.style.height = `${
-            imageContainerRef.current.clientHeight * (1 + zoom * magnification)
-        }px`;
+const resizeImageContainer = (imageContainer: HTMLDivElement | null, zoom = Zoom.OUT) => {
+    if (imageContainer) {
+        imageContainer.style.width = `${imageContainer.clientWidth * (1 + zoom * magnification)}px`;
+        imageContainer.style.height = `${imageContainer.clientHeight * (1 + zoom * magnification)}px`;
     }
 };
 
-const hasMouseLeftTheStage = (event: MouseEvent, stageBoundingRect: DOMRect): boolean => {
-    const currentMousePosition = {
-        x: event.pageX - stageBoundingRect.left,
-        y: event.pageY - stageBoundingRect.top,
+const getCurrentMousePosition = (event: MouseEvent | React.MouseEvent): MousePosition => ({
+    x: event.pageX,
+    y: event.pageY,
+});
+
+const isMouseInsideBlock = (currentMousePosition: MousePosition, boundingClientRect: DOMRect): boolean => {
+    const boundaries = {
+        left: boundingClientRect.left,
+        right: boundingClientRect.left + boundingClientRect.width,
+        top: boundingClientRect.top,
+        bottom: boundingClientRect.top + boundingClientRect.height,
     };
 
     return (
-        currentMousePosition.x > stageBoundingRect.width ||
-        currentMousePosition.x < 0 ||
-        currentMousePosition.y > stageBoundingRect.height ||
-        currentMousePosition.y < 0
+        currentMousePosition.x > boundaries.left &&
+        currentMousePosition.x < boundaries.right &&
+        currentMousePosition.y > boundaries.top &&
+        currentMousePosition.y < boundaries.bottom
     );
 };
 
-const updateMouseCursor = (imageContainerRef: RefObject<HTMLDivElement>, cursor: Cursor) => {
+const changeMouseCursorStyleWithinImageContainer = (imageContainerRef: RefObject<HTMLDivElement>, cursor: Cursor) => {
     if (imageContainerRef.current) {
         imageContainerRef.current.style.cursor = cursor;
     }
 };
 
-type ImageProperties = {
-    bottom: number;
-    height: number;
-    left: number;
-    right: number;
-    top: number;
-    width: number;
-    x: number;
-    y: number;
-};
 export const useImageStage = () => {
+    const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
     const [imageBoundingClientRect, setImageBoundingClientRect] = useState<ImageProperties>();
     const [stageBoundingClientRect, setStageBoundingClientRect] = useState<DOMRect>();
-    const wrapperRef = useRef<HTMLDivElement | null>(null);
     const stageRef = useRef<HTMLDivElement | null>(null);
     const imageContainerRef = useRef<HTMLDivElement | null>(null);
 
     let isMouseDown = false;
     let isMouseOnStage = false;
 
-    const onZoomIn = () => onZoom(imageContainerRef, Zoom.IN);
-    const onZoomOut = () => onZoom(imageContainerRef, Zoom.OUT);
+    const onZoomIn = () => resizeImageContainer(imageContainerRef.current, Zoom.IN);
+    const onZoomOut = () => resizeImageContainer(imageContainerRef.current, Zoom.OUT);
 
     useEffect(() => {
         if (imageBoundingClientRect) {
@@ -101,17 +84,15 @@ export const useImageStage = () => {
 
     const onMouseMoveUpdateCursor = (event: MouseEvent) => {
         if (imageContainerRef.current && stageBoundingClientRect) {
-            isMouseOnStage = !hasMouseLeftTheStage(event, stageBoundingClientRect);
+            isMouseOnStage = isMouseInsideBlock(getCurrentMousePosition(event), stageBoundingClientRect);
 
-            updateMouseCursor(
-                imageContainerRef,
-                isMouseOnStage ? (isMouseDown ? Cursor.GRABBING : Cursor.GRAB) : Cursor.DEFAULT
-            );
+            const cursorStyle = isMouseOnStage ? (isMouseDown ? Cursor.GRABBING : Cursor.GRAB) : Cursor.DEFAULT;
+            changeMouseCursorStyleWithinImageContainer(imageContainerRef, cursorStyle);
         }
     };
 
     const onMouseOver = () => {
-        updateMouseCursor(imageContainerRef, Cursor.GRAB);
+        changeMouseCursorStyleWithinImageContainer(imageContainerRef, Cursor.GRAB);
     };
 
     const onMouseDown = (event: React.MouseEvent) => {
@@ -120,24 +101,22 @@ export const useImageStage = () => {
         }
 
         isMouseDown = true;
-        updateMouseCursor(imageContainerRef, Cursor.GRABBING);
+        changeMouseCursorStyleWithinImageContainer(imageContainerRef, Cursor.GRABBING);
 
         const image = imageContainerRef.current;
-        const startMousePosition = { x: event.pageX, y: event.pageY };
+        const startMousePosition = getCurrentMousePosition(event);
         const startImagePosition = { x: image.offsetLeft, y: image.offsetTop };
 
-        document.addEventListener('mousemove', onMoveImage);
-
-        function onMoveImage(event: MouseEvent) {
+        function onImageMove(event: MouseEvent) {
             if (!isMouseOnStage) {
                 return;
             }
 
             if (!isMouseDown) {
-                document.removeEventListener('mousemove', onMoveImage);
+                document.removeEventListener('mousemove', onImageMove);
             }
 
-            const currentMousePos = { x: event.pageX, y: event.pageY };
+            const currentMousePos = getCurrentMousePosition(event);
             const mouseMoved = {
                 x: currentMousePos.x - startMousePosition.x,
                 y: currentMousePos.y - startMousePosition.y,
@@ -146,22 +125,22 @@ export const useImageStage = () => {
             image.style.left = `${startImagePosition.x + mouseMoved.x}px`;
             image.style.top = `${startImagePosition.y + mouseMoved.y}px`;
         }
+        document.addEventListener('mousemove', onImageMove);
 
         image.onmouseup = () => {
-            document.removeEventListener('mousemove', onMoveImage);
+            document.removeEventListener('mousemove', onImageMove);
             image.onmouseup = null;
             isMouseDown = false;
-            updateMouseCursor(imageContainerRef, Cursor.GRAB);
+            changeMouseCursorStyleWithinImageContainer(imageContainerRef, Cursor.GRAB);
         };
 
         image.ondragstart = () => false;
     };
 
     document.addEventListener('mousemove', onMouseMoveUpdateCursor);
-    window.addEventListener('resize', () => initStage(imageBoundingClientRect, imageContainerRef, wrapperRef), false);
+    window.addEventListener('resize', () => initStage(imageBoundingClientRect, imageContainerRef, stageRef), false);
 
     return {
-        wrapperRef,
         stageRef,
         imageContainerRef,
         onZoomIn,
@@ -169,5 +148,7 @@ export const useImageStage = () => {
         onMouseOver,
         onMouseDown,
         setImageBoundingClientRect,
+        isFullScreen,
+        setIsFullScreen,
     };
 };

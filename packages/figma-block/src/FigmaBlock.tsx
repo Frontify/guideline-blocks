@@ -16,8 +16,8 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { BlockPreview, BlockProps, Settings } from './types';
-import { ASSET_ID } from './settings';
+import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
+import { ASSET_ID, heights } from './settings';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 
@@ -33,7 +33,13 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const asset = blockAssets?.[ASSET_ID]?.[0];
     const isAssetAvailable = !!asset;
 
-    const { figmaPreviewId = BlockPreview.Image, showBorder = true } = blockSettings;
+    const {
+        figmaPreviewId = BlockPreview.Image,
+        hasBorder = true,
+        isCustomHeight = false,
+        heightValue = heights[HeightChoices.Small],
+        heightChoice = HeightChoices.Medium,
+    } = blockSettings;
 
     useEffect(() => {
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
@@ -70,9 +76,15 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     );
 
     const ShowImagePreview = useCallback(
-        ({ showBorder }) => (
+        ({ hasBorder, height }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
-                <ImageStage title={asset.title} url={asset.preview_url} showBorder={showBorder} />
+                <ImageStage
+                    title={asset.title}
+                    url={asset.preview_url}
+                    hasBorder={hasBorder}
+                    height={height}
+                    hasBackground
+                />
                 <div>
                     <a href={assetUrl} target="_blank" rel="noreferrer">
                         {assetUrl}
@@ -134,7 +146,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     return (
         <div data-test-id="figma-block">
             {isInEditMode && !isAssetAvailable && <FigmaEmptyBlock />}
-            {isAssetAvailable && !isLivePreview && <ShowImagePreview showBorder={showBorder} />}
+            {isAssetAvailable && !isLivePreview && (
+                <ShowImagePreview hasBorder={hasBorder} height={isCustomHeight ? heightValue : heights[heightChoice]} />
+            )}
             {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
             {showFigmaLiveModal && <FigmaLivePortal />}
         </div>
