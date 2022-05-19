@@ -2,5 +2,5 @@
 
 export const maximumNumericalRule = (max: number) => ({
     errorMessage: `Value must be smaller than or equal to ${max}`,
-    validate: (value: string) => !Number.isNaN(Number(value)) && Number(value) <= max,
+    validate: (value: string) => value && !Number.isNaN(Number(value)) && Number(value) <= max,
 });
