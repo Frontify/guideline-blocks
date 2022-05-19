@@ -23,12 +23,15 @@ export const generateUrl = (href: string, params: Record<string, string | undefi
 };
 
 export const getUrlWithoutSearchParams = (url?: string) => {
-    if (!url) {
+    try {
+        if (!url) {
+            throw 'No url supplied';
+        }
+        const urlObj = new URL(url);
+        return urlObj.origin + urlObj.pathname;
+    } catch (e) {
         return '';
     }
-    const urlObj = new URL(url);
-
-    return urlObj.origin + urlObj.pathname;
 };
 
 export const removeSearchParams = (bundle: Bundle) => {
