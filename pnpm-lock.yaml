@@ -538,7 +538,6 @@ importers:
       react-dom: 17.0.2
       tailwindcss: 3.0.24
       typescript: 4.6.4
-      vitest: 0.12.6
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/arcade': 9.2.1_fcdgd5lt5hi7mmx5qv2pcp22ie
@@ -561,7 +560,6 @@ importers:
       prettier: 2.6.2
       tailwindcss: 3.0.24
       typescript: 4.6.4
-      vitest: 0.12.6
 
   packages/storybook-block:
     specifiers:
@@ -14800,38 +14798,6 @@ packages:
 
   /vitest/0.12.1:
     resolution: {integrity: sha512-ltTPYmxv4JxZ+2mxnAQ6TnDNRI03oS7qPNFFy9PbQiABkN2ha/a7i7FCrYg3cNmbwD/4cyP7vHnTBv+/or492A==}
-    engines: {node: '>=v14.16.0'}
-    hasBin: true
-    peerDependencies:
-      '@vitest/ui': '*'
-      c8: '*'
-      happy-dom: '*'
-      jsdom: '*'
-    peerDependenciesMeta:
-      '@vitest/ui':
-        optional: true
-      c8:
-        optional: true
-      happy-dom:
-        optional: true
-      jsdom:
-        optional: true
-    dependencies:
-      '@types/chai': 4.3.1
-      '@types/chai-subset': 1.3.3
-      chai: 4.3.6
-      local-pkg: 0.4.1
-      tinypool: 0.1.3
-      tinyspy: 0.3.2
-      vite: 2.9.8
-    transitivePeerDependencies:
-      - less
-      - sass
-      - stylus
-    dev: true
-
-  /vitest/0.12.6:
-    resolution: {integrity: sha512-YWbCTv0XKBuBw5YtuW/iufuguoi8QhGpYyi2g57Oo7akpscMkkWTAaZGgY0ux1oJJtO/pc/8GFt0EF32WFBUUQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
