@@ -66,7 +66,7 @@ export const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
 };
 
 export const heights: Record<StorybookHeight, string> = {
-    [StorybookHeight.Small]: '400px',
-    [StorybookHeight.Medium]: '600px',
-    [StorybookHeight.Large]: '800px',
+    [StorybookHeight.Small]: '200px',
+    [StorybookHeight.Medium]: '400px',
+    [StorybookHeight.Large]: '600px',
 };

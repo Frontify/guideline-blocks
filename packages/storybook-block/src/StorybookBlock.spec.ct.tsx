@@ -3,7 +3,7 @@
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/app-bridge';
 import { StorybookBlock } from './StorybookBlock';
-import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
+import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';
 const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
@@ -61,7 +61,7 @@ describe('Storybook Block', () => {
         });
 
         mount(<StorybookBlockWithStubs />);
-        cy.get(IframeSelector).should('have.attr', 'height', '400px');
+        cy.get(IframeSelector).should('have.attr', 'height', heights[StorybookHeight.Small]);
         cy.get(IframeSelector).should('have.css', 'border-style', 'dotted');
         cy.get(IframeSelector).should('have.css', 'border-width', '2px');
         cy.get(IframeSelector).should('have.css', 'border-color', 'rgb(22, 181, 181)');
