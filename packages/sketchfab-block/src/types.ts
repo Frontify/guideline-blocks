@@ -87,9 +87,9 @@ export type Settings = {
     [SketchfabSettings.BORDER_COLOR]: Color;
     [SketchfabSettings.BORDER_STYLE]: BorderStyle;
     [SketchfabSettings.BORDER_WIDTH]: string;
-    [SketchfabSettings.HAS_RADIUS]?: boolean;
-    [SketchfabSettings.RADIUS_VALUE]?: string;
-    [SketchfabSettings.RADIUS_CHOICE]?: Radius;
+    [SketchfabSettings.HAS_RADIUS]: boolean;
+    [SketchfabSettings.RADIUS_VALUE]: string;
+    [SketchfabSettings.RADIUS_CHOICE]: Radius;
     [SketchfabSettings.IS_CUSTOM_HEIGHT]: boolean;
     [SketchfabSettings.CUSTOM_HEIGHT]: string;
     [SketchfabSettings.AUTO_START]: boolean;

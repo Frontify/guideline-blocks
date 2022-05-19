@@ -5,16 +5,11 @@ import { BlockSettings, SettingBlock } from '@frontify/guideline-blocks-settings
 import {
     getBorderRadiusSettings,
     getBorderSettings,
-    minimumNumericalOrPixelOrAutoRule,
-} from '@frontify/guideline-blocks-shared';
-import {
     maximumNumericalRule,
+    minimumNumericalOrPixelOrAutoRule,
     minimumNumericalRule,
-    pitchRule,
-    removeSearchParams,
-    sketchfabUrlRule,
-    yawRule,
-} from './helpers';
+} from '@frontify/guideline-blocks-shared';
+import { pitchRule, removeSearchParams, sketchfabUrlRule, yawRule } from './helpers';
 import { SketchfabAccount, SketchfabHeight, SketchfabNavigation, SketchfabSettings, SketchfabTheme } from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
@@ -28,6 +23,7 @@ export const URL_INPUT_PLACEHOLDER = 'https://sketchfab.com/models/442c548d94744
 
 export const DEFAULT_BORDER_WIDTH = '1px';
 
+// Defaults reflected here https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
 const settings: BlockSettings & {
     UI: SettingBlock[];
     Annotations: SettingBlock[];
@@ -384,11 +380,11 @@ const settings: BlockSettings & {
         },
         {
             id: SketchfabSettings.STARTING_ANNOTATION,
-            defaultValue: '1',
+            defaultValue: '0',
             inputType: TextInputType.Number,
             rules: [minimumNumericalRule(0), maximumNumericalRule(100)],
             label: 'Starting Annotation',
-            info: 'Automatically load the selected annotation (1 to 100) when the viewer starts',
+            info: 'Setting to a positive number [1 – 100] will automatically load that annotation when the viewer starts.',
             show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
             type: 'input',
             placeholder: '1',

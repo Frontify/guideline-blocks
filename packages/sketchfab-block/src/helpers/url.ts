@@ -13,12 +13,11 @@ export const isSketchfabUrl = (url: string) => {
 
 export const generateUrl = (href: string, params: Record<string, string | undefined | boolean>) => {
     const url = new URL(href);
-    // eslint-disable-next-line unicorn/no-array-for-each
-    Object.entries(params).forEach(([key, value]) => {
+    for (const [key, value] of Object.entries(params)) {
         if (typeof value === 'string') {
             url.searchParams.set(key, value);
         }
-    });
+    }
 
     return url;
 };
