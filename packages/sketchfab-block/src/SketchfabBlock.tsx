@@ -43,6 +43,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
             setInputError(true);
         }
     };
+
     const {
         height,
         hasBorder,
@@ -56,32 +57,34 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
         customHeight,
         ...params
     } = blockSettings;
+
     useEffect(() => {
         if (params.url) {
             setIframeUrl(
                 generateUrl(params.url, {
-                    animation_autoplay: !params.autoPlay && '0',
+                    animation_autoplay: params.autoPlay === false && '0',
                     annotation:
                         params.showAnnotations &&
                         Boolean(Number(params.startingAnnotation)) &&
                         params.startingAnnotation,
                     annotation_cycle: params.showAnnotations && params.annotationCycle && params.annotationCycleCount,
-                    annotation_tooltip_visible: params.showAnnotations && !params.annotationTooltipVisible && '0',
-                    annotations_visible: !params.showAnnotations && '0',
+                    annotation_tooltip_visible:
+                        params.showAnnotations && params.annotationTooltipVisible === false && '0',
+                    annotations_visible: params.showAnnotations === false && '0',
                     api_log: params.apiLog && '1',
                     autospin: params.autoSpin && params.autoSpinCount,
                     autostart: params.autoStart && '1',
-                    camera: !params.startingSpin && '0',
-                    dof_circle: !params.uiDOF && '0',
+                    camera: params.startingSpin === false && '0',
+                    dof_circle: params.uiDOF === false && '0',
                     fps_speed: params.fps && params.fpsValue,
                     max_texture_size: params.textureSize && params.textureSizeValue,
                     navigation: params.navigationMode === SketchfabNavigation.Fps && params.navigationMode,
                     preload: params.preloadTextures && '1',
-                    scrollwheel: !params.scrollWheel && '0',
-                    ui_stop: !params.uiDisableViewer && '0',
+                    scrollwheel: params.scrollWheel === false && '0',
+                    ui_stop: params.uiDisableViewer === false && '0',
                     ui_theme: params.uiTheme === SketchfabTheme.Dark && params.uiTheme,
                     transparent: params.accountType !== SketchfabAccount.Basic && params.transparentBackground && '1',
-                    double_click: params.accountType !== SketchfabAccount.Basic && !params.doubleClick && '0',
+                    double_click: params.accountType !== SketchfabAccount.Basic && params.doubleClick === false && '0',
                     orbit_constraint_pan:
                         params.accountType !== SketchfabAccount.Basic && params.orbitConstraintPan && '1',
                     orbit_constraint_pitch_down:
@@ -130,7 +133,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     ui_watermark: params.accountType === SketchfabAccount.Premium && !params.uiWatermark && '0',
                     ui_color:
                         params.accountType === SketchfabAccount.Premium && toHex8String(params.uiColor).slice(1, 7),
-                    dnt: !params.viewersTracking && '1',
+                    dnt: params.viewersTracking === false && '1',
                 })
             );
         } else {
