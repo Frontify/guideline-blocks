@@ -26,7 +26,7 @@ describe('isSketchfabUrl', () => {
 
 describe('generateUrl', () => {
     it('passes each test', () => {
-        const data: { args: [string, { [key: string]: any }]; expected: string }[] = [
+        const data: { args: [string, { [key: string]: any }]; expected: string | null }[] = [
             {
                 args: [
                     'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed',
@@ -54,13 +54,13 @@ describe('generateUrl', () => {
                     'fab.com/models/442c548d94744641ba279ae94b5f45ec/embed',
                     { autospin: false, camera: 2, navigationMode: undefined },
                 ],
-                expected: '',
+                expected: null,
             },
         ];
 
         for (const { args, expected } of data) {
             const url = generateUrl(args[0], args[1]);
-            cy.wrap(expected).should('equal', url.toString());
+            cy.wrap(expected).should('equal', expected ? url?.toString() : null);
         }
     });
 });

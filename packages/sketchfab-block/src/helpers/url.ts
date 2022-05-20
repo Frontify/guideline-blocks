@@ -22,7 +22,7 @@ export const generateUrl = (href: string, params: Record<string, string | undefi
 
         return url;
     } catch {
-        return '';
+        return null;
     }
 };
 
