@@ -14,7 +14,7 @@ describe('getIframeStyles', () => {
                 expected: {
                     borderStyle: borderStyles[BorderStyle.Dotted],
                     borderWidth: '2px',
-                    borderColor: 'rbga(50, 100, 230, 0.1)',
+                    borderColor: 'rgba(50, 100, 230, 0.1)',
                     borderRadius: '3px',
                 },
             },
@@ -23,7 +23,7 @@ describe('getIframeStyles', () => {
                 expected: {
                     borderStyle: borderStyles[BorderStyle.Solid],
                     borderWidth: '20px',
-                    borderColor: 'rbga(30, 100, 0, 1)',
+                    borderColor: 'rgb(30, 100, 0)',
                     borderRadius: '',
                 },
             },
@@ -32,7 +32,7 @@ describe('getIframeStyles', () => {
                 expected: {
                     borderStyle: borderStyles[BorderStyle.Dotted],
                     borderWidth: '0',
-                    borderColor: 'rbga(0, 0, 0, 0)',
+                    borderColor: 'rgba(0, 0, 0, 0)',
                     borderRadius: '',
                 },
             },
