@@ -12,14 +12,18 @@ export const isSketchfabUrl = (url: string) => {
 };
 
 export const generateUrl = (href: string, params: Record<string, string | undefined | boolean>) => {
-    const url = new URL(href);
-    for (const [key, value] of Object.entries(params)) {
-        if (typeof value === 'string') {
-            url.searchParams.set(key, value);
+    try {
+        const url = new URL(href);
+        for (const [key, value] of Object.entries(params)) {
+            if (typeof value === 'string') {
+                url.searchParams.set(key, value);
+            }
         }
-    }
 
-    return url;
+        return url;
+    } catch {
+        return '';
+    }
 };
 
 export const getUrlWithoutSearchParams = (url?: string) => {
