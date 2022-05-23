@@ -1,4 +1,3 @@
-import { SyntheticEvent } from 'react';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import {
     Button,
@@ -10,8 +9,8 @@ import {
     IconMinus,
     IconReject,
 } from '@frontify/arcade';
-import { useImageStage } from './useImageStage';
-import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps, ImageStageProps } from './types';
+import { useMediaStage } from './useMediaStage';
+import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps, MediaStageProps } from './types';
 
 const DrawFullScreenActionButton = ({ isFullScreen, onClick }: DrawFullScreenActionButtonProps) => (
     <div className="tw-absolute tw-top-4 tw-right-4">
@@ -28,25 +27,17 @@ const DrawZoomInOutButtons = ({ onClickZoomIn, onClickZoomOut }: DrawZoomInOutBu
     </div>
 );
 
-export const ImageStage = ({
+export const MediaStage = ({
     title,
     url,
-    hasBorder = false,
     height = '300px',
+    hasBorder = false,
     hasBackground = false,
-}: ImageStageProps) => {
-    const {
-        stageRef,
-        imageContainerRef,
-        onZoomIn,
-        onZoomOut,
-        onMouseOver,
-        onMouseDown,
-        setImageBoundingClientRect,
-        isFullScreen,
-        setIsFullScreen,
-    } = useImageStage();
-    // console.log('hasBackground | hasBorder | height', hasBackground, hasBorder, height);
+}: MediaStageProps) => {
+    const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
+        useMediaStage({
+            height,
+        });
 
     return (
         <div
@@ -59,18 +50,15 @@ export const ImageStage = ({
         >
             <div className="tw-w-full tw-relative tw-overflow-hidden">
                 <div ref={stageRef} className="tw-relative tw-overflow-hidden" style={{ height }}>
-                    <div className="tw-absolute" ref={imageContainerRef}>
+                    <div className="tw-absolute" ref={containerRef}>
                         <img
+                            ref={imageRef}
                             alt={title}
                             src={url}
                             className="tw-relative"
                             width="100%"
                             height="100%"
-                            onMouseDown={onMouseDown}
-                            onMouseOver={onMouseOver}
-                            onLoad={(event: SyntheticEvent<HTMLImageElement>) =>
-                                setImageBoundingClientRect((event.target as HTMLImageElement).getBoundingClientRect())
-                            }
+                            onLoad={() => setIsImageLoaded(true)}
                         />
                     </div>
                 </div>

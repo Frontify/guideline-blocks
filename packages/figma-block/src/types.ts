@@ -28,7 +28,11 @@ export type BlockProps = {
     appBridge: AppBridgeNative;
 };
 
-export type MousePosition = {
+export type UseMediaStageProps = {
+    height: string;
+};
+
+export type Point = {
     x: number;
     y: number;
 };
@@ -55,6 +59,25 @@ export type ImageProperties = {
     width: number;
     x: number;
     y: number;
+};
+
+export type BoundingRectProperties = {
+    bottom: number;
+    height: number;
+    left: number;
+    right: number;
+    top: number;
+    width: number;
+    x: number;
+    y: number;
+};
+
+export type MediaStageProps = {
+    title: string | undefined;
+    url: string;
+    height?: string;
+    hasBorder?: boolean;
+    hasBackground?: boolean;
 };
 
 export type ImageStageProps = {

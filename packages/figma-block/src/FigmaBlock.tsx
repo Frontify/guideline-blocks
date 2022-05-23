@@ -5,8 +5,8 @@ import 'tailwindcss/tailwind.css';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/arcade';
-import { ImageStage } from './ImageStage';
-import { extractUrl } from './helpers';
+import { MediaStage } from './MediaStage';
+import { extractUrlParameterFromUriQueries } from './helpers';
 import {
     AssetChooserObjectType,
     AssetChooserProjectType,
@@ -43,7 +43,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     useEffect(() => {
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
-        asset?.external_url && setAssetUrl(extractUrl(asset?.external_url));
+        asset?.external_url && setAssetUrl(extractUrlParameterFromUriQueries(asset?.external_url));
     }, [asset, figmaPreviewId]);
 
     const onOpenAssetChooser = () => {
@@ -78,11 +78,11 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const ShowImagePreview = useCallback(
         ({ hasBorder, height }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
-                <ImageStage
+                <MediaStage
                     title={asset.title}
                     url={asset.preview_url}
-                    hasBorder={hasBorder}
                     height={height}
+                    hasBorder={hasBorder}
                     hasBackground
                 />
                 <div>

@@ -1,32 +1,8 @@
 import { RefObject, useEffect, useRef, useState } from 'react';
-import { Cursor, ImageProperties, MousePosition, Zoom } from './types';
+import { Cursor, ImageProperties, Point, Zoom } from './types';
 
 const magnification = 0.2; // in percentage
-const stagePadding = 0; // in percentage
-
-const initStage = (
-    imageBoundingClientRect: ImageProperties | undefined,
-    imageContainerRef: RefObject<HTMLDivElement>,
-    stageRef: RefObject<HTMLDivElement>
-) => {
-    if (imageBoundingClientRect && imageContainerRef.current && stageRef.current) {
-        // console.log('imageContainerRef.current', imageContainerRef.current);
-        // stageRef.current.style.height = `${imageBoundingClientRect.height}px`;
-
-        adjustImageContainerSize(imageBoundingClientRect, imageContainerRef.current);
-        centerImageContainerWithinTheStage(imageContainerRef.current, stageRef.current);
-    }
-};
-
-const adjustImageContainerSize = (imageBoundingClientRect: ImageProperties, imageContainer: HTMLDivElement) => {
-    imageContainer.style.width = `${imageBoundingClientRect.width * (1 - stagePadding)}px`;
-    imageContainer.style.height = `${imageBoundingClientRect.height * (1 - stagePadding)}px`;
-};
-
-const centerImageContainerWithinTheStage = (imageContainer: HTMLDivElement, wrapper: HTMLDivElement) => {
-    imageContainer.style.left = `${(wrapper.clientWidth - imageContainer.clientWidth) / 2}px`;
-    imageContainer.style.top = `${(wrapper.clientHeight - imageContainer.clientHeight) / 2}px`;
-};
+// const stagePadding = 0; // in percentage
 
 const resizeImageContainer = (imageContainer: HTMLDivElement | null, zoom = Zoom.OUT) => {
     if (imageContainer) {
@@ -35,12 +11,12 @@ const resizeImageContainer = (imageContainer: HTMLDivElement | null, zoom = Zoom
     }
 };
 
-const getCurrentMousePosition = (event: MouseEvent | React.MouseEvent): MousePosition => ({
+const getCurrentMousePosition = (event: MouseEvent | React.MouseEvent): Point => ({
     x: event.pageX,
     y: event.pageY,
 });
 
-const isMouseInsideBlock = (currentMousePosition: MousePosition, boundingClientRect: DOMRect): boolean => {
+const isMouseInsideBlock = (currentMousePosition: Point, boundingClientRect: DOMRect): boolean => {
     const boundaries = {
         left: boundingClientRect.left,
         right: boundingClientRect.left + boundingClientRect.width,
@@ -77,7 +53,6 @@ export const useImageStage = () => {
 
     useEffect(() => {
         if (imageBoundingClientRect) {
-            initStage(imageBoundingClientRect, imageContainerRef, stageRef);
             setStageBoundingClientRect(stageRef.current?.getBoundingClientRect());
         }
     }, [imageBoundingClientRect]);
@@ -138,7 +113,6 @@ export const useImageStage = () => {
     };
 
     document.addEventListener('mousemove', onMouseMoveUpdateCursor);
-    window.addEventListener('resize', () => initStage(imageBoundingClientRect, imageContainerRef, stageRef), false);
 
     return {
         stageRef,
