@@ -35,9 +35,7 @@ export const MediaStage = ({
     hasBackground = false,
 }: MediaStageProps) => {
     const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
-        useMediaStage({
-            height,
-        });
+        useMediaStage({ height });
 
     return (
         <div
