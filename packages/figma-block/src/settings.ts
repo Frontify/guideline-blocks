@@ -6,6 +6,7 @@ import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@fronti
 import { BlockPreview, HeightChoices } from './types';
 
 export const ASSET_ID = 'asset';
+export const DEFAULT_HEIGHT = '500px';
 
 const HAS_BORDER_ID = 'hasBorder';
 const HEIGHT_VALUE_ID = 'heightValue';

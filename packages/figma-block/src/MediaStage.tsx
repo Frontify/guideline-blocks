@@ -10,6 +10,7 @@ import {
     IconReject,
 } from '@frontify/arcade';
 import { useMediaStage } from './useMediaStage';
+import { DEFAULT_HEIGHT } from './settings';
 import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps, MediaStageProps } from './types';
 
 const DrawFullScreenActionButton = ({ isFullScreen, onClick }: DrawFullScreenActionButtonProps) => (
@@ -30,7 +31,7 @@ const DrawZoomInOutButtons = ({ onClickZoomIn, onClickZoomOut }: DrawZoomInOutBu
 export const MediaStage = ({
     title,
     url,
-    height = '300px',
+    height = DEFAULT_HEIGHT,
     hasBorder = false,
     hasBackground = false,
 }: MediaStageProps) => {

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useEffect, useRef, useState } from 'react';
-import { BoundingRectProperties, Cursor, Point, UseMediaStageProps, Zoom } from './types';
+import { BoundingClientRectProperties, Cursor, Point, UseMediaStageProps, Zoom } from './types';
 
 const magnification = 0.2; // in percentage
-const stagePadding = 0; // in percentage
+const imagePadding = 0; // in percentage
 
 class MouseProperties {
     public static getCurrentPosition(event: MouseEvent): Point {
@@ -15,22 +15,20 @@ class MouseProperties {
 }
 
 class ImageContainer {
-    // private isMouseDown = false;
-    private isMouseOnStage = false;
     private startImageContainerPosition!: Point;
     private startMousePosition!: Point;
     private mouseMoveListener: (this: Document, ev: MouseEvent) => void;
     private mouseUpListener: (this: HTMLDivElement, ev: MouseEvent) => void;
 
-    constructor(private imageContainer: HTMLDivElement, private image: HTMLDivElement) {
-        document.addEventListener('mousemove', this.onMouseMoveUpdateCursor.bind(this));
+    constructor(private imageContainer: HTMLDivElement, private mediaStage: MediaStage, private image: Image) {
         imageContainer.addEventListener('mouseover', this.onMouseOver.bind(this));
         imageContainer.addEventListener('mousedown', this.onMouseDown.bind(this));
 
         this.mouseMoveListener = this.onMouseMove.bind(this);
         this.mouseUpListener = this.onMouseUp.bind(this);
 
-        this.adjustImageContainerSize(image.getBoundingClientRect());
+        this.fitToImageContainer();
+        this.centerImageContainerWithinTheMediaStage();
     }
 
     public resizeImageContainer = (zoom = Zoom.OUT) => {
@@ -38,41 +36,33 @@ class ImageContainer {
         this.imageContainer.style.height = `${this.imageContainer.clientHeight * (1 + zoom * magnification)}px`;
     };
 
-    public centerImageContainerWithinTheMediaStage = (mediaStage: MediaStage) => {
-        this.imageContainer.style.left = `${(mediaStage.width - this.imageContainer.clientWidth) / 2}px`;
-        this.imageContainer.style.top = `${(mediaStage.height - this.imageContainer.clientHeight) / 2}px`;
+    private fitToImageContainer() {
+        const scale =
+            this.mediaStage.aspectRatio() < this.image.aspectRatio()
+                ? this.mediaStage.width / this.image.width
+                : this.mediaStage.height / this.image.height;
+
+        const newWidth = this.image.width * scale;
+        const newHeight = this.image.height * scale;
+
+        this.imageContainer.style.width = `${newWidth * (1 - imagePadding)}px`;
+        this.imageContainer.style.height = `${newHeight * (1 - imagePadding)}px`;
+    }
+
+    private centerImageContainerWithinTheMediaStage = () => {
+        this.imageContainer.style.left = `${(this.mediaStage.width - this.imageContainer.clientWidth) / 2}px`;
+        this.imageContainer.style.top = `${(this.mediaStage.height - this.imageContainer.clientHeight) / 2}px`;
     };
 
-    private onMouseMoveUpdateCursor(event: MouseEvent) {
-        console.log(event);
-        // this.isMouseOnStage = isMouseInsideBlock(getCurrentMousePosition(event), stageBoundingClientRect);
-
-        // const cursorStyle = isMouseOnStage ? (isMouseDown ? Cursor.GRABBING : Cursor.GRAB) : Cursor.DEFAULT;
-        // changeMouseCursorStyleWithinImageContainer(imageContainerRef, cursorStyle);
-    }
-
-    private adjustImageContainerSize(imageBoundingClientRect: BoundingRectProperties) {
-        this.imageContainer.style.width = `${imageBoundingClientRect.width * (1 - stagePadding)}px`;
-        this.imageContainer.style.height = `${imageBoundingClientRect.height * (1 - stagePadding)}px`;
-    }
-
     private onMouseMove(event: MouseEvent) {
+        if (this.mediaStage.isMouseInsideMediaStage) {
+            this.changeMouseCursorStyleOnImageContainer(Cursor.GRABBING);
+        }
+
         this.moveImageContainer(event);
     }
 
     private moveImageContainer(event: MouseEvent) {
-        // console.log('onMouseMove', this.isMouseDown);
-        // if (!this.isMouseDown) {
-        //     return;
-        // }
-        // console.log('onMouseMove serious!!!!!!');
-        // if (!isMouseOnStage) {
-        //     return;
-        // }
-        // if (!this.isMouseDown) {
-        //     console.log('I want to stop moving!!!!');
-        //     document.removeEventListener('mousemove', this.mouseMoveListener);
-        // }
         const currentMousePos = MouseProperties.getCurrentPosition(event);
         const mouseMoved: Point = {
             x: currentMousePos.x - this.startMousePosition.x,
@@ -88,21 +78,17 @@ class ImageContainer {
     }
 
     private onMouseDown(event: MouseEvent) {
-        // console.log('onMouseDown', MouseProperties.getCurrentPosition(event));
-        // this.isMouseDown = true;
         this.changeMouseCursorStyleOnImageContainer(Cursor.GRABBING);
 
         this.startMousePosition = MouseProperties.getCurrentPosition(event);
         this.startImageContainerPosition = { x: this.imageContainer.offsetLeft, y: this.imageContainer.offsetTop };
 
-        // console.log('this.startMousePosition', this.startMousePosition);
         document.addEventListener('mousemove', this.mouseMoveListener);
         this.imageContainer.addEventListener('mouseup', this.mouseUpListener);
         this.imageContainer.ondragstart = () => false;
     }
 
     private onMouseUp() {
-        // this.isMouseDown = false;
         this.changeMouseCursorStyleOnImageContainer(Cursor.GRAB);
         this.imageContainer.removeEventListener('mouseup', this.mouseUpListener);
         document.removeEventListener('mousemove', this.mouseMoveListener);
@@ -114,18 +100,57 @@ class ImageContainer {
 }
 
 class MediaStage {
-    constructor(protected mediaStage: HTMLDivElement, public stageHeight: string) {}
+    public isMouseInsideMediaStage = false;
+    private boundaries: BoundingClientRectProperties;
+
+    constructor(protected mediaStage: HTMLDivElement, public stageHeight: string) {
+        this.boundaries = this.mediaStage.getBoundingClientRect();
+
+        document.addEventListener('mousemove', this.checkIfMouseIsInside.bind(this));
+    }
+
+    get height(): number {
+        // return this.mediaStage.clientHeight;
+        return this.boundaries.height;
+    }
+
+    get width(): number {
+        // return this.mediaStage.clientWidth;
+        return this.boundaries.width;
+    }
 
     public alterHeight(height: string) {
         this.mediaStage.style.height = height;
     }
 
+    public aspectRatio(): number {
+        return this.width / this.height;
+    }
+
+    private checkIfMouseIsInside(event: MouseEvent) {
+        const currentMousePosition = MouseProperties.getCurrentPosition(event);
+
+        this.isMouseInsideMediaStage =
+            currentMousePosition.x > this.boundaries.left &&
+            currentMousePosition.x < this.boundaries.right &&
+            currentMousePosition.y > this.boundaries.top &&
+            currentMousePosition.y < this.boundaries.bottom;
+    }
+}
+
+class Image {
+    constructor(protected image: HTMLImageElement) {}
+
     get height(): number {
-        return this.mediaStage.clientHeight;
+        return this.image.height;
     }
 
     get width(): number {
-        return this.mediaStage.clientWidth;
+        return this.image.width;
+    }
+
+    aspectRatio() {
+        return this.width / this.height;
     }
 }
 
@@ -143,11 +168,12 @@ export const useMediaStage = ({ height }: UseMediaStageProps) => {
 
     useEffect(() => {
         if (isImageLoaded && stageRef.current && containerRef.current && imageRef.current) {
+            const image = new Image(imageRef.current);
+
             mediaStage.current = new MediaStage(stageRef.current, height);
             mediaStage.current.alterHeight(height);
 
-            imageContainer.current = new ImageContainer(containerRef.current, imageRef.current);
-            imageContainer.current.centerImageContainerWithinTheMediaStage(mediaStage.current);
+            imageContainer.current = new ImageContainer(containerRef.current, mediaStage.current, image);
         }
     }, [height, isImageLoaded]);
 

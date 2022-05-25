@@ -50,18 +50,7 @@ export type Settings = {
     heightChoice?: HeightChoices;
 };
 
-export type ImageProperties = {
-    bottom: number;
-    height: number;
-    left: number;
-    right: number;
-    top: number;
-    width: number;
-    x: number;
-    y: number;
-};
-
-export type BoundingRectProperties = {
+export type BoundingClientRectProperties = {
     bottom: number;
     height: number;
     left: number;
@@ -77,14 +66,6 @@ export type MediaStageProps = {
     url: string;
     height?: string;
     hasBorder?: boolean;
-    hasBackground?: boolean;
-};
-
-export type ImageStageProps = {
-    title: string | undefined;
-    url: string;
-    hasBorder?: boolean;
-    height?: string;
     hasBackground?: boolean;
 };
 
