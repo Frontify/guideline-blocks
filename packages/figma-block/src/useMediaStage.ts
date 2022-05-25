@@ -27,16 +27,16 @@ class ImageContainer {
         this.mouseMoveListener = this.onMouseMove.bind(this);
         this.mouseUpListener = this.onMouseUp.bind(this);
 
-        this.fitToImageContainer();
+        this.fitImageContainerToMediaStage();
         this.centerImageContainerWithinTheMediaStage();
     }
 
     public resizeImageContainer = (zoom = Zoom.OUT) => {
-        this.imageContainer.style.width = `${this.imageContainer.clientWidth * (1 + zoom * magnification)}px`;
-        this.imageContainer.style.height = `${this.imageContainer.clientHeight * (1 + zoom * magnification)}px`;
+        this.setImageContainerStyleProperty('width', this.imageContainer.clientWidth * (1 + zoom * magnification));
+        this.setImageContainerStyleProperty('height', this.imageContainer.clientHeight * (1 + zoom * magnification));
     };
 
-    private fitToImageContainer() {
+    private fitImageContainerToMediaStage() {
         const scale =
             this.mediaStage.aspectRatio() < this.image.aspectRatio()
                 ? this.mediaStage.width / this.image.width
@@ -45,13 +45,13 @@ class ImageContainer {
         const newWidth = this.image.width * scale;
         const newHeight = this.image.height * scale;
 
-        this.imageContainer.style.width = `${newWidth * (1 - imagePadding)}px`;
-        this.imageContainer.style.height = `${newHeight * (1 - imagePadding)}px`;
+        this.setImageContainerStyleProperty('width', newWidth * (1 - imagePadding));
+        this.setImageContainerStyleProperty('height', newHeight * (1 - imagePadding));
     }
 
     private centerImageContainerWithinTheMediaStage = () => {
-        this.imageContainer.style.left = `${(this.mediaStage.width - this.imageContainer.clientWidth) / 2}px`;
-        this.imageContainer.style.top = `${(this.mediaStage.height - this.imageContainer.clientHeight) / 2}px`;
+        this.setImageContainerStyleProperty('left', (this.mediaStage.width - this.imageContainer.clientWidth) / 2);
+        this.setImageContainerStyleProperty('top', (this.mediaStage.height - this.imageContainer.clientHeight) / 2);
     };
 
     private onMouseMove(event: MouseEvent) {
@@ -69,8 +69,8 @@ class ImageContainer {
             y: currentMousePos.y - this.startMousePosition.y,
         };
 
-        this.imageContainer.style.left = `${this.startImageContainerPosition.x + mouseMoved.x}px`;
-        this.imageContainer.style.top = `${this.startImageContainerPosition.y + mouseMoved.y}px`;
+        this.setImageContainerStyleProperty('left', this.startImageContainerPosition.x + mouseMoved.x);
+        this.setImageContainerStyleProperty('top', this.startImageContainerPosition.y + mouseMoved.y);
     }
 
     private onMouseOver() {
@@ -97,6 +97,10 @@ class ImageContainer {
     private changeMouseCursorStyleOnImageContainer = (cursor: Cursor) => {
         this.imageContainer.style.cursor = cursor;
     };
+
+    private setImageContainerStyleProperty(property: any, value: number) {
+        this.imageContainer.style[property] = `${value}px`;
+    }
 }
 
 class MediaStage {
@@ -110,12 +114,10 @@ class MediaStage {
     }
 
     get height(): number {
-        // return this.mediaStage.clientHeight;
         return this.boundaries.height;
     }
 
     get width(): number {
-        // return this.mediaStage.clientWidth;
         return this.boundaries.width;
     }
 
