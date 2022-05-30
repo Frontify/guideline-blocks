@@ -22,6 +22,7 @@ abstract class ImageContainer {
     ) {
         this.fitImageContainerToMediaStage();
         this.centerImageContainerWithinTheMediaStage();
+        this.imageElement.show();
     }
 
     abstract resizeImageContainer(zoom: Zoom): void;
@@ -170,6 +171,10 @@ class MediaStage {
 
 class ImageElement {
     constructor(protected imageElement: HTMLImageElement) {}
+
+    public show() {
+        this.imageElement.style.visibility = 'visible';
+    }
 
     get height(): number {
         return this.imageElement.height;

@@ -31,7 +31,7 @@ export const MediaStage = ({
                             ref={imageRef}
                             alt={title}
                             src={url}
-                            className="tw-relative"
+                            className="tw-relative tw-invisible"
                             width="100%"
                             height="100%"
                             onLoad={() => setIsImageLoaded(true)}
