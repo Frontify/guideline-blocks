@@ -1,23 +1,17 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { useEffect, useRef, useState } from 'react';
-import { BoundingClientRectProperties, Cursor, Point, UseMediaStageProps, Zoom } from './types';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { MouseProperties } from './MouseProperties';
+import { ImageStage } from './ImageStage';
+import { ImageElement } from './ImageElement';
+import { Cursor, ImageStyleProperty, Point, Zoom } from '../types';
 
 const magnification = 0.2; // in percentage
 const imagePadding = 0; // in percentage
 
-class MouseProperties {
-    public static getCurrentPosition(event: MouseEvent): Point {
-        return {
-            x: event.pageX,
-            y: event.pageY,
-        };
-    }
-}
-
-abstract class ImageContainer {
+export abstract class ImageContainer {
     constructor(
         protected imageContainer: HTMLDivElement,
-        protected mediaStage: MediaStage,
+        protected mediaStage: ImageStage,
         protected imageElement: ImageElement
     ) {
         this.fitImageContainerToMediaStage();
@@ -45,12 +39,25 @@ abstract class ImageContainer {
         this.setImageContainerStyleProperty('top', (this.mediaStage.height - this.imageContainer.clientHeight) / 2);
     };
 
-    protected setImageContainerStyleProperty(property: any, value: number) {
+    protected setImageContainerStyleProperty(property: ImageStyleProperty, value: number) {
         this.imageContainer.style[property] = `${value}px`;
     }
 }
 
-class VectorImageContainer extends ImageContainer {
+export class BitmapImageContainer extends ImageContainer {
+    constructor(
+        protected imageContainer: HTMLDivElement,
+        protected mediaStage: ImageStage,
+        protected imageElement: ImageElement
+    ) {
+        super(imageContainer, mediaStage, imageElement);
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    public resizeImageContainer = () => {};
+}
+
+export class VectorImageContainer extends ImageContainer {
     private startImageContainerPosition!: Point;
     private startMousePosition!: Point;
     private mouseMoveListener: (this: Document, ev: MouseEvent) => void;
@@ -58,7 +65,7 @@ class VectorImageContainer extends ImageContainer {
 
     constructor(
         protected imageContainer: HTMLDivElement,
-        protected mediaStage: MediaStage,
+        protected mediaStage: ImageStage,
         protected imageElement: ImageElement
     ) {
         super(imageContainer, mediaStage, imageElement);
@@ -119,106 +126,3 @@ class VectorImageContainer extends ImageContainer {
         this.imageContainer.style.cursor = cursor;
     };
 }
-
-class BitmapImageContainer extends ImageContainer {
-    constructor(
-        protected imageContainer: HTMLDivElement,
-        protected mediaStage: MediaStage,
-        protected imageElement: ImageElement
-    ) {
-        super(imageContainer, mediaStage, imageElement);
-    }
-
-    public resizeImageContainer = () => {};
-}
-
-class MediaStage {
-    public isMouseInsideMediaStage = false;
-    private boundaries: BoundingClientRectProperties;
-
-    constructor(protected mediaStage: HTMLDivElement, public customHeight: string) {
-        this.boundaries = this.mediaStage.getBoundingClientRect();
-
-        document.addEventListener('mousemove', this.checkIfMouseIsInside.bind(this));
-    }
-
-    get height(): number {
-        return this.boundaries.height;
-    }
-
-    get width(): number {
-        return this.boundaries.width;
-    }
-
-    public alterHeight(height: string) {
-        this.mediaStage.style.height = height;
-    }
-
-    public aspectRatio(): number {
-        return this.width / this.height;
-    }
-
-    private checkIfMouseIsInside(event: MouseEvent) {
-        const currentMousePosition = MouseProperties.getCurrentPosition(event);
-
-        this.isMouseInsideMediaStage =
-            currentMousePosition.x > this.boundaries.left &&
-            currentMousePosition.x < this.boundaries.right &&
-            currentMousePosition.y > this.boundaries.top &&
-            currentMousePosition.y < this.boundaries.bottom;
-    }
-}
-
-class ImageElement {
-    constructor(protected imageElement: HTMLImageElement) {}
-
-    public show() {
-        this.imageElement.style.visibility = 'visible';
-    }
-
-    get height(): number {
-        return this.imageElement.height;
-    }
-
-    get width(): number {
-        return this.imageElement.width;
-    }
-
-    aspectRatio() {
-        return this.width / this.height;
-    }
-}
-
-export const useMediaStage = ({ height, isImageTypeVector }: UseMediaStageProps) => {
-    const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
-    const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
-    const mediaStage = useRef<MediaStage>();
-    const imageContainer = useRef<ImageContainer>();
-    const imageRef = useRef<HTMLImageElement | null>(null);
-    const stageRef = useRef<HTMLDivElement | null>(null);
-    const containerRef = useRef<HTMLDivElement | null>(null);
-
-    const onZoomIn = () => imageContainer?.current?.resizeImageContainer(Zoom.IN);
-    const onZoomOut = () => imageContainer?.current?.resizeImageContainer(Zoom.OUT);
-
-    useEffect(() => {
-        if (isImageLoaded && stageRef.current && containerRef.current && imageRef.current) {
-            const image = new ImageElement(imageRef.current);
-
-            mediaStage.current = new MediaStage(stageRef.current, height);
-            mediaStage.current.alterHeight(height);
-
-            imageContainer.current = isImageTypeVector
-                ? new VectorImageContainer(containerRef.current, mediaStage.current, image)
-                : new BitmapImageContainer(containerRef.current, mediaStage.current, image);
-        }
-    }, [height, isImageLoaded]);
-
-    useEffect(() => {
-        if (mediaStage.current && isImageTypeVector) {
-            mediaStage.current.alterHeight(isFullScreen ? '100vh' : mediaStage.current.customHeight);
-        }
-    }, [isFullScreen]);
-
-    return { isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, stageRef, containerRef, imageRef, setIsImageLoaded };
-};

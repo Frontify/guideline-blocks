@@ -8,7 +8,7 @@ import {
     IconMinus,
     IconReject,
 } from '@frontify/arcade';
-import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps } from './types';
+import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps } from '../types';
 
 export const DrawFullScreenActionButton = ({ isFullScreen, onClick }: DrawFullScreenActionButtonProps) => (
     <div className="tw-absolute tw-top-4 tw-right-4">

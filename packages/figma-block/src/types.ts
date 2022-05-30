@@ -28,7 +28,7 @@ export type BlockProps = {
     appBridge: AppBridgeNative;
 };
 
-export type UseMediaStageProps = {
+export type UseImageStageProps = {
     height: string;
     isImageTypeVector: boolean;
 };
@@ -69,4 +69,16 @@ export type MediaStageProps = {
     height?: string;
     hasBorder?: boolean;
     hasBackground?: boolean;
+};
+
+export type ImageStyleProperty = 'width' | 'height' | 'left' | 'top';
+
+export type DrawFullScreenActionButtonProps = {
+    isFullScreen: boolean;
+    onClick: () => void;
+};
+
+export type DrawZoomInOutButtonsProps = {
+    onClickZoomIn: () => void;
+    onClickZoomOut: () => void;
 };
