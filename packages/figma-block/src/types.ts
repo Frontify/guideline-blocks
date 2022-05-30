@@ -28,11 +28,6 @@ export type BlockProps = {
     appBridge: AppBridgeNative;
 };
 
-export type UseImageStageProps = {
-    height: string;
-    isImageTypeVector: boolean;
-};
-
 export type Point = {
     x: number;
     y: number;
@@ -62,7 +57,12 @@ export type BoundingClientRectProperties = {
     y: number;
 };
 
-export type MediaStageProps = {
+export type UseImageStageProps = {
+    height: string;
+    isImageTypeVector: boolean;
+};
+
+export type ImageStageProps = {
     title: string | undefined;
     url: string;
     isImageTypeVector?: boolean;

@@ -5,7 +5,6 @@ import 'tailwindcss/tailwind.css';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/arcade';
-import { MediaStage } from './MediaStage';
 import { extractUrlParameterFromUriQueries } from './helpers';
 import {
     AssetChooserObjectType,
@@ -16,6 +15,7 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
+import { ImageStage } from './ImageStage';
 import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
 import { ASSET_ID, heights } from './settings';
 
@@ -42,8 +42,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = blockSettings;
 
     useEffect(() => {
-        setIsLivePreview(figmaPreviewId === BlockPreview.Live);
         asset?.external_url && setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.external_url));
+        setIsLivePreview(figmaPreviewId === BlockPreview.Live);
         console.log('asset', asset);
     }, [asset, figmaPreviewId]);
 
@@ -79,7 +79,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const ShowImagePreview = useCallback(
         ({ hasBorder, height }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
-                <MediaStage
+                <ImageStage
                     title={asset.title}
                     url={asset.preview_url}
                     isImageTypeVector={true}

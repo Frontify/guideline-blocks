@@ -2,16 +2,16 @@ import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components';
 import { useImageStage } from './useImageStage';
 import { DEFAULT_HEIGHT } from './settings';
-import { MediaStageProps } from './types';
+import { ImageStageProps } from './types';
 
-export const MediaStage = ({
+export const ImageStage = ({
     title,
     url,
     isImageTypeVector = true,
     height = DEFAULT_HEIGHT,
     hasBorder = false,
     hasBackground = false,
-}: MediaStageProps) => {
+}: ImageStageProps) => {
     const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
         useImageStage({ height, isImageTypeVector });
 
