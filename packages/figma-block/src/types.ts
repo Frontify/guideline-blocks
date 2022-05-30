@@ -30,6 +30,7 @@ export type BlockProps = {
 
 export type UseMediaStageProps = {
     height: string;
+    isImageTypeVector: boolean;
 };
 
 export type Point = {
@@ -64,17 +65,8 @@ export type BoundingClientRectProperties = {
 export type MediaStageProps = {
     title: string | undefined;
     url: string;
+    isImageTypeVector?: boolean;
     height?: string;
     hasBorder?: boolean;
     hasBackground?: boolean;
-};
-
-export type DrawFullScreenActionButtonProps = {
-    isFullScreen: boolean;
-    onClick: () => void;
-};
-
-export type DrawZoomInOutButtonsProps = {
-    onClickZoomIn: () => void;
-    onClickZoomOut: () => void;
 };

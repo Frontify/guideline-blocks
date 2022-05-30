@@ -14,44 +14,64 @@ class MouseProperties {
     }
 }
 
-class ImageContainer {
-    private startImageContainerPosition!: Point;
-    private startMousePosition!: Point;
-    private mouseMoveListener: (this: Document, ev: MouseEvent) => void;
-    private mouseUpListener: (this: HTMLDivElement, ev: MouseEvent) => void;
-
-    constructor(private imageContainer: HTMLDivElement, private mediaStage: MediaStage, private image: Image) {
-        imageContainer.addEventListener('mouseover', this.onMouseOver.bind(this));
-        imageContainer.addEventListener('mousedown', this.onMouseDown.bind(this));
-
-        this.mouseMoveListener = this.onMouseMove.bind(this);
-        this.mouseUpListener = this.onMouseUp.bind(this);
-
+abstract class ImageContainer {
+    constructor(
+        protected imageContainer: HTMLDivElement,
+        protected mediaStage: MediaStage,
+        protected imageElement: ImageElement
+    ) {
         this.fitImageContainerToMediaStage();
         this.centerImageContainerWithinTheMediaStage();
     }
 
-    public resizeImageContainer = (zoom = Zoom.OUT) => {
-        this.setImageContainerStyleProperty('width', this.imageContainer.clientWidth * (1 + zoom * magnification));
-        this.setImageContainerStyleProperty('height', this.imageContainer.clientHeight * (1 + zoom * magnification));
-    };
+    abstract resizeImageContainer(zoom: Zoom): void;
 
-    private fitImageContainerToMediaStage() {
+    protected fitImageContainerToMediaStage() {
         const scale =
-            this.mediaStage.aspectRatio() < this.image.aspectRatio()
-                ? this.mediaStage.width / this.image.width
-                : this.mediaStage.height / this.image.height;
+            this.mediaStage.aspectRatio() < this.imageElement.aspectRatio()
+                ? this.mediaStage.width / this.imageElement.width
+                : this.mediaStage.height / this.imageElement.height;
 
-        const newWidth = this.image.width * scale;
-        const newHeight = this.image.height * scale;
+        const newWidth = this.imageElement.width * scale;
+        const newHeight = this.imageElement.height * scale;
 
         this.setImageContainerStyleProperty('width', newWidth * (1 - imagePadding));
         this.setImageContainerStyleProperty('height', newHeight * (1 - imagePadding));
     }
 
-    private centerImageContainerWithinTheMediaStage = () => {
+    protected centerImageContainerWithinTheMediaStage = () => {
         this.setImageContainerStyleProperty('left', (this.mediaStage.width - this.imageContainer.clientWidth) / 2);
         this.setImageContainerStyleProperty('top', (this.mediaStage.height - this.imageContainer.clientHeight) / 2);
+    };
+
+    protected setImageContainerStyleProperty(property: any, value: number) {
+        this.imageContainer.style[property] = `${value}px`;
+    }
+}
+
+class VectorImageContainer extends ImageContainer {
+    private startImageContainerPosition!: Point;
+    private startMousePosition!: Point;
+    private mouseMoveListener: (this: Document, ev: MouseEvent) => void;
+    private mouseUpListener: (this: HTMLDivElement, ev: MouseEvent) => void;
+
+    constructor(
+        protected imageContainer: HTMLDivElement,
+        protected mediaStage: MediaStage,
+        protected imageElement: ImageElement
+    ) {
+        super(imageContainer, mediaStage, imageElement);
+
+        imageContainer.addEventListener('mouseover', this.onMouseOver.bind(this));
+        imageContainer.addEventListener('mousedown', this.onMouseDown.bind(this));
+
+        this.mouseMoveListener = this.onMouseMove.bind(this);
+        this.mouseUpListener = this.onMouseUp.bind(this);
+    }
+
+    public resizeImageContainer = (zoom = Zoom.OUT) => {
+        this.setImageContainerStyleProperty('width', this.imageContainer.clientWidth * (1 + zoom * magnification));
+        this.setImageContainerStyleProperty('height', this.imageContainer.clientHeight * (1 + zoom * magnification));
     };
 
     private onMouseMove(event: MouseEvent) {
@@ -97,17 +117,25 @@ class ImageContainer {
     private changeMouseCursorStyleOnImageContainer = (cursor: Cursor) => {
         this.imageContainer.style.cursor = cursor;
     };
+}
 
-    private setImageContainerStyleProperty(property: any, value: number) {
-        this.imageContainer.style[property] = `${value}px`;
+class BitmapImageContainer extends ImageContainer {
+    constructor(
+        protected imageContainer: HTMLDivElement,
+        protected mediaStage: MediaStage,
+        protected imageElement: ImageElement
+    ) {
+        super(imageContainer, mediaStage, imageElement);
     }
+
+    public resizeImageContainer = () => {};
 }
 
 class MediaStage {
     public isMouseInsideMediaStage = false;
     private boundaries: BoundingClientRectProperties;
 
-    constructor(protected mediaStage: HTMLDivElement, public stageHeight: string) {
+    constructor(protected mediaStage: HTMLDivElement, public customHeight: string) {
         this.boundaries = this.mediaStage.getBoundingClientRect();
 
         document.addEventListener('mousemove', this.checkIfMouseIsInside.bind(this));
@@ -140,15 +168,15 @@ class MediaStage {
     }
 }
 
-class Image {
-    constructor(protected image: HTMLImageElement) {}
+class ImageElement {
+    constructor(protected imageElement: HTMLImageElement) {}
 
     get height(): number {
-        return this.image.height;
+        return this.imageElement.height;
     }
 
     get width(): number {
-        return this.image.width;
+        return this.imageElement.width;
     }
 
     aspectRatio() {
@@ -156,7 +184,7 @@ class Image {
     }
 }
 
-export const useMediaStage = ({ height }: UseMediaStageProps) => {
+export const useMediaStage = ({ height, isImageTypeVector }: UseMediaStageProps) => {
     const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
     const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
     const mediaStage = useRef<MediaStage>();
@@ -170,18 +198,20 @@ export const useMediaStage = ({ height }: UseMediaStageProps) => {
 
     useEffect(() => {
         if (isImageLoaded && stageRef.current && containerRef.current && imageRef.current) {
-            const image = new Image(imageRef.current);
+            const image = new ImageElement(imageRef.current);
 
             mediaStage.current = new MediaStage(stageRef.current, height);
             mediaStage.current.alterHeight(height);
 
-            imageContainer.current = new ImageContainer(containerRef.current, mediaStage.current, image);
+            imageContainer.current = isImageTypeVector
+                ? new VectorImageContainer(containerRef.current, mediaStage.current, image)
+                : new BitmapImageContainer(containerRef.current, mediaStage.current, image);
         }
     }, [height, isImageLoaded]);
 
     useEffect(() => {
-        if (mediaStage.current) {
-            mediaStage.current.alterHeight(isFullScreen ? '100vh' : mediaStage.current.stageHeight);
+        if (mediaStage.current && isImageTypeVector) {
+            mediaStage.current.alterHeight(isFullScreen ? '100vh' : mediaStage.current.customHeight);
         }
     }, [isFullScreen]);
 

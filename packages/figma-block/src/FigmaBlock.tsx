@@ -24,7 +24,7 @@ const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
-    const [assetUrl, setAssetUrl] = useState<string>();
+    const [assetExternalUrl, setAssetExternalUrl] = useState<string>();
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -43,7 +43,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     useEffect(() => {
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
-        asset?.external_url && setAssetUrl(extractUrlParameterFromUriQueries(asset?.external_url));
+        asset?.external_url && setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.external_url));
+        console.log('asset', asset);
     }, [asset, figmaPreviewId]);
 
     const onOpenAssetChooser = () => {
@@ -81,18 +82,19 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <MediaStage
                     title={asset.title}
                     url={asset.preview_url}
+                    isImageTypeVector={true}
                     height={height}
                     hasBorder={hasBorder}
                     hasBackground
                 />
                 <div>
-                    <a href={assetUrl} target="_blank" rel="noreferrer">
-                        {assetUrl}
+                    <a href={assetExternalUrl} target="_blank" rel="noreferrer">
+                        {assetExternalUrl}
                     </a>
                 </div>
             </div>
         ),
-        [asset, assetUrl]
+        [asset, assetExternalUrl]
     );
 
     const ShowFigmaLive = useCallback(

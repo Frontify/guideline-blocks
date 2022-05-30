@@ -1,42 +1,19 @@
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import {
-    Button,
-    ButtonGroup,
-    ButtonSize,
-    ButtonStyle,
-    IconAddSimple,
-    IconExpand,
-    IconMinus,
-    IconReject,
-} from '@frontify/arcade';
+import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components/Controls';
 import { useMediaStage } from './useMediaStage';
 import { DEFAULT_HEIGHT } from './settings';
-import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps, MediaStageProps } from './types';
-
-const DrawFullScreenActionButton = ({ isFullScreen, onClick }: DrawFullScreenActionButtonProps) => (
-    <div className="tw-absolute tw-top-4 tw-right-4">
-        <Button icon={isFullScreen ? <IconReject /> : <IconExpand />} style={ButtonStyle.Secondary} onClick={onClick} />
-    </div>
-);
-
-const DrawZoomInOutButtons = ({ onClickZoomIn, onClickZoomOut }: DrawZoomInOutButtonsProps) => (
-    <div className="tw-absolute tw-top-4 tw-left-4">
-        <ButtonGroup size={ButtonSize.Medium}>
-            <Button icon={<IconAddSimple />} onClick={onClickZoomOut} />
-            <Button icon={<IconMinus />} onClick={onClickZoomIn} />
-        </ButtonGroup>
-    </div>
-);
+import { MediaStageProps } from './types';
 
 export const MediaStage = ({
     title,
     url,
+    isImageTypeVector = true,
     height = DEFAULT_HEIGHT,
     hasBorder = false,
     hasBackground = false,
 }: MediaStageProps) => {
     const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
-        useMediaStage({ height });
+        useMediaStage({ height, isImageTypeVector });
 
     return (
         <div
@@ -61,11 +38,15 @@ export const MediaStage = ({
                         />
                     </div>
                 </div>
-                <DrawFullScreenActionButton
-                    isFullScreen={isFullScreen}
-                    onClick={() => setIsFullScreen(!isFullScreen)}
-                />
-                <DrawZoomInOutButtons onClickZoomIn={onZoomIn} onClickZoomOut={onZoomOut} />
+                {isImageTypeVector && (
+                    <>
+                        <DrawFullScreenActionButton
+                            isFullScreen={isFullScreen}
+                            onClick={() => setIsFullScreen(!isFullScreen)}
+                        />
+                        <DrawZoomInOutButtons onClickZoomIn={onZoomIn} onClickZoomOut={onZoomOut} />
+                    </>
+                )}
             </div>
         </div>
     );
