@@ -2,7 +2,7 @@
 
 import { AssetChooserObjectType, AssetChooserProjectType } from '@frontify/app-bridge';
 import { AssetInputMode, BlockSettings } from '@frontify/guideline-blocks-settings';
-import { minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { minimumNumericalOrPixelOrAutoRule } from '@frontify/guideline-blocks-shared';
 import { BlockPreview, HeightChoices } from './types';
 
 export const ASSET_ID = 'asset';
@@ -68,7 +68,7 @@ const settings: BlockSettings = {
                     type: 'input',
                     placeholder: '100px',
                     defaultValue: heights[HeightChoices.Small],
-                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                    rules: [minimumNumericalOrPixelOrAutoRule(100)],
                 },
             ],
             off: [
