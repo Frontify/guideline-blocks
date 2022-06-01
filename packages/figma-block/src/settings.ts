@@ -3,6 +3,7 @@
 import { AssetChooserObjectType, AssetChooserProjectType } from '@frontify/app-bridge';
 import { AssetInputMode, BlockSettings } from '@frontify/guideline-blocks-settings';
 import { minimumNumericalOrPixelOrAutoRule } from '@frontify/guideline-blocks-shared';
+// import { minimumPixelRule } from '@frontify/guideline-blocks-shared';
 import { BlockPreview, HeightChoices } from './types';
 
 export const ASSET_ID = 'asset';

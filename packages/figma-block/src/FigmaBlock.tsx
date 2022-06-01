@@ -5,7 +5,6 @@ import 'tailwindcss/tailwind.css';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/arcade';
-import { extractUrlParameterFromUriQueries } from './helpers';
 import {
     AssetChooserObjectType,
     AssetChooserProjectType,
@@ -15,6 +14,7 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
+import { extractUrlParameterFromUriQueries } from './utilities';
 import { ImageStage } from './ImageStage';
 import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
 import { ASSET_ID, heights } from './settings';
