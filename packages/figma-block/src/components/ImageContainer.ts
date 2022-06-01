@@ -35,7 +35,6 @@ export abstract class ImageContainer {
     }
 
     public centerImageContainerWithinTheImageStage = () => {
-        console.log('this.imageStage.width', this.imageStage.width);
         this.setImageContainerStyleProperty('left', (this.imageStage.width - this.imageContainer.clientWidth) / 2);
         this.setImageContainerStyleProperty('top', (this.imageStage.height - this.imageContainer.clientHeight) / 2);
     };
