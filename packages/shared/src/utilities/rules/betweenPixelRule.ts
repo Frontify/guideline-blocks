@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Rule } from '@frontify/guideline-blocks-settings';
+import { minimumNumericRule } from './minimumNumericRule';
 
 /**
  * Rule to validate value is between two pixel values.
@@ -12,5 +13,5 @@ import { Rule } from '@frontify/guideline-blocks-settings';
 export const betweenPixelRule = (minimumValue: number, maximumValue: number): Rule<string> => ({
     errorMessage: `Please use a value between ${minimumValue} and ${maximumValue}.`,
     validate: (value: string): boolean =>
-        Number(value.replace(/px/, '')) >= minimumValue && Number(value.replace(/px/, '')) <= maximumValue,
+        minimumNumericRule(minimumValue).validate(value) && Number(value.replace(/px/, '')) <= maximumValue,
 });
