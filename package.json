@@ -12,9 +12,11 @@
         "publish:block-settings": "cd packages/block-settings && pnpm publish",
         "test:components:browser": "cypress open-ct",
         "test:components": "cypress run-ct",
-        "test:unit": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel test",
-        "test": "pnpm run test:unit && pnpm run test:components",
-        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel typecheck"
+        "test:components:unit": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel test",
+        "test": "pnpm run test:components:unit && pnpm run test:components",
+        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel typecheck",
+        "test:unit": "vitest run",
+        "test:unit:watch": "vitest"
     },
     "devDependencies": {
         "@babel/core": "7.17.10",
@@ -26,9 +28,10 @@
         "@vitejs/plugin-react": "1.3.1",
         "cypress": "9.6.0",
         "cypress-real-events": "1.7.0",
-        "typescript": "4.6.4",
         "ts-node": "10.7.0",
-        "vite": "2.9.6"
+        "typescript": "4.6.4",
+        "vite": "2.9.6",
+        "vitest": "0.12.1"
     },
     "dependencies": {
         "@frontify/arcade": "7.2.0",
