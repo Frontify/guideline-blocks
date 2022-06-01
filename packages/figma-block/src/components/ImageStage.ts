@@ -2,7 +2,7 @@ import { BoundingClientRectProperties } from '../types';
 import { MouseProperties } from './MouseProperties';
 
 export class ImageStage {
-    public isMouseInsideMediaStage = false;
+    public isMouseInsideImageStage = false;
     private boundaries: BoundingClientRectProperties;
 
     constructor(protected imageStage: HTMLDivElement, public customHeight: string) {
@@ -21,6 +21,7 @@ export class ImageStage {
 
     public alterHeight(height: string) {
         this.imageStage.style.height = height;
+        this.boundaries = this.imageStage.getBoundingClientRect();
     }
 
     public aspectRatio(): number {
@@ -30,7 +31,7 @@ export class ImageStage {
     private checkIfMouseIsInside(event: MouseEvent) {
         const currentMousePosition = MouseProperties.getCurrentPosition(event);
 
-        this.isMouseInsideMediaStage =
+        this.isMouseInsideImageStage =
             currentMousePosition.x > this.boundaries.left &&
             currentMousePosition.x < this.boundaries.right &&
             currentMousePosition.y > this.boundaries.top &&

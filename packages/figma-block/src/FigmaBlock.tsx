@@ -44,7 +44,6 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     useEffect(() => {
         asset?.external_url && setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.external_url));
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
-        console.log('asset', asset);
     }, [asset, figmaPreviewId]);
 
     const onOpenAssetChooser = () => {
@@ -87,8 +86,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     hasBorder={hasBorder}
                     hasBackground
                 />
-                <div>
-                    <a href={assetExternalUrl} target="_blank" rel="noreferrer">
+                <div className="tw-group tw-p-2 tw-text-sm">
+                    <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="group-hover:tw-underline">
                         {assetExternalUrl}
                     </a>
                 </div>

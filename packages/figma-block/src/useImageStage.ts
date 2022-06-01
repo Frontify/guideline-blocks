@@ -31,6 +31,7 @@ export const useImageStage = ({ height, isImageTypeVector }: UseImageStageProps)
     useEffect(() => {
         if (imageStage.current && isImageTypeVector) {
             imageStage.current.alterHeight(isFullScreen ? '100vh' : imageStage.current.customHeight);
+            imageContainer.current?.centerImageContainerWithinTheImageStage();
         }
     }, [isFullScreen, isImageTypeVector]);
 

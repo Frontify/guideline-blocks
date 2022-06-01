@@ -11,21 +11,21 @@ const imagePadding = 0; // in percentage
 export abstract class ImageContainer {
     constructor(
         protected imageContainer: HTMLDivElement,
-        protected mediaStage: ImageStage,
+        protected imageStage: ImageStage,
         protected imageElement: ImageElement
     ) {
-        this.fitImageContainerToMediaStage();
-        this.centerImageContainerWithinTheMediaStage();
+        this.fitImageContainerToImageStage();
+        this.centerImageContainerWithinTheImageStage();
         this.imageElement.show();
     }
 
     abstract resizeImageContainer(zoom: Zoom): void;
 
-    protected fitImageContainerToMediaStage() {
+    protected fitImageContainerToImageStage() {
         const scale =
-            this.mediaStage.aspectRatio() < this.imageElement.aspectRatio()
-                ? this.mediaStage.width / this.imageElement.width
-                : this.mediaStage.height / this.imageElement.height;
+            this.imageStage.aspectRatio() < this.imageElement.aspectRatio()
+                ? this.imageStage.width / this.imageElement.width
+                : this.imageStage.height / this.imageElement.height;
 
         const newWidth = this.imageElement.width * scale;
         const newHeight = this.imageElement.height * scale;
@@ -34,9 +34,10 @@ export abstract class ImageContainer {
         this.setImageContainerStyleProperty('height', newHeight * (1 - imagePadding));
     }
 
-    protected centerImageContainerWithinTheMediaStage = () => {
-        this.setImageContainerStyleProperty('left', (this.mediaStage.width - this.imageContainer.clientWidth) / 2);
-        this.setImageContainerStyleProperty('top', (this.mediaStage.height - this.imageContainer.clientHeight) / 2);
+    public centerImageContainerWithinTheImageStage = () => {
+        console.log('this.imageStage.width', this.imageStage.width);
+        this.setImageContainerStyleProperty('left', (this.imageStage.width - this.imageContainer.clientWidth) / 2);
+        this.setImageContainerStyleProperty('top', (this.imageStage.height - this.imageContainer.clientHeight) / 2);
     };
 
     protected setImageContainerStyleProperty(property: ImageStyleProperty, value: number) {
@@ -47,10 +48,10 @@ export abstract class ImageContainer {
 export class BitmapImageContainer extends ImageContainer {
     constructor(
         protected imageContainer: HTMLDivElement,
-        protected mediaStage: ImageStage,
+        protected imageStage: ImageStage,
         protected imageElement: ImageElement
     ) {
-        super(imageContainer, mediaStage, imageElement);
+        super(imageContainer, imageStage, imageElement);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -65,10 +66,10 @@ export class VectorImageContainer extends ImageContainer {
 
     constructor(
         protected imageContainer: HTMLDivElement,
-        protected mediaStage: ImageStage,
+        protected imageStage: ImageStage,
         protected imageElement: ImageElement
     ) {
-        super(imageContainer, mediaStage, imageElement);
+        super(imageContainer, imageStage, imageElement);
 
         imageContainer.addEventListener('mouseover', this.onMouseOver.bind(this));
         imageContainer.addEventListener('mousedown', this.onMouseDown.bind(this));
@@ -83,7 +84,7 @@ export class VectorImageContainer extends ImageContainer {
     };
 
     private onMouseMove(event: MouseEvent) {
-        if (this.mediaStage.isMouseInsideMediaStage) {
+        if (this.imageStage.isMouseInsideImageStage) {
             this.changeMouseCursorStyleOnImageContainer(Cursor.GRABBING);
         }
 
