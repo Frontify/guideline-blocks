@@ -22,7 +22,7 @@ export const ImageStage = ({
             className={joinClassNames([
                 'tw-border',
                 isFullScreen && 'tw-fixed tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-[10000]',
-                hasBackground ? 'tw-bg-black-20' : 'tw-bg-white',
+                hasBackground ? 'tw-bg-black-10' : 'tw-bg-white',
                 hasBorder ? 'tw-border-black-40' : 'tw-border-transparent',
             ])}
         >
@@ -33,7 +33,7 @@ export const ImageStage = ({
                             ref={imageRef}
                             alt={title}
                             src={url}
-                            className="tw-relative tw-invisible"
+                            className="tw-relative"
                             width="100%"
                             height="100%"
                             onLoad={() => setIsImageLoaded(true)}

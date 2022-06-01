@@ -7,6 +7,10 @@ export class ImageElement {
         this.imageElement.style.visibility = 'visible';
     }
 
+    public hide() {
+        this.imageElement.style.visibility = 'hidden';
+    }
+
     get height(): number {
         return this.imageElement.height;
     }

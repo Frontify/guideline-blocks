@@ -14,30 +14,43 @@ export abstract class ImageContainer {
         protected imageStage: ImageStage,
         protected imageElement: ImageElement
     ) {
-        this.fitImageContainerToImageStage();
-        this.centerImageContainerWithinTheImageStage();
-        this.imageElement.show();
+        this.fitAndCenterTheImageContainerWithinTheImageStage();
     }
 
     abstract resizeImageContainer(zoom: Zoom): void;
 
-    protected fitImageContainerToImageStage() {
+    public fitAndCenterTheImageContainerWithinTheImageStage() {
+        this.imageElement.hide();
+        this.resizeImageContainerToFitWithinImageStage();
+        this.centerImageContainerWithinTheImageStage();
+        this.imageElement.show();
+    }
+
+    public centerTheImageContainerWithinTheImageStage() {
+        this.imageElement.hide();
+        this.centerImageContainerWithinTheImageStage();
+        this.imageElement.show();
+    }
+
+    protected centerImageContainerWithinTheImageStage() {
+        this.setImageContainerStyleProperty('left', (this.imageStage.width - this.imageContainer.clientWidth) / 2);
+        this.setImageContainerStyleProperty('top', (this.imageStage.height - this.imageContainer.clientHeight) / 2);
+    }
+
+    protected resizeImageContainerToFitWithinImageStage() {
+        const { width, height } = this.calculateTheImageContainerSizeToFitInImageStage();
+        this.setImageContainerStyleProperty('width', width * (1 - imagePadding));
+        this.setImageContainerStyleProperty('height', height * (1 - imagePadding));
+    }
+
+    protected calculateTheImageContainerSizeToFitInImageStage(): { width: number; height: number } {
         const scale =
             this.imageStage.aspectRatio() < this.imageElement.aspectRatio()
                 ? this.imageStage.width / this.imageElement.width
                 : this.imageStage.height / this.imageElement.height;
 
-        const newWidth = this.imageElement.width * scale;
-        const newHeight = this.imageElement.height * scale;
-
-        this.setImageContainerStyleProperty('width', newWidth * (1 - imagePadding));
-        this.setImageContainerStyleProperty('height', newHeight * (1 - imagePadding));
+        return { width: this.imageElement.width * scale, height: this.imageElement.height * scale };
     }
-
-    public centerImageContainerWithinTheImageStage = () => {
-        this.setImageContainerStyleProperty('left', (this.imageStage.width - this.imageContainer.clientWidth) / 2);
-        this.setImageContainerStyleProperty('top', (this.imageStage.height - this.imageContainer.clientHeight) / 2);
-    };
 
     protected setImageContainerStyleProperty(property: ImageStyleProperty, value: number) {
         this.imageContainer.style[property] = `${value}px`;
