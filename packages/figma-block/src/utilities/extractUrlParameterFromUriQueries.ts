@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export const extractUrlParameterFromUriQueries = (uri?: string) => {
     const extractedUrl = uri
         ?.split('&')

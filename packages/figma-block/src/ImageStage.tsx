@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components';
 import { useImageStage } from './useImageStage';

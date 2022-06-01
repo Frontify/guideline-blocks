@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { useEffect, useRef, useState } from 'react';
 import { BitmapImageContainer, ImageContainer, ImageElement, ImageStage, VectorImageContainer } from './components';
 import { UseImageStageProps, Zoom } from './types';
