@@ -5,17 +5,17 @@
         "build": "npm run build:block-settings && npm run build:shared",
         "build:block-settings": "npm -C packages/block-settings run build",
         "build:shared": "npm -C packages/shared run build",
-        "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint:fix",
         "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint",
-        "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier:fix",
+        "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint:fix",
         "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier",
+        "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier:fix",
         "publish:block-settings": "cd packages/block-settings && pnpm publish",
-        "test:components:browser": "cypress open-ct",
-        "test:components": "cypress run-ct",
         "test": "npm run test:unit && npm run test:components",
-        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel typecheck",
+        "test:components": "cypress run-ct",
+        "test:components:browser": "cypress open-ct",
         "test:unit": "vitest run",
-        "test:unit:watch": "vitest"
+        "test:unit:watch": "vitest",
+        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel typecheck"
     },
     "devDependencies": {
         "@babel/core": "7.17.10",
