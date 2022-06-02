@@ -3,14 +3,6 @@
 export class ImageElement {
     constructor(protected imageElement: HTMLImageElement) {}
 
-    public show() {
-        this.imageElement.style.visibility = 'visible';
-    }
-
-    public hide() {
-        this.imageElement.style.visibility = 'hidden';
-    }
-
     get height(): number {
         return this.imageElement.height;
     }
@@ -19,7 +11,15 @@ export class ImageElement {
         return this.imageElement.width;
     }
 
-    aspectRatio() {
+    public show() {
+        this.imageElement.style.visibility = 'visible';
+    }
+
+    public hide() {
+        this.imageElement.style.visibility = 'hidden';
+    }
+
+    public aspectRatio() {
         return this.width / this.height;
     }
 }

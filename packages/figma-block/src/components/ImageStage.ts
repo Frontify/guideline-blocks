@@ -13,6 +13,16 @@ export class ImageStage {
         document.addEventListener('mousemove', this.checkIfMouseIsInside.bind(this));
     }
 
+    private checkIfMouseIsInside(event: MouseEvent) {
+        const currentMousePosition = MouseProperties.getCurrentPosition(event);
+
+        this.isMouseInsideImageStage =
+            currentMousePosition.x > this.boundaries.left &&
+            currentMousePosition.x < this.boundaries.right &&
+            currentMousePosition.y > this.boundaries.top &&
+            currentMousePosition.y < this.boundaries.bottom;
+    }
+
     get height(): number {
         return this.boundaries.height;
     }
@@ -28,15 +38,5 @@ export class ImageStage {
 
     public aspectRatio(): number {
         return this.width / this.height;
-    }
-
-    private checkIfMouseIsInside(event: MouseEvent) {
-        const currentMousePosition = MouseProperties.getCurrentPosition(event);
-
-        this.isMouseInsideImageStage =
-            currentMousePosition.x > this.boundaries.left &&
-            currentMousePosition.x < this.boundaries.right &&
-            currentMousePosition.y > this.boundaries.top &&
-            currentMousePosition.y < this.boundaries.bottom;
     }
 }

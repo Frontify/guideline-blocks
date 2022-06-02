@@ -17,8 +17,6 @@ export abstract class ImageContainer {
         this.fitAndCenterTheImageContainerWithinTheImageStage();
     }
 
-    abstract resizeImageContainer(zoom: Zoom): void;
-
     public fitAndCenterTheImageContainerWithinTheImageStage() {
         this.imageElement.hide();
         this.resizeImageContainerToFitWithinImageStage();
@@ -55,6 +53,8 @@ export abstract class ImageContainer {
     protected setImageContainerStyleProperty(property: ImageStyleProperty, value: number) {
         this.imageContainer.style[property] = `${value}px`;
     }
+
+    abstract resizeImageContainer(zoom: Zoom): void;
 }
 
 export class BitmapImageContainer extends ImageContainer {
@@ -90,10 +90,20 @@ export class VectorImageContainer extends ImageContainer {
         this.mouseUpListener = this.onMouseUp.bind(this);
     }
 
-    public resizeImageContainer = (zoom = Zoom.OUT) => {
-        this.setImageContainerStyleProperty('width', this.imageContainer.clientWidth * (1 + zoom * magnification));
-        this.setImageContainerStyleProperty('height', this.imageContainer.clientHeight * (1 + zoom * magnification));
-    };
+    private onMouseOver() {
+        this.changeMouseCursorStyleOnImageContainer(Cursor.GRAB);
+    }
+
+    private onMouseDown(event: MouseEvent) {
+        this.changeMouseCursorStyleOnImageContainer(Cursor.GRABBING);
+
+        this.startMousePosition = MouseProperties.getCurrentPosition(event);
+        this.startImageContainerPosition = { x: this.imageContainer.offsetLeft, y: this.imageContainer.offsetTop };
+
+        document.addEventListener('mousemove', this.mouseMoveListener);
+        this.imageContainer.addEventListener('mouseup', this.mouseUpListener);
+        this.imageContainer.ondragstart = () => false;
+    }
 
     private onMouseMove(event: MouseEvent) {
         if (this.imageStage.isMouseInsideImageStage) {
@@ -114,21 +124,6 @@ export class VectorImageContainer extends ImageContainer {
         this.setImageContainerStyleProperty('top', this.startImageContainerPosition.y + mouseMoved.y);
     }
 
-    private onMouseOver() {
-        this.changeMouseCursorStyleOnImageContainer(Cursor.GRAB);
-    }
-
-    private onMouseDown(event: MouseEvent) {
-        this.changeMouseCursorStyleOnImageContainer(Cursor.GRABBING);
-
-        this.startMousePosition = MouseProperties.getCurrentPosition(event);
-        this.startImageContainerPosition = { x: this.imageContainer.offsetLeft, y: this.imageContainer.offsetTop };
-
-        document.addEventListener('mousemove', this.mouseMoveListener);
-        this.imageContainer.addEventListener('mouseup', this.mouseUpListener);
-        this.imageContainer.ondragstart = () => false;
-    }
-
     private onMouseUp() {
         this.changeMouseCursorStyleOnImageContainer(Cursor.GRAB);
         this.imageContainer.removeEventListener('mouseup', this.mouseUpListener);
@@ -137,5 +132,10 @@ export class VectorImageContainer extends ImageContainer {
 
     private changeMouseCursorStyleOnImageContainer = (cursor: Cursor) => {
         this.imageContainer.style.cursor = cursor;
+    };
+
+    public resizeImageContainer = (zoom = Zoom.OUT) => {
+        this.setImageContainerStyleProperty('width', this.imageContainer.clientWidth * (1 + zoom * magnification));
+        this.setImageContainerStyleProperty('height', this.imageContainer.clientHeight * (1 + zoom * magnification));
     };
 }
