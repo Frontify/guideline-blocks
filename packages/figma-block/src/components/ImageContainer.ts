@@ -3,7 +3,7 @@
 import { MouseProperties } from './MouseProperties';
 import { ImageStage } from './ImageStage';
 import { ImageElement } from './ImageElement';
-import { Cursor, ImageStyleProperty, Point, Zoom } from '../types';
+import { Cursor, Point, Zoom } from '../types';
 
 const magnification = 0.2; // in percentage
 const imagePadding = 0; // in percentage
@@ -31,14 +31,25 @@ export abstract class ImageContainer {
     }
 
     protected centerImageContainerWithinTheImageStage() {
-        this.setImageContainerStyleProperty('left', (this.imageStage.width - this.imageContainer.clientWidth) / 2);
-        this.setImageContainerStyleProperty('top', (this.imageStage.height - this.imageContainer.clientHeight) / 2);
+        this.setImageContainerPosition(
+            (this.imageStage.width - this.imageContainer.clientWidth) / 2,
+            (this.imageStage.height - this.imageContainer.clientHeight) / 2
+        );
+    }
+
+    protected setImageContainerPosition(left: number, top: number) {
+        this.imageContainer.style.left = `${left}px`;
+        this.imageContainer.style.top = `${top}px`;
     }
 
     protected resizeImageContainerToFitWithinImageStage() {
         const { width, height } = this.calculateTheImageContainerSizeToFitInImageStage();
-        this.setImageContainerStyleProperty('width', width * (1 - imagePadding));
-        this.setImageContainerStyleProperty('height', height * (1 - imagePadding));
+        this.setImageContainerSize(width * (1 - imagePadding), height * (1 - imagePadding));
+    }
+
+    protected setImageContainerSize(width: number, height: number) {
+        this.imageContainer.style.width = `${width}px`;
+        this.imageContainer.style.height = `${height}px`;
     }
 
     protected calculateTheImageContainerSizeToFitInImageStage(): { width: number; height: number } {
@@ -50,9 +61,9 @@ export abstract class ImageContainer {
         return { width: this.imageElement.width * scale, height: this.imageElement.height * scale };
     }
 
-    protected setImageContainerStyleProperty(property: ImageStyleProperty, value: number) {
-        this.imageContainer.style[property] = `${value}px`;
-    }
+    protected changeMouseCursor = (cursor: Cursor) => {
+        this.imageContainer.style.cursor = cursor;
+    };
 
     abstract resizeImageContainer(zoom: Zoom): void;
 }
@@ -91,11 +102,11 @@ export class VectorImageContainer extends ImageContainer {
     }
 
     private onMouseOver() {
-        this.changeMouseCursorStyleOnImageContainer(Cursor.GRAB);
+        this.changeMouseCursor(Cursor.GRAB);
     }
 
     private onMouseDown(event: MouseEvent) {
-        this.changeMouseCursorStyleOnImageContainer(Cursor.GRABBING);
+        this.changeMouseCursor(Cursor.GRABBING);
 
         this.startMousePosition = MouseProperties.getCurrentPosition(event);
         this.startImageContainerPosition = { x: this.imageContainer.offsetLeft, y: this.imageContainer.offsetTop };
@@ -107,7 +118,7 @@ export class VectorImageContainer extends ImageContainer {
 
     private onMouseMove(event: MouseEvent) {
         if (this.imageStage.isMouseInsideImageStage) {
-            this.changeMouseCursorStyleOnImageContainer(Cursor.GRABBING);
+            this.changeMouseCursor(Cursor.GRABBING);
         }
 
         this.moveImageContainer(event);
@@ -120,22 +131,22 @@ export class VectorImageContainer extends ImageContainer {
             y: currentMousePos.y - this.startMousePosition.y,
         };
 
-        this.setImageContainerStyleProperty('left', this.startImageContainerPosition.x + mouseMoved.x);
-        this.setImageContainerStyleProperty('top', this.startImageContainerPosition.y + mouseMoved.y);
+        this.setImageContainerPosition(
+            this.startImageContainerPosition.x + mouseMoved.x,
+            this.startImageContainerPosition.y + mouseMoved.y
+        );
     }
 
     private onMouseUp() {
-        this.changeMouseCursorStyleOnImageContainer(Cursor.GRAB);
+        this.changeMouseCursor(Cursor.GRAB);
         this.imageContainer.removeEventListener('mouseup', this.mouseUpListener);
         document.removeEventListener('mousemove', this.mouseMoveListener);
     }
 
-    private changeMouseCursorStyleOnImageContainer = (cursor: Cursor) => {
-        this.imageContainer.style.cursor = cursor;
-    };
-
     public resizeImageContainer = (zoom = Zoom.OUT) => {
-        this.setImageContainerStyleProperty('width', this.imageContainer.clientWidth * (1 + zoom * magnification));
-        this.setImageContainerStyleProperty('height', this.imageContainer.clientHeight * (1 + zoom * magnification));
+        this.setImageContainerSize(
+            this.imageContainer.clientWidth * (1 + zoom * magnification),
+            this.imageContainer.clientHeight * (1 + zoom * magnification)
+        );
     };
 }

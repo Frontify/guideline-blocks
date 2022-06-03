@@ -71,8 +71,6 @@ export type ImageStageProps = {
     hasBackground?: boolean;
 };
 
-export type ImageStyleProperty = 'width' | 'height' | 'left' | 'top';
-
 export type DrawFullScreenActionButtonProps = {
     isFullScreen: boolean;
     onClick: () => void;
