@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { ImageElement } from './ImageElement';
 export { MouseProperties } from './MouseProperties';
-export { BitmapImageContainer, ImageContainer, VectorImageContainer } from './ImageContainer';
+export { ImageContainer } from './ImageContainer';
+export { ImageElement } from './ImageElement';
 export { ImageStage } from './ImageStage';
+export { BitmapContainerOperator, ContainerOperator, VectorContainerOperator } from './ContainerOperator';
 export { DrawFullScreenActionButton, DrawZoomInOutButtons } from './ImageStageControls';

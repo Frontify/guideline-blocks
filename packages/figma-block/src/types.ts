@@ -59,13 +59,13 @@ export type BoundingClientRectProperties = {
 
 export type UseImageStageProps = {
     height: string;
-    isImageTypeVector: boolean;
+    isContainerVector: boolean;
 };
 
 export type ImageStageProps = {
     title: string | undefined;
     url: string;
-    isImageTypeVector?: boolean;
+    isContainerVector?: boolean;
     height?: string;
     hasBorder?: boolean;
     hasBackground?: boolean;
