@@ -79,7 +79,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         ({ hasBorder, height }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
                 <ImageStage title={asset.title} url={asset.preview_url} height={height} hasBorder={hasBorder} />
-                {assetExternalUrl ?? (
+                {assetExternalUrl && (
                     <div className="tw-group tw-p-2 tw-text-sm">
                         <a
                             href={assetExternalUrl}
