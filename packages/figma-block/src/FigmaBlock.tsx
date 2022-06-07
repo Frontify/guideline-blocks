@@ -24,7 +24,7 @@ const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
-    const [assetExternalUrl, setAssetExternalUrl] = useState<string>();
+    const [assetExternalUrl, setAssetExternalUrl] = useState<string>('');
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -79,11 +79,18 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         ({ hasBorder, height }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
                 <ImageStage title={asset.title} url={asset.preview_url} height={height} hasBorder={hasBorder} />
-                <div className="tw-group tw-p-2 tw-text-sm">
-                    <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="group-hover:tw-underline">
-                        {assetExternalUrl}
-                    </a>
-                </div>
+                {assetExternalUrl ?? (
+                    <div className="tw-group tw-p-2 tw-text-sm">
+                        <a
+                            href={assetExternalUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group-hover:tw-underline"
+                        >
+                            {assetExternalUrl}
+                        </a>
+                    </div>
+                )}
             </div>
         ),
         [asset, assetExternalUrl]

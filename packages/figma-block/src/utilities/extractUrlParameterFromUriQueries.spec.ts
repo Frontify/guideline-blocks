@@ -6,7 +6,7 @@ import { extractUrlParameterFromUriQueries } from './extractUrlParameterFromUriQ
 describe('extractUrlParameterFromUriQueries', () => {
     const data = [
         { uri: 'https://www.test.com/embed?host=google&url=', expected: '' },
-        { uri: 'https://www.test.com/embed?host=google', expected: undefined },
+        { uri: 'https://www.test.com/embed?host=google', expected: '' },
         {
             uri: 'https://www.test.com/embed?host=google&url=https%3A%2F%2Fwww.test.com%2FDO1Jul74v%3Fnode-id%3D1%3A6',
             expected: 'https://www.test.com/DO1Jul74v?node-id=1:6',
