@@ -42,7 +42,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = blockSettings;
 
     useEffect(() => {
-        asset?.external_url && setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.external_url));
+        setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.external_url));
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
     }, [asset, figmaPreviewId]);
 
