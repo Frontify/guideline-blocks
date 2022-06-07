@@ -21,7 +21,7 @@ export const ImageStage = ({
         <div
             className={joinClassNames([
                 'tw-border',
-                isFullScreen && 'tw-fixed tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-[10000]',
+                isFullScreen && 'tw-fixed tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-[200]',
                 hasBackground ? 'tw-bg-black-5' : 'tw-bg-white',
                 hasBorder ? 'tw-border-black-40' : 'tw-border-transparent',
             ])}

@@ -6,8 +6,8 @@ import { ImageStage } from './ImageStage';
 import { ImageElement } from './ImageElement';
 import { Cursor, Point, Zoom } from '../types';
 
-const magnification = 0.2; // in percentage
-const imagePadding = 0; // in percentage
+const MAGNIFICATION_PERCENTAGE = 0.2;
+const IMAGE_PADDING_PERCENTAGE = 0;
 
 export abstract class ContainerOperator {
     constructor(
@@ -27,7 +27,10 @@ export abstract class ContainerOperator {
 
     protected resizeImageContainerToFitWithinImageStage() {
         const { width, height } = this.calculateTheImageContainerSizeToFitInImageStage();
-        this.imageContainer.setImageContainerSize(width * (1 - imagePadding), height * (1 - imagePadding));
+        this.imageContainer.setImageContainerSize(
+            width * (1 - IMAGE_PADDING_PERCENTAGE),
+            height * (1 - IMAGE_PADDING_PERCENTAGE)
+        );
     }
 
     private calculateTheImageContainerSizeToFitInImageStage(): { width: number; height: number } {
@@ -131,8 +134,8 @@ export class VectorContainerOperator extends ContainerOperator {
 
     public resizeImageContainer = (zoom = Zoom.OUT) => {
         this.imageContainer.setImageContainerSize(
-            this.imageContainer.width * (1 + zoom * magnification),
-            this.imageContainer.height * (1 + zoom * magnification)
+            this.imageContainer.width * (1 + zoom * MAGNIFICATION_PERCENTAGE),
+            this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE)
         );
     };
 }

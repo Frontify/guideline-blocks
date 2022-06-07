@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const extractUrlParameterFromUriQueries = (uri?: string) => {
+export const extractUrlParameterFromUriQueries = (uri?: string): string | undefined => {
     const extractedUrl = uri
         ?.split('&')
         .find((element: string) => /^url=/.test(element) ?? element)
