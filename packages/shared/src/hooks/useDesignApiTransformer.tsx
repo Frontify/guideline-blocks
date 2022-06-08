@@ -1,10 +1,10 @@
 import { CSSProperties } from 'react';
-import { DesignApiProperties, DesignApiPropertiesEnum, DesignApiResponse, StyleCategories } from './useDesignApi';
+import { DesignApiProperties, DesignApiPropertiesEnum, StyleCategories, StyleName } from './useDesignApi';
 
 const transformStyles = (dataToTransform: DesignApiProperties) => {
     const cssStyles: CSSProperties = {};
 
-    Object.entries(dataToTransform).map(([key, value]) => {
+    for (const [key, value] of Object.entries(dataToTransform)) {
         switch (key) {
             case DesignApiPropertiesEnum.family:
                 cssStyles.fontFamily = value;
@@ -40,15 +40,15 @@ const transformStyles = (dataToTransform: DesignApiProperties) => {
                 cssStyles.color = value;
                 break;
         }
-    });
+    }
     return cssStyles;
 };
 
-export const useDesignApiTransformer = (dataToTransform: DesignApiResponse<DesignApiProperties>) => {
-    const categories: StyleCategories<CSSProperties> = {};
+export const useDesignApiTransformer = (dataToTransform: StyleCategories) => {
+    const categories: StyleCategoriesTransformed = {};
 
-    Object.entries(dataToTransform.hub.appearance).map(([key, value]) => {
-        categories[key as keyof typeof dataToTransform.hub.appearance] = transformStyles(value);
-    });
+    for (const [key, value] of Object.entries(dataToTransform)) {
+        categories[key as StyleName] = transformStyles(value) as CSSProperties;
+    }
     return categories;
 };

@@ -1,24 +1,5 @@
-import { useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 import { useDesignApiTransformer } from './useDesignApiTransformer';
-
-export interface DesignApiResponse<T> {
-    hub: {
-        appearance: StyleCategories<T>;
-    };
-}
-
-export interface StyleCategories<T> {
-    heading1?: T;
-    heading2?: T;
-    heading3?: T;
-    heading4?: T;
-    custom1?: T;
-    custom2?: T;
-    custom3?: T;
-    body?: T;
-    link?: T;
-    quote?: T;
-}
 
 export enum DesignApiPropertiesEnum {
     family = 'family',
@@ -34,12 +15,28 @@ export enum DesignApiPropertiesEnum {
     color = 'color',
 }
 
-export type DesignApiProperties = {
-    [key in DesignApiPropertiesEnum]: string;
+export type StyleName =
+    | 'heading1'
+    | 'heading2'
+    | 'heading3'
+    | 'heading4'
+    | 'custom1'
+    | 'custom2'
+    | 'custom3'
+    | 'body'
+    | 'link'
+    | 'quote';
+export type DesignApiProperties = Record<StyleName, string>;
+export type StyleCategories = Partial<Record<StyleName, DesignApiProperties>>;
+export type DesignApiResponse = {
+    hub: {
+        appearance: StyleCategories;
+    };
 };
+export type StyleCategoriesTransformed = Partial<Record<StyleName, CSSProperties>>;
 
 export const useDesignApi = () => {
-    const [styleCategories, setStyleCategories] = useState<StyleCategories<React.CSSProperties> | null>(null);
+    const [styleCategories, setStyleCategories] = useState<StyleCategoriesTransformed | null>(null);
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -51,12 +48,17 @@ export const useDesignApi = () => {
     const url = `/api/hub/settings/${requestParams.hubId}/${requestParams.documentId}`;
 
     useEffect(() => {
+        window.emitter.on('HubAppearanceUpdated', (data) => {
+            const transformedCategories = useDesignApiTransformer(data.appearance);
+            setStyleCategories({ ...styleCategories, ...transformedCategories });
+        });
+
         (async () => {
             try {
                 setIsLoading(true);
                 const response = await fetch(url);
                 const json = await response.json();
-                const transformedCategories = useDesignApiTransformer(json);
+                const transformedCategories = useDesignApiTransformer(json.hub.appearance);
                 setStyleCategories(transformedCategories);
             } catch (err) {
                 setError(err);
@@ -64,6 +66,10 @@ export const useDesignApi = () => {
                 setIsLoading(false);
             }
         })();
+
+        return () => {
+            window.emitter.off('HubAppearanceUpdated');
+        };
     }, []);
 
     return { styleCategories, error, isLoading };
