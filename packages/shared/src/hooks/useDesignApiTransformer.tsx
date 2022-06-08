@@ -1,5 +1,11 @@
 import { CSSProperties } from 'react';
-import { DesignApiProperties, DesignApiPropertiesEnum, StyleCategories, StyleName } from './useDesignApi';
+import {
+    DesignApiProperties,
+    DesignApiPropertiesEnum,
+    StyleCategories,
+    StyleCategoriesTransformed,
+    StyleName,
+} from './useDesignApi';
 
 const transformStyles = (dataToTransform: DesignApiProperties) => {
     const cssStyles: CSSProperties = {};
