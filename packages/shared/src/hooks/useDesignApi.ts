@@ -26,7 +26,7 @@ export type StyleName =
     | 'body'
     | 'link'
     | 'quote';
-export type DesignApiProperties = Record<StyleName, string>;
+export type DesignApiProperties = Record<string, string>;
 export type StyleCategories = Partial<Record<StyleName, DesignApiProperties>>;
 export type DesignApiResponse = {
     hub: {
