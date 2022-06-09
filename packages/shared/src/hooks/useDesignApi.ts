@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { CSSProperties, useEffect, useState } from 'react';
 import { useDesignApiTransformer } from './useDesignApiTransformer';
 
