@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import type { Emitter } from 'mitt';
 import { DesignApiResponse } from './hooks/useDesignApi';
 
