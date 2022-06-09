@@ -3,7 +3,7 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import { mapToGuidelineDesignTokens } from '../helpers/mapToGuidelineDesignTokens';
 
-export enum DesignApiPropertiesEnum {
+export enum DesignTokenPropertiesEnum {
     family = 'family',
     weight = 'weight',
     size = 'size',
@@ -17,7 +17,7 @@ export enum DesignApiPropertiesEnum {
     color = 'color',
 }
 
-export type StyleName =
+export type DesignTokenName =
     | 'heading1'
     | 'heading2'
     | 'heading3'
@@ -28,14 +28,14 @@ export type StyleName =
     | 'body'
     | 'link'
     | 'quote';
-export type DesignApiProperties = Partial<Record<DesignApiPropertiesEnum, string>>;
-export type StyleCategories = Partial<Record<StyleName, DesignApiProperties>>;
-export type DesignApiResponse = {
+export type DesignTokenProperties = Partial<Record<DesignTokenPropertiesEnum, string>>;
+export type DesignTokens = Partial<Record<DesignTokenName, DesignTokenProperties>>;
+export type DesignTokenApiResponse = {
     hub: {
-        appearance: StyleCategories;
+        appearance: DesignTokens;
     };
 };
-export type StyleCategoriesTransformed = Partial<Record<StyleName, CSSProperties>>;
+export type StyleCategoriesTransformed = Partial<Record<DesignTokenName, CSSProperties>>;
 
 export const useGuidelineDesignTokens = () => {
     const [styleCategories, setStyleCategories] = useState<StyleCategoriesTransformed | null>(null);

@@ -4,14 +4,14 @@ import { renderHook } from '@testing-library/react-hooks';
 import { CSSProperties } from 'react';
 import { describe, expect, it } from 'vitest';
 import {
-    DesignApiProperties,
-    StyleCategories,
+    DesignTokenName,
+    DesignTokenProperties,
+    DesignTokens,
     StyleCategoriesTransformed,
-    StyleName,
 } from '../hooks/useGuidelineDesignTokens';
 import { mapToGuidelineDesignTokens } from './mapToGuidelineDesignTokens';
 
-const mockStyles: DesignApiProperties = {
+const mockStyles: DesignTokenProperties = {
     family: 'family',
     weight: 'weight',
     size: 'size',
@@ -59,15 +59,15 @@ describe('mapToGuidelineDesignTokens', () => {
     it('should transform StyleCategories', () => {
         const { result } = renderHook(() =>
             mapToGuidelineDesignTokens(
-                mockStyleCategories.reduce<StyleCategories>((acc, category) => {
-                    acc[category as StyleName] = mockStyles;
+                mockStyleCategories.reduce<DesignTokens>((acc, category) => {
+                    acc[category as DesignTokenName] = mockStyles;
                     return acc;
                 }, {})
             )
         );
         expect(result.current).toMatchObject(
             mockStyleCategories.reduce<StyleCategoriesTransformed>((acc, category) => {
-                acc[category as StyleName] = expectedTransformedStyles;
+                acc[category as DesignTokenName] = expectedTransformedStyles;
                 return acc;
             }, {})
         );

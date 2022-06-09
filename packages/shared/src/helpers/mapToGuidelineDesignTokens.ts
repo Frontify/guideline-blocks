@@ -2,49 +2,49 @@
 
 import { CSSProperties } from 'react';
 import {
-    DesignApiProperties,
-    DesignApiPropertiesEnum,
-    StyleCategories,
+    DesignTokenName,
+    DesignTokenProperties,
+    DesignTokenPropertiesEnum,
+    DesignTokens,
     StyleCategoriesTransformed,
-    StyleName,
 } from '../hooks/useGuidelineDesignTokens';
 
-const transformStyles = (dataToTransform: DesignApiProperties) => {
+const transformStyles = (dataToTransform: DesignTokenProperties) => {
     const cssStyles: CSSProperties = {};
 
     for (const [key, value] of Object.entries(dataToTransform)) {
         switch (key) {
-            case DesignApiPropertiesEnum.family:
+            case DesignTokenPropertiesEnum.family:
                 cssStyles.fontFamily = value;
                 break;
-            case DesignApiPropertiesEnum.weight:
+            case DesignTokenPropertiesEnum.weight:
                 cssStyles.fontWeight = value;
                 break;
-            case DesignApiPropertiesEnum.size:
+            case DesignTokenPropertiesEnum.size:
                 cssStyles.fontSize = value;
                 break;
-            case DesignApiPropertiesEnum.letterspacing:
+            case DesignTokenPropertiesEnum.letterspacing:
                 cssStyles.letterSpacing = value;
                 break;
-            case DesignApiPropertiesEnum.line_height:
+            case DesignTokenPropertiesEnum.line_height:
                 cssStyles.lineHeight = value;
                 break;
-            case DesignApiPropertiesEnum.margin_top:
+            case DesignTokenPropertiesEnum.margin_top:
                 cssStyles.marginTop = value;
                 break;
-            case DesignApiPropertiesEnum.margin_bottom:
+            case DesignTokenPropertiesEnum.margin_bottom:
                 cssStyles.marginBottom = value;
                 break;
-            case DesignApiPropertiesEnum.uppercase:
+            case DesignTokenPropertiesEnum.uppercase:
                 cssStyles.textTransform = value === '1' ? 'uppercase' : 'none';
                 break;
-            case DesignApiPropertiesEnum.italic:
+            case DesignTokenPropertiesEnum.italic:
                 cssStyles.fontStyle = value === '1' ? 'italic' : '';
                 break;
-            case DesignApiPropertiesEnum.underline:
+            case DesignTokenPropertiesEnum.underline:
                 cssStyles.textDecoration = value === '1' ? 'underline' : '';
                 break;
-            case DesignApiPropertiesEnum.color:
+            case DesignTokenPropertiesEnum.color:
                 cssStyles.color = value;
                 break;
         }
@@ -52,11 +52,11 @@ const transformStyles = (dataToTransform: DesignApiProperties) => {
     return cssStyles;
 };
 
-export const mapToGuidelineDesignTokens = (dataToTransform: StyleCategories) => {
+export const mapToGuidelineDesignTokens = (dataToTransform: DesignTokens) => {
     const categories: StyleCategoriesTransformed = {};
 
     for (const [key, value] of Object.entries(dataToTransform)) {
-        categories[key as StyleName] = transformStyles(value) as CSSProperties;
+        categories[key as DesignTokenName] = transformStyles(value) as CSSProperties;
     }
     return categories;
 };
