@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import type { Emitter } from 'mitt';
-import { DesignApiResponse } from './hooks/useDesignApi';
+import { DesignApiResponse } from './hooks/useGuidelineDesignTokens';
 
 declare global {
     interface Window {

@@ -7,7 +7,7 @@ import {
     StyleCategories,
     StyleCategoriesTransformed,
     StyleName,
-} from './useDesignApi';
+} from './useGuidelineDesignTokens';
 
 const transformStyles = (dataToTransform: DesignApiProperties) => {
     const cssStyles: CSSProperties = {};

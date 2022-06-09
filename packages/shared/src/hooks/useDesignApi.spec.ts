@@ -5,7 +5,7 @@ import mitt from 'mitt';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
-import { DesignApiResponse, useDesignApi } from './useDesignApi';
+import { DesignApiResponse, useGuidelineDesignTokens } from './useGuidelineDesignTokens';
 
 const emitter = mitt<{ HubAppearanceUpdated: DesignApiResponse['hub'] }>();
 
@@ -60,7 +60,7 @@ describe('useDesignApi', () => {
     it('should set styles on successfull api call', async () => {
         setResponseType(ResponseStatus.Success);
 
-        const { result, waitForNextUpdate } = renderHook(() => useDesignApi());
+        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
         await waitForNextUpdate();
 
         expect(result.current).toMatchObject({
@@ -75,7 +75,7 @@ describe('useDesignApi', () => {
     it('should set the state to loading and ready', async () => {
         setResponseType(ResponseStatus.Success);
 
-        const { result, waitForNextUpdate } = renderHook(() => useDesignApi());
+        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
         expect(result.current.isLoading).toBe(true);
         await waitForNextUpdate();
         expect(result.current.isLoading).toBe(false);
@@ -84,7 +84,7 @@ describe('useDesignApi', () => {
     it('should set error on bad api request', async () => {
         setResponseType(ResponseStatus.Error);
 
-        const { result, waitForNextUpdate } = renderHook(() => useDesignApi());
+        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
         await waitForNextUpdate();
         expect(result.current.error).toMatch(/Bad Request/);
     });
@@ -92,7 +92,7 @@ describe('useDesignApi', () => {
     it('should update on HubAppearanceUpdated', async () => {
         setResponseType(ResponseStatus.Success);
 
-        const { result, waitForNextUpdate } = renderHook(() => useDesignApi());
+        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
         await waitForNextUpdate();
         window.emitter.emit('HubAppearanceUpdated', {
             appearance: { heading1: { family: 'family' } },

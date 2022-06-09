@@ -2,7 +2,6 @@
 
 import { CSSProperties, useEffect, useState } from 'react';
 import { useDesignApiTransformer } from './useDesignApiTransformer';
-import fetch from 'cross-fetch';
 
 export enum DesignApiPropertiesEnum {
     family = 'family',
@@ -38,7 +37,7 @@ export type DesignApiResponse = {
 };
 export type StyleCategoriesTransformed = Partial<Record<StyleName, CSSProperties>>;
 
-export const useDesignApi = () => {
+export const useGuidelineDesignTokens = () => {
     const [styleCategories, setStyleCategories] = useState<StyleCategoriesTransformed | null>(null);
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);

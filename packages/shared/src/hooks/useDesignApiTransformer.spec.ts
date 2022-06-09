@@ -3,8 +3,13 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { CSSProperties } from 'react';
 import { describe, expect, it } from 'vitest';
-import { DesignApiProperties, StyleCategories, StyleCategoriesTransformed, StyleName } from './useDesignApi';
 import { useDesignApiTransformer } from './useDesignApiTransformer';
+import {
+    DesignApiProperties,
+    StyleCategories,
+    StyleCategoriesTransformed,
+    StyleName,
+} from './useGuidelineDesignTokens';
 
 const mockStyles: DesignApiProperties = {
     family: 'family',
