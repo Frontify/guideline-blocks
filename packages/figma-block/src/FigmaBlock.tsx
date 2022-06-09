@@ -78,7 +78,14 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const ShowImagePreview = useCallback(
         ({ hasBorder, height }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
-                <ImageStage title={asset.title} url={asset.preview_url} height={height} hasBorder={hasBorder} />
+                <ImageStage
+                    title={asset.title}
+                    url={asset.preview_url}
+                    isContainerVector={true}
+                    height={height}
+                    hasBorder={hasBorder}
+                    hasBackground
+                />
                 {assetExternalUrl && (
                     <div className="tw-group tw-p-2 tw-text-sm">
                         <a

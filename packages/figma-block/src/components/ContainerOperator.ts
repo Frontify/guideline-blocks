@@ -68,14 +68,14 @@ export class BitmapContainerOperator extends ContainerOperator {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    public resizeImageContainer = () => {};
+    public resizeImageContainer() {}
 }
 
 export class VectorContainerOperator extends ContainerOperator {
-    private startImageContainerPosition!: Point;
-    private startMousePosition!: Point;
-    private mouseMoveListener: (this: Document, ev: MouseEvent) => void;
-    private mouseUpListener: (this: HTMLDivElement, ev: MouseEvent) => void;
+    private startImageContainerPosition: Point = { x: 0, y: 0 };
+    private startMousePosition: Point = { x: 0, y: 0 };
+    private mouseMoveListener: (this: Document, event: MouseEvent) => void;
+    private mouseUpListener: (this: HTMLDivElement, event: MouseEvent) => void;
 
     constructor(
         protected imageContainer: ImageContainer,
@@ -132,10 +132,10 @@ export class VectorContainerOperator extends ContainerOperator {
         document.removeEventListener('mousemove', this.mouseMoveListener);
     }
 
-    public resizeImageContainer = (zoom = Zoom.OUT) => {
+    public resizeImageContainer(zoom = Zoom.OUT) {
         this.imageContainer.setImageContainerSize(
             this.imageContainer.width * (1 + zoom * MAGNIFICATION_PERCENTAGE),
             this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE)
         );
-    };
+    }
 }
