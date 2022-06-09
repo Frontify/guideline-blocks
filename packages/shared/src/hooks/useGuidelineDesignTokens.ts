@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { CSSProperties, useEffect, useState } from 'react';
-import { useDesignApiTransformer } from './useDesignApiTransformer';
+import { mapToGuidelineDesignTokens } from '../helpers/mapToGuidelineDesignTokens';
 
 export enum DesignApiPropertiesEnum {
     family = 'family',
@@ -51,7 +51,7 @@ export const useGuidelineDesignTokens = () => {
 
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
-            const transformedCategories = useDesignApiTransformer(data.appearance);
+            const transformedCategories = mapToGuidelineDesignTokens(data.appearance);
             setStyleCategories({ ...styleCategories, ...transformedCategories });
         });
 
@@ -64,7 +64,7 @@ export const useGuidelineDesignTokens = () => {
                 }
 
                 const json = await response.json();
-                const transformedCategories = useDesignApiTransformer(json.hub.appearance);
+                const transformedCategories = mapToGuidelineDesignTokens(json.hub.appearance);
                 setStyleCategories(transformedCategories);
             } catch (err) {
                 setError(err);

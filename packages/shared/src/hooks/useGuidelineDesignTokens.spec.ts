@@ -1,95 +1,110 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { renderHook } from '@testing-library/react-hooks';
-import { CSSProperties } from 'react';
-import { describe, expect, it } from 'vitest';
-import { useDesignApiTransformer } from './useDesignApiTransformer';
-import {
-    DesignApiProperties,
-    StyleCategories,
-    StyleCategoriesTransformed,
-    StyleName,
-} from './useGuidelineDesignTokens';
+import mitt from 'mitt';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { DesignApiResponse, useGuidelineDesignTokens } from './useGuidelineDesignTokens';
 
-const mockStyles: DesignApiProperties = {
-    family: 'family',
-    weight: 'weight',
-    size: 'size',
-    letterspacing: 'letterspacing',
-    line_height: 'line_height',
-    margin_top: 'margin_top',
-    margin_bottom: 'margin_bottom',
-    uppercase: 'uppercase',
-    italic: 'italic',
-    underline: 'underline',
-    color: 'color',
+const emitter = mitt<{ HubAppearanceUpdated: DesignApiResponse['hub'] }>();
+
+window.emitter = emitter;
+window.location = { ...window.location, origin: 'http://api.dev' };
+
+enum ResponseStatus {
+    Success = 'success',
+    Error = 'error',
+}
+
+const setResponseType = (status: ResponseStatus) => {
+    document.body.setAttribute('data-hub', status);
+    document.body.setAttribute('data-document', status);
 };
 
-const expectedTransformedStyles: CSSProperties = {
-    fontFamily: 'family',
-    fontWeight: 'weight',
-    fontSize: 'size',
-    letterSpacing: 'letterspacing',
-    lineHeight: 'line_height',
-    marginTop: 'margin_top',
-    marginBottom: 'margin_bottom',
-    textTransform: 'none',
-    fontStyle: '',
-    textDecoration: '',
-    color: 'color',
-};
+const restHandlers = [
+    rest.get(
+        `${window.location.origin}/api/hub/settings/${ResponseStatus.Success}/${ResponseStatus.Success}`,
+        (req, res, ctx) => {
+            const response: DesignApiResponse = {
+                hub: {
+                    appearance: {
+                        heading1: {
+                            family: 'Arial',
+                            weight: 'bold',
+                            size: '24px',
+                        },
+                    },
+                },
+            };
+            return res(ctx.status(200), ctx.json(response));
+        }
+    ),
 
-const mockStyleCategories = [
-    'heading1',
-    'heading2',
-    'heading3',
-    'heading4',
-    'custom1',
-    'custom2',
-    'custom3',
-    'body',
-    'link',
-    'quote',
+    rest.get(
+        `${window.location.origin}/api/hub/settings/${ResponseStatus.Error}/${ResponseStatus.Error}`,
+        (req, res, ctx) => {
+            return res(ctx.status(400), ctx.json({}));
+        }
+    ),
 ];
+
+const server = setupServer(...restHandlers);
 
 /**
  * @vitest-environment happy-dom
  */
 describe('useGuidelineDesignTokens', () => {
-    it('should transform StyleCategories', () => {
-        const { result } = renderHook(() =>
-            useDesignApiTransformer(
-                mockStyleCategories.reduce<StyleCategories>((acc, category) => {
-                    acc[category as StyleName] = mockStyles;
-                    return acc;
-                }, {})
-            )
-        );
-        expect(result.current).toMatchObject(
-            mockStyleCategories.reduce<StyleCategoriesTransformed>((acc, category) => {
-                acc[category as StyleName] = expectedTransformedStyles;
-                return acc;
-            }, {})
-        );
+    beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+
+    it('should set styles on successfull api call', async () => {
+        setResponseType(ResponseStatus.Success);
+
+        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
+        await waitForNextUpdate();
+
+        expect(result.current).toMatchObject({
+            styleCategories: {
+                heading1: { fontFamily: 'Arial', fontWeight: 'bold', fontSize: '24px' },
+            },
+            error: null,
+            isLoading: false,
+        });
     });
 
-    it('should transform uppercase to textTransform', () => {
-        const { result } = renderHook(() => useDesignApiTransformer({ body: { uppercase: '1' } }));
-        expect(result.current).toMatchObject({ body: { textTransform: 'uppercase' } });
+    it('should set the state to loading and ready', async () => {
+        setResponseType(ResponseStatus.Success);
+
+        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
+        expect(result.current.isLoading).toBe(true);
+        await waitForNextUpdate();
+        expect(result.current.isLoading).toBe(false);
     });
 
-    it('should transform italic to fontStyle', () => {
-        const { result } = renderHook(() => useDesignApiTransformer({ body: { italic: '1' } }));
-        expect(result.current).toMatchObject({ body: { fontStyle: 'italic' } });
+    it('should set error on bad api request', async () => {
+        setResponseType(ResponseStatus.Error);
+
+        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
+        await waitForNextUpdate();
+        expect(result.current.error).toMatch(/Bad Request/);
     });
 
-    it('should transform underline to textDecoration', () => {
-        const { result } = renderHook(() => useDesignApiTransformer({ body: { underline: '1' } }));
-        expect(result.current).toMatchObject({ body: { textDecoration: 'underline' } });
+    it('should update on HubAppearanceUpdated', async () => {
+        setResponseType(ResponseStatus.Success);
+
+        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
+        await waitForNextUpdate();
+        window.emitter.emit('HubAppearanceUpdated', {
+            appearance: { heading1: { family: 'family' } },
+        });
+
+        expect(result.current).toMatchObject({
+            styleCategories: { heading1: { fontFamily: 'family' } },
+            error: null,
+            isLoading: false,
+        });
     });
 
-    it('should transform color value', () => {
-        const { result } = renderHook(() => useDesignApiTransformer({ body: { color: '#fff' } }));
-        expect(result.current).toMatchObject({ body: { color: '#fff' } });
-    });
+    afterAll(() => server.close());
+    afterEach(() => server.resetHandlers());
 });

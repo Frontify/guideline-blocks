@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import '@frontify/arcade-tokens/styles';
-import { useDesignApi } from '@frontify/guideline-blocks-shared';
+import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 
 export const ExampleBlock: FC = () => {
-    const { styleCategories, error, isLoading } = useDesignApi();
+    const { styleCategories, error, isLoading } = useGuidelineDesignTokens();
 
     return (
         <div data-test-id="example-block">

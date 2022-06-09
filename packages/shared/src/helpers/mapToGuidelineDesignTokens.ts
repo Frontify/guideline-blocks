@@ -7,7 +7,7 @@ import {
     StyleCategories,
     StyleCategoriesTransformed,
     StyleName,
-} from './useGuidelineDesignTokens';
+} from '../hooks/useGuidelineDesignTokens';
 
 const transformStyles = (dataToTransform: DesignApiProperties) => {
     const cssStyles: CSSProperties = {};
@@ -52,7 +52,7 @@ const transformStyles = (dataToTransform: DesignApiProperties) => {
     return cssStyles;
 };
 
-export const useDesignApiTransformer = (dataToTransform: StyleCategories) => {
+export const mapToGuidelineDesignTokens = (dataToTransform: StyleCategories) => {
     const categories: StyleCategoriesTransformed = {};
 
     for (const [key, value] of Object.entries(dataToTransform)) {
