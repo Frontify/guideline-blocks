@@ -72,7 +72,7 @@ export type ImageStageProps = {
 };
 
 export type DrawFullScreenActionButtonProps = {
-    isFullScreen: boolean;
+    isFullScreen?: boolean;
     onClick: () => void;
 };
 
