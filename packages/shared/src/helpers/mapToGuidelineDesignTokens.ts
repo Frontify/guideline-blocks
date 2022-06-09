@@ -9,7 +9,7 @@ import {
     StyleCategoriesTransformed,
 } from '../hooks/useGuidelineDesignTokens';
 
-const transformStyles = (dataToTransform: DesignTokenProperties) => {
+const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
     const cssStyles: CSSProperties = {};
 
     for (const [key, value] of Object.entries(dataToTransform)) {
@@ -56,7 +56,7 @@ export const mapToGuidelineDesignTokens = (dataToTransform: DesignTokens) => {
     const categories: StyleCategoriesTransformed = {};
 
     for (const [key, value] of Object.entries(dataToTransform)) {
-        categories[key as DesignTokenName] = transformStyles(value) as CSSProperties;
+        categories[key as DesignTokenName] = transformDesignTokens(value) as CSSProperties;
     }
     return categories;
 };
