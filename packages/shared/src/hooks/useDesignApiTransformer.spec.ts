@@ -50,7 +50,6 @@ const mockStyleCategories = [
 /**
  * @vitest-environment happy-dom
  */
-
 describe('useDesignApiTransformer', () => {
     it('should transform StyleCategories', () => {
         const { result } = renderHook(() =>

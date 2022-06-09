@@ -2,6 +2,7 @@
 
 import { CSSProperties, useEffect, useState } from 'react';
 import { useDesignApiTransformer } from './useDesignApiTransformer';
+import fetch from 'cross-fetch';
 
 export enum DesignApiPropertiesEnum {
     family = 'family',
@@ -47,7 +48,7 @@ export const useDesignApi = () => {
         documentId: document.body.getAttribute('data-document'),
     };
 
-    const url = `/api/hub/settings/${requestParams.hubId}/${requestParams.documentId}`;
+    const url = `${window.location.origin}/api/hub/settings/${requestParams.hubId}/${requestParams.documentId}`;
 
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
@@ -58,7 +59,11 @@ export const useDesignApi = () => {
         (async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch(url);
+                const response = await window.fetch(url);
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+
                 const json = await response.json();
                 const transformedCategories = useDesignApiTransformer(json.hub.appearance);
                 setStyleCategories(transformedCategories);
