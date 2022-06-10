@@ -7,7 +7,7 @@ import {
     DesignTokenName,
     DesignTokenProperties,
     DesignTokens,
-    StyleCategoriesTransformed,
+    TransformedDesignTokens,
 } from '../hooks/useGuidelineDesignTokens';
 import { mapToGuidelineDesignTokens } from './mapToGuidelineDesignTokens';
 
@@ -66,7 +66,7 @@ describe('mapToGuidelineDesignTokens', () => {
             )
         );
         expect(result.current).toMatchObject(
-            mockStyleCategories.reduce<StyleCategoriesTransformed>((acc, category) => {
+            mockStyleCategories.reduce<TransformedDesignTokens>((acc, category) => {
                 acc[category as DesignTokenName] = expectedTransformedStyles;
                 return acc;
             }, {})

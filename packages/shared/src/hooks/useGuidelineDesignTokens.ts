@@ -35,10 +35,10 @@ export type DesignTokenApiResponse = {
         appearance: DesignTokens;
     };
 };
-export type StyleCategoriesTransformed = Partial<Record<DesignTokenName, CSSProperties>>;
+export type TransformedDesignTokens = Partial<Record<DesignTokenName, CSSProperties>>;
 
 export const useGuidelineDesignTokens = () => {
-    const [styleCategories, setStyleCategories] = useState<StyleCategoriesTransformed | null>(null);
+    const [styleCategories, setStyleCategories] = useState<TransformedDesignTokens | null>(null);
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 

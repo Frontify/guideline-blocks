@@ -6,7 +6,7 @@ import {
     DesignTokenProperties,
     DesignTokenPropertiesEnum,
     DesignTokens,
-    StyleCategoriesTransformed,
+    TransformedDesignTokens,
 } from '../hooks/useGuidelineDesignTokens';
 
 const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
@@ -53,10 +53,10 @@ const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
 };
 
 export const mapToGuidelineDesignTokens = (dataToTransform: DesignTokens) => {
-    const categories: StyleCategoriesTransformed = {};
+    const transformedDesignTokens: TransformedDesignTokens = {};
 
     for (const [key, value] of Object.entries(dataToTransform)) {
-        categories[key as DesignTokenName] = transformDesignTokens(value) as CSSProperties;
+        transformedDesignTokens[key as DesignTokenName] = transformDesignTokens(value) as CSSProperties;
     }
-    return categories;
+    return transformedDesignTokens;
 };
