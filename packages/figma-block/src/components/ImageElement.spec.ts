@@ -25,23 +25,23 @@ describe('ImageElement', () => {
     it('show', () => {
         const imageElement = {
             style: {
-                visibility: 'visible',
+                visibility: 'hidden',
             },
         } as HTMLImageElement;
 
-        const result = new ImageElement(imageElement).show();
-        expect(result).toEqual(undefined);
+        new ImageElement(imageElement).show();
+        expect(imageElement.style.visibility).toEqual('visible');
     });
 
     it('hide', () => {
         const imageElement = {
             style: {
-                visibility: 'hidden',
+                visibility: 'visible',
             },
         } as HTMLImageElement;
 
-        const result = new ImageElement(imageElement).hide();
-        expect(result).toEqual(undefined);
+        new ImageElement(imageElement).hide();
+        expect(imageElement.style.visibility).toEqual('hidden');
     });
 
     it('aspectRatio', () => {
@@ -53,5 +53,4 @@ describe('ImageElement', () => {
         const result = new ImageElement(imageElement).aspectRatio();
         expect(result).toEqual(0.5);
     });
-
 });
