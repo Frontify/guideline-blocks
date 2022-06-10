@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { ImageElement } from './ImageElement';
 
 describe('ImageElement', () => {
-    it('return height', () => {
+    it('return the correct height', () => {
         const imageElement = {
             height: 1,
         } as HTMLImageElement;
@@ -13,7 +13,7 @@ describe('ImageElement', () => {
         expect(result).toEqual(1);
     });
 
-    it('return width', () => {
+    it('return the correct width', () => {
         const imageElement = {
             width: 1,
         } as HTMLImageElement;
@@ -22,7 +22,7 @@ describe('ImageElement', () => {
         expect(result).toEqual(1);
     });
 
-    it('show', () => {
+    it('should show the container', () => {
         const imageElement = {
             style: {
                 visibility: 'hidden',
@@ -33,7 +33,7 @@ describe('ImageElement', () => {
         expect(imageElement.style.visibility).toEqual('visible');
     });
 
-    it('hide', () => {
+    it('should hide the container', () => {
         const imageElement = {
             style: {
                 visibility: 'visible',

@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { MouseProperties } from './MouseProperties';
 
 describe('MouseProperties', () => {
-    it('getCurrentPosition', () => {
+    it('return the correct mouse position', () => {
         const event = {
             pageX: 1,
             pageY: 2,
