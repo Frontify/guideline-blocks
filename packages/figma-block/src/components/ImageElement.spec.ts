@@ -44,7 +44,7 @@ describe('ImageElement', () => {
         expect(imageElement.style.visibility).toEqual('hidden');
     });
 
-    it('aspectRatio', () => {
+    it('give the correct aspectRatio', () => {
         const imageElement = {
             width: 1,
             height: 2,
@@ -52,5 +52,25 @@ describe('ImageElement', () => {
 
         const result = new ImageElement(imageElement).aspectRatio();
         expect(result).toEqual(0.5);
+    });
+
+    it('give the correct aspectRatio when width is 0', () => {
+        const imageElement = {
+            width: 0,
+            height: 2,
+        } as HTMLImageElement;
+
+        const result = new ImageElement(imageElement).aspectRatio();
+        expect(result).toEqual(0);
+    });
+
+    it('give the correct aspectRatio when height is 0', () => {
+        const imageElement = {
+            width: 1,
+            height: 0,
+        } as HTMLImageElement;
+
+        const result = new ImageElement(imageElement).aspectRatio();
+        expect(result).toEqual(0);
     });
 });
