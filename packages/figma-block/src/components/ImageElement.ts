@@ -19,8 +19,7 @@ export class ImageElement {
         this.imageElement.style.visibility = 'hidden';
     }
 
-    public aspectRatio() {
-        //TODO: handle 0 width and height
-        return this.width / this.height;
+    public aspectRatio(): number {
+        return this.height === 0 ? 0 : this.width / this.height;
     }
 }
