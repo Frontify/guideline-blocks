@@ -64,7 +64,7 @@ describe('useGuidelineDesignTokens', () => {
         await waitForNextUpdate();
 
         expect(result.current).toMatchObject({
-            styleCategories: {
+            designTokens: {
                 heading1: { fontFamily: 'Arial', fontWeight: 'bold', fontSize: '24px' },
             },
             error: null,
@@ -99,7 +99,7 @@ describe('useGuidelineDesignTokens', () => {
         });
 
         expect(result.current).toMatchObject({
-            styleCategories: { heading1: { fontFamily: 'family' } },
+            designTokens: { heading1: { fontFamily: 'family' } },
             error: null,
             isLoading: false,
         });

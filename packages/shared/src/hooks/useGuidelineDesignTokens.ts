@@ -38,7 +38,7 @@ export type DesignTokenApiResponse = {
 export type TransformedDesignTokens = Partial<Record<DesignTokenName, CSSProperties>>;
 
 export const useGuidelineDesignTokens = () => {
-    const [styleCategories, setStyleCategories] = useState<TransformedDesignTokens | null>(null);
+    const [designTokens, setDesignTokens] = useState<TransformedDesignTokens | null>(null);
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -51,8 +51,8 @@ export const useGuidelineDesignTokens = () => {
 
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
-            const transformedCategories = mapToGuidelineDesignTokens(data.appearance);
-            setStyleCategories({ ...styleCategories, ...transformedCategories });
+            const transformedDesignTokens = mapToGuidelineDesignTokens(data.appearance);
+            setDesignTokens({ ...designTokens, ...transformedDesignTokens });
         });
 
         (async () => {
@@ -65,7 +65,7 @@ export const useGuidelineDesignTokens = () => {
 
                 const json = await response.json();
                 const transformedCategories = mapToGuidelineDesignTokens(json.hub.appearance);
-                setStyleCategories(transformedCategories);
+                setDesignTokens(transformedCategories);
             } catch (err) {
                 setError(err);
             } finally {
@@ -78,5 +78,5 @@ export const useGuidelineDesignTokens = () => {
         };
     }, []);
 
-    return { styleCategories, error, isLoading };
+    return { designTokens, error, isLoading };
 };

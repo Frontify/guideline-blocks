@@ -39,7 +39,7 @@ const expectedTransformedStyles: CSSProperties = {
     color: 'color',
 };
 
-const mockStyleCategories = [
+const designTokens = [
     'heading1',
     'heading2',
     'heading3',
@@ -56,18 +56,18 @@ const mockStyleCategories = [
  * @vitest-environment happy-dom
  */
 describe('mapToGuidelineDesignTokens', () => {
-    it('should transform StyleCategories', () => {
+    it('should transform design tokens', () => {
         const { result } = renderHook(() =>
             mapToGuidelineDesignTokens(
-                mockStyleCategories.reduce<DesignTokens>((acc, category) => {
-                    acc[category as DesignTokenName] = mockStyles;
+                designTokens.reduce<DesignTokens>((acc, token) => {
+                    acc[token as DesignTokenName] = mockStyles;
                     return acc;
                 }, {})
             )
         );
         expect(result.current).toMatchObject(
-            mockStyleCategories.reduce<TransformedDesignTokens>((acc, category) => {
-                acc[category as DesignTokenName] = expectedTransformedStyles;
+            designTokens.reduce<TransformedDesignTokens>((acc, token) => {
+                acc[token as DesignTokenName] = expectedTransformedStyles;
                 return acc;
             }, {})
         );
