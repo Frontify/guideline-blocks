@@ -39,7 +39,7 @@ describe('Example Guideline Design Token Block', () => {
                     },
                 },
             },
-        }).as('todo');
+        });
     });
 
     it('renders an example block with styles from the api', () => {
