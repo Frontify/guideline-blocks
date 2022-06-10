@@ -278,6 +278,7 @@ describe('Checklist Block', () => {
             );
     });
 
+    // TODO: fix this test
     it.skip('Can hide/show completed tasks in View mode', () => {
         const completedItems = createContentArray(5, { completed: true });
         const incompleteItems = createContentArray(5, { completed: false });
