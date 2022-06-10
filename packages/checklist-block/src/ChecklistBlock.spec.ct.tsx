@@ -278,7 +278,8 @@ describe('Checklist Block', () => {
             );
     });
 
-    it('Can hide/show completed tasks in View mode', () => {
+    // TODO: fix and reenable shaky test (https://app.clickup.com/t/2gh39t7)
+    it.skip('Can hide/show completed tasks in View mode', () => {
         const completedItems = createContentArray(5, { completed: true });
         const incompleteItems = createContentArray(5, { completed: false });
         const content = [...completedItems, ...incompleteItems];
@@ -287,7 +288,7 @@ describe('Checklist Block', () => {
         mount(<ChecklistBlockWithStubs />);
         cy.get(CHECKLIST_ITEM).should('have.length', 10);
         cy.get('[checked]').should('have.length', 5);
-        cy.get(CHECKLIST_BLOCK_SELECTOR).realHover().wait(100);
+        cy.get(CHECKLIST_BLOCK_SELECTOR).realHover();
         cy.get(COMPLETED_VISIBILITY_BUTTON)
             .should('be.visible')
             .find('button')
