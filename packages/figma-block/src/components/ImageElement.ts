@@ -20,6 +20,7 @@ export class ImageElement {
     }
 
     public aspectRatio() {
+        //TODO: handle 0 width and height
         return this.width / this.height;
     }
 }
