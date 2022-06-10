@@ -7,7 +7,7 @@ export class ImageStage {
     public isMouseInsideImageStage = false;
     private boundaries: BoundingClientRectProperties;
 
-    constructor(protected imageStage: HTMLDivElement, public customHeight: string) {
+    constructor(protected imageStage: HTMLDivElement, public customHeight = '0px') {
         this.boundaries = this.imageStage.getBoundingClientRect();
 
         document.addEventListener('mousemove', this.checkIfMouseIsInside.bind(this));
