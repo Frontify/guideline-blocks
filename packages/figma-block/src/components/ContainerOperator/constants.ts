@@ -1,0 +1,2 @@
+export const IMAGE_PADDING_PERCENTAGE = 0;
+export const MAGNIFICATION_PERCENTAGE = 0.2;
