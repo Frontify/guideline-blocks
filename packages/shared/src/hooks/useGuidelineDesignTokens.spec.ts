@@ -57,7 +57,7 @@ const server = setupServer(...restHandlers);
 describe('useGuidelineDesignTokens', () => {
     beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 
-    it('should set styles on successfull api call', async () => {
+    it('should set design tokens on successfull api call', async () => {
         setResponseType(ResponseStatus.Success);
 
         const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());

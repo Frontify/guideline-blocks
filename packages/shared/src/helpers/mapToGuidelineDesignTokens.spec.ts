@@ -11,7 +11,7 @@ import {
 } from '../hooks/useGuidelineDesignTokens';
 import { mapToGuidelineDesignTokens } from './mapToGuidelineDesignTokens';
 
-const mockStyles: DesignTokenProperties = {
+const mockedDesignTokens: DesignTokenProperties = {
     family: 'family',
     weight: 'weight',
     size: 'size',
@@ -25,7 +25,7 @@ const mockStyles: DesignTokenProperties = {
     color: 'color',
 };
 
-const expectedTransformedStyles: CSSProperties = {
+const expectedTransformedDesignTokens: CSSProperties = {
     fontFamily: 'family',
     fontWeight: 'weight',
     fontSize: 'size',
@@ -60,14 +60,14 @@ describe('mapToGuidelineDesignTokens', () => {
         const { result } = renderHook(() =>
             mapToGuidelineDesignTokens(
                 designTokens.reduce<DesignTokens>((acc, token) => {
-                    acc[token as DesignTokenName] = mockStyles;
+                    acc[token as DesignTokenName] = mockedDesignTokens;
                     return acc;
                 }, {})
             )
         );
         expect(result.current).toMatchObject(
             designTokens.reduce<TransformedDesignTokens>((acc, token) => {
-                acc[token as DesignTokenName] = expectedTransformedStyles;
+                acc[token as DesignTokenName] = expectedTransformedDesignTokens;
                 return acc;
             }, {})
         );
