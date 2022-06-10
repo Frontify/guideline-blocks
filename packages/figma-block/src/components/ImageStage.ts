@@ -37,6 +37,6 @@ export class ImageStage {
     }
 
     public aspectRatio(): number {
-        return this.width / this.height;
+        return this.height === 0 ? 0 : this.width / this.height;
     }
 }
