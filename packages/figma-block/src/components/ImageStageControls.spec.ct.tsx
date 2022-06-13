@@ -25,9 +25,10 @@ describe('Image Control Buttons', () => {
 
     describe('DrawZoomInOutButtons', () => {
         it('renders Zoom In and Out buttons', () => {
-            const onClick = () => true;
+            const onClickZoomIn = cy.stub().as('onClickZoomIn');
+            const onClickZoomOut = cy.stub().as('onClickZoomOut');
 
-            mount(<DrawZoomInOutButtons onClickZoomIn={onClick} onClickZoomOut={onClick} />);
+            mount(<DrawZoomInOutButtons onClickZoomIn={onClickZoomIn} onClickZoomOut={onClickZoomOut} />);
             cy.get(ICON_ZOOM_IN_SELECTOR).should('exist');
             cy.get(ICON_ZOOM_OUT_SELECTOR).should('exist');
         });
