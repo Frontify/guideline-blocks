@@ -21,8 +21,8 @@ export const useImageStage = ({ height, isContainerVector }: UseImageStageProps)
     const stageRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const onZoomIn = () => containerOperator?.current?.resizeImageContainer(Zoom.IN);
-    const onZoomOut = () => containerOperator?.current?.resizeImageContainer(Zoom.OUT);
+    const onZoomIn = () => containerOperator?.current?.resize(Zoom.IN);
+    const onZoomOut = () => containerOperator?.current?.resize(Zoom.OUT);
 
     useEffect(() => {
         if (isImageLoaded && stageRef.current && containerRef.current && imageRef.current) {

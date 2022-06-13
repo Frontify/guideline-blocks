@@ -22,7 +22,7 @@ export abstract class ContainerOperator {
         this.imageElement.show();
     }
 
-    protected resizeImageContainerToFitWithinImageStage() {
+    private resizeImageContainerToFitWithinImageStage() {
         const { width, height } = this.calculateTheImageContainerSizeToFitInImageStage();
         this.imageContainer.setImageContainerSize(
             width * (1 - IMAGE_PADDING_PERCENTAGE),
@@ -45,12 +45,12 @@ export abstract class ContainerOperator {
         this.imageElement.show();
     }
 
-    protected centerImageContainerWithinTheImageStage() {
+    private centerImageContainerWithinTheImageStage() {
         this.imageContainer.setImageContainerPosition(
             (this.imageStage.width - this.imageContainer.width) / 2,
             (this.imageStage.height - this.imageContainer.height) / 2
         );
     }
 
-    abstract resizeImageContainer(zoom: Zoom): void;
+    abstract resize(zoom: Zoom): void;
 }

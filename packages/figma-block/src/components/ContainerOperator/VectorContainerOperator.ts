@@ -69,7 +69,7 @@ export class VectorContainerOperator extends ContainerOperator {
         document.removeEventListener('mousemove', this.mouseMoveListener);
     }
 
-    public resizeImageContainer(zoom = Zoom.OUT) {
+    public resize(zoom = Zoom.OUT) {
         this.imageContainer.setImageContainerSize(
             this.imageContainer.width * (1 + zoom * MAGNIFICATION_PERCENTAGE),
             this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE)

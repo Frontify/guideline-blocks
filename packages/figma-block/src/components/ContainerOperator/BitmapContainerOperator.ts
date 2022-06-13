@@ -15,5 +15,5 @@ export class BitmapContainerOperator extends ContainerOperator {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    public resizeImageContainer() {}
+    public resize() {}
 }
