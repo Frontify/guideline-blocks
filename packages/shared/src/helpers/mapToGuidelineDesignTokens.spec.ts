@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { renderHook } from '@testing-library/react-hooks';
 import { CSSProperties } from 'react';
 import { describe, expect, it } from 'vitest';
 import {
@@ -57,15 +56,13 @@ const designTokens = [
  */
 describe('mapToGuidelineDesignTokens', () => {
     it('should transform design tokens', () => {
-        const { result } = renderHook(() =>
-            mapToGuidelineDesignTokens(
-                designTokens.reduce<DesignTokens>((acc, token) => {
-                    acc[token as DesignTokenName] = mockedDesignTokens;
-                    return acc;
-                }, {})
-            )
+        const result = mapToGuidelineDesignTokens(
+            designTokens.reduce<DesignTokens>((acc, token) => {
+                acc[token as DesignTokenName] = mockedDesignTokens;
+                return acc;
+            }, {})
         );
-        expect(result.current).toMatchObject(
+        expect(result).toMatchObject(
             designTokens.reduce<TransformedDesignTokens>((acc, token) => {
                 acc[token as DesignTokenName] = expectedTransformedDesignTokens;
                 return acc;
@@ -74,22 +71,22 @@ describe('mapToGuidelineDesignTokens', () => {
     });
 
     it('should transform uppercase to textTransform', () => {
-        const { result } = renderHook(() => mapToGuidelineDesignTokens({ body: { uppercase: '1' } }));
-        expect(result.current).toMatchObject({ body: { textTransform: 'uppercase' } });
+        const result = mapToGuidelineDesignTokens({ body: { uppercase: '1' } });
+        expect(result).toMatchObject({ body: { textTransform: 'uppercase' } });
     });
 
     it('should transform italic to fontStyle', () => {
-        const { result } = renderHook(() => mapToGuidelineDesignTokens({ body: { italic: '1' } }));
-        expect(result.current).toMatchObject({ body: { fontStyle: 'italic' } });
+        const result = mapToGuidelineDesignTokens({ body: { italic: '1' } });
+        expect(result).toMatchObject({ body: { fontStyle: 'italic' } });
     });
 
     it('should transform underline to textDecoration', () => {
-        const { result } = renderHook(() => mapToGuidelineDesignTokens({ body: { underline: '1' } }));
-        expect(result.current).toMatchObject({ body: { textDecoration: 'underline' } });
+        const result = mapToGuidelineDesignTokens({ body: { underline: '1' } });
+        expect(result).toMatchObject({ body: { textDecoration: 'underline' } });
     });
 
     it('should transform color value', () => {
-        const { result } = renderHook(() => mapToGuidelineDesignTokens({ body: { color: '#fff' } }));
-        expect(result.current).toMatchObject({ body: { color: '#fff' } });
+        const result = mapToGuidelineDesignTokens({ body: { color: '#fff' } });
+        expect(result).toMatchObject({ body: { color: '#fff' } });
     });
 });
