@@ -4,30 +4,33 @@ import { ImageContainer } from '../ImageContainer';
 import { ImageStage } from '../ImageStage';
 import { ImageElement } from '../ImageElement';
 import { Zoom } from '../../types';
-import { IMAGE_PADDING_PERCENTAGE } from './constants';
+import { IMAGE_PADDING_PERCENTAGE_DEFAULT } from './constants';
 
 export abstract class ContainerOperator {
+    protected padding = IMAGE_PADDING_PERCENTAGE_DEFAULT;
+
     constructor(
         protected imageContainer: ImageContainer,
         protected imageStage: ImageStage,
         protected imageElement: ImageElement
-    ) {
-        this.fitAndCenterTheImageContainerWithinTheImageStage();
+    ) {}
+
+    public setPadding(paddingInPercentage: number): this {
+        this.padding = paddingInPercentage;
+        return this;
     }
 
-    public fitAndCenterTheImageContainerWithinTheImageStage() {
+    public fitAndCenterTheImageContainerWithinTheImageStage(): this {
         this.imageElement.hide();
         this.resizeImageContainerToFitWithinImageStage();
         this.centerImageContainerWithinTheImageStage();
         this.imageElement.show();
+        return this;
     }
 
     private resizeImageContainerToFitWithinImageStage() {
         const { width, height } = this.calculateTheImageContainerSizeToFitInImageStage();
-        this.imageContainer.setImageContainerSize(
-            width * (1 - IMAGE_PADDING_PERCENTAGE),
-            height * (1 - IMAGE_PADDING_PERCENTAGE)
-        );
+        this.imageContainer.setImageContainerSize(width * (1 - this.padding), height * (1 - this.padding));
     }
 
     private calculateTheImageContainerSizeToFitInImageStage(): { width: number; height: number } {

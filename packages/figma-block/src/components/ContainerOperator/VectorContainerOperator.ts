@@ -6,7 +6,7 @@ import { ImageContainer } from '../ImageContainer';
 import { ImageStage } from '../ImageStage';
 import { ImageElement } from '../ImageElement';
 import { Cursor, Point, Zoom } from '../../types';
-import { MAGNIFICATION_PERCENTAGE } from './constants';
+import { MAGNIFICATION_PERCENTAGE_DEFAULT } from './constants';
 
 export class VectorContainerOperator extends ContainerOperator {
     private startImageContainerPosition: Point = { x: 0, y: 0 };
@@ -71,8 +71,8 @@ export class VectorContainerOperator extends ContainerOperator {
 
     public resize(zoom = Zoom.OUT) {
         this.imageContainer.setImageContainerSize(
-            this.imageContainer.width * (1 + zoom * MAGNIFICATION_PERCENTAGE),
-            this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE)
+            this.imageContainer.width * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT),
+            this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT)
         );
     }
 }
