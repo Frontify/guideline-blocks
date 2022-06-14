@@ -6,10 +6,11 @@ import { FC, useEffect, useState } from 'react';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '../tailwind.config.js';
 
-const fullConfig = resolveConfig(tailwindConfig);
+type TailwindBreakpoints = { sm: string; md: string; lg: string; xl: string; '2xl': string };
 
 const getTailwindBreakpoints = (): QueryBreakpoints => {
-    const { sm, md, lg, xl } = fullConfig.theme.screens;
+    const fullConfig = resolveConfig(tailwindConfig);
+    const { sm, md, lg, xl } = fullConfig.theme.screens as TailwindBreakpoints;
     const parsedSm = parseInt(sm);
     const parsedMd = parseInt(md);
     const parsedLg = parseInt(lg);
@@ -67,7 +68,7 @@ export const ExampleContainerQueriesBlock: FC = () => {
                     <b>Resize me!</b>
                 </div>
                 <br />
-                <div>Current breakpoint: '{active}'</div>
+                <div>Current breakpoint: {active}</div>
             </div>
         </>
     );
