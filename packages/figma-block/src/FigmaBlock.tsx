@@ -2,8 +2,8 @@
 
 import '@frontify/arcade-tokens/styles';
 import 'tailwindcss/tailwind.css';
-import { createPortal } from 'react-dom';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/arcade';
 import {
     AssetChooserObjectType,
@@ -14,25 +14,37 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { BlockPreview, BlockProps, Settings } from './types';
-import { ASSET_ID } from './settings';
+import { extractUrlParameterFromUriQueries } from './utilities';
+import { ImageStage } from './ImageStage';
+import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
+import { ASSET_ID, heights } from './settings';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
+    const [assetExternalUrl, setAssetExternalUrl] = useState<string>('');
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
-    const isEditing = useEditorState(appBridge);
+    const isInEditMode = useEditorState(appBridge);
 
     const asset = blockAssets?.[ASSET_ID]?.[0];
     const isAssetAvailable = !!asset;
 
+    const {
+        figmaPreviewId = BlockPreview.Image,
+        hasBorder = true,
+        isCustomHeight = false,
+        heightValue = heights[HeightChoices.Small],
+        heightChoice = HeightChoices.Medium,
+    } = blockSettings;
+
     useEffect(() => {
-        setIsLivePreview(blockSettings.figmaPreviewId === BlockPreview.Live);
-    }, [blockSettings]);
+        setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.external_url));
+        setIsLivePreview(figmaPreviewId === BlockPreview.Live);
+    }, [asset, figmaPreviewId]);
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
@@ -63,13 +75,32 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         </div>
     );
 
-    const ShowFigmaPreview = useCallback(
-        () => (
-            <div data-test-id="figma-image-preview" className="tw-flex tw-justify-center">
-                <img data-test-id="callout-icon" alt={asset.title} src={asset.preview_url} />
+    const ShowImagePreview = useCallback(
+        ({ hasBorder, height }) => (
+            <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
+                <ImageStage
+                    title={asset.title}
+                    url={asset.preview_url}
+                    isContainerVector={true}
+                    height={height}
+                    hasBorder={hasBorder}
+                    hasBackground
+                />
+                {assetExternalUrl && (
+                    <div className="tw-group tw-p-2 tw-text-sm">
+                        <a
+                            href={assetExternalUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group-hover:tw-underline"
+                        >
+                            {assetExternalUrl}
+                        </a>
+                    </div>
+                )}
             </div>
         ),
-        [asset]
+        [asset, assetExternalUrl]
     );
 
     const ShowFigmaLive = useCallback(
@@ -88,7 +119,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <iframe src={asset?.external_url} className="tw-h-full tw-w-full tw-border-none" loading="lazy" />
             </div>
         ),
-        [asset?.external_url]
+        [asset]
     );
 
     const FigmaLivePortal = useCallback(() => {
@@ -122,8 +153,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div data-test-id="figma-block">
-            {isEditing && !isAssetAvailable && <FigmaEmptyBlock />}
-            {isAssetAvailable && !isLivePreview && <ShowFigmaPreview />}
+            {isInEditMode && !isAssetAvailable && <FigmaEmptyBlock />}
+            {isAssetAvailable && !isLivePreview && (
+                <ShowImagePreview hasBorder={hasBorder} height={isCustomHeight ? heightValue : heights[heightChoice]} />
+            )}
             {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
             {showFigmaLiveModal && <FigmaLivePortal />}
         </div>

@@ -2,9 +2,21 @@
 
 import { AssetChooserObjectType, AssetChooserProjectType } from '@frontify/app-bridge';
 import { AssetInputMode, BlockSettings } from '@frontify/guideline-blocks-settings';
-import { BlockPreview } from './types';
+import { minimumPixelRule } from '@frontify/guideline-blocks-shared';
+import { BlockPreview, HeightChoices } from './types';
 
 export const ASSET_ID = 'asset';
+export const DEFAULT_HEIGHT = '500px';
+
+const HAS_BORDER_ID = 'hasBorder';
+const HEIGHT_VALUE_ID = 'heightValue';
+const HEIGHT_CHOICE_ID = 'heightChoice';
+
+export const heights: Record<HeightChoices, string> = {
+    [HeightChoices.Small]: '400px',
+    [HeightChoices.Medium]: '600px',
+    [HeightChoices.Large]: '800px',
+};
 
 const settings: BlockSettings = {
     main: [
@@ -33,6 +45,53 @@ const settings: BlockSettings = {
             projectTypes: [AssetChooserProjectType.Workspace],
             objectTypes: [AssetChooserObjectType.Url],
             mode: AssetInputMode.BrowseOnly,
+        },
+    ],
+    style: [
+        {
+            id: HAS_BORDER_ID,
+            type: 'switch',
+            label: 'Show border',
+            defaultValue: true,
+        },
+    ],
+    layout: [
+        {
+            id: 'isCustomHeight',
+            type: 'switch',
+            label: 'Height',
+            switchLabel: 'Custom',
+            defaultValue: false,
+            on: [
+                {
+                    id: HEIGHT_VALUE_ID,
+                    type: 'input',
+                    placeholder: '100px',
+                    defaultValue: heights[HeightChoices.Small],
+                    rules: [minimumPixelRule(100)],
+                },
+            ],
+            off: [
+                {
+                    id: HEIGHT_CHOICE_ID,
+                    type: 'slider',
+                    defaultValue: HeightChoices.Small,
+                    choices: [
+                        {
+                            value: HeightChoices.Small,
+                            label: 'S',
+                        },
+                        {
+                            value: HeightChoices.Medium,
+                            label: 'M',
+                        },
+                        {
+                            value: HeightChoices.Large,
+                            label: 'L',
+                        },
+                    ],
+                },
+            ],
         },
     ],
 };
