@@ -88,6 +88,47 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
 
+  examples/container-queries:
+    specifiers:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4
+      '@frontify/app-bridge': 2.15.1
+      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/eslint-config-react': 0.15.2
+      '@frontify/frontify-cli': 4.0.6
+      '@frontify/guideline-blocks-settings': workspace:*
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/react': 17.0.44
+      autoprefixer: 10.4.7
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+    dependencies:
+      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/arcade-tokens': 3.0.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
+      '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
+      '@frontify/guideline-blocks-settings': link:../../packages/block-settings
+      '@frontify/guideline-blocks-shared': link:../../packages/shared
+      '@types/react': 17.0.44
+      autoprefixer: 10.4.7_postcss@8.4.13
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+
   examples/guideline-design-tokens:
     specifiers:
       '@babel/core': 7.17.10
@@ -11614,7 +11655,7 @@ packages:
     dev: true
 
   /ee-first/1.1.1:
-    resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
+    resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: true
 
   /electron-to-chromium/1.4.137:
@@ -12801,7 +12842,7 @@ packages:
     dev: false
 
   /fresh/0.5.2:
-    resolution: {integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=}
+    resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
     dev: true
 
@@ -15597,7 +15638,7 @@ packages:
     dev: true
 
   /querystring/0.2.0:
-    resolution: {integrity: sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=}
+    resolution: {integrity: sha512-X/xY82scca2tau62i9mDyU9K+I+djTMUsvwf7xnUX5GLvVzgJybOJf4Y6o9Zx3oJK/LSXg5tTZBjwzqVPaPO2g==}
     engines: {node: '>=0.4.x'}
     deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
     dev: true
@@ -17177,7 +17218,7 @@ packages:
     dev: true
 
   /to-fast-properties/2.0.0:
-    resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=}
+    resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
 
   /to-object-path/0.3.0:
@@ -17498,7 +17539,7 @@ packages:
     dev: true
 
   /url/0.11.0:
-    resolution: {integrity: sha1-ODjpfPxgUh63PFJajlW/3Z4uKPE=}
+    resolution: {integrity: sha512-kbailJa29QrtXnxgq+DdCEGlbTeYM2eJUxsz6vjZavrCYPMIFHMKQmSKYAIuUK2i7hgPm28a8piX5NTUtM/LKQ==}
     dependencies:
       punycode: 1.3.2
       querystring: 0.2.0
@@ -17596,7 +17637,7 @@ packages:
     dev: true
 
   /util-deprecate/1.0.2:
-    resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
+    resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
   /util/0.12.4:
     resolution: {integrity: sha512-bxZ9qtSlGUWSOy9Qa9Xgk11kSslpuZwaxCg4sNIDj6FLucDab2JxnHwyNTCpHMtK1MjoQiWQ6DiUMZYbSrO+Sw==}
@@ -17639,7 +17680,7 @@ packages:
     engines: {node: '>= 0.10'}
 
   /vary/1.1.2:
-    resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=}
+    resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
     dev: true
 
@@ -17855,7 +17896,7 @@ packages:
     dev: true
 
   /wrappy/1.0.2:
-    resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=}
+    resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: true
 
   /ws/8.8.0:
