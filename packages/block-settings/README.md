@@ -6,7 +6,7 @@ Provides the block settings types for the guideline-blocks.
 
 ```ts
 import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
-import { IconEnum } from '@frontify/arcade';
+import { IconEnum } from '@frontify/fondue';
 
 const Settings: BlockSettings = {
     main: [

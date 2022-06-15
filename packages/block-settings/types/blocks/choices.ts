@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum } from '@frontify/arcade';
+import { IconEnum } from '@frontify/fondue';
 import { BaseBlock } from './base';
 
 export type Choice = {

@@ -32,6 +32,6 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "*",
-        "@frontify/arcade": "*"
+        "@frontify/fondue": "*"
     }
 }

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SearchResult, Validation } from '@frontify/arcade';
+import { SearchResult, Validation } from '@frontify/fondue';
 import { BaseBlock } from './base';
 
 export type LinkChooserBlock = {
