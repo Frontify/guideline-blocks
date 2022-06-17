@@ -3,12 +3,9 @@
 import { useContainerQueries } from '@frontify/guideline-blocks-shared';
 
 import { FC, useEffect, useState } from 'react';
-import tailwindConfig from '../tailwind.config.js';
 
 export const ExampleContainerQueriesBlock: FC = () => {
-    const { activeBreakpoint, containerRef } = useContainerQueries({
-        tailwindConfig,
-    });
+    const { activeBreakpoint, containerRef } = useContainerQueries({});
 
     const [backgroundState, setBackgroundState] = useState(activeBreakpoint);
 
@@ -37,6 +34,7 @@ export const ExampleContainerQueriesBlock: FC = () => {
     return (
         <>
             <div
+                data-test-id="example-container-queries-block"
                 className="tw-p-4 tw-resize tw-overflow-auto"
                 style={{
                     resize: 'both',
@@ -48,7 +46,9 @@ export const ExampleContainerQueriesBlock: FC = () => {
                     <b>Resize me!</b>
                 </div>
                 <br />
-                <div>Active breakpoint: {activeBreakpoint}</div>
+                <div>
+                    Active breakpoint: <span data-test-id="breakpoint">{activeBreakpoint}</span>
+                </div>
             </div>
         </>
     );

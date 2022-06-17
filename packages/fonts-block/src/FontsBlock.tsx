@@ -4,16 +4,13 @@ import '@frontify/arcade-tokens/styles';
 import { useContainerQueries } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import tailwindConfig from '../tailwind.config.js';
 
 type Font = {
     name: string;
 };
 
 export const FontsBlock: FC = () => {
-    const { activeBreakpoint, containerRef } = useContainerQueries({
-        tailwindConfig,
-    });
+    const { activeBreakpoint, containerRef } = useContainerQueries({});
 
     const [fonts, setFonts] = useState<[Font] | null>(null);
 

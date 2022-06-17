@@ -1,6 +1,4 @@
 import { RefCallback, useCallback, useLayoutEffect, useRef, useState } from 'react';
-import resolveConfig from 'tailwindcss/resolveConfig';
-import { TailwindConfig } from 'tailwindcss/tailwind-config.js';
 
 export type QueryBreakpoints = {
     [key: string]: [number, number?];
@@ -8,7 +6,6 @@ export type QueryBreakpoints = {
 
 export type ContainerQueryProps = {
     breakpoints?: QueryBreakpoints;
-    tailwindConfig?: TailwindConfig;
 };
 
 export type ContainerQueryResult<T> = {
@@ -21,36 +18,18 @@ type ContainerQueryState = {
     width: number;
 };
 
-type TailwindBreakpoints = { sm: string; md: string; lg: string; xl: string; '2xl': string };
+const defaultBreakpoints: QueryBreakpoints = {
+    sm: [0, 640],
+    md: [641, 768],
+    lg: [769, 1024],
+    xl: [1025],
+};
 
 export function useContainerQueries<T extends HTMLElement>({
     breakpoints,
-    tailwindConfig,
 }: ContainerQueryProps): ContainerQueryResult<T> {
-    if (tailwindConfig) {
-        const fullConfig = resolveConfig(tailwindConfig);
-        const { sm, md, lg, xl } = fullConfig.theme.screens as TailwindBreakpoints;
-        const parsedSm = parseInt(sm);
-        const parsedMd = parseInt(md);
-        const parsedLg = parseInt(lg);
-        const parsedXl = parseInt(xl);
-
-        breakpoints = {
-            sm: [0, parsedSm],
-            md: [parsedSm + 1, parsedMd],
-            lg: [parsedMd + 1, parsedLg],
-            xl: [parsedLg + 1, parsedXl],
-            '2xl': [parsedXl + 1],
-        };
-    }
-
     if (!breakpoints) {
-        breakpoints = {
-            sm: [0, 300],
-            md: [301, 600],
-            lg: [601, 900],
-            xl: [901],
-        };
+        breakpoints = defaultBreakpoints;
     }
 
     const initialBreakpoint = Object.keys(breakpoints)[0];
@@ -91,7 +70,9 @@ export function useContainerQueries<T extends HTMLElement>({
             const { activeBreakpoint } = matchBreakpoint(state.activeBreakpoint, width);
 
             if (activeBreakpoint !== state.activeBreakpoint) {
-                setState((prev) => ({ ...prev, activeBreakpoint }));
+                /* setTimeout is required to prevent error "ResizeObserver loop limit exceeded" 
+                from being thrown during cypress component tests */
+                setTimeout(() => setState((prev) => ({ ...prev, activeBreakpoint })), 0);
             }
         },
         [state.activeBreakpoint, matchBreakpoint]
