@@ -475,6 +475,49 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
 
+  packages/fonts-block:
+    specifiers:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4
+      '@frontify/app-bridge': 2.15.1
+      '@frontify/arcade': 8.0.0
+      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/eslint-config-react': 0.15.2
+      '@frontify/frontify-cli': ^4.0.6
+      '@frontify/guideline-blocks-settings': workspace:*
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/react': 17.0.44
+      autoprefixer: 10.4.6
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+    dependencies:
+      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/guideline-blocks-settings': link:../block-settings
+      '@frontify/guideline-blocks-shared': link:../shared
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
+      '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
+      '@frontify/frontify-cli': 4.0.6_ri33gbvqd7vl4x44gsiyf2u75m
+      '@types/react': 17.0.44
+      autoprefixer: 10.4.6_postcss@8.4.13
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+
   packages/personal-note-block:
     specifiers:
       '@babel/core': 7.17.10
@@ -17158,7 +17201,7 @@ packages:
     dev: false
 
   /throttleit/1.0.0:
-    resolution: {integrity: sha1-nnhYNtr0Z0MUWlmEtiaNgoUorGw=}
+    resolution: {integrity: sha512-rkTVqu6IjfQ/6+uNuuc3sZek4CEYxTJom3IktzgdSxcZqdARuebbA/f4QmAxMQIxqq9ZLEUkSYqvuk1I6VKq4g==}
     dev: true
 
   /through/2.3.8:
@@ -17228,14 +17271,14 @@ packages:
     engines: {node: '>=4'}
 
   /to-object-path/0.3.0:
-    resolution: {integrity: sha1-KXWIt7Dn4KwI4E5nL4XB9JmeF68=}
+    resolution: {integrity: sha512-9mWHdnGRuh3onocaHzukyvCZhzvr6tiflAy/JRFXcJX0TjgfWA9pk9t8CMbzmBE4Jfw58pXbkngtBtqYxzNEyg==}
     engines: {node: '>=0.10.0'}
     dependencies:
       kind-of: 3.2.2
     dev: true
 
   /to-regex-range/2.1.1:
-    resolution: {integrity: sha1-fIDBe53+vlmeJzZ+DU3VWQFB2zg=}
+    resolution: {integrity: sha512-ZZWNfCjUokXXDGXFpZehJIkZqq91BcULFq/Pi7M5i4JnxXdhMKAK682z8bCW3o8Hj1wuuzoKcW3DfVzaP6VuNg==}
     engines: {node: '>=0.10.0'}
     dependencies:
       is-number: 3.0.0
@@ -17390,13 +17433,13 @@ packages:
     dev: true
 
   /tunnel-agent/0.6.0:
-    resolution: {integrity: sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=}
+    resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
     dependencies:
       safe-buffer: 5.2.1
     dev: true
 
   /tweetnacl/0.14.5:
-    resolution: {integrity: sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=}
+    resolution: {integrity: sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==}
     dev: true
 
   /type-check/0.4.0:
@@ -17521,7 +17564,7 @@ packages:
     dev: true
 
   /unset-value/1.0.0:
-    resolution: {integrity: sha1-g3aHP30jNRef+x5vw6jtDfyKtVk=}
+    resolution: {integrity: sha512-PcA2tsuGSF9cnySLHTLSh2qrQiJ70mn+r+Glzxv2TWZblxsxCC52BDlZoPCsz7STd9pN7EZetkWZBAvk4cgZdQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       has-value: 0.3.1
@@ -17540,7 +17583,7 @@ packages:
     dev: true
 
   /urix/0.1.0:
-    resolution: {integrity: sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=}
+    resolution: {integrity: sha512-Am1ousAhSLBeB9cG/7k7r2R0zj50uDRlZHPGbazid5s9rlF1F/QKYObEKSIunSjIOkJZqwRRLpvewjEkM7pSqg==}
     deprecated: Please see https://github.com/lydell/urix#deprecated
     dev: true
 
@@ -17691,7 +17734,7 @@ packages:
     dev: true
 
   /verror/1.10.0:
-    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
+    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -17958,7 +18001,7 @@ packages:
     dev: true
 
   /yauzl/2.10.0:
-    resolution: {integrity: sha1-x+sXyT4RLLEIb6bY5R+wZnt5pfk=}
+    resolution: {integrity: sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==}
     dependencies:
       buffer-crc32: 0.2.13
       fd-slicer: 1.1.0

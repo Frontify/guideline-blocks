@@ -1,40 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { QueryBreakpoints, useContainerQueries } from '@frontify/guideline-blocks-shared';
+import { useContainerQueries } from '@frontify/guideline-blocks-shared';
 
 import { FC, useEffect, useState } from 'react';
-import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '../tailwind.config.js';
 
-type TailwindBreakpoints = { sm: string; md: string; lg: string; xl: string; '2xl': string };
-
-const getTailwindBreakpoints = (): QueryBreakpoints => {
-    const fullConfig = resolveConfig(tailwindConfig);
-    const { sm, md, lg, xl } = fullConfig.theme.screens as TailwindBreakpoints;
-    const parsedSm = parseInt(sm);
-    const parsedMd = parseInt(md);
-    const parsedLg = parseInt(lg);
-    const parsedXl = parseInt(xl);
-
-    return {
-        sm: [0, parsedSm],
-        md: [parsedSm + 1, parsedMd],
-        lg: [parsedMd + 1, parsedLg],
-        xl: [parsedLg + 1, parsedXl],
-        '2xl': [parsedXl + 1],
-    };
-};
-
 export const ExampleContainerQueriesBlock: FC = () => {
-    const { active, ref } = useContainerQueries({
-        breakpoints: getTailwindBreakpoints(),
+    const { activeBreakpoint, containerRef } = useContainerQueries({
+        tailwindConfig,
     });
 
-    const [backgroundState, setBackgroundState] = useState(active);
+    const [backgroundState, setBackgroundState] = useState(activeBreakpoint);
 
     useEffect(() => {
-        setBackgroundState(active);
-    }, [active]);
+        setBackgroundState(activeBreakpoint);
+    }, [activeBreakpoint]);
 
     let background: string;
     switch (backgroundState) {
@@ -62,13 +42,13 @@ export const ExampleContainerQueriesBlock: FC = () => {
                     resize: 'both',
                     background,
                 }}
-                ref={ref}
+                ref={containerRef}
             >
                 <div>
                     <b>Resize me!</b>
                 </div>
                 <br />
-                <div>Current breakpoint: {active}</div>
+                <div>Active breakpoint: {activeBreakpoint}</div>
             </div>
         </>
     );

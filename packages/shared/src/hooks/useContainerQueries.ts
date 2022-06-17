@@ -1,16 +1,19 @@
 import { RefCallback, useCallback, useLayoutEffect, useRef, useState } from 'react';
+import resolveConfig from 'tailwindcss/resolveConfig';
+import { TailwindConfig } from 'tailwindcss/tailwind-config.js';
 
 export type QueryBreakpoints = {
     [key: string]: [number, number?];
 };
 
 export type ContainerQueryProps = {
-    breakpoints: QueryBreakpoints;
+    breakpoints?: QueryBreakpoints;
+    tailwindConfig?: TailwindConfig;
 };
 
 export type ContainerQueryResult<T> = {
-    ref: RefCallback<T>;
-    active: string;
+    containerRef: RefCallback<T>;
+    activeBreakpoint: string;
 };
 
 type ContainerQueryState = {
@@ -18,9 +21,38 @@ type ContainerQueryState = {
     width: number;
 };
 
+type TailwindBreakpoints = { sm: string; md: string; lg: string; xl: string; '2xl': string };
+
 export function useContainerQueries<T extends HTMLElement>({
     breakpoints,
+    tailwindConfig,
 }: ContainerQueryProps): ContainerQueryResult<T> {
+    if (tailwindConfig) {
+        const fullConfig = resolveConfig(tailwindConfig);
+        const { sm, md, lg, xl } = fullConfig.theme.screens as TailwindBreakpoints;
+        const parsedSm = parseInt(sm);
+        const parsedMd = parseInt(md);
+        const parsedLg = parseInt(lg);
+        const parsedXl = parseInt(xl);
+
+        breakpoints = {
+            sm: [0, parsedSm],
+            md: [parsedSm + 1, parsedMd],
+            lg: [parsedMd + 1, parsedLg],
+            xl: [parsedLg + 1, parsedXl],
+            '2xl': [parsedXl + 1],
+        };
+    }
+
+    if (!breakpoints) {
+        breakpoints = {
+            sm: [0, 300],
+            md: [301, 600],
+            lg: [601, 900],
+            xl: [901],
+        };
+    }
+
     const initialBreakpoint = Object.keys(breakpoints)[0];
     const [state, setState] = useState<ContainerQueryState>({
         activeBreakpoint: initialBreakpoint,
@@ -33,7 +65,7 @@ export function useContainerQueries<T extends HTMLElement>({
     const matchBreakpoint = useCallback(
         (prevActive: string, width: number) => {
             let currentActive;
-            for (const [key, [min, max]] of Object.entries(breakpoints)) {
+            for (const [key, [min, max]] of Object.entries(breakpoints || [])) {
                 if (width >= min) {
                     if (max === undefined) {
                         currentActive = key;
@@ -94,7 +126,7 @@ export function useContainerQueries<T extends HTMLElement>({
     }, []);
 
     return {
-        ref: assignRef,
-        active: state.activeBreakpoint,
+        containerRef: assignRef,
+        activeBreakpoint: state.activeBreakpoint,
     } as const;
 }
