@@ -32,24 +32,22 @@ export const ExampleContainerQueriesBlock: FC = () => {
     }
 
     return (
-        <>
-            <div
-                data-test-id="example-container-queries-block"
-                className="tw-p-4 tw-resize tw-overflow-auto"
-                style={{
-                    resize: 'both',
-                    background,
-                }}
-                ref={containerRef}
-            >
-                <div>
-                    <b>Resize me!</b>
-                </div>
-                <br />
-                <div>
-                    Active breakpoint: <span data-test-id="breakpoint">{activeBreakpoint}</span>
-                </div>
+        <div
+            data-test-id="example-container-queries-block"
+            className="tw-p-4 tw-resize tw-overflow-auto"
+            style={{
+                resize: 'both',
+                background,
+            }}
+            ref={containerRef}
+        >
+            <div>
+                <b>Resize me!</b>
             </div>
-        </>
+            <br />
+            <div>
+                Active breakpoint: <span data-test-id="breakpoint">{activeBreakpoint}</span>
+            </div>
+        </div>
     );
 };

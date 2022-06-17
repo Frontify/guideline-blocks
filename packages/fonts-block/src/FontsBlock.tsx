@@ -14,11 +14,9 @@ export const FontsBlock: FC = () => {
 
     const [fonts, setFonts] = useState<[Font] | null>(null);
 
-    const url = `${window.location.origin}/api/font-family`;
-
     useEffect(() => {
         (async () => {
-            const response = await window.fetch(url);
+            const response = await window.fetch(`${window.location.origin}/api/font-family`);
             if (!response.ok) {
                 throw new Error(response.statusText);
             }
@@ -35,7 +33,7 @@ export const FontsBlock: FC = () => {
                 <div className={`${activeBreakpoint === 'md' ? 'tw-grid tw-grid-cols-2 tw-gap-8' : ''}`}>
                     {fonts.map((font) => {
                         return (
-                            <div className="tw-mb-11">
+                            <div key={font.name} className="tw-mb-11">
                                 <h3 className="tw-text-neutral-300">
                                     {font.name}
                                     <span
@@ -45,9 +43,9 @@ export const FontsBlock: FC = () => {
                                         Web
                                     </span>
                                 </h3>
-                                <div className={`tw-grid tw-grid-cols-3 tw-gap-3`}>
+                                <div className={'tw-grid tw-grid-cols-3 tw-gap-3'}>
                                     <div className={`${activeBreakpoint === 'sm' ? 'tw-col-span-2' : 'tw-col-span-3'}`}>
-                                        <div className={`tw-grid tw-grid-cols-12 tw-gap-3`}>
+                                        <div className={'tw-grid tw-grid-cols-12 tw-gap-3'}>
                                             <div
                                                 className={`${
                                                     activeBreakpoint === 'md' ? 'tw-col-span-12' : 'tw-col-span-2'
@@ -55,7 +53,7 @@ export const FontsBlock: FC = () => {
                                             >
                                                 <span
                                                     style={{ fontFamily: font.name }}
-                                                    className={`tw-text-7xl tw-mb-4`}
+                                                    className={'tw-text-7xl tw-mb-4'}
                                                 >
                                                     Aa
                                                 </span>
@@ -107,7 +105,7 @@ const FontsInformation: FC<{ font: Font; activeBreakpoint: string }> = ({ font, 
     return (
         <div className={getGrid()} style={{ borderColor: 'rgba(8, 8, 8, 0.1)', borderLeftWidth: '2px' }}>
             <div className={`${activeBreakpoint === 'md' ? 'tw-flex' : ''} `}>
-                <div className="">{font.name}</div>
+                <div>{font.name}</div>
                 <div className="font-weight">
                     <span className={`${activeBreakpoint === 'md' ? 'tw-pl-3' : ''}  tw-text-black-60`}>Weight:</span>{' '}
                     <span>0</span>
