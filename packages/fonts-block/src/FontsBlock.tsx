@@ -40,8 +40,11 @@ export const FontsBlock: FC = () => {
                         return (
                             <div className="tw-mb-11">
                                 <h3 className="tw-text-neutral-300">
-                                    {font.name}{' '}
-                                    <span className="tw-p-1 tw-bg-black-50 tw-rounded tw-text-white tw-uppercase tw-text-xxs">
+                                    {font.name}
+                                    <span
+                                        className="tw-p-1 tw-mx-3 tw-bg-black-10 tw-rounded-lg tw-text-black-80 tw-text-xxs"
+                                        style={{ position: 'relative', bottom: '2px' }}
+                                    >
                                         Web
                                     </span>
                                 </h3>
@@ -96,16 +99,16 @@ export const FontsBlock: FC = () => {
 const FontsInformation: FC<{ font: Font; activeBreakpoint: string }> = ({ font, activeBreakpoint }) => {
     const getGrid = () => {
         if (activeBreakpoint === 'sm') {
-            return 'tw-col-span-1 tw-border-l tw-border-black-40 tw-pl-7';
+            return 'tw-col-span-1 tw-border-l tw-pl-7';
         }
         if (activeBreakpoint === 'md') {
-            return 'tw-col-span-12';
+            return 'tw-col-span-12 tw-border-none';
         } else {
-            return 'tw-col-span-4 tw-border-l tw-border-black-40 tw-pl-7 tw-ml-6';
+            return 'tw-col-span-4 tw-border-l tw-pl-7 tw-ml-6';
         }
     };
     return (
-        <div className={getGrid()}>
+        <div className={getGrid()} style={{ borderColor: 'rgba(8, 8, 8, 0.1)', borderLeftWidth: '2px' }}>
             <div className={`${activeBreakpoint === 'md' ? 'tw-flex' : ''} `}>
                 <div className="">{font.name}</div>
                 <div className="font-weight">
@@ -119,7 +122,7 @@ const FontsInformation: FC<{ font: Font; activeBreakpoint: string }> = ({ font, 
             </div>
             {activeBreakpoint === 'md' && (
                 <div className="tw-py-4">
-                    <div className="tw-w-full tw-border-t"></div>
+                    <div className="tw-w-full tw-border-t" style={{ borderColor: 'rgba(8, 8, 8, 0.1)' }}></div>
                 </div>
             )}
         </div>
