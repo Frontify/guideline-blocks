@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
 import { useBlockSettings } from '@frontify/app-bridge';
+import '@frontify/fondue-tokens/styles';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
+import 'tailwindcss/tailwind.css';
 import {
     ALIGNMENT_DEFAULT_VALUE,
     COLOR_DEFAULT_RGBA_VALUE,
@@ -16,13 +16,13 @@ import {
 } from './settings';
 import css from './styles.module.css';
 import {
-    DividerStyle,
-    Props,
-    Settings,
     dividerAlignmentClasses,
     dividerHeightValues,
+    DividerStyle,
     dividerStyleClasses,
     dividerThicknessValues,
+    Props,
+    Settings,
 } from './types';
 
 export const DividerBlock: FC<Props> = ({ appBridge }) => {

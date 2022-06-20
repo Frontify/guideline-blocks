@@ -7,7 +7,7 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@cypress/vite-dev-server': 2.2.2
-      '@frontify/arcade': 7.2.0
+      '@frontify/fondue': 9.6.2
       '@testing-library/react-hooks': ^8.0.0
       '@types/node': 17.0.31
       '@types/react': 17.0.44
@@ -24,7 +24,7 @@ importers:
       vite: 2.9.9
       vitest: 0.14.1
     dependencies:
-      '@frontify/arcade': 7.2.0_ixschf3dw4wmlpmtb6entddskm
+      '@frontify/fondue': 9.6.2_ixschf3dw4wmlpmtb6entddskm
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -50,9 +50,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -68,8 +68,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -93,8 +93,8 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -111,7 +111,7 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue-tokens': 3.0.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -161,9 +161,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -179,8 +179,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -204,9 +204,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -230,8 +230,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       '@react-aria/checkbox': 3.3.4_react@17.0.2
@@ -263,9 +263,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -281,8 +281,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -306,9 +306,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -324,8 +324,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -349,9 +349,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -367,8 +367,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -392,9 +392,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -411,8 +411,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -437,9 +437,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -456,8 +456,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       dayjs: 1.11.2
@@ -482,9 +482,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -500,8 +500,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -524,8 +524,8 @@ importers:
     specifiers:
       '@babel/core': 7.18.2
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
       '@frontify/eslint-config-typescript': 0.15.2
+      '@frontify/fondue': 9.6.2
       '@frontify/guideline-blocks-settings': workspace:*
       '@testing-library/react-hooks': ^8.0.0
       '@types/node': 17.0.38
@@ -547,7 +547,7 @@ importers:
       vitest: 0.14.1
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_a2ihfqnlecu3gywfprtibl3a3i
+      '@frontify/fondue': 9.6.2_a2ihfqnlecu3gywfprtibl3a3i
       '@frontify/guideline-blocks-settings': link:../block-settings
       tinycolor2: 1.4.2
     devDependencies:
@@ -576,9 +576,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 9.2.1
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -595,8 +595,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 9.2.1_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -621,9 +621,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -640,8 +640,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       '@react-aria/interactions': 3.7.0_react@17.0.2
@@ -666,9 +666,9 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.15.1
-      '@frontify/arcade': 8.0.0
-      '@frontify/arcade-tokens': 3.0.0
       '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.6.2
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
@@ -686,8 +686,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/arcade': 8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/arcade-tokens': 3.0.0
+      '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
+      '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       lodash-es: 4.17.21
@@ -716,6 +716,7 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.10
+    dev: true
 
   /@babel/code-frame/7.16.7:
     resolution: {integrity: sha512-iAXqUn8IIeBTNd72xsFlgaXHkMBMt6y4HJp1tIaK465CWLT/fG1aqB7ykr95gHHmlBdGbFeWWfyB4NJJ0nmeIg==}
@@ -726,6 +727,7 @@ packages:
   /@babel/compat-data/7.17.10:
     resolution: {integrity: sha512-GZt/TCsG70Ms19gfZO1tM4CVnXsPgEPBCpJu+Qz3L0LUDsY5nZqFZglIoPC1kIYOtNBZlrnFT+klg12vFGZXrw==}
     engines: {node: '>=6.9.0'}
+    dev: true
 
   /@babel/core/7.17.10:
     resolution: {integrity: sha512-liKoppandF3ZcBnIYFjfSDHZLKdLHGJRkoWtG8zQyGJBQfIYobpnVGI5+pLBNtS6psFLDzyq8+h5HiVljW9PNA==}
@@ -748,6 +750,7 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/core/7.18.2:
     resolution: {integrity: sha512-A8pri1YJiC5UnkdrWcmfZTJTV85b4UXTAfImGmCfYmax4TR9Cw8sDS0MOk++Gp2mE/BefVJ5nwy5yzqNJbP/DQ==}
@@ -770,6 +773,7 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/generator/7.18.2:
     resolution: {integrity: sha512-W1lG5vUwFvfMd8HVXqdfbuG7RuaSrTCCD8cl8fP8wOivdbtbIg2Db3IWUcgvfxKbbn6ZBGYRW/Zk1MIwK49mgw==}
@@ -804,6 +808,7 @@ packages:
       '@babel/helper-validator-option': 7.16.7
       browserslist: 4.20.3
       semver: 6.3.0
+    dev: true
 
   /@babel/helper-compilation-targets/7.18.2_@babel+core@7.18.2:
     resolution: {integrity: sha512-s1jnPotJS9uQnzFtiZVBUxe67CuBa679oWFHpxYYnTpRL/1ffhyX44R9uYiXoa/pLXcY9H2moJta0iaanlk/rQ==}
@@ -816,6 +821,7 @@ packages:
       '@babel/helper-validator-option': 7.16.7
       browserslist: 4.20.3
       semver: 6.3.0
+    dev: true
 
   /@babel/helper-create-class-features-plugin/7.18.0_@babel+core@7.17.10:
     resolution: {integrity: sha512-Kh8zTGR9de3J63e5nS0rQUdRs/kbtwoeQQ0sriS0lItjC96u8XXZN6lKpuyWd2coKSU13py/y+LTmThLuVX0Pg==}
@@ -915,6 +921,7 @@ packages:
       '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/helper-optimise-call-expression/7.16.7:
     resolution: {integrity: sha512-EtgBhg7rd/JcnpZFXpBy0ze1YRfdm7BnBX4uKMBd3ixa3RGAE002JZB66FJyNH7g0F38U05pXmA5P8cBh7z+1w==}
@@ -962,6 +969,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.18.4
+    dev: true
 
   /@babel/helper-skip-transparent-expression-wrappers/7.16.0:
     resolution: {integrity: sha512-+il1gTy0oHwUsBQZyJvukbB4vPMdcYBrFHa0Uc4AizLxbq6BOYC51Rv4tWocX9BLBDLZ4kc6qUFpQ6HRgL+3zw==}
@@ -983,6 +991,7 @@ packages:
   /@babel/helper-validator-option/7.16.7:
     resolution: {integrity: sha512-TRtenOuRUVo9oIQGPC5G9DgK4743cdxvtOw0weQNpZXaS16SCBi5MNjZF8vba3ETURjZpTbVn7Vvcf2eAwFozQ==}
     engines: {node: '>=6.9.0'}
+    dev: true
 
   /@babel/helper-wrap-function/7.16.8:
     resolution: {integrity: sha512-8RpyRVIAW1RcDDGTA+GpPAwV22wXCfKOoM9bet6TLkGIFTkRQSkH1nMQ5Yet4MpoXe1ZwHPVtNasc2w0uZMqnw==}
@@ -1005,6 +1014,7 @@ packages:
       '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/highlight/7.17.9:
     resolution: {integrity: sha512-J9PfEKCbFIv2X5bjTMiZu6Vf341N05QIY+d6FvVKynkG1S7G0j3I0QoRtWIrXhZ+/Nlb5Q0MzqL7TokEJ5BNHg==}
@@ -2007,6 +2017,7 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/traverse/7.18.2_supports-color@5.5.0:
     resolution: {integrity: sha512-9eNwoeovJ6KH9zcCNnENY7DMFwTU9JdGCFtqNLfUAqtUHRCOsTOqWoffosP8vKmNYeSBUv3yVJXjfd8ucwOjUA==}
@@ -2043,18 +2054,21 @@ packages:
   /@cspotcode/source-map-consumer/0.8.0:
     resolution: {integrity: sha512-41qniHzTU8yAGbCp04ohlmSrZf8bkf/iJsl3V0dRGsQN/5GFfx+LbCSsCpp2gqrqjTVg/K6O8ycoV35JIwAzAg==}
     engines: {node: '>= 12'}
+    dev: true
 
   /@cspotcode/source-map-support/0.7.0:
     resolution: {integrity: sha512-X4xqRHqN8ACt2aHVe51OxeA2HjbcL4MqFqXkrmQszJ1NOUuUu5u6Vqx/0lZSVNku7velL5FC/s5uEAj1lsBMhA==}
     engines: {node: '>=12'}
     dependencies:
       '@cspotcode/source-map-consumer': 0.8.0
+    dev: true
 
   /@cspotcode/source-map-support/0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
+    dev: true
 
   /@cypress/mount-utils/1.0.2:
     resolution: {integrity: sha512-Fn3fdTiyayHoy8Ol0RSu4MlBH2maQ2ZEXeEVKl/zHHXEQpld5HX3vdNLhK5YLij8cLynA4DxOT/nO9iEnIiOXw==}
@@ -2138,13 +2152,11 @@ packages:
       - supports-color
     dev: true
 
-  /@cypress/xvfb/1.2.4_supports-color@8.1.1:
+  /@cypress/xvfb/1.2.4:
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
     dependencies:
-      debug: 3.2.7_supports-color@8.1.1
+      debug: 3.2.7
       lodash.once: 4.1.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@emotion/is-prop-valid/0.8.8:
@@ -2247,354 +2259,6 @@ packages:
       sinon: 13.0.2
     dev: false
 
-  /@frontify/arcade-tokens/2.0.0:
-    resolution: {integrity: sha512-nFct41unvE7tZ9rzH/iHVvbSjFv/3KW4bc5EuCL0ofV0JrQ+jsrMNy4eQfDQd3KhujWVZao5jbDNBqOf4ntLrA==}
-    deprecated: 'WARNING: This project has been renamed to @frontify/fondue-tokens. Install using @frontify/fondue-tokens instead.'
-    dependencies:
-      tailwindcss: 3.0.24
-    transitivePeerDependencies:
-      - ts-node
-    dev: false
-
-  /@frontify/arcade-tokens/2.0.0_ts-node@10.7.0:
-    resolution: {integrity: sha512-nFct41unvE7tZ9rzH/iHVvbSjFv/3KW4bc5EuCL0ofV0JrQ+jsrMNy4eQfDQd3KhujWVZao5jbDNBqOf4ntLrA==}
-    deprecated: 'WARNING: This project has been renamed to @frontify/fondue-tokens. Install using @frontify/fondue-tokens instead.'
-    dependencies:
-      tailwindcss: 3.0.24_ts-node@10.7.0
-    transitivePeerDependencies:
-      - ts-node
-    dev: false
-
-  /@frontify/arcade-tokens/2.0.0_ts-node@10.8.0:
-    resolution: {integrity: sha512-nFct41unvE7tZ9rzH/iHVvbSjFv/3KW4bc5EuCL0ofV0JrQ+jsrMNy4eQfDQd3KhujWVZao5jbDNBqOf4ntLrA==}
-    deprecated: 'WARNING: This project has been renamed to @frontify/fondue-tokens. Install using @frontify/fondue-tokens instead.'
-    dependencies:
-      tailwindcss: 3.0.24_ts-node@10.8.0
-    transitivePeerDependencies:
-      - ts-node
-    dev: false
-
-  /@frontify/arcade-tokens/3.0.0:
-    resolution: {integrity: sha512-w7pys+9p6zTCQ6tf2gdAZ6SpaYLndrWqtrpln+Yrb/xFt6kJM6KuDsST1Dtp9VtOXlvKuO/ot0JWK9ceQgjM/A==}
-    deprecated: 'WARNING: This project has been renamed to @frontify/fondue-tokens. Install using @frontify/fondue-tokens instead.'
-    dependencies:
-      tailwindcss: 3.0.24
-    transitivePeerDependencies:
-      - ts-node
-    dev: false
-
-  /@frontify/arcade/7.2.0_ixschf3dw4wmlpmtb6entddskm:
-    resolution: {integrity: sha512-xgD7769ux2bHC9Oduvypliwy6mDSdV7HLFODXxbMD4/CN+0pJZ/dp0wBHIQuGTslytKleT5TjDgkok5EG/Ttjw==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/arcade-tokens': 2.0.0_ts-node@10.7.0
-      '@popperjs/core': 2.11.5
-      '@react-aria/accordion': 3.0.0-alpha.6_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
-      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
-      '@react-aria/button': 3.4.4_react@17.0.2
-      '@react-aria/checkbox': 3.3.4_react@17.0.2
-      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.1.9_react@17.0.2
-      '@react-aria/focus': 3.5.5_react@17.0.2
-      '@react-aria/interactions': 3.8.4_react@17.0.2
-      '@react-aria/link': 3.2.5_react@17.0.2
-      '@react-aria/listbox': 3.4.5_react@17.0.2
-      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.1.11_react@17.0.2
-      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.8.2_react@17.0.2
-      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.1.8_react@17.0.2
-      '@react-aria/utils': 3.12.0_react@17.0.2
-      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.0.7_react@17.0.2
-      '@react-stately/collections': 3.3.8_react@17.0.2
-      '@react-stately/combobox': 3.0.5_react@17.0.2
-      '@react-stately/list': 3.4.5_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
-      '@react-stately/radio': 3.3.6_react@17.0.2
-      '@react-stately/select': 3.1.7_react@17.0.2
-      '@react-stately/table': 3.1.3_react@17.0.2
-      '@react-stately/toggle': 3.2.7_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
-      '@react-stately/tree': 3.2.4_react@17.0.2
-      '@udecode/plate': 10.8.0_zc2vh2wwv7lbj52mzddzr77uju
-      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
-      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
-      date-fns: 2.28.0
-      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.12
-      react: 17.0.2
-      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_yrx6c7pcyg2anfwb6fixho7jky
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.1.0
-      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
-      tinycolor2: 1.4.2
-      xstate: 4.32.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/arcade/8.0.0_a2ihfqnlecu3gywfprtibl3a3i:
-    resolution: {integrity: sha512-F5gl5M7oNh99qZe5IExc2jeyzh6QlwVcmIx/vYQDVtZZJi+cdDpcLcs/ShRpKPyfFyM8zcP93nE8xBG22MOTNg==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/arcade-tokens': 2.0.0_ts-node@10.8.0
-      '@popperjs/core': 2.11.5
-      '@react-aria/accordion': 3.0.0-alpha.6_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
-      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
-      '@react-aria/button': 3.4.4_react@17.0.2
-      '@react-aria/checkbox': 3.3.4_react@17.0.2
-      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.1.9_react@17.0.2
-      '@react-aria/focus': 3.5.5_react@17.0.2
-      '@react-aria/interactions': 3.8.4_react@17.0.2
-      '@react-aria/link': 3.2.5_react@17.0.2
-      '@react-aria/listbox': 3.4.5_react@17.0.2
-      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.1.11_react@17.0.2
-      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.8.2_react@17.0.2
-      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.1.8_react@17.0.2
-      '@react-aria/utils': 3.12.0_react@17.0.2
-      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.0.7_react@17.0.2
-      '@react-stately/collections': 3.3.8_react@17.0.2
-      '@react-stately/combobox': 3.0.5_react@17.0.2
-      '@react-stately/list': 3.4.5_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
-      '@react-stately/radio': 3.3.6_react@17.0.2
-      '@react-stately/select': 3.1.7_react@17.0.2
-      '@react-stately/table': 3.1.3_react@17.0.2
-      '@react-stately/toggle': 3.2.7_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
-      '@react-stately/tree': 3.2.4_react@17.0.2
-      '@udecode/plate': 10.8.0_ixi2pgan4r45mmjnlcqeir4s5e
-      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
-      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
-      date-fns: 2.28.0
-      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.12
-      react: 17.0.2
-      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_vc2zw5vo24bvxatxu6ov3fqz7y
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.1.0
-      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
-      tinycolor2: 1.4.2
-      xstate: 4.32.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/arcade/8.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie:
-    resolution: {integrity: sha512-F5gl5M7oNh99qZe5IExc2jeyzh6QlwVcmIx/vYQDVtZZJi+cdDpcLcs/ShRpKPyfFyM8zcP93nE8xBG22MOTNg==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/arcade-tokens': 2.0.0
-      '@popperjs/core': 2.11.5
-      '@react-aria/accordion': 3.0.0-alpha.6_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
-      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
-      '@react-aria/button': 3.4.4_react@17.0.2
-      '@react-aria/checkbox': 3.3.4_react@17.0.2
-      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.1.9_react@17.0.2
-      '@react-aria/focus': 3.5.5_react@17.0.2
-      '@react-aria/interactions': 3.8.4_react@17.0.2
-      '@react-aria/link': 3.2.5_react@17.0.2
-      '@react-aria/listbox': 3.4.5_react@17.0.2
-      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.1.11_react@17.0.2
-      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.8.2_react@17.0.2
-      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.1.8_react@17.0.2
-      '@react-aria/utils': 3.12.0_react@17.0.2
-      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.0.7_react@17.0.2
-      '@react-stately/collections': 3.3.8_react@17.0.2
-      '@react-stately/combobox': 3.0.5_react@17.0.2
-      '@react-stately/list': 3.4.5_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
-      '@react-stately/radio': 3.3.6_react@17.0.2
-      '@react-stately/select': 3.1.7_react@17.0.2
-      '@react-stately/table': 3.1.3_react@17.0.2
-      '@react-stately/toggle': 3.2.7_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
-      '@react-stately/tree': 3.2.4_react@17.0.2
-      '@udecode/plate': 10.8.0_4sdlv22vvqda7zisf7mhjd4rp4
-      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
-      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
-      date-fns: 2.28.0
-      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.12
-      react: 17.0.2
-      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_zdsfwtvwq54q3oqxwtq4jnbhh4
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.1.0
-      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
-      tinycolor2: 1.4.2
-      xstate: 4.32.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/arcade/9.2.1_fcdgd5lt5hi7mmx5qv2pcp22ie:
-    resolution: {integrity: sha512-d1pPCW1AXarM1ErVyyZ1yyLzATo4s9Xb47+CSgmiCBxMPCxIWbpFlataOtgDnKRwT0EnJwwVLnSyDYLyQVa7Tw==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/arcade-tokens': 2.0.0
-      '@popperjs/core': 2.11.5
-      '@react-aria/accordion': 3.0.0-alpha.6_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
-      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
-      '@react-aria/button': 3.4.4_react@17.0.2
-      '@react-aria/checkbox': 3.3.4_react@17.0.2
-      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.1.9_react@17.0.2
-      '@react-aria/focus': 3.5.5_react@17.0.2
-      '@react-aria/interactions': 3.8.4_react@17.0.2
-      '@react-aria/link': 3.2.5_react@17.0.2
-      '@react-aria/listbox': 3.4.5_react@17.0.2
-      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.1.11_react@17.0.2
-      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.8.2_react@17.0.2
-      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.1.8_react@17.0.2
-      '@react-aria/utils': 3.12.0_react@17.0.2
-      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.0.7_react@17.0.2
-      '@react-stately/collections': 3.3.8_react@17.0.2
-      '@react-stately/combobox': 3.0.5_react@17.0.2
-      '@react-stately/list': 3.4.5_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
-      '@react-stately/radio': 3.3.6_react@17.0.2
-      '@react-stately/select': 3.1.7_react@17.0.2
-      '@react-stately/table': 3.1.3_react@17.0.2
-      '@react-stately/toggle': 3.2.7_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
-      '@react-stately/tree': 3.2.4_react@17.0.2
-      '@udecode/plate': 10.8.0_4sdlv22vvqda7zisf7mhjd4rp4
-      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
-      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
-      date-fns: 2.28.0
-      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.12
-      react: 17.0.2
-      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_zdsfwtvwq54q3oqxwtq4jnbhh4
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.1.0
-      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
-      tinycolor2: 1.4.2
-      xstate: 4.32.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
   /@frontify/eslint-config-basic/0.15.2_bppm6sp3oxoychvfagx6tcd7pe:
     resolution: {integrity: sha512-SvFp81SubqqyA0NIm1NkIAyzsM36iWUfjotZOSKICs6p8R9GNATvqgw9fWmS79WO5jMiRRmsbjoQFYnqvjHE4Q==}
     peerDependencies:
@@ -2684,6 +2348,259 @@ packages:
       tailwindcss: 3.0.24
     transitivePeerDependencies:
       - ts-node
+    dev: false
+
+  /@frontify/fondue-tokens/3.0.1_ts-node@10.7.0:
+    resolution: {integrity: sha512-r4EODHmTs2SKayUl+WoMmozTVoBqpP9rzKeToVGlvuUS0NizSIKazib4pgW2z6jmsALvPGYFQvtVi2Mmmwlj9w==}
+    dependencies:
+      tailwindcss: 3.0.24_ts-node@10.7.0
+    transitivePeerDependencies:
+      - ts-node
+    dev: false
+
+  /@frontify/fondue-tokens/3.0.1_ts-node@10.8.0:
+    resolution: {integrity: sha512-r4EODHmTs2SKayUl+WoMmozTVoBqpP9rzKeToVGlvuUS0NizSIKazib4pgW2z6jmsALvPGYFQvtVi2Mmmwlj9w==}
+    dependencies:
+      tailwindcss: 3.0.24_ts-node@10.8.0
+    transitivePeerDependencies:
+      - ts-node
+    dev: false
+
+  /@frontify/fondue/9.6.2_a2ihfqnlecu3gywfprtibl3a3i:
+    resolution: {integrity: sha512-z0Iwn1pox/mVQhurs0cDY5KlOBwsoGjpaJAh5zfqM3k1IowPqbw1418iDS/do6SOCZzM1vPAYWtT6eR1R1RgkQ==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.0.1_ts-node@10.8.0
+      '@popperjs/core': 2.11.5
+      '@react-aria/accordion': 3.0.0-alpha.6_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
+      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
+      '@react-aria/button': 3.4.4_react@17.0.2
+      '@react-aria/checkbox': 3.3.4_react@17.0.2
+      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.1.9_react@17.0.2
+      '@react-aria/focus': 3.5.5_react@17.0.2
+      '@react-aria/interactions': 3.8.4_react@17.0.2
+      '@react-aria/link': 3.2.5_react@17.0.2
+      '@react-aria/listbox': 3.4.5_react@17.0.2
+      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.1.11_react@17.0.2
+      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.8.2_react@17.0.2
+      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.1.8_react@17.0.2
+      '@react-aria/utils': 3.12.0_react@17.0.2
+      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
+      '@react-stately/checkbox': 3.0.7_react@17.0.2
+      '@react-stately/collections': 3.3.8_react@17.0.2
+      '@react-stately/combobox': 3.0.5_react@17.0.2
+      '@react-stately/list': 3.4.5_react@17.0.2
+      '@react-stately/menu': 3.2.7_react@17.0.2
+      '@react-stately/overlays': 3.2.0_react@17.0.2
+      '@react-stately/radio': 3.3.6_react@17.0.2
+      '@react-stately/select': 3.1.7_react@17.0.2
+      '@react-stately/table': 3.1.3_react@17.0.2
+      '@react-stately/toggle': 3.2.7_react@17.0.2
+      '@react-stately/tooltip': 3.0.9_react@17.0.2
+      '@react-stately/tree': 3.2.4_react@17.0.2
+      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 10.8.0_ixi2pgan4r45mmjnlcqeir4s5e
+      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
+      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
+      date-fns: 2.28.0
+      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.12
+      react: 17.0.2
+      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_vc2zw5vo24bvxatxu6ov3fqz7y
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.1.0
+      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
+      tinycolor2: 1.4.2
+      xstate: 4.32.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/fondue/9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie:
+    resolution: {integrity: sha512-z0Iwn1pox/mVQhurs0cDY5KlOBwsoGjpaJAh5zfqM3k1IowPqbw1418iDS/do6SOCZzM1vPAYWtT6eR1R1RgkQ==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.0.1
+      '@popperjs/core': 2.11.5
+      '@react-aria/accordion': 3.0.0-alpha.6_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
+      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
+      '@react-aria/button': 3.4.4_react@17.0.2
+      '@react-aria/checkbox': 3.3.4_react@17.0.2
+      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.1.9_react@17.0.2
+      '@react-aria/focus': 3.5.5_react@17.0.2
+      '@react-aria/interactions': 3.8.4_react@17.0.2
+      '@react-aria/link': 3.2.5_react@17.0.2
+      '@react-aria/listbox': 3.4.5_react@17.0.2
+      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.1.11_react@17.0.2
+      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.8.2_react@17.0.2
+      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.1.8_react@17.0.2
+      '@react-aria/utils': 3.12.0_react@17.0.2
+      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
+      '@react-stately/checkbox': 3.0.7_react@17.0.2
+      '@react-stately/collections': 3.3.8_react@17.0.2
+      '@react-stately/combobox': 3.0.5_react@17.0.2
+      '@react-stately/list': 3.4.5_react@17.0.2
+      '@react-stately/menu': 3.2.7_react@17.0.2
+      '@react-stately/overlays': 3.2.0_react@17.0.2
+      '@react-stately/radio': 3.3.6_react@17.0.2
+      '@react-stately/select': 3.1.7_react@17.0.2
+      '@react-stately/table': 3.1.3_react@17.0.2
+      '@react-stately/toggle': 3.2.7_react@17.0.2
+      '@react-stately/tooltip': 3.0.9_react@17.0.2
+      '@react-stately/tree': 3.2.4_react@17.0.2
+      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 10.8.0_4sdlv22vvqda7zisf7mhjd4rp4
+      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
+      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
+      date-fns: 2.28.0
+      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.12
+      react: 17.0.2
+      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_zdsfwtvwq54q3oqxwtq4jnbhh4
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.1.0
+      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
+      tinycolor2: 1.4.2
+      xstate: 4.32.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/fondue/9.6.2_ixschf3dw4wmlpmtb6entddskm:
+    resolution: {integrity: sha512-z0Iwn1pox/mVQhurs0cDY5KlOBwsoGjpaJAh5zfqM3k1IowPqbw1418iDS/do6SOCZzM1vPAYWtT6eR1R1RgkQ==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.0.1_ts-node@10.7.0
+      '@popperjs/core': 2.11.5
+      '@react-aria/accordion': 3.0.0-alpha.6_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
+      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
+      '@react-aria/button': 3.4.4_react@17.0.2
+      '@react-aria/checkbox': 3.3.4_react@17.0.2
+      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.1.9_react@17.0.2
+      '@react-aria/focus': 3.5.5_react@17.0.2
+      '@react-aria/interactions': 3.8.4_react@17.0.2
+      '@react-aria/link': 3.2.5_react@17.0.2
+      '@react-aria/listbox': 3.4.5_react@17.0.2
+      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.1.11_react@17.0.2
+      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.8.2_react@17.0.2
+      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.1.8_react@17.0.2
+      '@react-aria/utils': 3.12.0_react@17.0.2
+      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
+      '@react-stately/checkbox': 3.0.7_react@17.0.2
+      '@react-stately/collections': 3.3.8_react@17.0.2
+      '@react-stately/combobox': 3.0.5_react@17.0.2
+      '@react-stately/list': 3.4.5_react@17.0.2
+      '@react-stately/menu': 3.2.7_react@17.0.2
+      '@react-stately/overlays': 3.2.0_react@17.0.2
+      '@react-stately/radio': 3.3.6_react@17.0.2
+      '@react-stately/select': 3.1.7_react@17.0.2
+      '@react-stately/table': 3.1.3_react@17.0.2
+      '@react-stately/toggle': 3.2.7_react@17.0.2
+      '@react-stately/tooltip': 3.0.9_react@17.0.2
+      '@react-stately/tree': 3.2.4_react@17.0.2
+      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 10.8.0_zc2vh2wwv7lbj52mzddzr77uju
+      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
+      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
+      date-fns: 2.28.0
+      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.12
+      react: 17.0.2
+      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_yrx6c7pcyg2anfwb6fixho7jky
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.1.0
+      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
+      tinycolor2: 1.4.2
+      xstate: 4.32.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
     dev: false
 
   /@frontify/fondue/9.6.2_sfoxds7t5ydpegc3knd667wn6m:
@@ -2842,6 +2759,7 @@ packages:
     dependencies:
       '@jridgewell/set-array': 1.1.1
       '@jridgewell/sourcemap-codec': 1.4.13
+    dev: true
 
   /@jridgewell/gen-mapping/0.3.1:
     resolution: {integrity: sha512-GcHwniMlA2z+WFPWuY8lp3fsza0I8xPFMWL5+n8LYyP6PSvPrXf4+n8stDHZY2DM0zy9sVkRDy1jDI4XGzYVqg==}
@@ -2873,6 +2791,7 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.0.7
       '@jridgewell/sourcemap-codec': 1.4.13
+    dev: true
 
   /@microsoft/api-extractor-model/7.17.2:
     resolution: {integrity: sha512-fYfCeBeLm7jnZligC64qHiH4/vzswFLDfyPpX+uKO36OI2kIeMHrYG0zaezmuinKvE4vg1dAz38zZeDbPvBKGg==}
@@ -4188,15 +4107,19 @@ packages:
 
   /@tsconfig/node10/1.0.8:
     resolution: {integrity: sha512-6XFfSQmMgq0CFLY1MslA/CPUfhIL919M1rMsa5lP2P097N2Wd1sSX0tx1u4olM16fLNhtHZpRhedZJphNJqmZg==}
+    dev: true
 
   /@tsconfig/node12/1.0.9:
     resolution: {integrity: sha512-/yBMcem+fbvhSREH+s14YJi18sp7J9jpuhYByADT2rypfajMZZN4WQ6zBGgBKp53NKmqI36wFYDb3yaMPurITw==}
+    dev: true
 
   /@tsconfig/node14/1.0.1:
     resolution: {integrity: sha512-509r2+yARFfHHE7T6Puu2jjkoycftovhXRqW328PDXTVGKihlb1P8Z9mMZH04ebyajfRY7dedfGynlrFHJUQCg==}
+    dev: true
 
   /@tsconfig/node16/1.0.2:
     resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
+    dev: true
 
   /@types/argparse/1.0.38:
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
@@ -4295,9 +4218,11 @@ packages:
 
   /@types/node/17.0.31:
     resolution: {integrity: sha512-AR0x5HbXGqkEx9CadRH3EBYx/VkiUgZIhP4wvPn/+5KIsgpNoyFaRlVe0Zlx9gRtg8fA06a9tskE2MSN7TcG4Q==}
+    dev: true
 
   /@types/node/17.0.38:
     resolution: {integrity: sha512-5jY9RhV7c0Z4Jy09G+NIDTsCZ5G0L5n+Z+p+Y7t5VJHM30bgwzSjVtlcBxqAj+6L/swIlvtOSzr8rBk/aNyV2g==}
+    dev: true
 
   /@types/node/8.10.66:
     resolution: {integrity: sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==}
@@ -10265,6 +10190,7 @@ packages:
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
+    dev: true
 
   /acorn/7.4.1:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
@@ -10275,6 +10201,7 @@ packages:
     resolution: {integrity: sha512-Xx54uLJQZ19lKygFXOWsscKUbsBZW0CPykPhVQdhIeIwrbPmJzqeASDInc8nKBnp/JT6igTs82qPXz069H8I/A==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: true
 
   /aggregate-error/3.1.0:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
@@ -10348,6 +10275,7 @@ packages:
 
   /arg/4.1.3:
     resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
+    dev: true
 
   /arg/5.0.1:
     resolution: {integrity: sha512-e0hDa9H2Z9AwFkk2qDlwhoMYE4eToKarchkQHovNdLTCYMHZHeRjI71crOh+dio4K6u1IcwubQqo79Ga4CyAQA==}
@@ -10704,8 +10632,6 @@ packages:
       snapdragon-node: 2.1.1
       split-string: 3.1.0
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /braces/3.0.2:
@@ -10789,6 +10715,7 @@ packages:
       escalade: 3.1.1
       node-releases: 2.0.4
       picocolors: 1.0.0
+    dev: true
 
   /buffer-crc32/0.2.13:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
@@ -10873,6 +10800,7 @@ packages:
 
   /caniuse-lite/1.0.30001338:
     resolution: {integrity: sha512-1gLHWyfVoRDsHieO+CaeYe7jSo/MT7D7lhaXUiwwbuR5BwQxORs0f1tAwUSQr3YbxRXJvxHM/PA5FfPQRnsPeQ==}
+    dev: true
 
   /caseless/0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -11199,6 +11127,7 @@ packages:
     resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==}
     dependencies:
       safe-buffer: 5.1.2
+    dev: true
 
   /cookie/0.4.2:
     resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
@@ -11267,6 +11196,7 @@ packages:
 
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
+    dev: true
 
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -11435,7 +11365,7 @@ packages:
     requiresBuild: true
     dependencies:
       '@cypress/request': 2.88.10
-      '@cypress/xvfb': 1.2.4_supports-color@8.1.1
+      '@cypress/xvfb': 1.2.4
       '@types/node': 14.18.21
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.3
@@ -11499,35 +11429,19 @@ packages:
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
     dependencies:
       ms: 2.0.0
     dev: true
 
-  /debug/3.2.7_supports-color@8.1.1:
+  /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
     dependencies:
       ms: 2.1.3
-      supports-color: 8.1.1
     dev: true
 
   /debug/4.1.1:
     resolution: {integrity: sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==}
     deprecated: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
     dependencies:
       ms: 2.1.3
     dev: true
@@ -11670,6 +11584,7 @@ packages:
   /diff/4.0.2:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
+    dev: true
 
   /diff/5.0.0:
     resolution: {integrity: sha512-/VTCrvm5Z0JGty/BWHljh+BAiw3IK+2j87NGMu8Nwc/f48WoDAC395uomO9ZD117ZOBaHmkX1oyLvkVM/aIT3w==}
@@ -11800,6 +11715,7 @@ packages:
 
   /electron-to-chromium/1.4.137:
     resolution: {integrity: sha512-0Rcpald12O11BUogJagX3HsCN3FE83DSqWjgXoHo5a72KUKMSfI39XBgJpgNNxS9fuGzytaFjE06kZkiVFy2qA==}
+    dev: true
 
   /element-resize-detector/1.2.4:
     resolution: {integrity: sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==}
@@ -12129,6 +12045,7 @@ packages:
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
     engines: {node: '>=6'}
+    dev: true
 
   /escape-goat/3.0.0:
     resolution: {integrity: sha512-w3PwNZJwRxlp47QGzhuEBldEqVHHhh8/tIPcl6ecf2Bou99cdAt0knihBV0Ecc7CGxYduXVBDheH1K2oADRlvw==}
@@ -12631,8 +12548,6 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /extend-shallow/2.0.1:
@@ -12674,8 +12589,6 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /extract-zip/2.0.1_supports-color@8.1.1:
@@ -12778,8 +12691,6 @@ packages:
       p-limit: 3.1.0
       readable-stream: 3.6.0
       send: 0.17.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /fastify-websocket/4.2.1:
@@ -12892,8 +12803,6 @@ packages:
       debug: 4.1.1
       find-yarn-workspace-root: 1.2.1
       mocked-env: 1.3.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /find-yarn-workspace-root/1.2.1:
@@ -12901,8 +12810,6 @@ packages:
     dependencies:
       fs-extra: 4.0.3
       micromatch: 3.1.10
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /find-yarn-workspace-root/2.0.0:
@@ -13077,6 +12984,7 @@ packages:
   /gensync/1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
+    dev: true
 
   /get-caller-file/2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
@@ -14249,6 +14157,7 @@ packages:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
     engines: {node: '>=6'}
     hasBin: true
+    dev: true
 
   /jsonc-eslint-parser/2.1.0:
     resolution: {integrity: sha512-qCRJWlbP2v6HbmKW7R3lFbeiVWHo+oMJ0j+MizwvauqnCV/EvtAeEeuCgoc/ErtsuoKgYB8U4Ih8AxJbXoE6/g==}
@@ -14501,6 +14410,7 @@ packages:
 
   /make-error/1.3.6:
     resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
+    dev: true
 
   /map-cache/0.2.2:
     resolution: {integrity: sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg==}
@@ -14589,8 +14499,6 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /micromatch/4.0.5:
@@ -14707,8 +14615,6 @@ packages:
       debug: 4.1.1
       lazy-ass: 1.6.0
       ramda: 0.26.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /ms/2.0.0:
@@ -14801,8 +14707,6 @@ packages:
       regex-not: 1.0.2
       snapdragon: 0.8.2
       to-regex: 3.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /natural-compare/1.4.0:
@@ -14832,6 +14736,7 @@ packages:
 
   /node-releases/2.0.4:
     resolution: {integrity: sha512-gbMzqQtTtDz/00jQzZ21PQzdI9PyLYqUSvD0p3naOhX4odFji0ZxYdnVwPTxmSwkmxhcFImpozceidSG+AgoPQ==}
+    dev: true
 
   /node-stdlib-browser/1.2.0:
     resolution: {integrity: sha512-VSjFxUhRhkyed8AtLwSCkMrJRfQ3e2lGtG3sP6FEgaLKBBbxM/dLfjRe1+iLhjvyLFW3tBQ8+c0pcOtXGbAZJg==}
@@ -15844,7 +15749,6 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.4
-    dev: false
 
   /qs/6.5.3:
     resolution: {integrity: sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==}
@@ -16661,6 +16565,7 @@ packages:
 
   /safe-buffer/5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
+    dev: true
 
   /safe-buffer/5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
@@ -16725,6 +16630,7 @@ packages:
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
+    dev: true
 
   /semver/7.0.0:
     resolution: {integrity: sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==}
@@ -16756,8 +16662,6 @@ packages:
       on-finished: 2.3.0
       range-parser: 1.2.1
       statuses: 1.5.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /set-cookie-parser/2.4.8:
@@ -16934,8 +16838,6 @@ packages:
       source-map: 0.5.6
       source-map-resolve: 0.5.3
       use: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /sonic-boom/1.4.1:
@@ -17410,7 +17312,7 @@ packages:
       http-basic: 8.1.3
       http-response-object: 3.0.2
       promise: 8.1.0
-      qs: 6.5.3
+      qs: 6.10.5
     dev: true
 
   /throttle-debounce/3.0.1:
@@ -17520,7 +17422,7 @@ packages:
     dev: true
 
   /toggle-selection/1.0.6:
-    resolution: {integrity: sha1-bkWxJj8gF/oKzH2J14sVuL932jI=}
+    resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==}
     dev: false
 
   /toidentifier/1.0.1:
@@ -17588,6 +17490,7 @@ packages:
       typescript: 4.6.4
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    dev: true
 
   /ts-node/10.8.0_h77muqpegcwcauif74p6js2ti4:
     resolution: {integrity: sha512-/fNd5Qh+zTt8Vt1KbYZjRHCE9sI5i7nqfD/dzBBRDeVXZXS6kToW6R7tTU6Nd4XavFs0mAVCg29Q//ML7WsZYA==}
@@ -17618,6 +17521,7 @@ packages:
       typescript: 4.7.2
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    dev: true
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
@@ -17707,11 +17611,13 @@ packages:
     resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /typescript/4.7.2:
     resolution: {integrity: sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
@@ -17905,7 +17811,7 @@ packages:
     dev: true
 
   /util-deprecate/1.0.2:
-    resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
+    resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
   /util/0.12.4:
     resolution: {integrity: sha512-bxZ9qtSlGUWSOy9Qa9Xgk11kSslpuZwaxCg4sNIDj6FLucDab2JxnHwyNTCpHMtK1MjoQiWQ6DiUMZYbSrO+Sw==}
@@ -17925,6 +17831,7 @@ packages:
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
+    dev: true
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
@@ -18228,6 +18135,7 @@ packages:
   /yn/3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
+    dev: true
 
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}

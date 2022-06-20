@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { IconReject, IconSize, Tooltip } from '@frontify/fondue';
 import { FC } from 'react';
-import { IconReject, IconSize, Tooltip } from '@frontify/arcade';
 
 type RemoveButtonProps = {
     onClick: () => void;

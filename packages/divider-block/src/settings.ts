@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/arcade';
+import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
@@ -13,11 +13,11 @@ import {
 import {
     DividerAlignment,
     DividerHeight,
+    dividerHeightValues,
     DividerStyle,
     DividerThickness,
-    DividerWidth,
-    dividerHeightValues,
     dividerThicknessValues,
+    DividerWidth,
 } from './types';
 
 const IS_LINE_ID = 'isLine';

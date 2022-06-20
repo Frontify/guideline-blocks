@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FOCUS_STYLE, merge } from '@frontify/arcade';
+import { FOCUS_STYLE, merge } from '@frontify/fondue';
 import { useFocusRing } from '@react-aria/focus';
-import React, { FC, KeyboardEvent, MouseEvent, ReactElement, useRef } from 'react';
+import { FC, KeyboardEvent, MouseEvent, ReactElement, useRef } from 'react';
 
 type FocusControllerProps = {
     children: ReactElement;

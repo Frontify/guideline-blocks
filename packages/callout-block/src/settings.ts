@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
@@ -9,7 +9,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { Alignment, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
+import { Alignment, leftRightPaddingMap, Padding, topBottomPaddingMap, Type, Width } from './types';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_TOP_ID = 'paddingTop';

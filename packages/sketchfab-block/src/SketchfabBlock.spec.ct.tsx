@@ -2,10 +2,10 @@
 
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/app-bridge';
-import { Validation, validationClassMap } from '@frontify/arcade';
+import { Validation, validationClassMap } from '@frontify/fondue';
 import { SKETCHFAB_RULE_ERROR } from './helpers';
 import { SketchfabBlock } from './SketchfabBlock';
-import { SketchfabHeight, SketchfabSettings, heights } from './types';
+import { heights, SketchfabHeight, SketchfabSettings } from './types';
 
 const MAIN_BLOCK_ID = '[data-test-id="sketchfab-block"]';
 const TEXT_INPUT_ID = '[data-test-id="text-input"]';

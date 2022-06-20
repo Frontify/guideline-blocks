@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/arcade';
+import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/fondue';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useMemo } from 'react';
 import { DoDontItemProps, DoDontStyle, DoDontType, EditorChild, EditorElement } from './types';
