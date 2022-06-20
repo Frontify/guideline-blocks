@@ -16,13 +16,13 @@ import {
 } from './settings';
 import css from './styles.module.css';
 import {
-    dividerAlignmentClasses,
-    dividerHeightValues,
     DividerStyle,
-    dividerStyleClasses,
-    dividerThicknessValues,
     Props,
     Settings,
+    dividerAlignmentClasses,
+    dividerHeightValues,
+    dividerStyleClasses,
+    dividerThicknessValues,
 } from './types';
 
 export const DividerBlock: FC<Props> = ({ appBridge }) => {

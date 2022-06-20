@@ -9,7 +9,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { Alignment, leftRightPaddingMap, Padding, topBottomPaddingMap, Type, Width } from './types';
+import { Alignment, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_TOP_ID = 'paddingTop';

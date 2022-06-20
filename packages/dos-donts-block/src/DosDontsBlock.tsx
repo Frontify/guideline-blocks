@@ -8,7 +8,6 @@ import 'tailwindcss/tailwind.css';
 import { DoDontItem } from './DoDontItem';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import {
-    columnsClasses,
     DoDontLayout,
     DoDontSpacing,
     DoDontStyle,
@@ -16,6 +15,7 @@ import {
     DosDontsBlockProps,
     Item,
     Settings,
+    columnsClasses,
     spacingValues,
 } from './types';
 

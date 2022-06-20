@@ -1,3 +1,4 @@
+/* eslint-disable sort-imports */
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DropdownSize, IconEnum } from '@frontify/fondue';

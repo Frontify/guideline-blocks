@@ -7,21 +7,21 @@ import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared'
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import {
+    SKETCHFAB_RULE_ERROR,
     generateUrl,
     getIframeStyles,
     getUrlWithoutSearchParams,
     isSketchfabUrl,
-    SKETCHFAB_RULE_ERROR,
 } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
 import {
-    borderRadiusClasses,
-    heights,
     Settings,
     SketchfabAccount,
     SketchfabBlockProps,
     SketchfabNavigation,
     SketchfabTheme,
+    borderRadiusClasses,
+    heights,
 } from './types';
 
 export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {

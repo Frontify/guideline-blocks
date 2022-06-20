@@ -11,7 +11,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { heights, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
+import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
     r: 234,

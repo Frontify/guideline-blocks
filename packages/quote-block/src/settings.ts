@@ -3,7 +3,7 @@
 import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
-import { LineType, LineWidth, lineWidthMap, QuoteSize, quoteSizeMap, QuoteStyle, QuoteType } from './types';
+import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType, lineWidthMap, quoteSizeMap } from './types';
 
 const QUOTE_TYPE_ID = 'type';
 const SIZE_CHOICE_ID = 'sizeChoice';
