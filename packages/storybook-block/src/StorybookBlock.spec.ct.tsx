@@ -9,7 +9,7 @@ const StorybookBlockSelector = '[data-test-id="storybook-block"]';
 const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
 const IframeSelector = '[data-test-id="storybook-iframe"]';
 
-const EXAMPLE_URL = 'https://arcade-components.netlify.app/?path=/story/components-tooltip--tooltip';
+const EXAMPLE_URL = 'https://fondue-components.netlify.app/?path=/story/components-tooltip--tooltip';
 const EXAMPLE_COLOR = { r: 22, g: 181, b: 181, a: 1, name: 'Java' };
 
 describe('Storybook Block', () => {
@@ -26,7 +26,7 @@ describe('Storybook Block', () => {
         mount(<StorybookBlockWithStubs />);
         cy.get(EmptyStateSelector).find('input').type(EXAMPLE_URL).blur();
         cy.get(EmptyStateSelector).find('button').click();
-        cy.get(IframeSelector).should('have.attr', 'src').and('include', 'arcade-components.netlify.app');
+        cy.get(IframeSelector).should('have.attr', 'src').and('include', 'fondue-components.netlify.app');
     });
 
     it('renders storybook iframe without addons', () => {

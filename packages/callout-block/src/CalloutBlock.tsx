@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/arcade';
+import { RichTextEditor } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
 import { Radius, joinClassNames, radiusStyleMap } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, createRef, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { ICON_ASSET_ID } from './settings';
 import {
     Alignment,

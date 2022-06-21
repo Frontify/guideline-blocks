@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconReject, ItemDragState } from '@frontify/arcade';
+import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconReject, ItemDragState } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { getInteractionModality, useFocusWithin, useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';

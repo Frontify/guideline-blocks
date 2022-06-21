@@ -1,11 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, FormControl, FormControlStyle, IconExternalAsset, IconSize, Text, TextInput } from '@frontify/arcade';
+import { Button, FormControl, FormControlStyle, IconExternalAsset, IconSize, Text, TextInput } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import {
+    SKETCHFAB_RULE_ERROR,
+    generateUrl,
+    getIframeStyles,
+    getUrlWithoutSearchParams,
+    isSketchfabUrl,
+} from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
 import {
     Settings,
@@ -16,13 +23,6 @@ import {
     borderRadiusClasses,
     heights,
 } from './types';
-import {
-    SKETCHFAB_RULE_ERROR,
-    generateUrl,
-    getIframeStyles,
-    getUrlWithoutSearchParams,
-    isSketchfabUrl,
-} from './helpers';
 
 export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const isEditing = useEditorState(appBridge);

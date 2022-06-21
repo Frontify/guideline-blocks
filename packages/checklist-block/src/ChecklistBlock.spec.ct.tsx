@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { OrderableListItem } from '@frontify/arcade';
-import { Padding, paddingStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { OrderableListItem } from '@frontify/fondue';
+import { Padding, paddingStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { ChecklistBlock } from './ChecklistBlock';
 import { createItem } from './helpers';
 import {

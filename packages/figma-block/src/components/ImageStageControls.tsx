@@ -9,7 +9,7 @@ import {
     IconExpand,
     IconMinus,
     IconReject,
-} from '@frontify/arcade';
+} from '@frontify/fondue';
 import { DrawFullScreenActionButtonProps, DrawZoomInOutButtonsProps } from '../types';
 
 export const DrawFullScreenActionButton = ({ isFullScreen = false, onClick }: DrawFullScreenActionButtonProps) => (

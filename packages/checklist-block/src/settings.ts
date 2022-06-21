@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,

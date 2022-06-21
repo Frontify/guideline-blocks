@@ -1,10 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
-import { ReactElement, useCallback, useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/arcade';
 import {
     AssetChooserObjectType,
     AssetChooserProjectType,
@@ -14,10 +9,15 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { extractUrlParameterFromUriQueries } from './utilities';
+import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import 'tailwindcss/tailwind.css';
 import { ImageStage } from './ImageStage';
-import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
 import { ASSET_ID, heights } from './settings';
+import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
+import { extractUrlParameterFromUriQueries } from './utilities';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 

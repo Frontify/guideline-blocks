@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Button, ButtonStyle } from '@frontify/arcade';
+import { Button, ButtonStyle } from '@frontify/fondue';
 import { FC } from 'react';
 import { ChecklistButtonProps } from '../types';
 

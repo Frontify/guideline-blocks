@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FOCUS_STYLE, IconCheck } from '@frontify/arcade';
+import { FOCUS_STYLE, IconCheck } from '@frontify/fondue';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';

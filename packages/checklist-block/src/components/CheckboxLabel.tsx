@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/arcade';
+import { Color } from '@frontify/fondue';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';

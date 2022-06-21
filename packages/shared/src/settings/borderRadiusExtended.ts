@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MultiInputLayout } from '@frontify/arcade';
+import { MultiInputLayout } from '@frontify/fondue';
 import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
-import { radiusStyleMap } from './types';
 import { appendUnit } from '../helpers/settings/appendUnit';
-import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
 import { presetCustomValue } from '../helpers/settings/presetCustomValue';
+import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
 import { getBorderRadiusSlider } from './borderRadius';
+import { radiusStyleMap } from './types';
 
 /**
  * Returns border radius settings: border radius switch, radius slider, custom radius inputs for every corner

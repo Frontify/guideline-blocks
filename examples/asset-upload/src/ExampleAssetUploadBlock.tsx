@@ -1,8 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
-import { FC, useEffect, useState } from 'react';
 import {
     Asset,
     AssetChooserResult,
@@ -11,7 +8,10 @@ import {
     useFileInput,
     useFileUpload,
 } from '@frontify/app-bridge';
-import { Button } from '@frontify/arcade';
+import { Button } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
+import { FC, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { IMAGE_SETTING_ID } from './settings';
 
 export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge }) => {

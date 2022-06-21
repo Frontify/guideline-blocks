@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, MultiInputLayout, TextInputType } from '@frontify/arcade';
+import { DropdownSize, MultiInputLayout, TextInputType } from '@frontify/fondue';
 import { BlockSettings, SettingBlock } from '@frontify/guideline-blocks-settings';
 import {
     getBorderRadiusSettings,

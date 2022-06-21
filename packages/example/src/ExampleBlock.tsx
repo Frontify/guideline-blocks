@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
+import '@frontify/fondue-tokens/styles';
 import { FC } from 'react';
+import 'tailwindcss/tailwind.css';
 
 export const ExampleBlock: FC = () => {
     return (

@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/arcade';
+import { RichTextEditor } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
+import 'tailwindcss/tailwind.css';
 import { DEFAULT_AUTHOR_NAME, DEFAULT_COLOR_VALUE } from './settings';
 import {
     ContentWithAuthorProps,

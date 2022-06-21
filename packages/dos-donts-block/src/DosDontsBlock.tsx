@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import '@frontify/fondue-tokens/styles';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { DoDontItem } from './DoDontItem';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import {
