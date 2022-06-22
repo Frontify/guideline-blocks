@@ -32,7 +32,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const asset = blockAssets?.[ASSET_ID]?.[0];
     const isAssetAvailable = !!asset;
-
+    console.log(blockAssets);
     const {
         figmaPreviewId = BlockPreview.Image,
         hasBorder = true,
@@ -94,7 +94,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             rel="noreferrer"
                             className="group-hover:tw-underline"
                         >
-                            {assetExternalUrl}
+                            {asset.title}
                         </a>
                     </div>
                 )}
