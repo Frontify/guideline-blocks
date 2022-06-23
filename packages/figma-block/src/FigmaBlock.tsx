@@ -87,14 +87,9 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     hasBackground
                 />
                 {assetExternalUrl && (
-                    <div className="tw-group tw-p-2 tw-text-sm">
-                        <a
-                            href={assetExternalUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="group-hover:tw-underline"
-                        >
-                            {assetExternalUrl}
+                    <div className="tw-p-2 tw-text-sm">
+                        <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-underline">
+                            {asset.title}
                         </a>
                     </div>
                 )}
