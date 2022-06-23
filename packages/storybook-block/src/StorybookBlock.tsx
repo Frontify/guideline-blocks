@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
-import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
-import '@frontify/arcade-tokens/styles';
+import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useEffect, useState } from 'react';
