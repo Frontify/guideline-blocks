@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
+import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
+import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
+import '@frontify/arcade-tokens/styles';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useEffect, useState } from 'react';
@@ -11,14 +11,14 @@ import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
+    borderRadiusClasses,
+    heights,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
-    borderRadiusClasses,
-    heights,
 } from './types';
 
 const DEFAULT_BORDER_WIDTH = '1px';
@@ -29,6 +29,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const [localUrl, setLocalUrl] = useState('');
     const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
     const { hoverProps, isHovered } = useHover({});
+    const { containerRef, setIsReadyForPrint } = useReadyForPrint();
 
     const {
         style = StorybookStyle.Default,
@@ -64,6 +65,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         if (url !== '') {
+            setIsReadyForPrint(false);
             const newIframeUrl = new URL(url);
             newIframeUrl.searchParams.set('nav', 'false');
 
@@ -92,11 +94,12 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [url, style, positioning]);
 
     return (
-        <div data-test-id="storybook-block" className="tw-relative">
+        <div ref={containerRef} data-test-id="storybook-block" className="tw-relative">
             {iframeUrl ? (
                 <div {...hoverProps}>
                     {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
                     <iframe
+                        onLoad={() => setIsReadyForPrint(true)}
                         className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
                         style={
                             hasBorder
