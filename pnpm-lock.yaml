@@ -49,7 +49,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -67,7 +67,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       react: 17.0.2
@@ -92,7 +92,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 4.0.6
@@ -110,7 +110,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue-tokens': 3.0.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -160,7 +160,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -178,7 +178,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -203,7 +203,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -229,7 +229,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -262,7 +262,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -280,7 +280,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -305,7 +305,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -323,7 +323,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -348,7 +348,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -366,7 +366,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -391,7 +391,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -410,7 +410,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -436,7 +436,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -455,7 +455,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -481,7 +481,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -499,7 +499,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -523,7 +523,7 @@ importers:
   packages/shared:
     specifiers:
       '@babel/core': 7.18.2
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-typescript': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/guideline-blocks-settings': workspace:*
@@ -546,7 +546,7 @@ importers:
       vite-plugin-dts: 1.2.0
       vitest: 0.14.1
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_a2ihfqnlecu3gywfprtibl3a3i
       '@frontify/guideline-blocks-settings': link:../block-settings
       tinycolor2: 1.4.2
@@ -575,7 +575,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -594,7 +594,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -665,7 +665,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 2.15.1
+      '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
@@ -685,7 +685,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 2.15.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.6.2_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -11412,6 +11412,11 @@ packages:
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.0.0
     dev: true
@@ -12671,6 +12676,8 @@ packages:
       p-limit: 3.1.0
       readable-stream: 3.6.0
       send: 0.17.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /fastify-websocket/4.2.1:
@@ -16636,6 +16643,8 @@ packages:
       on-finished: 2.3.0
       range-parser: 1.2.1
       statuses: 1.5.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /set-cookie-parser/2.4.8:
