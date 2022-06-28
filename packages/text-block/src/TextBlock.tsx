@@ -3,6 +3,7 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import cloneDeep from 'lodash-es/cloneDeep';
 import isEqual from 'lodash-es/isEqual';
 import { FC, useEffect } from 'react';
@@ -15,6 +16,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const columnCount = blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER;
+    const { designTokens } = useGuidelineDesignTokens();
 
     useEffect(() => {
         const newSettings = cloneDeep(blockSettings) as Settings;
@@ -51,6 +53,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
                 [...Array(parseInt(columnCount.toString()))].map((_, index) => {
                     return (
                         <RichTextEditor
+                            designTokens={designTokens ?? undefined}
                             key={`text-block-editor-${index}`}
                             value={blockSettings.content?.[index]}
                             placeholder={PLACEHOLDER}
