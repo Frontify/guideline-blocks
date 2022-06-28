@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/fondue';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useMemo } from 'react';
 import { DoDontItemProps, DoDontStyle, DoDontType, EditorChild, EditorElement } from './types';
 
@@ -41,6 +41,8 @@ export const DoDontItem: FC<DoDontItemProps> = ({
 
     const shouldBlurIcon = useMemo(() => isEmpty(title), [title]);
 
+    const { designTokens } = useGuidelineDesignTokens();
+
     return (
         <div>
             <div
@@ -59,6 +61,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                 )}
                 <div className="tw-w-full">
                     <RichTextEditor
+                        designTokens={designTokens ?? undefined}
                         value={title}
                         onTextChange={(value) => saveItem(id, value, 'title')}
                         placeholder={editing ? 'Add a title' : ''}
@@ -74,6 +77,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
             )}
             <div data-test-id="dos-donts-content" className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}>
                 <RichTextEditor
+                    designTokens={designTokens ?? undefined}
                     value={body}
                     onTextChange={(value) => saveItem(id, value, 'body')}
                     placeholder={editing ? 'Add a description' : ''}
