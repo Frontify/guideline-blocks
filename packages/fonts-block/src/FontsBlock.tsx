@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
+import '@frontify/fondue-tokens/styles';
 import { useContainerQueries } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
