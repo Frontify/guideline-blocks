@@ -5,10 +5,10 @@ import { Color, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import {
     BorderStyle,
-    borderStyleMap,
-    isDark,
     Padding,
     Radius,
+    borderStyleMap,
+    isDark,
     radiusStyleMap,
     toRgbaString,
     useGuidelineDesignTokens,
@@ -17,7 +17,7 @@ import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-import { BlockProps, NoteVisibility, paddingStyleMap, Settings } from './types';
+import { BlockProps, NoteVisibility, Settings, paddingStyleMap } from './types';
 
 const getBorderStyles = (
     style = BorderStyle.Solid,

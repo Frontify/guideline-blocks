@@ -3,22 +3,22 @@
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, Radius, radiusStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { createRef, CSSProperties, FC, useEffect, useState } from 'react';
+import { Radius, joinClassNames, radiusStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { CSSProperties, FC, createRef, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { ICON_ASSET_ID } from './settings';
 import {
     Alignment,
-    alignmentMap,
     BlockSettings,
     CalloutBlockProps,
     CustomPaddingStyles,
-    outerWidthMap,
     Padding,
-    paddingMap,
     Type,
-    typeMap,
     Width,
+    alignmentMap,
+    outerWidthMap,
+    paddingMap,
+    typeMap,
 } from './types';
 
 const getInnerDivClassName = (
