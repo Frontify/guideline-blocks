@@ -36,7 +36,7 @@
         "vitest": "0.14.1"
     },
     "dependencies": {
-        "@frontify/fondue": "9.6.2",
+        "@frontify/fondue": "9.7.0",
         "react": "17.0.2",
         "react-dom": "17.0.2"
     }

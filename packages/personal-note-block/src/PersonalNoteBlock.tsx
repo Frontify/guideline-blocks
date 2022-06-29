@@ -11,6 +11,7 @@ import {
     isDark,
     radiusStyleMap,
     toRgbaString,
+    useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -35,6 +36,8 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [userId, setUserId] = useState<number | null>(null);
+
+    const { designTokens } = useGuidelineDesignTokens();
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
@@ -118,6 +121,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             )}
 
             <RichTextEditor
+                designTokens={designTokens ?? undefined}
                 value={note}
                 onTextChange={saveNote}
                 placeholder="Write personal note here ..."

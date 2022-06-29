@@ -3,7 +3,7 @@
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { Radius, joinClassNames, radiusStyleMap } from '@frontify/guideline-blocks-shared';
+import { Radius, joinClassNames, radiusStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, createRef, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { ICON_ASSET_ID } from './settings';
@@ -44,6 +44,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
+    const { designTokens } = useGuidelineDesignTokens();
 
     const {
         type = Type.Warning,
@@ -128,6 +129,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     readonly={!isEditing}
                     value={textValue}
                     placeholder="Type your text here"
+                    designTokens={designTokens ?? undefined}
                 />
             </div>
         </div>
