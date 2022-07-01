@@ -41,7 +41,7 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
         // Check whether to add or remove items
         if (updatedItems.length - numberOfItems < 0) {
             for (let index = updatedItems.length; index < numberOfItems; index++) {
-                updatedItems.push({ id: index, title: '', body: '' });
+                updatedItems.push({ id: index, title: { content: '' }, body: { content: '' } });
             }
         } else {
             updatedItems = updatedItems.slice(0, numberOfItems);
@@ -52,7 +52,7 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
     const saveItem = (id: number, value: string, type: 'title' | 'body') => {
         const updatedItems = localItems;
         const existingItemIndex = localItems.findIndex((item) => item.id === id);
-        updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], [type]: value };
+        updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], [type]: { content: value } };
 
         setBlockSettings({
             ...blockSettings,
@@ -81,8 +81,8 @@ export const DosDontsBlock: FC<DosDontsBlockProps> = ({ appBridge }) => {
                         key={index}
                         id={index}
                         saveItem={saveItem}
-                        title={item?.title}
-                        body={item?.body}
+                        title={item?.title.content}
+                        body={item?.body.content}
                         type={index % 2 ? DoDontType.Dont : DoDontType.Do}
                         style={style}
                         doColor={doColor}

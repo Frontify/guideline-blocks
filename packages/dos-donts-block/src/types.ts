@@ -33,8 +33,8 @@ export type DoDontItemProps = {
 
 export type Item = {
     id: number;
-    title: string;
-    body: string;
+    title: { content: string };
+    body: { content: string };
 };
 
 export type EditorElement = {
