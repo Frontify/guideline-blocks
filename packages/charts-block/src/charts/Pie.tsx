@@ -9,7 +9,7 @@ export const BlockPieChart: FC<ChartProps> = ({ data, height, color }) => {
     return (
         <ResponsiveContainer width="100%" height={heightInt}>
             <PieChart width={800} height={800}>
-                <Pie dataKey="uv" isAnimationActive={false} data={data} cx="50%" cy="50%" fill={color} label />
+                <Pie dataKey="x" isAnimationActive={false} data={data} cx="50%" cy="50%" fill={color} label />
                 <Tooltip />
             </PieChart>
         </ResponsiveContainer>

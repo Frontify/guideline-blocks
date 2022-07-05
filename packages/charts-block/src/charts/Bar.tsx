@@ -24,7 +24,7 @@ export const BlockBarChart: FC<ChartProps> = ({ data, height, color }) => {
                     }}
                 />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Bar dataKey="uv" fill={color} barSize={30} />
+                <Bar dataKey="x" fill={color} barSize={30} />
             </BarChart>
         </ResponsiveContainer>
     );

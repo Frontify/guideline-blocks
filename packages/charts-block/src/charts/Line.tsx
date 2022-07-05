@@ -24,7 +24,7 @@ export const BlockLineChart: FC<ChartProps> = ({ data, height, color }) => {
                     }}
                 />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Line type="monotone" dataKey="uv" stroke={color} strokeWidth={3} />
+                <Line type="monotone" dataKey="x" stroke={color} strokeWidth={3} />
             </LineChart>
         </ResponsiveContainer>
     );

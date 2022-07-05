@@ -24,11 +24,30 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
         color = DEFAULT_COLOR,
     } = blockSettings;
 
-    const data = [
-        { name: 'Page A', uv: 400 },
-        { name: 'Page B', uv: 500 },
-        { name: 'Page C', uv: 350 },
-    ];
+    const headers = chartData ? chartData.split('\n')[0].split(',') : [];
+    const lines = chartData
+        ?.split('\n')
+        ?.slice(1)
+        ?.map((row) => {
+            return row?.split(',')[0];
+        });
+    const parsedData = chartData
+        ?.split('\n')
+        ?.slice(1)
+        ?.map((row) => {
+            return row
+                ?.split(',')
+                ?.slice(1)
+                ?.map((value) => parseInt(value));
+        });
+
+    const data = chartData
+        ? headers.map((header, index) => {
+              return { name: header, [lines[0]]: parsedData[0][index] };
+          })
+        : [];
+
+    debugger;
 
     useEffect(() => {
         const url = blockAssets.chartData?.shift()?.origin_url;
