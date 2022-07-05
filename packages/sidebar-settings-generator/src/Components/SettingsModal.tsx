@@ -49,7 +49,15 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettin
                                 <FormDropdown
                                     label={{ children: 'Block Type' }}
                                     name="type"
-                                    menuBlocks={[{ id: '1', menuItems: [{ id: 'input', title: 'Input' }] }]}
+                                    menuBlocks={[
+                                        {
+                                            id: '1',
+                                            menuItems: [
+                                                { id: 'input', title: 'Input' },
+                                                { id: 'switch', title: 'Switch' },
+                                            ],
+                                        },
+                                    ]}
                                 />
                                 {type !== undefined && getInputFields(type)}
                             </Stack>
