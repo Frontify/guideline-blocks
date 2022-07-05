@@ -2,7 +2,7 @@
 
 import { ButtonStyle, ButtonType, Modal, Stack } from '@frontify/fondue';
 import { FC } from 'react';
-import { Form, FormDropdown, FormTextInput } from './Form';
+import { Form, FormDropdown, FormSwitch, FormTextInput } from './Form';
 
 type SettingsProps = {
     show: boolean;
@@ -22,8 +22,22 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettin
                             label={{ children: 'Placeholder' }}
                             placeholder="Placeholder"
                         />
+                        <FormTextInput
+                            name="defaultValue"
+                            label={{ children: 'Default Value' }}
+                            placeholder="Default Value"
+                        />
                         <FormTextInput name="label" label={{ children: 'Label' }} placeholder="Label" />
                         <FormTextInput name="info" label={{ children: 'Info' }} placeholder="Info" />
+                    </>
+                );
+            case 'switch':
+                return (
+                    <>
+                        <FormTextInput name="id" label={{ children: 'ID' }} placeholder="ID" />
+                        <FormTextInput name="label" label={{ children: 'Label' }} placeholder="Label" />
+                        <FormTextInput name="info" label={{ children: 'Info' }} placeholder="Info" />
+                        <FormSwitch name="defaultValue" label="Default Value" />
                     </>
                 );
             default:
