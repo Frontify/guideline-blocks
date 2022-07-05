@@ -1,4 +1,4 @@
-import { TabItem, Tabs, TabSize } from '@frontify/fondue';
+import { TabItem, TabSize, Tabs } from '@frontify/fondue';
 import { FC, useState } from 'react';
 import { SettingsCode } from './Components/SettingsCode';
 import { SettingsUI } from './Components/SettingsUI';

@@ -1,33 +1,73 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Button, ButtonType, Modal } from '@frontify/fondue';
+import { ButtonStyle, ButtonType, Modal, Stack } from '@frontify/fondue';
 import { FC } from 'react';
-import { Form, FormDropdown } from './Form';
+import { Form, FormDropdown, FormTextInput } from './Form';
 
 type SettingsProps = {
     show: boolean;
     onClose: () => void;
+    onUpdateSettings: (setting: any) => void;
 };
 
-export const SettingsModal: FC<SettingsProps> = ({ show, onClose }) => {
+export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettings }) => {
+    const getInputFields = (type: string) => {
+        switch (type) {
+            case 'input':
+                return (
+                    <>
+                        <FormTextInput name="id" label={{ children: 'ID' }} placeholder="ID" />
+                        <FormTextInput
+                            name="placeholder"
+                            label={{ children: 'Placeholder' }}
+                            placeholder="Placeholder"
+                        />
+                        <FormTextInput name="label" label={{ children: 'Label' }} placeholder="Label" />
+                        <FormTextInput name="info" label={{ children: 'Info' }} placeholder="Info" />
+                    </>
+                );
+            default:
+                return null;
+        }
+    };
+
     return (
-        <Modal
-            isOpen={show}
-            onClose={onClose}
-            shouldCloseOnInteractOutside={(element) => !!element?.dataset?.isUnderlay}
-            shouldCloseOnBlur
-        >
-            <Modal.Header title="Add new Settings" />
-            <Modal.Body>
-                <Form onSubmit={(data) => console.log(data)}>
-                    <FormDropdown
-                        label={{ children: 'Block Type' }}
-                        name="type"
-                        menuBlocks={[{ id: '1', menuItems: [{ id: 'input', title: 'Input' }] }]}
-                    />
-                    <Button type={ButtonType.Submit}>Save</Button>
-                </Form>
-            </Modal.Body>
-        </Modal>
+        <Form onSubmit={onUpdateSettings}>
+            {({ submitForm, watch }) => {
+                const type = watch('type');
+
+                return (
+                    <Modal
+                        isOpen={show}
+                        onClose={onClose}
+                        shouldCloseOnInteractOutside={(element) => !!element?.dataset?.isUnderlay}
+                        shouldCloseOnBlur
+                    >
+                        <Modal.Header title="Add new Settings" />
+                        <Modal.Body>
+                            <Stack direction="column" spacing="m" padding="none">
+                                <FormDropdown
+                                    label={{ children: 'Block Type' }}
+                                    name="type"
+                                    menuBlocks={[{ id: '1', menuItems: [{ id: 'input', title: 'Input' }] }]}
+                                />
+                                {type !== undefined && getInputFields(type)}
+                            </Stack>
+                        </Modal.Body>
+                        <Modal.Footer
+                            buttons={[
+                                {
+                                    onClick: onClose,
+                                    type: ButtonType.Button,
+                                    children: 'Cancel',
+                                    style: ButtonStyle.Secondary,
+                                },
+                                { onClick: submitForm, type: ButtonType.Button, children: 'Submit' },
+                            ]}
+                        ></Modal.Footer>
+                    </Modal>
+                );
+            }}
+        </Form>
     );
 };
