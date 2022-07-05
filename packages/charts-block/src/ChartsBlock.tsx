@@ -47,8 +47,6 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
           })
         : [];
 
-    debugger;
-
     useEffect(() => {
         const url = blockAssets.chartData?.shift()?.origin_url;
         if (url !== undefined) {
@@ -58,36 +56,46 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
         }
     }, [blockAssets, setChartData]);
 
+    console.log({ data });
+
     return (
-        <div data-test-id="charts-block">
-            {(() => {
-                switch (type) {
-                    case ChartType.Bar:
-                        return (
-                            <BlockBarChart
-                                data={data}
-                                height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
-                                color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
-                            />
-                        );
-                    case ChartType.Line:
-                        return (
-                            <BlockLineChart
-                                data={data}
-                                height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
-                                color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
-                            />
-                        );
-                    case ChartType.Pie:
-                        return (
-                            <BlockPieChart
-                                data={data}
-                                height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
-                                color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
-                            />
-                        );
-                }
-            })()}
-        </div>
+        <>
+            {data.length > 0 ? (
+                <div data-test-id="charts-block">
+                    {(() => {
+                        switch (type) {
+                            case ChartType.Bar:
+                                return (
+                                    <BlockBarChart
+                                        data={data}
+                                        height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
+                                    />
+                                );
+                            case ChartType.Line:
+                                return (
+                                    <BlockLineChart
+                                        data={data}
+                                        height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
+                                    />
+                                );
+                            case ChartType.Pie:
+                                return (
+                                    <BlockPieChart
+                                        data={data}
+                                        height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
+                                    />
+                                );
+                        }
+                    })()}
+                </div>
+            ) : (
+                <div className="tw-text-center tw-bg-box-negative tw-p-9">
+                    Please upload a CSV to show awesome charts!
+                </div>
+            )}
+        </>
     );
 };
