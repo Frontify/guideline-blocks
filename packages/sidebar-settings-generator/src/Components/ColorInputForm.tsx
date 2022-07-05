@@ -6,7 +6,7 @@ export const ColorInputForm = () => (
     <>
         <FormTextInput name="id" label={{ children: 'ID' }} placeholder="ID" />
         <FormTextInput name="label" label={{ children: 'Label' }} placeholder="Label" />
-        <FormTextInput name="info" label={{ children: 'Info' }} placeholder="Info" />\
+        <FormTextInput name="info" label={{ children: 'Info' }} placeholder="Info" />
         <FormColorPicker name="defaultValue" label={{ children: 'Default Value' }} />
     </>
 );
