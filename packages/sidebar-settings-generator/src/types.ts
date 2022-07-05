@@ -1,3 +1,5 @@
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
+
 export type SidebarSettingsGeneratorContext = {
-    settings: {} | null;
+    settings: BlockSettings | null;
 };
