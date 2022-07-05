@@ -1,17 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC } from 'react';
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { ChartProps } from '../types';
 
-export const BlockBarChart: FC<ChartProps> = ({ data, height }) => {
+export const BlockLineChart: FC<ChartProps> = ({ data, height }) => {
     const heightInt = parseInt(height, 10);
     return (
         <ResponsiveContainer width="100%" height={heightInt}>
-            <BarChart data={data}>
+            <LineChart data={data}>
                 <XAxis dataKey="name" stroke="#8884d8" />
                 <YAxis />
-                <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
+                <Tooltip />
                 <Legend
                     width={100}
                     wrapperStyle={{
@@ -24,8 +24,8 @@ export const BlockBarChart: FC<ChartProps> = ({ data, height }) => {
                     }}
                 />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Bar dataKey="uv" fill="#8884d8" barSize={30} />
-            </BarChart>
+                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+            </LineChart>
         </ResponsiveContainer>
     );
 };

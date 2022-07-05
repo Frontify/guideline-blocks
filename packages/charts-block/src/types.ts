@@ -8,14 +8,30 @@ export type ChartsBlockProps = {
 
 export type Settings = {
     type: ChartType;
+    isHeightCustom?: boolean;
+    heightCustom?: string;
+    heightSimple?: ChartHeight;
 };
 
 export type ChartProps = {
     data: any;
+    height: string;
 };
+
+export enum ChartHeight {
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+}
 
 export enum ChartType {
     Line = 'Line',
     Bar = 'Bar',
     Pie = 'Pie',
 }
+
+export const chartHeightValues: Record<ChartHeight, string> = {
+    [ChartHeight.Small]: '400px',
+    [ChartHeight.Medium]: '600px',
+    [ChartHeight.Large]: '800px',
+};

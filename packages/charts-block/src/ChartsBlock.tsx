@@ -5,15 +5,27 @@ import '@frontify/fondue-tokens/styles';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { BlockBarChart } from './charts/Bar';
-import { ChartType, ChartsBlockProps, Settings } from './types';
-import { ResponsiveContainer } from 'recharts';
+import { BlockLineChart } from './charts/Line';
+import { BlockPieChart } from './charts/Pie';
+import { HEIGHT_DEFAULT_VALUE } from './settings';
+import { ChartType, ChartsBlockProps, Settings, chartHeightValues } from './types';
 
 export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const [chartData, setChartData] = useState<string>('');
 
-    const { type = ChartType.Bar } = blockSettings;
+    const {
+        type = ChartType.Bar,
+        isHeightCustom = false,
+        heightCustom = '',
+        heightSimple = HEIGHT_DEFAULT_VALUE,
+    } = blockSettings;
+
+    console.log({ type });
+    console.log({ isHeightCustom });
+    console.log({ heightCustom });
+    console.log({ heightSimple });
 
     const data = [
         { name: 'Page A', uv: 400 },
@@ -33,19 +45,32 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
     }, [blockAssets, setChartData]);
 
     return (
-        <div data-test-id="carts-block">
-            <ResponsiveContainer width="100%" height={600}>
-                {(() => {
-                    switch (type) {
-                        case ChartType.Bar:
-                            return <BlockBarChart data={data} />;
-                        case ChartType.Line:
-                            return <></>;
-                        case ChartType.Pie:
-                            return <></>;
-                    }
-                })()}
-            </ResponsiveContainer>
+        <div data-test-id="charts-block">
+            {(() => {
+                switch (type) {
+                    case ChartType.Bar:
+                        return (
+                            <BlockBarChart
+                                data={data}
+                                height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                            />
+                        );
+                    case ChartType.Line:
+                        return (
+                            <BlockLineChart
+                                data={data}
+                                height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                            />
+                        );
+                    case ChartType.Pie:
+                        return (
+                            <BlockPieChart
+                                data={data}
+                                height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                            />
+                        );
+                }
+            })()}
         </div>
     );
 };
