@@ -44,9 +44,15 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
 
     const data = chartData
         ? headers.map((header, index) => {
-              return { name: header, [lines[0]]: parsedData[0][index] };
+              const displayData = { name: header };
+              for (let i = 0; i < lines.length; i++) {
+                  displayData[lines[i]] = parsedData[i][index];
+              }
+              return displayData;
           })
         : [];
+
+    debugger;
 
     useEffect(() => {
         const url = blockAssets.chartData?.shift()?.origin_url;
@@ -72,6 +78,7 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                                         labelColor={
                                             labelColor ? toRgbaString(labelColor) : toRgbaString(DEFAULT_LABEL_COLOR)
                                         }
+                                        lines={lines}
                                     />
                                 );
                             case ChartType.Line:
@@ -83,6 +90,7 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                                         labelColor={
                                             labelColor ? toRgbaString(labelColor) : toRgbaString(DEFAULT_LABEL_COLOR)
                                         }
+                                        lines={lines}
                                     />
                                 );
                             case ChartType.Pie:
@@ -94,6 +102,7 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                                         labelColor={
                                             labelColor ? toRgbaString(labelColor) : toRgbaString(DEFAULT_LABEL_COLOR)
                                         }
+                                        line={lines[0]}
                                     />
                                 );
                         }
