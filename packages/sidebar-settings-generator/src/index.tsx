@@ -1,5 +1,4 @@
-import { TabItem, TabSize, Tabs, Button } from '@frontify/fondue';
-import { useEffect } from 'react';
+import { Button, TabItem, Tabs, TabSize } from '@frontify/fondue';
 import { FC, useState } from 'react';
 import { SettingsCode } from './Components/SettingsCode';
 import { SettingsUI } from './Components/SettingsUI';
@@ -33,9 +32,11 @@ const SidebarSettingsGenerator: FC = () => {
                     <TabItem {...tab} key={tab.id} />
                 ))}
             </Tabs>
-            <Button onClick={() => window.emitter.emit('SetStyleguideSettingsPreview', settings)}>
-                Open Sidebar Preview
-            </Button>
+            <div className="tw-pt-3">
+                <Button onClick={() => window.emitter.emit('SetStyleguideSettingsPreview', settings)}>
+                    Open Sidebar Preview
+                </Button>
+            </div>
         </SettingsContext.Provider>
     );
 };
