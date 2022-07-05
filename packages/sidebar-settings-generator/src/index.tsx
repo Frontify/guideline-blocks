@@ -1,4 +1,4 @@
-import { TabItem, TabSize, Tabs } from '@frontify/fondue';
+import { TabItem, TabSize, Tabs, Button } from '@frontify/fondue';
 import { useEffect } from 'react';
 import { FC, useState } from 'react';
 import { SettingsCode } from './Components/SettingsCode';
@@ -15,9 +15,6 @@ const SidebarSettingsGenerator: FC = () => {
     const [activeTab, setActiveTab] = useState('ui');
     const [settings, setSettings] = useState({});
 
-    useEffect(() => {
-        window.emitter.emit('SetStyleguideSettingsPreview', settings);
-    }, [settings]);
     return (
         <SettingsContext.Provider value={{ settings, setSettings }}>
             <Tabs activeItemId={activeTab} onChange={setActiveTab} size={TabSize.Large}>
@@ -36,6 +33,9 @@ const SidebarSettingsGenerator: FC = () => {
                     <TabItem {...tab} key={tab.id} />
                 ))}
             </Tabs>
+            <Button onClick={() => window.emitter.emit('SetStyleguideSettingsPreview', settings)}>
+                Open Sidebar Preview
+            </Button>
         </SettingsContext.Provider>
     );
 };
