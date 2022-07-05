@@ -86,7 +86,7 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettin
                                 },
                                 { onClick: submitForm, type: ButtonType.Button, children: 'Submit' },
                             ]}
-                        ></Modal.Footer>
+                        />
                     </Modal>
                 );
             }}

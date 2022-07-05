@@ -68,11 +68,19 @@ export const SettingsUI = () => {
                             }}
                         >
                             <div className="tw-pt-6">
-                                <Section blocks={settings} />
-                                <EmptySection
-                                    onClick={() => setInsertSettingPosition({ path: id, arrayIndex: 0 })}
-                                    text="Add a setting"
-                                />
+                                {settings.length > 0 ? (
+                                    <Section
+                                        blocks={settings}
+                                        onInsertSetting={(arrayIndex) =>
+                                            setInsertSettingPosition({ path: id, arrayIndex })
+                                        }
+                                    />
+                                ) : (
+                                    <EmptySection
+                                        onClick={() => setInsertSettingPosition({ path: id, arrayIndex: 0 })}
+                                        text="Add a setting"
+                                    />
+                                )}
                             </div>
                         </AccordionItem>
                     ))}
