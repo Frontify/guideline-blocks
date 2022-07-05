@@ -56,8 +56,6 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
         }
     }, [blockAssets, setChartData]);
 
-    console.log({ data });
-
     return (
         <>
             {data.length > 0 ? (
