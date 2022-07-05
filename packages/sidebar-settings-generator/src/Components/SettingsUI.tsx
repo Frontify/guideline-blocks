@@ -35,9 +35,10 @@ export const SettingsUI = () => {
             <div>
                 {mainSection && <Section blocks={mainSection} />}
                 {otherSections.length > 0 && (
-                    <Accordion>
+                    <Accordion border>
                         {otherSections.map(([title, settings]) => (
                             <AccordionItem
+                                divider
                                 key={title}
                                 header={{
                                     children: title,

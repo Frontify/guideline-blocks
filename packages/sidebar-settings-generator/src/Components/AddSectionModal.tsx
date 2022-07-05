@@ -24,7 +24,7 @@ export const AddSectionModal = ({
                     onClose={onClose}
                     shouldCloseOnInteractOutside={(element: HTMLElement) => !!element.dataset.isUnderlay}
                 >
-                    <Modal.Header>Add New Section</Modal.Header>
+                    <Modal.Header title="Add New Section" />
                     <Modal.Body>
                         <>
                             <FormDropdown
