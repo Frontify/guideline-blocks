@@ -48,6 +48,8 @@ const settings: BlockSettings = {
                 },
             ],
         },
+    ],
+    content: [
         {
             id: 'chartData',
             label: 'Chart Data',
