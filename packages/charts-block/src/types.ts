@@ -13,12 +13,14 @@ export type Settings = {
     heightCustom?: string;
     heightSimple?: ChartHeight;
     color?: Color;
+    labelColor?: Color;
 };
 
 export type ChartProps = {
     data: any;
     height: string;
     color: string;
+    labelColor: string;
 };
 
 export enum ChartHeight {

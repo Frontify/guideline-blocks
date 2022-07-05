@@ -8,7 +8,7 @@ import 'tailwindcss/tailwind.css';
 import { BlockBarChart } from './charts/Bar';
 import { BlockLineChart } from './charts/Line';
 import { BlockPieChart } from './charts/Pie';
-import { DEFAULT_COLOR, HEIGHT_DEFAULT_VALUE } from './settings';
+import { DEFAULT_BAR_COLOR, DEFAULT_LABEL_COLOR, HEIGHT_DEFAULT_VALUE } from './settings';
 import { ChartType, ChartsBlockProps, Settings, chartHeightValues } from './types';
 
 export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
@@ -21,7 +21,8 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
         isHeightCustom = false,
         heightCustom = '',
         heightSimple = HEIGHT_DEFAULT_VALUE,
-        color = DEFAULT_COLOR,
+        color = DEFAULT_BAR_COLOR,
+        labelColor = DEFAULT_LABEL_COLOR,
     } = blockSettings;
 
     const headers = chartData ? chartData.split('\n')[0].split(',') : [];
@@ -67,7 +68,10 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                                     <BlockBarChart
                                         data={data}
                                         height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
-                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
+                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_BAR_COLOR)}
+                                        labelColor={
+                                            labelColor ? toRgbaString(labelColor) : toRgbaString(DEFAULT_LABEL_COLOR)
+                                        }
                                     />
                                 );
                             case ChartType.Line:
@@ -75,7 +79,10 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                                     <BlockLineChart
                                         data={data}
                                         height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
-                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
+                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_BAR_COLOR)}
+                                        labelColor={
+                                            labelColor ? toRgbaString(labelColor) : toRgbaString(DEFAULT_LABEL_COLOR)
+                                        }
                                     />
                                 );
                             case ChartType.Pie:
@@ -83,7 +90,10 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                                     <BlockPieChart
                                         data={data}
                                         height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
-                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
+                                        color={color ? toRgbaString(color) : toRgbaString(DEFAULT_BAR_COLOR)}
+                                        labelColor={
+                                            labelColor ? toRgbaString(labelColor) : toRgbaString(DEFAULT_LABEL_COLOR)
+                                        }
                                     />
                                 );
                         }
