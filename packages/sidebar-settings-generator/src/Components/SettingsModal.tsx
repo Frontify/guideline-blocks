@@ -2,7 +2,10 @@
 
 import { ButtonStyle, ButtonType, Modal, Stack } from '@frontify/fondue';
 import { FC } from 'react';
-import { Form, FormDropdown, FormSwitch, FormTextInput } from './Form';
+import { ColorInputForm } from './ColorInputForm';
+import { Form, FormDropdown } from './Form';
+import { InputForm } from './InputForm';
+import { SwitchForm } from './SwitchForm';
 
 type SettingsProps = {
     show: boolean;
@@ -14,32 +17,11 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettin
     const getInputFields = (type: string) => {
         switch (type) {
             case 'input':
-                return (
-                    <>
-                        <FormTextInput name="id" label={{ children: 'ID' }} placeholder="ID" />
-                        <FormTextInput
-                            name="placeholder"
-                            label={{ children: 'Placeholder' }}
-                            placeholder="Placeholder"
-                        />
-                        <FormTextInput
-                            name="defaultValue"
-                            label={{ children: 'Default Value' }}
-                            placeholder="Default Value"
-                        />
-                        <FormTextInput name="label" label={{ children: 'Label' }} placeholder="Label" />
-                        <FormTextInput name="info" label={{ children: 'Info' }} placeholder="Info" />
-                    </>
-                );
+                return <InputForm />;
             case 'switch':
-                return (
-                    <>
-                        <FormTextInput name="id" label={{ children: 'ID' }} placeholder="ID" />
-                        <FormTextInput name="label" label={{ children: 'Label' }} placeholder="Label" />
-                        <FormTextInput name="info" label={{ children: 'Info' }} placeholder="Info" />
-                        <FormSwitch name="defaultValue" label="Default Value" />
-                    </>
-                );
+                return <SwitchForm />;
+            case 'colorInput':
+                return <ColorInputForm />;
             default:
                 return null;
         }
@@ -59,7 +41,7 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettin
                     >
                         <Modal.Header title="Add new Settings" />
                         <Modal.Body>
-                            <Stack direction="column" spacing="m" padding="none">
+                            <Stack direction="column" spacing="s" padding="none">
                                 <FormDropdown
                                     label={{ children: 'Block Type' }}
                                     name="type"
@@ -69,6 +51,7 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettin
                                             menuItems: [
                                                 { id: 'input', title: 'Input' },
                                                 { id: 'switch', title: 'Switch' },
+                                                { id: 'colorInput', title: 'Color Input' },
                                             ],
                                         },
                                     ]}
