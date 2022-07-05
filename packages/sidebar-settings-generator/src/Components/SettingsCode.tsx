@@ -1,27 +1,25 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconCheckMark, IconClipboard, IconCrossCircle, useCopy } from '@frontify/fondue';
-import { useContext } from 'react';
-import { SettingsContext } from '../SettingsContext';
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
-const prettyPrint = (json: {}): string => {
+const prettyPrint = (json: BlockSettings): string => {
     return JSON.stringify(json, undefined, 2);
 };
 
-export const SettingsCode = () => {
-    const source = useContext(SettingsContext);
+export const SettingsCode = ({ settings }: { settings: BlockSettings }) => {
     const { copy, status } = useCopy();
 
     return (
         <>
-            {(source.settings && (
+            {(settings && (
                 <>
                     <span className="tw-float-right tw-p-3">
                         <button
                             className={
                                 'tw-flex tw-items-center tw-justify-center tw-transition-colors tw-rounded tw-text-black-60 hover:tw-text-black-100'
                             }
-                            onClick={() => copy(prettyPrint(source.settings ?? ''))}
+                            onClick={() => copy(prettyPrint(settings ?? ''))}
                             title="Copy Code"
                             type="button"
                         >
@@ -39,7 +37,7 @@ export const SettingsCode = () => {
                         </button>
                     </span>
                     <div className="tw-bg-black-10 tw-p-5 tw-rounded">
-                        <pre className="tw-w-full tw-font-mono tw-text-xs">{prettyPrint(source.settings)}</pre>
+                        <pre className="tw-w-full tw-font-mono tw-text-xs">{prettyPrint(settings)}</pre>
                     </div>
                 </>
             )) || <span>No Settings defined. Go to UI and add some Settings.</span>}

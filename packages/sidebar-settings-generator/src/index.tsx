@@ -15,27 +15,24 @@ const SidebarSettingsGenerator: FC = () => {
     const [activeTab, setActiveTab] = useState('ui');
     const [settings, setSettings] = useState({});
 
-    const tabs = [
-        {
-            id: 'ui',
-            label: 'UI',
-            children: <SettingsUI />,
-        },
-        {
-            id: 'code',
-            label: 'Code',
-            children: <SettingsCode />,
-        },
-    ];
-
     useEffect(() => {
         window.emitter.emit('SetStyleguideSettingsPreview', settings);
     }, [settings]);
-
     return (
         <SettingsContext.Provider value={{ settings, setSettings }}>
             <Tabs activeItemId={activeTab} onChange={setActiveTab} size={TabSize.Large}>
-                {tabs.map((tab) => (
+                {[
+                    {
+                        id: 'ui',
+                        label: 'UI',
+                        children: <SettingsUI />,
+                    },
+                    {
+                        id: 'code',
+                        label: 'Code',
+                        children: <SettingsCode settings={settings} />,
+                    },
+                ].map((tab) => (
                     <TabItem {...tab} key={tab.id} />
                 ))}
             </Tabs>
