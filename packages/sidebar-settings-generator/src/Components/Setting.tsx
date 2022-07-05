@@ -2,11 +2,20 @@
 
 import { Button } from '@frontify/fondue';
 import { SettingBlock } from '@frontify/guideline-blocks-settings';
+import { useContext, useState } from 'react';
+import { SettingsContext } from '../SettingsContext';
+import { SettingsModal } from './SettingsModal';
 
 export const Setting = ({ block }: { block: SettingBlock }) => {
-    const onEdit = () => {};
+    const [open, setOpen] = useState(false);
+
+    const onEdit = () => {
+        setOpen(true);
+    };
 
     const onDelete = () => {};
+
+    const { setSettings } = useContext(SettingsContext);
 
     return (
         <>
@@ -24,6 +33,12 @@ export const Setting = ({ block }: { block: SettingBlock }) => {
                     </div>
                 </div>
             </div>
+            <SettingsModal
+                preselectedBlock={block}
+                show={open}
+                onClose={() => setOpen(false)}
+                onUpdateSettings={(setting) => setSettings(setting)}
+            />
         </>
     );
 };

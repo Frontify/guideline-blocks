@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ButtonStyle, ButtonType, Modal, Stack } from '@frontify/fondue';
+import { SettingBlock } from '@frontify/guideline-blocks-settings';
 import { FC } from 'react';
 import { ColorInputForm } from './ColorInputForm';
 import { Form, FormDropdown } from './Form';
@@ -11,9 +12,10 @@ type SettingsProps = {
     show: boolean;
     onClose: () => void;
     onUpdateSettings: (setting: any) => void;
+    preselectedBlock?: SettingBlock;
 };
 
-export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettings }) => {
+export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettings, preselectedBlock }) => {
     const getInputFields = (type: string) => {
         switch (type) {
             case 'input':
@@ -28,7 +30,7 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose, onUpdateSettin
     };
 
     return (
-        <Form onSubmit={onUpdateSettings}>
+        <Form initialValues={{ type: preselectedBlock?.type, id: preselectedBlock?.id }} onSubmit={onUpdateSettings}>
             {({ submitForm, watch }) => {
                 const type = watch('type');
 
