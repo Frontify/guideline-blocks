@@ -11,9 +11,7 @@ export type Settings = {
 };
 
 export type ChartProps = {
-    type: ChartType;
     data: any;
-    height: number;
 };
 
 export enum ChartType {
