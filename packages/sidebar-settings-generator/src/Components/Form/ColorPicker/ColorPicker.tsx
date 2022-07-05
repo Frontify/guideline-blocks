@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color, ColorPickerFlyout, useMemoizedId } from '@frontify/fondue';
-import { chain } from 'Client/Utility/chain';
 import { useState } from 'react';
 import { FieldValues } from 'react-hook-form';
+import { chain } from '../../../Utilities/chain';
 import { FormControllerWrap } from '../ControllerWrap';
 import { FormColorPickerProps } from './types';
 

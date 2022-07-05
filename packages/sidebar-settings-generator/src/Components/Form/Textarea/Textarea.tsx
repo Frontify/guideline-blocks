@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Textarea, useMemoizedId } from '@frontify/fondue';
-import { chain } from 'Client/Utility/chain';
 import { FieldValues } from 'react-hook-form';
+import { chain } from '../../../Utilities/chain';
 import { FormControllerWrap } from '../ControllerWrap';
 import { FormTextareaProps } from './types';
 

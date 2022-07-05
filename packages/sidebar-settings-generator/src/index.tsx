@@ -1,12 +1,15 @@
-import { TabItem, TabSize, Tabs } from '@frontify/fondue';
+import { TabItem, TabSize, Tabs, Modal, IconAdd } from '@frontify/fondue';
 import { useState } from 'react';
 import { FC } from 'react';
+import { EmptySection } from './Components/EmptySection';
+import { SettingsModal } from './Components/SettingsModal';
 import { SettingsCode } from './Components/SettingsCode';
 import { SettingsUI } from './Components/SettingsUI';
 import { SettingsContext } from './settingsContext';
 
 const SidebarSettingsGenerator: FC = () => {
     const [activeTab, setActiveTab] = useState('ui');
+    const [showSettings, setShowSettings] = useState(false);
 
     const tabs = [
         {
@@ -28,6 +31,8 @@ const SidebarSettingsGenerator: FC = () => {
                     <TabItem {...tab} key={tab.id} />
                 ))}
             </Tabs>
+            <EmptySection onClick={() => setShowSettings(!showSettings)} text="Add a setting" />
+            <SettingsModal show={showSettings} onClose={() => setShowSettings(false)} />
         </SettingsContext.Provider>
     );
 };
