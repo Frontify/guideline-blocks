@@ -30,8 +30,9 @@ export const SettingsCode = ({ settings }: { settings: BlockSettings }) => {
                             )}
                             {status === 'idle' && <IconClipboard />}
                             {status === 'success' && (
-                                <span className="tw-text-box-positive-strong">
+                                <span className="tw-text-box-positive-strong tw-flex tw-items-center tw-justify-center">
                                     <IconCheckMark />
+                                    <span className="tw-pl-2">Now pay 5$</span>
                                 </span>
                             )}
                         </button>
