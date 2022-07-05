@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { SettingBlock } from '@frontify/guideline-blocks-settings';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Block } from './Block';
 
 type Props = {

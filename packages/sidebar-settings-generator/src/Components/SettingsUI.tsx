@@ -8,12 +8,14 @@ import { SettingsContext } from '../settingsContext';
 import { AddSectionModal } from './AddSectionModal';
 import { EmptySection } from './EmptySection';
 import { Section } from './Section';
+import { SettingsModal } from './SettingsModal';
 
 const SECTIONS = ['main', 'layout', 'content', 'style', 'security'];
 
 export const SettingsUI = () => {
     const { settings, setSettings } = useContext(SettingsContext);
     const [sectionModalOpen, setSectionModalOpen] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     const sectionIds = Object.keys(settings ?? {});
 
@@ -47,6 +49,8 @@ export const SettingsUI = () => {
                                 }}
                             >
                                 <Section blocks={settings} />
+                                <EmptySection onClick={() => setShowSettings(!showSettings)} text="Add a setting" />
+                                <SettingsModal show={showSettings} onClose={() => setShowSettings(false)} />
                             </AccordionItem>
                         ))}
                     </Accordion>
