@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ButtonType, MenuItemContentSize, Modal } from '@frontify/fondue';
+import { ButtonStyle, ButtonType, MenuItemContentSize, Modal } from '@frontify/fondue';
 import { capitalize } from 'lodash-es';
 import { Form, FormDropdown, FormTextInput } from './Form';
 
@@ -52,7 +52,12 @@ export const AddSectionModal = ({
                     </Modal.Body>
                     <Modal.Footer
                         buttons={[
-                            { onClick: onClose, type: ButtonType.Button, children: 'Cancel' },
+                            {
+                                onClick: onClose,
+                                type: ButtonType.Button,
+                                children: 'Cancel',
+                                style: ButtonStyle.Secondary,
+                            },
                             { onClick: submitForm, type: ButtonType.Button, children: 'Submit' },
                         ]}
                     />

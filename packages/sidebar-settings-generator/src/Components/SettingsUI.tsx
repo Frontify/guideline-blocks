@@ -16,8 +16,7 @@ export const SettingsUI = () => {
 
     const sectionIds = Object.keys(settings ?? {});
 
-    const mainSection = settings?.main;
-    const otherSections = settings ? Object.entries(settings).filter(([key]) => key !== 'main') : [];
+    const sections = settings ? Object.entries(settings) : [];
 
     const handleOpenSectionModal = () => setSectionModalOpen(true);
 
@@ -28,15 +27,15 @@ export const SettingsUI = () => {
             }
             return { ...settings, [section]: [] };
         });
+        setSectionModalOpen(false);
     };
 
     return (
         <>
             <div>
-                {mainSection && <Section blocks={mainSection} />}
-                {otherSections.length > 0 && (
+                {sections.length > 0 && (
                     <Accordion border>
-                        {otherSections.map(([title, settings]) => (
+                        {sections.map(([title, settings]) => (
                             <AccordionItem
                                 divider
                                 key={title}
