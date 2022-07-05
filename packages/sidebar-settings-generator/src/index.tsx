@@ -1,4 +1,4 @@
-import { TabItem, TabSize, Tabs, Modal, IconAdd } from '@frontify/fondue';
+import { TabItem, TabSize, Tabs } from '@frontify/fondue';
 import { useState } from 'react';
 import { FC } from 'react';
 import { EmptySection } from './Components/EmptySection';
@@ -10,6 +10,7 @@ import { SettingsContext } from './settingsContext';
 const SidebarSettingsGenerator: FC = () => {
     const [activeTab, setActiveTab] = useState('ui');
     const [showSettings, setShowSettings] = useState(false);
+    const [settings, setSettings] = useState({});
 
     const tabs = [
         {
@@ -25,7 +26,7 @@ const SidebarSettingsGenerator: FC = () => {
     ];
 
     return (
-        <SettingsContext.Provider value={{ settings: null }}>
+        <SettingsContext.Provider value={{ settings, setSettings }}>
             <Tabs activeItemId={activeTab} onChange={setActiveTab} size={TabSize.Large}>
                 {tabs.map((tab) => (
                     <TabItem {...tab} key={tab.id} />

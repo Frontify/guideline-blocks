@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Button, ButtonType, FormControl, IconAdd, Modal } from '@frontify/fondue';
+import { Button, ButtonType, Modal } from '@frontify/fondue';
 import { FC } from 'react';
 import { Form, FormDropdown } from './Form';
 
