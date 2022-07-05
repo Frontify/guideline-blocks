@@ -14,9 +14,10 @@ export const BlockLineChart: FC<ChartProps> = ({ data, height, color, labelColor
                 <Tooltip />
                 <Legend />
                 <CartesianGrid stroke="#EEEEEE" />
-                {lines.map((line) => (
-                    <Line key={line} type="monotone" dataKey={line} stroke={color} strokeWidth={3} />
-                ))}
+                {lines &&
+                    lines.map((line) => (
+                        <Line key={line} type="monotone" dataKey={line} stroke={color} strokeWidth={3} />
+                    ))}
             </LineChart>
         </ResponsiveContainer>
     );

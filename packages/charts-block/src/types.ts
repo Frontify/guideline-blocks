@@ -21,6 +21,8 @@ export type ChartProps = {
     height: string;
     color: string;
     labelColor: string;
+    line?: string;
+    lines?: string[];
 };
 
 export enum ChartHeight {
