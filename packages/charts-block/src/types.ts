@@ -10,6 +10,12 @@ export type Settings = {
     type: ChartType;
 };
 
+export type ChartProps = {
+    type: ChartType;
+    data: any;
+    height: number;
+};
+
 export enum ChartType {
     Line = 'Line',
     Bar = 'Bar',
