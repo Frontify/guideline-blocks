@@ -6,6 +6,7 @@ import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { BlockBarChart } from './charts/Bar';
 import { ChartType, ChartsBlockProps, Settings } from './types';
+import { ResponsiveContainer } from 'recharts';
 
 export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -13,6 +14,14 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
     const [chartData, setChartData] = useState<string>('');
 
     const { type = ChartType.Bar } = blockSettings;
+
+    const data = [
+        { name: 'Page A', uv: 400 },
+        { name: 'Page B', uv: 500 },
+        { name: 'Page C', uv: 350 },
+    ];
+
+    console.log({ chartData });
 
     useEffect(() => {
         const url = blockAssets.chartData?.shift()?.origin_url;
@@ -25,16 +34,18 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
 
     return (
         <div data-test-id="carts-block">
-            {(() => {
-                switch (type) {
-                    case ChartType.Bar:
-                        return <BlockBarChart data={chartData} />;
-                    case ChartType.Line:
-                        return <></>;
-                    case ChartType.Pie:
-                        return <></>;
-                }
-            })()}
+            <ResponsiveContainer width="100%" height={600}>
+                {(() => {
+                    switch (type) {
+                        case ChartType.Bar:
+                            return <BlockBarChart data={data} />;
+                        case ChartType.Line:
+                            return <></>;
+                        case ChartType.Pie:
+                            return <></>;
+                    }
+                })()}
+            </ResponsiveContainer>
         </div>
     );
 };
