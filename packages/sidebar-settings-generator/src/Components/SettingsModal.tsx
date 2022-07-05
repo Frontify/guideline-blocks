@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FormControl, IconAdd, Modal } from '@frontify/fondue';
+import { Button, ButtonType, FormControl, IconAdd, Modal } from '@frontify/fondue';
 import { FC } from 'react';
 import { Form, FormDropdown } from './Form';
 
@@ -14,7 +14,7 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose }) => {
         <Modal
             isOpen={show}
             onClose={onClose}
-            shouldCloseOnInteractOutside={(element) => !!element.dataset.isUnderlay}
+            shouldCloseOnInteractOutside={(element) => !!element?.dataset?.isUnderlay}
             shouldCloseOnBlur
         >
             <Modal.Header title="Add new Settings" />
@@ -23,8 +23,9 @@ export const SettingsModal: FC<SettingsProps> = ({ show, onClose }) => {
                     <FormDropdown
                         label={{ children: 'Block Type' }}
                         name="type"
-                        menuBlocks={[{ id: '1', menuItems: [{ id: '1', title: 'title' }] }]}
+                        menuBlocks={[{ id: '1', menuItems: [{ id: 'input', title: 'Input' }] }]}
                     />
+                    <Button type={ButtonType.Submit}>Save</Button>
                 </Form>
             </Modal.Body>
         </Modal>
