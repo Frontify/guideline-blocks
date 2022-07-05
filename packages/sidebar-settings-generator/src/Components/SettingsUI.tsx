@@ -2,6 +2,7 @@
 
 import { Accordion, AccordionItem, FieldsetHeaderType } from '@frontify/fondue';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
+import { capitalize } from 'lodash-es';
 import { useContext, useState } from 'react';
 import { SettingsContext } from '../settingsContext';
 import { AddSectionModal } from './AddSectionModal';
@@ -40,7 +41,7 @@ export const SettingsUI = () => {
                                 divider
                                 key={title}
                                 header={{
-                                    children: title,
+                                    children: capitalize(title),
                                     type: FieldsetHeaderType.Accordion,
                                     active: true,
                                 }}
