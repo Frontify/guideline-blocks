@@ -4,12 +4,12 @@ import { FC } from 'react';
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { ChartProps } from '../types';
 
-export const BlockBarChart: FC<ChartProps> = ({ data, height }) => {
+export const BlockBarChart: FC<ChartProps> = ({ data, height, color }) => {
     const heightInt = parseInt(height, 10);
     return (
         <ResponsiveContainer width="100%" height={heightInt}>
             <BarChart data={data}>
-                <XAxis dataKey="name" stroke="#8884d8" />
+                <XAxis dataKey="name" stroke={color} />
                 <YAxis />
                 <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
                 <Legend
@@ -24,7 +24,7 @@ export const BlockBarChart: FC<ChartProps> = ({ data, height }) => {
                     }}
                 />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Bar dataKey="uv" fill="#8884d8" barSize={30} />
+                <Bar dataKey="uv" fill={color} barSize={30} />
             </BarChart>
         </ResponsiveContainer>
     );

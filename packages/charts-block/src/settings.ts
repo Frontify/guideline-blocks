@@ -14,6 +14,13 @@ import { ChartHeight, ChartType, chartHeightValues } from './types';
 const HEIGHT_CUSTOM_ID = 'heightCustom';
 const HEIGHT_SIMPLE_ID = 'heightSimple';
 
+export const DEFAULT_COLOR = {
+    r: 136,
+    g: 132,
+    b: 216,
+    a: 1,
+    name: 'Purple',
+};
 export const HEIGHT_DEFAULT_VALUE = ChartHeight.Medium;
 
 const settings: BlockSettings = {
@@ -47,8 +54,7 @@ const settings: BlockSettings = {
             type: 'assetInput',
         },
     ],
-    layout: [],
-    style: [
+    layout: [
         {
             id: 'isHeightCustom',
             type: 'switch',
@@ -91,6 +97,7 @@ const settings: BlockSettings = {
             ],
         },
     ],
+    style: [{ id: 'color', type: 'colorInput', label: 'Color', defaultValue: DEFAULT_COLOR }],
 };
 
 export default settings;

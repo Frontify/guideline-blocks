@@ -4,12 +4,12 @@ import { FC } from 'react';
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { ChartProps } from '../types';
 
-export const BlockLineChart: FC<ChartProps> = ({ data, height }) => {
+export const BlockLineChart: FC<ChartProps> = ({ data, height, color }) => {
     const heightInt = parseInt(height, 10);
     return (
         <ResponsiveContainer width="100%" height={heightInt}>
             <LineChart data={data}>
-                <XAxis dataKey="name" stroke="#8884d8" />
+                <XAxis dataKey="name" stroke={color} />
                 <YAxis />
                 <Tooltip />
                 <Legend
@@ -24,7 +24,7 @@ export const BlockLineChart: FC<ChartProps> = ({ data, height }) => {
                     }}
                 />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                <Line type="monotone" dataKey="uv" stroke={color} strokeWidth={3} />
             </LineChart>
         </ResponsiveContainer>
     );

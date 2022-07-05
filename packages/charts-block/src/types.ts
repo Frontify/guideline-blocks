@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeNative } from '@frontify/app-bridge';
+import { Color } from '@frontify/fondue';
 
 export type ChartsBlockProps = {
     appBridge: AppBridgeNative;
@@ -11,11 +12,13 @@ export type Settings = {
     isHeightCustom?: boolean;
     heightCustom?: string;
     heightSimple?: ChartHeight;
+    color?: Color;
 };
 
 export type ChartProps = {
     data: any;
     height: string;
+    color: string;
 };
 
 export enum ChartHeight {

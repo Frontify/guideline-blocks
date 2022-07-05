@@ -2,12 +2,13 @@
 
 import { useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
+import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { BlockBarChart } from './charts/Bar';
 import { BlockLineChart } from './charts/Line';
 import { BlockPieChart } from './charts/Pie';
-import { HEIGHT_DEFAULT_VALUE } from './settings';
+import { DEFAULT_COLOR, HEIGHT_DEFAULT_VALUE } from './settings';
 import { ChartType, ChartsBlockProps, Settings, chartHeightValues } from './types';
 
 export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
@@ -20,20 +21,14 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
         isHeightCustom = false,
         heightCustom = '',
         heightSimple = HEIGHT_DEFAULT_VALUE,
+        color = DEFAULT_COLOR,
     } = blockSettings;
-
-    console.log({ type });
-    console.log({ isHeightCustom });
-    console.log({ heightCustom });
-    console.log({ heightSimple });
 
     const data = [
         { name: 'Page A', uv: 400 },
         { name: 'Page B', uv: 500 },
         { name: 'Page C', uv: 350 },
     ];
-
-    console.log({ chartData });
 
     useEffect(() => {
         const url = blockAssets.chartData?.shift()?.origin_url;
@@ -53,6 +48,7 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                             <BlockBarChart
                                 data={data}
                                 height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                                color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
                             />
                         );
                     case ChartType.Line:
@@ -60,6 +56,7 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                             <BlockLineChart
                                 data={data}
                                 height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                                color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
                             />
                         );
                     case ChartType.Pie:
@@ -67,6 +64,7 @@ export const ChartsBlock: FC<ChartsBlockProps> = ({ appBridge }) => {
                             <BlockPieChart
                                 data={data}
                                 height={isHeightCustom ? heightCustom : chartHeightValues[heightSimple]}
+                                color={color ? toRgbaString(color) : toRgbaString(DEFAULT_COLOR)}
                             />
                         );
                 }
