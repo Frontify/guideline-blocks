@@ -65,7 +65,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         if (url !== '') {
-            setIsReadyForPrint(false);
             const newIframeUrl = new URL(url);
             newIframeUrl.searchParams.set('nav', 'false');
 
