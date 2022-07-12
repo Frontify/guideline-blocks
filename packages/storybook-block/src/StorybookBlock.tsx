@@ -11,14 +11,14 @@ import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
+    borderRadiusClasses,
+    heights,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
-    borderRadiusClasses,
-    heights,
 } from './types';
 
 const DEFAULT_BORDER_WIDTH = '1px';
@@ -65,6 +65,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         if (url !== '') {
+            setIsReadyForPrint(false);
             const newIframeUrl = new URL(url);
             newIframeUrl.searchParams.set('nav', 'false');
 
@@ -87,6 +88,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
             setIframeUrl(newIframeUrl);
         } else if (url === '') {
+            setIsReadyForPrint(true);
             deleteUrl();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
