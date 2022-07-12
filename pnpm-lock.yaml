@@ -704,7 +704,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': ^2.20.0
+      '@frontify/app-bridge': 2.20.0
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.6.2
       '@frontify/fondue-tokens': 3.0.1
