@@ -65,6 +65,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         if (url !== '') {
+            setIsReadyForPrint(false);
             const newIframeUrl = new URL(url);
             newIframeUrl.searchParams.set('nav', 'false');
 
@@ -87,6 +88,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
             setIframeUrl(newIframeUrl);
         } else if (url === '') {
+            setIsReadyForPrint(true);
             deleteUrl();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
