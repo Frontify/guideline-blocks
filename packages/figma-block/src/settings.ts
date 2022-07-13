@@ -9,6 +9,8 @@ export const ASSET_ID = 'asset';
 export const DEFAULT_HEIGHT = '500px';
 
 const HAS_BORDER_ID = 'hasBorder';
+const SHOW_FIGMA_LINK_ID = 'showFigmaLink';
+const HAS_BACKGROUND_ID = 'hasBackground';
 const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
 
@@ -53,6 +55,18 @@ const settings: BlockSettings = {
             type: 'switch',
             label: 'Show border',
             defaultValue: true,
+        },
+        {
+            id: SHOW_FIGMA_LINK_ID,
+            type: 'switch',
+            label: 'Show Figma Link',
+            defaultValue: true,
+        },
+        {
+            id: HAS_BACKGROUND_ID,
+            type: 'switch',
+            label: 'Show Background',
+            defaultValue: false,
         },
     ],
     layout: [

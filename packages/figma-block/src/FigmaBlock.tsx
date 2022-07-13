@@ -39,6 +39,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         isCustomHeight = false,
         heightValue = heights[HeightChoices.Small],
         heightChoice = HeightChoices.Medium,
+        showFigmaLink = true,
+        hasBackground = false,
     } = blockSettings;
 
     useEffect(() => {
@@ -75,8 +77,19 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         </div>
     );
 
+    const ShowFigmaLink = useCallback(
+        ({ title, assetExternalUrl }) => (
+            <div className="tw-p-2 tw-text-sm">
+                <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-underline">
+                    {title}
+                </a>
+            </div>
+        ),
+        []
+    );
+
     const ShowImagePreview = useCallback(
-        ({ hasBorder, height }) => (
+        ({ hasBorder, height, showFigmaLink, hasBackground }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
                 <ImageStage
                     title={asset.title}
@@ -84,18 +97,12 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     isContainerVector={true}
                     height={height}
                     hasBorder={hasBorder}
-                    hasBackground
+                    hasBackground={hasBackground}
                 />
-                {assetExternalUrl && (
-                    <div className="tw-p-2 tw-text-sm">
-                        <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-underline">
-                            {asset.title}
-                        </a>
-                    </div>
-                )}
+                {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
             </div>
         ),
-        [asset, assetExternalUrl]
+        [ShowFigmaLink, asset?.preview_url, asset?.title, assetExternalUrl]
     );
 
     const ShowFigmaLive = useCallback(
@@ -150,7 +157,12 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         <div data-test-id="figma-block">
             {isInEditMode && !isAssetAvailable && <FigmaEmptyBlock />}
             {isAssetAvailable && !isLivePreview && (
-                <ShowImagePreview hasBorder={hasBorder} height={isCustomHeight ? heightValue : heights[heightChoice]} />
+                <ShowImagePreview
+                    hasBorder={hasBorder}
+                    hasBackground={hasBackground}
+                    height={isCustomHeight ? heightValue : heights[heightChoice]}
+                    showFigmaLink={showFigmaLink}
+                />
             )}
             {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
             {showFigmaLiveModal && <FigmaLivePortal />}
