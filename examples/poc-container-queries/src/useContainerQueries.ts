@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { RefCallback, useCallback, useLayoutEffect, useRef, useState } from 'react';
 
 export type QueryBreakpoints = {
@@ -70,7 +72,7 @@ export function useContainerQueries<T extends HTMLElement>({
             const { activeBreakpoint } = matchBreakpoint(state.activeBreakpoint, width);
 
             if (activeBreakpoint !== state.activeBreakpoint) {
-                /* setTimeout is required to prevent error "ResizeObserver loop limit exceeded" 
+                /* setTimeout is required to prevent error "ResizeObserver loop limit exceeded"
                 from being thrown during cypress component tests */
                 setTimeout(() => setState((prev) => ({ ...prev, activeBreakpoint })), 0);
             }

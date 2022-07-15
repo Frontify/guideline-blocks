@@ -1,5 +1,5 @@
 {
-    "name": "container-queries",
+    "name": "poc-container-queries",
     "private": true,
     "version": "1.0.0",
     "main": "dist/index.js",
