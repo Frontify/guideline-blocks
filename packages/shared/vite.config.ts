@@ -20,16 +20,28 @@ export default defineConfig({
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
             fileName: (format: string) => `index.${format}.js`,
-            formats: ['es', 'umd', 'cjs'],
             name: 'GuidelineBlocksShared',
         },
         sourcemap: true,
         minify: true,
         rollupOptions: {
             external: [...dependencies, ...peerDependencies],
-            output: {
-                globals,
-            },
+            output: [
+                {
+                    format: 'es',
+                    preserveModules: true,
+                    preserveModulesRoot: 'src',
+                    globals,
+                },
+                {
+                    format: 'umd',
+                    globals,
+                },
+                {
+                    format: 'cjs',
+                    globals,
+                },
+            ],
         },
     },
 });
