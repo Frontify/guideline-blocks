@@ -1,4 +1,3 @@
-/* eslint-disable sort-imports */
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DropdownSize, IconEnum } from '@frontify/fondue';
@@ -14,11 +13,11 @@ import {
 import {
     DividerAlignment,
     DividerHeight,
-    dividerHeightValues,
     DividerStyle,
     DividerThickness,
-    dividerThicknessValues,
     DividerWidth,
+    dividerHeightValues,
+    dividerThicknessValues,
 } from './types';
 
 const IS_LINE_ID = 'isLine';
