@@ -15,6 +15,7 @@ export type Settings = {
     hasBackground?: boolean;
     hasDateEdited?: boolean;
     note?: string;
+    notePlain?: string;
     createdByUser?: number;
     username?: string;
     avatar?: string;

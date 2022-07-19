@@ -1,3 +1,4 @@
 {
-  "appId": "a456ce09-2e9c-4a84-8ba0-53eead42e067"
+  "appId": "a456ce09-2e9c-4a84-8ba0-53eead42e067",
+  "searchFields": ["notePlain"]
 }

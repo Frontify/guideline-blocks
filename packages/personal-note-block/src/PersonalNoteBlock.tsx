@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Color, RichTextEditor } from '@frontify/fondue';
+import { Color, RichTextEditor, toPlaintext } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import {
     BorderStyle,
@@ -66,6 +66,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         setBlockSettings({
             ...blockSettings,
             note: value,
+            notePlain: toPlaintext(JSON.parse(value)),
             dateEdited: new Date().toString(),
         });
     };
