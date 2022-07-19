@@ -438,7 +438,7 @@ importers:
       '@cypress/react': 5.12.4
       '@frontify/app-bridge': 2.17.0
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.7.0
+      '@frontify/fondue': 9.8.0
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': ^4.0.6
       '@frontify/guideline-blocks-settings': workspace:*
@@ -456,7 +456,7 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@frontify/app-bridge': 2.17.0_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.7.0_6x7isr73so62rlgao7p55cg4de
+      '@frontify/fondue': 9.8.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -2852,6 +2852,86 @@ packages:
       react-dom: 17.0.2_react@17.0.2
       react-is: 18.1.0
       react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
+      tinycolor2: 1.4.2
+      xstate: 4.32.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/fondue/9.8.0_6x7isr73so62rlgao7p55cg4de:
+    resolution: {integrity: sha512-fRBdt3QtYBecdu1nmIg/Y6iBnQFOVeNDrLsDeOh+jCuBsdd5tBdBk2uiKV+Q0SeusXwCsqFGT7za9B6Eem8R8w==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.0.1
+      '@popperjs/core': 2.11.5
+      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
+      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
+      '@react-aria/button': 3.5.1_react@17.0.2
+      '@react-aria/checkbox': 3.3.4_react@17.0.2
+      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.1.9_react@17.0.2
+      '@react-aria/focus': 3.6.1_react@17.0.2
+      '@react-aria/interactions': 3.9.1_react@17.0.2
+      '@react-aria/link': 3.2.5_react@17.0.2
+      '@react-aria/listbox': 3.4.5_react@17.0.2
+      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.1.11_react@17.0.2
+      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.9.1_react@17.0.2
+      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.1.8_react@17.0.2
+      '@react-aria/utils': 3.13.1_react@17.0.2
+      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
+      '@react-stately/checkbox': 3.0.7_react@17.0.2
+      '@react-stately/collections': 3.4.1_react@17.0.2
+      '@react-stately/combobox': 3.0.5_react@17.0.2
+      '@react-stately/list': 3.4.5_react@17.0.2
+      '@react-stately/menu': 3.2.7_react@17.0.2
+      '@react-stately/overlays': 3.2.0_react@17.0.2
+      '@react-stately/radio': 3.3.6_react@17.0.2
+      '@react-stately/select': 3.1.7_react@17.0.2
+      '@react-stately/table': 3.1.3_react@17.0.2
+      '@react-stately/toggle': 3.3.1_react@17.0.2
+      '@react-stately/tooltip': 3.0.9_react@17.0.2
+      '@react-stately/tree': 3.3.1_react@17.0.2
+      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 10.8.0_ie55nb46y6wv23x4yjorngubdq
+      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
+      '@xstate/react': 1.6.3_ww4vbcegcjz4p4on5vcih4o66u
+      date-fns: 2.28.0
+      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.12
+      react: 17.0.2
+      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_sudpmbbyhqtxq6t4xf6jlicdem
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.1.0
+      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
+      react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-hyperscript: 0.77.0_slate@0.78.0
@@ -16728,6 +16808,20 @@ packages:
       react: 17.0.2
       use-composed-ref: 1.3.0_react@17.0.2
       use-latest: 1.2.1_zdsfwtvwq54q3oqxwtq4jnbhh4
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
+  /react-textarea-autosize/8.3.4_sudpmbbyhqtxq6t4xf6jlicdem:
+    resolution: {integrity: sha512-CdtmP8Dc19xL8/R6sWvtknD/eCXkQr30dtvC4VmGInhRsfF8X/ihXCq6+9l9qbxmKRiq407/7z5fxE7cVWQNgQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.17.9
+      react: 17.0.2
+      use-composed-ref: 1.3.0_react@17.0.2
+      use-latest: 1.2.1_sudpmbbyhqtxq6t4xf6jlicdem
     transitivePeerDependencies:
       - '@types/react'
     dev: false
