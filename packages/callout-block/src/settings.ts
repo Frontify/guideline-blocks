@@ -18,7 +18,7 @@ const PADDING_RIGHT_ID = 'paddingRight';
 const PADDING_BOTTOM_ID = 'paddingBottom';
 export const ICON_ASSET_ID = 'icon';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'type',
@@ -187,5 +187,3 @@ const settings: BlockSettings = {
     ],
     style: [getExtendedBorderRadiusSettings()],
 };
-
-export default settings;

@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { SketchfabBlock as default } from './SketchfabBlock';
+import { SketchfabBlock } from './SketchfabBlock';
+import { settings } from './settings';
+
+export default {
+    block: SketchfabBlock,
+    settings,
+};

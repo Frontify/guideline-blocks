@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { ChecklistBlock as default } from './ChecklistBlock';
+import { ChecklistBlock } from './ChecklistBlock';
+import { settings } from './settings';
+
+export default {
+    block: ChecklistBlock,
+    settings,
+};

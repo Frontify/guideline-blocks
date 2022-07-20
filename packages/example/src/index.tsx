@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { ExampleBlock as default } from './ExampleBlock';
+import { ExampleBlock } from './ExampleBlock';
+import { settings } from './settings';
+
+export default {
+    block: ExampleBlock,
+    settings,
+};

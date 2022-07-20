@@ -26,7 +26,7 @@ const STYLE_ID = 'style';
 const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: STYLE_ID,
@@ -121,5 +121,3 @@ const settings: BlockSettings = {
     ],
     style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: 'hasBorder' })],
 };
-
-export default settings;

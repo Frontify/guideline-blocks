@@ -11,7 +11,7 @@ export const DONT_COLOR_DEFAULT_VALUE = { r: 255, g: 55, b: 90, a: 1 };
 const SPACING_VALUE_ID = 'spacingValue';
 const SPACING_CHOICE_ID = 'spacingChoice';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'style',
@@ -136,5 +136,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

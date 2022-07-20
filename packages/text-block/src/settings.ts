@@ -42,7 +42,7 @@ export const columnNumberChoices = [
     },
 ];
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
@@ -106,5 +106,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

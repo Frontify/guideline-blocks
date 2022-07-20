@@ -18,7 +18,7 @@ const PROGRESS_BAR_TYPE = 'progressBarType';
 const showProgressStyles = (bundle: Bundle): boolean =>
     !!bundle.getBlock(PROGRESS_BAR_VISIBLE)?.value && bundle.getBlock(PROGRESS_BAR_TYPE)?.value === ProgressBarType.Bar;
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: COMPLETED_DECORATION,
@@ -202,5 +202,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

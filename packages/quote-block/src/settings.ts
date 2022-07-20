@@ -32,7 +32,7 @@ const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlo
 const showAccentLine = (bundle: Bundle): boolean =>
     isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID)?.value === true;
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: QUOTE_TYPE_ID,
@@ -224,5 +224,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

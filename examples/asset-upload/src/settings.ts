@@ -5,7 +5,7 @@ import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
 export const IMAGE_SETTING_ID = 'image';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
@@ -27,5 +27,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

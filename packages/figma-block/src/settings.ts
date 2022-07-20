@@ -20,7 +20,7 @@ export const heights: Record<HeightChoices, string> = {
     [HeightChoices.Large]: '800px',
 };
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'figmaPreviewId',
@@ -109,5 +109,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

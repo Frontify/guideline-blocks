@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { QuoteBlock as default } from './QuoteBlock';
+import { QuoteBlock } from './QuoteBlock';
+import { settings } from './settings';
+
+export default {
+    block: QuoteBlock,
+    settings,
+};
