@@ -13,13 +13,25 @@ export default defineConfig({
         lib: {
             entry: resolve(__dirname, 'types/index.ts'),
             fileName: (format: string) => `index.${format}.js`,
-            formats: ['es', 'umd', 'cjs'],
             name: 'GuidelineBlocksSettings',
         },
         sourcemap: true,
         minify: true,
         rollupOptions: {
             external: [...dependencies],
+            output: [
+                {
+                    format: 'es',
+                    preserveModules: true,
+                    preserveModulesRoot: 'src',
+                },
+                {
+                    format: 'umd',
+                },
+                {
+                    format: 'cjs',
+                },
+            ],
         },
     },
 });
