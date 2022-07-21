@@ -49,7 +49,7 @@ const limitedWidthIsSelected = (bundle: Bundle): boolean =>
         ? bundle.getBlock(WIDTH_CUSTOM_ID)?.value !== DividerWidth['100%']
         : bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'];
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: IS_LINE_ID,
@@ -270,5 +270,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

@@ -20,7 +20,7 @@ export const BORDER_COLOR_DEFAULT_VALUE: Color = {
 
 const HAS_BACKGROUND_ID = 'hasBackground';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'style',
@@ -94,5 +94,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

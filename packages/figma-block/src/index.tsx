@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { FigmaBlock as default } from './FigmaBlock';
+import { FigmaBlock } from './FigmaBlock';
+import { settings } from './settings';
+
+export default {
+    block: FigmaBlock,
+    settings,
+};

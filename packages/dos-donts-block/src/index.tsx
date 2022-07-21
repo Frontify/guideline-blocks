@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { DosDontsBlock as default } from './DosDontsBlock';
+import { DosDontsBlock } from './DosDontsBlock';
+import { settings } from './settings';
+
+export default {
+    block: DosDontsBlock,
+    settings,
+};

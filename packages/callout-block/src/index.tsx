@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { CalloutBlock as default } from './CalloutBlock';
+import { CalloutBlock } from './CalloutBlock';
+import { settings } from './settings';
+
+export default {
+    block: CalloutBlock,
+    settings,
+};

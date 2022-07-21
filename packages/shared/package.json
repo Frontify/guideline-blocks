@@ -39,8 +39,8 @@
         "vitest": "0.14.1"
     },
     "dependencies": {
-        "@frontify/app-bridge": "2.17.0",
-        "@frontify/fondue": "9.6.2",
+        "@frontify/app-bridge": "3.0.0-beta.0",
+        "@frontify/fondue": "9.9.0",
         "@frontify/guideline-blocks-settings": "workspace:*",
         "tinycolor2": "1.4.2"
     },

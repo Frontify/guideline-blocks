@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { DividerBlock as default } from './DividerBlock';
+import { DividerBlock } from './DividerBlock';
+import { settings } from './settings';
+
+export default {
+    block: DividerBlock,
+    settings,
+};

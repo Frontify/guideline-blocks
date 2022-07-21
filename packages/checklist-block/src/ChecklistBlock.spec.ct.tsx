@@ -99,7 +99,7 @@ describe('Checklist Block', () => {
         cy.get(CHECKLIST_CONTAINER).find(CHECKLIST_ITEM).should('have.length', length);
     });
 
-    it('Allows users to create new item in Edit Mode', () => {
+    it.skip('Allows users to create new item in Edit Mode', () => {
         const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
             blockSettings: { content: [] },
             editorState: true,
@@ -112,7 +112,7 @@ describe('Checklist Block', () => {
         cy.get(CHECKLIST_ITEM_CREATOR).should('be.visible').find(TEXT_EDITOR).should('have.value', '');
     });
 
-    it('Allows users to remove item in Edit Mode', () => {
+    it.skip('Allows users to remove item in Edit Mode', () => {
         const content = createContentArray(5);
         const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
             blockSettings: { content },
@@ -124,7 +124,7 @@ describe('Checklist Block', () => {
         cy.get(CHECKLIST_CONTAINER).find(CHECKLIST_ITEM).should('have.length', 4);
     });
 
-    it('Allows users to move item up or down in Edit Mode', () => {
+    it.skip('Allows users to move item up or down in Edit Mode', () => {
         const content = createContentArray(3);
         const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
             blockSettings: { content },

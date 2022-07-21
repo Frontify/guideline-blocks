@@ -4,9 +4,9 @@ import {
     Asset,
     AssetChooserResult,
     IAppBridgeNative,
+    useAssetUpload,
     useBlockAssets,
     useFileInput,
-    useFileUpload,
 } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
@@ -18,7 +18,7 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ a
     // Manual upload demo
     const [loading, setLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
-    const [uploadFile, { results: uploadResults, doneAll }] = useFileUpload({
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !loading && setLoading(true),
     });
 

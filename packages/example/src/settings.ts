@@ -3,7 +3,7 @@
 import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
@@ -21,5 +21,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

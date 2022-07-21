@@ -24,7 +24,7 @@ export const URL_INPUT_PLACEHOLDER = 'https://sketchfab.com/models/442c548d94744
 export const DEFAULT_BORDER_WIDTH = '1px';
 
 // Defaults reflected here https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
-const settings: BlockSettings & {
+export const settings: BlockSettings & {
     UI: SettingBlock[];
     Annotations: SettingBlock[];
     'Navigation & Camera': SettingBlock[];
@@ -577,5 +577,3 @@ const settings: BlockSettings & {
         },
     ],
 };
-
-export default settings;
