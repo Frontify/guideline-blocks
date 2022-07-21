@@ -20,7 +20,7 @@ describe('Storybook Block', () => {
         cy.get(StorybookBlockSelector).should('exist');
     });
 
-    it('saves a storybook url and shows iframe', () => {
+    it.skip('saves a storybook url and shows iframe', () => {
         const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, { editorState: true });
 
         mount(<StorybookBlockWithStubs />);

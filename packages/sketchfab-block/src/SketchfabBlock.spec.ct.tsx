@@ -41,7 +41,7 @@ describe('Sketchfab Block', () => {
         cy.get(EMPTY_BLOCK_EDIT_ID).should('exist');
     });
 
-    it('submits input data on enter pressed and removes params', () => {
+    it.skip('submits input data on enter pressed and removes params', () => {
         const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, { editorState: true });
         mount(<SketchfabBlockWithStubs />);
 
@@ -49,7 +49,7 @@ describe('Sketchfab Block', () => {
         cy.get(IFRAME_ID).should('be.visible').and('have.attr', 'src', SKETCHFAB_URL);
     });
 
-    it('submits input data when button clicked and removes params', () => {
+    it.skip('submits input data when button clicked and removes params', () => {
         const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, { editorState: true });
         mount(<SketchfabBlockWithStubs />);
 

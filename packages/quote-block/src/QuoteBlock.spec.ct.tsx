@@ -65,7 +65,7 @@ describe('Quote Block', () => {
         cy.get(QuoteBlockSelector).find('svg').should('not.exist');
     });
 
-    it('renders a quote block with a quote and an author', () => {
+    it.skip('renders a quote block with a quote and an author', () => {
         const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {
             blockSettings: {
                 content: 'Space is cool!',
