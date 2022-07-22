@@ -6,7 +6,7 @@ export const isSketchfabUrl = (url: string) => {
     if (!url) {
         return false;
     }
-    const regex = /^https:\/\/(www\.)?sketchfab.com\/(show|models)\/\w+/;
+    const regex = /^https:\/\/(www\.)?sketchfab.com\/(show|models|3d-models)\/\w+/;
 
     return regex.test(url);
 };
