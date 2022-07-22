@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, MultiInputLayout, TextInputType } from '@frontify/fondue';
-import { BlockSettings, SettingBlock } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, MultiInputLayout, TextInputType } from '@frontify/fondue';
+import type { BlockSettings, SettingBlock } from '@frontify/guideline-blocks-settings';
 import {
     getBorderRadiusSettings,
     getBorderSettings,
@@ -34,7 +34,7 @@ export const settings: BlockSettings & {
         {
             id: SketchfabSettings.ACCOUNT_TYPE,
             type: 'dropdown',
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             clearable: false,
             defaultValue: SketchfabAccount.Basic,
             choices: [
@@ -180,7 +180,7 @@ export const settings: BlockSettings & {
                     type: 'input',
                     defaultValue: '25',
                     placeholder: '25',
-                    inputType: TextInputType.Number,
+                    inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0), maximumNumericalRule(100)],
                 },
             ],
@@ -218,7 +218,7 @@ export const settings: BlockSettings & {
                     placeholder: '3',
                     defaultValue: '0',
                     type: 'input',
-                    inputType: TextInputType.Number,
+                    inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
                 },
             ],
@@ -247,12 +247,12 @@ export const settings: BlockSettings & {
                     id: 'orbitConstraintPitchLimits',
                     type: 'multiInput',
                     show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
-                    layout: MultiInputLayout.Columns,
+                    layout: 'Columns' as MultiInputLayout.Columns,
                     blocks: [
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_UP,
                             type: 'input',
-                            inputType: TextInputType.Number,
+                            inputType: 'Number' as TextInputType.Number,
                             rules: [pitchRule],
                             placeholder: '1',
                             label: 'Up',
@@ -262,7 +262,7 @@ export const settings: BlockSettings & {
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_DOWN,
                             type: 'input',
-                            inputType: TextInputType.Number,
+                            inputType: 'Number' as TextInputType.Number,
                             rules: [pitchRule],
                             label: 'Down',
                             info: "Setting to [-π/2 – π/2] will define the camera's pitch down rotation limit.",
@@ -282,13 +282,13 @@ export const settings: BlockSettings & {
                 {
                     id: 'orbitConstraintYawLimits',
                     type: 'multiInput',
-                    layout: MultiInputLayout.Columns,
+                    layout: 'Columns' as MultiInputLayout.Columns,
                     show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
                     blocks: [
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_LEFT,
                             type: 'input',
-                            inputType: TextInputType.Number,
+                            inputType: 'Number' as TextInputType.Number,
                             rules: [yawRule],
                             info: "Setting to [-π – π] will define the camera's yaw left rotation limit.",
                             show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
@@ -298,7 +298,7 @@ export const settings: BlockSettings & {
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_RIGHT,
                             type: 'input',
-                            inputType: TextInputType.Number,
+                            inputType: 'Number' as TextInputType.Number,
                             rules: [yawRule],
                             info: "Setting to [-π – π] will define the camera's yaw right rotation limit.",
                             show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
@@ -321,7 +321,7 @@ export const settings: BlockSettings & {
                     type: 'input',
                     show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
                     placeholder: '3',
-                    inputType: TextInputType.Number,
+                    inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
                 },
             ],
@@ -336,7 +336,7 @@ export const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_OUT_COUNT,
                     type: 'input',
-                    inputType: TextInputType.Number,
+                    inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
                     show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
                     placeholder: '3',
@@ -363,7 +363,7 @@ export const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.ANNOTATION_CYCLE_COUNT,
                     placeholder: '1',
-                    inputType: TextInputType.Number,
+                    inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
                     type: 'input',
                     show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
@@ -381,7 +381,7 @@ export const settings: BlockSettings & {
         {
             id: SketchfabSettings.STARTING_ANNOTATION,
             defaultValue: '0',
-            inputType: TextInputType.Number,
+            inputType: 'Number' as TextInputType.Number,
             rules: [minimumNumericalRule(0), maximumNumericalRule(100)],
             label: 'Starting Annotation',
             info: 'Setting to a positive number [1 – 100] will automatically load that annotation when the viewer starts.',

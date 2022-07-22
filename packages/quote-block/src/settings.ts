@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/fondue';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType, lineWidthMap, quoteSizeMap } from './types';
 
@@ -12,17 +12,41 @@ const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
 const LINE_WIDTH_CHOICE_ID = 'lineWidthChoice';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const QUOTE_STYLE_CHOICES = [
-    { value: QuoteStyle.DoubleUp, icon: IconEnum.DoubleQuotesUp, label: 'Double Up' },
-    { value: QuoteStyle.DoubleDown, icon: IconEnum.DoubleQuotesDown, label: 'Double Down' },
-    { value: QuoteStyle.SingleUp, icon: IconEnum.SingleQuoteUp, label: 'Single Up' },
-    { value: QuoteStyle.SingleDown, icon: IconEnum.SingleQuoteDown, label: 'Single Down' },
-    { value: QuoteStyle.DoubleChevronLeft, icon: IconEnum.DoubleChevronLeft, label: 'Double Chevron Left' },
-    { value: QuoteStyle.DoubleChevronRight, icon: IconEnum.DoubleChevronRight, label: 'Double Chevron Right' },
-    { value: QuoteStyle.SingleChevronLeft, icon: IconEnum.SingleChevronLeft, label: 'Single Chevron Left' },
-    { value: QuoteStyle.SingleChevronRight, icon: IconEnum.SingleChevronRight, label: 'Single Chevron Right' },
-    { value: QuoteStyle.HookBracketLeft, icon: IconEnum.HookBracketLeft, label: 'Hook Bracket Left' },
-    { value: QuoteStyle.HookBracketRight, icon: IconEnum.HookBracketRight, label: 'Hook Bracket Right' },
-    { value: QuoteStyle.None, icon: IconEnum.None, label: 'None' },
+    { value: QuoteStyle.DoubleUp, icon: 'DoubleQuotesUp' as IconEnum.DoubleQuotesUp, label: 'Double Up' },
+    { value: QuoteStyle.DoubleDown, icon: 'DoubleQuotesDown' as IconEnum.DoubleQuotesDown, label: 'Double Down' },
+    { value: QuoteStyle.SingleUp, icon: 'SingleQuoteUp' as IconEnum.SingleQuoteUp, label: 'Single Up' },
+    { value: QuoteStyle.SingleDown, icon: 'SingleQuoteDown' as IconEnum.SingleQuoteDown, label: 'Single Down' },
+    {
+        value: QuoteStyle.DoubleChevronLeft,
+        icon: 'DoubleChevronLeft' as IconEnum.DoubleChevronLeft,
+        label: 'Double Chevron Left',
+    },
+    {
+        value: QuoteStyle.DoubleChevronRight,
+        icon: 'DoubleChevronRight' as IconEnum.DoubleChevronRight,
+        label: 'Double Chevron Right',
+    },
+    {
+        value: QuoteStyle.SingleChevronLeft,
+        icon: 'SingleChevronLeft' as IconEnum.SingleChevronLeft,
+        label: 'Single Chevron Left',
+    },
+    {
+        value: QuoteStyle.SingleChevronRight,
+        icon: 'SingleChevronRight' as IconEnum.SingleChevronRight,
+        label: 'Single Chevron Right',
+    },
+    {
+        value: QuoteStyle.HookBracketLeft,
+        icon: 'HookBracketLeft' as IconEnum.HookBracketLeft,
+        label: 'Hook Bracket Left',
+    },
+    {
+        value: QuoteStyle.HookBracketRight,
+        icon: 'HookBracketRight' as IconEnum.HookBracketRight,
+        label: 'Hook Bracket Right',
+    },
+    { value: QuoteStyle.None, icon: 'None' as IconEnum.None, label: 'None' },
 ];
 
 export const DEFAULT_COLOR_VALUE = { r: 179, g: 181, b: 181, a: 1, name: 'Light Grey' };
@@ -38,16 +62,16 @@ export const settings: BlockSettings = {
             id: QUOTE_TYPE_ID,
             type: 'dropdown',
             defaultValue: QuoteType.QuotationMarks,
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
-                    icon: IconEnum.Quote,
+                    icon: 'Quote' as IconEnum.Quote,
                     label: 'Quotation Marks',
                 },
                 {
                     value: QuoteType.Indentation,
-                    icon: IconEnum.ListIndented,
+                    icon: 'ListIndented' as IconEnum.ListIndented,
                     label: 'Indentation',
                 },
             ],

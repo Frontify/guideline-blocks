@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/fondue';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     betweenPercentRule,
@@ -54,17 +54,17 @@ export const settings: BlockSettings = {
         {
             id: IS_LINE_ID,
             type: 'dropdown',
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             defaultValue: IS_LINE_DEFAULT_VALUE,
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: IconEnum.LineSpacer,
+                    icon: 'LineSpacer' as IconEnum.LineSpacer,
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: IconEnum.LineSolid,
+                    icon: 'LineSolid' as IconEnum.LineSolid,
                     label: 'Line',
                 },
             ],
@@ -130,15 +130,15 @@ export const settings: BlockSettings = {
                     choices: [
                         {
                             value: DividerAlignment.Left,
-                            icon: IconEnum.AlignLeft,
+                            icon: 'AlignLeft' as IconEnum.AlignLeft,
                         },
                         {
                             value: DividerAlignment.Center,
-                            icon: IconEnum.AlignCenter,
+                            icon: 'AlignCenter' as IconEnum.AlignCenter,
                         },
                         {
                             value: DividerAlignment.Right,
-                            icon: IconEnum.AlignRight,
+                            icon: 'AlignRight' as IconEnum.AlignRight,
                         },
                     ],
                     show: limitedWidthIsSelected,

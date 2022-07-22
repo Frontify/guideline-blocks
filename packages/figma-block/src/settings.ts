@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetChooserObjectType, AssetChooserProjectType } from '@frontify/app-bridge';
-import { AssetInputMode, BlockSettings } from '@frontify/guideline-blocks-settings';
+import { AssetInputMode } from '@frontify/guideline-blocks-settings';
+import type { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { minimumPixelRule } from '@frontify/guideline-blocks-shared';
 import { BlockPreview, HeightChoices } from './types';
 

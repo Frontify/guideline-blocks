@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getPaddingExtendedSettings,
@@ -24,21 +24,21 @@ export const settings: BlockSettings = {
             id: COMPLETED_DECORATION,
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,
-                    icon: IconEnum.Symbols,
+                    icon: 'Symbols' as IconEnum.Symbols,
                     label: 'Checkbox',
                 },
                 {
                     value: ChecklistDecoration.Strikethrough,
-                    icon: IconEnum.Strikethrough,
+                    icon: 'Strikethrough' as IconEnum.Strikethrough,
                     label: 'Strikethrough',
                 },
                 {
                     value: ChecklistDecoration.Highlight,
-                    icon: IconEnum.Highlight,
+                    icon: 'Highlight' as IconEnum.Highlight,
                     label: 'Highlight',
                 },
             ],
@@ -132,7 +132,7 @@ export const settings: BlockSettings = {
                     id: 'strikethroughMultiInput',
                     type: 'multiInput',
                     label: 'Line',
-                    layout: MultiInputLayout.Columns,
+                    layout: 'Columns' as MultiInputLayout.Columns,
                     lastItemFullWidth: true,
                     show: (bundle: Bundle) =>
                         bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,

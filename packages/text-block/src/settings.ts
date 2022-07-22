@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/fondue';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 
 export const PLACEHOLDER = 'Your text here';
@@ -48,12 +48,12 @@ export const settings: BlockSettings = {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'text',
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             disabled: true,
             choices: [
                 {
                     value: 'text',
-                    icon: IconEnum.TextAlignLeft,
+                    icon: 'TextAlignLeft' as IconEnum.TextAlignLeft,
                     label: 'Text',
                 },
             ],

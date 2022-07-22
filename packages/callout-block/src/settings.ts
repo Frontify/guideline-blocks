@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import { AssetChooserObjectType } from '@frontify/app-bridge';
+import type { FileExtension } from '@frontify/app-bridge';
+import type { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getExtendedBorderRadiusSettings,
@@ -24,26 +25,26 @@ export const settings: BlockSettings = {
             id: 'type',
             type: 'dropdown',
             defaultValue: Type.Warning,
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             choices: [
                 {
                     value: Type.Warning,
-                    icon: IconEnum.Callout,
+                    icon: 'Callout' as IconEnum.Callout,
                     label: 'Warning',
                 },
                 {
                     value: Type.Tip,
-                    icon: IconEnum.Check,
+                    icon: 'Check' as IconEnum.Check,
                     label: 'Tip',
                 },
                 {
                     value: Type.Note,
-                    icon: IconEnum.Briefing,
+                    icon: 'Briefing' as IconEnum.Briefing,
                     label: 'Note',
                 },
                 {
                     value: Type.Info,
-                    icon: IconEnum.Info,
+                    icon: 'Info' as IconEnum.Info,
                     label: 'Info',
                 },
             ],
@@ -59,7 +60,7 @@ export const settings: BlockSettings = {
                 {
                     id: ICON_ASSET_ID,
                     type: 'assetInput',
-                    extensions: [FileExtension.Svg],
+                    extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                 },
             ],
@@ -96,17 +97,17 @@ export const settings: BlockSettings = {
                     choices: [
                         {
                             value: Alignment.Left,
-                            icon: IconEnum.AlignLeft,
+                            icon: 'AlignLeft' as IconEnum.AlignLeft,
                             label: 'Left',
                         },
                         {
                             value: Alignment.Center,
-                            icon: IconEnum.AlignCenter,
+                            icon: 'AlignCenter' as IconEnum.AlignCenter,
                             label: 'Center',
                         },
                         {
                             value: Alignment.Right,
-                            icon: IconEnum.AlignRight,
+                            icon: 'AlignRight' as IconEnum.AlignRight,
                             label: 'Right',
                         },
                     ],
@@ -127,7 +128,7 @@ export const settings: BlockSettings = {
                         {
                             id: 'customPadding',
                             type: 'multiInput',
-                            layout: MultiInputLayout.Spider,
+                            layout: 'Spider' as MultiInputLayout.Spider,
                             blocks: [
                                 {
                                     id: PADDING_TOP_ID,
