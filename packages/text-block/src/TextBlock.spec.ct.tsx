@@ -2,28 +2,28 @@
 
 import { TextBlock } from './TextBlock';
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 
 const TextBlockSelector = '[data-test-id="text-block"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
 
 describe('Text Block', () => {
     it('renders a text block', () => {
-        const [TextBlockWithStubs] = withAppBridgeStubs(TextBlock, {});
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {});
 
         mount(<TextBlockWithStubs />);
         cy.get(TextBlockSelector).should('exist');
     });
 
     it('should not be able to input to a text block when in view mode', () => {
-        const [TextBlockWithStubs] = withAppBridgeStubs(TextBlock, {});
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {});
 
         mount(<TextBlockWithStubs />);
         cy.get(RichTextEditor).find('[contenteditable=true]').should('not.exist');
     });
 
     it('should be able input to two text blocks when in edit mode', () => {
-        const [TextBlockWithStubs] = withAppBridgeStubs(TextBlock, {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
             blockSettings: {
                 columnNumber: 2,
             },
@@ -38,7 +38,7 @@ describe('Text Block', () => {
     });
 
     it('should render a text block with the correct amount of columns and correct spacing', () => {
-        const [TextBlockWithStubs] = withAppBridgeStubs(TextBlock, {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
             blockSettings: {
                 columnNumber: 4,
                 isColumnGutterCustom: true,

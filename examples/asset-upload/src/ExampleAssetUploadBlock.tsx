@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    Asset,
+    AppBridgeBlock,
     AssetChooserResult,
-    IAppBridgeNative,
+    FrontifyAsset,
     useAssetUpload,
     useBlockAssets,
     useFileInput,
@@ -14,7 +14,7 @@ import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { IMAGE_SETTING_ID } from './settings';
 
-export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge }) => {
+export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ appBridge }) => {
     // Manual upload demo
     const [loading, setLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
@@ -74,15 +74,15 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ a
 
             <div data-test-id="example-asset-upload-block">
                 {blockAssets[IMAGE_SETTING_ID] ? (
-                    blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
+                    blockAssets[IMAGE_SETTING_ID].map((asset: FrontifyAsset) => (
                         <div key={asset.id}>
-                            <img src={asset.preview_url} data-test-id="example-asset-upload-image" />
+                            <img src={asset.previewUrl} data-test-id="example-asset-upload-image" />
                             <div className="tw-flex tw-flex-col tw-gap-4">
                                 <strong>{asset.title}</strong>
                                 <div className="tw-flex tw-gap-4">
-                                    <Link link={asset.preview_url} text="Preview URL" />
-                                    <Link link={asset.generic_url} text="Generic URL" />
-                                    {asset.origin_url && <Link link={asset.origin_url} text="Origin URL" />}
+                                    <Link link={asset.previewUrl} text="Preview URL" />
+                                    <Link link={asset.genericUrl} text="Generic URL" />
+                                    {asset.originUrl && <Link link={asset.originUrl} text="Origin URL" />}
                                 </div>
                             </div>
                         </div>

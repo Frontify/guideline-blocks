@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { AssetDummy, withAppBridgeStubs } from '@frontify/app-bridge';
+import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { FigmaBlock } from './FigmaBlock';
 import { ASSET_ID } from './settings';
 import { BlockPreview, BlockProps } from './types';
@@ -14,19 +14,19 @@ const FULL_SCREEN_SELECTOR = '[data-test-id="figma-full-screen"]';
 
 describe('Figma Block', () => {
     it('renders a Figma block', () => {
-        const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock);
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock);
         mount(<FigmaBlockWithStubs />);
         cy.get(MAIN_BLOCK_SELECTOR).should('exist');
     });
 
     it('renders a Figma empty block on edit', () => {
-        const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, { editorState: true });
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, { editorState: true });
         mount(<FigmaBlockWithStubs />);
         cy.get(EMPTY_BLOCK_SELECTOR).should('exist');
     });
 
     it('triggers openAssetChooser mock', () => {
-        const [FigmaBlockWithStubs] = withAppBridgeStubs<BlockProps>(FigmaBlock, {
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs<BlockProps>(FigmaBlock, {
             editorState: true,
             openAssetChooser: cy.stub().as('onClickOpenAssetChooser'),
         });
@@ -36,9 +36,9 @@ describe('Figma Block', () => {
     });
 
     it('renders a Figma image preview', () => {
-        const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [AssetDummy.with(345)],
+                [ASSET_ID]: [FrontifyAssetDummy.with(345)],
             },
             editorState: true,
         });
@@ -47,9 +47,9 @@ describe('Figma Block', () => {
     });
 
     it('renders a Figma Live iframe preview', () => {
-        const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [AssetDummy.with(345)],
+                [ASSET_ID]: [FrontifyAssetDummy.with(345)],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,
@@ -59,9 +59,9 @@ describe('Figma Block', () => {
     });
 
     it('toggles Figma Live preview Full screen', () => {
-        const [FigmaBlockWithStubs] = withAppBridgeStubs(FigmaBlock, {
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [AssetDummy.with(345)],
+                [ASSET_ID]: [FrontifyAssetDummy.with(345)],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,

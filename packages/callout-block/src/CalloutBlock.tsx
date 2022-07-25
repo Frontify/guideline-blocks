@@ -95,7 +95,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
 
         if (iconSwitch && blockAssets[ICON_ASSET_ID]) {
             const iconAsset = blockAssets[ICON_ASSET_ID][0];
-            setIconUrl(iconAsset.generic_url);
+            setIconUrl(iconAsset.genericUrl);
             setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

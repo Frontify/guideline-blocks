@@ -2,7 +2,7 @@
 
 import { mount } from '@cypress/react';
 import { BorderStyle } from '@frontify/guideline-blocks-shared';
-import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { PersonalNoteBlock } from './PersonalNoteBlock';
 
 const PersonalNoteBlockSelector = '[data-test-id="personal-note-block"]';
@@ -27,14 +27,14 @@ const EXAMPLE_COLOR_DARK = {
 
 describe('Personal Note Block', () => {
     it('renders a personal note block', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {});
+        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(PersonalNoteBlock, {});
 
         mount(<PersonalNoteBlockWithStubs />);
         cy.get(PersonalNoteBlockSelector).should('exist');
     });
 
     it('write content to personal note block', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, { editorState: true });
+        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(PersonalNoteBlock, { editorState: true });
 
         mount(<PersonalNoteBlockWithStubs />);
         cy.get(RichTextEditor).find('[contenteditable=true]').type('Hello world').blur();
@@ -42,7 +42,7 @@ describe('Personal Note Block', () => {
     });
 
     it('renders personal note block without header', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(PersonalNoteBlock, {
             blockSettings: {
                 hasAvatarName: false,
                 hasDateEdited: false,
@@ -54,7 +54,7 @@ describe('Personal Note Block', () => {
     });
 
     it('renders personal note block with dark background and light text color', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(PersonalNoteBlock, {
             blockSettings: {
                 hasBackground: true,
                 backgroundColor: EXAMPLE_COLOR_DARK,
@@ -67,7 +67,7 @@ describe('Personal Note Block', () => {
     });
 
     it('renders personal note block with correct styling', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(PersonalNoteBlock, {
             blockSettings: {
                 hasRadius: true,
                 radiusValue: '5px',
@@ -85,7 +85,7 @@ describe('Personal Note Block', () => {
     });
 
     it('does not render personal note block if permissions are set to editors only', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(PersonalNoteBlock, {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(PersonalNoteBlock, {
             editorState: false,
             blockSettings: { visibility: 'Editors' },
         });

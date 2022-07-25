@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { AssetDummy, withAppBridgeStubs } from '@frontify/app-bridge';
+import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ExampleAssetUploadBlock } from './ExampleAssetUploadBlock';
 import { IMAGE_SETTING_ID } from './settings';
 
@@ -12,21 +12,21 @@ const ASSET_ID = 94593;
 
 describe('Example Asset Upload Block', () => {
     it('renders an example block', () => {
-        const [ExampleAssetUploadBlockWithStubs] = withAppBridgeStubs(ExampleAssetUploadBlock, {});
+        const [ExampleAssetUploadBlockWithStubs] = withAppBridgeBlockStubs(ExampleAssetUploadBlock);
 
         mount(<ExampleAssetUploadBlockWithStubs />);
         cy.get(EXAMPLE_ASSET_UPLOAD_BLOCK_SELECTOR).should('exist');
     });
 
     it('renders an image', () => {
-        const asset = AssetDummy.with(ASSET_ID);
-        const [FigmaBlockWithStubs] = withAppBridgeStubs(ExampleAssetUploadBlock, {
+        const asset = FrontifyAssetDummy.with(ASSET_ID);
+        const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(ExampleAssetUploadBlock, {
             blockAssets: {
                 [IMAGE_SETTING_ID]: [asset],
             },
         });
         mount(<FigmaBlockWithStubs />);
         cy.get(EXAMPLE_ASSET_UPLOAD_IMAGE_SELECTOR).should('exist');
-        cy.get(EXAMPLE_ASSET_UPLOAD_IMAGE_SELECTOR).should('have.attr', 'src', asset.preview_url);
+        cy.get(EXAMPLE_ASSET_UPLOAD_IMAGE_SELECTOR).should('have.attr', 'src', asset.previewUrl);
     });
 });
