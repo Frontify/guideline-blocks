@@ -258,6 +258,49 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
 
+  packages/colors-block:
+    specifiers:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4
+      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.9.0
+      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/frontify-cli': 5.0.1
+      '@frontify/guideline-blocks-settings': workspace:*
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/react': 17.0.47
+      autoprefixer: 10.4.6
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
+      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/guideline-blocks-settings': link:../block-settings
+      '@frontify/guideline-blocks-shared': link:../shared
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4_nh2kacrjo3m4pmapg6wd2vlpue
+      '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
+      '@frontify/frontify-cli': 5.0.1
+      '@types/react': 17.0.47
+      autoprefixer: 10.4.6_postcss@8.4.13
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+
   packages/divider-block:
     specifiers:
       '@babel/core': 7.17.10
@@ -10712,7 +10755,7 @@ packages:
     dev: true
 
   /ee-first/1.1.1:
-    resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
+    resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: true
 
   /electron-to-chromium/1.4.137:
@@ -11819,7 +11862,7 @@ packages:
     dev: false
 
   /fresh/0.5.2:
-    resolution: {integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=}
+    resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
     dev: true
 
@@ -15470,7 +15513,7 @@ packages:
     dev: true
 
   /through/2.3.8:
-    resolution: {integrity: sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=}
+    resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
     dev: true
 
   /timsort/0.3.0:
