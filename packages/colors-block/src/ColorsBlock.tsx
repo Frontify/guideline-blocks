@@ -64,7 +64,7 @@ export const ColorsBlock: FC<Props> = ({ appBridge }) => {
                     />
                 </div>
 
-                {demoColors.map((item) => (
+                {demoColors?.map((item) => (
                     <div
                         key={item}
                         className="tw-relative tw-w-full tw-flex tw-items-center tw-shadow-inner tw-transition-shadow hover:tw-cursor-pointer hover:tw-shadow-3xl"
@@ -96,7 +96,7 @@ export const ColorsBlock: FC<Props> = ({ appBridge }) => {
                         </div>
 
                         <div className="tw-flex tw-flex-wrap tw-gap-y-2 tw-grow">
-                            {colorspaces.map((color: any) => (
+                            {colorspaces?.map((color: any) => (
                                 <div key={color} className="tw-flex tw-items-center tw-w-1/3">
                                     <Badge size={'s'} emphasis={BadgeEmphasis.None}>
                                         HEX
