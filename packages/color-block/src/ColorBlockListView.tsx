@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { FC } from 'react';
 import {
     Badge,
@@ -13,11 +15,8 @@ import {
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
-interface ColorBlockListViewProps {
-    colors: string[];
-    colorspaces: string[];
-    isEditing: boolean;
-}
+import { ColorBlockListViewProps } from './types';
+import { copyToClipboard } from './utilities/copyToClipboard';
 
 export const ColorBlockListView: FC<ColorBlockListViewProps> = ({
     colors,
@@ -25,10 +24,6 @@ export const ColorBlockListView: FC<ColorBlockListViewProps> = ({
     isEditing,
 }: ColorBlockListViewProps) => {
     const { designTokens } = useGuidelineDesignTokens();
-
-    const copyToClipboard = async (textToCopy: string) => {
-        await navigator.clipboard.writeText(textToCopy);
-    };
 
     return (
         <>

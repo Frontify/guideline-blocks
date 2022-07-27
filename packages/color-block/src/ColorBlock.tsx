@@ -3,24 +3,16 @@
 import '@frontify/fondue-tokens/styles';
 import 'tailwindcss/tailwind.css';
 
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { FC } from 'react';
+
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { RichTextEditor } from '@frontify/fondue';
-import { FC } from 'react';
+
 import { ColorBlockListView } from './ColorBlockListView';
 import { ColorBlockDropsView } from './ColorBlockDropsView';
 import { ColorBlockCardsView } from './ColorBlockCardsView';
-
-type Settings = {
-    name?: string;
-    description?: string;
-    view_type?: string;
-    colorspaces?: string[];
-};
-
-type Props = {
-    appBridge: AppBridgeNative;
-};
+import { Props, Settings } from './types';
 
 export const ColorBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -51,7 +43,7 @@ export const ColorBlock: FC<Props> = ({ appBridge }) => {
                 />
             </div>
 
-            <div className="tw-w-full tw-mb-12 tw-text-sm">
+            <div className="tw-w-full tw-mb-12 tw-text-s">
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
                     onTextChange={onDescriptionChange}

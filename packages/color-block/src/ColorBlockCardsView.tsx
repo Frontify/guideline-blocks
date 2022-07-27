@@ -1,4 +1,7 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { FC } from 'react';
+
 import {
     Button,
     ButtonStyle,
@@ -11,11 +14,8 @@ import {
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
-interface ColorBlockCardsViewProps {
-    colors: string[];
-    colorspaces: string[];
-    isEditing: boolean;
-}
+import { ColorBlockCardsViewProps } from './types';
+import { copyToClipboard } from './utilities/copyToClipboard';
 
 export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
     colors,
@@ -23,10 +23,6 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
     isEditing,
 }: ColorBlockCardsViewProps) => {
     const { designTokens } = useGuidelineDesignTokens();
-
-    const copyToClipboard = async (textToCopy: string) => {
-        await navigator.clipboard.writeText(textToCopy);
-    };
 
     return (
         <div className="tw-flex tw-flex-wrap tw-gap-y-4 tw-my-[-16px]">
