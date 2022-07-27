@@ -16,10 +16,11 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 
 import { ColorBlockCardsViewProps } from './types';
 import { copyToClipboard } from './utilities/copyToClipboard';
+import { mapColorSpaces } from './helpers/mapColorSpaces';
 
 export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
     colors,
-    colorspaces,
+    colorSpaces,
     isEditing,
 }: ColorBlockCardsViewProps) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -38,7 +39,7 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
                         {isEditing && (
                             <div
                                 className={joinClassNames([
-                                    'tw-absolute tw-hidden tw-top-1 tw-right-1',
+                                    'tw-absolute tw-z-[2] tw-hidden tw-top-1 tw-right-1',
                                     isEditing && 'group-hover:tw-block',
                                 ])}
                             >
@@ -51,40 +52,44 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
                     </div>
 
                     <div className="tw-pt-4 tw-px-6 tw-pb-5">
-                        <div className="tw-mb-3 tw-text-m tw-font-bold">
+                        <div className="tw-relative tw-z-[1] tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">
                             <RichTextEditor designTokens={designTokens ?? undefined} readonly={!isEditing} />
                         </div>
 
-                        {colorspaces?.map((color: string) => (
-                            <div key={color} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
-                                <div className="tw-mr-1 tw-text-s tw-text-black-70">HEX</div>
+                        {colorSpaces?.map((colorSpaceID: string) => {
+                            const mappedColorSpace = mapColorSpaces(colorSpaceID);
 
-                                {!isEditing ? (
-                                    <Tooltip
-                                        withArrow
-                                        position={TooltipPosition.Right}
-                                        hoverDelay={0}
-                                        content={
-                                            <>
-                                                Color Name <br />
-                                                #100100 <br />
-                                                <span className="tw-text-black-50">Click to copy</span>
-                                            </>
-                                        }
-                                        triggerElement={
-                                            <div
-                                                className="tw-relative tw-z-[1] tw-mb-1 tw-cursor-pointer tw-text-s tw-text-black-80"
-                                                onClick={() => copyToClipboard('test')}
-                                            >
-                                                #100100
-                                            </div>
-                                        }
-                                    />
-                                ) : (
-                                    <div className="tw-text-s tw-text-black-80">#100100</div>
-                                )}
-                            </div>
-                        ))}
+                            return (
+                                <div key={colorSpaceID} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
+                                    <div className="tw-mr-1 tw-text-s tw-text-black-70">{mappedColorSpace.value}</div>
+
+                                    {!isEditing ? (
+                                        <Tooltip
+                                            withArrow
+                                            position={TooltipPosition.Right}
+                                            hoverDelay={0}
+                                            content={
+                                                <>
+                                                    Color Name <br />
+                                                    #100100 <br />
+                                                    <span className="tw-text-black-50">Click to copy</span>
+                                                </>
+                                            }
+                                            triggerElement={
+                                                <div
+                                                    className="tw-relative tw-z-[1] tw-mb-1 tw-cursor-pointer tw-text-s tw-text-black-80"
+                                                    onClick={() => copyToClipboard('test')}
+                                                >
+                                                    {mappedColorSpace.placeholder}
+                                                </div>
+                                            }
+                                        />
+                                    ) : (
+                                        <div className="tw-text-s tw-text-black-80">{mappedColorSpace.placeholder}</div>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             ))}
@@ -96,7 +101,7 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
                     </div>
 
                     <div className="tw-pt-4 tw-px-6 tw-pb-5">
-                        <div className="tw-mb-3 tw-text-m tw-font-bold">
+                        <div className="tw-relative tw-z-[1] tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">
                             <RichTextEditor
                                 designTokens={designTokens ?? undefined}
                                 readonly={!isEditing}
@@ -104,13 +109,17 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
                             />
                         </div>
 
-                        {colorspaces?.map((color: string) => (
-                            <div key={color} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
-                                <div className="tw-mr-1 tw-text-s tw-text-black-50">HEX</div>
+                        {colorSpaces?.map((colorSpaceID: string) => {
+                            const mappedColorSpace = mapColorSpaces(colorSpaceID);
 
-                                <div className="tw-text-s tw-text-black-50">#100100</div>
-                            </div>
-                        ))}
+                            return (
+                                <div key={colorSpaceID} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
+                                    <div className="tw-mr-1 tw-text-s tw-text-black-50">{mappedColorSpace.value}</div>
+
+                                    <div className="tw-text-s tw-text-black-50">{mappedColorSpace.placeholder}</div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             )}

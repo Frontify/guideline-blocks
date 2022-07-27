@@ -16,10 +16,11 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 
 import { ColorBlockDropsViewProps } from './types';
 import { copyToClipboard } from './utilities/copyToClipboard';
+import { mapColorSpaces } from './helpers/mapColorSpaces';
 
 export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
     colors,
-    colorspaces,
+    colorSpaces,
     isEditing,
 }: ColorBlockDropsViewProps) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -44,40 +45,44 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
                         )}
                     </div>
 
-                    <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-center">
+                    <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-black tw-text-center">
                         <RichTextEditor designTokens={designTokens ?? undefined} readonly={!isEditing} />
                     </div>
 
-                    {colorspaces?.map((color: string) => (
-                        <div key={color} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
-                            <div className="tw-mr-1 tw-text-s tw-text-black-70">HEX</div>
+                    {colorSpaces?.map((colorSpaceID: string) => {
+                        const mappedColorSpace = mapColorSpaces(colorSpaceID);
 
-                            {!isEditing ? (
-                                <Tooltip
-                                    withArrow
-                                    position={TooltipPosition.Right}
-                                    hoverDelay={0}
-                                    content={
-                                        <>
-                                            Color Name <br />
-                                            #100100 <br />
-                                            <span className="tw-text-black-50">Click to copy</span>
-                                        </>
-                                    }
-                                    triggerElement={
-                                        <div
-                                            className="tw-relative tw-z-[1] tw-cursor-pointer tw-text-s tw-text-black-80"
-                                            onClick={() => copyToClipboard('test')}
-                                        >
-                                            #100100
-                                        </div>
-                                    }
-                                />
-                            ) : (
-                                <div className="tw-text-s tw-text-black-80">#100100</div>
-                            )}
-                        </div>
-                    ))}
+                        return (
+                            <div key={colorSpaceID} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
+                                <div className="tw-mr-1 tw-text-s tw-text-black-70">{mappedColorSpace.value}</div>
+
+                                {!isEditing ? (
+                                    <Tooltip
+                                        withArrow
+                                        position={TooltipPosition.Right}
+                                        hoverDelay={0}
+                                        content={
+                                            <>
+                                                Color Name <br />
+                                                #100100 <br />
+                                                <span className="tw-text-black-50">Click to copy</span>
+                                            </>
+                                        }
+                                        triggerElement={
+                                            <div
+                                                className="tw-relative tw-z-[1] tw-cursor-pointer tw-text-s tw-text-black-80"
+                                                onClick={() => copyToClipboard('test')}
+                                            >
+                                                {mappedColorSpace.placeholder}
+                                            </div>
+                                        }
+                                    />
+                                ) : (
+                                    <div className="tw-text-s tw-text-black-80">{mappedColorSpace.placeholder}</div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
             ))}
 
@@ -87,7 +92,7 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
                         <IconPlus size={IconSize.Size24}></IconPlus>
                     </div>
 
-                    <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-center">
+                    <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-black tw-text-center">
                         <RichTextEditor
                             designTokens={designTokens ?? undefined}
                             readonly={!isEditing}
@@ -95,13 +100,17 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
                         />
                     </div>
 
-                    {colorspaces?.map((color: string) => (
-                        <div key={color} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
-                            <div className="tw-mr-1 tw-text-s tw-text-black-50">HEX</div>
+                    {colorSpaces?.map((colorSpaceID: string) => {
+                        const mappedColorSpace = mapColorSpaces(colorSpaceID);
 
-                            <div className="tw-text-s tw-text-black-50">#100100</div>
-                        </div>
-                    ))}
+                        return (
+                            <div key={colorSpaceID} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
+                                <div className="tw-mr-1 tw-text-s tw-text-black-50">{mappedColorSpace.value}</div>
+
+                                <div className="tw-text-s tw-text-black-50">{mappedColorSpace.placeholder}</div>
+                            </div>
+                        );
+                    })}
                 </div>
             )}
         </div>

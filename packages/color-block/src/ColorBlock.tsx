@@ -18,10 +18,10 @@ export const ColorBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 
-    const { view_type = 'cards', colorspaces = ['hex, rgb'], name = '', description = '' } = blockSettings;
+    const { view_type = 'cards', color_spaces = ['hex, rgb'], name = '', description = '' } = blockSettings;
     console.log('🚀 ~ blockSettings', blockSettings);
 
-    console.log('colorspaces', colorspaces);
+    console.log('color_spaces', color_spaces);
 
     const onNameChange = (value: string): Promise<void> => setBlockSettings({ ...blockSettings, name: value });
     const onDescriptionChange = (value: string): Promise<void> =>
@@ -54,15 +54,15 @@ export const ColorBlock: FC<Props> = ({ appBridge }) => {
             </div>
 
             {view_type === 'list' && (
-                <ColorBlockListView colors={demoColors} colorspaces={colorspaces} isEditing={isEditing} />
+                <ColorBlockListView colors={demoColors} colorSpaces={color_spaces} isEditing={isEditing} />
             )}
 
             {view_type === 'drops' && (
-                <ColorBlockDropsView colors={demoColors} colorspaces={colorspaces} isEditing={isEditing} />
+                <ColorBlockDropsView colors={demoColors} colorSpaces={color_spaces} isEditing={isEditing} />
             )}
 
             {view_type === 'cards' && (
-                <ColorBlockCardsView colors={demoColors} colorspaces={colorspaces} isEditing={isEditing} />
+                <ColorBlockCardsView colors={demoColors} colorSpaces={color_spaces} isEditing={isEditing} />
             )}
         </div>
     );

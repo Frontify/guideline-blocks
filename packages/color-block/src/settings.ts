@@ -31,12 +31,13 @@ export const settings: BlockSettings = {
     ],
     content: [
         {
-            id: 'colorspaces',
+            id: 'color_spaces',
             type: 'checklist',
+            label: 'Color Spaces',
             choices: [
                 {
                     id: 'hex',
-                    label: 'Hex',
+                    label: 'HEX',
                 },
                 {
                     id: 'rgb',
@@ -81,10 +82,10 @@ export const settings: BlockSettings = {
                 {
                     id: 'cmyk',
                     label: 'CMYK',
-                    // tooltip: {
-                    //     content:
-                    //         'We automatically convert color values to CMYK. \n These values might differ, depending on what color profile you use. \n You can always change the values manually here.',
-                    // },
+                    tooltip: {
+                        content:
+                            'We automatically convert color values to CMYK. \n These values might differ, depending on what color profile you use. \n You can always change the values manually here.',
+                    },
                 },
                 {
                     id: 'cmyk_coated',
@@ -119,15 +120,15 @@ export const settings: BlockSettings = {
             columns: 2,
         },
         {
-            id: 'colorspace_info',
+            id: 'color_space_info',
             type: 'notification',
-            title: 'If there is no Colorspace selected, viewers might miss some information or the Block could lack visual appeal.',
+            title: 'If there is no Color space selected, viewers might miss some information or the Block could lack visual appeal.',
             styles: {
                 type: NotificationStyleType.Warning,
             },
             show: (bundle: Bundle) => {
-                const colorspacesValue = bundle.getBlock('colorspaces')?.value as string[];
-                return !colorspacesValue || colorspacesValue.length === 0;
+                const colorSpacesValue = bundle.getBlock('color_spaces')?.value as string[];
+                return !colorSpacesValue || colorSpacesValue.length === 0;
             },
         },
     ],

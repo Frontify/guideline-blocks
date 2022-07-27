@@ -10,23 +10,23 @@ export type Settings = {
     name?: string;
     description?: string;
     view_type?: string;
-    colorspaces?: string[];
+    color_spaces?: string[];
 };
 
 export type ColorBlockListViewProps = {
     colors: string[];
-    colorspaces: string[];
+    colorSpaces: string[];
     isEditing: boolean;
 };
 
 export type ColorBlockDropsViewProps = {
     colors: string[];
-    colorspaces: string[];
+    colorSpaces: string[];
     isEditing: boolean;
 };
 
 export type ColorBlockCardsViewProps = {
     colors: string[];
-    colorspaces: string[];
+    colorSpaces: string[];
     isEditing: boolean;
 };
