@@ -3,14 +3,12 @@
 import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings, Bundle, NotificationStyleType } from '@frontify/guideline-blocks-settings';
 
-export const FULL_WIDTH = '100%';
-
 export const settings: BlockSettings = {
     main: [
         {
             id: 'view_type',
             type: 'dropdown',
-            defaultValue: 'list',
+            defaultValue: 'cards',
             size: DropdownSize.Large,
             choices: [
                 {
@@ -36,6 +34,14 @@ export const settings: BlockSettings = {
             id: 'colorspaces',
             type: 'checklist',
             choices: [
+                {
+                    id: 'hex',
+                    label: 'Hex',
+                },
+                {
+                    id: 'rgb',
+                    label: 'RGB',
+                },
                 {
                     id: 'variable',
                     label: 'SCSS/LESS',

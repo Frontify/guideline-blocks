@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ColorsBlock } from './ColorsBlock';
+import { ColorBlock } from './ColorBlock';
 import { settings } from './settings';
 
 export default {
-    block: ColorsBlock,
+    block: ColorBlock,
     settings,
 };
