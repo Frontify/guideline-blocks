@@ -25,7 +25,6 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         typeMap[blockSettings.type],
         blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
         !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
-        !blockSettings.hasExtendedCustomRadius && radiusStyleMap[blockSettings.extendedRadiusChoice],
     ]);
 
     const customPaddingStyle = {
@@ -37,7 +36,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
             ? `${blockSettings.extendedRadiusTopLeft} ${blockSettings.extendedRadiusTopRight} ${blockSettings.extendedRadiusBottomRight} ${blockSettings.extendedRadiusBottomLeft}`
-            : '',
+            : radiusStyleMap[blockSettings.extendedRadiusChoice],
     };
 
     const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.generic_url : '';
