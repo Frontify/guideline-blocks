@@ -46,8 +46,8 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ app
 
     const onOpenAssetChooser = () => {
         appBridge.openAssetChooser(
-            (result: AssetChooserResult) => {
-                const resultId = result.screenData[0].id;
+            (result: FrontifyAsset[]) => {
+                const resultId = result[0].id;
                 updateAssetIdsFromKey(IMAGE_SETTING_ID, [resultId]);
                 appBridge.closeAssetChooser();
             },

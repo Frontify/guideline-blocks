@@ -3,7 +3,7 @@
 import {
     AssetChooserObjectType,
     AssetChooserProjectType,
-    AssetChooserResult,
+    FrontifyAsset,
     useAssetChooser,
     useBlockAssets,
     useBlockSettings,
@@ -50,8 +50,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            (result: AssetChooserResult) => {
-                const resultId = result.screenData[0].id;
+            (result: FrontifyAsset[]) => {
+                const resultId = result[0].id;
                 updateAssetIdsFromKey(ASSET_ID, [resultId]);
                 closeAssetChooser();
             },
