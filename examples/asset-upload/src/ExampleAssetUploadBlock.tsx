@@ -1,13 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    AppBridgeBlock,
-    AssetChooserResult,
-    FrontifyAsset,
-    useAssetUpload,
-    useBlockAssets,
-    useFileInput,
-} from '@frontify/app-bridge';
+import type { AppBridgeBlock, FrontifyAsset } from '@frontify/app-bridge';
+import { useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { FC, useEffect, useState } from 'react';
@@ -15,6 +9,8 @@ import 'tailwindcss/tailwind.css';
 import { IMAGE_SETTING_ID } from './settings';
 
 export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ appBridge }) => {
+    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+
     // Manual upload demo
     const [loading, setLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
@@ -42,8 +38,6 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ app
     }, [doneAll, uploadResults]);
 
     // Asset chooser demo
-    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
-
     const onOpenAssetChooser = () => {
         appBridge.openAssetChooser(
             (result: FrontifyAsset[]) => {
@@ -69,7 +63,9 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ app
         <div className="tw-flex tw-flex-col tw-gap-4">
             <div className="tw-flex tw-gap-4">
                 <Button onClick={onOpenAssetChooser}>Open asset chooser</Button>
-                <Button onClick={openFileDialog}>{loading ? 'Uploading...' : 'Upload'}</Button>
+                <Button onClick={openFileDialog} disabled={loading}>
+                    {loading ? 'Uploading...' : 'Upload'}
+                </Button>
             </div>
 
             <div data-test-id="example-asset-upload-block">
