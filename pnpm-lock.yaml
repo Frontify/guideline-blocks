@@ -262,7 +262,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.0
+      '@frontify/app-bridge': 3.0.0-beta.3
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -280,7 +280,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.0_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.3_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -1348,8 +1348,8 @@ packages:
       sinon: 13.0.2
     dev: false
 
-  /@frontify/app-bridge/3.0.0-beta.0_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-yd2E3Q/1i520zxa95NsNWDAF7to0HjhNFsSt2pmbwhIobHE37UttnVGOn4Vz7WBLF32rTP7w+FBwOyysZLSggA==}
+  /@frontify/app-bridge/3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-4uAk6O4wypK6GigmzCUhXdngWSxWX3KYuM8qviEU7uNT2oyGzBaMp45/2/0Cz/o3ctBGcxzjUxpO0yVI2dwHdw==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17.0.2
@@ -1360,13 +1360,14 @@ packages:
       sinon: 14.0.0
     dev: false
 
-  /@frontify/app-bridge/3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-4uAk6O4wypK6GigmzCUhXdngWSxWX3KYuM8qviEU7uNT2oyGzBaMp45/2/0Cz/o3ctBGcxzjUxpO0yVI2dwHdw==}
+  /@frontify/app-bridge/3.0.0-beta.3_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-zqkGRILwm6NjinLs6QJobmyosC4T6hC+hVZ3g90nJl7kjMMnH1acw0wt5Oe02bliLhqQOWN0flBVil0UCOYsEQ==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
+      mitt: 3.0.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       sinon: 14.0.0
@@ -13390,7 +13391,6 @@ packages:
 
   /mitt/3.0.0:
     resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
-    dev: true
 
   /mixin-deep/1.3.2:
     resolution: {integrity: sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==}
