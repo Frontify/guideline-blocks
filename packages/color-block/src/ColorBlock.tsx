@@ -32,7 +32,7 @@ export const ColorBlock: FC<Props> = ({ appBridge }) => {
             <div className="tw-w-full tw-mb-3 tw-text-l tw-font-bold tw-text-black">
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
-                    placeholder={isEditing ? 'Color pallete name' : ''}
+                    placeholder={isEditing ? 'Color palette name' : ''}
                     value={name}
                     onTextChange={onNameChange}
                     readonly={!isEditing}
