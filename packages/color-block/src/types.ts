@@ -12,8 +12,8 @@ export type Props = {
 export type Settings = {
     name?: string;
     description?: string;
-    view_type?: string;
-    color_spaces?: string[];
+    viewType?: string;
+    colorSpaces?: string[];
 };
 
 export type ColorBlockListViewProps = {
