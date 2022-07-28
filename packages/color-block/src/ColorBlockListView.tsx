@@ -18,6 +18,7 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 import { ColorBlockListViewProps } from './types';
 import { copyToClipboard } from './utilities/copyToClipboard';
 import { mapColorSpaces } from './helpers/mapColorSpaces';
+import { ColorsBlockColorPicker } from './components/ColorsBlockColorPicker';
 
 export const ColorBlockListView: FC<ColorBlockListViewProps> = ({
     colors,
@@ -33,7 +34,7 @@ export const ColorBlockListView: FC<ColorBlockListViewProps> = ({
                     key={color}
                     className={joinClassNames([
                         "tw-group tw-relative tw-w-full tw-flex before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-shadow-inset-top before:tw-transition-all",
-                        isEditing && 'hover:before:tw-shadow-inset-hover',
+                        isEditing && 'hover:before:tw-shadow-inset-hover-strong',
                         !isEditing &&
                             'last:after:tw-absolute last:after:tw-top-0 last:after:tw-left-0 last:after:tw-w-full last:after:tw-h-full last:after:tw-content-[""] last:after:tw-shadow-inset-bottom hover:tw-bg-black-0',
                     ])}
@@ -106,9 +107,11 @@ export const ColorBlockListView: FC<ColorBlockListViewProps> = ({
                     key={4}
                     className="tw-relative tw-w-full tw-flex before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-shadow-inset-top after:tw-absolute after:tw-top-0 after:tw-left-0 after:tw-w-full after:tw-h-full after:tw-content-[''] after:tw-shadow-inset-bottom"
                 >
-                    <div className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-text-black tw-bg-[#F1F1F1] tw-shadow-inset-add">
-                        <IconPlus size={IconSize.Size24}></IconPlus>
-                    </div>
+                    <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
+                        <div className="tw-relative tw-z-[1] tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-cursor-pointer tw-text-black tw-bg-[#F1F1F1] tw-shadow-inset-add">
+                            <IconPlus size={IconSize.Size24}></IconPlus>
+                        </div>
+                    </ColorsBlockColorPicker>
 
                     <div className="tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-text-m tw-text-black tw-font-bold">
                         <RichTextEditor

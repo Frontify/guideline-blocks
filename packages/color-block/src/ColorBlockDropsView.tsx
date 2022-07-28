@@ -17,6 +17,7 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 import { ColorBlockDropsViewProps } from './types';
 import { copyToClipboard } from './utilities/copyToClipboard';
 import { mapColorSpaces } from './helpers/mapColorSpaces';
+import { ColorsBlockColorPicker } from './components/ColorsBlockColorPicker';
 
 export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
     colors,
@@ -29,7 +30,13 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
         <div className="tw-flex tw-flex-wrap tw-gap-y-8">
             {colors?.map((item) => (
                 <div key={item} className="tw-group tw-flex tw-flex-col tw-items-center tw-w-1/6">
-                    <div className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-bg-black-warm tw-transition-all group-hover:tw-shadow-inset-hover">
+                    <div
+                        className={joinClassNames([
+                            'tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-bg-black-warm tw-transition-all',
+                            isEditing && 'group-hover:tw-shadow-inset-hover-strong',
+                            !isEditing && 'group-hover:tw-shadow-inset-hover-weak',
+                        ])}
+                    >
                         {isEditing && (
                             <div
                                 className={joinClassNames([
@@ -88,9 +95,11 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
 
             {isEditing && (
                 <div className="tw-flex tw-flex-col tw-items-center tw-w-1/6">
-                    <div className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-text-black tw-bg-[#F1F1F1]">
-                        <IconPlus size={IconSize.Size24}></IconPlus>
-                    </div>
+                    <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
+                        <div className="tw-relative tw-z-[1] tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-[#F1F1F1]">
+                            <IconPlus size={IconSize.Size24}></IconPlus>
+                        </div>
+                    </ColorsBlockColorPicker>
 
                     <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-black tw-text-center">
                         <RichTextEditor

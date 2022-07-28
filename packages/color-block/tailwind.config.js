@@ -16,7 +16,8 @@ module.exports = {
                 'inset-bottom': 'inset 0 -1px 0 0 rgba(8, 8, 8, 0.1)',
                 'inset-full': 'inset 0 0 0 1px rgba(8, 8, 8, 0.1)',
                 'inset-list-add': 'inset -1px 0 0 0 rgba(8, 8, 8, 0.1), inset 1px 0 0 0 rgba(8, 8, 8, 0.1)',
-                'inset-hover': 'inset 0 0 0 1px rgb(45, 50, 50)',
+                'inset-hover-weak': 'inset 0 0 0 1px rgba(8, 8, 8, 0.15)',
+                'inset-hover-strong': 'inset 0 0 0 1px rgb(45, 50, 50)',
             },
             content: {
                 empty: '',

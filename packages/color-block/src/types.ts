@@ -1,6 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { ReactNode } from 'react';
+
 import { AppBridgeNative } from '@frontify/app-bridge';
+import { Color, ColorPickerProps } from '@frontify/fondue';
 
 export type Props = {
     appBridge: AppBridgeNative;
@@ -29,4 +32,9 @@ export type ColorBlockCardsViewProps = {
     colors: string[];
     colorSpaces: string[];
     isEditing: boolean;
+};
+
+export type ColorsBlockColorPickerProps = Pick<ColorPickerProps, 'onSelect'> & {
+    currentColor?: Color | null;
+    children: ReactNode;
 };

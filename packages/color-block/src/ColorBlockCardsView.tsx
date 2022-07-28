@@ -17,6 +17,7 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 import { ColorBlockCardsViewProps } from './types';
 import { copyToClipboard } from './utilities/copyToClipboard';
 import { mapColorSpaces } from './helpers/mapColorSpaces';
+import { ColorsBlockColorPicker } from './components/ColorsBlockColorPicker';
 
 export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
     colors,
@@ -32,7 +33,8 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
                     key={item}
                     className={joinClassNames([
                         "tw-group tw-relative tw-flex tw-flex-col tw-w-cards-card tw-mx-2 tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[1] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full before:tw-transition-all",
-                        isEditing && 'hover:before:tw-shadow-inset-hover',
+                        isEditing && 'hover:before:tw-shadow-inset-hover-strong',
+                        !isEditing && 'hover:before:tw-shadow-inset-hover-weak',
                     ])}
                 >
                     <div className="tw-relative tw-w-full tw-h-[60px] tw-bg-black-warm tw-shadow-inset-bottom">
@@ -77,7 +79,7 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
                                             }
                                             triggerElement={
                                                 <div
-                                                    className="tw-relative tw-z-[1] tw-mb-1 tw-cursor-pointer tw-text-s tw-text-black-80"
+                                                    className="tw-relative tw-z-[1] tw-cursor-pointer tw-text-s tw-text-black-80"
                                                     onClick={() => copyToClipboard('test')}
                                                 >
                                                     {mappedColorSpace.placeholder}
@@ -95,10 +97,12 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
             ))}
 
             {isEditing && (
-                <div className="tw-relative tw-flex tw-flex-col tw-w-cards-card tw-mx-2 tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[1] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full">
-                    <div className="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-text-black tw-bg-[#F1F1F1] tw-shadow-inset-bottom">
-                        <IconPlus size={IconSize.Size24}></IconPlus>
-                    </div>
+                <div className="tw-relative tw-flex tw-flex-col tw-w-cards-card tw-mx-2 tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[2] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full">
+                    <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
+                        <div className="tw-relative tw-z-[1] tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-cursor-pointer tw-text-black tw-bg-[#F1F1F1] tw-shadow-inset-bottom">
+                            <IconPlus size={IconSize.Size24}></IconPlus>
+                        </div>
+                    </ColorsBlockColorPicker>
 
                     <div className="tw-pt-4 tw-px-6 tw-pb-5">
                         <div className="tw-relative tw-z-[1] tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">

@@ -120,9 +120,9 @@ export const settings: BlockSettings = {
             columns: 2,
         },
         {
-            id: 'color_space_info',
+            id: 'color_spaces_info',
             type: 'notification',
-            title: 'If there is no Color space selected, viewers might miss some information or the Block could lack visual appeal.',
+            title: 'If there is no Color Space selected, viewers might miss some information or the Block could lack visual appeal.',
             styles: {
                 type: NotificationStyleType.Warning,
             },
