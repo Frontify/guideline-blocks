@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 type ColorSpace = {
     id: string;
     value?: string;
