@@ -19,13 +19,9 @@ export const ColorBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
 
     const { view_type = 'cards', color_spaces = ['hex, rgb'], name = '', description = '' } = blockSettings;
-    console.log('🚀 ~ blockSettings', blockSettings);
 
-    console.log('color_spaces', color_spaces);
-
-    const onNameChange = (value: string): Promise<void> => setBlockSettings({ ...blockSettings, name: value });
-    const onDescriptionChange = (value: string): Promise<void> =>
-        setBlockSettings({ ...blockSettings, description: value });
+    const onNameChange = (value: string) => setBlockSettings({ name: value });
+    const onDescriptionChange = (value: string) => setBlockSettings({ description: value });
 
     const { designTokens } = useGuidelineDesignTokens();
 
@@ -33,23 +29,23 @@ export const ColorBlock: FC<Props> = ({ appBridge }) => {
 
     return (
         <div>
-            <div className="tw-w-full tw-mb-3 tw-text-l tw-font-bold">
+            <div className="tw-w-full tw-mb-3 tw-text-l tw-font-bold tw-text-black">
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
+                    placeholder={isEditing ? 'Color pallete name' : ''}
+                    value={name}
                     onTextChange={onNameChange}
                     readonly={!isEditing}
-                    value={name}
-                    placeholder={isEditing ? 'Color pallete name' : ''}
                 />
             </div>
 
-            <div className="tw-w-full tw-mb-12 tw-text-s">
+            <div className="tw-w-full tw-mb-12 tw-text-s tw-text-black">
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
+                    placeholder={isEditing ? 'Describe this color palette here' : ''}
+                    value={description}
                     onTextChange={onDescriptionChange}
                     readonly={!isEditing}
-                    value={description}
-                    placeholder={isEditing ? 'Describe this color palette here' : ''}
                 />
             </div>
 
