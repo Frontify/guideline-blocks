@@ -49,7 +49,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -67,7 +67,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_fcdgd5lt5hi7mmx5qv2pcp22ie
       '@frontify/fondue-tokens': 3.0.1
       react: 17.0.2
@@ -92,7 +92,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.0.1
@@ -110,7 +110,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue-tokens': 3.0.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -160,7 +160,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -178,7 +178,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -203,7 +203,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -229,7 +229,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -262,7 +262,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -280,7 +280,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -305,7 +305,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -323,7 +323,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -348,7 +348,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -366,7 +366,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -391,7 +391,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -410,7 +410,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -436,7 +436,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -455,7 +455,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -481,7 +481,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -499,7 +499,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -523,7 +523,7 @@ importers:
   packages/shared:
     specifiers:
       '@babel/core': 7.18.2
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-typescript': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/guideline-blocks-settings': workspace:*
@@ -546,7 +546,7 @@ importers:
       vite-plugin-dts: 1.2.0
       vitest: 0.14.1
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_uxj33be2ony2xfgejvjji7jp4u
       '@frontify/guideline-blocks-settings': link:../block-settings
       tinycolor2: 1.4.2
@@ -575,7 +575,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -594,7 +594,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -620,7 +620,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -639,7 +639,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -665,7 +665,7 @@ importers:
     specifiers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4
-      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/app-bridge': 3.0.0-beta.4
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 9.9.0
       '@frontify/fondue-tokens': 3.0.1
@@ -685,7 +685,7 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
@@ -716,6 +716,7 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.10
+    dev: true
 
   /@babel/code-frame/7.16.7:
     resolution: {integrity: sha512-iAXqUn8IIeBTNd72xsFlgaXHkMBMt6y4HJp1tIaK465CWLT/fG1aqB7ykr95gHHmlBdGbFeWWfyB4NJJ0nmeIg==}
@@ -726,6 +727,7 @@ packages:
   /@babel/compat-data/7.17.10:
     resolution: {integrity: sha512-GZt/TCsG70Ms19gfZO1tM4CVnXsPgEPBCpJu+Qz3L0LUDsY5nZqFZglIoPC1kIYOtNBZlrnFT+klg12vFGZXrw==}
     engines: {node: '>=6.9.0'}
+    dev: true
 
   /@babel/core/7.17.10:
     resolution: {integrity: sha512-liKoppandF3ZcBnIYFjfSDHZLKdLHGJRkoWtG8zQyGJBQfIYobpnVGI5+pLBNtS6psFLDzyq8+h5HiVljW9PNA==}
@@ -748,6 +750,7 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/core/7.18.2:
     resolution: {integrity: sha512-A8pri1YJiC5UnkdrWcmfZTJTV85b4UXTAfImGmCfYmax4TR9Cw8sDS0MOk++Gp2mE/BefVJ5nwy5yzqNJbP/DQ==}
@@ -770,6 +773,7 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/generator/7.18.2:
     resolution: {integrity: sha512-W1lG5vUwFvfMd8HVXqdfbuG7RuaSrTCCD8cl8fP8wOivdbtbIg2Db3IWUcgvfxKbbn6ZBGYRW/Zk1MIwK49mgw==}
@@ -796,6 +800,7 @@ packages:
       '@babel/helper-validator-option': 7.16.7
       browserslist: 4.20.3
       semver: 6.3.0
+    dev: true
 
   /@babel/helper-compilation-targets/7.18.2_@babel+core@7.18.2:
     resolution: {integrity: sha512-s1jnPotJS9uQnzFtiZVBUxe67CuBa679oWFHpxYYnTpRL/1ffhyX44R9uYiXoa/pLXcY9H2moJta0iaanlk/rQ==}
@@ -808,6 +813,7 @@ packages:
       '@babel/helper-validator-option': 7.16.7
       browserslist: 4.20.3
       semver: 6.3.0
+    dev: true
 
   /@babel/helper-environment-visitor/7.18.2:
     resolution: {integrity: sha512-14GQKWkX9oJzPiQQ7/J36FTXcD4kSp8egKjO9nINlSKiHITRA9q/R74qu8S9xlc/b/yjsJItQUeeh3xnGN0voQ==}
@@ -846,6 +852,7 @@ packages:
       '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/helper-plugin-utils/7.16.7:
     resolution: {integrity: sha512-Qg3Nk7ZxpgMrsox6HreY1ZNKdBq7K72tDSliA6dCl5f007jR4ne8iD5UzuNnCJH2xBf2BEEVGr+/OL6Gdp7RxA==}
@@ -862,6 +869,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.18.4
+    dev: true
 
   /@babel/helper-split-export-declaration/7.16.7:
     resolution: {integrity: sha512-xbWoy/PFoxSWazIToT9Sif+jJTlrMcndIsaOKvTA6u7QEo7ilkRZpjew18/W3c7nm8fXdUDXh02VXTbZ0pGDNw==}
@@ -876,6 +884,7 @@ packages:
   /@babel/helper-validator-option/7.16.7:
     resolution: {integrity: sha512-TRtenOuRUVo9oIQGPC5G9DgK4743cdxvtOw0weQNpZXaS16SCBi5MNjZF8vba3ETURjZpTbVn7Vvcf2eAwFozQ==}
     engines: {node: '>=6.9.0'}
+    dev: true
 
   /@babel/helpers/7.18.2:
     resolution: {integrity: sha512-j+d+u5xT5utcQSzrh9p+PaJX94h++KN+ng9b9WEJq7pkUPAd61FGqhjuUEdfknb3E/uDBb7ruwEeKkIxNJPIrg==}
@@ -886,6 +895,7 @@ packages:
       '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/highlight/7.17.9:
     resolution: {integrity: sha512-J9PfEKCbFIv2X5bjTMiZu6Vf341N05QIY+d6FvVKynkG1S7G0j3I0QoRtWIrXhZ+/Nlb5Q0MzqL7TokEJ5BNHg==}
@@ -986,6 +996,7 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@babel/traverse/7.18.2_supports-color@5.5.0:
     resolution: {integrity: sha512-9eNwoeovJ6KH9zcCNnENY7DMFwTU9JdGCFtqNLfUAqtUHRCOsTOqWoffosP8vKmNYeSBUv3yVJXjfd8ucwOjUA==}
@@ -1024,6 +1035,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
+    dev: true
 
   /@cypress/mount-utils/1.0.2:
     resolution: {integrity: sha512-Fn3fdTiyayHoy8Ol0RSu4MlBH2maQ2ZEXeEVKl/zHHXEQpld5HX3vdNLhK5YLij8cLynA4DxOT/nO9iEnIiOXw==}
@@ -1305,13 +1317,14 @@ packages:
       sinon: 13.0.2
     dev: false
 
-  /@frontify/app-bridge/3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-4uAk6O4wypK6GigmzCUhXdngWSxWX3KYuM8qviEU7uNT2oyGzBaMp45/2/0Cz/o3ctBGcxzjUxpO0yVI2dwHdw==}
+  /@frontify/app-bridge/3.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-kuTeJ4cNX5unsXL/6FQCprbtdcP0xTqAfBrZrNvPXdF0JJBauoP56KA2xqZoqri/Tv16uVoYqQvZU8PVxb2/yA==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
+      mitt: 3.0.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       sinon: 14.0.0
@@ -1876,6 +1889,7 @@ packages:
     dependencies:
       '@jridgewell/set-array': 1.1.1
       '@jridgewell/sourcemap-codec': 1.4.13
+    dev: true
 
   /@jridgewell/gen-mapping/0.3.1:
     resolution: {integrity: sha512-GcHwniMlA2z+WFPWuY8lp3fsza0I8xPFMWL5+n8LYyP6PSvPrXf4+n8stDHZY2DM0zy9sVkRDy1jDI4XGzYVqg==}
@@ -1907,6 +1921,7 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.0.7
       '@jridgewell/sourcemap-codec': 1.4.13
+    dev: true
 
   /@microsoft/api-extractor-model/7.17.2:
     resolution: {integrity: sha512-fYfCeBeLm7jnZligC64qHiH4/vzswFLDfyPpX+uKO36OI2kIeMHrYG0zaezmuinKvE4vg1dAz38zZeDbPvBKGg==}
@@ -3244,15 +3259,19 @@ packages:
 
   /@tsconfig/node10/1.0.8:
     resolution: {integrity: sha512-6XFfSQmMgq0CFLY1MslA/CPUfhIL919M1rMsa5lP2P097N2Wd1sSX0tx1u4olM16fLNhtHZpRhedZJphNJqmZg==}
+    dev: true
 
   /@tsconfig/node12/1.0.9:
     resolution: {integrity: sha512-/yBMcem+fbvhSREH+s14YJi18sp7J9jpuhYByADT2rypfajMZZN4WQ6zBGgBKp53NKmqI36wFYDb3yaMPurITw==}
+    dev: true
 
   /@tsconfig/node14/1.0.1:
     resolution: {integrity: sha512-509r2+yARFfHHE7T6Puu2jjkoycftovhXRqW328PDXTVGKihlb1P8Z9mMZH04ebyajfRY7dedfGynlrFHJUQCg==}
+    dev: true
 
   /@tsconfig/node16/1.0.2:
     resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
+    dev: true
 
   /@types/argparse/1.0.38:
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
@@ -3343,9 +3362,11 @@ packages:
 
   /@types/node/17.0.31:
     resolution: {integrity: sha512-AR0x5HbXGqkEx9CadRH3EBYx/VkiUgZIhP4wvPn/+5KIsgpNoyFaRlVe0Zlx9gRtg8fA06a9tskE2MSN7TcG4Q==}
+    dev: true
 
   /@types/node/17.0.38:
     resolution: {integrity: sha512-5jY9RhV7c0Z4Jy09G+NIDTsCZ5G0L5n+Z+p+Y7t5VJHM30bgwzSjVtlcBxqAj+6L/swIlvtOSzr8rBk/aNyV2g==}
+    dev: true
 
   /@types/node/8.10.66:
     resolution: {integrity: sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==}
@@ -3393,6 +3414,7 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.0.11
+    dev: true
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
@@ -9513,6 +9535,7 @@ packages:
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
+    dev: true
 
   /acorn/7.4.1:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
@@ -9523,6 +9546,7 @@ packages:
     resolution: {integrity: sha512-Xx54uLJQZ19lKygFXOWsscKUbsBZW0CPykPhVQdhIeIwrbPmJzqeASDInc8nKBnp/JT6igTs82qPXz069H8I/A==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: true
 
   /aggregate-error/3.1.0:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
@@ -9605,6 +9629,7 @@ packages:
 
   /arg/4.1.3:
     resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
+    dev: true
 
   /arg/5.0.1:
     resolution: {integrity: sha512-e0hDa9H2Z9AwFkk2qDlwhoMYE4eToKarchkQHovNdLTCYMHZHeRjI71crOh+dio4K6u1IcwubQqo79Ga4CyAQA==}
@@ -9908,6 +9933,7 @@ packages:
       escalade: 3.1.1
       node-releases: 2.0.4
       picocolors: 1.0.0
+    dev: true
 
   /buffer-crc32/0.2.13:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
@@ -9970,6 +9996,7 @@ packages:
 
   /caniuse-lite/1.0.30001338:
     resolution: {integrity: sha512-1gLHWyfVoRDsHieO+CaeYe7jSo/MT7D7lhaXUiwwbuR5BwQxORs0f1tAwUSQr3YbxRXJvxHM/PA5FfPQRnsPeQ==}
+    dev: true
 
   /caseless/0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -10262,6 +10289,7 @@ packages:
     resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==}
     dependencies:
       safe-buffer: 5.1.2
+    dev: true
 
   /cookie/0.4.2:
     resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
@@ -10296,6 +10324,7 @@ packages:
 
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
+    dev: true
 
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -10600,6 +10629,7 @@ packages:
   /diff/4.0.2:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
+    dev: true
 
   /diff/5.0.0:
     resolution: {integrity: sha512-/VTCrvm5Z0JGty/BWHljh+BAiw3IK+2j87NGMu8Nwc/f48WoDAC395uomO9ZD117ZOBaHmkX1oyLvkVM/aIT3w==}
@@ -10717,6 +10747,7 @@ packages:
 
   /electron-to-chromium/1.4.137:
     resolution: {integrity: sha512-0Rcpald12O11BUogJagX3HsCN3FE83DSqWjgXoHo5a72KUKMSfI39XBgJpgNNxS9fuGzytaFjE06kZkiVFy2qA==}
+    dev: true
 
   /element-resize-detector/1.2.4:
     resolution: {integrity: sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==}
@@ -11026,6 +11057,7 @@ packages:
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
     engines: {node: '>=6'}
+    dev: true
 
   /escape-goat/3.0.0:
     resolution: {integrity: sha512-w3PwNZJwRxlp47QGzhuEBldEqVHHhh8/tIPcl6ecf2Bou99cdAt0knihBV0Ecc7CGxYduXVBDheH1K2oADRlvw==}
@@ -11894,6 +11926,7 @@ packages:
   /gensync/1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
+    dev: true
 
   /get-caller-file/2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
@@ -12963,6 +12996,7 @@ packages:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
     engines: {node: '>=6'}
     hasBin: true
+    dev: true
 
   /jsonc-eslint-parser/2.1.0:
     resolution: {integrity: sha512-qCRJWlbP2v6HbmKW7R3lFbeiVWHo+oMJ0j+MizwvauqnCV/EvtAeEeuCgoc/ErtsuoKgYB8U4Ih8AxJbXoE6/g==}
@@ -13176,6 +13210,7 @@ packages:
 
   /make-error/1.3.6:
     resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
+    dev: true
 
   /map-cache/0.2.2:
     resolution: {integrity: sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg==}
@@ -13335,7 +13370,6 @@ packages:
 
   /mitt/3.0.0:
     resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
-    dev: true
 
   /mixin-deep/1.3.2:
     resolution: {integrity: sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==}
@@ -13484,6 +13518,7 @@ packages:
 
   /node-releases/2.0.4:
     resolution: {integrity: sha512-gbMzqQtTtDz/00jQzZ21PQzdI9PyLYqUSvD0p3naOhX4odFji0ZxYdnVwPTxmSwkmxhcFImpozceidSG+AgoPQ==}
+    dev: true
 
   /normalize-package-data/2.5.0:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
@@ -14798,6 +14833,7 @@ packages:
 
   /safe-buffer/5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
+    dev: true
 
   /safe-buffer/5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
@@ -14859,6 +14895,7 @@ packages:
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
+    dev: true
 
   /semver/7.3.7:
     resolution: {integrity: sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==}
@@ -15659,6 +15696,7 @@ packages:
       typescript: 4.6.4
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    dev: true
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
@@ -15744,6 +15782,7 @@ packages:
     resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /typescript/4.7.2:
     resolution: {integrity: sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==}
@@ -15949,6 +15988,7 @@ packages:
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
+    dev: true
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
@@ -16260,6 +16300,7 @@ packages:
   /yn/3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
+    dev: true
 
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
