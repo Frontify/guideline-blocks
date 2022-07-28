@@ -11,11 +11,11 @@ import {
     RichTextEditor,
     Tooltip,
     TooltipPosition,
+    useCopy,
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { ColorBlockDropsViewProps } from './types';
-import { copyToClipboard } from './utilities/copyToClipboard';
 import { mapColorSpaces } from './helpers/mapColorSpaces';
 import { ColorsBlockColorPicker } from './components/ColorsBlockColorPicker';
 
@@ -25,6 +25,8 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
     isEditing,
 }: ColorBlockDropsViewProps) => {
     const { designTokens } = useGuidelineDesignTokens();
+
+    const { copy, status } = useCopy();
 
     return (
         <div className="tw-flex tw-flex-wrap tw-gap-y-8">
@@ -70,15 +72,19 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
                                         hoverDelay={0}
                                         content={
                                             <>
-                                                Color Name <br />
-                                                #100100 <br />
-                                                <span className="tw-text-black-50">Click to copy</span>
+                                                <div>Color Name</div>
+                                                <div>#100100</div>
+                                                <span className="tw-text-black-50">
+                                                    {status === 'error' && 'Error???'}
+                                                    {status === 'idle' && 'Click to copy'}
+                                                    {status === 'success' && 'Copied!'}
+                                                </span>
                                             </>
                                         }
                                         triggerElement={
                                             <div
                                                 className="tw-relative tw-z-[1] tw-cursor-pointer tw-text-s tw-text-black-80"
-                                                onClick={() => copyToClipboard('test')}
+                                                onClick={() => copy('test')}
                                             >
                                                 {mappedColorSpace.placeholder}
                                             </div>
