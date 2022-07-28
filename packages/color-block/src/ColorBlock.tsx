@@ -28,7 +28,7 @@ export const ColorBlock: FC<Props> = ({ appBridge }) => {
     const demoColors = ['1', '2', '3', '4', '5', '6', '7'];
 
     return (
-        <div>
+        <div data-test-id="color-block">
             <div className="tw-w-full tw-mb-3 tw-text-l tw-font-bold tw-text-black">
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
