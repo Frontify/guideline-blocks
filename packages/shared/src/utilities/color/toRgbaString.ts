@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/arcade';
+import { Color } from '@frontify/fondue';
 import tinycolor from 'tinycolor2';
 
 /**

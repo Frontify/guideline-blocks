@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
+import { AssetDummy, withAppBridgeStubs } from '@frontify/app-bridge';
 import { CalloutBlock } from './CalloutBlock';
+import { ICON_ASSET_ID } from './settings';
 import { Alignment, Padding, Type, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
@@ -11,7 +12,7 @@ const CalloutIcon = '[data-test-id="callout-icon"]';
 
 describe('Callout Block', () => {
     it('renders a callout block', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {});
+        const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock);
 
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutBlockSelector).should('exist');
@@ -60,9 +61,11 @@ describe('Callout Block', () => {
 
     it('renders a callout block with an icon', () => {
         const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
+            blockAssets: {
+                [ICON_ASSET_ID]: [AssetDummy.with(342)],
+            },
             blockSettings: {
                 iconSwitch: true,
-                icon: 123,
             },
         });
 

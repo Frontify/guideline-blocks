@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, DropdownSize, IconEnum } from '@frontify/arcade';
+import type { Color, DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings, getPaddingSettings } from '@frontify/guideline-blocks-shared';
 import { NoteStyle, NoteVisibility, paddingStyleMap } from './types';
@@ -20,17 +20,17 @@ export const BORDER_COLOR_DEFAULT_VALUE: Color = {
 
 const HAS_BACKGROUND_ID = 'hasBackground';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'style',
             type: 'dropdown',
             defaultValue: NoteStyle.Card,
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             choices: [
                 {
                     value: NoteStyle.Card,
-                    icon: IconEnum.Cards,
+                    icon: 'Cards' as IconEnum.Cards,
                     label: 'Card',
                 },
             ],
@@ -94,5 +94,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

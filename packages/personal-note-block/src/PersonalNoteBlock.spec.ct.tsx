@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { BorderStyle, withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import PersonalNoteBlock from '.';
+import { BorderStyle } from '@frontify/guideline-blocks-shared';
+import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { PersonalNoteBlock } from './PersonalNoteBlock';
 
 const PersonalNoteBlockSelector = '[data-test-id="personal-note-block"]';
 const PersonalNoteHeader = '[data-test-id="personal-note-header"]';

@@ -1,25 +1,23 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/arcade';
-import { BlockSettings } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum } from '@frontify/fondue';
+import type { BlockSettings } from '@frontify/guideline-blocks-settings';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'custom_block',
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             disabled: true,
             choices: [
                 {
                     value: 'custom_block',
-                    icon: IconEnum.Snippet,
+                    icon: 'Snippet' as IconEnum.Snippet,
                     label: 'Custom Block',
                 },
             ],
         },
     ],
 };
-
-export default settings;

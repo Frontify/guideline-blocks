@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/arcade';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getBorderRadiusSettings,
@@ -26,22 +26,22 @@ const STYLE_ID = 'style';
 const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: STYLE_ID,
             type: 'dropdown',
             defaultValue: StorybookStyle.Default,
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             choices: [
                 {
                     value: StorybookStyle.Default,
-                    icon: IconEnum.Iframe,
+                    icon: 'Iframe' as IconEnum.Iframe,
                     label: 'Story (with add-ons)',
                 },
                 {
                     value: StorybookStyle.WithoutAddons,
-                    icon: IconEnum.Iframe,
+                    icon: 'Iframe' as IconEnum.Iframe,
                     label: 'Story (no add-ons)',
                 },
             ],
@@ -110,16 +110,14 @@ const settings: BlockSettings = {
             choices: [
                 {
                     value: StorybookPosition.Horizontal,
-                    icon: IconEnum.FigureTextRight,
+                    icon: 'FigureTextRight' as IconEnum.FigureTextRight,
                 },
                 {
                     value: StorybookPosition.Vertical,
-                    icon: IconEnum.FigureTextBottom,
+                    icon: 'FigureTextBottom' as IconEnum.FigureTextBottom,
                 },
             ],
         },
     ],
     style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: 'hasBorder' })],
 };
-
-export default settings;

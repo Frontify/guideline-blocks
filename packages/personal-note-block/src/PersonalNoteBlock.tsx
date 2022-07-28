@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Color, RichTextEditor } from '@frontify/arcade';
+import { Color, RichTextEditor } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
 import {
     BorderStyle,
     Padding,
@@ -12,8 +11,10 @@ import {
     isDark,
     radiusStyleMap,
     toRgbaString,
+    useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
 import { BlockProps, NoteVisibility, Settings, paddingStyleMap } from './types';
@@ -35,6 +36,8 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [userId, setUserId] = useState<number | null>(null);
+
+    const { designTokens } = useGuidelineDesignTokens();
 
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
@@ -118,6 +121,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             )}
 
             <RichTextEditor
+                designTokens={designTokens ?? undefined}
                 value={note}
                 onTextChange={saveNote}
                 placeholder="Write personal note here ..."

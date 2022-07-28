@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MultiInputLayout } from '@frontify/arcade';
+import { MultiInputLayout } from '@frontify/fondue';
 import { BaseBlock } from './base';
 import { ColorInputBlock } from './colorInput';
 import { DropdownBlock } from './dropdown';

@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/arcade';
-import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { RichTextEditor } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
+import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
+import 'tailwindcss/tailwind.css';
 import { DEFAULT_AUTHOR_NAME, DEFAULT_COLOR_VALUE } from './settings';
 import {
     ContentWithAuthorProps,
@@ -31,6 +31,7 @@ const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName,
 export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
+    const { designTokens } = useGuidelineDesignTokens();
 
     const {
         showAuthor = false,
@@ -72,6 +73,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                     {quoteIconMap(size, quotesRgba)[quoteStyleLeft]}
                     <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
                         <RichTextEditor
+                            designTokens={designTokens ?? undefined}
                             placeholder={placeholder}
                             value={content}
                             onTextChange={onChangeContent}
@@ -86,6 +88,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                 <ContentWithAuthor showAuthor={showAuthor} authorName={authorName}>
                     <div style={borderStyles} className={showAccentLine ? 'tw-pl-7' : 'tw-ml-7'}>
                         <RichTextEditor
+                            designTokens={designTokens ?? undefined}
                             placeholder={placeholder}
                             value={content}
                             onTextChange={onChangeContent}

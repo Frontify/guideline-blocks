@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeNative } from '@frontify/app-bridge';
-import { Color } from '@frontify/arcade';
+import { Color } from '@frontify/fondue';
 import { CSSProperties } from 'react';
 
 export type Props = {

@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { ExampleAssetOperationBlock as default } from './ExampleAssetOperationBlock';
+import { ExampleAssetUploadBlock } from './ExampleAssetUploadBlock';
+import { settings } from './settings';
+
+export default {
+    block: ExampleAssetUploadBlock,
+    settings,
+};

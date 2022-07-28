@@ -1,9 +1,8 @@
 {
-    "projectId": "atisaj",
     "video": false,
+    "componentFolder": "./",
+    "testFiles": ["**/*.spec.ct.tsx", "**/*.spec.ct.ts"],
     "component": {
-        "testFiles": "*/src/**/*.spec.ct.{ts,tsx}",
-        "componentFolder": "packages",
         "viewportHeight": 1280,
         "viewportWidth": 800
     },

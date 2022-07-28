@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/arcade';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     betweenPercentRule,
@@ -27,6 +27,7 @@ const HEIGHT_CUSTOM_ID = 'heightCustom';
 const THICKNESS_CUSTOM_ID = 'thicknessCustom';
 const THICKNESS_SIMPLE_ID = 'thicknessSimple';
 const HEIGHT_SIMPLE_ID = 'heightSimple';
+const IS_CUSTOM_WIDTH_ID = 'isWidthCustom';
 
 export const IS_LINE_DEFAULT_VALUE = DividerStyle.Solid;
 export const ALIGNMENT_DEFAULT_VALUE = DividerAlignment.Left;
@@ -44,25 +45,26 @@ export const COLOR_DEFAULT_RGBA_VALUE = {
 
 const lineIsSelected = (bundle: Bundle): boolean => bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid;
 const limitedWidthIsSelected = (bundle: Bundle): boolean =>
-    bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'] ||
-    bundle.getBlock(WIDTH_CUSTOM_ID)?.value !== '100%';
+    bundle.getBlock(IS_CUSTOM_WIDTH_ID)?.value
+        ? bundle.getBlock(WIDTH_CUSTOM_ID)?.value !== DividerWidth['100%']
+        : bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'];
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: IS_LINE_ID,
             type: 'dropdown',
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             defaultValue: IS_LINE_DEFAULT_VALUE,
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: IconEnum.LineSpacer,
+                    icon: 'LineSpacer' as IconEnum.LineSpacer,
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: IconEnum.LineSolid,
+                    icon: 'LineSolid' as IconEnum.LineSolid,
                     label: 'Line',
                 },
             ],
@@ -76,7 +78,7 @@ const settings: BlockSettings = {
             show: lineIsSelected,
             blocks: [
                 {
-                    id: 'isWidthCustom',
+                    id: IS_CUSTOM_WIDTH_ID,
                     type: 'switch',
                     label: 'Width',
                     switchLabel: 'Custom',
@@ -128,15 +130,15 @@ const settings: BlockSettings = {
                     choices: [
                         {
                             value: DividerAlignment.Left,
-                            icon: IconEnum.AlignLeft,
+                            icon: 'AlignLeft' as IconEnum.AlignLeft,
                         },
                         {
                             value: DividerAlignment.Center,
-                            icon: IconEnum.AlignCenter,
+                            icon: 'AlignCenter' as IconEnum.AlignCenter,
                         },
                         {
                             value: DividerAlignment.Right,
-                            icon: IconEnum.AlignRight,
+                            icon: 'AlignRight' as IconEnum.AlignRight,
                         },
                     ],
                     show: limitedWidthIsSelected,
@@ -268,5 +270,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/arcade';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
@@ -11,27 +11,27 @@ export const DONT_COLOR_DEFAULT_VALUE = { r: 255, g: 55, b: 90, a: 1 };
 const SPACING_VALUE_ID = 'spacingValue';
 const SPACING_CHOICE_ID = 'spacingChoice';
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'style',
             type: 'dropdown',
             defaultValue: DoDontStyle.Icons,
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             choices: [
                 {
                     value: DoDontStyle.Icons,
-                    icon: IconEnum.DosText,
+                    icon: 'DosText' as IconEnum.DosText,
                     label: 'Icons',
                 },
                 {
                     value: DoDontStyle.Underline,
-                    icon: IconEnum.DoDontsUnderline,
+                    icon: 'DoDontsUnderline' as IconEnum.DoDontsUnderline,
                     label: 'Underline',
                 },
                 {
                     value: DoDontStyle.Text,
-                    icon: IconEnum.TextAlignLeft,
+                    icon: 'TextAlignLeft' as IconEnum.TextAlignLeft,
                     label: 'Text',
                 },
             ],
@@ -136,5 +136,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

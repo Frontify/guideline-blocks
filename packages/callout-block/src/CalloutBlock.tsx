@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/arcade';
-import { Radius, joinClassNames, radiusStyleMap } from '@frontify/guideline-blocks-shared';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
+import { Radius, joinClassNames, radiusStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, createRef, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
+import { ICON_ASSET_ID } from './settings';
 import {
     Alignment,
     BlockSettings,
@@ -42,6 +43,8 @@ const getOuterDivClassName = (width: Width, alignment: Alignment): string =>
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
+    const { blockAssets } = useBlockAssets(appBridge);
+    const { designTokens } = useGuidelineDesignTokens();
 
     const {
         type = Type.Warning,
@@ -60,7 +63,6 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         paddingRight = '0px',
         hasCustomPadding,
         hasExtendedCustomRadius,
-        icon,
         textValue,
     } = blockSettings;
 
@@ -91,14 +93,13 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             });
         }
 
-        if (iconSwitch && icon) {
-            appBridge.getAssetById(icon.value).then((iconAsset) => {
-                setIconUrl(iconAsset.generic_url);
-                setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
-            });
+        if (iconSwitch && blockAssets[ICON_ASSET_ID]) {
+            const iconAsset = blockAssets[ICON_ASSET_ID][0];
+            setIconUrl(iconAsset.generic_url);
+            setIconAltText(`Callout Block Icon: ${iconAsset.title}`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [blockSettings]);
+    }, [blockSettings, blockAssets]);
 
     const onTextChange = (value: string): Promise<void> => setBlockSettings({ textValue: value });
 
@@ -128,6 +129,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     readonly={!isEditing}
                     value={textValue}
                     placeholder="Type your text here"
+                    designTokens={designTokens ?? undefined}
                 />
             </div>
         </div>

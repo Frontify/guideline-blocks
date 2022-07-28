@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getPaddingExtendedSettings,
@@ -18,27 +18,27 @@ const PROGRESS_BAR_TYPE = 'progressBarType';
 const showProgressStyles = (bundle: Bundle): boolean =>
     !!bundle.getBlock(PROGRESS_BAR_VISIBLE)?.value && bundle.getBlock(PROGRESS_BAR_TYPE)?.value === ProgressBarType.Bar;
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: COMPLETED_DECORATION,
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
-            size: DropdownSize.Large,
+            size: 'Large' as DropdownSize.Large,
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,
-                    icon: IconEnum.Symbols,
+                    icon: 'Symbols' as IconEnum.Symbols,
                     label: 'Checkbox',
                 },
                 {
                     value: ChecklistDecoration.Strikethrough,
-                    icon: IconEnum.Strikethrough,
+                    icon: 'Strikethrough' as IconEnum.Strikethrough,
                     label: 'Strikethrough',
                 },
                 {
                     value: ChecklistDecoration.Highlight,
-                    icon: IconEnum.Highlight,
+                    icon: 'Highlight' as IconEnum.Highlight,
                     label: 'Highlight',
                 },
             ],
@@ -92,13 +92,13 @@ const settings: BlockSettings = {
                 {
                     id: 'incompleteTextColor',
                     type: 'colorInput',
-                    label: 'Incomplete Text',
+                    label: 'Text',
                     defaultValue: DefaultValues.incompleteTextColor,
                 },
                 {
                     id: 'incompleteCheckboxColor',
                     type: 'colorInput',
-                    label: 'Incomplete Checkbox',
+                    label: 'Checkbox',
                     defaultValue: DefaultValues.incompleteCheckboxColor,
                 },
             ],
@@ -111,13 +111,13 @@ const settings: BlockSettings = {
                 {
                     id: 'completeTextColor',
                     type: 'colorInput',
-                    label: 'Complete Text',
+                    label: 'Text',
                     defaultValue: DefaultValues.completeTextColor,
                 },
                 {
                     id: 'completeCheckboxColor',
                     type: 'colorInput',
-                    label: 'Complete Checkbox',
+                    label: 'Checkbox',
                     defaultValue: DefaultValues.completeCheckboxColor,
                 },
                 {
@@ -132,7 +132,7 @@ const settings: BlockSettings = {
                     id: 'strikethroughMultiInput',
                     type: 'multiInput',
                     label: 'Line',
-                    layout: MultiInputLayout.Columns,
+                    layout: 'Columns' as MultiInputLayout.Columns,
                     lastItemFullWidth: true,
                     show: (bundle: Bundle) =>
                         bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,
@@ -189,18 +189,16 @@ const settings: BlockSettings = {
                 {
                     id: 'progressBarFillColor',
                     type: 'colorInput',
-                    label: 'Progress Bar Fill',
+                    label: 'Complete',
                     defaultValue: DefaultValues.progressBarFillColor,
                 },
                 {
                     id: 'progressBarTrackColor',
                     type: 'colorInput',
-                    label: 'Progress Bar Track',
+                    label: 'Track',
                     defaultValue: DefaultValues.progressBarTrackColor,
                 },
             ],
         },
     ],
 };
-
-export default settings;

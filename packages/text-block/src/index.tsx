@@ -1,3 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export { TextBlock as default } from './TextBlock';
+import { TextBlock } from './TextBlock';
+import { settings } from './settings';
+
+export default {
+    block: TextBlock,
+    settings,
+};

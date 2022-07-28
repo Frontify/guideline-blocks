@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize } from '@frontify/arcade';
+import { DropdownSize } from '@frontify/fondue';
 import { ChoicesType } from './choices';
 
 export type DropdownBlock = {

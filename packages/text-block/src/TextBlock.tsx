@@ -1,20 +1,22 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
-import './styles.css';
-import { FC, useEffect } from 'react';
-import isEqual from 'lodash-es/isEqual';
-import cloneDeep from 'lodash-es/cloneDeep';
-import { RichTextEditor } from '@frontify/arcade';
-import { GRID_CLASSES, Props, Settings } from './types';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
+import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import cloneDeep from 'lodash-es/cloneDeep';
+import isEqual from 'lodash-es/isEqual';
+import { FC, useEffect } from 'react';
+import 'tailwindcss/tailwind.css';
 import { DEFAULT_COLUMN_GUTTER, DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
+import './styles.css';
+import { GRID_CLASSES, Props, Settings } from './types';
 
 export const TextBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const columnCount = blockSettings.columnNumber ?? DEFAULT_COLUMN_NUMBER;
+    const { designTokens } = useGuidelineDesignTokens();
 
     useEffect(() => {
         const newSettings = cloneDeep(blockSettings) as Settings;
@@ -51,6 +53,7 @@ export const TextBlock: FC<Props> = ({ appBridge }) => {
                 [...Array(parseInt(columnCount.toString()))].map((_, index) => {
                     return (
                         <RichTextEditor
+                            designTokens={designTokens ?? undefined}
                             key={`text-block-editor-${index}`}
                             value={blockSettings.content?.[index]}
                             placeholder={PLACEHOLDER}

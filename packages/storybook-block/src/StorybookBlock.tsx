@@ -1,17 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/arcade-tokens/styles';
-import 'tailwindcss/tailwind.css';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, IconSize, IconStorybook, TextInput } from '@frontify/arcade';
+import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
+import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { CSSProperties, FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
-    BorderSelectionType,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -19,24 +18,10 @@ import {
     StorybookPosition,
     StorybookStyle,
     borderRadiusClasses,
-    borderStyles,
     heights,
 } from './types';
 
 const DEFAULT_BORDER_WIDTH = '1px';
-
-const getIframeStyles = (borderSelection: BorderSelectionType, borderRadius: string): CSSProperties => {
-    // TODO: This check could be removed if defaultValue are returned from blockSettings (ticket: https://app.clickup.com/t/1p69p6a)
-    const style = borderSelection[0] ?? StorybookBorderStyle.Solid;
-    const width = borderSelection[1] ?? DEFAULT_BORDER_WIDTH;
-    const rgba = borderSelection[2] ?? BORDER_COLOR_DEFAULT_VALUE;
-    return {
-        borderStyle: borderStyles[style],
-        borderWidth: width,
-        borderColor: toRgbaString(rgba),
-        borderRadius,
-    };
-};
 
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
@@ -44,6 +29,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const [localUrl, setLocalUrl] = useState('');
     const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
     const { hoverProps, isHovered } = useHover({});
+    const { containerRef, setIsReadyForPrint } = useReadyForPrint();
 
     const {
         style = StorybookStyle.Default,
@@ -53,7 +39,9 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         heightValue = '',
         positioning = StorybookPosition.Horizontal,
         hasBorder = true,
-        borderSelection = [StorybookBorderStyle.Solid, DEFAULT_BORDER_WIDTH, BORDER_COLOR_DEFAULT_VALUE],
+        borderColor = BORDER_COLOR_DEFAULT_VALUE,
+        borderStyle = StorybookBorderStyle.Solid,
+        borderWidth = DEFAULT_BORDER_WIDTH,
         hasRadius = false,
         radiusChoice = StorybookBorderRadius.None,
         radiusValue = '',
@@ -76,34 +64,54 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     useEffect(() => {
-        if (url) {
+        if (url !== '') {
+            setIsReadyForPrint(false);
             const newIframeUrl = new URL(url);
             newIframeUrl.searchParams.set('nav', 'false');
 
-            let panelValue = 'bottom';
-            if (style === StorybookStyle.WithoutAddons) {
-                panelValue = 'false';
-            } else if (positioning === StorybookPosition.Horizontal) {
-                panelValue = 'right';
-            }
+            const hasAddons = style === StorybookStyle.Default;
+            const shouldAddIframeToUrl = !hasAddons;
+            const includesIframe = newIframeUrl.pathname.toString().includes('iframe.html');
+            const positionValue = positioning === StorybookPosition.Horizontal ? 'right' : 'bottom';
+            const panelValue = !hasAddons ? 'false' : positionValue;
 
             newIframeUrl.searchParams.set('panel', panelValue);
 
+            if (shouldAddIframeToUrl && !includesIframe) {
+                newIframeUrl.pathname = `${newIframeUrl.pathname}iframe.html`;
+            }
+
+            if (!shouldAddIframeToUrl && includesIframe) {
+                const pathname = newIframeUrl.pathname.toString().replace('iframe.html', '');
+                newIframeUrl.pathname = pathname;
+            }
+
             setIframeUrl(newIframeUrl);
         } else if (url === '') {
+            setIsReadyForPrint(true);
             deleteUrl();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url, style, positioning]);
 
     return (
-        <div data-test-id="storybook-block" className="tw-relative">
+        <div ref={containerRef} data-test-id="storybook-block" className="tw-relative">
             {iframeUrl ? (
                 <div {...hoverProps}>
                     {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
                     <iframe
+                        onLoad={() => setIsReadyForPrint(true)}
                         className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
-                        style={hasBorder ? getIframeStyles(borderSelection, hasRadius ? radiusValue : '') : {}}
+                        style={
+                            hasBorder
+                                ? {
+                                      borderColor: toRgbaString(borderColor),
+                                      borderStyle,
+                                      borderWidth,
+                                      borderRadius: radiusValue,
+                                  }
+                                : {}
+                        }
                         height={isCustomHeight ? heightValue : heights[heightChoice]}
                         src={iframeUrl.toString()}
                         frameBorder="0"

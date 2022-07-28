@@ -1,9 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/arcade';
+import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
-const settings: BlockSettings = {
+export const IMAGE_SETTING_ID = 'image';
+
+export const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
@@ -20,10 +22,8 @@ const settings: BlockSettings = {
             ],
         },
         {
-            id: 'images',
+            id: IMAGE_SETTING_ID,
             type: 'assetInput',
         },
     ],
 };
-
-export default settings;

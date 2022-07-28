@@ -1,21 +1,19 @@
 {
     "name": "@frontify/guideline-blocks-settings",
-    "version": "0.12.0",
+    "version": "0.15.1",
     "description": "Provides the types for the block settings",
     "sideEffects": false,
-    "module": "dist/index.js",
-    "main": "dist/index.js",
-    "files": [
-        "dist"
-    ],
+    "main": "dist/index.umd.js",
+    "unpkg": "dist/index.umd.js",
+    "jsdelivr": "dist/index.umd.js",
+    "module": "dist/index.es.js",
     "types": "dist/index.d.ts",
     "publishConfig": {
         "access": "public"
     },
     "author": "Frontify Developers <developers@frontify.com>",
     "scripts": {
-        "build": "tsc",
-        "deploy": "npm publish",
+        "build": "vite build",
         "lint": "eslint types",
         "lint:fix": "eslint --fix types",
         "prettier": "prettier --check types",
@@ -24,14 +22,16 @@
     },
     "devDependencies": {
         "@frontify/eslint-config-typescript": "0.15.2",
-        "eslint": "8.14.0",
+        "eslint": "8.15.0",
         "prettier": "2.6.2",
-        "typescript": "4.6.4"
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "typescript": "4.6.4",
+        "vite": "2.9.9",
+        "vite-plugin-dts": "1.2.0"
     },
     "dependencies": {
         "@frontify/app-bridge": "*",
-        "@frontify/arcade": "*",
-        "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "@frontify/fondue": "*"
     }
 }
