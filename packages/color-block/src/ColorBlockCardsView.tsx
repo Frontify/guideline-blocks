@@ -16,7 +16,6 @@ import {
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { ColorBlockCardsViewProps } from './types';
-import { copyToClipboard } from './utilities/copyToClipboard';
 import { mapColorSpaces } from './helpers/mapColorSpaces';
 import { ColorsBlockColorPicker } from './components/ColorsBlockColorPicker';
 
@@ -30,12 +29,12 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
     const { copy, status } = useCopy();
 
     return (
-        <div className="tw-flex tw-flex-wrap tw-gap-y-4 tw-my-[-16px]">
+        <div className="tw-grid tw-gap-4 tw-grid-cols-4">
             {colors?.map((item) => (
                 <div
                     key={item}
                     className={joinClassNames([
-                        "tw-group tw-relative tw-flex tw-flex-col tw-w-cards-card tw-mx-2 tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[1] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full before:tw-transition-all",
+                        "tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[1] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full before:tw-transition-all",
                         isEditing && 'hover:before:tw-shadow-inset-hover-strong',
                         !isEditing && 'hover:before:tw-shadow-inset-hover-weak',
                     ])}
@@ -48,10 +47,7 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
                                     isEditing && 'group-hover:tw-block',
                                 ])}
                             >
-                                <Button
-                                    icon={<IconTrash size={IconSize.Size20}></IconTrash>}
-                                    style={ButtonStyle.Secondary}
-                                ></Button>
+                                <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
                             </div>
                         )}
                     </div>
@@ -103,10 +99,10 @@ export const ColorBlockCardsView: FC<ColorBlockCardsViewProps> = ({
             ))}
 
             {isEditing && (
-                <div className="tw-relative tw-flex tw-flex-col tw-w-cards-card tw-mx-2 tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[2] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full">
+                <div className="tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[2] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full">
                     <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
-                        <div className="tw-relative tw-z-[1] tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-cursor-pointer tw-text-black tw-bg-[#F1F1F1] tw-shadow-inset-bottom">
-                            <IconPlus size={IconSize.Size24}></IconPlus>
+                        <div className="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-shadow-inset-card-add">
+                            <IconPlus size={IconSize.Size24} />
                         </div>
                     </ColorsBlockColorPicker>
 

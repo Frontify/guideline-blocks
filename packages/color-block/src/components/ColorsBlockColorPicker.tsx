@@ -20,13 +20,13 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
     };
 
     return (
-        <div>
+        <div className="tw-relative tw-z-[2]">
             <Flyout
                 hug={false}
                 onConfirm={handleClick}
                 isOpen={open}
                 onCancel={() => handleOpenChange(false)}
-                fixedHeader={<ColorPreview color={selectedColor || { r: 255, g: 255, b: 255 }} />}
+                fixedHeader={<ColorPreview color={selectedColor ?? { r: 255, g: 255, b: 255 }} />}
                 onOpenChange={handleOpenChange}
                 trigger={children}
             >
@@ -34,7 +34,7 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
                     currentFormat={currentFormat}
                     setFormat={setCurrentFormat}
                     showPreview={false}
-                    currentColor={selectedColor || { r: 255, g: 255, b: 255 }}
+                    currentColor={selectedColor ?? { r: 255, g: 255, b: 255 }}
                     onSelect={(color) => setSelectedColor(color)}
                 />
             </Flyout>

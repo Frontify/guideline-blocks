@@ -46,10 +46,7 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
                                     isEditing && 'group-hover:tw-block',
                                 ])}
                             >
-                                <Button
-                                    icon={<IconTrash size={IconSize.Size20}></IconTrash>}
-                                    style={ButtonStyle.Secondary}
-                                ></Button>
+                                <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
                             </div>
                         )}
                     </div>
@@ -102,8 +99,8 @@ export const ColorBlockDropsView: FC<ColorBlockDropsViewProps> = ({
             {isEditing && (
                 <div className="tw-flex tw-flex-col tw-items-center tw-w-1/6">
                     <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
-                        <div className="tw-relative tw-z-[1] tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-[#F1F1F1]">
-                            <IconPlus size={IconSize.Size24}></IconPlus>
+                        <div className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-gray-add-button">
+                            <IconPlus size={IconSize.Size24} />
                         </div>
                     </ColorsBlockColorPicker>
 

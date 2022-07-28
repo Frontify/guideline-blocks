@@ -98,10 +98,7 @@ export const ColorBlockListView: FC<ColorBlockListViewProps> = ({
                                     isEditing && 'group-hover:tw-block',
                                 ])}
                             >
-                                <Button
-                                    icon={<IconTrash size={IconSize.Size20}></IconTrash>}
-                                    style={ButtonStyle.Secondary}
-                                ></Button>
+                                <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
                             </div>
                         )}
                     </div>
@@ -114,8 +111,8 @@ export const ColorBlockListView: FC<ColorBlockListViewProps> = ({
                     className="tw-relative tw-w-full tw-flex before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-shadow-inset-top after:tw-absolute after:tw-top-0 after:tw-left-0 after:tw-w-full after:tw-h-full after:tw-content-[''] after:tw-shadow-inset-bottom"
                 >
                     <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
-                        <div className="tw-relative tw-z-[1] tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-cursor-pointer tw-text-black tw-bg-[#F1F1F1] tw-shadow-inset-add">
-                            <IconPlus size={IconSize.Size24}></IconPlus>
+                        <div className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-shadow-inset-list-add">
+                            <IconPlus size={IconSize.Size24} />
                         </div>
                     </ColorsBlockColorPicker>
 
