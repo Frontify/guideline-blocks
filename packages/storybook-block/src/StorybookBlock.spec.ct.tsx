@@ -3,8 +3,8 @@
 import { mount } from '@cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { StorybookBlock } from './StorybookBlock';
-import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 import { decodeEntities } from './utilities';
+import { heights, StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
 
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';
 const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
@@ -67,6 +67,27 @@ describe('Storybook Block', () => {
         cy.get(IframeSelector).should('have.css', 'border-width', '2px');
         cy.get(IframeSelector).should('have.css', 'border-color', 'rgb(22, 181, 181)');
         cy.get(IframeSelector).should('have.css', 'border-radius', '5px');
+    });
+
+    it('renders error handling when invalid url is typed', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, { editorState: true });
+
+        mount(<StorybookBlockWithStubs />);
+        cy.get(EmptyStateSelector).find('input').type('asdf');
+        cy.get(EmptyStateSelector).contains('Please enter a valid Storybook URL');
+        cy.get(EmptyStateSelector).find('button').should('be.disabled');
+    });
+
+    it('should not render iframe with invalid url', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
+            editorState: true,
+            blockSettings: { url: 'asdf' },
+        });
+
+        mount(<StorybookBlockWithStubs />);
+        cy.get(EmptyStateSelector);
+        cy.get(EmptyStateSelector).find('button').should('be.disabled');
+        cy.get(EmptyStateSelector).contains('Please enter a valid Storybook URL');
     });
 
     describe('decodeEntities', () => {
