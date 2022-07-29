@@ -23,6 +23,7 @@ import {
 import { decodeEntities } from './utilities';
 
 const DEFAULT_BORDER_WIDTH = '1px';
+export const ERROR_MSG = 'Please enter a valid Storybook URL';
 
 export const validURL = (string: string) => {
     if (string === '') {
@@ -156,9 +157,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                                     placeholder={URL_INPUT_PLACEHOLDER}
                                 />
                                 {!isUrlValid && (
-                                    <div className="tw-text-s tw-text-text-negative tw-mt-2">
-                                        Please enter a valid Storybook URL
-                                    </div>
+                                    <div className="tw-text-s tw-text-text-negative tw-mt-2">{ERROR_MSG}</div>
                                 )}
                             </div>
                             <Button onClick={saveLink} disabled={!isUrlValid}>
