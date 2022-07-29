@@ -23,6 +23,14 @@ import {
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
+const decodeEntities = (encodedString: string): string => {
+    if (!encodedString) {
+        return '';
+    }
+    const doc = new DOMParser().parseFromString(encodedString, 'text/html');
+    return doc.documentElement.textContent || '';
+};
+
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -66,7 +74,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     useEffect(() => {
         if (url !== '') {
             setIsReadyForPrint(false);
-            const newIframeUrl = new URL(url);
+            const newIframeUrl = new URL(decodeEntities(url));
             newIframeUrl.searchParams.set('nav', 'false');
 
             const hasAddons = style === StorybookStyle.Default;
