@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
+import type { AppBridgeNative } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 
 export type BlockProps = {
-    appBridge: AppBridgeBlock;
+    appBridge: AppBridgeNative;
 };
 
 export type Settings = {
