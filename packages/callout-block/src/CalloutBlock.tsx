@@ -15,12 +15,12 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
 
-    const outDivClassNames = joinClassNames([
+    const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
-    const innerDivClassNames = joinClassNames([
+    const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center tw-text-white',
         typeMap[blockSettings.type],
         blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
@@ -44,10 +44,10 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const onTextChange = (value: string) => setBlockSettings({ textValue: value });
 
     return (
-        <div data-test-id="callout-block" className={outDivClassNames}>
+        <div data-test-id="callout-block" className={containerDivClassNames}>
             <div
                 data-test-id="callout-wrapper"
-                className={innerDivClassNames}
+                className={textDivClassNames}
                 style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}
             >
                 {blockSettings.iconSwitch && iconUrl && (
