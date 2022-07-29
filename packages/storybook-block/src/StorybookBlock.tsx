@@ -8,7 +8,7 @@ import { useHover } from '@react-aria/interactions';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
-import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
+import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
     Settings,
@@ -23,7 +23,6 @@ import {
 import { decodeEntities } from './utilities';
 
 const DEFAULT_BORDER_WIDTH = '1px';
-export const ERROR_MSG = 'Please enter a valid Storybook URL';
 
 export const validURL = (string: string) => {
     if (string === '') {

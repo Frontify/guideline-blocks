@@ -11,8 +11,10 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { ERROR_MSG, validURL } from './StorybookBlock';
+import { validURL } from './StorybookBlock';
 import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
+
+export const ERROR_MSG = 'Please enter a valid Storybook URL';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
     r: 234,

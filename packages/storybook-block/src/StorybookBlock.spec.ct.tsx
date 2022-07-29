@@ -2,6 +2,7 @@
 
 import { mount } from '@cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { ERROR_MSG } from './settings';
 import { StorybookBlock } from './StorybookBlock';
 import { decodeEntities } from './utilities';
 import { heights, StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
@@ -74,7 +75,7 @@ describe('Storybook Block', () => {
 
         mount(<StorybookBlockWithStubs />);
         cy.get(EmptyStateSelector).find('input').type('asdf');
-        cy.get(EmptyStateSelector).contains('Please enter a valid Storybook URL');
+        cy.get(EmptyStateSelector).contains(ERROR_MSG);
         cy.get(EmptyStateSelector).find('button').should('be.disabled');
     });
 
@@ -87,7 +88,7 @@ describe('Storybook Block', () => {
         mount(<StorybookBlockWithStubs />);
         cy.get(EmptyStateSelector);
         cy.get(EmptyStateSelector).find('button').should('be.disabled');
-        cy.get(EmptyStateSelector).contains('Please enter a valid Storybook URL');
+        cy.get(EmptyStateSelector).contains(ERROR_MSG);
     });
 
     describe('decodeEntities', () => {
