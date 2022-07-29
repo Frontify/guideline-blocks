@@ -24,7 +24,7 @@ import { decodeEntities } from './utilities';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
-const validURL = (string: string) => {
+export const validURL = (string: string) => {
     if (string === '') {
         return true;
     }
@@ -34,7 +34,7 @@ const validURL = (string: string) => {
     return false;
 };
 
-const addHttps = (testUrl: string) => {
+export const addHttps = (testUrl: string) => {
     if (testUrl.startsWith('http://')) {
         return testUrl.replace('http://', 'https://');
     } else if (!testUrl.startsWith('https://')) {
@@ -66,8 +66,8 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusValue = '',
     } = blockSettings;
 
-    const isUrlValid = validURL(localUrl);
-    const iframeUrl = url !== '' ? new URL(url) : undefined;
+    const isUrlValid = validURL(localUrl !== '' ? localUrl : url);
+    const iframeUrl = url !== '' && isUrlValid ? new URL(addHttps(url)) : undefined;
 
     const deleteUrl = () => {
         setLocalUrl('');
