@@ -3,3 +3,4 @@
 import "@frontify/fondue/style";
 import "cypress-real-events/support";
 import "../plugins/tailwind";
+import "../plugins/structuredClone";
