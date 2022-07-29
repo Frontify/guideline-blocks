@@ -6,7 +6,7 @@ import { BlockSettings, Bundle, NotificationStyleType } from '@frontify/guidelin
 export const settings: BlockSettings = {
     main: [
         {
-            id: 'viewType',
+            id: 'view',
             type: 'dropdown',
             defaultValue: 'cards',
             size: DropdownSize.Large,
@@ -31,7 +31,7 @@ export const settings: BlockSettings = {
     ],
     content: [
         {
-            id: 'colorSpaces',
+            id: 'colorspaces',
             type: 'checklist',
             defaultValue: ['hex', 'rgb'],
             label: 'Color Spaces',
@@ -121,7 +121,7 @@ export const settings: BlockSettings = {
             columns: 2,
         },
         {
-            id: 'colorSpacesInfo',
+            id: 'colorspacesInfo',
             type: 'notification',
             title: 'If there is no Color Space selected, viewers might miss some information or the Block could lack visual appeal.',
             styles: {
