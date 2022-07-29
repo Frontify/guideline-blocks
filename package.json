@@ -18,7 +18,7 @@
         "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel typecheck"
     },
     "devDependencies": {
-        "@babel/core": "7.17.10",
+        "@babel/core": "7.18.9",
         "@cypress/react": "5.12.4",
         "@cypress/vite-dev-server": "2.2.2",
         "@testing-library/react-hooks": "^8.0.0",
