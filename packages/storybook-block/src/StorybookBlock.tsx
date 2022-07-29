@@ -48,7 +48,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [localUrl, setLocalUrl] = useState('');
     const { hoverProps, isHovered } = useHover({});
-    const { setIsReadyForPrint } = useReadyForPrint(appBridge);
+    const { containerRef, setIsReadyForPrint } = useReadyForPrint();
 
     const {
         style = StorybookStyle.Default,
@@ -117,7 +117,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     }
 
     return (
-        <div data-test-id="storybook-block" className="tw-relative">
+        <div ref={containerRef} data-test-id="storybook-block" className="tw-relative">
             {iframeUrl ? (
                 <div {...hoverProps}>
                     {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
@@ -156,7 +156,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                                     placeholder={URL_INPUT_PLACEHOLDER}
                                 />
                                 {!isUrlValid && (
-                                    <div className="tw-text-s tw-text-text-warning tw-mt-2">
+                                    <div className="tw-text-s tw-text-text-negative tw-mt-2">
                                         Please enter a valid Storybook URL
                                     </div>
                                 )}
