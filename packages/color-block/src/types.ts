@@ -49,3 +49,8 @@ export type ColorsBlockColorPickerProps = Pick<ColorPickerProps, 'onSelect'> & {
     currentColor?: Color | null;
     children: ReactNode;
 };
+
+export type TootlipContentProps = {
+    color: string;
+    status: 'error' | 'success' | 'idle';
+};

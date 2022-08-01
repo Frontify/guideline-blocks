@@ -16,6 +16,7 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 
 import { ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
+import { TootlipContent } from '../TooltipContent';
 
 export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -35,17 +36,7 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={
-                        <>
-                            <div>Color Name</div>
-                            <div>{color}</div>
-                            <span className="tw-text-black-50">
-                                {status === 'error' && 'Error copying. Try again.'}
-                                {status === 'idle' && 'Click to copy'}
-                                {status === 'success' && 'Copied!'}
-                            </span>
-                        </>
-                    }
+                    content={<TootlipContent color={color} status={status} />}
                     triggerElement={
                         <div
                             className="tw-relative tw-z-[1] tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inset-bottom"
@@ -91,16 +82,7 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                                     withArrow
                                     position={TooltipPosition.Right}
                                     hoverDelay={0}
-                                    content={
-                                        <>
-                                            <div>Color Name</div>
-                                            <div>{color}</div>
-                                            <span className="tw-text-black-50">
-                                                {status === 'idle' && 'Click to copy'}
-                                                {status === 'success' && 'Copied!'}
-                                            </span>
-                                        </>
-                                    }
+                                    content={<TootlipContent color={color} status={status} />}
                                     triggerElement={
                                         <div
                                             className="tw-relative tw-z-[1] tw-cursor-pointer tw-text-s tw-text-black-80"
