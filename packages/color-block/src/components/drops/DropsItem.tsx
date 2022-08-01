@@ -17,6 +17,7 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ItemProps } from '../../types';
 import { TootlipContent } from '../TooltipContent';
+import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 
 export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: ItemProps) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -42,21 +43,23 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
                     }
                 />
             ) : (
-                <div
-                    className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-transition-all group-hover:tw-shadow-inset-hover-strong"
-                    style={{
-                        backgroundColor: color,
-                    }}
-                >
+                <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
                     <div
-                        className={joinClassNames([
-                            'tw-absolute tw-hidden tw-top-[-0.25rem] tw-right-[-0.25rem]',
-                            isEditing && 'group-hover:tw-block',
-                        ])}
+                        className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-transition-all group-hover:tw-shadow-inset-hover-strong"
+                        style={{
+                            backgroundColor: color,
+                        }}
                     >
-                        <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
+                        <div
+                            className={joinClassNames([
+                                'tw-absolute tw-hidden tw-top-[-0.25rem] tw-right-[-0.25rem]',
+                                isEditing && 'group-hover:tw-block',
+                            ])}
+                        >
+                            <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
+                        </div>
                     </div>
-                </div>
+                </ColorsBlockColorPicker>
             )}
 
             <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-black tw-text-center">

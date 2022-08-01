@@ -17,6 +17,7 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 import { ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { TootlipContent } from '../TooltipContent';
+import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 
 export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -48,21 +49,23 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     }
                 />
             ) : (
-                <div
-                    className="tw-relative tw-w-full tw-h-[60px] tw-shadow-inset-bottom"
-                    style={{
-                        backgroundColor: color,
-                    }}
-                >
+                <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
                     <div
-                        className={joinClassNames([
-                            'tw-absolute tw-z-[2] tw-hidden tw-top-1 tw-right-1',
-                            isEditing && 'group-hover:tw-block',
-                        ])}
+                        className="tw-relative tw-w-full tw-h-[60px] tw-shadow-inset-bottom"
+                        style={{
+                            backgroundColor: color,
+                        }}
                     >
-                        <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
+                        <div
+                            className={joinClassNames([
+                                'tw-absolute tw-z-[2] tw-hidden tw-top-1 tw-right-1',
+                                isEditing && 'group-hover:tw-block',
+                            ])}
+                        >
+                            <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
+                        </div>
                     </div>
-                </div>
+                </ColorsBlockColorPicker>
             )}
 
             <div className="tw-pt-4 tw-px-6 tw-pb-5">

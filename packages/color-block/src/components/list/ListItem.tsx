@@ -18,6 +18,7 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 import { ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { TootlipContent } from '../TooltipContent';
+import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 
 export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -51,12 +52,14 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     }
                 />
             ) : (
-                <div
-                    className="tw-w-[120px] tw-min-h-[60px] tw-mr-9"
-                    style={{
-                        backgroundColor: color,
-                    }}
-                ></div>
+                <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
+                    <div
+                        className="tw-w-[120px] tw-min-h-[60px] tw-mr-9"
+                        style={{
+                            backgroundColor: color,
+                        }}
+                    ></div>
+                </ColorsBlockColorPicker>
             )}
 
             <div className="tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-text-m tw-text-black tw-font-bold">
