@@ -45,42 +45,6 @@ export const settings: BlockSettings = {
                     label: 'RGB',
                 },
                 {
-                    id: 'variable',
-                    label: 'SCSS/LESS',
-                },
-                {
-                    id: 'ral',
-                    label: 'RAL',
-                },
-                {
-                    id: 'pantone',
-                    label: 'Pantone',
-                },
-                {
-                    id: 'pantone_coated',
-                    label: 'Pantone Coated',
-                },
-                {
-                    id: 'pantone_uncoated',
-                    label: 'Pantone Uncoated',
-                },
-                {
-                    id: 'pantone_cp',
-                    label: 'Pantone CP',
-                },
-                {
-                    id: 'pantone_plastics',
-                    label: 'Pantone Plastics',
-                },
-                {
-                    id: 'pantone_textile',
-                    label: 'Pantone Textile',
-                },
-                {
-                    id: 'oracal',
-                    label: 'Oracal',
-                },
-                {
                     id: 'cmyk',
                     label: 'CMYK',
                     tooltip: {
@@ -101,9 +65,47 @@ export const settings: BlockSettings = {
                     label: 'CMYK Newspaper',
                 },
                 {
+                    id: 'pantone',
+                    label: 'Pantone',
+                },
+                {
+                    id: 'pantone_coated',
+                    label: 'Pantone Coated',
+                },
+                {
+                    id: 'pantone_uncoated',
+                    label: 'Pantone Uncoated',
+                },
+                {
+                    id: 'pantone_cp',
+                    label: 'Pantone CP',
+                },
+                {
+                    id: 'pantone_textile',
+                    label: 'Pantone Textile',
+                },
+                {
+                    id: 'pantone_plastics',
+                    label: 'Pantone Plastics',
+                },
+                {
+                    id: 'ral',
+                    label: 'RAL',
+                },
+
+                {
+                    id: 'variable',
+                    label: 'SCSS/LESS',
+                },
+                {
+                    id: 'lab',
+                    label: 'LAB',
+                },
+                {
                     id: 'ncs',
                     label: 'NCS',
                 },
+
                 {
                     id: 'hks',
                     label: 'HKS',
@@ -113,8 +115,8 @@ export const settings: BlockSettings = {
                     label: '3M',
                 },
                 {
-                    id: 'lab',
-                    label: 'LAB',
+                    id: 'oracal',
+                    label: 'Oracal',
                 },
             ],
             showClearAndSelectAllButtons: true,
@@ -128,7 +130,7 @@ export const settings: BlockSettings = {
                 type: NotificationStyleType.Warning,
             },
             show: (bundle: Bundle) => {
-                const colorSpacesValue = bundle.getBlock('colorSpaces')?.value;
+                const colorSpacesValue = bundle.getBlock('colorspaces')?.value;
 
                 return !colorSpacesValue || (colorSpacesValue as string[]).length === 0;
             },
