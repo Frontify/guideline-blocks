@@ -33,12 +33,40 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     'last:after:tw-absolute last:after:tw-top-0 last:after:tw-left-0 last:after:tw-w-full last:after:tw-h-full last:after:tw-content-[""] last:after:tw-shadow-inset-bottom hover:tw-bg-black-0',
             ])}
         >
-            <div
-                className="tw-w-[120px] tw-min-h-[60px] tw-mr-9"
-                style={{
-                    backgroundColor: color,
-                }}
-            ></div>
+            {!isEditing ? (
+                <Tooltip
+                    withArrow
+                    position={TooltipPosition.Right}
+                    hoverDelay={0}
+                    content={
+                        <>
+                            <div>Color Name</div>
+                            <div>{color}</div>
+                            <span className="tw-text-black-50">
+                                {status === 'error' && 'Error copying. Try again.'}
+                                {status === 'idle' && 'Click to copy'}
+                                {status === 'success' && 'Copied!'}
+                            </span>
+                        </>
+                    }
+                    triggerElement={
+                        <div
+                            className="tw-relative tw-z-[1] tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-cursor-pointer"
+                            style={{
+                                backgroundColor: color,
+                            }}
+                            onClick={() => copy(color)}
+                        ></div>
+                    }
+                />
+            ) : (
+                <div
+                    className="tw-w-[120px] tw-min-h-[60px] tw-mr-9"
+                    style={{
+                        backgroundColor: color,
+                    }}
+                ></div>
+            )}
 
             <div className="tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-text-m tw-text-black tw-font-bold">
                 <RichTextEditor designTokens={designTokens ?? undefined} readonly={!isEditing} />

@@ -24,17 +24,39 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
 
     return (
         <div className="tw-group tw-flex tw-flex-col tw-items-center">
-            <div
-                className={joinClassNames([
-                    'tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-transition-all',
-                    isEditing && 'group-hover:tw-shadow-inset-hover-strong',
-                    !isEditing && 'group-hover:tw-shadow-inset-hover-weak',
-                ])}
-                style={{
-                    backgroundColor: color,
-                }}
-            >
-                {isEditing && (
+            {!isEditing ? (
+                <Tooltip
+                    withArrow
+                    position={TooltipPosition.Right}
+                    hoverDelay={0}
+                    content={
+                        <>
+                            <div>Color Name</div>
+                            <div>{color}</div>
+                            <span className="tw-text-black-50">
+                                {status === 'error' && 'Error copying. Try again.'}
+                                {status === 'idle' && 'Click to copy'}
+                                {status === 'success' && 'Copied!'}
+                            </span>
+                        </>
+                    }
+                    triggerElement={
+                        <div
+                            className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-cursor-pointer tw-transition-all group-hover:tw-shadow-inset-hover-weak"
+                            style={{
+                                backgroundColor: color,
+                            }}
+                            onClick={() => copy(color)}
+                        ></div>
+                    }
+                />
+            ) : (
+                <div
+                    className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-transition-all group-hover:tw-shadow-inset-hover-strong"
+                    style={{
+                        backgroundColor: color,
+                    }}
+                >
                     <div
                         className={joinClassNames([
                             'tw-absolute tw-hidden tw-top-[-0.25rem] tw-right-[-0.25rem]',
@@ -43,8 +65,8 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
                     >
                         <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
                     </div>
-                )}
-            </div>
+                </div>
+            )}
 
             <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-black tw-text-center">
                 <RichTextEditor designTokens={designTokens ?? undefined} readonly={!isEditing} />

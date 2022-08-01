@@ -30,13 +30,39 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                 !isEditing && 'hover:before:tw-shadow-inset-hover-weak',
             ])}
         >
-            <div
-                className="tw-relative tw-w-full tw-h-[60px] tw-shadow-inset-bottom"
-                style={{
-                    backgroundColor: color,
-                }}
-            >
-                {isEditing && (
+            {!isEditing ? (
+                <Tooltip
+                    withArrow
+                    position={TooltipPosition.Right}
+                    hoverDelay={0}
+                    content={
+                        <>
+                            <div>Color Name</div>
+                            <div>{color}</div>
+                            <span className="tw-text-black-50">
+                                {status === 'error' && 'Error copying. Try again.'}
+                                {status === 'idle' && 'Click to copy'}
+                                {status === 'success' && 'Copied!'}
+                            </span>
+                        </>
+                    }
+                    triggerElement={
+                        <div
+                            className="tw-relative tw-z-[1] tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inset-bottom"
+                            style={{
+                                backgroundColor: color,
+                            }}
+                            onClick={() => copy(color)}
+                        ></div>
+                    }
+                />
+            ) : (
+                <div
+                    className="tw-relative tw-w-full tw-h-[60px] tw-shadow-inset-bottom"
+                    style={{
+                        backgroundColor: color,
+                    }}
+                >
                     <div
                         className={joinClassNames([
                             'tw-absolute tw-z-[2] tw-hidden tw-top-1 tw-right-1',
@@ -45,8 +71,8 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     >
                         <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
                     </div>
-                )}
-            </div>
+                </div>
+            )}
 
             <div className="tw-pt-4 tw-px-6 tw-pb-5">
                 <div className="tw-relative tw-z-[1] tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">
