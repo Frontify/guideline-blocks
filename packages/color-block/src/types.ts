@@ -12,12 +12,23 @@ export type Props = {
 export type Settings = {
     name?: string;
     description?: string;
-    view?: string;
+    view?: ColorBlockType;
     colorspaces?: string[];
 };
 
-export type ColorBlockListViewProps = {
-    colors: string[];
+export enum ColorBlockType {
+    List = 'list',
+    Drops = 'drops',
+    Cards = 'cards',
+}
+
+export type ItemProps = {
+    color: string;
+    colorSpaces: string[];
+    isEditing: boolean;
+};
+
+export type ItemAddProps = {
     colorSpaces: string[];
     isEditing: boolean;
 };
