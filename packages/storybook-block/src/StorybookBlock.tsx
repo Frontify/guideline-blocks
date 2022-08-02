@@ -20,16 +20,9 @@ import {
     borderRadiusClasses,
     heights,
 } from './types';
+import { decodeEntities } from './utilities';
 
 const DEFAULT_BORDER_WIDTH = '1px';
-
-const decodeEntities = (encodedString: string): string => {
-    if (!encodedString) {
-        return '';
-    }
-    const doc = new DOMParser().parseFromString(encodedString, 'text/html');
-    return doc.documentElement.textContent || '';
-};
 
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);

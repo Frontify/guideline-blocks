@@ -3,7 +3,8 @@
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/app-bridge';
 import { StorybookBlock } from './StorybookBlock';
-import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
+import { heights, StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
+import { decodeEntities } from './utilities';
 
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';
 const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
@@ -66,5 +67,11 @@ describe('Storybook Block', () => {
         cy.get(IframeSelector).should('have.css', 'border-width', '2px');
         cy.get(IframeSelector).should('have.css', 'border-color', 'rgb(22, 181, 181)');
         cy.get(IframeSelector).should('have.css', 'border-radius', '5px');
+    });
+
+    it('decodes URL', () => {
+        const encodedUrl = 'https://fondue-components.frontify.com/?path&#61;/story/tokens--alias-tokens';
+        const decodedUrl = 'https://fondue-components.frontify.com/?path=/story/tokens--alias-tokens';
+        expect(decodedUrl).to.equal(decodeEntities(encodedUrl));
     });
 });
