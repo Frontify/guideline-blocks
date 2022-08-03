@@ -22,7 +22,7 @@
         "@react-types/shared": "3.11.2",
         "autoprefixer": "10.4.7",
         "cypress": "9.6.0",
-        "cypress-real-events": "1.7.0",
+        "cypress-real-events": "1.7.1",
         "eslint": "8.15.0",
         "postcss": "8.4.13",
         "prettier": "2.6.2",
