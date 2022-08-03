@@ -5,7 +5,7 @@ import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
@@ -21,35 +21,14 @@ import {
     heights,
 } from './types';
 import { decodeEntities } from './utilities';
+import { buildIframeUrl } from './utils/buildIframeUrl';
+import { ensureHttps } from './utils/ensureHttps';
+import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
-export const validURL = (string: string) => {
-    if (string === '') {
-        return true;
-    }
-    if (string.split('?').length >= 2 && string.includes('path')) {
-        return true;
-    }
-    return false;
-};
-
-export const addHttps = (testUrl: string) => {
-    if (testUrl.startsWith('http://')) {
-        return testUrl.replace('http://', 'https://');
-    } else if (!testUrl.startsWith('https://')) {
-        return `https://${testUrl}`;
-    }
-    return testUrl;
-};
-
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
-    const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const [localUrl, setLocalUrl] = useState('');
-    const { hoverProps, isHovered } = useHover({});
-    const { containerRef, setIsReadyForPrint } = useReadyForPrint();
-
     const {
         style = StorybookStyle.Default,
         url = '',
@@ -66,63 +45,47 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusValue = '',
     } = blockSettings;
 
-    const isUrlValid = validURL(localUrl !== '' ? localUrl : url);
-    const iframeUrl = url !== '' && isUrlValid ? new URL(addHttps(url)) : undefined;
+    const isEditing = useEditorState(appBridge);
+    const [input, setInput] = useState(url);
+    const [storybookUrl, setStorybookUrl] = useState(url);
+    const { hoverProps, isHovered } = useHover({});
+    const { setIsReadyForPrint } = useReadyForPrint(appBridge);
 
-    const deleteUrl = () => {
-        setLocalUrl('');
+    const iframeUrl = buildIframeUrl(decodeEntities(storybookUrl), style === StorybookStyle.Default, positioning);
+    const saveInputLink = useCallback(() => {
+        setIsReadyForPrint(false);
         setBlockSettings({
             ...blockSettings,
-            url: '',
+            url: ensureHttps(input),
         });
-    };
-
-    const saveLink = () => {
-        setBlockSettings({
-            ...blockSettings,
-            url: addHttps(localUrl),
-        });
-    };
+    }, [blockSettings, input, setBlockSettings, setIsReadyForPrint]);
 
     useEffect(() => {
-        if (!url) {
-            setLocalUrl('');
-        }
-        if (url !== '') {
-            setIsReadyForPrint(false);
-            const newIframeUrl = new URL(decodeEntities(url));
-            newIframeUrl.searchParams.set('nav', 'false');
-        } else if (url === '') {
-            setIsReadyForPrint(true);
-        }
+        setIsReadyForPrint(true);
+    }, [setIsReadyForPrint]);
+
+    useEffect(() => {
+        setStorybookUrl(url);
     }, [url]);
 
-    if (validURL(url)) {
-        iframeUrl?.searchParams.set('nav', 'false');
-
-        const hasAddons = style === StorybookStyle.Default;
-        const includesIframe = iframeUrl?.pathname.toString().includes('iframe.html');
-        const positionValue = positioning === StorybookPosition.Horizontal ? 'right' : 'bottom';
-
-        iframeUrl?.searchParams.set('panel', !hasAddons ? 'false' : positionValue);
-
-        if (iframeUrl && !hasAddons && !includesIframe) {
-            iframeUrl.pathname = `${iframeUrl.pathname}iframe.html`;
-        }
-
-        if (iframeUrl && hasAddons && includesIframe) {
-            const pathname = iframeUrl.pathname.toString().replace('iframe.html', '');
-            iframeUrl.pathname = pathname;
-        }
-    }
-
     return (
-        <div ref={containerRef} data-test-id="storybook-block" className="tw-relative">
+        <div data-test-id="storybook-block" className="tw-relative">
             {iframeUrl ? (
                 <div {...hoverProps}>
-                    {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
+                    {isEditing && isHovered && (
+                        <RemoveButton
+                            onClick={() => {
+                                setStorybookUrl('');
+                                setBlockSettings({
+                                    ...blockSettings,
+                                    url: '',
+                                });
+                            }}
+                        />
+                    )}
                     <iframe
                         onLoad={() => setIsReadyForPrint(true)}
+                        onError={() => setIsReadyForPrint(true)}
                         className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
                         style={
                             hasBorder
@@ -150,16 +113,16 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                             <IconStorybook size={IconSize.Size32} />
                             <div className="tw-w-full tw-max-w-sm">
                                 <TextInput
-                                    value={localUrl}
-                                    onChange={setLocalUrl}
-                                    onEnterPressed={isUrlValid ? saveLink : undefined}
+                                    value={input}
+                                    onChange={setInput}
+                                    onEnterPressed={isValidStorybookUrl(input) ? saveInputLink : undefined}
                                     placeholder={URL_INPUT_PLACEHOLDER}
                                 />
-                                {!isUrlValid && (
+                                {!isValidStorybookUrl(input) && (
                                     <div className="tw-text-s tw-text-text-negative tw-mt-2">{ERROR_MSG}</div>
                                 )}
                             </div>
-                            <Button onClick={saveLink} disabled={!isUrlValid}>
+                            <Button onClick={saveInputLink} disabled={!isValidStorybookUrl(input)}>
                                 Confirm
                             </Button>
                         </div>

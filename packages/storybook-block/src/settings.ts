@@ -11,8 +11,8 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { validURL } from './StorybookBlock';
 import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
+import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
 export const ERROR_MSG = 'Please enter a valid Storybook URL';
 
@@ -56,7 +56,7 @@ export const settings: BlockSettings = {
             label: 'Link',
             type: 'input',
             placeholder: URL_INPUT_PLACEHOLDER,
-            rules: [{ validate: (value: string) => validURL(value), errorMessage: ERROR_MSG }],
+            rules: [{ validate: (value: string) => isValidStorybookUrl(value), errorMessage: ERROR_MSG }],
         },
     ],
     layout: [
