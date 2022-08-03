@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/arcade';
-import { appendUnitToArray, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
 
@@ -76,31 +76,34 @@ export const settings: BlockSettings = {
                     id: 'customPadding',
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
-                    onChange: (bundle: Bundle): void => appendUnitToArray(bundle, 'customPadding'),
                     blocks: [
                         {
                             id: 'paddingTop',
                             type: 'input',
                             label: 'Top',
                             rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingTop'),
                         },
                         {
                             id: 'paddingLeft',
                             type: 'input',
                             label: 'Left',
                             rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingLeft'),
                         },
                         {
                             id: 'paddingRight',
                             type: 'input',
                             label: 'Right',
                             rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingRight'),
                         },
                         {
                             id: 'paddingBottom',
                             type: 'input',
                             label: 'Bottom',
                             rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingBottom'),
                         },
                     ],
                 },
@@ -236,7 +239,7 @@ export const settings: BlockSettings = {
                     id: 'lineWidth',
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    // onChange: (bundle: Bundle): void => appendUnit(bundle, 'lineWidth'), // TODO: appendUnit needs to be fixed
+                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'lineWidth'),
                 },
                 {
                     id: 'borderColor',
@@ -257,31 +260,34 @@ export const settings: BlockSettings = {
                     id: 'customBorderRadius',
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
-                    onChange: (bundle: Bundle): void => appendUnitToArray(bundle, 'customBorderRadius'),
                     blocks: [
                         {
                             id: 'borderRadiusTop',
                             type: 'input',
                             label: 'Top',
                             rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'borderRadiusTop'),
                         },
                         {
                             id: 'borderRadiusLeft',
                             type: 'input',
                             label: 'Left',
                             rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'borderRadiusLeft'),
                         },
                         {
                             id: 'borderRadiusRight',
                             type: 'input',
                             label: 'Right',
                             rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'borderRadiusRight'),
                         },
                         {
                             id: 'borderRadiusBottom',
                             type: 'input',
                             label: 'Bottom',
                             rules: [numericalOrPixelRule],
+                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'borderRadiusBottom'),
                         },
                     ],
                 },
@@ -315,5 +321,4 @@ export const settings: BlockSettings = {
     ],
 };
 
-// eslint-disable-next-line import/no-default-export
 export default settings;

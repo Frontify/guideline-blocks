@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { CSSProperties } from 'react';
-import { Color } from '@frontify/arcade';
+import { Color } from '@frontify/fondue';
 import { Globals, Property } from 'csstype';
 import { AppBridgeNative } from '@frontify/app-bridge';
 

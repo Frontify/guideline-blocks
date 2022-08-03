@@ -1,14 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    keymap,
-    highlightSpecialChars,
+    EditorView,
     drawSelection,
     highlightActiveLine,
-    EditorView,
+    highlightSpecialChars,
+    keymap,
     placeholder,
 } from '@codemirror/view';
-import { Extension, EditorState } from '@codemirror/state';
+import { EditorState, Extension } from '@codemirror/state';
 import { history, historyKeymap } from '@codemirror/history';
 import { foldGutter, foldKeymap } from '@codemirror/fold';
 import { indentOnInput } from '@codemirror/language';
@@ -16,16 +16,16 @@ import { highlightActiveLineGutter } from '@codemirror/gutter';
 import { defaultKeymap } from '@codemirror/commands';
 import { bracketMatching } from '@codemirror/matchbrackets';
 import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
-import { searchKeymap, highlightSelectionMatches } from '@codemirror/search';
+import { highlightSelectionMatches, searchKeymap } from '@codemirror/search';
 import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
 import { commentKeymap } from '@codemirror/comment';
 import { rectangularSelection } from '@codemirror/rectangular-selection';
 import { defaultHighlightStyle } from '@codemirror/highlight';
 import { lintKeymap } from '@codemirror/lint';
-import { EDITOR_PLACEHODER } from '../../../constants';
+import { EDITOR_PLACEHOLDER } from '../../../constants';
 
 /// This is an extension value that just pulls together a whole lot of
-/// extensions. It is meant as aconvenient helper.
+/// extensions. It is meant as a convenient helper.
 ///
 /// Specifically, it includes...
 ///
@@ -51,7 +51,7 @@ import { EDITOR_PLACEHODER } from '../../../constants';
 ///  - [line wrapping](#view.lineWrapping)
 
 export const basicSetup: Extension = [
-    placeholder(EDITOR_PLACEHODER),
+    placeholder(EDITOR_PLACEHOLDER),
     highlightActiveLineGutter(),
     highlightSpecialChars(),
     history(),
