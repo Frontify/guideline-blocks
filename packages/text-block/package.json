@@ -15,7 +15,7 @@
     },
     "devDependencies": {
         "@babel/core": "7.18.9",
-        "@cypress/react": "5.12.4",
+        "@cypress/react": "5.12.5",
         "@frontify/eslint-config-react": "0.15.2",
         "@frontify/frontify-cli": "5.1.0",
         "@types/lodash-es": "4.17.6",
