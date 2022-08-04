@@ -26,7 +26,7 @@ export const ImageStage = ({
                 hasBorder ? 'tw-border-black-40' : 'tw-border-transparent',
             ])}
         >
-            <div className="tw-w-full tw-relative tw-overflow-hidden">
+            <div className="tw-group tw-w-full tw-relative tw-overflow-hidden">
                 <div ref={stageRef} className="tw-relative tw-overflow-hidden" style={{ height }}>
                     <div className="tw-absolute" ref={containerRef}>
                         <img
