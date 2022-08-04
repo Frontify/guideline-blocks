@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeNative } from '@frontify/app-bridge';
+import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
 
 export enum Type {
@@ -70,7 +70,7 @@ export type CustomPaddingStyles = {
 };
 
 export type CalloutBlockProps = {
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
 
 export const topBottomPaddingMap: Record<Padding, string> = {

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeNative } from '@frontify/app-bridge';
+import type { AppBridgeBlock } from '@frontify/app-bridge';
 
 export enum BlockPreview {
     Image = 'image',
@@ -25,7 +25,7 @@ export enum Cursor {
 }
 
 export type BlockProps = {
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
 
 export type Point = {

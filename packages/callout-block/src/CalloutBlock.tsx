@@ -39,7 +39,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             : radiusStyleMap[blockSettings.extendedRadiusChoice],
     };
 
-    const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.generic_url : '';
+    const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
 
     const onTextChange = (value: string) => setBlockSettings({ textValue: value });
 
