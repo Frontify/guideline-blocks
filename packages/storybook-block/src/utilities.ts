@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export const decodeEntities = (encodedString: string): string => {
     if (!encodedString) {
         return '';
