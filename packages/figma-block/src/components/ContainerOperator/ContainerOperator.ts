@@ -55,5 +55,5 @@ export abstract class ContainerOperator {
         );
     }
 
-    abstract resize(zoom: Zoom): void;
+    abstract resize(zoom: Zoom): this;
 }
