@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeNative } from '@frontify/app-bridge';
+import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState, OrderableListItem } from '@frontify/fondue';
 import { Padding, PaddingExtendedSettings, paddingStyleMap } from '@frontify/guideline-blocks-shared';
 import { MouseEvent, ReactElement } from 'react';
 
 export type ChecklistProps = {
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
 
 export type ChecklistItemProps = {
