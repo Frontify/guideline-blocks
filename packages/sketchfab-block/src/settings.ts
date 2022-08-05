@@ -8,9 +8,17 @@ import {
     maximumNumericalRule,
     minimumNumericalOrPixelOrAutoRule,
     minimumNumericalRule,
+    presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
 import { pitchRule, removeSearchParams, sketchfabUrlRule, yawRule } from './helpers';
-import { SketchfabAccount, SketchfabHeight, SketchfabNavigation, SketchfabSettings, SketchfabTheme } from './types';
+import {
+    SketchfabAccount,
+    SketchfabHeight,
+    SketchfabNavigation,
+    SketchfabSettings,
+    SketchfabTheme,
+    heights,
+} from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
     r: 234,
@@ -61,12 +69,14 @@ export const settings: BlockSettings & {
             type: 'switch',
             switchLabel: 'Custom',
             label: 'Height',
+            onChange: (bundle) =>
+                presetCustomValue(bundle, SketchfabSettings.HEIGHT, SketchfabSettings.CUSTOM_HEIGHT, heights),
             on: [
                 {
                     id: SketchfabSettings.CUSTOM_HEIGHT,
                     type: 'input',
                     placeholder: '0px',
-                    defaultValue: '200px',
+                    defaultValue: '500px',
                     rules: [minimumNumericalOrPixelOrAutoRule(0)],
                 },
             ],
@@ -84,7 +94,7 @@ export const settings: BlockSettings & {
             ],
         },
     ],
-    style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: SketchfabSettings.HAS_BORDER })],
+    style: [getBorderSettings(), getBorderRadiusSettings()],
     Player: [
         {
             id: SketchfabSettings.AUTO_START,

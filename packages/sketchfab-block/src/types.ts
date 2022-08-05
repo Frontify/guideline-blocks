@@ -164,15 +164,15 @@ export const borderStyles: Record<BorderStyle, string> = {
 
 export const borderRadiusClasses: Record<Radius, string> = {
     [Radius.None]: 'tw-rounded-none',
-    [Radius.Small]: 'tw-rounded',
-    [Radius.Medium]: 'tw-rounded-md',
-    [Radius.Large]: 'tw-rounded-lg',
+    [Radius.Small]: 'tw-rounded-sm',
+    [Radius.Medium]: 'tw-rounded',
+    [Radius.Large]: 'tw-rounded-xl',
 };
 
 export const heights: Record<SketchfabHeight, string> = {
-    [SketchfabHeight.Small]: '400px',
-    [SketchfabHeight.Medium]: '600px',
-    [SketchfabHeight.Large]: '800px',
+    [SketchfabHeight.Small]: '300px',
+    [SketchfabHeight.Medium]: '500px',
+    [SketchfabHeight.Large]: '700px',
 };
 
 export enum SketchfabAccount {
