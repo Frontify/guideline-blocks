@@ -20,15 +20,20 @@ export abstract class ContainerOperator {
         return this;
     }
 
-    public fitAndCenterTheImageContainerWithinTheImageStage(): this {
+    public centerTheImageContainerWithinTheImageStage() {
         this.imageElement.hide();
-        this.resizeImageContainerToFitWithinImageStage();
         this.centerImageContainerWithinTheImageStage();
         this.imageElement.show();
-        return this;
     }
 
-    private resizeImageContainerToFitWithinImageStage() {
+    protected centerImageContainerWithinTheImageStage() {
+        this.imageContainer.setImageContainerPosition(
+            (this.imageStage.width - this.imageContainer.width) / 2,
+            (this.imageStage.height - this.imageContainer.height) / 2
+        );
+    }
+
+    protected resizeImageContainerToFitWithinImageStage() {
         const { width, height } = this.calculateTheImageContainerSizeToFitInImageStage();
         this.imageContainer.setImageContainerSize(width * (1 - this.padding), height * (1 - this.padding));
     }
@@ -42,18 +47,6 @@ export abstract class ContainerOperator {
         return { width: this.imageElement.width * scale, height: this.imageElement.height * scale };
     }
 
-    public centerTheImageContainerWithinTheImageStage() {
-        this.imageElement.hide();
-        this.centerImageContainerWithinTheImageStage();
-        this.imageElement.show();
-    }
-
-    private centerImageContainerWithinTheImageStage() {
-        this.imageContainer.setImageContainerPosition(
-            (this.imageStage.width - this.imageContainer.width) / 2,
-            (this.imageStage.height - this.imageContainer.height) / 2
-        );
-    }
-
     abstract resize(zoom: Zoom): this;
+    abstract fitAndCenterTheImageContainerWithinTheImageStage(): this;
 }

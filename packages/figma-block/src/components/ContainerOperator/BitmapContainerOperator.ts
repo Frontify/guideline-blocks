@@ -17,4 +17,8 @@ export class BitmapContainerOperator extends ContainerOperator {
     public resize() {
         return this;
     }
+
+    public fitAndCenterTheImageContainerWithinTheImageStage() {
+        return this;
+    }
 }

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetChooserObjectType, AssetChooserProjectType } from '@frontify/app-bridge';
-import { AssetInputMode } from '@frontify/guideline-blocks-settings';
+import { AssetInputMode, Bundle } from '@frontify/guideline-blocks-settings';
 import type { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { minimumPixelRule } from '@frontify/guideline-blocks-shared';
 import { BlockPreview, HeightChoices } from './types';
@@ -14,6 +14,7 @@ const SHOW_FIGMA_LINK_ID = 'showFigmaLink';
 const HAS_BACKGROUND_ID = 'hasBackground';
 const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
+const HAS_FUNCTIONALITY_ID = 'hasFunctionality';
 
 export const heights: Record<HeightChoices, string> = {
     [HeightChoices.Small]: '400px',
@@ -55,7 +56,7 @@ export const settings: BlockSettings = {
             id: HAS_BORDER_ID,
             type: 'switch',
             label: 'Show border',
-            defaultValue: true,
+            defaultValue: false,
         },
         {
             id: SHOW_FIGMA_LINK_ID,
@@ -72,11 +73,19 @@ export const settings: BlockSettings = {
     ],
     layout: [
         {
+            id: HAS_FUNCTIONALITY_ID,
+            type: 'switch',
+            label: 'Functionality',
+            defaultValue: false,
+            info: 'This is much more fun :)',
+        },
+        {
             id: 'isCustomHeight',
             type: 'switch',
             label: 'Height',
             switchLabel: 'Custom',
             defaultValue: false,
+            show: (bundle: Bundle): boolean => bundle.getBlock(HAS_FUNCTIONALITY_ID)?.value === true,
             on: [
                 {
                     id: HEIGHT_VALUE_ID,

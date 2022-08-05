@@ -79,4 +79,12 @@ export class VectorContainerOperator extends ContainerOperator {
         );
         return this;
     }
+
+    public fitAndCenterTheImageContainerWithinTheImageStage(): this {
+        this.imageElement.hide();
+        this.resizeImageContainerToFitWithinImageStage();
+        this.centerImageContainerWithinTheImageStage();
+        this.imageElement.show();
+        return this;
+    }
 }

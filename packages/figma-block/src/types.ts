@@ -46,6 +46,7 @@ export type Settings = {
     heightChoice?: HeightChoices;
     showFigmaLink?: boolean;
     hasBackground?: boolean;
+    hasFunctionality?: boolean;
 };
 
 export type BoundingClientRectProperties = {
