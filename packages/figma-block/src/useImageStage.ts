@@ -27,9 +27,7 @@ export const useImageStage = ({ height, isContainerVector }: UseImageStageProps)
         if (isImageLoaded && stageRef.current && containerRef.current && imageRef.current) {
             const imageElement = new ImageElement(imageRef.current);
             const imageContainer = new ImageContainer(containerRef.current);
-
             imageStage.current = new ImageStage(stageRef.current, height);
-            imageStage.current.alterHeight(height);
 
             containerOperator.current = isContainerVector
                 ? new VectorContainerOperator(imageContainer, imageStage.current, imageElement)

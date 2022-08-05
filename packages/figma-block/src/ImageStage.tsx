@@ -27,8 +27,8 @@ export const ImageStage = ({
             ])}
         >
             <div className="tw-group tw-w-full tw-relative tw-overflow-hidden">
-                <div ref={stageRef} className="tw-relative tw-overflow-hidden" style={{ height }}>
-                    <div className="tw-absolute" ref={containerRef}>
+                <div ref={stageRef} className="tw-relative tw-overflow-hidden">
+                    <div ref={containerRef}>
                         <img
                             ref={imageRef}
                             alt={title}
