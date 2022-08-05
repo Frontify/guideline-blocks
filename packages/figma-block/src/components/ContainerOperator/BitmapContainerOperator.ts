@@ -14,6 +14,7 @@ export class BitmapContainerOperator extends ContainerOperator {
         super(imageContainer, imageStage, imageElement);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    public resize() {}
+    public resize() {
+        return this;
+    }
 }
