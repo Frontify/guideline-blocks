@@ -3,10 +3,10 @@
 import { Bundle } from '@frontify/guideline-blocks-settings';
 
 // eslint-disable-next-line unicorn/no-unsafe-regex
-export const SKETCHFAB_NEW_PREVIEW_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/3d-models\/(\w+-)+(?<id>\w+)/;
+const SKETCHFAB_NEW_PREVIEW_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/3d-models\/(\w+-)+(?<id>\w+)/;
 /* Sketchfab's preview url structure used to be the same as the embed url (without /embed). 
     We still support the old url and automatically append /embed when required */
-export const SKETCHFAB_EMBED_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/(models|show)\/\w+(\/embed)?/;
+const SKETCHFAB_EMBED_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/(models|show)\/\w+(\/embed)?/;
 
 export const isParseableSketchfabUrl = (url: string) =>
     !!url && (SKETCHFAB_NEW_PREVIEW_REGEX.test(url) || SKETCHFAB_EMBED_REGEX.test(url));
