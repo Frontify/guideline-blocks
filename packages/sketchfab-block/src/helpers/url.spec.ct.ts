@@ -79,8 +79,28 @@ describe('parseSketchfabSettingsUrl', () => {
                 expected: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed',
             },
             {
+                args: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/',
+                expected: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed',
+            },
+            {
+                args: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec?autospin=1',
+                expected: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed',
+            },
+            {
                 args: 'https://sketchfab.com/3d-models/id-442c548d94744641ba279ae94b5f45ec',
                 expected: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed',
+            },
+            {
+                args: 'https://sketchfab.com/3d-models/id-with-mutliple-words-442c548d94744641ba279ae94b5f45ec',
+                expected: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed',
+            },
+            {
+                args: 'https://sketchfab.com/3d-models/id-with-mutliple-words-442c548d94744641ba279ae94b5f45ec?autospin=1',
+                expected: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed',
+            },
+            {
+                args: 'https://sketchfab.com/show/442c548d94744641ba279ae94b5f45ec',
+                expected: 'https://sketchfab.com/show/442c548d94744641ba279ae94b5f45ec/embed',
             },
             { args: 'sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed', expected: '' },
             { args: 'https://example.com/5f45ec?', expected: '' },
