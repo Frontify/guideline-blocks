@@ -20,6 +20,7 @@ import {
     borderRadiusClasses,
     heights,
 } from './types';
+import { decodeEntities } from './utilities';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
@@ -66,7 +67,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     useEffect(() => {
         if (url !== '') {
             setIsReadyForPrint(false);
-            const newIframeUrl = new URL(url);
+            const newIframeUrl = new URL(decodeEntities(url));
             newIframeUrl.searchParams.set('nav', 'false');
 
             const hasAddons = style === StorybookStyle.Default;
