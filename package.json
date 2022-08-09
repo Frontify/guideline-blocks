@@ -12,7 +12,7 @@
         "publish:block-settings": "cd packages/block-settings && pnpm publish",
         "test": "npm run test:unit && npm run test:components",
         "test:components": "cypress run-ct",
-        "test:components:browser": "cypress open-ct --browser chrome",
+        "test:components:browser": "cypress open-ct",
         "test:unit": "vitest run",
         "test:unit:watch": "vitest",
         "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel typecheck"
