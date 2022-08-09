@@ -18,7 +18,7 @@ import { Radius, radiusStyleMap } from './types';
 type BorderRadiusSettingsType = {
     id?: string;
     dependentSettingId?: string;
-    radiusStyleMap: Record<Radius, string>;
+    radiusStyleMap?: Record<Radius, string>;
 };
 
 export const getBorderRadiusSlider = (id: string): SettingBlock => ({
