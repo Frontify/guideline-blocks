@@ -26,7 +26,7 @@ export const generateUrl = (href: string, params: Record<string, string | undefi
     }
 };
 
-export const getUrlWithoutSearchParams = (url?: string) => {
+export const getUrlStringWithoutSearchParams = (url?: string) => {
     try {
         if (!url) {
             throw 'No url supplied';
@@ -38,7 +38,11 @@ export const getUrlWithoutSearchParams = (url?: string) => {
     }
 };
 
-export const removeSearchParams = (bundle: Bundle) => {
-    const url = getUrlWithoutSearchParams(bundle.getBlock('url')?.value as string);
-    bundle.setBlockValue('url', url);
+export const parseSketchfabSettingsUrl = (bundle: Bundle) => {
+    const url = getUrlStringWithoutSearchParams(bundle.getBlock('url')?.value as string);
+    const embedUrl = applyEmbedToUrl(url);
+
+    bundle.setBlockValue('url', embedUrl);
 };
+
+export const applyEmbedToUrl = (url: string) => (!url || /\/embed$/.test(url) ? url : `${url}/embed`);

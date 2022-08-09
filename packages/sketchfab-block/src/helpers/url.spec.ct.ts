@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Bundle } from '@frontify/guideline-blocks-settings';
-import { generateUrl, getUrlWithoutSearchParams, isSketchfabUrl, removeSearchParams } from './url';
+import { generateUrl, getUrlStringWithoutSearchParams, isSketchfabUrl, parseSketchfabSettingsUrl } from './url';
 
 describe('isSketchfabUrl', () => {
     it('passes each test', () => {
@@ -66,7 +66,7 @@ describe('generateUrl', () => {
     });
 });
 
-describe('getUrlWithoutSearchParams', () => {
+describe('getUrlStringWithoutSearchParams', () => {
     it('passes each test', () => {
         const data = [
             {
@@ -79,13 +79,13 @@ describe('getUrlWithoutSearchParams', () => {
         ];
 
         for (const { args, expected } of data) {
-            const url = getUrlWithoutSearchParams(args);
+            const url = getUrlStringWithoutSearchParams(args);
             cy.wrap(expected).should('equal', url);
         }
     });
 });
 
-describe('removeSearchParams', () => {
+describe('parseSketchfabSettingsUrl', () => {
     it('passes each test', () => {
         const data = [
             {
@@ -104,7 +104,7 @@ describe('removeSearchParams', () => {
                     value: args,
                 }),
             } as Bundle;
-            removeSearchParams(bundle);
+            parseSketchfabSettingsUrl(bundle);
             cy.wrap(bundle.setBlockValue).should('have.been.calledOnceWithExactly', 'url', expected);
         }
     });

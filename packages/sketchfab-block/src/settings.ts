@@ -10,7 +10,7 @@ import {
     minimumNumericalRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { pitchRule, removeSearchParams, sketchfabUrlRule, yawRule } from './helpers';
+import { parseSketchfabSettingsUrl, pitchRule, sketchfabUrlRule, yawRule } from './helpers';
 import {
     SketchfabAccount,
     SketchfabHeight,
@@ -75,7 +75,7 @@ export const settings: BlockSettings & {
             label: '3D Model URL',
             type: 'input',
             clearable: true,
-            onChange: removeSearchParams,
+            onChange: parseSketchfabSettingsUrl,
             placeholder: URL_INPUT_PLACEHOLDER,
             rules: [sketchfabUrlRule],
         },

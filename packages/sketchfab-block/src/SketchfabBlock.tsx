@@ -8,9 +8,10 @@ import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import {
     SKETCHFAB_RULE_ERROR,
+    applyEmbedToUrl,
     generateUrl,
     getIframeStyles,
-    getUrlWithoutSearchParams,
+    getUrlStringWithoutSearchParams,
     isSketchfabUrl,
 } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
@@ -32,11 +33,12 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const [inputError, setInputError] = useState(false);
 
     const saveLink = () => {
-        const urlWithoutSearchParams = getUrlWithoutSearchParams(localUrl);
+        const urlWithoutSearchParams = getUrlStringWithoutSearchParams(localUrl);
         if (isSketchfabUrl(urlWithoutSearchParams)) {
+            const embedUrl = applyEmbedToUrl(urlWithoutSearchParams);
             setBlockSettings({
                 ...blockSettings,
-                url: urlWithoutSearchParams,
+                url: embedUrl,
             });
             setInputError(false);
         } else {
