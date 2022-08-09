@@ -9,13 +9,13 @@ import { ImageStageProps } from './types';
 export const ImageStage = ({
     title,
     url,
-    isContainerVector = true,
+    hasLimitedOptions = true,
     height = DEFAULT_HEIGHT,
     hasBorder = false,
     hasBackground = false,
 }: ImageStageProps) => {
     const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
-        useImageStage({ height, isContainerVector });
+        useImageStage({ height, hasLimitedOptions });
 
     return (
         <div
@@ -40,7 +40,7 @@ export const ImageStage = ({
                         />
                     </div>
                 </div>
-                {isContainerVector && (
+                {!hasLimitedOptions && (
                     <>
                         <DrawFullScreenActionButton
                             isFullScreen={isFullScreen}
