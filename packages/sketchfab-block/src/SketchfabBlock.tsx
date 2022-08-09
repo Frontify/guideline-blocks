@@ -66,7 +66,8 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     annotation:
                         params.showAnnotations &&
                         Boolean(Number(params.startingAnnotation)) &&
-                        params.startingAnnotation,
+                        params.startingAnnotation &&
+                        params.startingAnnotationValue,
                     annotation_cycle: params.showAnnotations && params.annotationCycle && params.annotationCycleCount,
                     annotation_tooltip_visible:
                         params.showAnnotations && params.annotationTooltipVisible === false && '0',
@@ -75,7 +76,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     autospin: params.autoSpin && params.autoSpinCount,
                     autostart: params.autoStart && '1',
                     camera: params.startingSpin === false && '0',
-                    dof_circle: params.uiDOF === false && '0',
+                    dof_circle: params.showUI && params.uiDOF === false && '0',
                     fps_speed: params.fps && params.fpsValue,
                     max_texture_size: params.textureSize && params.textureSizeValue,
                     navigation: params.navigationMode === SketchfabNavigation.Fps && params.navigationMode,
@@ -86,53 +87,101 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     transparent: params.accountType !== SketchfabAccount.Basic && params.transparentBackground && '1',
                     double_click: params.accountType !== SketchfabAccount.Basic && params.doubleClick === false && '0',
                     orbit_constraint_pan:
-                        params.accountType !== SketchfabAccount.Basic && params.orbitConstraintPan && '1',
+                        params.accountType !== SketchfabAccount.Basic &&
+                        params.navigationConstraints &&
+                        params.orbitConstraintPan &&
+                        '1',
                     orbit_constraint_pitch_down:
                         params.accountType !== SketchfabAccount.Basic &&
+                        params.navigationConstraints &&
                         params.orbitConstraintPitch &&
                         params.orbitConstraintPitchLimitsDown,
                     orbit_constraint_pitch_up:
-                        params.accountType !== SketchfabAccount.Basic && params.orbitConstraintPitchLimitsUp,
+                        params.accountType !== SketchfabAccount.Basic &&
+                        params.navigationConstraints &&
+                        params.orbitConstraintPitchLimitsUp,
                     orbit_constraint_yaw_left:
                         params.accountType !== SketchfabAccount.Basic &&
+                        params.navigationConstraints &&
                         params.orbitConstraintYaw &&
                         params.orbitConstraintYawLimitsLeft,
                     orbit_constraint_yaw_right:
                         params.accountType !== SketchfabAccount.Basic &&
+                        params.navigationConstraints &&
                         params.orbitConstraintYaw &&
                         params.orbitConstraintYawLimitsRight,
                     orbit_constraint_zoom_in:
                         params.accountType !== SketchfabAccount.Basic &&
+                        params.navigationConstraints &&
                         params.orbitConstraintZoomIn &&
                         params.orbitConstraintZoomInCount,
                     orbit_constraint_zoom_out:
                         params.accountType !== SketchfabAccount.Basic &&
+                        params.navigationConstraints &&
                         params.orbitConstraintZoomOut &&
                         params.orbitConstraintZoomOutCount,
                     prevent_user_light_rotation:
-                        params.accountType !== SketchfabAccount.Basic && params.preventLightRotation && '1',
-                    ui_animations: params.accountType === SketchfabAccount.Premium && !params.uiAnimations && '0',
-                    ui_annotations: params.accountType === SketchfabAccount.Premium && !params.uiAnnotations && '0',
-                    ui_controls: params.accountType === SketchfabAccount.Premium && !params.uiControls && '0',
-                    ui_fadeout: params.accountType === SketchfabAccount.Premium && !params.uiFadeout && '0',
-                    ui_fullscreen: params.accountType === SketchfabAccount.Premium && !params.uiFullscreen && '0',
+                        params.accountType !== SketchfabAccount.Basic && !params.allowLightRotation && '1',
+                    ui_animations:
+                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiAnimations && '0',
+                    ui_annotations:
+                        params.accountType === SketchfabAccount.Premium &&
+                        params.showUI &&
+                        !params.uiAnnotations &&
+                        '0',
+                    ui_controls:
+                        params.accountType === SketchfabAccount.Premium &&
+                        params.showButtons &&
+                        !params.uiControls &&
+                        '0',
+                    ui_fadeout:
+                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiFadeout && '0',
+                    ui_fullscreen:
+                        params.accountType === SketchfabAccount.Premium &&
+                        params.showButtons &&
+                        !params.uiFullscreen &&
+                        '0',
                     ui_general_controls:
-                        params.accountType === SketchfabAccount.Premium && !params.uiGeneralControls && '0',
-                    ui_help: params.accountType === SketchfabAccount.Premium && !params.uiHelp && '0',
-                    ui_hint: params.accountType === SketchfabAccount.Premium && !params.uiHint && '0',
-                    ui_infos: params.accountType === SketchfabAccount.Premium && !params.uiInfos && '0',
-                    ui_inspector: params.accountType === SketchfabAccount.Premium && !params.uiInspector && '0',
-                    ui_loading: params.accountType === SketchfabAccount.Premium && !params.uiLoading && '0',
-                    ui_settings: params.accountType === SketchfabAccount.Premium && !params.uiSettings && '0',
-                    ui_sound: params.accountType === SketchfabAccount.Premium && !params.uiSound && '0',
-                    ui_start: params.accountType === SketchfabAccount.Premium && !params.uiStart && '0',
-                    ui_vr: params.accountType === SketchfabAccount.Premium && !params.uiVR && '0',
-                    ui_ar: params.accountType === SketchfabAccount.Premium && !params.uiAR && '0',
-                    ui_ar_help: params.accountType === SketchfabAccount.Premium && !params.uiARHelp && '0',
-                    ui_ar_qrcode: params.accountType === SketchfabAccount.Premium && !params.uiQR && '0',
-                    ui_watermark: params.accountType === SketchfabAccount.Premium && !params.uiWatermark && '0',
+                        params.accountType === SketchfabAccount.Premium &&
+                        params.showUI &&
+                        !params.uiGeneralControls &&
+                        '0',
+                    ui_help:
+                        params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiHelp && '0',
+                    ui_hint: params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiHint && '0',
+                    ui_infos:
+                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiInfos && '0',
+                    ui_inspector:
+                        params.accountType === SketchfabAccount.Premium &&
+                        params.showButtons &&
+                        !params.uiInspector &&
+                        '0',
+                    ui_loading:
+                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiLoading && '0',
+                    ui_settings:
+                        params.accountType === SketchfabAccount.Premium &&
+                        params.showButtons &&
+                        !params.uiSettings &&
+                        '0',
+                    ui_sound:
+                        params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiSound && '0',
+                    ui_start:
+                        params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiStart && '0',
+                    ui_vr: params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiVR && '0',
+                    ui_ar: params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiAR && '0',
+                    ui_ar_help:
+                        params.accountType === SketchfabAccount.Premium &&
+                        params.showButtons &&
+                        !params.uiARHelp &&
+                        '0',
+                    ui_ar_qrcode:
+                        params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiQR && '0',
+                    ui_watermark:
+                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiWatermark && '0',
                     ui_color:
-                        params.accountType === SketchfabAccount.Premium && toHex8String(params.uiColor).slice(1, 7),
+                        params.accountType === SketchfabAccount.Premium &&
+                        params.uiColor &&
+                        toHex8String(params.uiColorValue).slice(1, 7),
                     dnt: params.viewersTracking === false && '1',
                 })
             );
@@ -154,6 +203,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
         params.fps,
         params.fpsValue,
         params.navigationMode,
+        params.navigationConstraints,
         params.orbitConstraintPan,
         params.orbitConstraintPitch,
         params.orbitConstraintPitchLimitsDown,
@@ -166,19 +216,23 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
         params.orbitConstraintZoomOut,
         params.orbitConstraintZoomOutCount,
         params.preloadTextures,
-        params.preventLightRotation,
+        params.allowLightRotation,
         params.scrollWheel,
         params.showAnnotations,
         params.startingAnnotation,
+        params.startingAnnotationValue,
         params.startingSpin,
         params.textureSize,
         params.textureSizeValue,
         params.transparentBackground,
+        params.showUI,
+        params.showButtons,
         params.uiAR,
         params.uiARHelp,
         params.uiAnimations,
         params.uiAnnotations,
         params.uiColor,
+        params.uiColorValue,
         params.uiControls,
         params.uiDOF,
         params.uiDisableViewer,

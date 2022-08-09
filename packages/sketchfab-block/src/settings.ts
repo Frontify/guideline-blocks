@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, MultiInputLayout, TextInputType } from '@frontify/fondue';
-import type { BlockSettings, SettingBlock } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, MultiInputLayout, SwitchSize, TextInputType } from '@frontify/fondue';
+import type { BlockSettings, Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
 import {
     getBorderRadiusSettings,
     getBorderSettings,
@@ -30,6 +30,24 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
 export const URL_INPUT_PLACEHOLDER = 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed';
 
 export const DEFAULT_BORDER_WIDTH = '1px';
+
+const isAvailablePremiumUIControl = (bundle: Bundle) =>
+    Boolean(
+        bundle.getBlock('accountType')?.value === SketchfabAccount.Premium &&
+            bundle.getBlock(SketchfabSettings.SHOW_UI)?.value
+    );
+
+const isAvailablePremiumUIButton = (bundle: Bundle) =>
+    Boolean(
+        bundle.getBlock('accountType')?.value === SketchfabAccount.Premium &&
+            bundle.getBlock(SketchfabSettings.SHOW_BUTTONS)?.value
+    );
+
+const isAvailablePremiumNavigationConstraints = (bundle: Bundle) =>
+    Boolean(
+        bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic &&
+            bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value
+    );
 
 // Defaults reflected here https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
 export const settings: BlockSettings & {
@@ -169,6 +187,51 @@ export const settings: BlockSettings & {
     ],
     'Navigation & Camera': [
         {
+            id: SketchfabSettings.SCROLL_WHEEL,
+            type: 'switch',
+            label: 'Allow Scrollwheel',
+            defaultValue: true,
+            info: 'Disabling this feature will prevent zooming with the scroll wheel.',
+        },
+        {
+            id: SketchfabSettings.DOUBLE_CLICK,
+            type: 'switch',
+            label: 'Allow Double Click',
+            defaultValue: true,
+            info: 'Disabling this feature will disable the double-clicking to focus the camera in the viewer.',
+            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+        },
+        {
+            id: SketchfabSettings.ALLOW_LIGHT_ROTATION,
+            type: 'switch',
+            defaultValue: true,
+            label: 'Allow Light Rotation',
+            info: 'Enabling this feature will allow using alt + click/drag to rotate the lights and environment.',
+            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+        },
+        {
+            id: SketchfabSettings.STARTING_SPIN,
+            type: 'switch',
+            label: 'Starting Spin',
+            defaultValue: true,
+            info: ' Disabling this feature will skip the initial animation that occurs when a model is loaded, and immediately show the model in its default position.',
+        },
+        {
+            id: SketchfabSettings.AUTO_SPIN,
+            type: 'switch',
+            label: 'Autospin',
+            info: 'Setting to a number higher than 0 will cause the model to automatically spin around the z-axis after loading.',
+            on: [
+                {
+                    id: SketchfabSettings.AUTO_SPIN_COUNT,
+                    placeholder: '3',
+                    defaultValue: '0',
+                    type: 'input',
+                    inputType: 'Number' as TextInputType.Number,
+                },
+            ],
+        },
+        {
             id: SketchfabSettings.NAVIGATION_MODE,
             label: 'Navigation Mode',
             type: 'slider',
@@ -195,67 +258,30 @@ export const settings: BlockSettings & {
             ],
         },
         {
-            id: SketchfabSettings.SCROLL_WHEEL,
+            id: SketchfabSettings.NAVIGATION_CONSTRAINTS,
             type: 'switch',
-            label: 'Allow Scrollwheel',
-            defaultValue: true,
-            info: 'Disabling this feature will prevent zooming with the scroll wheel.',
+            label: 'Navigation Constraints',
+            size: SwitchSize.Large,
+            show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
         },
-        {
-            id: SketchfabSettings.DOUBLE_CLICK,
-            type: 'switch',
-            label: 'Allow Double Click',
-            defaultValue: true,
-            info: 'Disabling this feature will disable the double-clicking to focus the camera in the viewer.',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
-        },
-        {
-            id: SketchfabSettings.STARTING_SPIN,
-            type: 'switch',
-            label: 'Starting Spin',
-            defaultValue: true,
-            info: ' Disabling this feature will skip the initial animation that occurs when a model is loaded, and immediately show the model in its default position.',
-        },
-        {
-            id: SketchfabSettings.AUTO_SPIN,
-            type: 'switch',
-            label: 'Autospin',
-            info: 'Setting to a number higher than 0 will cause the model to automatically spin around the z-axis after loading.',
-            on: [
-                {
-                    id: SketchfabSettings.AUTO_SPIN_COUNT,
-                    placeholder: '3',
-                    defaultValue: '0',
-                    type: 'input',
-                    inputType: 'Number' as TextInputType.Number,
-                    rules: [minimumNumericalRule(0)],
-                },
-            ],
-        },
-        {
-            id: SketchfabSettings.PREVENT_LIGHT_ROTATION,
-            type: 'switch',
-            label: 'Prevent User Light Rotation',
-            info: 'Enabling this feature will prevent using alt + click/drag to rotate the lights and environment.',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
-        },
+
         {
             id: SketchfabSettings.ORBIT_CONSTRAINT_PAN,
             type: 'switch',
             label: 'Orbit Constraint Pan',
             info: 'Enabling this feature will prevent panning the camera.',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+            show: isAvailablePremiumNavigationConstraints,
         },
         {
             id: SketchfabSettings.ORBIT_CONSTRAINT_PITCH,
             type: 'switch',
             label: 'Orbit Constraint Pitch',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+            show: isAvailablePremiumNavigationConstraints,
             on: [
                 {
                     id: 'orbitConstraintPitchLimits',
                     type: 'multiInput',
-                    show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+                    show: isAvailablePremiumNavigationConstraints,
                     layout: 'Columns' as MultiInputLayout.Columns,
                     blocks: [
                         {
@@ -266,7 +292,7 @@ export const settings: BlockSettings & {
                             placeholder: '1',
                             label: 'Up',
                             info: "Setting to [-π/2 – π/2] will define the camera's pitch up rotation limit.",
-                            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+                            show: isAvailablePremiumNavigationConstraints,
                         },
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_DOWN,
@@ -276,7 +302,7 @@ export const settings: BlockSettings & {
                             label: 'Down',
                             info: "Setting to [-π/2 – π/2] will define the camera's pitch down rotation limit.",
                             placeholder: '-1',
-                            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+                            show: isAvailablePremiumNavigationConstraints,
                         },
                     ],
                 },
@@ -286,13 +312,13 @@ export const settings: BlockSettings & {
             id: SketchfabSettings.ORBIT_CONTRAINT_YAW,
             type: 'switch',
             label: 'Orbit Constraint Yaw',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+            show: isAvailablePremiumNavigationConstraints,
             on: [
                 {
                     id: 'orbitConstraintYawLimits',
                     type: 'multiInput',
                     layout: 'Columns' as MultiInputLayout.Columns,
-                    show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+                    show: isAvailablePremiumNavigationConstraints,
                     blocks: [
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_LEFT,
@@ -300,7 +326,7 @@ export const settings: BlockSettings & {
                             inputType: 'Number' as TextInputType.Number,
                             rules: [yawRule],
                             info: "Setting to [-π – π] will define the camera's yaw left rotation limit.",
-                            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+                            show: isAvailablePremiumNavigationConstraints,
                             placeholder: '-2',
                             label: 'Left',
                         },
@@ -310,7 +336,7 @@ export const settings: BlockSettings & {
                             inputType: 'Number' as TextInputType.Number,
                             rules: [yawRule],
                             info: "Setting to [-π – π] will define the camera's yaw right rotation limit.",
-                            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+                            show: isAvailablePremiumNavigationConstraints,
                             label: 'Right',
                             placeholder: '2',
                         },
@@ -321,14 +347,14 @@ export const settings: BlockSettings & {
         {
             id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_IN,
             type: 'switch',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+            show: isAvailablePremiumNavigationConstraints,
             label: 'Orbit Constraint Zoom In',
             info: 'Setting to a positive number will define the camera zoom in limit (minimum distance from the model).',
             on: [
                 {
                     id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_IN_COUNT,
                     type: 'input',
-                    show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+                    show: isAvailablePremiumNavigationConstraints,
                     placeholder: '3',
                     inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
@@ -338,7 +364,7 @@ export const settings: BlockSettings & {
         {
             id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_OUT,
             type: 'switch',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+            show: isAvailablePremiumNavigationConstraints,
             label: 'Orbit Constraint Zoom Out',
             info: 'Setting to a positive number will define the camera zoom out limit (maximum distance from the model).',
             on: [
@@ -347,7 +373,7 @@ export const settings: BlockSettings & {
                     type: 'input',
                     inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
-                    show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+                    show: isAvailablePremiumNavigationConstraints,
                     placeholder: '3',
                 },
             ],
@@ -359,25 +385,8 @@ export const settings: BlockSettings & {
             type: 'switch',
             defaultValue: true,
             label: 'Show Annotations',
+            size: SwitchSize.Large,
             info: 'Disabling this feature will hide annotations by default',
-        },
-        {
-            id: SketchfabSettings.ANNOTATION_CYCLE,
-            defaultValue: false,
-            label: 'Annotation Cycle',
-            type: 'switch',
-            info: 'Setting to any number will start the Autopilot cycle with that duration, in seconds, at each annotation',
-            show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
-            on: [
-                {
-                    id: SketchfabSettings.ANNOTATION_CYCLE_COUNT,
-                    placeholder: '1',
-                    inputType: 'Number' as TextInputType.Number,
-                    rules: [minimumNumericalRule(0)],
-                    type: 'input',
-                    show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
-                },
-            ],
         },
         {
             id: SketchfabSettings.ANNOTATION_TOOLTIP_VISIBLE,
@@ -389,14 +398,40 @@ export const settings: BlockSettings & {
         },
         {
             id: SketchfabSettings.STARTING_ANNOTATION,
-            defaultValue: '0',
-            inputType: 'Number' as TextInputType.Number,
-            rules: [minimumNumericalRule(0), maximumNumericalRule(100)],
+            defaultValue: false,
+            type: 'switch',
             label: 'Starting Annotation',
             info: 'Setting to a positive number [1 – 100] will automatically load that annotation when the viewer starts.',
             show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
-            type: 'input',
-            placeholder: '1',
+            on: [
+                {
+                    id: SketchfabSettings.STARTING_ANNOTATION_VALUE,
+                    defaultValue: '1',
+                    inputType: 'Number' as TextInputType.Number,
+                    rules: [minimumNumericalRule(0), maximumNumericalRule(100)],
+                    type: 'input',
+                    placeholder: '1',
+                },
+            ],
+        },
+        {
+            id: SketchfabSettings.ANNOTATION_CYCLE,
+            defaultValue: false,
+            label: 'Annotation Cycle',
+            type: 'switch',
+            info: 'Setting to any number will start the Autopilot cycle with that duration, in seconds, at each annotation',
+            show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
+            on: [
+                {
+                    id: SketchfabSettings.ANNOTATION_CYCLE_COUNT,
+                    label: 'Annotation Cycle Speed',
+                    placeholder: '1',
+                    inputType: 'Number' as TextInputType.Number,
+                    rules: [minimumNumericalRule(0)],
+                    type: 'input',
+                    show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
+                },
+            ],
         },
     ],
     UI: [
@@ -412,65 +447,24 @@ export const settings: BlockSettings & {
             ],
         },
         {
-            id: SketchfabSettings.UI_DOF,
-            label: 'Depth of Field Cicle',
-            type: 'switch',
-            defaultValue: true,
-            info: 'Disabling this feature will not show the depth of field refocus circle animation on click.',
-        },
-        {
-            id: SketchfabSettings.UI_DISABLE_VIEWER,
-            label: '"Disable Viewer" Button',
-            type: 'switch',
-            defaultValue: true,
-            info: 'Disabling this feature will hide the "Disable Viewer" button in the top right so that users cannot stop the 3D render once it is started.',
-        },
-        {
             id: SketchfabSettings.UI_COLOR,
             label: 'UI Color',
-            type: 'colorInput',
+            type: 'switch',
             info: 'Setting to a color will change the color of the viewer loading bar.',
             show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            on: [
+                {
+                    id: SketchfabSettings.UI_COLOR_VALUE,
+                    type: 'colorInput',
+                },
+            ],
         },
         {
-            id: SketchfabSettings.UI_ANIMATIONS,
-            label: 'Animation Menu / Timeline',
+            id: SketchfabSettings.SHOW_UI,
+            label: 'Show UI',
             type: 'switch',
             defaultValue: true,
-            info: 'Disabling this feature will hide the animation menu and timeline.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
-        },
-        {
-            id: SketchfabSettings.UI_ANNOTATIONS,
-            label: 'Annotation Menu',
-            type: 'switch',
-            info: 'Disabling this feature will hide the Annotation menu.',
-            defaultValue: true,
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
-        },
-        {
-            id: SketchfabSettings.UI_CONTROLS,
-            defaultValue: true,
-            label: 'Controls Buttons',
-            type: 'switch',
-            info: 'Disabling this feature will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
-        },
-        {
-            id: SketchfabSettings.UI_FADEOUT,
-            label: 'Fadeout UI Automatically',
-            defaultValue: true,
-            type: 'switch',
-            info: 'Disabling this feature will prevent the viewer controls from disappearing when the camera moves or when the viewer is inactive for a few seconds.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
-        },
-        {
-            id: SketchfabSettings.UI_FULLSCREEN,
-            label: 'Fullscreen Button',
-            defaultValue: true,
-            type: 'switch',
-            info: 'Disabling this feature will hide the Fullscreen button.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            size: SwitchSize.Large,
         },
         {
             id: SketchfabSettings.UI_GENERAL_CONTROLS,
@@ -478,15 +472,15 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIControl,
         },
         {
-            id: SketchfabSettings.UI_HELP,
-            label: 'Help Button',
+            id: SketchfabSettings.UI_WATERMARK,
+            label: 'Sketchfab Watermark',
             defaultValue: true,
             type: 'switch',
-            info: 'Disabling this feature will hide the Help button.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            info: 'Disabling this feature remove the Sketchfab logo watermark.',
+            show: isAvailablePremiumUIControl,
         },
         {
             id: SketchfabSettings.UI_HINT,
@@ -494,23 +488,23 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will always hide the viewer hint animation ("click & hold to rotate").',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIControl,
         },
         {
-            id: SketchfabSettings.UI_INFOS,
-            label: 'Info Bar',
-            defaultValue: true,
+            id: SketchfabSettings.UI_ANNOTATIONS,
+            label: 'Annotation Menu',
             type: 'switch',
-            info: 'Disabling this feature will hide the model info bar at the top of the viewer.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            info: 'Disabling this feature will hide the Annotation menu.',
+            defaultValue: true,
+            show: isAvailablePremiumUIControl,
         },
         {
-            id: SketchfabSettings.UI_INSPECTOR,
-            label: 'Inspector Button',
-            defaultValue: true,
+            id: SketchfabSettings.UI_ANIMATIONS,
+            label: 'Animation Menu / Timeline',
             type: 'switch',
-            info: "Disabling this feature will hide the inspector button. It will also prevent the Inspector from opening, and save loading time by not downloading the model's wireframe file unless wireframe is explicitly enabled in 3D Settings or the wireframe_preload option is enabled.",
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            defaultValue: true,
+            info: 'Disabling this feature will hide the animation menu and timeline.',
+            show: isAvailablePremiumUIControl,
         },
         {
             id: SketchfabSettings.UI_LOADING,
@@ -518,7 +512,46 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will hide the viewer loading bars.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIControl,
+        },
+        {
+            id: SketchfabSettings.UI_DOF,
+            label: 'Depth of Field Cicle',
+            type: 'switch',
+            defaultValue: true,
+            info: 'Disabling this feature will not show the depth of field refocus circle animation on click.',
+            show: (bundle) => Boolean(bundle.getBlock(SketchfabSettings.SHOW_UI)?.value),
+        },
+        {
+            id: SketchfabSettings.UI_INFOS,
+            label: 'Info Bar',
+            defaultValue: true,
+            type: 'switch',
+            info: 'Disabling this feature will hide the model info bar at the top of the viewer.',
+            show: isAvailablePremiumUIControl,
+        },
+        {
+            id: SketchfabSettings.UI_FADEOUT,
+            label: 'Fadeout UI Automatically',
+            defaultValue: true,
+            type: 'switch',
+            info: 'Disabling this feature will prevent the viewer controls from disappearing when the camera moves or when the viewer is inactive for a few seconds.',
+            show: isAvailablePremiumUIControl,
+        },
+        {
+            id: SketchfabSettings.SHOW_BUTTONS,
+            label: 'Show Buttons',
+            defaultValue: true,
+            type: 'switch',
+            size: SwitchSize.Large,
+        },
+        {
+            id: SketchfabSettings.UI_HELP,
+            label: 'Help Button',
+            defaultValue: true,
+            type: 'switch',
+            info: 'Disabling this feature will hide the Help button.',
+            show: isAvailablePremiumUIButton,
         },
         {
             id: SketchfabSettings.UI_SETTINGS,
@@ -526,7 +559,15 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will hide the Settings button.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIButton,
+        },
+        {
+            id: SketchfabSettings.UI_INSPECTOR,
+            label: 'Inspector Button',
+            defaultValue: true,
+            type: 'switch',
+            info: "Disabling this feature will hide the inspector button. It will also prevent the Inspector from opening, and save loading time by not downloading the model's wireframe file unless wireframe is explicitly enabled in 3D Settings or the wireframe_preload option is enabled.",
+            show: isAvailablePremiumUIButton,
         },
         {
             id: SketchfabSettings.UI_SOUND,
@@ -534,7 +575,15 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will hide the Sound button.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIButton,
+        },
+        {
+            id: SketchfabSettings.UI_FULLSCREEN,
+            label: 'Fullscreen Button',
+            defaultValue: true,
+            type: 'switch',
+            info: 'Disabling this feature will hide the Fullscreen button.',
+            show: isAvailablePremiumUIButton,
         },
         {
             id: SketchfabSettings.UI_START,
@@ -542,7 +591,15 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will hide the start/play button.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIButton,
+        },
+        {
+            id: SketchfabSettings.UI_DISABLE_VIEWER,
+            label: '"Disable Viewer" Button',
+            type: 'switch',
+            defaultValue: true,
+            show: (bundle) => Boolean(bundle.getBlock(SketchfabSettings.SHOW_BUTTONS)?.value),
+            info: 'Disabling this feature will hide the "Disable Viewer" button in the top right so that users cannot stop the 3D render once it is started.',
         },
         {
             id: SketchfabSettings.UI_VR,
@@ -550,7 +607,15 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will hide the View in VR button.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIButton,
+        },
+        {
+            id: SketchfabSettings.UI_CONTROLS,
+            defaultValue: true,
+            label: 'Controls Buttons',
+            type: 'switch',
+            info: 'Disabling this feature will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).',
+            show: isAvailablePremiumUIButton,
         },
         {
             id: SketchfabSettings.UI_AR,
@@ -558,7 +623,7 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will hide the AR button.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIButton,
         },
         {
             id: SketchfabSettings.UI_AR_HELP,
@@ -566,7 +631,7 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: "Disabling this feature will hide the AR popup's help link.",
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIButton,
         },
         {
             id: SketchfabSettings.UI_QR,
@@ -574,15 +639,7 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: "Disabling this feature will hide the AR popup's QR code.",
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
-        },
-        {
-            id: SketchfabSettings.UI_WATERMARK,
-            label: 'UI Watermark',
-            defaultValue: true,
-            type: 'switch',
-            info: 'Disabling this feature remove the Sketchfab logo watermark.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: isAvailablePremiumUIButton,
         },
     ],
 };
