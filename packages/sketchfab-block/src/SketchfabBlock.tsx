@@ -6,13 +6,7 @@ import '@frontify/fondue-tokens/styles';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import {
-    SKETCHFAB_RULE_ERROR,
-    generateIframeUrl,
-    generateSketchfabEmbedUrl,
-    getIframeStyles,
-    getUrlStringWithoutSearchParams,
-} from './helpers';
+import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
 import {
     Settings,
@@ -32,8 +26,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const [inputError, setInputError] = useState(false);
 
     const saveLink = () => {
-        const urlWithoutSearchParams = getUrlStringWithoutSearchParams(localUrl);
-        const embedUrl = generateSketchfabEmbedUrl(urlWithoutSearchParams);
+        const embedUrl = generateSketchfabEmbedUrl(localUrl);
         if (embedUrl) {
             setBlockSettings({
                 ...blockSettings,
@@ -60,37 +53,40 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
 
     useEffect(() => {
         const bs = blockSettings;
+        /* Parameters are only added if they are different to the default defined
+            in https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
+            to keep the url as short as possible */
         if (bs.url) {
             const basicSettings = {
-                animation_autoplay: bs.autoPlay === false && '0',
+                animation_autoplay: !bs.autoPlay && '0',
                 annotation:
                     bs.showAnnotations &&
                     Boolean(Number(bs.startingAnnotation)) &&
                     bs.startingAnnotation &&
                     bs.startingAnnotationValue,
                 annotation_cycle: bs.showAnnotations && bs.annotationCycle && bs.annotationCycleCount,
-                annotation_tooltip_visible: bs.showAnnotations && bs.annotationTooltipVisible === false && '0',
-                annotations_visible: bs.showAnnotations === false && '0',
+                annotation_tooltip_visible: (!bs.showAnnotations || !bs.annotationTooltipVisible) && '0',
+                annotations_visible: !bs.showAnnotations && '0',
                 api_log: bs.apiLog && '1',
                 autospin: bs.autoSpin && bs.autoSpinCount,
                 autostart: bs.autoStart && '1',
-                camera: bs.startingSpin === false && '0',
-                dof_circle: (!bs.showUI || bs.uiDOF === false) && '0',
+                camera: !bs.startingSpin && '0',
+                dof_circle: (!bs.showUI || !bs.uiDOF) && '0',
                 fps_speed: bs.fps && bs.fpsValue,
                 max_texture_size: bs.textureSize && bs.textureSizeValue,
                 navigation: bs.navigationMode === SketchfabNavigation.Fps && bs.navigationMode,
                 preload: bs.preloadTextures && '1',
-                scrollwheel: bs.scrollWheel === false && '0',
-                ui_stop: bs.uiDisableViewer === false && '0',
+                scrollwheel: !bs.scrollWheel && '0',
+                ui_stop: (!bs.showButtons || !bs.uiDisableViewer) && '0',
                 ui_theme: bs.uiTheme === SketchfabTheme.Dark && bs.uiTheme,
-                dnt: !bs.viewersTracking === false && '1',
+                dnt: !bs.viewersTracking && '1',
             };
 
             const proSettings =
                 bs.accountType !== SketchfabAccount.Basic
                     ? {
                           transparent: bs.transparentBackground && '1',
-                          double_click: bs.doubleClick === false && '0',
+                          double_click: !bs.doubleClick && '0',
                           orbit_constraint_pan: bs.navigationConstraints && bs.orbitConstraintPan && '1',
                           orbit_constraint_pitch_down:
                               bs.navigationConstraints && bs.orbitConstraintPitch && bs.orbitConstraintPitchLimitsDown,

@@ -86,7 +86,7 @@ export type Settings = {
     [SketchfabSettings.ACCOUNT_TYPE]: SketchfabAccount;
     [SketchfabSettings.URL]: string;
     [SketchfabSettings.HEIGHT]: SketchfabHeight;
-    [SketchfabSettings.HAS_BORDER]?: boolean;
+    [SketchfabSettings.HAS_BORDER]: boolean;
     [SketchfabSettings.BORDER_COLOR]: Color;
     [SketchfabSettings.BORDER_STYLE]: BorderStyle;
     [SketchfabSettings.BORDER_WIDTH]: string;
