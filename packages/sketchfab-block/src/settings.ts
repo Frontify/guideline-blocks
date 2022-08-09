@@ -467,14 +467,6 @@ export const settings: BlockSettings & {
             size: SwitchSize.Large,
         },
         {
-            id: SketchfabSettings.UI_GENERAL_CONTROLS,
-            label: 'General Controls',
-            defaultValue: true,
-            type: 'switch',
-            info: 'Disabling this feature will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).',
-            show: isAvailablePremiumUIControl,
-        },
-        {
             id: SketchfabSettings.UI_WATERMARK,
             label: 'Sketchfab Watermark',
             defaultValue: true,
@@ -607,14 +599,6 @@ export const settings: BlockSettings & {
             defaultValue: true,
             type: 'switch',
             info: 'Disabling this feature will hide the View in VR button.',
-            show: isAvailablePremiumUIButton,
-        },
-        {
-            id: SketchfabSettings.UI_CONTROLS,
-            defaultValue: true,
-            label: 'Controls Buttons',
-            type: 'switch',
-            info: 'Disabling this feature will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).',
             show: isAvailablePremiumUIButton,
         },
         {

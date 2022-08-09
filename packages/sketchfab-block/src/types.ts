@@ -64,11 +64,9 @@ export enum SketchfabSettings {
     UI_COLOR_VALUE = 'uiColorValue',
     UI_ANIMATIONS = 'uiAnimations',
     UI_ANNOTATIONS = 'uiAnnotations',
-    UI_CONTROLS = 'uiControls',
     UI_FADEOUT = 'uiFadeout',
     SHOW_BUTTONS = 'showButtons',
     UI_FULLSCREEN = 'uiFullscreen',
-    UI_GENERAL_CONTROLS = 'uiGeneralControls',
     UI_HELP = 'uiHelp',
     UI_HINT = 'uiHint',
     UI_INFOS = 'uiInfos',
@@ -140,11 +138,9 @@ export type Settings = {
     [SketchfabSettings.UI_COLOR_VALUE]: Color;
     [SketchfabSettings.UI_ANIMATIONS]: boolean;
     [SketchfabSettings.UI_ANNOTATIONS]: boolean;
-    [SketchfabSettings.UI_CONTROLS]: boolean;
     [SketchfabSettings.UI_FADEOUT]: boolean;
     [SketchfabSettings.SHOW_BUTTONS]: boolean;
     [SketchfabSettings.UI_FULLSCREEN]: boolean;
-    [SketchfabSettings.UI_GENERAL_CONTROLS]: boolean;
     [SketchfabSettings.UI_HELP]: boolean;
     [SketchfabSettings.UI_HINT]: boolean;
     [SketchfabSettings.UI_INFOS]: boolean;
