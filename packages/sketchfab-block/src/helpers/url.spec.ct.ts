@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Bundle } from '@frontify/guideline-blocks-settings';
-import { generateUrl, getUrlStringWithoutSearchParams, isSketchfabUrl, parseSketchfabSettingsUrl } from './url';
+import { generateIframeUrl, getUrlStringWithoutSearchParams, isSketchfabUrl, parseSketchfabSettingsUrl } from './url';
 
 describe('isSketchfabUrl', () => {
     it('passes each test', () => {
@@ -25,7 +25,7 @@ describe('isSketchfabUrl', () => {
     });
 });
 
-describe('generateUrl', () => {
+describe('generateIframeUrl', () => {
     it('passes each test', () => {
         const data: { args: [string, { [key: string]: any }]; expected: string | null }[] = [
             {
@@ -60,7 +60,7 @@ describe('generateUrl', () => {
         ];
 
         for (const { args, expected } of data) {
-            const url = generateUrl(args[0], args[1]);
+            const url = generateIframeUrl(args[0], args[1]);
             cy.wrap(expected).should('equal', expected ? url?.toString() : null);
         }
     });

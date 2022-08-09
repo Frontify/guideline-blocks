@@ -33,13 +33,13 @@ export const DEFAULT_BORDER_WIDTH = '1px';
 
 const isAvailablePremiumUIControl = (bundle: Bundle) =>
     Boolean(
-        bundle.getBlock('accountType')?.value === SketchfabAccount.Premium &&
+        bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value === SketchfabAccount.Premium &&
             bundle.getBlock(SketchfabSettings.SHOW_UI)?.value
     );
 
 const isAvailablePremiumUIButton = (bundle: Bundle) =>
     Boolean(
-        bundle.getBlock('accountType')?.value === SketchfabAccount.Premium &&
+        bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value === SketchfabAccount.Premium &&
             bundle.getBlock(SketchfabSettings.SHOW_BUTTONS)?.value
     );
 
@@ -182,7 +182,7 @@ export const settings: BlockSettings & {
             type: 'switch',
             label: 'Transparent Background',
             info: "Enabling this feature will make the model's background transparent.",
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+            show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
         },
     ],
     'Navigation & Camera': [
@@ -199,7 +199,7 @@ export const settings: BlockSettings & {
             label: 'Allow Double Click',
             defaultValue: true,
             info: 'Disabling this feature will disable the double-clicking to focus the camera in the viewer.',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+            show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
         },
         {
             id: SketchfabSettings.ALLOW_LIGHT_ROTATION,
@@ -207,7 +207,7 @@ export const settings: BlockSettings & {
             defaultValue: true,
             label: 'Allow Light Rotation',
             info: 'Enabling this feature will allow using alt + click/drag to rotate the lights and environment.',
-            show: (bundle) => bundle.getBlock('accountType')?.value !== SketchfabAccount.Basic,
+            show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
         },
         {
             id: SketchfabSettings.STARTING_SPIN,
@@ -451,7 +451,7 @@ export const settings: BlockSettings & {
             label: 'UI Color',
             type: 'switch',
             info: 'Setting to a color will change the color of the viewer loading bar.',
-            show: (bundle) => bundle.getBlock('accountType')?.value === SketchfabAccount.Premium,
+            show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value === SketchfabAccount.Premium,
             on: [
                 {
                     id: SketchfabSettings.UI_COLOR_VALUE,

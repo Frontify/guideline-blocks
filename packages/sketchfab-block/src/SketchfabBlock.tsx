@@ -8,11 +8,10 @@ import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import {
     SKETCHFAB_RULE_ERROR,
-    applyEmbedToUrl,
-    generateUrl,
+    generateIframeUrl,
+    generateSketchfabEmbedUrl,
     getIframeStyles,
     getUrlStringWithoutSearchParams,
-    isSketchfabUrl,
 } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
 import {
@@ -34,8 +33,8 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
 
     const saveLink = () => {
         const urlWithoutSearchParams = getUrlStringWithoutSearchParams(localUrl);
-        if (isSketchfabUrl(urlWithoutSearchParams)) {
-            const embedUrl = applyEmbedToUrl(urlWithoutSearchParams);
+        const embedUrl = generateSketchfabEmbedUrl(urlWithoutSearchParams);
+        if (embedUrl) {
             setBlockSettings({
                 ...blockSettings,
                 url: embedUrl,
@@ -63,7 +62,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     useEffect(() => {
         if (params.url) {
             setIframeUrl(
-                generateUrl(params.url, {
+                generateIframeUrl(params.url, {
                     animation_autoplay: params.autoPlay === false && '0',
                     annotation:
                         params.showAnnotations &&
@@ -78,7 +77,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     autospin: params.autoSpin && params.autoSpinCount,
                     autostart: params.autoStart && '1',
                     camera: params.startingSpin === false && '0',
-                    dof_circle: params.showUI && params.uiDOF === false && '0',
+                    dof_circle: (!params.showUI || params.uiDOF === false) && '0',
                     fps_speed: params.fps && params.fpsValue,
                     max_texture_size: params.textureSize && params.textureSizeValue,
                     navigation: params.navigationMode === SketchfabNavigation.Fps && params.navigationMode,
@@ -125,66 +124,72 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     prevent_user_light_rotation:
                         params.accountType !== SketchfabAccount.Basic && !params.allowLightRotation && '1',
                     ui_animations:
-                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiAnimations && '0',
+                        params.accountType === SketchfabAccount.Premium &&
+                        (!params.showUI || !params.uiAnimations) &&
+                        '0',
                     ui_annotations:
                         params.accountType === SketchfabAccount.Premium &&
-                        params.showUI &&
-                        !params.uiAnnotations &&
+                        (!params.showUI || !params.uiAnnotations) &&
                         '0',
                     ui_controls:
                         params.accountType === SketchfabAccount.Premium &&
-                        params.showButtons &&
-                        !params.uiControls &&
+                        (!params.showButtons || !params.uiControls) &&
                         '0',
                     ui_fadeout:
                         params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiFadeout && '0',
                     ui_fullscreen:
                         params.accountType === SketchfabAccount.Premium &&
-                        params.showButtons &&
-                        !params.uiFullscreen &&
+                        (!params.showButtons || !params.uiFullscreen) &&
                         '0',
                     ui_general_controls:
                         params.accountType === SketchfabAccount.Premium &&
-                        params.showUI &&
-                        !params.uiGeneralControls &&
+                        (!params.showUI || !params.uiGeneralControls) &&
                         '0',
                     ui_help:
-                        params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiHelp && '0',
-                    ui_hint: params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiHint && '0',
+                        params.accountType === SketchfabAccount.Premium &&
+                        (!params.showButtons || !params.uiHelp) &&
+                        '0',
+                    ui_hint:
+                        params.accountType === SketchfabAccount.Premium && (!params.showUI || !params.uiHint) && '0',
                     ui_infos:
-                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiInfos && '0',
+                        params.accountType === SketchfabAccount.Premium && (!params.showUI || !params.uiInfos) && '0',
                     ui_inspector:
                         params.accountType === SketchfabAccount.Premium &&
-                        params.showButtons &&
-                        !params.uiInspector &&
+                        (!params.showButtons || !params.uiInspector) &&
                         '0',
                     ui_loading:
-                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiLoading && '0',
+                        params.accountType === SketchfabAccount.Premium && (!params.showUI || !params.uiLoading) && '0',
                     ui_settings:
                         params.accountType === SketchfabAccount.Premium &&
-                        params.showButtons &&
-                        !params.uiSettings &&
+                        (!params.showButtons || !params.uiSettings) &&
                         '0',
                     ui_sound:
-                        params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiSound && '0',
+                        params.accountType === SketchfabAccount.Premium &&
+                        (!params.showButtons || !params.uiSound) &&
+                        '0',
                     ui_start:
-                        params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiStart && '0',
-                    ui_vr: params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiVR && '0',
-                    ui_ar: params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiAR && '0',
+                        params.accountType === SketchfabAccount.Premium &&
+                        (!params.showButtons || !params.uiStart) &&
+                        '0',
+                    ui_vr:
+                        params.accountType === SketchfabAccount.Premium && (!params.showButtons || !params.uiVR) && '0',
+                    ui_ar:
+                        params.accountType === SketchfabAccount.Premium && (!params.showButtons || !params.uiAR) && '0',
                     ui_ar_help:
                         params.accountType === SketchfabAccount.Premium &&
-                        params.showButtons &&
-                        !params.uiARHelp &&
+                        (!params.showButtons || !params.uiARHelp) &&
                         '0',
                     ui_ar_qrcode:
-                        params.accountType === SketchfabAccount.Premium && params.showButtons && !params.uiQR && '0',
+                        params.accountType === SketchfabAccount.Premium && (!params.showButtons || !params.uiQR) && '0',
                     ui_watermark:
-                        params.accountType === SketchfabAccount.Premium && params.showUI && !params.uiWatermark && '0',
+                        params.accountType === SketchfabAccount.Premium &&
+                        (!params.showUI || !params.uiWatermark) &&
+                        '0',
                     ui_color:
                         params.accountType === SketchfabAccount.Premium &&
                         params.uiColor &&
                         toHex8String(params.uiColorValue).slice(1, 7),
-                    dnt: params.viewersTracking === false && '1',
+                    dnt: !params.viewersTracking === false && '1',
                 })
             );
         } else {
