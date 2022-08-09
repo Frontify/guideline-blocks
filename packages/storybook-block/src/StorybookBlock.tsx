@@ -20,8 +20,8 @@ import {
     borderRadiusClasses,
     heights,
 } from './types';
-import { decodeEntities } from './utilities';
 import { buildIframeUrl } from './utils/buildIframeUrl';
+import { decodeEntities } from './utils/decodeEntities';
 import { ensureHttps } from './utils/ensureHttps';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
