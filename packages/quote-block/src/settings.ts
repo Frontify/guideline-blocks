@@ -77,7 +77,7 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: 'quotationMarksContentSection',
             type: 'sectionHeading',
