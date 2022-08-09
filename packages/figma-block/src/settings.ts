@@ -41,7 +41,7 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: ASSET_ID,
             type: 'assetInput',

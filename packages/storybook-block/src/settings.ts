@@ -50,7 +50,7 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: 'url',
             label: 'Link',
