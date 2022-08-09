@@ -98,7 +98,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     hasLimitedOptions={hasLimitedOptions}
                     height={height}
                     hasBorder={hasBorder}
-                    hasBackground={hasBackground}
+                    hasBackground={!hasLimitedOptions && hasBackground}
                 />
                 {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
             </div>
