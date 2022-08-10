@@ -4,7 +4,7 @@ import { mount } from '@cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ERROR_MSG } from './settings';
 import { StorybookBlock } from './StorybookBlock';
-import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
+import { heights, StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle } from './types';
 
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';
 const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
@@ -41,7 +41,11 @@ describe('Storybook Block', () => {
 
     it('renders storybook iframe with addons panel at the bottom', () => {
         const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
-            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.Default, positioning: StorybookPosition.Vertical },
+            blockSettings: {
+                url: EXAMPLE_URL,
+                style: StorybookStyle.WithAddons,
+                positioning: StorybookPosition.Vertical,
+            },
         });
 
         mount(<StorybookBlockWithStubs />);
