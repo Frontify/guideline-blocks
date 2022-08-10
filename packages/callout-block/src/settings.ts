@@ -50,7 +50,7 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: 'iconSwitch',
             type: 'switch',
