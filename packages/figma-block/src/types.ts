@@ -46,6 +46,7 @@ export type Settings = {
     heightChoice?: HeightChoices;
     showFigmaLink?: boolean;
     hasBackground?: boolean;
+    hasLimitedOptions?: boolean;
 };
 
 export type BoundingClientRectProperties = {
@@ -61,13 +62,13 @@ export type BoundingClientRectProperties = {
 
 export type UseImageStageProps = {
     height: string;
-    isContainerVector: boolean;
+    hasLimitedOptions: boolean;
 };
 
 export type ImageStageProps = {
     title: string | undefined;
     url: string;
-    isContainerVector?: boolean;
+    hasLimitedOptions?: boolean;
     height?: string;
     hasBorder?: boolean;
     hasBackground?: boolean;

@@ -11,7 +11,7 @@ import {
 } from './components';
 import { UseImageStageProps, Zoom } from './types';
 
-export const useImageStage = ({ height, isContainerVector }: UseImageStageProps) => {
+export const useImageStage = ({ height, hasLimitedOptions }: UseImageStageProps) => {
     const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
     const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
     const imageStage = useRef<ImageStage>();
@@ -27,24 +27,22 @@ export const useImageStage = ({ height, isContainerVector }: UseImageStageProps)
         if (isImageLoaded && stageRef.current && containerRef.current && imageRef.current) {
             const imageElement = new ImageElement(imageRef.current);
             const imageContainer = new ImageContainer(containerRef.current);
-
             imageStage.current = new ImageStage(stageRef.current, height);
-            imageStage.current.alterHeight(height);
 
-            containerOperator.current = isContainerVector
-                ? new VectorContainerOperator(imageContainer, imageStage.current, imageElement)
-                : new BitmapContainerOperator(imageContainer, imageStage.current, imageElement);
+            containerOperator.current = hasLimitedOptions
+                ? new BitmapContainerOperator(imageContainer, imageStage.current, imageElement)
+                : new VectorContainerOperator(imageContainer, imageStage.current, imageElement);
 
             containerOperator.current.fitAndCenterTheImageContainerWithinTheImageStage();
         }
-    }, [height, isImageLoaded, isContainerVector]);
+    }, [height, isImageLoaded, hasLimitedOptions]);
 
     useEffect(() => {
-        if (imageStage.current && isContainerVector) {
+        if (imageStage.current && hasLimitedOptions) {
             imageStage.current.alterHeight(isFullScreen ? '100vh' : imageStage.current.customHeight);
             containerOperator.current?.centerTheImageContainerWithinTheImageStage();
         }
-    }, [isFullScreen, isContainerVector]);
+    }, [isFullScreen, hasLimitedOptions]);
 
     return { isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, stageRef, containerRef, imageRef, setIsImageLoaded };
 };

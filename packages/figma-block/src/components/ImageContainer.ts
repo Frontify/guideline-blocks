@@ -11,6 +11,10 @@ export class ImageContainer {
         this.imageContainer.style.cursor = cursor;
     };
 
+    public setContainerToAbsolute() {
+        this.imageContainer.style.position = 'absolute';
+    }
+
     public setImageContainerPosition(left: number, top: number) {
         this.imageContainer.style.left = `${left}px`;
         this.imageContainer.style.top = `${top}px`;

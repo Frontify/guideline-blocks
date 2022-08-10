@@ -38,9 +38,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         hasBorder = true,
         isCustomHeight = false,
         heightValue = heights[HeightChoices.Small],
-        heightChoice = HeightChoices.Medium,
+        heightChoice = HeightChoices.Small,
         showFigmaLink = true,
         hasBackground = false,
+        hasLimitedOptions = true,
     } = blockSettings;
 
     useEffect(() => {
@@ -94,15 +95,15 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <ImageStage
                     title={asset.title}
                     url={asset.previewUrl}
-                    isContainerVector={true}
+                    hasLimitedOptions={hasLimitedOptions}
                     height={height}
                     hasBorder={hasBorder}
-                    hasBackground={hasBackground}
+                    hasBackground={!hasLimitedOptions && hasBackground}
                 />
                 {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
             </div>
         ),
-        [ShowFigmaLink, asset?.previewUrl, asset?.title, assetExternalUrl]
+        [ShowFigmaLink, asset?.previewUrl, asset?.title, assetExternalUrl, hasLimitedOptions]
     );
 
     const ShowFigmaLive = useCallback(
