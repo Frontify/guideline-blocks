@@ -38,14 +38,14 @@ export const settings: BlockSettings = {
             size: 'Large' as DropdownSize.Large,
             choices: [
                 {
-                    value: StorybookStyle.Default,
+                    value: StorybookStyle.WithAddons,
                     icon: 'Iframe' as IconEnum.Iframe,
-                    label: 'Story (with add-ons)',
+                    label: 'Story with add-ons',
                 },
                 {
-                    value: StorybookStyle.WithoutAddons,
+                    value: StorybookStyle.Default,
                     icon: 'Iframe' as IconEnum.Iframe,
-                    label: 'Story (no add-ons)',
+                    label: 'Story only',
                 },
             ],
         },
@@ -73,7 +73,7 @@ export const settings: BlockSettings = {
                 {
                     id: HEIGHT_VALUE_ID,
                     type: 'input',
-                    placeholder: '400px',
+                    placeholder: 'e.g. 500px',
                     rules: [
                         numericalOrPixelRule,
                         minimumNumericalOrPixelOrAutoRule(10),
@@ -108,9 +108,9 @@ export const settings: BlockSettings = {
             id: 'positioning',
             label: 'Positioning',
             type: 'slider',
-            defaultValue: StorybookPosition.Horizontal,
+            defaultValue: StorybookPosition.Vertical,
             info: 'Where the UI elements are in relation to one another',
-            show: (bundle: Bundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.Default,
+            show: (bundle: Bundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.WithAddons,
             choices: [
                 {
                     value: StorybookPosition.Horizontal,

@@ -25,7 +25,7 @@ export type Settings = {
 
 export enum StorybookStyle {
     Default = 'Default',
-    WithoutAddons = 'WithoutAddons',
+    WithAddons = 'WithAddons',
 }
 
 export enum StorybookBorderRadius {
@@ -58,11 +58,11 @@ export const borderStyles: Record<StorybookBorderStyle, string> = {
     [StorybookBorderStyle.Dashed]: 'dashed',
 };
 
-export const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
-    [StorybookBorderRadius.None]: 'tw-rounded-none',
-    [StorybookBorderRadius.Small]: 'tw-rounded',
-    [StorybookBorderRadius.Medium]: 'tw-rounded-md',
-    [StorybookBorderRadius.Large]: 'tw-rounded-lg',
+export const borderRadiuses: Record<StorybookBorderRadius, string> = {
+    [StorybookBorderRadius.None]: '0px',
+    [StorybookBorderRadius.Small]: '0.25rem',
+    [StorybookBorderRadius.Medium]: '0.375rem',
+    [StorybookBorderRadius.Large]: '0.5rem',
 };
 
 export const heights: Record<StorybookHeight, string> = {

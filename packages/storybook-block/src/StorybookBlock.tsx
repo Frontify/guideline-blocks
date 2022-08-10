@@ -3,7 +3,7 @@
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useCallback, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -17,7 +17,7 @@ import {
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
-    borderRadiusClasses,
+    borderRadiuses,
     heights,
 } from './types';
 import { buildIframeUrl } from './utils/buildIframeUrl';
@@ -35,7 +35,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         isCustomHeight = false,
         heightChoice = StorybookHeight.Medium,
         heightValue = '',
-        positioning = StorybookPosition.Horizontal,
+        positioning = StorybookPosition.Vertical,
         hasBorder = true,
         borderColor = BORDER_COLOR_DEFAULT_VALUE,
         borderStyle = StorybookBorderStyle.Solid,
@@ -51,7 +51,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const { hoverProps, isHovered } = useHover({});
     const { setIsReadyForPrint } = useReadyForPrint(appBridge);
 
-    const iframeUrl = buildIframeUrl(decodeEntities(storybookUrl), style === StorybookStyle.Default, positioning);
+    const iframeUrl = buildIframeUrl(decodeEntities(storybookUrl), style === StorybookStyle.WithAddons, positioning);
     const saveInputLink = useCallback(() => {
         setIsReadyForPrint(false);
         setBlockSettings({
@@ -86,14 +86,14 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                     <iframe
                         onLoad={() => setIsReadyForPrint(true)}
                         onError={() => setIsReadyForPrint(true)}
-                        className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
+                        className={'tw-w-full'}
                         style={
                             hasBorder
                                 ? {
                                       borderColor: toRgbaString(borderColor),
                                       borderStyle,
                                       borderWidth,
-                                      borderRadius: radiusValue,
+                                      borderRadius: hasRadius ? radiusValue : borderRadiuses[radiusChoice],
                                   }
                                 : {}
                         }
@@ -122,7 +122,10 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                                     <div className="tw-text-s tw-text-text-negative tw-mt-2">{ERROR_MSG}</div>
                                 )}
                             </div>
-                            <Button onClick={saveInputLink} disabled={!isValidStorybookUrl(input)}>
+                            <Button
+                                onClick={saveInputLink}
+                                disabled={input.length === 0 || !isValidStorybookUrl(input)}
+                            >
                                 Confirm
                             </Button>
                         </div>

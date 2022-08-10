@@ -32,7 +32,7 @@ describe('Storybook Block', () => {
 
     it('renders storybook iframe without addons', () => {
         const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
-            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.WithoutAddons },
+            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.Default },
         });
 
         mount(<StorybookBlockWithStubs />);
