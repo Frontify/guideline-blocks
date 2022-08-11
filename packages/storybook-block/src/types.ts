@@ -58,13 +58,6 @@ export const borderStyles: Record<StorybookBorderStyle, string> = {
     [StorybookBorderStyle.Dashed]: 'dashed',
 };
 
-export const borderRadiusClasses: Record<StorybookBorderRadius, string> = {
-    [StorybookBorderRadius.None]: 'tw-rounded-none',
-    [StorybookBorderRadius.Small]: 'tw-rounded',
-    [StorybookBorderRadius.Medium]: 'tw-rounded-md',
-    [StorybookBorderRadius.Large]: 'tw-rounded-lg',
-};
-
 export const heights: Record<StorybookHeight, string> = {
     [StorybookHeight.Small]: '200px',
     [StorybookHeight.Medium]: '400px',
