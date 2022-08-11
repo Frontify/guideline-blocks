@@ -3,7 +3,7 @@
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useCallback, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -85,14 +85,14 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                     <iframe
                         onLoad={() => setIsReadyForPrint(true)}
                         onError={() => setIsReadyForPrint(true)}
-                        className={joinClassNames(['tw-w-full', !hasRadius && radiusStyleMap[radiusChoice]])}
+                        className={'tw-w-full'}
                         style={
                             hasBorder
                                 ? {
                                       borderColor: toRgbaString(borderColor),
                                       borderStyle,
                                       borderWidth,
-                                    borderRadius: radiusValue,
+                                      borderRadius: hasRadius ? radiusValue : radiusStyleMap[radiusChoice],
                                   }
                                 : {}
                         }
