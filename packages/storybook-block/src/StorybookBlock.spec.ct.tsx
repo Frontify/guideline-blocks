@@ -32,7 +32,7 @@ describe('Storybook Block', () => {
 
     it('renders storybook iframe without addons', () => {
         const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
-            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.WithoutAddons },
+            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.Default },
         });
 
         mount(<StorybookBlockWithStubs />);
@@ -41,7 +41,11 @@ describe('Storybook Block', () => {
 
     it('renders storybook iframe with addons panel at the bottom', () => {
         const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
-            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.Default, positioning: StorybookPosition.Vertical },
+            blockSettings: {
+                url: EXAMPLE_URL,
+                style: StorybookStyle.WithAddons,
+                positioning: StorybookPosition.Vertical,
+            },
         });
 
         mount(<StorybookBlockWithStubs />);

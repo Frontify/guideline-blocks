@@ -65,6 +65,7 @@ export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): Set
             {
                 id: valueId,
                 type: 'input',
+                placeholder: 'e.g. 10px',
                 rules: [numericalOrPixelRule],
                 onChange: (bundle: Bundle): void => appendUnit(bundle, valueId),
             },

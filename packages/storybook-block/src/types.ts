@@ -25,7 +25,7 @@ export type Settings = {
 
 export enum StorybookStyle {
     Default = 'Default',
-    WithoutAddons = 'WithoutAddons',
+    WithAddons = 'WithAddons',
 }
 
 export enum StorybookBorderRadius {
