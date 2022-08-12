@@ -301,6 +301,49 @@ importers:
       tailwindcss: 3.0.24
       typescript: 4.6.4
 
+  packages/color-scale-block:
+    specifiers:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4
+      '@frontify/app-bridge': 3.0.0-beta.1
+      '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 9.9.0
+      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/frontify-cli': 5.0.1
+      '@frontify/guideline-blocks-settings': workspace:*
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/react': 17.0.47
+      autoprefixer: 10.4.6
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.1_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 9.9.0_6x7isr73so62rlgao7p55cg4de
+      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/guideline-blocks-settings': link:../block-settings
+      '@frontify/guideline-blocks-shared': link:../shared
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.17.10
+      '@cypress/react': 5.12.4_nh2kacrjo3m4pmapg6wd2vlpue
+      '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
+      '@frontify/frontify-cli': 5.0.1
+      '@types/react': 17.0.47
+      autoprefixer: 10.4.6_postcss@8.4.13
+      cypress: 9.6.0
+      eslint: 8.15.0
+      postcss: 8.4.13
+      prettier: 2.6.2
+      tailwindcss: 3.0.24
+      typescript: 4.6.4
+
   packages/divider-block:
     specifiers:
       '@babel/core': 7.17.10
@@ -1464,18 +1507,18 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue-tokens/3.0.1_ts-node@10.9.1:
-    resolution: {integrity: sha512-r4EODHmTs2SKayUl+WoMmozTVoBqpP9rzKeToVGlvuUS0NizSIKazib4pgW2z6jmsALvPGYFQvtVi2Mmmwlj9w==}
-    dependencies:
-      tailwindcss: 3.0.24_ts-node@10.9.1
-    transitivePeerDependencies:
-      - ts-node
-    dev: false
-
   /@frontify/fondue-tokens/3.1.0:
     resolution: {integrity: sha512-/Dc8fPFtMbIjRBSPHi4oX7jLixbY8WR0k/Zp/NLZ+XSoXOZES2fD4RfEzqGm5d9FihetVqoHvlw9rDJWQRj7xg==}
     dependencies:
       tailwindcss: 3.0.24
+    transitivePeerDependencies:
+      - ts-node
+    dev: false
+
+  /@frontify/fondue-tokens/3.1.0_ts-node@10.9.1:
+    resolution: {integrity: sha512-/Dc8fPFtMbIjRBSPHi4oX7jLixbY8WR0k/Zp/NLZ+XSoXOZES2fD4RfEzqGm5d9FihetVqoHvlw9rDJWQRj7xg==}
+    dependencies:
+      tailwindcss: 3.0.24_ts-node@10.9.1
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -1645,7 +1688,7 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue-tokens': 3.1.0
       '@popperjs/core': 2.11.5
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
       '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
@@ -1667,24 +1710,24 @@ packages:
       '@react-aria/tooltip': 3.1.8_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
       '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.0.7_react@17.0.2
-      '@react-stately/collections': 3.4.1_react@17.0.2
-      '@react-stately/combobox': 3.0.5_react@17.0.2
-      '@react-stately/list': 3.4.5_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
-      '@react-stately/radio': 3.3.6_react@17.0.2
-      '@react-stately/select': 3.1.7_react@17.0.2
-      '@react-stately/table': 3.1.3_react@17.0.2
-      '@react-stately/toggle': 3.3.1_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
+      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
       '@react-stately/tree': 3.3.1_react@17.0.2
       '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
       '@udecode/plate': 10.8.0_ie55nb46y6wv23x4yjorngubdq
       '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
       '@xstate/react': 1.6.3_ww4vbcegcjz4p4on5vcih4o66u
       date-fns: 2.28.0
-      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
       immer: 9.0.12
       react: 17.0.2
       react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
@@ -1725,7 +1768,7 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue-tokens': 3.1.0
       '@popperjs/core': 2.11.5
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
       '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
@@ -1747,24 +1790,24 @@ packages:
       '@react-aria/tooltip': 3.1.8_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
       '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.0.7_react@17.0.2
-      '@react-stately/collections': 3.4.1_react@17.0.2
-      '@react-stately/combobox': 3.0.5_react@17.0.2
-      '@react-stately/list': 3.4.5_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
-      '@react-stately/radio': 3.3.6_react@17.0.2
-      '@react-stately/select': 3.1.7_react@17.0.2
-      '@react-stately/table': 3.1.3_react@17.0.2
-      '@react-stately/toggle': 3.3.1_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
+      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
       '@react-stately/tree': 3.3.1_react@17.0.2
       '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
       '@udecode/plate': 10.8.0_4sdlv22vvqda7zisf7mhjd4rp4
       '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
       '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
       date-fns: 2.28.0
-      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
       immer: 9.0.12
       react: 17.0.2
       react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
@@ -1805,7 +1848,7 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.0.1_ts-node@10.9.1
+      '@frontify/fondue-tokens': 3.1.0_ts-node@10.9.1
       '@popperjs/core': 2.11.5
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
       '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
@@ -1827,24 +1870,24 @@ packages:
       '@react-aria/tooltip': 3.1.8_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
       '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.0.7_react@17.0.2
-      '@react-stately/collections': 3.4.1_react@17.0.2
-      '@react-stately/combobox': 3.0.5_react@17.0.2
-      '@react-stately/list': 3.4.5_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
-      '@react-stately/radio': 3.3.6_react@17.0.2
-      '@react-stately/select': 3.1.7_react@17.0.2
-      '@react-stately/table': 3.1.3_react@17.0.2
-      '@react-stately/toggle': 3.3.1_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
+      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
       '@react-stately/tree': 3.3.1_react@17.0.2
       '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
       '@udecode/plate': 10.8.0_dj23bnlcuvfe4cm766rzyb3xum
       '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
       '@xstate/react': 1.6.3_ww4vbcegcjz4p4on5vcih4o66u
       date-fns: 2.28.0
-      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
       immer: 9.0.12
       react: 17.0.2
       react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
@@ -1885,7 +1928,7 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.0.1_ts-node@10.9.1
+      '@frontify/fondue-tokens': 3.1.0_ts-node@10.9.1
       '@popperjs/core': 2.11.5
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
       '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
@@ -1907,24 +1950,24 @@ packages:
       '@react-aria/tooltip': 3.1.8_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
       '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.0.7_react@17.0.2
-      '@react-stately/collections': 3.4.1_react@17.0.2
-      '@react-stately/combobox': 3.0.5_react@17.0.2
-      '@react-stately/list': 3.4.5_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
-      '@react-stately/radio': 3.3.6_react@17.0.2
-      '@react-stately/select': 3.1.7_react@17.0.2
-      '@react-stately/table': 3.1.3_react@17.0.2
-      '@react-stately/toggle': 3.3.1_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
+      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
       '@react-stately/tree': 3.3.1_react@17.0.2
       '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
       '@udecode/plate': 10.8.0_aws6jgkvm4pjrqreumtbq4zbwu
       '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
       '@xstate/react': 1.6.3_ww4vbcegcjz4p4on5vcih4o66u
       date-fns: 2.28.0
-      framer-motion: 6.3.3_sfoxds7t5ydpegc3knd667wn6m
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
       immer: 9.0.12
       react: 17.0.2
       react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
