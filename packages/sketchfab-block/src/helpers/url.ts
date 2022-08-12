@@ -51,7 +51,8 @@ export const generateSketchfabEmbedUrl = (url: string) => {
         const urlWithoutParams = getUrlStringWithoutSearchParams(url);
 
         if (SKETCHFAB_EMBED_REGEX.test(urlWithoutParams)) {
-            return appendEmbedToUrl(urlWithoutParams);
+            const modelUrl = urlWithoutParams.replace('/show/', '/models/');
+            return appendEmbedToUrl(modelUrl);
         }
         const match = urlWithoutParams.match(SKETCHFAB_NEW_PREVIEW_REGEX);
         if (match) {
