@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { EditExistingColorModalProps } from '../types';
-import { Flyout, ColorPicker, ColorFormat } from '@frontify/fondue';
+import { Flyout, ColorPicker, ColorFormat, Color } from '@frontify/fondue';
 
 export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
     id,
@@ -13,7 +13,8 @@ export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
     setEditedColor,
     updateColor,
     setFormat,
-}) => (
+}) => {
+    return (
     <>
         {isEditing ? (
             <div ref={colorPickerRef}>
@@ -25,10 +26,10 @@ export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
                     trigger={<></>}
                 >
                     <ColorPicker
-                        currentColor={currentColor}
+                        currentColor={currentColor.color ? currentColor.color : {r: 0, g: 0, b: 0}}
                         currentFormat={ColorFormat.Rgba}
-                        onSelect={(color) => {
-                            updateColor(color, id);
+                        onSelect={(color: Color) => {
+                            updateColor({color: color, width: currentColor.width} , id);
                         }}
                         setFormat={setFormat}
                     />
@@ -38,4 +39,5 @@ export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
             <></>
         )}
     </>
-);
+    );
+}

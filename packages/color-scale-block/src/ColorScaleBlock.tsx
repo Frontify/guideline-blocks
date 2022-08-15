@@ -13,10 +13,9 @@ type Props = {
 };
 
 export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
-    // const isEditing = useEditorState(appBridge);
-    const isEditing = true;
+    const isEditing = useEditorState(appBridge);
     //const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
-    const [blockSettings, setBlockSettings] = useState({ 'color-input': [{ r: 0, g: 0, b: 0, a: 1 }] as ColorProps[] | null });
+    const [blockSettings, setBlockSettings] = useState({ 'color-input': [{ color: { r: 0, g: 0, b: 0, a: 1} }] as ColorProps[] | null });
     const [showCompleted] = useState(true);
     const [calculatedWidths, setCalculatedWidths] = useState(false);
     const [editedColor, setEditedColor]: any = useState();
@@ -25,8 +24,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const colorPickerRef: any = useRef();
 
     const colorWidth = 100; // default color square width if all other calculations fail
-
-    console.log(appBridge);
 
     const calculateDefaultColorWidth = (arrLen: number) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
@@ -205,7 +202,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     };
 
     const doesColorHaveRgbValues = (colorValue: ColorProps) => {
-        if (colorValue && colorValue.r && colorValue.g && colorValue.b) {
+        if (colorValue && colorValue.color && colorValue.color.r && colorValue.color.g && colorValue.color.b) {
             return true;
         }
         return false;
@@ -444,8 +441,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                 {displayableItems.map((value: ColorProps, id: number) => {
                     let backgroundColorRgba;
 
-                    if (value && value.r && value.g && value.b && value.a) {
-                        backgroundColorRgba = `${value.r},${value.g},${value.b},${value.a}`;
+                    if (value && value.color && value.color.r && value.color.g && value.color.b && value.color.a) {
+                        backgroundColorRgba = `${value.color.r},${value.color.g},${value.color.b},${value.color.a}`;
                     }
 
                     let width;

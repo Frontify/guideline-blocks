@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PaddingSettings } from '@frontify/guideline-blocks-shared';
+import { Color } from '@frontify/fondue';
 
 export type Settings = PaddingSettings & {
     content: any[];
@@ -11,10 +12,7 @@ export const DefaultValues: any = {
 };
 
 export type ColorProps = {
-    r?: number;
-    g?: number;
-    b?: number;
-    a?: number;
+    color: Color;
     width?: number;
 };
 
@@ -71,7 +69,7 @@ export type AddNewColorModalProps = {
     isEditing: boolean;
     colorPickerRef: { current?: any } | undefined;
     editedColor: number | string;
-    setEditedColor: (value: number | string) => void;
+    setEditedColor: (value: number | string | null) => void;
     updateColor: (color: any, id: number, appearAfter?: boolean) => void;
     setFormat: () => void;
 };
@@ -88,7 +86,7 @@ export type EditExistingColorModalProps = {
     isEditing: boolean;
     colorPickerRef: { current?: any } | undefined;
     editedColor: number | string;
-    setEditedColor: (value: string | number) => void;
+    setEditedColor: (value: string | number | null) => void;
     updateColor: (color: ColorProps, id: number, appearAfter?: boolean) => void;
     setFormat: () => void;
 };
