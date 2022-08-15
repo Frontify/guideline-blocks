@@ -19,7 +19,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
-            fileName: (format: string) => `index.${format}.js`,
+            fileName: (format: string) => `[name].${format}.js`,
             name: 'GuidelineBlocksShared',
         },
         sourcemap: true,

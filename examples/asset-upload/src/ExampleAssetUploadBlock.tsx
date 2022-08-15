@@ -1,20 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    Asset,
-    AssetChooserResult,
-    IAppBridgeNative,
-    useAssetUpload,
-    useBlockAssets,
-    useFileInput,
-} from '@frontify/app-bridge';
+import type { AppBridgeBlock, FrontifyAsset } from '@frontify/app-bridge';
+import { useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { IMAGE_SETTING_ID } from './settings';
 
-export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ appBridge }) => {
+export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ appBridge }) => {
+    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+
     // Manual upload demo
     const [loading, setLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
@@ -42,12 +38,10 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ a
     }, [doneAll, uploadResults]);
 
     // Asset chooser demo
-    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
-
     const onOpenAssetChooser = () => {
         appBridge.openAssetChooser(
-            (result: AssetChooserResult) => {
-                const resultId = result.screenData[0].id;
+            (result: FrontifyAsset[]) => {
+                const resultId = result[0].id;
                 updateAssetIdsFromKey(IMAGE_SETTING_ID, [resultId]);
                 appBridge.closeAssetChooser();
             },
@@ -69,20 +63,22 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: IAppBridgeNative }> = ({ a
         <div className="tw-flex tw-flex-col tw-gap-4">
             <div className="tw-flex tw-gap-4">
                 <Button onClick={onOpenAssetChooser}>Open asset chooser</Button>
-                <Button onClick={openFileDialog}>{loading ? 'Uploading...' : 'Upload'}</Button>
+                <Button onClick={openFileDialog} disabled={loading}>
+                    {loading ? 'Uploading...' : 'Upload'}
+                </Button>
             </div>
 
             <div data-test-id="example-asset-upload-block">
                 {blockAssets[IMAGE_SETTING_ID] ? (
-                    blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
+                    blockAssets[IMAGE_SETTING_ID].map((asset: FrontifyAsset) => (
                         <div key={asset.id}>
-                            <img src={asset.preview_url} data-test-id="example-asset-upload-image" />
+                            <img src={asset.previewUrl} data-test-id="example-asset-upload-image" />
                             <div className="tw-flex tw-flex-col tw-gap-4">
                                 <strong>{asset.title}</strong>
                                 <div className="tw-flex tw-gap-4">
-                                    <Link link={asset.preview_url} text="Preview URL" />
-                                    <Link link={asset.generic_url} text="Generic URL" />
-                                    {asset.origin_url && <Link link={asset.origin_url} text="Origin URL" />}
+                                    <Link link={asset.previewUrl} text="Preview URL" />
+                                    <Link link={asset.genericUrl} text="Generic URL" />
+                                    {asset.originUrl && <Link link={asset.originUrl} text="Origin URL" />}
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeNative } from '@frontify/app-bridge';
+import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 
 export type SketchfabBlockProps = {
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
 
 export enum SketchfabSettings {
@@ -160,13 +160,6 @@ export const borderStyles: Record<BorderStyle, string> = {
     [BorderStyle.Solid]: 'solid',
     [BorderStyle.Dotted]: 'dotted',
     [BorderStyle.Dashed]: 'dashed',
-};
-
-export const borderRadiusClasses: Record<Radius, string> = {
-    [Radius.None]: 'tw-rounded-none',
-    [Radius.Small]: 'tw-rounded',
-    [Radius.Medium]: 'tw-rounded-md',
-    [Radius.Large]: 'tw-rounded-lg',
 };
 
 export const heights: Record<SketchfabHeight, string> = {

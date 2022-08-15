@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { QuoteBlock } from './QuoteBlock';
 import { QuoteSize, QuoteStyle, QuoteType } from './types';
 
@@ -23,14 +23,14 @@ const RIGHT_ICON_PATH = 'M.212 12h5.86V0H4.7v10.72H.212V12z';
 
 describe('Quote Block', () => {
     it('renders a quote block with two quotation marks', () => {
-        const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {});
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {});
 
         mount(<QuoteBlockWithStubs />);
         cy.get(QuoteBlockSelector).find('svg').should('have.length', 2);
     });
 
     it('renders a quote block with indentation', () => {
-        const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
             blockSettings: {
                 type: QuoteType.Indentation,
             },
@@ -41,7 +41,7 @@ describe('Quote Block', () => {
     });
 
     it('renders a quote block with two selected quotation marks', () => {
-        const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
             blockSettings: {
                 quoteStyleLeft: QuoteStyle.DoubleChevronLeft,
                 quoteStyleRight: QuoteStyle.HookBracketRight,
@@ -54,7 +54,7 @@ describe('Quote Block', () => {
     });
 
     it('renders a quote block without quotation marks', () => {
-        const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
             blockSettings: {
                 quoteStyleLeft: QuoteStyle.None,
                 quoteStyleRight: QuoteStyle.None,
@@ -65,8 +65,8 @@ describe('Quote Block', () => {
         cy.get(QuoteBlockSelector).find('svg').should('not.exist');
     });
 
-    it.skip('renders a quote block with a quote and an author', () => {
-        const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {
+    it('renders a quote block with a quote and an author', () => {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
             blockSettings: {
                 content: 'Space is cool!',
                 authorName: 'James Webb',
@@ -80,7 +80,7 @@ describe('Quote Block', () => {
     });
 
     it('writes content to a quote block', () => {
-        const [QuoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, { editorState: true });
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, { editorState: true });
 
         mount(<QuoteBlockWithStubs />);
         cy.get(QuoteBlockContent).find('[contenteditable=true]').type('This is a quote.').blur();
@@ -88,7 +88,7 @@ describe('Quote Block', () => {
     });
 
     it('renders a quote block with correct styling', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeStubs(QuoteBlock, {
+        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
             blockSettings: {
                 sizeChoice: QuoteSize.LargeSize,
                 quotesColor: EXAMPLE_COLOR,

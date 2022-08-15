@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { ERROR_MSG } from './settings';
 import { StorybookBlock } from './StorybookBlock';
 import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 
@@ -14,14 +15,14 @@ const EXAMPLE_COLOR = { r: 22, g: 181, b: 181, a: 1, name: 'Java' };
 
 describe('Storybook Block', () => {
     it('renders a storybook block', () => {
-        const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, {});
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {});
 
         mount(<StorybookBlockWithStubs />);
         cy.get(StorybookBlockSelector).should('exist');
     });
 
-    it.skip('saves a storybook url and shows iframe', () => {
-        const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, { editorState: true });
+    it('saves a storybook url and shows iframe', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, { editorState: true });
 
         mount(<StorybookBlockWithStubs />);
         cy.get(EmptyStateSelector).find('input').type(EXAMPLE_URL).blur();
@@ -30,8 +31,8 @@ describe('Storybook Block', () => {
     });
 
     it('renders storybook iframe without addons', () => {
-        const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, {
-            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.WithoutAddons },
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
+            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.Default },
         });
 
         mount(<StorybookBlockWithStubs />);
@@ -39,8 +40,12 @@ describe('Storybook Block', () => {
     });
 
     it('renders storybook iframe with addons panel at the bottom', () => {
-        const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, {
-            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.Default, positioning: StorybookPosition.Vertical },
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
+            blockSettings: {
+                url: EXAMPLE_URL,
+                style: StorybookStyle.WithAddons,
+                positioning: StorybookPosition.Vertical,
+            },
         });
 
         mount(<StorybookBlockWithStubs />);
@@ -48,7 +53,7 @@ describe('Storybook Block', () => {
     });
 
     it('renders storybook iframe with correct styling', () => {
-        const [StorybookBlockWithStubs] = withAppBridgeStubs(StorybookBlock, {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
             blockSettings: {
                 url: EXAMPLE_URL,
                 hasRadius: true,
@@ -66,5 +71,26 @@ describe('Storybook Block', () => {
         cy.get(IframeSelector).should('have.css', 'border-width', '2px');
         cy.get(IframeSelector).should('have.css', 'border-color', 'rgb(22, 181, 181)');
         cy.get(IframeSelector).should('have.css', 'border-radius', '5px');
+    });
+
+    it('renders error handling when invalid url is typed', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, { editorState: true });
+
+        mount(<StorybookBlockWithStubs />);
+        cy.get(EmptyStateSelector).find('input').type('asdf');
+        cy.get(EmptyStateSelector).contains(ERROR_MSG);
+        cy.get(EmptyStateSelector).find('button').should('be.disabled');
+    });
+
+    it('should not render iframe with invalid url', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
+            editorState: true,
+            blockSettings: { url: 'asdf' },
+        });
+
+        mount(<StorybookBlockWithStubs />);
+        cy.get(EmptyStateSelector);
+        cy.get(EmptyStateSelector).find('button').should('be.disabled');
+        cy.get(EmptyStateSelector).contains(ERROR_MSG);
     });
 });

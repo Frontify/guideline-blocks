@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { AssetDummy, withAppBridgeStubs } from '@frontify/app-bridge';
+import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { CalloutBlock } from './CalloutBlock';
 import { ICON_ASSET_ID } from './settings';
 import { Alignment, Padding, Type, Width } from './types';
@@ -12,14 +12,14 @@ const CalloutIcon = '[data-test-id="callout-icon"]';
 
 describe('Callout Block', () => {
     it('renders a callout block', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock);
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock);
 
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutBlockSelector).should('exist');
     });
 
     it('renders a callout block with the correct background color', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
             blockSettings: {
                 type: Type.Note,
             },
@@ -30,7 +30,7 @@ describe('Callout Block', () => {
     });
 
     it('renders a callout block with the correct layout settings', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
             blockSettings: {
                 alignment: Alignment.Right,
                 paddingChoice: Padding.L,
@@ -45,7 +45,7 @@ describe('Callout Block', () => {
     });
 
     it('renders a callout block with the correct border radius style', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
             blockSettings: {
                 hasExtendedCustomRadius: true,
                 extendedRadiusTopLeft: '10px',
@@ -60,9 +60,9 @@ describe('Callout Block', () => {
     });
 
     it('renders a callout block with an icon', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeStubs(CalloutBlock, {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
             blockAssets: {
-                [ICON_ASSET_ID]: [AssetDummy.with(342)],
+                [ICON_ASSET_ID]: [FrontifyAssetDummy.with(342)],
             },
             blockSettings: {
                 iconSwitch: true,

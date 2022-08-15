@@ -18,21 +18,18 @@
     ```
     $ pnpm install
     ```
-3. Create a build
+3. Create a build of the utilities
     ```
     $ pnpm build
     ```
-4. Start your block (replace with actual name from package.json)
+4. Serve a block
     ```
-    $ pnpm --filter example-name serve
+    $ cd packages/<block name>
+    $ pnpm serve
     ```
-5. Go to your Frontify styleguide
+5. Go to your Frontify guideline
 6. Switch to edit mode
    ![Styleguide Edit mode](./docs/styleguide-edit-mode.png)
 7. Click on the plus icon and add a "Local Block Development" block
    ![Local block development](./docs/local-block-development.png)
 8. Choose port (default is 5600) and click OK
-
-### Create a new release of block settings types
-
-Use `npm run publish:block-settings` to create a new version.

@@ -3,12 +3,12 @@
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
 import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
-import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
+import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
     Settings,
@@ -17,27 +17,24 @@ import {
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
-    borderRadiusClasses,
     heights,
 } from './types';
+import { buildIframeUrl } from './utils/buildIframeUrl';
+import { decodeEntities } from './utils/decodeEntities';
+import { ensureHttps } from './utils/ensureHttps';
+import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
-    const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const [localUrl, setLocalUrl] = useState('');
-    const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
-    const { hoverProps, isHovered } = useHover({});
-    const { containerRef, setIsReadyForPrint } = useReadyForPrint();
-
     const {
         style = StorybookStyle.Default,
         url = '',
         isCustomHeight = false,
         heightChoice = StorybookHeight.Medium,
         heightValue = '',
-        positioning = StorybookPosition.Horizontal,
+        positioning = StorybookPosition.Vertical,
         hasBorder = true,
         borderColor = BORDER_COLOR_DEFAULT_VALUE,
         borderStyle = StorybookBorderStyle.Solid,
@@ -47,68 +44,55 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusValue = '',
     } = blockSettings;
 
-    const deleteUrl = () => {
-        setIframeUrl(null);
-        setLocalUrl('');
-        setBlockSettings({
-            ...blockSettings,
-            url: '',
-        });
-    };
+    const isEditing = useEditorState(appBridge);
+    const [input, setInput] = useState(url);
+    const [storybookUrl, setStorybookUrl] = useState(url);
+    const { hoverProps, isHovered } = useHover({});
+    const { setIsReadyForPrint } = useReadyForPrint(appBridge);
 
-    const saveLink = () => {
+    const iframeUrl = buildIframeUrl(decodeEntities(storybookUrl), style === StorybookStyle.WithAddons, positioning);
+    const saveInputLink = useCallback(() => {
+        setIsReadyForPrint(false);
         setBlockSettings({
             ...blockSettings,
-            url: localUrl,
+            url: ensureHttps(input),
         });
-    };
+    }, [blockSettings, input, setBlockSettings, setIsReadyForPrint]);
 
     useEffect(() => {
-        if (url !== '') {
-            setIsReadyForPrint(false);
-            const newIframeUrl = new URL(url);
-            newIframeUrl.searchParams.set('nav', 'false');
+        setIsReadyForPrint(true);
+    }, [setIsReadyForPrint]);
 
-            const hasAddons = style === StorybookStyle.Default;
-            const shouldAddIframeToUrl = !hasAddons;
-            const includesIframe = newIframeUrl.pathname.toString().includes('iframe.html');
-            const positionValue = positioning === StorybookPosition.Horizontal ? 'right' : 'bottom';
-            const panelValue = !hasAddons ? 'false' : positionValue;
-
-            newIframeUrl.searchParams.set('panel', panelValue);
-
-            if (shouldAddIframeToUrl && !includesIframe) {
-                newIframeUrl.pathname = `${newIframeUrl.pathname}iframe.html`;
-            }
-
-            if (!shouldAddIframeToUrl && includesIframe) {
-                const pathname = newIframeUrl.pathname.toString().replace('iframe.html', '');
-                newIframeUrl.pathname = pathname;
-            }
-
-            setIframeUrl(newIframeUrl);
-        } else if (url === '') {
-            setIsReadyForPrint(true);
-            deleteUrl();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [url, style, positioning]);
+    useEffect(() => {
+        setStorybookUrl(url);
+    }, [url]);
 
     return (
-        <div ref={containerRef} data-test-id="storybook-block" className="tw-relative">
+        <div data-test-id="storybook-block" className="tw-relative">
             {iframeUrl ? (
                 <div {...hoverProps}>
-                    {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
+                    {isEditing && isHovered && (
+                        <RemoveButton
+                            onClick={() => {
+                                setStorybookUrl('');
+                                setBlockSettings({
+                                    ...blockSettings,
+                                    url: '',
+                                });
+                            }}
+                        />
+                    )}
                     <iframe
                         onLoad={() => setIsReadyForPrint(true)}
-                        className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
+                        onError={() => setIsReadyForPrint(true)}
+                        className={'tw-w-full'}
                         style={
                             hasBorder
                                 ? {
                                       borderColor: toRgbaString(borderColor),
                                       borderStyle,
                                       borderWidth,
-                                      borderRadius: radiusValue,
+                                      borderRadius: hasRadius ? radiusValue : radiusStyleMap[radiusChoice],
                                   }
                                 : {}
                         }
@@ -128,13 +112,21 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                             <IconStorybook size={IconSize.Size32} />
                             <div className="tw-w-full tw-max-w-sm">
                                 <TextInput
-                                    value={localUrl}
-                                    onChange={setLocalUrl}
-                                    onEnterPressed={saveLink}
+                                    value={input}
+                                    onChange={setInput}
+                                    onEnterPressed={isValidStorybookUrl(input) ? saveInputLink : undefined}
                                     placeholder={URL_INPUT_PLACEHOLDER}
                                 />
+                                {!isValidStorybookUrl(input) && (
+                                    <div className="tw-text-s tw-text-text-negative tw-mt-2">{ERROR_MSG}</div>
+                                )}
                             </div>
-                            <Button onClick={saveLink}>Confirm</Button>
+                            <Button
+                                onClick={saveInputLink}
+                                disabled={input.length === 0 || !isValidStorybookUrl(input)}
+                            >
+                                Confirm
+                            </Button>
                         </div>
                     ) : (
                         <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">
