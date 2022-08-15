@@ -2,21 +2,21 @@
 
 import 'tailwindcss/tailwind.css';
 import { FC, Key, useEffect, useRef, useState } from 'react';
-//import { /*AppBridgeNative,*/ useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { AppBridgeBlock, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { filterCompleteItems } from './helpers';
 import { SquareWithColor } from './components/SquareWithColor';
 import { SquareWithoutColor } from './components/SquareWithoutColor';
 import { ColorProps } from './types';
 
-// type Props = {
-//     appBridge: AppBridgeNative;
-// };
+type Props = {
+    appBridge: AppBridgeBlock
+};
 
-export const ColorScaleBlock: FC<any> = (/*{ appBridge }*/) => {
+export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     // const isEditing = useEditorState(appBridge);
     const isEditing = true;
     //const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
-    const [blockSettings, setBlockSettings] = useState({ 'color-input': [{ r: 0, g: 0, b: 0, a: 1, width: null }] });
+    const [blockSettings, setBlockSettings] = useState({ 'color-input': [{ r: 0, g: 0, b: 0, a: 1 }] as ColorProps[] | null });
     const [showCompleted] = useState(true);
     const [calculatedWidths, setCalculatedWidths] = useState(false);
     const [editedColor, setEditedColor]: any = useState();
@@ -25,6 +25,8 @@ export const ColorScaleBlock: FC<any> = (/*{ appBridge }*/) => {
     const colorPickerRef: any = useRef();
 
     const colorWidth = 100; // default color square width if all other calculations fail
+
+    console.log(appBridge);
 
     const calculateDefaultColorWidth = (arrLen: number) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
@@ -166,6 +168,7 @@ export const ColorScaleBlock: FC<any> = (/*{ appBridge }*/) => {
             if (loopIndex < index) {
                 leftPos += value && value.width ? value.width : defaultWidth;
             }
+            return value;
         });
         return leftPos;
     };
@@ -215,9 +218,12 @@ export const ColorScaleBlock: FC<any> = (/*{ appBridge }*/) => {
             let needToCalculateWidths = false;
 
             // This determines the minimum number of colors, and checks to see if a custom value is defined or if the settings is using slider values.
-            const minimumColors = blockSettings['colorInputMinimumSwitch']
-                ? parseInt(blockSettings['colorInputMinimum'])
-                : parseInt(blockSettings['colorInputMinimumSlider']);
+
+            // TODO: use real values later
+            // const minimumColors = blockSettings['colorInputMinimumSwitch']
+            //     ? parseInt(blockSettings['colorInputMinimum'])
+            //     : parseInt(blockSettings['colorInputMinimumSlider']);
+            const minimumColors = 6;
 
             try {
                 // Check to see if we have the minimum number of color squares as defined in the settings.
@@ -226,6 +232,7 @@ export const ColorScaleBlock: FC<any> = (/*{ appBridge }*/) => {
                         if (!value || (value && !value.width)) {
                             needToCalculateWidths = true;
                         }
+                        return value;
                     });
 
                     if (needToCalculateWidths) {
@@ -414,6 +421,7 @@ export const ColorScaleBlock: FC<any> = (/*{ appBridge }*/) => {
     };
 
     return (
+        // <div>hello world</div>
         <div
             data-test-id="color-scale-block"
             style={{

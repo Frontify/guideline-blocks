@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { EditExistingColorModalProps } from '../types';
-import { Flyout, ColorPicker, ColorFormat } from '@frontify/arcade';
+import { Flyout, ColorPicker, ColorFormat } from '@frontify/fondue';
 
 export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
     id,

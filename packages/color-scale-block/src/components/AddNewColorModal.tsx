@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { AddNewColorModalProps, ColorProps } from '../types';
-import { Flyout, ColorPicker, ColorFormat } from '@frontify/arcade';
+import { Flyout, ColorPicker, ColorFormat } from '@frontify/fondue';
 
 export const AddNewColorModal: FC<AddNewColorModalProps> = ({
     id,

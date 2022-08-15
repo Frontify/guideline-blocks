@@ -5,7 +5,7 @@ import { SquareWithoutColorProps } from '../types';
 import { EditExistingColorModal } from './EditExistingColorModal';
 import { DragHandle } from './DragHandle';
 import { CustomizationOptionsModal } from './CustomizationOptionsModal';
-import { /*IconDrop, */ IconSize, IconAddSimple } from '@frontify/arcade';
+import { /*IconDrop, */ IconSize, IconAddSimple } from '@frontify/fondue';
 
 export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     id,

@@ -1,4 +1,7 @@
-/* (c) Copyright Frontify Ltd., all rights reserved. */
+import { ColorScaleBlock } from './ColorScaleBlock';
+import { settings } from './settings';
 
-// eslint-disable-next-line import/no-default-export
-export { ColorScaleBlock as default } from './ColorScaleBlock';
+export default {
+    block: ColorScaleBlock,
+    settings,
+};

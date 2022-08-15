@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { AddNewColorTooltipsProps } from '../types';
-import { IconSize, IconAddSimple, TooltipArrow, Tooltip as TooltipComponent } from '@frontify/arcade';
+import { IconSize, IconAddSimple, Tooltip as TooltipComponent } from '@frontify/fondue';
 
 export const AddNewColorTooltips: FC<AddNewColorTooltipsProps> = ({ id, isEditing, setEditedColor }) => (
     <>
@@ -26,14 +26,15 @@ export const AddNewColorTooltips: FC<AddNewColorTooltipsProps> = ({ id, isEditin
                             content="Add color"
                             heading=""
                         >
-                            <TooltipArrow
+                            {/* TODO: update this */}
+                            {/* <TooltipArrow
                                 placement="bottom"
                                 style={{
                                     bottom: 0,
                                     left: '50%',
                                     transform: 'translate3d(-50%, 6px, 0)',
                                 }}
-                            />
+                            /> */}
                         </TooltipComponent>
                     </div>
                 </a>
@@ -58,14 +59,15 @@ export const AddNewColorTooltips: FC<AddNewColorTooltipsProps> = ({ id, isEditin
                         className="tw-hidden group-hover:tw-flex tw-absolute"
                     >
                         <TooltipComponent style={{ width: '95px' }} arrowPosition="top" content="Add color" heading="">
-                            <TooltipArrow
+                            {/* TODO: update this */}
+                            {/* <TooltipArrow
                                 placement="top"
                                 style={{
                                     top: 0,
                                     left: '50%',
                                     transform: 'translate3d(-50%, -6px, 0)',
                                 }}
-                            />
+                            /> */}
                         </TooltipComponent>
                     </div>
                 </a>

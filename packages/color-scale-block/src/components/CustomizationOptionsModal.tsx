@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { CustomizationOptionsModalProps } from '../types';
-import { /*IconDrop,*/ IconSize, IconActions, IconTrash, Flyout } from '@frontify/arcade';
+import { /*IconDrop,*/ IconSize, IconActions, IconTrash, Flyout } from '@frontify/fondue';
 
 export const CustomizationOptionsModal: FC<CustomizationOptionsModalProps> = ({
     id,

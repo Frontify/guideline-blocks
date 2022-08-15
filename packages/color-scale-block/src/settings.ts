@@ -22,6 +22,7 @@ export const settings: BlockSettings = {
     ],
 };
 
+
 // import { IconEnum, /*DropdownSize,*/ MultiInputLayout } from '@frontify/fondue';
 // import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
