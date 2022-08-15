@@ -19,7 +19,7 @@
         "@frontify/eslint-config-react": "0.15.2",
         "@frontify/frontify-cli": "5.1.1",
         "@types/react": "17.0.47",
-        "autoprefixer": "10.4.7",
+        "autoprefixer": "10.4.8",
         "cypress": "9.7.0",
         "eslint": "8.21.0",
         "postcss": "8.4.16",
