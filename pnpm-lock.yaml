@@ -171,7 +171,7 @@ importers:
       autoprefixer: 10.4.7
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -191,10 +191,10 @@ importers:
       '@frontify/eslint-config-react': 0.15.2_kupba46qr4wpvg7cbgcsdngwpq
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
-      autoprefixer: 10.4.7_postcss@8.4.14
+      autoprefixer: 10.4.7_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -222,7 +222,7 @@ importers:
       cypress-real-events: 1.7.1
       dayjs: ^1.11.1
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -249,11 +249,11 @@ importers:
       '@frontify/frontify-cli': 5.1.1
       '@react-types/shared': 3.11.2_react@17.0.2
       '@types/react': 17.0.47
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       cypress-real-events: 1.7.1_cypress@9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -273,7 +273,7 @@ importers:
       autoprefixer: 10.4.8
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -293,10 +293,10 @@ importers:
       '@frontify/eslint-config-react': 0.15.2_kupba46qr4wpvg7cbgcsdngwpq
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -316,7 +316,7 @@ importers:
       autoprefixer: 10.4.8
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -336,10 +336,10 @@ importers:
       '@frontify/eslint-config-react': 0.15.2_kupba46qr4wpvg7cbgcsdngwpq
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -359,7 +359,7 @@ importers:
       autoprefixer: 10.4.8
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -379,10 +379,10 @@ importers:
       '@frontify/eslint-config-react': 0.15.2_kupba46qr4wpvg7cbgcsdngwpq
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -403,7 +403,7 @@ importers:
       autoprefixer: 10.4.8
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -424,10 +424,10 @@ importers:
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
       '@types/react-dom': 17.0.17
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -448,7 +448,7 @@ importers:
       cypress: 9.7.0
       dayjs: 1.11.4
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -469,10 +469,10 @@ importers:
       '@frontify/eslint-config-react': 0.15.2_kupba46qr4wpvg7cbgcsdngwpq
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -492,7 +492,7 @@ importers:
       autoprefixer: 10.4.7
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -512,10 +512,10 @@ importers:
       '@frontify/eslint-config-react': 0.15.2_kupba46qr4wpvg7cbgcsdngwpq
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
-      autoprefixer: 10.4.7_postcss@8.4.14
+      autoprefixer: 10.4.7_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -585,7 +585,7 @@ importers:
       autoprefixer: 10.4.8
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -606,10 +606,10 @@ importers:
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
       '@types/react-dom': 17.0.17
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -630,7 +630,7 @@ importers:
       autoprefixer: 10.4.8
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -651,10 +651,10 @@ importers:
       '@frontify/eslint-config-react': 0.15.2_kupba46qr4wpvg7cbgcsdngwpq
       '@frontify/frontify-cli': 5.1.1
       '@types/react': 17.0.47
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -676,7 +676,7 @@ importers:
       cypress: 9.7.0
       eslint: 8.21.0
       lodash-es: 4.17.21
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -698,10 +698,10 @@ importers:
       '@frontify/frontify-cli': 5.1.1
       '@types/lodash-es': 4.17.6
       '@types/react': 17.0.47
-      autoprefixer: 10.4.8_postcss@8.4.14
+      autoprefixer: 10.4.8_postcss@8.4.16
       cypress: 9.7.0
       eslint: 8.21.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.7
       typescript: 4.7.4
@@ -8345,7 +8345,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: true
 
-  /autoprefixer/10.4.7_postcss@8.4.14:
+  /autoprefixer/10.4.7_postcss@8.4.16:
     resolution: {integrity: sha512-ypHju4Y2Oav95SipEcCcI5J7CGPuvz8oat7sUtYj3ClK44bldfvtvcxK6IEK++7rqB7YchDGzweZIBG+SD0ZAA==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -8357,7 +8357,7 @@ packages:
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
-      postcss: 8.4.14
+      postcss: 8.4.16
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -8374,6 +8374,22 @@ packages:
       normalize-range: 0.1.2
       picocolors: 1.0.0
       postcss: 8.4.14
+      postcss-value-parser: 4.2.0
+    dev: true
+
+  /autoprefixer/10.4.8_postcss@8.4.16:
+    resolution: {integrity: sha512-75Jr6Q/XpTqEf6D2ltS5uMewJIx5irCU1oBYJrWjFenq/m12WRRrz6g15L1EIoYvPLXTbEry7rDOwrcYNj77xw==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.21.3
+      caniuse-lite: 1.0.30001373
+      fraction.js: 4.2.0
+      normalize-range: 0.1.2
+      picocolors: 1.0.0
+      postcss: 8.4.16
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -12373,6 +12389,15 @@ packages:
       nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /postcss/8.4.16:
+    resolution: {integrity: sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.4
+      picocolors: 1.0.0
+      source-map-js: 1.0.2
+    dev: true
 
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
