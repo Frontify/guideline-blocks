@@ -29,7 +29,7 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: 'colorspaces',
             type: 'checklist',
