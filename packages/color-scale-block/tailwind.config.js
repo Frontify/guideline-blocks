@@ -1,6 +1,5 @@
 module.exports = {
-    presets: [require('@frontify/fondue/tailwind')],
-    content: ['src/**/*.{ts,tsx}'],
+    presets: [require('@frontify/arcade/tailwind')],
     corePlugins: {
         preflight: false,
     },
