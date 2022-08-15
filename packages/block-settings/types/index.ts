@@ -9,7 +9,7 @@ export type { Rule } from './validation';
 
 export enum Sections {
     Main = 'main',
-    Content = 'content',
+    Basics = 'basics',
     Layout = 'layout',
     Style = 'style',
     Security = 'security',
@@ -18,7 +18,7 @@ export enum Sections {
 
 export type BlockSettings = {
     [Sections.Main]?: SettingBlock[];
-    [Sections.Content]?: SettingBlock[];
+    [Sections.Basics]?: SettingBlock[];
     [Sections.Layout]?: SettingBlock[];
     [Sections.Style]?: SettingBlock[];
     [Sections.Security]?: SettingBlock[];

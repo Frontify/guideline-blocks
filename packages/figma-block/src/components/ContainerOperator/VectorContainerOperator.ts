@@ -26,6 +26,9 @@ export class VectorContainerOperator extends ContainerOperator {
 
         this.mouseMoveListener = this.onMouseMove.bind(this);
         this.mouseUpListener = this.onMouseUp.bind(this);
+
+        this.imageStage.alterHeight(this.imageStage.customHeight);
+        this.imageContainer.setContainerToAbsolute();
     }
 
     private onMouseOver() {
@@ -69,10 +72,19 @@ export class VectorContainerOperator extends ContainerOperator {
         document.removeEventListener('mousemove', this.mouseMoveListener);
     }
 
-    public resize(zoom = Zoom.OUT) {
+    public resize(zoom = Zoom.OUT): this {
         this.imageContainer.setImageContainerSize(
             this.imageContainer.width * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT),
             this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT)
         );
+        return this;
+    }
+
+    public fitAndCenterTheImageContainerWithinTheImageStage(): this {
+        this.imageElement.hide();
+        this.resizeImageContainerToFitWithinImageStage();
+        this.centerImageContainerWithinTheImageStage();
+        this.imageElement.show();
+        return this;
     }
 }

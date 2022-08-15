@@ -3,7 +3,7 @@
 import {
     AssetChooserObjectType,
     AssetChooserProjectType,
-    AssetChooserResult,
+    FrontifyAsset,
     useAssetChooser,
     useBlockAssets,
     useBlockSettings,
@@ -38,20 +38,21 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         hasBorder = true,
         isCustomHeight = false,
         heightValue = heights[HeightChoices.Small],
-        heightChoice = HeightChoices.Medium,
+        heightChoice = HeightChoices.Small,
         showFigmaLink = true,
         hasBackground = false,
+        hasLimitedOptions = true,
     } = blockSettings;
 
     useEffect(() => {
-        setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.external_url));
+        setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.externalUrl ?? undefined));
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
     }, [asset, figmaPreviewId]);
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            (result: AssetChooserResult) => {
-                const resultId = result.screenData[0].id;
+            (result: FrontifyAsset[]) => {
+                const resultId = result[0].id;
                 updateAssetIdsFromKey(ASSET_ID, [resultId]);
                 closeAssetChooser();
             },
@@ -93,16 +94,16 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
                 <ImageStage
                     title={asset.title}
-                    url={asset.preview_url}
-                    isContainerVector={true}
+                    url={asset.previewUrl}
+                    hasLimitedOptions={hasLimitedOptions}
                     height={height}
                     hasBorder={hasBorder}
-                    hasBackground={hasBackground}
+                    hasBackground={!hasLimitedOptions && hasBackground}
                 />
                 {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
             </div>
         ),
-        [ShowFigmaLink, asset?.preview_url, asset?.title, assetExternalUrl]
+        [ShowFigmaLink, asset?.previewUrl, asset?.title, assetExternalUrl, hasLimitedOptions]
     );
 
     const ShowFigmaLive = useCallback(
@@ -118,7 +119,11 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         style={ButtonStyle.Secondary}
                     />
                 </div>
-                <iframe src={asset?.external_url} className="tw-h-full tw-w-full tw-border-none" loading="lazy" />
+                <iframe
+                    src={asset?.externalUrl ?? undefined}
+                    className="tw-h-full tw-w-full tw-border-none"
+                    loading="lazy"
+                />
             </div>
         ),
         [asset]
@@ -145,13 +150,17 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </div>
 
                 <div className="tw-relative tw-w-full tw-h-full">
-                    <iframe src={asset?.external_url} className="tw-h-full tw-w-full tw-border-none" loading="lazy" />
+                    <iframe
+                        src={asset?.externalUrl ?? undefined}
+                        className="tw-h-full tw-w-full tw-border-none"
+                        loading="lazy"
+                    />
                 </div>
             </div>
         );
 
         return createPortal(modal, modalRoot);
-    }, [asset?.external_url]);
+    }, [asset?.externalUrl]);
 
     return (
         <div data-test-id="figma-block">

@@ -9,13 +9,13 @@ import { ImageStageProps } from './types';
 export const ImageStage = ({
     title,
     url,
-    isContainerVector = true,
+    hasLimitedOptions = true,
     height = DEFAULT_HEIGHT,
     hasBorder = false,
     hasBackground = false,
 }: ImageStageProps) => {
     const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
-        useImageStage({ height, isContainerVector });
+        useImageStage({ height, hasLimitedOptions });
 
     return (
         <div
@@ -26,9 +26,9 @@ export const ImageStage = ({
                 hasBorder ? 'tw-border-black-40' : 'tw-border-transparent',
             ])}
         >
-            <div className="tw-w-full tw-relative tw-overflow-hidden">
-                <div ref={stageRef} className="tw-relative tw-overflow-hidden" style={{ height }}>
-                    <div className="tw-absolute" ref={containerRef}>
+            <div className="tw-group tw-w-full tw-relative tw-overflow-hidden">
+                <div ref={stageRef} className="tw-relative tw-overflow-hidden">
+                    <div ref={containerRef}>
                         <img
                             ref={imageRef}
                             alt={title}
@@ -40,7 +40,7 @@ export const ImageStage = ({
                         />
                     </div>
                 </div>
-                {isContainerVector && (
+                {!hasLimitedOptions && (
                     <>
                         <DrawFullScreenActionButton
                             isFullScreen={isFullScreen}
