@@ -1,14 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/fondue-tokens/styles';
-import 'tailwindcss/tailwind.css';
-
-import { FC } from 'react';
-
+import { ReactElement } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { RichTextEditor } from '@frontify/fondue';
-
 import { ColorBlockType, Props, Settings } from './types';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
@@ -17,18 +12,17 @@ import { DropsItem } from './components/drops/DropsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
 import { CardsItem } from './components/cards/CardsItem';
 
-export const ColorBlock: FC<Props> = ({ appBridge }) => {
+const DEMO_COLORS = ['#100100', '#200200', '#300300', '#400400', '#500500', '#600600', '#700700'];
+
+export const ColorBlock = ({ appBridge }: Props): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const { designTokens } = useGuidelineDesignTokens();
     const isEditing = useEditorState(appBridge);
 
     const { view = ColorBlockType.Cards, colorspaces = ['hex, rgb'], name = '', description = '' } = blockSettings;
 
     const onNameChange = (value: string) => setBlockSettings({ name: value });
     const onDescriptionChange = (value: string) => setBlockSettings({ description: value });
-
-    const { designTokens } = useGuidelineDesignTokens();
-
-    const demoColors = ['#100100', '#200200', '#300300', '#400400', '#500500', '#600600', '#700700'];
 
     const wrapperClasses: Record<ColorBlockType, string> = {
         [ColorBlockType.List]: '',
@@ -59,7 +53,7 @@ export const ColorBlock: FC<Props> = ({ appBridge }) => {
             </div>
 
             <div className={wrapperClasses[view]}>
-                {demoColors.map((color: string) => (
+                {DEMO_COLORS.map((color: string) => (
                     <>
                         {view === ColorBlockType.List && (
                             <ListItem color={color} colorSpaces={colorspaces} isEditing={isEditing} />

@@ -2,11 +2,11 @@
 
 import { ReactNode } from 'react';
 
-import { AppBridgeNative } from '@frontify/app-bridge';
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color, ColorPickerProps } from '@frontify/fondue';
 
 export type Props = {
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
 
 export type Settings = {
