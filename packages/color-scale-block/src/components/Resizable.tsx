@@ -41,7 +41,7 @@ export const Resizable: FC<ResizableProps> = ({ children }) => {
 
     return (
         <div className="tw-relative tw-flex tw-items-center">
-            <div id="test-wrap" ref={ref}>
+            <div id="test-wrap" className="tw-min-w-[100px]" ref={ref}>
                 {children}
             </div>
 

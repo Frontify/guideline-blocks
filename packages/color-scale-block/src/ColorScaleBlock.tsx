@@ -48,7 +48,7 @@ export const ColorScaleBlock: FC = () => {
         <div className="tw-flex tw-flex-wrap tw-min-h-[96px] tw-border">
             <DndProvider backend={HTML5Backend}>
                 {resizeableArr.map((item, index) => (
-                    <>
+                    <Fragment key={index}>
                         <DropZone
                             key={`orderable-list-item-${item.id}-before`}
                             data={{
@@ -74,7 +74,7 @@ export const ColorScaleBlock: FC = () => {
                                 treeId={listId}
                             />
                         )}
-                    </>
+                    </Fragment>
                 ))}
             </DndProvider>
         </div>
