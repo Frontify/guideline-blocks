@@ -7,7 +7,7 @@ importers:
       '@babel/core': 7.18.10
       '@cypress/react': 5.12.5
       '@cypress/vite-dev-server': 2.2.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@testing-library/react-hooks': 8.0.1
       '@types/node': 17.0.31
       '@types/react': 17.0.47
@@ -24,7 +24,7 @@ importers:
       vite: 2.9.15
       vitest: 0.20.3
     dependencies:
-      '@frontify/fondue': 9.11.0_2q5tclbizoprjkjpe6zqtmly6e
+      '@frontify/fondue': 9.12.2_2q5tclbizoprjkjpe6zqtmly6e
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -162,7 +162,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -179,7 +179,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -205,7 +205,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -230,7 +230,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -264,7 +264,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -281,7 +281,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -307,7 +307,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -324,7 +324,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -350,7 +350,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -367,7 +367,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -393,7 +393,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -411,7 +411,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -438,7 +438,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -456,7 +456,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -483,7 +483,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -500,7 +500,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -525,7 +525,7 @@ importers:
       '@babel/core': 7.18.10
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-typescript': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/guideline-blocks-settings': workspace:*
       '@testing-library/react-hooks': ^8.0.1
       '@types/node': 17.0.38
@@ -546,7 +546,7 @@ importers:
       vite-plugin-dts: 1.4.1
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_j7r7trecr6hiwzhwdd4ga3mqeq
+      '@frontify/fondue': 9.12.2_j7r7trecr6hiwzhwdd4ga3mqeq
       '@frontify/guideline-blocks-settings': link:../block-settings
       tinycolor2: 1.4.2
     devDependencies:
@@ -575,7 +575,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -593,7 +593,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -620,7 +620,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -638,7 +638,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -665,7 +665,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 9.12.2
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -684,7 +684,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 9.12.2_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -762,28 +762,11 @@ packages:
       '@jridgewell/gen-mapping': 0.3.2
       jsesc: 2.5.2
 
-  /@babel/generator/7.18.9:
-    resolution: {integrity: sha512-wt5Naw6lJrL1/SGkipMiFxJjtyczUWTP38deiP1PO60HsBjDeKk08CGC3S8iVuvf0FmTdgKwU1KIXzSKL1G0Ug==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/types': 7.18.9
-      '@jridgewell/gen-mapping': 0.3.2
-      jsesc: 2.5.2
-    dev: false
-
-  /@babel/helper-annotate-as-pure/7.16.7:
-    resolution: {integrity: sha512-s6t2w/IPQVTAET1HitoowRGXooX8mCgtuP5195wD/QJPV6wYjpujCGF7JuMODVX2ZAJOf1GT6DT9MHEZvLOFSw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/types': 7.18.9
-    dev: false
-
   /@babel/helper-annotate-as-pure/7.18.6:
     resolution: {integrity: sha512-duORpUiYrEpzKIop6iNbjnwKLAKnJ47csTyRACyEmWj0QdUrm5aqNJGHSSEQSUAvNW0ojX0dOmK9dZduvkfeXA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.18.10
-    dev: true
 
   /@babel/helper-compilation-targets/7.18.9_@babel+core@7.18.10:
     resolution: {integrity: sha512-tzLCyVmqUiFlcFoAPLA/gL9TeYrF61VLNtb+hvkuVaB5SUjW7jcfrglBIX1vUIoT7CLP3bBlIMeyEsIl2eFQNg==}
@@ -806,19 +789,19 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.18.6
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
 
   /@babel/helper-hoist-variables/7.18.6:
     resolution: {integrity: sha512-UlJQPkFqFULIcyW5sbzgbkxn2FKRgwWiRexcuaR8RNJRy8+LLveqPjwZV/bwrLZCN0eUHD/x8D0heK1ozuoo6Q==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
 
   /@babel/helper-module-imports/7.18.6:
     resolution: {integrity: sha512-0NFvs3VkuSYbFi1x2Vd6tKrywq+z/cLeYC/RJNFrIX/30Bf5aiGYbtvGXolEktzJH8o5E5KJ3tT+nkxuuZFVlA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
 
   /@babel/helper-module-transforms/7.18.9:
     resolution: {integrity: sha512-KYNqY0ICwfv19b31XzvmI/mfcylOzbLtowkw+mfvGPAQ3kfCnMLYbED3YecL5tPd8nAYFQFAd6JHp2LxZk/J1g==}
@@ -850,7 +833,7 @@ packages:
     resolution: {integrity: sha512-bde1etTx6ZyTmobl9LLMMQsaizFVZrquTEHOqKeQESMKo4PlObf+8+JA25ZsIpZhT/WEd39+vOdLXAFG/nELpA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
 
   /@babel/helper-string-parser/7.18.10:
     resolution: {integrity: sha512-XtIfWmeNY3i4t7t4D2t02q50HvqHybPqW2ki1kosnvWCwuCMeo81Jf0gwr85jy/neUdg5XDdeFE/80DXiO+njw==}
@@ -908,7 +891,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
 
   /@babel/plugin-syntax-jsx/7.18.6_@babel+core@7.18.10:
     resolution: {integrity: sha512-6mmljtAedFGTWu2p/8WIORGwy+61PLgOMPOdazc7YoJ9ZCWUyFy3A6CpPkRKLKD1ToAesxX8KGEViAiLo9N+7Q==}
@@ -984,7 +967,7 @@ packages:
     dependencies:
       '@babel/code-frame': 7.18.6
       '@babel/parser': 7.18.9
-      '@babel/types': 7.18.9
+      '@babel/types': 7.18.10
 
   /@babel/traverse/7.18.10:
     resolution: {integrity: sha512-J7ycxg0/K9XCtLyHf0cz2DqDihonJeIo+z+HEdRe9YuT8TY4A66i+Ab2/xZCEW7Ro60bPCBBfqqboHSamoV3+g==}
@@ -1003,18 +986,18 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@babel/traverse/7.18.9_supports-color@5.5.0:
-    resolution: {integrity: sha512-LcPAnujXGwBgv3/WHv01pHtb2tihcyW1XuL9wd7jqh1Z8AQkTd+QVjMrMijrln0T7ED3UXLIy36P9Ao7W75rYg==}
+  /@babel/traverse/7.18.10_supports-color@5.5.0:
+    resolution: {integrity: sha512-J7ycxg0/K9XCtLyHf0cz2DqDihonJeIo+z+HEdRe9YuT8TY4A66i+Ab2/xZCEW7Ro60bPCBBfqqboHSamoV3+g==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@babel/generator': 7.18.9
+      '@babel/generator': 7.18.10
       '@babel/helper-environment-visitor': 7.18.9
       '@babel/helper-function-name': 7.18.9
       '@babel/helper-hoist-variables': 7.18.6
       '@babel/helper-split-export-declaration': 7.18.6
-      '@babel/parser': 7.18.9
-      '@babel/types': 7.18.9
+      '@babel/parser': 7.18.10
+      '@babel/types': 7.18.10
       debug: 4.3.4_supports-color@5.5.0
       globals: 11.12.0
     transitivePeerDependencies:
@@ -1026,13 +1009,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/helper-string-parser': 7.18.10
-      '@babel/helper-validator-identifier': 7.18.6
-      to-fast-properties: 2.0.0
-
-  /@babel/types/7.18.9:
-    resolution: {integrity: sha512-WwMLAg2MvJmt/rKEVQBBhIVffMmnilX4oe0sRe7iPOHIGsqpruFHHdrfj4O1CMMtgMtCU4oPafZjDPCRgO57Wg==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
       '@babel/helper-validator-identifier': 7.18.6
       to-fast-properties: 2.0.0
 
@@ -1456,8 +1432,88 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue/9.11.0_2q5tclbizoprjkjpe6zqtmly6e:
+  /@frontify/fondue/9.11.0_t725rsozewy5bvec5mdo3q54zq:
     resolution: {integrity: sha512-ZqQP6gOP+j6ZynpnzvZNirpRh+CJAvO0eqOU5COwuvRRy6qvrjE38O1xTgGW96onlpbEVa5I2+YgOFUG86pL/A==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.1.0
+      '@popperjs/core': 2.11.5
+      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
+      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
+      '@react-aria/button': 3.5.1_react@17.0.2
+      '@react-aria/checkbox': 3.3.4_react@17.0.2
+      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.1.9_react@17.0.2
+      '@react-aria/focus': 3.6.1_react@17.0.2
+      '@react-aria/interactions': 3.9.1_react@17.0.2
+      '@react-aria/link': 3.2.5_react@17.0.2
+      '@react-aria/listbox': 3.4.5_react@17.0.2
+      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.1.11_react@17.0.2
+      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.9.1_react@17.0.2
+      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.1.8_react@17.0.2
+      '@react-aria/utils': 3.13.1_react@17.0.2
+      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
+      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
+      '@react-stately/tree': 3.3.1_react@17.0.2
+      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 10.6.0_m5po4i2u3f2bs27cosajezlocy
+      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
+      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
+      date-fns: 2.28.0
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.12
+      react: 17.0.2
+      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_zdsfwtvwq54q3oqxwtq4jnbhh4
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.1.0
+      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
+      react-textarea-autosize: 8.3.4_zdsfwtvwq54q3oqxwtq4jnbhh4
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
+      tinycolor2: 1.4.2
+      xstate: 4.32.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/fondue/9.12.2_2q5tclbizoprjkjpe6zqtmly6e:
+    resolution: {integrity: sha512-9Qbob/OX3+Xnfk8lF1ryWT6G4RiLJSIUp8ZE3FbQWPfCFSdr3vEUkOKgbd0O+zhNBapxgyY6Rbcvzabyv5PdBA==}
     peerDependencies:
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -1536,8 +1592,8 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/fondue/9.11.0_j7r7trecr6hiwzhwdd4ga3mqeq:
-    resolution: {integrity: sha512-ZqQP6gOP+j6ZynpnzvZNirpRh+CJAvO0eqOU5COwuvRRy6qvrjE38O1xTgGW96onlpbEVa5I2+YgOFUG86pL/A==}
+  /@frontify/fondue/9.12.2_j7r7trecr6hiwzhwdd4ga3mqeq:
+    resolution: {integrity: sha512-9Qbob/OX3+Xnfk8lF1ryWT6G4RiLJSIUp8ZE3FbQWPfCFSdr3vEUkOKgbd0O+zhNBapxgyY6Rbcvzabyv5PdBA==}
     peerDependencies:
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -1616,8 +1672,8 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/fondue/9.11.0_l4iobuvyq4rslriq73hletyxxu:
-    resolution: {integrity: sha512-ZqQP6gOP+j6ZynpnzvZNirpRh+CJAvO0eqOU5COwuvRRy6qvrjE38O1xTgGW96onlpbEVa5I2+YgOFUG86pL/A==}
+  /@frontify/fondue/9.12.2_l4iobuvyq4rslriq73hletyxxu:
+    resolution: {integrity: sha512-9Qbob/OX3+Xnfk8lF1ryWT6G4RiLJSIUp8ZE3FbQWPfCFSdr3vEUkOKgbd0O+zhNBapxgyY6Rbcvzabyv5PdBA==}
     peerDependencies:
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -1672,86 +1728,6 @@ packages:
       react-is: 18.1.0
       react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
       react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
-      tinycolor2: 1.4.2
-      xstate: 4.32.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/fondue/9.11.0_t725rsozewy5bvec5mdo3q54zq:
-    resolution: {integrity: sha512-ZqQP6gOP+j6ZynpnzvZNirpRh+CJAvO0eqOU5COwuvRRy6qvrjE38O1xTgGW96onlpbEVa5I2+YgOFUG86pL/A==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/fondue-tokens': 3.1.0
-      '@popperjs/core': 2.11.5
-      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
-      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
-      '@react-aria/button': 3.5.1_react@17.0.2
-      '@react-aria/checkbox': 3.3.4_react@17.0.2
-      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.1.9_react@17.0.2
-      '@react-aria/focus': 3.6.1_react@17.0.2
-      '@react-aria/interactions': 3.9.1_react@17.0.2
-      '@react-aria/link': 3.2.5_react@17.0.2
-      '@react-aria/listbox': 3.4.5_react@17.0.2
-      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.1.11_react@17.0.2
-      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.9.1_react@17.0.2
-      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.1.8_react@17.0.2
-      '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.2.0_react@17.0.2
-      '@react-stately/collections': 3.4.2_react@17.0.2
-      '@react-stately/combobox': 3.2.0_react@17.0.2
-      '@react-stately/list': 3.5.2_react@17.0.2
-      '@react-stately/menu': 3.4.0_react@17.0.2
-      '@react-stately/overlays': 3.4.0_react@17.0.2
-      '@react-stately/radio': 3.5.0_react@17.0.2
-      '@react-stately/select': 3.3.0_react@17.0.2
-      '@react-stately/table': 3.3.0_react@17.0.2
-      '@react-stately/toggle': 3.4.0_react@17.0.2
-      '@react-stately/tooltip': 3.2.0_react@17.0.2
-      '@react-stately/tree': 3.3.1_react@17.0.2
-      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate': 10.6.0_m5po4i2u3f2bs27cosajezlocy
-      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
-      '@xstate/react': 1.6.3_dbulrytzcyinvt4pblc3txuwry
-      date-fns: 2.28.0
-      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.12
-      react: 17.0.2
-      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_zdsfwtvwq54q3oqxwtq4jnbhh4
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.1.0
-      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
-      react-textarea-autosize: 8.3.4_zdsfwtvwq54q3oqxwtq4jnbhh4
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-hyperscript: 0.77.0_slate@0.78.0
@@ -2147,7 +2123,7 @@ packages:
       '@react-aria/link': 3.2.5_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
       '@react-types/breadcrumbs': 3.3.0_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -2160,7 +2136,7 @@ packages:
       '@react-aria/focus': 3.6.1_react@17.0.2
       '@react-aria/interactions': 3.9.1_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-stately/toggle': 3.3.1_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
       '@react-types/button': 3.5.1_react@17.0.2
       react: 17.0.2
     dev: false
@@ -2214,7 +2190,7 @@ packages:
       '@babel/runtime': 7.17.9
       '@react-aria/focus': 3.6.1_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-stately/overlays': 3.2.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
       '@react-types/dialog': 3.3.5_react@17.0.2
       react: 17.0.2
     dev: false
@@ -2240,7 +2216,7 @@ packages:
       '@babel/runtime': 7.17.9
       '@react-aria/interactions': 3.9.1_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       clsx: 1.1.1
       react: 17.0.2
     dev: false
@@ -2279,7 +2255,7 @@ packages:
       '@internationalized/number': 3.1.1
       '@react-aria/ssr': 3.2.0_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -2312,7 +2288,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.17.9
       '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -2385,12 +2361,12 @@ packages:
       '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/selection': 3.9.1_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-stately/collections': 3.4.1_react@17.0.2
-      '@react-stately/menu': 3.2.7_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
       '@react-stately/tree': 3.3.1_react@17.0.2
       '@react-types/button': 3.5.1_react@17.0.2
-      '@react-types/menu': 3.5.3_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/menu': 3.7.0_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false
@@ -2551,9 +2527,9 @@ packages:
       '@react-aria/focus': 3.6.1_react@17.0.2
       '@react-aria/interactions': 3.9.1_react@17.0.2
       '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-stately/tooltip': 3.0.9_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
-      '@react-types/tooltip': 3.1.6_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
+      '@react-types/tooltip': 3.2.2_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -3023,7 +2999,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.17.9
       '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -3051,7 +3027,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1
     dependencies:
       '@react-types/link': 3.2.5_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -3060,7 +3036,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -3114,8 +3090,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1
     dependencies:
-      '@react-types/overlays': 3.5.5_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/overlays': 3.6.2_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -3152,7 +3128,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1
     dependencies:
       '@react-aria/interactions': 3.9.1_react@17.0.2
-      '@react-types/shared': 3.13.1_react@17.0.2
+      '@react-types/shared': 3.14.0_react@17.0.2
       react: 17.0.2
     dev: false
 
@@ -8410,7 +8386,7 @@ packages:
     peerDependencies:
       styled-components: '>= 2'
     dependencies:
-      '@babel/helper-annotate-as-pure': 7.16.7
+      '@babel/helper-annotate-as-pure': 7.18.6
       '@babel/helper-module-imports': 7.18.6
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
@@ -13769,7 +13745,7 @@ packages:
       react-is: '>= 16.8.0'
     dependencies:
       '@babel/helper-module-imports': 7.18.6
-      '@babel/traverse': 7.18.9_supports-color@5.5.0
+      '@babel/traverse': 7.18.10_supports-color@5.5.0
       '@emotion/is-prop-valid': 1.1.2
       '@emotion/stylis': 0.8.5
       '@emotion/unitless': 0.7.5
