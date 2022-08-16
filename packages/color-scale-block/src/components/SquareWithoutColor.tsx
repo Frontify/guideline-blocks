@@ -104,15 +104,6 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                             updateColor={updateColor}
                             setFormat={setFormat}
                         />
-                        <CustomizationOptionsModal
-                            id={id}
-                            colorOptionsRef={colorOptionsRef}
-                            colorOptionsOpen={colorOptionsOpen}
-                            setColorOptionsOpen={setColorOptionsOpen}
-                            isEditing={isEditing}
-                            setEditedColor={setEditedColor}
-                            deleteColor={deleteColor}
-                        />
                         <DragHandle id={id} currentColor={currentSquare} isEditing={isEditing} onDragStart={onDragStart} />
                     </div>
                 ) : (

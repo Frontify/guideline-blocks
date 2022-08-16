@@ -7,6 +7,7 @@ import { AddNewColorTooltips } from './AddNewColorTooltips';
 import { EditExistingColorModal } from './EditExistingColorModal';
 import { DragHandle } from './DragHandle';
 import { CustomizationOptionsModal } from './CustomizationOptionsModal';
+import { IconTrash, IconSize } from '@frontify/fondue';
 
 export const SquareWithColor: FC<SquareWithColorProps> = ({
     id,
@@ -63,7 +64,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 backgroundColor: `rgba(${backgroundColorRgba})`,
                 height: 93,
             }}
-            className="tw-group tw-rounded-md tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full"
+            className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full hover:tw-border-black hover:tw-border"
         >
             <EditExistingColorModal
                 id={id}
