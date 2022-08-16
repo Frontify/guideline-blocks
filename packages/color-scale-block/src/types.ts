@@ -43,6 +43,8 @@ export type SquareWithColorProps = {
 
 export type SquareWithoutColorProps = {
     id: number;
+    totalNumOfBlocks: number;
+    placeholderColor: string;
     width: number;
     currentSquare: ColorProps;
     calculateLeftPos: (id: number, width: number) => void;

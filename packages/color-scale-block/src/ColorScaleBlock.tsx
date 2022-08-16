@@ -16,6 +16,14 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     //const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
     const [blockSettings, setBlockSettings] = useState({ 'color-input': [{ color: { r: 0, g: 0, b: 0, a: 1} }] as ColorProps[] | null });
+    const emptyBlockColors: string[] = [
+        '#D5D6D6',
+        '#DFDFDF',
+        '#E8E9E9',
+        '#F1F1F1',
+        '#FAFAFA',
+        '#FFFFFF',
+    ];
     const [showCompleted] = useState(true);
     const [calculatedWidths, setCalculatedWidths] = useState(false);
     const [editedColor, setEditedColor]: any = useState();
@@ -424,7 +432,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             style={{
                 height: 140,
             }}
-            className={`color-scale-block tw-overflow-visible tw-pb-5 tw-pb-8 tw-mb-4 ${
+            className={`color-scale-block tw-rounded-md tw-overflow-visible tw-pb-5 tw-pb-8 tw-mb-4 ${
                 isEditing ? 'editing' : ''
             } tw-w-full tw-flex`}
             ref={colorScaleBlockRef}
@@ -479,6 +487,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                             ) : (
                                 <SquareWithoutColor
                                     id={id}
+                                    placeholderColor={emptyBlockColors[id]}
+                                    totalNumOfBlocks={displayableItems.length}
                                     width={width}
                                     currentSquare={value}
                                     onDragStart={onDragStart}
