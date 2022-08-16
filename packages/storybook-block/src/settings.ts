@@ -38,14 +38,14 @@ export const settings: BlockSettings = {
             size: 'Large' as DropdownSize.Large,
             choices: [
                 {
-                    value: StorybookStyle.WithAddons,
-                    icon: 'Iframe' as IconEnum.Iframe,
-                    label: 'Story with add-ons',
-                },
-                {
                     value: StorybookStyle.Default,
                     icon: 'Iframe' as IconEnum.Iframe,
                     label: 'Story only',
+                },
+                {
+                    value: StorybookStyle.WithAddons,
+                    icon: 'Iframe' as IconEnum.Iframe,
+                    label: 'Story with add-ons',
                 },
             ],
         },
