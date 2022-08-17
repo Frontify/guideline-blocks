@@ -3,10 +3,10 @@
 import { mount } from '@cypress/react';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './ImageStageControls';
 
-const ICON_ZOOM_IN_SELECTOR = '[name="IconAddSimple"]';
+const ICON_ZOOM_IN_SELECTOR = '[name="IconPlus20"]';
 const ICON_ZOOM_OUT_SELECTOR = '[name="IconMinus20"]';
-const ICON_REJECT_SELECTOR = '[name="IconReject"]';
-const ICON_EXPAND_SELECTOR = '[name="IconExpand"]';
+const ICON_REJECT_SELECTOR = '[name="IconCross20"]';
+const ICON_EXPAND_SELECTOR = '[name="IconArrowExpand20"]';
 
 describe('Image Control Buttons', () => {
     describe('DrawFullScreenActionButton', () => {
