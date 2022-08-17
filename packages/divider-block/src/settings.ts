@@ -59,7 +59,7 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: 'DividerBlank' as IconEnum | undefined,
+                    icon: 'DividerBlank' as IconEnum.DividerBlank,
                     label: 'Spacer (no line)',
                 },
                 {

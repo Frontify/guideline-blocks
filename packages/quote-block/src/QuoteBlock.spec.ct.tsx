@@ -10,10 +10,10 @@ const QuoteBlockAuthor = '[data-test-id="quote-block-author"]';
 const QuoteBlockContent = '[data-test-id="rich-text-editor"]';
 
 const EXAMPLE_COLOR = {
-    r: 22,
-    g: 181,
-    b: 181,
-    a: 1,
+    red: 22,
+    green: 181,
+    blue: 181,
+    alpha: 1,
     name: 'Java',
 };
 

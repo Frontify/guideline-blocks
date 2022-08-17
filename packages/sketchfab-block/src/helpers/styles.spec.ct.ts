@@ -10,7 +10,7 @@ describe('getIframeStyles', () => {
     it('passes each test', () => {
         const data: { args: [BorderStyle, string, Color, string]; expected: CSSProperties }[] = [
             {
-                args: [BorderStyle.Dotted, '2px', { r: 50, g: 100, b: 230, a: 0.1 }, '3px'],
+                args: [BorderStyle.Dotted, '2px', { red: 50, green: 100, blue: 230, alpha: 0.1 }, '3px'],
                 expected: {
                     borderStyle: borderStyles[BorderStyle.Dotted],
                     borderWidth: '2px',
@@ -19,7 +19,7 @@ describe('getIframeStyles', () => {
                 },
             },
             {
-                args: [BorderStyle.Solid, '20px', { r: 30, g: 100, b: 0, a: 1 }, ''],
+                args: [BorderStyle.Solid, '20px', { red: 30, green: 100, blue: 0, alpha: 1 }, ''],
                 expected: {
                     borderStyle: borderStyles[BorderStyle.Solid],
                     borderWidth: '20px',
@@ -28,7 +28,7 @@ describe('getIframeStyles', () => {
                 },
             },
             {
-                args: [BorderStyle.Dotted, '0', { r: 0, g: 0, b: 0, a: 0 }, ''],
+                args: [BorderStyle.Dotted, '0', { red: 0, green: 0, blue: 0, alpha: 0 }, ''],
                 expected: {
                     borderStyle: borderStyles[BorderStyle.Dotted],
                     borderWidth: '0',

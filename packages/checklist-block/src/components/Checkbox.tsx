@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FOCUS_STYLE, IconCheck } from '@frontify/fondue';
+import { FOCUS_STYLE, IconCheckMark } from '@frontify/fondue';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
@@ -78,7 +78,7 @@ export const Checkbox: FC<CheckboxProps> = ({
                 data-test-id="checkbox"
                 data-checked={checked}
             >
-                {checked && <IconCheck />}
+                {checked && <IconCheckMark />}
             </span>
             {showLabel && (
                 <CheckboxLabel disabled={disabled} htmlFor={id} dateInMs={dateCompleted}>

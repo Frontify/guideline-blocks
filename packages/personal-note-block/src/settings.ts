@@ -6,16 +6,16 @@ import { getBorderRadiusSettings, getBorderSettings, getPaddingSettings } from '
 import { NoteStyle, NoteVisibility, paddingStyleMap } from './types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
-    r: 247,
-    g: 247,
-    b: 247,
-    a: 1,
+    red: 247,
+    green: 247,
+    blue: 247,
+    alpha: 1,
 };
 export const BORDER_COLOR_DEFAULT_VALUE: Color = {
-    r: 234,
-    g: 235,
-    b: 235,
-    a: 1,
+    red: 234,
+    green: 235,
+    blue: 235,
+    alpha: 1,
 };
 
 const HAS_BACKGROUND_ID = 'hasBackground';
@@ -30,7 +30,7 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: NoteStyle.Card,
-                    icon: 'Cards' as IconEnum.Cards,
+                    icon: 'Card' as IconEnum.Card,
                     label: 'Card',
                 },
             ],
