@@ -525,7 +525,7 @@ importers:
       '@babel/core': 7.18.10
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-typescript': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 11.0.0
       '@frontify/guideline-blocks-settings': workspace:*
       '@testing-library/react-hooks': ^8.0.1
       '@types/node': 17.0.38
@@ -546,7 +546,7 @@ importers:
       vite-plugin-dts: 1.4.1
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_j7r7trecr6hiwzhwdd4ga3mqeq
+      '@frontify/fondue': 11.0.0_j7r7trecr6hiwzhwdd4ga3mqeq
       '@frontify/guideline-blocks-settings': link:../block-settings
       tinycolor2: 1.4.2
     devDependencies:
@@ -620,7 +620,7 @@ importers:
       '@cypress/react': 5.12.5
       '@frontify/app-bridge': 3.0.0-beta.10
       '@frontify/eslint-config-react': 0.15.2
-      '@frontify/fondue': 9.11.0
+      '@frontify/fondue': 11.0.0
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/frontify-cli': 5.1.1
       '@frontify/guideline-blocks-settings': workspace:*
@@ -638,7 +638,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.10_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 9.11.0_l4iobuvyq4rslriq73hletyxxu
+      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.0.1
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -1456,6 +1456,166 @@ packages:
       - ts-node
     dev: false
 
+  /@frontify/fondue/11.0.0_j7r7trecr6hiwzhwdd4ga3mqeq:
+    resolution: {integrity: sha512-KwIf2HXi/BJKmOhJYtXz3oA3kUzq/x3s3tOEb0cX7K6urxhGy29mm6i6IuRnU4jKyFE2n07VPc3CWoqAXvBKOw==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.1.0_ts-node@10.9.1
+      '@popperjs/core': 2.11.5
+      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
+      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
+      '@react-aria/button': 3.5.1_react@17.0.2
+      '@react-aria/checkbox': 3.3.4_react@17.0.2
+      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.1.9_react@17.0.2
+      '@react-aria/focus': 3.6.1_react@17.0.2
+      '@react-aria/interactions': 3.9.1_react@17.0.2
+      '@react-aria/link': 3.2.5_react@17.0.2
+      '@react-aria/listbox': 3.4.5_react@17.0.2
+      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.1.11_react@17.0.2
+      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.9.1_react@17.0.2
+      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.1.8_react@17.0.2
+      '@react-aria/utils': 3.13.1_react@17.0.2
+      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
+      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
+      '@react-stately/tree': 3.3.1_react@17.0.2
+      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 10.6.0_bzq6mr353npf72yxp5uir3u35y
+      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
+      '@xstate/react': 1.6.3_ww4vbcegcjz4p4on5vcih4o66u
+      date-fns: 2.28.0
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.12
+      react: 17.0.2
+      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_dkoquz5cruphtkial7xcik5qgq
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.1.0
+      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
+      react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
+      tinycolor2: 1.4.2
+      xstate: 4.32.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/fondue/11.0.0_l4iobuvyq4rslriq73hletyxxu:
+    resolution: {integrity: sha512-KwIf2HXi/BJKmOhJYtXz3oA3kUzq/x3s3tOEb0cX7K6urxhGy29mm6i6IuRnU4jKyFE2n07VPc3CWoqAXvBKOw==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.1.0
+      '@popperjs/core': 2.11.5
+      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
+      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
+      '@react-aria/button': 3.5.1_react@17.0.2
+      '@react-aria/checkbox': 3.3.4_react@17.0.2
+      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.1.9_react@17.0.2
+      '@react-aria/focus': 3.6.1_react@17.0.2
+      '@react-aria/interactions': 3.9.1_react@17.0.2
+      '@react-aria/link': 3.2.5_react@17.0.2
+      '@react-aria/listbox': 3.4.5_react@17.0.2
+      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.1.11_react@17.0.2
+      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.9.1_react@17.0.2
+      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.1.8_react@17.0.2
+      '@react-aria/utils': 3.13.1_react@17.0.2
+      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
+      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
+      '@react-stately/tree': 3.3.1_react@17.0.2
+      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 10.6.0_5rehi3wqq5edqe3en45pdnuqae
+      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
+      '@xstate/react': 1.6.3_ww4vbcegcjz4p4on5vcih4o66u
+      date-fns: 2.28.0
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.12
+      react: 17.0.2
+      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_sudpmbbyhqtxq6t4xf6jlicdem
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.1.0
+      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
+      react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
+      tinycolor2: 1.4.2
+      xstate: 4.32.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
   /@frontify/fondue/9.11.0_2q5tclbizoprjkjpe6zqtmly6e:
     resolution: {integrity: sha512-ZqQP6gOP+j6ZynpnzvZNirpRh+CJAvO0eqOU5COwuvRRy6qvrjE38O1xTgGW96onlpbEVa5I2+YgOFUG86pL/A==}
     peerDependencies:
@@ -1507,86 +1667,6 @@ packages:
       react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
       react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
       react-dnd: 15.1.2_o3cmv5nbimd34x2maqyzd6x76a
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.1.0
-      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
-      react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
-      tinycolor2: 1.4.2
-      xstate: 4.32.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/fondue/9.11.0_j7r7trecr6hiwzhwdd4ga3mqeq:
-    resolution: {integrity: sha512-ZqQP6gOP+j6ZynpnzvZNirpRh+CJAvO0eqOU5COwuvRRy6qvrjE38O1xTgGW96onlpbEVa5I2+YgOFUG86pL/A==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/fondue-tokens': 3.1.0_ts-node@10.9.1
-      '@popperjs/core': 2.11.5
-      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
-      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
-      '@react-aria/button': 3.5.1_react@17.0.2
-      '@react-aria/checkbox': 3.3.4_react@17.0.2
-      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.1.9_react@17.0.2
-      '@react-aria/focus': 3.6.1_react@17.0.2
-      '@react-aria/interactions': 3.9.1_react@17.0.2
-      '@react-aria/link': 3.2.5_react@17.0.2
-      '@react-aria/listbox': 3.4.5_react@17.0.2
-      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.1.11_react@17.0.2
-      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.9.1_react@17.0.2
-      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.1.8_react@17.0.2
-      '@react-aria/utils': 3.13.1_react@17.0.2
-      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.2.0_react@17.0.2
-      '@react-stately/collections': 3.4.2_react@17.0.2
-      '@react-stately/combobox': 3.2.0_react@17.0.2
-      '@react-stately/list': 3.5.2_react@17.0.2
-      '@react-stately/menu': 3.4.0_react@17.0.2
-      '@react-stately/overlays': 3.4.0_react@17.0.2
-      '@react-stately/radio': 3.5.0_react@17.0.2
-      '@react-stately/select': 3.3.0_react@17.0.2
-      '@react-stately/table': 3.3.0_react@17.0.2
-      '@react-stately/toggle': 3.4.0_react@17.0.2
-      '@react-stately/tooltip': 3.2.0_react@17.0.2
-      '@react-stately/tree': 3.3.1_react@17.0.2
-      '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate': 10.6.0_bzq6mr353npf72yxp5uir3u35y
-      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
-      '@xstate/react': 1.6.3_ww4vbcegcjz4p4on5vcih4o66u
-      date-fns: 2.28.0
-      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.12
-      react: 17.0.2
-      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_dkoquz5cruphtkial7xcik5qgq
       react-dnd-html5-backend: 15.1.3
       react-dom: 17.0.2_react@17.0.2
       react-is: 18.1.0
@@ -12344,7 +12424,7 @@ packages:
     dependencies:
       lilconfig: 2.0.6
       postcss: 8.4.14
-      ts-node: 10.9.1_6nq352wiaj44ir2lfenbt2ezwy
+      ts-node: 10.9.1_6bd4jfip3gnofjnkq5lqqdbk4m
       yaml: 1.10.2
     dev: false
 
@@ -14151,7 +14231,6 @@ packages:
       typescript: 4.7.4
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-    dev: true
 
   /ts-node/10.9.1_6nq352wiaj44ir2lfenbt2ezwy:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
@@ -14182,6 +14261,7 @@ packages:
       typescript: 4.7.4
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    dev: true
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
