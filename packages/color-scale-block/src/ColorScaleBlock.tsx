@@ -1,15 +1,25 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { FC, Key, useEffect, useRef, useState } from 'react';
-import { AppBridgeBlock, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { FC, Fragment, Key, useEffect, useRef, useState } from 'react';
+import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { filterCompleteItems } from './helpers';
 import { SquareWithColor } from './components/SquareWithColor';
 import { SquareWithoutColor } from './components/SquareWithoutColor';
 import { ColorProps } from './types';
 
+
+import { DropZonePosition, OrderableListItem, useMemoizedId } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import 'tailwindcss/tailwind.css';
+import { Draggable } from './components/Draggable';
+import { Resizable } from './components/Resizable';
+// import { DropZone } from './react-dnd/DropZone';
+
 type Props = {
-    appBridge: AppBridgeBlock
+    appBridge: AppBridgeNative
 };
 
 export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
