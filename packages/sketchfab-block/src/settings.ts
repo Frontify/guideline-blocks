@@ -35,7 +35,6 @@ export const settings: BlockSettings & {
             id: SketchfabSettings.ACCOUNT_TYPE,
             type: 'dropdown',
             size: 'Large' as DropdownSize.Large,
-            clearable: false,
             defaultValue: SketchfabAccount.Basic,
             choices: [
                 { value: SketchfabAccount.Basic, label: SketchfabAccount.Basic },
@@ -44,7 +43,7 @@ export const settings: BlockSettings & {
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: SketchfabSettings.URL,
             label: '3D Model URL',

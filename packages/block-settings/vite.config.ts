@@ -12,7 +12,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve(__dirname, 'types/index.ts'),
-            fileName: (format: string) => `index.${format}.js`,
+            fileName: (format: string) => `[name].${format}.js`,
             name: 'GuidelineBlocksSettings',
         },
         sourcemap: true,

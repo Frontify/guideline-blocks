@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { Validation, validationClassMap } from '@frontify/fondue';
 import { SKETCHFAB_RULE_ERROR } from './helpers';
 import { SketchfabBlock } from './SketchfabBlock';
@@ -28,29 +28,29 @@ const AUTO_SPIN_COUNT = '3';
 
 describe('Sketchfab Block', () => {
     it('renders a Sketchfab block', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock);
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock);
         mount(<SketchfabBlockWithStubs />);
 
         cy.get(MAIN_BLOCK_ID).should('exist');
     });
 
     it('renders an input block on edit when no url', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, { editorState: true });
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, { editorState: true });
         mount(<SketchfabBlockWithStubs />);
 
         cy.get(EMPTY_BLOCK_EDIT_ID).should('exist');
     });
 
-    it.skip('submits input data on enter pressed and removes params', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, { editorState: true });
+    it('submits input data on enter pressed and removes params', () => {
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, { editorState: true });
         mount(<SketchfabBlockWithStubs />);
 
         cy.get(TEXT_INPUT_ID).type(`${SKETCHFAB_URL_WITH_PARAM}{enter}`);
         cy.get(IFRAME_ID).should('be.visible').and('have.attr', 'src', SKETCHFAB_URL);
     });
 
-    it.skip('submits input data when button clicked and removes params', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, { editorState: true });
+    it('submits input data when button clicked and removes params', () => {
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, { editorState: true });
         mount(<SketchfabBlockWithStubs />);
 
         cy.get(TEXT_INPUT_ID).type(SKETCHFAB_URL_WITH_PARAM);
@@ -59,7 +59,7 @@ describe('Sketchfab Block', () => {
     });
 
     it('shows error message if incorrect url is added', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, { editorState: true });
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, { editorState: true });
         mount(<SketchfabBlockWithStubs />);
 
         cy.get(TEXT_INPUT_ID).type(INVALID_URL);
@@ -70,14 +70,14 @@ describe('Sketchfab Block', () => {
     });
 
     it('renders a empty block on view', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, { editorState: false });
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, { editorState: false });
         mount(<SketchfabBlockWithStubs />);
 
         cy.get(EMPTY_BLOCK_VIEW_ID).should('exist');
     });
 
     it('shows border styles', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, {
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, {
             editorState: true,
             blockSettings: {
                 [SketchfabSettings.BORDER_COLOR]: BORDER_COLOR,
@@ -100,7 +100,7 @@ describe('Sketchfab Block', () => {
     });
 
     it('shows correct height choice', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, {
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, {
             editorState: true,
             blockSettings: {
                 [SketchfabSettings.IS_CUSTOM_HEIGHT]: false,
@@ -114,7 +114,7 @@ describe('Sketchfab Block', () => {
     });
 
     it('shows correct custom height', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, {
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, {
             editorState: true,
             blockSettings: {
                 [SketchfabSettings.IS_CUSTOM_HEIGHT]: true,
@@ -128,7 +128,7 @@ describe('Sketchfab Block', () => {
     });
 
     it('appends parameters to url', () => {
-        const [SketchfabBlockWithStubs] = withAppBridgeStubs(SketchfabBlock, {
+        const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, {
             editorState: true,
             blockSettings: {
                 [SketchfabSettings.ANNOTATION_CYCLE]: true,
