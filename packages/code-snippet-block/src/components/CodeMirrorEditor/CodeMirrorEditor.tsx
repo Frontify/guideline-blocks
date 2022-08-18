@@ -5,7 +5,7 @@ import { EditorView } from '@codemirror/view';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import { CodeMirrorEditorProps, CodeMirrorEditorStyle } from '../../types';
 import { basicSetup } from './extensions';
-import { useHeaderPanel, useLangauge, useLineNumber, useTheme, useUpdateListener } from './hooks';
+import { useHeaderPanel, useLanguage, useLineNumber, useTheme, useUpdateListener } from './hooks';
 
 export const CodeMirrorEditor = ({
     id,
@@ -22,7 +22,7 @@ export const CodeMirrorEditor = ({
     const editorRef = useRef<HTMLElement>(null);
     const [view, setView] = useState<EditorView>(new EditorView());
 
-    useLangauge(view, language);
+    useLanguage(view, language);
     useHeaderPanel(view, language, withHeading);
     useTheme(view, theme);
     useLineNumber(view, withRowNumbers);

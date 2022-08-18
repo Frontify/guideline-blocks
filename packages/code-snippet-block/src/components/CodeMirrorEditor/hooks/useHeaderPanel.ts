@@ -6,6 +6,6 @@ import { headerPanel } from '../extensions';
 import { addExtensionIf } from '../utils';
 import { useExtension } from './useExtension';
 
-export const useHeaderPanel = (view: EditorView, langauge: Language, withHeading: boolean) => {
-    useExtension(view, () => addExtensionIf(withHeading, headerPanel(langauge)), [langauge, withHeading]);
+export const useHeaderPanel = (view: EditorView, language: Language, withHeading: boolean) => {
+    useExtension(view, () => addExtensionIf(withHeading, headerPanel(language)), [language, withHeading]);
 };
