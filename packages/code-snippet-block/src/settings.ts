@@ -51,7 +51,7 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-    content: [],
+    basics: [],
     layout: [
         {
             id: 'withHeading',
