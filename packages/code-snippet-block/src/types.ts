@@ -3,7 +3,7 @@
 import { CSSProperties } from 'react';
 import { Color } from '@frontify/fondue';
 import { Globals, Property } from 'csstype';
-import { AppBridgeNative } from '@frontify/app-bridge';
+import { AppBridgeBlock } from '@frontify/app-bridge';
 
 export type Language = 'js' | 'html' | 'css' | 'php' | 'json' | 'jsx' | 'ts';
 
@@ -73,5 +73,5 @@ export type CodeMirrorEditorProps = {
 
 export type CodeSnippetProps = {
     id?: string;
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
