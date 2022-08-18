@@ -3,4 +3,4 @@
 export * from './appendUnit';
 export * from './generatePaddingString';
 export * from './presetCustomValue';
-export * from './transformSpiderToCSSNotation';
+export * from './transformSpiderToCssNotation';

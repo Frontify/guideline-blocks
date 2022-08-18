@@ -320,5 +320,3 @@ export const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;

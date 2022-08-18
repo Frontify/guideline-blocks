@@ -2,7 +2,7 @@
 
 import { mount } from '@cypress/react';
 import { withAppBridgeStubs } from '@frontify/guideline-blocks-shared';
-import { CodeSnippet } from './CodeSnippet';
+import { CodeSnippetBlock } from './CodeSnippetBlock';
 
 const codeSnippetBlockSelector = '[data-test-id="code-snippet-block"]';
 const codeSnippetHeaderSelector = '[data-test-id="code-snippet-header"]';
@@ -12,14 +12,14 @@ const codeSnippetEditorSelector = '.cm-editor';
 const EXAMPLE_COLOR = { r: 22, g: 181, b: 181, name: 'Java' };
 
 it('renders basic code snippet', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {});
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {});
 
     mount(<CodeSnippetWithStubs />);
     cy.get(codeSnippetBlockSelector).should('exist');
 });
 
 it('renders basic code snippet with cobalt theme', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {
         blockSettings: {
             theme: 'cobalt',
         },
@@ -30,7 +30,7 @@ it('renders basic code snippet with cobalt theme', () => {
 });
 
 it('renders code snippet without heading panel', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {
         blockSettings: {
             withHeading: false,
         },
@@ -42,7 +42,7 @@ it('renders code snippet without heading panel', () => {
 });
 
 it('renders code snippet with heading panel', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {
         blockSettings: {
             withHeading: true,
         },
@@ -54,7 +54,7 @@ it('renders code snippet with heading panel', () => {
 });
 
 it('renders code snippet heading panel with language title', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {
         blockSettings: {
             withHeading: true,
             language: 'ts',
@@ -65,7 +65,7 @@ it('renders code snippet heading panel with language title', () => {
 });
 
 it('renders code snippet with line numbers', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {
         blockSettings: {
             withRowNumbers: true,
         },
@@ -75,7 +75,7 @@ it('renders code snippet with line numbers', () => {
 });
 
 it('renders code snippet with border', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {
         blockSettings: {
             withBorder: true,
             border: ['solid', '2px', EXAMPLE_COLOR],
@@ -86,7 +86,7 @@ it('renders code snippet with border', () => {
 });
 
 it('renders code snippet with border radius', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {
         blockSettings: {
             withBorder: true,
             withCustomBorderRadius: false,
@@ -100,7 +100,7 @@ it('renders code snippet with border radius', () => {
 });
 
 it('renders code snippet with padding', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippet, {
+    const [CodeSnippetWithStubs] = withAppBridgeStubs(CodeSnippetBlock, {
         blockSettings: {
             withCustomPadding: false,
             padding: '6rem',

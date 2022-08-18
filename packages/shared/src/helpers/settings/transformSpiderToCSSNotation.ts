@@ -7,7 +7,7 @@ import { MultiInputTuple } from './types';
  * @param tuple multiInput settings block value
  * @returns tuple in CSS clockwise notation order
  */
-export const transformSpiderToCSSNotation = (tuple: MultiInputTuple): MultiInputTuple => [
+export const transformSpiderToCssNotation = (tuple: MultiInputTuple): MultiInputTuple => [
     tuple[0],
     tuple[2],
     tuple[3],

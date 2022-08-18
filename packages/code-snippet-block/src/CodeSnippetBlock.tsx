@@ -12,7 +12,7 @@ import { CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
 import { getBorderWidthInPx, getCustomBorderRadius, getCustomPadding } from './helpers';
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE, DEFAULT_TUPLE_VALUE } from './constants';
 
-export const CodeSnippet = ({ appBridge, id }: CodeSnippetProps): ReactElement => {
+export const CodeSnippetBlock = ({ appBridge, id }: CodeSnippetProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const {
