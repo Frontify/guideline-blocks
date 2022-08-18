@@ -11,6 +11,6 @@ describe('appendUnit', () => {
 
         const expected = ['10', '25', '12', '15'];
 
-        expect(result).toStrictEqual(expected);
+        expect(result).equals(expected);
     });
 });
