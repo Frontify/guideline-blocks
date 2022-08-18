@@ -52,7 +52,7 @@ describe('Sketchfab Block', () => {
     it('renders an input block on edit when no url', () => {
         const [SketchfabBlockWithStubs] = withAppBridgeBlockStubs(SketchfabBlock, {
             editorState: true,
-            blockSettings: { defaultBlockSettings },
+            blockSettings: defaultBlockSettings,
         });
         mount(<SketchfabBlockWithStubs />);
 
