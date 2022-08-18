@@ -69,7 +69,7 @@ export const settings: BlockSettings & {
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: SketchfabSettings.URL,
             label: '3D Model URL',

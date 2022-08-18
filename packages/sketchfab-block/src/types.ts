@@ -168,13 +168,6 @@ export const borderStyles: Record<BorderStyle, string> = {
     [BorderStyle.Dashed]: 'dashed',
 };
 
-export const borderRadiusClasses: Record<Radius, string> = {
-    [Radius.None]: 'tw-rounded-none',
-    [Radius.Small]: 'tw-rounded-sm',
-    [Radius.Medium]: 'tw-rounded',
-    [Radius.Large]: 'tw-rounded-xl',
-};
-
 export const heights: Record<SketchfabHeight, string> = {
     [SketchfabHeight.Small]: '300px',
     [SketchfabHeight.Medium]: '500px',

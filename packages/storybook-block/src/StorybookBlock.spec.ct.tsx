@@ -2,9 +2,9 @@
 
 import { mount } from '@cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { ERROR_MSG } from './settings';
 import { StorybookBlock } from './StorybookBlock';
 import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
-import { decodeEntities } from './utilities';
 
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';
 const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
@@ -32,7 +32,7 @@ describe('Storybook Block', () => {
 
     it('renders storybook iframe without addons', () => {
         const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
-            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.WithoutAddons },
+            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.Default },
         });
 
         mount(<StorybookBlockWithStubs />);
@@ -41,7 +41,11 @@ describe('Storybook Block', () => {
 
     it('renders storybook iframe with addons panel at the bottom', () => {
         const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
-            blockSettings: { url: EXAMPLE_URL, style: StorybookStyle.Default, positioning: StorybookPosition.Vertical },
+            blockSettings: {
+                url: EXAMPLE_URL,
+                style: StorybookStyle.WithAddons,
+                positioning: StorybookPosition.Vertical,
+            },
         });
 
         mount(<StorybookBlockWithStubs />);
@@ -69,22 +73,24 @@ describe('Storybook Block', () => {
         cy.get(IframeSelector).should('have.css', 'border-radius', '5px');
     });
 
-    describe('decodeEntities', () => {
-        it('decodes URL', () => {
-            const encodedUrl = 'https://fondue-components.frontify.com/?path&#61;/story/tokens--alias-tokens';
-            const decodedUrl = 'https://fondue-components.frontify.com/?path=/story/tokens--alias-tokens';
-            expect(decodedUrl).to.equal(decodeEntities(encodedUrl));
+    it('renders error handling when invalid url is typed', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, { editorState: true });
+
+        mount(<StorybookBlockWithStubs />);
+        cy.get(EmptyStateSelector).find('input').type('asdf');
+        cy.get(EmptyStateSelector).contains(ERROR_MSG);
+        cy.get(EmptyStateSelector).find('button').should('be.disabled');
+    });
+
+    it('should not render iframe with invalid url', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
+            editorState: true,
+            blockSettings: { url: 'asdf' },
         });
 
-        it('does nothing with already decoded URL', () => {
-            const decodedUrl = 'https://fondue-components.frontify.com/?path=/story/tokens--alias-tokens';
-            expect(decodedUrl).to.equal(decodeEntities(decodedUrl));
-        });
-
-        it('decodes characters', () => {
-            const encodedChars = '&#162;this&#38;&#174;&#60;is&#62;&#38;&#34&#39;awesome&#162;&#163;';
-            const decodedChats = '¢this&®<is>&"\'awesome¢£';
-            expect(decodedChats).to.equal(decodeEntities(encodedChars));
-        });
+        mount(<StorybookBlockWithStubs />);
+        cy.get(EmptyStateSelector);
+        cy.get(EmptyStateSelector).find('button').should('be.disabled');
+        cy.get(EmptyStateSelector).contains(ERROR_MSG);
     });
 });

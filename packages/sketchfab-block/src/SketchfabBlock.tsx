@@ -3,20 +3,12 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconExternalAsset, IconSize, Text, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
-import {
-    Settings,
-    SketchfabAccount,
-    SketchfabBlockProps,
-    SketchfabNavigation,
-    SketchfabTheme,
-    borderRadiusClasses,
-    heights,
-} from './types';
+import { Settings, SketchfabAccount, SketchfabBlockProps, SketchfabNavigation, SketchfabTheme, heights } from './types';
 
 export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const isEditing = useEditorState(appBridge);
@@ -147,7 +139,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
             {iframeUrl && (
                 <div>
                     <iframe
-                        className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
+                        className={joinClassNames(['tw-w-full', !hasRadius && radiusStyleMap[radiusChoice]])}
                         style={
                             hasBorder
                                 ? getIframeStyles(borderStyle, borderWidth, borderColor, hasRadius ? radiusValue : '')

@@ -38,8 +38,8 @@ describe('Image Control Buttons', () => {
             const onClickZoomOut = cy.stub().as('onClickZoomOut');
 
             mount(<DrawZoomInOutButtons onClickZoomIn={onClickZoomIn} onClickZoomOut={onClickZoomOut} />);
-            cy.get('button').eq(0).should('exist').click();
-            cy.get('button').eq(1).should('exist').click();
+            cy.get('button').eq(0).should('exist').click({ force: true });
+            cy.get('button').eq(1).should('exist').click({ force: true });
 
             cy.get('@onClickZoomIn').should('have.been.calledOnce');
             cy.get('@onClickZoomOut').should('have.been.calledOnce');
