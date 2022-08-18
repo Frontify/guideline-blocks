@@ -43,7 +43,7 @@ const isAvailablePremiumUIButton = (bundle: Bundle) =>
             bundle.getBlock(SketchfabSettings.SHOW_BUTTONS)?.value
     );
 
-const isAvailablePremiumNavigationConstraints = (bundle: Bundle) =>
+const isAvailableProNavigationConstraint = (bundle: Bundle) =>
     Boolean(
         bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic &&
             bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value
@@ -292,18 +292,18 @@ export const settings: BlockSettings & {
                     type: 'switch',
                     label: 'Orbit Constraint Pan',
                     info: 'Enabling this feature will prevent panning the camera.',
-                    show: isAvailablePremiumNavigationConstraints,
+                    show: isAvailableProNavigationConstraint,
                 },
                 {
                     id: SketchfabSettings.ORBIT_CONSTRAINT_PITCH,
                     type: 'switch',
                     label: 'Orbit Constraint Pitch',
-                    show: isAvailablePremiumNavigationConstraints,
+                    show: isAvailableProNavigationConstraint,
                     on: [
                         {
                             id: 'orbitConstraintPitchLimits',
                             type: 'multiInput',
-                            show: isAvailablePremiumNavigationConstraints,
+                            show: isAvailableProNavigationConstraint,
                             layout: 'Columns' as MultiInputLayout.Columns,
                             blocks: [
                                 {
@@ -314,7 +314,7 @@ export const settings: BlockSettings & {
                                     placeholder: '1',
                                     label: 'Up',
                                     info: "Setting to [-π/2 – π/2] will define the camera's pitch up rotation limit.",
-                                    show: isAvailablePremiumNavigationConstraints,
+                                    show: isAvailableProNavigationConstraint,
                                 },
                                 {
                                     id: SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_DOWN,
@@ -324,7 +324,7 @@ export const settings: BlockSettings & {
                                     label: 'Down',
                                     info: "Setting to [-π/2 – π/2] will define the camera's pitch down rotation limit.",
                                     placeholder: '-1',
-                                    show: isAvailablePremiumNavigationConstraints,
+                                    show: isAvailableProNavigationConstraint,
                                 },
                             ],
                         },
@@ -334,13 +334,13 @@ export const settings: BlockSettings & {
                     id: SketchfabSettings.ORBIT_CONTRAINT_YAW,
                     type: 'switch',
                     label: 'Orbit Constraint Yaw',
-                    show: isAvailablePremiumNavigationConstraints,
+                    show: isAvailableProNavigationConstraint,
                     on: [
                         {
                             id: 'orbitConstraintYawLimits',
                             type: 'multiInput',
                             layout: 'Columns' as MultiInputLayout.Columns,
-                            show: isAvailablePremiumNavigationConstraints,
+                            show: isAvailableProNavigationConstraint,
                             blocks: [
                                 {
                                     id: SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_LEFT,
@@ -348,7 +348,7 @@ export const settings: BlockSettings & {
                                     inputType: 'Number' as TextInputType.Number,
                                     rules: [yawRule],
                                     info: "Setting to [-π – π] will define the camera's yaw left rotation limit.",
-                                    show: isAvailablePremiumNavigationConstraints,
+                                    show: isAvailableProNavigationConstraint,
                                     placeholder: '-2',
                                     label: 'Left',
                                 },
@@ -358,7 +358,7 @@ export const settings: BlockSettings & {
                                     inputType: 'Number' as TextInputType.Number,
                                     rules: [yawRule],
                                     info: "Setting to [-π – π] will define the camera's yaw right rotation limit.",
-                                    show: isAvailablePremiumNavigationConstraints,
+                                    show: isAvailableProNavigationConstraint,
                                     label: 'Right',
                                     placeholder: '2',
                                 },
@@ -369,14 +369,14 @@ export const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_IN,
                     type: 'switch',
-                    show: isAvailablePremiumNavigationConstraints,
+                    show: isAvailableProNavigationConstraint,
                     label: 'Orbit Constraint Zoom In',
                     info: 'Setting to a positive number will define the camera zoom in limit (minimum distance from the model).',
                     on: [
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_IN_COUNT,
                             type: 'input',
-                            show: isAvailablePremiumNavigationConstraints,
+                            show: isAvailableProNavigationConstraint,
                             placeholder: '3',
                             inputType: 'Number' as TextInputType.Number,
                             rules: [minimumNumericalRule(0)],
@@ -386,7 +386,7 @@ export const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_OUT,
                     type: 'switch',
-                    show: isAvailablePremiumNavigationConstraints,
+                    show: isAvailableProNavigationConstraint,
                     label: 'Orbit Constraint Zoom Out',
                     info: 'Setting to a positive number will define the camera zoom out limit (maximum distance from the model).',
                     on: [
@@ -395,7 +395,7 @@ export const settings: BlockSettings & {
                             type: 'input',
                             inputType: 'Number' as TextInputType.Number,
                             rules: [minimumNumericalRule(0)],
-                            show: isAvailablePremiumNavigationConstraints,
+                            show: isAvailableProNavigationConstraint,
                             placeholder: '3',
                         },
                     ],
