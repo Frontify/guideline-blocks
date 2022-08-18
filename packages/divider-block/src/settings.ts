@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum } from '@frontify/fondue';
+import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     betweenPercentRule,
@@ -36,10 +36,10 @@ export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
 export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
 export const THICKNESS_DEFAULT_VALUE = DividerThickness.Small;
 export const COLOR_DEFAULT_RGBA_VALUE = {
-    r: 213,
-    g: 214,
-    b: 214,
-    a: 1,
+    red: 213,
+    green: 214,
+    blue: 214,
+    alpha: 1,
     name: 'Light Grey',
 };
 
@@ -59,12 +59,12 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: 'LineSpacer' as IconEnum.LineSpacer,
+                    icon: 'DividerBlank' as IconEnum.DividerBlank,
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: 'LineSolid' as IconEnum.LineSolid,
+                    icon: 'DividerSolid' as IconEnum.DividerSolid,
                     label: 'Line',
                 },
             ],
@@ -130,15 +130,15 @@ export const settings: BlockSettings = {
                     choices: [
                         {
                             value: DividerAlignment.Left,
-                            icon: 'AlignLeft' as IconEnum.AlignLeft,
+                            icon: 'ArrowAlignLeft' as IconEnum.ArrowAlignLeft,
                         },
                         {
                             value: DividerAlignment.Center,
-                            icon: 'AlignCenter' as IconEnum.AlignCenter,
+                            icon: 'ArrowAlignVerticalCentre' as IconEnum.ArrowAlignVerticalCentre,
                         },
                         {
                             value: DividerAlignment.Right,
-                            icon: 'AlignRight' as IconEnum.AlignRight,
+                            icon: 'ArrowAlignRight' as IconEnum.ArrowAlignRight,
                         },
                     ],
                     show: limitedWidthIsSelected,

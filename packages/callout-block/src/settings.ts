@@ -29,17 +29,17 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: Type.Warning,
-                    icon: 'Callout' as IconEnum.Callout,
+                    icon: 'ExclamationMarkTriangle' as IconEnum.ExclamationMarkTriangle,
                     label: 'Warning',
                 },
                 {
                     value: Type.Tip,
-                    icon: 'Check' as IconEnum.Check,
+                    icon: 'CheckMark' as IconEnum.CheckMark,
                     label: 'Tip',
                 },
                 {
                     value: Type.Note,
-                    icon: 'Briefing' as IconEnum.Briefing,
+                    icon: 'DocumentText' as IconEnum.DocumentText,
                     label: 'Note',
                 },
                 {
@@ -97,17 +97,17 @@ export const settings: BlockSettings = {
                     choices: [
                         {
                             value: Alignment.Left,
-                            icon: 'AlignLeft' as IconEnum.AlignLeft,
+                            icon: 'ArrowAlignLeft' as IconEnum.ArrowAlignLeft,
                             label: 'Left',
                         },
                         {
                             value: Alignment.Center,
-                            icon: 'AlignCenter' as IconEnum.AlignCenter,
+                            icon: 'ArrowAlignVerticalCentre' as IconEnum.ArrowAlignVerticalCentre,
                             label: 'Center',
                         },
                         {
                             value: Alignment.Right,
-                            icon: 'AlignRight' as IconEnum.AlignRight,
+                            icon: 'ArrowAlignRight' as IconEnum.ArrowAlignRight,
                             label: 'Right',
                         },
                     ],

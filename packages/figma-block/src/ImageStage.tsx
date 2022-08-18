@@ -2,9 +2,9 @@
 
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './components';
-import { useImageStage } from './useImageStage';
 import { DEFAULT_HEIGHT } from './settings';
 import { ImageStageProps } from './types';
+import { useImageStage } from './useImageStage';
 
 export const ImageStage = ({
     title,

@@ -54,20 +54,20 @@ const testSettings: Settings = {
     extendedPaddingBottom: '0px',
     extendedPaddingLeft: '0px',
     extendedPaddingRight: '0px',
-    incompleteTextColor: { r: 45, g: 50, b: 50, a: 1 },
-    incompleteCheckboxColor: { r: 108, g: 112, b: 112, a: 1 },
-    completeTextColor: { r: 255, g: 55, b: 90, a: 1 },
-    completeCheckboxColor: { r: 255, g: 55, b: 90, a: 1 },
+    incompleteTextColor: { red: 45, green: 50, blue: 50, alpha: 1 },
+    incompleteCheckboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
+    completeTextColor: { red: 255, green: 55, blue: 90, alpha: 1 },
+    completeCheckboxColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completedDecoration: ChecklistDecoration.Strikethrough,
-    highlightColor: { r: 190, g: 225, b: 212, a: 1 },
+    highlightColor: { red: 190, green: 225, blue: 212, alpha: 1 },
     dateVisible: true,
     progressBarVisible: true,
     progressBarType: ProgressBarType.Bar,
-    progressBarFillColor: { r: 0, g: 200, b: 165, a: 1 },
-    progressBarTrackColor: { r: 222, g: 240, b: 233, a: 1 },
+    progressBarFillColor: { red: 0, green: 200, blue: 165, alpha: 1 },
+    progressBarTrackColor: { red: 222, green: 240, blue: 233, alpha: 1 },
     strikethroughStyle: StrikethroughType.Dashed,
     strikethroughWidth: '5px',
-    strikethroughColor: { r: 255, g: 55, b: 90, a: 1 },
+    strikethroughColor: { red: 255, green: 55, blue: 90, alpha: 1 },
 };
 
 describe('Checklist Block', () => {
@@ -296,8 +296,7 @@ describe('Checklist Block', () => {
             .then(($button) => {
                 const text = $button.text();
                 expect(text).to.match(/Hide/);
-                // TODO: remove {force: true} when tailwind is bundled correctly in cypress
-                cy.wrap($button).click({ force: true });
+                cy.wrap($button).click();
             });
         cy.get(CHECKLIST_ITEM).should('have.length', 5);
         cy.get('[checked]').should('have.length', 0);
@@ -453,7 +452,7 @@ describe('Checklist Block', () => {
 
     it('Correctly displays highlight color', () => {
         const content = createContentArray(5, { completed: true });
-        const highlightColor = { r: 85, g: 85, b: 85 };
+        const highlightColor = { red: 85, green: 85, blue: 85 };
         const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: {
                 content,
