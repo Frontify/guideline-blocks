@@ -14,6 +14,7 @@ describe('isParseableSketchfabUrl', () => {
             { args: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec', expected: true },
             { args: 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed?autospin=1', expected: true },
             { args: 'https://sketchfab.com/3d-models/littlest-tokyo-94b24a60dc1b48248de50bf087c0f042', expected: true },
+            { args: 'https://sketchfab.com/3d-models/94b24a60dc1b48248de50bf087c0f042', expected: false },
             { args: 'https://sketchfab.com/show/442c548d94744641ba279ae94b5f45ec?autospin=1', expected: true },
             { args: '', expected: false },
         ];
