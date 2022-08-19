@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PaddingSettings } from '@frontify/guideline-blocks-shared';
-import { Color } from '@frontify/fondue';
+import { Color, DropZonePosition, OrderableListItem } from '@frontify/fondue';
+
 
 export type Settings = PaddingSettings & {
     content: any[];
@@ -12,16 +13,21 @@ export const DefaultValues: any = {
 };
 
 export type ColorProps = {
+    id: string;
+    sort: number;
     color: Color;
     width?: number;
+    alt: string;
 };
 
 export type ColorOptionsModalOpenObject = {
-    id?: boolean;
+    id?: boolean | number | string;
 };
 
 export type SquareWithColorProps = {
-    id: number;
+    id: number | string;
+    sort: number;
+    index: number;
     width: number;
     currentColor: ColorProps;
     calculateLeftPos: (id: number, width: number) => void;
@@ -37,12 +43,16 @@ export type SquareWithColorProps = {
     colorOptionsOpen: ColorOptionsModalOpenObject;
     setColorOptionsOpen: (value: ColorOptionsModalOpenObject) => void;
     deleteColor: (color: number) => void;
+    handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
+    listId: any;
     backgroundColorRgba?: string;
     onDragStart?: (evt: any, id?: number, currentColor?: ColorProps) => void | undefined;
 };
 
 export type SquareWithoutColorProps = {
-    id: number;
+    id: number | string;
+    sort: number;
+    index: number;
     totalNumOfBlocks: number;
     placeholderColor: string;
     width: number;
@@ -66,7 +76,7 @@ export type SquareWithoutColorProps = {
 };
 
 export type AddNewColorModalProps = {
-    id: number;
+    id: number | string;
     currentColor: ColorProps;
     isEditing: boolean;
     colorPickerRef: { current?: any } | undefined;
@@ -83,7 +93,7 @@ export type AddNewColorTooltipsProps = {
 };
 
 export type EditExistingColorModalProps = {
-    id: number;
+    id: number | string;
     currentColor: ColorProps;
     isEditing: boolean;
     colorPickerRef: { current?: any } | undefined;
@@ -94,14 +104,14 @@ export type EditExistingColorModalProps = {
 };
 
 export type DragHandleProps = {
-    id: number;
+    id: number | string;
     currentColor: ColorProps;
     isEditing: boolean;
     onDragStart?: (evt: any, id?: number, currentColor?: ColorProps) => void | undefined;
 };
 
 export type CustomizationOptionsModalProps = {
-    id: number;
+    id: number | string;
     isEditing: boolean;
     colorOptionsRef: { current?: any } | undefined;
     colorOptionsOpen: ColorOptionsModalOpenObject;

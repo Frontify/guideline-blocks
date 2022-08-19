@@ -9,6 +9,7 @@ import { /*IconDrop, */ IconSize, IconAddSimple } from '@frontify/fondue';
 
 export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     id,
+    index,
     placeholderColor,
     totalNumOfBlocks,
     width,
@@ -34,7 +35,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
         style={{
             height: 140,
             width: `${width}px`,
-            left: `${calculateLeftPos(id, width)}px`,
+            left: `${calculateLeftPos(index, width)}px`,
         }}
         id={`row-${id}`}
         className={`hover:tw-z-30 row tw-pb-8 tw-inline-block tw-absolute`}
@@ -96,6 +97,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                         </a>
                         <EditExistingColorModal
                             id={id}
+                            index={index}
                             currentColor={currentSquare}
                             isEditing={isEditing}
                             colorPickerRef={colorPickerRef}

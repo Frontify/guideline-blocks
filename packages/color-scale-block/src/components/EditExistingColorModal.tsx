@@ -6,6 +6,7 @@ import { Flyout, ColorPicker, ColorFormat, Color } from '@frontify/fondue';
 
 export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
     id,
+    index,
     currentColor,
     isEditing,
     colorPickerRef,
@@ -29,7 +30,7 @@ export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
                         currentColor={currentColor.color ? currentColor.color : {r: 0, g: 0, b: 0}}
                         currentFormat={ColorFormat.Rgba}
                         onSelect={(color: Color) => {
-                            updateColor({color: color, width: currentColor.width} , id);
+                            updateColor({id: id, color: color, width: currentColor.width}, index);
                         }}
                         setFormat={setFormat}
                     />

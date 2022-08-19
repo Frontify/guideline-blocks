@@ -16,7 +16,9 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import 'tailwindcss/tailwind.css';
 import { Draggable } from './components/Draggable';
 import { Resizable } from './components/Resizable';
-// import { DropZone } from './react-dnd/DropZone';
+import { DropZone } from './react-dnd/DropZone';
+
+import { uuid } from 'uuidv4';
 
 type Props = {
     appBridge: AppBridgeNative
@@ -25,7 +27,10 @@ type Props = {
 export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     //const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
-    const [blockSettings, setBlockSettings] = useState({ 'color-input': [{ color: { r: 0, g: 0, b: 0, a: 1} }] as ColorProps[] | null });
+    const [blockSettings, setBlockSettings] = useState({ 'color-input': [
+        { id: uuid(), sort: 1, color: { r: 0, g: 0, b: 0, a: 1}, alt: 'Click to drag' }
+    ] as ColorProps[] | null });
+
     const emptyBlockColors: string[] = [
         '#D5D6D6',
         '#DFDFDF',
@@ -42,6 +47,16 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const colorPickerRef: any = useRef();
 
     const colorWidth = 100; // default color square width if all other calculations fail
+
+    const handleDrop = (
+        targetItem: OrderableListItem,
+        sourceItem: OrderableListItem,
+        position: DropZonePosition
+    ) => {
+        console.log('moved')
+        // const modifiedItems = moveItems(targetItem, sourceItem, position, demoColors);
+        // handleMove(modifiedItems);
+    };
 
     const calculateDefaultColorWidth = (arrLen: number) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
@@ -88,7 +103,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     if (value) {
                         return { ...value, width: emptySquareWidth };
                     }
-                    return { width: emptySquareWidth };
+                    return { id: uuid(), width: emptySquareWidth, alt: "Click to drag" };
                 }
                 return value;
             });
@@ -100,7 +115,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     if (value) {
                         return { ...value, width: calculateDefaultColorWidth(itemList.length) };
                     }
-                    return { width: calculateDefaultColorWidth(itemList.length) };
+                    return { id: uuid(), width: calculateDefaultColorWidth(itemList.length), alt: "Click to drag" };
                 }
                 return value;
             });
@@ -131,19 +146,21 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         setDisplayableItems(reorderedList);
     };
 
-    const updateColor = (newColor: ColorProps, id: any, appearAfter?: boolean) => {
+    const updateColor = (newColor: ColorProps, index: number, appearAfter?: boolean) => {
+  
         // If appearAfter is true, it means that this is a new color square being added. The new square will appear after the index provided by `id`.
 
         let updatedColors = [...displayableItems];
         if (!appearAfter) {
-            updatedColors = displayableItems.map((color, index) => {
-                if (index === id) {
+            updatedColors = displayableItems.map((color, diindex) => {
+
+                if (index === diindex) {
                     return { ...newColor, width: color.width };
                 }
                 return color;
             });
         } else {
-            updatedColors.splice(id + 1, 0, newColor);
+            updatedColors.splice(index + 1, 0, newColor);
             setEditedColor(null);
         }
 
@@ -435,6 +452,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         }
     };
 
+    const listId = useMemoizedId();
+
     return (
         // <div>hello world</div>
         <div
@@ -455,8 +474,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             onDrag={onDrag}
             draggable={true}
         >
-            <>
-                {displayableItems.map((value: ColorProps, id: number) => {
+            <DndProvider backend={HTML5Backend}>
+                {displayableItems.map((value: ColorProps, index: number) => {
                     let backgroundColorRgba;
 
                     if (value && value.color && value.color.r && value.color.g && value.color.b && value.color.a) {
@@ -472,32 +491,60 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     }
 
                     return (
-                        <div key={id}>
+                        <div className="test" key={value.id}>
                             {doesColorHaveRgbValues(value) ? (
-                                <SquareWithColor
-                                    id={id}
-                                    width={width}
-                                    currentColor={value}
-                                    backgroundColorRgba={backgroundColorRgba}
-                                    onDragStart={onDragStart}
-                                    hilite={hilite}
-                                    setHilite={setHilite}
-                                    calculateLeftPos={calculateLeftPos}
-                                    isEditing={isEditing}
-                                    colorPickerRef={colorPickerRef}
-                                    editedColor={editedColor}
-                                    setEditedColor={setEditedColor}
-                                    updateColor={updateColor}
-                                    setFormat={() => false}
-                                    colorOptionsRef={colorOptionsRef}
-                                    colorOptionsOpen={colorOptionsOpen}
-                                    setColorOptionsOpen={setColorOptionsOpen}
-                                    deleteColor={deleteColor}
-                                />
+                                <>
+                                   {/* <DropZone
+                                   key={`orderable-list-item-${value.id}-before`}
+                                   data={{
+                                       targetItem: value,
+                                       position: DropZonePosition.Before,
+                                   }}
+                                   onDrop={handleDrop}
+                                   treeId={listId}
+                               /> */}
+                                    <SquareWithColor
+                                        id={value.id}
+                                        sort={value.sort}
+                                        index={index}
+                                        width={width}
+                                        currentColor={value}
+                                        backgroundColorRgba={backgroundColorRgba}
+                                        onDragStart={onDragStart}
+                                        hilite={hilite}
+                                        setHilite={setHilite}
+                                        calculateLeftPos={calculateLeftPos}
+                                        isEditing={isEditing}
+                                        colorPickerRef={colorPickerRef}
+                                        editedColor={editedColor}
+                                        setEditedColor={setEditedColor}
+                                        updateColor={updateColor}
+                                        setFormat={() => false}
+                                        colorOptionsRef={colorOptionsRef}
+                                        colorOptionsOpen={colorOptionsOpen}
+                                        setColorOptionsOpen={setColorOptionsOpen}
+                                        deleteColor={deleteColor}
+                                        handleDrop={handleDrop}
+                                        listId={listId}
+                                    />
+                                     {/* {index === displayableItems.length - 1 && (
+                                         <DropZone
+                                             key={`orderable-list-item-${value.id}-after`}
+                                             data={{
+                                                 targetItem: value,
+                                                 position: DropZonePosition.After,
+                                             }}
+                                             onDrop={handleDrop}
+                                             treeId={listId}
+                                         />
+                                     )} */}
+                                 </>
                             ) : (
                                 <SquareWithoutColor
-                                    id={id}
-                                    placeholderColor={emptyBlockColors[id]}
+                                    id={value.id}
+                                    sort={value.sort}
+                                    index={index}
+                                    placeholderColor={emptyBlockColors[index]}
                                     totalNumOfBlocks={displayableItems.length}
                                     width={width}
                                     currentSquare={value}
@@ -522,7 +569,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         </div>
                     );
                 })}
-            </>
+            </DndProvider>
         </div>
     );
 };
