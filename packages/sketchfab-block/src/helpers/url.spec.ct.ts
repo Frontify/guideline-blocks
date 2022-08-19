@@ -21,7 +21,6 @@ describe('isParseableSketchfabUrl', () => {
 
         for (const { args, expected } of data) {
             const valid = isParseableSketchfabUrl(args);
-            cy.log(args);
             cy.wrap(expected).should('equal', valid);
         }
     });
