@@ -18,9 +18,11 @@ export type DropZoneProps<T> = {
     onDrop?: OnDropCallback<T>;
     treeId: string;
     children?: JSX.Element;
+    before?: boolean;
+    after?: boolean;
 };
 
-export const DropZone = <T extends object>({ data, onDrop, children, treeId }: DropZoneProps<T>) => {
+export const DropZone = <T extends object>({ data, onDrop, children, treeId, before, after }: DropZoneProps<T>) => {
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: treeId,
         drop: (item: any) => {
@@ -41,7 +43,7 @@ export const DropZone = <T extends object>({ data, onDrop, children, treeId }: D
     });
 
     const isActive = isOver && canDrop;
-    const outerDropZoneClassNames = 'tw-w-[10px] tw-py-1 tw-outline-none tw-relative tw-z-20';
+    const outerDropZoneClassNames = 'tw-w-[10px] tw-py-1 tw-outline-none tw-z-20';
     const activeOuterDropZoneClassNames = 'tw-border-violet-60 tw-border-2 tw-h-[96px] tw-w-7 tw-bg-clip-content';
     const bgColorClassName = 'tw-bg-violet-20';
 
@@ -50,7 +52,9 @@ export const DropZone = <T extends object>({ data, onDrop, children, treeId }: D
             aria-hidden={!isActive}
             data-test-id="drop-zone"
             className={merge([
-                'tw-h-[96px] tw-transition-all',
+                'tw-transition-all tw-absolute tw-top-0 tw-bottom-0',
+                before ? 'tw-left-0' : '',
+                after ? 'tw-right-0' : '',
                 data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
                 isActive && data.position !== DropZonePosition.Within ? activeOuterDropZoneClassNames : '',
                 isActive && data.position === DropZonePosition.Within ? bgColorClassName : '',

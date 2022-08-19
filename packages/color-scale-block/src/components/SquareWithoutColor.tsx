@@ -6,6 +6,9 @@ import { EditExistingColorModal } from './EditExistingColorModal';
 import { DragHandle } from './DragHandle';
 import { CustomizationOptionsModal } from './CustomizationOptionsModal';
 import { /*IconDrop, */ IconSize, IconAddSimple } from '@frontify/fondue';
+import { DropZone } from '../react-dnd/DropZone';
+import { DropZonePosition, ItemDragState } from '@frontify/fondue';
+import { useDrag } from 'react-dnd';
 
 export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     id,
@@ -30,7 +33,19 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     deleteColor,
     hovered,
     setHovered,
-}) => (
+    handleDrop,
+    listId,
+}) => {
+    const [{}, drag] = useDrag({
+        item: currentSquare,
+        collect: (monitor: any) => ({
+            componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
+        }),
+        type: listId,
+        canDrag: true,
+    });
+
+    return (
     <div
         style={{
             height: 140,
@@ -73,12 +88,23 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
             // className={`tw-rounded-md tw-group tw-flex tw-justify-center tw-items-center tw-bg-black-10 tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full`}
             className={`tw-group tw-flex tw-justify-center tw-items-center tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full`}
         >
+            <DropZone
+                key={`orderable-list-item-${id}-before`}
+                data={{
+                    targetItem: currentSquare,
+                    position: DropZonePosition.Before,
+                }}
+                onDrop={handleDrop}
+                treeId={listId}
+                before
+            />
             <div
                 style={{ 
                     height: '100%',
                     width: '100%',
                     backgroundColor: placeholderColor,
                 }}
+                ref={drag}
             >
                 <div className={`${!isEditing ? 'tw-hidden' : ''} group-hover:tw-hidden tw-text-black-20`}>
                     {/* <IconDrop size={IconSize.Size32} /> */}
@@ -112,7 +138,18 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                     <></>
                 )}
             </div>
+            <DropZone
+                key={`orderable-list-item-${id}-after`}
+                data={{
+                    targetItem: currentSquare,
+                    position: DropZonePosition.After,
+                }}
+                onDrop={handleDrop}
+                after
+                treeId={listId}
+            />
         </div>
         <div className="tw-h-8 tw-relative"></div>
     </div>
 );
+}

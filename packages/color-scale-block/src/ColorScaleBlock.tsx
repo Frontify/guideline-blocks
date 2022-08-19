@@ -48,14 +48,42 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
     const colorWidth = 100; // default color square width if all other calculations fail
 
+    const postDrop = (updatedColors: ColorProps[]) => {
+        setBlockSettings({ ...blockSettings, 'color-input': updatedColors });
+        setDisplayableItems(updatedColors);
+    }
+
     const handleDrop = (
         targetItem: OrderableListItem,
-        sourceItem: OrderableListItem,
+        movedItem: OrderableListItem,
         position: DropZonePosition
     ) => {
-        console.log('moved')
-        // const modifiedItems = moveItems(targetItem, sourceItem, position, demoColors);
-        // handleMove(modifiedItems);
+
+        let movedItemIndex = 0, targetItemIndex = 0;
+
+        let updatedColors = [...displayableItems];
+
+        updatedColors.forEach((colorItem, index) => {
+            if (colorItem.id === movedItem.id) {
+                movedItemIndex = index;
+            }
+        });
+
+        updatedColors = updatedColors.filter((colorItem, index) => index !== movedItemIndex);
+
+        updatedColors.forEach((colorItem, index) => {
+            if (colorItem.id === targetItem.id) {
+                targetItemIndex = index;
+            }
+        });
+
+        if (position === 'after') {
+            updatedColors.splice(targetItemIndex + 1, 0, movedItem as ColorProps);
+        } else if (position === 'before') {
+            updatedColors.splice(targetItemIndex, 0, movedItem as ColorProps);
+        }
+
+        postDrop(updatedColors);
     };
 
     const calculateDefaultColorWidth = (arrLen: number) => {
@@ -564,6 +592,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                     deleteColor={deleteColor}
                                     hovered={hovered}
                                     setHovered={setHovered}
+                                    handleDrop={handleDrop}
+                                    listId={listId}
                                 />
                             )}
                         </div>

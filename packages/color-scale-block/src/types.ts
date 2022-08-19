@@ -73,6 +73,8 @@ export type SquareWithoutColorProps = {
     hovered: boolean | number;
     setHovered: (value: boolean | number) => void;
     onDragStart?: (evt: any, id?: number, currentColor?: ColorProps) => void | undefined;
+    handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
+    listId: any;
 };
 
 export type AddNewColorModalProps = {

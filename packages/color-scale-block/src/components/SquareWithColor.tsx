@@ -10,7 +10,6 @@ import { CustomizationOptionsModal } from './CustomizationOptionsModal';
 import { IconTrash, IconSize } from '@frontify/fondue';
 import { DropZone } from '../react-dnd/DropZone';
 import { DropZonePosition, ItemDragState } from '@frontify/fondue';
-import { Draggable } from '../components/Draggable';
 import { useDrag } from 'react-dnd';
 
 export const SquareWithColor: FC<SquareWithColorProps> = ({
@@ -72,6 +71,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             }}
             onDrop={handleDrop}
             treeId={listId}
+            before
         />
         {/* <div className="tw-z-0 tw-absolute tw-w-full tw-h-full tw-opacity-0 hover:tw-opacity-100">
             <AddNewColorModal
@@ -125,6 +125,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 position: DropZonePosition.After,
             }}
             onDrop={handleDrop}
+            after
             treeId={listId}
         />
     </div>
