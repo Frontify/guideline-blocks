@@ -3,12 +3,20 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconLinkBox, IconSize, Text, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeStyles } from './helpers';
+import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeBorderStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
-import { Settings, SketchfabAccount, SketchfabBlockProps, SketchfabNavigation, SketchfabTheme, heights } from './types';
+import {
+    Settings,
+    SketchfabAccount,
+    SketchfabBlockProps,
+    SketchfabNavigation,
+    SketchfabTheme,
+    heights,
+    radiusClassMap,
+} from './types';
 
 export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const isEditing = useEditorState(appBridge);
@@ -139,12 +147,11 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
             {iframeUrl && (
                 <div>
                     <iframe
-                        className={joinClassNames(['tw-w-full', !hasRadius && radiusStyleMap[radiusChoice]])}
-                        style={
-                            hasBorder
-                                ? getIframeStyles(borderStyle, borderWidth, borderColor, hasRadius ? radiusValue : '')
-                                : {}
-                        }
+                        className={joinClassNames(['tw-w-full', !hasRadius && radiusClassMap[radiusChoice]])}
+                        style={{
+                            ...(hasBorder ? getIframeBorderStyles(borderStyle, borderWidth, borderColor) : {}),
+                            borderRadius: hasRadius ? radiusValue : '',
+                        }}
                         height={isCustomHeight ? customHeight : heights[height]}
                         src={iframeUrl.toString()}
                         frameBorder="0"

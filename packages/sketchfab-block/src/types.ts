@@ -174,6 +174,13 @@ export const heights: Record<SketchfabHeight, string> = {
     [SketchfabHeight.Large]: '700px',
 };
 
+export const radiusClassMap: Record<Radius, string> = {
+    [Radius.None]: '',
+    [Radius.Small]: 'tw-rounded-sm',
+    [Radius.Medium]: 'tw-rounded',
+    [Radius.Large]: 'tw-rounded-xl',
+};
+
 export enum SketchfabAccount {
     Premium = 'Premium',
     Pro = 'Pro',
