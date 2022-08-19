@@ -55,77 +55,87 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
         const bs = blockSettings;
         /* Parameters are only added if they are different to the default defined
             in https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
-            to keep the url as short as possible */
+            to keep the url as short as possible, with the final value in the conditional chain being used in the param */
         if (bs.url) {
+            const disableAllUI = !bs.showUI;
+            const disableAllButtons = !bs.showButtons;
+
+            const annotationSettings = bs.showAnnotations
+                ? {
+                      annotation:
+                          bs.startingAnnotation && !!Number(bs.startingAnnotationValue) && bs.startingAnnotationValue,
+                      annotation_cycle: bs.annotationCycle && bs.annotationCycleCount,
+                      annotation_tooltip_visible: !bs.annotationTooltipVisible && '0',
+                  }
+                : {
+                      annotations_visible: '0',
+                  };
+
             const basicSettings = {
                 animation_autoplay: !bs.autoPlay && '0',
-                annotation:
-                    bs.showAnnotations &&
-                    Boolean(Number(bs.startingAnnotation)) &&
-                    bs.startingAnnotation &&
-                    bs.startingAnnotationValue,
-                annotation_cycle: bs.showAnnotations && bs.annotationCycle && bs.annotationCycleCount,
-                annotation_tooltip_visible: (!bs.showAnnotations || !bs.annotationTooltipVisible) && '0',
-                annotations_visible: !bs.showAnnotations && '0',
                 api_log: bs.apiLog && '1',
                 autospin: bs.autoSpin && bs.autoSpinCount,
                 autostart: bs.autoStart && '1',
                 camera: !bs.startingSpin && '0',
-                dof_circle: (!bs.showUI || !bs.uiDOF) && '0',
+                dof_circle: (disableAllUI || !bs.uiDOF) && '0',
                 fps_speed: bs.fps && bs.fpsValue,
                 max_texture_size: bs.textureSize && bs.textureSizeValue,
                 navigation: bs.navigationMode === SketchfabNavigation.Fps && bs.navigationMode,
                 preload: bs.preloadTextures && '1',
                 scrollwheel: !bs.scrollWheel && '0',
-                ui_stop: (!bs.showButtons || !bs.uiDisableViewer) && '0',
+                ui_stop: (disableAllButtons || !bs.uiDisableViewer) && '0',
                 ui_theme: bs.uiTheme === SketchfabTheme.Dark && bs.uiTheme,
                 dnt: !bs.viewersTracking && '1',
+                ...annotationSettings,
             };
+
+            const navigationSettings = bs.navigationConstraints
+                ? {
+                      orbit_constraint_pan: bs.orbitConstraintPan && '1',
+                      orbit_constraint_pitch_down: bs.orbitConstraintPitch && bs.orbitConstraintPitchLimitsDown,
+                      orbit_constraint_pitch_up: bs.orbitConstraintPitch && bs.orbitConstraintPitchLimitsUp,
+                      orbit_constraint_yaw_left: bs.orbitConstraintYaw && bs.orbitConstraintYawLimitsLeft,
+                      orbit_constraint_yaw_right: bs.orbitConstraintYaw && bs.orbitConstraintYawLimitsRight,
+                      orbit_constraint_zoom_in: bs.orbitConstraintZoomIn && bs.orbitConstraintZoomInCount,
+                      orbit_constraint_zoom_out: bs.orbitConstraintZoomOut && bs.orbitConstraintZoomOutCount,
+                      prevent_user_light_rotation: !bs.allowLightRotation && '1',
+                  }
+                : {};
 
             const proSettings =
                 bs.accountType !== SketchfabAccount.Basic
                     ? {
                           transparent: bs.transparentBackground && '1',
                           double_click: !bs.doubleClick && '0',
-                          orbit_constraint_pan: bs.navigationConstraints && bs.orbitConstraintPan && '1',
-                          orbit_constraint_pitch_down:
-                              bs.navigationConstraints && bs.orbitConstraintPitch && bs.orbitConstraintPitchLimitsDown,
-                          orbit_constraint_pitch_up: bs.navigationConstraints && bs.orbitConstraintPitchLimitsUp,
-                          orbit_constraint_yaw_left:
-                              bs.navigationConstraints && bs.orbitConstraintYaw && bs.orbitConstraintYawLimitsLeft,
-                          orbit_constraint_yaw_right:
-                              bs.navigationConstraints && bs.orbitConstraintYaw && bs.orbitConstraintYawLimitsRight,
-                          orbit_constraint_zoom_in:
-                              bs.navigationConstraints && bs.orbitConstraintZoomIn && bs.orbitConstraintZoomInCount,
-                          orbit_constraint_zoom_out:
-                              bs.navigationConstraints && bs.orbitConstraintZoomOut && bs.orbitConstraintZoomOutCount,
-                          prevent_user_light_rotation: !bs.allowLightRotation && '1',
+                          ...navigationSettings,
                       }
                     : {};
 
             const premiumSettings =
                 bs.accountType === SketchfabAccount.Premium
                     ? {
-                          ui_animations: (!bs.showUI || !bs.uiAnimations) && '0',
-                          ui_annotations: (!bs.showUI || !bs.uiAnnotations) && '0',
-                          ui_controls: !bs.showButtons && '0',
-                          ui_fadeout: bs.showUI && !bs.uiFadeout && '0',
-                          ui_fullscreen: (!bs.showButtons || !bs.uiFullscreen) && '0',
-                          ui_general_controls: !bs.showUI && '0',
-                          ui_help: (!bs.showButtons || !bs.uiHelp) && '0',
-                          ui_hint: (!bs.showUI || !bs.uiHint) && '0',
-                          ui_infos: (!bs.showUI || !bs.uiInfos) && '0',
-                          ui_inspector: (!bs.showButtons || !bs.uiInspector) && '0',
-                          ui_loading: (!bs.showUI || !bs.uiLoading) && '0',
-                          ui_settings: (!bs.showButtons || !bs.uiSettings) && '0',
-                          ui_sound: (!bs.showButtons || !bs.uiSound) && '0',
-                          ui_start: (!bs.showButtons || !bs.uiStart) && '0',
-                          ui_vr: (!bs.showButtons || !bs.uiVR) && '0',
-                          ui_ar: (!bs.showButtons || !bs.uiAR) && '0',
-                          ui_ar_help: (!bs.showButtons || !bs.uiARHelp) && '0',
-                          ui_ar_qrcode: (!bs.showButtons || !bs.uiQR) && '0',
-                          ui_watermark: (!bs.showUI || !bs.uiWatermark) && '0',
                           ui_color: bs.uiColor && toHex8String(bs.uiColorValue).slice(1, 7),
+                          // UI Controls
+                          ui_general_controls: disableAllUI && '0',
+                          ui_animations: (disableAllUI || !bs.uiAnimations) && '0',
+                          ui_annotations: (disableAllUI || !bs.uiAnnotations) && '0',
+                          ui_fadeout: (disableAllUI || !bs.uiFadeout) && '0',
+                          ui_help: (disableAllButtons || !bs.uiHelp) && '0',
+                          ui_hint: (disableAllUI || !bs.uiHint) && '0',
+                          ui_infos: (disableAllUI || !bs.uiInfos) && '0',
+                          ui_loading: (disableAllUI || !bs.uiLoading) && '0',
+                          ui_watermark: (disableAllUI || !bs.uiWatermark) && '0',
+                          // Button Controls
+                          ui_controls: disableAllButtons && '0',
+                          ui_inspector: (disableAllButtons || !bs.uiInspector) && '0',
+                          ui_fullscreen: (disableAllButtons || !bs.uiFullscreen) && '0',
+                          ui_settings: (disableAllButtons || !bs.uiSettings) && '0',
+                          ui_sound: (disableAllButtons || !bs.uiSound) && '0',
+                          ui_start: (disableAllButtons || !bs.uiStart) && '0',
+                          ui_vr: (disableAllButtons || !bs.uiVR) && '0',
+                          ui_ar: (disableAllButtons || !bs.uiAR) && '0',
+                          ui_ar_help: (disableAllButtons || !bs.uiARHelp) && '0',
+                          ui_ar_qrcode: (disableAllButtons || !bs.uiQR) && '0',
                       }
                     : {};
 
