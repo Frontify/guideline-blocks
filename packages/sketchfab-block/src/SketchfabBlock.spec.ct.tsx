@@ -18,7 +18,7 @@ const SKETCHFAB_URL = 'https://sketchfab.com/models/02f12869e95e4695a15e3a611398
 const SKETCHFAB_URL_WITH_PARAM = 'https://sketchfab.com/models/02f12869e95e4695a15e3a611398742b/embed?autospin=0.5';
 const INVALID_URL = 'https://www.google.com';
 const BORDER_WIDTH = '5px';
-const BORDER_COLOR = { r: 50, g: 45, b: 70, a: 0.2 };
+const BORDER_COLOR = { red: 50, green: 45, blue: 70, alpha: 0.2 };
 const BORDER_COLOR_STRING = 'rgba(50, 45, 70, 0.2)';
 const BORDER_STYLE = 'solid';
 const BORDER_RADIUS = '10px';

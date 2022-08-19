@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconApprove, IconRejectCircle, IconSize, RichTextEditor } from '@frontify/fondue';
+import { IconCheckMarkCircle, IconCrossCircle, IconSize, RichTextEditor } from '@frontify/fondue';
 import { joinClassNames, toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useMemo } from 'react';
 import { DoDontItemProps, DoDontStyle, DoDontType, EditorChild, EditorElement } from './types';
@@ -55,8 +55,8 @@ export const DoDontItem: FC<DoDontItemProps> = ({
                         data-test-id="dos-donts-icon"
                         className={joinClassNames(['tw-mr-2 tw-w-auto', shouldBlurIcon ? 'tw-opacity-30' : ''])}
                     >
-                        {type === DoDontType.Do && <IconApprove size={IconSize.Size24} />}
-                        {type === DoDontType.Dont && <IconRejectCircle size={IconSize.Size24} />}
+                        {type === DoDontType.Do && <IconCheckMarkCircle size={IconSize.Size24} />}
+                        {type === DoDontType.Dont && <IconCrossCircle size={IconSize.Size24} />}
                     </div>
                 )}
                 <div className="tw-w-full">

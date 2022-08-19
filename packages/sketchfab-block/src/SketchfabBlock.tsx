@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Button, FormControl, FormControlStyle, IconExternalAsset, IconSize, Text, TextInput } from '@frontify/fondue';
+import { Button, FormControl, FormControlStyle, IconLinkBox, IconSize, Text, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
@@ -160,7 +160,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     <Text color="x-weak">Enter a URL to your 3D model from Sketchfab.</Text>
                     <div className="tw-text-text-x-weak tw-flex tw-items-start tw-gap-3 tw-w-full tw-justify-center">
                         <div className="tw-flex-none tw-mt-[2px]">
-                            <IconExternalAsset size={IconSize.Size32} />
+                            <IconLinkBox size={IconSize.Size32} />
                         </div>
                         <div className="tw-w-full tw-max-w-sm">
                             <FormControl
@@ -185,7 +185,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     data-test-id="sketchfab-empty-block-view"
                 >
                     <Text color="x-weak">
-                        <IconExternalAsset size={IconSize.Size32} />
+                        <IconLinkBox size={IconSize.Size32} />
                     </Text>
                 </div>
             )}

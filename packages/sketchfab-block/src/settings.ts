@@ -21,10 +21,10 @@ import {
 } from './types';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
-    r: 234,
-    g: 235,
-    b: 235,
-    a: 1,
+    red: 234,
+    green: 235,
+    blue: 235,
+    alpha: 1,
     name: 'Light Grey',
 };
 export const URL_INPUT_PLACEHOLDER = 'https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed';
