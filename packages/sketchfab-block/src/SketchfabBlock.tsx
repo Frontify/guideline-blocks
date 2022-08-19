@@ -62,8 +62,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
 
             const annotationSettings = bs.showAnnotations
                 ? {
-                      annotation:
-                          bs.startingAnnotation && !!Number(bs.startingAnnotationValue) && bs.startingAnnotationValue,
+                      annotation: bs.startingAnnotation && bs.startingAnnotationValue,
                       annotation_cycle: bs.annotationCycle && bs.annotationCycleCount,
                       annotation_tooltip_visible: !bs.annotationTooltipVisible && '0',
                   }

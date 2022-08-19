@@ -432,7 +432,7 @@ export const settings: BlockSettings & {
                     id: SketchfabSettings.STARTING_ANNOTATION_VALUE,
                     defaultValue: '1',
                     inputType: 'Number' as TextInputType.Number,
-                    rules: [minimumNumericalRule(0), maximumNumericalRule(100)],
+                    rules: [minimumNumericalRule(1), maximumNumericalRule(100)],
                     type: 'input',
                     placeholder: '1',
                 },
