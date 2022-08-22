@@ -5,10 +5,10 @@ import { describe, expect, test } from 'vitest';
 
 describe('toHex8String', () => {
     const data = [
-        { color: { r: 255, g: 255, b: 255 }, expected: '#ffffffff' },
-        { color: { r: 255, g: 221, b: 255, a: 1 }, expected: '#ffddffff' },
-        { color: { r: 255, g: 255, b: 15, a: 0 }, expected: '#ffff0f00' },
-        { color: { r: 238, g: 35, b: 84, a: 0.4 }, expected: '#ee235466' },
+        { color: { red: 255, green: 255, blue: 255 }, expected: '#ffffffff' },
+        { color: { red: 255, green: 221, blue: 255, alpha: 1 }, expected: '#ffddffff' },
+        { color: { red: 255, green: 255, blue: 15, alpha: 0 }, expected: '#ffff0f00' },
+        { color: { red: 238, green: 35, blue: 84, alpha: 0.4 }, expected: '#ee235466' },
     ];
 
     test.each(data)('validates against expected values', ({ color, expected }) => {

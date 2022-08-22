@@ -11,7 +11,7 @@ const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
 const IframeSelector = '[data-test-id="storybook-iframe"]';
 
 const EXAMPLE_URL = 'https://fondue-components.netlify.app/?path=/story/components-tooltip--tooltip';
-const EXAMPLE_COLOR = { r: 22, g: 181, b: 181, a: 1, name: 'Java' };
+const EXAMPLE_COLOR = { red: 22, green: 181, blue: 181, alpha: 1, name: 'Java' };
 
 describe('Storybook Block', () => {
     it('renders a storybook block', () => {

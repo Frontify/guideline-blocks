@@ -6,9 +6,9 @@ import {
     ButtonSize,
     ButtonStyle,
     DragProperties,
+    IconEye,
+    IconEyeOff,
     IconSize,
-    IconView,
-    IconViewSlash,
     ItemDragState,
     OrderableList,
     OrderableListItem,
@@ -195,9 +195,9 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                             style={ButtonStyle.Secondary}
                             icon={
                                 showCompleted ? (
-                                    <IconView size={IconSize.Size16} />
+                                    <IconEye size={IconSize.Size16} />
                                 ) : (
-                                    <IconViewSlash size={IconSize.Size16} />
+                                    <IconEyeOff size={IconSize.Size16} />
                                 )
                             }
                             onClick={toggleCompletedVisibility}

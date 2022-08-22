@@ -12,44 +12,45 @@ const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
 const LINE_WIDTH_CHOICE_ID = 'lineWidthChoice';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const QUOTE_STYLE_CHOICES = [
-    { value: QuoteStyle.DoubleUp, icon: 'DoubleQuotesUp' as IconEnum.DoubleQuotesUp, label: 'Double Up' },
-    { value: QuoteStyle.DoubleDown, icon: 'DoubleQuotesDown' as IconEnum.DoubleQuotesDown, label: 'Double Down' },
-    { value: QuoteStyle.SingleUp, icon: 'SingleQuoteUp' as IconEnum.SingleQuoteUp, label: 'Single Up' },
-    { value: QuoteStyle.SingleDown, icon: 'SingleQuoteDown' as IconEnum.SingleQuoteDown, label: 'Single Down' },
+    // TODO: Readd correct icons as soon as they exist in Fondue
+    { value: QuoteStyle.DoubleUp, icon: 'Icon' as IconEnum.Icon, label: 'Double Up' },
+    { value: QuoteStyle.DoubleDown, icon: 'Icon' as IconEnum.Icon, label: 'Double Down' },
+    { value: QuoteStyle.SingleUp, icon: 'Icon' as IconEnum.Icon, label: 'Single Up' },
+    { value: QuoteStyle.SingleDown, icon: 'Icon' as IconEnum.Icon, label: 'Single Down' },
     {
         value: QuoteStyle.DoubleChevronLeft,
-        icon: 'DoubleChevronLeft' as IconEnum.DoubleChevronLeft,
+        icon: 'CaretLeftDouble' as IconEnum.CaretLeftDouble,
         label: 'Double Chevron Left',
     },
     {
         value: QuoteStyle.DoubleChevronRight,
-        icon: 'DoubleChevronRight' as IconEnum.DoubleChevronRight,
+        icon: 'CaretRightDouble' as IconEnum.CaretRightDouble,
         label: 'Double Chevron Right',
     },
     {
         value: QuoteStyle.SingleChevronLeft,
-        icon: 'SingleChevronLeft' as IconEnum.SingleChevronLeft,
+        icon: 'CaretLeft' as IconEnum.CaretLeft,
         label: 'Single Chevron Left',
     },
     {
         value: QuoteStyle.SingleChevronRight,
-        icon: 'SingleChevronRight' as IconEnum.SingleChevronRight,
+        icon: 'CaretRight' as IconEnum.CaretRight,
         label: 'Single Chevron Right',
     },
     {
         value: QuoteStyle.HookBracketLeft,
-        icon: 'HookBracketLeft' as IconEnum.HookBracketLeft,
+        icon: 'Icon' as IconEnum.Icon,
         label: 'Hook Bracket Left',
     },
     {
         value: QuoteStyle.HookBracketRight,
-        icon: 'HookBracketRight' as IconEnum.HookBracketRight,
+        icon: 'Icon' as IconEnum.Icon,
         label: 'Hook Bracket Right',
     },
-    { value: QuoteStyle.None, icon: 'None' as IconEnum.None, label: 'None' },
+    { value: QuoteStyle.None, icon: 'Icon' as IconEnum.Icon, label: 'None' },
 ];
 
-export const DEFAULT_COLOR_VALUE = { r: 179, g: 181, b: 181, a: 1, name: 'Light Grey' };
+export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
 export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
 const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
@@ -66,7 +67,7 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
-                    icon: 'Quote' as IconEnum.Quote,
+                    icon: 'SpeechBubbleQuote' as IconEnum.SpeechBubbleQuote,
                     label: 'Quotation Marks',
                 },
                 {
