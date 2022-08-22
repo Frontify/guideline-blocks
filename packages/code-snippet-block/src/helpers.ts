@@ -1,23 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { transformSpiderToCssNotation } from '@frontify/guideline-blocks-shared';
-import { Property } from 'csstype';
-import { BorderRadiusTuple, PaddingTuple } from './types';
-import { appendPxSuffix, formatString, isPxSuffixMissing } from './utils';
+export const isPxSuffixMissing = (value: string) => !value.includes('px'); // TODO: remove isPxSuffixMissing - use appendUnit after fix
 
-export const getCustomPadding = (value: PaddingTuple): string => {
-    return transformSpiderToCssNotation(value).reduce(formatString, '');
-};
+export const appendPxSuffix = (value: string): `${string}px` => `${value}px`; // TODO: remove appendPxSuffix - use appendUnit after fix
 
-export const getCustomBorderRadius = (value: BorderRadiusTuple): string => {
-    return transformSpiderToCssNotation(value).reduce(formatString, '');
-};
-
-// TODO: remove getBorderWidthInPx - use appendUnit after fix
-export const getBorderWidthInPx = (lineWidth?: Property.BorderWidth) => {
-    let result = lineWidth;
-    if (lineWidth && isPxSuffixMissing(lineWidth)) {
-        result = appendPxSuffix(lineWidth);
+// TODO: remove getValueInPx - use appendUnit after fix
+export const getValueInPx = (value?: string) => {
+    let result = value;
+    if (value && isPxSuffixMissing(value)) {
+        result = appendPxSuffix(value);
     }
     return result;
 };

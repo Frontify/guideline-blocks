@@ -27,12 +27,6 @@ export type TwBorderInlineStyle = Exclude<
     Globals | 'groove' | 'inset' | 'outset' | 'ridge' | 'hidden'
 >;
 
-export type BorderTuple = [TwBorderInlineStyle, Property.BorderWidth, Color];
-
-export type PaddingTuple = [string, string, string, string];
-
-export type BorderRadiusTuple = [string, string, string, string];
-
 export interface CodeMirrorEditorStyle extends CSSProperties {
     '--editor-border': Property.Border;
     '--editor-padding': Property.Padding;
@@ -44,31 +38,39 @@ export type BorderRadiusSize = '0px' | '2px' | '4px' | '12px';
 
 export type Settings = {
     theme?: Theme;
+    content?: string;
+    borderColor: Color;
     language?: Language;
-    padding?: PaddingSize;
-    borderRadius?: BorderRadiusSize;
-    border?: BorderTuple;
     withBorder?: boolean;
     withHeading?: boolean;
+    paddingTop?: string;
+    paddingLeft?: string;
+    paddingRight?: string;
+    paddingBottom?: string;
+    padding?: PaddingSize;
     withRowNumbers?: boolean;
+    borderRadiusTop?: string;
+    borderRadiusLeft?: string;
+    borderRadiusRight?: string;
+    borderRadiusBottom?: string;
     withCustomPadding?: boolean;
+    lineStyle: TwBorderInlineStyle;
+    borderRadius?: BorderRadiusSize;
+    lineWidth: Property.BorderWidth;
     withCustomBorderRadius?: boolean;
-    customPadding?: PaddingTuple;
-    customBorderRadius?: BorderRadiusTuple;
-    content?: string;
 };
 
 export type CodeMirrorEditorProps = {
     id?: string;
     theme: Theme;
+    initValue?: string;
     language?: Language;
     withHeading?: boolean;
     withRowNumbers?: boolean;
     border?: Property.Border;
     padding?: Property.Padding;
+    onChange: (value: string) => void;
     borderRadius?: Property.BorderRadius;
-    initValue?: string;
-    onChange?: (value: string) => void;
 };
 
 export type CodeSnippetProps = {

@@ -207,6 +207,9 @@ export const settings: BlockSettings = {
             id: 'border',
             type: 'multiInput',
             lastItemFullWidth: true,
+            onChange: (bundle: Bundle): void => {
+                appendUnit(bundle, 'lineWidth');
+            },
             blocks: [
                 {
                     id: 'lineStyle',
@@ -239,7 +242,6 @@ export const settings: BlockSettings = {
                     id: 'lineWidth',
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'lineWidth'),
                 },
                 {
                     id: 'borderColor',
@@ -260,34 +262,36 @@ export const settings: BlockSettings = {
                     id: 'customBorderRadius',
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
+                    onChange: (bundle: Bundle): void => {
+                        appendUnit(bundle, 'borderRadiusTop');
+                        appendUnit(bundle, 'borderRadiusLeft');
+                        appendUnit(bundle, 'borderRadiusRight');
+                        appendUnit(bundle, 'borderRadiusBottom');
+                    },
                     blocks: [
                         {
                             id: 'borderRadiusTop',
                             type: 'input',
                             label: 'Top',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'borderRadiusTop'),
                         },
                         {
                             id: 'borderRadiusLeft',
                             type: 'input',
                             label: 'Left',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'borderRadiusLeft'),
                         },
                         {
                             id: 'borderRadiusRight',
                             type: 'input',
                             label: 'Right',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'borderRadiusRight'),
                         },
                         {
                             id: 'borderRadiusBottom',
                             type: 'input',
                             label: 'Bottom',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'borderRadiusBottom'),
                         },
                     ],
                 },

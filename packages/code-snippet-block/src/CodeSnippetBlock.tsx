@@ -7,35 +7,44 @@ import { debounce } from '@frontify/fondue';
 import { useBlockSettings } from '@frontify/app-bridge';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
+import { getValueInPx } from './helpers';
 import { CodeMirrorEditor } from './components';
 import { CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
-import { getBorderWidthInPx, getCustomBorderRadius, getCustomPadding } from './helpers';
-import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE, DEFAULT_TUPLE_VALUE } from './constants';
+import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
 
 export const CodeSnippetBlock = ({ appBridge, id }: CodeSnippetProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const {
+        content,
         padding,
         language,
-        border = [],
+        lineStyle,
+        lineWidth,
+        borderColor,
         borderRadius,
+        borderRadiusTop = '',
+        borderRadiusLeft = '',
+        borderRadiusRight = '',
+        borderRadiusBottom = '',
+        paddingTop = '',
+        paddingLeft = '',
+        paddingRight = '',
+        paddingBottom = '',
         withBorder = false,
         withHeading = false,
         withRowNumbers = false,
         withCustomPadding = false,
         theme = DEFAULT_THEME_VALUE,
         withCustomBorderRadius = false,
-        customPadding: paddingTuple = DEFAULT_TUPLE_VALUE,
-        customBorderRadius: borderRadiusTuple = DEFAULT_TUPLE_VALUE,
     } = blockSettings;
 
-    const [lineStyle, lineWidth, borderColor] = border;
+    const customPadding = `${getValueInPx(paddingTop)} ${getValueInPx(paddingRight)} ${getValueInPx(
+        paddingBottom
+    )} ${getValueInPx(paddingLeft)}`;
 
-    const borderWidth = getBorderWidthInPx(lineWidth);
-    const customPadding = getCustomPadding(paddingTuple);
-    const customBorderRadius = getCustomBorderRadius(borderRadiusTuple);
     const borderColorRgba = toRgbaString(borderColor ?? BORDER_COLOR_DEFAULT_VALUE);
+    const customBorderRadius = `${borderRadiusTop} ${borderRadiusRight} ${borderRadiusBottom} ${borderRadiusLeft}`;
 
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
 
@@ -45,11 +54,11 @@ export const CodeSnippetBlock = ({ appBridge, id }: CodeSnippetProps): ReactElem
         language,
         withHeading,
         withRowNumbers,
+        initValue: content,
         onChange: handleChange,
-        initValue: blockSettings.content,
         padding: withCustomPadding ? customPadding : padding,
         borderRadius: withCustomBorderRadius ? customBorderRadius : borderRadius,
-        border: withBorder ? `${lineStyle} ${borderWidth} ${borderColorRgba}` : 'none',
+        border: withBorder ? `${lineStyle} ${lineWidth} ${borderColorRgba}` : 'none',
     };
 
     return <CodeMirrorEditor {...codeMirrorEditorProps} />;

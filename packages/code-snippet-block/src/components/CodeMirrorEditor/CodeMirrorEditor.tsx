@@ -26,10 +26,7 @@ export const CodeMirrorEditor = ({
     useHeaderPanel(view, language, withHeading);
     useTheme(view, theme);
     useLineNumber(view, withRowNumbers);
-
-    if (typeof onChange === 'function') {
-        useUpdateListener(view, onChange);
-    }
+    useUpdateListener(view, onChange);
 
     useEffect(() => {
         if (editorRef.current === null) {
@@ -50,7 +47,7 @@ export const CodeMirrorEditor = ({
             view.destroy();
             setView(new EditorView());
         };
-    }, [editorRef.current, basicSetup]);
+    }, []);
 
     const style: CodeMirrorEditorStyle = {
         '--editor-border': border,
