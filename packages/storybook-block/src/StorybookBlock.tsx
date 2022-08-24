@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
-import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
+import { Button, FormControl, FormControlStyle, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
@@ -11,13 +11,13 @@ import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
+    heights,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
-    heights,
 } from './types';
 import { buildIframeUrl } from './utils/buildIframeUrl';
 import { decodeEntities } from './utils/decodeEntities';
@@ -46,6 +46,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const isEditing = useEditorState(appBridge);
     const [input, setInput] = useState(url);
+    const [urlIsValid, setUrlIsValid] = useState(true);
     const [storybookUrl, setStorybookUrl] = useState(url);
     const { hoverProps, isHovered } = useHover({});
     const { setIsReadyForPrint } = useReadyForPrint(appBridge);
@@ -53,11 +54,16 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const iframeUrl = buildIframeUrl(decodeEntities(storybookUrl), style === StorybookStyle.WithAddons, positioning);
     const saveInputLink = useCallback(() => {
         setIsReadyForPrint(false);
+        if (input.length === 0 || !isValidStorybookUrl(input)) {
+            setUrlIsValid(false);
+            return;
+        }
         setBlockSettings({
             ...blockSettings,
             url: ensureHttps(input),
         });
-    }, [blockSettings, input, setBlockSettings, setIsReadyForPrint]);
+        setUrlIsValid(true);
+    }, [blockSettings, input]);
 
     useEffect(() => {
         setIsReadyForPrint(true);
@@ -85,7 +91,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                     <iframe
                         onLoad={() => setIsReadyForPrint(true)}
                         onError={() => setIsReadyForPrint(true)}
-                        className={'tw-w-full'}
+                        className="tw-w-full"
                         style={
                             hasBorder
                                 ? {
@@ -111,22 +117,19 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                         >
                             <IconStorybook size={IconSize.Size32} />
                             <div className="tw-w-full tw-max-w-sm">
-                                <TextInput
-                                    value={input}
-                                    onChange={setInput}
-                                    onEnterPressed={isValidStorybookUrl(input) ? saveInputLink : undefined}
-                                    placeholder={URL_INPUT_PLACEHOLDER}
-                                />
-                                {!isValidStorybookUrl(input) && (
-                                    <div className="tw-text-s tw-text-text-negative tw-mt-2">{ERROR_MSG}</div>
-                                )}
+                                <FormControl
+                                    helper={!urlIsValid ? { text: ERROR_MSG } : undefined}
+                                    style={!urlIsValid ? FormControlStyle.Danger : FormControlStyle.Primary}
+                                >
+                                    <TextInput
+                                        value={input}
+                                        onChange={setInput}
+                                        onEnterPressed={saveInputLink}
+                                        placeholder={URL_INPUT_PLACEHOLDER}
+                                    />
+                                </FormControl>
                             </div>
-                            <Button
-                                onClick={saveInputLink}
-                                disabled={input.length === 0 || !isValidStorybookUrl(input)}
-                            >
-                                Confirm
-                            </Button>
+                            <Button onClick={saveInputLink}>Confirm</Button>
                         </div>
                     ) : (
                         <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">

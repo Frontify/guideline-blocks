@@ -14,7 +14,7 @@ import {
 import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
-export const ERROR_MSG = 'Please enter a valid Storybook URL';
+export const ERROR_MSG = 'Please enter a valid Storybook url';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
     red: 234,
@@ -23,7 +23,7 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
     alpha: 1,
     name: 'Light Grey',
 };
-export const URL_INPUT_PLACEHOLDER = 'https://brand.storybook.com/?path=/story/buttons';
+export const URL_INPUT_PLACEHOLDER = 'e.g. https://brand.storybook.com/?path=/story/buttons';
 
 const STYLE_ID = 'style';
 const HEIGHT_VALUE_ID = 'heightValue';
