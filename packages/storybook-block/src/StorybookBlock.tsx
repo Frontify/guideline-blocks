@@ -46,31 +46,30 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const isEditing = useEditorState(appBridge);
     const [input, setInput] = useState(url);
-    const [urlIsValid, setUrlIsValid] = useState(true);
-    const [storybookUrl, setStorybookUrl] = useState(url);
+    const [submittedUrl, setSubmittedUrl] = useState(url);
     const { hoverProps, isHovered } = useHover({});
     const { setIsReadyForPrint } = useReadyForPrint(appBridge);
 
-    const iframeUrl = buildIframeUrl(decodeEntities(storybookUrl), style === StorybookStyle.WithAddons, positioning);
+    const iframeUrl = buildIframeUrl(decodeEntities(submittedUrl), style === StorybookStyle.WithAddons, positioning);
     const saveInputLink = useCallback(() => {
         setIsReadyForPrint(false);
-        if (input.length === 0 || !isValidStorybookUrl(input)) {
-            setUrlIsValid(false);
-            return;
+        setSubmittedUrl(input);
+
+        if (isValidStorybookUrl(input)) {
+            setBlockSettings({
+                ...blockSettings,
+                url: ensureHttps(input),
+            });
         }
-        setBlockSettings({
-            ...blockSettings,
-            url: ensureHttps(input),
-        });
-        setUrlIsValid(true);
-    }, [blockSettings, input]);
+    }, [blockSettings, input, setBlockSettings, setIsReadyForPrint]);
 
     useEffect(() => {
         setIsReadyForPrint(true);
     }, [setIsReadyForPrint]);
 
     useEffect(() => {
-        setStorybookUrl(url);
+        setSubmittedUrl(url);
+        setInput(url);
     }, [url]);
 
     return (
@@ -80,7 +79,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                     {isEditing && isHovered && (
                         <RemoveButton
                             onClick={() => {
-                                setStorybookUrl('');
                                 setBlockSettings({
                                     ...blockSettings,
                                     url: '',
@@ -118,8 +116,8 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                             <IconStorybook size={IconSize.Size32} />
                             <div className="tw-w-full tw-max-w-sm">
                                 <FormControl
-                                    helper={!urlIsValid ? { text: ERROR_MSG } : undefined}
-                                    style={!urlIsValid ? FormControlStyle.Danger : FormControlStyle.Primary}
+                                    helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
+                                    style={!isValidStorybookUrl(submittedUrl) ? FormControlStyle.Danger : FormControlStyle.Primary}
                                 >
                                     <TextInput
                                         value={input}
