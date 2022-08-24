@@ -117,7 +117,11 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                             <div className="tw-w-full tw-max-w-sm">
                                 <FormControl
                                     helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
-                                    style={!isValidStorybookUrl(submittedUrl) ? FormControlStyle.Danger : FormControlStyle.Primary}
+                                    style={
+                                        !isValidStorybookUrl(submittedUrl)
+                                            ? FormControlStyle.Danger
+                                            : FormControlStyle.Primary
+                                    }
                                 >
                                     <TextInput
                                         value={input}
