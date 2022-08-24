@@ -11,13 +11,13 @@ import { RemoveButton } from './components/RemoveButton';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
-    heights,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
+    heights,
 } from './types';
 import { buildIframeUrl } from './utils/buildIframeUrl';
 import { decodeEntities } from './utils/decodeEntities';
