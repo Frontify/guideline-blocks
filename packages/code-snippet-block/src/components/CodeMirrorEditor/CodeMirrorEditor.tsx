@@ -8,7 +8,6 @@ import { basicSetup } from './extensions';
 import { useHeaderPanel, useLanguage, useLineNumber, useTheme, useUpdateListener } from './hooks';
 
 export const CodeMirrorEditor = ({
-    id,
     theme,
     language = 'html',
     border = 'none',
@@ -55,5 +54,5 @@ export const CodeMirrorEditor = ({
         '--editor-border-radius': borderRadius,
     };
 
-    return <section data-test-id="code-snippet-block" id={id} style={style} ref={editorRef} />;
+    return <section data-test-id="code-snippet-block" style={style} ref={editorRef} />;
 };

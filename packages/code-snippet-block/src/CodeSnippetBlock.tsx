@@ -2,7 +2,7 @@
 
 import 'tailwindcss/tailwind.css';
 
-import { ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import { debounce } from '@frontify/fondue';
 import { useBlockSettings } from '@frontify/app-bridge';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
@@ -12,7 +12,7 @@ import { CodeMirrorEditor } from './components';
 import { CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
 
-export const CodeSnippetBlock = ({ appBridge, id }: CodeSnippetProps): ReactElement => {
+export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const {
@@ -21,16 +21,16 @@ export const CodeSnippetBlock = ({ appBridge, id }: CodeSnippetProps): ReactElem
         language,
         lineStyle,
         lineWidth,
-        borderColor,
+        borderColor = BORDER_COLOR_DEFAULT_VALUE,
         borderRadius,
-        borderRadiusTop = '',
-        borderRadiusLeft = '',
-        borderRadiusRight = '',
-        borderRadiusBottom = '',
-        paddingTop = '',
-        paddingLeft = '',
-        paddingRight = '',
-        paddingBottom = '',
+        borderRadiusTop = '0px',
+        borderRadiusLeft = '0px',
+        borderRadiusRight = '0px',
+        borderRadiusBottom = '0px',
+        paddingTop = '0px',
+        paddingLeft = '0px',
+        paddingRight = '0px',
+        paddingBottom = '0px',
         withBorder = false,
         withHeading = false,
         withRowNumbers = false,
@@ -43,13 +43,12 @@ export const CodeSnippetBlock = ({ appBridge, id }: CodeSnippetProps): ReactElem
         paddingBottom
     )} ${getValueInPx(paddingLeft)}`;
 
-    const borderColorRgba = toRgbaString(borderColor ?? BORDER_COLOR_DEFAULT_VALUE);
+    const borderColorRgba = toRgbaString(borderColor);
     const customBorderRadius = `${borderRadiusTop} ${borderRadiusRight} ${borderRadiusBottom} ${borderRadiusLeft}`;
 
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
 
     const codeMirrorEditorProps: CodeMirrorEditorProps = {
-        id,
         theme,
         language,
         withHeading,

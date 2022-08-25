@@ -3,7 +3,7 @@
 export { base16Dark } from './base16dark';
 export { base16Light } from './base16light';
 export { cobalt } from './cobalt';
-export { defaultTheme } from './defaultTheme';
+export { defaultTheme } from './default';
 export { dracula } from './dracula';
 export { evaLight } from './evaLight';
 export { gitHubDark } from './gitHubDark';

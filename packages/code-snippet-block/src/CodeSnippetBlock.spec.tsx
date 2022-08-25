@@ -1,15 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
+import { Color } from '@frontify/fondue';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+
 import { CodeSnippetBlock } from './CodeSnippetBlock';
 
+const codeSnippetEditorSelector = '.cm-editor';
+const codeSnippetLineNumbersSelector = '.cm-lineNumbers';
 const codeSnippetBlockSelector = '[data-test-id="code-snippet-block"]';
 const codeSnippetHeaderSelector = '[data-test-id="code-snippet-header"]';
-const codeSnippetLineNumbersSelector = '.cm-lineNumbers';
-const codeSnippetEditorSelector = '.cm-editor';
 
-const EXAMPLE_COLOR = { r: 22, g: 181, b: 181, name: 'Java' };
+const EXAMPLE_COLOR: Color = { red: 22, green: 181, blue: 181, name: 'Java' };
 
 it('renders basic code snippet', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {});

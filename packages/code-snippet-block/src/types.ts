@@ -74,6 +74,5 @@ export type CodeMirrorEditorProps = {
 };
 
 export type CodeSnippetProps = {
-    id?: string;
     appBridge: AppBridgeBlock;
 };
