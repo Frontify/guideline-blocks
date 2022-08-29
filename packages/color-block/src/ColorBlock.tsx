@@ -1,18 +1,39 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
+import { Fragment, ReactElement } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { RichTextEditor } from '@frontify/fondue';
+
 import { ColorBlockType, Props, Settings } from './types';
+
+import {
+    DraggableItem,
+    DropZonePosition,
+    ItemDragState,
+    OrderableListItem,
+    RichTextEditor,
+    useMemoizedId,
+} from '@frontify/fondue';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
 import { DropsItemAdd } from './components/drops/DropsItemAdd';
 import { DropsItem } from './components/drops/DropsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
 import { CardsItem } from './components/cards/CardsItem';
+import { DropZone } from './components/DropZone';
 
-const DEMO_COLORS = ['#FF375A', '#825FFF', '#00C8A5', '#FFB400'];
+const DEMO_COLORS = [
+    { id: '#100100', sort: 1 },
+    { id: '#200200', sort: 2 },
+    { id: '#300300', sort: 3 },
+    { id: '#400400', sort: 4 },
+    { id: '#500500', sort: 5 },
+    { id: '#600600', sort: 6 },
+    { id: '#700700', sort: 7 },
+];
 
 export const ColorBlock = ({ appBridge }: Props): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -23,6 +44,28 @@ export const ColorBlock = ({ appBridge }: Props): ReactElement => {
 
     const onNameChange = (value: string) => setBlockSettings({ name: value });
     const onDescriptionChange = (value: string) => setBlockSettings({ description: value });
+
+    const listId = useMemoizedId();
+
+    // useEffect(() => {
+    //     // sort the incoming itemse
+    //     const itemsClone = [...items];
+    //     itemsClone.sort(listItemsCompareFn);
+    //     setItemsState(itemsClone);
+    // }, [items]);
+
+    const handleDrop = (
+        targetItem: OrderableListItem<T>,
+        sourceItem: OrderableListItem<T>,
+        position: DropZonePosition
+    ) => {
+        // const modifiedItems = moveItems(targetItem, sourceItem, position, demoColors);
+        // handleMove(modifiedItems);
+
+        console.log(targetItem);
+        console.log(sourceItem);
+        console.log(position);
+    };
 
     const wrapperClasses: Record<ColorBlockType, string> = {
         [ColorBlockType.List]: 'tw-overflow-x-hidden',
@@ -53,19 +96,45 @@ export const ColorBlock = ({ appBridge }: Props): ReactElement => {
             </div>
 
             <div className={wrapperClasses[view]}>
-                {DEMO_COLORS.map((color: string) => (
-                    <>
-                        {view === ColorBlockType.List && (
-                            <ListItem color={color} colorSpaces={colorspaces} isEditing={isEditing} />
-                        )}
-                        {view === ColorBlockType.Drops && (
-                            <DropsItem color={color} colorSpaces={colorspaces} isEditing={isEditing} />
-                        )}
-                        {view === ColorBlockType.Cards && (
-                            <CardsItem color={color} colorSpaces={colorspaces} isEditing={isEditing} />
-                        )}
-                    </>
-                ))}
+                <DndProvider backend={HTML5Backend}>
+                    {DEMO_COLORS.map((color: DraggableItem<object>, index: number) => (
+                        <Fragment key={index}>
+                            <DropZone
+                                key={`orderable-list-item-${index}-before`}
+                                data={{
+                                    targetItem: color,
+                                    position: DropZonePosition.Before,
+                                }}
+                                onDrop={handleDrop}
+                                treeId={'test'}
+                                colorBlockType={view}
+                            />
+
+                            {view === ColorBlockType.List && (
+                                <ListItem color={color.id} colorSpaces={colorspaces} isEditing={isEditing} />
+                            )}
+                            {/* {view === ColorBlockType.Drops && (
+                                <DropsItem color={color} colorSpaces={colorspaces} isEditing={isEditing} />
+                                )}
+                                {view === ColorBlockType.Cards && (
+                                    <CardsItem color={color} colorSpaces={colorspaces} isEditing={isEditing} />
+                                )} */}
+
+                            {index === DEMO_COLORS.length - 1 && (
+                                <DropZone
+                                    key={`orderable-list-item-${index}-after`}
+                                    data={{
+                                        targetItem: color,
+                                        position: DropZonePosition.After,
+                                    }}
+                                    onDrop={handleDrop}
+                                    treeId={'test'}
+                                    colorBlockType={view}
+                                />
+                            )}
+                        </Fragment>
+                    ))}
+                </DndProvider>
 
                 {isEditing && (
                     <>

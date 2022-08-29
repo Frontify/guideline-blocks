@@ -8,12 +8,16 @@ import {
     ButtonStyle,
     IconSize,
     IconTrash,
+    ItemDragState,
     RichTextEditor,
     Tooltip,
     TooltipPosition,
     useCopy,
+    useMemoizedId,
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+
+import { useDrag } from 'react-dnd';
 
 import { ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
@@ -24,6 +28,15 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const { copy, status } = useCopy();
+
+    const [{}, drag] = useDrag({
+        item: color,
+        collect: (monitor) => ({
+            componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
+        }),
+        type: 'test',
+        // canDrag: dragDisabled,
+    });
 
     return (
         <div
