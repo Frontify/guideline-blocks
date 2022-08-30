@@ -13,9 +13,9 @@ export const CardsItemAdd: FC<ItemAddProps> = ({ colorSpaces, isEditing }) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     return (
-        <div className="tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[2] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full">
+        <div className="tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded tw-shadow-inner-line hover:tw-shadow-inner-line-strong">
             <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
-                <div className="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-shadow-inset-card-add">
+                <div className="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
                 </div>
             </ColorsBlockColorPicker>

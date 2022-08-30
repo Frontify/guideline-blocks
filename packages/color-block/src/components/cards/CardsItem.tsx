@@ -25,13 +25,7 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
     const { copy, status } = useCopy();
 
     return (
-        <div
-            className={joinClassNames([
-                "tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-z-[1] before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-rounded before:tw-shadow-inset-full before:tw-transition-all",
-                isEditing && 'hover:before:tw-shadow-inset-hover-strong',
-                !isEditing && 'hover:before:tw-shadow-inset-hover-weak',
-            ])}
-        >
+        <div className="tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded tw-shadow-inner-line tw-transition-all hover:tw-shadow-inner-line-strong">
             {!isEditing ? (
                 <Tooltip
                     withArrow
@@ -40,7 +34,7 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     content={<TootlipContent color={color} status={status} />}
                     triggerElement={
                         <div
-                            className="tw-relative tw-z-[1] tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inset-bottom"
+                            className="tw-relative tw-z-[1] tw-w-full tw-h-[60px] tw-cursor-pointer tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
                                 backgroundColor: color,
                             }}
@@ -51,14 +45,14 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
             ) : (
                 <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
                     <div
-                        className="tw-relative tw-w-full tw-h-[60px] tw-shadow-inset-bottom"
+                        className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{
                             backgroundColor: color,
                         }}
                     >
                         <div
                             className={joinClassNames([
-                                'tw-absolute tw-z-[2] tw-hidden tw-top-1 tw-right-1',
+                                'tw-absolute tw-z-[2] tw-hidden tw-top-1 tw-right-1 tw-transition-all',
                                 isEditing && 'group-hover:tw-block',
                             ])}
                         >

@@ -15,7 +15,7 @@ export const DropsItemAdd: FC<ItemAddProps> = ({ colorSpaces, isEditing }: ItemA
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
             <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
-                <div className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-gray-add-button">
+                <div className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-gray-add-button tw-shadow-inner-line hover:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
                 </div>
             </ColorsBlockColorPicker>

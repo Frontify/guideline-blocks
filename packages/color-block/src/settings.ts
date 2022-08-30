@@ -13,7 +13,7 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: 'list',
-                    icon: IconEnum.ListBullets,
+                    icon: IconEnum.ListBullet,
                     label: 'List',
                 },
                 {

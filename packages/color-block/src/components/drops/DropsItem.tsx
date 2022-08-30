@@ -34,7 +34,7 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
                     content={<TootlipContent color={color} status={status} />}
                     triggerElement={
                         <div
-                            className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-cursor-pointer tw-transition-all group-hover:tw-shadow-inset-hover-weak"
+                            className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
                                 backgroundColor: color,
                             }}
@@ -45,7 +45,7 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
             ) : (
                 <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
                     <div
-                        className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-transition-all group-hover:tw-shadow-inset-hover-strong"
+                        className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{
                             backgroundColor: color,
                         }}

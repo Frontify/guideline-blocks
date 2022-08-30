@@ -12,7 +12,7 @@ import { DropsItem } from './components/drops/DropsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
 import { CardsItem } from './components/cards/CardsItem';
 
-const DEMO_COLORS = ['#100100', '#200200', '#300300', '#400400', '#500500', '#600600', '#700700'];
+const DEMO_COLORS = ['#FF375A', '#825FFF', '#00C8A5', '#FFB400'];
 
 export const ColorBlock = ({ appBridge }: Props): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -25,7 +25,7 @@ export const ColorBlock = ({ appBridge }: Props): ReactElement => {
     const onDescriptionChange = (value: string) => setBlockSettings({ description: value });
 
     const wrapperClasses: Record<ColorBlockType, string> = {
-        [ColorBlockType.List]: '',
+        [ColorBlockType.List]: 'tw-overflow-x-hidden',
         [ColorBlockType.Drops]: 'tw-grid tw-gap-4 tw-grid-cols-6',
         [ColorBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
     };

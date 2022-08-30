@@ -29,10 +29,9 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
         <div
             key={color}
             className={joinClassNames([
-                "tw-group tw-relative tw-w-full tw-flex before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-shadow-inset-top before:tw-transition-all",
-                isEditing && 'hover:before:tw-shadow-inset-hover-strong',
-                !isEditing &&
-                    'last:after:tw-absolute last:after:tw-top-0 last:after:tw-left-0 last:after:tw-w-full last:after:tw-h-full last:after:tw-content-[""] last:after:tw-shadow-inset-bottom hover:tw-bg-black-0',
+                'tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all last:tw-border-b last:tw-border-black/[.1] hover:tw-shadow-t-inner-line-strong',
+                isEditing && '',
+                !isEditing && '',
             ])}
         >
             {!isEditing ? (
@@ -43,7 +42,7 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     content={<TootlipContent color={color} status={status} />}
                     triggerElement={
                         <div
-                            className="tw-relative tw-z-[1] tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-cursor-pointer"
+                            className="tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                             style={{
                                 backgroundColor: color,
                             }}
@@ -54,7 +53,7 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
             ) : (
                 <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
                     <div
-                        className="tw-w-[120px] tw-min-h-[60px] tw-mr-9"
+                        className="tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                         style={{
                             backgroundColor: color,
                         }}
@@ -84,7 +83,7 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                                     content={<TootlipContent color={color} status={status} />}
                                     triggerElement={
                                         <div
-                                            className="tw-relative tw-z-[1] tw-ml-3 tw-cursor-pointer tw-text-s tw-text-black-80"
+                                            className="tw-ml-3 tw-cursor-pointer tw-text-s tw-text-black-80"
                                             onClick={() => copy(color)}
                                         >
                                             {mappedColorSpace.placeholder}

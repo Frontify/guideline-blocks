@@ -20,7 +20,7 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
     };
 
     return (
-        <div className="tw-relative tw-z-[2]">
+        <div>
             <Flyout
                 hug={false}
                 onConfirm={handleClick}

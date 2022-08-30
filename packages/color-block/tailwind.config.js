@@ -5,6 +5,10 @@ module.exports = {
         preflight: false,
     },
     theme: {
+        boxShadow: {
+            line: '0 0 0 var(--line-width) var(--line-color)',
+            'line-strong': '0 0 0 var(--line-width) var(--line-color-strong)',
+        },
         extend: {
             width: {
                 'list-color-types': 'calc(100% - 306px)',
@@ -15,15 +19,12 @@ module.exports = {
                 },
             },
             boxShadow: {
-                inset: 'inset 0 0 0 1px rgba(8, 8, 8, 0.1)',
-                'inset-top': 'inset 0 1px 0 0 rgba(8, 8, 8, 0.1)',
-                'inset-bottom': 'inset 0 -1px 0 0 rgba(8, 8, 8, 0.1)',
-                'inset-full': 'inset 0 0 0 1px rgba(8, 8, 8, 0.1)',
-                'inset-list-add': 'inset 0 -1px 0 0 rgba(8, 8, 8, 0.1), inset 0 1px 0 0 rgba(8, 8, 8, 0.1)',
-                'inset-card-add':
-                    'inset 0 1px 0 0 rgba(8, 8, 8, 0.1), inset 1px 0 0 0 rgba(8, 8, 8, 0.1), inset -1px 0 0 0 rgba(8, 8, 8, 0.1)',
-                'inset-hover-weak': 'inset 0 0 0 1px rgba(8, 8, 8, 0.15)',
-                'inset-hover-strong': 'inset 0 0 0 1px rgb(45, 50, 50)',
+                line: '0 0 0 1px var(--line-color)',
+                'inner-line': 'inset 0 0 0 var(--line-width) var(--line-color)',
+                't-inner-line': 'inset 0 var(--line-width) 0 0 var(--line-color)',
+                'line-strong': '0 0 0 1px var(--line-color-strong)',
+                'inner-line-strong': 'inset 0 0 0 var(--line-width) var(--line-color-strong)',
+                't-inner-line-strong': 'inset 0 var(--line-width) 0 0 var(--line-color-strong)',
             },
         },
     },

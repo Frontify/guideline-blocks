@@ -14,10 +14,10 @@ export const ListItemAdd: FC<ItemAddProps> = ({ colorSpaces, isEditing }) => {
     return (
         <div
             key={4}
-            className="tw-relative tw-w-full tw-flex before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-w-full before:tw-h-full before:tw-content-[''] before:tw-shadow-inset-top after:tw-absolute after:tw-top-0 after:tw-left-0 after:tw-w-full after:tw-h-full after:tw-content-[''] after:tw-shadow-inset-bottom"
+            className="tw-group tw-relative tw-w-full tw-flex tw-ml-[1px] tw-shadow-inner-line hover:tw-shadow-inner-line-strong"
         >
             <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
-                <div className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-shadow-inset-list-add">
+                <div className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-ml-[-1px] tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-shadow-inner-line group:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
                 </div>
             </ColorsBlockColorPicker>
