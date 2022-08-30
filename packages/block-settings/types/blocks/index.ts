@@ -3,6 +3,7 @@
 import { AssetInputBlock } from './assetInput';
 import { ChecklistBlock } from './checklist';
 import { ColorInputBlock } from './colorInput';
+import { DebugBlock } from './debug';
 import { DropdownBlock } from './dropdown';
 import { InputBlock } from './input';
 import { LegacyAssetInputBlock } from './legacyAssetInput';
@@ -35,6 +36,7 @@ export type SimpleSettingBlock =
     | AssetInputBlock
     | ChecklistBlock
     | ColorInputBlock
+    | DebugBlock
     | DropdownBlock
     | InputBlock
     | LegacyAssetInputBlock
