@@ -1,14 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle } from '@frontify/guideline-blocks-settings';
-
+/* Sketchfab's model preview url used to be the same as the embed url (without "/embed"). 
+    OLD: https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec
+    NEW: https://sketchfab.com/3d-models/name-of-model-442c548d94744641ba279ae94b5f45ec
+    EMBED: https://sketchfab.com/models/442c548d94744641ba279ae94b5f45ec/embed
+    We support both types of url and transform to the iframe embed url using 'generateSketchfabEmbedUrl'*/
 const SKETCHFAB_NEW_PREVIEW_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/3d-models\/(\w|-)+-(?<id>\w+)/;
-/* Sketchfab's preview url structure used to be the same as the embed url (without /embed). 
-    We still support the old url and automatically append /embed when required */
-const SKETCHFAB_EMBED_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/(models|show)\/\w+(\/embed)?/;
+const SKETCHFAB_OLD_PREVIEW_REGEX = /^https:\/\/(www\.)?sketchfab\.com\/(models|show)\/\w+(\/embed)?/;
 
 export const isParseableSketchfabUrl = (url: string) =>
-    !!url && (SKETCHFAB_NEW_PREVIEW_REGEX.test(url) || SKETCHFAB_EMBED_REGEX.test(url));
+    !!url && (SKETCHFAB_NEW_PREVIEW_REGEX.test(url) || SKETCHFAB_OLD_PREVIEW_REGEX.test(url));
 
 export const generateIframeUrl = (href: string, params: Record<string, string | undefined | boolean>) => {
     try {
@@ -39,18 +40,11 @@ const getUrlStringWithoutSearchParams = (url?: string) => {
 
 const appendEmbedToUrl = (url: string) => (/\/embed$/.test(url) ? url : `${url}/embed`);
 
-export const parseSketchfabSettingsUrl = (bundle: Bundle) => {
-    const rawUrl = (bundle.getBlock('url')?.value ?? '') as string;
-    const embedUrl = generateSketchfabEmbedUrl(rawUrl);
-
-    bundle.setBlockValue('url', embedUrl);
-};
-
 export const generateSketchfabEmbedUrl = (url: string) => {
     try {
         const urlWithoutParams = getUrlStringWithoutSearchParams(url);
 
-        if (SKETCHFAB_EMBED_REGEX.test(urlWithoutParams)) {
+        if (SKETCHFAB_OLD_PREVIEW_REGEX.test(urlWithoutParams)) {
             const modelUrl = urlWithoutParams.replace('/show/', '/models/');
             return appendEmbedToUrl(modelUrl);
         }

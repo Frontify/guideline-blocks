@@ -33,23 +33,23 @@ export const DEFAULT_BORDER_WIDTH = '1px';
 
 const TEXTURE_SIZES = ['32', '128', '256', '512', '1024', '2048', '4096', '8192'];
 
+const isPremiumAccount = (bundle: Bundle): boolean =>
+    bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value === SketchfabAccount.Premium;
+
+const isProOrPremiumAccount = (bundle: Bundle): boolean =>
+    bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic;
+
 const isAvailablePremiumUIControl = (bundle: Bundle) =>
-    Boolean(
-        bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value === SketchfabAccount.Premium &&
-            bundle.getBlock(SketchfabSettings.SHOW_UI)?.value
-    );
+    isPremiumAccount(bundle) && bundle.getBlock(SketchfabSettings.SHOW_UI)?.value === true;
 
 const isAvailablePremiumUIButton = (bundle: Bundle) =>
-    Boolean(
-        bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value === SketchfabAccount.Premium &&
-            bundle.getBlock(SketchfabSettings.SHOW_BUTTONS)?.value
-    );
+    isPremiumAccount(bundle) && bundle.getBlock(SketchfabSettings.SHOW_BUTTONS)?.value === true;
 
-const isAvailableProNavigationConstraint = (bundle: Bundle) =>
-    Boolean(
-        bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic &&
-            bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value
-    );
+const isAvailableNavigationConstraint = (bundle: Bundle) =>
+    bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value === true;
+
+const isAvailableAnnotationControl = (bundle: Bundle) =>
+    bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === true;
 
 // Defaults reflected here https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
 export const settings: BlockSettings & {
@@ -190,7 +190,7 @@ export const settings: BlockSettings & {
                     label: 'Allow Double Click',
                     defaultValue: true,
                     info: 'Disabling this feature will disable the double-clicking to focus the camera in the viewer.',
-                    show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
+                    show: isProOrPremiumAccount,
                 },
                 {
                     id: SketchfabSettings.ALLOW_LIGHT_ROTATION,
@@ -198,7 +198,7 @@ export const settings: BlockSettings & {
                     defaultValue: true,
                     label: 'Allow Light Rotation',
                     info: 'Enabling this feature will allow using alt + click/drag to rotate the lights and environment.',
-                    show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
+                    show: isProOrPremiumAccount,
                 },
                 {
                     id: SketchfabSettings.STARTING_SPIN,
@@ -261,13 +261,13 @@ export const settings: BlockSettings & {
             id: 'sectionHeading-3',
             type: 'sectionHeading',
             label: '',
+            show: isProOrPremiumAccount,
             blocks: [
                 {
                     id: SketchfabSettings.NAVIGATION_CONSTRAINTS,
                     type: 'switch',
                     label: 'Navigation Constraints',
                     size: SwitchSize.Large,
-                    show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
                 },
 
                 {
@@ -275,18 +275,18 @@ export const settings: BlockSettings & {
                     type: 'switch',
                     label: 'Orbit Constraint Pan',
                     info: 'Enabling this feature will prevent panning the camera.',
-                    show: isAvailableProNavigationConstraint,
+                    show: isAvailableNavigationConstraint,
                 },
                 {
                     id: SketchfabSettings.ORBIT_CONSTRAINT_PITCH,
                     type: 'switch',
                     label: 'Orbit Constraint Pitch',
-                    show: isAvailableProNavigationConstraint,
+                    show: isAvailableNavigationConstraint,
                     on: [
                         {
                             id: 'orbitConstraintPitchLimits',
                             type: 'multiInput',
-                            show: isAvailableProNavigationConstraint,
+                            show: isAvailableNavigationConstraint,
                             layout: 'Columns' as MultiInputLayout.Columns,
                             blocks: [
                                 {
@@ -297,7 +297,7 @@ export const settings: BlockSettings & {
                                     placeholder: '1',
                                     label: 'Up',
                                     info: "Setting to [-π/2 – π/2] will define the camera's pitch up rotation limit.",
-                                    show: isAvailableProNavigationConstraint,
+                                    show: isAvailableNavigationConstraint,
                                 },
                                 {
                                     id: SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_DOWN,
@@ -307,7 +307,7 @@ export const settings: BlockSettings & {
                                     label: 'Down',
                                     info: "Setting to [-π/2 – π/2] will define the camera's pitch down rotation limit.",
                                     placeholder: '-1',
-                                    show: isAvailableProNavigationConstraint,
+                                    show: isAvailableNavigationConstraint,
                                 },
                             ],
                         },
@@ -317,13 +317,13 @@ export const settings: BlockSettings & {
                     id: SketchfabSettings.ORBIT_CONTRAINT_YAW,
                     type: 'switch',
                     label: 'Orbit Constraint Yaw',
-                    show: isAvailableProNavigationConstraint,
+                    show: isAvailableNavigationConstraint,
                     on: [
                         {
                             id: 'orbitConstraintYawLimits',
                             type: 'multiInput',
                             layout: 'Columns' as MultiInputLayout.Columns,
-                            show: isAvailableProNavigationConstraint,
+                            show: isAvailableNavigationConstraint,
                             blocks: [
                                 {
                                     id: SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_LEFT,
@@ -331,7 +331,7 @@ export const settings: BlockSettings & {
                                     inputType: 'Number' as TextInputType.Number,
                                     rules: [yawRule],
                                     info: "Setting to [-π – π] will define the camera's yaw left rotation limit.",
-                                    show: isAvailableProNavigationConstraint,
+                                    show: isAvailableNavigationConstraint,
                                     placeholder: '-2',
                                     label: 'Left',
                                 },
@@ -341,7 +341,7 @@ export const settings: BlockSettings & {
                                     inputType: 'Number' as TextInputType.Number,
                                     rules: [yawRule],
                                     info: "Setting to [-π – π] will define the camera's yaw right rotation limit.",
-                                    show: isAvailableProNavigationConstraint,
+                                    show: isAvailableNavigationConstraint,
                                     label: 'Right',
                                     placeholder: '2',
                                 },
@@ -352,14 +352,14 @@ export const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_IN,
                     type: 'switch',
-                    show: isAvailableProNavigationConstraint,
+                    show: isAvailableNavigationConstraint,
                     label: 'Orbit Constraint Zoom In',
                     info: 'Setting to a positive number will define the camera zoom in limit (minimum distance from the model).',
                     on: [
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_IN_COUNT,
                             type: 'input',
-                            show: isAvailableProNavigationConstraint,
+                            show: isAvailableNavigationConstraint,
                             placeholder: '3',
                             inputType: 'Number' as TextInputType.Number,
                             rules: [minimumNumericalRule(0)],
@@ -369,7 +369,7 @@ export const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_OUT,
                     type: 'switch',
-                    show: isAvailableProNavigationConstraint,
+                    show: isAvailableNavigationConstraint,
                     label: 'Orbit Constraint Zoom Out',
                     info: 'Setting to a positive number will define the camera zoom out limit (maximum distance from the model).',
                     on: [
@@ -378,7 +378,7 @@ export const settings: BlockSettings & {
                             type: 'input',
                             inputType: 'Number' as TextInputType.Number,
                             rules: [minimumNumericalRule(0)],
-                            show: isAvailableProNavigationConstraint,
+                            show: isAvailableNavigationConstraint,
                             placeholder: '3',
                         },
                     ],
@@ -401,7 +401,7 @@ export const settings: BlockSettings & {
             label: 'Annotation Tooltip Visible',
             info: 'Disabling this feature will hide annotation tooltips by default',
             type: 'switch',
-            show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
+            show: isAvailableAnnotationControl,
         },
         {
             id: SketchfabSettings.STARTING_ANNOTATION,
@@ -409,7 +409,7 @@ export const settings: BlockSettings & {
             type: 'switch',
             label: 'Starting Annotation',
             info: 'Setting to a positive number [1 – 100] will automatically load that annotation when the viewer starts.',
-            show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
+            show: isAvailableAnnotationControl,
             on: [
                 {
                     id: SketchfabSettings.STARTING_ANNOTATION_VALUE,
@@ -427,7 +427,7 @@ export const settings: BlockSettings & {
             label: 'Annotation Cycle',
             type: 'switch',
             info: 'Setting to any number will start the Autopilot cycle with that duration, in seconds, at each annotation',
-            show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
+            show: isAvailableAnnotationControl,
             on: [
                 {
                     id: SketchfabSettings.ANNOTATION_CYCLE_COUNT,
@@ -436,7 +436,7 @@ export const settings: BlockSettings & {
                     inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
                     type: 'input',
-                    show: (bundle) => bundle.getBlock('showAnnotations')?.value === true,
+                    show: isAvailableAnnotationControl,
                 },
             ],
         },
@@ -451,7 +451,7 @@ export const settings: BlockSettings & {
                     id: SketchfabSettings.UI_THEME,
                     type: 'slider',
                     label: 'UI Theme',
-                    defaultValue: 'default',
+                    defaultValue: SketchfabTheme.Default,
                     info: 'Setting to Dark will apply a darker appearance to the user interface.',
                     choices: [
                         { value: SketchfabTheme.Default, label: 'Default' },
@@ -485,6 +485,7 @@ export const settings: BlockSettings & {
                     type: 'switch',
                     defaultValue: true,
                     size: SwitchSize.Large,
+                    show: isPremiumAccount,
                 },
                 {
                     id: SketchfabSettings.UI_WATERMARK,
@@ -532,7 +533,7 @@ export const settings: BlockSettings & {
                     type: 'switch',
                     defaultValue: true,
                     info: 'Disabling this feature will not show the depth of field refocus circle animation on click.',
-                    show: (bundle) => Boolean(bundle.getBlock(SketchfabSettings.SHOW_UI)?.value),
+                    show: (bundle) => isAvailablePremiumUIControl(bundle) || !isPremiumAccount(bundle),
                 },
                 {
                     id: SketchfabSettings.UI_INFOS,
@@ -559,10 +560,11 @@ export const settings: BlockSettings & {
             blocks: [
                 {
                     id: SketchfabSettings.SHOW_BUTTONS,
-                    label: 'Show Buttons',
+                    label: 'Buttons',
                     defaultValue: true,
                     type: 'switch',
                     size: SwitchSize.Large,
+                    show: isPremiumAccount,
                 },
                 {
                     id: SketchfabSettings.UI_HELP,
@@ -617,7 +619,7 @@ export const settings: BlockSettings & {
                     label: '"Disable Viewer" Button',
                     type: 'switch',
                     defaultValue: true,
-                    show: (bundle) => Boolean(bundle.getBlock(SketchfabSettings.SHOW_BUTTONS)?.value),
+                    show: (bundle) => isAvailablePremiumUIButton(bundle) || !isPremiumAccount(bundle),
                     info: 'Disabling this feature will hide the "Disable Viewer" button in the top right so that users cannot stop the 3D render once it is started.',
                 },
                 {
