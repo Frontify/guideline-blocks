@@ -28,11 +28,7 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
     return (
         <div
             key={color}
-            className={joinClassNames([
-                'tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all last:tw-border-b last:tw-border-black/[.1] hover:tw-shadow-t-inner-line-strong',
-                isEditing && '',
-                !isEditing && '',
-            ])}
+            className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all last:tw-border-b last:tw-border-black/[.1] hover:tw-shadow-t-inner-line-strong"
         >
             {!isEditing ? (
                 <Tooltip
