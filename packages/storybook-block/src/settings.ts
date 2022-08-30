@@ -23,7 +23,7 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
     alpha: 1,
     name: 'Light Grey',
 };
-export const URL_INPUT_PLACEHOLDER = 'e.g. https://brand.storybook.com/?path=/story/buttons';
+export const URL_INPUT_PLACEHOLDER = 'https://brand.storybook.com/?path=/story/buttons';
 
 const STYLE_ID = 'style';
 const HEIGHT_VALUE_ID = 'heightValue';
