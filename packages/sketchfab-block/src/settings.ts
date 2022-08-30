@@ -31,6 +31,8 @@ export const URL_INPUT_PLACEHOLDER = 'https://sketchfab.com/models/442c548d94744
 
 export const DEFAULT_BORDER_WIDTH = '1px';
 
+const TEXTURE_SIZES = ['32', '128', '256', '512', '1024', '2048', '4096', '8192'];
+
 const isAvailablePremiumUIControl = (bundle: Bundle) =>
     Boolean(
         bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value === SketchfabAccount.Premium &&
@@ -76,11 +78,15 @@ export const settings: BlockSettings & {
             type: 'input',
             clearable: true,
             onChange: parseSketchfabSettingsUrl,
-            placeholder: URL_INPUT_PLACEHOLDER,
+            placeholder: 'Enter your URL here',
             rules: [sketchfabUrlRule],
         },
     ],
-    layout: [
+    style: [
+        { id: 'style-sectionHeading-1', type: 'sectionHeading', label: '', blocks: [getBorderSettings()] },
+        { id: 'style-sectionHeading-2', type: 'sectionHeading', label: '', blocks: [getBorderRadiusSettings()] },
+    ],
+    Player: [
         {
             id: SketchfabSettings.IS_CUSTOM_HEIGHT,
             type: 'switch',
@@ -110,12 +116,6 @@ export const settings: BlockSettings & {
                 },
             ],
         },
-    ],
-    style: [
-        { id: 'style-sectionHeading-1', type: 'sectionHeading', label: '', blocks: [getBorderSettings()] },
-        { id: 'style-sectionHeading-2', type: 'sectionHeading', label: '', blocks: [getBorderRadiusSettings()] },
-    ],
-    Player: [
         {
             id: SketchfabSettings.AUTO_START,
             label: 'Autostart',
@@ -137,27 +137,10 @@ export const settings: BlockSettings & {
             on: [
                 {
                     id: SketchfabSettings.TEXTURE_SIZE_VALUE,
-                    type: 'input',
+                    type: 'dropdown',
                     placeholder: '8192',
-                    rules: [
-                        {
-                            errorMessage: 'Value must be a power of 2',
-                            validate: (value: string) => {
-                                let num = Number(value);
-                                if (!num || Number.isNaN(num) || num < 2) {
-                                    return false;
-                                }
-                                while (num >= 2) {
-                                    num = num / 2;
-                                    if (num === 2) {
-                                        return true;
-                                    }
-                                }
-                                return false;
-                            },
-                        },
-                    ],
                     defaultValue: '8192',
+                    choices: TEXTURE_SIZES.map((size) => ({ id: size, value: size, label: size })),
                 },
             ],
         },
@@ -248,7 +231,7 @@ export const settings: BlockSettings & {
             blocks: [
                 {
                     id: SketchfabSettings.NAVIGATION_MODE,
-                    label: 'Navigation Mode',
+                    label: 'Default Navigation Mode',
                     type: 'slider',
                     info: 'Setting to First Person will start the model in First Person mode by default.',
                     choices: [
