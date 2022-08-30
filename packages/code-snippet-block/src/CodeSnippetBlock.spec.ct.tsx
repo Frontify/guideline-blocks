@@ -80,7 +80,9 @@ it('renders code snippet with border', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
             withBorder: true,
-            border: ['solid', '2px', EXAMPLE_COLOR],
+            lineWidth: '2px',
+            lineStyle: 'solid',
+            borderColor: EXAMPLE_COLOR,
         },
     });
     mount(<CodeSnippetWithStubs />);
@@ -91,9 +93,11 @@ it('renders code snippet with border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
             withBorder: true,
-            withCustomBorderRadius: false,
-            border: ['solid', '2px', EXAMPLE_COLOR],
+            lineWidth: '2px',
+            lineStyle: 'solid',
             borderRadius: '12px',
+            borderColor: EXAMPLE_COLOR,
+            withCustomBorderRadius: false,
         },
     });
 
