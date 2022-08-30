@@ -215,8 +215,8 @@ export const settings: BlockSettings & {
                     on: [
                         {
                             id: SketchfabSettings.AUTO_SPIN_COUNT,
-                            placeholder: '3',
-                            defaultValue: '0',
+                            placeholder: '1',
+                            defaultValue: '1',
                             type: 'input',
                             inputType: 'Number' as TextInputType.Number,
                         },
@@ -242,7 +242,7 @@ export const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.FPS,
                     type: 'switch',
-                    label: 'FPS Navigation Speed',
+                    label: 'First Person Walk Speed',
                     info: 'Setting to a number [0-100] will define the default walk speed in First Person mode.',
                     on: [
                         {
@@ -432,7 +432,8 @@ export const settings: BlockSettings & {
                 {
                     id: SketchfabSettings.ANNOTATION_CYCLE_COUNT,
                     label: 'Annotation Cycle Speed',
-                    placeholder: '1',
+                    placeholder: '3',
+                    defaultValue: '3',
                     inputType: 'Number' as TextInputType.Number,
                     rules: [minimumNumericalRule(0)],
                     type: 'input',
