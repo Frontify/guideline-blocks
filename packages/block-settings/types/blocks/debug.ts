@@ -2,4 +2,5 @@
 
 export type DebugBlock = {
     type: 'debug';
+    value: undefined;
 };
