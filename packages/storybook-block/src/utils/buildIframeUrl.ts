@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { StorybookPosition } from '../types';
-import { ensureHttps } from './ensureHttps';
+import { ensureUrl } from './ensureUrl';
 import { isValidStorybookUrl } from './isValidStorybookUrl';
 
 export const buildIframeUrl = (url: string, hasAddons: boolean, positioning: StorybookPosition): URL | null => {
@@ -9,7 +9,7 @@ export const buildIframeUrl = (url: string, hasAddons: boolean, positioning: Sto
         return null;
     }
 
-    const iframeUrl = new URL(ensureHttps(url));
+    const iframeUrl = new URL(ensureUrl(url));
     iframeUrl.searchParams.set('nav', 'false');
 
     const positionValue = positioning === StorybookPosition.Horizontal ? 'right' : 'bottom';

@@ -12,7 +12,7 @@ describe('buildIframeUrl', () => {
             StorybookPosition.Horizontal
         );
         expect(result?.toString()).toEqual(
-            'https://fondue-components.frontify.com/?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=right'
+            'http://fondue-components.frontify.com/?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=right'
         );
     });
     test('It should return null if empty', () => {
@@ -34,7 +34,7 @@ describe('buildIframeUrl', () => {
             StorybookPosition.Horizontal
         );
         expect(result?.toString()).toEqual(
-            'https://fondue-components.frontify.com/iframe.html?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=false'
+            'http://fondue-components.frontify.com/iframe.html?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=false'
         );
     });
     test('It should set panel to default right if addon enabled', () => {
