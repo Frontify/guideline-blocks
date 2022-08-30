@@ -81,7 +81,7 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
                                 content={<TootlipContent color={color} status={status} />}
                                 triggerElement={
                                     <div
-                                        className="tw-relative tw-z-[1] tw-cursor-pointer tw-text-s tw-text-black-80"
+                                        className="tw-cursor-pointer tw-text-s tw-text-black-80"
                                         onClick={() => copy(color)}
                                     >
                                         {mappedColorSpace.placeholder}

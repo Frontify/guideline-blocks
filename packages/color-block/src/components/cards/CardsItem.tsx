@@ -34,7 +34,7 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     content={<TootlipContent color={color} status={status} />}
                     triggerElement={
                         <div
-                            className="tw-relative tw-z-[1] tw-w-full tw-h-[60px] tw-cursor-pointer tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                            className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
                                 backgroundColor: color,
                             }}
@@ -52,7 +52,7 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                     >
                         <div
                             className={joinClassNames([
-                                'tw-absolute tw-z-[2] tw-hidden tw-top-1 tw-right-1 tw-transition-all',
+                                'tw-absolute tw-hidden tw-top-1 tw-right-1 tw-transition-all',
                                 isEditing && 'group-hover:tw-block',
                             ])}
                         >
@@ -63,7 +63,7 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
             )}
 
             <div className="tw-pt-4 tw-px-6 tw-pb-5">
-                <div className="tw-relative tw-z-[1] tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">
+                <div className="tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">
                     <RichTextEditor designTokens={designTokens ?? undefined} readonly={!isEditing} />
                 </div>
 
@@ -82,7 +82,7 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                                     content={<TootlipContent color={color} status={status} />}
                                     triggerElement={
                                         <div
-                                            className="tw-relative tw-z-[1] tw-cursor-pointer tw-text-s tw-text-black-80"
+                                            className="tw-cursor-pointer tw-text-s tw-text-black-80"
                                             onClick={() => copy(color)}
                                         >
                                             {mappedColorSpace.placeholder}

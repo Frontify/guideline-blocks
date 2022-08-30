@@ -22,7 +22,7 @@ export const ListItemAdd: FC<ItemAddProps> = ({ colorSpaces, isEditing }) => {
                 </div>
             </ColorsBlockColorPicker>
 
-            <div className="tw-relative tw-z-[1] tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-text-m tw-text-black tw-font-bold">
+            <div className="tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-text-m tw-text-black tw-font-bold">
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
                     readonly={!isEditing}

@@ -21,7 +21,7 @@ export const CardsItemAdd: FC<ItemAddProps> = ({ colorSpaces, isEditing }) => {
             </ColorsBlockColorPicker>
 
             <div className="tw-pt-4 tw-px-6 tw-pb-5">
-                <div className="tw-relative tw-z-[1] tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">
+                <div className="tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">
                     <RichTextEditor
                         designTokens={designTokens ?? undefined}
                         readonly={!isEditing}
