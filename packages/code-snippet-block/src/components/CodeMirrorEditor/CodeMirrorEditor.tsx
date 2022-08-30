@@ -1,11 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
+import { EditorState } from '@codemirror/state';
 import { ReactElement, useEffect, useRef, useState } from 'react';
-import { CodeMirrorEditorProps, CodeMirrorEditorStyle } from '../../types';
+
 import { basicSetup } from './extensions';
 import { useHeaderPanel, useLanguage, useLineNumber, useTheme, useUpdateListener } from './hooks';
+
+import { CodeMirrorEditorProps, CodeMirrorEditorStyle } from '../../types';
 
 export const CodeMirrorEditor = ({
     theme,
