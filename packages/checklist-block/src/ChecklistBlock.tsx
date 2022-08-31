@@ -14,7 +14,6 @@ import {
     OrderableListItem,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import '@frontify/fondue/style';
 import {
     generatePaddingString,
     joinClassNames,
