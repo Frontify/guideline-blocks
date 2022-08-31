@@ -3,3 +3,4 @@
 export * from './rules';
 export * from './url';
 export * from './styles';
+export * from './settings';
