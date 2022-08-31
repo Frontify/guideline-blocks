@@ -13,7 +13,6 @@ import {
     Tooltip,
     TooltipPosition,
     useCopy,
-    useMemoizedId,
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
@@ -35,12 +34,13 @@ export const ListItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
             componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
         }),
         type: 'test',
-        // canDrag: dragDisabled,
+        canDrag: isEditing,
     });
 
     return (
         <div
             key={color}
+            ref={drag}
             className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all last:tw-border-b last:tw-border-black/[.1] hover:tw-shadow-t-inner-line-strong"
         >
             {!isEditing ? (

@@ -6,14 +6,7 @@ import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { ColorBlockType, Props, Settings } from './types';
 
-import {
-    DraggableItem,
-    DropZonePosition,
-    ItemDragState,
-    OrderableListItem,
-    RichTextEditor,
-    useMemoizedId,
-} from '@frontify/fondue';
+import { DraggableItem, DropZonePosition, OrderableListItem, RichTextEditor } from '@frontify/fondue';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -26,13 +19,14 @@ import { CardsItem } from './components/cards/CardsItem';
 import { DropZone } from './components/DropZone';
 
 const DEMO_COLORS = [
-    { id: '#100100', sort: 1 },
-    { id: '#200200', sort: 2 },
-    { id: '#300300', sort: 3 },
-    { id: '#400400', sort: 4 },
-    { id: '#500500', sort: 5 },
-    { id: '#600600', sort: 6 },
-    { id: '#700700', sort: 7 },
+    { id: '#FF375A', sort: 1 },
+    { id: '#825FFF', sort: 2 },
+    { id: '#00C8A5', sort: 3 },
+    { id: '#FFB400', sort: 4 },
+    { id: '#FF375A', sort: 5 },
+    { id: '#825FFF', sort: 6 },
+    { id: '#00C8A5', sort: 7 },
+    { id: '#FFB400', sort: 8 },
 ];
 
 export const ColorBlock = ({ appBridge }: Props): ReactElement => {
@@ -45,30 +39,18 @@ export const ColorBlock = ({ appBridge }: Props): ReactElement => {
     const onNameChange = (value: string) => setBlockSettings({ name: value });
     const onDescriptionChange = (value: string) => setBlockSettings({ description: value });
 
-    const listId = useMemoizedId();
-
-    // useEffect(() => {
-    //     // sort the incoming itemse
-    //     const itemsClone = [...items];
-    //     itemsClone.sort(listItemsCompareFn);
-    //     setItemsState(itemsClone);
-    // }, [items]);
-
     const handleDrop = (
         targetItem: OrderableListItem<T>,
         sourceItem: OrderableListItem<T>,
         position: DropZonePosition
     ) => {
-        // const modifiedItems = moveItems(targetItem, sourceItem, position, demoColors);
-        // handleMove(modifiedItems);
-
         console.log(targetItem);
         console.log(sourceItem);
         console.log(position);
     };
 
     const wrapperClasses: Record<ColorBlockType, string> = {
-        [ColorBlockType.List]: 'tw-overflow-x-hidden',
+        [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
         [ColorBlockType.Drops]: 'tw-grid tw-gap-4 tw-grid-cols-6',
         [ColorBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
     };
@@ -113,12 +95,12 @@ export const ColorBlock = ({ appBridge }: Props): ReactElement => {
                             {view === ColorBlockType.List && (
                                 <ListItem color={color.id} colorSpaces={colorspaces} isEditing={isEditing} />
                             )}
-                            {/* {view === ColorBlockType.Drops && (
-                                <DropsItem color={color} colorSpaces={colorspaces} isEditing={isEditing} />
-                                )}
-                                {view === ColorBlockType.Cards && (
-                                    <CardsItem color={color} colorSpaces={colorspaces} isEditing={isEditing} />
-                                )} */}
+                            {view === ColorBlockType.Drops && (
+                                <DropsItem color={color.id} colorSpaces={colorspaces} isEditing={isEditing} />
+                            )}
+                            {view === ColorBlockType.Cards && (
+                                <CardsItem color={color.id} colorSpaces={colorspaces} isEditing={isEditing} />
+                            )}
 
                             {index === DEMO_COLORS.length - 1 && (
                                 <DropZone

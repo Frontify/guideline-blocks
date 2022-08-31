@@ -7,12 +7,15 @@ import {
     ButtonStyle,
     IconSize,
     IconTrash,
+    ItemDragState,
     RichTextEditor,
     Tooltip,
     TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+
+import { useDrag } from 'react-dnd';
 
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ItemProps } from '../../types';
@@ -24,8 +27,17 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
 
     const { copy, status } = useCopy();
 
+    const [{}, drag] = useDrag({
+        item: color,
+        collect: (monitor) => ({
+            componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
+        }),
+        type: 'test',
+        canDrag: isEditing,
+    });
+
     return (
-        <div className="tw-group tw-flex tw-flex-col tw-items-center">
+        <div key={color} ref={drag} className="tw-group tw-flex tw-flex-col tw-items-center">
             {!isEditing ? (
                 <Tooltip
                     withArrow
