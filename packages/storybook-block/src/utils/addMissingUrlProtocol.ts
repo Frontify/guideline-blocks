@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const ensureUrl = (testUrl: string) => {
+export const addMissingUrlProtocol = (testUrl: string) => {
     const protocolPattern = /^(ht)tps?:\/\//i;
     const url = testUrl.trim();
     if (!protocolPattern.test(url)) {
