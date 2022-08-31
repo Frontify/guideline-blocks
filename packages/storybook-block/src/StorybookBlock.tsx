@@ -21,7 +21,7 @@ import {
 } from './types';
 import { buildIframeUrl } from './utils/buildIframeUrl';
 import { decodeEntities } from './utils/decodeEntities';
-import { ensureUrl } from './utils/ensureUrl';
+import { addMissingUrlProtocol } from './utils/addMissingUrlProtocol';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
 const DEFAULT_BORDER_WIDTH = '1px';
@@ -58,7 +58,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         if (isValidStorybookUrl(input)) {
             setBlockSettings({
                 ...blockSettings,
-                url: ensureUrl(input),
+                url: addMissingUrlProtocol(input),
             });
         }
     }, [blockSettings, input, setBlockSettings, setIsReadyForPrint]);
