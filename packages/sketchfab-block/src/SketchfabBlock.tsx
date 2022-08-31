@@ -116,7 +116,6 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                     ? {
                           ui_color: bs.uiColor && toHex8String(bs.uiColorValue).slice(1, 7),
                           // UI Controls
-                          ui_general_controls: disableAllUI && '0',
                           ui_animations: (disableAllUI || !bs.uiAnimations) && '0',
                           ui_annotations: (disableAllUI || !bs.uiAnnotations) && '0',
                           ui_fadeout: (disableAllUI || !bs.uiFadeout) && '0',
@@ -126,7 +125,6 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                           ui_loading: (disableAllUI || !bs.uiLoading) && '0',
                           ui_watermark: (disableAllUI || !bs.uiWatermark) && '0',
                           // Button Controls
-                          ui_controls: disableAllButtons && '0',
                           ui_inspector: (disableAllButtons || !bs.uiInspector) && '0',
                           ui_fullscreen: (disableAllButtons || !bs.uiFullscreen) && '0',
                           ui_settings: (disableAllButtons || !bs.uiSettings) && '0',
