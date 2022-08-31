@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { StorybookPosition } from '../types';
-import { addMissingUrlProtocol } from './ensureUrl';
+import { addMissingUrlProtocol } from './addMissingUrlProtocol';
 import { isValidStorybookUrl } from './isValidStorybookUrl';
 
 export const buildIframeUrl = (url: string, hasAddons: boolean, positioning: StorybookPosition): URL | null => {
