@@ -1,7 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DropdownSize, MultiInputLayout, SwitchSize, TextInputType } from '@frontify/fondue';
-import type { BlockSettings, Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
+import {
+    BlockSettings,
+    Bundle,
+    NotificationBlock,
+    NotificationBlockDividerPosition,
+    NotificationStyleType,
+    SettingBlock,
+} from '@frontify/guideline-blocks-settings';
 import {
     getBorderRadiusSettings,
     getBorderSettings,
@@ -50,6 +57,21 @@ const isAvailableNavigationConstraint = (bundle: Bundle) =>
 
 const isAvailableAnnotationControl = (bundle: Bundle) =>
     bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === true;
+
+const INCOMPATIBLE_SETTINGS_NOTIFICATION = {
+    id: 'incompatibleSettings',
+    type: 'notification',
+    title: 'Incompatible settings',
+    styles: {
+        type: NotificationStyleType.Warning,
+        icon: true,
+        divider: NotificationBlockDividerPosition.Top,
+    },
+    link: {
+        href: 'https://help.sketchfab.com/hc/en-us/articles/115003399103-Camera-Limits##preview',
+        label: 'More information',
+    },
+};
 
 // Defaults reflected here https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
 export const settings: BlockSettings & {
@@ -391,6 +413,24 @@ export const settings: BlockSettings & {
                         },
                     ],
                 },
+                {
+                    ...INCOMPATIBLE_SETTINGS_NOTIFICATION,
+                    id: 'incompatibleSettingsAnnotations',
+                    text: 'Annotations are incompatible with Navigation Constraints. These settings may not work as expected.',
+                    show: (bundle) =>
+                        bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value === true &&
+                        bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === true,
+                } as NotificationBlock,
+                {
+                    ...INCOMPATIBLE_SETTINGS_NOTIFICATION,
+                    id: 'incompatibleSettingsDoubleClick',
+                    text: 'Double-click navigation is incompatible with Navigation Constraints while Pan is limited. These settings may not work as expected.',
+                    show: (bundle) =>
+                        bundle.getBlock(SketchfabSettings.DOUBLE_CLICK)?.value === true &&
+                        bundle.getBlock(SketchfabSettings.ORBIT_CONSTRAINT_PAN)?.value === true &&
+                        bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value === true &&
+                        bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value !== true,
+                } as NotificationBlock,
             ],
         },
     ],
