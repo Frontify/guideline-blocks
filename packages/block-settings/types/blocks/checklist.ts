@@ -5,7 +5,7 @@ import { Checkbox } from './checkbox';
 
 export type ChecklistBlock = {
     type: 'checklist';
-    choices: Checkbox[];
+    choices: Checkbox[] | (() => Checkbox[]) | (() => Promise<Checkbox[]>);
     showClearAndSelectAllButtons?: boolean;
     columns?: 1 | 2;
 } & BaseBlock<string[] | null>;
