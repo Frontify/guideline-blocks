@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { FC, useEffect, useState } from 'react';
 import { MAX_HEIGHT_VALUE, MIN_HEIGHT_VALUE } from '../settings';
 
@@ -57,7 +59,7 @@ export const Resizeable: FC<Props> = ({ children, saveHeight, initialHeight }) =
                 id="draghandle"
                 type="button"
                 onMouseDown={handler}
-                className="tw-cursor-ns-resize tw-w-full tw-pt-7 tw-h-full tw-bg-white tw-z-50"
+                className="tw-cursor-ns-resize tw-w-full tw-pt-3 tw-h-full tw-bg-white tw-z-50"
                 data-test-id="resize-bar"
             >
                 <div className="tw-w-8 tw-h-2 tw-bg-black-10 tw-border tw-border-line-x-strong tw-rounded-[100px] tw-mx-auto tw-ml-[50%] tw--translate-x-[50%]" />
