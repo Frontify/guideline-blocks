@@ -42,7 +42,11 @@ export const Resizeable: FC<Props> = ({ children, saveHeight, initialHeight }) =
 
     return (
         <div id="container" className="tw-grid tw-grid-col tw-min-w-full tw-overflow-hidden">
-            <div className="tw-grid tw-justify-items-stretch" style={{ height: height ?? initialHeight }}>
+            <div
+                data-test-id="resizable-children-container"
+                className="tw-grid tw-justify-items-stretch"
+                style={{ height: height ?? initialHeight }}
+            >
                 {active && (
                     <div className="tw-fixed tw-top-0 tw-bottom-0 tw-right-0 tw-left-0 tw-select-none tw-z-40" />
                 )}
@@ -52,7 +56,8 @@ export const Resizeable: FC<Props> = ({ children, saveHeight, initialHeight }) =
                 id="draghandle"
                 type="button"
                 onMouseDown={handler}
-                className="tw-cursor-ns-resize tw-w-full tw-pt-1 tw-h-full tw-bg-white tw-z-50"
+                className="tw-cursor-ns-resize tw-w-full tw-pt-7 tw-h-full tw-bg-white tw-z-50"
+                data-test-id="resize-bar"
             >
                 <div className="tw-w-8 tw-h-2 tw-bg-black-10 tw-border tw-border-line-x-strong tw-rounded-[100px] tw-mx-auto tw-ml-[50%] tw--translate-x-[50%]" />
             </button>

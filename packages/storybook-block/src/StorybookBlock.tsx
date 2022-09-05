@@ -33,7 +33,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         style = StorybookStyle.Default,
         url = '',
         isCustomHeight = false,
-        heightChoice = url === '' ? StorybookHeight.Small : StorybookHeight.Medium,
+        heightChoice = !url ? StorybookHeight.Small : StorybookHeight.Medium,
         heightValue = '',
         positioning = StorybookPosition.Vertical,
         hasBorder = true,
@@ -99,7 +99,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                     : {}
             }
             src={iframeUrl.toString()}
-            height={'100%'}
+            height={activeHeight}
             frameBorder="0"
             data-test-id="storybook-iframe"
         />
