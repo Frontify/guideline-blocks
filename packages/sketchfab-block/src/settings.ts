@@ -58,8 +58,7 @@ const isAvailableNavigationConstraint = (bundle: Bundle) =>
 const isAvailableAnnotationControl = (bundle: Bundle) =>
     bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === true;
 
-const INCOMPATIBLE_SETTINGS_NOTIFICATION = {
-    id: 'incompatibleSettings',
+const INCOMPATIBLE_SETTINGS_NOTIFICATION: Pick<NotificationBlock, 'type' | 'title' | 'styles' | 'link'> = {
     type: 'notification',
     title: 'Incompatible settings',
     styles: {
@@ -420,7 +419,7 @@ export const settings: BlockSettings & {
                     show: (bundle) =>
                         bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value === true &&
                         bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === true,
-                } as NotificationBlock,
+                },
                 {
                     ...INCOMPATIBLE_SETTINGS_NOTIFICATION,
                     id: 'incompatibleSettingsDoubleClick',
@@ -429,8 +428,8 @@ export const settings: BlockSettings & {
                         bundle.getBlock(SketchfabSettings.DOUBLE_CLICK)?.value === true &&
                         bundle.getBlock(SketchfabSettings.ORBIT_CONSTRAINT_PAN)?.value === true &&
                         bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value === true &&
-                        bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value !== true,
-                } as NotificationBlock,
+                        bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === false,
+                },
             ],
         },
     ],
