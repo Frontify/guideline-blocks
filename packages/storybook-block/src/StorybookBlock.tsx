@@ -52,7 +52,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const { setIsReadyForPrint } = useReadyForPrint(appBridge);
 
     const activeHeight = isCustomHeight ? heightValue : heights[heightChoice];
-    const initialHeight: number = parseInt(activeHeight.slice(0, -2));
 
     const iframeUrl = buildIframeUrl(decodeEntities(submittedUrl), style === StorybookStyle.WithAddons, positioning);
     const saveInputLink = useCallback(() => {
@@ -109,7 +108,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         <div data-test-id="storybook-block" className="tw-relative">
             {iframe ? (
                 isEditing ? (
-                    <Resizeable saveHeight={saveHeight} initialHeight={initialHeight} {...hoverProps}>
+                    <Resizeable saveHeight={saveHeight} initialHeight={activeHeight} {...hoverProps}>
                         {isHovered && (
                             <RemoveButton
                                 onClick={() => {
@@ -128,7 +127,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
             ) : (
                 <>
                     {isEditing ? (
-                        <Resizeable saveHeight={saveHeight} initialHeight={initialHeight}>
+                        <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
                             <div
                                 className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
                                 data-test-id="storybook-empty-wrapper"

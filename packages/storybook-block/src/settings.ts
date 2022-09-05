@@ -76,6 +76,7 @@ export const settings: BlockSettings = {
                     id: HEIGHT_VALUE_ID,
                     type: 'input',
                     placeholder: 'e.g. 500px',
+                    defaultValue: StorybookHeight.Medium,
                     rules: [
                         numericalOrPixelRule,
                         minimumNumericalOrPixelOrAutoRule(MIN_HEIGHT_VALUE),
@@ -88,6 +89,7 @@ export const settings: BlockSettings = {
                 {
                     id: HEIGHT_CHOICE_ID,
                     type: 'slider',
+                    defaultValue: StorybookHeight.Medium,
                     choices: [
                         {
                             value: StorybookHeight.Small,

@@ -3,23 +3,24 @@ import { MAX_HEIGHT_VALUE, MIN_HEIGHT_VALUE } from '../settings';
 
 type Props = {
     saveHeight: (height: number) => void;
-    initialHeight: number;
+    initialHeight: string;
 };
 
 export const Resizeable: FC<Props> = ({ children, saveHeight, initialHeight }) => {
-    const [height, setHeight] = useState(initialHeight);
+    const activeHeight: number = parseFloat(initialHeight.slice(0, -2));
+    const [height, setHeight] = useState(activeHeight);
     const [active, setActive] = useState(false);
 
     useEffect(() => {
-        if (!active && height !== initialHeight) {
+        if (!active && height !== activeHeight) {
             saveHeight(height);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [active]);
 
     useEffect(() => {
-        setHeight(initialHeight);
-    }, [initialHeight]);
+        setHeight(activeHeight);
+    }, [activeHeight]);
 
     const handler = (mouseDownEvent: { pageY: number }) => {
         const startSize = height;
