@@ -58,6 +58,8 @@ const isAvailableNavigationConstraint = (bundle: Bundle) =>
 const isAvailableAnnotationControl = (bundle: Bundle) =>
     bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === true;
 
+/* Navigation constraint settings lose all functionality if some other settings are switched on. 
+These edge-cases are documented in the link.href of this block */
 const INCOMPATIBLE_SETTINGS_NOTIFICATION: Pick<NotificationBlock, 'type' | 'title' | 'styles' | 'link'> = {
     type: 'notification',
     title: 'Incompatible settings',
