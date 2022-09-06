@@ -1,22 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum } from '@frontify/fondue';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
-import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
-import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType, lineWidthMap, quoteSizeMap } from './types';
+import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import { LineType, QuoteSize, QuoteStyle, QuoteType, quoteSizeMap } from './types';
 
 const QUOTE_TYPE_ID = 'type';
 const SIZE_CHOICE_ID = 'sizeChoice';
 const SIZE_VALUE_ID = 'sizeValue';
 const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
-const LINE_WIDTH_CHOICE_ID = 'lineWidthChoice';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const QUOTE_STYLE_CHOICES = [
     // TODO: Readd correct icons as soon as they exist in Fondue
     { value: QuoteStyle.DoubleUp, icon: 'Icon' as IconEnum.Icon, label: 'Double Up' },
     { value: QuoteStyle.DoubleDown, icon: 'Icon' as IconEnum.Icon, label: 'Double Down' },
-    { value: QuoteStyle.SingleUp, icon: 'Icon' as IconEnum.Icon, label: 'Single Up' },
-    { value: QuoteStyle.SingleDown, icon: 'Icon' as IconEnum.Icon, label: 'Single Down' },
+    { value: QuoteStyle.SingleUp, icon: 'Icon' as IconEnum.CaretUp, label: 'Single Up' },
+    { value: QuoteStyle.SingleDown, icon: 'Icon' as IconEnum.CaretDown, label: 'Single Down' },
     {
         value: QuoteStyle.DoubleChevronLeft,
         icon: 'CaretLeftDouble' as IconEnum.CaretLeftDouble,
@@ -115,7 +114,6 @@ export const settings: BlockSettings = {
                     placeholder: 'John Doe',
                 },
             ],
-            off: [],
         },
     ],
     style: [
@@ -137,6 +135,7 @@ export const settings: BlockSettings = {
                         {
                             id: SIZE_VALUE_ID,
                             type: 'input',
+                            placeholder: 'e.g. 20px',
                             rules: [numericalOrPixelRule],
                             onChange: (bundle: Bundle): void => appendUnit(bundle, SIZE_VALUE_ID),
                         },
@@ -173,79 +172,54 @@ export const settings: BlockSettings = {
         },
         {
             id: ACCENT_LINE_SWITCH_ID,
-            type: 'switch',
             label: 'Accent line',
-            defaultValue: true,
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.Indentation),
-        },
-        {
-            id: 'lineType',
-            type: 'slider',
-            label: 'Type',
-            info: 'Determines how the line looks',
-            defaultValue: LineType.Solid,
-            show: showAccentLine,
-            choices: [
-                {
-                    label: 'Solid',
-                    value: LineType.Solid,
-                },
-                {
-                    label: 'Dashed',
-                    value: LineType.Dashed,
-                },
-                {
-                    label: 'Dotted',
-                    value: LineType.Dotted,
-                },
-            ],
-        },
-        {
-            id: 'isCustomLineWidth',
-            label: 'Width',
             type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            info: 'Choose between small, medium, large or custom accent line width',
+            defaultValue: true,
             show: showAccentLine,
-            onChange: (bundle: Bundle): void =>
-                presetCustomValue(bundle, LINE_WIDTH_CHOICE_ID, LINE_WIDTH_VALUE_ID, lineWidthMap),
             on: [
                 {
-                    id: LINE_WIDTH_VALUE_ID,
-                    type: 'input',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle: Bundle): void => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
-                },
-            ],
-            off: [
-                {
-                    id: LINE_WIDTH_CHOICE_ID,
-                    type: 'slider',
-                    defaultValue: LineWidth.SmallWidth,
-                    choices: [
+                    id: ACCENT_LINE_SWITCH_ID,
+                    type: 'multiInput',
+                    onChange: (bundle: Bundle): void => {
+                        appendUnit(bundle, LINE_WIDTH_VALUE_ID);
+                    },
+                    layout: MultiInputLayout.Columns,
+                    lastItemFullWidth: true,
+                    blocks: [
                         {
-                            label: 'S',
-                            value: LineWidth.SmallWidth,
+                            id: 'lineType',
+                            type: 'dropdown',
+                            defaultValue: LineType.Solid,
+                            choices: [
+                                {
+                                    value: LineType.Solid,
+                                    label: BorderStyle.Solid,
+                                },
+                                {
+                                    value: LineType.Dotted,
+                                    label: BorderStyle.Dotted,
+                                },
+                                {
+                                    value: LineType.Dashed,
+                                    label: BorderStyle.Dashed,
+                                },
+                            ],
                         },
                         {
-                            label: 'M',
-                            value: LineWidth.MediumWidth,
+                            id: LINE_WIDTH_VALUE_ID,
+                            type: 'input',
+                            defaultValue: '2px',
+                            rules: [numericalOrPixelRule],
+                            placeholder: 'e.g. 3px',
                         },
                         {
-                            label: 'L',
-                            value: LineWidth.LargeWidth,
+                            id: 'accentLinecolor',
+                            type: 'colorInput',
+                            defaultValue: DEFAULT_COLOR_VALUE,
                         },
                     ],
                 },
             ],
-        },
-        {
-            id: 'accentLinecolor',
-            label: 'Color',
-            type: 'colorInput',
-            defaultValue: DEFAULT_COLOR_VALUE,
-            show: showAccentLine,
         },
     ],
 };

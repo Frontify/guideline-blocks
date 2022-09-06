@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
+import { EditorActions, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
@@ -10,13 +10,11 @@ import { DEFAULT_AUTHOR_NAME, DEFAULT_COLOR_VALUE } from './settings';
 import {
     ContentWithAuthorProps,
     LineType,
-    LineWidth,
     Props,
     QuoteSize,
     QuoteStyle,
     QuoteType,
     Settings,
-    lineWidthMap,
     quoteSizeMap,
 } from './types';
 import { quoteIconMap } from './utilities';
@@ -44,9 +42,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
         sizeChoice = QuoteSize.SmallSize,
         showAccentLine = true,
         lineType = LineType.Solid,
-        isCustomLineWidth = false,
-        lineWidthValue = '',
-        lineWidthChoice = LineWidth.SmallWidth,
+        lineWidthValue = '2px',
         accentLinecolor = DEFAULT_COLOR_VALUE,
         quotesColor = DEFAULT_COLOR_VALUE,
         content = '',
@@ -59,10 +55,10 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const borderStyles = showAccentLine
         ? {
               borderLeftStyle: lineType,
-              borderLeftWidth: isCustomLineWidth ? lineWidthValue : lineWidthMap[lineWidthChoice],
+              borderLeftWidth: lineWidthValue,
               borderLeftColor: borderRgba,
           }
-        : {};
+        : undefined;
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
@@ -91,6 +87,21 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                             designTokens={designTokens ?? undefined}
                             placeholder={placeholder}
                             value={content}
+                            actions={[
+                                [EditorActions.TEXT_STYLES],
+                                [
+                                    EditorActions.BOLD,
+                                    EditorActions.ITALIC,
+                                    EditorActions.UNDERLINE,
+                                    EditorActions.STRIKETHROUGH,
+                                ],
+                                [
+                                    EditorActions.ALIGN_LEFT,
+                                    EditorActions.ALIGN_CENTER,
+                                    EditorActions.ALIGN_RIGHT,
+                                    EditorActions.ALIGN_JUSTIFY,
+                                ],
+                            ]}
                             onTextChange={onChangeContent}
                             readonly={!isEditing}
                         />

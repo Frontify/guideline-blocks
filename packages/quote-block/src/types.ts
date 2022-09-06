@@ -19,9 +19,7 @@ export type Settings = {
     sizeChoice?: QuoteSize;
     showAccentLine?: boolean;
     lineType?: LineType;
-    isCustomLineWidth?: boolean;
     lineWidthValue?: string;
-    lineWidthChoice?: LineWidth;
     accentLinecolor?: Color;
     quotesColor?: Color;
     content?: string;
@@ -67,20 +65,8 @@ export enum LineType {
     Dotted = 'dotted',
 }
 
-export enum LineWidth {
-    SmallWidth = 'SmallWidth',
-    MediumWidth = 'MediumWidth',
-    LargeWidth = 'LargeWidth',
-}
-
 export const quoteSizeMap: Record<QuoteSize, string> = {
     [QuoteSize.SmallSize]: '16px',
     [QuoteSize.MediumSize]: '24px',
     [QuoteSize.LargeSize]: '32px',
-};
-
-export const lineWidthMap: Record<LineWidth, string> = {
-    [LineWidth.SmallWidth]: '2px',
-    [LineWidth.MediumWidth]: '4px',
-    [LineWidth.LargeWidth]: '8px',
 };
