@@ -1,0 +1,5 @@
+.markerPosition {
+    top: 5px;
+    position: absolute;
+    transform: translateX(-50%);
+}
