@@ -89,8 +89,8 @@ export const settings: BlockSettings = {
                         {
                             id: WIDTH_CUSTOM_ID,
                             type: 'input',
-                            placeholder: '75%',
-                            clearable: false,
+                            placeholder: 'e.g. 60%',
+                            clearable: true,
                             rules: [numericalOrPercentRule, betweenPercentRule(0, 100)],
                             onChange: (bundle: Bundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
                         },
@@ -163,8 +163,8 @@ export const settings: BlockSettings = {
                         {
                             id: HEIGHT_CUSTOM_ID,
                             type: 'input',
-                            placeholder: '100px',
-                            clearable: false,
+                            placeholder: 'e.g. 50px',
+                            clearable: true,
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(10)],
                             onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
                         },
@@ -212,12 +212,12 @@ export const settings: BlockSettings = {
                             label: 'Solid',
                         },
                         {
-                            value: DividerStyle.Dashed,
-                            label: 'Dashes',
-                        },
-                        {
                             value: DividerStyle.Dotted,
                             label: 'Dots',
+                        },
+                        {
+                            value: DividerStyle.Dashed,
+                            label: 'Dashes',
                         },
                     ],
                 },
@@ -233,6 +233,7 @@ export const settings: BlockSettings = {
                         {
                             id: THICKNESS_CUSTOM_ID,
                             type: 'input',
+                            placeholder: 'e.g. 3px',
                             clearable: false,
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                             onChange: (bundle: Bundle): void => appendUnit(bundle, THICKNESS_CUSTOM_ID),
