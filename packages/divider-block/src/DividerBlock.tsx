@@ -9,10 +9,8 @@ import {
     ALIGNMENT_DEFAULT_VALUE,
     COLOR_DEFAULT_RGBA_VALUE,
     HEIGHT_DEFAULT_VALUE,
-    IS_LINE_DEFAULT_VALUE,
     STYLE_DEFAULT_VALUE,
     THICKNESS_DEFAULT_VALUE,
-    WIDTH_DEFAULT_VALUE,
 } from './settings';
 import css from './styles.module.css';
 import {
@@ -28,44 +26,42 @@ import {
 export const DividerBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const {
-        isLine = IS_LINE_DEFAULT_VALUE,
-        alignment = ALIGNMENT_DEFAULT_VALUE,
-        style = STYLE_DEFAULT_VALUE,
-        color = COLOR_DEFAULT_RGBA_VALUE,
-        isWidthCustom = false,
-        widthCustom = '',
-        widthSimple = WIDTH_DEFAULT_VALUE,
-        isHeightCustom = false,
-        heightCustom = '',
-        heightSimple = HEIGHT_DEFAULT_VALUE,
-        isThicknessCustom = false,
-        thicknessCustom = '',
-        thicknessSimple = THICKNESS_DEFAULT_VALUE,
-    } = blockSettings;
-
     return (
         <div
             data-test-id="divider-block"
-            className={joinClassNames(['tw-flex', css.dividerBlock, dividerAlignmentClasses[alignment]])}
+            className={joinClassNames([
+                'tw-flex',
+                css.dividerBlock,
+                dividerAlignmentClasses[blockSettings.alignment ?? ALIGNMENT_DEFAULT_VALUE],
+            ])}
         >
             <div
                 data-test-id="divider-wrapper"
                 className="tw-flex tw-items-center tw-transition-all"
                 style={{
-                    width: isWidthCustom ? widthCustom : widthSimple,
-                    height: isHeightCustom ? heightCustom : dividerHeightValues[heightSimple],
+                    width: blockSettings.isWidthCustom ? blockSettings.widthCustom : blockSettings.widthSimple,
+                    height: blockSettings.isHeightCustom
+                        ? blockSettings.heightCustom
+                        : dividerHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE],
                 }}
             >
                 <hr
                     data-test-id="divider-line"
                     className={joinClassNames([
                         'tw-border-t tw-m-0 tw-w-full',
-                        dividerStyleClasses[isLine === DividerStyle.Solid ? style : DividerStyle.NoLine],
+                        dividerStyleClasses[
+                            blockSettings.isLine === DividerStyle.Solid
+                                ? blockSettings.style ?? STYLE_DEFAULT_VALUE
+                                : DividerStyle.NoLine
+                        ],
                     ])}
                     style={{
-                        borderTopWidth: isThicknessCustom ? thicknessCustom : dividerThicknessValues[thicknessSimple],
-                        borderTopColor: color ? toRgbaString(color) : toRgbaString(COLOR_DEFAULT_RGBA_VALUE),
+                        borderTopWidth: blockSettings.isThicknessCustom
+                            ? blockSettings.thicknessCustom
+                            : dividerThicknessValues[blockSettings.thicknessSimple ?? THICKNESS_DEFAULT_VALUE],
+                        borderTopColor: blockSettings.color
+                            ? toRgbaString(blockSettings.color)
+                            : toRgbaString(COLOR_DEFAULT_RGBA_VALUE),
                     }}
                 />
             </div>
