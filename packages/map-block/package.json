@@ -1,12 +1,13 @@
 {
-    "name": "image-block",
+    "name": "map-block",
+    "private": true,
     "version": "1.0.0",
-    "main": "src/index.ts",
+    "main": "dist/index.js",
     "scripts": {
         "serve": "frontify-cli block serve"
     },
     "dependencies": {
-        "@frontify/app-bridge": "2.15.1",
+        "@frontify/app-bridge": "3.0.0-beta.10",
         "@frontify/fondue": "^9.6.1",
         "@react-google-maps/api": "^2.12.0",
         "react": "^17.0.2",
@@ -14,8 +15,8 @@
     },
     "devDependencies": {
         "@frontify/eslint-config-react": "0.15.2",
-        "@frontify/frontify-cli": "^4.0.6",
-        "@frontify/guideline-blocks-settings": "0.15.0",
+        "@frontify/frontify-cli": "5.1.2",
+        "@frontify/guideline-blocks-settings": "workspace:*",
         "@types/react": "17.0.43",
         "autoprefixer": "10.4.4",
         "eslint": "8.16.0",

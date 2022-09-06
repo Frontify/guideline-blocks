@@ -1,0 +1,106 @@
+import { AppBridgeNative, useBlockSettings } from '@frontify/app-bridge';
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import React, { FC, useCallback, useEffect, useState } from 'react';
+
+const DEFAULT_MAP_ID = 'fb1a500f724ffdd1';
+const CLASSIC_MAP_ID = 'fbc37ca32d2815e7';
+const DARK_MAP_ID = '6bf13bbe4af3b37e';
+const LIGHT_MAP_ID = 'b4795f53fd242f8b';
+
+export enum SelectedTheme {
+    'Default' = 'Default',
+    'Classic' = 'Classic',
+    'Dark' = 'Dark',
+    'Light' = 'Light',
+}
+
+type Settings = {
+    token: string;
+    theme: SelectedTheme;
+    center: { lat: number; lng: number };
+};
+
+type Props = {
+    appBridge: AppBridgeNative;
+};
+
+const containerStyle = {
+    width: '700px',
+    height: '700px',
+};
+
+const center = {
+    lat: 47.4204113,
+    lng: 9.3706099,
+};
+
+const position = {
+    lat: 47.4204113,
+    lng: 9.3706099,
+};
+
+const mapIds: { id: string; name: string }[] = [
+    {
+        id: DEFAULT_MAP_ID,
+        name: 'Default',
+    },
+    {
+        id: CLASSIC_MAP_ID,
+        name: 'Classic',
+    },
+    {
+        id: DARK_MAP_ID,
+        name: 'Dark',
+    },
+    {
+        id: LIGHT_MAP_ID,
+        name: 'Light',
+    },
+];
+
+const mapIdList: string[] = mapIds.map((el) => {
+    return el.id;
+});
+
+const Map: FC<Props> = ({ appBridge }) => {
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [map, setMap] = useState(null);
+
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: blockSettings.token,
+        mapIds: mapIdList,
+    });
+
+    const onLoad = useCallback((map) => {
+        const bounds = new window.google.maps.LatLngBounds(center);
+        map.fitBounds(bounds);
+        setMap(map);
+    }, []);
+
+    const onUnmount = useCallback(() => {
+        setMap(null);
+    }, []);
+
+    const currentMapId = mapIds.find((el) => blockSettings.theme === el.name);
+
+    console.log('Block settings', blockSettings);
+    console.log('Current Map ID', currentMapId);
+    return isLoaded && currentMapId ? (
+        <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={12}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
+            options={{ mapId: currentMapId.id }}
+        >
+            {/* Child components, such as markers, info windows, etc. */}
+            <Marker position={center} label="Frontify AG" />
+        </GoogleMap>
+    ) : (
+        <div> ... is loading</div>
+    );
+};
+
+export default React.memo(Map);

@@ -1,4 +1,4 @@
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { AppBridgeBlock, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import css from './style.module.css';
@@ -19,10 +19,11 @@ type Settings = {
     token: string;
     theme: SelectedTheme;
     goTo: string;
+    marker: any;
 };
 
 type Props = {
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
 
 const containerStyle = {
@@ -42,9 +43,8 @@ const mapIds: Record<SelectedTheme, string> = {
     [SelectedTheme.Light]: LIGHT_MAP_ID,
 };
 
-const Map: FC<Props> = ({ appBridge }) => {
+export const MapBlock: FC<Props> = React.memo(({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
-    const isEditing = useEditorState(appBridge);
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -53,23 +53,18 @@ const Map: FC<Props> = ({ appBridge }) => {
         mapIds: Object.values(mapIds),
     });
 
-    return isLoaded ? (
-        <MapComponent theme={blockSettings.theme} goTo={blockSettings.goTo} isEditing={isEditing} />
-    ) : (
-        <div> ... is loading</div>
-    );
-};
+    return isLoaded ? <MapComponent appBridge={appBridge} goTo={blockSettings.goTo} /> : <div> ... is loading</div>;
+});
 
-type MapComponentProps = {
-    theme: SelectedTheme;
-    goTo: string;
-    isEditing: boolean;
-};
+type MapProps = { appBridge: AppBridgeBlock; goTo: string };
 
-const MapComponent: FC<MapComponentProps> = ({ theme, goTo, isEditing }) => {
+const MapComponent: FC<MapProps> = ({ appBridge, goTo }) => {
+    const isEditing = useEditorState(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [marker2, setMarker2] = useState<google.maps.places.PlaceResult | null>(null);
     const [map, setMap] = useState<google.maps.Map | null>(null);
-    const [marker, setMarker] = useState<google.maps.places.PlaceResult | null>(null);
 
+    const { theme, marker } = blockSettings;
     const onLoad = (map: google.maps.Map) => {
         setMap(map);
     };
@@ -77,10 +72,16 @@ const MapComponent: FC<MapComponentProps> = ({ theme, goTo, isEditing }) => {
         if (map) {
             const service = new google.maps.places.PlacesService(map);
             const request = { query: goTo, fields: ['name', 'geometry'] };
+            if (!goTo) {
+                setMarker2(null);
+                setBlockSettings({ ...blockSettings, marker: null });
+                return;
+            }
             service.findPlaceFromQuery(request, (results, status) => {
                 if (status === google.maps.places.PlacesServiceStatus.OK && results) {
                     map.setCenter(results?.[0].geometry?.location || initialCenter);
-                    setMarker(results?.[0]);
+                    setBlockSettings({ ...blockSettings, marker: results?.[0] });
+                    setMarker2(results?.[0]);
                 }
             });
         }
@@ -94,7 +95,7 @@ const MapComponent: FC<MapComponentProps> = ({ theme, goTo, isEditing }) => {
         <div key={theme}>
             <GoogleMap
                 mapContainerStyle={containerStyle}
-                center={marker?.geometry?.location || initialCenter}
+                center={marker2?.geometry?.location || marker?.geometry?.location || initialCenter}
                 zoom={15}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
@@ -112,6 +113,7 @@ const MapComponent: FC<MapComponentProps> = ({ theme, goTo, isEditing }) => {
                     label={{
                         color: theme === SelectedTheme.Dark ? 'white' : 'black',
                         text: marker?.name || 'Frontify AG',
+                        fontSize: '16px',
                         className: css.markerPosition,
                     }}
                 />
@@ -119,4 +121,3 @@ const MapComponent: FC<MapComponentProps> = ({ theme, goTo, isEditing }) => {
         </div>
     );
 };
-export default React.memo(Map);

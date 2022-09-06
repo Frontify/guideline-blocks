@@ -1,6 +1,6 @@
 import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
-import { SelectedTheme } from '.';
+import { SelectedTheme } from './MapBlock';
 
 export const DEFAULT_BACKGROUND_COLOR = { r: 250, g: 191, b: 89, a: 1, name: 'Saffron Mango' };
 export const FULL_WIDTH = '100%';
@@ -12,7 +12,7 @@ const CHOICES = [
     { value: SelectedTheme.Light, label: SelectedTheme.Light },
 ];
 
-const settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'main-dropdown',
@@ -23,7 +23,7 @@ const settings: BlockSettings = {
             choices: [
                 {
                     value: 'custom_block',
-                    icon: IconEnum.MapPointer,
+                    icon: IconEnum.MapPointer12,
                     label: 'Map Block',
                 },
             ],
@@ -35,12 +35,12 @@ const settings: BlockSettings = {
             show: () => false,
         },
     ],
-    content: [
+    basics: [
         {
             id: 'goTo',
-            label: 'Go To ...',
+            label: 'Set Marker to...',
             type: 'input',
-            placeholder: 'smartive',
+            placeholder: 'Smartive',
         },
     ],
     style: [
@@ -53,5 +53,3 @@ const settings: BlockSettings = {
         },
     ],
 };
-
-export default settings;
