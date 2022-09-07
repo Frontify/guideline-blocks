@@ -46,6 +46,7 @@ describe('DividerBlock', () => {
     it('renders a divider block with the correct styling', () => {
         const [DividerBlockWithStubs] = withAppBridgeBlockStubs(DividerBlock, {
             blockSettings: {
+                isLine: DividerStyle.Solid,
                 color: EXAMPLE_COLOR,
                 style: DividerStyle.Dashed,
                 thicknessSimple: DividerHeight.Large,
