@@ -1,47 +1,70 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import { FC, Fragment, Key, useEffect, useRef, useState } from 'react';
-import { AppBridgeNative, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { filterCompleteItems } from './helpers';
-import { SquareWithColor } from './components/SquareWithColor';
-import { SquareWithoutColor } from './components/SquareWithoutColor';
-import { ColorProps } from './types';
+import "tailwindcss/tailwind.css";
+import { FC, Fragment, Key, useEffect, useRef, useState } from "react";
+import {
+    AppBridgeNative,
+    useBlockSettings,
+    useEditorState,
+} from "@frontify/app-bridge";
+import { filterCompleteItems } from "./helpers";
+import { SquareWithColor } from "./components/SquareWithColor";
+import { SquareWithoutColor } from "./components/SquareWithoutColor";
+import { AddNewColor } from "./components/AddNewColor";
+import { ColorProps } from "./types";
 
+import {
+    ButtonGroup,
+    IconArrowStretchBox12,
+    IconPlus12,
+    DropZonePosition,
+    OrderableListItem,
+    useMemoizedId,
+    Button,
+    ButtonStyle,
+    ButtonSize,
+} from "@frontify/fondue";
+import "@frontify/fondue-tokens/styles";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import "tailwindcss/tailwind.css";
+import { Draggable } from "./components/Draggable";
+import { Resizable } from "./components/Resizable";
+import { DropZone } from "./react-dnd/DropZone";
 
-import { DropZonePosition, OrderableListItem, useMemoizedId } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import 'tailwindcss/tailwind.css';
-import { Draggable } from './components/Draggable';
-import { Resizable } from './components/Resizable';
-import { DropZone } from './react-dnd/DropZone';
-
-import { uuid } from 'uuidv4';
+import { uuid } from "uuidv4";
 
 type Props = {
-    appBridge: AppBridgeNative
+    appBridge: AppBridgeNative;
 };
 
 export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     //const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
-    const [blockSettings, setBlockSettings] = useState({ 'color-input': [
-        { id: uuid(), sort: 1, color: { r: 0, g: 0, b: 0, a: 1}, alt: 'Click to drag' }
-    ] as ColorProps[] | null });
+    const [blockSettings, setBlockSettings] = useState({
+        "color-input": [
+            {
+                id: uuid(),
+                sort: 1,
+                color: { r: 0, g: 0, b: 0, a: 1 },
+                alt: "Click to drag",
+            },
+        ] as ColorProps[] | null,
+    });
 
     const emptyBlockColors: string[] = [
-        '#D5D6D6',
-        '#DFDFDF',
-        '#E8E9E9',
-        '#F1F1F1',
-        '#FAFAFA',
-        '#FFFFFF',
+        "#D5D6D6",
+        "#DFDFDF",
+        "#E8E9E9",
+        "#F1F1F1",
+        "#FAFAFA",
+        "#FFFFFF",
     ];
     const [showCompleted] = useState(true);
     const [calculatedWidths, setCalculatedWidths] = useState(false);
-    const [editedColor, setEditedColor]: any = useState();
+    const [editedColor, setEditedColor] = useState();
+    const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+    const [nextEmptyColorIndex, setNextEmptyColorIndex]: any = useState(0);
     const colorOptionsRef: any = useRef();
     const colorScaleBlockRef: any = useRef();
     const colorPickerRef: any = useRef();
@@ -49,17 +72,17 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const colorWidth = 100; // default color square width if all other calculations fail
 
     const postDrop = (updatedColors: ColorProps[]) => {
-        setBlockSettings({ ...blockSettings, 'color-input': updatedColors });
+        setBlockSettings({ ...blockSettings, "color-input": updatedColors });
         setDisplayableItems(updatedColors);
-    }
+    };
 
     const handleDrop = (
         targetItem: OrderableListItem,
         movedItem: OrderableListItem,
         position: DropZonePosition
     ) => {
-
-        let movedItemIndex = 0, targetItemIndex = 0;
+        let movedItemIndex = 0,
+            targetItemIndex = 0;
 
         let updatedColors = [...displayableItems];
 
@@ -69,7 +92,9 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             }
         });
 
-        updatedColors = updatedColors.filter((colorItem, index) => index !== movedItemIndex);
+        updatedColors = updatedColors.filter(
+            (colorItem, index) => index !== movedItemIndex
+        );
 
         updatedColors.forEach((colorItem, index) => {
             if (colorItem.id === targetItem.id) {
@@ -77,9 +102,13 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             }
         });
 
-        if (position === 'after') {
-            updatedColors.splice(targetItemIndex + 1, 0, movedItem as ColorProps);
-        } else if (position === 'before') {
+        if (position === "after") {
+            updatedColors.splice(
+                targetItemIndex + 1,
+                0,
+                movedItem as ColorProps
+            );
+        } else if (position === "before") {
             updatedColors.splice(targetItemIndex, 0, movedItem as ColorProps);
         }
 
@@ -88,7 +117,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
     const calculateDefaultColorWidth = (arrLen: number) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
-            const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
+            const colorScaleBlockWidth =
+                colorScaleBlockRef.current.getBoundingClientRect().width;
             const defaultWidth = colorScaleBlockWidth / arrLen;
 
             return defaultWidth;
@@ -103,16 +133,23 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         let emptySquares = 0;
         let emptySquareWidth = 12;
 
-        let itemsWithWidths: ColorProps[] = itemList?.map((value: ColorProps) => {
-            if (colorScaleBlockRef && colorScaleBlockRef.current && (!value || (value && !value.width))) {
-                emptySquares++;
+        let itemsWithWidths: ColorProps[] = itemList?.map(
+            (value: ColorProps) => {
+                if (
+                    colorScaleBlockRef &&
+                    colorScaleBlockRef.current &&
+                    (!value || (value && !value.width))
+                ) {
+                    emptySquares++;
+                    return value;
+                }
                 return value;
             }
-            return value;
-        });
+        );
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
-            const colorBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
+            const colorBlockWidth =
+                colorScaleBlockRef.current.getBoundingClientRect().width;
 
             itemsWithWidths.map((value: ColorProps) => {
                 if (value && value.width) {
@@ -131,7 +168,11 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     if (value) {
                         return { ...value, width: emptySquareWidth };
                     }
-                    return { id: uuid(), width: emptySquareWidth, alt: "Click to drag" };
+                    return {
+                        id: value && value.id ? value.id : uuid(),
+                        width: emptySquareWidth,
+                        alt: "Click to drag",
+                    };
                 }
                 return value;
             });
@@ -141,9 +182,16 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             itemsWithWidths = itemsWithWidths.map((value: ColorProps) => {
                 if (!value || (value && !value.width)) {
                     if (value) {
-                        return { ...value, width: calculateDefaultColorWidth(itemList.length) };
+                        return {
+                            ...value,
+                            width: calculateDefaultColorWidth(itemList.length),
+                        };
                     }
-                    return { id: uuid(), width: calculateDefaultColorWidth(itemList.length), alt: "Click to drag" };
+                    return {
+                        id: value && value.id ? value.id : uuid(),
+                        width: calculateDefaultColorWidth(itemList.length),
+                        alt: "Click to drag",
+                    };
                 }
                 return value;
             });
@@ -155,8 +203,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const [displayableItems, setDisplayableItems] = useState(
         calculateWidths(
             isEditing || showCompleted
-                ? blockSettings['color-input']
-                : filterCompleteItems(blockSettings['color-input'])
+                ? blockSettings["color-input"]
+                : filterCompleteItems(blockSettings["color-input"])
         )
     );
 
@@ -169,19 +217,44 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const lastDragPos: any = useRef();
 
     const deleteColor = (id: any) => {
-        const reorderedList = displayableItems.filter((item: ColorProps, index: Key) => index !== id);
-        setBlockSettings({ ...blockSettings, 'color-input': reorderedList });
+        const reorderedList = displayableItems.filter(
+            (item: ColorProps, index: Key) => item.id !== id
+        );
+        setBlockSettings({ ...blockSettings, "color-input": reorderedList });
         setDisplayableItems(reorderedList);
     };
 
-    const updateColor = (newColor: ColorProps, index: number, appearAfter?: boolean) => {
-  
+    const saveNewColor = (
+        newColor: ColorProps,
+        index: number,
+        appearAfter?: boolean
+    ) => {
+        let updatedColors = [...displayableItems];
+
+        updatedColors.splice(index + 1, 0, newColor);
+
+        const colorsWithNewWidths = calculateWidths(
+            isEditing || showCompleted
+                ? updatedColors
+                : filterCompleteItems(updatedColors)
+        );
+        setBlockSettings({
+            ...blockSettings,
+            "color-input": colorsWithNewWidths,
+        });
+        setDisplayableItems(colorsWithNewWidths);
+    };
+
+    const updateColor = (
+        newColor: ColorProps,
+        index: number,
+        appearAfter?: boolean
+    ) => {
         // If appearAfter is true, it means that this is a new color square being added. The new square will appear after the index provided by `id`.
 
         let updatedColors = [...displayableItems];
         if (!appearAfter) {
             updatedColors = displayableItems.map((color, diindex) => {
-
                 if (index === diindex) {
                     return { ...newColor, width: color.width };
                 }
@@ -189,13 +262,25 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             });
         } else {
             updatedColors.splice(index + 1, 0, newColor);
-            setEditedColor(null);
+            // setEditedColor(null);
         }
 
+        console.log("----------");
+        console.log(updatedColors);
+
         const colorsWithNewWidths = calculateWidths(
-            isEditing || showCompleted ? updatedColors : filterCompleteItems(updatedColors)
+            isEditing || showCompleted
+                ? updatedColors
+                : filterCompleteItems(updatedColors)
         );
-        setBlockSettings({ ...blockSettings, 'color-input': colorsWithNewWidths });
+
+        console.log("colors with new widths");
+        console.log(colorsWithNewWidths);
+
+        setBlockSettings({
+            ...blockSettings,
+            "color-input": colorsWithNewWidths,
+        });
         setDisplayableItems(colorsWithNewWidths);
     };
 
@@ -234,7 +319,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     };
 
     const canExpandColorBlock = () => {
-        const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
+        const colorScaleBlockWidth =
+            colorScaleBlockRef.current.getBoundingClientRect().width;
         let usedSpace = 0;
 
         displayableItems.map((value: ColorProps) => {
@@ -260,12 +346,13 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const removeDragGhostImage = (event: any) => {
         const img = new Image();
         // this is a transparent image
-        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+        img.src =
+            "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=";
         event.dataTransfer.setDragImage(img, 0, 0);
     };
 
     const doesColorHaveRgbValues = (colorValue: ColorProps) => {
-        if (colorValue && colorValue.color && colorValue.color.r && colorValue.color.g && colorValue.color.b) {
+        if (colorValue && colorValue.color) {
             return true;
         }
         return false;
@@ -287,8 +374,11 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
             try {
                 // Check to see if we have the minimum number of color squares as defined in the settings.
-                if (blockSettings['color-input'] && blockSettings['color-input'].length >= minimumColors) {
-                    blockSettings['color-input'].map((value: ColorProps) => {
+                if (
+                    blockSettings["color-input"] &&
+                    blockSettings["color-input"].length >= minimumColors
+                ) {
+                    blockSettings["color-input"].map((value: ColorProps) => {
                         if (!value || (value && !value.width)) {
                             needToCalculateWidths = true;
                         }
@@ -298,18 +388,23 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     if (needToCalculateWidths) {
                         const colorsWithNewWidths = calculateWidths(
                             isEditing || showCompleted
-                                ? blockSettings['color-input']
-                                : filterCompleteItems(blockSettings['color-input'])
+                                ? blockSettings["color-input"]
+                                : filterCompleteItems(
+                                      blockSettings["color-input"]
+                                  )
                         );
-                        setBlockSettings({ ...blockSettings, 'color-input': colorsWithNewWidths });
+                        setBlockSettings({
+                            ...blockSettings,
+                            "color-input": colorsWithNewWidths,
+                        });
                         setDisplayableItems(colorsWithNewWidths);
                     } else {
-                        setDisplayableItems(blockSettings['color-input']);
+                        setDisplayableItems(blockSettings["color-input"]);
                     }
                 } else {
                     // If the number of colors is less than the minimum amount defined in settings, add
                     // however many color squares are needed to match the minimum.
-                    const colorsArray = blockSettings['color-input'] || [];
+                    const colorsArray = blockSettings["color-input"] || [];
                     let missingColors = 0;
 
                     if (colorsArray.length < minimumColors) {
@@ -319,9 +414,14 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                             colorsArray.push(null);
 
                             const colorsWithNewWidths = calculateWidths(
-                                isEditing || showCompleted ? colorsArray : filterCompleteItems(colorsArray)
+                                isEditing || showCompleted
+                                    ? colorsArray
+                                    : filterCompleteItems(colorsArray)
                             );
-                            setBlockSettings({ ...blockSettings, 'color-input': colorsWithNewWidths });
+                            setBlockSettings({
+                                ...blockSettings,
+                                "color-input": colorsWithNewWidths,
+                            });
                             setDisplayableItems(colorsWithNewWidths);
                         }
                     }
@@ -333,13 +433,29 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     }, [blockSettings]);
 
     useEffect(() => {
-        if (!calculatedWidths && colorScaleBlockRef && colorScaleBlockRef.current) {
+        let foundNextEmptySquare = false;
+        displayableItems.map((item, index) => {
+            if (item && !item.color && foundNextEmptySquare === false) {
+                foundNextEmptySquare = true;
+                setNextEmptyColorIndex(index);
+            }
+        });
+
+        if (!foundNextEmptySquare) {
+            setNextEmptyColorIndex(false);
+        }
+
+        if (
+            !calculatedWidths &&
+            colorScaleBlockRef &&
+            colorScaleBlockRef.current
+        ) {
             setCalculatedWidths(true);
             setDisplayableItems(
                 calculateWidths(
                     isEditing || showCompleted
-                        ? blockSettings['color-input']
-                        : filterCompleteItems(blockSettings['color-input'])
+                        ? blockSettings["color-input"]
+                        : filterCompleteItems(blockSettings["color-input"])
                 )
             );
         }
@@ -350,11 +466,11 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
         // document.addEventListener('click', handleClickOutside, true);
         // document.addEventListener('click', handleClickOutsideColorPicker, true);
-        document.addEventListener('dragstart', removeDragGhostImage, false);
+        document.addEventListener("dragstart", removeDragGhostImage, false);
         return () => {
             // document.removeEventListener('click', handleClickOutside);
             // document.removeEventListener('click', handleClickOutsideColorPicker);
-            document.removeEventListener('dragstart', removeDragGhostImage);
+            document.removeEventListener("dragstart", removeDragGhostImage);
         };
     });
 
@@ -384,7 +500,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     lastDragPos.current = evt.clientX;
 
                     let valuesChanged = false;
-                    const movementSinceStart = dragStartPos.current - evt.clientX;
+                    const movementSinceStart =
+                        dragStartPos.current - evt.clientX;
 
                     const colorsBeforeCurrent = displayableItems
                         .filter((diValue, diIndex) => {
@@ -395,36 +512,48 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         })
                         .reverse();
 
-                    const newDisplayableItems = displayableItems.map((diValue, diIndex) => {
-                        if (diValue && diIndex && diIndex === id) {
-                            if (diValue.width && diValue.width >= 16) {
-                                // need to make sure it's 16 because we're going to decrease width
-                                // by 8 pixels, and the minimum width is 8 pixels
-                                if (dragStartWidth.current - movementSinceStart >= 8) {
-                                    diValue.width = dragStartWidth.current - movementSinceStart;
+                    const newDisplayableItems = displayableItems.map(
+                        (diValue, diIndex) => {
+                            if (diValue && diIndex && diIndex === id) {
+                                if (diValue.width && diValue.width >= 16) {
+                                    // need to make sure it's 16 because we're going to decrease width
+                                    // by 8 pixels, and the minimum width is 8 pixels
+                                    if (
+                                        dragStartWidth.current -
+                                            movementSinceStart >=
+                                        8
+                                    ) {
+                                        diValue.width =
+                                            dragStartWidth.current -
+                                            movementSinceStart;
 
-                                    valuesChanged = true;
-                                }
-                            } else {
-                                let needToShrinkColor = true;
-                                colorsBeforeCurrent.map((adjacentColor) => {
-                                    if (needToShrinkColor) {
-                                        if (adjacentColor) {
-                                            if (adjacentColor.width && adjacentColor.width >= 16) {
-                                                // need to make sure it's 16 because we're going to decrease width
-                                                // by 8 pixels, and the minimum width is 8 pixels
-                                                adjacentColor.width = adjacentColor.width - 8;
+                                        valuesChanged = true;
+                                    }
+                                } else {
+                                    let needToShrinkColor = true;
+                                    colorsBeforeCurrent.map((adjacentColor) => {
+                                        if (needToShrinkColor) {
+                                            if (adjacentColor) {
+                                                if (
+                                                    adjacentColor.width &&
+                                                    adjacentColor.width >= 16
+                                                ) {
+                                                    // need to make sure it's 16 because we're going to decrease width
+                                                    // by 8 pixels, and the minimum width is 8 pixels
+                                                    adjacentColor.width =
+                                                        adjacentColor.width - 8;
 
-                                                valuesChanged = true;
-                                                needToShrinkColor = false;
+                                                    valuesChanged = true;
+                                                    needToShrinkColor = false;
+                                                }
                                             }
                                         }
-                                    }
-                                });
+                                    });
+                                }
                             }
+                            return diValue;
                         }
-                        return diValue;
-                    });
+                    );
 
                     if (valuesChanged) {
                         setDisplayableItems(newDisplayableItems);
@@ -437,41 +566,52 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     lastDragPos.current = evt.clientX;
 
                     let valuesChanged = false;
-                    const movementSinceStart = evt.clientX - dragStartPos.current;
+                    const movementSinceStart =
+                        evt.clientX - dragStartPos.current;
 
-                    const colorsAfterCurrent = displayableItems.filter((diValue, diIndex) => {
-                        if (diIndex > id) {
-                            return true;
-                        }
-                        return false;
-                    });
-
-                    const newDisplayableItems = displayableItems.map((diValue, diIndex) => {
-                        if (canExpandColorBlock()) {
-                            if (diIndex === id) {
-                                diValue.width = dragStartWidth.current + movementSinceStart;
-
-                                valuesChanged = true;
+                    const colorsAfterCurrent = displayableItems.filter(
+                        (diValue, diIndex) => {
+                            if (diIndex > id) {
+                                return true;
                             }
-                        } else {
-                            let needToShrinkColor = true;
-                            colorsAfterCurrent.map((adjacentColor) => {
-                                if (needToShrinkColor) {
-                                    if (adjacentColor) {
-                                        if (adjacentColor.width && adjacentColor.width >= 16) {
-                                            // need to make sure it's 16 because we're going to decrease width
-                                            // by 8 pixels, and the minimum width is 8 pixels
-                                            adjacentColor.width = adjacentColor.width - 8;
+                            return false;
+                        }
+                    );
 
-                                            valuesChanged = true;
-                                            needToShrinkColor = false;
+                    const newDisplayableItems = displayableItems.map(
+                        (diValue, diIndex) => {
+                            if (canExpandColorBlock()) {
+                                if (diIndex === id) {
+                                    diValue.width =
+                                        dragStartWidth.current +
+                                        movementSinceStart;
+
+                                    valuesChanged = true;
+                                }
+                            } else {
+                                let needToShrinkColor = true;
+                                colorsAfterCurrent.map((adjacentColor) => {
+                                    if (needToShrinkColor) {
+                                        if (adjacentColor) {
+                                            if (
+                                                adjacentColor.width &&
+                                                adjacentColor.width >= 16
+                                            ) {
+                                                // need to make sure it's 16 because we're going to decrease width
+                                                // by 8 pixels, and the minimum width is 8 pixels
+                                                adjacentColor.width =
+                                                    adjacentColor.width - 8;
+
+                                                valuesChanged = true;
+                                                needToShrinkColor = false;
+                                            }
                                         }
                                     }
-                                }
-                            });
+                                });
+                            }
+                            return diValue;
                         }
-                        return diValue;
-                    });
+                    );
                     if (valuesChanged) {
                         setDisplayableItems(newDisplayableItems);
                     }
@@ -483,123 +623,168 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const listId = useMemoizedId();
 
     return (
-        // <div>hello world</div>
-        <div
-            data-test-id="color-scale-block"
-            style={{
-                height: 140,
-            }}
-            className={`color-scale-block tw-rounded-md tw-overflow-visible tw-pb-5 tw-pb-8 tw-mb-4 ${
-                isEditing ? 'editing' : ''
-            } tw-w-full tw-flex`}
-            ref={colorScaleBlockRef}
-            // Note: onMouseUp and onDrag are defined here intentionally, instead of being in the DragHandle component.
-            // The reason for this is that the dragging feature stops working if I move these to DragHandle,
-            // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
-            // The 'onDragStart' method, on the other hand, needs to stay in DragHandle, because it needs to
-            // identify which color square is being resized.
-            onMouseUp={onDragStop}
-            onDrag={onDrag}
-            draggable={true}
-        >
-            <DndProvider backend={HTML5Backend}>
-                {displayableItems.map((value: ColorProps, index: number) => {
-                    let backgroundColorRgba;
+        <>
+            <div
+                data-test-id="color-scale-block"
+                style={{
+                    height: 115,
+                }}
+                className={`color-scale-block tw-rounded-md tw-overflow-visible tw-pb-5 tw-pb-8 tw-mb-4 ${
+                    isEditing ? "editing" : ""
+                } tw-w-full tw-flex`}
+                ref={colorScaleBlockRef}
+                // Note: onMouseUp and onDrag are defined here intentionally, instead of being in the DragHandle component.
+                // The reason for this is that the dragging feature stops working if I move these to DragHandle,
+                // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
+                // The 'onDragStart' method, on the other hand, needs to stay in DragHandle, because it needs to
+                // identify which color square is being resized.
+                onMouseUp={onDragStop}
+                onDrag={onDrag}
+                draggable={true}
+            >
+                <DndProvider backend={HTML5Backend}>
+                    {displayableItems.map(
+                        (value: ColorProps, index: number) => {
+                            let backgroundColorRgba;
 
-                    if (value && value.color && value.color.r && value.color.g && value.color.b && value.color.a) {
-                        backgroundColorRgba = `${value.color.r},${value.color.g},${value.color.b},${value.color.a}`;
-                    }
+                            if (value && value.color) {
+                                backgroundColorRgba = `${value.color.r},${value.color.g},${value.color.b},${value.color.a}`;
+                            }
 
-                    let width;
+                            let width;
 
-                    if (value && value.width) {
-                        width = value.width;
-                    } else {
-                        width = calculateDefaultColorWidth(displayableItems.length);
-                    }
+                            if (value && value.width) {
+                                width = value.width;
+                            } else {
+                                width = calculateDefaultColorWidth(
+                                    displayableItems.length
+                                );
+                            }
 
-                    return (
-                        <div className="test" key={value.id}>
-                            {doesColorHaveRgbValues(value) ? (
-                                <>
-                                   {/* <DropZone
-                                   key={`orderable-list-item-${value.id}-before`}
-                                   data={{
-                                       targetItem: value,
-                                       position: DropZonePosition.Before,
-                                   }}
-                                   onDrop={handleDrop}
-                                   treeId={listId}
-                               /> */}
-                                    <SquareWithColor
-                                        id={value.id}
-                                        sort={value.sort}
-                                        index={index}
-                                        width={width}
-                                        currentColor={value}
-                                        backgroundColorRgba={backgroundColorRgba}
-                                        onDragStart={onDragStart}
-                                        hilite={hilite}
-                                        setHilite={setHilite}
-                                        calculateLeftPos={calculateLeftPos}
-                                        isEditing={isEditing}
-                                        colorPickerRef={colorPickerRef}
-                                        editedColor={editedColor}
-                                        setEditedColor={setEditedColor}
-                                        updateColor={updateColor}
-                                        setFormat={() => false}
-                                        colorOptionsRef={colorOptionsRef}
-                                        colorOptionsOpen={colorOptionsOpen}
-                                        setColorOptionsOpen={setColorOptionsOpen}
-                                        deleteColor={deleteColor}
-                                        handleDrop={handleDrop}
-                                        listId={listId}
-                                    />
-                                     {/* {index === displayableItems.length - 1 && (
-                                         <DropZone
-                                             key={`orderable-list-item-${value.id}-after`}
-                                             data={{
-                                                 targetItem: value,
-                                                 position: DropZonePosition.After,
-                                             }}
-                                             onDrop={handleDrop}
-                                             treeId={listId}
-                                         />
-                                     )} */}
-                                 </>
-                            ) : (
-                                <SquareWithoutColor
-                                    id={value.id}
-                                    sort={value.sort}
-                                    index={index}
-                                    placeholderColor={emptyBlockColors[index]}
-                                    totalNumOfBlocks={displayableItems.length}
-                                    width={width}
-                                    currentSquare={value}
-                                    onDragStart={onDragStart}
-                                    hilite={hilite}
-                                    setHilite={setHilite}
-                                    calculateLeftPos={calculateLeftPos}
-                                    isEditing={isEditing}
-                                    colorPickerRef={colorPickerRef}
-                                    editedColor={editedColor}
-                                    setEditedColor={setEditedColor}
-                                    updateColor={updateColor}
-                                    setFormat={() => false}
-                                    colorOptionsRef={colorOptionsRef}
-                                    colorOptionsOpen={colorOptionsOpen}
-                                    setColorOptionsOpen={setColorOptionsOpen}
-                                    deleteColor={deleteColor}
-                                    hovered={hovered}
-                                    setHovered={setHovered}
-                                    handleDrop={handleDrop}
-                                    listId={listId}
-                                />
-                            )}
-                        </div>
-                    );
-                })}
-            </DndProvider>
-        </div>
+                            return (
+                                <div className="test" key={value.id}>
+                                    {doesColorHaveRgbValues(value) ? (
+                                        <>
+                                            <SquareWithColor
+                                                id={value.id}
+                                                sort={value.sort}
+                                                index={index}
+                                                width={width}
+                                                currentColor={value}
+                                                backgroundColorRgba={
+                                                    backgroundColorRgba
+                                                }
+                                                totalNumOfBlocks={
+                                                    displayableItems.length
+                                                }
+                                                onDragStart={onDragStart}
+                                                hilite={hilite}
+                                                setHilite={setHilite}
+                                                calculateLeftPos={
+                                                    calculateLeftPos
+                                                }
+                                                isEditing={isEditing}
+                                                colorPickerRef={colorPickerRef}
+                                                editedColor={editedColor}
+                                                setEditedColor={setEditedColor}
+                                                updateColor={updateColor}
+                                                setFormat={() => false}
+                                                colorOptionsRef={
+                                                    colorOptionsRef
+                                                }
+                                                colorOptionsOpen={
+                                                    colorOptionsOpen
+                                                }
+                                                setColorOptionsOpen={
+                                                    setColorOptionsOpen
+                                                }
+                                                deleteColor={deleteColor}
+                                                handleDrop={handleDrop}
+                                                listId={listId}
+                                            />
+                                        </>
+                                    ) : (
+                                        <SquareWithoutColor
+                                            id={value.id}
+                                            sort={value.sort}
+                                            index={index}
+                                            placeholderColor={
+                                                emptyBlockColors[index]
+                                            }
+                                            totalNumOfBlocks={
+                                                displayableItems.length
+                                            }
+                                            width={width}
+                                            currentSquare={value}
+                                            onDragStart={onDragStart}
+                                            hilite={hilite}
+                                            setHilite={setHilite}
+                                            calculateLeftPos={calculateLeftPos}
+                                            isEditing={isEditing}
+                                            colorPickerRef={colorPickerRef}
+                                            editedColor={editedColor}
+                                            setEditedColor={setEditedColor}
+                                            updateColor={updateColor}
+                                            setFormat={() => false}
+                                            colorOptionsRef={colorOptionsRef}
+                                            colorOptionsOpen={colorOptionsOpen}
+                                            setColorOptionsOpen={
+                                                setColorOptionsOpen
+                                            }
+                                            deleteColor={deleteColor}
+                                            hovered={hovered}
+                                            setHovered={setHovered}
+                                            handleDrop={handleDrop}
+                                            listId={listId}
+                                        />
+                                    )}
+                                </div>
+                            );
+                        }
+                    )}
+                </DndProvider>
+            </div>
+            {isEditing ? (
+                <div className="tw-text-right">
+                    <ButtonGroup size={ButtonSize.Small}>
+                        <Button
+                            onClick={function noRefCheck() {}}
+                            style={ButtonStyle.Secondary}
+                            size={ButtonSize.Small}
+                            icon={<IconArrowStretchBox12 />}
+                        >
+                            Resize Evenly
+                        </Button>
+                        {nextEmptyColorIndex !== false ? (
+                            <Button
+                                onClick={() => {
+                                    setIsColorPickerOpen(true);
+                                }}
+                                style={ButtonStyle.Secondary}
+                                size={ButtonSize.Small}
+                                icon={<IconPlus12 />}
+                            >
+                                Add Color
+                            </Button>
+                        ) : (
+                            <></>
+                        )}
+                    </ButtonGroup>
+
+                    <AddNewColor
+                        isColorPickerOpen={isColorPickerOpen}
+                        setIsColorPickerOpen={setIsColorPickerOpen}
+                        editedColor={editedColor}
+                        setEditedColor={setEditedColor}
+                        colorPickerRef={colorPickerRef}
+                        newIndex={nextEmptyColorIndex}
+                        updateColor={updateColor}
+                        setFormat={() => false}
+                    />
+                </div>
+            ) : (
+                <></>
+            )}
+        </>
     );
 };
