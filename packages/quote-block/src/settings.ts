@@ -46,15 +46,14 @@ const QUOTE_STYLE_CHOICES = [
         icon: 'Icon' as IconEnum.Icon,
         label: 'Hook Bracket Right',
     },
-    { value: QuoteStyle.None, icon: 'Icon' as IconEnum.Icon, label: 'None' },
+    { value: QuoteStyle.None, icon: 'StrikethroughBox' as IconEnum.StrikethroughBox, label: 'None' },
 ];
 
 export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
 export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
 const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
-const showAccentLine = (bundle: Bundle): boolean =>
-    isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID)?.value === true;
+const showAccentLine = (bundle: Bundle): boolean => isSelected(bundle, QuoteType.Indentation);
 
 export const settings: BlockSettings = {
     main: [
@@ -178,7 +177,7 @@ export const settings: BlockSettings = {
             show: showAccentLine,
             on: [
                 {
-                    id: ACCENT_LINE_SWITCH_ID,
+                    id: 'multiInputId',
                     type: 'multiInput',
                     onChange: (bundle: Bundle): void => {
                         appendUnit(bundle, LINE_WIDTH_VALUE_ID);
