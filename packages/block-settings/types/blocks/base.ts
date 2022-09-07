@@ -2,14 +2,14 @@
 
 import { Bundle } from '../bundle';
 
-type Setting<T> = T | ((bundle: Bundle) => T);
+type BlockProperty<T> = T | ((bundle: Bundle) => T);
 
 export type BaseBlock<T = undefined> = {
     id: string;
-    label?: Setting<string>;
-    info?: Setting<string>;
+    label?: BlockProperty<string>;
+    info?: BlockProperty<string>;
     value?: T;
-    defaultValue?: Setting<T>;
+    defaultValue?: BlockProperty<T>;
     showForTranslations?: boolean;
     show?: (bundle: Bundle) => boolean;
     onChange?: (bundle: Bundle) => void;
