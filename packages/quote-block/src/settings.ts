@@ -53,7 +53,6 @@ export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, 
 export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
 const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
-const showAccentLine = (bundle: Bundle): boolean => isSelected(bundle, QuoteType.Indentation);
 
 export const settings: BlockSettings = {
     main: [
@@ -174,7 +173,7 @@ export const settings: BlockSettings = {
             label: 'Accent line',
             type: 'switch',
             defaultValue: true,
-            show: showAccentLine,
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.Indentation),
             on: [
                 {
                     id: 'multiInputId',
