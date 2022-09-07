@@ -2,14 +2,17 @@
 
 import { Bundle } from '../bundle';
 
-export type ValueOrPromisedValue<FieldType, ParamType> = FieldType | ((...args: ParamType[]) => Promise<FieldType>);
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type ValueOrPromisedValue<FieldType, ParamType = {}> =
+    | FieldType
+    | ((...args: (ParamType & { bundle: Bundle })[]) => Promise<FieldType>);
 
 export type BaseBlock<T = undefined> = {
     id: string;
-    label?: ValueOrPromisedValue<string, Bundle>;
-    info?: ValueOrPromisedValue<string, Bundle>;
+    label?: ValueOrPromisedValue<string>;
+    info?: ValueOrPromisedValue<string>;
     value?: T;
-    defaultValue?: ValueOrPromisedValue<T, Bundle>;
+    defaultValue?: ValueOrPromisedValue<T>;
     showForTranslations?: boolean;
     show?: (bundle: Bundle) => boolean;
     onChange?: (bundle: Bundle) => void;
