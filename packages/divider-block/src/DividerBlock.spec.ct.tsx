@@ -49,13 +49,12 @@ describe('DividerBlock', () => {
                 isLine: DividerStyle.Solid,
                 color: EXAMPLE_COLOR,
                 style: DividerStyle.Dashed,
-                thicknessSimple: DividerHeight.Large,
             },
         });
 
         mount(<DividerBlockWithStubs />);
         cy.get(DividerLine).should('have.class', 'tw-border-dashed');
-        cy.get(DividerLine).should('have.css', 'border-top-width', '4px');
+        cy.get(DividerLine).should('have.css', 'border-top-width', '1px');
         cy.get(DividerLine).should('have.css', 'border-top-color', 'rgb(22, 181, 181)');
     });
 });
