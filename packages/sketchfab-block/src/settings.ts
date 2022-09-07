@@ -1,7 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DropdownSize, MultiInputLayout, SwitchSize, TextInputType } from '@frontify/fondue';
-import type { BlockSettings, Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
+import {
+    BlockSettings,
+    Bundle,
+    NotificationBlock,
+    NotificationBlockDividerPosition,
+    NotificationStyleType,
+    SettingBlock,
+} from '@frontify/guideline-blocks-settings';
 import {
     getBorderRadiusSettings,
     getBorderSettings,
@@ -51,6 +58,22 @@ const isAvailableNavigationConstraint = (bundle: Bundle) =>
 const isAvailableAnnotationControl = (bundle: Bundle) =>
     bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === true;
 
+/* Navigation constraint settings lose all functionality if some other settings are switched on. 
+These edge-cases are documented in the link.href of this block */
+const INCOMPATIBLE_SETTINGS_NOTIFICATION: Pick<NotificationBlock, 'type' | 'title' | 'styles' | 'link'> = {
+    type: 'notification',
+    title: 'Incompatible settings',
+    styles: {
+        type: NotificationStyleType.Warning,
+        icon: true,
+        divider: NotificationBlockDividerPosition.Top,
+    },
+    link: {
+        href: 'https://help.sketchfab.com/hc/en-us/articles/115003399103-Camera-Limits##preview',
+        label: 'More information',
+    },
+};
+
 // Defaults reflected here https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
 export const settings: BlockSettings & {
     UI: SettingBlock[];
@@ -88,87 +111,94 @@ export const settings: BlockSettings & {
     ],
     Player: [
         {
-            id: SketchfabSettings.IS_CUSTOM_HEIGHT,
-            type: 'switch',
-            switchLabel: 'Custom',
-            label: 'Height',
-            onChange: (bundle) =>
-                presetCustomValue(bundle, SketchfabSettings.HEIGHT, SketchfabSettings.CUSTOM_HEIGHT, heights),
-            on: [
+            id: 'player-sectionHeading-1',
+            type: 'sectionHeading',
+            blocks: [
                 {
-                    id: SketchfabSettings.CUSTOM_HEIGHT,
-                    type: 'input',
-                    placeholder: '0px',
-                    defaultValue: '500px',
-                    rules: [minimumNumericalOrPixelOrAutoRule(0)],
-                },
-            ],
-            off: [
-                {
-                    id: SketchfabSettings.HEIGHT,
-                    type: 'slider',
-                    defaultValue: SketchfabHeight.Medium,
-                    choices: [
-                        { label: 'S', value: SketchfabHeight.Small },
-                        { label: 'M', value: SketchfabHeight.Medium },
-                        { label: 'L', value: SketchfabHeight.Large },
+                    id: SketchfabSettings.IS_CUSTOM_HEIGHT,
+                    type: 'switch',
+                    switchLabel: 'Custom',
+                    label: 'Height',
+                    onChange: (bundle) =>
+                        presetCustomValue(bundle, SketchfabSettings.HEIGHT, SketchfabSettings.CUSTOM_HEIGHT, heights),
+                    on: [
+                        {
+                            id: SketchfabSettings.CUSTOM_HEIGHT,
+                            type: 'input',
+                            placeholder: '0px',
+                            defaultValue: '500px',
+                            rules: [minimumNumericalOrPixelOrAutoRule(0)],
+                        },
+                    ],
+                    off: [
+                        {
+                            id: SketchfabSettings.HEIGHT,
+                            type: 'slider',
+                            defaultValue: SketchfabHeight.Medium,
+                            choices: [
+                                { label: 'S', value: SketchfabHeight.Small },
+                                { label: 'M', value: SketchfabHeight.Medium },
+                                { label: 'L', value: SketchfabHeight.Large },
+                            ],
+                        },
                     ],
                 },
-            ],
-        },
-        {
-            id: SketchfabSettings.AUTO_START,
-            label: 'Autostart',
-            type: 'switch',
-            info: 'Enabling this feature will make the model load immediately once the page is ready, rather than waiting for a user to click the Play button.',
-        },
-        {
-            id: SketchfabSettings.AUTO_PLAY,
-            label: 'Animation Autoplay',
-            type: 'switch',
-            info: 'Automatically play animations when the viewer starts',
-            defaultValue: true,
-        },
-        {
-            id: SketchfabSettings.TEXTURE_SIZE,
-            label: 'Max Texture Size',
-            type: 'switch',
-            info: 'Setting to a positive number will limit all textures to that maximum resolution (longest side in pixels). This should be a "power of 2" value such as 32, 128, 256, 512, etc.',
-            on: [
                 {
-                    id: SketchfabSettings.TEXTURE_SIZE_VALUE,
-                    type: 'dropdown',
-                    placeholder: '8192',
-                    defaultValue: '8192',
-                    choices: TEXTURE_SIZES.map((size) => ({ id: size, value: size, label: size })),
+                    id: SketchfabSettings.AUTO_START,
+                    label: 'Autostart',
+                    type: 'switch',
+                    info: 'Enabling this feature will make the model load immediately once the page is ready, rather than waiting for a user to click the Play button.',
+                },
+                {
+                    id: SketchfabSettings.AUTO_PLAY,
+                    label: 'Animation Autoplay',
+                    type: 'switch',
+                    info: 'Automatically play animations when the viewer starts',
+                    defaultValue: true,
+                },
+                {
+                    id: SketchfabSettings.TEXTURE_SIZE,
+                    label: 'Max Texture Size',
+                    type: 'switch',
+                    info: 'Setting to a positive number will limit all textures to that maximum resolution (longest side in pixels). This should be a "power of 2" value such as 32, 128, 256, 512, etc.',
+                    on: [
+                        {
+                            id: SketchfabSettings.TEXTURE_SIZE_VALUE,
+                            type: 'dropdown',
+                            placeholder: '8192',
+                            defaultValue: '8192',
+                            choices: TEXTURE_SIZES.map((size) => ({ id: size, value: size, label: size })),
+                        },
+                    ],
+                },
+                {
+                    id: SketchfabSettings.PRELOAD_TEXTURES,
+                    type: 'switch',
+                    label: 'Preload Textures',
+                    info: 'Enabling this feature will force all resources (textures) to download before the scene is displayed.',
+                },
+                {
+                    id: SketchfabSettings.VIEWERS_TRACKING,
+                    type: 'switch',
+                    label: 'Viewers Tracking',
+                    defaultValue: true,
+                    info: 'Disabling this feature will prevent cookies, analytics, audience measurement / tracking, etc. in the embed.',
+                },
+                {
+                    id: SketchfabSettings.API_LOG,
+                    type: 'switch',
+                    label: 'API Log',
+                    info: 'When enabled, Data such as background UIDs, environment UIDs, annotation UIDs, and camera limit coordinates will be logged to the browser console.',
+                },
+                {
+                    id: SketchfabSettings.TRANSPARENT_BACKGROUND,
+                    type: 'switch',
+                    label: 'Transparent Background',
+                    info: "Enabling this feature will make the model's background transparent.",
+                    show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
                 },
             ],
-        },
-        {
-            id: SketchfabSettings.PRELOAD_TEXTURES,
-            type: 'switch',
-            label: 'Preload Textures',
-            info: 'Enabling this feature will force all resources (textures) to download before the scene is displayed.',
-        },
-        {
-            id: SketchfabSettings.VIEWERS_TRACKING,
-            type: 'switch',
-            label: 'Viewers Tracking',
-            defaultValue: true,
-            info: 'Disabling this feature will prevent cookies, analytics, audience measurement / tracking, etc. in the embed.',
-        },
-        {
-            id: SketchfabSettings.API_LOG,
-            type: 'switch',
-            label: 'API Log',
-            info: 'When enabled, Data such as background UIDs, environment UIDs, annotation UIDs, and camera limit coordinates will be logged to the browser console.',
-        },
-        {
-            id: SketchfabSettings.TRANSPARENT_BACKGROUND,
-            type: 'switch',
-            label: 'Transparent Background',
-            info: "Enabling this feature will make the model's background transparent.",
-            show: (bundle) => bundle.getBlock(SketchfabSettings.ACCOUNT_TYPE)?.value !== SketchfabAccount.Basic,
+            label: '',
         },
     ],
     'Navigation & Camera': [
@@ -267,6 +297,7 @@ export const settings: BlockSettings & {
                     id: SketchfabSettings.NAVIGATION_CONSTRAINTS,
                     type: 'switch',
                     label: 'Navigation Constraints',
+                    info: 'You can configure the Navigation Constraints here. For a better overview, use the 3D settings of your model within Sketchfab.',
                     size: SwitchSize.Large,
                 },
 
@@ -383,61 +414,86 @@ export const settings: BlockSettings & {
                         },
                     ],
                 },
+                {
+                    ...INCOMPATIBLE_SETTINGS_NOTIFICATION,
+                    id: 'incompatibleSettingsAnnotations',
+                    text: 'Annotations are incompatible with Navigation Constraints. These settings may not work as expected.',
+                    show: (bundle) =>
+                        bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value === true &&
+                        bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === true,
+                },
+                {
+                    ...INCOMPATIBLE_SETTINGS_NOTIFICATION,
+                    id: 'incompatibleSettingsDoubleClick',
+                    text: 'Double-click navigation is incompatible with Navigation Constraints while Pan is limited. These settings may not work as expected.',
+                    show: (bundle) =>
+                        bundle.getBlock(SketchfabSettings.DOUBLE_CLICK)?.value === true &&
+                        bundle.getBlock(SketchfabSettings.ORBIT_CONSTRAINT_PAN)?.value === true &&
+                        bundle.getBlock(SketchfabSettings.NAVIGATION_CONSTRAINTS)?.value === true &&
+                        bundle.getBlock(SketchfabSettings.SHOW_ANNOTATIONS)?.value === false,
+                },
             ],
         },
     ],
     Annotations: [
         {
-            id: SketchfabSettings.SHOW_ANNOTATIONS,
-            type: 'switch',
-            defaultValue: true,
-            label: 'Show Annotations',
-            size: SwitchSize.Large,
-            info: 'Disabling this feature will hide annotations by default',
-        },
-        {
-            id: SketchfabSettings.ANNOTATION_TOOLTIP_VISIBLE,
-            defaultValue: true,
-            label: 'Annotation Tooltip Visible',
-            info: 'Disabling this feature will hide annotation tooltips by default',
-            type: 'switch',
-            show: isAvailableAnnotationControl,
-        },
-        {
-            id: SketchfabSettings.STARTING_ANNOTATION,
-            defaultValue: false,
-            type: 'switch',
-            label: 'Starting Annotation',
-            info: 'Setting to a positive number [1 – 100] will automatically load that annotation when the viewer starts.',
-            show: isAvailableAnnotationControl,
-            on: [
+            id: 'player-sectionHeading-1',
+            type: 'sectionHeading',
+            label: '',
+            blocks: [
                 {
-                    id: SketchfabSettings.STARTING_ANNOTATION_VALUE,
-                    defaultValue: '1',
-                    inputType: 'Number' as TextInputType.Number,
-                    rules: [minimumNumericalRule(1), maximumNumericalRule(100)],
-                    type: 'input',
-                    placeholder: '1',
+                    id: SketchfabSettings.SHOW_ANNOTATIONS,
+                    type: 'switch',
+                    defaultValue: true,
+                    label: 'Show Annotations',
+                    size: SwitchSize.Large,
+                    info: 'Disabling this feature will hide annotations by default',
                 },
-            ],
-        },
-        {
-            id: SketchfabSettings.ANNOTATION_CYCLE,
-            defaultValue: false,
-            label: 'Annotation Cycle',
-            type: 'switch',
-            info: 'Setting to any number will start the Autopilot cycle with that duration, in seconds, at each annotation',
-            show: isAvailableAnnotationControl,
-            on: [
                 {
-                    id: SketchfabSettings.ANNOTATION_CYCLE_COUNT,
-                    label: 'Annotation Cycle Speed',
-                    placeholder: '3',
-                    defaultValue: '3',
-                    inputType: 'Number' as TextInputType.Number,
-                    rules: [minimumNumericalRule(0)],
-                    type: 'input',
+                    id: SketchfabSettings.ANNOTATION_TOOLTIP_VISIBLE,
+                    defaultValue: true,
+                    label: 'Annotation Tooltip Visible',
+                    info: 'Disabling this feature will hide annotation tooltips by default',
+                    type: 'switch',
                     show: isAvailableAnnotationControl,
+                },
+                {
+                    id: SketchfabSettings.STARTING_ANNOTATION,
+                    defaultValue: false,
+                    type: 'switch',
+                    label: 'Starting Annotation',
+                    info: 'Setting to a positive number [1 – 100] will automatically load that annotation when the viewer starts.',
+                    show: isAvailableAnnotationControl,
+                    on: [
+                        {
+                            id: SketchfabSettings.STARTING_ANNOTATION_VALUE,
+                            defaultValue: '1',
+                            inputType: 'Number' as TextInputType.Number,
+                            rules: [minimumNumericalRule(1), maximumNumericalRule(100)],
+                            type: 'input',
+                            placeholder: '1',
+                        },
+                    ],
+                },
+                {
+                    id: SketchfabSettings.ANNOTATION_CYCLE,
+                    defaultValue: false,
+                    label: 'Annotation Cycle',
+                    type: 'switch',
+                    info: 'Setting to any number will start the Autopilot cycle with that duration, in seconds, at each annotation',
+                    show: isAvailableAnnotationControl,
+                    on: [
+                        {
+                            id: SketchfabSettings.ANNOTATION_CYCLE_COUNT,
+                            label: 'Annotation Cycle Speed',
+                            placeholder: '3',
+                            defaultValue: '3',
+                            inputType: 'Number' as TextInputType.Number,
+                            rules: [minimumNumericalRule(0)],
+                            type: 'input',
+                            show: isAvailableAnnotationControl,
+                        },
+                    ],
                 },
             ],
         },
