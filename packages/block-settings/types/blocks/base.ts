@@ -2,14 +2,14 @@
 
 import { Bundle } from '../bundle';
 
-type BlockProperty<T> = T | ((bundle: Bundle) => T);
+type ValueOrPromisedValue<FieldType> = FieldType | ((bundle: Bundle) => Promise<FieldType>);
 
 export type BaseBlock<T = undefined> = {
     id: string;
-    label?: BlockProperty<string>;
-    info?: BlockProperty<string>;
+    label?: ValueOrPromisedValue<string>;
+    info?: ValueOrPromisedValue<string>;
     value?: T;
-    defaultValue?: BlockProperty<T>;
+    defaultValue?: ValueOrPromisedValue<T>;
     showForTranslations?: boolean;
     show?: (bundle: Bundle) => boolean;
     onChange?: (bundle: Bundle) => void;
