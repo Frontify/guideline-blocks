@@ -38,7 +38,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
 
-    const isQuotationMarkType = blockSettings.type === QuoteType.QuotationMarks;
+    const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
     const size = blockSettings.isCustomSize
         ? blockSettings.sizeValue ?? ''
         : quoteSizeMap[blockSettings.sizeChoice ?? QuoteSize.SmallSize];
