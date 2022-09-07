@@ -10,7 +10,6 @@ import {
     COLOR_DEFAULT_RGBA_VALUE,
     HEIGHT_DEFAULT_VALUE,
     STYLE_DEFAULT_VALUE,
-    THICKNESS_DEFAULT_VALUE,
 } from './settings';
 import css from './styles.module.css';
 import {
@@ -20,7 +19,6 @@ import {
     dividerAlignmentClasses,
     dividerHeightValues,
     dividerStyleClasses,
-    dividerThicknessValues,
 } from './types';
 
 export const DividerBlock: FC<Props> = ({ appBridge }) => {
@@ -56,9 +54,7 @@ export const DividerBlock: FC<Props> = ({ appBridge }) => {
                         ],
                     ])}
                     style={{
-                        borderTopWidth: blockSettings.isThicknessCustom
-                            ? blockSettings.thicknessCustom
-                            : dividerThicknessValues[blockSettings.thicknessSimple ?? THICKNESS_DEFAULT_VALUE],
+                        borderTopWidth: blockSettings.thickness,
                         borderTopColor: blockSettings.color
                             ? toRgbaString(blockSettings.color)
                             : toRgbaString(COLOR_DEFAULT_RGBA_VALUE),

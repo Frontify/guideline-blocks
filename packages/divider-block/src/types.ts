@@ -18,9 +18,7 @@ export type Settings = {
     isHeightCustom?: boolean;
     heightCustom?: string;
     heightSimple?: DividerHeight;
-    isThicknessCustom?: boolean;
-    thicknessCustom?: string;
-    thicknessSimple?: DividerThickness;
+    thickness?: string;
 };
 
 export enum DividerStyle {
@@ -49,12 +47,6 @@ export enum DividerAlignment {
     Left = 'Left',
 }
 
-export enum DividerThickness {
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large',
-}
-
 export const dividerHeightValues: Record<DividerHeight, string> = {
     [DividerHeight.Small]: '36px',
     [DividerHeight.Medium]: '60px',
@@ -72,10 +64,4 @@ export const dividerAlignmentClasses: Record<DividerAlignment, string> = {
     [DividerAlignment.Center]: 'tw-justify-center',
     [DividerAlignment.Right]: 'tw-justify-end',
     [DividerAlignment.Left]: 'tw-justify-start',
-};
-
-export const dividerThicknessValues: Record<DividerThickness, string> = {
-    [DividerThickness.Small]: '1px',
-    [DividerThickness.Medium]: '2px',
-    [DividerThickness.Large]: '4px',
 };
