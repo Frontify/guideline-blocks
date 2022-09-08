@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Bundle } from '@frontify/guideline-blocks-settings';
-import { appendUnit } from './appendUnit';
 import { describe, expect, test, vi } from 'vitest';
+import { appendUnit } from './appendUnit';
 
 describe('appendUnit', () => {
     test('it should set correct value with "px" when entering a number', () => {
@@ -10,6 +11,8 @@ describe('appendUnit', () => {
             getBlock() {
                 return { value: 20 };
             },
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            getAppBridge(): AppBridgeBlock {},
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
@@ -26,6 +29,8 @@ describe('appendUnit', () => {
                 return { value: 40 };
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
+            getAppBridge(): AppBridgeBlock {},
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
 
@@ -41,6 +46,8 @@ describe('appendUnit', () => {
                 return { value: '20px' };
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
+            getAppBridge(): AppBridgeBlock {},
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
         const setBlockValueSpy = vi.spyOn(bundle, 'setBlockValue');
@@ -54,6 +61,8 @@ describe('appendUnit', () => {
                 return { value: undefined };
             },
             setBlockValue: vi.fn(),
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            getAppBridge(): AppBridgeBlock {},
         };
         appendUnit(bundle, 'my_setting_id');
         expect(bundle.setBlockValue).not.toHaveBeenCalled();
@@ -65,6 +74,8 @@ describe('appendUnit', () => {
                 return { value: '' };
             },
             setBlockValue: vi.fn(),
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            getAppBridge(): AppBridgeBlock {},
         };
         appendUnit(bundle, 'my_setting_id');
         expect(bundle.setBlockValue).not.toHaveBeenCalled();
