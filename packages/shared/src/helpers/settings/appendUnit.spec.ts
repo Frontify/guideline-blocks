@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Bundle } from '@frontify/guideline-blocks-settings';
 import { describe, expect, test, vi } from 'vitest';
 import { appendUnit } from './appendUnit';
@@ -12,7 +11,7 @@ describe('appendUnit', () => {
                 return { value: 20 };
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
-            getAppBridge(): AppBridgeBlock {},
+            getAppBridge(): any {},
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
@@ -29,7 +28,7 @@ describe('appendUnit', () => {
                 return { value: 40 };
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
-            getAppBridge(): AppBridgeBlock {},
+            getAppBridge(): any {},
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
@@ -46,7 +45,7 @@ describe('appendUnit', () => {
                 return { value: '20px' };
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
-            getAppBridge(): AppBridgeBlock {},
+            getAppBridge(): any {},
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
         };
@@ -62,7 +61,7 @@ describe('appendUnit', () => {
             },
             setBlockValue: vi.fn(),
             // eslint-disable-next-line @typescript-eslint/no-empty-function
-            getAppBridge(): AppBridgeBlock {},
+            getAppBridge(): any {},
         };
         appendUnit(bundle, 'my_setting_id');
         expect(bundle.setBlockValue).not.toHaveBeenCalled();
@@ -75,7 +74,7 @@ describe('appendUnit', () => {
             },
             setBlockValue: vi.fn(),
             // eslint-disable-next-line @typescript-eslint/no-empty-function
-            getAppBridge(): AppBridgeBlock {},
+            getAppBridge(): any {},
         };
         appendUnit(bundle, 'my_setting_id');
         expect(bundle.setBlockValue).not.toHaveBeenCalled();
