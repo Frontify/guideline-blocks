@@ -3,18 +3,20 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconLinkBox, IconSize, Text, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import {
-    SKETCHFAB_RULE_ERROR,
-    generateUrl,
-    getIframeStyles,
-    getUrlWithoutSearchParams,
-    isSketchfabUrl,
-} from './helpers';
+import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeBorderStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
-import { Settings, SketchfabAccount, SketchfabBlockProps, SketchfabNavigation, SketchfabTheme, heights } from './types';
+import {
+    Settings,
+    SketchfabAccount,
+    SketchfabBlockProps,
+    SketchfabNavigation,
+    SketchfabTheme,
+    heights,
+    radiusClassMap,
+} from './types';
 
 export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const isEditing = useEditorState(appBridge);
@@ -24,11 +26,11 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
     const [inputError, setInputError] = useState(false);
 
     const saveLink = () => {
-        const urlWithoutSearchParams = getUrlWithoutSearchParams(localUrl);
-        if (isSketchfabUrl(urlWithoutSearchParams)) {
+        const embedUrl = generateSketchfabEmbedUrl(localUrl);
+        if (embedUrl) {
             setBlockSettings({
                 ...blockSettings,
-                url: urlWithoutSearchParams,
+                url: embedUrl,
             });
             setInputError(false);
         } else {
@@ -47,163 +49,117 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
         borderWidth,
         isCustomHeight,
         customHeight,
-        ...params
     } = blockSettings;
 
     useEffect(() => {
-        if (params.url) {
+        const bs = blockSettings;
+        /* Parameters are only added if they are different to the default defined
+            in https://help.sketchfab.com/hc/en-us/articles/360056963172-Customizing-your-embedded-3d-model
+            to keep the url as short as possible, with the final value in the conditional chain being used in the param */
+        if (bs.url) {
+            const disableAllUI = !bs.showUI;
+            const disableAllButtons = !bs.showButtons;
+
+            const annotationSettings = bs.showAnnotations
+                ? {
+                      annotation: bs.startingAnnotation && bs.startingAnnotationValue,
+                      annotation_cycle: bs.annotationCycle && bs.annotationCycleCount,
+                      annotation_tooltip_visible: !bs.annotationTooltipVisible && '0',
+                  }
+                : {
+                      annotations_visible: '0',
+                  };
+
+            const basicSettings = {
+                animation_autoplay: !bs.autoPlay && '0',
+                api_log: bs.apiLog && '1',
+                autospin: bs.autoSpin && bs.autoSpinCount,
+                autostart: bs.autoStart && '1',
+                camera: !bs.startingSpin && '0',
+                dof_circle: ((bs.accountType === SketchfabAccount.Premium && disableAllUI) || !bs.uiDOF) && '0',
+                fps_speed: bs.fps && bs.fpsValue,
+                max_texture_size: bs.textureSize && bs.textureSizeValue,
+                navigation: bs.navigationMode === SketchfabNavigation.Fps && bs.navigationMode,
+                preload: bs.preloadTextures && '1',
+                scrollwheel: !bs.scrollWheel && '0',
+                ui_stop:
+                    ((bs.accountType === SketchfabAccount.Premium && disableAllButtons) || !bs.uiDisableViewer) && '0',
+                ui_theme: bs.uiTheme === SketchfabTheme.Dark && bs.uiTheme,
+                dnt: !bs.viewersTracking && '1',
+                ...annotationSettings,
+            };
+
+            const navigationSettings = bs.navigationConstraints
+                ? {
+                      orbit_constraint_pan: bs.orbitConstraintPan && '1',
+                      orbit_constraint_pitch_down: bs.orbitConstraintPitch && bs.orbitConstraintPitchLimitsDown,
+                      orbit_constraint_pitch_up: bs.orbitConstraintPitch && bs.orbitConstraintPitchLimitsUp,
+                      orbit_constraint_yaw_left: bs.orbitConstraintYaw && bs.orbitConstraintYawLimitsLeft,
+                      orbit_constraint_yaw_right: bs.orbitConstraintYaw && bs.orbitConstraintYawLimitsRight,
+                      orbit_constraint_zoom_in: bs.orbitConstraintZoomIn && bs.orbitConstraintZoomInCount,
+                      orbit_constraint_zoom_out: bs.orbitConstraintZoomOut && bs.orbitConstraintZoomOutCount,
+                      prevent_user_light_rotation: !bs.allowLightRotation && '1',
+                  }
+                : {};
+
+            const proSettings =
+                bs.accountType !== SketchfabAccount.Basic
+                    ? {
+                          transparent: bs.transparentBackground && '1',
+                          double_click: !bs.doubleClick && '0',
+                          ...navigationSettings,
+                      }
+                    : {};
+
+            const premiumSettings =
+                bs.accountType === SketchfabAccount.Premium
+                    ? {
+                          ui_color: bs.uiColor && toHex8String(bs.uiColorValue).slice(1, 7),
+                          // UI Controls
+                          ui_animations: (disableAllUI || !bs.uiAnimations) && '0',
+                          ui_annotations: (disableAllUI || !bs.uiAnnotations) && '0',
+                          ui_fadeout: (disableAllUI || !bs.uiFadeout) && '0',
+                          ui_help: (disableAllButtons || !bs.uiHelp) && '0',
+                          ui_hint: (disableAllUI || !bs.uiHint) && '0',
+                          ui_infos: (disableAllUI || !bs.uiInfos) && '0',
+                          ui_loading: (disableAllUI || !bs.uiLoading) && '0',
+                          ui_watermark: (disableAllUI || !bs.uiWatermark) && '0',
+                          // Button Controls
+                          ui_inspector: (disableAllButtons || !bs.uiInspector) && '0',
+                          ui_fullscreen: (disableAllButtons || !bs.uiFullscreen) && '0',
+                          ui_settings: (disableAllButtons || !bs.uiSettings) && '0',
+                          ui_sound: (disableAllButtons || !bs.uiSound) && '0',
+                          ui_start: (disableAllButtons || !bs.uiStart) && '0',
+                          ui_vr: (disableAllButtons || !bs.uiVR) && '0',
+                          ui_ar: (disableAllButtons || !bs.uiAR) && '0',
+                          ui_ar_help: (disableAllButtons || !bs.uiARHelp) && '0',
+                          ui_ar_qrcode: (disableAllButtons || !bs.uiQR) && '0',
+                      }
+                    : {};
+
             setIframeUrl(
-                generateUrl(params.url, {
-                    animation_autoplay: params.autoPlay === false && '0',
-                    annotation:
-                        params.showAnnotations &&
-                        Boolean(Number(params.startingAnnotation)) &&
-                        params.startingAnnotation,
-                    annotation_cycle: params.showAnnotations && params.annotationCycle && params.annotationCycleCount,
-                    annotation_tooltip_visible:
-                        params.showAnnotations && params.annotationTooltipVisible === false && '0',
-                    annotations_visible: params.showAnnotations === false && '0',
-                    api_log: params.apiLog && '1',
-                    autospin: params.autoSpin && params.autoSpinCount,
-                    autostart: params.autoStart && '1',
-                    camera: params.startingSpin === false && '0',
-                    dof_circle: params.uiDOF === false && '0',
-                    fps_speed: params.fps && params.fpsValue,
-                    max_texture_size: params.textureSize && params.textureSizeValue,
-                    navigation: params.navigationMode === SketchfabNavigation.Fps && params.navigationMode,
-                    preload: params.preloadTextures && '1',
-                    scrollwheel: params.scrollWheel === false && '0',
-                    ui_stop: params.uiDisableViewer === false && '0',
-                    ui_theme: params.uiTheme === SketchfabTheme.Dark && params.uiTheme,
-                    transparent: params.accountType !== SketchfabAccount.Basic && params.transparentBackground && '1',
-                    double_click: params.accountType !== SketchfabAccount.Basic && params.doubleClick === false && '0',
-                    orbit_constraint_pan:
-                        params.accountType !== SketchfabAccount.Basic && params.orbitConstraintPan && '1',
-                    orbit_constraint_pitch_down:
-                        params.accountType !== SketchfabAccount.Basic &&
-                        params.orbitConstraintPitch &&
-                        params.orbitConstraintPitchLimitsDown,
-                    orbit_constraint_pitch_up:
-                        params.accountType !== SketchfabAccount.Basic && params.orbitConstraintPitchLimitsUp,
-                    orbit_constraint_yaw_left:
-                        params.accountType !== SketchfabAccount.Basic &&
-                        params.orbitConstraintYaw &&
-                        params.orbitConstraintYawLimitsLeft,
-                    orbit_constraint_yaw_right:
-                        params.accountType !== SketchfabAccount.Basic &&
-                        params.orbitConstraintYaw &&
-                        params.orbitConstraintYawLimitsRight,
-                    orbit_constraint_zoom_in:
-                        params.accountType !== SketchfabAccount.Basic &&
-                        params.orbitConstraintZoomIn &&
-                        params.orbitConstraintZoomInCount,
-                    orbit_constraint_zoom_out:
-                        params.accountType !== SketchfabAccount.Basic &&
-                        params.orbitConstraintZoomOut &&
-                        params.orbitConstraintZoomOutCount,
-                    prevent_user_light_rotation:
-                        params.accountType !== SketchfabAccount.Basic && params.preventLightRotation && '1',
-                    ui_animations: params.accountType === SketchfabAccount.Premium && !params.uiAnimations && '0',
-                    ui_annotations: params.accountType === SketchfabAccount.Premium && !params.uiAnnotations && '0',
-                    ui_controls: params.accountType === SketchfabAccount.Premium && !params.uiControls && '0',
-                    ui_fadeout: params.accountType === SketchfabAccount.Premium && !params.uiFadeout && '0',
-                    ui_fullscreen: params.accountType === SketchfabAccount.Premium && !params.uiFullscreen && '0',
-                    ui_general_controls:
-                        params.accountType === SketchfabAccount.Premium && !params.uiGeneralControls && '0',
-                    ui_help: params.accountType === SketchfabAccount.Premium && !params.uiHelp && '0',
-                    ui_hint: params.accountType === SketchfabAccount.Premium && !params.uiHint && '0',
-                    ui_infos: params.accountType === SketchfabAccount.Premium && !params.uiInfos && '0',
-                    ui_inspector: params.accountType === SketchfabAccount.Premium && !params.uiInspector && '0',
-                    ui_loading: params.accountType === SketchfabAccount.Premium && !params.uiLoading && '0',
-                    ui_settings: params.accountType === SketchfabAccount.Premium && !params.uiSettings && '0',
-                    ui_sound: params.accountType === SketchfabAccount.Premium && !params.uiSound && '0',
-                    ui_start: params.accountType === SketchfabAccount.Premium && !params.uiStart && '0',
-                    ui_vr: params.accountType === SketchfabAccount.Premium && !params.uiVR && '0',
-                    ui_ar: params.accountType === SketchfabAccount.Premium && !params.uiAR && '0',
-                    ui_ar_help: params.accountType === SketchfabAccount.Premium && !params.uiARHelp && '0',
-                    ui_ar_qrcode: params.accountType === SketchfabAccount.Premium && !params.uiQR && '0',
-                    ui_watermark: params.accountType === SketchfabAccount.Premium && !params.uiWatermark && '0',
-                    ui_color:
-                        params.accountType === SketchfabAccount.Premium && toHex8String(params.uiColor).slice(1, 7),
-                    dnt: params.viewersTracking === false && '1',
+                generateIframeUrl(bs.url, {
+                    ...basicSettings,
+                    ...proSettings,
+                    ...premiumSettings,
                 })
             );
         } else {
             setLocalUrl('');
             setIframeUrl(null);
         }
-    }, [
-        params.accountType,
-        params.annotationCycle,
-        params.annotationCycleCount,
-        params.annotationTooltipVisible,
-        params.apiLog,
-        params.autoPlay,
-        params.autoSpin,
-        params.autoSpinCount,
-        params.autoStart,
-        params.doubleClick,
-        params.fps,
-        params.fpsValue,
-        params.navigationMode,
-        params.orbitConstraintPan,
-        params.orbitConstraintPitch,
-        params.orbitConstraintPitchLimitsDown,
-        params.orbitConstraintPitchLimitsUp,
-        params.orbitConstraintYaw,
-        params.orbitConstraintYawLimitsLeft,
-        params.orbitConstraintYawLimitsRight,
-        params.orbitConstraintZoomIn,
-        params.orbitConstraintZoomInCount,
-        params.orbitConstraintZoomOut,
-        params.orbitConstraintZoomOutCount,
-        params.preloadTextures,
-        params.preventLightRotation,
-        params.scrollWheel,
-        params.showAnnotations,
-        params.startingAnnotation,
-        params.startingSpin,
-        params.textureSize,
-        params.textureSizeValue,
-        params.transparentBackground,
-        params.uiAR,
-        params.uiARHelp,
-        params.uiAnimations,
-        params.uiAnnotations,
-        params.uiColor,
-        params.uiControls,
-        params.uiDOF,
-        params.uiDisableViewer,
-        params.uiFadeout,
-        params.uiFullscreen,
-        params.uiGeneralControls,
-        params.uiHelp,
-        params.uiHint,
-        params.uiInfos,
-        params.uiInspector,
-        params.uiLoading,
-        params.uiQR,
-        params.uiSettings,
-        params.uiSound,
-        params.uiStart,
-        params.uiTheme,
-        params.uiVR,
-        params.uiWatermark,
-        params.url,
-        params.viewersTracking,
-    ]);
+    }, [blockSettings]);
 
     return (
         <div data-test-id="sketchfab-block" className="tw-relative">
             {iframeUrl && (
                 <div>
                     <iframe
-                        className={joinClassNames(['tw-w-full', !hasRadius && radiusStyleMap[radiusChoice]])}
-                        style={
-                            hasBorder
-                                ? getIframeStyles(borderStyle, borderWidth, borderColor, hasRadius ? radiusValue : '')
-                                : {}
-                        }
+                        className={joinClassNames(['tw-w-full', !hasRadius && radiusClassMap[radiusChoice]])}
+                        style={{
+                            ...(hasBorder ? getIframeBorderStyles(borderStyle, borderWidth, borderColor) : {}),
+                            borderRadius: hasRadius ? radiusValue : '',
+                        }}
                         height={isCustomHeight ? customHeight : heights[height]}
                         src={iframeUrl.toString()}
                         frameBorder="0"
