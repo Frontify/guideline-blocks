@@ -38,7 +38,7 @@
         "vite-plugin-dts": "1.4.1"
     },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.10",
+        "@frontify/app-bridge": "3.0.0-beta.15",
         "@frontify/fondue": "11.0.0",
         "@frontify/guideline-blocks-settings": "workspace:*",
         "tinycolor2": "1.4.2"
