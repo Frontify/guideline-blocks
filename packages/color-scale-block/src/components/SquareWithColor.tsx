@@ -20,7 +20,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     currentColor,
     backgroundColorRgba,
     totalNumOfBlocks,
-    onDragStart,
+    onResizeStart,
     calculateLeftPos,
     hilite,
     setHilite,
@@ -66,6 +66,12 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             }}
             key={id}
         >
+            <DragHandle
+                index={index}
+                currentColor={currentColor}
+                isEditing={isEditing}
+                onResizeStart={onResizeStart}
+            />
             <DropZone
                 key={`orderable-list-item-${id}-before`}
                 data={{
@@ -99,7 +105,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 ref={drag}
                 className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full hover:tw-border-black hover:tw-border"
             >
-                <EditExistingColorModal
+                {/* <EditExistingColorModal
                     id={id}
                     index={index}
                     currentColor={currentColor}
@@ -109,14 +115,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     setEditedColor={setEditedColor}
                     updateColor={updateColor}
                     setFormat={setFormat}
-                />
-
-                <DragHandle
-                    id={id}
-                    currentColor={currentColor}
-                    isEditing={isEditing}
-                    onDragStart={onDragStart}
-                />
+                /> */}
 
                 <CustomizationOptionsModal
                     id={id}

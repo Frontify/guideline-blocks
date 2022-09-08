@@ -127,6 +127,16 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         }
     };
 
+    const resizeEvenly = () => {
+        const defaultWidth = calculateDefaultColorWidth(displayableItems.length);
+
+        const newDisplayableItems = displayableItems.map((item, index) => {
+            return {...item, width: defaultWidth};
+        });
+
+        setDisplayableItems(newDisplayableItems);
+    }
+
     const calculateWidths = (itemList: ColorProps[]) => {
         let emptySpace = 0;
         let usedSpace = 0;
@@ -265,17 +275,11 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             // setEditedColor(null);
         }
 
-        console.log("----------");
-        console.log(updatedColors);
-
         const colorsWithNewWidths = calculateWidths(
             isEditing || showCompleted
                 ? updatedColors
                 : filterCompleteItems(updatedColors)
         );
-
-        console.log("colors with new widths");
-        console.log(colorsWithNewWidths);
 
         setBlockSettings({
             ...blockSettings,
@@ -476,19 +480,20 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
     const draggingId: any = useRef(null);
 
-    const onDragStop = () => {
+    const onResizeStop = () => {
         draggingId.current = null;
     };
 
-    const onDragStart = (evt: any, id?: number, currentColor?: any) => {
+    const onResizeStart = (evt: any, index?: number, currentColor?: any) => {
         if (dragStartPos) {
             dragStartPos.current = evt.clientX;
             dragStartWidth.current = currentColor.width;
         }
-        draggingId.current = id;
+        draggingId.current = index;
+
     };
 
-    const onDrag = (evt: any) => {
+    const onResize = (evt: any) => {
         if (draggingId.current !== null) {
             const id = draggingId.current;
             if (!lastDragPos.current) {
@@ -514,7 +519,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
                     const newDisplayableItems = displayableItems.map(
                         (diValue, diIndex) => {
-                            if (diValue && diIndex && diIndex === id) {
+                            if (diValue && diIndex === id) {
                                 if (diValue.width && diValue.width >= 16) {
                                     // need to make sure it's 16 because we're going to decrease width
                                     // by 8 pixels, and the minimum width is 8 pixels
@@ -532,6 +537,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                 } else {
                                     let needToShrinkColor = true;
                                     colorsBeforeCurrent.map((adjacentColor) => {
+                                        console.log(4);
                                         if (needToShrinkColor) {
                                             if (adjacentColor) {
                                                 if (
@@ -633,13 +639,13 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     isEditing ? "editing" : ""
                 } tw-w-full tw-flex`}
                 ref={colorScaleBlockRef}
-                // Note: onMouseUp and onDrag are defined here intentionally, instead of being in the DragHandle component.
+                // Note: onMouseUp and onResize are defined here intentionally, instead of being in the DragHandle component.
                 // The reason for this is that the dragging feature stops working if I move these to DragHandle,
                 // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
-                // The 'onDragStart' method, on the other hand, needs to stay in DragHandle, because it needs to
+                // The 'onResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
                 // identify which color square is being resized.
-                onMouseUp={onDragStop}
-                onDrag={onDrag}
+                onMouseUp={onResizeStop}
+                onMouseMove={onResize}
                 draggable={true}
             >
                 <DndProvider backend={HTML5Backend}>
@@ -677,7 +683,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                                 totalNumOfBlocks={
                                                     displayableItems.length
                                                 }
-                                                onDragStart={onDragStart}
+                                                onResizeStart={onResizeStart}
                                                 hilite={hilite}
                                                 setHilite={setHilite}
                                                 calculateLeftPos={
@@ -716,7 +722,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                             }
                                             width={width}
                                             currentSquare={value}
-                                            onDragStart={onDragStart}
+                                            onResizeStart={onResizeStart}
                                             hilite={hilite}
                                             setHilite={setHilite}
                                             calculateLeftPos={calculateLeftPos}
@@ -748,7 +754,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                 <div className="tw-text-right">
                     <ButtonGroup size={ButtonSize.Small}>
                         <Button
-                            onClick={function noRefCheck() {}}
+                            onClick={resizeEvenly}
                             style={ButtonStyle.Secondary}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}

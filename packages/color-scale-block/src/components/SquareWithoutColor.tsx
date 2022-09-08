@@ -17,7 +17,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     totalNumOfBlocks,
     width,
     currentSquare,
-    onDragStart,
+    onResizeStart,
     calculateLeftPos,
     hilite,
     setHilite,
@@ -94,6 +94,12 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                 // className={`tw-rounded-md tw-group tw-flex tw-justify-center tw-items-center tw-bg-black-10 tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full`}
                 className={`tw-group tw-flex tw-justify-center tw-items-center tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full`}
             >
+                {/* <DragHandle
+                    id={id}
+                    currentColor={currentSquare}
+                    isEditing={isEditing}
+                    onResizeStart={onResizeStart}
+                /> */}
                 <DropZone
                     key={`orderable-list-item-${id}-before`}
                     data={{
@@ -143,12 +149,6 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                             updateColor={updateColor}
                             setFormat={setFormat}
                         /> */}
-                            <DragHandle
-                                id={id}
-                                currentColor={currentSquare}
-                                isEditing={isEditing}
-                                onDragStart={onDragStart}
-                            />
                         </div>
                     ) : (
                         <></>
