@@ -2,7 +2,6 @@
 
 import { Bundle } from '../bundle';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type ValueOrPromisedValue<FieldType> = FieldType | ((bundle: Bundle) => Promise<FieldType>);
 
 export type BaseBlock<T = undefined> = {
