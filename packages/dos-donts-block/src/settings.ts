@@ -5,8 +5,8 @@ import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings'
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
-export const DO_COLOR_DEFAULT_VALUE = { r: 0, g: 200, b: 165, a: 1 };
-export const DONT_COLOR_DEFAULT_VALUE = { r: 255, g: 55, b: 90, a: 1 };
+export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
+export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
 
 const SPACING_VALUE_ID = 'spacingValue';
 const SPACING_CHOICE_ID = 'spacingChoice';
@@ -21,17 +21,17 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: DoDontStyle.Icons,
-                    icon: 'DosText' as IconEnum.DosText,
+                    icon: 'DoAndDont' as IconEnum.DoAndDont,
                     label: 'Icons',
                 },
                 {
                     value: DoDontStyle.Underline,
-                    icon: 'DoDontsUnderline' as IconEnum.DoDontsUnderline,
+                    icon: 'TextFormatUnderline' as IconEnum.TextFormatUnderline,
                     label: 'Underline',
                 },
                 {
                     value: DoDontStyle.Text,
-                    icon: 'TextAlignLeft' as IconEnum.TextAlignLeft,
+                    icon: 'TextAlignmentLeft' as IconEnum.TextAlignmentLeft,
                     label: 'Text',
                 },
             ],

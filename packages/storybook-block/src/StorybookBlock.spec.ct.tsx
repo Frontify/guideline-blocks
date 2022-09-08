@@ -11,7 +11,7 @@ const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
 const IframeSelector = '[data-test-id="storybook-iframe"]';
 
 const EXAMPLE_URL = 'https://fondue-components.netlify.app/?path=/story/components-tooltip--tooltip';
-const EXAMPLE_COLOR = { r: 22, g: 181, b: 181, a: 1, name: 'Java' };
+const EXAMPLE_COLOR = { red: 22, green: 181, blue: 181, alpha: 1, name: 'Java' };
 
 describe('Storybook Block', () => {
     it('renders a storybook block', () => {
@@ -73,13 +73,12 @@ describe('Storybook Block', () => {
         cy.get(IframeSelector).should('have.css', 'border-radius', '5px');
     });
 
-    it('renders error handling when invalid url is typed', () => {
+    it('renders error handling when invalid url is typed after pressing enter', () => {
         const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, { editorState: true });
 
         mount(<StorybookBlockWithStubs />);
-        cy.get(EmptyStateSelector).find('input').type('asdf');
+        cy.get(EmptyStateSelector).find('input').type('asdf').type('{Enter}');
         cy.get(EmptyStateSelector).contains(ERROR_MSG);
-        cy.get(EmptyStateSelector).find('button').should('be.disabled');
     });
 
     it('should not render iframe with invalid url', () => {
@@ -90,7 +89,7 @@ describe('Storybook Block', () => {
 
         mount(<StorybookBlockWithStubs />);
         cy.get(EmptyStateSelector);
-        cy.get(EmptyStateSelector).find('button').should('be.disabled');
+        cy.get(EmptyStateSelector).find('button').click();
         cy.get(EmptyStateSelector).contains(ERROR_MSG);
     });
 });

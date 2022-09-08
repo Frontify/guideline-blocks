@@ -28,17 +28,17 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,
-                    icon: 'Symbols' as IconEnum.Symbols,
+                    icon: 'ListCheck' as IconEnum.ListCheck,
                     label: 'Checkbox',
                 },
                 {
                     value: ChecklistDecoration.Strikethrough,
-                    icon: 'Strikethrough' as IconEnum.Strikethrough,
+                    icon: 'TextFormatStrikethrough' as IconEnum.TextFormatStrikethrough,
                     label: 'Strikethrough',
                 },
                 {
                     value: ChecklistDecoration.Highlight,
-                    icon: 'Highlight' as IconEnum.Highlight,
+                    icon: 'Highlighter' as IconEnum.Highlighter,
                     label: 'Highlight',
                 },
             ],

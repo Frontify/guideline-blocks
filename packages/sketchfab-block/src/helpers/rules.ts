@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { isSketchfabUrl } from './url';
+import { isParseableSketchfabUrl } from './url';
 
 export const SKETCHFAB_RULE_ERROR = 'Please enter a valid Sketchfab url';
 
@@ -17,5 +17,5 @@ export const yawRule = {
 
 export const sketchfabUrlRule = {
     errorMessage: SKETCHFAB_RULE_ERROR,
-    validate: isSketchfabUrl,
+    validate: isParseableSketchfabUrl,
 };

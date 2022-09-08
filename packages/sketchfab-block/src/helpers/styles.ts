@@ -5,14 +5,8 @@ import { BorderStyle, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 import { borderStyles } from '../types';
 
-export const getIframeStyles = (
-    style: BorderStyle,
-    width: string,
-    rgba: Color,
-    borderRadius: string
-): CSSProperties => ({
+export const getIframeBorderStyles = (style: BorderStyle, width: string, rgba: Color): CSSProperties => ({
     borderStyle: borderStyles[style],
     borderWidth: width,
     borderColor: toRgbaString(rgba),
-    borderRadius,
 });
