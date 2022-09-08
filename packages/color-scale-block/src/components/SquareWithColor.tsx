@@ -7,9 +7,9 @@ import { AddNewColorTooltips } from "./AddNewColorTooltips";
 import { EditExistingColorModal } from "./EditExistingColorModal";
 import { DragHandle } from "./DragHandle";
 import { CustomizationOptionsModal } from "./CustomizationOptionsModal";
-import { IconTrash, IconSize } from "@frontify/fondue";
+import { IconTrash, IconSize, Tooltip } from "@frontify/fondue";
 import { DropZone } from "../react-dnd/DropZone";
-import { DropZonePosition, ItemDragState } from "@frontify/fondue";
+import { DropZonePosition, ItemDragState, TooltipAlignment, TooltipPosition, } from "@frontify/fondue";
 import { useDrag } from "react-dnd";
 
 export const SquareWithColor: FC<SquareWithColorProps> = ({
@@ -82,51 +82,54 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 treeId={listId}
                 before
             />
-            <div
-                style={{
-                    backgroundColor: `rgba(${backgroundColorRgba})`,
-                    height: 93,
-                    borderTopLeftRadius: index === 0 ? "3px" : "0px",
-                    borderBottomLeftRadius: index === 0 ? "3px" : "0px",
-                    borderTopRightRadius:
-                        index === totalNumOfBlocks - 1 ? "3px" : "0px",
-                    borderBottomRightRadius:
-                        index === totalNumOfBlocks - 1 ? "3px" : "0px",
-                    borderLeftWidth: index === 0 ? "1px" : "0px",
-                    borderRightWidth:
-                        index === totalNumOfBlocks - 1 ? "1px" : "0px",
-                    paddingTop: "1px",
-                    paddingBottom: "1px",
-                    paddingLeft: index === 0 ? "1px" : "0px",
-                    paddingRight:
-                        index === totalNumOfBlocks - 1 ? "1px" : "0px",
-                    borderColor: "#efecec",
-                }}
-                ref={drag}
-                className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full hover:tw-border-black hover:tw-border"
-            >
-                {/* <EditExistingColorModal
-                    id={id}
-                    index={index}
-                    currentColor={currentColor}
-                    isEditing={isEditing}
-                    colorPickerRef={colorPickerRef}
-                    editedColor={editedColor}
-                    setEditedColor={setEditedColor}
-                    updateColor={updateColor}
-                    setFormat={setFormat}
-                /> */}
-
-                <CustomizationOptionsModal
-                    id={id}
-                    colorOptionsRef={colorOptionsRef}
-                    colorOptionsOpen={colorOptionsOpen}
-                    setColorOptionsOpen={setColorOptionsOpen}
-                    isEditing={isEditing}
-                    setEditedColor={setEditedColor}
-                    deleteColor={deleteColor}
-                />
-            </div>
+            <Tooltip
+                alignment={TooltipAlignment.Middle}
+                content={
+                    <span>
+                        Click to copy
+                    </span>
+                }
+                flip
+                heading=""
+                hoverDelay={200}
+                position={TooltipPosition.Right}
+                triggerElement={
+                    <div
+                        style={{
+                            backgroundColor: `rgba(${backgroundColorRgba})`,
+                            height: 93,
+                            borderTopLeftRadius: index === 0 ? "3px" : "0px",
+                            borderBottomLeftRadius: index === 0 ? "3px" : "0px",
+                            borderTopRightRadius:
+                                index === totalNumOfBlocks - 1 ? "3px" : "0px",
+                            borderBottomRightRadius:
+                                index === totalNumOfBlocks - 1 ? "3px" : "0px",
+                            borderLeftWidth: index === 0 ? "1px" : "0px",
+                            borderRightWidth:
+                                index === totalNumOfBlocks - 1 ? "1px" : "0px",
+                            paddingTop: "1px",
+                            paddingBottom: "1px",
+                            paddingLeft: index === 0 ? "1px" : "0px",
+                            paddingRight:
+                                index === totalNumOfBlocks - 1 ? "1px" : "0px",
+                            borderColor: "#efecec",
+                        }}
+                        ref={drag}
+                        className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full hover:tw-border-black hover:tw-border"
+                    >
+                        <CustomizationOptionsModal
+                            id={id}
+                            colorOptionsRef={colorOptionsRef}
+                            colorOptionsOpen={colorOptionsOpen}
+                            setColorOptionsOpen={setColorOptionsOpen}
+                            isEditing={isEditing}
+                            setEditedColor={setEditedColor}
+                            deleteColor={deleteColor}
+                        />
+                    </div>
+                }
+                withArrow
+            />
             <DropZone
                 key={`orderable-list-item-${id}-after`}
                 data={{
