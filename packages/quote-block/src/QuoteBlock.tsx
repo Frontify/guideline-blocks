@@ -19,7 +19,6 @@ import {
 } from './types';
 import { quoteIconMap } from './utilities';
 
-const PLACEHOLDER = 'Add your quote text here';
 const ACTIONS = [
     [EditorActions.TEXT_STYLES],
     [EditorActions.BOLD, EditorActions.ITALIC, EditorActions.UNDERLINE, EditorActions.STRIKETHROUGH],
@@ -66,7 +65,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                     >
                         <RichTextEditor
                             designTokens={designTokens ?? undefined}
-                            placeholder={PLACEHOLDER}
+                            placeholder={'Add your quote text here'}
                             value={blockSettings.content}
                             onTextChange={onChangeContent}
                             actions={ACTIONS}

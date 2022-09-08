@@ -50,7 +50,6 @@ const QUOTE_STYLE_CHOICES = [
 ];
 
 export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
-export const DEFAULT_AUTHOR_NAME = 'John Doe';
 
 const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
 
@@ -176,7 +175,7 @@ export const settings: BlockSettings = {
             show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.Indentation),
             on: [
                 {
-                    id: 'multiInputId',
+                    id: 'accentLineStyle',
                     type: 'multiInput',
                     onChange: (bundle: Bundle): void => {
                         appendUnit(bundle, LINE_WIDTH_VALUE_ID);
