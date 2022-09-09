@@ -11,6 +11,11 @@ export const settings: BlockSettings = {
             columns: 2,
             defaultValue: [],
             showClearAndSelectAllButtons: true,
+            // choices: async ({ appBridge }) => {
+            //     const palettes = await appBridge.getColorPalettes();
+            //     //! TODO: find out type and replace any
+            //     return palettes.map((palette: any) => palette.id.toString());
+            // },
             choices: [
                 {
                     id: 'palette02',
