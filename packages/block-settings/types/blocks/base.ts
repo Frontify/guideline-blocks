@@ -2,14 +2,14 @@
 
 import { Bundle } from '../bundle';
 
-type Setting<T> = T | ((bundle: Bundle) => T);
+export type ValueOrPromisedValue<FieldType> = FieldType | ((bundle: Bundle) => Promise<FieldType>);
 
 export type BaseBlock<T = undefined> = {
     id: string;
-    label?: Setting<string>;
-    info?: Setting<string>;
+    label?: ValueOrPromisedValue<string>;
+    info?: ValueOrPromisedValue<string>;
     value?: T;
-    defaultValue?: Setting<T>;
+    defaultValue?: ValueOrPromisedValue<T>;
     showForTranslations?: boolean;
     show?: (bundle: Bundle) => boolean;
     onChange?: (bundle: Bundle) => void;
