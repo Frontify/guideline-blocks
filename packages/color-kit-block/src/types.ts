@@ -1,12 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { AppBridgeBlock, FrontifyColorPalette } from '@frontify/app-bridge';
 
 export type Settings = {
-    colorPalettes: string[];
+    colorPalettes: number[];
 };
-
-export type Palette = { id: string; name: string; colors: any[] };
 
 export type ColorKitBlockProps = {
     appBridge: AppBridgeBlock;
@@ -17,5 +15,5 @@ export type TooltipContentProps = {
 };
 
 export type PaletteProps = {
-    palette: Palette;
+    palette: FrontifyColorPalette;
 };
