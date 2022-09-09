@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { describe } from 'vitest';
 import { mount } from '@cypress/react';
+import { describe } from 'vitest';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 
 import { ColorKitBlock } from './ColorKitBlock';
@@ -11,8 +11,8 @@ const ColorKitDownloadButtonSelector = '[data-test-id="download-button"]';
 
 describe('Color Kit block', () => {
     beforeEach(() => {
-        const [ColorKitBlockWithStubs] = withAppBridgeBlockStubs(ColorKitBlock);
-        mount(<ColorKitBlockWithStubs />);
+        const [ExampleBlockWithStubs] = withAppBridgeBlockStubs(ColorKitBlock);
+        mount(<ExampleBlockWithStubs />);
     });
 
     it('renders', () => {
