@@ -4,21 +4,17 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/fondue-tokens/styles';
 
 import { FC, ReactElement } from 'react';
-import { useBlockSettings } from '@frontify/app-bridge';
+import { useBlockSettings, useColorPalettes } from '@frontify/app-bridge';
 import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
 
 import { Palette } from './Palette';
-import { useColorPalettes } from './useColorPalettes';
 import type { ColorKitBlockProps, Settings } from './types';
 
 export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const palettes = useColorPalettes(blockSettings.colorPalettes);
-
-    const handleDownload = () => {
-        alert('downloading');
-    };
+    const { colorPalettes } = useColorPalettes(appBridge, blockSettings.colorPalettes);
+    const downloadColorPalettesLink = 'pera';
 
     return (
         <div
@@ -35,16 +31,19 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     <Badge>OCO</Badge>
                     <Badge>SCSS</Badge>
                 </div>
-                <Button
-                    onClick={handleDownload}
-                    data-test-id="download-button"
-                    style={ButtonStyle.Secondary}
-                    icon={<IconArrowCircleDown />}
+                <a
+                    download
+                    target="_blank"
+                    rel="noreferrer"
+                    title="download color palettes"
+                    href={downloadColorPalettesLink}
                 >
-                    Download
-                </Button>
+                    <Button data-test-id="download-button" style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />}>
+                        Download
+                    </Button>
+                </a>
             </div>
-            {palettes.map((palette) => {
+            {colorPalettes.map((palette) => {
                 return <Palette key={palette.id} palette={palette} />;
             })}
         </div>

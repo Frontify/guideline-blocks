@@ -26,7 +26,7 @@ export const Palette = ({ palette }: PaletteProps) => {
                                 <div
                                     key={id}
                                     data-test-id={`color-${id}`}
-                                    style={{ backgroundColor: hex }}
+                                    style={{ backgroundColor: `#${hex}` }}
                                     className="tw-w-6 tw-h-6 tw-inline-block"
                                 />
                             }
