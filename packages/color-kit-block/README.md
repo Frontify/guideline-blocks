@@ -1,3 +1,3 @@
 # Color Kit Block
 
-This block allows the user to see pallette of colors.
+This block allows the user to see color palettes.
