@@ -52,13 +52,14 @@ export const DropZone = <T extends object>({ data, onDrop, children, treeId, bef
             aria-hidden={!isActive}
             data-test-id="drop-zone"
             className={merge([
-                'tw-transition-all tw-absolute tw-top-0 tw-bottom-0',
-                before ? 'tw-left-0' : '',
-                after ? 'tw-right-0' : '',
+                'tw-transition-all tw-absolute tw-top-[22px] tw-bottom-0',
+                before ? 'tw-left-[-2px]' : '',
+                after ? 'tw-right-[-2px]' : '',
                 data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
                 isActive && data.position !== DropZonePosition.Within ? activeOuterDropZoneClassNames : '',
                 isActive && data.position === DropZonePosition.Within ? bgColorClassName : '',
             ])}
+            // style={before ? {left: '-15px'} : {}, after ? {right: '-15px'} : {}}
             ref={drop}
         >
             {children}

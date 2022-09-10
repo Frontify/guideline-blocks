@@ -46,7 +46,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             {
                 id: uuid(),
                 sort: 1,
-                color: { r: 0, g: 0, b: 0, a: 1 },
+                color: { red: 0, green: 0, blue: 0, alpha: 1 },
                 alt: "Click to drag",
             },
         ] as ColorProps[] | null,
@@ -654,7 +654,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                             let backgroundColorRgba;
 
                             if (value && value.color) {
-                                backgroundColorRgba = `${value.color.r},${value.color.g},${value.color.b},${value.color.a}`;
+                                backgroundColorRgba = `${value.color.red},${value.color.green},${value.color.blue},${value.color.alpha}`;
                             }
 
                             let width;

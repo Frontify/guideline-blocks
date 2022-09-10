@@ -7,8 +7,8 @@ export const DragHandle: FC<DragHandleProps> = ({ index, currentColor, isEditing
     <>
         {isEditing ? (
             <div
-                style={{ right: '-16px', cursor: 'move', zIndex: 1 }}
-                className="tw-absolute tw-opacity-0 hover:tw-opacity-100 group-hover:tw-flex tw-h-full tw-w-8"
+                style={{ top: '50%', marginTop: '0px', right: '-16px', cursor: 'move', zIndex: 99 }}
+                className="tw-absolute tw-opacity-0 hover:tw-opacity-100 group-hover:tw-flex tw-h-[35px] tw-w-8"
                 // Note: onMouseUp and onDrag are defined here intentionally, instead of being in the DragHandle component.
                 // The reason for this is that the dragging feature stops working if I move these to DragHandle,
                 // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
@@ -17,8 +17,7 @@ export const DragHandle: FC<DragHandleProps> = ({ index, currentColor, isEditing
                 onMouseDown={(evt) => onResizeStart && onResizeStart(evt, index, currentColor)}
             >
                 <div
-                    style={{ top: '50%', marginTop: '0px'}}
-                    className={`drag-handle tw-right-3 tw-bg-black-20 tw-absolute tw-rounded-full tw-top-6 tw-mt-2 tw-w-2 tw-h-6`}
+                    className={`drag-handle tw-right-3 tw-bg-black-20 tw-absolute tw-rounded-full tw-w-2 tw-h-6`}
                 ></div>
             </div>
         ) : (

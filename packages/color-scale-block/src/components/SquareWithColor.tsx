@@ -9,7 +9,12 @@ import { DragHandle } from "./DragHandle";
 import { CustomizationOptionsModal } from "./CustomizationOptionsModal";
 import { IconTrash, IconSize, Tooltip } from "@frontify/fondue";
 import { DropZone } from "../react-dnd/DropZone";
-import { DropZonePosition, ItemDragState, TooltipAlignment, TooltipPosition, } from "@frontify/fondue";
+import {
+    DropZonePosition,
+    ItemDragState,
+    TooltipAlignment,
+    TooltipPosition,
+} from "@frontify/fondue";
 import { useDrag } from "react-dnd";
 
 export const SquareWithColor: FC<SquareWithColorProps> = ({
@@ -48,6 +53,37 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
         canDrag: isEditing ? true : false,
     });
 
+    const rgbaToHex = (rgba: any, forceRemoveAlpha = false) => {
+        return (
+            "#" +
+            rgba
+                .replace(/^rgba?\(|\s+|\)$/g, "") // Get's rgba / rgb string values
+                .split(",") // splits them at ","
+                .filter(
+                    (string: string, index: number) =>
+                        !forceRemoveAlpha || index !== 3
+                )
+                .map((string: string) => parseFloat(string)) // Converts them to numbers
+                .map((number: number, index: number) =>
+                    index === 3 ? Math.round(number * 255) : number
+                ) // Converts alpha to 255 number
+                .map((number: number) => number.toString(16)) // Converts numbers to hex
+                .map((string: string) =>
+                    string.length === 1 ? "0" + string : string
+                ) // Adds 0 when length of one number is 1
+                .join("")
+        ); // Puts the array to togehter to a string
+    };
+
+    const copyToClipboard = async (text?: string) => {
+        try {
+            const toCopy = text || location.href;
+            await navigator.clipboard.writeText(toCopy);
+        } catch (err) {
+            console.error("Failed to copy: ", err);
+        }
+    };
+
     return (
         <div
             style={{
@@ -82,54 +118,77 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 treeId={listId}
                 before
             />
-            <Tooltip
-                alignment={TooltipAlignment.Middle}
-                content={
-                    <span>
-                        Click to copy
-                    </span>
-                }
-                flip
-                heading=""
-                hoverDelay={200}
-                position={TooltipPosition.Right}
-                triggerElement={
-                    <div
-                        style={{
-                            backgroundColor: `rgba(${backgroundColorRgba})`,
-                            height: 93,
-                            borderTopLeftRadius: index === 0 ? "3px" : "0px",
-                            borderBottomLeftRadius: index === 0 ? "3px" : "0px",
-                            borderTopRightRadius:
-                                index === totalNumOfBlocks - 1 ? "3px" : "0px",
-                            borderBottomRightRadius:
-                                index === totalNumOfBlocks - 1 ? "3px" : "0px",
-                            borderLeftWidth: index === 0 ? "1px" : "0px",
-                            borderRightWidth:
-                                index === totalNumOfBlocks - 1 ? "1px" : "0px",
-                            paddingTop: "1px",
-                            paddingBottom: "1px",
-                            paddingLeft: index === 0 ? "1px" : "0px",
-                            paddingRight:
-                                index === totalNumOfBlocks - 1 ? "1px" : "0px",
-                            borderColor: "#efecec",
-                        }}
-                        ref={drag}
-                        className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full hover:tw-border-black hover:tw-border"
-                    >
-                        <CustomizationOptionsModal
-                            id={id}
-                            colorOptionsRef={colorOptionsRef}
-                            colorOptionsOpen={colorOptionsOpen}
-                            setColorOptionsOpen={setColorOptionsOpen}
-                            isEditing={isEditing}
-                            setEditedColor={setEditedColor}
-                            deleteColor={deleteColor}
-                        />
-                    </div>
-                }
-                withArrow
-            />
+            <div
+                style={{
+                    backgroundColor: `rgba(${backgroundColorRgba})`,
+                    height: 93,
+                    borderTopLeftRadius: index === 0 ? "3px" : "0px",
+                    borderBottomLeftRadius: index === 0 ? "3px" : "0px",
+                    borderTopRightRadius:
+                        index === totalNumOfBlocks - 1 ? "3px" : "0px",
+                    borderBottomRightRadius:
+                        index === totalNumOfBlocks - 1 ? "3px" : "0px",
+                    borderLeftWidth: index === 0 ? "1px" : "0px",
+                    borderRightWidth:
+                        index === totalNumOfBlocks - 1 ? "1px" : "0px",
+                    paddingTop: "1px",
+                    paddingBottom: "1px",
+                    paddingLeft: index === 0 ? "1px" : "0px",
+                    paddingRight:
+                        index === totalNumOfBlocks - 1 ? "1px" : "0px",
+                    borderColor: "#efecec",
+                }}
+                ref={drag}
+                className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full hover:tw-border-black hover:tw-border"
+            >
+                <Tooltip
+                    alignment={TooltipAlignment.Middle}
+                    content={
+                        <div>
+                            <div>{currentColor.color.name}</div>
+                            <div>
+                                {rgbaToHex(
+                                    `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
+                                ).toUpperCase()}
+                            </div>
+                            <a
+                                href="#"
+                                rel="noop noreferrer"
+                                onClick={(evt) => {
+                                    evt.preventDefault();
+
+                                    copyToClipboard(
+                                        rgbaToHex(
+                                            `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
+                                        ).toUpperCase()
+                                    );
+                                }}
+                                className="tw-opacity-50"
+                            >
+                                Click to copy
+                            </a>
+                        </div>
+                    }
+                    flip
+                    heading=""
+                    hoverDelay={200}
+                    position={TooltipPosition.Bottom}
+                    triggerElement={
+                        <div className="tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0">
+                            <CustomizationOptionsModal
+                                id={id}
+                                colorOptionsRef={colorOptionsRef}
+                                colorOptionsOpen={colorOptionsOpen}
+                                setColorOptionsOpen={setColorOptionsOpen}
+                                isEditing={isEditing}
+                                setEditedColor={setEditedColor}
+                                deleteColor={deleteColor}
+                            />
+                        </div>
+                    }
+                    withArrow
+                />
+            </div>
             <DropZone
                 key={`orderable-list-item-${id}-after`}
                 data={{
