@@ -33,7 +33,11 @@
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "workspace:*",
         "@frontify/guideline-blocks-shared": "workspace:*",
+        "immutability-helper": "^3.1.1",
         "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "react-dnd": "^16.0.1",
+        "react-dnd-html5-backend": "^16.0.1",
+        "react-dom": "17.0.2",
+        "react-flip-toolkit": "^7.0.16"
     }
 }
