@@ -2,9 +2,9 @@
 
 import { FC } from 'react';
 
-import { TootlipContentProps } from '../types';
+import { TooltipContentProps } from '../types';
 
-export const TootlipContent: FC<TootlipContentProps> = ({ color, status }) => {
+export const TooltipContent: FC<TooltipContentProps> = ({ color, status }) => {
     return (
         <>
             <span className="tw-block">Color Name</span>
