@@ -49,6 +49,8 @@ describe('parseSketchfabSettingsUrl', () => {
                 getBlock: () => ({
                     value: args,
                 }),
+                // eslint-disable-next-line @typescript-eslint/no-empty-function
+                getAppBridge(): any {},
             } as Bundle;
             parseSketchfabSettingsUrl(bundle);
             cy.wrap(bundle.setBlockValue).should('have.been.calledOnceWithExactly', 'url', expected);

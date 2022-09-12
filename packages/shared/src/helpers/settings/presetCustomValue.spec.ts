@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Bundle, SettingValue } from '@frontify/guideline-blocks-settings';
-import { presetCustomValue } from './presetCustomValue';
 import { describe, expect, test, vi } from 'vitest';
+import { presetCustomValue } from './presetCustomValue';
 
 const exampleMap: Record<string, string> = {
     small: '10px',
@@ -26,6 +26,8 @@ describe('presetCustomValue', () => {
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            getAppBridge(): any {},
         };
 
         const setBlockValueSpy = vi.spyOn(bundle, 'setBlockValue');
@@ -49,6 +51,8 @@ describe('presetCustomValue', () => {
             },
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             setBlockValue(): void {},
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            getAppBridge(): any {},
         };
 
         const setBlockValueSpy = vi.spyOn(bundle, 'setBlockValue');
