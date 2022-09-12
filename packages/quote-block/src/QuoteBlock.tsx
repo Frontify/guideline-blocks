@@ -7,16 +7,7 @@ import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-bloc
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DEFAULT_COLOR_VALUE } from './settings';
-import {
-    ContentWithAuthorProps,
-    LineType,
-    Props,
-    QuoteSize,
-    QuoteStyle,
-    QuoteType,
-    Settings,
-    quoteSizeMap,
-} from './types';
+import { LineType, Props, QuoteSize, QuoteStyle, QuoteType, Settings, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
 
 const ACTIONS = [
@@ -24,13 +15,6 @@ const ACTIONS = [
     [EditorActions.BOLD, EditorActions.ITALIC, EditorActions.UNDERLINE, EditorActions.STRIKETHROUGH],
     [EditorActions.ALIGN_LEFT, EditorActions.ALIGN_CENTER, EditorActions.ALIGN_RIGHT, EditorActions.ALIGN_JUSTIFY],
 ];
-
-const ContentWithAuthor: FC<ContentWithAuthorProps> = ({ showAuthor, authorName, children }) => (
-    <div data-test-id="quote-block-author" className="tw-flex-1 tw-w-full">
-        {children}
-        {showAuthor && authorName && <p className="tw-text-right">{`- ${authorName}`}</p>}
-    </div>
-);
 
 export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -51,6 +35,9 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
           }
         : undefined;
 
+    const accentLineClassName = blockSettings.showAccentLine ? 'tw-pl-7' : 'tw-ml-7';
+    const showAuthor = blockSettings.showAuthor && blockSettings.authorName;
+
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
     return (
@@ -58,21 +45,22 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
             <div className={isQuotationMarkType ? 'tw-flex tw-justify-between tw-gap-x-7' : ''}>
                 {isQuotationMarkType &&
                     quoteIconMap(size, quotesRgba)[blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp]}
-                <ContentWithAuthor showAuthor={blockSettings.showAuthor} authorName={blockSettings.authorName}>
+                <div data-test-id="quote-block-author" className="tw-flex-1 tw-w-full">
                     <div
-                        style={!isQuotationMarkType ? borderStyles : {}}
-                        className={!isQuotationMarkType ? (blockSettings.showAccentLine ? 'tw-pl-7' : 'tw-ml-7') : ''}
+                        style={isQuotationMarkType ? {} : borderStyles}
+                        className={isQuotationMarkType ? '' : accentLineClassName}
                     >
                         <RichTextEditor
                             designTokens={designTokens ?? undefined}
-                            placeholder={'Add your quote text here'}
+                            placeholder="Add your quote text here"
                             value={blockSettings.content}
                             onTextChange={onChangeContent}
                             actions={ACTIONS}
                             readonly={!isEditing}
                         />
                     </div>
-                </ContentWithAuthor>
+                    {showAuthor && <p className="tw-text-right">{`- ${blockSettings.authorName}`}</p>}
+                </div>
                 {isQuotationMarkType &&
                     quoteIconMap(size, quotesRgba)[blockSettings.quoteStyleRight ?? QuoteStyle.DoubleDown]}
             </div>

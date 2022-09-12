@@ -25,11 +25,6 @@ export type Settings = {
     content?: string;
 };
 
-export type ContentWithAuthorProps = {
-    showAuthor: boolean;
-    authorName: string;
-};
-
 export type IconProps = {
     style: CSSProperties;
 };
