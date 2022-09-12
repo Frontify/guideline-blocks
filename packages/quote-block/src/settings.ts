@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { LineType, QuoteSize, QuoteStyle, QuoteType, quoteSizeMap } from './types';
 
@@ -11,43 +11,43 @@ const SIZE_VALUE_ID = 'sizeValue';
 const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const QUOTE_STYLE_CHOICES = [
-    // TODO: Readd correct icons as soon as they exist in Fondue
-    { value: QuoteStyle.DoubleUp, icon: 'Icon' as IconEnum.Icon, label: 'Double Up' },
-    { value: QuoteStyle.DoubleDown, icon: 'Icon' as IconEnum.Icon, label: 'Double Down' },
-    { value: QuoteStyle.SingleUp, icon: 'Icon' as IconEnum.CaretUp, label: 'Single Up' },
-    { value: QuoteStyle.SingleDown, icon: 'Icon' as IconEnum.CaretDown, label: 'Single Down' },
+    // TODO: replace icons as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
+    { value: QuoteStyle.DoubleUp, icon: 'DoubleUp', label: 'Double Up' },
+    { value: QuoteStyle.DoubleDown, icon: 'DoubleDown', label: 'Double Down' },
+    { value: QuoteStyle.SingleUp, icon: 'SingleUp', label: 'Single Up' },
+    { value: QuoteStyle.SingleDown, icon: 'SingleDown', label: 'Single Down' },
     {
         value: QuoteStyle.DoubleChevronLeft,
-        icon: 'CaretLeftDouble' as IconEnum.CaretLeftDouble,
+        icon: IconEnum.CaretLeftDouble20,
         label: 'Double Chevron Left',
     },
     {
         value: QuoteStyle.DoubleChevronRight,
-        icon: 'CaretRightDouble' as IconEnum.CaretRightDouble,
+        icon: IconEnum.CaretRightDouble20,
         label: 'Double Chevron Right',
     },
     {
         value: QuoteStyle.SingleChevronLeft,
-        icon: 'CaretLeft' as IconEnum.CaretLeft,
+        icon: IconEnum.CaretLeft20,
         label: 'Single Chevron Left',
     },
     {
         value: QuoteStyle.SingleChevronRight,
-        icon: 'CaretRight' as IconEnum.CaretRight,
+        icon: IconEnum.CaretRight20,
         label: 'Single Chevron Right',
     },
     {
         value: QuoteStyle.HookBracketLeft,
-        icon: 'Icon' as IconEnum.Icon,
+        icon: 'HookBracketLeft', // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
         label: 'Hook Bracket Left',
     },
     {
         value: QuoteStyle.HookBracketRight,
-        icon: 'Icon' as IconEnum.Icon,
+        icon: 'HookBracketRight', // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
         label: 'Hook Bracket Right',
     },
-    { value: QuoteStyle.None, icon: 'StrikethroughBox' as IconEnum.StrikethroughBox, label: 'None' },
-];
+    { value: QuoteStyle.None, icon: IconEnum.StrikethroughBox20, label: 'None' },
+] as Choice[];
 
 export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
 
