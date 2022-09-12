@@ -2,9 +2,8 @@
 
 import { ReactNode } from 'react';
 
-import { AppBridgeBlock, FrontifyColorPatch } from '@frontify/app-bridge';
-import { DraggableItem, DropZonePosition } from '@frontify/fondue';
-// import { Color } from '@frontify/fondue';
+import { AppBridgeBlock, FrontifyColor, FrontifyColorPatch } from '@frontify/app-bridge';
+import { Color } from '@frontify/fondue';
 
 export type ColorBlockProps = {
     appBridge: AppBridgeBlock;
@@ -24,17 +23,18 @@ export enum ColorBlockType {
 }
 
 export type ItemProps = {
-    color: Color & { id: number; hex: Nullable<string> };
+    color: FrontifyColor;
     colorSpaces: string[];
     isEditing: boolean;
-    onUpdate: (colorPatch: FrontifyColorPatch) => void;
+    onBlur: (value: string) => void;
+    onConfirm: (colorPatch: FrontifyColorPatch) => void;
     onDelete: (colorId: number) => void;
 };
 
 export type ItemAddProps = {
     colorSpaces: string[];
     isEditing: boolean;
-    onConfirm: (color: Color) => void;
+    onConfirm: (colorPatch: FrontifyColorPatch) => void;
 };
 
 export type ColorBlockDropsViewProps = {
@@ -49,16 +49,8 @@ export type ColorBlockCardsViewProps = {
     isEditing: boolean;
 };
 
-type Color = {
-    r: number;
-    g: number;
-    b: number;
-    a?: number | undefined;
-    name?: string | undefined;
-};
-
 export type ColorsBlockColorPickerProps = {
-    currentColor?: Color | null;
+    currentColor?: Color;
     onConfirm: (colorPatch: FrontifyColorPatch) => void;
     children: ReactNode;
 };

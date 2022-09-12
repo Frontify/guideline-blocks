@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Fragment, ReactElement, useCallback, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { ColorBlockProps, ColorBlockType, Settings } from './types';
 
-import { Color, DraggableItem, DropZonePosition, OrderableListItem, RichTextEditor } from '@frontify/fondue';
+import { DropZonePosition, OrderableListItem, RichTextEditor } from '@frontify/fondue';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -30,14 +30,8 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     const onNameChange = (value: string) => setBlockSettings({ name: value });
     const onDescriptionChange = (value: string) => setBlockSettings({ description: value });
 
-    const handleDrop = (
-        targetItem: OrderableListItem<T>,
-        sourceItem: OrderableListItem<T>,
-        position: DropZonePosition
-    ) => {
-        console.log(targetItem);
-        console.log(sourceItem);
-        console.log(position);
+    const handleDrop = (colorId: number, index: number) => {
+        updateColor(colorId, { sort: index + 1 });
     };
 
     const wrapperClasses: Record<ColorBlockType, string> = {
@@ -49,10 +43,10 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(appBridge, appBridge.getBlockId());
     const { colorPalettes } = useColorPalettes(appBridge);
 
-    // console.log(appBridge);
+    console.log(appBridge);
 
-    // console.log('Colors in guideline-blocks', colorsByPaletteId);
-    // console.log('ColorPalettes in guideline-blocks', colorPalettes);
+    console.log('Colors in guideline-blocks', colorsByPaletteId);
+    console.log('ColorPalettes in guideline-blocks', colorPalettes);
 
     const [colors, setColors] = useState<FrontifyColor[]>([]);
 
@@ -73,6 +67,10 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
             })
         );
     };
+
+    // const handleColorNameChange = (name: string) => {
+    //     updateColor({ name });
+    // };
 
     // console.log('colorsovaos', colors);
 
@@ -101,54 +99,49 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
             <div className={wrapperClasses[view]}>
                 <DndProvider backend={HTML5Backend}>
                     {colors.map((color: any, index: number) => (
-                        <Fragment key={index}>
-                            <DropZone
-                                key={`orderable-list-item-${index}`}
-                                index={index}
-                                data={{
-                                    targetItem: color,
-                                    position: DropZonePosition.Before,
-                                }}
-                                onDrop={handleDrop}
-                                treeId={'test'}
-                                colorBlockType={view}
-                                moveCard={moveCard}
-                                isEditing={isEditing}
-                            >
-                                <div>
-                                    {view === ColorBlockType.List && (
-                                        <ListItem
-                                            color={color}
-                                            colorSpaces={colorspaces}
-                                            isEditing={isEditing}
-                                            onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
-                                            onDelete={(colorId) => deleteColor(colorId)}
-                                        />
-                                    )}
-                                    {view === ColorBlockType.Drops && (
-                                        <DropsItem
-                                            color={color}
-                                            colorSpaces={colorspaces}
-                                            isEditing={isEditing}
-                                            onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
-                                            onDelete={(colorId) => deleteColor(colorId)}
-                                        />
-                                    )}
-                                    {view === ColorBlockType.Cards && (
-                                        <CardsItem
-                                            color={color}
-                                            colorSpaces={colorspaces}
-                                            isEditing={isEditing}
-                                            onUpdate={(colorPatch) => {
-                                                console.log('CALLING ON UPDATE');
-                                                updateColor(color.id, colorPatch);
-                                            }}
-                                            onDelete={(colorId) => deleteColor(colorId)}
-                                        />
-                                    )}
-                                </div>
-                            </DropZone>
-                        </Fragment>
+                        <DropZone
+                            key={`orderable-list-item-${color.id}`}
+                            index={index}
+                            onDrop={() => handleDrop(color.id, index)}
+                            treeId={'test'}
+                            colorBlockType={view}
+                            moveCard={moveCard}
+                            isEditing={isEditing}
+                        >
+                            <div>
+                                {view === ColorBlockType.List && (
+                                    <ListItem
+                                        color={color}
+                                        colorSpaces={colorspaces}
+                                        isEditing={isEditing}
+                                        onBlur={(value) => updateColor(color.id, { name: value })}
+                                        onConfirm={(colorPatch) => updateColor(color.id, colorPatch)}
+                                        onDelete={(colorId) => deleteColor(colorId)}
+                                    />
+                                )}
+                                {view === ColorBlockType.Drops && (
+                                    <DropsItem
+                                        color={color}
+                                        colorSpaces={colorspaces}
+                                        isEditing={isEditing}
+                                        onConfirm={(colorPatch) => updateColor(color.id, colorPatch)}
+                                        onDelete={(colorId) => deleteColor(colorId)}
+                                    />
+                                )}
+                                {view === ColorBlockType.Cards && (
+                                    <CardsItem
+                                        color={color}
+                                        colorSpaces={colorspaces}
+                                        isEditing={isEditing}
+                                        onConfirm={(colorPatch) => {
+                                            console.log('CALLING ON UPDATE');
+                                            updateColor(color.id, colorPatch);
+                                        }}
+                                        onDelete={(colorId) => deleteColor(colorId)}
+                                    />
+                                )}
+                            </div>
+                        </DropZone>
                     ))}
                 </DndProvider>
 
@@ -158,15 +151,17 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                             <ListItemAdd
                                 colorSpaces={colorspaces}
                                 isEditing={isEditing}
-                                onConfirm={(color) =>
+                                onConfirm={(color) => {
+                                    console.log(color);
+
                                     createColor({
                                         colorPaletteId: appBridge.getBlockId(),
                                         red: color.r,
                                         green: color.g,
                                         blue: color.b,
                                         alpha: (color.a && color.a * 100) || 1,
-                                    })
-                                }
+                                    });
+                                }}
                             />
                         )}
 

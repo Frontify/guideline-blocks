@@ -15,11 +15,7 @@ export const ListItemAdd = ({ colorSpaces, isEditing, onConfirm }: ItemAddProps)
             key={4}
             className="tw-group tw-relative tw-w-full tw-flex tw-ml-[1px] tw-shadow-inner-line hover:tw-shadow-inner-line-strong"
         >
-            <ColorsBlockColorPicker
-                onConfirm={(color) =>
-                    onConfirm({ r: color.red ?? 255, g: color.green ?? 255, b: color.blue ?? 255, a: color.alpha ?? 1 })
-                }
-            >
+            <ColorsBlockColorPicker onConfirm={onConfirm}>
                 <div className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-ml-[-1px] tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-shadow-inner-line group:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
                 </div>
@@ -40,7 +36,7 @@ export const ListItemAdd = ({ colorSpaces, isEditing, onConfirm }: ItemAddProps)
                     return (
                         <div key={colorSpaceID} className="tw-flex tw-items-center tw-w-1/3">
                             <Badge size="s" emphasis={BadgeEmphasis.None}>
-                                {mappedColorSpace.value}
+                                {mappedColorSpace.badge}
                             </Badge>
 
                             <div className="tw-ml-3 tw-text-s tw-text-black-50">{mappedColorSpace.placeholder}</div>

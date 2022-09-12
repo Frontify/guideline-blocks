@@ -2,23 +2,16 @@
 
 import { FC, useState } from 'react';
 
-import { ColorFormat, ColorPicker, Flyout } from '@frontify/fondue';
+import { Color, ColorFormat, ColorPicker, Flyout } from '@frontify/fondue';
 
 import { ColorsBlockColorPickerProps } from '../types';
 
-type Color = {
-    red: number;
-    green: number;
-    blue: number;
-    alpha?: number | undefined;
-    name?: string | undefined;
-};
-
 export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ currentColor, onConfirm, children }) => {
-    // console.log('🚀 ~ currentColor', currentColor);
     const [open, setOpen] = useState(false);
     const [currentFormat, setCurrentFormat] = useState(ColorFormat.Hex);
-    const [selectedColor, setSelectedColor] = useState<Color>(currentColor ?? { red: 255, green: 255, blue: 255 });
+    const [selectedColor, setSelectedColor] = useState<Color>(
+        currentColor ?? { red: 255, green: 255, blue: 255, alpha: 1 }
+    );
 
     const handleOpenChange = (isOpen: boolean) => {
         setOpen(isOpen);
@@ -34,6 +27,8 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
                 hug={false}
                 onConfirm={() => {
                     handleClick();
+
+                    console.log(selectedColor);
                     onConfirm(selectedColor);
                 }}
                 isOpen={open}
@@ -42,13 +37,12 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
                 trigger={children}
             >
                 <ColorPicker
-                    currentColor={selectedColor as any}
+                    currentColor={selectedColor}
                     currentFormat={currentFormat}
                     setFormat={setCurrentFormat}
                     showPreview={false}
                     onSelect={(color) => {
-                        // console.log('🚀 ~ color', color);
-                        setSelectedColor(color as any);
+                        setSelectedColor(color);
                     }}
                 />
             </Flyout>
