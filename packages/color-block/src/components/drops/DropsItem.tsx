@@ -1,13 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
-
 import {
     Button,
     ButtonStyle,
     IconSize,
     IconTrash,
-    ItemDragState,
     RichTextEditor,
     Tooltip,
     TooltipPosition,
@@ -15,51 +12,46 @@ import {
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
-import { useDrag } from 'react-dnd';
-
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ItemProps } from '../../types';
-import { TootlipContent } from '../TooltipContent';
+import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 
-export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: ItemProps) => {
+export const DropsItem = ({ color, colorSpaces, isEditing, onUpdate, onDelete }: ItemProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const { copy, status } = useCopy();
 
-    const [{}, drag] = useDrag({
-        item: color,
-        collect: (monitor) => ({
-            componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
-        }),
-        type: 'test',
-        canDrag: isEditing,
-    });
-
     return (
-        <div key={color} ref={drag} className="tw-group tw-flex tw-flex-col tw-items-center">
+        <div key={color.id} className="tw-group tw-flex tw-flex-col tw-items-center">
             {!isEditing ? (
                 <Tooltip
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={<TootlipContent color={color} status={status} />}
+                    content={<TooltipContent color={color.name || ''} status={status} />}
                     triggerElement={
                         <div
                             className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
-                                backgroundColor: color,
+                                backgroundColor: `#${color.hex}`,
                             }}
-                            onClick={() => copy(color)}
+                            onClick={() => copy(color.name || '')}
                         ></div>
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
+                <ColorsBlockColorPicker
+                    currentColor={color}
+                    onConfirm={(colorPatch) => {
+                        console.log('CALLING ON CONFIRM');
+                        onUpdate(colorPatch);
+                    }}
+                >
                     <div
                         className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{
-                            backgroundColor: color,
+                            backgroundColor: `#${color.hex}`,
                         }}
                     >
                         <div
@@ -68,7 +60,13 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
                                 isEditing && 'group-hover:tw-block',
                             ])}
                         >
-                            <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
+                            <Button
+                                icon={<IconTrash size={IconSize.Size20} />}
+                                style={ButtonStyle.Secondary}
+                                onClick={() => {
+                                    onDelete(color.id);
+                                }}
+                            />
                         </div>
                     </div>
                 </ColorsBlockColorPicker>
@@ -90,11 +88,11 @@ export const DropsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }: Item
                                 withArrow
                                 position={TooltipPosition.Right}
                                 hoverDelay={0}
-                                content={<TootlipContent color={color} status={status} />}
+                                content={<TooltipContent color={color.name || ''} status={status} />}
                                 triggerElement={
                                     <div
                                         className="tw-cursor-pointer tw-text-s tw-text-black-80"
-                                        onClick={() => copy(color)}
+                                        onClick={() => copy(color.name || '')}
                                     >
                                         {mappedColorSpace.placeholder}
                                     </div>

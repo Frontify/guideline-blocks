@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
 import { Badge, BadgeEmphasis, IconPlus, IconSize, RichTextEditor } from '@frontify/fondue';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
@@ -8,7 +7,7 @@ import { ItemAddProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 
-export const ListItemAdd: FC<ItemAddProps> = ({ colorSpaces, isEditing }) => {
+export const ListItemAdd = ({ colorSpaces, isEditing, onConfirm }: ItemAddProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     return (
@@ -16,7 +15,11 @@ export const ListItemAdd: FC<ItemAddProps> = ({ colorSpaces, isEditing }) => {
             key={4}
             className="tw-group tw-relative tw-w-full tw-flex tw-ml-[1px] tw-shadow-inner-line hover:tw-shadow-inner-line-strong"
         >
-            <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
+            <ColorsBlockColorPicker
+                onConfirm={(color) =>
+                    onConfirm({ r: color.red ?? 255, g: color.green ?? 255, b: color.blue ?? 255, a: color.alpha ?? 1 })
+                }
+            >
                 <div className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-ml-[-1px] tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-shadow-inner-line group:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
                 </div>

@@ -1,7 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
-
 import { IconPlus, IconSize, RichTextEditor } from '@frontify/fondue';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
@@ -9,12 +7,16 @@ import { ItemAddProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorsBlockColorPicker } from '../../components/ColorsBlockColorPicker';
 
-export const CardsItemAdd: FC<ItemAddProps> = ({ colorSpaces, isEditing }) => {
+export const CardsItemAdd = ({ colorSpaces, isEditing, onConfirm }: ItemAddProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     return (
         <div className="tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded tw-shadow-inner-line hover:tw-shadow-inner-line-strong">
-            <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
+            <ColorsBlockColorPicker
+                onConfirm={(color) =>
+                    onConfirm({ r: color.red ?? 255, g: color.green ?? 255, b: color.blue ?? 255, a: color.alpha ?? 1 })
+                }
+            >
                 <div className="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
                 </div>
