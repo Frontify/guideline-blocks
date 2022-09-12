@@ -50,13 +50,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onConfirm, onD
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker
-                    currentColor={color}
-                    onConfirm={(colorPatch) => {
-                        console.log('CALLING ON CONFIRM');
-                        onConfirm(colorPatch);
-                    }}
-                >
+                <ColorsBlockColorPicker currentColor={color} onConfirm={onConfirm}>
                     <div
                         className="tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                         style={{
@@ -83,7 +77,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onConfirm, onD
                     return (
                         <div key={colorSpaceID} className="tw-flex tw-items-center tw-w-1/3">
                             <Badge size="s" emphasis={BadgeEmphasis.None}>
-                                {mappedColorSpace.badge}
+                                {mappedColorSpace.label}
                             </Badge>
 
                             {!isEditing ? (

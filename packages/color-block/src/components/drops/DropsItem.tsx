@@ -4,7 +4,7 @@ import {
     Button,
     ButtonStyle,
     IconSize,
-    IconTrash,
+    IconTrashBin,
     RichTextEditor,
     Tooltip,
     TooltipPosition,
@@ -16,11 +16,18 @@ import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ItemProps } from '../../types';
 import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
+import { useState } from 'react';
 
-export const DropsItem = ({ color, colorSpaces, isEditing, onUpdate, onDelete }: ItemProps) => {
+export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onConfirm, onDelete }: ItemProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const { copy, status } = useCopy();
+
+    const [colorName, setColorName] = useState<string>(color.name ?? '');
+
+    const handleColorNameChange = (value: string) => setColorName(value);
+
+    const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
     return (
         <div key={color.id} className="tw-group tw-flex tw-flex-col tw-items-center">
@@ -29,25 +36,19 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onUpdate, onDelete }:
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={<TooltipContent color={color.name || ''} status={status} />}
+                    content={<TooltipContent color={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
                         <div
                             className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
                                 backgroundColor: `#${color.hex}`,
                             }}
-                            onClick={() => copy(color.name || '')}
+                            onClick={() => copy(mappedFirstColorSpace.value ?? '')}
                         ></div>
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker
-                    currentColor={color}
-                    onConfirm={(colorPatch) => {
-                        console.log('CALLING ON CONFIRM');
-                        onUpdate(colorPatch);
-                    }}
-                >
+                <ColorsBlockColorPicker currentColor={color} onConfirm={onConfirm}>
                     <div
                         className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{
@@ -61,7 +62,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onUpdate, onDelete }:
                             ])}
                         >
                             <Button
-                                icon={<IconTrash size={IconSize.Size20} />}
+                                icon={<IconTrashBin size={IconSize.Size20} />}
                                 style={ButtonStyle.Secondary}
                                 onClick={() => {
                                     onDelete(color.id);
@@ -73,33 +74,39 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onUpdate, onDelete }:
             )}
 
             <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-black tw-text-center">
-                <RichTextEditor designTokens={designTokens ?? undefined} readonly={!isEditing} />
+                <RichTextEditor
+                    value={colorName}
+                    onTextChange={handleColorNameChange}
+                    designTokens={designTokens ?? undefined}
+                    readonly={!isEditing}
+                    onBlur={onBlur}
+                />
             </div>
 
             {colorSpaces?.map((colorSpaceID: string) => {
-                const mappedColorSpace = mapColorSpaces(colorSpaceID);
+                const mappedColorSpace = mapColorSpaces(colorSpaceID, color);
 
                 return (
                     <div key={colorSpaceID} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
-                        <div className="tw-mr-1 tw-text-s tw-text-black-70">{mappedColorSpace.value}</div>
+                        <div className="tw-mr-1 tw-text-s tw-text-black-70">{mappedColorSpace.label}</div>
 
                         {!isEditing ? (
                             <Tooltip
                                 withArrow
                                 position={TooltipPosition.Right}
                                 hoverDelay={0}
-                                content={<TooltipContent color={color.name || ''} status={status} />}
+                                content={<TooltipContent color={mappedColorSpace.value ?? ''} status={status} />}
                                 triggerElement={
                                     <div
                                         className="tw-cursor-pointer tw-text-s tw-text-black-80"
-                                        onClick={() => copy(color.name || '')}
+                                        onClick={() => copy(mappedColorSpace.value ?? '')}
                                     >
-                                        {mappedColorSpace.placeholder}
+                                        {mappedColorSpace.value}
                                     </div>
                                 }
                             />
                         ) : (
-                            <div className="tw-text-s tw-text-black-80">{mappedColorSpace.placeholder}</div>
+                            <div className="tw-text-s tw-text-black-80">{mappedColorSpace.value}</div>
                         )}
                     </div>
                 );

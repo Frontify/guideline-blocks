@@ -12,11 +12,7 @@ export const DropsItemAdd = ({ colorSpaces, isEditing, onConfirm }: ItemAddProps
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            <ColorsBlockColorPicker
-                onConfirm={(color) =>
-                    onConfirm({ r: color.red ?? 255, g: color.green ?? 255, b: color.blue ?? 255, a: color.alpha ?? 1 })
-                }
-            >
+            <ColorsBlockColorPicker onConfirm={onConfirm}>
                 <div className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-gray-add-button tw-shadow-inner-line hover:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
                 </div>
@@ -35,7 +31,7 @@ export const DropsItemAdd = ({ colorSpaces, isEditing, onConfirm }: ItemAddProps
 
                 return (
                     <div key={colorSpaceID} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
-                        <div className="tw-mr-1 tw-text-s tw-text-black-50">{mappedColorSpace.value}</div>
+                        <div className="tw-mr-1 tw-text-s tw-text-black-50">{mappedColorSpace.label}</div>
 
                         <div className="tw-text-s tw-text-black-50">{mappedColorSpace.placeholder}</div>
                     </div>

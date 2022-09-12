@@ -4,7 +4,7 @@ import { FrontifyColor } from '@frontify/app-bridge';
 
 type ColorSpace = {
     id: string;
-    badge?: string;
+    label?: string;
     value?: string;
     placeholder?: string;
 };
@@ -16,7 +16,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'hex':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'HEX',
+                label: 'HEX',
                 value: color && `#${color.hex}`,
                 placeholder: '#hexhex',
             };
@@ -24,7 +24,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'rgb':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'RGB',
+                label: 'RGB',
                 value: color && `${color.red}/${color.green}/${color.blue}`,
                 placeholder: 'r/g/b',
             };
@@ -32,7 +32,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'variable':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'LESS',
+                label: 'LESS',
                 value: color && '',
                 placeholder: 'h,s,l',
             };
@@ -40,7 +40,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'ral':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'RAL',
+                label: 'RAL',
                 value: (color && color.ral) ?? '',
                 placeholder: 'r,a,l',
             };
@@ -48,7 +48,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'PMS',
+                label: 'PMS',
                 value: (color && color.pantone) ?? '',
                 placeholder: 'color 0000 p',
             };
@@ -56,7 +56,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_coated':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'PMS-C',
+                label: 'PMS-C',
                 value: (color && color.pantoneCoated) ?? '',
                 placeholder: 'p 000 00 c',
             };
@@ -64,7 +64,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_uncoated':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'PMS-U',
+                label: 'PMS-U',
                 value: (color && color.pantoneUncoated) ?? '',
                 placeholder: '00-0000',
             };
@@ -72,7 +72,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_cp':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'PMS-CP',
+                label: 'PMS-CP',
                 value: (color && color.pantoneCp) ?? '',
                 placeholder: '0000 CP',
             };
@@ -80,7 +80,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_plastics':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'PMS-PQ',
+                label: 'PMS-PQ',
                 value: color && '',
                 placeholder: 'PQ-000C',
             };
@@ -88,7 +88,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_textile':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'PMS-TCX',
+                label: 'PMS-TCX',
                 value: (color && color.pantoneTextile) ?? '',
                 placeholder: '00-000 TCX',
             };
@@ -96,7 +96,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'oracal':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'ORA',
+                label: 'ORA',
                 value: (color && color.oracal) ?? '',
                 placeholder: '000',
             };
@@ -104,7 +104,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'cmyk':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'CMYK',
+                label: 'CMYK',
                 value: color && `${color.c}/${color.m}/${color.y}/${color.k}`,
                 placeholder: 'c/m/y/k',
             };
@@ -112,7 +112,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'cmyk_coated':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'CMYK-C',
+                label: 'CMYK-C',
                 value: (color && color.cmykCoated) ?? '',
                 placeholder: 'c/m/y/k c',
             };
@@ -120,7 +120,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'cmyk_uncoated':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'CMYK-U',
+                label: 'CMYK-U',
                 value: (color && color.cmykUncoated) ?? '',
                 placeholder: 'c/m/y/k u',
             };
@@ -128,7 +128,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'cmyk_newspaper':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'CMYK-N',
+                label: 'CMYK-N',
                 value: (color && color.cmykNewspaper) ?? '',
                 placeholder: 'c/m/y/k n',
             };
@@ -136,7 +136,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'ncs':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'NCS',
+                label: 'NCS',
                 value: (color && color.ncs) ?? '',
                 placeholder: '0000-0000',
             };
@@ -144,7 +144,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'hks':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'HKS',
+                label: 'HKS',
                 value: (color && color.hks) ?? '',
                 placeholder: '00 K',
             };
@@ -152,7 +152,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'three_m':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: '3M',
+                label: '3M',
                 value: (color && color.threeM) ?? '',
                 placeholder: '208',
             };
@@ -160,7 +160,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'lab':
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'LAB',
+                label: 'LAB',
                 value: (color && color.lab) ?? '',
                 placeholder: 'l,a,b,%',
             };
@@ -168,7 +168,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         default:
             mappedColorSpace = {
                 id: colorSpaceID,
-                badge: 'HEX',
+                label: 'HEX',
                 value: color && `#${color.hex}`,
                 placeholder: '#hexhex',
             };

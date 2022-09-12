@@ -6,7 +6,7 @@ import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { ColorBlockProps, ColorBlockType, Settings } from './types';
 
-import { DropZonePosition, OrderableListItem, RichTextEditor } from '@frontify/fondue';
+import { RichTextEditor } from '@frontify/fondue';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -41,12 +41,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     };
 
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(appBridge, appBridge.getBlockId());
-    const { colorPalettes } = useColorPalettes(appBridge);
-
-    console.log(appBridge);
-
-    console.log('Colors in guideline-blocks', colorsByPaletteId);
-    console.log('ColorPalettes in guideline-blocks', colorPalettes);
+    // const { colorPalettes } = useColorPalettes(appBridge);
 
     const [colors, setColors] = useState<FrontifyColor[]>([]);
 
@@ -55,9 +50,6 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     }, [colorsByPaletteId]);
 
     const moveCard = (dragIndex: number, hoverIndex: number) => {
-        console.log('🚀 ~ moveCard ~ dragIndex', dragIndex);
-        console.log('🚀 ~ moveCard ~ hoverIndex', hoverIndex);
-
         setColors((previousColors) =>
             update(previousColors, {
                 $splice: [
@@ -67,12 +59,6 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
             })
         );
     };
-
-    // const handleColorNameChange = (name: string) => {
-    //     updateColor({ name });
-    // };
-
-    // console.log('colorsovaos', colors);
 
     return (
         <div data-test-id="color-block">
@@ -124,6 +110,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         color={color}
                                         colorSpaces={colorspaces}
                                         isEditing={isEditing}
+                                        onBlur={(value) => updateColor(color.id, { name: value })}
                                         onConfirm={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
@@ -133,10 +120,8 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         color={color}
                                         colorSpaces={colorspaces}
                                         isEditing={isEditing}
-                                        onConfirm={(colorPatch) => {
-                                            console.log('CALLING ON UPDATE');
-                                            updateColor(color.id, colorPatch);
-                                        }}
+                                        onBlur={(value) => updateColor(color.id, { name: value })}
+                                        onConfirm={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
                                 )}
@@ -152,8 +137,6 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                 colorSpaces={colorspaces}
                                 isEditing={isEditing}
                                 onConfirm={(color) => {
-                                    console.log(color);
-
                                     createColor({
                                         colorPaletteId: appBridge.getBlockId(),
                                         red: color.r,

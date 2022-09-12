@@ -36,7 +36,7 @@ export const ListItemAdd = ({ colorSpaces, isEditing, onConfirm }: ItemAddProps)
                     return (
                         <div key={colorSpaceID} className="tw-flex tw-items-center tw-w-1/3">
                             <Badge size="s" emphasis={BadgeEmphasis.None}>
-                                {mappedColorSpace.badge}
+                                {mappedColorSpace.label}
                             </Badge>
 
                             <div className="tw-ml-3 tw-text-s tw-text-black-50">{mappedColorSpace.placeholder}</div>

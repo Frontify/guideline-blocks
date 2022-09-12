@@ -27,8 +27,6 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
                 hug={false}
                 onConfirm={() => {
                     handleClick();
-
-                    console.log(selectedColor);
                     onConfirm(selectedColor);
                 }}
                 isOpen={open}

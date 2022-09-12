@@ -3,16 +3,8 @@ import { merge } from '@frontify/fondue';
 import { ColorBlockType } from '../types';
 import { useRef } from 'react';
 
-export type OnDropCallback = (index: number) => void;
-
-type DropZoneData = {
-    colorId: number;
-    index: number;
-};
-
 export type DropZoneProps = {
-    data: DropZoneData;
-    onDrop?: OnDropCallback;
+    onDrop?: (index: number) => void;
     treeId: string;
     children?: JSX.Element;
     colorBlockType: ColorBlockType;
@@ -94,7 +86,6 @@ export const DropZone = ({ index, onDrop, children, moveCard, isEditing }: DropZ
 
     drag(drop(ref));
 
-    // const outerDropZoneClassNames = 'tw-my-[-5px] tw-h-[10px] tw-py-1 tw-outline-none tw-relative tw-z-20';
     const activeOuterDropZoneClassNames =
         'tw-h-[60px] tw-py-0 tw-my-1 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content';
 
