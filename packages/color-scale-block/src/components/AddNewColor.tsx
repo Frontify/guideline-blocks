@@ -46,11 +46,9 @@ export const AddNewColor: FC<AddNewColorModalProps> = ({
                             }
                             currentFormat={colorPickerFormat}
                             setFormat={(format) => {
-                                console.log(format);
                                 setColorPickerFormat(format);
                             }}
                             onSelect={(color: Color) => {
-                                console.log(color);
                                 if (!editedColor) {
                                     const newUuid = uuid();
                                     updateColor(

@@ -537,7 +537,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                 } else {
                                     let needToShrinkColor = true;
                                     colorsBeforeCurrent.map((adjacentColor) => {
-                                        console.log(4);
                                         if (needToShrinkColor) {
                                             if (adjacentColor) {
                                                 if (
