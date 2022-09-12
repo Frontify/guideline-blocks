@@ -1,13 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
-
 import {
     Button,
     ButtonStyle,
     IconSize,
     IconTrash,
-    ItemDragState,
     RichTextEditor,
     Tooltip,
     TooltipPosition,
@@ -15,55 +12,45 @@ import {
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
-import { useDrag } from 'react-dnd';
-
 import { ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
-import { TootlipContent } from '../TooltipContent';
+import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 
-export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
+export const CardsItem = ({ color, colorSpaces, isEditing, onUpdate, onDelete }: ItemProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const { copy, status } = useCopy();
-
-    const [{}, drag] = useDrag({
-        item: color,
-        collect: (monitor) => ({
-            componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
-        }),
-        type: 'test',
-        canDrag: isEditing,
-    });
-
     return (
-        <div
-            key={color}
-            ref={drag}
-            className="tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded tw-shadow-inner-line tw-transition-all hover:tw-shadow-inner-line-strong"
-        >
+        <div className="tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded tw-shadow-inner-line tw-transition-all hover:tw-shadow-inner-line-strong">
             {!isEditing ? (
                 <Tooltip
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={<TootlipContent color={color} status={status} />}
+                    content={<TooltipContent color={color.name || ''} status={status} />}
                     triggerElement={
                         <div
                             className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
-                                backgroundColor: color,
+                                backgroundColor: `#${color.hex}`,
                             }}
-                            onClick={() => copy(color)}
+                            onClick={() => copy(color.name || '')}
                         ></div>
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker onSelect={(value) => console.log(value)}>
+                <ColorsBlockColorPicker
+                    currentColor={color}
+                    onConfirm={(colorPatch) => {
+                        console.log('CALLING ON CONFIRM');
+                        onUpdate(colorPatch);
+                    }}
+                >
                     <div
                         className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{
-                            backgroundColor: color,
+                            backgroundColor: `#${color.hex}`,
                         }}
                     >
                         <div
@@ -72,7 +59,13 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                                 isEditing && 'group-hover:tw-block',
                             ])}
                         >
-                            <Button icon={<IconTrash size={IconSize.Size20} />} style={ButtonStyle.Secondary} />
+                            <Button
+                                icon={<IconTrash size={IconSize.Size20} />}
+                                style={ButtonStyle.Secondary}
+                                onClick={() => {
+                                    onDelete(color.id);
+                                }}
+                            />
                         </div>
                     </div>
                 </ColorsBlockColorPicker>
@@ -95,11 +88,11 @@ export const CardsItem: FC<ItemProps> = ({ color, colorSpaces, isEditing }) => {
                                     withArrow
                                     position={TooltipPosition.Right}
                                     hoverDelay={0}
-                                    content={<TootlipContent color={color} status={status} />}
+                                    content={<TooltipContent color={color.name || ''} status={status} />}
                                     triggerElement={
                                         <div
                                             className="tw-cursor-pointer tw-text-s tw-text-black-80"
-                                            onClick={() => copy(color)}
+                                            onClick={() => copy(color.name || '')}
                                         >
                                             {mappedColorSpace.placeholder}
                                         </div>
