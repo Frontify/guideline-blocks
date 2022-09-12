@@ -3,6 +3,12 @@
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
+import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
+import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
+import { IconHookBracketRight } from './foundation/IconHookBracketRight';
+import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
+import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
 import { LineType, QuoteSize, QuoteStyle, QuoteType, quoteSizeMap } from './types';
 
 const QUOTE_TYPE_ID = 'type';
@@ -10,12 +16,21 @@ const SIZE_CHOICE_ID = 'sizeChoice';
 const SIZE_VALUE_ID = 'sizeValue';
 const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
+const style = { width: '20px', height: '20px' };
 const QUOTE_STYLE_CHOICES = [
     // TODO: replace icons as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
-    { value: QuoteStyle.DoubleUp, icon: 'DoubleUp', label: 'Double Up' },
-    { value: QuoteStyle.DoubleDown, icon: 'DoubleDown', label: 'Double Down' },
-    { value: QuoteStyle.SingleUp, icon: 'SingleUp', label: 'Single Up' },
-    { value: QuoteStyle.SingleDown, icon: 'SingleDown', label: 'Single Down' },
+    {
+        value: QuoteStyle.DoubleUp,
+        icon: <IconDoubleQuotesUp style={style} />,
+        label: 'Double Up',
+    },
+    {
+        value: QuoteStyle.DoubleDown,
+        icon: <IconDoubleQuotesDown style={style} />,
+        label: 'Double Down',
+    },
+    { value: QuoteStyle.SingleUp, icon: <IconSingleQuoteUp style={style} />, label: 'Single Up' },
+    { value: QuoteStyle.SingleDown, icon: <IconSingleQuoteDown style={style} />, label: 'Single Down' },
     {
         value: QuoteStyle.DoubleChevronLeft,
         icon: IconEnum.CaretLeftDouble20,
@@ -38,12 +53,12 @@ const QUOTE_STYLE_CHOICES = [
     },
     {
         value: QuoteStyle.HookBracketLeft,
-        icon: 'HookBracketLeft', // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
+        icon: <IconHookBracketLeft style={style} />, // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
         label: 'Hook Bracket Left',
     },
     {
         value: QuoteStyle.HookBracketRight,
-        icon: 'HookBracketRight', // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
+        icon: <IconHookBracketRight style={style} />, // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
         label: 'Hook Bracket Right',
     },
     { value: QuoteStyle.None, icon: IconEnum.StrikethroughBox20, label: 'None' },
