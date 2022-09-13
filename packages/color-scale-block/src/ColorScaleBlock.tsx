@@ -43,17 +43,17 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const { colorPalettes } = useColorPalettes(appBridge);
     const [colorPickerPalette, setColorPickerPalette]: any = useState([]);
     const isEditing = useEditorState(appBridge);
-    //const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
-    const [blockSettings, setBlockSettings] = useState({
-        "color-input": [
-            {
-                id: uuid(),
-                sort: 1,
-                color: { red: 0, green: 0, blue: 0, alpha: 1 },
-                alt: "Click to drag",
-            },
-        ] as ColorProps[] | null,
-    });
+    const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
+    // const [blockSettings, setBlockSettings] = useState({
+    //     "color-input": [
+    //         {
+    //             id: uuid(),
+    //             sort: 1,
+    //             color: { red: 0, green: 0, blue: 0, alpha: 1 },
+    //             alt: "Click to drag",
+    //         },
+    //     ] as ColorProps[] | null,
+    // });
 
     const emptyBlockColors: string[] = [
         "#D5D6D6",
@@ -239,27 +239,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         setDisplayableItems(reorderedList);
     };
 
-    const saveNewColor = (
-        newColor: ColorProps,
-        index: number,
-        appearAfter?: boolean
-    ) => {
-        let updatedColors = [...displayableItems];
-
-        updatedColors.splice(index + 1, 0, newColor);
-
-        const colorsWithNewWidths = calculateWidths(
-            isEditing || showCompleted
-                ? updatedColors
-                : filterCompleteItems(updatedColors)
-        );
-        setBlockSettings({
-            ...blockSettings,
-            "color-input": colorsWithNewWidths,
-        });
-        setDisplayableItems(colorsWithNewWidths);
-    };
-
     const updateColor = (
         newColor: ColorProps,
         index: number,
@@ -398,6 +377,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     }, [colorPalettes]);
 
     useEffect(() => {
+        console.log(blockSettings);
         // This runs every time blockSettings are changed.
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
