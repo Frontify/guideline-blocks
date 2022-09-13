@@ -11,10 +11,7 @@ export const ListItemAdd = ({ colorSpaces, isEditing, onConfirm }: ItemAddProps)
     const { designTokens } = useGuidelineDesignTokens();
 
     return (
-        <div
-            key={4}
-            className="tw-group tw-relative tw-w-full tw-flex tw-ml-[1px] tw-shadow-inner-line hover:tw-shadow-inner-line-strong"
-        >
+        <div className="tw-group tw-relative tw-w-full tw-flex tw-ml-[1px] tw-shadow-inner-line hover:tw-shadow-inner-line-strong">
             <ColorsBlockColorPicker onConfirm={onConfirm}>
                 <div className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-ml-[-1px] tw-cursor-pointer tw-text-black tw-bg-gray-add-button tw-shadow-inner-line group:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
