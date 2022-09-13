@@ -415,7 +415,7 @@ importers:
       typescript: 4.7.4
       uuidv4: ^6.2.13
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': link:../../../app-bridge
       '@frontify/fondue': 11.3.0_l4iobuvyq4rslriq73hletyxxu
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/guideline-blocks-settings': link:../block-settings
