@@ -3,9 +3,10 @@
 import "tailwindcss/tailwind.css";
 import { FC, Fragment, Key, useEffect, useRef, useState } from "react";
 import {
-    AppBridgeNative,
+    AppBridgeBlock,
     useBlockSettings,
     useEditorState,
+    useColorPalettes,
 } from "@frontify/app-bridge";
 import { filterCompleteItems } from "./helpers";
 import { SquareWithColor } from "./components/SquareWithColor";
@@ -35,10 +36,12 @@ import { DropZone } from "./react-dnd/DropZone";
 import { uuid } from "uuidv4";
 
 type Props = {
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
 
 export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
+    const { colorPalettes } = useColorPalettes(appBridge);
+    const [colorPickerPalette, setColorPickerPalette]: any = useState([]);
     const isEditing = useEditorState(appBridge);
     //const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
     const [blockSettings, setBlockSettings] = useState({
@@ -128,14 +131,16 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     };
 
     const resizeEvenly = () => {
-        const defaultWidth = calculateDefaultColorWidth(displayableItems.length);
+        const defaultWidth = calculateDefaultColorWidth(
+            displayableItems.length
+        );
 
         const newDisplayableItems = displayableItems.map((item, index) => {
-            return {...item, width: defaultWidth};
+            return { ...item, width: defaultWidth };
         });
 
         setDisplayableItems(newDisplayableItems);
-    }
+    };
 
     const calculateWidths = (itemList: ColorProps[]) => {
         let emptySpace = 0;
@@ -363,6 +368,33 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     };
 
     useEffect(() => {
+        // This runs when colorPalettes gets populated.
+        const palettes: any[] = [];
+
+        colorPalettes.forEach((palette) => {
+            const colors = palette.colors.map((color) => {
+                return {
+                    alpha: color.alpha,
+                    red: color.red,
+                    green: color.green,
+                    blue: color.blue,
+                    name: color.name,
+                };
+            });
+            palettes.push({
+                id: palette.id,
+                title: palette.name,
+                source: '#' + palette.colors[0].hex,
+                colors: colors,
+            });
+        });
+
+        setColorPickerPalette(
+            palettes
+        );
+    }, [colorPalettes]);
+
+    useEffect(() => {
         // This runs every time blockSettings are changed.
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
@@ -490,7 +522,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             dragStartWidth.current = currentColor.width;
         }
         draggingId.current = index;
-
     };
 
     const onResize = (evt: any) => {
@@ -781,6 +812,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         setIsColorPickerOpen={setIsColorPickerOpen}
                         editedColor={editedColor}
                         setEditedColor={setEditedColor}
+                        colors={colorPickerPalette}
                         colorPickerRef={colorPickerRef}
                         newIndex={nextEmptyColorIndex}
                         updateColor={updateColor}
