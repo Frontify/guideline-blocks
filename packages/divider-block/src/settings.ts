@@ -192,6 +192,7 @@ export const settings: BlockSettings = {
                 {
                     id: 'lineStyle',
                     type: 'multiInput',
+                    label: 'Styling',
                     onChange: (bundle: Bundle): void => {
                         appendUnit(bundle, THICKNESS_ID);
                     },
@@ -201,7 +202,6 @@ export const settings: BlockSettings = {
                         {
                             id: 'style',
                             type: 'dropdown',
-                            label: 'Styling',
                             defaultValue: STYLE_DEFAULT_VALUE,
                             choices: [
                                 {
@@ -221,7 +221,6 @@ export const settings: BlockSettings = {
                         {
                             id: THICKNESS_ID,
                             type: 'input',
-                            label: 'Thickness',
                             defaultValue: '1px',
                             placeholder: 'e.g. 3px',
                             clearable: false,
@@ -230,7 +229,6 @@ export const settings: BlockSettings = {
                         {
                             id: 'color',
                             type: 'colorInput',
-                            label: 'Color',
                             defaultValue: COLOR_DEFAULT_RGBA_VALUE,
                         },
                     ],
