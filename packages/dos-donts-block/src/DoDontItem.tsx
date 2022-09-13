@@ -42,6 +42,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     const shouldBlurIcon = useMemo(() => isEmpty(title), [title]);
 
     const { designTokens } = useGuidelineDesignTokens();
+
     return (
         <div>
             <div
