@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ReactElement, useEffect, useState } from 'react';
-import { FrontifyColor, useBlockSettings, useColors, useEditorState } from '@frontify/app-bridge';
+import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { ColorBlockProps, ColorBlockType, Settings } from './types';
@@ -43,6 +43,10 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(appBridge, appBridge.getBlockId());
 
     const [colors, setColors] = useState<FrontifyColor[]>([]);
+
+    const { colorPalettes } = useColorPalettes(appBridge);
+
+    console.log(colorPalettes);
 
     useEffect(() => {
         setColors(colorsByPaletteId);

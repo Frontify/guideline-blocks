@@ -33,8 +33,9 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'variable':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'nameCss',
                 label: 'LESS',
-                value: color && '',
+                value: color && `$${color.nameCss}`,
                 placeholder: 'h,s,l',
             };
             break;
@@ -84,8 +85,9 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_plastics':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'pantonePlastics',
                 label: 'PMS-PQ',
-                value: color && '',
+                value: (color && color.pantonePlastics) ?? '',
                 placeholder: 'PQ-000C',
             };
             break;

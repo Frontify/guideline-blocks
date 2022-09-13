@@ -14,11 +14,11 @@ import {
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
-import { ItemProps } from '../../types';
+import { ColorSpaceInputValues, ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -30,6 +30,33 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
     const handleColorNameChange = (value: string) => setColorName(value);
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
+
+    const [colorSpaceInputValues, setColorSpaceInputValues] = useState<ColorSpaceInputValues>({
+        cmyk_coated: color.cmykCoated,
+        cmyk_newspaper: color.cmykNewspaper,
+        cmyk_uncoated: color.cmykUncoated,
+        hks: color.hks,
+        lab: color.lab,
+        ncs: color.ncs,
+        oracal: color.oracal,
+        pantone_coated: color.pantoneCoated,
+        pantone_cp: color.pantoneCp,
+        pantone_plastics: color.pantonePlastics,
+        pantone_textile: color.pantoneTextile,
+        pantone_uncoated: color.pantoneUncoated,
+        pantone: color.pantone,
+        ral: color.ral,
+        three_m: color.threeM,
+        variable: color.nameCss,
+    });
+
+    console.log('colorSpaceInputValues', colorSpaceInputValues);
+
+    const handleColorSpaceValueChange = (event: FormEvent<HTMLInputElement>) => {
+        const { name, value } = event.currentTarget;
+
+        setColorSpaceInputValues((previousState) => ({ ...previousState, [name]: value }));
+    };
 
     return (
         <div className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all last:tw-border-b last:tw-border-black/[.1] hover:tw-shadow-t-inner-line-strong">
@@ -71,14 +98,17 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
             </div>
 
             <div className="tw-flex tw-items-center tw-flex-wrap tw-gap-y-2.5 tw-w-list-color-types tw-py-5">
-                {colorSpaces?.map((colorSpaceID: string) => {
-                    const mappedColorSpace = mapColorSpaces(colorSpaceID, color);
+                {colorSpaces?.map((colorSpaceId: string) => {
+                    const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
+                    console.log(mappedColorSpace);
                     return (
-                        <div key={colorSpaceID} className="tw-flex tw-items-center tw-w-1/3">
-                            <Badge size="s" emphasis={BadgeEmphasis.None}>
-                                {mappedColorSpace.label}
-                            </Badge>
+                        <div key={colorSpaceId} className="tw-flex tw-items-center tw-w-1/3">
+                            <div>
+                                <Badge size="s" emphasis={BadgeEmphasis.None}>
+                                    {mappedColorSpace.label}
+                                </Badge>
+                            </div>
 
                             {!isEditing ? (
                                 <Tooltip
@@ -96,7 +126,31 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                     }
                                 />
                             ) : (
-                                <div className="tw-ml-3 tw-text-s tw-text-black-80">{mappedColorSpace.value}</div>
+                                <div className="tw-ml-3 ">
+                                    {mappedColorSpace.label === 'HEX' ||
+                                    mappedColorSpace.label === 'RGB' ||
+                                    mappedColorSpace.label === 'CMYK' ? (
+                                        <div className="tw-text-s tw-text-black-80">
+                                            {mappedColorSpace.value || mappedColorSpace.placeholder}
+                                        </div>
+                                    ) : (
+                                        <input
+                                            name={colorSpaceId}
+                                            className="tw-w-full tw-h-5 tw-outline-none"
+                                            type="text"
+                                            value={
+                                                colorSpaceInputValues[colorSpaceId as keyof ColorSpaceInputValues] || ''
+                                            }
+                                            onChange={handleColorSpaceValueChange}
+                                            placeholder={mappedColorSpace.placeholder}
+                                            onBlur={(event) =>
+                                                onUpdate({
+                                                    [mappedColorSpace.key || colorSpaceId]: event.target.value,
+                                                })
+                                            }
+                                        />
+                                    )}
+                                </div>
                             )}
                         </div>
                     );

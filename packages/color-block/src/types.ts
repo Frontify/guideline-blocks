@@ -59,3 +59,22 @@ export type TooltipContentProps = {
     color: string;
     status: 'error' | 'success' | 'idle';
 };
+
+export type ColorSpaceInputValues = {
+    cmyk_coated: Nullable<string>;
+    cmyk_newspaper: Nullable<string>;
+    cmyk_uncoated: Nullable<string>;
+    hks: Nullable<string>;
+    lab: Nullable<string>;
+    ncs: Nullable<string>;
+    oracal: Nullable<string>;
+    pantone_coated: Nullable<string>;
+    pantone_cp: Nullable<string>;
+    pantone_plastics: Nullable<string>;
+    pantone_textile: Nullable<string>;
+    pantone_uncoated: Nullable<string>;
+    pantone: Nullable<string>;
+    ral: Nullable<string>;
+    three_m: Nullable<string>;
+    variable: Nullable<string>;
+};

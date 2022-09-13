@@ -12,29 +12,11 @@ import {
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
-import { ItemProps } from '../../types';
+import { ColorSpaceInputValues, ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 import { FormEvent, useState } from 'react';
-
-type ColorSpaceInputValues = {
-    pantone: Nullable<string>;
-    ral: Nullable<string>;
-    oracal: Nullable<string>;
-    pantone_coated: Nullable<string>;
-    pantone_uncoated: Nullable<string>;
-    cmyk_coated: Nullable<string>;
-    cmyk_uncoated: Nullable<string>;
-    cmyk_newspaper: Nullable<string>;
-    ncs: Nullable<string>;
-    pantone_cp: Nullable<string>;
-    pantone_plastics: Nullable<string>;
-    pantone_textile: Nullable<string>;
-    hks: Nullable<string>;
-    three_m: Nullable<string>;
-    lab: Nullable<string>;
-};
 
 export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -48,21 +30,22 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
     const [colorSpaceInputValues, setColorSpaceInputValues] = useState<ColorSpaceInputValues>({
-        pantone: color.pantone,
-        ral: color.ral,
+        cmyk_coated: color.cmykCoated,
+        cmyk_newspaper: color.cmykNewspaper,
+        cmyk_uncoated: color.cmykUncoated,
+        hks: color.hks,
+        lab: color.lab,
+        ncs: color.ncs,
         oracal: color.oracal,
         pantone_coated: color.pantoneCoated,
-        pantone_uncoated: color.pantoneUncoated,
-        cmyk_coated: color.cmykCoated,
-        cmyk_uncoated: color.cmykUncoated,
-        cmyk_newspaper: color.cmykNewspaper,
-        ncs: color.ncs,
         pantone_cp: color.pantoneCp,
         pantone_plastics: color.pantonePlastics,
         pantone_textile: color.pantoneTextile,
-        hks: color.hks,
+        pantone_uncoated: color.pantoneUncoated,
+        pantone: color.pantone,
+        ral: color.ral,
         three_m: color.threeM,
-        lab: color.lab,
+        variable: color.nameCss,
     });
 
     const handleColorSpaceValueChange = (event: FormEvent<HTMLInputElement>) => {
