@@ -14,8 +14,6 @@ export const settings: BlockSettings = {
             showClearAndSelectAllButtons: true,
             choices: async ({ appBridge }) => {
                 const palettes = await appBridge.getColorPalettes();
-                console.log('🚀 ~ choices: ~ palettes', palettes);
-                //! TODO: find out type and replace any
                 return palettes.map((palette: FrontifyColorPalette) => ({ id: palette.id, label: palette.name }));
             },
         },
