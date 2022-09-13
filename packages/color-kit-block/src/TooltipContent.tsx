@@ -13,8 +13,10 @@ export const TooltipContent: FC<TooltipContentProps> = ({ color }) => {
     return (
         <>
             <span className="tw-block">Color Name</span>
-            <span className="tw-block">#{color}</span>
-            <span className="tw-text-black-50" onClick={handleCopy}>
+            <span data-test-id="color-hash" className="tw-block">
+                #{color}
+            </span>
+            <span data-test-id="copy" className="tw-text-black-50" onClick={handleCopy}>
                 {status === 'error' && 'Error copying. Try again.'}
                 {status === 'idle' && 'Click to copy'}
                 {status === 'success' && 'Copied!'}
