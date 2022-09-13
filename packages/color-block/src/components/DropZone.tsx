@@ -13,7 +13,7 @@ export type DropZoneProps = {
     isEditing: boolean;
 };
 
-export const DropZone = ({ index, onDrop, children, moveCard, isEditing }: DropZoneProps) => {
+export const DropZone = ({ index, onDrop, children, colorBlockType, moveCard, isEditing }: DropZoneProps) => {
     const ref = useRef<HTMLDivElement>(null);
 
     const [, drop] = useDrop({
@@ -41,36 +41,45 @@ export const DropZone = ({ index, onDrop, children, moveCard, isEditing }: DropZ
             // Determine rectangle on screen
             const hoverBoundingRect = ref.current?.getBoundingClientRect();
 
+            // Get horizontal middle
+            const hoverMiddleX = (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
+
             // Get vertical middle
             const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
 
             // Determine mouse position
             const clientOffset = monitor.getClientOffset();
 
+            // Get pixels to the left
+            const hoverClientX = (clientOffset as XYCoord).x - hoverBoundingRect.left;
+
             // Get pixels to the top
             const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
 
-            // Only perform the move when the mouse has crossed half of the items height
-            // When dragging downwards, only move when the cursor is below 50%
-            // When dragging upwards, only move when the cursor is above 50%
+            if (colorBlockType === 'list') {
+                // Dragging downwards
+                if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+                    return;
+                }
 
-            // Dragging downwards
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-                return;
+                // Dragging upwards
+                if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+                    return;
+                }
+            } else {
+                // Dragging left
+                if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
+                    return;
+                }
+
+                // Dragging right
+                if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
+                    return;
+                }
             }
 
-            // Dragging upwards
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-                return;
-            }
-
-            // Time to actually perform the action
             moveCard(dragIndex, hoverIndex);
 
-            // Note: we're mutating the monitor item here!
-            // Generally it's better to avoid mutations,
-            // but it's good here for the sake of performance
-            // to avoid expensive index searches.
             item.index = hoverIndex;
         },
     });
@@ -86,8 +95,14 @@ export const DropZone = ({ index, onDrop, children, moveCard, isEditing }: DropZ
 
     drag(drop(ref));
 
-    const activeOuterDropZoneClassNames =
-        'tw-h-[60px] tw-py-0 tw-my-1 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content';
+    let activeOuterDropZoneClassNames = '';
+    if (colorBlockType === 'list') {
+        activeOuterDropZoneClassNames =
+            'tw-h-[60px] tw-py-0 tw-my-1 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content';
+    } else {
+        activeOuterDropZoneClassNames =
+            'tw-h-auto tw-py-0 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content';
+    }
 
     return (
         <div
