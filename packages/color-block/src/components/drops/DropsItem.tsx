@@ -18,7 +18,7 @@ import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 import { useState } from 'react';
 
-export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onConfirm, onDelete }: ItemProps) => {
+export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const { copy, status } = useCopy();
@@ -48,7 +48,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onConfirm, on
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker currentColor={color} onConfirm={onConfirm}>
+                <ColorsBlockColorPicker currentColor={color} onConfirm={onUpdate}>
                     <div
                         className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{

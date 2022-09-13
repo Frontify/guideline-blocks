@@ -20,7 +20,7 @@ import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 import { useState } from 'react';
 
-export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onConfirm, onDelete }: ItemProps) => {
+export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const { copy, status } = useCopy();
@@ -50,7 +50,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onConfirm, onD
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker currentColor={color} onConfirm={onConfirm}>
+                <ColorsBlockColorPicker currentColor={color} onConfirm={onUpdate}>
                     <div
                         className="tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                         style={{

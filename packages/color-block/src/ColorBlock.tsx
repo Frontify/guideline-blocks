@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ReactElement, useEffect, useState } from 'react';
-import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
+import { FrontifyColor, useBlockSettings, useColors, useEditorState } from '@frontify/app-bridge';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { ColorBlockProps, ColorBlockType, Settings } from './types';
@@ -41,7 +41,6 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     };
 
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(appBridge, appBridge.getBlockId());
-    // const { colorPalettes } = useColorPalettes(appBridge);
 
     const [colors, setColors] = useState<FrontifyColor[]>([]);
 
@@ -84,7 +83,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
 
             <div className={wrapperClasses[view]}>
                 <DndProvider backend={HTML5Backend}>
-                    {colors.map((color: any, index: number) => (
+                    {colors.map((color, index) => (
                         <DropZone
                             key={`orderable-list-item-${color.id}`}
                             index={index}
@@ -101,7 +100,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         colorSpaces={colorspaces}
                                         isEditing={isEditing}
                                         onBlur={(value) => updateColor(color.id, { name: value })}
-                                        onConfirm={(colorPatch) => updateColor(color.id, colorPatch)}
+                                        onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
                                 )}
@@ -111,7 +110,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         colorSpaces={colorspaces}
                                         isEditing={isEditing}
                                         onBlur={(value) => updateColor(color.id, { name: value })}
-                                        onConfirm={(colorPatch) => updateColor(color.id, colorPatch)}
+                                        onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
                                 )}
@@ -121,7 +120,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         colorSpaces={colorspaces}
                                         isEditing={isEditing}
                                         onBlur={(value) => updateColor(color.id, { name: value })}
-                                        onConfirm={(colorPatch) => updateColor(color.id, colorPatch)}
+                                        onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
                                 )}

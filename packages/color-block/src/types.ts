@@ -27,7 +27,7 @@ export type ItemProps = {
     colorSpaces: string[];
     isEditing: boolean;
     onBlur: (value: string) => void;
-    onConfirm: (colorPatch: FrontifyColorPatch) => void;
+    onUpdate: (colorPatch: FrontifyColorPatch) => void;
     onDelete: (colorId: number) => void;
 };
 
