@@ -367,8 +367,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         return false;
     };
 
-    useEffect(() => {
-        // This runs when colorPalettes gets populated.
+    const populateColorPickerPalettes = () => {
         const palettes: any[] = [];
 
         colorPalettes.forEach((palette) => {
@@ -384,14 +383,18 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             palettes.push({
                 id: palette.id,
                 title: palette.name,
-                source: '#' + palette.colors[0].hex,
+                source: "#" + palette.colors[0].hex,
                 colors: colors,
             });
         });
 
-        setColorPickerPalette(
-            palettes
-        );
+        setColorPickerPalette(palettes);
+    };
+
+    useEffect(() => {
+        // This runs when colorPalettes gets populated.
+
+        populateColorPickerPalettes();
     }, [colorPalettes]);
 
     useEffect(() => {
