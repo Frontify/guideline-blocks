@@ -103,6 +103,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                         height={isCustomHeight ? heightValue : heights[heightChoice]}
                         src={iframeUrl.toString()}
                         frameBorder="0"
+                        loading="lazy"
                         data-test-id="storybook-iframe"
                     />
                 </div>

@@ -40,7 +40,7 @@ const getLabelDecorationStylesMap = (
 const decorateLabelChildren = (children: string, style: CSSProperties) =>
     children.split('\n').map((child: string, index, ctx: string[]) => (
         <>
-            {child !== '' ? (
+            {child && (
                 <span
                     className="tw-inline-block tw-rounded-sm tw-px-[2px] tw-mx-[-2px]"
                     key={`${child}--${index}`}
@@ -48,8 +48,6 @@ const decorateLabelChildren = (children: string, style: CSSProperties) =>
                 >
                     {child}
                 </span>
-            ) : (
-                child
             )}
             {index !== ctx.length - 1 && '\n'}
         </>

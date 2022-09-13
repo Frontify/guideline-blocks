@@ -164,6 +164,7 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
                         src={iframeUrl.toString()}
                         frameBorder="0"
                         data-test-id="sketchfab-iframe"
+                        loading="lazy"
                     />
                 </div>
             )}

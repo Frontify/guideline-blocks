@@ -12,10 +12,11 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     doColor,
     dontColor,
     saveItem,
-    title = '',
+    //title = '',
     body = '',
     editing = false,
 }) => {
+    const title = '<p>TITLE</p>';
     const doColorString = toRgbaString(doColor);
     const dontColorString = toRgbaString(dontColor);
 
@@ -30,6 +31,7 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     };
 
     const isEmpty = (text: string): boolean => {
+        return false;
         if (text && text !== '') {
             return JSON.parse(text).every((element: EditorElement) => {
                 const elementsWithText = element.children.filter((child: EditorChild) => child.text !== '');
@@ -42,7 +44,6 @@ export const DoDontItem: FC<DoDontItemProps> = ({
     const shouldBlurIcon = useMemo(() => isEmpty(title), [title]);
 
     const { designTokens } = useGuidelineDesignTokens();
-
     return (
         <div>
             <div
