@@ -4,6 +4,7 @@ import { FrontifyColor } from '@frontify/app-bridge';
 
 type ColorSpace = {
     id: string;
+    key?: string;
     label?: string;
     value?: string;
     placeholder?: string;
@@ -56,6 +57,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_coated':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'pantoneCoated',
                 label: 'PMS-C',
                 value: (color && color.pantoneCoated) ?? '',
                 placeholder: 'p 000 00 c',
@@ -64,6 +66,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_uncoated':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'pantoneUncoated',
                 label: 'PMS-U',
                 value: (color && color.pantoneUncoated) ?? '',
                 placeholder: '00-0000',
@@ -72,6 +75,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_cp':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'pantoneCp',
                 label: 'PMS-CP',
                 value: (color && color.pantoneCp) ?? '',
                 placeholder: '0000 CP',
@@ -88,6 +92,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'pantone_textile':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'pantoneTextile',
                 label: 'PMS-TCX',
                 value: (color && color.pantoneTextile) ?? '',
                 placeholder: '00-000 TCX',
@@ -112,6 +117,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'cmyk_coated':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'cmykCoated',
                 label: 'CMYK-C',
                 value: (color && color.cmykCoated) ?? '',
                 placeholder: 'c/m/y/k c',
@@ -120,6 +126,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'cmyk_uncoated':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'cmykUncoated',
                 label: 'CMYK-U',
                 value: (color && color.cmykUncoated) ?? '',
                 placeholder: 'c/m/y/k u',
@@ -128,6 +135,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'cmyk_newspaper':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'cmykNewspaper',
                 label: 'CMYK-N',
                 value: (color && color.cmykNewspaper) ?? '',
                 placeholder: 'c/m/y/k n',
@@ -152,6 +160,7 @@ export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
         case 'three_m':
             mappedColorSpace = {
                 id: colorSpaceID,
+                key: 'threeM',
                 label: '3M',
                 value: (color && color.threeM) ?? '',
                 placeholder: '208',
