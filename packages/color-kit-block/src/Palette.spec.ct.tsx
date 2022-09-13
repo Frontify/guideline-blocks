@@ -1,30 +1,29 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { describe } from 'vitest';
 import { mount } from '@cypress/react';
-import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { FrontifyColorPaletteDummy } from '@frontify/app-bridge';
 
 import { Palette } from './Palette';
 
 const ColorKitPaletteSelector = '[data-test-id="palette"]';
-const ColorKitDownloadButtonSelector = '[data-test-id="download-button"]';
+const ColorKitColorSelector = '[data-test-id="color"]';
+
+const dummyPalette = FrontifyColorPaletteDummy.with(666, 'Palette Dummy');
 
 describe('Palette', () => {
-    it('should render', () => {
-        const [PaletteWithStubs] = withAppBridgeBlockStubs(Palette);
-        mount(<PaletteWithStubs />);
+    it('should render palette without color', () => {
+        mount(<Palette palette={{ ...dummyPalette, colors: [] }} />);
 
         cy.get(ColorKitPaletteSelector).should('exist');
+
+        cy.get(ColorKitColorSelector).should('not exist');
     });
 
-    it('should not render color', () => {
-        const [PaletteWithStubs] = withAppBridgeBlockStubs(Palette);
-        mount(<PaletteWithStubs />);
+    it('should render palette with colors', () => {
+        mount(<Palette palette={dummyPalette} />);
 
-        const downloadButton = cy.get(ColorKitDownloadButtonSelector);
-
-        cy.spy(downloadButton, 'click');
-
-        expect(downloadButton).to.be.called;
+        cy.get(ColorKitPaletteSelector).should('exist');
+        cy.get(ColorKitColorSelector).should('exist');
+        cy.get(ColorKitPaletteSelector).find(ColorKitColorSelector).should('have.length', 3);
     });
 });

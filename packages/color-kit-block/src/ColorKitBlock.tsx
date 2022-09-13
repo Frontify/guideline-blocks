@@ -13,8 +13,8 @@ import type { ColorKitBlockProps, Settings } from './types';
 export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { colorPalettes } = useColorPalettes(appBridge, blockSettings.colorPalettes);
-    const downloadColorPalettesLink = 'pera';
+    const { colorPalettes, getDownloadColorKitLink } = useColorPalettes(appBridge, blockSettings.colorPalettes);
+    const downloadColorKitLink = getDownloadColorKitLink(blockSettings.colorPalettes);
 
     return (
         <div
@@ -36,7 +36,7 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     target="_blank"
                     rel="noreferrer"
                     title="download color palettes"
-                    href={downloadColorPalettesLink}
+                    href={downloadColorKitLink}
                 >
                     <Button data-test-id="download-button" style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />}>
                         Download
