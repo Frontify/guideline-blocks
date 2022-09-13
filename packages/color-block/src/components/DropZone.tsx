@@ -95,13 +95,12 @@ export const DropZone = ({ index, onDrop, children, colorBlockType, moveCard, is
 
     drag(drop(ref));
 
-    let activeOuterDropZoneClassNames = '';
+    let activeOuterDropZoneClassNames =
+        'tw-py-0 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content ';
     if (colorBlockType === 'list') {
-        activeOuterDropZoneClassNames =
-            'tw-h-[60px] tw-py-0 tw-my-1 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content';
+        activeOuterDropZoneClassNames += 'tw-h-[60px] tw-my-1';
     } else {
-        activeOuterDropZoneClassNames =
-            'tw-h-auto tw-py-0 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content';
+        activeOuterDropZoneClassNames += 'tw-h-auto';
     }
 
     return (
