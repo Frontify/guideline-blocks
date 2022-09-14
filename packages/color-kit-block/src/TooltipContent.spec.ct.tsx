@@ -14,16 +14,17 @@ describe('TooltipContent', () => {
         mount(<TooltipContent color={dummyColorValue} />);
     });
 
-    it('renders color hash', () => {
+    it('renders color hex', () => {
         cy.get(ColorKitTooltipContentSelector).should('exist');
         cy.get(ColorKitTooltipContentSelector).should('have.text', `#${dummyColorValue}`);
     });
 
     it('triggers copy button', () => {
-        const copyButton = cy.get(ColorKitCopyButtonSelector);
-
-        const spy = cy.spy(copyButton, 'click');
-
-        expect(spy).to.be.called;
+        cy.get(ColorKitCopyButtonSelector)
+            .invoke('text')
+            .then((text) => {
+                cy.get(ColorKitCopyButtonSelector).click();
+                cy.get(ColorKitCopyButtonSelector).should('not.have.text', text);
+            });
     });
 });

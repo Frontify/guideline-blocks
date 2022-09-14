@@ -14,7 +14,7 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { colorPalettes, getDownloadColorKitLink } = useColorPalettes(appBridge, blockSettings.colorPalettes);
-    const downloadColorKitLink = getDownloadColorKitLink(blockSettings.colorPalettes);
+    const link = getDownloadColorKitLink(blockSettings.colorPalettes);
 
     return (
         <div
@@ -32,13 +32,14 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     <Badge>SCSS</Badge>
                 </div>
                 <a
+                    data-test-id="download-button"
                     download
                     target="_blank"
                     rel="noreferrer"
                     title="download color palettes"
-                    href={downloadColorKitLink}
+                    href={link}
                 >
-                    <Button data-test-id="download-button" style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />}>
+                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />}>
                         Download
                     </Button>
                 </a>
