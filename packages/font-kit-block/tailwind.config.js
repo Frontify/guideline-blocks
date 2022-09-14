@@ -9,6 +9,9 @@ module.exports = {
             gridTemplateColumns: {
                 font: '1fr 0.1fr',
             },
+            gridTemplateRows: {
+                font: '16px 1fr;',
+            },
             fontSize: {
                 desc: '1.375rem',
             },

@@ -5,7 +5,7 @@ import { FontProps } from './types';
 
 export const Font = ({ font, placeholder, withExampleText, withStyles }: FontProps) => {
     return (
-        <div data-test-id="font" className="tw-grid tw-grid-rows-2 tw-grid-cols-font tw-items-center">
+        <div data-test-id="font" className="tw-grid tw-grid-rows-font tw-grid-cols-font tw-items-center">
             <div className="tw-col-span-2">
                 <Text color="weak" size="medium">
                     {font.name}
