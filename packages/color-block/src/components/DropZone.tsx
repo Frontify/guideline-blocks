@@ -18,8 +18,8 @@ export const DropZone = ({ index, onDrop, children, colorBlockType, moveCard, is
 
     const [, drop] = useDrop({
         accept: 'test',
-        drop: (item: any) => {
-            onDrop?.(item);
+        drop: (item: { index: number }) => {
+            onDrop?.(item.index);
         },
         hover(item: { index: number }, monitor) {
             if (!ref.current) {
