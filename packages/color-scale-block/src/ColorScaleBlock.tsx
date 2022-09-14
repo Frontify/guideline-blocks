@@ -55,6 +55,9 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     //     ] as ColorProps[] | null,
     // });
 
+    console.log('BLOCK SETTINGS');
+    console.log(blockSettings);
+
     const emptyBlockColors: string[] = [
         "#D5D6D6",
         "#DFDFDF",
@@ -148,6 +151,10 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         let emptySquares = 0;
         let emptySquareWidth = 12;
 
+        if (!itemList) {
+            return;
+        }
+
         let itemsWithWidths: ColorProps[] = itemList?.map(
             (value: ColorProps) => {
                 if (
@@ -162,10 +169,15 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             }
         );
 
+        if (!itemsWithWidths) {
+            return;
+        }
+
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             const colorBlockWidth =
                 colorScaleBlockRef.current.getBoundingClientRect().width;
 
+            
             itemsWithWidths.map((value: ColorProps) => {
                 if (value && value.width) {
                     usedSpace += value.width;
@@ -193,8 +205,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             });
         }
 
-        if (emptySpace === 0) {
-            itemsWithWidths = itemsWithWidths.map((value: ColorProps) => {
+        if (emptySpace === 0 && itemsWithWidths) {
+            itemsWithWidths = itemsWithWidths?.map((value: ColorProps) => {
                 if (!value || (value && !value.width)) {
                     if (value) {
                         return {
@@ -218,7 +230,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const [displayableItems, setDisplayableItems] = useState(
         calculateWidths(
             isEditing || showCompleted
-                ? blockSettings["color-input"]
+                ? blockSettings["color-input"] || []
                 : filterCompleteItems(blockSettings["color-input"])
         )
     );
@@ -377,6 +389,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     }, [colorPalettes]);
 
     useEffect(() => {
+        console.log('useEffect')
         console.log(blockSettings);
         // This runs every time blockSettings are changed.
 
@@ -421,6 +434,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         setDisplayableItems(blockSettings["color-input"]);
                     }
                 } else {
+                    console.log('here----------')
                     // If the number of colors is less than the minimum amount defined in settings, add
                     // however many color squares are needed to match the minimum.
                     const colorsArray = blockSettings["color-input"] || [];
@@ -453,30 +467,33 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
     useEffect(() => {
         let foundNextEmptySquare = false;
-        displayableItems.map((item, index) => {
-            if (item && !item.color && foundNextEmptySquare === false) {
-                foundNextEmptySquare = true;
-                setNextEmptyColorIndex(index);
+
+        if (displayableItems) {
+            displayableItems.map((item, index) => {
+                if (item && !item.color && foundNextEmptySquare === false) {
+                    foundNextEmptySquare = true;
+                    setNextEmptyColorIndex(index);
+                }
+            });
+
+            if (!foundNextEmptySquare) {
+                setNextEmptyColorIndex(false);
             }
-        });
 
-        if (!foundNextEmptySquare) {
-            setNextEmptyColorIndex(false);
-        }
-
-        if (
-            !calculatedWidths &&
-            colorScaleBlockRef &&
-            colorScaleBlockRef.current
-        ) {
-            setCalculatedWidths(true);
-            setDisplayableItems(
-                calculateWidths(
-                    isEditing || showCompleted
-                        ? blockSettings["color-input"]
-                        : filterCompleteItems(blockSettings["color-input"])
-                )
-            );
+            if (
+                !calculatedWidths &&
+                colorScaleBlockRef &&
+                colorScaleBlockRef.current
+            ) {
+                setCalculatedWidths(true);
+                setDisplayableItems(
+                    calculateWidths(
+                        isEditing || showCompleted
+                            ? blockSettings["color-input"]
+                            : filterCompleteItems(blockSettings["color-input"])
+                    )
+                );
+            }
         }
 
         // TODO: Make it possible to close modals by clicking anywhere outside.
@@ -662,7 +679,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                 draggable={true}
             >
                 <DndProvider backend={HTML5Backend}>
-                    {displayableItems.map(
+                    {displayableItems && displayableItems.map(
                         (value: ColorProps, index: number) => {
                             let backgroundColorRgba;
 
@@ -771,6 +788,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                             style={ButtonStyle.Secondary}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}
+                            disabled={!displayableItems}
                         >
                             Resize Evenly
                         </Button>
