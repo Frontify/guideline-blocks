@@ -141,7 +141,7 @@ export const settings: BlockSettings = {
                 {
                     id: 'isHeightCustom',
                     type: 'switch',
-                    label: 'Block Height',
+                    label: 'Height',
                     switchLabel: 'Custom',
                     info: 'Determines the block height. This will not affect the dividing line in any way.',
                     defaultValue: false,
@@ -184,54 +184,46 @@ export const settings: BlockSettings = {
     ],
     style: [
         {
-            id: 'lineStyleSection',
-            type: 'sectionHeading',
-            label: 'Line',
-            show: lineIsSelected,
+            id: 'lineStyle',
+            type: 'multiInput',
+            label: 'Line Styling',
+            onChange: (bundle: Bundle): void => {
+                appendUnit(bundle, THICKNESS_ID);
+            },
+            layout: MultiInputLayout.Columns,
+            lastItemFullWidth: true,
             blocks: [
                 {
-                    id: 'lineStyle',
-                    type: 'multiInput',
-                    label: 'Styling',
-                    onChange: (bundle: Bundle): void => {
-                        appendUnit(bundle, THICKNESS_ID);
-                    },
-                    layout: MultiInputLayout.Columns,
-                    lastItemFullWidth: true,
-                    blocks: [
+                    id: 'style',
+                    type: 'dropdown',
+                    defaultValue: STYLE_DEFAULT_VALUE,
+                    choices: [
                         {
-                            id: 'style',
-                            type: 'dropdown',
-                            defaultValue: STYLE_DEFAULT_VALUE,
-                            choices: [
-                                {
-                                    value: DividerStyle.Solid,
-                                    label: 'Solid',
-                                },
-                                {
-                                    value: DividerStyle.Dotted,
-                                    label: 'Dots',
-                                },
-                                {
-                                    value: DividerStyle.Dashed,
-                                    label: 'Dashes',
-                                },
-                            ],
+                            value: DividerStyle.Solid,
+                            label: 'Solid',
                         },
                         {
-                            id: THICKNESS_ID,
-                            type: 'input',
-                            defaultValue: '1px',
-                            placeholder: 'e.g. 3px',
-                            clearable: false,
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                            value: DividerStyle.Dotted,
+                            label: 'Dots',
                         },
                         {
-                            id: 'color',
-                            type: 'colorInput',
-                            defaultValue: COLOR_DEFAULT_RGBA_VALUE,
+                            value: DividerStyle.Dashed,
+                            label: 'Dashes',
                         },
                     ],
+                },
+                {
+                    id: THICKNESS_ID,
+                    type: 'input',
+                    defaultValue: '1px',
+                    placeholder: 'e.g. 3px',
+                    clearable: false,
+                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                },
+                {
+                    id: 'color',
+                    type: 'colorInput',
+                    defaultValue: COLOR_DEFAULT_RGBA_VALUE,
                 },
             ],
         },
