@@ -22,6 +22,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     sort,
     index,
     width,
+    height,
     currentColor,
     backgroundColorRgba,
     totalNumOfBlocks,
@@ -87,7 +88,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     return (
         <div
             style={{
-                height: 115,
+                height: height,
                 width: `${width}px`,
                 left: `${calculateLeftPos(index, width)}px`,
                 display: "inline-block",
@@ -120,8 +121,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             />
             <div
                 style={{
-                    backgroundColor: `rgba(${backgroundColorRgba})`,
-                    height: 93,
+                    height: height,
                     borderTopLeftRadius: index === 0 ? "3px" : "0px",
                     borderBottomLeftRadius: index === 0 ? "3px" : "0px",
                     borderTopRightRadius:
@@ -139,7 +139,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     borderColor: "#efecec",
                 }}
                 ref={drag}
-                className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full hover:tw-border-black hover:tw-border"
+                className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-w-full hover:tw-border-black hover:tw-border"
             >
                 <Tooltip
                     alignment={TooltipAlignment.Middle}
@@ -174,7 +174,13 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     hoverDelay={200}
                     position={TooltipPosition.Bottom}
                     triggerElement={
-                        <div className="tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0">
+                        <div
+                            style={{
+                                backgroundColor: `rgba(${backgroundColorRgba})`,
+                                height: `${parseInt(height) - 4}px`
+                            }}
+                            className="tw-w-full tw-top-0 tw-left-0"
+                        >
                             <CustomizationOptionsModal
                                 id={id}
                                 colorOptionsRef={colorOptionsRef}

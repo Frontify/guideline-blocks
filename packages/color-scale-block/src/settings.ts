@@ -5,14 +5,14 @@ import { BlockSettings } from '@frontify/guideline-blocks-settings';
 export const settings: BlockSettings = {
     layout: [
         {
-            id: 'heightSwitchId',
+            id: 'customHeight',
             label: 'Height',
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
             off: [
                 {
-                    id: 'heightSliderId',
+                    id: 'heightSlider',
                     type: 'slider',
                     defaultValue: '96px',
                     choices: [
@@ -33,7 +33,7 @@ export const settings: BlockSettings = {
             ],
             on: [
                 {
-                    id: 'heightInputId',
+                    id: 'heightInput',
                     type: 'input',
                     defaultValue: '100px',
                     clearable: false,

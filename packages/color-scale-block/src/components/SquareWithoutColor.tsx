@@ -16,6 +16,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     placeholderColor,
     totalNumOfBlocks,
     width,
+    height,
     currentSquare,
     onResizeStart,
     calculateLeftPos,
@@ -50,7 +51,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     return (
         <div
             style={{
-                height: 115,
+                height: height,
                 width: `${width}px`,
                 left: `${calculateLeftPos(index, width)}px`,
             }}
@@ -74,7 +75,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
 
             <div
                 style={{
-                    height: 93,
+                    height: height,
                     borderTopLeftRadius: index === 0 ? "3px" : "0px",
                     borderBottomLeftRadius: index === 0 ? "3px" : "0px",
                     borderTopRightRadius:
@@ -92,7 +93,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                     borderColor: "#efecec",
                 }}
                 // className={`tw-rounded-md tw-group tw-flex tw-justify-center tw-items-center tw-bg-black-10 tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full`}
-                className={`tw-group tw-flex tw-justify-center tw-items-center tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full`}
+                className={`tw-group tw-flex tw-justify-center tw-items-center tw-top-2 tw-absolute tw-border tw-border-white tw-w-full`}
             >
                 {/* <DragHandle
                     id={id}
@@ -111,12 +112,11 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                     before
                 />
                 <div
+                    className="tw-w-full tw-h-full"
                     style={{
-                        height: "100%",
-                        width: "100%",
+  
                         backgroundColor: placeholderColor,
                     }}
-                    ref={drag}
                 >
                     <div
                         className={`${

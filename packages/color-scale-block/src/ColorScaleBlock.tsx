@@ -44,19 +44,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const [colorPickerPalette, setColorPickerPalette]: any = useState([]);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
-    // const [blockSettings, setBlockSettings] = useState({
-    //     "color-input": [
-    //         {
-    //             id: uuid(),
-    //             sort: 1,
-    //             color: { red: 0, green: 0, blue: 0, alpha: 1 },
-    //             alt: "Click to drag",
-    //         },
-    //     ] as ColorProps[] | null,
-    // });
-
-    console.log('BLOCK SETTINGS');
-    console.log(blockSettings);
+    const [colorScaleHeight, setColorScaleHeight] = useState(blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']);
 
     const emptyBlockColors: string[] = [
         "#D5D6D6",
@@ -134,6 +122,10 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     };
 
     const resizeEvenly = () => {
+        if (!displayableItems) {
+            return;
+        }
+
         const defaultWidth = calculateDefaultColorWidth(
             displayableItems.length
         );
@@ -142,6 +134,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             return { ...item, width: defaultWidth };
         });
 
+        setBlockSettings({ ...blockSettings, "color-input": newDisplayableItems });
         setDisplayableItems(newDisplayableItems);
     };
 
@@ -260,7 +253,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
         let updatedColors = [...displayableItems];
         if (!appearAfter) {
-            updatedColors = displayableItems.map((color, diindex) => {
+            updatedColors = displayableItems?.map((color, diindex) => {
                 if (index === diindex) {
                     return { ...newColor, width: color.width };
                 }
@@ -309,7 +302,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const calculateLeftPos = (index: number, width?: number) => {
         let leftPos = 0;
         const defaultWidth = width ? width : colorWidth;
-        displayableItems.map((value: ColorProps, loopIndex: number) => {
+        displayableItems?.map((value: ColorProps, loopIndex: number) => {
             if (loopIndex < index) {
                 leftPos += value && value.width ? value.width : defaultWidth;
             }
@@ -323,7 +316,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             colorScaleBlockRef.current.getBoundingClientRect().width;
         let usedSpace = 0;
 
-        displayableItems.map((value: ColorProps) => {
+        displayableItems?.map((value: ColorProps) => {
             let width;
             if (value && value.width) {
                 width = value.width;
@@ -389,8 +382,16 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     }, [colorPalettes]);
 
     useEffect(() => {
-        console.log('useEffect')
+        console.log('sup');
         console.log(blockSettings);
+
+        const currentHeight = blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider'];
+
+        if (colorScaleHeight !== currentHeight) { 
+            setColorScaleHeight(currentHeight);
+        }
+        console.log(blockSettings);
+
         // This runs every time blockSettings are changed.
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
@@ -434,7 +435,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         setDisplayableItems(blockSettings["color-input"]);
                     }
                 } else {
-                    console.log('here----------')
                     // If the number of colors is less than the minimum amount defined in settings, add
                     // however many color squares are needed to match the minimum.
                     const colorsArray = blockSettings["color-input"] || [];
@@ -539,8 +539,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     const movementSinceStart =
                         dragStartPos.current - evt.clientX;
 
-                    const colorsBeforeCurrent = displayableItems
-                        .filter((diValue, diIndex) => {
+                    const colorsBeforeCurrent = displayableItems?.filter((diValue, diIndex) => {
                             if (diIndex < id) {
                                 return true;
                             }
@@ -548,7 +547,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         })
                         .reverse();
 
-                    const newDisplayableItems = displayableItems.map(
+                    const newDisplayableItems = displayableItems?.map(
                         (diValue, diIndex) => {
                             if (diValue && diIndex === id) {
                                 if (diValue.width && diValue.width >= 16) {
@@ -567,7 +566,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                     }
                                 } else {
                                     let needToShrinkColor = true;
-                                    colorsBeforeCurrent.map((adjacentColor) => {
+                                    colorsBeforeCurrent?.map((adjacentColor) => {
                                         if (needToShrinkColor) {
                                             if (adjacentColor) {
                                                 if (
@@ -593,6 +592,10 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
                     if (valuesChanged) {
                         setDisplayableItems(newDisplayableItems);
+                        setBlockSettings({
+                            ...blockSettings,
+                            "color-input": newDisplayableItems,
+                        });
                     }
                 }
             }
@@ -650,6 +653,10 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     );
                     if (valuesChanged) {
                         setDisplayableItems(newDisplayableItems);
+                        setBlockSettings({
+                            ...blockSettings,
+                            "color-input": newDisplayableItems,
+                        });
                     }
                 }
             }
@@ -663,9 +670,9 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             <div
                 data-test-id="color-scale-block"
                 style={{
-                    height: 115,
+                    height: colorScaleHeight,
                 }}
-                className={`color-scale-block tw-rounded-md tw-overflow-visible tw-pb-5 tw-pb-8 tw-mb-4 ${
+                className={`color-scale-block tw-rounded-md tw-overflow-visible tw-mb-4 ${
                     isEditing ? "editing" : ""
                 } tw-w-full tw-flex`}
                 ref={colorScaleBlockRef}
@@ -706,6 +713,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                                 sort={value.sort}
                                                 index={index}
                                                 width={width}
+                                                height={colorScaleHeight}
                                                 currentColor={value}
                                                 backgroundColorRgba={
                                                     backgroundColorRgba
@@ -751,6 +759,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                                 displayableItems.length
                                             }
                                             width={width}
+                                            height={colorScaleHeight}
                                             currentSquare={value}
                                             onResizeStart={onResizeStart}
                                             hilite={hilite}
