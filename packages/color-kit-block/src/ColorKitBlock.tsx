@@ -15,6 +15,7 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
 
     const { colorPalettes, getDownloadColorKitLink } = useColorPalettes(appBridge, blockSettings.colorPalettes);
     const link = getDownloadColorKitLink(blockSettings.colorPalettes);
+    const isDownloadDisabled = blockSettings.colorPalettes.length === 0;
 
     return (
         <div
@@ -32,14 +33,15 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     <Badge>SCSS</Badge>
                 </div>
                 <a
-                    data-test-id="download-button"
                     download
+                    href={link}
                     target="_blank"
                     rel="noreferrer"
+                    data-test-id="download-button"
                     title="download color palettes"
-                    href={link}
+                    style={{ pointerEvents: isDownloadDisabled ? 'none' : 'initial' }}
                 >
-                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />}>
+                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />} disabled={isDownloadDisabled}>
                         Download
                     </Button>
                 </a>
