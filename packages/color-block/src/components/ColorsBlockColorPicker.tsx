@@ -1,9 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC, useState } from 'react';
-
 import { Color, ColorFormat, ColorPicker, Flyout } from '@frontify/fondue';
-
 import { ColorsBlockColorPickerProps } from '../types';
 
 export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ currentColor, onConfirm, children }) => {

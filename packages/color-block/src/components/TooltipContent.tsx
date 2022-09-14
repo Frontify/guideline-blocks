@@ -1,10 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
-
 import { TooltipContentProps } from '../types';
 
-export const TooltipContent: FC<TooltipContentProps> = ({ color, status }) => {
+export const TooltipContent = ({ color, status }: TooltipContentProps) => {
     return (
         <>
             <span className="tw-block">Color Name</span>
