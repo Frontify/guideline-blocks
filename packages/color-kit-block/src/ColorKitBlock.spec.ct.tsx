@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount, mountHook } from '@cypress/react';
-import { useColorPalettes, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { mount } from '@cypress/react';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 
 import { ColorKitBlock } from './ColorKitBlock';
 
@@ -10,20 +10,15 @@ const ColorKitDownloadButtonSelector = '[data-test-id="download-button"]';
 
 describe('Color Kit block', () => {
     beforeEach(() => {
-        const [ColorKitBlockWithStubs, appBridge] = withAppBridgeBlockStubs(ColorKitBlock);
-        mountHook(() => useColorPalettes(appBridge));
+        const [ColorKitBlockWithStubs] = withAppBridgeBlockStubs(ColorKitBlock);
         mount(<ColorKitBlockWithStubs />);
     });
 
-    it('should render', () => {
+    it('renders', () => {
         cy.get(ColorKitBlockSelector).should('exist');
     });
 
-    it('triggers download button', () => {
-        const downloadButton = cy.get(ColorKitDownloadButtonSelector);
-
-        const spy = cy.spy(downloadButton, 'click');
-
-        expect(spy).to.be.called;
+    it('can click on and download palettes as zip', () => {
+        cy.get(ColorKitDownloadButtonSelector).should('have.attr', 'href').and('include', 'zip');
     });
 });
