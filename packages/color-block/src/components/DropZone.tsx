@@ -21,11 +21,6 @@ export const DropZone = ({ index, onDrop, children, colorBlockType, moveCard, is
         drop: (item: any) => {
             onDrop?.(item);
         },
-        collect(monitor) {
-            return {
-                handlerId: monitor.getHandlerId(),
-            };
-        },
         hover(item: { index: number }, monitor) {
             if (!ref.current) {
                 return;
@@ -95,13 +90,10 @@ export const DropZone = ({ index, onDrop, children, colorBlockType, moveCard, is
 
     drag(drop(ref));
 
-    let activeOuterDropZoneClassNames =
-        'tw-py-0 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content ';
-    if (colorBlockType === 'list') {
-        activeOuterDropZoneClassNames += 'tw-h-[60px] tw-my-1';
-    } else {
-        activeOuterDropZoneClassNames += 'tw-h-auto';
-    }
+    const activeOuterDropZoneClassNames = merge([
+        'tw-py-0 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content',
+        colorBlockType === 'list' ? 'tw-h-[60px] tw-my-1 last:tw-border-b last:tw-border-black/[.1]' : 'tw-h-auto',
+    ]);
 
     return (
         <div

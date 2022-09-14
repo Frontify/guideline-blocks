@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ReactElement, useEffect, useState } from 'react';
-import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
+import { FrontifyColor, useBlockSettings, useColors, useEditorState } from '@frontify/app-bridge';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
-import { ColorBlockProps, ColorBlockType, Settings } from './types';
+import { ColorBlockProps, ColorBlockType, ColorSpaceInputValues, Settings } from './types';
 
 import { RichTextEditor } from '@frontify/fondue';
 import { DndProvider } from 'react-dnd';
@@ -20,6 +20,12 @@ import { DropZone } from './components/DropZone';
 
 import update from 'immutability-helper';
 
+const wrapperClasses: Record<ColorBlockType, string> = {
+    [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
+    [ColorBlockType.Drops]: 'tw-grid tw-gap-4 tw-grid-cols-6',
+    [ColorBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
+};
+
 export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
@@ -27,26 +33,16 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
 
     const { view = ColorBlockType.Cards, colorspaces = ['hex, rgb'], name = '', description = '' } = blockSettings;
 
-    const onNameChange = (value: string) => setBlockSettings({ name: value });
-    const onDescriptionChange = (value: string) => setBlockSettings({ description: value });
+    const handleNameChange = (value: string) => setBlockSettings({ name: value });
+    const handleDescriptionChange = (value: string) => setBlockSettings({ description: value });
 
     const handleDrop = (colorId: number, index: number) => {
         updateColor(colorId, { sort: index + 1 });
     };
 
-    const wrapperClasses: Record<ColorBlockType, string> = {
-        [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
-        [ColorBlockType.Drops]: 'tw-grid tw-gap-4 tw-grid-cols-6',
-        [ColorBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
-    };
-
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(appBridge, appBridge.getBlockId());
 
     const [colors, setColors] = useState<FrontifyColor[]>([]);
-
-    const { colorPalettes } = useColorPalettes(appBridge);
-
-    console.log(colorPalettes);
 
     useEffect(() => {
         setColors(colorsByPaletteId);
@@ -70,7 +66,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                     designTokens={designTokens ?? undefined}
                     placeholder={isEditing ? 'Color palette name' : ''}
                     value={name}
-                    onTextChange={onNameChange}
+                    onTextChange={handleNameChange}
                     readonly={!isEditing}
                 />
             </div>
@@ -80,7 +76,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                     designTokens={designTokens ?? undefined}
                     placeholder={isEditing ? 'Describe this color palette here' : ''}
                     value={description}
-                    onTextChange={onDescriptionChange}
+                    onTextChange={handleDescriptionChange}
                     readonly={!isEditing}
                 />
             </div>
@@ -101,7 +97,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                 {view === ColorBlockType.List && (
                                     <ListItem
                                         color={color}
-                                        colorSpaces={colorspaces}
+                                        colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
                                         onBlur={(value) => updateColor(color.id, { name: value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
@@ -111,7 +107,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                 {view === ColorBlockType.Drops && (
                                     <DropsItem
                                         color={color}
-                                        colorSpaces={colorspaces}
+                                        colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
                                         onBlur={(value) => updateColor(color.id, { name: value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
@@ -121,7 +117,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                 {view === ColorBlockType.Cards && (
                                     <CardsItem
                                         color={color}
-                                        colorSpaces={colorspaces}
+                                        colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
                                         onBlur={(value) => updateColor(color.id, { name: value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
@@ -137,15 +133,14 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                     <>
                         {view === ColorBlockType.List && (
                             <ListItemAdd
-                                colorSpaces={colorspaces}
-                                isEditing={isEditing}
+                                colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
                                 onConfirm={(color) => {
                                     createColor({
                                         colorPaletteId: appBridge.getBlockId(),
-                                        red: color.r,
-                                        green: color.g,
-                                        blue: color.b,
-                                        alpha: (color.a && color.a * 100) || 1,
+                                        red: color.red,
+                                        green: color.green,
+                                        blue: color.blue,
+                                        alpha: (color.alpha && Math.round(color.alpha * 255)) || 255,
                                     });
                                 }}
                             />
@@ -153,33 +148,31 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
 
                         {view === ColorBlockType.Drops && (
                             <DropsItemAdd
-                                colorSpaces={colorspaces}
-                                isEditing={isEditing}
-                                onConfirm={(color) =>
+                                colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
+                                onConfirm={(color) => {
                                     createColor({
                                         colorPaletteId: appBridge.getBlockId(),
-                                        red: color.r,
-                                        green: color.g,
-                                        blue: color.b,
-                                        alpha: (color.a && color.a * 100) || 1,
-                                    })
-                                }
+                                        red: color.red,
+                                        green: color.green,
+                                        blue: color.blue,
+                                        alpha: (color.alpha && Math.round(color.alpha * 255)) || 255,
+                                    });
+                                }}
                             />
                         )}
 
                         {view === ColorBlockType.Cards && (
                             <CardsItemAdd
-                                colorSpaces={colorspaces}
-                                isEditing={isEditing}
-                                onConfirm={(color) =>
+                                colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
+                                onConfirm={(color) => {
                                     createColor({
                                         colorPaletteId: appBridge.getBlockId(),
-                                        red: color.r,
-                                        green: color.g,
-                                        blue: color.b,
-                                        alpha: (color.a && color.a * 100) || 1,
-                                    })
-                                }
+                                        red: color.red,
+                                        green: color.green,
+                                        blue: color.blue,
+                                        alpha: (color.alpha && Math.round(color.alpha * 255)) || 255,
+                                    });
+                                }}
                             />
                         )}
                     </>

@@ -53,15 +53,15 @@ export const settings: BlockSettings = {
                     },
                 },
                 {
-                    id: 'cmyk_coated',
+                    id: 'cmykCoated',
                     label: 'CMYK Coated',
                 },
                 {
-                    id: 'cmyk_uncoated',
+                    id: 'cmykUncoated',
                     label: 'CMYK Uncoated',
                 },
                 {
-                    id: 'cmyk_newspaper',
+                    id: 'cmykNewspaper',
                     label: 'CMYK Newspaper',
                 },
                 {
@@ -69,23 +69,23 @@ export const settings: BlockSettings = {
                     label: 'Pantone',
                 },
                 {
-                    id: 'pantone_coated',
+                    id: 'pantoneCoated',
                     label: 'Pantone Coated',
                 },
                 {
-                    id: 'pantone_uncoated',
+                    id: 'pantoneUncoated',
                     label: 'Pantone Uncoated',
                 },
                 {
-                    id: 'pantone_cp',
+                    id: 'pantoneCp',
                     label: 'Pantone CP',
                 },
                 {
-                    id: 'pantone_textile',
+                    id: 'pantoneTextile',
                     label: 'Pantone Textile',
                 },
                 {
-                    id: 'pantone_plastics',
+                    id: 'pantonePlastics',
                     label: 'Pantone Plastics',
                 },
                 {
@@ -111,7 +111,7 @@ export const settings: BlockSettings = {
                     label: 'HKS',
                 },
                 {
-                    id: 'three_m',
+                    id: 'threeM',
                     label: '3M',
                 },
                 {
@@ -132,7 +132,7 @@ export const settings: BlockSettings = {
             show: (bundle: Bundle) => {
                 const colorSpacesValue = bundle.getBlock('colorspaces')?.value;
 
-                return !colorSpacesValue || (colorSpacesValue as string[]).length === 0;
+                return !colorSpacesValue || colorSpacesValue?.length === 0;
             },
         },
     ],

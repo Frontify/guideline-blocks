@@ -10,14 +10,6 @@ module.exports = {
             'line-strong': '0 0 0 var(--line-width) var(--line-color-strong)',
         },
         extend: {
-            width: {
-                'list-color-types': 'calc(100% - 306px)',
-            },
-            colors: {
-                gray: {
-                    'add-button': '#F1F1F1',
-                },
-            },
             boxShadow: {
                 line: '0 0 0 1px var(--line-color)',
                 'inner-line': 'inset 0 0 0 var(--line-width) var(--line-color)',

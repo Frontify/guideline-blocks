@@ -5,6 +5,7 @@ import {
     BadgeEmphasis,
     Button,
     ButtonStyle,
+    Color,
     IconSize,
     IconTrashBin,
     RichTextEditor,
@@ -25,32 +26,29 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
 
     const { copy, status } = useCopy();
 
-    const [colorName, setColorName] = useState<string>(color.name ?? '');
-
+    const [colorName, setColorName] = useState<string>(color.name || '');
     const handleColorNameChange = (value: string) => setColorName(value);
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
     const [colorSpaceInputValues, setColorSpaceInputValues] = useState<ColorSpaceInputValues>({
-        cmyk_coated: color.cmykCoated,
-        cmyk_newspaper: color.cmykNewspaper,
-        cmyk_uncoated: color.cmykUncoated,
-        hks: color.hks,
-        lab: color.lab,
-        ncs: color.ncs,
-        oracal: color.oracal,
-        pantone_coated: color.pantoneCoated,
-        pantone_cp: color.pantoneCp,
-        pantone_plastics: color.pantonePlastics,
-        pantone_textile: color.pantoneTextile,
-        pantone_uncoated: color.pantoneUncoated,
-        pantone: color.pantone,
-        ral: color.ral,
-        three_m: color.threeM,
-        variable: color.nameCss,
+        cmykCoated: color.cmykCoated ?? '',
+        cmykNewspaper: color.cmykNewspaper ?? '',
+        cmykUncoated: color.cmykUncoated ?? '',
+        hks: color.hks ?? '',
+        lab: color.lab ?? '',
+        ncs: color.ncs ?? '',
+        oracal: color.oracal ?? '',
+        pantoneCoated: color.pantoneCoated ?? '',
+        pantoneCp: color.pantoneCp ?? '',
+        pantonePlastics: color.pantonePlastics ?? '',
+        pantoneTextile: color.pantoneTextile ?? '',
+        pantoneUncoated: color.pantoneUncoated ?? '',
+        pantone: color.pantone ?? '',
+        ral: color.ral ?? '',
+        threeM: color.threeM ?? '',
+        variable: color.nameCss ?? '',
     });
-
-    console.log('colorSpaceInputValues', colorSpaceInputValues);
 
     const handleColorSpaceValueChange = (event: FormEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
@@ -59,7 +57,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
     };
 
     return (
-        <div className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all last:tw-border-b last:tw-border-black/[.1] hover:tw-shadow-t-inner-line-strong">
+        <div className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all hover:tw-shadow-t-inner-line-strong">
             {!isEditing ? (
                 <Tooltip
                     withArrow
@@ -71,17 +69,24 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                             className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-mr-9 tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                             style={{
                                 backgroundColor: `#${color.hex}`,
+                                opacity: (color.alpha && color.alpha / 255) || 1,
                             }}
                             onClick={() => copy(mappedFirstColorSpace.value ?? '')}
-                        ></div>
+                        />
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker currentColor={color} onConfirm={onUpdate}>
+                <ColorsBlockColorPicker
+                    currentColor={color as Color}
+                    onConfirm={(color) => {
+                        onUpdate({ ...color, alpha: (color.alpha && Math.round(color.alpha * 255)) || 255 });
+                    }}
+                >
                     <div
                         className="tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                         style={{
                             backgroundColor: `#${color.hex}`,
+                            opacity: (color.alpha && color.alpha / 255) || 1,
                         }}
                     ></div>
                 </ColorsBlockColorPicker>
@@ -89,7 +94,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
 
             <div className="tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-text-m tw-text-black tw-font-bold">
                 <RichTextEditor
-                    value={colorName}
+                    value={colorName ?? ''}
                     onTextChange={handleColorNameChange}
                     designTokens={designTokens ?? undefined}
                     readonly={!isEditing}
@@ -97,11 +102,10 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 />
             </div>
 
-            <div className="tw-flex tw-items-center tw-flex-wrap tw-gap-y-2.5 tw-w-list-color-types tw-py-5">
-                {colorSpaces?.map((colorSpaceId: string) => {
+            <div className="tw-flex tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-w-[calc(100% - 306px)] tw-py-5">
+                {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
-                    console.log(mappedColorSpace);
                     return (
                         <div key={colorSpaceId} className="tw-flex tw-items-center tw-w-1/3">
                             <div>
@@ -127,9 +131,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                 />
                             ) : (
                                 <div className="tw-ml-3 ">
-                                    {mappedColorSpace.label === 'HEX' ||
-                                    mappedColorSpace.label === 'RGB' ||
-                                    mappedColorSpace.label === 'CMYK' ? (
+                                    {['CMYK', 'HEX', 'RGB'].includes(mappedColorSpace.label) ? (
                                         <div className="tw-text-s tw-text-black-80">
                                             {mappedColorSpace.value || mappedColorSpace.placeholder}
                                         </div>
@@ -138,9 +140,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                             name={colorSpaceId}
                                             className="tw-w-full tw-h-5 tw-outline-none"
                                             type="text"
-                                            value={
-                                                colorSpaceInputValues[colorSpaceId as keyof ColorSpaceInputValues] || ''
-                                            }
+                                            value={colorSpaceInputValues[colorSpaceId]}
                                             onChange={handleColorSpaceValueChange}
                                             placeholder={mappedColorSpace.placeholder}
                                             onBlur={(event) =>
@@ -166,9 +166,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                         <Button
                             icon={<IconTrashBin size={IconSize.Size20} />}
                             style={ButtonStyle.Secondary}
-                            onClick={() => {
-                                onDelete(color.id);
-                            }}
+                            onClick={() => onDelete(color.id)}
                         />
                     </div>
                 )}

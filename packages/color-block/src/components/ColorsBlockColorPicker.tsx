@@ -10,7 +10,12 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
     const [open, setOpen] = useState(false);
     const [currentFormat, setCurrentFormat] = useState(ColorFormat.Hex);
     const [selectedColor, setSelectedColor] = useState<Color>(
-        currentColor ?? { red: 255, green: 255, blue: 255, alpha: 1 }
+        currentColor?.alpha
+            ? {
+                  ...currentColor,
+                  alpha: currentColor.alpha && parseFloat((currentColor.alpha / 255).toFixed(2)),
+              }
+            : { red: 255, green: 255, blue: 255, alpha: 1 }
     );
 
     const handleOpenChange = (isOpen: boolean) => {
@@ -39,9 +44,7 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
                     currentFormat={currentFormat}
                     setFormat={setCurrentFormat}
                     showPreview={false}
-                    onSelect={(color) => {
-                        setSelectedColor(color);
-                    }}
+                    onSelect={setSelectedColor}
                 />
             </Flyout>
         </div>

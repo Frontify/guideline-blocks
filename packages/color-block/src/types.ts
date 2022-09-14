@@ -24,34 +24,33 @@ export enum ColorBlockType {
 
 export type ItemProps = {
     color: FrontifyColor;
-    colorSpaces: string[];
+    colorSpaces: (keyof ColorSpaceInputValues)[];
     isEditing: boolean;
-    onBlur: (value: string) => void;
+    onBlur: (event: string) => void;
     onUpdate: (colorPatch: FrontifyColorPatch) => void;
     onDelete: (colorId: number) => void;
 };
 
 export type ItemAddProps = {
-    colorSpaces: string[];
-    isEditing: boolean;
-    onConfirm: (colorPatch: FrontifyColorPatch) => void;
+    colorSpaces: (keyof ColorSpaceInputValues)[];
+    onConfirm: (colorPatch: Color) => void;
 };
 
 export type ColorBlockDropsViewProps = {
     colors: string[];
-    colorSpaces: string[];
+    colorSpaces: (keyof ColorSpaceInputValues)[];
     isEditing: boolean;
 };
 
 export type ColorBlockCardsViewProps = {
     colors: string[];
-    colorSpaces: string[];
+    colorSpaces: (keyof ColorSpaceInputValues)[];
     isEditing: boolean;
 };
 
 export type ColorsBlockColorPickerProps = {
-    currentColor?: Color;
-    onConfirm: (colorPatch: FrontifyColorPatch) => void;
+    currentColor?: Nullable<Color>;
+    onConfirm: (colorPatch: Color) => void;
     children: ReactNode;
 };
 
@@ -61,20 +60,23 @@ export type TooltipContentProps = {
 };
 
 export type ColorSpaceInputValues = {
-    cmyk_coated: Nullable<string>;
-    cmyk_newspaper: Nullable<string>;
-    cmyk_uncoated: Nullable<string>;
-    hks: Nullable<string>;
-    lab: Nullable<string>;
-    ncs: Nullable<string>;
-    oracal: Nullable<string>;
-    pantone_coated: Nullable<string>;
-    pantone_cp: Nullable<string>;
-    pantone_plastics: Nullable<string>;
-    pantone_textile: Nullable<string>;
-    pantone_uncoated: Nullable<string>;
-    pantone: Nullable<string>;
-    ral: Nullable<string>;
-    three_m: Nullable<string>;
-    variable: Nullable<string>;
+    hex?: string;
+    rgb?: string;
+    cmyk?: string;
+    cmykCoated: string;
+    cmykNewspaper: string;
+    cmykUncoated: string;
+    hks: string;
+    lab: string;
+    ncs: string;
+    oracal: string;
+    pantoneCoated: string;
+    pantoneCp: string;
+    pantonePlastics: string;
+    pantoneTextile: string;
+    pantoneUncoated: string;
+    pantone: string;
+    ral: string;
+    threeM: string;
+    variable: string;
 };

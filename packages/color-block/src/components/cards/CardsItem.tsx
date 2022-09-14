@@ -3,6 +3,7 @@
 import {
     Button,
     ButtonStyle,
+    Color,
     IconSize,
     IconTrashBin,
     RichTextEditor,
@@ -30,22 +31,22 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
     const [colorSpaceInputValues, setColorSpaceInputValues] = useState<ColorSpaceInputValues>({
-        cmyk_coated: color.cmykCoated,
-        cmyk_newspaper: color.cmykNewspaper,
-        cmyk_uncoated: color.cmykUncoated,
-        hks: color.hks,
-        lab: color.lab,
-        ncs: color.ncs,
-        oracal: color.oracal,
-        pantone_coated: color.pantoneCoated,
-        pantone_cp: color.pantoneCp,
-        pantone_plastics: color.pantonePlastics,
-        pantone_textile: color.pantoneTextile,
-        pantone_uncoated: color.pantoneUncoated,
-        pantone: color.pantone,
-        ral: color.ral,
-        three_m: color.threeM,
-        variable: color.nameCss,
+        cmykCoated: color.cmykCoated ?? '',
+        cmykNewspaper: color.cmykNewspaper ?? '',
+        cmykUncoated: color.cmykUncoated ?? '',
+        hks: color.hks ?? '',
+        lab: color.lab ?? '',
+        ncs: color.ncs ?? '',
+        oracal: color.oracal ?? '',
+        pantoneCoated: color.pantoneCoated ?? '',
+        pantoneCp: color.pantoneCp ?? '',
+        pantonePlastics: color.pantonePlastics ?? '',
+        pantoneTextile: color.pantoneTextile ?? '',
+        pantoneUncoated: color.pantoneUncoated ?? '',
+        pantone: color.pantone ?? '',
+        ral: color.ral ?? '',
+        threeM: color.threeM ?? '',
+        variable: color.nameCss ?? '',
     });
 
     const handleColorSpaceValueChange = (event: FormEvent<HTMLInputElement>) => {
@@ -66,18 +67,27 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         <div
                             className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
-                                backgroundColor: `#${color.hex}`,
+                                backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
+                                    (color.alpha && color.alpha / 255) || 1
+                                })`,
                             }}
                             onClick={() => copy(mappedFirstColorSpace.value ?? '')}
-                        ></div>
+                        />
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker currentColor={color} onConfirm={onUpdate}>
+                <ColorsBlockColorPicker
+                    currentColor={color as Color}
+                    onConfirm={(color) => {
+                        onUpdate({ ...color, alpha: (color.alpha && Math.round(color.alpha * 255)) || 255 });
+                    }}
+                >
                     <div
                         className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{
-                            backgroundColor: `#${color.hex}`,
+                            backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
+                                (color.alpha && color.alpha / 255) || 1
+                            })`,
                         }}
                     >
                         <div
@@ -89,9 +99,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                             <Button
                                 icon={<IconTrashBin size={IconSize.Size20} />}
                                 style={ButtonStyle.Secondary}
-                                onClick={() => {
-                                    onDelete(color.id);
-                                }}
+                                onClick={() => onDelete(color.id)}
                             />
                         </div>
                     </div>
@@ -109,7 +117,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     />
                 </div>
 
-                {colorSpaces?.map((colorSpaceId: string) => {
+                {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
                     return (
@@ -136,9 +144,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                     />
                                 ) : (
                                     <>
-                                        {mappedColorSpace.label === 'HEX' ||
-                                        mappedColorSpace.label === 'RGB' ||
-                                        mappedColorSpace.label === 'CMYK' ? (
+                                        {['CMYK', 'HEX', 'RGB'].includes(mappedColorSpace.label) ? (
                                             <div className="tw-text-s tw-text-black-80">
                                                 {mappedColorSpace.value || mappedColorSpace.placeholder}
                                             </div>
@@ -147,11 +153,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                                 name={colorSpaceId}
                                                 className="tw-w-full tw-h-4 tw-outline-none"
                                                 type="text"
-                                                value={
-                                                    colorSpaceInputValues[
-                                                        colorSpaceId as keyof ColorSpaceInputValues
-                                                    ] || ''
-                                                }
+                                                value={colorSpaceInputValues[colorSpaceId]}
                                                 onChange={handleColorSpaceValueChange}
                                                 placeholder={mappedColorSpace.placeholder}
                                                 onBlur={(event) =>

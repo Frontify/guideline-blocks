@@ -1,189 +1,167 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FrontifyColor } from '@frontify/app-bridge';
+import { ColorSpaceInputValues } from '../types';
 
 type ColorSpace = {
     id: string;
     key?: string;
-    label?: string;
+    label: string;
     value?: string;
     placeholder?: string;
 };
 
-export const mapColorSpaces = (colorSpaceID: string, color?: FrontifyColor) => {
-    let mappedColorSpace: ColorSpace = { id: colorSpaceID };
-
-    switch (colorSpaceID) {
+export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?: FrontifyColor): ColorSpace => {
+    switch (colorSpaceId) {
         case 'hex':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'HEX',
-                value: color && `#${color.hex}`,
+                value: `#${color?.hex}`,
                 placeholder: '#hexhex',
             };
-            break;
         case 'rgb':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'RGB',
-                value: color && `${color.red}/${color.green}/${color.blue}`,
+                value: `${color?.red}/${color?.green}/${color?.blue}`,
                 placeholder: 'r/g/b',
             };
-            break;
         case 'variable':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 key: 'nameCss',
                 label: 'LESS',
-                value: color && `$${color.nameCss}`,
+                value: `$${color?.nameCss}`,
                 placeholder: 'h,s,l',
             };
-            break;
         case 'ral':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'RAL',
-                value: (color && color.ral) ?? '',
+                value: color?.ral ?? '',
                 placeholder: 'r,a,l',
             };
-            break;
         case 'pantone':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'PMS',
-                value: (color && color.pantone) ?? '',
+                value: color?.pantone ?? '',
                 placeholder: 'color 0000 p',
             };
-            break;
-        case 'pantone_coated':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'pantoneCoated':
+            return {
+                id: colorSpaceId,
                 key: 'pantoneCoated',
                 label: 'PMS-C',
-                value: (color && color.pantoneCoated) ?? '',
+                value: color?.pantoneCoated ?? '',
                 placeholder: 'p 000 00 c',
             };
-            break;
-        case 'pantone_uncoated':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'pantoneUncoated':
+            return {
+                id: colorSpaceId,
                 key: 'pantoneUncoated',
                 label: 'PMS-U',
-                value: (color && color.pantoneUncoated) ?? '',
+                value: color?.pantoneUncoated ?? '',
                 placeholder: '00-0000',
             };
-            break;
-        case 'pantone_cp':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'pantoneCp':
+            return {
+                id: colorSpaceId,
                 key: 'pantoneCp',
                 label: 'PMS-CP',
-                value: (color && color.pantoneCp) ?? '',
+                value: color?.pantoneCp ?? '',
                 placeholder: '0000 CP',
             };
-            break;
-        case 'pantone_plastics':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'pantonePlastics':
+            return {
+                id: colorSpaceId,
                 key: 'pantonePlastics',
                 label: 'PMS-PQ',
-                value: (color && color.pantonePlastics) ?? '',
+                value: color?.pantonePlastics ?? '',
                 placeholder: 'PQ-000C',
             };
-            break;
-        case 'pantone_textile':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'pantoneTextile':
+            return {
+                id: colorSpaceId,
                 key: 'pantoneTextile',
                 label: 'PMS-TCX',
-                value: (color && color.pantoneTextile) ?? '',
+                value: color?.pantoneTextile ?? '',
                 placeholder: '00-000 TCX',
             };
-            break;
         case 'oracal':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'ORA',
-                value: (color && color.oracal) ?? '',
+                value: color?.oracal ?? '',
                 placeholder: '000',
             };
-            break;
         case 'cmyk':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'CMYK',
-                value: color && `${color.c}/${color.m}/${color.y}/${color.k}`,
+                value: `${color?.c}/${color?.m}/${color?.y}/${color?.k}`,
                 placeholder: 'c/m/y/k',
             };
-            break;
-        case 'cmyk_coated':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'cmykCoated':
+            return {
+                id: colorSpaceId,
                 key: 'cmykCoated',
                 label: 'CMYK-C',
-                value: (color && color.cmykCoated) ?? '',
+                value: color?.cmykCoated ?? '',
                 placeholder: 'c/m/y/k c',
             };
-            break;
-        case 'cmyk_uncoated':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'cmykUncoated':
+            return {
+                id: colorSpaceId,
                 key: 'cmykUncoated',
                 label: 'CMYK-U',
-                value: (color && color.cmykUncoated) ?? '',
+                value: color?.cmykUncoated ?? '',
                 placeholder: 'c/m/y/k u',
             };
-            break;
-        case 'cmyk_newspaper':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'cmykNewspaper':
+            return {
+                id: colorSpaceId,
                 key: 'cmykNewspaper',
                 label: 'CMYK-N',
-                value: (color && color.cmykNewspaper) ?? '',
+                value: color?.cmykNewspaper ?? '',
                 placeholder: 'c/m/y/k n',
             };
-            break;
         case 'ncs':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'NCS',
-                value: (color && color.ncs) ?? '',
+                value: color?.ncs ?? '',
                 placeholder: '0000-0000',
             };
-            break;
         case 'hks':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'HKS',
-                value: (color && color.hks) ?? '',
+                value: color?.hks ?? '',
                 placeholder: '00 K',
             };
-            break;
-        case 'three_m':
-            mappedColorSpace = {
-                id: colorSpaceID,
+        case 'threeM':
+            return {
+                id: colorSpaceId,
                 key: 'threeM',
                 label: '3M',
-                value: (color && color.threeM) ?? '',
+                value: color?.threeM ?? '',
                 placeholder: '208',
             };
-            break;
         case 'lab':
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'LAB',
-                value: (color && color.lab) ?? '',
+                value: color?.lab ?? '',
                 placeholder: 'l,a,b,%',
             };
-            break;
         default:
-            mappedColorSpace = {
-                id: colorSpaceID,
+            return {
+                id: colorSpaceId,
                 label: 'HEX',
-                value: color && `#${color.hex}`,
+                value: `#${color?.hex}`,
                 placeholder: '#hexhex',
             };
     }
-
-    return mappedColorSpace;
 };
