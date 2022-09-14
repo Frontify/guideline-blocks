@@ -46,154 +46,300 @@ export default {
 };
 ```
 
-## The Settings Type Object
+# The Settings Type Object
 
-Add _TypeScript_ support by creating a `Settings` type object according to your specific settings. The properties of the `Settings` type object correspond to the block `id`s you set in the `settings.ts`.
+Add _TypeScript_ support by creating a `Settings` **type** object according to your specific settings. The properties of the `Settings` type object correspond to the block `id`s you set in the `settings.ts`.
 
 <br/>
 
-### Example how to use
+## Examples how to use types in your settings file
 
-| Settings example with inactive switches                      | Settings example with active switches                       |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
-| <img src='./images-readme/switches-off.png' width='200px' /> | <img src='./images-readme/switches-on.png' width='200px' /> |
+Properties:
+|name| description|example|
+|---|--|--|
+|`id`|Unique ID used to save the settings|
+|`show: (bundle: Bundle) ⇒ boolean` | Defines the visibility based on other setting values or conditions|`show: (bundle: Bundle) => bundle.getBlock('switchId')?.value === true,` (only show setting if switch is active) <br/> `show: (bundle: Bundle) => bundle.getBlock('mainDropdownId')?.value === 'SpecialVariant',` (only show setting if SpecialVariant is selected in the main dropdown)|
+| `onChange: (bundle: Bundle) ⇒ void`|Allow value alteration before saving| `(bundle: Bundle) => bundle.setBlockValue('height', '50px'),`
+`rules: []`| You may add validation rules to your Block Settings using the rules array.| `errorMessage: 'Can not be empty',`<br/>` validate: (value: string) => + value.length > 0,`
+
+Diverse:
+
+-   `bundle.getBlock()`: You can access a Block Setting’s value by using the getBlock() function, which takes the id of the target Block Setting as a parameter. (see above example in `show`)
+-   Conditional Settings: Use the `on` and `off` properties in the switch setting to hide or display specific settings based on the switch value.
+
+> See simple example in this repository:<br/> [ExampleBlock.tsx](./../example/src/ExampleBlock.tsx)<br/> [settings.ts](./../example/src/settings.ts)<br/> [index.tsx](./../example/src/index.tsx)
+
+<br/>
+
+> ## See all types [here](./../block-settings/types/blocks/index.ts)
+
+<br/>
+
+## Asset Input
+
+> [Type](./../block-settings/types/blocks/assetInput.ts): `assetInput`
+
+<img src='./images-readme/assetInput.png' width='200px' />
 
 ```ts
-//types.ts
+import { FileExtension } from '@frontify/app-bridge';
 
-export enum BlockType {
-    Default = 'Default',
-    Special = 'Special',
-}
+{
+    id: 'assetInputId',
+    label: 'Asset Input',
+    type: 'assetInput',
+    extensions: [FileExtension.Png, FileExtension.Jpg],
+},
+```
 
-export enum BlockSize {
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large',
-}
+## Checklist
 
-export type YourBlockProps = {
-    appBridge: AppBridgeBlock;
-};
+> [Type](./../block-settings/types/blocks/checklist.ts): `checklist`
 
-export type Settings = {
-    blockType?: BlockType;
-    showBorder?: boolean;
-    color?: Color;
-    isCustomSize?: boolean;
-    customSize?: string;
-    defaultSize?: BlockSize;
-};
+<img src='./images-readme/checklist.png' width='200px' />
+
+```ts
+{
+    id: 'checklistId',
+    label: 'Checklist',
+    type: 'checklist',
+    defaultValue: ['item-1'],
+    choices: [
+        {
+            id: 'item-1',
+            label: 'First item',
+        },
+        {
+            id: 'item-2',
+            label: 'Second item',
+        },
+        {
+            id: 'item-3',
+            label: 'Third item',
+        },
+    ],
+},
+```
+
+## Color Input
+
+> [Type](./../block-settings/types/blocks/colorInput.ts): `colorInput`
+
+<img src='./images-readme/colorInput.png' width='200px' />
+
+```ts
+{
+    id: 'colorInputId',
+    label: 'Color Input',
+    type: 'colorInput',
+    defaultValue: {
+        red: 255,
+        green: 0,
+        blue: 0,
+        alpha: 1,
+        name: 'Red',
+    },
+},
+```
+
+## Dropdown
+
+> [Type](./../block-settings/types/blocks/dropdown.ts): `dropdown`
+
+<img src='./images-readme/dropdown.png' width='200px' />
+
+```ts
+{
+    id: 'dropdownId',
+    type: 'dropdown',
+    label: 'Dropdown',
+    defaultValue: 'grid',
+    choices: [
+        {
+            value: 'grid',
+            icon: IconEnum.GridRegular,
+            label: 'Grid',
+        },
+        {
+            value: 'horizontal',
+            icon: IconEnum.StackHorizontal,
+            label: 'Horizontal',
+        },
+        {
+            value: 'vertical',
+            icon: IconEnum.StackVertical,
+            label: 'Vertical',
+        },
+    ],
+},
+```
+
+## Input
+
+> [Type](./../block-settings/types/blocks/input.ts): `input`
+
+<img src='./images-readme/input.png' width='200px' />
+
+```ts
+{
+    id: 'inputId',
+    type: 'input',
+    label: 'Input',
+    defaultValue: '100px',
+    placeholder: 'e.g. 12px',
+    clearable: true,
+    rules: [
+        {
+            errorMessage: "Please use a numerical value with or without 'px'",
+            validate: (value: string) => value.match(/^\d+(?:px)?$/g) !== null,
+        }
+    ],
+},
+```
+
+## Multi Input
+
+> [Type](./../block-settings/types/blocks/multiInput.ts): `multiInput` <br/> (`layout: MultiInputLayout.Columns`(left), `layout: MultiInputLayout.Spider` (middle), `lastItemFullWidth: true` (right))
+
+<img src='./images-readme/multiInput.png' width='200px' margin='2px' /> <img src='./images-readme/multiInput-spider.png' width='200px' margin='2px' /> <img src='./images-readme/multiInput-lastItemFull.png' width='200px' margin='2px' />
+
+```ts
+{
+    id: 'multiInputId',
+    type: 'multiInput',
+    label: 'Multi Input',
+    layout: MultiInputLayout.Columns,
+    blocks: [
+        {
+            id: 'topLeft',
+            type: 'input',
+            label: 'Top left',
+        },
+        {
+            id: 'topRight',
+            type: 'input',
+            label: 'Top right',
+        },
+        {
+            id: 'bottomLeft',
+            type: 'input',
+            label: 'Bottom left',
+        },
+        {
+            id: 'bottomRight',
+            type: 'input',
+            label: 'Bottom right',
+        },
+    ],
+},
+```
+
+## Slider
+
+> [Type](./../block-settings/types/blocks/assetInput.ts): `slider`
+
+<img src='./images-readme/slider.png' width='200px' margin='2px' /> <img src='./images-readme/sliderIcon.png' width='200px' margin='2px' />
+
+```ts
+// slider with text (left image)
+{
+    id: 'sliderId',
+    type: 'slider',
+    label: 'Slider',
+    defaultValue: 'small',
+    helperText: 'This is a helper text.',
+    choices: [
+        {
+            value: 'small',
+            label: 'S',
+        },
+        {
+            value: 'medium',
+            label: 'M',
+        },
+        {
+            value: 'large',
+            label: 'L',
+        },
+    ],
+},
 ```
 
 ```ts
-//settings.ts
+// slider with icons (right image)
 
-const settings: BlockSettings = {
-    main: [
+{
+    ...
+    choices: [
         {
-            id: 'blockType',
-            type: 'dropdown',
-            label: 'Block Type',
-            defaultValue: BlockType.Default,
+            value: 'left',
+            icon: IconEnum.TextAlignmentLeft,
+        }
+    ]
+}
+```
+
+## Switch
+
+> [Type](./../block-settings/types/blocks/assetInput.ts): `switch`
+
+<img src='./images-readme/switch-off.png' width='200px' margin='2px' /> <img src='./images-readme/switch-custom-off.png' width='200px' margin='2px' /> <img src='./images-readme/switch-custom-on.png' width='200px' margin='2px' />
+
+```ts
+// left image
+{
+    id: 'switchId',
+    type: 'switch',
+    label: 'Switch',
+    defaultValue: false,
+}
+
+```
+
+```ts
+// advanced switch with switchLabel: 'Custom' (middle & right)
+{
+    id: 'switchId',
+    type: 'switch',
+    label: 'Switch',
+    switchLabel: 'Custom',
+    defaultValue: false,
+    off: [
+        {
+            id: 'sliderId',
+            type: 'slider',
+            defaultValue: 'small',
             choices: [
                 {
-                    value: BlockType.Default,
-                    label: 'Default',
+                    value: 'small',
+                    label: 'S',
                 },
                 {
-                    value: BlockType.Special,
-                    label: 'Special',
+                    value: 'medium',
+                    label: 'M',
+                },
+                {
+                    value: 'large',
+                    label: 'L',
                 },
             ],
         },
     ],
-    style: [
+    on: [
         {
-            id: 'showBorder',
-            type: 'switch',
-            label: 'Show border',
-            defaultValue: false,
-            on: [
-                {
-                    id: 'color',
-                    label: 'Color',
-                    type: 'colorInput',
-                    defaultValue: { hex: '#00000' },
-                },
-            ],
-        },
-        {
-            id: 'isCustomSize',
-            label: 'Size',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            on: [
-                {
-                    id: 'customSize',
-                    type: 'input',
-                    placeholder: '100px',
-                    rules: [numericalOrPixelRule],
-                },
-            ],
-            off: [
-                {
-                    id: 'defaultSize',
-                    type: 'slider',
-                    defaultValue: BlockSize.Small,
-                    choices: [
-                        {
-                            label: 'S',
-                            value: BlockSize.Small,
-                        },
-                        {
-                            label: 'M',
-                            value: BlockSize.Medium,
-                        },
-                        {
-                            label: 'L',
-                            value: BlockSize.Large,
-                        },
-                    ],
-                },
-            ],
+            id: 'inputId',
+            type: 'input',
+
+            defaultValue: '100px',
+            clearable: true,
         },
     ],
-};
-
-export default settings;
+},
 ```
 
-```ts
-// YourBlock.tsx
+<br/>
 
-export const YourBlock: FC<YourBlockProps> = ({ appBridge }) => {
-		const [blockSettings] = useBlockSettings<Settings>(appBridge);
-
-		const {
-				blockType = BlockType.Default,
-				showBorder = false,
-				color = { hex: '#00000' },
-				isCustomSize = false,
-				customSize = '',
-				defaultSize = BlockSize.Small,
-		} = blockSettings;
-
-		...
-}
-```
-
-## Please check out this repository for more informations on:
-
--   Different Block Types
--   Conditional Settings
--   Hiding & Showing Block Settings Conditionally
--   Reacting on Change
--   Store Arbitrary Data
--   Validating Block Settings
-
-# Store Arbitrary Data
+# Store Arbitrary Data within your Block
 
 The _Content blocks_ allow you to store any type of data (as long as it’s a JavaScript type). The way this is done is by accessing `blockSettings` from the content block and saving our data as a property on that object:
 

@@ -1,14 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock, FrontifyAsset } from '@frontify/app-bridge';
-import { useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
+import { AppBridgeBlock, FrontifyAsset, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { IMAGE_SETTING_ID } from './settings';
 
-export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ appBridge }) => {
+type Props = {
+    appBridge: AppBridgeBlock;
+};
+
+export const ExampleAssetUploadBlock: FC<Props> = ({ appBridge }) => {
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
 
     // Manual upload demo
