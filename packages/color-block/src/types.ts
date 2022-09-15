@@ -55,7 +55,7 @@ export type ColorsBlockColorPickerProps = {
 };
 
 export type TooltipContentProps = {
-    color: string;
+    colorValue: string;
     status: 'error' | 'success' | 'idle';
 };
 

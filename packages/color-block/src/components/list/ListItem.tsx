@@ -58,7 +58,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={<TooltipContent color={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
                         <div
                             className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-mr-9 tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
@@ -111,7 +111,9 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                     withArrow
                                     position={TooltipPosition.Right}
                                     hoverDelay={0}
-                                    content={<TooltipContent color={mappedColorSpace.value ?? ''} status={status} />}
+                                    content={
+                                        <TooltipContent colorValue={mappedColorSpace.value ?? ''} status={status} />
+                                    }
                                     triggerElement={
                                         <div
                                             className="tw-ml-3 tw-cursor-pointer tw-text-s tw-text-black-80"

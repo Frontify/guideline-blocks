@@ -56,7 +56,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={<TooltipContent color={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
                         <div
                             className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
@@ -122,7 +122,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                         position={TooltipPosition.Right}
                                         hoverDelay={0}
                                         content={
-                                            <TooltipContent color={mappedColorSpace.value ?? ''} status={status} />
+                                            <TooltipContent colorValue={mappedColorSpace.value ?? ''} status={status} />
                                         }
                                         triggerElement={
                                             <div

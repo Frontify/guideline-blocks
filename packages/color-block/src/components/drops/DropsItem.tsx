@@ -56,7 +56,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={<TooltipContent color={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
                         <div
                             className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
@@ -118,7 +118,9 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                     withArrow
                                     position={TooltipPosition.Right}
                                     hoverDelay={0}
-                                    content={<TooltipContent color={mappedColorSpace.value ?? ''} status={status} />}
+                                    content={
+                                        <TooltipContent colorValue={mappedColorSpace.value ?? ''} status={status} />
+                                    }
                                     triggerElement={
                                         <div
                                             className="tw-cursor-pointer tw-text-s tw-text-black-80"
