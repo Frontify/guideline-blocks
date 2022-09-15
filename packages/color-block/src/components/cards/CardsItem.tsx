@@ -6,27 +6,21 @@ import {
     Color,
     IconSize,
     IconTrashBin,
-    RichTextEditor,
     Tooltip,
     TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
-import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
-import { ColorSpaceInputValues, ItemProps } from '../../types';
+import { ColorBlockType, ColorSpaceInputValues, ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 import { FormEvent, useState } from 'react';
+import { ColorName } from '../ColorName';
 
 export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
-    const { designTokens } = useGuidelineDesignTokens();
-
     const { copy, status } = useCopy();
-
-    const [colorName, setColorName] = useState<string>(color.name ?? '');
-
-    const handleColorNameChange = (value: string) => setColorName(value);
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
@@ -107,15 +101,12 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
             )}
 
             <div className="tw-pt-4 tw-px-6 tw-pb-5">
-                <div className="tw-w-[100px] tw-mb-3 tw-text-m tw-text-black tw-font-bold">
-                    <RichTextEditor
-                        value={colorName}
-                        onTextChange={handleColorNameChange}
-                        designTokens={designTokens ?? undefined}
-                        readonly={!isEditing}
-                        onBlur={onBlur}
-                    />
-                </div>
+                <ColorName
+                    viewType={ColorBlockType.Cards}
+                    initialColorName={color.name || ''}
+                    isEditing={isEditing}
+                    onBlur={onBlur}
+                />
 
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);

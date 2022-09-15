@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactNode } from 'react';
+import { FocusEvent, ReactNode } from 'react';
 
 import { AppBridgeBlock, FrontifyColor, FrontifyColorPatch } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
@@ -26,7 +26,7 @@ export type ItemProps = {
     color: FrontifyColor;
     colorSpaces: (keyof ColorSpaceInputValues)[];
     isEditing: boolean;
-    onBlur: (event: string) => void;
+    onBlur: (event: FocusEvent<HTMLInputElement>) => void;
     onUpdate: (colorPatch: FrontifyColorPatch) => void;
     onDelete: (colorId: number) => void;
 };

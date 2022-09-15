@@ -8,26 +8,21 @@ import {
     Color,
     IconSize,
     IconTrashBin,
-    RichTextEditor,
     Tooltip,
     TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
-import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
-import { ColorSpaceInputValues, ItemProps } from '../../types';
+import { ColorBlockType, ColorSpaceInputValues, ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { TooltipContent } from '../TooltipContent';
 import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
 import { FormEvent, useState } from 'react';
+import { ColorName } from '../ColorName';
 
 export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
-    const { designTokens } = useGuidelineDesignTokens();
-
     const { copy, status } = useCopy();
-
-    const [colorName, setColorName] = useState<string>(color.name || '');
-    const handleColorNameChange = (value: string) => setColorName(value);
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
@@ -92,15 +87,12 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 </ColorsBlockColorPicker>
             )}
 
-            <div className="tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-text-m tw-text-black tw-font-bold">
-                <RichTextEditor
-                    value={colorName ?? ''}
-                    onTextChange={handleColorNameChange}
-                    designTokens={designTokens ?? undefined}
-                    readonly={!isEditing}
-                    onBlur={onBlur}
-                />
-            </div>
+            <ColorName
+                viewType={ColorBlockType.List}
+                initialColorName={color.name || ''}
+                isEditing={isEditing}
+                onBlur={onBlur}
+            />
 
             <div className="tw-flex tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-w-[calc(100% - 306px)] tw-py-5">
                 {colorSpaces?.map((colorSpaceId) => {

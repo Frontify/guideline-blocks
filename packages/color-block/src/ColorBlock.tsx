@@ -99,7 +99,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         color={color}
                                         colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
-                                        onBlur={(value) => updateColor(color.id, { name: value })}
+                                        onBlur={(event) => updateColor(color.id, { name: event.target.value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
@@ -109,7 +109,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         color={color}
                                         colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
-                                        onBlur={(value) => updateColor(color.id, { name: value })}
+                                        onBlur={(event) => updateColor(color.id, { name: event.target.value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
@@ -119,7 +119,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         color={color}
                                         colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
-                                        onBlur={(value) => updateColor(color.id, { name: value })}
+                                        onBlur={(event) => updateColor(color.id, { name: event.target.value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
