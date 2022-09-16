@@ -109,7 +109,11 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                 const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
                 return (
-                    <div key={colorSpaceId} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
+                    <div
+                        data-test-id="color-space"
+                        key={colorSpaceId}
+                        className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0"
+                    >
                         <div className="tw-flex tw-items-center">
                             <div className="tw-mr-1 tw-text-s tw-text-black-70">{mappedColorSpace.label}</div>
 

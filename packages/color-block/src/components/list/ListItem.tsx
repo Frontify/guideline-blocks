@@ -99,7 +99,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
                     return (
-                        <div key={colorSpaceId} className="tw-flex tw-items-center tw-w-1/3">
+                        <div data-test-id="color-space" key={colorSpaceId} className="tw-flex tw-items-center tw-w-1/3">
                             <div>
                                 <Badge size="s" emphasis={BadgeEmphasis.None}>
                                     {mappedColorSpace.label}
