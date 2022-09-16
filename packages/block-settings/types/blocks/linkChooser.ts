@@ -6,7 +6,6 @@ import { BaseBlock } from './base';
 export type LinkChooserBlock = {
     type: 'linkChooser';
     placeholder?: string;
-    label?: string;
     openInNewTab?: boolean;
     disabled?: boolean;
     clearable?: boolean;

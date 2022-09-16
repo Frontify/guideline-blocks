@@ -12,7 +12,7 @@ describe('buildIframeUrl', () => {
             StorybookPosition.Horizontal
         );
         expect(result?.toString()).toEqual(
-            'https://fondue-components.frontify.com/?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=right'
+            'http://fondue-components.frontify.com/?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=right'
         );
     });
     test('It should return null if empty', () => {
@@ -26,16 +26,6 @@ describe('buildIframeUrl', () => {
     test('It should return null if invalid storybook url', () => {
         const result = buildIframeUrl('www.google.ch', false, StorybookPosition.Horizontal);
         expect(result).toBeNull();
-    });
-    test('It should set an http url to https', () => {
-        const result = buildIframeUrl(
-            'http://fondue-components.frontify.com/?path=/story/components-action-menu--action-menu',
-            false,
-            StorybookPosition.Horizontal
-        );
-        expect(result?.toString()).toEqual(
-            'https://fondue-components.frontify.com/iframe.html?path=%2Fstory%2Fcomponents-action-menu--action-menu&nav=false&panel=false'
-        );
     });
     test('It should set panel to default right if addon enabled', () => {
         const result = buildIframeUrl(
