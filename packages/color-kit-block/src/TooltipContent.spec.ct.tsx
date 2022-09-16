@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
+import { mount } from 'cypress/react';
 import { TooltipContent } from './TooltipContent';
 
 const ColorKitTooltipContentSelector = '[data-test-id="color-hash"]';
