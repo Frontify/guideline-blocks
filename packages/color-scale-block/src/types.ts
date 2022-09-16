@@ -57,7 +57,7 @@ export type SquareWithoutColorProps = {
     placeholderColor: string;
     width: number;
     currentSquare: ColorProps;
-    calculateLeftPos: (id: number, width: number) => void;
+    calculateLeftPosition: (id: number, width: number) => void;
     hilite: number;
     setHilite: (value: boolean | number) => void;
     isEditing: boolean;
