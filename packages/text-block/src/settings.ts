@@ -53,7 +53,7 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: 'text',
-                    icon: 'TextAlignLeft' as IconEnum.TextAlignLeft,
+                    icon: 'TextAlignmentLeft' as IconEnum.TextAlignmentLeft,
                     label: 'Text',
                 },
             ],

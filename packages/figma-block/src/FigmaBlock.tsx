@@ -9,7 +9,7 @@ import {
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/fondue';
+import { Button, ButtonStyle, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -72,7 +72,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             onClick={onOpenAssetChooser}
         >
             <div className="tw-text-xl tw-mb-4 tw-flex tw-justify-center tw-text-black-40 group-hover:tw-text-violet-60">
-                <IconProjects size={IconSize.Size32} />
+                <IconSuitcase size={IconSize.Size32} />
             </div>
             <span className="tw-text-text-x-weak group-hover:tw-text-black">Choose Figma asset</span>
         </div>
@@ -114,7 +114,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             >
                 <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
                     <Button
-                        icon={<IconExpand />}
+                        icon={<IconArrowExpand />}
                         onClick={() => toggleFigmaLiveModal(true)}
                         style={ButtonStyle.Secondary}
                     />
@@ -140,7 +140,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             >
                 <div className="tw-fixed tw-flex tw-top-4 tw-right-4 tw-z-[200]">
                     <Button
-                        icon={<IconReject />}
+                        icon={<IconCross />}
                         onClick={() => {
                             toggleFigmaLiveModal(false);
                             modalRoot?.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);

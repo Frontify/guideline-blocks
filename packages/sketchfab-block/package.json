@@ -17,7 +17,7 @@
         "@babel/core": "7.18.10",
         "@cypress/react": "5.12.5",
         "@frontify/eslint-config-react": "0.15.2",
-        "@frontify/frontify-cli": "5.1.1",
+        "@frontify/frontify-cli": "5.1.2",
         "@types/react": "17.0.47",
         "@types/react-dom": "17.0.17",
         "autoprefixer": "10.4.8",
@@ -29,8 +29,8 @@
         "typescript": "4.7.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.10",
-        "@frontify/fondue": "9.11.0",
+        "@frontify/app-bridge": "3.0.0-beta.15",
+        "@frontify/fondue": "11.0.0",
         "@frontify/fondue-tokens": "3.0.1",
         "@frontify/guideline-blocks-settings": "workspace:*",
         "@frontify/guideline-blocks-shared": "workspace:*",

@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BaseBlock } from './base';
-import { Checkbox } from './checkbox';
+import type { BaseBlock, ValueOrPromisedValue } from './base';
+import type { Checkbox } from './checkbox';
 
 export type ChecklistBlock = {
     type: 'checklist';
-    choices: Checkbox[];
+    choices: ValueOrPromisedValue<Checkbox[]>;
     showClearAndSelectAllButtons?: boolean;
     columns?: 1 | 2;
 } & BaseBlock<string[] | null>;

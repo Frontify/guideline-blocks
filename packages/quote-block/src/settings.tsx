@@ -1,60 +1,72 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
-import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
-import { LineType, LineWidth, QuoteSize, QuoteStyle, QuoteType, lineWidthMap, quoteSizeMap } from './types';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
+import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
+import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
+import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
+import { IconHookBracketRight } from './foundation/IconHookBracketRight';
+import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
+import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
+import { LineType, QuoteSize, QuoteStyle, QuoteType, quoteSizeMap } from './types';
 
 const QUOTE_TYPE_ID = 'type';
 const SIZE_CHOICE_ID = 'sizeChoice';
 const SIZE_VALUE_ID = 'sizeValue';
 const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
-const LINE_WIDTH_CHOICE_ID = 'lineWidthChoice';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
+const style = { width: '20px', height: '20px' };
 const QUOTE_STYLE_CHOICES = [
-    { value: QuoteStyle.DoubleUp, icon: 'DoubleQuotesUp' as IconEnum.DoubleQuotesUp, label: 'Double Up' },
-    { value: QuoteStyle.DoubleDown, icon: 'DoubleQuotesDown' as IconEnum.DoubleQuotesDown, label: 'Double Down' },
-    { value: QuoteStyle.SingleUp, icon: 'SingleQuoteUp' as IconEnum.SingleQuoteUp, label: 'Single Up' },
-    { value: QuoteStyle.SingleDown, icon: 'SingleQuoteDown' as IconEnum.SingleQuoteDown, label: 'Single Down' },
+    // TODO: replace icons as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
+    {
+        value: QuoteStyle.DoubleUp,
+        icon: <IconDoubleQuotesUp style={style} />,
+        label: 'Double Up',
+    },
+    {
+        value: QuoteStyle.DoubleDown,
+        icon: <IconDoubleQuotesDown style={style} />,
+        label: 'Double Down',
+    },
+    { value: QuoteStyle.SingleUp, icon: <IconSingleQuoteUp style={style} />, label: 'Single Up' },
+    { value: QuoteStyle.SingleDown, icon: <IconSingleQuoteDown style={style} />, label: 'Single Down' },
     {
         value: QuoteStyle.DoubleChevronLeft,
-        icon: 'DoubleChevronLeft' as IconEnum.DoubleChevronLeft,
+        icon: IconEnum.CaretLeftDouble20,
         label: 'Double Chevron Left',
     },
     {
         value: QuoteStyle.DoubleChevronRight,
-        icon: 'DoubleChevronRight' as IconEnum.DoubleChevronRight,
+        icon: IconEnum.CaretRightDouble20,
         label: 'Double Chevron Right',
     },
     {
         value: QuoteStyle.SingleChevronLeft,
-        icon: 'SingleChevronLeft' as IconEnum.SingleChevronLeft,
+        icon: IconEnum.CaretLeft20,
         label: 'Single Chevron Left',
     },
     {
         value: QuoteStyle.SingleChevronRight,
-        icon: 'SingleChevronRight' as IconEnum.SingleChevronRight,
+        icon: IconEnum.CaretRight20,
         label: 'Single Chevron Right',
     },
     {
         value: QuoteStyle.HookBracketLeft,
-        icon: 'HookBracketLeft' as IconEnum.HookBracketLeft,
+        icon: <IconHookBracketLeft style={style} />, // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
         label: 'Hook Bracket Left',
     },
     {
         value: QuoteStyle.HookBracketRight,
-        icon: 'HookBracketRight' as IconEnum.HookBracketRight,
+        icon: <IconHookBracketRight style={style} />, // TODO: replace icon as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
         label: 'Hook Bracket Right',
     },
-    { value: QuoteStyle.None, icon: 'None' as IconEnum.None, label: 'None' },
-];
+    { value: QuoteStyle.None, icon: IconEnum.StrikethroughBox20, label: 'None' },
+] as Choice[];
 
-export const DEFAULT_COLOR_VALUE = { r: 179, g: 181, b: 181, a: 1, name: 'Light Grey' };
-export const DEFAULT_AUTHOR_NAME = 'John Doe';
+export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
 
 const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
-const showAccentLine = (bundle: Bundle): boolean =>
-    isSelected(bundle, QuoteType.Indentation) && bundle.getBlock(ACCENT_LINE_SWITCH_ID)?.value === true;
 
 export const settings: BlockSettings = {
     main: [
@@ -66,7 +78,7 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
-                    icon: 'Quote' as IconEnum.Quote,
+                    icon: 'SpeechBubbleQuote' as IconEnum.SpeechBubbleQuote,
                     label: 'Quotation Marks',
                 },
                 {
@@ -114,7 +126,6 @@ export const settings: BlockSettings = {
                     placeholder: 'John Doe',
                 },
             ],
-            off: [],
         },
     ],
     style: [
@@ -136,6 +147,7 @@ export const settings: BlockSettings = {
                         {
                             id: SIZE_VALUE_ID,
                             type: 'input',
+                            placeholder: 'e.g. 20px',
                             rules: [numericalOrPixelRule],
                             onChange: (bundle: Bundle): void => appendUnit(bundle, SIZE_VALUE_ID),
                         },
@@ -172,79 +184,54 @@ export const settings: BlockSettings = {
         },
         {
             id: ACCENT_LINE_SWITCH_ID,
-            type: 'switch',
             label: 'Accent line',
+            type: 'switch',
             defaultValue: true,
             show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.Indentation),
-        },
-        {
-            id: 'lineType',
-            type: 'slider',
-            label: 'Type',
-            info: 'Determines how the line looks',
-            defaultValue: LineType.Solid,
-            show: showAccentLine,
-            choices: [
-                {
-                    label: 'Solid',
-                    value: LineType.Solid,
-                },
-                {
-                    label: 'Dashed',
-                    value: LineType.Dashed,
-                },
-                {
-                    label: 'Dotted',
-                    value: LineType.Dotted,
-                },
-            ],
-        },
-        {
-            id: 'isCustomLineWidth',
-            label: 'Width',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            info: 'Choose between small, medium, large or custom accent line width',
-            show: showAccentLine,
-            onChange: (bundle: Bundle): void =>
-                presetCustomValue(bundle, LINE_WIDTH_CHOICE_ID, LINE_WIDTH_VALUE_ID, lineWidthMap),
             on: [
                 {
-                    id: LINE_WIDTH_VALUE_ID,
-                    type: 'input',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle: Bundle): void => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
-                },
-            ],
-            off: [
-                {
-                    id: LINE_WIDTH_CHOICE_ID,
-                    type: 'slider',
-                    defaultValue: LineWidth.SmallWidth,
-                    choices: [
+                    id: 'accentLineStyle',
+                    type: 'multiInput',
+                    onChange: (bundle: Bundle): void => {
+                        appendUnit(bundle, LINE_WIDTH_VALUE_ID);
+                    },
+                    layout: MultiInputLayout.Columns,
+                    lastItemFullWidth: true,
+                    blocks: [
                         {
-                            label: 'S',
-                            value: LineWidth.SmallWidth,
+                            id: 'lineType',
+                            type: 'dropdown',
+                            defaultValue: LineType.Solid,
+                            choices: [
+                                {
+                                    value: LineType.Solid,
+                                    label: BorderStyle.Solid,
+                                },
+                                {
+                                    value: LineType.Dotted,
+                                    label: BorderStyle.Dotted,
+                                },
+                                {
+                                    value: LineType.Dashed,
+                                    label: BorderStyle.Dashed,
+                                },
+                            ],
                         },
                         {
-                            label: 'M',
-                            value: LineWidth.MediumWidth,
+                            id: LINE_WIDTH_VALUE_ID,
+                            type: 'input',
+                            defaultValue: '2px',
+                            rules: [numericalOrPixelRule],
+                            placeholder: 'e.g. 3px',
                         },
                         {
-                            label: 'L',
-                            value: LineWidth.LargeWidth,
+                            id: 'accentLinecolor',
+                            type: 'colorInput',
+                            defaultValue: DEFAULT_COLOR_VALUE,
                         },
                     ],
                 },
             ],
-        },
-        {
-            id: 'accentLinecolor',
-            label: 'Color',
-            type: 'colorInput',
-            defaultValue: DEFAULT_COLOR_VALUE,
-            show: showAccentLine,
         },
     ],
 };

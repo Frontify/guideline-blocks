@@ -14,7 +14,7 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: 'custom_block',
-                    icon: 'Snippet' as IconEnum.Snippet,
+                    icon: 'Code' as IconEnum.Code,
                     label: 'Custom Block',
                 },
             ],

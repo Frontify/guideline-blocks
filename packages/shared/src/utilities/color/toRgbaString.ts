@@ -2,6 +2,7 @@
 
 import { Color } from '@frontify/fondue';
 import tinycolor from 'tinycolor2';
+import { toShortRgba } from './toShortRgba';
 
 /**
  * Maps color object of rgba values to rgba string.
@@ -10,4 +11,4 @@ import tinycolor from 'tinycolor2';
  * @returns {String} To be used as css value.
  */
 
-export const toRgbaString = (color: Color): string => tinycolor(color).toRgbString();
+export const toRgbaString = (color: Color): string => tinycolor(toShortRgba(color)).toRgbString();

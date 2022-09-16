@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { toHex8String } from '@frontify/guideline-blocks-shared';
-import { FocusEvent, KeyboardEvent, forwardRef, useContext, useImperativeHandle, useRef } from 'react';
+import { FocusEvent, KeyboardEvent, forwardRef, useContext, useEffect, useImperativeHandle, useRef } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import { ImperativeFocusHandle, TextEditorProps } from '../types';
 
@@ -35,6 +35,12 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
             }
         };
 
+        useEffect(() => {
+            if (editorRef.current) {
+                editorRef.current.innerText = value;
+            }
+        }, [value]);
+
         return (
             <div className="tw-inline-flex tw-flex-initial tw-min-w-0">
                 <div
@@ -48,9 +54,7 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
                     onBlur={handleChange}
                     ref={editorRef}
                     data-test-id="text-editor"
-                >
-                    {value}
-                </div>
+                />
             </div>
         );
     }
