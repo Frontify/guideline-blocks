@@ -13,8 +13,8 @@ import type { ColorKitBlockProps, Settings } from './types';
 export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { colorPalettes, getDownloadColorKitLink } = useColorPalettes(appBridge, blockSettings.colorPalettes);
-    const link = getDownloadColorKitLink(blockSettings.colorPalettes);
+    const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, blockSettings.colorPalettes);
+    const link = downloadColorKit(blockSettings.colorPalettes);
     const isDownloadDisabled = blockSettings.colorPalettes.length === 0;
 
     return (
