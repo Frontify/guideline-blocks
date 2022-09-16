@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { QuoteBlock } from './QuoteBlock';
+import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
 import { QuoteSize, QuoteStyle, QuoteType } from './types';
 
 const QuoteBlockSelector = '[data-test-id="quote-block"]';
@@ -88,16 +89,67 @@ describe('Quote Block', () => {
     });
 
     it('renders a quote block with correct styling', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
             blockSettings: {
                 sizeChoice: QuoteSize.LargeSize,
                 quotesColor: EXAMPLE_COLOR,
             },
         });
 
-        mount(<PersonalNoteBlockWithStubs />);
+        mount(<QuoteBlockWithStubs />);
         cy.get(QuoteBlockSelector).find('svg').should('have.css', 'width', '32px');
         cy.get(QuoteBlockSelector).find('svg').should('have.css', 'height', '32px');
         cy.get(QuoteBlockSelector).find('svg').should('have.css', 'color', 'rgb(22, 181, 181)');
+    });
+
+    it('renders a quote block with custom icons', () => {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+            blockSettings: {
+                quoteStyleLeft: QuoteStyle.Custom,
+                quoteStyleRight: QuoteStyle.Custom,
+                sizeChoice: QuoteSize.LargeSize,
+                quotesColor: EXAMPLE_COLOR,
+            },
+            blockAssets: {
+                [CUSTOM_ICON_LEFT_ID]: [AssetDummy.with(342)],
+                [CUSTOM_ICON_RIGHT_ID]: [AssetDummy.with(342)],
+            },
+        });
+
+        mount(<QuoteBlockWithStubs />);
+        cy.get(QuoteBlockSelector).find('svg').should('not.exist');
+        cy.get(QuoteBlockSelector).find('img').should('have.length', 2);
+        cy.get(QuoteBlockSelector).find('img').first().should('have.css', 'width', '32px');
+        cy.get(QuoteBlockSelector).find('img').first().should('have.css', 'height', '32px');
+        cy.get(QuoteBlockSelector).find('img').first().should('have.css', 'color', 'rgb(22, 181, 181)');
+    });
+
+    it('renders a quote block without custom icons', () => {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+            blockSettings: {
+                quoteStyleLeft: QuoteStyle.Custom,
+                quoteStyleRight: QuoteStyle.Custom,
+            },
+        });
+
+        mount(<QuoteBlockWithStubs />);
+        cy.get(QuoteBlockSelector).find('svg').should('not.exist');
+        cy.get(QuoteBlockSelector).find('img').should('not.exist');
+    });
+
+    it(' renders a quote block with one custom and one default icon', () => {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+            blockSettings: {
+                quoteStyleLeft: QuoteStyle.Custom,
+                quoteStyleRight: QuoteStyle.HookBracketRight,
+            },
+            blockAssets: {
+                [CUSTOM_ICON_LEFT_ID]: [AssetDummy.with(342)],
+            },
+        });
+
+        mount(<QuoteBlockWithStubs />);
+        cy.get(QuoteBlockSelector).find('svg').should('have.length', 1);
+        cy.get(QuoteBlockSelector).find('img').should('have.length', 1);
     });
 });
