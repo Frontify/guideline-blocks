@@ -263,28 +263,28 @@ importers:
   packages/code-snippet-block:
     specifiers:
       '@babel/core': 7.19.1
-      '@codemirror/autocomplete': ^0.19.0
-      '@codemirror/closebrackets': ^0.19.0
-      '@codemirror/commands': ^0.19.8
-      '@codemirror/comment': ^0.19.0
-      '@codemirror/fold': ^0.19.3
-      '@codemirror/gutter': ^0.19.9
-      '@codemirror/highlight': ^0.19.7
-      '@codemirror/history': ^0.19.2
-      '@codemirror/lang-css': ^0.19.3
-      '@codemirror/lang-html': ^0.19.4
-      '@codemirror/lang-javascript': ^0.19.7
-      '@codemirror/lang-json': ^0.19.2
-      '@codemirror/lang-php': ^0.19.1
-      '@codemirror/language': ^0.19.1
-      '@codemirror/lint': ^0.19.0
-      '@codemirror/matchbrackets': ^0.19.4
-      '@codemirror/panel': ^0.19.1
-      '@codemirror/rectangular-selection': ^0.19.1
-      '@codemirror/search': ^0.19.8
-      '@codemirror/state': ^0.19.8
-      '@codemirror/text': ^0.19.6
-      '@codemirror/view': ^0.19.42
+      '@codemirror/autocomplete': 0.19.15
+      '@codemirror/closebrackets': 0.19.2
+      '@codemirror/commands': 0.19.8
+      '@codemirror/comment': 0.19.1
+      '@codemirror/fold': 0.19.4
+      '@codemirror/gutter': 0.19.9
+      '@codemirror/highlight': 0.19.8
+      '@codemirror/history': 0.19.2
+      '@codemirror/lang-css': 0.19.3
+      '@codemirror/lang-html': 0.19.4
+      '@codemirror/lang-javascript': 0.19.7
+      '@codemirror/lang-json': 0.19.2
+      '@codemirror/lang-php': 0.19.1
+      '@codemirror/language': 0.19.10
+      '@codemirror/lint': 0.19.6
+      '@codemirror/matchbrackets': 0.19.4
+      '@codemirror/panel': 0.19.1
+      '@codemirror/rectangular-selection': 0.19.2
+      '@codemirror/search': 0.19.10
+      '@codemirror/state': 0.19.9
+      '@codemirror/text': 0.19.6
+      '@codemirror/view': 0.19.48
       '@frontify/app-bridge': 3.0.0-beta.16
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 11.3.0
@@ -1231,7 +1231,6 @@ packages:
 
   /@codemirror/closebrackets/0.19.2:
     resolution: {integrity: sha512-ClMPzPcPP0eQiDcVjtVPl6OLxgdtZSYDazsvT0AKl70V1OJva0eHgl4/6kCW3RZ0pb2n34i9nJz4eXCmK+TYDA==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/autocomplete
     dependencies:
       '@codemirror/language': 0.19.10
       '@codemirror/rangeset': 0.19.9
@@ -1253,7 +1252,6 @@ packages:
 
   /@codemirror/comment/0.19.1:
     resolution: {integrity: sha512-uGKteBuVWAC6fW+Yt8u27DOnXMT/xV4Ekk2Z5mRsiADCZDqYvryrJd6PLL5+8t64BVyocwQwNfz1UswYS2CtFQ==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/commands
     dependencies:
       '@codemirror/state': 0.19.9
       '@codemirror/text': 0.19.6
@@ -1262,7 +1260,6 @@ packages:
 
   /@codemirror/fold/0.19.4:
     resolution: {integrity: sha512-0SNSkRSOa6gymD6GauHa3sxiysjPhUC0SRVyTlvL52o0gz9GHdc8kNqNQskm3fBtGGOiSriGwF/kAsajRiGhVw==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/language
     dependencies:
       '@codemirror/gutter': 0.19.9
       '@codemirror/language': 0.19.10
@@ -1273,7 +1270,6 @@ packages:
 
   /@codemirror/gutter/0.19.9:
     resolution: {integrity: sha512-PFrtmilahin1g6uL27aG5tM/rqR9DZzZYZsIrCXA5Uc2OFTFqx4owuhoU9hqfYxHp5ovfvBwQ+txFzqS4vog6Q==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/view
     dependencies:
       '@codemirror/rangeset': 0.19.9
       '@codemirror/state': 0.19.9
@@ -1282,7 +1278,6 @@ packages:
 
   /@codemirror/highlight/0.19.8:
     resolution: {integrity: sha512-v/lzuHjrYR8MN2mEJcUD6fHSTXXli9C1XGYpr+ElV6fLBIUhMTNKR3qThp611xuWfXfwDxeL7ppcbkM/MzPV3A==}
-    deprecated: As of 0.20.0, this package has been split between @lezer/highlight and @codemirror/language
     dependencies:
       '@codemirror/language': 0.19.10
       '@codemirror/rangeset': 0.19.9
@@ -1294,7 +1289,6 @@ packages:
 
   /@codemirror/history/0.19.2:
     resolution: {integrity: sha512-unhP4t3N2smzmHoo/Yio6ueWi+il8gm9VKrvi6wlcdGH5fOfVDNkmjHQ495SiR+EdOG35+3iNebSPYww0vN7ow==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/commands
     dependencies:
       '@codemirror/state': 0.19.9
       '@codemirror/view': 0.19.48
@@ -1378,7 +1372,6 @@ packages:
 
   /@codemirror/matchbrackets/0.19.4:
     resolution: {integrity: sha512-VFkaOKPNudAA5sGP1zikRHCEKU0hjYmkKpr04pybUpQvfTvNJXlReCyP0rvH/1iEwAGPL990ZTT+QrLdu4MeEA==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/language
     dependencies:
       '@codemirror/language': 0.19.10
       '@codemirror/state': 0.19.9
@@ -1388,7 +1381,6 @@ packages:
 
   /@codemirror/panel/0.19.1:
     resolution: {integrity: sha512-sYeOCMA3KRYxZYJYn5PNlt9yNsjy3zTNTrbYSfVgjgL9QomIVgOJWPO5hZ2sTN8lufO6lw0vTBsIPL9MSidmBg==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/view
     dependencies:
       '@codemirror/state': 0.19.9
       '@codemirror/view': 0.19.48
@@ -1403,7 +1395,6 @@ packages:
 
   /@codemirror/rectangular-selection/0.19.2:
     resolution: {integrity: sha512-AXK/p5eGwFJ9GJcLfntqN4dgY+XiIF7eHfXNQJX5HhQLSped2wJE6WuC1rMEaOlcpOqlb9mrNi/ZdUjSIj9mbA==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/view
     dependencies:
       '@codemirror/state': 0.19.9
       '@codemirror/text': 0.19.6
@@ -1429,7 +1420,6 @@ packages:
 
   /@codemirror/text/0.19.6:
     resolution: {integrity: sha512-T9jnREMIygx+TPC1bOuepz18maGq/92q2a+n4qTqObKwvNMg+8cMTslb8yxeEDEq7S3kpgGWxgO1UWbQRij0dA==}
-    deprecated: As of 0.20.0, this package has been merged into @codemirror/state
     dev: false
 
   /@codemirror/tooltip/0.19.16:
