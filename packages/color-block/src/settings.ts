@@ -130,7 +130,7 @@ export const settings: BlockSettings = {
                 type: NotificationStyleType.Warning,
             },
             show: (bundle: Bundle) => {
-                const colorSpacesValue = bundle.getBlock('colorspaces')?.value;
+                const colorSpacesValue = bundle?.getBlock('colorspaces')?.value as string[];
 
                 return !colorSpacesValue || colorSpacesValue?.length === 0;
             },
