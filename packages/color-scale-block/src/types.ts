@@ -30,7 +30,7 @@ export type SquareWithColorProps = {
     index: number;
     width: number;
     currentColor: ColorProps;
-    calculateLeftPos: (id: number, width: number) => void;
+    calculateLeftPosition: (id: number, width: number) => void;
     highlight: number;
     setHighlight: (value: boolean | number) => void;
     isEditing: boolean;
@@ -53,11 +53,11 @@ export type SquareWithoutColorProps = {
     id: number | string;
     sort: number;
     index: number;
-    totalNumOfBlocks: number;
+    totalNumberOfBlocks: number;
     placeholderColor: string;
     width: number;
     currentSquare: ColorProps;
-    calculateLeftPos: (id: number, width: number) => void;
+    calculateLeftPosition: (id: number, width: number) => void;
     highlight: number;
     setHighlight: (value: boolean | number) => void;
     isEditing: boolean;
