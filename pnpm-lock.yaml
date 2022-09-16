@@ -68,8 +68,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_t725rsozewy5bvec5mdo3q54zq
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_ppxbzgmow43jngyhkdoobew5fa
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.14
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -111,7 +111,7 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue-tokens': 3.1.0
+      '@frontify/fondue-tokens': 3.1.0_postcss@8.4.14
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -179,8 +179,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -230,8 +230,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       '@react-aria/checkbox': 3.5.0_react@17.0.2
@@ -288,7 +288,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 11.0.0
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.1.1
+      '@frontify/frontify-cli': 5.1.2
       '@frontify/guideline-blocks-settings': workspace:*
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.44
@@ -326,8 +326,8 @@ importers:
       '@codemirror/text': 0.19.6
       '@codemirror/view': 0.19.48
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie
-      '@frontify/fondue-tokens': 3.1.0
+      '@frontify/fondue': 11.0.0_b6fqubyldynydlq25brfw7xjiy
+      '@frontify/fondue-tokens': 3.1.0_postcss@8.4.13
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       csstype: 3.1.0
@@ -337,14 +337,14 @@ importers:
       '@babel/core': 7.17.10
       '@cypress/react': 5.12.4_tdrmehstfwfhspi7kvnufb3zp4
       '@frontify/eslint-config-react': 0.15.2_aycykirvsyf6wftspu25lyolgq
-      '@frontify/frontify-cli': 5.1.1
+      '@frontify/frontify-cli': 5.1.2
       '@types/react': 17.0.44
       autoprefixer: 10.4.6_postcss@8.4.13
       cypress: 9.6.0
       eslint: 8.15.0
       postcss: 8.4.13
       prettier: 2.6.2
-      tailwindcss: 3.0.24
+      tailwindcss: 3.0.24_postcss@8.4.13
       typescript: 4.6.4
 
   packages/divider-block:
@@ -370,8 +370,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -413,8 +413,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -456,8 +456,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -500,8 +500,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -545,8 +545,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       dayjs: 1.11.4
@@ -589,8 +589,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -682,8 +682,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
@@ -727,8 +727,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       '@react-aria/interactions': 3.7.0_react@17.0.2
@@ -773,8 +773,8 @@ importers:
       typescript: 4.7.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.15_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_l4iobuvyq4rslriq73hletyxxu
-      '@frontify/fondue-tokens': 3.0.1
+      '@frontify/fondue': 11.0.0_shfv4qi62le7g3wsspt6v7qzgy
+      '@frontify/fondue-tokens': 3.0.1_postcss@8.4.16
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
       lodash-es: 4.17.21
@@ -1711,23 +1711,6 @@ packages:
       - prettier
     dev: true
 
-  /@frontify/eslint-config-basic/0.15.2_bppm6sp3oxoychvfagx6tcd7pe:
-    resolution: {integrity: sha512-SvFp81SubqqyA0NIm1NkIAyzsM36iWUfjotZOSKICs6p8R9GNATvqgw9fWmS79WO5jMiRRmsbjoQFYnqvjHE4Q==}
-    peerDependencies:
-      eslint: '>=8.5.0'
-    dependencies:
-      eslint: 8.15.0
-      eslint-config-prettier: 8.5.0_eslint@8.15.0
-      eslint-plugin-html: 6.2.0
-      eslint-plugin-jsonc: 2.4.0_eslint@8.15.0
-      eslint-plugin-node: 11.1.0_eslint@8.15.0
-      eslint-plugin-prettier: 4.2.1_iqftbjqlxzn3ny5nablrkczhqi
-      eslint-plugin-promise: 6.0.0_eslint@8.15.0
-      eslint-plugin-unicorn: 40.1.0_eslint@8.15.0
-    transitivePeerDependencies:
-      - prettier
-    dev: true
-
   /@frontify/eslint-config-basic/0.15.2_po3yoeeutu52wwqsoi2mwzccke:
     resolution: {integrity: sha512-SvFp81SubqqyA0NIm1NkIAyzsM36iWUfjotZOSKICs6p8R9GNATvqgw9fWmS79WO5jMiRRmsbjoQFYnqvjHE4Q==}
     peerDependencies:
@@ -1811,7 +1794,7 @@ packages:
       - supports-color
     dev: true
 
-  /@frontify/fondue-tokens/3.0.1:
+  /@frontify/fondue-tokens/3.0.1_postcss@8.4.14:
     resolution: {integrity: sha512-r4EODHmTs2SKayUl+WoMmozTVoBqpP9rzKeToVGlvuUS0NizSIKazib4pgW2z6jmsALvPGYFQvtVi2Mmmwlj9w==}
     dependencies:
       tailwindcss: 3.1.7_postcss@8.4.14
@@ -1930,87 +1913,6 @@ packages:
       react-is: 18.2.0
       react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
       react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
-      slate: 0.82.0
-      slate-history: 0.66.0_slate@0.82.0
-      slate-hyperscript: 0.77.0_slate@0.82.0
-      slate-react: 0.82.0_iqzfojh3wll5pazhyampwd7k3u
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
-      tinycolor2: 1.4.2
-      xstate: 4.33.2
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@tanstack/query-core'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/fondue/11.0.0_fcdgd5lt5hi7mmx5qv2pcp22ie:
-    resolution: {integrity: sha512-KwIf2HXi/BJKmOhJYtXz3oA3kUzq/x3s3tOEb0cX7K6urxhGy29mm6i6IuRnU4jKyFE2n07VPc3CWoqAXvBKOw==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/fondue-tokens': 3.1.0
-      '@popperjs/core': 2.11.6
-      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.5.2_zdsfwtvwq54q3oqxwtq4jnbhh4
-      '@react-aria/breadcrumbs': 3.3.0_react@17.0.2
-      '@react-aria/button': 3.6.0_react@17.0.2
-      '@react-aria/checkbox': 3.5.0_react@17.0.2
-      '@react-aria/combobox': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.3.0_react@17.0.2
-      '@react-aria/focus': 3.7.0_react@17.0.2
-      '@react-aria/interactions': 3.10.0_react@17.0.2
-      '@react-aria/link': 3.3.2_react@17.0.2
-      '@react-aria/listbox': 3.6.0_react@17.0.2
-      '@react-aria/menu': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.10.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.3.0_react@17.0.2
-      '@react-aria/select': 3.8.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.10.0_react@17.0.2
-      '@react-aria/table': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.3.0_react@17.0.2
-      '@react-aria/utils': 3.13.2_react@17.0.2
-      '@react-aria/visually-hidden': 3.4.0_react@17.0.2
-      '@react-stately/checkbox': 3.2.0_react@17.0.2
-      '@react-stately/collections': 3.4.2_react@17.0.2
-      '@react-stately/combobox': 3.2.0_react@17.0.2
-      '@react-stately/list': 3.5.2_react@17.0.2
-      '@react-stately/menu': 3.4.0_react@17.0.2
-      '@react-stately/overlays': 3.4.0_react@17.0.2
-      '@react-stately/radio': 3.5.0_react@17.0.2
-      '@react-stately/select': 3.3.0_react@17.0.2
-      '@react-stately/table': 3.3.0_react@17.0.2
-      '@react-stately/toggle': 3.4.0_react@17.0.2
-      '@react-stately/tooltip': 3.2.0_react@17.0.2
-      '@react-stately/tree': 3.3.2_react@17.0.2
-      '@storybook/addon-a11y': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate': 10.6.0_wsjn2vozbmyodsxlzla6hnnrpe
-      '@xstate/immer': 0.3.1_immer@9.0.15+xstate@4.33.2
-      '@xstate/react': 1.6.3_bzc4gjim2g6ujntucegjp2pk4u
-      date-fns: 2.29.2
-      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.15
-      react: 17.0.2
-      react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_zdsfwtvwq54q3oqxwtq4jnbhh4
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.2.0
-      react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
-      react-textarea-autosize: 8.3.4_zdsfwtvwq54q3oqxwtq4jnbhh4
       slate: 0.82.0
       slate-history: 0.66.0_slate@0.82.0
       slate-hyperscript: 0.77.0_slate@0.82.0
@@ -2207,10 +2109,10 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.1.0
+      '@frontify/fondue-tokens': 3.1.0_postcss@8.4.14
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.5.2_sudpmbbyhqtxq6t4xf6jlicdem
+      '@react-aria/aria-modal-polyfill': 3.5.2_zdsfwtvwq54q3oqxwtq4jnbhh4
       '@react-aria/breadcrumbs': 3.3.0_react@17.0.2
       '@react-aria/button': 3.6.0_react@17.0.2
       '@react-aria/checkbox': 3.5.0_react@17.0.2
@@ -2242,21 +2144,21 @@ packages:
       '@react-stately/tooltip': 3.2.0_react@17.0.2
       '@react-stately/tree': 3.3.2_react@17.0.2
       '@storybook/addon-a11y': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate': 10.6.0_dbjmzboqsfgv35yqyjmf7hkiee
+      '@udecode/plate': 10.6.0_awcjhznghykw2mx5olejwej6oy
       '@xstate/immer': 0.3.1_immer@9.0.15+xstate@4.33.2
-      '@xstate/react': 1.6.3_iuswf5px6nke57geiw23qdxg7u
+      '@xstate/react': 1.6.3_bzc4gjim2g6ujntucegjp2pk4u
       date-fns: 2.29.2
       framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
       immer: 9.0.15
       react: 17.0.2
       react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
       react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_sudpmbbyhqtxq6t4xf6jlicdem
+      react-dnd: 15.1.2_zdsfwtvwq54q3oqxwtq4jnbhh4
       react-dnd-html5-backend: 15.1.3
       react-dom: 17.0.2_react@17.0.2
       react-is: 18.2.0
       react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
-      react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
+      react-textarea-autosize: 8.3.4_zdsfwtvwq54q3oqxwtq4jnbhh4
       slate: 0.82.0
       slate-history: 0.66.0_slate@0.82.0
       slate-hyperscript: 0.77.0_slate@0.82.0
@@ -2371,10 +2273,10 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.1.0
+      '@frontify/fondue-tokens': 3.1.0_postcss@8.4.16
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.5.2_zdsfwtvwq54q3oqxwtq4jnbhh4
+      '@react-aria/aria-modal-polyfill': 3.5.2_sudpmbbyhqtxq6t4xf6jlicdem
       '@react-aria/breadcrumbs': 3.3.0_react@17.0.2
       '@react-aria/button': 3.6.0_react@17.0.2
       '@react-aria/checkbox': 3.5.0_react@17.0.2
@@ -2406,21 +2308,21 @@ packages:
       '@react-stately/tooltip': 3.2.0_react@17.0.2
       '@react-stately/tree': 3.3.2_react@17.0.2
       '@storybook/addon-a11y': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate': 10.6.0_awcjhznghykw2mx5olejwej6oy
+      '@udecode/plate': 10.6.0_dbjmzboqsfgv35yqyjmf7hkiee
       '@xstate/immer': 0.3.1_immer@9.0.15+xstate@4.33.2
-      '@xstate/react': 1.6.3_bzc4gjim2g6ujntucegjp2pk4u
+      '@xstate/react': 1.6.3_iuswf5px6nke57geiw23qdxg7u
       date-fns: 2.29.2
       framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
       immer: 9.0.15
       react: 17.0.2
       react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
       react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_zdsfwtvwq54q3oqxwtq4jnbhh4
+      react-dnd: 15.1.2_sudpmbbyhqtxq6t4xf6jlicdem
       react-dnd-html5-backend: 15.1.3
       react-dom: 17.0.2_react@17.0.2
       react-is: 18.2.0
       react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
-      react-textarea-autosize: 8.3.4_zdsfwtvwq54q3oqxwtq4jnbhh4
+      react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
       slate: 0.82.0
       slate-history: 0.66.0_slate@0.82.0
       slate-hyperscript: 0.77.0_slate@0.82.0
@@ -2446,26 +2348,6 @@ packages:
       - valtio
       - wonka
     dev: false
-
-  /@frontify/frontify-cli/5.1.1:
-    resolution: {integrity: sha512-lnKp6VzZZJt4Vj+SG/U/dNH05zsMo3d6f2YOnfDRdVZl4Yo9qy2PF9aPhpDwAzgUlTUCUMqVeThvAYhOsUvW8w==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dependencies:
-      '@fastify/cors': 8.1.0
-      '@vitejs/plugin-react': 2.0.1_vite@3.0.4
-      fastify: 4.3.0
-      minimist: 1.2.6
-      minimist-options: 4.1.0
-      vite: 3.0.4
-      vite-plugin-externals: 0.5.1_vite@3.0.4
-    transitivePeerDependencies:
-      - less
-      - sass
-      - stylus
-      - supports-color
-      - terser
-    dev: true
 
   /@frontify/frontify-cli/5.1.2:
     resolution: {integrity: sha512-a9jSbUx6/mYv5gyM2EfUrUVAfbAsR6kuQtptBNKMdpuMktrzSRwLsjb0++HEUlEfo4eMFC+3Psc+b1GcycR0Qw==}
@@ -12619,27 +12501,6 @@ packages:
     resolution: {integrity: sha512-hovKzEXZc2YgeuXn41/2EA/IaIOdRu1pB9WKgnzDBj3lhKSdDCEsckHa7I6LiT/LhflvAQX7ZY8IQ6eBX0htTg==}
     dev: true
 
-  /fastify/4.3.0:
-    resolution: {integrity: sha512-9q5Ron8jWmX6ElFkgZH4zmIIXdnkGIu16JozWG2ohcs7th5rAo1ymNi+rn6xCmbWc6jl9lf+9OxVe93LOg6/2w==}
-    dependencies:
-      '@fastify/ajv-compiler': 3.1.2
-      '@fastify/error': 3.0.0
-      '@fastify/fast-json-stringify-compiler': 4.0.0
-      abstract-logging: 2.0.1
-      avvio: 8.2.0
-      find-my-way: 7.0.1
-      light-my-request: 5.5.1
-      pino: 8.4.2
-      process-warning: 2.0.0
-      proxy-addr: 2.0.7
-      rfdc: 1.3.0
-      secure-json-parse: 2.5.0
-      semver: 7.3.7
-      tiny-lru: 8.0.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /fastify/4.5.2:
     resolution: {integrity: sha512-cDLhc0bh1ftzMoS7ccGGPUW/xTUnk6I51TktQqKFeJnhoAfk56tfn+xDs8JcJYfouPK23Ljx4OpMaEi+kIDwEg==}
     dependencies:
@@ -14871,6 +14732,39 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /postcss-import/14.1.0:
+    resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.1
+
+  /postcss-import/14.1.0_postcss@8.4.13:
+    resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.13
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.1
+    dev: false
+
+  /postcss-import/14.1.0_postcss@8.4.14:
+    resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.14
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.1
+
   /postcss-import/14.1.0_postcss@8.4.16:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
@@ -14881,6 +14775,32 @@ packages:
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.1
+
+  /postcss-js/4.0.0:
+    resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
+    engines: {node: ^12 || ^14 || >= 16}
+    peerDependencies:
+      postcss: ^8.3.3
+    dependencies:
+      camelcase-css: 2.0.1
+
+  /postcss-js/4.0.0_postcss@8.4.13:
+    resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
+    engines: {node: ^12 || ^14 || >= 16}
+    peerDependencies:
+      postcss: ^8.3.3
+    dependencies:
+      camelcase-css: 2.0.1
+      postcss: 8.4.13
+
+  /postcss-js/4.0.0_postcss@8.4.14:
+    resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
+    engines: {node: ^12 || ^14 || >= 16}
+    peerDependencies:
+      postcss: ^8.3.3
+    dependencies:
+      camelcase-css: 2.0.1
+      postcss: 8.4.14
 
   /postcss-js/4.0.0_postcss@8.4.16:
     resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
@@ -14923,6 +14843,22 @@ packages:
       postcss: 8.4.13
       yaml: 1.10.2
 
+  /postcss-load-config/3.1.4_postcss@8.4.14:
+    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 2.0.6
+      postcss: 8.4.14
+      yaml: 1.10.2
+
   /postcss-load-config/3.1.4_postcss@8.4.16:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
@@ -14938,6 +14874,48 @@ packages:
       lilconfig: 2.0.6
       postcss: 8.4.16
       yaml: 1.10.2
+
+  /postcss-load-config/3.1.4_ts-node@10.9.1:
+    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 2.0.6
+      ts-node: 10.9.1_6bd4jfip3gnofjnkq5lqqdbk4m
+      yaml: 1.10.2
+
+  /postcss-nested/5.0.6:
+    resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.2.14
+    dependencies:
+      postcss-selector-parser: 6.0.10
+
+  /postcss-nested/5.0.6_postcss@8.4.13:
+    resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.2.14
+    dependencies:
+      postcss: 8.4.13
+      postcss-selector-parser: 6.0.10
+
+  /postcss-nested/5.0.6_postcss@8.4.14:
+    resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.2.14
+    dependencies:
+      postcss: 8.4.14
+      postcss-selector-parser: 6.0.10
 
   /postcss-nested/5.0.6_postcss@8.4.16:
     resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
@@ -14965,7 +14943,6 @@ packages:
       nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
 
   /postcss/8.4.14:
     resolution: {integrity: sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==}
@@ -14974,7 +14951,6 @@ packages:
       nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
 
   /postcss/8.4.16:
     resolution: {integrity: sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==}
@@ -16351,10 +16327,12 @@ packages:
       get-port: 3.2.0
     dev: true
 
-  /tailwindcss/3.0.24:
+  /tailwindcss/3.0.24_postcss@8.4.13:
     resolution: {integrity: sha512-H3uMmZNWzG6aqmg9q07ZIRNIawoiEcNFKDfL+YzOPuPsXuDXxJxB9icqzLgdzKNwjG3SAro2h9SYav8ewXNgig==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -16369,10 +16347,10 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.16
-      postcss-js: 4.0.0_postcss@8.4.16
-      postcss-load-config: 3.1.4_postcss@8.4.16
-      postcss-nested: 5.0.6_postcss@8.4.16
+      postcss: 8.4.13
+      postcss-js: 4.0.0_postcss@8.4.13
+      postcss-load-config: 3.1.4_postcss@8.4.13
+      postcss-nested: 5.0.6_postcss@8.4.13
       postcss-selector-parser: 6.0.10
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1
@@ -16401,6 +16379,7 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
+      postcss: 8.4.16
       postcss-import: 14.1.0
       postcss-js: 4.0.0
       postcss-load-config: 3.1.4
@@ -16466,11 +16445,11 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.16
-      postcss-import: 14.1.0_postcss@8.4.16
-      postcss-js: 4.0.0_postcss@8.4.16
-      postcss-load-config: 3.1.4_postcss@8.4.16
-      postcss-nested: 5.0.6_postcss@8.4.16
+      postcss: 8.4.14
+      postcss-import: 14.1.0_postcss@8.4.14
+      postcss-js: 4.0.0_postcss@8.4.14
+      postcss-load-config: 3.1.4_postcss@8.4.14
+      postcss-nested: 5.0.6_postcss@8.4.14
       postcss-selector-parser: 6.0.10
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1
@@ -16478,39 +16457,8 @@ packages:
     transitivePeerDependencies:
       - ts-node
 
-  /tailwindcss/3.1.7_ts-node@10.9.1:
+  /tailwindcss/3.1.7_postcss@8.4.16:
     resolution: {integrity: sha512-r7mgumZ3k0InfVPpGWcX8X/Ut4xBfv+1O/+C73ar/m01LxGVzWvPxF/w6xIUPEztrCoz7axfx0SMdh8FH8ZvRQ==}
-    engines: {node: '>=12.13.0'}
-    hasBin: true
-    dependencies:
-      arg: 5.0.2
-      chokidar: 3.5.3
-      color-name: 1.1.4
-      detective: 5.2.1
-      didyoumean: 1.2.2
-      dlv: 1.1.3
-      fast-glob: 3.2.11
-      glob-parent: 6.0.2
-      is-glob: 4.0.3
-      lilconfig: 2.0.6
-      normalize-path: 3.0.0
-      object-hash: 3.0.0
-      picocolors: 1.0.0
-      postcss: 8.4.16
-      postcss-import: 14.1.0_postcss@8.4.16
-      postcss-js: 4.0.0_postcss@8.4.16
-      postcss-load-config: 3.1.4_57znarxsqwmnneadci5z5fd5gu
-      postcss-nested: 5.0.6_postcss@8.4.16
-      postcss-selector-parser: 6.0.10
-      postcss-value-parser: 4.2.0
-      quick-lru: 5.1.1
-      resolve: 1.22.1
-    transitivePeerDependencies:
-      - ts-node
-    dev: false
-
-  /tailwindcss/3.1.8:
-    resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
@@ -16539,6 +16487,70 @@ packages:
       quick-lru: 5.1.1
       resolve: 1.22.1
     transitivePeerDependencies:
+      - ts-node
+    dev: false
+
+  /tailwindcss/3.1.7_ts-node@10.9.1:
+    resolution: {integrity: sha512-r7mgumZ3k0InfVPpGWcX8X/Ut4xBfv+1O/+C73ar/m01LxGVzWvPxF/w6xIUPEztrCoz7axfx0SMdh8FH8ZvRQ==}
+    engines: {node: '>=12.13.0'}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
+    dependencies:
+      arg: 5.0.2
+      chokidar: 3.5.3
+      color-name: 1.1.4
+      detective: 5.2.1
+      didyoumean: 1.2.2
+      dlv: 1.1.3
+      fast-glob: 3.2.11
+      glob-parent: 6.0.2
+      is-glob: 4.0.3
+      lilconfig: 2.0.6
+      normalize-path: 3.0.0
+      object-hash: 3.0.0
+      picocolors: 1.0.0
+      postcss: 8.4.16
+      postcss-import: 14.1.0
+      postcss-js: 4.0.0
+      postcss-load-config: 3.1.4_ts-node@10.9.1
+      postcss-nested: 5.0.6
+      postcss-selector-parser: 6.0.10
+      postcss-value-parser: 4.2.0
+      quick-lru: 5.1.1
+      resolve: 1.22.1
+    transitivePeerDependencies:
+      - ts-node
+    dev: false
+
+  /tailwindcss/3.1.8_postcss@8.4.16:
+    resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
+    engines: {node: '>=12.13.0'}
+    hasBin: true
+    dependencies:
+      arg: 5.0.2
+      chokidar: 3.5.3
+      color-name: 1.1.4
+      detective: 5.2.1
+      didyoumean: 1.2.2
+      dlv: 1.1.3
+      fast-glob: 3.2.11
+      glob-parent: 6.0.2
+      is-glob: 4.0.3
+      lilconfig: 2.0.6
+      normalize-path: 3.0.0
+      object-hash: 3.0.0
+      picocolors: 1.0.0
+      postcss-import: 14.1.0_postcss@8.4.16
+      postcss-js: 4.0.0_postcss@8.4.16
+      postcss-load-config: 3.1.4_postcss@8.4.16
+      postcss-nested: 5.0.6_postcss@8.4.16
+      postcss-selector-parser: 6.0.10
+      postcss-value-parser: 4.2.0
+      quick-lru: 5.1.1
+      resolve: 1.22.1
+    transitivePeerDependencies:
+      - postcss
       - ts-node
     dev: true
 
