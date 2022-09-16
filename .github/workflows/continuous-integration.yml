@@ -9,7 +9,7 @@ on:
 env:
     NODE_VERSION: 16
     CI: true
-    NUMBER_OF_RUNNERS: 6
+    NUMBER_OF_RUNNERS: 7
 
 jobs:
     linting:
@@ -129,33 +129,14 @@ jobs:
             - name: Unit Tests
               run: pnpm run test:unit
 
-    prepare-tests:
-        runs-on: ubuntu-latest
-        timeout-minutes: 5
-
-        outputs:
-            component-tests: ${{ steps.parse-specs.outputs.component-tests }}
-
-        steps:
-            - name: Checkout default branch
-              uses: actions/checkout@v3
-
-            - name: Parse test files for parallelization
-              id: parse-specs
-              uses: tgamauf/cypress-parallel@v1
-              with:
-                  count-runners: ${{ env.NUMBER_OF_RUNNERS }}
-
     component-tests:
         runs-on: ubuntu-latest
         timeout-minutes: 10
 
-        needs: [prepare-tests]
-
         strategy:
             fail-fast: false
             matrix:
-                spec: ${{ fromJson(needs.prepare-tests.outputs.component-tests) }}
+                containers: [0, 1, 2, 3, 4, 5, 6]
 
         steps:
             - name: Checkout current commit
@@ -192,7 +173,4 @@ jobs:
               run: pnpm run build
 
             - name: Component Tests
-              run: pnpm run test:components --spec ${{ matrix.spec }}
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+              run: pnpm run test:components --spec $(node ./.github/lib/cypress-matrix.js ${{ env.NUMBER_OF_RUNNERS }} ${{ matrix.containers }})
