@@ -4,7 +4,7 @@ import { TooltipContentProps } from '../types';
 
 export const TooltipContent = ({ colorValue, status }: TooltipContentProps) => {
     return (
-        <div data-test-id="tooltip-content">
+        <span data-test-id="tooltip-content">
             <span className="tw-block">Color Name</span>
             <span className="tw-block">{colorValue}</span>
             <span className="tw-text-black-50">
@@ -12,6 +12,6 @@ export const TooltipContent = ({ colorValue, status }: TooltipContentProps) => {
                 {status === 'idle' && 'Click to copy.'}
                 {status === 'success' && 'Copied!'}
             </span>
-        </div>
+        </span>
     );
 };
