@@ -133,9 +133,9 @@ importers:
 
   packages/block-settings:
     specifiers:
-      '@frontify/app-bridge': '*'
+      '@frontify/app-bridge': latest
       '@frontify/eslint-config-typescript': 0.15.2
-      '@frontify/fondue': '*'
+      '@frontify/fondue': latest
       eslint: 8.21.0
       prettier: 2.7.1
       react: 17.0.2
@@ -145,7 +145,7 @@ importers:
       vite-plugin-dts: 1.4.1
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.16_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.0.0_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 11.3.0_sfoxds7t5ydpegc3knd667wn6m
     devDependencies:
       '@frontify/eslint-config-typescript': 0.15.2_swk2g7ygmfleszo5c33j4vooni
       eslint: 8.21.0
@@ -196,7 +196,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/checklist-block:
@@ -255,7 +255,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/code-snippet-block:
@@ -387,7 +387,7 @@ importers:
       eslint: 8.23.1
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.8.3
 
   packages/divider-block:
@@ -430,7 +430,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/dos-donts-block:
@@ -473,7 +473,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/example:
@@ -516,7 +516,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/figma-block:
@@ -561,7 +561,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/personal-note-block:
@@ -606,7 +606,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/quote-block:
@@ -649,7 +649,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/shared:
@@ -743,7 +743,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/storybook-block:
@@ -788,7 +788,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
   packages/text-block:
@@ -835,7 +835,7 @@ importers:
       eslint: 8.21.0
       postcss: 8.4.16
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
       typescript: 4.7.4
 
 packages:
@@ -2114,7 +2114,7 @@ packages:
     resolution: {integrity: sha512-r4EODHmTs2SKayUl+WoMmozTVoBqpP9rzKeToVGlvuUS0NizSIKazib4pgW2z6jmsALvPGYFQvtVi2Mmmwlj9w==}
     dependencies:
       postcss: 8.4.16
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -2123,7 +2123,7 @@ packages:
     resolution: {integrity: sha512-/Dc8fPFtMbIjRBSPHi4oX7jLixbY8WR0k/Zp/NLZ+XSoXOZES2fD4RfEzqGm5d9FihetVqoHvlw9rDJWQRj7xg==}
     dependencies:
       postcss: 8.4.16
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -2132,7 +2132,7 @@ packages:
     resolution: {integrity: sha512-/Dc8fPFtMbIjRBSPHi4oX7jLixbY8WR0k/Zp/NLZ+XSoXOZES2fD4RfEzqGm5d9FihetVqoHvlw9rDJWQRj7xg==}
     dependencies:
       postcss: 8.4.16
-      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+      tailwindcss: 3.1.8_ts-node@10.9.1
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -2461,87 +2461,6 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/fondue/11.0.0_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-KwIf2HXi/BJKmOhJYtXz3oA3kUzq/x3s3tOEb0cX7K6urxhGy29mm6i6IuRnU4jKyFE2n07VPc3CWoqAXvBKOw==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/fondue-tokens': 3.1.0
-      '@popperjs/core': 2.11.6
-      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.5.2_react@17.0.2
-      '@react-aria/breadcrumbs': 3.3.0_react@17.0.2
-      '@react-aria/button': 3.6.0_react@17.0.2
-      '@react-aria/checkbox': 3.5.0_react@17.0.2
-      '@react-aria/combobox': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.3.0_react@17.0.2
-      '@react-aria/focus': 3.7.0_react@17.0.2
-      '@react-aria/interactions': 3.10.0_react@17.0.2
-      '@react-aria/link': 3.3.2_react@17.0.2
-      '@react-aria/listbox': 3.6.0_react@17.0.2
-      '@react-aria/menu': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.10.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.3.0_react@17.0.2
-      '@react-aria/select': 3.8.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.10.0_react@17.0.2
-      '@react-aria/table': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.3.0_react@17.0.2
-      '@react-aria/utils': 3.13.2_react@17.0.2
-      '@react-aria/visually-hidden': 3.4.0_react@17.0.2
-      '@react-stately/checkbox': 3.2.0_react@17.0.2
-      '@react-stately/collections': 3.4.2_react@17.0.2
-      '@react-stately/combobox': 3.2.0_react@17.0.2
-      '@react-stately/list': 3.5.2_react@17.0.2
-      '@react-stately/menu': 3.4.0_react@17.0.2
-      '@react-stately/overlays': 3.4.0_react@17.0.2
-      '@react-stately/radio': 3.5.0_react@17.0.2
-      '@react-stately/select': 3.3.0_react@17.0.2
-      '@react-stately/table': 3.3.0_react@17.0.2
-      '@react-stately/toggle': 3.4.0_react@17.0.2
-      '@react-stately/tooltip': 3.2.0_react@17.0.2
-      '@react-stately/tree': 3.3.2_react@17.0.2
-      '@storybook/addon-a11y': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate': 10.6.0_ioccsxtwo6p6x7plrzgy7uau7i
-      '@xstate/immer': 0.3.1_immer@9.0.15+xstate@4.33.2
-      '@xstate/react': 1.6.3_react@17.0.2+xstate@4.33.2
-      date-fns: 2.29.2
-      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.15
-      react: 17.0.2
-      react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_react@17.0.2
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.2.0
-      react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
-      react-textarea-autosize: 8.3.4_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
-      tinycolor2: 1.4.2
-      xstate: 4.33.2
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@tanstack/query-core'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
   /@frontify/fondue/11.0.0_t725rsozewy5bvec5mdo3q54zq:
     resolution: {integrity: sha512-KwIf2HXi/BJKmOhJYtXz3oA3kUzq/x3s3tOEb0cX7K6urxhGy29mm6i6IuRnU4jKyFE2n07VPc3CWoqAXvBKOw==}
     peerDependencies:
@@ -2679,6 +2598,87 @@ packages:
       react-is: 18.2.0
       react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
       react-textarea-autosize: 8.3.4_sudpmbbyhqtxq6t4xf6jlicdem
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+      tinycolor2: 1.4.2
+      xstate: 4.33.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/fondue/11.3.0_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-2aXHPOLvX3QTb9KX2kI0wPTI2qTnkcvDaAZ1Gp/VZpu2t+pvzK+TbfsrkS7eCF9Ffvh/xB8hNRhkEyE3lwbcww==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.1.0
+      '@popperjs/core': 2.11.6
+      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.5.2_react@17.0.2
+      '@react-aria/breadcrumbs': 3.3.0_react@17.0.2
+      '@react-aria/button': 3.6.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.0_react@17.0.2
+      '@react-aria/combobox': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.3.0_react@17.0.2
+      '@react-aria/focus': 3.7.0_react@17.0.2
+      '@react-aria/interactions': 3.10.0_react@17.0.2
+      '@react-aria/link': 3.3.2_react@17.0.2
+      '@react-aria/listbox': 3.6.0_react@17.0.2
+      '@react-aria/menu': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.10.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.3.0_react@17.0.2
+      '@react-aria/select': 3.8.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.10.0_react@17.0.2
+      '@react-aria/table': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.3.0_react@17.0.2
+      '@react-aria/utils': 3.13.2_react@17.0.2
+      '@react-aria/visually-hidden': 3.4.0_react@17.0.2
+      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.0_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
+      '@react-stately/tree': 3.3.2_react@17.0.2
+      '@storybook/addon-a11y': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 10.6.0_ioccsxtwo6p6x7plrzgy7uau7i
+      '@xstate/immer': 0.3.1_immer@9.0.15+xstate@4.33.2
+      '@xstate/react': 1.6.3_react@17.0.2+xstate@4.33.2
+      date-fns: 2.29.2
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.15
+      react: 17.0.2
+      react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_react@17.0.2
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.2.0
+      react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
+      react-textarea-autosize: 8.3.4_react@17.0.2
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-hyperscript: 0.77.0_slate@0.78.0
@@ -17364,17 +17364,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /postcss-import/14.1.0:
-    resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      postcss: ^8.0.0
-    dependencies:
-      postcss-value-parser: 4.2.0
-      read-cache: 1.0.0
-      resolve: 1.22.1
-    dev: true
-
   /postcss-import/14.1.0_postcss@8.4.14:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
@@ -17397,15 +17386,6 @@ packages:
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.1
-
-  /postcss-js/4.0.0:
-    resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
-    engines: {node: ^12 || ^14 || >= 16}
-    peerDependencies:
-      postcss: ^8.3.3
-    dependencies:
-      camelcase-css: 2.0.1
-    dev: true
 
   /postcss-js/4.0.0_postcss@8.4.13:
     resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
@@ -17452,7 +17432,6 @@ packages:
       postcss: 8.4.16
       ts-node: 10.9.1_6bd4jfip3gnofjnkq5lqqdbk4m
       yaml: 1.10.2
-    dev: false
 
   /postcss-load-config/3.1.4_postcss@8.4.13:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
@@ -17503,32 +17482,6 @@ packages:
       lilconfig: 2.0.6
       postcss: 8.4.16
       yaml: 1.10.2
-
-  /postcss-load-config/3.1.4_ts-node@10.9.1:
-    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 2.0.6
-      ts-node: 10.9.1_6bd4jfip3gnofjnkq5lqqdbk4m
-      yaml: 1.10.2
-    dev: true
-
-  /postcss-nested/5.0.6:
-    resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.2.14
-    dependencies:
-      postcss-selector-parser: 6.0.10
-    dev: true
 
   /postcss-nested/5.0.6_postcss@8.4.13:
     resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
@@ -19027,45 +18980,10 @@ packages:
       - ts-node
     dev: true
 
-  /tailwindcss/3.1.8_57znarxsqwmnneadci5z5fd5gu:
+  /tailwindcss/3.1.8:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
-    dependencies:
-      arg: 5.0.2
-      chokidar: 3.5.3
-      color-name: 1.1.4
-      detective: 5.2.1
-      didyoumean: 1.2.2
-      dlv: 1.1.3
-      fast-glob: 3.2.11
-      glob-parent: 6.0.2
-      is-glob: 4.0.3
-      lilconfig: 2.0.6
-      normalize-path: 3.0.0
-      object-hash: 3.0.0
-      picocolors: 1.0.0
-      postcss: 8.4.16
-      postcss-import: 14.1.0_postcss@8.4.16
-      postcss-js: 4.0.0_postcss@8.4.16
-      postcss-load-config: 3.1.4_57znarxsqwmnneadci5z5fd5gu
-      postcss-nested: 5.0.6_postcss@8.4.16
-      postcss-selector-parser: 6.0.10
-      postcss-value-parser: 4.2.0
-      quick-lru: 5.1.1
-      resolve: 1.22.1
-    transitivePeerDependencies:
-      - ts-node
-    dev: false
-
-  /tailwindcss/3.1.8_postcss@8.4.16:
-    resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
-    engines: {node: '>=12.13.0'}
-    hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -19096,8 +19014,6 @@ packages:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -19113,17 +19029,16 @@ packages:
       object-hash: 3.0.0
       picocolors: 1.0.0
       postcss: 8.4.16
-      postcss-import: 14.1.0
-      postcss-js: 4.0.0
-      postcss-load-config: 3.1.4_ts-node@10.9.1
-      postcss-nested: 5.0.6
+      postcss-import: 14.1.0_postcss@8.4.16
+      postcss-js: 4.0.0_postcss@8.4.16
+      postcss-load-config: 3.1.4_57znarxsqwmnneadci5z5fd5gu
+      postcss-nested: 5.0.6_postcss@8.4.16
       postcss-selector-parser: 6.0.10
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1
       resolve: 1.22.1
     transitivePeerDependencies:
       - ts-node
-    dev: true
 
   /telejson/6.0.8:
     resolution: {integrity: sha512-nerNXi+j8NK1QEfBHtZUN/aLdDcyupA//9kAboYLrtzZlPLpUfqbVGWb9zz91f/mIjRbAYhbgtnJHY8I1b5MBg==}
