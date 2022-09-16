@@ -24,7 +24,7 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 label: 'RGB',
-                value: `${color?.red}/${color?.green}/${color?.blue}`,
+                value: color && `${color.red}/${color.green}/${color.blue}`,
                 placeholder: 'r/g/b',
             };
         case 'variable':
@@ -100,7 +100,7 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 label: 'CMYK',
-                value: `${color?.c}/${color?.m}/${color?.y}/${color?.k}`,
+                value: color && `${color.c}/${color.m}/${color.y}/${color.k}`,
                 placeholder: 'c/m/y/k',
             };
         case 'cmykCoated':
