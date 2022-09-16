@@ -100,7 +100,9 @@ export const DropZone = ({ index, onDrop, children, colorBlockType, moveCard, is
             ref={ref}
             className={merge(['tw-transition-all', isDragging ? activeOuterDropZoneClassNames : 'tw-h-auto'])}
         >
-            <div className={isDragging ? 'tw-hidden' : ''}>{children}</div>
+            <div data-test-id="drop-zone" className={isDragging ? 'tw-hidden' : ''}>
+                {children}
+            </div>
         </div>
     );
 };
