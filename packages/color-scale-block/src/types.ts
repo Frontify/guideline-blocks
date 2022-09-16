@@ -30,7 +30,7 @@ export type SquareWithColorProps = {
     index: number;
     width: number;
     currentColor: ColorProps;
-    calculateLeftPos: (id: number, width: number) => void;
+    calculateLeftPosition: (id: number, width: number) => void;
     hilite: number;
     setHilite: (value: boolean | number) => void;
     isEditing: boolean;
