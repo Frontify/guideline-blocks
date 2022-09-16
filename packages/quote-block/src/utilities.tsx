@@ -15,7 +15,7 @@ import { QuoteStyle } from './types';
 
 export const ICON_CLASS_NAME = 'tw-flex tw-items-center tw-justify-center tw-fill-current';
 
-export const quoteIconMap = (size: string, color: string): Record<QuoteStyle, ReactNode> => {
+export const quoteIconMap = (size: string, color: string, customIconUrl?: string): Record<QuoteStyle, ReactNode> => {
     const style: CSSProperties = {
         color,
         width: size,
@@ -34,5 +34,6 @@ export const quoteIconMap = (size: string, color: string): Record<QuoteStyle, Re
         HookBracketLeft: <IconHookBracketLeft style={style} />,
         HookBracketRight: <IconHookBracketRight style={style} />,
         None: <></>,
+        Custom: customIconUrl && <img style={style} alt="Quote Icon" src={customIconUrl} />,
     };
 };

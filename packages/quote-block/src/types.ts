@@ -52,6 +52,7 @@ export enum QuoteStyle {
     HookBracketLeft = 'HookBracketLeft',
     HookBracketRight = 'HookBracketRight',
     None = 'None',
+    Custom = 'Custom',
 }
 
 export enum LineType {

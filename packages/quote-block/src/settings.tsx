@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
@@ -11,6 +12,10 @@ import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
 import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
 import { LineType, QuoteSize, QuoteStyle, QuoteType, quoteSizeMap } from './types';
 
+export const CUSTOM_ICON_LEFT_ID = 'customIconLeft';
+export const CUSTOM_ICON_RIGHT_ID = 'customIconRight';
+const QUOTE_STYLE_LEFT_ID = 'quoteStyleLeft';
+const QUOTE_STYLE_RIGHT_ID = 'quoteStyleRight';
 const QUOTE_TYPE_ID = 'type';
 const SIZE_CHOICE_ID = 'sizeChoice';
 const SIZE_VALUE_ID = 'sizeValue';
@@ -62,6 +67,11 @@ const QUOTE_STYLE_CHOICES = [
         label: 'Hook Bracket Right',
     },
     { value: QuoteStyle.None, icon: IconEnum.StrikethroughBox20, label: 'None' },
+    {
+        value: QuoteStyle.Custom,
+        icon: IconEnum.Plus16,
+        label: 'Custom Icon',
+    },
 ] as Choice[];
 
 export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
@@ -97,18 +107,36 @@ export const settings: BlockSettings = {
             show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
             blocks: [
                 {
-                    id: 'quoteStyleLeft',
+                    id: QUOTE_STYLE_LEFT_ID,
                     label: 'Left',
                     type: 'dropdown',
                     defaultValue: QuoteStyle.DoubleUp,
                     choices: QUOTE_STYLE_CHOICES,
                 },
                 {
-                    id: 'quoteStyleRight',
+                    id: CUSTOM_ICON_LEFT_ID,
+                    type: 'assetInput',
+                    label: 'Custom Icon Left',
+                    extensions: ['svg' as FileExtension.Svg],
+                    objectTypes: [AssetChooserObjectType.ImageVideo],
+                    show: (bundle: Bundle): boolean =>
+                        bundle.getBlock(QUOTE_STYLE_LEFT_ID)?.value === QuoteStyle.Custom,
+                },
+                {
+                    id: QUOTE_STYLE_RIGHT_ID,
                     label: 'Right',
                     type: 'dropdown',
                     defaultValue: QuoteStyle.DoubleUp,
                     choices: QUOTE_STYLE_CHOICES,
+                },
+                {
+                    id: CUSTOM_ICON_RIGHT_ID,
+                    type: 'assetInput',
+                    label: 'Custom Icon Right',
+                    extensions: ['svg' as FileExtension.Svg],
+                    objectTypes: [AssetChooserObjectType.ImageVideo],
+                    show: (bundle: Bundle): boolean =>
+                        bundle.getBlock(QUOTE_STYLE_RIGHT_ID)?.value === QuoteStyle.Custom,
                 },
             ],
         },
