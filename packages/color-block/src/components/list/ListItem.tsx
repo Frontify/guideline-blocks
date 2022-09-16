@@ -17,7 +17,7 @@ import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ColorBlockType, ColorSpaceInputValues, ItemProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { TooltipContent } from '../TooltipContent';
-import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
+import { ColorPickerFlyout } from '../ColorPickerFlyout';
 import { FormEvent, useState } from 'react';
 import { ColorName } from '../ColorName';
 
@@ -71,7 +71,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     }
                 />
             ) : (
-                <ColorsBlockColorPicker
+                <ColorPickerFlyout
                     currentColor={color as Color}
                     onConfirm={(color) => {
                         onUpdate({ ...color, alpha: (color.alpha && Math.round(color.alpha * 255)) || 255 });
@@ -84,7 +84,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                             opacity: (color.alpha && color.alpha / 255) || 1,
                         }}
                     ></div>
-                </ColorsBlockColorPicker>
+                </ColorPickerFlyout>
             )}
 
             <ColorName

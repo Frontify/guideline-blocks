@@ -5,18 +5,18 @@ import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { ItemAddProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
-import { ColorsBlockColorPicker } from '../ColorsBlockColorPicker';
+import { ColorPickerFlyout } from '../ColorPickerFlyout';
 
 export const DropsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            <ColorsBlockColorPicker onConfirm={onConfirm}>
+            <ColorPickerFlyout onConfirm={onConfirm}>
                 <div className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-button-background tw-shadow-inner-line hover:tw-shadow-inner-line-strong">
                     <IconPlus size={IconSize.Size24} />
                 </div>
-            </ColorsBlockColorPicker>
+            </ColorPickerFlyout>
 
             <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-black tw-text-center">
                 <RichTextEditor designTokens={designTokens ?? undefined} readonly placeholder="Color Name" />

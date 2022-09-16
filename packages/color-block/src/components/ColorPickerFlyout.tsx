@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Color, ColorFormat, ColorPicker, Flyout } from '@frontify/fondue';
-import { ColorsBlockColorPickerProps } from '../types';
+import { ColorPickerFlyoutProps } from '../types';
 
-export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ currentColor, onConfirm, children }) => {
+export const ColorPickerFlyout = ({ currentColor, onConfirm, children }: ColorPickerFlyoutProps) => {
     const [open, setOpen] = useState(false);
     const [currentFormat, setCurrentFormat] = useState(ColorFormat.Hex);
     const [selectedColor, setSelectedColor] = useState<Color>(
@@ -25,7 +25,7 @@ export const ColorsBlockColorPicker: FC<ColorsBlockColorPickerProps> = ({ curren
     };
 
     return (
-        <div>
+        <div data-test-id="color-block-color-picker">
             <Flyout
                 hug={false}
                 onConfirm={() => {

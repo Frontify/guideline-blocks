@@ -48,7 +48,7 @@ export type ColorBlockCardsViewProps = {
     isEditing: boolean;
 };
 
-export type ColorsBlockColorPickerProps = {
+export type ColorPickerFlyoutProps = {
     currentColor?: Nullable<Color>;
     onConfirm: (colorPatch: Color) => void;
     children: ReactNode;
