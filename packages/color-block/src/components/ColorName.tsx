@@ -22,7 +22,10 @@ export const ColorName = ({ viewType, initialColorName, isEditing, onBlur }: Col
     const handleColorNameChange = (event: FormEvent<HTMLInputElement>) => setColorName(event.currentTarget.value);
 
     return (
-        <div className={merge(['tw-text-m tw-text-black tw-font-bold', nameWrapperClasses[viewType]])}>
+        <div
+            data-test-id="color-name"
+            className={merge(['tw-text-m tw-text-black tw-font-bold', nameWrapperClasses[viewType]])}
+        >
             {isEditing ? (
                 <input
                     className={merge([
