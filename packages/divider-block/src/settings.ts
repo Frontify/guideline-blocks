@@ -200,15 +200,15 @@ export const settings: BlockSettings = {
                     choices: [
                         {
                             value: DividerStyle.Solid,
-                            label: DividerStyle.Solid,
+                            label: 'Solid',
                         },
                         {
                             value: DividerStyle.Dotted,
-                            label: DividerStyle.Dotted,
+                            label: 'Dotted',
                         },
                         {
                             value: DividerStyle.Dashed,
-                            label: DividerStyle.Dashed,
+                            label: 'Dashed',
                         },
                     ],
                 },
