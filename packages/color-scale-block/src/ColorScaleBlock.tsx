@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import "tailwindcss/tailwind.css";
-import { FC, Fragment, Key, useEffect, useRef, useState } from "react";
+import { FC, Key, useEffect, useRef, useState } from "react";
 import {
     AppBridgeBlock,
     useBlockSettings,
@@ -29,11 +29,7 @@ import "@frontify/fondue-tokens/styles";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import "tailwindcss/tailwind.css";
-import { Draggable } from "./components/Draggable";
-import { Resizable } from "./components/Resizable";
 import { DropZone } from "./react-dnd/DropZone";
-
-import { uuid } from "uuidv4";
 
 type Props = {
     appBridge: AppBridgeBlock;
@@ -196,7 +192,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         return { ...value, width: emptySquareWidth };
                     }
                     return {
-                        id: value && value.id ? value.id : uuid(),
                         width: emptySquareWidth,
                         alt: "Click to drag",
                     };
@@ -215,7 +210,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         };
                     }
                     return {
-                        id: value && value.id ? value.id : uuid(),
                         width: calculateDefaultColorWidth(itemList.length),
                         alt: "Click to drag",
                     };
@@ -244,7 +238,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const lastDragPos: any = useRef();
 
     const deleteColor = (id: any) => {
-        const reorderedList = displayableItems.filter(
+        const reorderedList = displayableItems?.filter(
             (item: ColorProps, index: Key) => item.id !== id
         );
         setBlockSettings({ ...blockSettings, "color-input": reorderedList });
@@ -618,7 +612,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     const movementSinceStart =
                         evt.clientX - dragStartPos.current;
 
-                    const colorsAfterCurrent = displayableItems.filter(
+                    const colorsAfterCurrent = displayableItems?.filter(
                         (diValue, diIndex) => {
                             if (diIndex > id) {
                                 return true;
@@ -627,7 +621,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                         }
                     );
 
-                    const newDisplayableItems = displayableItems.map(
+                    const newDisplayableItems = displayableItems?.map(
                         (diValue, diIndex) => {
                             if (canExpandColorBlock()) {
                                 if (diIndex === id) {
@@ -639,7 +633,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                 }
                             } else {
                                 let needToShrinkColor = true;
-                                colorsAfterCurrent.map((adjacentColor) => {
+                                colorsAfterCurrent?.map((adjacentColor) => {
                                     if (needToShrinkColor) {
                                         if (adjacentColor) {
                                             if (

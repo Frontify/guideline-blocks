@@ -21,11 +21,11 @@ export type ColorProps = {
 };
 
 export type ColorOptionsModalOpenObject = {
-    id?: boolean | number | string;
+    id?: boolean | number;
 };
 
 export type SquareWithColorProps = {
-    id: number | string;
+    id: number;
     sort: number;
     index: number;
     width: number;
@@ -50,7 +50,7 @@ export type SquareWithColorProps = {
 };
 
 export type SquareWithoutColorProps = {
-    id: number | string;
+    id?: number;
     sort: number;
     index: number;
     totalNumberOfBlocks: number;
@@ -78,12 +78,12 @@ export type SquareWithoutColorProps = {
 };
 
 export type AddNewColorModalProps = {
-    id: number | string;
+    id: number;
     currentColor: ColorProps;
     isEditing: boolean;
     colorPickerRef: { current?: any } | undefined;
-    editedColor: number | string;
-    setEditedColor: (value: number | string | null) => void;
+    editedColor: number;
+    setEditedColor: (value: number | null) => void;
     updateColor: (color: any, id: number, appearAfter?: boolean) => void;
     setFormat: () => void;
 };
@@ -95,25 +95,25 @@ export type AddNewColorTooltipsProps = {
 };
 
 export type EditExistingColorModalProps = {
-    id: number | string;
+    id: number;
     currentColor: ColorProps;
     isEditing: boolean;
     colorPickerRef: { current?: any } | undefined;
-    editedColor: number | string;
+    editedColor: number;
     setEditedColor: (value: string | number | null) => void;
     updateColor: (color: ColorProps, id: number, appearAfter?: boolean) => void;
     setFormat: () => void;
 };
 
 export type DragHandleProps = {
-    index: number | string;
+    index: number;
     currentColor: ColorProps;
     isEditing: boolean;
     onResizeStart?: (evt: any, id?: string | number, currentColor?: ColorProps) => void | undefined;
 };
 
 export type CustomizationOptionsModalProps = {
-    id: number | string;
+    id: number;
     isEditing: boolean;
     colorOptionsRef: { current?: any } | undefined;
     colorOptionsOpen: ColorOptionsModalOpenObject;
