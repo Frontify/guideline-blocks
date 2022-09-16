@@ -43,9 +43,14 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const { colorPalettes } = useColorPalettes(appBridge);
     const [colorPickerPalette, setColorPickerPalette]: any = useState([]);
     const isEditing = useEditorState(appBridge);
+    const [hoveredSquare, setHoveredSquare]: any = useState();
     const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
-    const [colorScaleHeight, setColorScaleHeight] = useState(blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']);
-
+    const [colorScaleHeight, setColorScaleHeight] = useState(
+        blockSettings["customHeight"]
+            ? blockSettings["heightInput"]
+            : blockSettings["heightSlider"]
+    );
+    const [isDragging, setIsDragging]: any = useState(false);
     const emptyBlockColors: string[] = [
         "#D5D6D6",
         "#DFDFDF",
@@ -134,7 +139,10 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             return { ...item, width: defaultWidth };
         });
 
-        setBlockSettings({ ...blockSettings, "color-input": newDisplayableItems });
+        setBlockSettings({
+            ...blockSettings,
+            "color-input": newDisplayableItems,
+        });
         setDisplayableItems(newDisplayableItems);
     };
 
@@ -170,7 +178,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             const colorBlockWidth =
                 colorScaleBlockRef.current.getBoundingClientRect().width;
 
-            
             itemsWithWidths.map((value: ColorProps) => {
                 if (value && value.width) {
                     usedSpace += value.width;
@@ -382,16 +389,13 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     }, [colorPalettes]);
 
     useEffect(() => {
-        console.log('sup');
-        console.log(blockSettings);
+        const currentHeight = blockSettings["customHeight"]
+            ? blockSettings["heightInput"]
+            : blockSettings["heightSlider"];
 
-        const currentHeight = blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider'];
-
-        if (colorScaleHeight !== currentHeight) { 
+        if (colorScaleHeight !== currentHeight) {
             setColorScaleHeight(currentHeight);
         }
-        console.log(blockSettings);
-
         // This runs every time blockSettings are changed.
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
@@ -539,7 +543,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     const movementSinceStart =
                         dragStartPos.current - evt.clientX;
 
-                    const colorsBeforeCurrent = displayableItems?.filter((diValue, diIndex) => {
+                    const colorsBeforeCurrent = displayableItems
+                        ?.filter((diValue, diIndex) => {
                             if (diIndex < id) {
                                 return true;
                             }
@@ -566,24 +571,29 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                     }
                                 } else {
                                     let needToShrinkColor = true;
-                                    colorsBeforeCurrent?.map((adjacentColor) => {
-                                        if (needToShrinkColor) {
-                                            if (adjacentColor) {
-                                                if (
-                                                    adjacentColor.width &&
-                                                    adjacentColor.width >= 16
-                                                ) {
-                                                    // need to make sure it's 16 because we're going to decrease width
-                                                    // by 8 pixels, and the minimum width is 8 pixels
-                                                    adjacentColor.width =
-                                                        adjacentColor.width - 8;
+                                    colorsBeforeCurrent?.map(
+                                        (adjacentColor) => {
+                                            if (needToShrinkColor) {
+                                                if (adjacentColor) {
+                                                    if (
+                                                        adjacentColor.width &&
+                                                        adjacentColor.width >=
+                                                            16
+                                                    ) {
+                                                        // need to make sure it's 16 because we're going to decrease width
+                                                        // by 8 pixels, and the minimum width is 8 pixels
+                                                        adjacentColor.width =
+                                                            adjacentColor.width -
+                                                            8;
 
-                                                    valuesChanged = true;
-                                                    needToShrinkColor = false;
+                                                        valuesChanged = true;
+                                                        needToShrinkColor =
+                                                            false;
+                                                    }
                                                 }
                                             }
                                         }
-                                    });
+                                    );
                                 }
                             }
                             return diValue;
@@ -686,41 +696,107 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                 draggable={true}
             >
                 <DndProvider backend={HTML5Backend}>
-                    {displayableItems && displayableItems.map(
-                        (value: ColorProps, index: number) => {
-                            let backgroundColorRgba;
+                    {displayableItems &&
+                        displayableItems.map(
+                            (value: ColorProps, index: number) => {
+                                let backgroundColorRgba;
 
-                            if (value && value.color) {
-                                backgroundColorRgba = `${value.color.red},${value.color.green},${value.color.blue},${value.color.alpha}`;
-                            }
+                                if (value && value.color) {
+                                    backgroundColorRgba = `${value.color.red},${value.color.green},${value.color.blue},${value.color.alpha}`;
+                                }
 
-                            let width;
+                                let width;
 
-                            if (value && value.width) {
-                                width = value.width;
-                            } else {
-                                width = calculateDefaultColorWidth(
-                                    displayableItems.length
-                                );
-                            }
+                                if (value && value.width) {
+                                    width = value.width;
+                                } else {
+                                    width = calculateDefaultColorWidth(
+                                        displayableItems.length
+                                    );
+                                }
 
-                            return (
-                                <div className="test" key={value.id}>
-                                    {doesColorHaveRgbValues(value) ? (
-                                        <>
-                                            <SquareWithColor
+                                return (
+                                    <div className="color-square tw-flex tw-relative" key={value.id}>
+                                        {doesColorHaveRgbValues(value) ? (
+                                            <>
+                                                <DropZone
+                                                    key={`orderable-list-item-${value.id}-before`}
+                                                    currentColor={value}
+                                                    height={colorScaleHeight ? parseInt(colorScaleHeight) : 96}
+                                                    width={width}
+                                                    isDraggingActive={isDragging !== false}
+                                                    isHovered={hoveredSquare === value.id && isDragging !== false && isDragging !== value.id}
+                                                    data={{
+                                                        targetItem: value,
+                                                        position:
+                                                            DropZonePosition.Before,
+                                                    }}
+                                                    onDrop={handleDrop}
+                                                    treeId={listId}
+                                                    before
+                                                />
+                                                <SquareWithColor
+                                                    id={value.id}
+                                                    sort={value.sort}
+                                                    index={index}
+                                                    width={isDragging === value.id ? 0 : width}
+                                                    height={colorScaleHeight}
+                                                    isDragging={isDragging}
+                                                    setIsDragging={setIsDragging}
+                                                    currentColor={value}
+                                                    backgroundColorRgba={
+                                                        backgroundColorRgba
+                                                    }
+                                                    totalNumOfBlocks={
+                                                        displayableItems.length
+                                                    }
+                                                    onResizeStart={
+                                                        onResizeStart
+                                                    }
+                                                    hilite={hilite}
+                                                    setHilite={setHilite}
+                                                    calculateLeftPos={
+                                                        calculateLeftPos
+                                                    }
+                                                    isEditing={isEditing}
+                                                    colorPickerRef={
+                                                        colorPickerRef
+                                                    }
+                                                    editedColor={editedColor}
+                                                    setEditedColor={
+                                                        setEditedColor
+                                                    }
+                                                    updateColor={updateColor}
+                                                    setFormat={() => false}
+                                                    colorOptionsRef={
+                                                        colorOptionsRef
+                                                    }
+                                                    colorOptionsOpen={
+                                                        colorOptionsOpen
+                                                    }
+                                                    setColorOptionsOpen={
+                                                        setColorOptionsOpen
+                                                    }
+                                                    deleteColor={deleteColor}
+                                                    handleDrop={handleDrop}
+                                                    listId={listId}
+                                                />
+                                                </>
+                                         
+                                        ) : (
+                                            <SquareWithoutColor
                                                 id={value.id}
                                                 sort={value.sort}
                                                 index={index}
-                                                width={width}
-                                                height={colorScaleHeight}
-                                                currentColor={value}
-                                                backgroundColorRgba={
-                                                    backgroundColorRgba
+                                                placeholderColor={
+                                                    emptyBlockColors[index]
                                                 }
                                                 totalNumOfBlocks={
                                                     displayableItems.length
                                                 }
+                                                width={width}
+                                                height={colorScaleHeight}
+                                                currentSquare={value}
                                                 onResizeStart={onResizeStart}
                                                 hilite={hilite}
                                                 setHilite={setHilite}
@@ -743,50 +819,16 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                                     setColorOptionsOpen
                                                 }
                                                 deleteColor={deleteColor}
+                                                hovered={hovered}
+                                                setHovered={setHovered}
                                                 handleDrop={handleDrop}
                                                 listId={listId}
                                             />
-                                        </>
-                                    ) : (
-                                        <SquareWithoutColor
-                                            id={value.id}
-                                            sort={value.sort}
-                                            index={index}
-                                            placeholderColor={
-                                                emptyBlockColors[index]
-                                            }
-                                            totalNumOfBlocks={
-                                                displayableItems.length
-                                            }
-                                            width={width}
-                                            height={colorScaleHeight}
-                                            currentSquare={value}
-                                            onResizeStart={onResizeStart}
-                                            hilite={hilite}
-                                            setHilite={setHilite}
-                                            calculateLeftPos={calculateLeftPos}
-                                            isEditing={isEditing}
-                                            colorPickerRef={colorPickerRef}
-                                            editedColor={editedColor}
-                                            setEditedColor={setEditedColor}
-                                            updateColor={updateColor}
-                                            setFormat={() => false}
-                                            colorOptionsRef={colorOptionsRef}
-                                            colorOptionsOpen={colorOptionsOpen}
-                                            setColorOptionsOpen={
-                                                setColorOptionsOpen
-                                            }
-                                            deleteColor={deleteColor}
-                                            hovered={hovered}
-                                            setHovered={setHovered}
-                                            handleDrop={handleDrop}
-                                            listId={listId}
-                                        />
-                                    )}
-                                </div>
-                            );
-                        }
-                    )}
+                                        )}
+                                    </div>
+                                );
+                            }
+                        )}
                 </DndProvider>
             </div>
             {isEditing ? (

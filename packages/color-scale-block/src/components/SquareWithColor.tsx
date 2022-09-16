@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import { SquareWithColorProps } from "../types";
 import { AddNewColorModal } from "./AddNewColorModal";
 import { AddNewColorTooltips } from "./AddNewColorTooltips";
@@ -42,14 +42,18 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     deleteColor,
     handleDrop,
     listId,
+    setIsDragging,
+    isDragging,
 }) => {
     const [{}, drag] = useDrag({
         item: currentColor,
-        collect: (monitor: any) => ({
+        collect: (monitor: any) => {
+            return {
             componentDragState: monitor.isDragging()
                 ? ItemDragState.Dragging
                 : ItemDragState.Idle,
-        }),
+            }
+        },
         type: listId,
         canDrag: isEditing ? true : false,
     });
@@ -65,9 +69,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                         !forceRemoveAlpha || index !== 3
                 )
                 .map((string: string) => parseFloat(string)) // Converts them to numbers
-                .map((number: number, index: number) =>
-                    index === 3 ? Math.round(number * 255) : number
-                ) // Converts alpha to 255 number
                 .map((number: number) => number.toString(16)) // Converts numbers to hex
                 .map((string: string) =>
                     string.length === 1 ? "0" + string : string
@@ -94,7 +95,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 display: "inline-block",
             }}
             id={`row-${id}`}
-            className={`hover:tw-z-30 row tw-absolute tw-overflow-visible tw-pb-8 tw-inline-block`}
+            className={`hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block`}
             onDragOver={(val) => {
                 const { id: targetId }: any = val.target;
                 if (hilite !== targetId) {
@@ -108,16 +109,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 currentColor={currentColor}
                 isEditing={isEditing}
                 onResizeStart={onResizeStart}
-            />
-            <DropZone
-                key={`orderable-list-item-${id}-before`}
-                data={{
-                    targetItem: currentColor,
-                    position: DropZonePosition.Before,
-                }}
-                onDrop={handleDrop}
-                treeId={listId}
-                before
             />
             <div
                 style={{
@@ -139,7 +130,16 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     borderColor: "#efecec",
                 }}
                 ref={drag}
-                className="tw-group tw-overflow-visible tw-top-2 tw-absolute tw-border tw-border-white tw-w-full hover:tw-border-black hover:tw-border"
+                draggable={true}
+                onDrag={() => {
+                    if (isDragging !== currentColor.id) {
+                        setIsDragging(currentColor.id);
+                    }
+                }}
+                onDragEnd={() => {
+                    setIsDragging(false);
+                }}
+                className="tw-group tw-overflow-visible tw-top-2 tw-border tw-border-white tw-w-full hover:tw-border-black hover:tw-border"
             >
                 <Tooltip
                     alignment={TooltipAlignment.Middle}
@@ -195,16 +195,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     withArrow
                 />
             </div>
-            <DropZone
-                key={`orderable-list-item-${id}-after`}
-                data={{
-                    targetItem: currentColor,
-                    position: DropZonePosition.After,
-                }}
-                onDrop={handleDrop}
-                after
-                treeId={listId}
-            />
         </div>
     );
 };

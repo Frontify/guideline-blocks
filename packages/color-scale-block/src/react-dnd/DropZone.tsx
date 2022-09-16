@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDrop } from 'react-dnd';
-import { DraggableItem, DropZonePosition, merge } from '@frontify/fondue';
+import React from "react";
+import { useDrop } from "react-dnd";
+import { DraggableItem, DropZonePosition, merge } from "@frontify/fondue";
 
 export type OnDropCallback<T> = (
     targetItem: DraggableItem<T>,
@@ -17,12 +17,28 @@ export type DropZoneProps<T> = {
     data: DropZoneData<T>;
     onDrop?: OnDropCallback<T>;
     treeId: string;
+    isHovered: boolean;
+    isDraggingActive: boolean;
+    currentColor: any;
     children?: JSX.Element;
     before?: boolean;
     after?: boolean;
+    width: number;
+    height: number;
 };
 
-export const DropZone = <T extends object>({ data, onDrop, children, treeId, before, after }: DropZoneProps<T>) => {
+export const DropZone = <T extends object>({
+    data,
+    isHovered,
+    currentColor,
+    isDraggingActive,
+    onDrop,
+    children,
+    treeId,
+    height,
+    before,
+    after,
+}: DropZoneProps<T>) => {
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: treeId,
         drop: (item: any) => {
@@ -42,27 +58,61 @@ export const DropZone = <T extends object>({ data, onDrop, children, treeId, bef
         }),
     });
 
+    const width =
+        currentColor && currentColor.width !== undefined
+            ? currentColor.width
+            : "100";
+
+    // const isHoveredClassNames = 'tw-relative tw-w-[100px]';
     const isActive = isOver && canDrop;
-    const outerDropZoneClassNames = 'tw-w-[10px] tw-py-1 tw-outline-none tw-z-20';
-    const activeOuterDropZoneClassNames = 'tw-border-violet-60 tw-border-2 tw-h-[96px] tw-w-7 tw-bg-clip-content';
-    const bgColorClassName = 'tw-bg-violet-20';
+
+    // When dragging is active but this square is not being hovered over
+    const isDraggingActiveClassNames = `tw-absolute tw-w-full tw-z-[100]`;
+
+    // When no dragging is happening
+    const outerDropZoneClassNames = `tw-absolute tw-w-full tw-py-1 tw-outline-none`;
+    const isDraggingNotActiveClassNames = `tw-z-[-1] tw-border-0`;
+
+    // When dragging is happening and another square is hovered over this one
+    const activeOuterDropZoneClassNames = `tw-absolute tw-z-[100] tw-h-[96px] tw-w-full tw-bg-clip-content`;
+    const bgColorClassName = "tw-bg-violet-20";
 
     return (
-        <div
-            aria-hidden={!isActive}
-            data-test-id="drop-zone"
-            className={merge([
-                'tw-transition-all tw-absolute tw-top-[22px] tw-bottom-0',
-                before ? 'tw-left-[-2px]' : '',
-                after ? 'tw-right-[-2px]' : '',
-                data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
-                isActive && data.position !== DropZonePosition.Within ? activeOuterDropZoneClassNames : '',
-                isActive && data.position === DropZonePosition.Within ? bgColorClassName : '',
-            ])}
-            // style={before ? {left: '-15px'} : {}, after ? {right: '-15px'} : {}}
-            ref={drop}
-        >
-            {children}
-        </div>
+        <>
+            <div
+                className={`drop-zone-offset tw-relative tw-transition-all ${isActive ? `tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[2px] tw-m-[1px]` : ''}`}
+                style={{
+                    width: isActive ? `${parseInt(width)}px` : `0px`,
+                    height: `${height - 5}px`,
+                    backgroundColor: '#E3E8F6',
+                    borderRadius: '3px',
+                }}
+            ></div>
+
+            <div
+                aria-hidden={!isActive}
+                data-test-id="drop-zone"
+                className={merge([
+                    "tw-top-[0px] tw-bottom-0",
+                    // before ? 'tw-left-[-2px]' : '',
+                    // after ? 'tw-right-[-2px]' : '',
+                    // isHovered ? isHoveredClassNames : '',
+                    data.position !== DropZonePosition.Within
+                        ? outerDropZoneClassNames
+                        : "tw-h-auto",
+                    isActive && data.position !== DropZonePosition.Within
+                        ? activeOuterDropZoneClassNames
+                        : "",
+                    isActive && data.position === DropZonePosition.Within
+                        ? bgColorClassName
+                        : "",
+                    isDraggingActive ? isDraggingActiveClassNames : isDraggingNotActiveClassNames,
+                ])}
+                // style={before ? {left: '-15px'} : {}, after ? {right: '-15px'} : {}}
+                ref={drop}
+            >
+                {children}
+            </div>
+        </>
     );
 };

@@ -48,15 +48,18 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
         canDrag: isEditing ? true : false,
     });
 
+    console.log('empty width');
+    console.log(width);
     return (
         <div
             style={{
                 height: height,
                 width: `${width}px`,
-                left: `${calculateLeftPos(index, width)}px`,
+                // left: `${calculateLeftPos(index, width)}px`,
+                left: 0,
             }}
             id={`row-${id}`}
-            className={`hover:tw-z-30 row tw-pb-8 tw-inline-block tw-absolute`}
+            className={`hover:tw-z-30 row tw-pb-8 tw-inline-block`}
             onMouseEnter={(evt) => {
                 const { id: targetId }: any = evt.target;
                 if (hovered !== targetId) {
@@ -93,7 +96,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                     borderColor: "#efecec",
                 }}
                 // className={`tw-rounded-md tw-group tw-flex tw-justify-center tw-items-center tw-bg-black-10 tw-top-2 tw-absolute tw-border tw-border-white tw-mt-4 tw-mb-4 tw-w-full`}
-                className={`tw-group tw-flex tw-justify-center tw-items-center tw-top-2 tw-absolute tw-border tw-border-white tw-w-full`}
+                className={`tw-group tw-flex tw-justify-center tw-items-center tw-absolute tw-border tw-border-white tw-w-full`}
             >
                 {/* <DragHandle
                     id={id}
