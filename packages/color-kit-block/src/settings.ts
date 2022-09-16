@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FrontifyColorPalette } from '@frontify/app-bridge';
+import type { FrontifyColorPalette } from '@frontify/app-bridge';
 import type { BlockSettings } from '@frontify/guideline-blocks-settings';
 
 export const settings: BlockSettings = {

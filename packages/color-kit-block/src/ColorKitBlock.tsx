@@ -1,12 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/fondue-tokens/styles';
-
 import { FC, ReactElement } from 'react';
 import { useBlockSettings, useColorPalettes } from '@frontify/app-bridge';
 import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
-
 import { Palette } from './Palette';
 import type { ColorKitBlockProps, Settings } from './types';
 

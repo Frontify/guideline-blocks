@@ -2,7 +2,6 @@
 
 import { mount } from '@cypress/react';
 import { FrontifyColorPaletteDummy } from '@frontify/app-bridge';
-
 import { Palette } from './Palette';
 
 const ColorKitPaletteSelector = '[data-test-id="palette"]';

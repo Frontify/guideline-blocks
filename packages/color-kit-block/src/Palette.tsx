@@ -1,8 +1,8 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { Stack, Text, Tooltip, TooltipPosition } from '@frontify/fondue';
-
 import { TooltipContent } from './TooltipContent';
-
-import { PaletteProps } from './types';
+import type { PaletteProps } from './types';
 
 export const Palette = ({ palette }: PaletteProps) => {
     const { name, colors = [] } = palette;

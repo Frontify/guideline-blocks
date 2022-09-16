@@ -2,7 +2,6 @@
 
 import { mount } from '@cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-
 import { ColorKitBlock } from './ColorKitBlock';
 
 const ColorKitBlockSelector = '[data-test-id="color-kit-block"]';
