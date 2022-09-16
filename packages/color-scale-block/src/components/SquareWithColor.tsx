@@ -28,8 +28,8 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     totalNumOfBlocks,
     onResizeStart,
     calculateLeftPos,
-    hilite,
-    setHilite,
+    highlight,
+    setHighlight,
     isEditing,
     colorPickerRef,
     editedColor,
@@ -98,8 +98,8 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             className={`hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block`}
             onDragOver={(val) => {
                 const { id: targetId }: any = val.target;
-                if (hilite !== targetId) {
-                    setHilite(parseInt(targetId.split("-")[1]));
+                if (highlight !== targetId) {
+                    setHighlight(parseInt(targetId.split("-")[1]));
                 }
             }}
             key={id}

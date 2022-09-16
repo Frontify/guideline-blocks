@@ -235,7 +235,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         )
     );
 
-    const [hilite, setHilite]: any = useState(false);
+    const [highlight, setHighlight]: any = useState(false);
     const [hovered, setHovered]: any = useState(false);
     const [colorOptionsOpen, setColorOptionsOpen] = useState({});
 
@@ -753,8 +753,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                                     onResizeStart={
                                                         onResizeStart
                                                     }
-                                                    hilite={hilite}
-                                                    setHilite={setHilite}
+                                                    highlight={highlight}
+                                                    setHighlight={setHighlight}
                                                     calculateLeftPos={
                                                         calculateLeftPos
                                                     }
@@ -798,8 +798,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                                 height={colorScaleHeight}
                                                 currentSquare={value}
                                                 onResizeStart={onResizeStart}
-                                                hilite={hilite}
-                                                setHilite={setHilite}
+                                                highlight={highlight}
+                                                setHighlight={setHighlight}
                                                 calculateLeftPos={
                                                     calculateLeftPos
                                                 }
