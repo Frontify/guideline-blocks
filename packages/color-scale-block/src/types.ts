@@ -53,7 +53,7 @@ export type SquareWithoutColorProps = {
     id: number | string;
     sort: number;
     index: number;
-    totalNumOfBlocks: number;
+    totalNumberOfBlocks: number;
     placeholderColor: string;
     width: number;
     currentSquare: ColorProps;
