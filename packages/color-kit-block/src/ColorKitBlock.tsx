@@ -9,9 +9,12 @@ import type { ColorKitBlockProps, Settings } from './types';
 export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, blockSettings.colorPalettes);
+    const { colorPalettes, downloadColorKit } = useColorPalettes(
+        appBridge,
+        (blockSettings.colorPalettes ?? []).map((id) => Number(id))
+    );
     const link = downloadColorKit(blockSettings.colorPalettes);
-    const isDownloadDisabled = blockSettings.colorPalettes.length === 0;
+    const isDownloadEnabled = blockSettings.colorPalettes?.length > 0;
 
     return (
         <div
@@ -35,9 +38,9 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     rel="noreferrer"
                     data-test-id="download-button"
                     title="download color palettes"
-                    style={{ pointerEvents: isDownloadDisabled ? 'none' : 'initial' }}
+                    style={{ pointerEvents: isDownloadEnabled ? 'none' : 'initial' }}
                 >
-                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />} disabled={isDownloadDisabled}>
+                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />} disabled={!isDownloadEnabled}>
                         Download
                     </Button>
                 </a>
