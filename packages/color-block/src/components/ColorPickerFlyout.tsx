@@ -25,7 +25,7 @@ export const ColorPickerFlyout = ({ currentColor, onConfirm, children }: ColorPi
     };
 
     return (
-        <div data-test-id="color-block-color-picker">
+        <div data-test-id="color-picker-flyout">
             <Flyout
                 hug={false}
                 onConfirm={() => {
