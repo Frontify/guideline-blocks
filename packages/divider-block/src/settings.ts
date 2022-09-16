@@ -204,11 +204,11 @@ export const settings: BlockSettings = {
                         },
                         {
                             value: DividerStyle.Dotted,
-                            label: 'Dots',
+                            label: 'Dotted',
                         },
                         {
                             value: DividerStyle.Dashed,
-                            label: 'Dashes',
+                            label: 'Dashed',
                         },
                     ],
                 },
