@@ -50,7 +50,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
     };
 
     return (
-        <div key={color.id} className="tw-group tw-flex tw-flex-col tw-items-center">
+        <div data-test-id="drops-item" key={color.id} className="tw-group tw-flex tw-flex-col tw-items-center">
             {!isEditing ? (
                 <Tooltip
                     withArrow
@@ -59,6 +59,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
                         <div
+                            data-test-id="color-tooltip-trigger"
                             className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
                                 backgroundColor: `#${color.hex}`,
@@ -76,6 +77,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     }}
                 >
                     <div
+                        data-test-id="color-color-picker-flyout-trigger"
                         className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-mb-3 tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{
                             backgroundColor: `#${color.hex}`,
@@ -83,6 +85,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         }}
                     >
                         <div
+                            data-test-id="delete-button"
                             className={joinClassNames([
                                 'tw-absolute tw-hidden tw-top-[-0.25rem] tw-right-[-0.25rem]',
                                 isEditing && 'group-hover:tw-block',
@@ -127,6 +130,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                     }
                                     triggerElement={
                                         <div
+                                            data-test-id="color-space-value-trigger"
                                             className="tw-cursor-pointer tw-text-s tw-text-black-80"
                                             onClick={() => copy(mappedColorSpace.value ?? '')}
                                         >

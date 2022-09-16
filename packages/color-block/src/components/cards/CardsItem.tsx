@@ -50,7 +50,10 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
     };
 
     return (
-        <div className="tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded tw-shadow-inner-line tw-transition-all hover:tw-shadow-inner-line-strong">
+        <div
+            data-test-id="cards-item"
+            className="tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded tw-shadow-inner-line tw-transition-all hover:tw-shadow-inner-line-strong"
+        >
             {!isEditing ? (
                 <Tooltip
                     withArrow
@@ -59,6 +62,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
                         <div
+                            data-test-id="color-tooltip-trigger"
                             className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
                                 backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
@@ -77,6 +81,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     }}
                 >
                     <div
+                        data-test-id="color-color-picker-flyout-trigger"
                         className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                         style={{
                             backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
@@ -85,6 +90,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         }}
                     >
                         <div
+                            data-test-id="delete-button"
                             className={joinClassNames([
                                 'tw-absolute tw-hidden tw-top-1 tw-right-1 tw-transition-all',
                                 isEditing && 'group-hover:tw-block',
@@ -130,6 +136,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                         }
                                         triggerElement={
                                             <div
+                                                data-test-id="color-space-value-trigger"
                                                 className="tw-cursor-pointer tw-text-s tw-text-black-80"
                                                 onClick={() => copy(mappedColorSpace.value ?? '')}
                                             >

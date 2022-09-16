@@ -52,7 +52,10 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
     };
 
     return (
-        <div className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all hover:tw-shadow-t-inner-line-strong">
+        <div
+            data-test-id="list-item"
+            className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all hover:tw-shadow-t-inner-line-strong"
+        >
             {!isEditing ? (
                 <Tooltip
                     withArrow
@@ -61,6 +64,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
                         <div
+                            data-test-id="color-tooltip-trigger"
                             className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-mr-9 tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                             style={{
                                 backgroundColor: `#${color.hex}`,
@@ -78,6 +82,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     }}
                 >
                     <div
+                        data-test-id="color-color-picker-flyout-trigger"
                         className="tw-w-[120px] tw-min-h-[60px] tw-mr-9 tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                         style={{
                             backgroundColor: `#${color.hex}`,
@@ -116,6 +121,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                     }
                                     triggerElement={
                                         <div
+                                            data-test-id="color-space-value-trigger"
                                             className="tw-ml-3 tw-cursor-pointer tw-text-s tw-text-black-80"
                                             onClick={() => copy(mappedColorSpace.value ?? '')}
                                         >
@@ -152,6 +158,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
 
                 {isEditing && (
                     <div
+                        data-test-id="delete-button"
                         className={joinClassNames([
                             'tw-absolute tw-hidden tw-top-1/2 tw-right-3 tw-translate-y-[-50%]',
                             isEditing && 'group-hover:tw-block',
