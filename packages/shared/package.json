@@ -22,7 +22,7 @@
         "@frontify/eslint-config-typescript": "0.15.2",
         "@testing-library/react-hooks": "^8.0.1",
         "@types/node": "17.0.38",
-        "@types/react": "17.0.47",
+        "@types/react": "17.0.50",
         "@types/tinycolor2": "1.4.3",
         "@vitejs/plugin-react": "2.0.0",
         "eslint": "8.21.0",
