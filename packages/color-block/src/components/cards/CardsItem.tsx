@@ -61,16 +61,18 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     hoverDelay={0}
                     content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
-                        <div
-                            data-test-id="color-tooltip-trigger"
-                            className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
-                            style={{
-                                backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
-                                    (color.alpha && color.alpha / 255) || 1
-                                })`,
-                            }}
-                            onClick={() => copy(mappedFirstColorSpace.value ?? '')}
-                        />
+                        <div className="tw-overflow-hidden tw-rounded-t tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                            <div
+                                data-test-id="color-tooltip-trigger"
+                                className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                                style={{
+                                    backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
+                                        (color.alpha && color.alpha / 255) || 1
+                                    })`,
+                                }}
+                                onClick={() => copy(mappedFirstColorSpace.value ?? '')}
+                            />
+                        </div>
                     }
                 />
             ) : (
@@ -80,27 +82,29 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         onUpdate({ ...color, alpha: (color.alpha && Math.round(color.alpha * 255)) || 255 });
                     }}
                 >
-                    <div
-                        data-test-id="color-color-picker-flyout-trigger"
-                        className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
-                        style={{
-                            backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
-                                (color.alpha && color.alpha / 255) || 1
-                            })`,
-                        }}
-                    >
+                    <div className="tw-overflow-hidden tw-rounded-t tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                         <div
-                            data-test-id="delete-button"
-                            className={joinClassNames([
-                                'tw-absolute tw-hidden tw-top-1 tw-right-1 tw-transition-all',
-                                isEditing && 'group-hover:tw-block',
-                            ])}
+                            data-test-id="color-color-picker-flyout-trigger"
+                            className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                            style={{
+                                backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
+                                    (color.alpha && color.alpha / 255) || 1
+                                })`,
+                            }}
                         >
-                            <Button
-                                icon={<IconTrashBin size={IconSize.Size20} />}
-                                style={ButtonStyle.Secondary}
-                                onClick={() => onDelete(color.id)}
-                            />
+                            <div
+                                data-test-id="delete-button"
+                                className={joinClassNames([
+                                    'tw-absolute tw-hidden tw-top-1 tw-right-1 tw-transition-all',
+                                    isEditing && 'group-hover:tw-block',
+                                ])}
+                            >
+                                <Button
+                                    icon={<IconTrashBin size={IconSize.Size20} />}
+                                    style={ButtonStyle.Secondary}
+                                    onClick={() => onDelete(color.id)}
+                                />
+                            </div>
                         </div>
                     </div>
                 </ColorPickerFlyout>
