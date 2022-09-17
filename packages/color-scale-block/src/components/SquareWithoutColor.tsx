@@ -48,8 +48,6 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
         canDrag: isEditing ? true : false,
     });
 
-    console.log('empty width');
-    console.log(width);
     return (
         <div
             style={{

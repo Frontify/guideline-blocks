@@ -40,6 +40,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const [colorPickerPalette, setColorPickerPalette]: any = useState([]);
     const isEditing = useEditorState(appBridge);
     const [hoveredSquare, setHoveredSquare]: any = useState();
+    const [shouldResizeEvenly, setShouldResizeEvenly]: any = useState(false);
     const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings["customHeight"]
@@ -122,24 +123,20 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         }
     };
 
-    const resizeEvenly = () => {
-        if (!displayableItems) {
+    const resizeEvenly = (itemList: ColorProps[]) => {
+        if (!itemList) {
             return;
         }
 
         const defaultWidth = calculateDefaultColorWidth(
-            displayableItems.length
+            itemList.length
         );
 
-        const newDisplayableItems = displayableItems.map((item, index) => {
+        const newDisplayableItems = itemList.map((item, index) => {
             return { ...item, width: defaultWidth };
         });
 
-        setBlockSettings({
-            ...blockSettings,
-            "color-input": newDisplayableItems,
-        });
-        setDisplayableItems(newDisplayableItems);
+        return newDisplayableItems;
     };
 
     const calculateWidths = (itemList: ColorProps[]) => {
@@ -147,35 +144,37 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         let usedSpace = 0;
         let emptySquares = 0;
         let emptySquareWidth = 12;
+        let itemsWithWidths: ColorProps[] = [];
 
-        if (!itemList) {
-            return;
-        }
-
-        let itemsWithWidths: ColorProps[] = itemList?.map(
-            (value: ColorProps) => {
-                if (
-                    colorScaleBlockRef &&
-                    colorScaleBlockRef.current &&
-                    (!value || (value && !value.width))
-                ) {
-                    emptySquares++;
-                    return value;
-                }
+        itemsWithWidths = itemList?.map((value: ColorProps) => {
+            if (
+                colorScaleBlockRef &&
+                colorScaleBlockRef.current &&
+                (!value || (value && !value.id))
+            ) {
+                // Square has no ID, so this is an empty placeholder square
+                emptySquares++;
                 return value;
+            } else if (
+                colorScaleBlockRef &&
+                colorScaleBlockRef.current &&
+                (!value || (value && !value.width))
+            ) {
+                // In this case, a width is missing
+                return {
+                    ...value,
+                    width: calculateDefaultColorWidth(itemList.length),
+                };
             }
-        );
-
-        if (!itemsWithWidths) {
-            return;
-        }
+            return value;
+        });
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             const colorBlockWidth =
                 colorScaleBlockRef.current.getBoundingClientRect().width;
 
-            itemsWithWidths.map((value: ColorProps) => {
-                if (value && value.width) {
+            itemsWithWidths?.map((value: ColorProps) => {
+                if (value && value.id && value.width) {
                     usedSpace += value.width;
                 }
 
@@ -186,8 +185,8 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
             emptySquareWidth = emptySpace / emptySquares;
 
-            itemsWithWidths = itemsWithWidths.map((value: ColorProps) => {
-                if (!value || (value && !value.width)) {
+            itemsWithWidths = itemsWithWidths?.map((value: ColorProps) => {
+                if (!value || (value && !value.id)) {
                     if (value) {
                         return { ...value, width: emptySquareWidth };
                     }
@@ -201,21 +200,25 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         }
 
         if (emptySpace === 0 && itemsWithWidths) {
-            itemsWithWidths = itemsWithWidths?.map((value: ColorProps) => {
-                if (!value || (value && !value.width)) {
-                    if (value) {
+            itemsWithWidths = itemsWithWidths?.map(
+                (value: ColorProps, index: number) => {
+                    if (!value || (value && !value.id)) {
+                        if (value) {
+                            return {
+                                ...value,
+                                width: calculateDefaultColorWidth(
+                                    itemList.length
+                                ),
+                            };
+                        }
                         return {
-                            ...value,
                             width: calculateDefaultColorWidth(itemList.length),
+                            alt: "Click to drag",
                         };
                     }
-                    return {
-                        width: calculateDefaultColorWidth(itemList.length),
-                        alt: "Click to drag",
-                    };
+                    return value;
                 }
-                return value;
-            });
+            );
         }
 
         return itemsWithWidths || [];
@@ -245,37 +248,39 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         setDisplayableItems(reorderedList);
     };
 
-    const updateColor = (
-        newColor: ColorProps,
-        index: number,
-        appearAfter?: boolean
-    ) => {
+    const updateColor = (newColor: ColorProps) => {
         // If appearAfter is true, it means that this is a new color square being added. The new square will appear after the index provided by `id`.
 
         let updatedColors = [...displayableItems];
-        if (!appearAfter) {
-            updatedColors = displayableItems?.map((color, diindex) => {
-                if (index === diindex) {
-                    return { ...newColor, width: color.width };
-                }
-                return color;
-            });
+
+        let addedFirstColor = displayableItems.filter((item) =>
+            item.id ? true : false
+        ).length;
+
+        if (!addedFirstColor) {
+            updatedColors = [newColor];
         } else {
-            updatedColors.splice(index + 1, 0, newColor);
-            // setEditedColor(null);
+            updatedColors.push(newColor);
         }
 
-        const colorsWithNewWidths = calculateWidths(
-            isEditing || showCompleted
-                ? updatedColors
-                : filterCompleteItems(updatedColors)
-        );
+        // const colorsWithNewWidths = calculateWidths(
+        //     isEditing || showCompleted
+        //         ? updatedColors
+        //         : filterCompleteItems(updatedColors)
+        // );
+
+        let colorsWithNewWidths = resizeEvenly(updatedColors) || [];
 
         setBlockSettings({
             ...blockSettings,
             "color-input": colorsWithNewWidths,
         });
         setDisplayableItems(colorsWithNewWidths);
+
+        // if (!addedFirstColor) {
+        //     setAddedFirstColor(true);
+        // }
+        // resizeEvenly();
     };
 
     // TODO: Make it possible to close modals by clicking anywhere outside.
@@ -358,6 +363,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         colorPalettes.forEach((palette) => {
             const colors = palette.colors.map((color) => {
                 return {
+                    id: color.id,
                     alpha: color.alpha,
                     red: color.red,
                     green: color.green,
@@ -401,7 +407,15 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             // const minimumColors = blockSettings['colorInputMinimumSwitch']
             //     ? parseInt(blockSettings['colorInputMinimum'])
             //     : parseInt(blockSettings['colorInputMinimumSlider']);
-            const minimumColors = 6;
+            let addedFirstColor = false;
+            if (blockSettings["color-input"]) {
+                addedFirstColor = blockSettings["color-input"].filter(
+                    (item: ColorProps) => (item.id ? true : false)
+                ).length;
+            } else {
+                addedFirstColor = false;
+            }
+            const minimumColors = addedFirstColor ? 1 : 6;
 
             try {
                 // Check to see if we have the minimum number of color squares as defined in the settings.
@@ -409,12 +423,13 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                     blockSettings["color-input"] &&
                     blockSettings["color-input"].length >= minimumColors
                 ) {
-                    blockSettings["color-input"].map((value: ColorProps) => {
-                        if (!value || (value && !value.width)) {
-                            needToCalculateWidths = true;
+                    blockSettings["color-input"].forEach(
+                        (value: ColorProps) => {
+                            if (!value || (value && !value.width)) {
+                                needToCalculateWidths = true;
+                            }
                         }
-                        return value;
-                    });
+                    );
 
                     if (needToCalculateWidths) {
                         const colorsWithNewWidths = calculateWidths(
@@ -440,21 +455,22 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
 
                     if (colorsArray.length < minimumColors) {
                         missingColors = minimumColors - colorsArray.length;
+                        let colorsWithNewWidths;
 
                         for (let i = 0; i < missingColors; i++) {
                             colorsArray.push(null);
 
-                            const colorsWithNewWidths = calculateWidths(
+                            colorsWithNewWidths = calculateWidths(
                                 isEditing || showCompleted
                                     ? colorsArray
                                     : filterCompleteItems(colorsArray)
                             );
-                            setBlockSettings({
-                                ...blockSettings,
-                                "color-input": colorsWithNewWidths,
-                            });
-                            setDisplayableItems(colorsWithNewWidths);
                         }
+                        setBlockSettings({
+                            ...blockSettings,
+                            "color-input": colorsWithNewWidths,
+                        });
+                        setDisplayableItems(colorsWithNewWidths || []);
                     }
                 }
             } catch (e: any) {
@@ -463,50 +479,57 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         }
     }, [blockSettings]);
 
-    useEffect(() => {
-        let foundNextEmptySquare = false;
+    // useEffect(() => {
+    //     if (shouldResizeEvenly) {
+    //         resizeEvenly();
+    //         setShouldResizeEvenly(false);
+    //     }
+    // }, [shouldResizeEvenly]);
 
-        if (displayableItems) {
-            displayableItems.map((item, index) => {
-                if (item && !item.color && foundNextEmptySquare === false) {
-                    foundNextEmptySquare = true;
-                    setNextEmptyColorIndex(index);
-                }
-            });
+    // useEffect(() => {
+    //     let foundNextEmptySquare = false;
 
-            if (!foundNextEmptySquare) {
-                setNextEmptyColorIndex(false);
-            }
+    //     if (displayableItems) {
+    //         displayableItems.map((item, index) => {
+    //             if (item && !item.color && foundNextEmptySquare === false) {
+    //                 foundNextEmptySquare = true;
+    //                 setNextEmptyColorIndex(index);
+    //             }
+    //         });
 
-            if (
-                !calculatedWidths &&
-                colorScaleBlockRef &&
-                colorScaleBlockRef.current
-            ) {
-                setCalculatedWidths(true);
-                setDisplayableItems(
-                    calculateWidths(
-                        isEditing || showCompleted
-                            ? blockSettings["color-input"]
-                            : filterCompleteItems(blockSettings["color-input"])
-                    )
-                );
-            }
-        }
+    //         if (!foundNextEmptySquare) {
+    //             setNextEmptyColorIndex(false);
+    //         }
 
-        // TODO: Make it possible to close modals by clicking anywhere outside.
-        // The reason why these are commented out is because clicking anywhere inside the ColorPicker modal
-        // was causing the modal to close, making it impossible to toggle specific settings within the color picker.
+    //         if (
+    //             !calculatedWidths &&
+    //             colorScaleBlockRef &&
+    //             colorScaleBlockRef.current
+    //         ) {
+    //             setCalculatedWidths(true);
+    //             setDisplayableItems(
+    //                 calculateWidths(
+    //                     isEditing || showCompleted
+    //                         ? blockSettings["color-input"]
+    //                         : filterCompleteItems(blockSettings["color-input"])
+    //                 )
+    //             );
+    //         }
+    //     }
 
-        // document.addEventListener('click', handleClickOutside, true);
-        // document.addEventListener('click', handleClickOutsideColorPicker, true);
-        document.addEventListener("dragstart", removeDragGhostImage, false);
-        return () => {
-            // document.removeEventListener('click', handleClickOutside);
-            // document.removeEventListener('click', handleClickOutsideColorPicker);
-            document.removeEventListener("dragstart", removeDragGhostImage);
-        };
-    });
+    //     // TODO: Make it possible to close modals by clicking anywhere outside.
+    //     // The reason why these are commented out is because clicking anywhere inside the ColorPicker modal
+    //     // was causing the modal to close, making it impossible to toggle specific settings within the color picker.
+
+    //     // document.addEventListener('click', handleClickOutside, true);
+    //     // document.addEventListener('click', handleClickOutsideColorPicker, true);
+    //     document.addEventListener("dragstart", removeDragGhostImage, false);
+    //     return () => {
+    //         // document.removeEventListener('click', handleClickOutside);
+    //         // document.removeEventListener('click', handleClickOutsideColorPicker);
+    //         document.removeEventListener("dragstart", removeDragGhostImage);
+    //     };
+    // });
 
     const draggingId: any = useRef(null);
 
@@ -710,16 +733,32 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                 }
 
                                 return (
-                                    <div className="color-square tw-flex tw-relative" key={value.id}>
+                                    <div
+                                        className="color-square tw-flex tw-relative"
+                                        key={value.id}
+                                    >
                                         {doesColorHaveRgbValues(value) ? (
                                             <>
                                                 <DropZone
                                                     key={`orderable-list-item-${value.id}-before`}
                                                     currentColor={value}
-                                                    height={colorScaleHeight ? parseInt(colorScaleHeight) : 96}
+                                                    height={
+                                                        colorScaleHeight
+                                                            ? parseInt(
+                                                                  colorScaleHeight
+                                                              )
+                                                            : 96
+                                                    }
                                                     width={width}
-                                                    isDraggingActive={isDragging !== false}
-                                                    isHovered={hoveredSquare === value.id && isDragging !== false && isDragging !== value.id}
+                                                    isDraggingActive={
+                                                        isDragging !== false
+                                                    }
+                                                    isHovered={
+                                                        hoveredSquare ===
+                                                            value.id &&
+                                                        isDragging !== false &&
+                                                        isDragging !== value.id
+                                                    }
                                                     data={{
                                                         targetItem: value,
                                                         position:
@@ -733,10 +772,16 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                                     id={value.id}
                                                     sort={value.sort}
                                                     index={index}
-                                                    width={isDragging === value.id ? 0 : width}
+                                                    width={
+                                                        isDragging === value.id
+                                                            ? 0
+                                                            : width
+                                                    }
                                                     height={colorScaleHeight}
                                                     isDragging={isDragging}
-                                                    setIsDragging={setIsDragging}
+                                                    setIsDragging={
+                                                        setIsDragging
+                                                    }
                                                     currentColor={value}
                                                     backgroundColorRgba={
                                                         backgroundColorRgba
@@ -775,8 +820,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                                                     handleDrop={handleDrop}
                                                     listId={listId}
                                                 />
-                                                </>
-                                         
+                                            </>
                                         ) : (
                                             <SquareWithoutColor
                                                 id={value.id}
@@ -829,7 +873,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                 <div className="tw-text-right">
                     <ButtonGroup size={ButtonSize.Small}>
                         <Button
-                            onClick={resizeEvenly}
+                            onClick={() => {setBlockSettings({...blockSettings, 'color-input': resizeEvenly(displayableItems)})}}
                             style={ButtonStyle.Secondary}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}

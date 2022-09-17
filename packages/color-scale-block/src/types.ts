@@ -14,11 +14,12 @@ export const DefaultValues: any = {
 
 export type ColorProps = {
     id: string;
-    sort: number;
+    sort?: number;
     color: Color;
     width?: number;
-    alt: string;
+    alt?: string;
 };
+
 
 export type ColorOptionsModalOpenObject = {
     id?: boolean | number;
@@ -37,7 +38,7 @@ export type SquareWithColorProps = {
     colorPickerRef: { current?: any } | undefined;
     editedColor: string | number;
     setEditedColor: (value: string | number) => void;
-    updateColor: (color: ColorProps, id: number, appearAfter?: boolean) => void;
+    updateColor: (color: ColorProps) => void;
     setFormat: (value?: any) => void;
     colorOptionsRef: any;
     colorOptionsOpen: ColorOptionsModalOpenObject;
@@ -64,7 +65,7 @@ export type SquareWithoutColorProps = {
     colorPickerRef: { current?: any } | undefined;
     editedColor: string | number;
     setEditedColor: (value: string | number) => void;
-    updateColor: (color: ColorProps, id: number, appearAfter?: boolean) => void;
+    updateColor: (color: ColorProps) => void;
     setFormat: (value?: any) => void;
     colorOptionsRef: any;
     colorOptionsOpen: ColorOptionsModalOpenObject;
@@ -84,7 +85,7 @@ export type AddNewColorModalProps = {
     colorPickerRef: { current?: any } | undefined;
     editedColor: number;
     setEditedColor: (value: number | null) => void;
-    updateColor: (color: any, id: number, appearAfter?: boolean) => void;
+    updateColor: (color: ColorProps) => void;
     setFormat: () => void;
 };
 
@@ -101,7 +102,7 @@ export type EditExistingColorModalProps = {
     colorPickerRef: { current?: any } | undefined;
     editedColor: number;
     setEditedColor: (value: string | number | null) => void;
-    updateColor: (color: ColorProps, id: number, appearAfter?: boolean) => void;
+    updateColor: (color: ColorProps) => void;
     setFormat: () => void;
 };
 
