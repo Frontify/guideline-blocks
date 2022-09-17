@@ -67,7 +67,7 @@ export const AddNewColor: FC<AddNewColorModalProps> = ({
                                 });
                             } else {
                                 updateColor({
-                                    id: editedColor.id,
+                                    id: color.id,
                                     color: color,
                                 });
                                 setEditedColor({

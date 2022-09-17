@@ -94,7 +94,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 left: `${calculateLeftPos(index, width)}px`,
                 display: "inline-block",
             }}
-            id={`row-${id}`}
+            id={`row-id-${id}-index-${index}`}
             className={`hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block`}
             onDragOver={(val) => {
                 const { id: targetId }: any = val.target;

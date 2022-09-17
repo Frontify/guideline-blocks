@@ -245,7 +245,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             (item: ColorProps, index: Key) => item.id !== id
         );
         setBlockSettings({ ...blockSettings, "color-input": reorderedList });
-        setDisplayableItems(reorderedList);
     };
 
     const updateColor = (newColor: ColorProps) => {
@@ -263,12 +262,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             updatedColors.push(newColor);
         }
 
-        // const colorsWithNewWidths = calculateWidths(
-        //     isEditing || showCompleted
-        //         ? updatedColors
-        //         : filterCompleteItems(updatedColors)
-        // );
-
         let colorsWithNewWidths = resizeEvenly(updatedColors) || [];
 
         setBlockSettings({
@@ -276,11 +269,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
             "color-input": colorsWithNewWidths,
         });
         setDisplayableItems(colorsWithNewWidths);
-
-        // if (!addedFirstColor) {
-        //     setAddedFirstColor(true);
-        // }
-        // resizeEvenly();
     };
 
     // TODO: Make it possible to close modals by clicking anywhere outside.
@@ -378,7 +366,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                 colors: colors,
             });
         });
-
+console.log(palettes)
         setColorPickerPalette(palettes);
     };
 
