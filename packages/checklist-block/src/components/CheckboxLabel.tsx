@@ -4,7 +4,7 @@ import { Color } from '@frontify/fondue';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { CSSProperties, FC, useContext } from 'react';
+import { CSSProperties, FC, Fragment, useContext } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import {
     CheckboxLabelProps,
@@ -39,20 +39,14 @@ const getLabelDecorationStylesMap = (
 
 const decorateLabelChildren = (children: string, style: CSSProperties) =>
     children.split('\n').map((child: string, index, ctx: string[]) => (
-        <>
-            {child !== '' ? (
-                <span
-                    className="tw-inline-block tw-rounded-sm tw-px-[2px] tw-mx-[-2px]"
-                    key={`${child}--${index}`}
-                    style={style}
-                >
+        <Fragment key={`${child}--${index}`}>
+            {child && (
+                <span className="tw-inline-block tw-rounded-sm tw-px-[2px] tw-mx-[-2px]" style={style}>
                     {child}
                 </span>
-            ) : (
-                child
             )}
             {index !== ctx.length - 1 && '\n'}
-        </>
+        </Fragment>
     ));
 
 export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
+import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ERROR_MSG } from './settings';
 import { StorybookBlock } from './StorybookBlock';
@@ -9,6 +9,8 @@ import { StorybookBorderStyle, StorybookHeight, StorybookPosition, StorybookStyl
 const StorybookBlockSelector = '[data-test-id="storybook-block"]';
 const EmptyStateSelector = '[data-test-id="storybook-empty-wrapper"]';
 const IframeSelector = '[data-test-id="storybook-iframe"]';
+const ResizeBar = '[data-test-id="resize-bar"]';
+const ResizableChildrenContainer = '[data-test-id="resizable-children-container"]';
 
 const EXAMPLE_URL = 'https://fondue-components.netlify.app/?path=/story/components-tooltip--tooltip';
 const EXAMPLE_COLOR = { red: 22, green: 181, blue: 181, alpha: 1, name: 'Java' };
@@ -91,5 +93,66 @@ describe('Storybook Block', () => {
         cy.get(EmptyStateSelector);
         cy.get(EmptyStateSelector).find('button').click();
         cy.get(EmptyStateSelector).contains(ERROR_MSG);
+    });
+
+    it('should resize empty container', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
+            editorState: true,
+            blockSettings: { url: '', heightChoice: StorybookHeight.Small },
+        });
+
+        mount(<StorybookBlockWithStubs />);
+
+        cy.get(ResizableChildrenContainer).should('have.css', 'height', '200px');
+
+        cy.get(ResizeBar)
+            .trigger('mousedown', { which: 1, pageX: 600, pageY: 100 })
+            .trigger('mousemove', { which: 1, pageX: 600, pageY: 600 })
+            .trigger('mouseup', { force: true });
+
+        cy.get(ResizableChildrenContainer).should('have.css', 'height', '700px');
+
+        cy.get(ResizeBar)
+            .trigger('mousedown', { which: 1, pageX: 600, pageY: 600 })
+            .trigger('mousemove', { which: 1, pageX: 600, pageY: 100 })
+            .trigger('mouseup', { force: true });
+
+        cy.get(ResizableChildrenContainer).should('have.css', 'height', '200px');
+    });
+
+    it('renders without resize bar in view mode', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
+            blockSettings: { url: '', heightChoice: StorybookHeight.Small },
+        });
+
+        mount(<StorybookBlockWithStubs />);
+        cy.get(ResizeBar).should('not.exist');
+    });
+
+    it('should resize iframe and renders correct styling', () => {
+        const [StorybookBlockWithStubs] = withAppBridgeBlockStubs(StorybookBlock, {
+            editorState: true,
+            blockSettings: {
+                url: EXAMPLE_URL,
+                hasRadius: true,
+                radiusValue: '5px',
+                borderColor: EXAMPLE_COLOR,
+                borderStyle: StorybookBorderStyle.Dotted,
+                borderWidth: '2px',
+                heightChoice: StorybookHeight.Small,
+            },
+        });
+
+        mount(<StorybookBlockWithStubs />);
+
+        cy.get(ResizableChildrenContainer).should('have.css', 'height', '200px');
+        cy.get(ResizeBar)
+            .trigger('mousedown', { which: 1, pageX: 600, pageY: 100 })
+            .trigger('mousemove', { which: 1, pageX: 600, pageY: 600 })
+            .trigger('mouseup', { force: true });
+
+        cy.get(ResizableChildrenContainer).should('have.css', 'height', '700px');
+
+        cy.get(IframeSelector).should('have.attr', 'height', '700px');
     });
 });

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/fondue';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
@@ -10,31 +10,19 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import {
-    DividerAlignment,
-    DividerHeight,
-    DividerStyle,
-    DividerThickness,
-    DividerWidth,
-    dividerHeightValues,
-    dividerThicknessValues,
-} from './types';
+import { DividerAlignment, DividerHeight, DividerStyle, DividerWidth, dividerHeightValues } from './types';
 
 const IS_LINE_ID = 'isLine';
 const WIDTH_SIMPLE_ID = 'widthSimple';
 const WIDTH_CUSTOM_ID = 'widthCustom';
-const HEIGHT_CUSTOM_ID = 'heightCustom';
-const THICKNESS_CUSTOM_ID = 'thicknessCustom';
-const THICKNESS_SIMPLE_ID = 'thicknessSimple';
 const HEIGHT_SIMPLE_ID = 'heightSimple';
+const HEIGHT_CUSTOM_ID = 'heightCustom';
 const IS_CUSTOM_WIDTH_ID = 'isWidthCustom';
+const THICKNESS_ID = 'thickness';
 
-export const IS_LINE_DEFAULT_VALUE = DividerStyle.Solid;
 export const ALIGNMENT_DEFAULT_VALUE = DividerAlignment.Left;
 export const STYLE_DEFAULT_VALUE = DividerStyle.Solid;
-export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
 export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
-export const THICKNESS_DEFAULT_VALUE = DividerThickness.Small;
 export const COLOR_DEFAULT_RGBA_VALUE = {
     red: 213,
     green: 214,
@@ -55,7 +43,7 @@ export const settings: BlockSettings = {
             id: IS_LINE_ID,
             type: 'dropdown',
             size: 'Large' as DropdownSize.Large,
-            defaultValue: IS_LINE_DEFAULT_VALUE,
+            defaultValue: DividerStyle.Solid,
             choices: [
                 {
                     value: DividerStyle.NoLine,
@@ -89,8 +77,8 @@ export const settings: BlockSettings = {
                         {
                             id: WIDTH_CUSTOM_ID,
                             type: 'input',
-                            placeholder: '75%',
-                            clearable: false,
+                            placeholder: 'e.g. 60%',
+                            clearable: true,
                             rules: [numericalOrPercentRule, betweenPercentRule(0, 100)],
                             onChange: (bundle: Bundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
                         },
@@ -99,7 +87,7 @@ export const settings: BlockSettings = {
                         {
                             id: WIDTH_SIMPLE_ID,
                             type: 'slider',
-                            defaultValue: WIDTH_DEFAULT_VALUE,
+                            defaultValue: DividerWidth['100%'],
                             choices: [
                                 {
                                     value: DividerWidth['10%'],
@@ -153,7 +141,7 @@ export const settings: BlockSettings = {
                 {
                     id: 'isHeightCustom',
                     type: 'switch',
-                    label: 'Block Height',
+                    label: 'Height',
                     switchLabel: 'Custom',
                     info: 'Determines the block height. This will not affect the dividing line in any way.',
                     defaultValue: false,
@@ -163,8 +151,8 @@ export const settings: BlockSettings = {
                         {
                             id: HEIGHT_CUSTOM_ID,
                             type: 'input',
-                            placeholder: '100px',
-                            clearable: false,
+                            placeholder: 'e.g. 50px',
+                            clearable: true,
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(10)],
                             onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
                         },
@@ -196,15 +184,18 @@ export const settings: BlockSettings = {
     ],
     style: [
         {
-            id: 'lineStyleSection',
-            type: 'sectionHeading',
-            label: 'Line',
-            show: lineIsSelected,
+            id: 'lineStyle',
+            type: 'multiInput',
+            label: 'Line Styling',
+            onChange: (bundle: Bundle): void => {
+                appendUnit(bundle, THICKNESS_ID);
+            },
+            layout: MultiInputLayout.Columns,
+            lastItemFullWidth: true,
             blocks: [
                 {
                     id: 'style',
-                    type: 'slider',
-                    label: 'Styling',
+                    type: 'dropdown',
                     defaultValue: STYLE_DEFAULT_VALUE,
                     choices: [
                         {
@@ -212,58 +203,26 @@ export const settings: BlockSettings = {
                             label: 'Solid',
                         },
                         {
-                            value: DividerStyle.Dashed,
-                            label: 'Dashes',
+                            value: DividerStyle.Dotted,
+                            label: 'Dotted',
                         },
                         {
-                            value: DividerStyle.Dotted,
-                            label: 'Dots',
+                            value: DividerStyle.Dashed,
+                            label: 'Dashed',
                         },
                     ],
                 },
                 {
-                    id: 'isThicknessCustom',
-                    type: 'switch',
-                    label: 'Thickness',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
-                    onChange: (bundle: Bundle): void =>
-                        presetCustomValue(bundle, THICKNESS_SIMPLE_ID, THICKNESS_CUSTOM_ID, dividerThicknessValues),
-                    on: [
-                        {
-                            id: THICKNESS_CUSTOM_ID,
-                            type: 'input',
-                            clearable: false,
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, THICKNESS_CUSTOM_ID),
-                        },
-                    ],
-                    off: [
-                        {
-                            id: THICKNESS_SIMPLE_ID,
-                            type: 'slider',
-                            defaultValue: THICKNESS_DEFAULT_VALUE,
-                            choices: [
-                                {
-                                    value: DividerThickness.Small,
-                                    label: 'S',
-                                },
-                                {
-                                    value: DividerThickness.Medium,
-                                    label: 'M',
-                                },
-                                {
-                                    value: DividerThickness.Large,
-                                    label: 'L',
-                                },
-                            ],
-                        },
-                    ],
+                    id: THICKNESS_ID,
+                    type: 'input',
+                    defaultValue: '1px',
+                    placeholder: 'e.g. 3px',
+                    clearable: false,
+                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                 },
                 {
                     id: 'color',
                     type: 'colorInput',
-                    label: 'Color',
                     defaultValue: COLOR_DEFAULT_RGBA_VALUE,
                 },
             ],
