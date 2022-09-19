@@ -1,4 +1,5 @@
-import { IconCode, DropdownSize, IconEnum, /*DropdownSize,*/ MultiInputLayout } from '@frontify/fondue';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 
 

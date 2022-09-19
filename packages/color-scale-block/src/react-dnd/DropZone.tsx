@@ -1,4 +1,5 @@
-import React from "react";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { useDrop } from "react-dnd";
 import { DraggableItem, DropZonePosition, merge } from "@frontify/fondue";
 
