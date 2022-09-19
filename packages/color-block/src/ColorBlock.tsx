@@ -135,7 +135,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         red: color.red,
                                         green: color.green,
                                         blue: color.blue,
-                                        alpha: (color.alpha && Math.round(color.alpha * 255)) || 255,
+                                        alpha: color.alpha ? Math.round(color.alpha * 255) : 255,
                                     });
                                 }}
                             />
@@ -150,7 +150,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         red: color.red,
                                         green: color.green,
                                         blue: color.blue,
-                                        alpha: (color.alpha && Math.round(color.alpha * 255)) || 255,
+                                        alpha: color.alpha ? Math.round(color.alpha * 255) : 255,
                                     });
                                 }}
                             />
@@ -165,7 +165,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                         red: color.red,
                                         green: color.green,
                                         blue: color.blue,
-                                        alpha: (color.alpha && Math.round(color.alpha * 255)) || 255,
+                                        alpha: color.alpha ? Math.round(color.alpha * 255) : 255,
                                     });
                                 }}
                             />
