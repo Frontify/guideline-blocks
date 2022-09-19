@@ -271,28 +271,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         setDisplayableItems(colorsWithNewWidths);
     };
 
-    // TODO: Make it possible to close modals by clicking anywhere outside.
-    // The reason why these are commented out is because clicking anywhere inside the ColorPicker modal
-    // was causing the modal to close, making it impossible to toggle specific settings within the color picker.
-
-    // const handleClickOutside = (event: any) => {
-    //     if (colorOptionsRef.current && !colorOptionsRef.current.contains(event.target)) {
-    //         setColorOptionsOpen({});
-    //     }
-    //     return () => {
-    //         document.removeEventListener('click', handleClickOutside, true);
-    //     };
-    // };
-
-    // const handleClickOutsideColorPicker = (event: any) => {
-    //     if (colorPickerRef.current && !colorPickerRef.current.contains(event.target)) {
-    //         setEditedColor(null);
-    //     }
-    //     return () => {
-    //         document.removeEventListener('click', handleClickOutsideColorPicker, true);
-    //     };
-    // };
-
     const calculateLeftPos = (index: number, width?: number) => {
         let leftPos = 0;
         const defaultWidth = width ? width : colorWidth;
@@ -466,58 +444,6 @@ console.log(palettes)
             }
         }
     }, [blockSettings]);
-
-    // useEffect(() => {
-    //     if (shouldResizeEvenly) {
-    //         resizeEvenly();
-    //         setShouldResizeEvenly(false);
-    //     }
-    // }, [shouldResizeEvenly]);
-
-    // useEffect(() => {
-    //     let foundNextEmptySquare = false;
-
-    //     if (displayableItems) {
-    //         displayableItems.map((item, index) => {
-    //             if (item && !item.color && foundNextEmptySquare === false) {
-    //                 foundNextEmptySquare = true;
-    //                 setNextEmptyColorIndex(index);
-    //             }
-    //         });
-
-    //         if (!foundNextEmptySquare) {
-    //             setNextEmptyColorIndex(false);
-    //         }
-
-    //         if (
-    //             !calculatedWidths &&
-    //             colorScaleBlockRef &&
-    //             colorScaleBlockRef.current
-    //         ) {
-    //             setCalculatedWidths(true);
-    //             setDisplayableItems(
-    //                 calculateWidths(
-    //                     isEditing || showCompleted
-    //                         ? blockSettings["color-input"]
-    //                         : filterCompleteItems(blockSettings["color-input"])
-    //                 )
-    //             );
-    //         }
-    //     }
-
-    //     // TODO: Make it possible to close modals by clicking anywhere outside.
-    //     // The reason why these are commented out is because clicking anywhere inside the ColorPicker modal
-    //     // was causing the modal to close, making it impossible to toggle specific settings within the color picker.
-
-    //     // document.addEventListener('click', handleClickOutside, true);
-    //     // document.addEventListener('click', handleClickOutsideColorPicker, true);
-    //     document.addEventListener("dragstart", removeDragGhostImage, false);
-    //     return () => {
-    //         // document.removeEventListener('click', handleClickOutside);
-    //         // document.removeEventListener('click', handleClickOutsideColorPicker);
-    //         document.removeEventListener("dragstart", removeDragGhostImage);
-    //     };
-    // });
 
     const draggingId: any = useRef(null);
 
