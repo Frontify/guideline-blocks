@@ -369,8 +369,8 @@ importers:
       postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
-      react-dnd: ^16.0.1
-      react-dnd-html5-backend: ^16.0.1
+      react-dnd: 16.0.1
+      react-dnd-html5-backend: 16.0.1
       react-dom: 17.0.2
       react-flip-toolkit: ^7.0.16
       tailwindcss: 3.1.8
