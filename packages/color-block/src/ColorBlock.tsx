@@ -31,8 +31,6 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     const { designTokens } = useGuidelineDesignTokens();
     const isEditing = useEditorState(appBridge);
 
-    const { view = ColorBlockType.Cards, colorspaces = ['hex, rgb'], name = '', description = '' } = blockSettings;
-
     const handleNameChange = (value: string) => setBlockSettings({ name: value });
     const handleDescriptionChange = (value: string) => setBlockSettings({ description: value });
 
@@ -65,7 +63,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
                     placeholder={isEditing ? 'Color palette name' : ''}
-                    value={name}
+                    value={blockSettings.name}
                     onTextChange={handleNameChange}
                     readonly={!isEditing}
                 />
@@ -75,13 +73,13 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
                     placeholder={isEditing ? 'Describe this color palette here' : ''}
-                    value={description}
+                    value={blockSettings.description}
                     onTextChange={handleDescriptionChange}
                     readonly={!isEditing}
                 />
             </div>
 
-            <div className={wrapperClasses[view]}>
+            <div className={wrapperClasses[blockSettings.view]}>
                 <DndProvider backend={HTML5Backend}>
                     {colors.map((color, index) => (
                         <DropZone
@@ -89,35 +87,35 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                             index={index}
                             onDrop={() => handleDrop(color.id, index)}
                             treeId={'test'}
-                            colorBlockType={view}
+                            colorBlockType={blockSettings.view}
                             moveCard={moveCard}
                             isEditing={isEditing}
                         >
                             <div>
-                                {view === ColorBlockType.List && (
+                                {blockSettings.view === ColorBlockType.List && (
                                     <ListItem
                                         color={color}
-                                        colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
+                                        colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
                                         onBlur={(event) => updateColor(color.id, { name: event.target.value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
                                 )}
-                                {view === ColorBlockType.Drops && (
+                                {blockSettings.view === ColorBlockType.Drops && (
                                     <DropsItem
                                         color={color}
-                                        colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
+                                        colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
                                         onBlur={(event) => updateColor(color.id, { name: event.target.value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
                                         onDelete={(colorId) => deleteColor(colorId)}
                                     />
                                 )}
-                                {view === ColorBlockType.Cards && (
+                                {blockSettings.view === ColorBlockType.Cards && (
                                     <CardsItem
                                         color={color}
-                                        colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
+                                        colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                         isEditing={isEditing}
                                         onBlur={(event) => updateColor(color.id, { name: event.target.value })}
                                         onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
@@ -131,9 +129,9 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
 
                 {isEditing && (
                     <>
-                        {view === ColorBlockType.List && (
+                        {blockSettings.view === ColorBlockType.List && (
                             <ListItemAdd
-                                colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
+                                colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                 onConfirm={(color) => {
                                     createColor({
                                         colorPaletteId: appBridge.getBlockId(),
@@ -146,9 +144,9 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                             />
                         )}
 
-                        {view === ColorBlockType.Drops && (
+                        {blockSettings.view === ColorBlockType.Drops && (
                             <DropsItemAdd
-                                colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
+                                colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                 onConfirm={(color) => {
                                     createColor({
                                         colorPaletteId: appBridge.getBlockId(),
@@ -161,9 +159,9 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                             />
                         )}
 
-                        {view === ColorBlockType.Cards && (
+                        {blockSettings.view === ColorBlockType.Cards && (
                             <CardsItemAdd
-                                colorSpaces={colorspaces as (keyof ColorSpaceInputValues)[]}
+                                colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                 onConfirm={(color) => {
                                     createColor({
                                         colorPaletteId: appBridge.getBlockId(),

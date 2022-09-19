@@ -12,8 +12,8 @@ export type ColorBlockProps = {
 export type Settings = {
     name?: string;
     description?: string;
-    view?: ColorBlockType;
-    colorspaces?: string[];
+    view: ColorBlockType;
+    colorspaces: string[];
 };
 
 export enum ColorBlockType {
