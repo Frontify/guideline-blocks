@@ -89,8 +89,9 @@ export const settings: BlockSettings = {
                 {
                     id: HEIGHT_CHOICE_ID,
                     type: 'slider',
-                    defaultValue: (bundle: Bundle): StorybookHeight =>
-                        bundle.getBlock(URL_ID)?.value !== '' ? StorybookHeight.Medium : StorybookHeight.Small,
+                    defaultValue: (bundle: Bundle): Promise<string> => {
+                        return Promise.resolve(bundle.getBlock(URL_ID)?.value !== '' ? 'Medium' : 'Small');
+                    },
                     choices: [
                         {
                             value: StorybookHeight.Small,
