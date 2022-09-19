@@ -14,6 +14,10 @@ export const AddNewColor: FC<AddNewColorModalProps> = ({
     colors,
 }) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
+    const onCancel = () => {
+        setIsColorPickerOpen(false);
+        setEditedColor(null);
+    };
 
     const onSelectColor = (color: Color) => {
         if (!editedColor) {
@@ -51,11 +55,8 @@ export const AddNewColor: FC<AddNewColorModalProps> = ({
                 <Flyout
                     placement={FlyoutPlacement.Top}
                     isOpen={isColorPickerOpen}
-                    onCancel={() => {
-                        setIsColorPickerOpen(false);
-                        setEditedColor(null);
-                    }}
-                    onOpenChange={() => {}}
+                    onCancel={onCancel}
+                    onOpenChange={() => true}
                     title="Pick color"
                     trigger={<></>}
                 >

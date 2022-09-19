@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrag } from 'react-dnd';
+import { DragSourceMonitor } from 'react-dnd';
 import { FC, MouseEvent, MouseEventHandler, useState } from 'react';
 import { Tooltip } from '@frontify/fondue';
 import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
@@ -8,7 +9,7 @@ import { ColorProps, SquareWithColorProps } from '../types';
 import { DragHandle } from './DragHandle';
 import { CustomizationOptionsModal } from './CustomizationOptionsModal';
 
-const rgbaToHex = (rgba: any, forceRemoveAlpha = false) => {
+const rgbaToHex = (rgba: string, forceRemoveAlpha = false) => {
     return `#${rgba
         .replace(/^rgba?\(|\s+|\)$/g, '') // Get's rgba / rgb string values
         .split(',') // splits them at ","
@@ -53,7 +54,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
 
     const [{}, drag] = useDrag({
         item: currentColor,
-        collect: (monitor: any) => {
+        collect: (monitor: DragSourceMonitor) => {
             return {
                 componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
             };
@@ -134,11 +135,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                                 parseInt(height) - 4
                             }px}] tw-bg-[${`rgba(${backgroundColorRgba}`}]`}
                         >
-                            <CustomizationOptionsModal
-                                id={id}
-                                isEditing={isEditing}
-                                deleteColor={deleteColor}
-                            />
+                            <CustomizationOptionsModal id={id} isEditing={isEditing} deleteColor={deleteColor} />
                         </div>
                     }
                     withArrow

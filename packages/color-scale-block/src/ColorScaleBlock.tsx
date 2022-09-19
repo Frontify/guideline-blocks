@@ -6,7 +6,7 @@ import { AppBridgeBlock, useBlockSettings, useColorPalettes, useEditorState } fr
 import { SquareWithColor } from './components/SquareWithColor';
 import { SquareWithoutColor } from './components/SquareWithoutColor';
 import { AddNewColor } from './components/AddNewColor';
-import { ColorProps } from './types';
+import { ColorPalette, ColorProps, Settings } from './types';
 
 import {
     Button,
@@ -31,18 +31,19 @@ type Props = {
 
 export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const { colorPalettes } = useColorPalettes(appBridge);
-    const [colorPickerPalette, setColorPickerPalette]: any = useState([]);
+    const [colorPickerPalette, setColorPickerPalette]: [ColorPalette[], (value: ColorPalette[]) => void] = useState(
+        [] as ColorPalette[]
+    );
     const isEditing = useEditorState(appBridge);
-    const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
-    const [isDragging, setIsDragging]: any = useState(false);
+    const [isDragging, setIsDragging]: [boolean, (value: boolean) => void] = useState(false);
     const emptyBlockColors: string[] = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
     const [editedColor, setEditedColor] = useState();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
-    const [nextEmptyColorIndex, setNextEmptyColorIndex]: any = useState(0);
-    const colorScaleBlockRef: any = useRef();
+    const colorScaleBlockRef: { current?: HTMLDivElement } = useRef();
 
     const colorWidth = 100; // default color square width if all other calculations fail
 
@@ -181,12 +182,12 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
     const [colorOptionsOpen, setColorOptionsOpen] = useState({});
 
-    const dragStartPos: any = useRef();
-    const dragStartWidth: any = useRef();
-    const lastDragPos: any = useRef();
+    const dragStartPos: { current?: number | null } = useRef();
+    const dragStartWidth: { current?: number | null } = useRef();
+    const lastDragPos: { current?: number | null } = useRef();
 
-    const deleteColor = (id: any) => {
-        const reorderedList = displayableItems?.filter((item: ColorProps, index: Key) => item.id !== id);
+    const deleteColor = (id: number) => {
+        const reorderedList = displayableItems?.filter((item: ColorProps) => item.id !== id);
         setBlockSettings({ ...blockSettings, 'color-input': reorderedList });
     };
 
@@ -255,7 +256,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const populateColorPickerPalettes = () => {
-        const palettes: any[] = [];
+        const palettes: ColorPalette[] = [];
 
         for (const palette of colorPalettes) {
             const colors = palette.colors.map((color) => {
@@ -275,7 +276,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                 colors,
             });
         }
-        console.log(palettes);
         setColorPickerPalette(palettes);
     };
 
@@ -355,22 +355,22 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         setDisplayableItems(colorsWithNewWidths || []);
                     }
                 }
-            } catch (e: any) {
-                throw new Error(e);
+            } catch (event: any) {
+                throw new Error(event);
             }
         }
     }, [blockSettings]);
 
-    const draggingId: any = useRef(null);
+    const draggingId: { current?: number | null } = useRef(null);
 
     const onResizeStop = () => {
         draggingId.current = null;
     };
 
-    const onResizeStart = (event: any, index?: number, currentColor?: any) => {
+    const onResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps) => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
-            dragStartWidth.current = currentColor.width;
+            dragStartWidth.current = currentColor?.width;
         }
         draggingId.current = index;
     };
@@ -382,9 +382,9 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                 lastDragPos.current = event.clientX;
             }
 
-            if (event.clientX < lastDragPos.current) {
-                if (lastDragPos.current - event.clientX >= 8) {
-                    lastDragPos.current = event.clientX;
+            if (event.clientX < lastDragPos?.current) {
+                if (lastDragPos?.current - event.clientX >= 8) {
+                    lastDragPos?.current = event.clientX;
 
                     let valuesChanged = false;
                     const movementSinceStart = dragStartPos.current - event.clientX;
@@ -616,18 +616,14 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         >
                             Resize Evenly
                         </Button>
-                        {nextEmptyColorIndex !== false ? (
-                            <Button
-                                onClick={onAddColor}
-                                style={ButtonStyle.Secondary}
-                                size={ButtonSize.Small}
-                                icon={<IconPlus12 />}
-                            >
-                                Add Color
-                            </Button>
-                        ) : (
-                            <></>
-                        )}
+                        <Button
+                            onClick={onAddColor}
+                            style={ButtonStyle.Secondary}
+                            size={ButtonSize.Small}
+                            icon={<IconPlus12 />}
+                        >
+                            Add Color
+                        </Button>
                     </ButtonGroup>
 
                     <AddNewColor
@@ -636,7 +632,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         editedColor={editedColor}
                         setEditedColor={setEditedColor}
                         colors={colorPickerPalette}
-                        newIndex={nextEmptyColorIndex}
                         updateColor={updateColor}
                         setFormat={() => false}
                     />

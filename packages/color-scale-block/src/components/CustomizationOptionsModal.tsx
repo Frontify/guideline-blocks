@@ -4,11 +4,7 @@ import { FC } from 'react';
 import { IconSize, IconTrashBin } from '@frontify/fondue';
 import { CustomizationOptionsModalProps } from '../types';
 
-export const CustomizationOptionsModal: FC<CustomizationOptionsModalProps> = ({
-    id,
-    isEditing,
-    deleteColor,
-}) => {
+export const CustomizationOptionsModal: FC<CustomizationOptionsModalProps> = ({ id, isEditing, deleteColor }) => {
     const onDeleteColor = () => {
         deleteColor(id);
     };

@@ -12,8 +12,6 @@ export const DropZone = <T extends object>({
     children,
     treeId,
     height,
-    before,
-    after,
 }: DropZoneProps<T>) => {
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: treeId,

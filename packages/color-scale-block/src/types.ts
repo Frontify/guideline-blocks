@@ -10,12 +10,28 @@ export type Settings = {
     ['color-input']: ColorProps[];
 };
 
+export type FormattedColor = {
+    id?: number | null;
+    alpha?: number | undefined | null;
+    red?: number | null;
+    green?: number | null;
+    blue?: number | null;
+    name?: string | undefined | null;
+};
+
 export type ColorProps = {
     id: number;
     sort?: number;
     color: Color;
     width?: number;
     alt?: string;
+};
+
+export type ColorPalette = {
+    id?: number;
+    title?: string;
+    source?: string;
+    colors?: FormattedColor[];
 };
 
 export type SquareWithColorProps = {
