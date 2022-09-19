@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FrontifyColor } from '@frontify/app-bridge';
+
 import { ColorSpaceInputValues } from '../types';
 
 type ColorSpace = {
