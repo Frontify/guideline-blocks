@@ -6,13 +6,11 @@ import { AddNewColorModalProps } from '../types';
 
 export const AddNewColor: FC<AddNewColorModalProps> = ({
     newIndex,
-    colorPickerRef,
     updateColor,
     editedColor,
     setEditedColor,
     isColorPickerOpen,
     setIsColorPickerOpen,
-    setFormat,
     colors,
 }) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
@@ -49,7 +47,7 @@ export const AddNewColor: FC<AddNewColorModalProps> = ({
 
     return (
         <>
-            <div ref={colorPickerRef}>
+            <div>
                 <Flyout
                     placement={FlyoutPlacement.Top}
                     isOpen={isColorPickerOpen}

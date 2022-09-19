@@ -43,7 +43,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const [nextEmptyColorIndex, setNextEmptyColorIndex]: any = useState(0);
     const colorScaleBlockRef: any = useRef();
-    const colorPickerRef: any = useRef();
 
     const colorWidth = 100; // default color square width if all other calculations fail
 
@@ -567,7 +566,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                 onResizeStart={onResizeStart}
                                                 calculateLeftPosition={calculateLeftPosition}
                                                 isEditing={isEditing}
-                                                colorPickerRef={colorPickerRef}
                                                 editedColor={editedColor}
                                                 setEditedColor={setEditedColor}
                                                 updateColor={updateColor}
@@ -590,7 +588,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             onResizeStart={onResizeStart}
                                             calculateLeftPosition={calculateLeftPosition}
                                             isEditing={isEditing}
-                                            colorPickerRef={colorPickerRef}
                                             editedColor={editedColor}
                                             setEditedColor={setEditedColor}
                                             updateColor={updateColor}
@@ -639,7 +636,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         editedColor={editedColor}
                         setEditedColor={setEditedColor}
                         colors={colorPickerPalette}
-                        colorPickerRef={colorPickerRef}
                         newIndex={nextEmptyColorIndex}
                         updateColor={updateColor}
                         setFormat={() => false}

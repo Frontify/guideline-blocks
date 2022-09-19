@@ -8,14 +8,13 @@ export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
     id,
     currentColor,
     isEditing,
-    colorPickerRef,
     editedColor,
     setEditedColor,
     updateColor,
     setFormat,
 }) => {
     const onCancel = () => setEditedColor(null);
-    const onOpenChange = () => setEditedColor(id);
+    const onOpenChange = () => setEditedColor(currentColor);
     const onSelectColor = (color: Color) => {
         updateColor({ id, color, width: currentColor.width });
     };
@@ -23,9 +22,9 @@ export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
     return (
         <>
             {isEditing ? (
-                <div ref={colorPickerRef}>
+                <div>
                     <Flyout
-                        isOpen={editedColor === id}
+                        isOpen={editedColor.id === id}
                         onCancel={onCancel}
                         onOpenChange={onOpenChange}
                         title="Pick color"

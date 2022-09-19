@@ -25,7 +25,6 @@ export type SquareWithColorProps = {
     currentColor: ColorProps;
     calculateLeftPosition: (id: number, width: number) => void;
     isEditing: boolean;
-    colorPickerRef: { current?: any } | undefined;
     editedColor: ColorProps;
     setEditedColor: (value: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
@@ -47,7 +46,6 @@ export type SquareWithoutColorProps = {
     currentSquare: ColorProps;
     calculateLeftPosition: (id: number, width: number) => void;
     isEditing: boolean;
-    colorPickerRef: { current?: any } | undefined;
     editedColor: ColorProps;
     setEditedColor: (value: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
@@ -86,7 +84,6 @@ export type AddNewColorModalProps = {
     id: number;
     currentColor: ColorProps;
     isEditing: boolean;
-    colorPickerRef: { current?: any } | undefined;
     editedColor: ColorProps;
     setEditedColor: (value: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
@@ -97,7 +94,6 @@ export type EditExistingColorModalProps = {
     id: number;
     currentColor: ColorProps;
     isEditing: boolean;
-    colorPickerRef: { current?: any } | undefined;
     editedColor: ColorProps;
     setEditedColor: (value: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
