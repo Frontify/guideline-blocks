@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, DraggableItem, DropZonePosition, OrderableListItem } from '@frontify/fondue';
+import { MouseEvent } from 'react';
+import { Color, ColorFormat, DraggableItem, DropZonePosition, OrderableListItem } from '@frontify/fondue';
 
 export type Settings = {
     customHeight: boolean;
@@ -28,13 +29,13 @@ export type SquareWithColorProps = {
     editedColor: string | number;
     setEditedColor: (value: string | number) => void;
     updateColor: (color: ColorProps) => void;
-    setFormat: (value?: any) => void;
+    setFormat: (value?: ColorFormat) => void;
     colorOptionsRef: any;
     deleteColor: (color: number) => void;
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
     listId: any;
     backgroundColorRgba?: string;
-    onResizeStart?: (event: any, id?: number, currentColor?: ColorProps) => void | undefined;
+    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void;
 };
 
 export type SquareWithoutColorProps = {
@@ -51,12 +52,10 @@ export type SquareWithoutColorProps = {
     editedColor: string | number;
     setEditedColor: (value: string | number) => void;
     updateColor: (color: ColorProps) => void;
-    setFormat: (value?: any) => void;
+    setFormat: (value?: ColorFormat) => void;
     colorOptionsRef: any;
-    colorOptionsOpen: ColorOptionsModalOpenObject;
-    setColorOptionsOpen: (value: ColorOptionsModalOpenObject) => void;
     deleteColor: (color: number) => void;
-    onResizeStart?: (event: any, id?: number, currentColor?: ColorProps) => void | undefined;
+    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void;
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
     listId: any;
 };
@@ -111,7 +110,7 @@ export type DragHandleProps = {
     index: number;
     currentColor: ColorProps;
     isEditing: boolean;
-    onResizeStart?: (event: any, id?: string | number, currentColor?: ColorProps) => void | undefined;
+    onResizeStart?: (event: MouseEvent, id?: string | number, currentColor?: ColorProps) => void | undefined;
 };
 
 export type CustomizationOptionsModalProps = {
