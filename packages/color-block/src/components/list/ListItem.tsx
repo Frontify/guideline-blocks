@@ -63,7 +63,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     hoverDelay={0}
                     content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
                     triggerElement={
-                        <div className="tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                        <div className="tw-h-full tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                             <div
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
@@ -83,10 +83,10 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                         onUpdate({ ...color, alpha: (color.alpha && Math.round(color.alpha * 255)) || 255 });
                     }}
                 >
-                    <div className="tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                    <div className="tw-h-full tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                         <div
                             data-test-id="color-color-picker-flyout-trigger"
-                            className="tw-w-[120px] tw-min-h-[60px] tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
+                            className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                             style={{
                                 backgroundColor: `#${color.hex}`,
                                 opacity: (color.alpha && color.alpha / 255) || 1,
@@ -103,7 +103,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 onBlur={onBlur}
             />
 
-            <div className="tw-flex tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-w-[calc(100% - 306px)] tw-py-5">
+            <div className="tw-flex tw-flex-[0_0_calc(100%-306px)] tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-py-5">
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
