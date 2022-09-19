@@ -101,7 +101,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             <DragHandle index={index} currentColor={currentColor} isEditing={isEditing} onResizeStart={onResizeStart} />
             <div
                 ref={drag}
-                draggable={true}
+                draggable
                 onDrag={onDrag}
                 onDragEnd={onDragEnd}
                 className={`tw-group tw-overflow-visible tw-top-2 tw-border tw-border-white tw-w-full hover:tw-border-black hover:tw-border tw-h-[${height}] tw-pt-[1px] tw-pb-[1px] tw-border-[#efecec]
