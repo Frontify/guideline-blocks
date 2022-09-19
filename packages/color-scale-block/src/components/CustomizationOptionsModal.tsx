@@ -6,7 +6,6 @@ import { CustomizationOptionsModalProps } from '../types';
 
 export const CustomizationOptionsModal: FC<CustomizationOptionsModalProps> = ({
     id,
-    colorOptionsRef,
     isEditing,
     deleteColor,
 }) => {
@@ -19,7 +18,6 @@ export const CustomizationOptionsModal: FC<CustomizationOptionsModalProps> = ({
             {isEditing ? (
                 <div
                     id="coloroptions"
-                    ref={colorOptionsRef}
                     className={
                         'color-options tw-hidden group-hover:tw-flex tw-absolute tw-top-2 tw-mr-3 tw-h-6 tw-right-[0px] tw-z-[2]'
                     }

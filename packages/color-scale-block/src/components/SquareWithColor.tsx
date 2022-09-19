@@ -36,7 +36,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     onResizeStart,
     calculateLeftPosition,
     isEditing,
-    colorOptionsRef,
     deleteColor,
     listId,
     setIsDragging,
@@ -137,7 +136,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                         >
                             <CustomizationOptionsModal
                                 id={id}
-                                colorOptionsRef={colorOptionsRef}
                                 isEditing={isEditing}
                                 deleteColor={deleteColor}
                             />

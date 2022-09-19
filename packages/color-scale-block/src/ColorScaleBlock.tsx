@@ -42,7 +42,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const [editedColor, setEditedColor] = useState();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const [nextEmptyColorIndex, setNextEmptyColorIndex]: any = useState(0);
-    const colorOptionsRef: any = useRef();
     const colorScaleBlockRef: any = useRef();
     const colorPickerRef: any = useRef();
 
@@ -573,7 +572,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                 setEditedColor={setEditedColor}
                                                 updateColor={updateColor}
                                                 setFormat={() => false}
-                                                colorOptionsRef={colorOptionsRef}
                                                 deleteColor={deleteColor}
                                                 handleDrop={handleDrop}
                                                 listId={listId}
@@ -597,7 +595,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             setEditedColor={setEditedColor}
                                             updateColor={updateColor}
                                             setFormat={() => false}
-                                            colorOptionsRef={colorOptionsRef}
                                             colorOptionsOpen={colorOptionsOpen}
                                             setColorOptionsOpen={setColorOptionsOpen}
                                             deleteColor={deleteColor}

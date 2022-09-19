@@ -30,10 +30,9 @@ export type SquareWithColorProps = {
     setEditedColor: (value: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: (value?: ColorFormat) => void;
-    colorOptionsRef: any;
     deleteColor: (color: number) => void;
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
-    listId: any;
+    listId: string;
     backgroundColorRgba?: string;
     onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void;
 };
@@ -53,11 +52,10 @@ export type SquareWithoutColorProps = {
     setEditedColor: (value: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: (value?: ColorFormat) => void;
-    colorOptionsRef: any;
     deleteColor: (color: number) => void;
     onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void;
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
-    listId: any;
+    listId: string;
 };
 
 export type OnDropCallback<T> = (
@@ -116,6 +114,5 @@ export type DragHandleProps = {
 export type CustomizationOptionsModalProps = {
     id: number;
     isEditing: boolean;
-    colorOptionsRef: { current?: any } | undefined;
     deleteColor: (color: number) => void;
 };

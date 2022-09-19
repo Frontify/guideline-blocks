@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useDrag } from 'react-dnd';
 import { FC } from 'react';
-import { DropZonePosition, ItemDragState } from '@frontify/fondue';
+import { DropZonePosition } from '@frontify/fondue';
 import { SquareWithoutColorProps } from '../types';
 import { DropZone } from '../react-dnd/DropZone';
 
@@ -14,39 +13,14 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     width,
     height,
     currentSquare,
-    onResizeStart,
-    calculateLeftPosition,
     isEditing,
-    colorPickerRef,
-    editedColor,
-    setEditedColor,
-    updateColor,
-    setFormat,
-    colorOptionsRef,
-    colorOptionsOpen,
-    setColorOptionsOpen,
-    deleteColor,
     handleDrop,
     listId,
 }) => {
-    const [{}, drag] = useDrag({
-        item: currentSquare,
-        collect: (monitor: any) => ({
-            componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
-        }),
-        type: listId,
-        canDrag: isEditing,
-    });
-
     return (
         <div
-            style={{
-                height,
-                width: `${width}px`,
-                left: 0,
-            }}
             id={`row-${id}`}
-            className={'hover:tw-z-30 row tw-pb-8 tw-inline-block'}
+            className={`hover:tw-z-30 row tw-pb-8 tw-inline-block tw-left-[0px] tw-w-[${width}px] tw-h-[${height}]`}
             key={id}
         >
             <div className="tw-z-0 tw-absolute tw-w-full tw-h-full tw-opacity-0 hover:tw-opacity-100"></div>
