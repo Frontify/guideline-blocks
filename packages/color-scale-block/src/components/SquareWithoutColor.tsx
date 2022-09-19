@@ -52,23 +52,14 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
             <div className="tw-z-0 tw-absolute tw-w-full tw-h-full tw-opacity-0 hover:tw-opacity-100"></div>
 
             <div
-                style={{
-                    height,
-                    borderTopLeftRadius: index === 0 ? '3px' : '0px',
-                    borderBottomLeftRadius: index === 0 ? '3px' : '0px',
-                    borderTopRightRadius: index === totalNumberOfBlocks - 1 ? '3px' : '0px',
-                    borderBottomRightRadius: index === totalNumberOfBlocks - 1 ? '3px' : '0px',
-                    borderLeftWidth: index === 0 ? '1px' : '0px',
-                    borderRightWidth: index === totalNumberOfBlocks - 1 ? '1px' : '0px',
-                    paddingTop: '1px',
-                    paddingBottom: '1px',
-                    paddingLeft: index === 0 ? '1px' : '0px',
-                    paddingRight: index === totalNumberOfBlocks - 1 ? '1px' : '0px',
-                    borderColor: '#efecec',
-                }}
-                className={
-                    'tw-group tw-flex tw-justify-center tw-items-center tw-absolute tw-border tw-border-white tw-w-full'
-                }
+                className={`tw-group tw-flex tw-justify-center tw-items-center tw-absolute tw-border tw-border-white tw-w-full tw-h-[${height}] tw-pt-[1px] tw-pb-[1px] tw-border-[#efecec]
+                    tw-pl-[${index === 0 ? '1px' : '0px'}] tw-pr-[${index === totalNumberOfBlocks - 1 ? '1px' : '0px'}]
+                     tw-rounded-tl-[${index === 0 ? '3px' : '0px'}]
+                    tw-rounded-bl-[${index === 0 ? '3px' : '0px'}]
+                    tw-rounded-tr-[${index === totalNumberOfBlocks - 1 ? '3px' : '0px'}]
+                    tw-rounded-br-[${index === totalNumberOfBlocks - 1 ? '3px' : '0px'}]
+                    tw-border-l-[${index === 0 ? '1px' : '0px'}]
+                    tw-border-r-[${index === totalNumberOfBlocks - 1 ? '1px' : '0px'}]`}
             >
                 <DropZone
                     key={`orderable-list-item-${id}-before`}

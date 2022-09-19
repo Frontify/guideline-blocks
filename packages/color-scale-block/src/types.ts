@@ -12,7 +12,7 @@ export const DefaultValues: any = {
 };
 
 export type ColorProps = {
-    id: string;
+    id: number;
     sort?: number;
     color: Color;
     width?: number;

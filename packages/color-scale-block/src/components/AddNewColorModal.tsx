@@ -6,7 +6,6 @@ import { AddNewColorModalProps } from '../types';
 
 export const AddNewColorModal: FC<AddNewColorModalProps> = ({
     id,
-    index,
     currentColor,
     isEditing,
     colorPickerRef,
@@ -15,14 +14,17 @@ export const AddNewColorModal: FC<AddNewColorModalProps> = ({
     updateColor,
     setFormat,
 }) => {
+    const onCancel = () => setEditedColor(null);
+    const onOpenChange = () => setEditedColor(id);
+
     return (
         <>
             {isEditing ? (
                 <div ref={colorPickerRef}>
                     <Flyout
-                        isOpen={editedColor === `new-${id}`}
-                        onCancel={() => setEditedColor(null)}
-                        onOpenChange={() => setEditedColor(`new-${id}`)}
+                        isOpen={editedColor === id}
+                        onCancel={onCancel}
+                        onOpenChange={onOpenChange}
                         title="Pick color"
                         trigger={<></>}
                     >
@@ -30,7 +32,7 @@ export const AddNewColorModal: FC<AddNewColorModalProps> = ({
                             currentColor={currentColor.color ? currentColor.color : { r: 0, g: 0, b: 0 }}
                             currentFormat={ColorFormat.Rgba}
                             onSelect={(color: Color) => {
-                                updateColor({ id: id, color: color, width: currentColor.width }, index, true);
+                                updateColor({ id, color, width: currentColor.width });
                             }}
                             setFormat={setFormat}
                         />

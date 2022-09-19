@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC, useState } from 'react';
-import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
+import { Color, ColorFormat, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
 import { AddNewColorModalProps } from '../types';
 
 export const AddNewColor: FC<AddNewColorModalProps> = ({
@@ -16,6 +16,36 @@ export const AddNewColor: FC<AddNewColorModalProps> = ({
     colors,
 }) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
+
+    const onSelectColor = (color: Color) => {
+        if (!editedColor) {
+            updateColor({
+                id: color.id,
+                color,
+                index: newIndex,
+            });
+            setEditedColor({
+                id: color.id,
+                color,
+                index: newIndex,
+            });
+        } else {
+            updateColor({
+                id: color.id,
+                color,
+            });
+            setEditedColor({
+                id: editedColor.id,
+                color,
+                index: editedColor.index,
+                width: editedColor.width,
+            });
+        }
+    };
+
+    const onSetFormat = (format: ColorFormat) => {
+        setColorPickerFormat(format);
+    };
 
     return (
         <>
@@ -43,34 +73,8 @@ export const AddNewColor: FC<AddNewColorModalProps> = ({
                                   }
                         }
                         currentFormat={colorPickerFormat}
-                        setFormat={(format) => {
-                            setColorPickerFormat(format);
-                        }}
-                        onSelect={(color: Color) => {
-                            if (!editedColor) {
-                                updateColor({
-                                    id: color.id,
-                                    color: color,
-                                    index: newIndex,
-                                });
-                                setEditedColor({
-                                    id: color.id,
-                                    color: color,
-                                    index: newIndex,
-                                });
-                            } else {
-                                updateColor({
-                                    id: color.id,
-                                    color: color,
-                                });
-                                setEditedColor({
-                                    id: editedColor.id,
-                                    color: color,
-                                    index: editedColor.index,
-                                    width: editedColor.width,
-                                });
-                            }
-                        }}
+                        setFormat={onSetFormat}
+                        onSelect={onSelectColor}
                         palettes={colors}
                     />
                 </Flyout>

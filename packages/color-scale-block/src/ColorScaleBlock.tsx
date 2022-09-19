@@ -3,7 +3,6 @@
 import 'tailwindcss/tailwind.css';
 import { FC, Key, useEffect, useRef, useState } from 'react';
 import { AppBridgeBlock, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
-import { filterCompleteItems } from './helpers';
 import { SquareWithColor } from './components/SquareWithColor';
 import { SquareWithoutColor } from './components/SquareWithoutColor';
 import { AddNewColor } from './components/AddNewColor';
@@ -40,8 +39,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     );
     const [isDragging, setIsDragging]: any = useState(false);
     const emptyBlockColors: string[] = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
-    const [showCompleted] = useState(true);
-    const [calculatedWidths, setCalculatedWidths] = useState(false);
     const [editedColor, setEditedColor] = useState();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const [nextEmptyColorIndex, setNextEmptyColorIndex]: any = useState(0);
@@ -182,13 +179,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         return itemsWithWidths || [];
     };
 
-    const [displayableItems, setDisplayableItems] = useState(
-        calculateWidths(
-            isEditing || showCompleted
-                ? blockSettings['color-input'] || []
-                : filterCompleteItems(blockSettings['color-input'])
-        )
-    );
+    const [displayableItems, setDisplayableItems] = useState(calculateWidths(blockSettings['color-input']));
 
     const [colorOptionsOpen, setColorOptionsOpen] = useState({});
 
@@ -256,14 +247,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             return true;
         }
         return false;
-    };
-
-    // This prevents a double image of the dragged element from appearing when drag is happening
-    const removeDragGhostImage = (event: any) => {
-        const img = new Image();
-        // this is a transparent image
-        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
-        event.dataTransfer.setDragImage(img, 0, 0);
     };
 
     const doesColorHaveRgbValues = (colorValue: ColorProps) => {
@@ -343,11 +326,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                     });
 
                     if (needToCalculateWidths) {
-                        const colorsWithNewWidths = calculateWidths(
-                            isEditing || showCompleted
-                                ? blockSettings['color-input']
-                                : filterCompleteItems(blockSettings['color-input'])
-                        );
+                        const colorsWithNewWidths = calculateWidths(blockSettings['color-input']);
                         setBlockSettings({
                             ...blockSettings,
                             'color-input': colorsWithNewWidths,
@@ -369,9 +348,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         for (let i = 0; i < missingColors; i++) {
                             colorsArray.push(null);
 
-                            colorsWithNewWidths = calculateWidths(
-                                isEditing || showCompleted ? colorsArray : filterCompleteItems(colorsArray)
-                            );
+                            colorsWithNewWidths = calculateWidths(colorsArray);
                         }
                         setBlockSettings({
                             ...blockSettings,
@@ -516,18 +493,23 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         }
     };
 
+    const onResizeEvenly = () => {
+        setBlockSettings({ ...blockSettings, 'color-input': resizeEvenly(displayableItems) });
+    };
+
+    const onAddColor = () => {
+        setIsColorPickerOpen(true);
+    };
+
     const listId = useMemoizedId();
 
     return (
         <>
             <div
                 data-test-id="color-scale-block"
-                style={{
-                    height: colorScaleHeight,
-                }}
                 className={`color-scale-block tw-rounded-md tw-overflow-visible tw-mb-4 ${
                     isEditing ? 'editing' : ''
-                } tw-w-full tw-flex`}
+                } tw-w-full tw-flex tw-h-[${colorScaleHeight}]`}
                 ref={colorScaleBlockRef}
                 // Note: onMouseUp and onResize are defined here intentionally, instead of being in the DragHandle component.
                 // The reason for this is that the dragging feature stops working if I move these to DragHandle,
@@ -635,9 +617,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                 <div className="tw-text-right">
                     <ButtonGroup size={ButtonSize.Small}>
                         <Button
-                            onClick={() => {
-                                setBlockSettings({ ...blockSettings, 'color-input': resizeEvenly(displayableItems) });
-                            }}
+                            onClick={onResizeEvenly}
                             style={ButtonStyle.Secondary}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}
@@ -647,9 +627,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         </Button>
                         {nextEmptyColorIndex !== false ? (
                             <Button
-                                onClick={() => {
-                                    setIsColorPickerOpen(true);
-                                }}
+                                onClick={onAddColor}
                                 style={ButtonStyle.Secondary}
                                 size={ButtonSize.Small}
                                 icon={<IconPlus12 />}

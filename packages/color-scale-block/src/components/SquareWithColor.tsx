@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrag } from 'react-dnd';
-import { FC, useState } from 'react';
+import { FC, MouseEvent, MouseEventHandler, useState } from 'react';
 import { Tooltip } from '@frontify/fondue';
 import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
 import { SquareWithColorProps } from '../types';
@@ -34,6 +34,16 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     setIsDragging,
     isDragging,
 }) => {
+    const onDrag = () => {
+        if (isDragging !== currentColor.id) {
+            setIsDragging(currentColor.id);
+        }
+    };
+
+    const onDragEnd = () => {
+        setIsDragging(false);
+    };
+
     const [{}, drag] = useDrag({
         item: currentColor,
         collect: (monitor: any) => {
@@ -67,45 +77,45 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
         }
     };
 
+    const onTooltipClick: MouseEventHandler = (event: MouseEvent) => {
+        event.preventDefault();
+
+        copyToClipboard(
+            rgbaToHex(
+                `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
+            ).toUpperCase()
+        );
+
+        setCopied(true);
+
+        setTimeout(() => {
+            setCopied(false);
+        }, 2000);
+    };
+
     return (
         <div
-            style={{
-                height,
-                width: `${width}px`,
-                left: `${calculateLeftPosition(index, width)}px`,
-                display: 'inline-block',
-            }}
             id={`row-id-${id}-index-${index}`}
-            className={'hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block'}
+            className={`hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block tw-h-[${height}] tw-w-[${width}px] tw-left-[${calculateLeftPosition(
+                index,
+                width
+            )}px]`}
             key={id}
         >
             <DragHandle index={index} currentColor={currentColor} isEditing={isEditing} onResizeStart={onResizeStart} />
             <div
-                style={{
-                    height,
-                    borderTopLeftRadius: index === 0 ? '3px' : '0px',
-                    borderBottomLeftRadius: index === 0 ? '3px' : '0px',
-                    borderTopRightRadius: index === totalNumberOfBlocks - 1 ? '3px' : '0px',
-                    borderBottomRightRadius: index === totalNumberOfBlocks - 1 ? '3px' : '0px',
-                    borderLeftWidth: index === 0 ? '1px' : '0px',
-                    borderRightWidth: index === totalNumberOfBlocks - 1 ? '1px' : '0px',
-                    paddingTop: '1px',
-                    paddingBottom: '1px',
-                    paddingLeft: index === 0 ? '1px' : '0px',
-                    paddingRight: index === totalNumberOfBlocks - 1 ? '1px' : '0px',
-                    borderColor: '#efecec',
-                }}
                 ref={drag}
                 draggable={true}
-                onDrag={() => {
-                    if (isDragging !== currentColor.id) {
-                        setIsDragging(currentColor.id);
-                    }
-                }}
-                onDragEnd={() => {
-                    setIsDragging(false);
-                }}
-                className="tw-group tw-overflow-visible tw-top-2 tw-border tw-border-white tw-w-full hover:tw-border-black hover:tw-border"
+                onDrag={onDrag}
+                onDragEnd={onDragEnd}
+                className={`tw-group tw-overflow-visible tw-top-2 tw-border tw-border-white tw-w-full hover:tw-border-black hover:tw-border tw-h-[${height}] tw-pt-[1px] tw-pb-[1px] tw-border-[#efecec]
+                tw-pl-[${index === 0 ? '1px' : '0px'}] tw-pr-[${index === totalNumberOfBlocks - 1 ? '1px' : '0px'}]
+                 tw-rounded-tl-[${index === 0 ? '3px' : '0px'}]
+                tw-rounded-bl-[${index === 0 ? '3px' : '0px'}]
+                tw-rounded-tr-[${index === totalNumberOfBlocks - 1 ? '3px' : '0px'}]
+                tw-rounded-br-[${index === totalNumberOfBlocks - 1 ? '3px' : '0px'}]
+                tw-border-l-[${index === 0 ? '1px' : '0px'}]
+                tw-border-r-[${index === totalNumberOfBlocks - 1 ? '1px' : '0px'}]`}
             >
                 <Tooltip
                     alignment={TooltipAlignment.Middle}
@@ -117,26 +127,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                                     `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
                                 ).toUpperCase()}
                             </div>
-                            <a
-                                href="#"
-                                rel="noop noreferrer"
-                                onClick={(event) => {
-                                    event.preventDefault();
-
-                                    copyToClipboard(
-                                        rgbaToHex(
-                                            `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
-                                        ).toUpperCase()
-                                    );
-
-                                    setCopied(true);
-
-                                    setTimeout(() => {
-                                        setCopied(false);
-                                    }, 2000);
-                                }}
-                                className="tw-opacity-50"
-                            >
+                            <a href="#" rel="noop noreferrer" onClick={onTooltipClick} className="tw-opacity-50">
                                 {copied ? 'Copied' : 'Click to copy'}
                             </a>
                         </div>
@@ -147,11 +138,9 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     position={TooltipPosition.Bottom}
                     triggerElement={
                         <div
-                            style={{
-                                backgroundColor: `rgba(${backgroundColorRgba})`,
-                                height: `${parseInt(height) - 4}px`,
-                            }}
-                            className="tw-w-full tw-top-0 tw-left-0"
+                            className={`tw-w-full tw-top-0 tw-left-0 tw-h-[${
+                                parseInt(height) - 4
+                            }px}] tw-bg-[${`rgba(${backgroundColorRgba}`}]`}
                         >
                             <CustomizationOptionsModal
                                 id={id}
