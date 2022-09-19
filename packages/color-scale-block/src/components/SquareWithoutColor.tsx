@@ -19,9 +19,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
     height,
     currentSquare,
     onResizeStart,
-    calculateLeftPos,
-    highlight,
-    setHighlight,
+    calculateLeftPosition,
     isEditing,
     colorPickerRef,
     editedColor,
@@ -62,12 +60,6 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                 const { id: targetId }: any = evt.target;
                 if (hovered !== targetId) {
                     setHovered(parseInt(targetId.split("-")[1]));
-                }
-            }}
-            onDragOver={(val) => {
-                const { id: targetId }: any = val.target;
-                if (highlight !== targetId) {
-                    setHighlight(parseInt(targetId.split("-")[1]));
                 }
             }}
             key={id}

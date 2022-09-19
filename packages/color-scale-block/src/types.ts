@@ -32,8 +32,6 @@ export type SquareWithColorProps = {
     width: number;
     currentColor: ColorProps;
     calculateLeftPosition: (id: number, width: number) => void;
-    highlight: number;
-    setHighlight: (value: boolean | number) => void;
     isEditing: boolean;
     colorPickerRef: { current?: any } | undefined;
     editedColor: string | number;
@@ -59,8 +57,6 @@ export type SquareWithoutColorProps = {
     width: number;
     currentSquare: ColorProps;
     calculateLeftPosition: (id: number, width: number) => void;
-    highlight: number;
-    setHighlight: (value: boolean | number) => void;
     isEditing: boolean;
     colorPickerRef: { current?: any } | undefined;
     editedColor: string | number;

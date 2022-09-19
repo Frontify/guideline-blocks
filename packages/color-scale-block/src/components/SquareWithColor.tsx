@@ -22,9 +22,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     backgroundColorRgba,
     totalNumOfBlocks,
     onResizeStart,
-    calculateLeftPos,
-    highlight,
-    setHighlight,
+    calculateLeftPosition,
     isEditing,
     colorPickerRef,
     editedColor,
@@ -93,12 +91,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             }}
             id={`row-id-${id}-index-${index}`}
             className={`hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block`}
-            onDragOver={(val) => {
-                const { id: targetId }: any = val.target;
-                if (highlight !== targetId) {
-                    setHighlight(parseInt(targetId.split("-")[1]));
-                }
-            }}
             key={id}
         >
             <DragHandle

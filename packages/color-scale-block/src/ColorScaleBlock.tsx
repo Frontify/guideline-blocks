@@ -231,8 +231,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                 : filterCompleteItems(blockSettings["color-input"])
         )
     );
-
-    const [highlight, setHighlight]: any = useState(false);
+    
     const [hovered, setHovered]: any = useState(false);
     const [colorOptionsOpen, setColorOptionsOpen] = useState({});
 
@@ -706,8 +705,6 @@ console.log(palettes)
                                                     onResizeStart={
                                                         onResizeStart
                                                     }
-                                                    highlight={highlight}
-                                                    setHighlight={setHighlight}
                                                     calculateLeftPos={
                                                         calculateLeftPos
                                                     }
@@ -750,8 +747,6 @@ console.log(palettes)
                                                 height={colorScaleHeight}
                                                 currentSquare={value}
                                                 onResizeStart={onResizeStart}
-                                                highlight={highlight}
-                                                setHighlight={setHighlight}
                                                 calculateLeftPos={
                                                     calculateLeftPos
                                                 }
