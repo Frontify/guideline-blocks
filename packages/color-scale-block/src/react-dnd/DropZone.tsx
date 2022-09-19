@@ -22,11 +22,7 @@ export const DropZone = <T extends object>({
         },
         canDrop: (item: OrderableListItem<T>) => {
             // can't drop an item on itself
-            if (item.id === data.targetItem.id) {
-                return false;
-            }
-            // otherwise anything can be dropped anywhere ATM
-            return true;
+            return !(item.id === data.targetItem.id);
         },
         collect: (monitor) => ({
             isOver: monitor.isOver(),
@@ -52,15 +48,11 @@ export const DropZone = <T extends object>({
     return (
         <>
             <div
-                className={`drop-zone-offset tw-relative tw-transition-all ${
+                className={`drop-zone-offset tw-relative tw-transition-all tw-rounded-[3px] tw-bg-[$E3E8F6] tw-h-[${
+                    height - 5
+                }px] tw-w-[${isActive ? `${parseInt(width)}px` : '0px'}] ${
                     isActive ? 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[2px] tw-m-[1px]' : ''
                 }`}
-                style={{
-                    width: isActive ? `${parseInt(width)}px` : '0px',
-                    height: `${height - 5}px`,
-                    backgroundColor: '#E3E8F6',
-                    borderRadius: '3px',
-                }}
             ></div>
 
             <div

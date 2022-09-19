@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
+import { numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 
 export const settings: BlockSettings = {
     layout: [
@@ -37,12 +38,7 @@ export const settings: BlockSettings = {
                     type: 'input',
                     defaultValue: '100px',
                     clearable: false,
-                    rules: [
-                        {
-                            errorMessage: "Please use a numerical value with or without 'px'",
-                            validate: (value: string) => value.match(/^(?:\d+)(?:px)?$/g) !== null,
-                        },
-                    ],
+                    rules: [numericalOrPixelRule],
                 },
             ],
         },

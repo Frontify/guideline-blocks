@@ -4,9 +4,26 @@ import { useDrag } from 'react-dnd';
 import { FC, MouseEvent, MouseEventHandler, useState } from 'react';
 import { Tooltip } from '@frontify/fondue';
 import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
-import { SquareWithColorProps } from '../types';
+import { ColorProps, SquareWithColorProps } from '../types';
 import { DragHandle } from './DragHandle';
 import { CustomizationOptionsModal } from './CustomizationOptionsModal';
+
+const rgbaToHex = (rgba: any, forceRemoveAlpha = false) => {
+    return `#${rgba
+        .replace(/^rgba?\(|\s+|\)$/g, '') // Get's rgba / rgb string values
+        .split(',') // splits them at ","
+        .filter((string: string, index: number) => !forceRemoveAlpha || index !== 3)
+        .map((string: string) => parseFloat(string)) // Converts them to numbers
+        .map((number: number) => number.toString(16)) // Converts numbers to hex
+        .map((string: string) => (string.length === 1 ? `0${string}` : string)) // Adds 0 when length of one number is 1
+        .join('')}`; // Puts the array to together to a string
+};
+
+const getRgbaString = (currentColor: ColorProps) => {
+    return rgbaToHex(
+        `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
+    ).toUpperCase();
+};
 
 export const SquareWithColor: FC<SquareWithColorProps> = ({
     id,
@@ -56,17 +73,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     });
 
     const [copied, setCopied] = useState(false);
-
-    const rgbaToHex = (rgba: any, forceRemoveAlpha = false) => {
-        return `#${rgba
-            .replace(/^rgba?\(|\s+|\)$/g, '') // Get's rgba / rgb string values
-            .split(',') // splits them at ","
-            .filter((string: string, index: number) => !forceRemoveAlpha || index !== 3)
-            .map((string: string) => parseFloat(string)) // Converts them to numbers
-            .map((number: number) => number.toString(16)) // Converts numbers to hex
-            .map((string: string) => (string.length === 1 ? `0${string}` : string)) // Adds 0 when length of one number is 1
-            .join('')}`; // Puts the array to together to a string
-    };
 
     const copyToClipboard = async (text?: string) => {
         try {
@@ -122,11 +128,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     content={
                         <div>
                             <div>{currentColor.color.name}</div>
-                            <div>
-                                {rgbaToHex(
-                                    `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
-                                ).toUpperCase()}
-                            </div>
+                            <div>{getRgbaString(currentColor)}</div>
                             <a href="#" rel="noop noreferrer" onClick={onTooltipClick} className="tw-opacity-50">
                                 {copied ? 'Copied' : 'Click to copy'}
                             </a>
