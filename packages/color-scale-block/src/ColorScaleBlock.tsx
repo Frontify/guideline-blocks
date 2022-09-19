@@ -85,7 +85,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
             return defaultWidth;
         } else {
-            return colorWidth;
+            return defaultColorSquareWidth;
         }
     };
 
@@ -96,7 +96,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         const defaultWidth = calculateDefaultColorWidth(itemList.length);
 
-        const newDisplayableItems = itemList.map((item, index) => {
+        const newDisplayableItems = itemList.map((item) => {
             return { ...item, width: defaultWidth };
         });
 
@@ -204,7 +204,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
-        const defaultWidth = width ? width : colorWidth;
+        const defaultWidth = width ? width : defaultColorSquareWidth;
         displayableItems?.map((value: ColorProps, loopIndex: number) => {
             if (loopIndex < index) {
                 leftPos += value && value.width ? value.width : defaultWidth;
@@ -215,7 +215,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const canExpandColorBlock = () => {
-        const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
+        const colorScaleBlockWidth = colorScaleBlockRef?.current.getBoundingClientRect().width;
         let usedSpace = 0;
 
         displayableItems?.map((value: ColorProps) => {
@@ -492,7 +492,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const [displayableItems, setDisplayableItems] = useState(calculateWidths(blockSettings['color-input']));
-    const colorWidth = 100; // default color square width if all other calculations fail
+    const defaultColorSquareWidth = 100;
     const emptyBlockColors: string[] = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
     const listId = useMemoizedId();
 
