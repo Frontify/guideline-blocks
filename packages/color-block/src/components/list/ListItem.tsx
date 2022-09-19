@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FormEvent, useState } from 'react';
 import {
     Badge,
     BadgeEmphasis,
@@ -19,37 +18,13 @@ import { ColorName } from '../ColorName';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
 import { TooltipContent } from '../TooltipContent';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
-import { ColorBlockType, ColorSpaceInputValues, ItemProps } from '../../types';
+import { ColorBlockType, ItemProps } from '../../types';
+import { ColorSpaceValue } from '../ColorSpaceValue';
 
 export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { copy, status } = useCopy();
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
-
-    const [colorSpaceInputValues, setColorSpaceInputValues] = useState<ColorSpaceInputValues>({
-        cmykCoated: color.cmykCoated ?? '',
-        cmykNewspaper: color.cmykNewspaper ?? '',
-        cmykUncoated: color.cmykUncoated ?? '',
-        hks: color.hks ?? '',
-        lab: color.lab ?? '',
-        ncs: color.ncs ?? '',
-        oracal: color.oracal ?? '',
-        pantoneCoated: color.pantoneCoated ?? '',
-        pantoneCp: color.pantoneCp ?? '',
-        pantonePlastics: color.pantonePlastics ?? '',
-        pantoneTextile: color.pantoneTextile ?? '',
-        pantoneUncoated: color.pantoneUncoated ?? '',
-        pantone: color.pantone ?? '',
-        ral: color.ral ?? '',
-        threeM: color.threeM ?? '',
-        variable: color.nameCss ?? '',
-    });
-
-    const handleColorSpaceValueChange = (event: FormEvent<HTMLInputElement>) => {
-        const { name, value } = event.currentTarget;
-
-        setColorSpaceInputValues((previousState) => ({ ...previousState, [name]: value }));
-    };
 
     return (
         <div
@@ -134,27 +109,12 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                     }
                                 />
                             ) : (
-                                <div className="tw-ml-3 ">
-                                    {['CMYK', 'HEX', 'RGB'].includes(mappedColorSpace.label) ? (
-                                        <div className="tw-text-s tw-text-black-80">
-                                            {mappedColorSpace.value || mappedColorSpace.placeholder}
-                                        </div>
-                                    ) : (
-                                        <input
-                                            name={colorSpaceId}
-                                            className="tw-w-full tw-h-5 tw-outline-none"
-                                            type="text"
-                                            value={colorSpaceInputValues[colorSpaceId]}
-                                            onChange={handleColorSpaceValueChange}
-                                            placeholder={mappedColorSpace.placeholder}
-                                            onBlur={(event) =>
-                                                onUpdate({
-                                                    [mappedColorSpace.key || colorSpaceId]: event.target.value,
-                                                })
-                                            }
-                                        />
-                                    )}
-                                </div>
+                                <ColorSpaceValue
+                                    viewType={ColorBlockType.List}
+                                    color={color}
+                                    colorSpaceId={colorSpaceId}
+                                    onUpdate={onUpdate}
+                                />
                             )}
                         </div>
                     );
