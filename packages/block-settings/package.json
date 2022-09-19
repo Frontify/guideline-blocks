@@ -31,7 +31,7 @@
         "vite-plugin-dts": "1.4.1"
     },
     "dependencies": {
-        "@frontify/app-bridge": "*",
-        "@frontify/fondue": "*"
+        "@frontify/app-bridge": "latest",
+        "@frontify/fondue": "latest"
     }
 }
