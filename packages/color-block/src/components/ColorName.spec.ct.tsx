@@ -68,7 +68,7 @@ describe('ColorPickerFlyout component', () => {
             <ColorName
                 viewType={ColorBlockType.List}
                 initialColorName={INITIAL_COLOR_NAME}
-                isEditing={true}
+                isEditing
                 onBlur={onBlurStub}
             />
         );
@@ -87,7 +87,7 @@ describe('ColorPickerFlyout component', () => {
             <ColorName
                 viewType={ColorBlockType.Drops}
                 initialColorName={INITIAL_COLOR_NAME}
-                isEditing={true}
+                isEditing
                 onBlur={onBlurStub}
             />
         );
@@ -105,7 +105,7 @@ describe('ColorPickerFlyout component', () => {
             <ColorName
                 viewType={ColorBlockType.Cards}
                 initialColorName={INITIAL_COLOR_NAME}
-                isEditing={true}
+                isEditing
                 onBlur={onBlurStub}
             />
         );

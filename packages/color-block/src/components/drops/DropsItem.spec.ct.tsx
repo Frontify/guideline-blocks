@@ -63,7 +63,7 @@ describe('DropsItem component in edit mode', () => {
             <DropsItem
                 color={FrontifyColorDummy.red()}
                 colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
-                isEditing={true}
+                isEditing
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}
                 onDelete={onDeleteStub}

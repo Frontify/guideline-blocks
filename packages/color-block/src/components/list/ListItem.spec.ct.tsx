@@ -63,7 +63,7 @@ describe('ListItem component in edit mode', () => {
             <ListItem
                 color={FrontifyColorDummy.red()}
                 colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
-                isEditing={true}
+                isEditing
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}
                 onDelete={onDeleteStub}

@@ -63,7 +63,7 @@ describe('CardsItem component in edit mode', () => {
             <CardsItem
                 color={FrontifyColorDummy.red()}
                 colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
-                isEditing={true}
+                isEditing
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}
                 onDelete={onDeleteStub}

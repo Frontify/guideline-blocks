@@ -29,13 +29,13 @@ describe('DropZone component', () => {
                         colorBlockType={ColorBlockType.Cards}
                         index={1}
                         moveCard={moveCardStub}
-                        isEditing={true}
+                        isEditing
                     >
                         <div>
                             <CardsItem
                                 color={FrontifyColorDummy.red()}
                                 colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
-                                isEditing={true}
+                                isEditing
                                 onBlur={onBlurStub}
                                 onUpdate={onUpdateStub}
                                 onDelete={onDeleteStub}
@@ -47,13 +47,13 @@ describe('DropZone component', () => {
                         colorBlockType={ColorBlockType.Cards}
                         index={2}
                         moveCard={moveCardStub}
-                        isEditing={true}
+                        isEditing
                     >
                         <div>
                             <CardsItem
                                 color={FrontifyColorDummy.red()}
                                 colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
-                                isEditing={true}
+                                isEditing
                                 onBlur={onBlurStub}
                                 onUpdate={onUpdateStub}
                                 onDelete={onDeleteStub}
