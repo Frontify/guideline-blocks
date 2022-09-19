@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { TextBlock } from './TextBlock';
-import { mount } from '@cypress/react';
+import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 
 const TextBlockSelector = '[data-test-id="text-block"]';

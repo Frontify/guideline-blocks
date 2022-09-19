@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, FrontifyColorPalette } from '@frontify/app-bridge';
+import type { AppBridgeBlock, FrontifyColorPalette } from '@frontify/app-bridge';
 
 export type Settings = {
     colorPalettes: number[];

@@ -1,6 +1,6 @@
 {
     "name": "@frontify/guideline-blocks-settings",
-    "version": "0.19.0",
+    "version": "0.20.0",
     "description": "Provides the types for the block settings",
     "sideEffects": false,
     "main": "dist/index.umd.js",
@@ -31,7 +31,7 @@
         "vite-plugin-dts": "1.4.1"
     },
     "dependencies": {
-        "@frontify/app-bridge": "*",
-        "@frontify/fondue": "*"
+        "@frontify/app-bridge": "latest",
+        "@frontify/fondue": "latest"
     }
 }

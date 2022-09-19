@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FrontifyColorPalette } from '@frontify/app-bridge';
 import type { BlockSettings } from '@frontify/guideline-blocks-settings';
 
 export const settings: BlockSettings = {
@@ -12,9 +11,10 @@ export const settings: BlockSettings = {
             columns: 2,
             defaultValue: [],
             showClearAndSelectAllButtons: true,
-            choices: async ({ appBridge }) => {
+            choices: async ({ getAppBridge }) => {
+                const appBridge = getAppBridge();
                 const palettes = await appBridge.getColorPalettes();
-                return palettes.map(({ id, name }: FrontifyColorPalette) => ({ id, label: name }));
+                return palettes.map(({ id, name }) => ({ id: id.toString(), label: name }));
             },
         },
     ],

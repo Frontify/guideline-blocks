@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCopy } from '@frontify/fondue';
 import { FC } from 'react';
+import { useCopy } from '@frontify/fondue';
 
-import { TooltipContentProps } from './types';
+import type { TooltipContentProps } from './types';
 
 export const TooltipContent: FC<TooltipContentProps> = ({ color }) => {
     const { copy, status } = useCopy();

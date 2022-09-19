@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
+import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { DividerBlock } from './DividerBlock';
 import { DividerAlignment, DividerHeight, DividerStyle } from './types';
@@ -46,15 +46,15 @@ describe('DividerBlock', () => {
     it('renders a divider block with the correct styling', () => {
         const [DividerBlockWithStubs] = withAppBridgeBlockStubs(DividerBlock, {
             blockSettings: {
+                isLine: DividerStyle.Solid,
                 color: EXAMPLE_COLOR,
                 style: DividerStyle.Dashed,
-                thicknessSimple: DividerHeight.Large,
             },
         });
 
         mount(<DividerBlockWithStubs />);
         cy.get(DividerLine).should('have.class', 'tw-border-dashed');
-        cy.get(DividerLine).should('have.css', 'border-top-width', '4px');
+        cy.get(DividerLine).should('have.css', 'border-top-width', '1px');
         cy.get(DividerLine).should('have.css', 'border-top-color', 'rgb(22, 181, 181)');
     });
 });

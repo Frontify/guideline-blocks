@@ -1,8 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/fondue-tokens/styles';
-
 import { FC, ReactElement } from 'react';
 import { useBlockSettings, useColorPalettes } from '@frontify/app-bridge';
 import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
@@ -13,9 +10,12 @@ import type { ColorKitBlockProps, Settings } from './types';
 export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { colorPalettes, getDownloadColorKitLink } = useColorPalettes(appBridge, blockSettings.colorPalettes);
-    const link = getDownloadColorKitLink(blockSettings.colorPalettes);
-    const isDownloadDisabled = blockSettings.colorPalettes.length === 0;
+    const { colorPalettes, downloadColorKit } = useColorPalettes(
+        appBridge,
+        (blockSettings.colorPalettes ?? []).map((id) => Number(id))
+    );
+    const link = downloadColorKit(blockSettings.colorPalettes);
+    const isDownloadEnabled = blockSettings.colorPalettes?.length > 0;
 
     return (
         <div
@@ -39,9 +39,9 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     rel="noreferrer"
                     data-test-id="download-button"
                     title="download color palettes"
-                    style={{ pointerEvents: isDownloadDisabled ? 'none' : 'initial' }}
+                    style={{ pointerEvents: isDownloadEnabled ? 'initial' : 'none' }}
                 >
-                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />} disabled={isDownloadDisabled}>
+                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />} disabled={!isDownloadEnabled}>
                         Download
                     </Button>
                 </a>
