@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Badge, BadgeEmphasis, IconPlus, IconSize, RichTextEditor } from '@frontify/fondue';
+import { Badge, BadgeEmphasis, IconPlus, IconSize } from '@frontify/fondue';
 import { ItemAddProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
@@ -20,8 +20,8 @@ export const ListItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
                 </div>
             </ColorPickerFlyout>
 
-            <div className="tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-text-m tw-text-black tw-font-bold">
-                <RichTextEditor readonly placeholder="Color Name" />
+            <div className="tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12 tw-pointer-events-none tw-text-m tw-text-black-50 tw-font-bold">
+                Color name
             </div>
 
             <div className="tw-flex tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-w-[calc(100% - 306px)] tw-py-5">
@@ -34,7 +34,7 @@ export const ListItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
                                 {mappedColorSpace.label}
                             </Badge>
 
-                            <div className="tw-ml-3 tw-text-s tw-text-black-50 tw-pointer-events-none">
+                            <div className="tw-ml-3 tw-pointer-events-none tw-text-s tw-text-black-50">
                                 {mappedColorSpace.placeholder}
                             </div>
                         </div>

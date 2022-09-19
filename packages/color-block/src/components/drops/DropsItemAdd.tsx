@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus, IconSize, RichTextEditor } from '@frontify/fondue';
+import { IconPlus, IconSize } from '@frontify/fondue';
 import { ItemAddProps } from '../../types';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
@@ -17,8 +17,8 @@ export const DropsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
                 </div>
             </ColorPickerFlyout>
 
-            <div className="tw-flex tw-w-[100px] tw-mb-3 tw-text-m tw-font-bold tw-text-black tw-text-center">
-                <RichTextEditor readonly placeholder="Color Name" />
+            <div className="tw-flex tw-w-[100px] tw-mb-3 tw-pointer-events-none tw-text-m tw-font-bold tw-text-black tw-text-center">
+                Color name
             </div>
 
             {colorSpaces?.map((colorSpaceId) => {
@@ -28,7 +28,9 @@ export const DropsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
                     <div key={colorSpaceId} className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0">
                         <div className="tw-mr-1 tw-text-s tw-text-black-50">{mappedColorSpace.label}</div>
 
-                        <div className="tw-text-s tw-text-black-50">{mappedColorSpace.placeholder}</div>
+                        <div className="tw-pointer-events-none tw-text-s tw-text-black-50">
+                            {mappedColorSpace.placeholder}
+                        </div>
                     </div>
                 );
             })}
