@@ -24,7 +24,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
-    const colorBackgroundColor = `rgba(${color.red}, ${color.green}, ${color.blue}, ${
+    const rgbaBackgroundColor = `rgba(${color.red}, ${color.green}, ${color.blue}, ${
         (color.alpha && color.alpha / 255) || 1
     })`;
 
@@ -45,9 +45,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                                 style={{
-                                    backgroundColor: `rgba(${color.red}, ${color.green}, ${color.blue}, ${
-                                        (color.alpha && color.alpha / 255) || 1
-                                    })`,
+                                    backgroundColor: rgbaBackgroundColor,
                                 }}
                                 onClick={() => copy(mappedFirstColorSpace.value ?? '')}
                             />
@@ -66,7 +64,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                             data-test-id="color-color-picker-flyout-trigger"
                             className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
-                                backgroundColor: colorBackgroundColor,
+                                backgroundColor: rgbaBackgroundColor,
                             }}
                         >
                             <div
