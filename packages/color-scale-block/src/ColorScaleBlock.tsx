@@ -189,7 +189,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         let updatedColors = [...displayableItems];
 
-        const addedFirstColor = displayableItems.filter((item) => (item.id ? true : false)).length;
+        const addedFirstColor = displayableItems.filter((item) => item.id !== null).length;
 
         if (!addedFirstColor) {
             updatedColors = [newColor];
@@ -297,7 +297,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             // const minimumColors = blockSettings['colorInputMinimumSwitch']
             //     ? parseInt(blockSettings['colorInputMinimum'])
             //     : parseInt(blockSettings['colorInputMinimumSlider']);
-            let addedFirstColor = false;
+            let addedFirstColor;
             if (blockSettings['color-input']) {
                 addedFirstColor = blockSettings['color-input'].filter((item: ColorProps) =>
                     item.id ? true : false
