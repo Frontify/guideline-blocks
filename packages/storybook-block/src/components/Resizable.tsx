@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useEffect, useState } from 'react';
+import { FC, MouseEvent as ReactMouseEvent, useEffect, useState } from 'react';
 import { MAX_HEIGHT_VALUE, MIN_HEIGHT_VALUE } from '../settings';
 
 type Props = {
@@ -24,27 +24,29 @@ export const Resizeable: FC<Props> = ({ children, saveHeight, initialHeight }) =
         setHeight(activeHeight);
     }, [activeHeight]);
 
-    const handler = (mouseDownEvent: { pageY: number }) => {
+    const handler = (mouseDownEvent: ReactMouseEvent) => {
         const startSize = height;
         const startPosition = mouseDownEvent.pageY;
 
-        function onMouseMove(mouseMoveEvent: { pageY: number }) {
+        const onMouseMove = (mouseMoveEvent: MouseEvent) => {
             setActive(true);
             const newHeight = startSize - startPosition + mouseMoveEvent.pageY;
             if (newHeight > MIN_HEIGHT_VALUE && newHeight < MAX_HEIGHT_VALUE) {
                 setHeight(newHeight);
             }
-        }
-        function onMouseUp() {
+        };
+
+        const onMouseUp = () => {
             setActive(false);
             document.body.removeEventListener('mousemove', onMouseMove);
-        }
+        };
+
         document.body.addEventListener('mousemove', onMouseMove);
         document.body.addEventListener('mouseup', onMouseUp, { once: true });
     };
 
     return (
-        <div id="container" className="tw-grid tw-grid-col tw-min-w-full tw-overflow-hidden">
+        <div className="tw-grid tw-grid-col tw-min-w-full tw-overflow-hidden">
             <div
                 data-test-id="resizable-children-container"
                 className="tw-grid tw-justify-items-stretch"
@@ -55,8 +57,8 @@ export const Resizeable: FC<Props> = ({ children, saveHeight, initialHeight }) =
                 )}
                 {children}
             </div>
+
             <button
-                id="draghandle"
                 type="button"
                 onMouseDown={handler}
                 className="tw-cursor-ns-resize tw-w-full tw-pt-3 tw-h-full tw-bg-white tw-z-50"
