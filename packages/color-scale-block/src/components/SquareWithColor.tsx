@@ -2,15 +2,10 @@
 
 import { FC, useState } from "react";
 import { SquareWithColorProps } from "../types";
-import { AddNewColorModal } from "./AddNewColorModal";
-import { AddNewColorTooltips } from "./AddNewColorTooltips";
-import { EditExistingColorModal } from "./EditExistingColorModal";
 import { DragHandle } from "./DragHandle";
 import { CustomizationOptionsModal } from "./CustomizationOptionsModal";
-import { IconTrash, IconSize, Tooltip } from "@frontify/fondue";
-import { DropZone } from "../react-dnd/DropZone";
+import {  Tooltip } from "@frontify/fondue";
 import {
-    DropZonePosition,
     ItemDragState,
     TooltipAlignment,
     TooltipPosition,
@@ -57,6 +52,8 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
         type: listId,
         canDrag: isEditing ? true : false,
     });
+
+    const [copied, setCopied] = useState(false);
 
     const rgbaToHex = (rgba: any, forceRemoveAlpha = false) => {
         return (
@@ -162,10 +159,16 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                                             `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
                                         ).toUpperCase()
                                     );
+
+                                    setCopied(true);
+
+                                    setTimeout(() => {
+                                        setCopied(false);
+                                    }, 2000);
                                 }}
                                 className="tw-opacity-50"
                             >
-                                Click to copy
+                                {copied ? `Copied` : `Click to copy`}
                             </a>
                         </div>
                     }

@@ -89,12 +89,6 @@ export type AddNewColorModalProps = {
     setFormat: () => void;
 };
 
-export type AddNewColorTooltipsProps = {
-    id: number;
-    isEditing: boolean;
-    setEditedColor: (value: string | number) => void;
-};
-
 export type EditExistingColorModalProps = {
     id: number;
     currentColor: ColorProps;
