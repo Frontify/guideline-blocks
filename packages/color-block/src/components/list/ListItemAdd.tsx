@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Badge, BadgeEmphasis, IconPlus, IconSize } from '@frontify/fondue';
-import { ItemAddProps } from '../../types';
-import { mapColorSpaces } from '../../helpers/mapColorSpaces';
+
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
+import { mapColorSpaces } from '../../helpers/mapColorSpaces';
+import { ItemAddProps } from '../../types';
 
 export const ListItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
     return (

@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { FormEvent, useState } from 'react';
 import {
     Button,
     ButtonStyle,
@@ -12,12 +13,11 @@ import {
 } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
+import { ColorName } from '../ColorName';
+import { ColorPickerFlyout } from '../ColorPickerFlyout';
+import { TooltipContent } from '../TooltipContent';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorBlockType, ColorSpaceInputValues, ItemProps } from '../../types';
-import { TooltipContent } from '../TooltipContent';
-import { ColorPickerFlyout } from '../ColorPickerFlyout';
-import { FormEvent, useState } from 'react';
-import { ColorName } from '../ColorName';
 
 export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { copy, status } = useCopy();

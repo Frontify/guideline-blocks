@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
+
 import { ColorPickerFlyout } from './ColorPickerFlyout';
 
 const ColorPickerFlyoutSelector = '[data-test-id="color-picker-flyout"]';

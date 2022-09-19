@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Color, ColorFormat, ColorPicker, Flyout } from '@frontify/fondue';
+
 import { ColorPickerFlyoutProps } from '../types';
 
 export const ColorPickerFlyout = ({ currentColor, onConfirm, children }: ColorPickerFlyoutProps) => {

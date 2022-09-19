@@ -1,22 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ReactElement, useEffect, useState } from 'react';
-import { FrontifyColor, useBlockSettings, useColors, useEditorState } from '@frontify/app-bridge';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-
-import { ColorBlockProps, ColorBlockType, ColorSpaceInputValues, Settings } from './types';
-
-import { RichTextEditor } from '@frontify/fondue';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { FrontifyColor, useBlockSettings, useColors, useEditorState } from '@frontify/app-bridge';
+import { RichTextEditor } from '@frontify/fondue';
+import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
+import { CardsItem } from './components/cards/CardsItem';
+import { CardsItemAdd } from './components/cards/CardsItemAdd';
+import { DropsItem } from './components/drops/DropsItem';
+import { DropsItemAdd } from './components/drops/DropsItemAdd';
+import { DropZone } from './components/DropZone';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
-import { DropsItemAdd } from './components/drops/DropsItemAdd';
-import { DropsItem } from './components/drops/DropsItem';
-import { CardsItemAdd } from './components/cards/CardsItemAdd';
-import { CardsItem } from './components/cards/CardsItem';
-import { DropZone } from './components/DropZone';
+import { ColorBlockProps, ColorBlockType, ColorSpaceInputValues, Settings } from './types';
 
 import update from 'immutability-helper';
 

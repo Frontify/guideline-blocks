@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
-import { ColorBlockType } from '../types';
+
 import { ColorName } from './ColorName';
+import { ColorBlockType } from '../types';
 
 const ColorNameSelector = '[data-test-id="color-name"]';
 

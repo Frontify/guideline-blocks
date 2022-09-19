@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { merge } from '@frontify/fondue';
 import { FocusEvent, FormEvent, useState } from 'react';
+import { merge } from '@frontify/fondue';
+
 import { ColorBlockType } from '../types';
 
 type ColorNameProps = {

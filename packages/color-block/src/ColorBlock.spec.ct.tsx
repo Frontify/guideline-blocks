@@ -2,6 +2,7 @@
 
 import { mount } from '@cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+
 import { ColorBlock } from './ColorBlock';
 import { ColorBlockType } from './types';
 

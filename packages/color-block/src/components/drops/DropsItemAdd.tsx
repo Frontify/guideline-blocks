@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconPlus, IconSize } from '@frontify/fondue';
-import { ItemAddProps } from '../../types';
-import { mapColorSpaces } from '../../helpers/mapColorSpaces';
+
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
+import { mapColorSpaces } from '../../helpers/mapColorSpaces';
+import { ItemAddProps } from '../../types';
 
 export const DropsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
     return (

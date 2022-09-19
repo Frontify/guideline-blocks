@@ -1,12 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
-import { FrontifyColorDummy } from '@frontify/app-bridge';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { ColorBlockType, ColorSpaceInputValues } from '../types';
+import { mount } from '@cypress/react';
+import { FrontifyColorDummy } from '@frontify/app-bridge';
+
 import { CardsItem } from './cards/CardsItem';
 import { DropZone } from './DropZone';
+import { ColorBlockType, ColorSpaceInputValues } from '../types';
 
 const CardsItemSelector = '[data-test-id="cards-item"]';
 

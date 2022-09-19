@@ -2,6 +2,7 @@
 
 import { mount } from '@cypress/react';
 import { FrontifyColorDummy } from '@frontify/app-bridge';
+
 import { DropsItem } from './DropsItem';
 import { ColorSpaceInputValues } from '../../types';
 

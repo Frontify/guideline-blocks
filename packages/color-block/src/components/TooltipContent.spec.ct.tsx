@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from '@cypress/react';
+
 import { TooltipContent } from './TooltipContent';
 
 const TooltipContentSelector = '[data-test-id="tooltip-content"]';

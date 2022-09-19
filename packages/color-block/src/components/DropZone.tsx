@@ -1,7 +1,10 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { useRef } from 'react';
 import { XYCoord, useDrag, useDrop } from 'react-dnd';
 import { merge } from '@frontify/fondue';
+
 import { ColorBlockType } from '../types';
-import { useRef } from 'react';
 
 export type DropZoneProps = {
     onDrop?: (index: number) => void;
