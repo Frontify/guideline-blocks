@@ -143,7 +143,7 @@ export const settings: BlockSettings = {
                     type: 'switch',
                     label: 'Height',
                     switchLabel: 'Custom',
-                    info: (bundle: Bundle): string =>
+                    info: (bundle: Bundle) =>
                         bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid
                             ? 'Determines the block height. This will not affect the dividing line in any way.'
                             : 'Determines the block height.',
