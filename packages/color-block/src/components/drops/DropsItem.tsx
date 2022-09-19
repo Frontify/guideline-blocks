@@ -50,7 +50,11 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
     };
 
     return (
-        <div data-test-id="drops-item" key={color.id} className="tw-group tw-flex tw-flex-col tw-items-center">
+        <div
+            data-test-id="drops-item"
+            key={color.id}
+            className="tw-group tw-relative tw-flex tw-flex-col tw-items-center"
+        >
             {!isEditing ? (
                 <Tooltip
                     withArrow
@@ -72,37 +76,39 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     }
                 />
             ) : (
-                <ColorPickerFlyout
-                    currentColor={color as Color}
-                    onConfirm={(color) => {
-                        onUpdate({ ...color, alpha: (color.alpha && Math.round(color.alpha * 255)) || 255 });
-                    }}
-                >
-                    <div className="tw-mb-3 tw-overflow-hidden tw-rounded-full tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
-                        <div
-                            data-test-id="color-color-picker-flyout-trigger"
-                            className="tw-relative tw-w-[100px] tw-h-[100px] tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
-                            style={{
-                                backgroundColor: `#${color.hex}`,
-                                opacity: (color.alpha && color.alpha / 255) || 1,
-                            }}
-                        >
+                <>
+                    <ColorPickerFlyout
+                        currentColor={color as Color}
+                        onConfirm={(color) => {
+                            onUpdate({ ...color, alpha: (color.alpha && Math.round(color.alpha * 255)) || 255 });
+                        }}
+                    >
+                        <div className="tw-mb-3 tw-overflow-hidden tw-rounded-full tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                             <div
-                                data-test-id="delete-button"
-                                className={joinClassNames([
-                                    'tw-absolute tw-hidden tw-top-[-0.25rem] tw-right-[-0.25rem]',
-                                    isEditing && 'group-hover:tw-block',
-                                ])}
-                            >
-                                <Button
-                                    icon={<IconTrashBin size={IconSize.Size20} />}
-                                    style={ButtonStyle.Secondary}
-                                    onClick={() => onDelete(color.id)}
-                                />
-                            </div>
+                                data-test-id="color-color-picker-flyout-trigger"
+                                className="tw-relative tw-w-[100px] tw-h-[100px] tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                                style={{
+                                    backgroundColor: `#${color.hex}`,
+                                    opacity: (color.alpha && color.alpha / 255) || 1,
+                                }}
+                            />
                         </div>
+                    </ColorPickerFlyout>
+
+                    <div
+                        data-test-id="delete-button"
+                        className={joinClassNames([
+                            'tw-absolute tw-hidden tw-top-[-0.25rem] tw-right-1',
+                            isEditing && 'group-hover:tw-block',
+                        ])}
+                    >
+                        <Button
+                            icon={<IconTrashBin size={IconSize.Size20} />}
+                            style={ButtonStyle.Secondary}
+                            onClick={() => onDelete(color.id)}
+                        />
                     </div>
-                </ColorPickerFlyout>
+                </>
             )}
 
             <ColorName
