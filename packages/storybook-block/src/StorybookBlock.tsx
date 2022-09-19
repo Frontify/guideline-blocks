@@ -1,20 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
+import '@frontify/fondue-tokens/styles';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useCallback, useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
 import { Resizeable } from './components/Resizable';
-import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
+import { ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
     Settings,
     StorybookBorderRadius,
-    StorybookBorderStyle,
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
@@ -25,35 +24,23 @@ import { buildIframeUrl } from './utils/buildIframeUrl';
 import { decodeEntities } from './utils/decodeEntities';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
-const DEFAULT_BORDER_WIDTH = '1px';
-
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const {
-        style = StorybookStyle.Default,
-        url = '',
-        isCustomHeight = false,
-        heightChoice = !url ? StorybookHeight.Small : StorybookHeight.Medium,
-        heightValue = '',
-        positioning = StorybookPosition.Vertical,
-        hasBorder = true,
-        borderColor = BORDER_COLOR_DEFAULT_VALUE,
-        borderStyle = StorybookBorderStyle.Solid,
-        borderWidth = DEFAULT_BORDER_WIDTH,
-        hasRadius = false,
-        radiusChoice = StorybookBorderRadius.None,
-        radiusValue = '',
-    } = blockSettings;
-
     const isEditing = useEditorState(appBridge);
-    const [input, setInput] = useState(url);
-    const [submittedUrl, setSubmittedUrl] = useState(url);
+    const [input, setInput] = useState(blockSettings.url ?? '');
+    const [submittedUrl, setSubmittedUrl] = useState(blockSettings.url ?? '');
     const { hoverProps, isHovered } = useHover({});
     const { setIsReadyForPrint } = useReadyForPrint(appBridge);
 
-    const activeHeight = isCustomHeight ? heightValue : heights[heightChoice];
+    const activeHeight = blockSettings.isCustomHeight
+        ? blockSettings.heightValue ?? ''
+        : heights[blockSettings.heightChoice ?? (!blockSettings.url ? StorybookHeight.Small : StorybookHeight.Medium)];
 
-    const iframeUrl = buildIframeUrl(decodeEntities(submittedUrl), style === StorybookStyle.WithAddons, positioning);
+    const iframeUrl = buildIframeUrl(
+        decodeEntities(submittedUrl),
+        blockSettings.style === StorybookStyle.WithAddons,
+        blockSettings.positioning ?? StorybookPosition.Vertical
+    );
     const saveInputLink = useCallback(() => {
         setIsReadyForPrint(false);
         setSubmittedUrl(input);
@@ -71,9 +58,9 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     }, [setIsReadyForPrint]);
 
     useEffect(() => {
-        setSubmittedUrl(url);
-        setInput(url);
-    }, [url]);
+        setSubmittedUrl(blockSettings.url ?? '');
+        setInput(blockSettings.url ?? '');
+    }, [blockSettings.url]);
 
     const saveHeight = (height: number) => {
         setBlockSettings({
@@ -88,12 +75,14 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
             onError={() => setIsReadyForPrint(true)}
             className="tw-w-full tw-flex tw-shrink tw-grow"
             style={
-                hasBorder
+                blockSettings.hasBorder
                     ? {
-                          borderColor: toRgbaString(borderColor),
-                          borderStyle,
-                          borderWidth,
-                          borderRadius: hasRadius ? radiusValue : radiusStyleMap[radiusChoice],
+                          borderColor: toRgbaString(blockSettings.borderColor),
+                          borderStyle: blockSettings.borderStyle,
+                          borderWidth: blockSettings.borderWidth ?? '1px',
+                          borderRadius: blockSettings.hasRadius
+                              ? blockSettings.radiusValue
+                              : radiusStyleMap[blockSettings.radiusChoice ?? StorybookBorderRadius.None],
                       }
                     : {}
             }

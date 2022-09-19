@@ -26,6 +26,7 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
 export const URL_INPUT_PLACEHOLDER = 'https://brand.storybook.com/?path=/story/buttons';
 
 const STYLE_ID = 'style';
+const URL_ID = 'url';
 const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
 
@@ -54,7 +55,7 @@ export const settings: BlockSettings = {
     ],
     basics: [
         {
-            id: 'url',
+            id: URL_ID,
             label: 'Link',
             type: 'input',
             placeholder: URL_INPUT_PLACEHOLDER,
@@ -70,7 +71,6 @@ export const settings: BlockSettings = {
             defaultValue: false,
             info: 'Determines the maximum height. Height is predefined or restricted to make sure UI elements don’t look broken or strange when viewed on different devices',
             onChange: (bundle: Bundle): void => presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
-
             on: [
                 {
                     id: HEIGHT_VALUE_ID,
@@ -89,7 +89,8 @@ export const settings: BlockSettings = {
                 {
                     id: HEIGHT_CHOICE_ID,
                     type: 'slider',
-                    defaultValue: StorybookHeight.Medium,
+                    defaultValue: (bundle: Bundle): StorybookHeight =>
+                        bundle.getBlock(URL_ID)?.value !== '' ? StorybookHeight.Medium : StorybookHeight.Small,
                     choices: [
                         {
                             value: StorybookHeight.Small,
