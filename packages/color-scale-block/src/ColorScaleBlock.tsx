@@ -95,7 +95,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
     const resizeEvenly = (itemList: ColorProps[]) => {
         if (!itemList) {
-            return;
+            return [];
         }
 
         const defaultWidth = calculateDefaultColorWidth(itemList.length);
@@ -197,7 +197,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             updatedColors.push(newColor);
         }
 
-        const colorsWithNewWidths = resizeEvenly(updatedColors) || [];
+        const colorsWithNewWidths = resizeEvenly(updatedColors);
 
         setBlockSettings({
             ...blockSettings,
