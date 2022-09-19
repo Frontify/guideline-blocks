@@ -1,14 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color, DraggableItem, DropZonePosition, OrderableListItem } from '@frontify/fondue';
-import { PaddingSettings } from '@frontify/guideline-blocks-shared';
 
-export type Settings = PaddingSettings & {
-    content: any[];
-};
-
-export const DefaultValues: any = {
-    content: [],
+export type Settings = {
+    customHeight: boolean;
+    heightSlider: string;
+    heightInput: string;
+    ['color-input']: ColorProps[];
 };
 
 export type ColorProps = {
@@ -19,13 +17,8 @@ export type ColorProps = {
     alt?: string;
 };
 
-export type ColorOptionsModalOpenObject = {
-    id?: boolean | number;
-};
-
 export type SquareWithColorProps = {
     id: number;
-    sort: number;
     index: number;
     width: number;
     currentColor: ColorProps;
@@ -37,8 +30,6 @@ export type SquareWithColorProps = {
     updateColor: (color: ColorProps) => void;
     setFormat: (value?: any) => void;
     colorOptionsRef: any;
-    colorOptionsOpen: ColorOptionsModalOpenObject;
-    setColorOptionsOpen: (value: ColorOptionsModalOpenObject) => void;
     deleteColor: (color: number) => void;
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
     listId: any;
@@ -127,8 +118,5 @@ export type CustomizationOptionsModalProps = {
     id: number;
     isEditing: boolean;
     colorOptionsRef: { current?: any } | undefined;
-    colorOptionsOpen: ColorOptionsModalOpenObject;
-    setColorOptionsOpen: (value: ColorOptionsModalOpenObject) => void;
-    setEditedColor: (color: string | number) => void;
     deleteColor: (color: number) => void;
 };

@@ -27,7 +27,6 @@ const getRgbaString = (currentColor: ColorProps) => {
 
 export const SquareWithColor: FC<SquareWithColorProps> = ({
     id,
-    sort,
     index,
     width,
     height,
@@ -37,16 +36,8 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     onResizeStart,
     calculateLeftPosition,
     isEditing,
-    colorPickerRef,
-    editedColor,
-    setEditedColor,
-    updateColor,
-    setFormat,
     colorOptionsRef,
-    colorOptionsOpen,
-    setColorOptionsOpen,
     deleteColor,
-    handleDrop,
     listId,
     setIsDragging,
     isDragging,
@@ -147,10 +138,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                             <CustomizationOptionsModal
                                 id={id}
                                 colorOptionsRef={colorOptionsRef}
-                                colorOptionsOpen={colorOptionsOpen}
-                                setColorOptionsOpen={setColorOptionsOpen}
                                 isEditing={isEditing}
-                                setEditedColor={setEditedColor}
                                 deleteColor={deleteColor}
                             />
                         </div>

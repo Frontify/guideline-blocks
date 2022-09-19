@@ -557,7 +557,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             />
                                             <SquareWithColor
                                                 id={value.id}
-                                                sort={value.sort}
                                                 index={index}
                                                 width={isDragging === value.id ? 0 : width}
                                                 height={colorScaleHeight}
@@ -575,8 +574,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                 updateColor={updateColor}
                                                 setFormat={() => false}
                                                 colorOptionsRef={colorOptionsRef}
-                                                colorOptionsOpen={colorOptionsOpen}
-                                                setColorOptionsOpen={setColorOptionsOpen}
                                                 deleteColor={deleteColor}
                                                 handleDrop={handleDrop}
                                                 listId={listId}
