@@ -1,31 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrop } from "react-dnd";
-import { DraggableItem, DropZonePosition, merge } from "@frontify/fondue";
-
-export type OnDropCallback<T> = (
-    targetItem: DraggableItem<T>,
-    sourceItem: DraggableItem<T>,
-    position: DropZonePosition
-) => void;
-
-type DropZoneData<T> = {
-    targetItem: DraggableItem<T>;
-    position: DropZonePosition;
-};
-
-export type DropZoneProps<T> = {
-    data: DropZoneData<T>;
-    onDrop?: OnDropCallback<T>;
-    treeId: string;
-    isDraggingActive: boolean;
-    currentColor: any;
-    children?: JSX.Element;
-    before?: boolean;
-    after?: boolean;
-    width: number;
-    height: number;
-};
+import { DropZonePosition, merge, OrderableListItem } from "@frontify/fondue";
+import { DropZoneProps } from "../types";
 
 export const DropZone = <T extends object>({
     data,
@@ -40,10 +17,10 @@ export const DropZone = <T extends object>({
 }: DropZoneProps<T>) => {
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: treeId,
-        drop: (item: any) => {
+        drop: (item: OrderableListItem<T>) => {
             onDrop?.(data.targetItem, item, data.position);
         },
-        canDrop: (item: any) => {
+        canDrop: (item: OrderableListItem<T>) => {
             // can't drop an item on itself
             if (item.id === data.targetItem.id) {
                 return false;

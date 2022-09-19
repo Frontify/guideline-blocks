@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PaddingSettings } from '@frontify/guideline-blocks-shared';
-import { Color, DropZonePosition, OrderableListItem } from '@frontify/fondue';
+import { Color, DropZonePosition, OrderableListItem, DraggableItem } from '@frontify/fondue';
 
 
 export type Settings = PaddingSettings & {
@@ -71,6 +71,31 @@ export type SquareWithoutColorProps = {
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
     listId: any;
 };
+
+export type OnDropCallback<T> = (
+    targetItem: DraggableItem<T>,
+    sourceItem: DraggableItem<T>,
+    position: DropZonePosition
+) => void;
+
+export type DropZoneData<T> = {
+    targetItem: DraggableItem<T>;
+    position: DropZonePosition;
+};
+
+export type DropZoneProps<T> = {
+    data: DropZoneData<T>;
+    onDrop?: OnDropCallback<T>;
+    treeId: string;
+    isDraggingActive: boolean;
+    currentColor: any;
+    children?: JSX.Element;
+    before?: boolean;
+    after?: boolean;
+    width: number;
+    height: number;
+};
+
 
 export type AddNewColorModalProps = {
     id: number;
