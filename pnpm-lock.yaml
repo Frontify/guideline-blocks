@@ -410,12 +410,11 @@ importers:
       postcss: 8.4.16
       prettier: 2.7.1
       react: 17.0.2
-      react-dnd: ^16.0.1
-      react-dnd-html5-backend: ^16.0.1
+      react-dnd: 16.0.1
+      react-dnd-html5-backend: 16.0.1
       react-dom: 17.0.2
       tailwindcss: 3.1.8
       typescript: 4.8.3
-      uuidv4: ^6.2.13
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.16_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 11.3.0_uh3gmfzfzdsoi2dmp6fduuy4y4
@@ -426,7 +425,6 @@ importers:
       react-dnd: 16.0.1_pxzommwrsowkd4kgag6q3sluym
       react-dnd-html5-backend: 16.0.1
       react-dom: 17.0.2_react@17.0.2
-      uuidv4: 6.2.13
     devDependencies:
       '@babel/core': 7.19.1
       '@frontify/eslint-config-react': 0.15.2_y3woi6nw5omnu2mv4lubyzhani
@@ -3765,10 +3763,6 @@ packages:
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
-    dev: false
-
-  /@types/uuid/8.3.4:
-    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: false
 
   /@types/webpack-env/1.18.0:
@@ -15714,13 +15708,7 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
-
-  /uuidv4/6.2.13:
-    resolution: {integrity: sha512-AXyzMjazYB3ovL3q051VLH06Ixj//Knx7QnUSi1T//Ie3io6CpsPu9nVMOx5MoLWh6xV0B9J0hIaxungxXUbPQ==}
-    dependencies:
-      '@types/uuid': 8.3.4
-      uuid: 8.3.2
-    dev: false
+    dev: true
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}

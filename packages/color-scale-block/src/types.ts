@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MouseEvent } from 'react';
-import { Color, ColorFormat, DraggableItem, DropZonePosition, OrderableListItem } from '@frontify/fondue';
+import { Color, ColorFormat, DraggableItem, DropZonePosition, OrderableListItem, Palette } from '@frontify/fondue';
 
 export type Settings = {
     customHeight: boolean;
@@ -38,10 +38,11 @@ export type SquareWithColorProps = {
     id: number;
     index: number;
     width: number;
+    height: string;
     currentColor: ColorProps;
     calculateLeftPosition: (id: number, width: number) => void;
     isEditing: boolean;
-    editedColor: ColorProps;
+    editedColor?: ColorProps;
     setEditedColor: (value: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: (value?: ColorFormat) => void;
@@ -49,7 +50,10 @@ export type SquareWithColorProps = {
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
     listId: string;
     backgroundColorRgba?: string;
-    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void;
+    onResizeStart?: (event: MouseEvent, id?: string | number, currentColor?: ColorProps) => void | undefined;
+    totalNumberOfBlocks: number;
+    isDragging: boolean;
+    setIsDragging: (value: boolean) => void;
 };
 
 export type SquareWithoutColorProps = {
@@ -59,6 +63,7 @@ export type SquareWithoutColorProps = {
     totalNumberOfBlocks: number;
     placeholderColor: string;
     width: number;
+    height: string;
     currentSquare: ColorProps;
     calculateLeftPosition: (id: number, width: number) => void;
     isEditing: boolean;
@@ -96,24 +101,17 @@ export type DropZoneProps<T> = {
     height: number;
 };
 
-export type AddNewColorModalProps = {
-    id: number;
+export type ColorPickerFlyoutProps = {
+    newIndex: number;
     currentColor: ColorProps;
     isEditing: boolean;
-    editedColor: ColorProps;
-    setEditedColor: (value: ColorProps) => void;
+    editedColor?: ColorProps;
+    isColorPickerOpen: boolean;
+    setEditedColor: (value: Nullable<ColorProps>) => void;
+    setIsColorPickerOpen: (value: boolean) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: () => void;
-};
-
-export type EditExistingColorModalProps = {
-    id: number;
-    currentColor: ColorProps;
-    isEditing: boolean;
-    editedColor: ColorProps;
-    setEditedColor: (value: ColorProps) => void;
-    updateColor: (color: ColorProps) => void;
-    setFormat: () => void;
+    colors: Palette[];
 };
 
 export type DragHandleProps = {

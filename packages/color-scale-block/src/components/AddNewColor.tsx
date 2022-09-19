@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useState } from 'react';
-import { Color, ColorFormat, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
-import { AddNewColorModalProps } from '../types';
+import { useState } from 'react';
+import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
+import { ColorPickerFlyoutProps } from '../types';
 
-export const AddNewColor: FC<AddNewColorModalProps> = ({
+export const ColorPickerFlyout = ({
     newIndex,
     updateColor,
     editedColor,
@@ -12,7 +12,7 @@ export const AddNewColor: FC<AddNewColorModalProps> = ({
     isColorPickerOpen,
     setIsColorPickerOpen,
     colors,
-}) => {
+}: ColorPickerFlyoutProps) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
     const onCancel = () => {
         setIsColorPickerOpen(false);
