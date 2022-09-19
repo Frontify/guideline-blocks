@@ -40,17 +40,14 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
     const [isDragging, setIsDragging]: [boolean, (value: boolean) => void] = useState(false);
-    const emptyBlockColors: string[] = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
     const [editedColor, setEditedColor] = useState();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const colorScaleBlockRef: { current?: HTMLDivElement } = useRef();
-
-    const colorWidth = 100; // default color square width if all other calculations fail
-
-    const postDrop = (updatedColors: ColorProps[]) => {
-        setBlockSettings({ ...blockSettings, 'color-input': updatedColors });
-        setDisplayableItems(updatedColors);
-    };
+    const draggingId: { current?: number | null } = useRef(null);
+    const [colorOptionsOpen, setColorOptionsOpen] = useState({});
+    const dragStartPos: { current?: number | null } = useRef();
+    const dragStartWidth: { current?: number | null } = useRef();
+    const lastDragPos: { current?: number | null } = useRef();
 
     const handleDrop = (targetItem: OrderableListItem, movedItem: OrderableListItem, position: DropZonePosition) => {
         let movedItemIndex = 0,
@@ -177,14 +174,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         return itemsWithWidths || [];
     };
-
-    const [displayableItems, setDisplayableItems] = useState(calculateWidths(blockSettings['color-input']));
-
-    const [colorOptionsOpen, setColorOptionsOpen] = useState({});
-
-    const dragStartPos: { current?: number | null } = useRef();
-    const dragStartWidth: { current?: number | null } = useRef();
-    const lastDragPos: { current?: number | null } = useRef();
 
     const deleteColor = (id: number) => {
         const reorderedList = displayableItems?.filter((item: ColorProps) => item.id !== id);
@@ -361,8 +350,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         }
     }, [blockSettings]);
 
-    const draggingId: { current?: number | null } = useRef(null);
-
     const onResizeStop = () => {
         draggingId.current = null;
     };
@@ -499,6 +486,14 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         setIsColorPickerOpen(true);
     };
 
+    const postDrop = (updatedColors: ColorProps[]) => {
+        setBlockSettings({ ...blockSettings, 'color-input': updatedColors });
+        setDisplayableItems(updatedColors);
+    };
+
+    const [displayableItems, setDisplayableItems] = useState(calculateWidths(blockSettings['color-input']));
+    const colorWidth = 100; // default color square width if all other calculations fail
+    const emptyBlockColors: string[] = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
     const listId = useMemoizedId();
 
     return (
