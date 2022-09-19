@@ -35,7 +35,10 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
         updateColor(colorId, { sort: index + 1 });
     };
 
-    const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(appBridge, appBridge.getBlockId());
+    const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(
+        appBridge,
+        blockSettings.colorPaletteId
+    );
 
     const [colors, setColors] = useState<FrontifyColor[]>([]);
 
@@ -131,7 +134,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                 colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                 onConfirm={(color) => {
                                     createColor({
-                                        colorPaletteId: appBridge.getBlockId(),
+                                        colorPaletteId: blockSettings.colorPaletteId,
                                         red: color.red,
                                         green: color.green,
                                         blue: color.blue,
@@ -146,7 +149,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                 colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                 onConfirm={(color) => {
                                     createColor({
-                                        colorPaletteId: appBridge.getBlockId(),
+                                        colorPaletteId: blockSettings.colorPaletteId,
                                         red: color.red,
                                         green: color.green,
                                         blue: color.blue,
@@ -161,7 +164,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                 colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
                                 onConfirm={(color) => {
                                     createColor({
-                                        colorPaletteId: appBridge.getBlockId(),
+                                        colorPaletteId: blockSettings.colorPaletteId,
                                         red: color.red,
                                         green: color.green,
                                         blue: color.blue,
