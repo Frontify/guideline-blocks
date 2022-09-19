@@ -128,7 +128,9 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0"
                     >
                         <div className="tw-flex tw-items-center">
-                            <div className="tw-mr-1 tw-text-s tw-text-black-70">{mappedColorSpace.label}</div>
+                            <div className="tw-flex-[0_0_auto] tw-mr-1.5 tw-text-xs tw-text-black-70">
+                                {mappedColorSpace.label}
+                            </div>
 
                             {!isEditing ? (
                                 <Tooltip
