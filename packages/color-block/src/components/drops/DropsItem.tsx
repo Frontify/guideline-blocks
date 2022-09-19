@@ -25,11 +25,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
     return (
-        <div
-            data-test-id="drops-item"
-            key={color.id}
-            className="tw-group tw-relative tw-flex tw-flex-col tw-items-center"
-        >
+        <div data-test-id="drops-item" className="tw-group tw-relative tw-flex tw-flex-col tw-items-center">
             {!isEditing ? (
                 <Tooltip
                     withArrow
