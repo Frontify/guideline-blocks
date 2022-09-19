@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ItemDragState } from '@frontify/fondue';
-import { FC } from 'react';
 import { useDrag } from 'react-dnd';
+import { FC } from 'react';
+import { ItemDragState } from '@frontify/fondue';
 
 interface DraggableProps {
     item: any;

@@ -1,15 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useState } from "react";
-import { AddNewColorModalProps, ColorProps } from "../types";
-import {
-    Flyout,
-    FlyoutPlacement,
-    ColorPicker,
-    ColorFormat,
-    Color,
-} from "@frontify/fondue";
-import { uuid } from "uuidv4";
+import { FC, useState } from 'react';
+import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
+import { AddNewColorModalProps } from '../types';
 
 export const AddNewColor: FC<AddNewColorModalProps> = ({
     newIndex,

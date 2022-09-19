@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { Color, DraggableItem, DropZonePosition, OrderableListItem } from '@frontify/fondue';
 import { PaddingSettings } from '@frontify/guideline-blocks-shared';
-import { Color, DropZonePosition, OrderableListItem, DraggableItem } from '@frontify/fondue';
-
 
 export type Settings = PaddingSettings & {
     content: any[];
@@ -19,7 +18,6 @@ export type ColorProps = {
     width?: number;
     alt?: string;
 };
-
 
 export type ColorOptionsModalOpenObject = {
     id?: boolean | number;
@@ -95,7 +93,6 @@ export type DropZoneProps<T> = {
     width: number;
     height: number;
 };
-
 
 export type AddNewColorModalProps = {
     id: number;

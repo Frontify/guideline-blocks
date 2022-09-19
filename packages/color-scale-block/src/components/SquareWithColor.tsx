@@ -1,16 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useState } from "react";
-import { SquareWithColorProps } from "../types";
-import { DragHandle } from "./DragHandle";
-import { CustomizationOptionsModal } from "./CustomizationOptionsModal";
-import {  Tooltip } from "@frontify/fondue";
-import {
-    ItemDragState,
-    TooltipAlignment,
-    TooltipPosition,
-} from "@frontify/fondue";
-import { useDrag } from "react-dnd";
+import { useDrag } from 'react-dnd';
+import { FC, useState } from 'react';
+import { Tooltip } from '@frontify/fondue';
+import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
+import { SquareWithColorProps } from '../types';
+import { DragHandle } from './DragHandle';
+import { CustomizationOptionsModal } from './CustomizationOptionsModal';
 
 export const SquareWithColor: FC<SquareWithColorProps> = ({
     id,
@@ -42,10 +38,8 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
         item: currentColor,
         collect: (monitor: any) => {
             return {
-            componentDragState: monitor.isDragging()
-                ? ItemDragState.Dragging
-                : ItemDragState.Idle,
-            }
+                componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
+            };
         },
         type: listId,
         canDrag: isEditing,
@@ -54,22 +48,14 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     const [copied, setCopied] = useState(false);
 
     const rgbaToHex = (rgba: any, forceRemoveAlpha = false) => {
-        return (
-            "#" +
-            rgba
-                .replace(/^rgba?\(|\s+|\)$/g, "") // Get's rgba / rgb string values
-                .split(",") // splits them at ","
-                .filter(
-                    (string: string, index: number) =>
-                        !forceRemoveAlpha || index !== 3
-                )
-                .map((string: string) => parseFloat(string)) // Converts them to numbers
-                .map((number: number) => number.toString(16)) // Converts numbers to hex
-                .map((string: string) =>
-                    string.length === 1 ? "0" + string : string
-                ) // Adds 0 when length of one number is 1
-                .join("")
-        ); // Puts the array to together to a string
+        return `#${rgba
+            .replace(/^rgba?\(|\s+|\)$/g, '') // Get's rgba / rgb string values
+            .split(',') // splits them at ","
+            .filter((string: string, index: number) => !forceRemoveAlpha || index !== 3)
+            .map((string: string) => parseFloat(string)) // Converts them to numbers
+            .map((number: number) => number.toString(16)) // Converts numbers to hex
+            .map((string: string) => (string.length === 1 ? `0${string}` : string)) // Adds 0 when length of one number is 1
+            .join('')}`; // Puts the array to together to a string
     };
 
     const copyToClipboard = async (text?: string) => {
@@ -77,46 +63,37 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             const toCopy = text || location.href;
             await navigator.clipboard.writeText(toCopy);
         } catch (err) {
-            console.error("Failed to copy: ", err);
+            console.error('Failed to copy: ', err);
         }
     };
 
     return (
         <div
             style={{
-                height: height,
+                height,
                 width: `${width}px`,
                 left: `${calculateLeftPosition(index, width)}px`,
-                display: "inline-block",
+                display: 'inline-block',
             }}
             id={`row-id-${id}-index-${index}`}
-            className={`hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block`}
+            className={'hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block'}
             key={id}
         >
-            <DragHandle
-                index={index}
-                currentColor={currentColor}
-                isEditing={isEditing}
-                onResizeStart={onResizeStart}
-            />
+            <DragHandle index={index} currentColor={currentColor} isEditing={isEditing} onResizeStart={onResizeStart} />
             <div
                 style={{
-                    height: height,
-                    borderTopLeftRadius: index === 0 ? "3px" : "0px",
-                    borderBottomLeftRadius: index === 0 ? "3px" : "0px",
-                    borderTopRightRadius:
-                        index === totalNumberOfBlocks - 1 ? "3px" : "0px",
-                    borderBottomRightRadius:
-                        index === totalNumberOfBlocks - 1 ? "3px" : "0px",
-                    borderLeftWidth: index === 0 ? "1px" : "0px",
-                    borderRightWidth:
-                        index === totalNumberOfBlocks - 1 ? "1px" : "0px",
-                    paddingTop: "1px",
-                    paddingBottom: "1px",
-                    paddingLeft: index === 0 ? "1px" : "0px",
-                    paddingRight:
-                        index === totalNumberOfBlocks - 1 ? "1px" : "0px",
-                    borderColor: "#efecec",
+                    height,
+                    borderTopLeftRadius: index === 0 ? '3px' : '0px',
+                    borderBottomLeftRadius: index === 0 ? '3px' : '0px',
+                    borderTopRightRadius: index === totalNumberOfBlocks - 1 ? '3px' : '0px',
+                    borderBottomRightRadius: index === totalNumberOfBlocks - 1 ? '3px' : '0px',
+                    borderLeftWidth: index === 0 ? '1px' : '0px',
+                    borderRightWidth: index === totalNumberOfBlocks - 1 ? '1px' : '0px',
+                    paddingTop: '1px',
+                    paddingBottom: '1px',
+                    paddingLeft: index === 0 ? '1px' : '0px',
+                    paddingRight: index === totalNumberOfBlocks - 1 ? '1px' : '0px',
+                    borderColor: '#efecec',
                 }}
                 ref={drag}
                 draggable={true}
@@ -160,7 +137,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                                 }}
                                 className="tw-opacity-50"
                             >
-                                {copied ? `Copied` : `Click to copy`}
+                                {copied ? 'Copied' : 'Click to copy'}
                             </a>
                         </div>
                     }
@@ -172,7 +149,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                         <div
                             style={{
                                 backgroundColor: `rgba(${backgroundColorRgba})`,
-                                height: `${parseInt(height) - 4}px`
+                                height: `${parseInt(height) - 4}px`,
                             }}
                             className="tw-w-full tw-top-0 tw-left-0"
                         >

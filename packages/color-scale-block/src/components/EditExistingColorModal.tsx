@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC } from 'react';
+import { Color, ColorFormat, ColorPicker, Flyout } from '@frontify/fondue';
 import { EditExistingColorModalProps } from '../types';
-import { Flyout, ColorPicker, ColorFormat, Color } from '@frontify/fondue';
 
 export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
     id,
