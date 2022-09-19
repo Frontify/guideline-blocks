@@ -6,7 +6,6 @@ import { EditExistingColorModalProps } from '../types';
 
 export const EditExistingColorModal: FC<EditExistingColorModalProps> = ({
     id,
-    index,
     currentColor,
     isEditing,
     colorPickerRef,
