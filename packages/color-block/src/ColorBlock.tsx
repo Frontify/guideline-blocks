@@ -3,6 +3,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import update from 'immutability-helper';
 import { FrontifyColor, useBlockSettings, useColors, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
@@ -15,8 +16,6 @@ import { DropZone } from './components/DropZone';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
 import { ColorBlockProps, ColorBlockType, ColorSpaceInputValues, Settings } from './types';
-
-import update from 'immutability-helper';
 
 const wrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
