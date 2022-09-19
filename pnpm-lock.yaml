@@ -203,7 +203,7 @@ importers:
 
   packages/checklist-block:
     specifiers:
-      '@babel/core': 7.18.10
+      '@babel/core': 7.19.1
       '@frontify/app-bridge': 3.0.0-beta.16
       '@frontify/eslint-config-react': 0.15.2
       '@frontify/fondue': 11.3.0
@@ -232,7 +232,7 @@ importers:
       typescript: 4.8.3
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.16_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.3.0_2dzys2ydjeaqykx4xswdospj2a
+      '@frontify/fondue': 11.3.0_uh3gmfzfzdsoi2dmp6fduuy4y4
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -245,7 +245,7 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
-      '@babel/core': 7.18.10
+      '@babel/core': 7.19.1
       '@frontify/eslint-config-react': 0.15.2_y3woi6nw5omnu2mv4lubyzhani
       '@frontify/frontify-cli': 5.1.2
       '@react-types/shared': 3.11.2_react@17.0.2
@@ -1819,7 +1819,7 @@ packages:
       '@react-aria/tooltip': 3.3.0_react@17.0.2
       '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.4.0_react@17.0.2
-      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/checkbox': 3.2.1_react@17.0.2
       '@react-stately/collections': 3.4.2_react@17.0.2
       '@react-stately/combobox': 3.2.0_react@17.0.2
       '@react-stately/list': 3.5.2_react@17.0.2
@@ -1900,7 +1900,7 @@ packages:
       '@react-aria/tooltip': 3.3.0_react@17.0.2
       '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.4.0_react@17.0.2
-      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/checkbox': 3.2.1_react@17.0.2
       '@react-stately/collections': 3.4.2_react@17.0.2
       '@react-stately/combobox': 3.2.0_react@17.0.2
       '@react-stately/list': 3.5.2_react@17.0.2
@@ -1981,7 +1981,7 @@ packages:
       '@react-aria/tooltip': 3.3.0_react@17.0.2
       '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.4.0_react@17.0.2
-      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/checkbox': 3.2.1_react@17.0.2
       '@react-stately/collections': 3.4.2_react@17.0.2
       '@react-stately/combobox': 3.2.0_react@17.0.2
       '@react-stately/list': 3.5.2_react@17.0.2
@@ -2062,7 +2062,7 @@ packages:
       '@react-aria/tooltip': 3.3.0_react@17.0.2
       '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.4.0_react@17.0.2
-      '@react-stately/checkbox': 3.2.0_react@17.0.2
+      '@react-stately/checkbox': 3.2.1_react@17.0.2
       '@react-stately/collections': 3.4.2_react@17.0.2
       '@react-stately/combobox': 3.2.0_react@17.0.2
       '@react-stately/list': 3.5.2_react@17.0.2
@@ -2882,18 +2882,6 @@ packages:
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      react: 17.0.2
-    dev: false
-
-  /@react-stately/checkbox/3.2.0_react@17.0.2:
-    resolution: {integrity: sha512-nVO/asz7MTF5nLJcMMq5KgNlk4npckq+7nQvEVW6pyob5r2m7Lvd+Zhl4oKT0WtTIzg31VB6yRew1czKx/SUpA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.18.9
-      '@react-stately/toggle': 3.4.1_react@17.0.2
-      '@react-stately/utils': 3.5.1_react@17.0.2
-      '@react-types/checkbox': 3.3.3_react@17.0.2
       react: 17.0.2
     dev: false
 
