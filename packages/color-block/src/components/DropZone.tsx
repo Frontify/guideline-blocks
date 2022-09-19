@@ -16,11 +16,11 @@ export type DropZoneProps = {
     isEditing: boolean;
 };
 
-export const DropZone = ({ index, onDrop, children, colorBlockType, moveCard, isEditing }: DropZoneProps) => {
+export const DropZone = ({ index, treeId, onDrop, children, colorBlockType, moveCard, isEditing }: DropZoneProps) => {
     const ref = useRef<HTMLDivElement>(null);
 
     const [, drop] = useDrop({
-        accept: 'test',
+        accept: treeId,
         drop: (item: { index: number }) => {
             onDrop?.(item.index);
         },
@@ -83,7 +83,7 @@ export const DropZone = ({ index, onDrop, children, colorBlockType, moveCard, is
     });
 
     const [{ isDragging }, drag] = useDrag({
-        type: 'test',
+        type: treeId,
         item: { index },
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),

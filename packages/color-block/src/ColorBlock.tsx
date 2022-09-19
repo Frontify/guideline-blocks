@@ -83,7 +83,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                             key={`orderable-list-item-${color.id}`}
                             index={index}
                             onDrop={() => handleDrop(color.id, index)}
-                            treeId={'test'}
+                            treeId={`${appBridge.getBlockId()}`}
                             colorBlockType={blockSettings.view}
                             moveCard={moveCard}
                             isEditing={isEditing}
