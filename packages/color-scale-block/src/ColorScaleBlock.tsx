@@ -24,6 +24,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import 'tailwindcss/tailwind.css';
 import { DropZone } from './react-dnd/DropZone';
+import { isNumber } from 'cypress/types/lodash';
 
 type Props = {
     appBridge: AppBridgeBlock;
@@ -39,7 +40,10 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
-    const [isDragging, setIsDragging]: [boolean, (value: boolean) => void] = useState(false);
+    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
+        number | undefined,
+        (value?: number | undefined) => void
+    ] = useState();
     const [editedColor, setEditedColor] = useState();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const colorScaleBlockRef: { current?: HTMLDivElement } = useRef();
@@ -539,7 +543,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                 currentColor={value}
                                                 height={colorScaleHeight ? parseInt(colorScaleHeight) : 96}
                                                 width={width}
-                                                isDraggingActive={isDragging !== false}
+                                                isDraggingActive={isNumber(currentlyDraggedColorId)}
                                                 data={{
                                                     targetItem: value,
                                                     position: DropZonePosition.Before,
@@ -551,10 +555,10 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             <SquareWithColor
                                                 id={value.id}
                                                 index={index}
-                                                width={isDragging === value.id ? 0 : width}
+                                                width={currentlyDraggedColorId === value.id ? 0 : width}
                                                 height={colorScaleHeight}
                                                 isDragging={isDragging}
-                                                setIsDragging={setIsDragging}
+                                                setIsDragging={setCurrentlyDraggedColorId}
                                                 currentColor={value}
                                                 backgroundColorRgba={backgroundColorRgba}
                                                 totalNumberOfBlocks={displayableItems.length}
@@ -573,7 +577,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                     ) : (
                                         <SquareWithoutColor
                                             id={value.id}
-                                            sort={value.sort}
                                             index={index}
                                             placeholderColor={emptyBlockColors[index]}
                                             totalNumberOfBlocks={displayableItems.length}
