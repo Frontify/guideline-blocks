@@ -45,7 +45,7 @@ export const SquareWithoutColor: FC<SquareWithoutColorProps> = ({
                 : ItemDragState.Idle,
         }),
         type: listId,
-        canDrag: isEditing ? true : false,
+        canDrag: isEditing,
     });
 
     return (

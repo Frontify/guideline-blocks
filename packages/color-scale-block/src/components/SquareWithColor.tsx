@@ -50,7 +50,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             }
         },
         type: listId,
-        canDrag: isEditing ? true : false,
+        canDrag: isEditing,
     });
 
     const [copied, setCopied] = useState(false);
