@@ -39,8 +39,6 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
     const { colorPalettes } = useColorPalettes(appBridge);
     const [colorPickerPalette, setColorPickerPalette]: any = useState([]);
     const isEditing = useEditorState(appBridge);
-    const [hoveredSquare, setHoveredSquare]: any = useState();
-    const [shouldResizeEvenly, setShouldResizeEvenly]: any = useState(false);
     const [blockSettings, setBlockSettings] = useBlockSettings<any>(appBridge);
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings["customHeight"]
@@ -231,8 +229,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
                 : filterCompleteItems(blockSettings["color-input"])
         )
     );
-    
-    const [hovered, setHovered]: any = useState(false);
+
     const [colorOptionsOpen, setColorOptionsOpen] = useState({});
 
     const dragStartPos: any = useRef();
@@ -270,7 +267,7 @@ export const ColorScaleBlock: FC<any> = ({ appBridge }) => {
         setDisplayableItems(colorsWithNewWidths);
     };
 
-    const calculateLeftPos = (index: number, width?: number) => {
+    const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
         const defaultWidth = width ? width : colorWidth;
         displayableItems?.map((value: ColorProps, loopIndex: number) => {
@@ -450,28 +447,28 @@ console.log(palettes)
         draggingId.current = null;
     };
 
-    const onResizeStart = (evt: any, index?: number, currentColor?: any) => {
+    const onResizeStart = (event: any, index?: number, currentColor?: any) => {
         if (dragStartPos) {
-            dragStartPos.current = evt.clientX;
+            dragStartPos.current = event.clientX;
             dragStartWidth.current = currentColor.width;
         }
         draggingId.current = index;
     };
 
-    const onResize = (evt: any) => {
+    const onResize = (event: any) => {
         if (draggingId.current !== null) {
             const id = draggingId.current;
             if (!lastDragPos.current) {
-                lastDragPos.current = evt.clientX;
+                lastDragPos.current = event.clientX;
             }
 
-            if (evt.clientX < lastDragPos.current) {
-                if (lastDragPos.current - evt.clientX >= 8) {
-                    lastDragPos.current = evt.clientX;
+            if (event.clientX < lastDragPos.current) {
+                if (lastDragPos.current - event.clientX >= 8) {
+                    lastDragPos.current = event.clientX;
 
                     let valuesChanged = false;
                     const movementSinceStart =
-                        dragStartPos.current - evt.clientX;
+                        dragStartPos.current - event.clientX;
 
                     const colorsBeforeCurrent = displayableItems
                         ?.filter((diValue, diIndex) => {
@@ -540,13 +537,13 @@ console.log(palettes)
                 }
             }
 
-            if (evt.clientX > lastDragPos.current) {
-                if (evt.clientX - lastDragPos.current >= 8) {
-                    lastDragPos.current = evt.clientX;
+            if (event.clientX > lastDragPos.current) {
+                if (event.clientX - lastDragPos.current >= 8) {
+                    lastDragPos.current = event.clientX;
 
                     let valuesChanged = false;
                     const movementSinceStart =
-                        evt.clientX - dragStartPos.current;
+                        event.clientX - dragStartPos.current;
 
                     const colorsAfterCurrent = displayableItems?.filter(
                         (diValue, diIndex) => {
@@ -666,12 +663,6 @@ console.log(palettes)
                                                     isDraggingActive={
                                                         isDragging !== false
                                                     }
-                                                    isHovered={
-                                                        hoveredSquare ===
-                                                            value.id &&
-                                                        isDragging !== false &&
-                                                        isDragging !== value.id
-                                                    }
                                                     data={{
                                                         targetItem: value,
                                                         position:
@@ -699,14 +690,14 @@ console.log(palettes)
                                                     backgroundColorRgba={
                                                         backgroundColorRgba
                                                     }
-                                                    totalNumOfBlocks={
+                                                    totalNumberOfBlocks={
                                                         displayableItems.length
                                                     }
                                                     onResizeStart={
                                                         onResizeStart
                                                     }
-                                                    calculateLeftPos={
-                                                        calculateLeftPos
+                                                    calculateLeftPosition={
+                                                        calculateLeftPosition
                                                     }
                                                     isEditing={isEditing}
                                                     colorPickerRef={
@@ -740,15 +731,15 @@ console.log(palettes)
                                                 placeholderColor={
                                                     emptyBlockColors[index]
                                                 }
-                                                totalNumOfBlocks={
+                                                totalNumberOfBlocks={
                                                     displayableItems.length
                                                 }
                                                 width={width}
                                                 height={colorScaleHeight}
                                                 currentSquare={value}
                                                 onResizeStart={onResizeStart}
-                                                calculateLeftPos={
-                                                    calculateLeftPos
+                                                calculateLeftPosition={
+                                                    calculateLeftPosition
                                                 }
                                                 isEditing={isEditing}
                                                 colorPickerRef={colorPickerRef}
@@ -766,8 +757,6 @@ console.log(palettes)
                                                     setColorOptionsOpen
                                                 }
                                                 deleteColor={deleteColor}
-                                                hovered={hovered}
-                                                setHovered={setHovered}
                                                 handleDrop={handleDrop}
                                                 listId={listId}
                                             />

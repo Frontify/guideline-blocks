@@ -20,7 +20,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     height,
     currentColor,
     backgroundColorRgba,
-    totalNumOfBlocks,
+    totalNumberOfBlocks,
     onResizeStart,
     calculateLeftPosition,
     isEditing,
@@ -69,7 +69,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     string.length === 1 ? "0" + string : string
                 ) // Adds 0 when length of one number is 1
                 .join("")
-        ); // Puts the array to togehter to a string
+        ); // Puts the array to together to a string
     };
 
     const copyToClipboard = async (text?: string) => {
@@ -86,7 +86,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             style={{
                 height: height,
                 width: `${width}px`,
-                left: `${calculateLeftPos(index, width)}px`,
+                left: `${calculateLeftPosition(index, width)}px`,
                 display: "inline-block",
             }}
             id={`row-id-${id}-index-${index}`}
@@ -105,17 +105,17 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     borderTopLeftRadius: index === 0 ? "3px" : "0px",
                     borderBottomLeftRadius: index === 0 ? "3px" : "0px",
                     borderTopRightRadius:
-                        index === totalNumOfBlocks - 1 ? "3px" : "0px",
+                        index === totalNumberOfBlocks - 1 ? "3px" : "0px",
                     borderBottomRightRadius:
-                        index === totalNumOfBlocks - 1 ? "3px" : "0px",
+                        index === totalNumberOfBlocks - 1 ? "3px" : "0px",
                     borderLeftWidth: index === 0 ? "1px" : "0px",
                     borderRightWidth:
-                        index === totalNumOfBlocks - 1 ? "1px" : "0px",
+                        index === totalNumberOfBlocks - 1 ? "1px" : "0px",
                     paddingTop: "1px",
                     paddingBottom: "1px",
                     paddingLeft: index === 0 ? "1px" : "0px",
                     paddingRight:
-                        index === totalNumOfBlocks - 1 ? "1px" : "0px",
+                        index === totalNumberOfBlocks - 1 ? "1px" : "0px",
                     borderColor: "#efecec",
                 }}
                 ref={drag}
@@ -143,8 +143,8 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                             <a
                                 href="#"
                                 rel="noop noreferrer"
-                                onClick={(evt) => {
-                                    evt.preventDefault();
+                                onClick={(event) => {
+                                    event.preventDefault();
 
                                     copyToClipboard(
                                         rgbaToHex(

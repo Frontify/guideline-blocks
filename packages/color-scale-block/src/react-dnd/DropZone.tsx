@@ -17,7 +17,6 @@ export type DropZoneProps<T> = {
     data: DropZoneData<T>;
     onDrop?: OnDropCallback<T>;
     treeId: string;
-    isHovered: boolean;
     isDraggingActive: boolean;
     currentColor: any;
     children?: JSX.Element;
@@ -29,7 +28,6 @@ export type DropZoneProps<T> = {
 
 export const DropZone = <T extends object>({
     data,
-    isHovered,
     currentColor,
     isDraggingActive,
     onDrop,
@@ -63,7 +61,6 @@ export const DropZone = <T extends object>({
             ? currentColor.width
             : "100";
 
-    // const isHoveredClassNames = 'tw-relative tw-w-[100px]';
     const isActive = isOver && canDrop;
 
     // When dragging is active but this square is not being hovered over
@@ -94,9 +91,6 @@ export const DropZone = <T extends object>({
                 data-test-id="drop-zone"
                 className={merge([
                     "tw-top-[0px] tw-bottom-0",
-                    // before ? 'tw-left-[-2px]' : '',
-                    // after ? 'tw-right-[-2px]' : '',
-                    // isHovered ? isHoveredClassNames : '',
                     data.position !== DropZonePosition.Within
                         ? outerDropZoneClassNames
                         : "tw-h-auto",
@@ -108,7 +102,6 @@ export const DropZone = <T extends object>({
                         : "",
                     isDraggingActive ? isDraggingActiveClassNames : isDraggingNotActiveClassNames,
                 ])}
-                // style={before ? {left: '-15px'} : {}, after ? {right: '-15px'} : {}}
                 ref={drop}
             >
                 {children}

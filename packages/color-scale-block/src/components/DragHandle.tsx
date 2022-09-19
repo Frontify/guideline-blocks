@@ -14,7 +14,7 @@ export const DragHandle: FC<DragHandleProps> = ({ index, currentColor, isEditing
                 // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
                 // The 'onResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
                 // identify which color square is being resized.
-                onMouseDown={(evt) => onResizeStart && onResizeStart(evt, index, currentColor)}
+                onMouseDown={(event) => onResizeStart && onResizeStart(event, index, currentColor)}
             >
                 <div
                     className={`drag-handle tw-right-3 tw-bg-black-20 tw-absolute tw-rounded-full tw-w-2 tw-h-6`}
