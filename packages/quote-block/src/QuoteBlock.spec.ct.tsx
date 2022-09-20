@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
+import { mount } from 'cypress/react';
 import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { QuoteBlock } from './QuoteBlock';
 import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
