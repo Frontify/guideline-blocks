@@ -64,6 +64,7 @@ export type CodeMirrorEditorProps = {
     id?: string;
     theme: Theme;
     initValue?: string;
+    isEditing?: boolean;
     language?: Language;
     withHeading?: boolean;
     withRowNumbers?: boolean;

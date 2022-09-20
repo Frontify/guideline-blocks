@@ -5,12 +5,13 @@ import { EditorState } from '@codemirror/state';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 
 import { basicSetup } from './extensions';
-import { useHeaderPanel, useLanguage, useLineNumber, useTheme, useUpdateListener } from './hooks';
+import { useHeaderPanel, useIsEditing, useLanguage, useLineNumber, useTheme, useUpdateListener } from './hooks';
 
 import { CodeMirrorEditorProps, CodeMirrorEditorStyle } from '../../types';
 
 export const CodeMirrorEditor = ({
     theme,
+    isEditing = false,
     language = 'html',
     border = 'none',
     padding = 'none',
@@ -28,6 +29,7 @@ export const CodeMirrorEditor = ({
     useTheme(view, theme);
     useLineNumber(view, withRowNumbers);
     useUpdateListener(view, onChange);
+    useIsEditing(view, isEditing);
 
     useEffect(() => {
         if (editorRef.current === null) {
