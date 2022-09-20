@@ -2,7 +2,10 @@
 
 import { Bundle } from '../bundle';
 
-export type ValueOrPromisedValue<FieldType> = FieldType | ((bundle: Bundle) => Promise<FieldType>);
+export type ValueOrPromisedValue<FieldType> =
+    | FieldType
+    | ((bundle: Bundle) => FieldType)
+    | ((bundle: Bundle) => Promise<FieldType>);
 
 export type BaseBlock<T = undefined> = {
     id: string;
