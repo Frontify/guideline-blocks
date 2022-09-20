@@ -56,27 +56,6 @@ export type SquareWithColorProps = {
     setIsDragging: (value: boolean) => void;
 };
 
-export type SquareWithoutColorProps = {
-    id?: number;
-    sort: number;
-    index: number;
-    totalNumberOfBlocks: number;
-    placeholderColor: string;
-    width: number;
-    height: string;
-    currentSquare: ColorProps;
-    calculateLeftPosition: (id: number, width: number) => void;
-    isEditing: boolean;
-    editedColor: ColorProps;
-    setEditedColor: (color: ColorProps) => void;
-    updateColor: (color: ColorProps) => void;
-    setFormat: (color?: ColorFormat) => void;
-    deleteColor: (color: number) => void;
-    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void;
-    handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
-    listId: string;
-};
-
 export type OnDropCallback<T> = (
     targetItem: DraggableItem<T>,
     sourceItem: DraggableItem<T>,
