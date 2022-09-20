@@ -98,8 +98,9 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
             style={{
                 width: `${width}px`,
                 left: `${calculateLeftPosition(index, width)}px`,
+                height,
             }}
-            className={`hover:tw-z-30 row tw-overflow-visible tw-pb-8 tw-inline-block tw-h-[${height}]`}
+            className={'hover:tw-z-30 row tw-overflow-x-visible tw-overflow-y-hidden tw-pb-8 tw-inline-block'}
             key={id}
         >
             <DragHandle index={index} currentColor={currentColor} isEditing={isEditing} onResizeStart={onResizeStart} />
@@ -108,14 +109,13 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 draggable
                 onDrag={onDrag}
                 onDragEnd={onDragEnd}
-                className={`tw-group tw-overflow-y-hidden tw-overflow-x-visible tw-top-2 tw-border-[0px] tw-border-white tw-w-full hover:tw-border-black hover:tw-border-[1px] tw-h-[${height}]
-                tw-pl-[${index === 0 ? '1px' : '0px'}] tw-pr-[${index === totalNumberOfBlocks - 1 ? '1px' : '0px'}]
-                 tw-rounded-tl-[${index === 0 ? '3px' : '0px'}]
-                tw-rounded-bl-[${index === 0 ? '3px' : '0px'}]
-                tw-rounded-tr-[${index === totalNumberOfBlocks - 1 ? '3px' : '0px'}]
-                tw-rounded-br-[${index === totalNumberOfBlocks - 1 ? '3px' : '0px'}]
-                tw-border-l-[${index === 0 ? '1px' : '0px'}]
-                tw-border-r-[${index === totalNumberOfBlocks - 1 ? '1px' : '0px'}]`}
+                style={{
+                    height,
+                    width: `${width}px`,
+                }}
+                className={
+                    'tw-group tw-overflow-y-hidden tw-overflow-x-visible tw-top-2 tw-border-[0px] tw-border-white tw-w-full hover:tw-border-black hover:tw-border-[1px]'
+                }
             >
                 <Tooltip
                     alignment={TooltipAlignment.Middle}
@@ -135,11 +135,18 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     triggerElement={
                         <div
                             style={{
-                                width: `${width - 2}px`,
-                                height: `${parseInt(height)}px`,
                                 backgroundColor: bgColor,
+                                height,
+                                width: `${width}px`,
                             }}
-                            className={`tw-w-full tw-top-0 tw-left-0`}
+                            className={`tw-top-0 tw-left-0
+                            ${index === 0 ? 'tw-pl-[1px]' : ''} ${
+                                index === totalNumberOfBlocks - 1 ? 'tw-pr-[1px]' : ''
+                            }
+                            ${index === 0 ? 'tw-rounded-tl' : ''}
+                           ${index === 0 ? 'tw-rounded-bl' : ''}
+                           ${index === totalNumberOfBlocks - 1 ? 'tw-rounded-tr' : ''}
+                           ${index === totalNumberOfBlocks - 1 ? 'tw-rounded-br' : ''}`}
                         >
                             <CustomizationOptionsModal id={id} isEditing={isEditing} deleteColor={deleteColor} />
                         </div>

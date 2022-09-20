@@ -196,7 +196,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         let updatedColors = [...displayableItems];
 
-        const addedFirstColor = displayableItems.filter((item) => item.id !== null).length;
+        const addedFirstColor = displayableItems.filter((item) => item.color).length;
 
         if (!addedFirstColor) {
             updatedColors = [newColor];
