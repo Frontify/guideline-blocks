@@ -3,8 +3,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import update from 'immutability-helper';
-import { FrontifyColor, useBlockSettings, useColors, useEditorState } from '@frontify/app-bridge';
+import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
@@ -24,37 +23,32 @@ const wrapperClasses: Record<ColorBlockType, string> = {
 };
 
 export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
-    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
     const isEditing = useEditorState(appBridge);
-
-    const handleNameChange = (value: string) => setBlockSettings({ name: value });
-    const handleDescriptionChange = (value: string) => setBlockSettings({ description: value });
-
-    const handleDrop = (colorId: number, index: number) => {
-        updateColor(colorId, { sort: index + 1 });
-    };
 
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(
         appBridge,
         blockSettings.colorPaletteId
     );
-
     const [colors, setColors] = useState<FrontifyColor[]>([]);
-
     useEffect(() => {
         setColors(colorsByPaletteId);
     }, [colorsByPaletteId]);
 
-    const moveCard = (dragIndex: number, hoverIndex: number) => {
-        setColors((previousColors) =>
-            update(previousColors, {
-                $splice: [
-                    [dragIndex, 1],
-                    [hoverIndex, 0, previousColors[dragIndex]],
-                ],
-            })
-        );
+    const { colorPalettes, updateColorPalette } = useColorPalettes(appBridge, [blockSettings.colorPaletteId]);
+
+    function moveCard(dragIndex: number, hoverIndex: number) {
+        const colorsCopy = [...colors];
+
+        colorsCopy.splice(dragIndex, 0, colors[dragIndex]);
+        colorsCopy.splice(hoverIndex, 1);
+
+        setColors(colorsCopy);
+    }
+
+    const handleDrop = (colorId: number, index: number) => {
+        updateColor(colorId, { sort: index + 1 });
     };
 
     return (
@@ -63,8 +57,8 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
                     placeholder={isEditing ? 'Color palette name' : ''}
-                    value={blockSettings.name}
-                    onTextChange={handleNameChange}
+                    value={colorPalettes[0]?.name}
+                    onBlur={(value) => updateColorPalette(blockSettings.colorPaletteId, { name: value })}
                     readonly={!isEditing}
                 />
             </div>
@@ -73,8 +67,8 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
                     placeholder={isEditing ? 'Describe this color palette here' : ''}
-                    value={blockSettings.description}
-                    onTextChange={handleDescriptionChange}
+                    value={colorPalettes[0]?.description}
+                    onBlur={(value) => updateColorPalette(blockSettings.colorPaletteId, { description: value })}
                     readonly={!isEditing}
                 />
             </div>
