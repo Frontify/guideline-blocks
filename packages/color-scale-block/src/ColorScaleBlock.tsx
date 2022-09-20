@@ -2,7 +2,13 @@
 
 import 'tailwindcss/tailwind.css';
 import { FC, useEffect, useRef, useState } from 'react';
-import { AppBridgeBlock, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
+import {
+    AppBridgeBlock,
+    FrontifyColorPalette,
+    useBlockSettings,
+    useColorPalettes,
+    useEditorState,
+} from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { SquareWithoutColor } from './components/SquareWithoutColor';
 import { ColorPickerFlyout } from './components/AddNewColor';
@@ -223,7 +229,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         let usedSpace = 0;
 
         displayableItems?.map((color: ColorProps) => {
-            let width = color?.width ?? calculateDefaultColorWidth(displayableItems.length);
+            const width = color?.width ?? calculateDefaultColorWidth(displayableItems.length);
 
             if (width) {
                 usedSpace += width;
@@ -232,44 +238,41 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             return color;
         });
 
-        return (usedSpace < colorScaleBlockWidth);
+        return usedSpace < colorScaleBlockWidth;
     };
 
     const doesColorHaveRgbValues = (colorValue: ColorProps) => {
-        if (colorValue && colorValue.color) {
-            return true;
-        }
-        return false;
+        return colorValue && colorValue.color;
     };
 
-    const populateColorPickerPalettes = () => {
-        const palettes: ColorPalette[] = [];
+    const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
+        const formattedPalettes: ColorPalette[] = [];
 
-        for (const palette of colorPalettes) {
-            const colors = palette.colors.map((color) => {
-                return {
-                    id: color.id,
-                    alpha: color.alpha,
-                    red: color.red,
-                    green: color.green,
-                    blue: color.blue,
-                    name: color.name,
-                };
-            });
-            palettes.push({
-                id: palette.id,
-                title: palette.name,
-                source: `#${palette.colors[0].hex}`,
-                colors,
-            });
+        for (const palette of inputPalettes) {
+            if (palette && palette.colors) {
+                const colors = palette.colors.map((color) => {
+                    return {
+                        id: color.id,
+                        alpha: color.alpha,
+                        red: color.red,
+                        green: color.green,
+                        blue: color.blue,
+                        name: color.name,
+                    };
+                });
+                formattedPalettes.push({
+                    id: palette.id,
+                    title: palette.name,
+                    source: `#${palette.colors[0].hex}`,
+                    colors,
+                });
+            }
         }
-        setColorPickerPalette(palettes);
+        setColorPickerPalette(formattedPalettes);
     };
 
     useEffect(() => {
-        // This runs when colorPalettes gets populated.
-
-        populateColorPickerPalettes();
+        populateColorPickerPalettes(colorPalettes);
     }, [colorPalettes]);
 
     useEffect(() => {
@@ -280,17 +283,11 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         if (colorScaleHeight !== currentHeight) {
             setColorScaleHeight(currentHeight);
         }
-        // This runs every time blockSettings are changed.
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
-            let needToCalculateWidths = false;
+            const needToCalculateWidths = false;
 
             // This determines the minimum number of colors, and checks to see if a custom color is defined or if the settings is using slider values.
-
-            // TODO: use real values later
-            // const minimumColors = blockSettings['colorInputMinimumSwitch']
-            //     ? parseInt(blockSettings['colorInputMinimum'])
-            //     : parseInt(blockSettings['colorInputMinimumSlider']);
             let addedFirstColor;
             if (blockSettings['color-input']) {
                 addedFirstColor = blockSettings['color-input'].filter((item: ColorProps) =>
@@ -304,11 +301,11 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             try {
                 // Check to see if we have the minimum number of color squares as defined in the settings.
                 if (blockSettings['color-input'] && blockSettings['color-input'].length >= minimumColors) {
+                    let needToCalculateWidths;
+
                     blockSettings['color-input'].forEach((color: ColorProps) => {
-                        if (!color || (color && !color.width)) {
-                            needToCalculateWidths = true;
-                        }
-                    }
+                        needToCalculateWidths = !color || (color && !color.width);
+                    });
 
                     if (needToCalculateWidths) {
                         const colorsWithNewWidths = calculateWidths(blockSettings['color-input']);
@@ -318,7 +315,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         });
                         setDisplayableItems(colorsWithNewWidths);
                     } else {
-                        setDisplayableItems(blockSettings['color-input']);
+                        return setDisplayableItems(blockSettings['color-input']);
                     }
                 } else {
                     // If the number of colors is less than the minimum amount defined in settings, add
@@ -512,14 +509,14 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             >
                 <DndProvider backend={HTML5Backend}>
                     {displayableItems &&
-                        displayableItems.map((color: ColorProps, index: number) => {
+                        displayableItems?.map((color: ColorProps, index: number) => {
                             let backgroundColorRgba;
 
                             if (color && color.color) {
                                 backgroundColorRgba = `${color.color.red},${color.color.green},${color.color.blue},${color.color.alpha}`;
                             }
 
-                        let width;
+                            let width;
 
                             if (color && color.width) {
                                 width = color.width;
@@ -534,9 +531,9 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             <DropZone
                                                 key={`orderable-list-item-${color.id}-before`}
                                                 currentColor={color}
-                                                height={colorScaleHeight ? parseInt(colorScaleHeight) : 96}
+                                                height={parseInt(colorScaleHeight)}
                                                 width={width}
-                                                isDraggingActive={isNumber(currentlyDraggedColorId)}
+                                                isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                                                 data={{
                                                     targetItem: color,
                                                     position: DropZonePosition.Before,
@@ -550,7 +547,10 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                 index={index}
                                                 width={currentlyDraggedColorId === color.id ? 0 : width}
                                                 height={colorScaleHeight}
-                                                isDragging={currentlyDraggedColorId !== null && currentlyDraggedColorId !== undefined}
+                                                isDragging={
+                                                    currentlyDraggedColorId !== null &&
+                                                    currentlyDraggedColorId !== undefined
+                                                }
                                                 setIsDragging={setCurrentlyDraggedColorId}
                                                 currentColor={color}
                                                 backgroundColorRgba={backgroundColorRgba}
@@ -568,30 +568,30 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             />
                                         </>
                                     ) : (
-                                    <SquareWithoutColor
-                                        id={color.id}
-                                        index={index}
-                                        placeholderColor={emptyBlockColors[index]}
-                                        totalNumberOfBlocks={displayableItems.length}
-                                        width={width}
-                                        height={colorScaleHeight}
-                                        currentSquare={color}
-                                        onResizeStart={onResizeStart}
-                                        calculateLeftPosition={calculateLeftPosition}
-                                        isEditing={isEditing}
-                                        editedColor={editedColor}
-                                        setEditedColor={setEditedColor}
-                                        updateColor={updateColor}
-                                        setFormat={() => false}
-                                        colorOptionsOpen={colorOptionsOpen}
-                                        deleteColor={deleteColor}
-                                        handleDrop={handleDrop}
-                                        listId={listId}
-                                    />
-                                )}
-                            </div>
-                        );
-                    })}
+                                        <SquareWithoutColor
+                                            id={color.id}
+                                            index={index}
+                                            placeholderColor={emptyBlockColors[index]}
+                                            totalNumberOfBlocks={displayableItems.length}
+                                            width={width}
+                                            height={colorScaleHeight}
+                                            currentSquare={color}
+                                            onResizeStart={onResizeStart}
+                                            calculateLeftPosition={calculateLeftPosition}
+                                            isEditing={isEditing}
+                                            editedColor={editedColor}
+                                            setEditedColor={setEditedColor}
+                                            updateColor={updateColor}
+                                            setFormat={() => false}
+                                            colorOptionsOpen={colorOptionsOpen}
+                                            deleteColor={deleteColor}
+                                            handleDrop={handleDrop}
+                                            listId={listId}
+                                        />
+                                    )}
+                                </div>
+                            );
+                        })}
                 </DndProvider>
             </div>
 
