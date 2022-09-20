@@ -574,6 +574,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                     </div>
                 ) : (
                     <EmptyView
+                        numberOfColorBlocks={displayableItems?.length}
                         height={
                             blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
                         }

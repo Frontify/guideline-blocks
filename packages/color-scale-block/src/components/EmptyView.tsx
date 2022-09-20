@@ -8,12 +8,7 @@ export const EmptyView = ({ height }: EmptyViewProps) => {
     const emptyBlockColors = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
 
     return (
-        <div
-            className="tw-flex tw-w-full tw-overflow-hidden tw-rounded"
-            style={{
-                height,
-            }}
-        >
+        <div className={`empty-view tw-flex tw-w-full tw-overflow-hidden tw-rounded tw-w-[${height}]`}>
             {emptyBlockColors.map((color) => (
                 <div
                     key={color}
