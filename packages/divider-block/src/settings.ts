@@ -71,8 +71,9 @@ export const settings: BlockSettings = {
                     label: 'Width',
                     switchLabel: 'Custom',
                     defaultValue: false,
-                    onChange: (bundle: Bundle): void =>
-                        presetCustomValue(bundle, WIDTH_SIMPLE_ID, WIDTH_CUSTOM_ID, DividerWidth),
+                    onChange: (bundle) => {
+                        presetCustomValue(bundle, WIDTH_SIMPLE_ID, WIDTH_CUSTOM_ID, DividerWidth);
+                    },
                     on: [
                         {
                             id: WIDTH_CUSTOM_ID,
@@ -80,7 +81,9 @@ export const settings: BlockSettings = {
                             placeholder: 'e.g. 60%',
                             clearable: true,
                             rules: [numericalOrPercentRule, betweenPercentRule(0, 100)],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
+                            onChange: (bundle) => {
+                                appendUnit(bundle, WIDTH_CUSTOM_ID, '%');
+                            },
                         },
                     ],
                     off: [
@@ -143,16 +146,15 @@ export const settings: BlockSettings = {
                     type: 'switch',
                     label: 'Height',
                     switchLabel: 'Custom',
-                    info: (bundle: Bundle): Promise<string> => {
-                        return Promise.resolve(
-                            bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid
-                                ? 'Determines the block height. This will not affect the dividing line in any way.'
-                                : 'Determines the block height.'
-                        );
+                    info: (bundle) => {
+                        return bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid
+                            ? 'Determines the block height. This will not affect the dividing line in any way.'
+                            : 'Determines the block height.';
                     },
                     defaultValue: false,
-                    onChange: (bundle: Bundle): void =>
-                        presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeightValues),
+                    onChange: (bundle) => {
+                        presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeightValues);
+                    },
                     on: [
                         {
                             id: HEIGHT_CUSTOM_ID,
@@ -160,7 +162,9 @@ export const settings: BlockSettings = {
                             placeholder: 'e.g. 50px',
                             clearable: true,
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(10)],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
+                            onChange: (bundle) => {
+                                appendUnit(bundle, HEIGHT_CUSTOM_ID);
+                            },
                         },
                     ],
                     off: [
@@ -193,7 +197,7 @@ export const settings: BlockSettings = {
             id: 'lineStyle',
             type: 'multiInput',
             label: 'Line Styling',
-            onChange: (bundle: Bundle): void => {
+            onChange: (bundle) => {
                 appendUnit(bundle, THICKNESS_ID);
             },
             layout: MultiInputLayout.Columns,
