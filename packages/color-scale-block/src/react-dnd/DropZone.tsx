@@ -28,7 +28,7 @@ export const DropZone = <T extends object>({
         }),
     });
 
-    const width = currentColor && currentColor.width !== undefined ? currentColor.width : '100';
+    const width = currentColor && currentColor.width;
 
     const isActive = isOver && canDrop;
 
