@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
+import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ERROR_MSG } from './settings';
 import { StorybookBlock } from './StorybookBlock';
@@ -102,15 +102,21 @@ describe('Storybook Block', () => {
         });
 
         mount(<StorybookBlockWithStubs />);
+
+        cy.get(ResizableChildrenContainer).should('have.css', 'height', '200px');
+
         cy.get(ResizeBar)
             .trigger('mousedown', { which: 1, pageX: 600, pageY: 100 })
             .trigger('mousemove', { which: 1, pageX: 600, pageY: 600 })
-            .trigger('mouseup');
+            .trigger('mouseup', { force: true });
+
         cy.get(ResizableChildrenContainer).should('have.css', 'height', '700px');
+
         cy.get(ResizeBar)
             .trigger('mousedown', { which: 1, pageX: 600, pageY: 600 })
             .trigger('mousemove', { which: 1, pageX: 600, pageY: 100 })
-            .trigger('mouseup');
+            .trigger('mouseup', { force: true });
+
         cy.get(ResizableChildrenContainer).should('have.css', 'height', '200px');
     });
 
@@ -138,15 +144,15 @@ describe('Storybook Block', () => {
         });
 
         mount(<StorybookBlockWithStubs />);
+
+        cy.get(ResizableChildrenContainer).should('have.css', 'height', '200px');
         cy.get(ResizeBar)
             .trigger('mousedown', { which: 1, pageX: 600, pageY: 100 })
             .trigger('mousemove', { which: 1, pageX: 600, pageY: 600 })
-            .trigger('mouseup');
+            .trigger('mouseup', { force: true });
+
         cy.get(ResizableChildrenContainer).should('have.css', 'height', '700px');
+
         cy.get(IframeSelector).should('have.attr', 'height', '700px');
-        cy.get(IframeSelector).should('have.css', 'border-style', 'dotted');
-        cy.get(IframeSelector).should('have.css', 'border-width', '2px');
-        cy.get(IframeSelector).should('have.css', 'border-color', 'rgb(22, 181, 181)');
-        cy.get(IframeSelector).should('have.css', 'border-radius', '5px');
     });
 });

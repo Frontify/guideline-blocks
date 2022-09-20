@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import 'tailwindcss/tailwind.css';
+import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useCallback, useEffect, useState } from 'react';
-import 'tailwindcss/tailwind.css';
 import { RemoveButton } from './components/RemoveButton';
 import { Resizeable } from './components/Resizable';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
