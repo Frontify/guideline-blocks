@@ -223,15 +223,12 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         let usedSpace = 0;
 
         displayableItems?.map((color: ColorProps) => {
-            let width;
-            if (color && color.width) {
-                width = color.width;
-            } else {
-                width = calculateDefaultColorWidth(displayableItems.length);
-            }
+            let width = color?.width ?? calculateDefaultColorWidth(displayableItems.length);
+
             if (width) {
                 usedSpace += width;
             }
+            
             return color;
         });
 
