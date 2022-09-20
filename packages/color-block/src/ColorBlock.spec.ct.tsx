@@ -9,7 +9,9 @@ import { ColorBlockType } from './types';
 const ColorBlockSelector = '[data-test-id="color-block"]';
 const ColorSpaceSelector = '[data-test-id="color-space"]';
 
-const ALL_COLORSPACES = [
+const DEFAULT_COLOR_SPACES = ['hex', 'rgb'];
+
+const ALL_COLOR_SPACES = [
     'hex',
     'rgb',
     'cmyk',
@@ -36,6 +38,7 @@ describe('ColorBlock component', () => {
         const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
             blockSettings: {
                 view: ColorBlockType.List,
+                colorspaces: DEFAULT_COLOR_SPACES,
             },
         });
 
@@ -47,6 +50,7 @@ describe('ColorBlock component', () => {
         const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
             blockSettings: {
                 view: ColorBlockType.Drops,
+                colorspaces: DEFAULT_COLOR_SPACES,
             },
         });
 
@@ -58,6 +62,7 @@ describe('ColorBlock component', () => {
         const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
             blockSettings: {
                 view: ColorBlockType.Cards,
+                colorspaces: DEFAULT_COLOR_SPACES,
             },
         });
 
@@ -69,38 +74,38 @@ describe('ColorBlock component', () => {
         const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
             blockSettings: {
                 view: ColorBlockType.List,
-                colorspaces: ALL_COLORSPACES,
+                colorspaces: ALL_COLOR_SPACES,
             },
         });
 
         mount(<ColorBlockWithStubs />);
         cy.get(ColorSpaceSelector).should('exist');
-        cy.get(ColorSpaceSelector).should('have.length', ALL_COLORSPACES.length * 3);
+        cy.get(ColorSpaceSelector).should('have.length', ALL_COLOR_SPACES.length * 3);
     });
 
     it('renders color block with all colorspaces in drops view', () => {
         const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
             blockSettings: {
                 view: ColorBlockType.Drops,
-                colorspaces: ALL_COLORSPACES,
+                colorspaces: ALL_COLOR_SPACES,
             },
         });
 
         mount(<ColorBlockWithStubs />);
         cy.get(ColorSpaceSelector).should('exist');
-        cy.get(ColorSpaceSelector).should('have.length', ALL_COLORSPACES.length * 3);
+        cy.get(ColorSpaceSelector).should('have.length', ALL_COLOR_SPACES.length * 3);
     });
 
     it('renders color block with all colorspaces in cards view', () => {
         const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
             blockSettings: {
                 view: ColorBlockType.Cards,
-                colorspaces: ALL_COLORSPACES,
+                colorspaces: ALL_COLOR_SPACES,
             },
         });
 
         mount(<ColorBlockWithStubs />);
         cy.get(ColorSpaceSelector).should('exist');
-        cy.get(ColorSpaceSelector).should('have.length', ALL_COLORSPACES.length * 3);
+        cy.get(ColorSpaceSelector).should('have.length', ALL_COLOR_SPACES.length * 3);
     });
 });
