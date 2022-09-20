@@ -228,14 +228,11 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             if (width) {
                 usedSpace += width;
             }
-            
+
             return color;
         });
 
-        if (usedSpace < colorScaleBlockWidth) {
-            return true;
-        }
-        return false;
+        return (usedSpace < colorScaleBlockWidth);
     };
 
     const doesColorHaveRgbValues = (colorValue: ColorProps) => {
