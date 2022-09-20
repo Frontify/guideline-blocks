@@ -18,16 +18,16 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
 
     const {
         content,
-        padding,
+        margin,
         language,
         lineStyle,
         lineWidth,
         borderColor = BORDER_COLOR_DEFAULT_VALUE,
         borderRadius = '0px',
-        paddingTop = '0px',
-        paddingLeft = '0px',
-        paddingRight = '0px',
-        paddingBottom = '0px',
+        marginTop = '0px',
+        marginLeft = '0px',
+        marginRight = '0px',
+        marginBottom = '0px',
         borderRadiusTopLeft = '0px',
         borderRadiusTopRight = '0px',
         borderRadiusBottomLeft = '0px',
@@ -35,14 +35,14 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         withBorder = false,
         withHeading = false,
         withRowNumbers = false,
-        withCustomPadding = false,
+        withCustomMargin = false,
         withCustomBorderRadius = false,
         theme = DEFAULT_THEME_VALUE,
     } = blockSettings;
 
-    const customPadding = `${getValueInPx(paddingTop)} ${getValueInPx(paddingRight)} ${getValueInPx(
-        paddingBottom
-    )} ${getValueInPx(paddingLeft)}`;
+    const customMargin = `${getValueInPx(marginTop)} ${getValueInPx(marginRight)} ${getValueInPx(
+        marginBottom
+    )} ${getValueInPx(marginLeft)}`;
 
     const borderColorRgba = toRgbaString(borderColor);
 
@@ -64,7 +64,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         initValue: content,
         onChange: handleChange,
         borderRadius: borderRadiusValues,
-        padding: withCustomPadding ? customPadding : padding,
+        margin: withCustomMargin ? customMargin : margin,
         border: withBorder ? `${lineStyle} ${lineWidth} ${borderColorRgba}` : 'none',
     };
 

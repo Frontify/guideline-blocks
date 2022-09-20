@@ -29,7 +29,7 @@ export type TwBorderInlineStyle = Exclude<
 
 export interface CodeMirrorEditorStyle extends CSSProperties {
     '--editor-border': Property.Border;
-    '--editor-padding': Property.Padding;
+    '--editor-margin': Property.Margin;
     '--editor-border-radius': Property.BorderRadius;
     '--editor-border-top-left-radius': Property.BorderTopLeftRadius;
     '--editor-border-top-right-radius': Property.BorderTopRightRadius;
@@ -37,7 +37,7 @@ export interface CodeMirrorEditorStyle extends CSSProperties {
     '--editor-border-bottom-right-radius': Property.BorderBottomRightRadius;
 }
 
-export type PaddingSize = '0px' | '24px' | '36px' | '60px';
+export type MarginSize = '0px' | '24px' | '36px' | '60px';
 export type BorderRadiusSize = '0px' | '2px' | '4px' | '12px';
 export type BorderRadiusCorners = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
@@ -48,17 +48,17 @@ export type Settings = {
     language?: Language;
     withBorder?: boolean;
     withHeading?: boolean;
-    paddingTop?: string;
-    paddingLeft?: string;
-    paddingRight?: string;
-    paddingBottom?: string;
-    padding?: PaddingSize;
+    marginTop?: string;
+    marginLeft?: string;
+    marginRight?: string;
+    marginBottom?: string;
+    margin?: MarginSize;
     withRowNumbers?: boolean;
     borderRadiusTopLeft?: string;
     borderRadiusTopRight?: string;
     borderRadiusBottomRight?: string;
     borderRadiusBottomLeft?: string;
-    withCustomPadding?: boolean;
+    withCustomMargin?: boolean;
     lineStyle: TwBorderInlineStyle;
     borderRadius?: BorderRadiusSize;
     lineWidth: Property.BorderWidth;
@@ -74,7 +74,7 @@ export type CodeMirrorEditorProps = {
     withHeading?: boolean;
     withRowNumbers?: boolean;
     border?: Property.Border;
-    padding?: Property.Padding;
+    margin?: Property.Margin;
     onChange: (value: string) => void;
     borderRadius: Record<BorderRadiusCorners, string>;
 };

@@ -1,6 +1,6 @@
 .cm-editor {
     border: var(--editor-border);
-    padding: var(--editor-padding);
+    margin: var(--editor-margin);
     border-radius: var(--editor-border-radius);
 }
 
