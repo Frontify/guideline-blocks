@@ -55,9 +55,9 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const colorScaleBlockRef: { current?: HTMLDivElement } = useRef();
     const draggingId: { current?: number | null } = useRef(null);
     const [colorOptionsOpen, setColorOptionsOpen] = useState({});
-    const dragStartPos: { current?: number | null } = useRef();
-    const dragStartWidth: { current?: number | null } = useRef();
-    const lastDragPos: { current?: number | null } = useRef();
+    const dragStartPos: { current?: number | null | undefined } = useRef();
+    const dragStartWidth: { current?: number | null | undefined } = useRef();
+    const lastDragPos: { current?: number | null | undefined } = useRef();
 
     const handleDrop = (targetItem: OrderableListItem, movedItem: OrderableListItem, position: DropZonePosition) => {
         let movedItemIndex = 0,
@@ -356,7 +356,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         draggingId.current = index;
     };
 
-    const onResize = (event: any) => {
+    const onResize = (event: MouseEvent) => {
         if (draggingId.current !== null) {
             const id = draggingId.current;
             if (!lastDragPos.current) {
@@ -364,10 +364,15 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             }
 
             if (event.clientX < lastDragPos?.current) {
-                if (lastDragPos?.current - event.clientX >= 8) {
-                    lastDragPos?.current = event.clientX;
+                if (lastDragPos.current - event.clientX >= 8) {
+                    lastDragPos.current = event.clientX;
 
                     let valuesChanged = false;
+
+                    if (!dragStartPos.current) {
+                        return;
+                    }
+
                     const movementSinceStart = dragStartPos.current - event.clientX;
 
                     const colorsBeforeCurrent = displayableItems
