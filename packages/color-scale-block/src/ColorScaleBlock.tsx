@@ -89,15 +89,15 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         postDrop(updatedColors);
     };
 
-    const calculateDefaultColorWidth = (arrLen: number) => {
-        if (colorScaleBlockRef && colorScaleBlockRef.current) {
-            const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
-            const defaultWidth = colorScaleBlockWidth / arrLen;
-
-            return defaultWidth;
-        } else {
+    const calculateDefaultColorWidth = (colorArray: number) => {
+        if (!(colorScaleBlockRef && colorScaleBlockRef?.current)) {
             return defaultColorSquareWidth;
         }
+
+        const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
+        const defaultWidth = colorScaleBlockWidth / colorArray;
+
+        return defaultWidth;
     };
 
     const resizeEvenly = (itemList: ColorProps[]) => {
