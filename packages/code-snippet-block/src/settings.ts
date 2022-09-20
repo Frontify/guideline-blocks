@@ -56,7 +56,7 @@ export const settings: BlockSettings = {
         {
             id: 'withHeading',
             type: 'switch',
-            defaultValue: false,
+            defaultValue: true,
             label: 'Snippet heading',
         },
         {
@@ -123,15 +123,15 @@ export const settings: BlockSettings = {
                             label: 'None',
                         },
                         {
-                            value: '6rem',
+                            value: '1.5rem',
                             label: 'S',
                         },
                         {
-                            value: '9rem',
+                            value: '2.25rem',
                             label: 'M',
                         },
                         {
-                            value: '15rem',
+                            value: '3.75rem',
                             label: 'L',
                         },
                     ],
@@ -144,7 +144,7 @@ export const settings: BlockSettings = {
             id: 'theme',
             type: 'dropdown',
             defaultValue: DEFAULT_THEME_VALUE,
-            label: 'Color schema',
+            label: 'Color scheme',
             size: DropdownSize.Small,
             choices: [
                 {
@@ -206,56 +206,57 @@ export const settings: BlockSettings = {
             type: 'switch',
             defaultValue: true,
             label: 'Border',
-        },
-        {
-            id: 'border',
-            type: 'multiInput',
-            lastItemFullWidth: true,
-            show: (bundle: Bundle) => bundle.getBlock('withBorder')?.value === true,
-            onChange: (bundle: Bundle): void => {
-                appendUnit(bundle, 'lineWidth');
-            },
-            blocks: [
+            on: [
                 {
-                    id: 'lineStyle',
-                    type: 'dropdown',
-                    defaultValue: 'solid',
-                    choices: [
+                    id: 'border',
+                    type: 'multiInput',
+                    lastItemFullWidth: true,
+                    onChange: (bundle: Bundle): void => {
+                        appendUnit(bundle, 'lineWidth');
+                    },
+                    blocks: [
                         {
-                            value: 'none',
-                            label: 'None',
+                            id: 'lineStyle',
+                            type: 'dropdown',
+                            defaultValue: 'solid',
+                            choices: [
+                                {
+                                    value: 'none',
+                                    label: 'None',
+                                },
+                                {
+                                    value: 'dotted',
+                                    label: 'Dotted',
+                                },
+                                {
+                                    value: 'dashed',
+                                    label: 'Dashed',
+                                },
+                                {
+                                    value: 'solid',
+                                    label: 'Solid',
+                                },
+                                {
+                                    value: 'double',
+                                    label: 'Double',
+                                },
+                            ],
                         },
                         {
-                            value: 'dotted',
-                            label: 'Dotted',
+                            id: 'lineWidth',
+                            type: 'input',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
                         },
                         {
-                            value: 'dashed',
-                            label: 'Dashed',
-                        },
-                        {
-                            value: 'solid',
-                            label: 'Solid',
-                        },
-                        {
-                            value: 'double',
-                            label: 'Double',
+                            id: 'borderColor',
+                            type: 'colorInput',
+                            defaultValue: BORDER_COLOR_DEFAULT_VALUE,
                         },
                     ],
-                },
-                {
-                    id: 'lineWidth',
-                    type: 'input',
-                    placeholder: 'e.g. 2px',
-                    rules: [numericalOrPixelRule],
-                },
-                {
-                    id: 'borderColor',
-                    type: 'colorInput',
-                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
+                    layout: MultiInputLayout.Columns,
                 },
             ],
-            layout: MultiInputLayout.Columns,
         },
     ],
 };
