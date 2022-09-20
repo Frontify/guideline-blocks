@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { EditorActions, merge, RichTextEditor } from '@frontify/fondue';
+import { EditorActions, RichTextEditor, merge } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
@@ -37,20 +37,19 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
+    const getWrapperClasses = () => {
+        if (isQuotationMarkType && isFullWidth) {
+            return 'tw-flex tw-justify-between tw-gap-x-7';
+        }
+        if (isQuotationMarkType && !isFullWidth) {
+            return merge(['tw-flex tw-gap-x-7', flexBoxAlignmentClassNames[blockSettings.textAlignment ?? 'left']]);
+        }
+        return '';
+    };
+
     return (
         <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
-            <div
-                className={
-                    isQuotationMarkType && isFullWidth
-                        ? 'tw-flex tw-justify-between tw-gap-x-7'
-                        : isQuotationMarkType && !isFullWidth
-                        ? merge([
-                              'tw-flex tw-gap-x-7',
-                              flexBoxAlignmentClassNames[blockSettings.textAlignment ?? 'left'],
-                          ])
-                        : ''
-                }
-            >
+            <div className={getWrapperClasses()}>
                 {isQuotationMarkType && (
                     <QuoteBlockIcon
                         customIconId={CUSTOM_ICON_LEFT_ID}

@@ -3,7 +3,7 @@
 import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
-import { appendUnit, BorderStyle, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
 import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
 import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
@@ -14,10 +14,10 @@ import {
     LineType,
     QuotationMarksAnchoring,
     QuoteSize,
-    quoteSizeMap,
     QuoteStyle,
     QuoteType,
     TextAlignment,
+    quoteSizeMap,
 } from './types';
 
 export const CUSTOM_ICON_LEFT_ID = 'customIconLeft';
