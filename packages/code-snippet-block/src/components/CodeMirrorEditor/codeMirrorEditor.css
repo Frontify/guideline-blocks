@@ -1,0 +1,17 @@
+.cm-editor {
+    border: var(--editor-border);
+    padding: var(--editor-padding);
+    border-radius: var(--editor-border-radius);
+}
+
+.cm-panels-top {
+    border-radius: var(--editor-border-radius);
+}
+
+.cm-content {
+    padding: var(--editor-padding);
+}
+
+.cm-gutters {
+    border-radius: var(--editor-border-radius);
+}

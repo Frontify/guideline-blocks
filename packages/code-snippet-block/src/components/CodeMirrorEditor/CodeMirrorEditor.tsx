@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import './codeMirrorEditor.css';
+
 import { EditorView } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { ReactElement, useEffect, useRef, useState } from 'react';

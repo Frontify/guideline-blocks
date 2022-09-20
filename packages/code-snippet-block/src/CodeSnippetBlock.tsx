@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 
 import { FC, ReactElement } from 'react';
 import { debounce } from '@frontify/fondue';
-import { useBlockSettings } from '@frontify/app-bridge';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import { getValueInPx } from './helpers';
@@ -14,6 +14,7 @@ import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
 
 export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const isEditing = useEditorState(appBridge);
 
     const {
         content,
@@ -44,6 +45,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
     const codeMirrorEditorProps: CodeMirrorEditorProps = {
         theme,
         language,
+        isEditing,
         withHeading,
         withRowNumbers,
         initValue: content,
