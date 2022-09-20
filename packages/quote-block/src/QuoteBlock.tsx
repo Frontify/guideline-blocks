@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { EditorActions, RichTextEditor, merge } from '@frontify/fondue';
+import { EditorActions, merge, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
@@ -22,7 +22,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
-    const isFullWidth = blockSettings.quotationMarksAnchoring === QuotationMarksAnchoring.FullWidth;
+    const isFullWidth = blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText;
     const borderRgba = toRgbaString(blockSettings.accentLinecolor ?? DEFAULT_COLOR_VALUE);
     const borderStyles = blockSettings.showAccentLine
         ? {
