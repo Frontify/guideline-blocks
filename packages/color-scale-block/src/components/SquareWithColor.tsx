@@ -43,8 +43,8 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     isDragging,
 }) => {
     const onDrag = () => {
-        if (isDragging !== currentColor.id) {
-            setIsDragging(currentColor.id);
+        if (isDragging !== !!currentColor.id) {
+            setIsDragging(!!currentColor.id);
         }
     };
 

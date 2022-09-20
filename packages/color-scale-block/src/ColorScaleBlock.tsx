@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { FC, Key, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { AppBridgeBlock, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { SquareWithoutColor } from './components/SquareWithoutColor';
-import { AddNewColor } from './components/AddNewColor';
+import { ColorPickerFlyout } from './components/AddNewColor';
 import { ColorPalette, ColorProps, Settings } from './types';
 
 import {
@@ -24,7 +24,6 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import 'tailwindcss/tailwind.css';
 import { DropZone } from './react-dnd/DropZone';
-import { isNumber } from 'cypress/types/lodash';
 
 type Props = {
     appBridge: AppBridgeBlock;
@@ -40,11 +39,12 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
+
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
         number | undefined,
         (color?: number | undefined) => void
     ] = useState();
-    const [editedColor, setEditedColor] = useState();
+    const [editedColor, setEditedColor] = useState<Nullable<ColorProps>>();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const colorScaleBlockRef: { current?: HTMLDivElement } = useRef();
     const draggingId: { current?: number | null } = useRef(null);
@@ -219,7 +219,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const canExpandColorBlock = () => {
-        const colorScaleBlockWidth = colorScaleBlockRef?.current.getBoundingClientRect().width;
+        const colorScaleBlockWidth = colorScaleBlockRef?.current?.getBoundingClientRect().width || 0;
         let usedSpace = 0;
 
         displayableItems?.map((color: ColorProps) => {
@@ -314,7 +314,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         if (!color || (color && !color.width)) {
                             needToCalculateWidths = true;
                         }
-                    });
+                    }
 
                     if (needToCalculateWidths) {
                         const colorsWithNewWidths = calculateWidths(blockSettings['color-input']);
@@ -348,8 +348,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         setDisplayableItems(colorsWithNewWidths || []);
                     }
                 }
-            } catch (event: any) {
-                throw new Error(event);
+            } catch (error) {
+                console.error(error);
             }
         }
     }, [blockSettings]);
@@ -357,7 +357,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const onResizeStop = () => {
         draggingId.current = null;
     };
-
     const onResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps) => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
@@ -526,7 +525,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                 backgroundColorRgba = `${color.color.red},${color.color.green},${color.color.blue},${color.color.alpha}`;
                             }
 
-                            let width;
+                        let width;
 
                             if (color && color.width) {
                                 width = color.width;
@@ -557,7 +556,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                 index={index}
                                                 width={currentlyDraggedColorId === color.id ? 0 : width}
                                                 height={colorScaleHeight}
-                                                isDragging={isDragging}
+                                                isDragging={currentlyDraggedColorId !== null && currentlyDraggedColorId !== undefined}
                                                 setIsDragging={setCurrentlyDraggedColorId}
                                                 currentColor={color}
                                                 backgroundColorRgba={backgroundColorRgba}
@@ -575,34 +574,34 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             />
                                         </>
                                     ) : (
-                                        <SquareWithoutColor
-                                            id={color.id}
-                                            index={index}
-                                            placeholderColor={emptyBlockColors[index]}
-                                            totalNumberOfBlocks={displayableItems.length}
-                                            width={width}
-                                            height={colorScaleHeight}
-                                            currentSquare={color}
-                                            onResizeStart={onResizeStart}
-                                            calculateLeftPosition={calculateLeftPosition}
-                                            isEditing={isEditing}
-                                            editedColor={editedColor}
-                                            setEditedColor={setEditedColor}
-                                            updateColor={updateColor}
-                                            setFormat={() => false}
-                                            colorOptionsOpen={colorOptionsOpen}
-                                            setColorOptionsOpen={setColorOptionsOpen}
-                                            deleteColor={deleteColor}
-                                            handleDrop={handleDrop}
-                                            listId={listId}
-                                        />
-                                    )}
-                                </div>
-                            );
-                        })}
+                                    <SquareWithoutColor
+                                        id={color.id}
+                                        index={index}
+                                        placeholderColor={emptyBlockColors[index]}
+                                        totalNumberOfBlocks={displayableItems.length}
+                                        width={width}
+                                        height={colorScaleHeight}
+                                        currentSquare={color}
+                                        onResizeStart={onResizeStart}
+                                        calculateLeftPosition={calculateLeftPosition}
+                                        isEditing={isEditing}
+                                        editedColor={editedColor}
+                                        setEditedColor={setEditedColor}
+                                        updateColor={updateColor}
+                                        setFormat={() => false}
+                                        colorOptionsOpen={colorOptionsOpen}
+                                        deleteColor={deleteColor}
+                                        handleDrop={handleDrop}
+                                        listId={listId}
+                                    />
+                                )}
+                            </div>
+                        );
+                    })}
                 </DndProvider>
             </div>
-            {isEditing ? (
+
+            {isEditing && (
                 <div className="tw-text-right">
                     <ButtonGroup size={ButtonSize.Small}>
                         <Button
@@ -624,7 +623,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         </Button>
                     </ButtonGroup>
 
-                    <AddNewColor
+                    <ColorPickerFlyout
                         isColorPickerOpen={isColorPickerOpen}
                         setIsColorPickerOpen={setIsColorPickerOpen}
                         editedColor={editedColor}
@@ -634,8 +633,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         setFormat={() => false}
                     />
                 </div>
-            ) : (
-                <></>
             )}
         </>
     );
