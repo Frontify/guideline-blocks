@@ -2,6 +2,7 @@
 
 export { useExtension } from './useExtension';
 export { useHeaderPanel } from './useHeaderPanel';
+export { useHighlightActiveLine } from './useHighlightActiveLine';
 export { useIsEditing } from './useIsEditing';
 export { useLanguage } from './useLanguage';
 export { useLineNumber } from './useLineNumber';

@@ -3,6 +3,13 @@
 import { EditorView } from '@codemirror/view';
 import { Extension } from '@codemirror/state';
 
-const basicTheme = EditorView.theme({}, { dark: false });
+const basicTheme = EditorView.theme(
+    {
+        '.cm-header-panel': {
+            color: '#969898',
+        },
+    },
+    { dark: false }
+);
 
 export const defaultTheme: Extension = [basicTheme];

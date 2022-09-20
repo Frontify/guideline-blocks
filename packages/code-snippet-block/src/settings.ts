@@ -123,15 +123,15 @@ export const settings: BlockSettings = {
                             label: 'None',
                         },
                         {
-                            value: '1.5rem',
+                            value: '24px',
                             label: 'S',
                         },
                         {
-                            value: '2.25rem',
+                            value: '36px',
                             label: 'M',
                         },
                         {
-                            value: '3.75rem',
+                            value: '60px',
                             label: 'L',
                         },
                     ],
@@ -245,6 +245,7 @@ export const settings: BlockSettings = {
                         {
                             id: 'lineWidth',
                             type: 'input',
+                            defaultValue: '1px',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
                         },
@@ -255,6 +256,81 @@ export const settings: BlockSettings = {
                         },
                     ],
                     layout: MultiInputLayout.Columns,
+                },
+            ],
+        },
+        {
+            id: 'withCustomBorderRadius',
+            label: 'Corner Radius',
+            type: 'switch',
+            switchLabel: 'Custom',
+            defaultValue: false,
+            on: [
+                {
+                    id: 'customBorderRadius',
+                    type: 'multiInput',
+                    layout: MultiInputLayout.Spider,
+                    onChange: (bundle: Bundle): void => {
+                        appendUnit(bundle, 'borderRadiusTop');
+                        appendUnit(bundle, 'borderRadiusLeft');
+                        appendUnit(bundle, 'borderRadiusRight');
+                        appendUnit(bundle, 'borderRadiusBottom');
+                    },
+                    blocks: [
+                        {
+                            id: 'borderRadiusTop',
+                            type: 'input',
+                            label: 'Top',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
+                        },
+                        {
+                            id: 'borderRadiusLeft',
+                            type: 'input',
+                            label: 'Left',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
+                        },
+                        {
+                            id: 'borderRadiusRight',
+                            type: 'input',
+                            label: 'Right',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
+                        },
+                        {
+                            id: 'borderRadiusBottom',
+                            type: 'input',
+                            label: 'Bottom',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
+                        },
+                    ],
+                },
+            ],
+            off: [
+                {
+                    id: 'borderRadius',
+                    type: 'slider',
+                    defaultValue: '4px',
+                    choices: [
+                        {
+                            value: '0px',
+                            label: 'None',
+                        },
+                        {
+                            value: '2px',
+                            label: 'S',
+                        },
+                        {
+                            value: '4px',
+                            label: 'M',
+                        },
+                        {
+                            value: '12px',
+                            label: 'L',
+                        },
+                    ],
                 },
             ],
         },

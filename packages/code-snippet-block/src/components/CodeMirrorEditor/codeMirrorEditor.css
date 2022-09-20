@@ -5,13 +5,37 @@
 }
 
 .cm-panels-top {
-    border-radius: var(--editor-border-radius);
-}
-
-.cm-content {
-    padding: var(--editor-padding);
+    border-radius: var(--editor-border-top-left-radius) var(--editor-border-top-right-radius) 0 0;
 }
 
 .cm-gutters {
-    border-radius: var(--editor-border-radius);
+    border-radius: 0 0 0 var(--editor-border-bottom-left-radius);
+    font-family: Courier;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.ͼ1.cm-editor.cm-focused {
+    border-radius: 4px;
+    outline-offset: 2px;
+    outline: 2px solid transparent;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px, rgb(94, 158, 214) 0px 0px 0px 6px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+.ͼ1 .cm-content {
+    padding: 16px 20px 20px 20px;
+    font-family: Courier;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    text-align: left;
+}
+
+.ͼ1 .cm-lineNumbers .cm-gutterElement {
+    padding: 0px 10.5px;
+    text-align: center;
 }

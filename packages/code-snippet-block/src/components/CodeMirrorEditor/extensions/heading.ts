@@ -9,6 +9,12 @@ const DEFAULT_TITLE = '';
 const headerPanelTheme = EditorView.baseTheme({
     '.cm-header-panel': {
         padding: '10px 12px',
+        fontFamily: 'Space Grotesk Frontify',
+        fontSize: '14px',
+        fontWeight: 400,
+        lineHeight: '16px',
+        letterSpacing: '0em',
+        textAlign: 'left',
     },
 });
 
