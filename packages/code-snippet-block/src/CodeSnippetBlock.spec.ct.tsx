@@ -125,14 +125,29 @@ it('renders code snippet with custom border radius', () => {
     cy.get(codeSnippetEditorSelector).should('have.css', 'border-radius', '5px 2px 10px 8px');
 });
 
-it('renders code snippet with padding', () => {
+it('renders code snippet with margin', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
             withCustomPadding: false,
-            padding: '60px',
+            margin: '60px',
         },
     });
 
     mount(<CodeSnippetWithStubs />);
-    cy.get(codeSnippetEditorSelector).should('have.css', 'padding', '60px');
+    cy.get(codeSnippetEditorSelector).should('have.css', 'margin', '60px');
+});
+
+it('renders code snippet with custom margin', () => {
+    const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
+        blockSettings: {
+            withCustomMargin: true,
+            marginTop: '5px',
+            marginLeft: '25px',
+            marginRight: '15px',
+            marginBottom: '60px',
+        },
+    });
+
+    mount(<CodeSnippetWithStubs />);
+    cy.get(codeSnippetEditorSelector).should('have.css', 'margin', '5px 15px 60px 25px');
 });
