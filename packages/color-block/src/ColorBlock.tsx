@@ -38,14 +38,16 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
 
     const { colorPalettes, updateColorPalette } = useColorPalettes(appBridge, [blockSettings.colorPaletteId]);
 
-    function moveCard(dragIndex: number, hoverIndex: number) {
+    const moveCard = (dragIndex: number, hoverIndex: number) => {
         const colorsCopy = [...colors];
+        const insertAt = dragIndex > hoverIndex ? hoverIndex : hoverIndex + 1;
+        const deleteAt = dragIndex > hoverIndex ? dragIndex + 1 : dragIndex;
 
-        colorsCopy.splice(dragIndex, 0, colors[dragIndex]);
-        colorsCopy.splice(hoverIndex, 1);
+        colorsCopy.splice(insertAt, 0, colors[dragIndex]);
+        colorsCopy.splice(deleteAt, 1);
 
         setColors(colorsCopy);
-    }
+    };
 
     const handleDrop = (colorId: number, index: number) => {
         updateColor(colorId, { sort: index + 1 });
