@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { XYCoord, useDrag, useDrop } from 'react-dnd';
+import { motion } from 'framer-motion';
 import { merge } from '@frontify/fondue';
 
 import { ColorBlockType } from '../types';
@@ -82,14 +83,20 @@ export const DropZone = ({ index, treeId, onDrop, children, colorBlockType, move
         },
     });
 
-    const [{ isDragging }, drag] = useDrag({
+    const [{ isDragging, initialOffset, currentOffset, test }, drag] = useDrag({
         type: treeId,
         item: { index },
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
+            initialOffset: monitor.getInitialSourceClientOffset(),
+            currentOffset: monitor.getSourceClientOffset(),
+            test: monitor.getClientOffset(),
         }),
         canDrag: isEditing,
     });
+    console.log('🚀 ~ DropZone ~ test', test);
+    console.log('🚀 ~ DropZone ~ initialOffset', initialOffset);
+    console.log('🚀 ~ DropZone ~ currentOffset', currentOffset);
 
     drag(drop(ref));
 
@@ -98,13 +105,32 @@ export const DropZone = ({ index, treeId, onDrop, children, colorBlockType, move
         colorBlockType === 'list' ? 'tw-h-[60px] tw-my-1 last:tw-border-b last:tw-border-black/[.1]' : 'tw-h-auto',
     ]);
 
+    // if (!currentOffset || !initialOffset) {
+    //     return null;
+    // }
+
+    // const x = currentOffset?.x - test?.x;
+    const x = currentOffset?.x;
+    console.log('🚀 ~ DropZone ~ x', x);
+    // const y = currentOffset?.y - test?.y;
+    const y = currentOffset?.y;
+    console.log('🚀 ~ DropZone ~ y', y);
+
     return (
         <div
             ref={ref}
             className={merge(['tw-transition-all', isDragging ? activeOuterDropZoneClassNames : 'tw-h-auto'])}
         >
             <div data-test-id="drop-zone" className={isDragging ? 'tw-hidden' : ''}>
-                {children}
+                <motion.div
+                    initial={false}
+                    animate={{
+                        x,
+                        y,
+                    }}
+                >
+                    {children}
+                </motion.div>
             </div>
         </div>
     );
