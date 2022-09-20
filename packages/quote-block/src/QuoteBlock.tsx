@@ -1,19 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { EditorActions, RichTextEditor } from '@frontify/fondue';
+import { EditorActions, merge, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';
 import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
-import { LineType, Props, QuoteStyle, QuoteType, Settings } from './types';
+import { LineType, Props, QuotationMarksAnchoring, QuoteStyle, QuoteType, Settings } from './types';
+import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities';
 
 const ACTIONS = [
     [EditorActions.TEXT_STYLES],
     [EditorActions.BOLD, EditorActions.ITALIC, EditorActions.UNDERLINE, EditorActions.STRIKETHROUGH],
-    [EditorActions.ALIGN_LEFT, EditorActions.ALIGN_CENTER, EditorActions.ALIGN_RIGHT, EditorActions.ALIGN_JUSTIFY],
 ];
 
 export const QuoteBlock: FC<Props> = ({ appBridge }) => {
@@ -22,6 +22,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
+    const isFullWidth = blockSettings.quotationMarksAnchoring === QuotationMarksAnchoring.FullWidth;
     const borderRgba = toRgbaString(blockSettings.accentLinecolor ?? DEFAULT_COLOR_VALUE);
     const borderStyles = blockSettings.showAccentLine
         ? {
@@ -38,7 +39,18 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     return (
         <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
-            <div className={isQuotationMarkType ? 'tw-flex tw-justify-between tw-gap-x-7' : ''}>
+            <div
+                className={
+                    isQuotationMarkType && isFullWidth
+                        ? 'tw-flex tw-justify-between tw-gap-x-7'
+                        : isQuotationMarkType && !isFullWidth
+                        ? merge([
+                              'tw-flex tw-gap-x-7',
+                              flexBoxAlignmentClassNames[blockSettings.textAlignment ?? 'left'],
+                          ])
+                        : ''
+                }
+            >
                 {isQuotationMarkType && (
                     <QuoteBlockIcon
                         customIconId={CUSTOM_ICON_LEFT_ID}
@@ -50,10 +62,16 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                         sizeChoice={blockSettings.sizeChoice}
                     />
                 )}
-                <div data-test-id="quote-block-author" className="tw-flex-1 tw-w-full">
+                <div
+                    data-test-id="quote-block-author"
+                    className={isFullWidth ? 'tw-flex-1 tw-w-full' : 'tw-min-w-[1rem]'}
+                >
                     <div
                         style={isQuotationMarkType ? {} : borderStyles}
-                        className={isQuotationMarkType ? '' : accentLineClassName}
+                        className={merge([
+                            isQuotationMarkType ? '' : accentLineClassName,
+                            textAlignmentClassNames[blockSettings.textAlignment ?? 'left'],
+                        ])}
                     >
                         <RichTextEditor
                             designTokens={designTokens ?? undefined}

@@ -20,6 +20,8 @@ export const quoteIconMap = (size: string, color: string, customIconUrl?: string
         color,
         width: size,
         height: size,
+        minWidth: size,
+        minHeight: size,
     };
 
     return {
@@ -36,4 +38,16 @@ export const quoteIconMap = (size: string, color: string, customIconUrl?: string
         None: <></>,
         Custom: customIconUrl && <img style={style} alt="Quote Icon" src={customIconUrl} />,
     };
+};
+
+export const textAlignmentClassNames: Record<string, string> = {
+    left: 'tw-text-left',
+    right: 'tw-text-right',
+    center: 'tw-text-center',
+};
+
+export const flexBoxAlignmentClassNames: Record<string, string> = {
+    left: 'tw-justify-start',
+    right: 'tw-justify-end',
+    center: 'tw-justify-center',
 };

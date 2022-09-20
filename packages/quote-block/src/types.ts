@@ -23,6 +23,8 @@ export type Settings = {
     accentLinecolor?: Color;
     quotesColor?: Color;
     content?: string;
+    textAlignment?: string;
+    quotationMarksAnchoring?: string;
 };
 
 export type IconProps = {
@@ -66,3 +68,14 @@ export const quoteSizeMap: Record<QuoteSize, string> = {
     [QuoteSize.MediumSize]: '24px',
     [QuoteSize.LargeSize]: '32px',
 };
+
+export enum TextAlignment {
+    Left = 'left',
+    Center = 'center',
+    Right = 'right',
+}
+
+export enum QuotationMarksAnchoring {
+    FullWidth = 'fullWidth',
+    HugText = 'hugText',
+}
