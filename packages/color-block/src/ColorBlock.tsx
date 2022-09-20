@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { updateArray, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { CardsItem } from './components/cards/CardsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
@@ -36,18 +36,8 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
         setColors(colorsByPaletteId);
     }, [colorsByPaletteId]);
 
-    const { colorPalettes, updateColorPalette } = useColorPalettes(appBridge, [blockSettings.colorPaletteId]);
-
-    const moveCard = (dragIndex: number, hoverIndex: number) => {
-        const colorsCopy = [...colors];
-        const insertAt = dragIndex > hoverIndex ? hoverIndex : hoverIndex + 1;
-        const deleteAt = dragIndex > hoverIndex ? dragIndex + 1 : dragIndex;
-
-        colorsCopy.splice(insertAt, 0, colors[dragIndex]);
-        colorsCopy.splice(deleteAt, 1);
-
-        setColors(colorsCopy);
-    };
+    const memoizedColorPalettes = useMemo(() => [blockSettings.colorPaletteId], [blockSettings.colorPaletteId]);
+    const { colorPalettes, updateColorPalette } = useColorPalettes(appBridge, memoizedColorPalettes);
 
     const handleDrop = (colorId: number, index: number) => {
         updateColor(colorId, { sort: index + 1 });
@@ -84,7 +74,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                             onDrop={() => handleDrop(color.id, index)}
                             treeId={String(blockSettings.colorPaletteId)}
                             colorBlockType={blockSettings.view}
-                            moveCard={moveCard}
+                            moveCard={(dragIndex, hoverIndex) => setColors(updateArray(colors, dragIndex, hoverIndex))}
                             isEditing={isEditing}
                         >
                             <div>
