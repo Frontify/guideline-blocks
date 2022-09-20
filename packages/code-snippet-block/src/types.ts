@@ -54,10 +54,10 @@ export type Settings = {
     paddingBottom?: string;
     padding?: PaddingSize;
     withRowNumbers?: boolean;
-    borderRadiusTop?: string;
-    borderRadiusLeft?: string;
-    borderRadiusRight?: string;
-    borderRadiusBottom?: string;
+    borderRadiusTopLeft?: string;
+    borderRadiusTopRight?: string;
+    borderRadiusBottomRight?: string;
+    borderRadiusBottomLeft?: string;
     withCustomPadding?: boolean;
     lineStyle: TwBorderInlineStyle;
     borderRadius?: BorderRadiusSize;

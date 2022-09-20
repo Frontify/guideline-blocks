@@ -28,10 +28,10 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         paddingLeft = '0px',
         paddingRight = '0px',
         paddingBottom = '0px',
-        borderRadiusTop = '0px',
-        borderRadiusLeft = '0px',
-        borderRadiusRight = '0px',
-        borderRadiusBottom = '0px',
+        borderRadiusTopLeft = '0px',
+        borderRadiusTopRight = '0px',
+        borderRadiusBottomLeft = '0px',
+        borderRadiusBottomRight = '0px',
         withBorder = false,
         withHeading = false,
         withRowNumbers = false,
@@ -49,10 +49,10 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
 
     const borderRadiusValues: Record<BorderRadiusCorners, string> = {
-        topLeft: withCustomBorderRadius ? borderRadiusTop : borderRadius,
-        topRight: withCustomBorderRadius ? borderRadiusLeft : borderRadius,
-        bottomLeft: withCustomBorderRadius ? borderRadiusRight : borderRadius,
-        bottomRight: withCustomBorderRadius ? borderRadiusBottom : borderRadius,
+        topLeft: withCustomBorderRadius ? borderRadiusTopLeft : borderRadius,
+        topRight: withCustomBorderRadius ? borderRadiusTopRight : borderRadius,
+        bottomLeft: withCustomBorderRadius ? borderRadiusBottomLeft : borderRadius,
+        bottomRight: withCustomBorderRadius ? borderRadiusBottomRight : borderRadius,
     };
 
     const codeMirrorEditorProps: CodeMirrorEditorProps = {
