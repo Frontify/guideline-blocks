@@ -121,7 +121,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     alignment={TooltipAlignment.Middle}
                     content={
                         <div>
-                            <div>{currentColor.color.name}</div>
+                            <div>{currentColor && currentColor.color && currentColor.color.name}</div>
                             <div>{getRgbaString(currentColor)}</div>
                             <a href="#" rel="noop noreferrer" onClick={onTooltipClick} className="tw-opacity-50">
                                 {copied ? 'Copied' : 'Click to copy'}
