@@ -5,7 +5,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { AppBridgeBlock, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { SquareWithoutColor } from './components/SquareWithoutColor';
-import { ColorPickerFlyout } from './components/AddNewColor';
+import { ColorPickerFlyout } from './components/ColorPickerFlyout';
 import { ColorPalette, ColorProps, Settings } from './types';
 
 import {
