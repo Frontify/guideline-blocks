@@ -11,7 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { SquareWithoutColor } from './components/SquareWithoutColor';
-import { ColorPickerFlyout } from './components/AddNewColor';
+import { ColorPickerFlyout } from './components/ColorPickerFlyout';
 import { ColorPalette, ColorProps, Settings } from './types';
 
 import {
@@ -30,6 +30,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import 'tailwindcss/tailwind.css';
 import { DropZone } from './react-dnd/DropZone';
+import { EmptyView } from './components/EmptyView';
 
 type Props = {
     appBridge: AppBridgeBlock;
@@ -239,10 +240,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         });
 
         return usedSpace < colorScaleBlockWidth;
-    };
-
-    const doesColorHaveRgbValues = (colorValue: ColorProps) => {
-        return colorValue && colorValue.color;
     };
 
     const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
@@ -492,112 +489,96 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
     const [displayableItems, setDisplayableItems] = useState(calculateWidths(blockSettings['color-input']));
     const defaultColorSquareWidth = 100;
-    const emptyBlockColors: string[] = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
     const listId = useMemoizedId();
 
     return (
         <>
-            <div
-                data-test-id="color-scale-block"
-                className={`color-scale-block tw-rounded-md tw-overflow-visible tw-mb-4 ${
-                    isEditing ? 'editing' : ''
-                } tw-w-full tw-flex tw-h-[${colorScaleHeight}]`}
-                ref={colorScaleBlockRef}
-                // Note: onMouseUp and onResize are defined here intentionally, instead of being in the DragHandle component.
-                // The reason for this is that the dragging feature stops working if I move these to DragHandle,
-                // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
-                // The 'onResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
-                // identify which color square is being resized.
-                onMouseUp={onResizeStop}
-                onMouseMove={onResize}
-                draggable={true}
-            >
-                <DndProvider backend={HTML5Backend}>
-                    {displayableItems &&
-                        displayableItems?.map((color: ColorProps, index: number) => {
-                            let backgroundColorRgba;
+            <div className="tw-w-full tw-p-px tw-mb-4 tw-border tw-border-line tw-rounded">
+                {displayableItems.length > 0 ? (
+                    <div
+                        data-test-id="color-scale-block"
+                        className={`tw-rounded-md tw-overflow-visible tw-flex tw-h-[${colorScaleHeight}]`}
+                        ref={colorScaleBlockRef}
+                        // Note: onMouseUp and onResize are defined here intentionally, instead of being in the DragHandle component.
+                        // The reason for this is that the dragging feature stops working if I move these to DragHandle,
+                        // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
+                        // The 'onResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
+                        // identify which color square is being resized.
+                        onMouseUp={onResizeStop}
+                        onMouseMove={onResize}
+                        draggable={true}
+                    >
+                        <DndProvider backend={HTML5Backend}>
+                            {displayableItems &&
+                                displayableItems?.map((color: ColorProps, index: number) => {
+                                    let backgroundColorRgba;
 
-                            if (color && color.color) {
-                                backgroundColorRgba = `${color.color.red},${color.color.green},${color.color.blue},${color.color.alpha}`;
-                            }
+                                    if (color && color.color) {
+                                        backgroundColorRgba = `${color.color.red},${color.color.green},${color.color.blue},${color.color.alpha}`;
+                                    }
 
-                            let width;
+                                    let width;
 
-                            if (color && color.width) {
-                                width = color.width;
-                            } else {
-                                width = calculateDefaultColorWidth(displayableItems.length);
-                            }
+                                    if (color && color.width) {
+                                        width = color.width;
+                                    } else {
+                                        width = calculateDefaultColorWidth(displayableItems.length);
+                                    }
 
-                            return (
-                                <div className="color-square tw-flex tw-relative" key={color.id}>
-                                    {doesColorHaveRgbValues(color) ? (
-                                        <>
-                                            <DropZone
-                                                key={`orderable-list-item-${color.id}-before`}
-                                                currentColor={color}
-                                                height={parseInt(colorScaleHeight)}
-                                                width={width}
-                                                isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
-                                                data={{
-                                                    targetItem: color,
-                                                    position: DropZonePosition.Before,
-                                                }}
-                                                onDrop={handleDrop}
-                                                treeId={listId}
-                                                before
-                                            />
-                                            <SquareWithColor
-                                                id={color.id}
-                                                index={index}
-                                                width={currentlyDraggedColorId === color.id ? 0 : width}
-                                                height={colorScaleHeight}
-                                                isDragging={
-                                                    currentlyDraggedColorId !== null &&
-                                                    currentlyDraggedColorId !== undefined
-                                                }
-                                                setIsDragging={setCurrentlyDraggedColorId}
-                                                currentColor={color}
-                                                backgroundColorRgba={backgroundColorRgba}
-                                                totalNumberOfBlocks={displayableItems.length}
-                                                onResizeStart={onResizeStart}
-                                                calculateLeftPosition={calculateLeftPosition}
-                                                isEditing={isEditing}
-                                                editedColor={editedColor}
-                                                setEditedColor={setEditedColor}
-                                                updateColor={updateColor}
-                                                setFormat={() => false}
-                                                deleteColor={deleteColor}
-                                                handleDrop={handleDrop}
-                                                listId={listId}
-                                            />
-                                        </>
-                                    ) : (
-                                        <SquareWithoutColor
-                                            id={color.id}
-                                            index={index}
-                                            placeholderColor={emptyBlockColors[index]}
-                                            totalNumberOfBlocks={displayableItems.length}
-                                            width={width}
-                                            height={colorScaleHeight}
-                                            currentSquare={color}
-                                            onResizeStart={onResizeStart}
-                                            calculateLeftPosition={calculateLeftPosition}
-                                            isEditing={isEditing}
-                                            editedColor={editedColor}
-                                            setEditedColor={setEditedColor}
-                                            updateColor={updateColor}
-                                            setFormat={() => false}
-                                            colorOptionsOpen={colorOptionsOpen}
-                                            deleteColor={deleteColor}
-                                            handleDrop={handleDrop}
-                                            listId={listId}
-                                        />
-                                    )}
-                                </div>
-                            );
-                        })}
-                </DndProvider>
+                                    return (
+                                        <div className="color-square tw-flex tw-relative" key={color.id}>
+                                            <>
+                                                <DropZone
+                                                    key={`orderable-list-item-${color.id}-before`}
+                                                    currentColor={color}
+                                                    height={parseInt(colorScaleHeight)}
+                                                    width={width}
+                                                    isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
+                                                    data={{
+                                                        targetItem: color,
+                                                        position: DropZonePosition.Before,
+                                                    }}
+                                                    onDrop={handleDrop}
+                                                    treeId={listId}
+                                                    before
+                                                />
+                                                <SquareWithColor
+                                                    id={color.id}
+                                                    index={index}
+                                                    width={currentlyDraggedColorId === color.id ? 0 : width}
+                                                    height={colorScaleHeight}
+                                                    isDragging={
+                                                        currentlyDraggedColorId !== null &&
+                                                        currentlyDraggedColorId !== undefined
+                                                    }
+                                                    setIsDragging={setCurrentlyDraggedColorId}
+                                                    currentColor={color}
+                                                    backgroundColorRgba={backgroundColorRgba}
+                                                    totalNumberOfBlocks={displayableItems.length}
+                                                    onResizeStart={onResizeStart}
+                                                    calculateLeftPosition={calculateLeftPosition}
+                                                    isEditing={isEditing}
+                                                    editedColor={editedColor}
+                                                    setEditedColor={setEditedColor}
+                                                    updateColor={updateColor}
+                                                    setFormat={() => false}
+                                                    deleteColor={deleteColor}
+                                                    handleDrop={handleDrop}
+                                                    listId={listId}
+                                                />
+                                            </>
+                                        </div>
+                                    );
+                                })}
+                        </DndProvider>
+                    </div>
+                ) : (
+                    <EmptyView
+                        height={
+                            blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
+                        }
+                    />
+                )}
             </div>
 
             {isEditing && (
