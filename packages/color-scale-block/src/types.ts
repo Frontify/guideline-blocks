@@ -42,9 +42,9 @@ export type SquareWithColorProps = {
     calculateLeftPosition: (id: number, width: number) => void;
     isEditing: boolean;
     editedColor: ColorProps;
-    setEditedColor: (value: ColorProps) => void;
+    setEditedColor: (color: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
-    setFormat: (value?: ColorFormat) => void;
+    setFormat: (color?: ColorFormat) => void;
     deleteColor: (color: number) => void;
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
     listId: string;
@@ -63,9 +63,9 @@ export type SquareWithoutColorProps = {
     calculateLeftPosition: (id: number, width: number) => void;
     isEditing: boolean;
     editedColor: ColorProps;
-    setEditedColor: (value: ColorProps) => void;
+    setEditedColor: (color: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
-    setFormat: (value?: ColorFormat) => void;
+    setFormat: (color?: ColorFormat) => void;
     deleteColor: (color: number) => void;
     onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void;
     handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
@@ -101,7 +101,7 @@ export type AddNewColorModalProps = {
     currentColor: ColorProps;
     isEditing: boolean;
     editedColor: ColorProps;
-    setEditedColor: (value: ColorProps) => void;
+    setEditedColor: (color: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: () => void;
 };
@@ -111,7 +111,7 @@ export type EditExistingColorModalProps = {
     currentColor: ColorProps;
     isEditing: boolean;
     editedColor: ColorProps;
-    setEditedColor: (value: ColorProps) => void;
+    setEditedColor: (color: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: () => void;
 };

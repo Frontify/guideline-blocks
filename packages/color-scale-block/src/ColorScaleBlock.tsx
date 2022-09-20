@@ -32,7 +32,7 @@ type Props = {
 
 export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const { colorPalettes } = useColorPalettes(appBridge);
-    const [colorPickerPalette, setColorPickerPalette]: [ColorPalette[], (value: ColorPalette[]) => void] = useState(
+    const [colorPickerPalette, setColorPickerPalette]: [ColorPalette[], (color: ColorPalette[]) => void] = useState(
         [] as ColorPalette[]
     );
     const isEditing = useEditorState(appBridge);
@@ -42,7 +42,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     );
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
         number | undefined,
-        (value?: number | undefined) => void
+        (color?: number | undefined) => void
     ] = useState();
     const [editedColor, setEditedColor] = useState();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
@@ -114,56 +114,56 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         let emptySquareWidth = 12;
         let itemsWithWidths: ColorProps[] = [];
 
-        itemsWithWidths = itemList?.map((value: ColorProps) => {
-            if (colorScaleBlockRef && colorScaleBlockRef.current && (!value || (value && !value.id))) {
+        itemsWithWidths = itemList?.map((color: ColorProps) => {
+            if (colorScaleBlockRef && colorScaleBlockRef.current && (!color || (color && !color.id))) {
                 // Square has no ID, so this is an empty placeholder square
                 emptySquares++;
-                return value;
-            } else if (colorScaleBlockRef && colorScaleBlockRef.current && (!value || (value && !value.width))) {
+                return color;
+            } else if (colorScaleBlockRef && colorScaleBlockRef.current && (!color || (color && !color.width))) {
                 // In this case, a width is missing
                 return {
-                    ...value,
+                    ...color,
                     width: calculateDefaultColorWidth(itemList.length),
                 };
             }
-            return value;
+            return color;
         });
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             const colorBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
 
-            itemsWithWidths?.map((value: ColorProps) => {
-                if (value && value.id && value.width) {
-                    usedSpace += value.width;
+            itemsWithWidths?.map((color: ColorProps) => {
+                if (color && color.id && color.width) {
+                    usedSpace += color.width;
                 }
 
-                return value;
+                return color;
             });
 
             emptySpace = colorBlockWidth - usedSpace;
 
             emptySquareWidth = emptySpace / emptySquares;
 
-            itemsWithWidths = itemsWithWidths?.map((value: ColorProps) => {
-                if (!value || (value && !value.id)) {
-                    if (value) {
-                        return { ...value, width: emptySquareWidth };
+            itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
+                if (!color || (color && !color.id)) {
+                    if (color) {
+                        return { ...color, width: emptySquareWidth };
                     }
                     return {
                         width: emptySquareWidth,
                         alt: 'Click to drag',
                     };
                 }
-                return value;
+                return color;
             });
         }
 
         if (emptySpace === 0 && itemsWithWidths) {
-            itemsWithWidths = itemsWithWidths?.map((value: ColorProps, index: number) => {
-                if (!value || (value && !value.id)) {
-                    if (value) {
+            itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
+                if (!color || (color && !color.id)) {
+                    if (color) {
                         return {
-                            ...value,
+                            ...color,
                             width: calculateDefaultColorWidth(itemList.length),
                         };
                     }
@@ -172,7 +172,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         alt: 'Click to drag',
                     };
                 }
-                return value;
+                return color;
             });
         }
 
@@ -209,11 +209,11 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
         const defaultWidth = width ? width : defaultColorSquareWidth;
-        displayableItems?.map((value: ColorProps, loopIndex: number) => {
+        displayableItems?.map((color: ColorProps, loopIndex: number) => {
             if (loopIndex < index) {
-                leftPos += value && value.width ? value.width : defaultWidth;
+                leftPos += color && color.width ? color.width : defaultWidth;
             }
-            return value;
+            return color;
         });
         return leftPos;
     };
@@ -222,17 +222,17 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         const colorScaleBlockWidth = colorScaleBlockRef?.current.getBoundingClientRect().width;
         let usedSpace = 0;
 
-        displayableItems?.map((value: ColorProps) => {
+        displayableItems?.map((color: ColorProps) => {
             let width;
-            if (value && value.width) {
-                width = value.width;
+            if (color && color.width) {
+                width = color.width;
             } else {
                 width = calculateDefaultColorWidth(displayableItems.length);
             }
             if (width) {
                 usedSpace += width;
             }
-            return value;
+            return color;
         });
 
         if (usedSpace < colorScaleBlockWidth) {
@@ -291,7 +291,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             let needToCalculateWidths = false;
 
-            // This determines the minimum number of colors, and checks to see if a custom value is defined or if the settings is using slider values.
+            // This determines the minimum number of colors, and checks to see if a custom color is defined or if the settings is using slider values.
 
             // TODO: use real values later
             // const minimumColors = blockSettings['colorInputMinimumSwitch']
@@ -310,8 +310,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             try {
                 // Check to see if we have the minimum number of color squares as defined in the settings.
                 if (blockSettings['color-input'] && blockSettings['color-input'].length >= minimumColors) {
-                    blockSettings['color-input'].forEach((value: ColorProps) => {
-                        if (!value || (value && !value.width)) {
+                    blockSettings['color-input'].forEach((color: ColorProps) => {
+                        if (!color || (color && !color.width)) {
                             needToCalculateWidths = true;
                         }
                     });
@@ -519,33 +519,33 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             >
                 <DndProvider backend={HTML5Backend}>
                     {displayableItems &&
-                        displayableItems.map((value: ColorProps, index: number) => {
+                        displayableItems.map((color: ColorProps, index: number) => {
                             let backgroundColorRgba;
 
-                            if (value && value.color) {
-                                backgroundColorRgba = `${value.color.red},${value.color.green},${value.color.blue},${value.color.alpha}`;
+                            if (color && color.color) {
+                                backgroundColorRgba = `${color.color.red},${color.color.green},${color.color.blue},${color.color.alpha}`;
                             }
 
                             let width;
 
-                            if (value && value.width) {
-                                width = value.width;
+                            if (color && color.width) {
+                                width = color.width;
                             } else {
                                 width = calculateDefaultColorWidth(displayableItems.length);
                             }
 
                             return (
-                                <div className="color-square tw-flex tw-relative" key={value.id}>
-                                    {doesColorHaveRgbValues(value) ? (
+                                <div className="color-square tw-flex tw-relative" key={color.id}>
+                                    {doesColorHaveRgbValues(color) ? (
                                         <>
                                             <DropZone
-                                                key={`orderable-list-item-${value.id}-before`}
-                                                currentColor={value}
+                                                key={`orderable-list-item-${color.id}-before`}
+                                                currentColor={color}
                                                 height={colorScaleHeight ? parseInt(colorScaleHeight) : 96}
                                                 width={width}
                                                 isDraggingActive={isNumber(currentlyDraggedColorId)}
                                                 data={{
-                                                    targetItem: value,
+                                                    targetItem: color,
                                                     position: DropZonePosition.Before,
                                                 }}
                                                 onDrop={handleDrop}
@@ -553,13 +553,13 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                 before
                                             />
                                             <SquareWithColor
-                                                id={value.id}
+                                                id={color.id}
                                                 index={index}
-                                                width={currentlyDraggedColorId === value.id ? 0 : width}
+                                                width={currentlyDraggedColorId === color.id ? 0 : width}
                                                 height={colorScaleHeight}
                                                 isDragging={isDragging}
                                                 setIsDragging={setCurrentlyDraggedColorId}
-                                                currentColor={value}
+                                                currentColor={color}
                                                 backgroundColorRgba={backgroundColorRgba}
                                                 totalNumberOfBlocks={displayableItems.length}
                                                 onResizeStart={onResizeStart}
@@ -576,13 +576,13 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                         </>
                                     ) : (
                                         <SquareWithoutColor
-                                            id={value.id}
+                                            id={color.id}
                                             index={index}
                                             placeholderColor={emptyBlockColors[index]}
                                             totalNumberOfBlocks={displayableItems.length}
                                             width={width}
                                             height={colorScaleHeight}
-                                            currentSquare={value}
+                                            currentSquare={color}
                                             onResizeStart={onResizeStart}
                                             calculateLeftPosition={calculateLeftPosition}
                                             isEditing={isEditing}
