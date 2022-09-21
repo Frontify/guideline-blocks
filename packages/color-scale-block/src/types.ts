@@ -20,9 +20,9 @@ export type FormattedColor = {
 };
 
 export type ColorProps = {
-    id: number;
+    id?: number;
     sort?: number;
-    color: Color;
+    color?: Color;
     width?: number;
     alt?: string;
 };
