@@ -14,11 +14,10 @@ export type DropZoneProps = {
     index: number;
     moveCard: (dragIndex: number, hoverIndex: number) => void;
     isEditing: boolean;
-    isMoving: boolean;
 };
 
 export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
-    ({ index, treeId, onDrop, children, colorBlockType, moveCard, isEditing, isMoving }, forwardedRef) => {
+    ({ index, treeId, onDrop, children, colorBlockType, moveCard, isEditing }, forwardedRef) => {
         const dropZoneRef = useRef<HTMLDivElement>(null);
 
         const [, drop] = useDrop({
@@ -78,9 +77,7 @@ export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
                     }
                 }
 
-                if (!isMoving) {
-                    moveCard(dragIndex, hoverIndex);
-                }
+                moveCard(dragIndex, hoverIndex);
 
                 item.index = hoverIndex;
             },
@@ -103,7 +100,7 @@ export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
         ]);
 
         return (
-            <div ref={forwardedRef}>
+            <div ref={forwardedRef} className="tw-h-full">
                 <div
                     ref={dropZoneRef}
                     className={merge(['tw-transition-all', isDragging ? activeOuterDropZoneClassNames : 'tw-h-auto'])}
