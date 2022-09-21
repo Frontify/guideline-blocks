@@ -24,29 +24,11 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
+    const hexColor = `#${color.hex}`;
+
     return (
         <div data-test-id="drops-item" className="tw-group tw-relative tw-flex tw-flex-col tw-items-center">
-            {!isEditing ? (
-                <Tooltip
-                    withArrow
-                    position={TooltipPosition.Right}
-                    hoverDelay={0}
-                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
-                    triggerElement={
-                        <div className="tw-mb-3 tw-overflow-hidden tw-rounded-full tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
-                            <div
-                                data-test-id="color-tooltip-trigger"
-                                className="tw-relative tw-w-[100px] tw-h-[100px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
-                                style={{
-                                    backgroundColor: `#${color.hex}`,
-                                    opacity: (color.alpha && color.alpha / 255) || 1,
-                                }}
-                                onClick={() => copy(mappedFirstColorSpace.value ?? '')}
-                            />
-                        </div>
-                    }
-                />
-            ) : (
+            {isEditing ? (
                 <>
                     <ColorPickerFlyout
                         currentColor={color as Color}
@@ -59,7 +41,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 data-test-id="color-color-picker-flyout-trigger"
                                 className="tw-relative tw-w-[100px] tw-h-[100px] tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                                 style={{
-                                    backgroundColor: `#${color.hex}`,
+                                    backgroundColor: hexColor,
                                     opacity: (color.alpha && color.alpha / 255) || 1,
                                 }}
                             />
@@ -80,6 +62,26 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         />
                     </div>
                 </>
+            ) : (
+                <Tooltip
+                    withArrow
+                    position={TooltipPosition.Right}
+                    hoverDelay={0}
+                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    triggerElement={
+                        <div className="tw-mb-3 tw-overflow-hidden tw-rounded-full tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                            <div
+                                data-test-id="color-tooltip-trigger"
+                                className="tw-relative tw-w-[100px] tw-h-[100px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                                style={{
+                                    backgroundColor: hexColor,
+                                    opacity: (color.alpha && color.alpha / 255) || 1,
+                                }}
+                                onClick={() => copy(mappedFirstColorSpace.value ?? '')}
+                            />
+                        </div>
+                    }
+                />
             )}
 
             <ColorName
@@ -103,7 +105,14 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 {mappedColorSpace.label}
                             </div>
 
-                            {!isEditing ? (
+                            {isEditing ? (
+                                <ColorSpaceValue
+                                    viewType={ColorBlockType.Drops}
+                                    color={color}
+                                    colorSpaceId={colorSpaceId}
+                                    onUpdate={onUpdate}
+                                />
+                            ) : (
                                 <Tooltip
                                     withArrow
                                     position={TooltipPosition.Right}
@@ -120,13 +129,6 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                             {mappedColorSpace.value}
                                         </div>
                                     }
-                                />
-                            ) : (
-                                <ColorSpaceValue
-                                    viewType={ColorBlockType.Drops}
-                                    color={color}
-                                    colorSpaceId={colorSpaceId}
-                                    onUpdate={onUpdate}
                                 />
                             )}
                         </div>

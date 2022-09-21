@@ -5,7 +5,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Flipped, Flipper } from 'react-flip-toolkit';
 import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
+import { Color, RichTextEditor } from '@frontify/fondue';
 import { updateArray, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { CardsItem } from './components/cards/CardsItem';
@@ -15,7 +15,7 @@ import { DropsItemAdd } from './components/drops/DropsItemAdd';
 import { DropZone } from './components/DropZone';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
-import { ColorBlockProps, ColorBlockType, ColorSpaceInputValues, Settings } from './types';
+import { ColorBlockProps, ColorBlockType, ColorSpaceValues, ItemProps, Settings } from './types';
 
 const wrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
@@ -46,6 +46,17 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
 
     const handleNameChange = (value: string) => setBlockSettings({ name: value });
     const handleDescriptionChange = (value: string) => setBlockSettings({ description: value });
+
+    const colorSpaces = blockSettings.colorspaces as (keyof ColorSpaceValues)[];
+    const handleCreateColor = (color: Color) => {
+        createColor({
+            colorPaletteId: blockSettings.colorPaletteId,
+            red: color.red,
+            green: color.green,
+            blue: color.blue,
+            alpha: color.alpha ? Math.round(color.alpha * 255) : 255,
+        });
+    };
 
     return (
         <div data-test-id="color-block">
@@ -81,114 +92,59 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                         }}
                         className={wrapperClasses[blockSettings.view]}
                     >
-                        {colors.map((color, index) => (
-                            <Flipped key={color.id} flipId={color.id}>
-                                <div>
-                                    <DropZone
-                                        key={`drop-zone-item-${color.id}`}
-                                        index={index}
-                                        onDrop={() => handleDrop(color.id, index)}
-                                        treeId={String(blockSettings.colorPaletteId)}
-                                        colorBlockType={blockSettings.view}
-                                        moveCard={(dragIndex, hoverIndex) => {
-                                            setColors(updateArray(colors, dragIndex, hoverIndex));
-                                        }}
-                                        isEditing={isEditing}
-                                    >
-                                        <div>
-                                            {blockSettings.view === ColorBlockType.List && (
-                                                <ListItem
-                                                    color={color}
-                                                    colorSpaces={
-                                                        blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]
-                                                    }
-                                                    isEditing={isEditing}
-                                                    onBlur={(event) =>
-                                                        updateColor(color.id, { name: event.target.value })
-                                                    }
-                                                    onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
-                                                    onDelete={(colorId) => deleteColor(colorId)}
-                                                />
-                                            )}
-                                            {blockSettings.view === ColorBlockType.Drops && (
-                                                <DropsItem
-                                                    color={color}
-                                                    colorSpaces={
-                                                        blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]
-                                                    }
-                                                    isEditing={isEditing}
-                                                    onBlur={(event) =>
-                                                        updateColor(color.id, { name: event.target.value })
-                                                    }
-                                                    onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
-                                                    onDelete={(colorId) => deleteColor(colorId)}
-                                                />
-                                            )}
-                                            {blockSettings.view === ColorBlockType.Cards && (
-                                                <CardsItem
-                                                    color={color}
-                                                    colorSpaces={
-                                                        blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]
-                                                    }
-                                                    isEditing={isEditing}
-                                                    onBlur={(event) =>
-                                                        updateColor(color.id, { name: event.target.value })
-                                                    }
-                                                    onUpdate={(colorPatch) => updateColor(color.id, colorPatch)}
-                                                    onDelete={(colorId) => deleteColor(colorId)}
-                                                />
-                                            )}
-                                        </div>
-                                    </DropZone>
-                                </div>
-                            </Flipped>
-                        ))}
+                        {colors.map((color, index) => {
+                            const itemProps: ItemProps = {
+                                color,
+                                colorSpaces,
+                                isEditing,
+                                onBlur: (event) => updateColor(color.id, { name: event.target.value }),
+                                onUpdate: (colorPatch) => updateColor(color.id, colorPatch),
+                                onDelete: (colorId) => deleteColor(colorId),
+                            };
+
+                            return (
+                                <Flipped key={color.id} flipId={color.id}>
+                                    <div>
+                                        <DropZone
+                                            key={`drop-zone-item-${color.id}`}
+                                            index={index}
+                                            onDrop={() => handleDrop(color.id, index)}
+                                            treeId={String(blockSettings.colorPaletteId)}
+                                            colorBlockType={blockSettings.view}
+                                            moveCard={(dragIndex, hoverIndex) => {
+                                                setColors(updateArray(colors, dragIndex, hoverIndex));
+                                            }}
+                                            isEditing={isEditing}
+                                        >
+                                            <div>
+                                                {blockSettings.view === ColorBlockType.List && (
+                                                    <ListItem {...itemProps} />
+                                                )}
+                                                {blockSettings.view === ColorBlockType.Drops && (
+                                                    <DropsItem {...itemProps} />
+                                                )}
+                                                {blockSettings.view === ColorBlockType.Cards && (
+                                                    <CardsItem {...itemProps} />
+                                                )}
+                                            </div>
+                                        </DropZone>
+                                    </div>
+                                </Flipped>
+                            );
+                        })}
 
                         {isEditing && (
                             <>
                                 {blockSettings.view === ColorBlockType.List && (
-                                    <ListItemAdd
-                                        colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
-                                        onConfirm={(color) => {
-                                            createColor({
-                                                colorPaletteId: blockSettings.colorPaletteId,
-                                                red: color.red,
-                                                green: color.green,
-                                                blue: color.blue,
-                                                alpha: color.alpha ? Math.round(color.alpha * 255) : 255,
-                                            });
-                                        }}
-                                    />
+                                    <ListItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
                                 )}
 
                                 {blockSettings.view === ColorBlockType.Drops && (
-                                    <DropsItemAdd
-                                        colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
-                                        onConfirm={(color) => {
-                                            createColor({
-                                                colorPaletteId: blockSettings.colorPaletteId,
-                                                red: color.red,
-                                                green: color.green,
-                                                blue: color.blue,
-                                                alpha: color.alpha ? Math.round(color.alpha * 255) : 255,
-                                            });
-                                        }}
-                                    />
+                                    <DropsItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
                                 )}
 
                                 {blockSettings.view === ColorBlockType.Cards && (
-                                    <CardsItemAdd
-                                        colorSpaces={blockSettings.colorspaces as (keyof ColorSpaceInputValues)[]}
-                                        onConfirm={(color) => {
-                                            createColor({
-                                                colorPaletteId: blockSettings.colorPaletteId,
-                                                red: color.red,
-                                                green: color.green,
-                                                blue: color.blue,
-                                                alpha: color.alpha ? Math.round(color.alpha * 255) : 255,
-                                            });
-                                        }}
-                                    />
+                                    <CardsItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
                                 )}
                             </>
                         )}

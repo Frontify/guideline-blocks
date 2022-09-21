@@ -26,32 +26,14 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
 
+    const hexColor = `#${color.hex}`;
+
     return (
         <div
             data-test-id="list-item"
             className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all hover:tw-shadow-t-inner-line-strong"
         >
-            {!isEditing ? (
-                <Tooltip
-                    withArrow
-                    position={TooltipPosition.Right}
-                    hoverDelay={0}
-                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
-                    triggerElement={
-                        <div className="tw-h-full tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
-                            <div
-                                data-test-id="color-tooltip-trigger"
-                                className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
-                                style={{
-                                    backgroundColor: `#${color.hex}`,
-                                    opacity: (color.alpha && color.alpha / 255) || 1,
-                                }}
-                                onClick={() => copy(mappedFirstColorSpace.value ?? '')}
-                            />
-                        </div>
-                    }
-                />
-            ) : (
+            {isEditing ? (
                 <ColorPickerFlyout
                     currentColor={color as Color}
                     onConfirm={(color) => {
@@ -63,12 +45,48 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                             data-test-id="color-color-picker-flyout-trigger"
                             className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                             style={{
-                                backgroundColor: `#${color.hex}`,
+                                backgroundColor: hexColor,
                                 opacity: (color.alpha && color.alpha / 255) || 1,
                             }}
                         />
                     </div>
                 </ColorPickerFlyout>
+            ) : (
+                <Tooltip
+                    withArrow
+                    position={TooltipPosition.Right}
+                    hoverDelay={0}
+                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    triggerElement={
+                        <div className="tw-h-full tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                            <div
+                                data-test-id="color-tooltip-trigger"
+                                className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
+                                style={{
+                                    backgroundColor: hexColor,
+                                    opacity: (color.alpha && color.alpha / 255) || 1,
+                                }}
+                                onClick={() => copy(mappedFirstColorSpace.value ?? '')}
+                            />
+                        </div>
+                    }
+                />
+            )}
+
+            {isEditing && (
+                <div
+                    data-test-id="delete-button"
+                    className={joinClassNames([
+                        'tw-absolute tw-hidden tw-top-1/2 tw-right-3 tw-translate-y-[-50%]',
+                        isEditing && 'group-hover:tw-block',
+                    ])}
+                >
+                    <Button
+                        icon={<IconTrashBin size={IconSize.Size20} />}
+                        style={ButtonStyle.Secondary}
+                        onClick={() => onDelete(color.id)}
+                    />
+                </div>
             )}
 
             <ColorName
@@ -90,7 +108,14 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                 </Badge>
                             </div>
 
-                            {!isEditing ? (
+                            {isEditing ? (
+                                <ColorSpaceValue
+                                    viewType={ColorBlockType.List}
+                                    color={color}
+                                    colorSpaceId={colorSpaceId}
+                                    onUpdate={onUpdate}
+                                />
+                            ) : (
                                 <Tooltip
                                     withArrow
                                     position={TooltipPosition.Right}
@@ -108,33 +133,10 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                         </div>
                                     }
                                 />
-                            ) : (
-                                <ColorSpaceValue
-                                    viewType={ColorBlockType.List}
-                                    color={color}
-                                    colorSpaceId={colorSpaceId}
-                                    onUpdate={onUpdate}
-                                />
                             )}
                         </div>
                     );
                 })}
-
-                {isEditing && (
-                    <div
-                        data-test-id="delete-button"
-                        className={joinClassNames([
-                            'tw-absolute tw-hidden tw-top-1/2 tw-right-3 tw-translate-y-[-50%]',
-                            isEditing && 'group-hover:tw-block',
-                        ])}
-                    >
-                        <Button
-                            icon={<IconTrashBin size={IconSize.Size20} />}
-                            style={ButtonStyle.Secondary}
-                            onClick={() => onDelete(color.id)}
-                        />
-                    </div>
-                )}
             </div>
         </div>
     );

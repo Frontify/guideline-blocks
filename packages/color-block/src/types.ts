@@ -25,7 +25,7 @@ export enum ColorBlockType {
 
 export type ItemProps = {
     color: FrontifyColor;
-    colorSpaces: (keyof ColorSpaceInputValues)[];
+    colorSpaces: (keyof ColorSpaceValues)[];
     isEditing: boolean;
     onBlur: (event: FocusEvent<HTMLInputElement>) => void;
     onUpdate: (colorPatch: FrontifyColorPatch) => void;
@@ -33,19 +33,19 @@ export type ItemProps = {
 };
 
 export type ItemAddProps = {
-    colorSpaces: (keyof ColorSpaceInputValues)[];
+    colorSpaces: (keyof ColorSpaceValues)[];
     onConfirm: (colorPatch: Color) => void;
 };
 
 export type ColorBlockDropsViewProps = {
     colors: string[];
-    colorSpaces: (keyof ColorSpaceInputValues)[];
+    colorSpaces: (keyof ColorSpaceValues)[];
     isEditing: boolean;
 };
 
 export type ColorBlockCardsViewProps = {
     colors: string[];
-    colorSpaces: (keyof ColorSpaceInputValues)[];
+    colorSpaces: (keyof ColorSpaceValues)[];
     isEditing: boolean;
 };
 
@@ -60,7 +60,7 @@ export type TooltipContentProps = {
     status: 'error' | 'success' | 'idle';
 };
 
-export type ColorSpaceInputValues = {
+export type ColorSpaceValues = {
     hex?: string;
     rgb?: string;
     cmyk?: string;
@@ -81,3 +81,25 @@ export type ColorSpaceInputValues = {
     threeM: string;
     variable: string;
 };
+
+export enum ColorSpaceLabels {
+    Hex = 'RGB',
+    Rgb = 'RGB',
+    Less = 'LESS',
+    Ral = 'RAL',
+    Pms = 'PMS',
+    PmsC = 'PMS-C',
+    PmsU = 'PMS-U',
+    PmsCp = 'PMS-CP',
+    PmsPq = 'PMS-PQ',
+    PmsTcx = 'PMS-TCX',
+    Ora = 'ORA',
+    Cmyk = 'CMYK',
+    CmykC = 'CMYK-C',
+    CmykU = 'CMYK-U',
+    CmykN = 'CMYK-N',
+    Ncs = 'NCS',
+    Hks = 'HKS',
+    ThreeM = '3M',
+    Lab = 'LAB',
+}

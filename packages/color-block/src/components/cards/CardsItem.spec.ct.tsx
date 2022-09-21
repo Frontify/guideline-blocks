@@ -4,7 +4,7 @@ import { mount } from 'cypress/react';
 import { FrontifyColorDummy } from '@frontify/app-bridge';
 
 import { CardsItem } from './CardsItem';
-import { ColorSpaceInputValues } from '../../types';
+import { ColorSpaceValues } from '../../types';
 
 const CardsItemSelector = '[data-test-id="cards-item"]';
 const ColorTooltipTriggerSelector = '[data-test-id="color-tooltip-trigger"]';
@@ -16,7 +16,7 @@ const TooltipSelector = '[data-test-id="tooltip"]';
 const ColorNameSelector = '[data-test-id="color-name"]';
 const DeleteButtonSelector = '[data-test-id="delete-button"]';
 
-const COLORSPACES = ['hex', 'rgb', 'variable'];
+const COLOR_SPACES = ['hex', 'rgb', 'variable'];
 
 describe('CardsItem component in view mode', () => {
     beforeEach(() => {
@@ -27,7 +27,7 @@ describe('CardsItem component in view mode', () => {
         mount(
             <CardsItem
                 color={FrontifyColorDummy.red()}
-                colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
+                colorSpaces={COLOR_SPACES as (keyof ColorSpaceValues)[]}
                 isEditing={false}
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}
@@ -62,7 +62,7 @@ describe('CardsItem component in edit mode', () => {
         mount(
             <CardsItem
                 color={FrontifyColorDummy.red()}
-                colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
+                colorSpaces={COLOR_SPACES as (keyof ColorSpaceValues)[]}
                 isEditing
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}

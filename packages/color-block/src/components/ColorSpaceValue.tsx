@@ -5,17 +5,17 @@ import { FrontifyColor, FrontifyColorPatch } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
 
 import { mapColorSpaces } from '../helpers/mapColorSpaces';
-import { ColorBlockType, ColorSpaceInputValues } from '../types';
+import { ColorBlockType, ColorSpaceLabels, ColorSpaceValues } from '../types';
 
 type ColorSpaceValueProps = {
     viewType: ColorBlockType;
     color: FrontifyColor;
-    colorSpaceId: keyof ColorSpaceInputValues;
+    colorSpaceId: keyof ColorSpaceValues;
     onUpdate: (colorPatch: FrontifyColorPatch) => void;
 };
 
 export const ColorSpaceValue = ({ viewType, color, colorSpaceId, onUpdate }: ColorSpaceValueProps) => {
-    const [colorSpaceInputValues, setColorSpaceInputValues] = useState<ColorSpaceInputValues>({
+    const [ColorSpaceValues, setColorSpaceValues] = useState<ColorSpaceValues>({
         cmykCoated: color.cmykCoated ?? '',
         cmykNewspaper: color.cmykNewspaper ?? '',
         cmykUncoated: color.cmykUncoated ?? '',
@@ -37,7 +37,7 @@ export const ColorSpaceValue = ({ viewType, color, colorSpaceId, onUpdate }: Col
     const handleColorSpaceValueChange = (event: FormEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
 
-        setColorSpaceInputValues((previousState) => ({ ...previousState, [name]: value }));
+        setColorSpaceValues((previousState) => ({ ...previousState, [name]: value }));
     };
 
     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
@@ -49,7 +49,7 @@ export const ColorSpaceValue = ({ viewType, color, colorSpaceId, onUpdate }: Col
                 viewType === ColorBlockType.List ? 'tw-h-5 tw-ml-3' : 'tw-h-4',
             ])}
         >
-            {['CMYK', 'HEX', 'RGB'].includes(mappedColorSpace.label) ? (
+            {[ColorSpaceLabels.Cmyk, ColorSpaceLabels.Hex, ColorSpaceLabels.Rgb].includes(mappedColorSpace.label) ? (
                 <div className="tw-text-s tw-text-black-80">
                     {mappedColorSpace.value || mappedColorSpace.placeholder}
                 </div>
@@ -58,7 +58,7 @@ export const ColorSpaceValue = ({ viewType, color, colorSpaceId, onUpdate }: Col
                     name={colorSpaceId}
                     className="tw-w-full tw-outline-none tw-text-s"
                     type="text"
-                    value={colorSpaceInputValues[colorSpaceId]}
+                    value={ColorSpaceValues[colorSpaceId]}
                     onChange={handleColorSpaceValueChange}
                     placeholder={mappedColorSpace.placeholder}
                     onBlur={(event) => {

@@ -3,20 +3,20 @@
 import { mount } from 'cypress/react';
 
 import { DropsItemAdd } from './DropsItemAdd';
-import { ColorSpaceInputValues } from '../../types';
+import { ColorSpaceValues } from '../../types';
 
 const DropsItemAddSelector = '[data-test-id="drops-item-add"]';
 const ColorPickerFlyoutTriggerSelector = '[data-test-id="color-color-picker-flyout-trigger"]';
 const CustomColorPickerSelector = '[data-test-id="custom-color-picker"]';
 const ButtonSelector = '[data-test-id="button"]';
 
-const COLORSPACES = ['hex', 'rgb', 'variable'];
+const COLOR_SPACES = ['hex', 'rgb', 'variable'];
 
 describe('DropsItemAdd component in view mode', () => {
     beforeEach(() => {
         const onConfirmStub = cy.stub().as('onConfirm');
 
-        mount(<DropsItemAdd colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]} onConfirm={onConfirmStub} />);
+        mount(<DropsItemAdd colorSpaces={COLOR_SPACES as (keyof ColorSpaceValues)[]} onConfirm={onConfirmStub} />);
     });
 
     it('renders a DropsItemAdd component', () => {

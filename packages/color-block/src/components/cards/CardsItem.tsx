@@ -33,26 +33,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
             data-test-id="cards-item"
             className="tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded tw-shadow-inner-line tw-transition-all hover:tw-shadow-inner-line-strong"
         >
-            {!isEditing ? (
-                <Tooltip
-                    withArrow
-                    position={TooltipPosition.Right}
-                    hoverDelay={0}
-                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
-                    triggerElement={
-                        <div className="tw-overflow-hidden tw-rounded-t tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
-                            <div
-                                data-test-id="color-tooltip-trigger"
-                                className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
-                                style={{
-                                    backgroundColor: rgbaBackgroundColor,
-                                }}
-                                onClick={() => copy(mappedFirstColorSpace.value ?? '')}
-                            />
-                        </div>
-                    }
-                />
-            ) : (
+            {isEditing ? (
                 <ColorPickerFlyout
                     currentColor={color as Color}
                     onConfirm={(color) => {
@@ -83,6 +64,25 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         </div>
                     </div>
                 </ColorPickerFlyout>
+            ) : (
+                <Tooltip
+                    withArrow
+                    position={TooltipPosition.Right}
+                    hoverDelay={0}
+                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    triggerElement={
+                        <div className="tw-overflow-hidden tw-rounded-t tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                            <div
+                                data-test-id="color-tooltip-trigger"
+                                className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                                style={{
+                                    backgroundColor: rgbaBackgroundColor,
+                                }}
+                                onClick={() => copy(mappedFirstColorSpace.value ?? '')}
+                            />
+                        </div>
+                    }
+                />
             )}
 
             <div className="tw-pt-4 tw-px-6 tw-pb-5">
@@ -107,7 +107,14 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                     {mappedColorSpace.label}
                                 </div>
 
-                                {!isEditing ? (
+                                {isEditing ? (
+                                    <ColorSpaceValue
+                                        viewType={ColorBlockType.Cards}
+                                        color={color}
+                                        colorSpaceId={colorSpaceId}
+                                        onUpdate={onUpdate}
+                                    />
+                                ) : (
                                     <Tooltip
                                         withArrow
                                         position={TooltipPosition.Right}
@@ -124,13 +131,6 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                                 {mappedColorSpace.value}
                                             </div>
                                         }
-                                    />
-                                ) : (
-                                    <ColorSpaceValue
-                                        viewType={ColorBlockType.Cards}
-                                        color={color}
-                                        colorSpaceId={colorSpaceId}
-                                        onUpdate={onUpdate}
                                     />
                                 )}
                             </div>

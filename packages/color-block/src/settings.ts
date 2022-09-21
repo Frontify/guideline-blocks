@@ -3,6 +3,93 @@
 import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings, Bundle, NotificationStyleType } from '@frontify/guideline-blocks-settings';
 
+const COLORSPACES_ID = 'colorspaces';
+
+const COLORSPACES = [
+    {
+        id: 'hex',
+        label: 'HEX',
+    },
+    {
+        id: 'rgb',
+        label: 'RGB',
+    },
+    {
+        id: 'cmyk',
+        label: 'CMYK',
+        tooltip: {
+            content:
+                'We automatically convert color values to CMYK. \n These values might differ, depending on what color profile you use. \n You can always change the values manually here.',
+        },
+    },
+    {
+        id: 'cmykCoated',
+        label: 'CMYK Coated',
+    },
+    {
+        id: 'cmykUncoated',
+        label: 'CMYK Uncoated',
+    },
+    {
+        id: 'cmykNewspaper',
+        label: 'CMYK Newspaper',
+    },
+    {
+        id: 'pantone',
+        label: 'Pantone',
+    },
+    {
+        id: 'pantoneCoated',
+        label: 'Pantone Coated',
+    },
+    {
+        id: 'pantoneUncoated',
+        label: 'Pantone Uncoated',
+    },
+    {
+        id: 'pantoneCp',
+        label: 'Pantone CP',
+    },
+    {
+        id: 'pantoneTextile',
+        label: 'Pantone Textile',
+    },
+    {
+        id: 'pantonePlastics',
+        label: 'Pantone Plastics',
+    },
+    {
+        id: 'ral',
+        label: 'RAL',
+    },
+
+    {
+        id: 'variable',
+        label: 'SCSS/LESS',
+    },
+    {
+        id: 'lab',
+        label: 'LAB',
+    },
+    {
+        id: 'ncs',
+        label: 'NCS',
+    },
+
+    {
+        id: 'hks',
+        label: 'HKS',
+    },
+    {
+        id: 'threeM',
+        label: '3M',
+    },
+    {
+        id: 'oracal',
+        label: 'Oracal',
+    },
+];
+
 export const settings: BlockSettings = {
     main: [
         {
@@ -31,94 +118,11 @@ export const settings: BlockSettings = {
     ],
     basics: [
         {
-            id: 'colorspaces',
+            id: COLORSPACES_ID,
             type: 'checklist',
             defaultValue: ['hex', 'rgb'],
             label: 'Color Spaces',
-            choices: [
-                {
-                    id: 'hex',
-                    label: 'HEX',
-                },
-                {
-                    id: 'rgb',
-                    label: 'RGB',
-                },
-                {
-                    id: 'cmyk',
-                    label: 'CMYK',
-                    tooltip: {
-                        content:
-                            'We automatically convert color values to CMYK. \n These values might differ, depending on what color profile you use. \n You can always change the values manually here.',
-                    },
-                },
-                {
-                    id: 'cmykCoated',
-                    label: 'CMYK Coated',
-                },
-                {
-                    id: 'cmykUncoated',
-                    label: 'CMYK Uncoated',
-                },
-                {
-                    id: 'cmykNewspaper',
-                    label: 'CMYK Newspaper',
-                },
-                {
-                    id: 'pantone',
-                    label: 'Pantone',
-                },
-                {
-                    id: 'pantoneCoated',
-                    label: 'Pantone Coated',
-                },
-                {
-                    id: 'pantoneUncoated',
-                    label: 'Pantone Uncoated',
-                },
-                {
-                    id: 'pantoneCp',
-                    label: 'Pantone CP',
-                },
-                {
-                    id: 'pantoneTextile',
-                    label: 'Pantone Textile',
-                },
-                {
-                    id: 'pantonePlastics',
-                    label: 'Pantone Plastics',
-                },
-                {
-                    id: 'ral',
-                    label: 'RAL',
-                },
-
-                {
-                    id: 'variable',
-                    label: 'SCSS/LESS',
-                },
-                {
-                    id: 'lab',
-                    label: 'LAB',
-                },
-                {
-                    id: 'ncs',
-                    label: 'NCS',
-                },
-
-                {
-                    id: 'hks',
-                    label: 'HKS',
-                },
-                {
-                    id: 'threeM',
-                    label: '3M',
-                },
-                {
-                    id: 'oracal',
-                    label: 'Oracal',
-                },
-            ],
+            choices: COLORSPACES,
             showClearAndSelectAllButtons: true,
             columns: 2,
         },
@@ -130,7 +134,7 @@ export const settings: BlockSettings = {
                 type: NotificationStyleType.Warning,
             },
             show: (bundle: Bundle) => {
-                const colorSpacesValue = bundle?.getBlock('colorspaces')?.value as string[];
+                const colorSpacesValue = bundle?.getBlock(COLORSPACES_ID)?.value as string[];
 
                 return !colorSpacesValue || colorSpacesValue?.length === 0;
             },

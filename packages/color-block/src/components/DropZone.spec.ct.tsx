@@ -7,7 +7,7 @@ import { FrontifyColorDummy } from '@frontify/app-bridge';
 
 import { CardsItem } from './cards/CardsItem';
 import { DropZone } from './DropZone';
-import { ColorBlockType, ColorSpaceInputValues } from '../types';
+import { ColorBlockType, ColorSpaceValues } from '../types';
 
 const CardsItemSelector = '[data-test-id="cards-item"]';
 
@@ -19,47 +19,35 @@ describe('DropZone component', () => {
         const onUpdateStub = cy.stub().as('onUpdate');
         const onDeleteStub = cy.stub().as('onDelete');
 
-        const COLORSPACES = ['hex', 'rgb', 'variable'];
+        const COLOR_SPACES = ['hex', 'rgb', 'variable'];
+
+        const dropZoneProps = {
+            treeId: 'test',
+            colorBlockType: ColorBlockType.Cards,
+            moveCard: moveCardStub,
+            isEditing: true,
+        };
+
+        const cardsItemProps = {
+            color: FrontifyColorDummy.red(),
+            colorSpaces: COLOR_SPACES as (keyof ColorSpaceValues)[],
+            isEditing: true,
+            onBlur: onBlurStub,
+            onUpdate: onUpdateStub,
+            onDelete: onDeleteStub,
+        };
 
         mount(
             <div className="tw-grid tw-gap-4 tw-grid-cols-4">
                 <DndProvider backend={HTML5Backend}>
-                    <DropZone
-                        treeId="test"
-                        colorBlockType={ColorBlockType.Cards}
-                        index={1}
-                        moveCard={moveCardStub}
-                        isEditing
-                        isMoving={false}
-                    >
+                    <DropZone {...dropZoneProps} index={1}>
                         <div>
-                            <CardsItem
-                                color={FrontifyColorDummy.red()}
-                                colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
-                                isEditing
-                                onBlur={onBlurStub}
-                                onUpdate={onUpdateStub}
-                                onDelete={onDeleteStub}
-                            />
+                            <CardsItem {...cardsItemProps} />
                         </div>
                     </DropZone>
-                    <DropZone
-                        treeId="test"
-                        colorBlockType={ColorBlockType.Cards}
-                        index={2}
-                        moveCard={moveCardStub}
-                        isEditing
-                        isMoving={false}
-                    >
+                    <DropZone {...dropZoneProps} index={2}>
                         <div>
-                            <CardsItem
-                                color={FrontifyColorDummy.red()}
-                                colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]}
-                                isEditing
-                                onBlur={onBlurStub}
-                                onUpdate={onUpdateStub}
-                                onDelete={onDeleteStub}
-                            />
+                            <CardsItem {...cardsItemProps} />
                         </div>
                     </DropZone>
                 </DndProvider>

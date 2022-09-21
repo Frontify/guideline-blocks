@@ -2,7 +2,7 @@
 
 import { FrontifyColorDummy } from '@frontify/app-bridge';
 import { describe, expect, test } from 'vitest';
-import { ColorSpaceInputValues } from '../types';
+import { ColorSpaceValues } from '../types';
 import { mapColorSpaces } from './mapColorSpaces';
 
 describe('mapColorSpaces', () => {
@@ -40,6 +40,6 @@ describe('mapColorSpaces', () => {
     ];
 
     test.each(data)('validates against expected values', ({ colorSpaceId, color, expected }) => {
-        expect(mapColorSpaces(colorSpaceId as keyof ColorSpaceInputValues, color)).toStrictEqual(expected);
+        expect(mapColorSpaces(colorSpaceId as keyof ColorSpaceValues, color)).toStrictEqual(expected);
     });
 });

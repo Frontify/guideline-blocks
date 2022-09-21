@@ -3,20 +3,20 @@
 import { mount } from 'cypress/react';
 
 import { CardsItemAdd } from './CardsItemAdd';
-import { ColorSpaceInputValues } from '../../types';
+import { ColorSpaceValues } from '../../types';
 
 const CardsItemAddSelector = '[data-test-id="cards-item-add"]';
 const ColorPickerFlyoutTriggerSelector = '[data-test-id="color-color-picker-flyout-trigger"]';
 const CustomColorPickerSelector = '[data-test-id="custom-color-picker"]';
 const ButtonSelector = '[data-test-id="button"]';
 
-const COLORSPACES = ['hex', 'rgb', 'variable'];
+const COLOR_SPACES = ['hex', 'rgb', 'variable'];
 
 describe('CardsItemAdd component in view mode', () => {
     beforeEach(() => {
         const onConfirmStub = cy.stub().as('onConfirm');
 
-        mount(<CardsItemAdd colorSpaces={COLORSPACES as (keyof ColorSpaceInputValues)[]} onConfirm={onConfirmStub} />);
+        mount(<CardsItemAdd colorSpaces={COLOR_SPACES as (keyof ColorSpaceValues)[]} onConfirm={onConfirmStub} />);
     });
 
     it('renders a CardsItemAdd component', () => {

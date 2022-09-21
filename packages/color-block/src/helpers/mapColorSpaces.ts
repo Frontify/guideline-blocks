@@ -2,29 +2,29 @@
 
 import { FrontifyColor } from '@frontify/app-bridge';
 
-import { ColorSpaceInputValues } from '../types';
+import { ColorSpaceLabels, ColorSpaceValues } from '../types';
 
 type ColorSpace = {
     id: string;
     key?: string;
-    label: string;
+    label: ColorSpaceLabels;
     value?: string;
     placeholder?: string;
 };
 
-export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?: FrontifyColor): ColorSpace => {
+export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceValues, color?: FrontifyColor): ColorSpace => {
     switch (colorSpaceId) {
         case 'hex':
             return {
                 id: colorSpaceId,
-                label: 'HEX',
+                label: ColorSpaceLabels.Hex,
                 value: `#${color?.hex}`,
                 placeholder: '#hexhex',
             };
         case 'rgb':
             return {
                 id: colorSpaceId,
-                label: 'RGB',
+                label: ColorSpaceLabels.Rgb,
                 value: color && `${color.red}/${color.green}/${color.blue}`,
                 placeholder: 'r/g/b',
             };
@@ -32,21 +32,21 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'nameCss',
-                label: 'LESS',
+                label: ColorSpaceLabels.Less,
                 value: `$${color?.nameCss}`,
                 placeholder: 'h,s,l',
             };
         case 'ral':
             return {
                 id: colorSpaceId,
-                label: 'RAL',
+                label: ColorSpaceLabels.Ral,
                 value: color?.ral ?? '',
                 placeholder: 'r,a,l',
             };
         case 'pantone':
             return {
                 id: colorSpaceId,
-                label: 'PMS',
+                label: ColorSpaceLabels.Pms,
                 value: color?.pantone ?? '',
                 placeholder: 'color 0000 p',
             };
@@ -54,7 +54,7 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'pantoneCoated',
-                label: 'PMS-C',
+                label: ColorSpaceLabels.PmsC,
                 value: color?.pantoneCoated ?? '',
                 placeholder: 'p 000 00 c',
             };
@@ -62,7 +62,7 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'pantoneUncoated',
-                label: 'PMS-U',
+                label: ColorSpaceLabels.PmsU,
                 value: color?.pantoneUncoated ?? '',
                 placeholder: '00-0000',
             };
@@ -70,7 +70,7 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'pantoneCp',
-                label: 'PMS-CP',
+                label: ColorSpaceLabels.PmsCp,
                 value: color?.pantoneCp ?? '',
                 placeholder: '0000 CP',
             };
@@ -78,7 +78,7 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'pantonePlastics',
-                label: 'PMS-PQ',
+                label: ColorSpaceLabels.PmsPq,
                 value: color?.pantonePlastics ?? '',
                 placeholder: 'PQ-000C',
             };
@@ -86,21 +86,21 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'pantoneTextile',
-                label: 'PMS-TCX',
+                label: ColorSpaceLabels.PmsTcx,
                 value: color?.pantoneTextile ?? '',
                 placeholder: '00-000 TCX',
             };
         case 'oracal':
             return {
                 id: colorSpaceId,
-                label: 'ORA',
+                label: ColorSpaceLabels.Ora,
                 value: color?.oracal ?? '',
                 placeholder: '000',
             };
         case 'cmyk':
             return {
                 id: colorSpaceId,
-                label: 'CMYK',
+                label: ColorSpaceLabels.Cmyk,
                 value: color && `${color.c}/${color.m}/${color.y}/${color.k}`,
                 placeholder: 'c/m/y/k',
             };
@@ -108,7 +108,7 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'cmykCoated',
-                label: 'CMYK-C',
+                label: ColorSpaceLabels.CmykC,
                 value: color?.cmykCoated ?? '',
                 placeholder: 'c/m/y/k c',
             };
@@ -116,7 +116,7 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'cmykUncoated',
-                label: 'CMYK-U',
+                label: ColorSpaceLabels.CmykU,
                 value: color?.cmykUncoated ?? '',
                 placeholder: 'c/m/y/k u',
             };
@@ -124,21 +124,21 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'cmykNewspaper',
-                label: 'CMYK-N',
+                label: ColorSpaceLabels.CmykN,
                 value: color?.cmykNewspaper ?? '',
                 placeholder: 'c/m/y/k n',
             };
         case 'ncs':
             return {
                 id: colorSpaceId,
-                label: 'NCS',
+                label: ColorSpaceLabels.Ncs,
                 value: color?.ncs ?? '',
                 placeholder: '0000-0000',
             };
         case 'hks':
             return {
                 id: colorSpaceId,
-                label: 'HKS',
+                label: ColorSpaceLabels.Hks,
                 value: color?.hks ?? '',
                 placeholder: '00 K',
             };
@@ -146,21 +146,21 @@ export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceInputValues, color?
             return {
                 id: colorSpaceId,
                 key: 'threeM',
-                label: '3M',
+                label: ColorSpaceLabels.ThreeM,
                 value: color?.threeM ?? '',
                 placeholder: '208',
             };
         case 'lab':
             return {
                 id: colorSpaceId,
-                label: 'LAB',
+                label: ColorSpaceLabels.Lab,
                 value: color?.lab ?? '',
                 placeholder: 'l,a,b,%',
             };
         default:
             return {
                 id: colorSpaceId,
-                label: 'HEX',
+                label: ColorSpaceLabels.Hex,
                 value: `#${color?.hex}`,
                 placeholder: '#hexhex',
             };
