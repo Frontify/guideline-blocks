@@ -335,30 +335,13 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         movedItem: ColorProps,
         position: DropZonePosition
     ) => {
-        let movedItemIndex = 0,
-            targetItemIndex = 0;
+        let targetItemIndex = 0;
 
-        let updatedColors = [...displayableItems];
+        const updatedColors = [...displayableItems];
 
-        for (const [index, colorItem] of updatedColors.entries()) {
-            if (colorItem.id === movedItem.id) {
-                movedItemIndex = index;
-            }
-        }
+        targetItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === targetItem.id);
 
-        updatedColors = updatedColors.filter((colorItem, index) => index !== movedItemIndex);
-
-        for (const [index, colorItem] of updatedColors.entries()) {
-            if (colorItem.id === targetItem.id) {
-                targetItemIndex = index;
-            }
-        }
-
-        if (position === 'after') {
-            updatedColors.splice(targetItemIndex + 1, 0, movedItem as ColorProps);
-        } else if (position === 'before') {
-            updatedColors.splice(targetItemIndex, 0, movedItem as ColorProps);
-        }
+        updatedColors.splice(position === 'after' ? targetItemIndex + 1 : targetItemIndex, 0, movedItem);
 
         setBlockSettings({ ...blockSettings, 'color-input': updatedColors });
         setDisplayableItems(updatedColors);
