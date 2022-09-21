@@ -86,6 +86,29 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         setDisplayableItems(colorsWithNewWidths);
     };
 
+    const populatePlaceholderSquares = () => {
+        // If the number of colors is less than the minimum amount defined in settings, add
+        // however many color squares are needed to match the minimum.
+        const colorsArray = blockSettings['color-input'] || [];
+        let missingColors = 0;
+
+        if (colorsArray.length < maximumNumberOfPlaceholderSquares) {
+            missingColors = maximumNumberOfPlaceholderSquares - colorsArray.length;
+            let colorsWithNewWidths;
+
+            for (let i = 0; i < missingColors; i++) {
+                colorsArray.push({});
+
+                colorsWithNewWidths = calculateWidths(colorsArray, colorScaleBlockRef);
+            }
+            setBlockSettings({
+                ...blockSettings,
+                'color-input': colorsWithNewWidths,
+            });
+            setDisplayableItems(colorsWithNewWidths || []);
+        }
+    };
+
     const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
         const formattedPalettes: ColorPalette[] = [];
 
@@ -155,26 +178,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         return setDisplayableItems(blockSettings['color-input']);
                     }
                 } else {
-                    // If the number of colors is less than the minimum amount defined in settings, add
-                    // however many color squares are needed to match the minimum.
-                    const colorsArray = blockSettings['color-input'] || [];
-                    let missingColors = 0;
-
-                    if (colorsArray.length < minimumColors) {
-                        missingColors = minimumColors - colorsArray.length;
-                        let colorsWithNewWidths;
-
-                        for (let i = 0; i < missingColors; i++) {
-                            colorsArray.push({});
-
-                            colorsWithNewWidths = calculateWidths(colorsArray, colorScaleBlockRef);
-                        }
-                        setBlockSettings({
-                            ...blockSettings,
-                            'color-input': colorsWithNewWidths,
-                        });
-                        setDisplayableItems(colorsWithNewWidths || []);
-                    }
+                    populatePlaceholderSquares();
                 }
             } catch (error) {
                 console.error(error);
