@@ -15,6 +15,9 @@ export const EmptyView = ({
     height,
     width,
 }: EmptyViewProps) => {
+    const isFirst = index === 0;
+    const isLast = totalNumberOfBlocks - 1;
+
     return (
         <div
             style={{
@@ -24,11 +27,11 @@ export const EmptyView = ({
             }}
             key={`placeholder-${index}`}
             className={`empty-view tw-flex tw-overflow-hidden
-            ${index === 0 ? 'tw-pl-[1px]' : ''} ${index === totalNumberOfBlocks - 1 ? 'tw-pr-[1px]' : ''}
-                 ${index === 0 ? 'tw-rounded-tl' : ''}
-                ${index === 0 ? 'tw-rounded-bl' : ''}
-                ${index === totalNumberOfBlocks - 1 ? 'tw-rounded-tr' : ''}
-                ${index === totalNumberOfBlocks - 1 ? 'tw-rounded-br' : ''}`}
+            ${isFirst ? 'tw-pl-[1px]' : ''} ${index === totalNumberOfBlocks - 1 ? 'tw-pr-[1px]' : ''}
+                 ${isFirst ? 'tw-rounded-tl' : ''}
+                ${isFirst ? 'tw-rounded-bl' : ''}
+                ${isLast ? 'tw-rounded-tr' : ''}
+                ${isLast ? 'tw-rounded-br' : ''}`}
         ></div>
     );
 };

@@ -21,6 +21,10 @@ const rgbaToHex = (rgba: string, forceRemoveAlpha = false) => {
 };
 
 const getRgbaString = (currentColor: ColorProps) => {
+    if (!(currentColor && currentColor.color)) {
+        return '';
+    }
+
     return rgbaToHex(
         `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
     ).toUpperCase();
@@ -42,6 +46,9 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     setIsDragging,
     isDragging,
 }) => {
+    const isFirst = index === 0;
+    const isLast = totalNumberOfBlocks - 1;
+
     const onDrag = () => {
         if (isDragging !== !!currentColor.id) {
             setIsDragging(!!currentColor.id);
@@ -77,11 +84,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     const onTooltipClick: MouseEventHandler = (event: MouseEvent) => {
         event.preventDefault();
 
-        copyToClipboard(
-            rgbaToHex(
-                `rgba(${currentColor.color.red}, ${currentColor.color.green}, ${currentColor.color.blue}, ${currentColor.color.alpha})`
-            ).toUpperCase()
-        );
+        copyToClipboard(getRgbaString(currentColor));
 
         setCopied(true);
 
@@ -140,13 +143,12 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                                 width: `${width}px`,
                             }}
                             className={`tw-top-0 tw-left-0
-                            ${index === 0 ? 'tw-pl-[1px]' : ''} ${
-                                index === totalNumberOfBlocks - 1 ? 'tw-pr-[1px]' : ''
-                            }
-                            ${index === 0 ? 'tw-rounded-tl' : ''}
-                           ${index === 0 ? 'tw-rounded-bl' : ''}
-                           ${index === totalNumberOfBlocks - 1 ? 'tw-rounded-tr' : ''}
-                           ${index === totalNumberOfBlocks - 1 ? 'tw-rounded-br' : ''}`}
+                            ${isFirst ? 'tw-pl-[1px]' : ''} 
+                            ${isLast ? 'tw-pr-[1px]' : ''}
+                            ${isFirst ? 'tw-rounded-tl' : ''}
+                            ${isFirst ? 'tw-rounded-bl' : ''}
+                            ${isLast ? 'tw-rounded-tr' : ''}
+                            ${isLast ? 'tw-rounded-br' : ''}`}
                         >
                             <CustomizationOptionsModal id={id} isEditing={isEditing} deleteColor={deleteColor} />
                         </div>
