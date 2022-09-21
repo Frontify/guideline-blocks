@@ -6,9 +6,9 @@ import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { QuoteBlockIcon } from './QuoteBlockIcon';
-import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
-import { LineType, Props, QuoteStyle, QuoteType, Settings } from './types';
+import { Quotations } from './Quotations';
+import { DEFAULT_COLOR_VALUE } from './settings';
+import { LineType, Props, QuoteType, Settings } from './types';
 
 const ACTIONS = [
     [EditorActions.TEXT_STYLES],
@@ -40,18 +40,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     return (
         <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
-            <div className={isQuotationMarkType ? 'tw-flex tw-justify-between tw-gap-x-7' : ''}>
-                {isQuotationMarkType && (
-                    <QuoteBlockIcon
-                        customIconId={CUSTOM_ICON_LEFT_ID}
-                        appBridge={appBridge}
-                        quoteStyle={blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp}
-                        color={blockSettings.quotesColor}
-                        isCustomSize={blockSettings.isCustomSize}
-                        sizeValue={blockSettings.sizeValue}
-                        sizeChoice={blockSettings.sizeChoice}
-                    />
-                )}
+            <Quotations blockSettings={blockSettings} hasQuotationMarks={isQuotationMarkType} appBridge={appBridge}>
                 <div data-test-id="quote-block-author" className="tw-flex-1 tw-w-full">
                     <div
                         style={isQuotationMarkType ? {} : borderStyles}
@@ -69,18 +58,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                     </div>
                     {showAuthor && <p className="tw-text-right">{`- ${blockSettings.authorName}`}</p>}
                 </div>
-                {isQuotationMarkType && (
-                    <QuoteBlockIcon
-                        customIconId={CUSTOM_ICON_RIGHT_ID}
-                        appBridge={appBridge}
-                        quoteStyle={blockSettings.quoteStyleRight ?? QuoteStyle.DoubleDown}
-                        color={blockSettings.quotesColor}
-                        isCustomSize={blockSettings.isCustomSize}
-                        sizeValue={blockSettings.sizeValue}
-                        sizeChoice={blockSettings.sizeChoice}
-                    />
-                )}
-            </div>
+            </Quotations>
         </div>
     );
 };

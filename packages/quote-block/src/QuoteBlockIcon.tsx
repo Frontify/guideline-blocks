@@ -10,7 +10,7 @@ import { DEFAULT_COLOR_VALUE } from './settings';
 import { QuoteSize, QuoteStyle, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
 
-type QuoteBlockIconProps = {
+export type QuoteBlockIconProps = {
     customIconId: string;
     appBridge: AppBridgeBlock;
     quoteStyle: QuoteStyle;
