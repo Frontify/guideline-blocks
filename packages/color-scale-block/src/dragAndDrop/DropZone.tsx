@@ -59,8 +59,8 @@ export const DropZone = <T extends object>({
                 className={merge([
                     'tw-top-[0px] tw-bottom-0',
                     data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
-                    isActive && data.position !== DropZonePosition.Within ? activeOuterDropZoneClassNames : '',
-                    isActive && data.position === DropZonePosition.Within ? bgColorClassName : '',
+                    isActive && data.position !== DropZonePosition.Within && activeOuterDropZoneClassNames,
+                    isActive && data.position === DropZonePosition.Within && bgColorClassName,
                     isDraggingActive ? isDraggingActiveClassNames : isDraggingNotActiveClassNames,
                 ])}
                 ref={drop}
