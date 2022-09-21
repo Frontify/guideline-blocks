@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MouseEvent } from 'react';
-import { Color, ColorFormat, DraggableItem, DropZonePosition, OrderableListItem, Palette } from '@frontify/fondue';
+import { Color, ColorFormat, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
 
 export type Settings = {
     customHeight: boolean;
@@ -34,26 +34,30 @@ export type ColorPalette = {
     colors?: FormattedColor[];
 };
 
+export type ColorScaleBlockRef = {
+    current: HTMLDivElement | null;
+};
+
 export type SquareWithColorProps = {
-    id: number;
+    id: number | undefined;
     index: number;
     width: number;
     height: string;
     currentColor: ColorProps;
-    calculateLeftPosition: (id: number, width: number) => void;
+    calculateLeftPosition: (index: number, width: number) => void;
     isEditing: boolean;
-    editedColor: ColorProps;
+    editedColor?: ColorProps | null | undefined;
     setEditedColor: (color: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: (color?: ColorFormat) => void;
     deleteColor: (color: number) => void;
-    handleDrop: (targetItem: OrderableListItem, sourceItem: OrderableListItem, position: DropZonePosition) => void;
+    handleDrop: (targetItem: ColorProps, sourceItem: ColorProps, position: DropZonePosition) => void;
     listId: string;
     backgroundColorRgba?: string;
-    onResizeStart?: (event: MouseEvent, id?: string | number, currentColor?: ColorProps) => void | undefined;
+    onResizeStart?: (event: MouseEvent, index?: number, currentColor?: ColorProps) => void | undefined;
     totalNumberOfBlocks: number;
     isDragging: boolean;
-    setIsDragging: (value: boolean) => void;
+    setCurrentlyDraggedColorId: (value: number | null | undefined) => void;
 };
 
 export type OnDropCallback<T> = (
@@ -63,7 +67,7 @@ export type OnDropCallback<T> = (
 ) => void;
 
 export type DropZoneData<T> = {
-    targetItem: DraggableItem<T>;
+    targetItem: DraggableItem<T> | ColorProps;
     position: DropZonePosition;
 };
 
@@ -81,11 +85,11 @@ export type DropZoneProps<T> = {
 };
 
 export type ColorPickerFlyoutProps = {
-    newIndex: number;
-    currentColor: ColorProps;
-    isEditing: boolean;
-    editedColor: ColorProps;
-    setEditedColor: (color: ColorProps) => void;
+    isColorPickerOpen: boolean;
+    setIsColorPickerOpen: (isOpen: boolean) => void;
+    colors: ColorPalette[];
+    editedColor?: ColorProps | undefined | null;
+    setEditedColor?: (color: ColorProps) => void | undefined | null;
     updateColor: (color: ColorProps) => void;
     setFormat: () => void;
 };
@@ -105,11 +109,11 @@ export type DragHandleProps = {
     index: number;
     currentColor: ColorProps;
     isEditing: boolean;
-    onResizeStart?: (event: MouseEvent, id?: string | number, currentColor?: ColorProps) => void | undefined;
+    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void | undefined;
 };
 
 export type CustomizationOptionsModalProps = {
-    id: number;
+    id: number | undefined;
     isEditing: boolean;
     deleteColor: (color: number) => void;
 };

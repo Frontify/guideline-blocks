@@ -43,7 +43,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     isEditing,
     deleteColor,
     listId,
-    setIsDragging,
+    setCurrentlyDraggedColorId,
     isDragging,
 }) => {
     const isFirst = index === 0;
@@ -51,12 +51,12 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
 
     const onDrag = () => {
         if (isDragging !== !!currentColor.id) {
-            setIsDragging(!!currentColor.id);
+            setCurrentlyDraggedColorId(currentColor.id);
         }
     };
 
     const onDragEnd = () => {
-        setIsDragging(false);
+        setCurrentlyDraggedColorId(null);
     };
 
     const [{}, drag] = useDrag({

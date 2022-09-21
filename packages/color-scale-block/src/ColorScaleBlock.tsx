@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import {
     AppBridgeBlock,
     FrontifyColorPalette,
@@ -28,7 +28,14 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import 'tailwindcss/tailwind.css';
 import { DropZone } from './dragAndDrop/DropZone';
 import { EmptyView } from './components/EmptyView';
-import { calculateDefaultColorWidth, calculateWidths, canExpandColorBlock, resizeEvenly } from './helpers';
+import {
+    calculateDefaultColorWidth,
+    calculateWidths,
+    canExpandColorBlock,
+    defaultColorSquareWidth,
+    resizeEvenly,
+} from './helpers';
+import { MouseEventHandler } from 'react';
 
 type Props = {
     appBridge: AppBridgeBlock;
@@ -46,13 +53,13 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     );
     const emptyBlockColors = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
-        number | undefined,
-        (color?: number | undefined) => void
+        number | null | undefined,
+        (color?: number | null | undefined) => void
     ] = useState();
     const [editedColor, setEditedColor] = useState<Nullable<ColorProps>>();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
-    const colorScaleBlockRef: { current?: HTMLDivElement } = useRef();
-    const draggingId: { current?: number | null } = useRef(null);
+    const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
+    const draggingId: { current?: number | null | undefined } = useRef(null);
     const dragStartPos: { current?: number | null | undefined } = useRef();
     const dragStartWidth: { current?: number | null | undefined } = useRef();
     const lastDragPos: { current?: number | null | undefined } = useRef();
@@ -62,6 +69,18 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const deleteColor = (id: number) => {
         const reorderedList = displayableItems?.filter((item: ColorProps) => item.id !== id);
         setBlockSettings({ ...blockSettings, 'color-input': reorderedList });
+    };
+
+    const calculateLeftPosition = (index: number, width?: number) => {
+        let leftPos = 0;
+        const defaultWidth = width ? width : defaultColorSquareWidth;
+        displayableItems?.map((color: ColorProps, loopIndex: number) => {
+            if (loopIndex < index) {
+                leftPos += color && color.width ? color.width : defaultWidth;
+            }
+            return color;
+        });
+        return leftPos;
     };
 
     const updateColor = (newColor: ColorProps) => {
@@ -197,7 +216,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         draggingId.current = index;
     };
 
-    const onResize = (event: MouseEvent) => {
+    const onResize: MouseEventHandler = (event: MouseEvent) => {
         if (draggingId.current !== null) {
             const id = draggingId.current;
             if (!lastDragPos.current) {
@@ -329,12 +348,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         setIsColorPickerOpen(true);
     };
 
-    const handleDrop = (
-        displayableItems: ColorProps[],
-        targetItem: ColorProps,
-        movedItem: ColorProps,
-        position: DropZonePosition
-    ) => {
+    const handleDrop = (targetItem: ColorProps, movedItem: ColorProps, position: DropZonePosition) => {
         let targetItemIndex = 0;
 
         const updatedColors = [...displayableItems];
@@ -398,7 +412,9 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                         currentColor={color}
                                                         height={parseInt(colorScaleHeight)}
                                                         width={width}
-                                                        isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
+                                                        isDraggingActive={
+                                                            Number.isInteger(currentlyDraggedColorId) ? true : false
+                                                        }
                                                         data={{
                                                             targetItem: color,
                                                             position: DropZonePosition.Before,
@@ -416,7 +432,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                             currentlyDraggedColorId !== null &&
                                                             currentlyDraggedColorId !== undefined
                                                         }
-                                                        setIsDragging={setCurrentlyDraggedColorId}
+                                                        setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
                                                         currentColor={color}
                                                         backgroundColorRgba={backgroundColorRgba}
                                                         totalNumberOfBlocks={displayableItems.length}

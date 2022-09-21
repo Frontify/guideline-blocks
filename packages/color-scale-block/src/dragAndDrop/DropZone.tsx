@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrop } from 'react-dnd';
-import { DropZonePosition, OrderableListItem, merge } from '@frontify/fondue';
+import { DraggableItem, DropZonePosition, OrderableListItem, merge } from '@frontify/fondue';
 import { DropZoneProps } from '../types';
 
 export const DropZone = <T extends object>({
@@ -16,7 +16,7 @@ export const DropZone = <T extends object>({
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: treeId,
         drop: (item: OrderableListItem<T>) => {
-            onDrop?.(data.targetItem, item, data.position);
+            onDrop?.(data.targetItem as DraggableItem<T>, item, data.position);
         },
         canDrop: (item: OrderableListItem<T>) => {
             // can't drop an item on itself

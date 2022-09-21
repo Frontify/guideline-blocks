@@ -1,8 +1,8 @@
-import { ColorProps } from './types';
+import { ColorProps, ColorScaleBlockRef } from './types';
 
 export const defaultColorSquareWidth = 100;
 
-export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRef: { current?: HTMLDivElement }) => {
+export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRef: ColorScaleBlockRef) => {
     if (!(colorScaleBlockRef && colorScaleBlockRef?.current)) {
         return defaultColorSquareWidth;
     }
@@ -13,7 +13,7 @@ export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRe
     return defaultWidth;
 };
 
-export const calculateWidths = (itemList: ColorProps[], colorScaleBlockRef: { current?: HTMLDivElement }) => {
+export const calculateWidths = (itemList: ColorProps[], colorScaleBlockRef: ColorScaleBlockRef) => {
     let emptySpace = 0;
     let usedSpace = 0;
     let emptySquares = 0;
@@ -85,7 +85,7 @@ export const calculateWidths = (itemList: ColorProps[], colorScaleBlockRef: { cu
     return itemsWithWidths || [];
 };
 
-export const resizeEvenly = (itemList: ColorProps[], colorScaleBlockRef: { current?: HTMLDivElement }) => {
+export const resizeEvenly = (itemList: ColorProps[], colorScaleBlockRef: ColorScaleBlockRef) => {
     if (!itemList) {
         return [];
     }
@@ -99,22 +99,7 @@ export const resizeEvenly = (itemList: ColorProps[], colorScaleBlockRef: { curre
     return newDisplayableItems;
 };
 
-export const calculateLeftPosition = (index: number, displayableItems: ColorProps[], width?: number) => {
-    let leftPos = 0;
-    const defaultWidth = width ? width : defaultColorSquareWidth;
-    displayableItems?.map((color: ColorProps, loopIndex: number) => {
-        if (loopIndex < index) {
-            leftPos += color && color.width ? color.width : defaultWidth;
-        }
-        return color;
-    });
-    return leftPos;
-};
-
-export const canExpandColorBlock = (
-    displayableItems: ColorProps[],
-    colorScaleBlockRef: { current?: HTMLDivElement }
-) => {
+export const canExpandColorBlock = (displayableItems: ColorProps[], colorScaleBlockRef: ColorScaleBlockRef) => {
     const colorScaleBlockWidth = colorScaleBlockRef?.current?.getBoundingClientRect().width || 0;
     let usedSpace = 0;
 
