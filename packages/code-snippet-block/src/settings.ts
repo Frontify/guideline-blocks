@@ -219,11 +219,8 @@ export const settings: BlockSettings = {
                             id: 'lineStyle',
                             type: 'dropdown',
                             defaultValue: 'solid',
+                            size: DropdownSize.Small,
                             choices: [
-                                {
-                                    value: 'none',
-                                    label: 'None',
-                                },
                                 {
                                     value: 'dotted',
                                     label: 'Dotted',

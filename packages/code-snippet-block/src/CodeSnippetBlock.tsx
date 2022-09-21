@@ -4,13 +4,12 @@ import 'tailwindcss/tailwind.css';
 
 import { FC, ReactElement } from 'react';
 import { debounce } from '@frontify/fondue';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
-import { getValueInPx } from './helpers';
 import { CodeMirrorEditor } from './components';
-import { BorderRadiusCorners, CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
+import { BorderRadiusCorners, CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
 
 export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -40,9 +39,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         theme = DEFAULT_THEME_VALUE,
     } = blockSettings;
 
-    const customMargin = `${getValueInPx(marginTop)} ${getValueInPx(marginRight)} ${getValueInPx(
-        marginBottom
-    )} ${getValueInPx(marginLeft)}`;
+    const customMargin = `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`;
 
     const borderColorRgba = toRgbaString(borderColor);
 
