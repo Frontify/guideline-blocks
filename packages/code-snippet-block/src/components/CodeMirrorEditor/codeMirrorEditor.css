@@ -1,17 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-.cm-editor {
+.cm-editor[class*='ͼ'] {
+    overflow: hidden;
     border: var(--editor-border);
     margin: var(--editor-margin);
     border-radius: var(--editor-border-radius);
 }
 
-.cm-panels-top {
-    border-radius: var(--editor-border-top-left-radius) var(--editor-border-top-right-radius) 0 0;
-}
-
-.cm-gutters {
-    border-radius: 0 0 0 var(--editor-border-bottom-left-radius);
+.cm-editor[class*='ͼ'] .cm-gutters {
     font-family: Courier;
     font-size: 12px;
     font-weight: 400;
@@ -20,14 +16,15 @@
     text-align: center;
 }
 
-.ͼ1.cm-editor.cm-focused {
+.cm-editor.cm-focused[class*='ͼ'],
+.cm-editor.cm-focused[class*='ͼ']:focus {
     border-radius: var(--editor-border-radius);
     outline-offset: 2px;
     outline: 2px solid transparent;
     box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px, rgb(94, 158, 214) 0px 0px 0px 6px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
-.ͼ1 .cm-content {
+.cm-editor[class*='ͼ'] .cm-content {
     padding: 16px 20px 20px 20px;
     font-family: Courier;
     font-size: 12px;
@@ -37,7 +34,7 @@
     text-align: left;
 }
 
-.ͼ1 .cm-lineNumbers .cm-gutterElement {
+.cm-editor[class*='ͼ'] .cm-lineNumbers .cm-gutterElement {
     padding: 0px 10.5px;
     text-align: center;
 }

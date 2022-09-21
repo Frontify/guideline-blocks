@@ -9,7 +9,7 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { CodeMirrorEditor } from './components';
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
-import { BorderRadiusCorners, CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
+import { CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
 
 export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -40,17 +40,11 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
     } = blockSettings;
 
     const customMargin = `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`;
+    const customBorderRadius = `${borderRadiusTopLeft} ${borderRadiusTopRight} ${borderRadiusBottomRight} ${borderRadiusBottomLeft}`;
 
     const borderColorRgba = toRgbaString(borderColor);
 
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
-
-    const borderRadiusValues: Record<BorderRadiusCorners, string> = {
-        topLeft: withCustomBorderRadius ? borderRadiusTopLeft : borderRadius,
-        topRight: withCustomBorderRadius ? borderRadiusTopRight : borderRadius,
-        bottomLeft: withCustomBorderRadius ? borderRadiusBottomLeft : borderRadius,
-        bottomRight: withCustomBorderRadius ? borderRadiusBottomRight : borderRadius,
-    };
 
     const codeMirrorEditorProps: CodeMirrorEditorProps = {
         theme,
@@ -60,7 +54,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         withRowNumbers,
         initValue: content,
         onChange: handleChange,
-        borderRadius: borderRadiusValues,
+        borderRadius: withCustomBorderRadius ? customBorderRadius : borderRadius,
         margin: withCustomMargin ? customMargin : margin,
         border: withBorder ? `${lineStyle} ${lineWidth} ${borderColorRgba}` : 'none',
     };
