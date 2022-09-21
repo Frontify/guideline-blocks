@@ -2,7 +2,7 @@
 
 import { FrontifyColorDummy } from '@frontify/app-bridge';
 import { describe, expect, test } from 'vitest';
-import { ColorSpaceValues } from '../types';
+import { ColorSpaceLabels, ColorSpaceValues } from '../types';
 import { mapColorSpaces } from './mapColorSpaces';
 
 describe('mapColorSpaces', () => {
@@ -12,7 +12,7 @@ describe('mapColorSpaces', () => {
             color: FrontifyColorDummy.red(),
             expected: {
                 id: 'hex',
-                label: 'HEX',
+                label: ColorSpaceLabels.Hex,
                 value: '#ff0000',
                 placeholder: '#hexhex',
             },
@@ -22,7 +22,7 @@ describe('mapColorSpaces', () => {
             color: FrontifyColorDummy.red(),
             expected: {
                 id: 'rgb',
-                label: 'RGB',
+                label: ColorSpaceLabels.Rgb,
                 value: '255/0/0',
                 placeholder: 'r/g/b',
             },
@@ -32,7 +32,7 @@ describe('mapColorSpaces', () => {
             color: FrontifyColorDummy.red(),
             expected: {
                 id: 'cmyk',
-                label: 'CMYK',
+                label: ColorSpaceLabels.Cmyk,
                 value: '0/100/100/0',
                 placeholder: 'c/m/y/k',
             },
