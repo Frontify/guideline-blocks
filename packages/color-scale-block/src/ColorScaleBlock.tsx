@@ -26,7 +26,7 @@ import '@frontify/fondue-tokens/styles';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import 'tailwindcss/tailwind.css';
-import { DropZone } from './react-dnd/DropZone';
+import { DropZone } from './dragAndDrop/DropZone';
 import { EmptyView } from './components/EmptyView';
 import { calculateDefaultColorWidth, calculateWidths, canExpandColorBlock, resizeEvenly } from './helpers';
 
@@ -163,9 +163,9 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                 if (blockSettings['color-input'] && blockSettings['color-input'].length >= minimumColors) {
                     let needToCalculateWidths;
 
-                    blockSettings['color-input'].forEach((color: ColorProps) => {
+                    for (const color of blockSettings['color-input']) {
                         needToCalculateWidths = !color || (color && !color.width);
-                    });
+                    }
 
                     if (needToCalculateWidths) {
                         const colorsWithNewWidths = calculateWidths(blockSettings['color-input'], colorScaleBlockRef);
@@ -218,7 +218,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
                     const colorsBeforeCurrent = displayableItems
                         ?.filter((diValue, diIndex) => {
-                            if (diIndex < id) {
+                            if (id !== undefined && diIndex < id) {
                                 return true;
                             }
                             return false;
