@@ -31,15 +31,10 @@ export interface CodeMirrorEditorStyle extends CSSProperties {
     '--editor-border': Property.Border;
     '--editor-margin': Property.Margin;
     '--editor-border-radius': Property.BorderRadius;
-    '--editor-border-top-left-radius': Property.BorderTopLeftRadius;
-    '--editor-border-top-right-radius': Property.BorderTopRightRadius;
-    '--editor-border-bottom-left-radius': Property.BorderBottomLeftRadius;
-    '--editor-border-bottom-right-radius': Property.BorderBottomRightRadius;
 }
 
 export type MarginSize = '0px' | '24px' | '36px' | '60px';
 export type BorderRadiusSize = '0px' | '2px' | '4px' | '12px';
-export type BorderRadiusCorners = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
 export type Settings = {
     theme?: Theme;
@@ -76,7 +71,7 @@ export type CodeMirrorEditorProps = {
     border?: Property.Border;
     margin?: Property.Margin;
     onChange: (value: string) => void;
-    borderRadius: Record<BorderRadiusCorners, string>;
+    borderRadius: Property.BorderRadius;
 };
 
 export type CodeSnippetProps = {

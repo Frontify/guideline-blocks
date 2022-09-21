@@ -63,16 +63,10 @@ export const CodeMirrorEditor = ({
         };
     }, []);
 
-    const borderRadiusCss = `${borderRadius.topLeft} ${borderRadius.topRight} ${borderRadius.bottomRight} ${borderRadius.bottomLeft}`;
-
     const style: CodeMirrorEditorStyle = {
         '--editor-border': border,
         '--editor-margin': margin,
-        '--editor-border-radius': borderRadiusCss,
-        '--editor-border-top-left-radius': borderRadius.topLeft,
-        '--editor-border-top-right-radius': borderRadius.topRight,
-        '--editor-border-bottom-left-radius': borderRadius.bottomLeft,
-        '--editor-border-bottom-right-radius': borderRadius.bottomRight,
+        '--editor-border-radius': borderRadius,
     };
 
     return <section data-test-id="code-snippet-block" style={style} ref={editorRef} />;
