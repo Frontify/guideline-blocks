@@ -30,6 +30,7 @@ describe('DropZone component', () => {
                         index={1}
                         moveCard={moveCardStub}
                         isEditing
+                        isMoving
                     >
                         <div>
                             <CardsItem
@@ -48,6 +49,7 @@ describe('DropZone component', () => {
                         index={2}
                         moveCard={moveCardStub}
                         isEditing
+                        isMoving
                     >
                         <div>
                             <CardsItem
