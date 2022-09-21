@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
 
 export const settings: BlockSettings = {
@@ -83,7 +84,7 @@ export const settings: BlockSettings = {
                             label: 'Top',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'marginTop'),
+                            onChange: (bundle) => appendUnit(bundle, 'marginTop'),
                         },
                         {
                             id: 'marginLeft',
@@ -91,7 +92,7 @@ export const settings: BlockSettings = {
                             label: 'Left',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'marginLeft'),
+                            onChange: (bundle) => appendUnit(bundle, 'marginLeft'),
                         },
                         {
                             id: 'marginRight',
@@ -99,7 +100,7 @@ export const settings: BlockSettings = {
                             label: 'Right',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'marginRight'),
+                            onChange: (bundle) => appendUnit(bundle, 'marginRight'),
                         },
                         {
                             id: 'marginBottom',
@@ -107,7 +108,7 @@ export const settings: BlockSettings = {
                             label: 'Bottom',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'marginBottom'),
+                            onChange: (bundle) => appendUnit(bundle, 'marginBottom'),
                         },
                     ],
                 },
@@ -211,7 +212,7 @@ export const settings: BlockSettings = {
                     id: 'border',
                     type: 'multiInput',
                     lastItemFullWidth: true,
-                    onChange: (bundle: Bundle): void => {
+                    onChange: (bundle) => {
                         appendUnit(bundle, 'lineWidth');
                     },
                     blocks: [
@@ -267,7 +268,7 @@ export const settings: BlockSettings = {
                     id: 'customBorderRadius',
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
-                    onChange: (bundle: Bundle): void => {
+                    onChange: (bundle) => {
                         appendUnit(bundle, 'borderRadiusTop');
                         appendUnit(bundle, 'borderRadiusLeft');
                         appendUnit(bundle, 'borderRadiusRight');
