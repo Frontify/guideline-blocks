@@ -25,7 +25,6 @@ describe('DropsItemAdd component in view mode', () => {
 
     it('renders a ColorPickerFlyout component', () => {
         cy.get(CustomColorPickerSelector).should('not.exist');
-        cy.get(ColorPickerFlyoutTriggerSelector).should('exist');
         cy.get(ColorPickerFlyoutTriggerSelector).click();
         cy.get(CustomColorPickerSelector).should('exist');
         cy.get(ButtonSelector).last().click();

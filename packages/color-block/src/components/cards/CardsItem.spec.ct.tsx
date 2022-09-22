@@ -81,13 +81,11 @@ describe('CardsItem component in edit mode', () => {
     });
 
     it('renders a color name input', () => {
-        cy.get(ColorNameSelector).find('input').should('exist');
         cy.get(ColorNameSelector).find('input').focus().blur();
         cy.get('@onBlur').should('have.been.called');
     });
 
     it('renders a color space input', () => {
-        cy.get(ColorSpaceSelector).find('input').should('exist');
         cy.get(ColorSpaceSelector).find('input').should('have.value', FrontifyColorDummy.red().nameCss);
         cy.get(ColorSpaceSelector).find('input').focus().blur();
         cy.get('@onUpdate').should('have.been.called');

@@ -25,7 +25,6 @@ describe('ColorName component', () => {
     it('renders a ColorName component in list view', () => {
         mount(<DefaultColorName viewType={ColorBlockType.List} isEditing={false} />);
 
-        cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).contains(INITIAL_COLOR_NAME);
         cy.get('input').should('not.exist');
     });
@@ -33,7 +32,6 @@ describe('ColorName component', () => {
     it('renders a ColorName component in drops view', () => {
         mount(<DefaultColorName viewType={ColorBlockType.Drops} isEditing={false} />);
 
-        cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).contains(INITIAL_COLOR_NAME);
         cy.get('input').should('not.exist');
     });
@@ -41,7 +39,6 @@ describe('ColorName component', () => {
     it('renders a ColorName component in cards view', () => {
         mount(<DefaultColorName viewType={ColorBlockType.Cards} isEditing={false} />);
 
-        cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).contains(INITIAL_COLOR_NAME);
         cy.get('input').should('not.exist');
     });
@@ -49,7 +46,6 @@ describe('ColorName component', () => {
     it('renders a ColorName component in list view and edit mode', () => {
         mount(<DefaultColorName viewType={ColorBlockType.List} isEditing />);
 
-        cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).find('input').should('have.value', INITIAL_COLOR_NAME);
         cy.get(ColorNameSelector).find('input').focus();
         cy.get(ColorNameSelector).find('input').blur();
@@ -59,7 +55,6 @@ describe('ColorName component', () => {
     it('renders a ColorName component in drops view and edit mode', () => {
         mount(<DefaultColorName viewType={ColorBlockType.Drops} isEditing />);
 
-        cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).find('input').should('have.value', INITIAL_COLOR_NAME);
         cy.get(ColorNameSelector).find('input').focus().blur();
         cy.get('@onBlur').should('have.been.called');
@@ -68,7 +63,6 @@ describe('ColorName component', () => {
     it('renders a ColorName component in cards view and edit mode', () => {
         mount(<DefaultColorName viewType={ColorBlockType.Cards} isEditing />);
 
-        cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).find('input').should('have.value', INITIAL_COLOR_NAME);
         cy.get(ColorNameSelector).find('input').focus();
         cy.get(ColorNameSelector).find('input').blur();

@@ -79,7 +79,6 @@ describe('ColorBlock component', () => {
         });
 
         mount(<ColorBlockWithStubs />);
-        cy.get(ColorSpaceSelector).should('exist');
         cy.get(ColorSpaceSelector).should('have.length', ALL_COLOR_SPACES.length * 3);
     });
 
@@ -92,7 +91,6 @@ describe('ColorBlock component', () => {
         });
 
         mount(<ColorBlockWithStubs />);
-        cy.get(ColorSpaceSelector).should('exist');
         cy.get(ColorSpaceSelector).should('have.length', ALL_COLOR_SPACES.length * 3);
     });
 
@@ -105,7 +103,6 @@ describe('ColorBlock component', () => {
         });
 
         mount(<ColorBlockWithStubs />);
-        cy.get(ColorSpaceSelector).should('exist');
         cy.get(ColorSpaceSelector).should('have.length', ALL_COLOR_SPACES.length * 3);
     });
 });
