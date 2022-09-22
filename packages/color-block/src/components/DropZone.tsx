@@ -14,10 +14,11 @@ export type DropZoneProps = {
     index: number;
     moveCard: (dragIndex: number, hoverIndex: number) => void;
     isEditing: boolean;
+    isMoving: boolean;
 };
 
 export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
-    ({ index, treeId, onDrop, children, colorBlockType, moveCard, isEditing }, forwardedRef) => {
+    ({ index, treeId, onDrop, children, colorBlockType, moveCard, isEditing, isMoving }, forwardedRef) => {
         const dropZoneRef = useRef<HTMLDivElement>(null);
 
         const [, drop] = useDrop({
@@ -77,7 +78,9 @@ export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
                     }
                 }
 
+                // if (!isMoving) {
                 moveCard(dragIndex, hoverIndex);
+                // }
 
                 item.index = hoverIndex;
             },
