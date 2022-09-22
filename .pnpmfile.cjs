@@ -6,6 +6,7 @@ function readPackage(pkg) {
         pkg.dependencies = {
             ...pkg.dependencies,
             postcss: "^8.4.16",
+            scheduler: ">=0.19.0",
         };
     }
 

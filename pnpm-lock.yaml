@@ -147,7 +147,7 @@ importers:
       vite-plugin-dts: 1.4.1
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.16_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.3.0_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 12.0.0-beta.0_sfoxds7t5ydpegc3knd667wn6m
     devDependencies:
       '@frontify/eslint-config-typescript': 0.15.2_swk2g7ygmfleszo5c33j4vooni
       eslint: 8.21.0
@@ -343,6 +343,55 @@ importers:
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.11_postcss@8.4.16
       cypress: 10.8.0
+      eslint: 8.23.1
+      postcss: 8.4.16
+      prettier: 2.7.1
+      tailwindcss: 3.1.8_postcss@8.4.16
+      typescript: 4.8.3
+
+  packages/color-block:
+    specifiers:
+      '@babel/core': 7.19.1
+      '@frontify/app-bridge': 3.0.0-beta.16
+      '@frontify/eslint-config-react': 0.15.2
+      '@frontify/fondue': 12.0.0-beta.0
+      '@frontify/fondue-tokens': 3.1.0
+      '@frontify/frontify-cli': 5.1.2
+      '@frontify/guideline-blocks-settings': workspace:*
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/react': 17.0.50
+      '@types/react-dom': 17.0.17
+      autoprefixer: 10.4.11
+      cypress: 10.8.0
+      cypress-real-events: 1.7.1
+      eslint: 8.23.1
+      postcss: 8.4.16
+      prettier: 2.7.1
+      react: 17.0.2
+      react-dnd: 16.0.1
+      react-dnd-html5-backend: 16.0.1
+      react-dom: 17.0.2
+      tailwindcss: 3.1.8
+      typescript: 4.8.3
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.16_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 12.0.0-beta.0_uh3gmfzfzdsoi2dmp6fduuy4y4
+      '@frontify/fondue-tokens': 3.1.0
+      '@frontify/guideline-blocks-settings': link:../block-settings
+      '@frontify/guideline-blocks-shared': link:../shared
+      react: 17.0.2
+      react-dnd: 16.0.1_pxzommwrsowkd4kgag6q3sluym
+      react-dnd-html5-backend: 16.0.1
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.19.1
+      '@frontify/eslint-config-react': 0.15.2_y3woi6nw5omnu2mv4lubyzhani
+      '@frontify/frontify-cli': 5.1.2
+      '@types/react': 17.0.50
+      '@types/react-dom': 17.0.17
+      autoprefixer: 10.4.11_postcss@8.4.16
+      cypress: 10.8.0
+      cypress-real-events: 1.7.1_cypress@10.8.0
       eslint: 8.23.1
       postcss: 8.4.16
       prettier: 2.7.1
@@ -1610,6 +1659,74 @@ packages:
       fast-json-stringify: 5.1.0
     dev: true
 
+  /@floating-ui/core/0.7.3:
+    resolution: {integrity: sha512-buc8BXHmG9l82+OQXOFU3Kr2XQx9ys01U/Q9HMIrZ300iLc8HLMgh7dcCqgYzAzf4BkoQvDcXf5Y+CuEZ5JBYg==}
+    dev: false
+
+  /@floating-ui/dom/0.5.4:
+    resolution: {integrity: sha512-419BMceRLq0RrmTSDxn8hf9R3VCJv2K9PUfugh5JyEFmdjzDo+e8U5EdR8nzKq8Yj1htzLm3b6eQEEam3/rrtg==}
+    dependencies:
+      '@floating-ui/core': 0.7.3
+    dev: false
+
+  /@floating-ui/react-dom-interactions/0.6.6_hiunvzosbwliizyirxfy6hjyim:
+    resolution: {integrity: sha512-qnao6UPjSZNHnXrF+u4/n92qVroQkx0Umlhy3Avk1oIebm/5ee6yvDm4xbHob0OjY7ya8WmUnV3rQlPwX3Atwg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/react-dom': 0.7.2_hiunvzosbwliizyirxfy6hjyim
+      aria-hidden: 1.2.0_pxzommwrsowkd4kgag6q3sluym
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      use-isomorphic-layout-effect: 1.1.2_pxzommwrsowkd4kgag6q3sluym
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
+  /@floating-ui/react-dom-interactions/0.6.6_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-qnao6UPjSZNHnXrF+u4/n92qVroQkx0Umlhy3Avk1oIebm/5ee6yvDm4xbHob0OjY7ya8WmUnV3rQlPwX3Atwg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/react-dom': 0.7.2_sfoxds7t5ydpegc3knd667wn6m
+      aria-hidden: 1.2.0_react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      use-isomorphic-layout-effect: 1.1.2_react@17.0.2
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
+  /@floating-ui/react-dom/0.7.2_hiunvzosbwliizyirxfy6hjyim:
+    resolution: {integrity: sha512-1T0sJcpHgX/u4I1OzIEhlcrvkUN8ln39nz7fMoE/2HDHrPiMFoOGR7++GYyfUmIQHkkrTinaeQsO3XWubjSvGg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/dom': 0.5.4
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      use-isomorphic-layout-effect: 1.1.2_pxzommwrsowkd4kgag6q3sluym
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
+  /@floating-ui/react-dom/0.7.2_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-1T0sJcpHgX/u4I1OzIEhlcrvkUN8ln39nz7fMoE/2HDHrPiMFoOGR7++GYyfUmIQHkkrTinaeQsO3XWubjSvGg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/dom': 0.5.4
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      use-isomorphic-layout-effect: 1.1.2_react@17.0.2
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
   /@formatjs/ecma402-abstract/1.11.10:
     resolution: {integrity: sha512-v8nuQpx6pc0xzg4VMCXPWesFx8PxBysdF7q1CGEoet0X9nhbGPGNq0SC+D9g+Kh0pWWITidlEYsepLF7lb8Tqw==}
     dependencies:
@@ -1699,8 +1816,8 @@ packages:
     dependencies:
       '@frontify/eslint-config-typescript': 0.15.2_kdsbbp2roa7vvztuimj3zjp37m
       eslint: 8.21.0
-      eslint-plugin-react: 7.30.0_eslint@8.21.0
-      eslint-plugin-react-hooks: 4.5.0_eslint@8.21.0
+      eslint-plugin-react: 7.30.1_eslint@8.21.0
+      eslint-plugin-react-hooks: 4.6.0_eslint@8.21.0
       react: 17.0.2
     transitivePeerDependencies:
       - prettier
@@ -1716,8 +1833,8 @@ packages:
     dependencies:
       '@frontify/eslint-config-typescript': 0.15.2_prdxvwpqz7ols7qpi4wzmubrfu
       eslint: 8.23.1
-      eslint-plugin-react: 7.30.0_eslint@8.23.1
-      eslint-plugin-react-hooks: 4.5.0_eslint@8.23.1
+      eslint-plugin-react: 7.30.1_eslint@8.23.1
+      eslint-plugin-react-hooks: 4.6.0_eslint@8.23.1
       react: 17.0.2
     transitivePeerDependencies:
       - prettier
@@ -1953,87 +2070,6 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/fondue/11.3.0_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-2aXHPOLvX3QTb9KX2kI0wPTI2qTnkcvDaAZ1Gp/VZpu2t+pvzK+TbfsrkS7eCF9Ffvh/xB8hNRhkEyE3lwbcww==}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/fondue-tokens': 3.1.0
-      '@popperjs/core': 2.11.6
-      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.5.2_react@17.0.2
-      '@react-aria/breadcrumbs': 3.3.0_react@17.0.2
-      '@react-aria/button': 3.6.0_react@17.0.2
-      '@react-aria/checkbox': 3.5.1_react@17.0.2
-      '@react-aria/combobox': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.3.0_react@17.0.2
-      '@react-aria/focus': 3.8.0_react@17.0.2
-      '@react-aria/interactions': 3.11.0_react@17.0.2
-      '@react-aria/link': 3.3.2_react@17.0.2
-      '@react-aria/listbox': 3.6.0_react@17.0.2
-      '@react-aria/menu': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.10.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.3.0_react@17.0.2
-      '@react-aria/select': 3.8.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.10.0_react@17.0.2
-      '@react-aria/table': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.3.0_react@17.0.2
-      '@react-aria/utils': 3.13.3_react@17.0.2
-      '@react-aria/visually-hidden': 3.4.0_react@17.0.2
-      '@react-stately/checkbox': 3.2.1_react@17.0.2
-      '@react-stately/collections': 3.4.2_react@17.0.2
-      '@react-stately/combobox': 3.2.0_react@17.0.2
-      '@react-stately/list': 3.5.2_react@17.0.2
-      '@react-stately/menu': 3.4.0_react@17.0.2
-      '@react-stately/overlays': 3.4.0_react@17.0.2
-      '@react-stately/radio': 3.5.0_react@17.0.2
-      '@react-stately/select': 3.3.0_react@17.0.2
-      '@react-stately/table': 3.3.0_react@17.0.2
-      '@react-stately/toggle': 3.4.1_react@17.0.2
-      '@react-stately/tooltip': 3.2.0_react@17.0.2
-      '@react-stately/tree': 3.3.2_react@17.0.2
-      '@storybook/addon-a11y': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate': 10.6.0_ioccsxtwo6p6x7plrzgy7uau7i
-      '@xstate/immer': 0.3.1_immer@9.0.15+xstate@4.33.2
-      '@xstate/react': 1.6.3_react@17.0.2+xstate@4.33.2
-      date-fns: 2.29.2
-      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.15
-      react: 17.0.2
-      react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_react@17.0.2
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.2.0
-      react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
-      react-textarea-autosize: 8.3.4_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
-      tinycolor2: 1.4.2
-      xstate: 4.33.2
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@tanstack/query-core'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - optics-ts
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
   /@frontify/fondue/11.3.0_uh3gmfzfzdsoi2dmp6fduuy4y4:
     resolution: {integrity: sha512-2aXHPOLvX3QTb9KX2kI0wPTI2qTnkcvDaAZ1Gp/VZpu2t+pvzK+TbfsrkS7eCF9Ffvh/xB8hNRhkEyE3lwbcww==}
     peerDependencies:
@@ -2109,6 +2145,168 @@ packages:
       - encoding
       - optics-ts
       - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/fondue/12.0.0-beta.0_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-vCULwBttmuzNTW/kBJ9yxNGKFAhQcLw/Baj1/gCbLkZEKxJlfZ0Yu6BiY41hkqQx2i/MimHJjSKQrfwKTm6Pdw==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.1.0
+      '@popperjs/core': 2.11.6
+      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.5.2_react@17.0.2
+      '@react-aria/breadcrumbs': 3.3.0_react@17.0.2
+      '@react-aria/button': 3.6.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.1_react@17.0.2
+      '@react-aria/combobox': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.3.0_react@17.0.2
+      '@react-aria/focus': 3.8.0_react@17.0.2
+      '@react-aria/interactions': 3.11.0_react@17.0.2
+      '@react-aria/link': 3.3.2_react@17.0.2
+      '@react-aria/listbox': 3.6.0_react@17.0.2
+      '@react-aria/menu': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.10.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.3.0_react@17.0.2
+      '@react-aria/select': 3.8.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.10.0_react@17.0.2
+      '@react-aria/table': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.3.0_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
+      '@react-aria/visually-hidden': 3.4.0_react@17.0.2
+      '@react-stately/checkbox': 3.2.1_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.1_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
+      '@react-stately/tree': 3.3.2_react@17.0.2
+      '@storybook/addon-a11y': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 16.9.1_oqjzqtflmqyfkv74uvuckfm24m
+      '@xstate/immer': 0.3.1_immer@9.0.15+xstate@4.33.2
+      '@xstate/react': 1.6.3_react@17.0.2+xstate@4.33.2
+      date-fns: 2.29.2
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.15
+      react: 17.0.2
+      react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_react@17.0.2
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.2.0
+      react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
+      react-textarea-autosize: 8.3.4_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+      tinycolor2: 1.4.2
+      xstate: 4.33.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - optics-ts
+      - react-native
+      - scheduler
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/fondue/12.0.0-beta.0_uh3gmfzfzdsoi2dmp6fduuy4y4:
+    resolution: {integrity: sha512-vCULwBttmuzNTW/kBJ9yxNGKFAhQcLw/Baj1/gCbLkZEKxJlfZ0Yu6BiY41hkqQx2i/MimHJjSKQrfwKTm6Pdw==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      '@frontify/fondue-tokens': 3.1.0
+      '@popperjs/core': 2.11.6
+      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.5.2_pxzommwrsowkd4kgag6q3sluym
+      '@react-aria/breadcrumbs': 3.3.0_react@17.0.2
+      '@react-aria/button': 3.6.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.1_react@17.0.2
+      '@react-aria/combobox': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.3.0_react@17.0.2
+      '@react-aria/focus': 3.8.0_react@17.0.2
+      '@react-aria/interactions': 3.11.0_react@17.0.2
+      '@react-aria/link': 3.3.2_react@17.0.2
+      '@react-aria/listbox': 3.6.0_react@17.0.2
+      '@react-aria/menu': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.10.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.3.0_react@17.0.2
+      '@react-aria/select': 3.8.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.10.0_react@17.0.2
+      '@react-aria/table': 3.4.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.3.0_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
+      '@react-aria/visually-hidden': 3.4.0_react@17.0.2
+      '@react-stately/checkbox': 3.2.1_react@17.0.2
+      '@react-stately/collections': 3.4.2_react@17.0.2
+      '@react-stately/combobox': 3.2.0_react@17.0.2
+      '@react-stately/list': 3.5.2_react@17.0.2
+      '@react-stately/menu': 3.4.0_react@17.0.2
+      '@react-stately/overlays': 3.4.0_react@17.0.2
+      '@react-stately/radio': 3.5.0_react@17.0.2
+      '@react-stately/select': 3.3.0_react@17.0.2
+      '@react-stately/table': 3.3.0_react@17.0.2
+      '@react-stately/toggle': 3.4.1_react@17.0.2
+      '@react-stately/tooltip': 3.2.0_react@17.0.2
+      '@react-stately/tree': 3.3.2_react@17.0.2
+      '@storybook/addon-a11y': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate': 16.9.1_mothzmjgm5f2gwragmuqybfqoq
+      '@xstate/immer': 0.3.1_immer@9.0.15+xstate@4.33.2
+      '@xstate/react': 1.6.3_s653fl7b5ttokw7ruspfmoo2gm
+      date-fns: 2.29.2
+      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.15
+      react: 17.0.2
+      react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 15.1.2_pxzommwrsowkd4kgag6q3sluym
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.2.0
+      react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
+      react-textarea-autosize: 8.3.4_pxzommwrsowkd4kgag6q3sluym
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+      tinycolor2: 1.4.2
+      xstate: 4.33.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - optics-ts
+      - react-native
+      - scheduler
       - supports-color
       - ts-node
       - valtio
@@ -2400,6 +2598,25 @@ packages:
 
   /@popperjs/core/2.11.6:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+    dev: false
+
+  /@radix-ui/react-compose-refs/0.1.0_react@17.0.2:
+    resolution: {integrity: sha512-eyclbh+b77k+69Dk72q3694OHrn9B3QsoIRx7ywX341U9RK1ThgQjMFZoPtmZNQTksXHLNEiefR8hGVeFyInGg==}
+    peerDependencies:
+      react: ^16.8 || ^17.0
+    dependencies:
+      '@babel/runtime': 7.18.9
+      react: 17.0.2
+    dev: false
+
+  /@radix-ui/react-slot/0.1.2_react@17.0.2:
+    resolution: {integrity: sha512-ADkqfL+agEzEguU3yS26jfB50hRrwf7U4VTwAOZEmi/g+ITcBWe12yM46ueS/UCIMI9Py+gFUaAdxgxafFvY2Q==}
+    peerDependencies:
+      react: ^16.8 || ^17.0
+    dependencies:
+      '@babel/runtime': 7.18.9
+      '@radix-ui/react-compose-refs': 0.1.0_react@17.0.2
+      react: 17.0.2
     dev: false
 
   /@react-aria/accordion/3.0.0-alpha.9_react@17.0.2:
@@ -2861,6 +3078,10 @@ packages:
     resolution: {integrity: sha512-kLy0PJDDwvwwTXxqTFNAAllPHD73AycE9ypWeln/IguoGBEbvFcPDbCV03G52bEcC5E+YgupBE0VzHGdC8SIXg==}
     dev: false
 
+  /@react-dnd/asap/5.0.2:
+    resolution: {integrity: sha512-WLyfoHvxhs0V9U+GTsGilGgf2QsPl6ZZ44fnv0/b8T3nQyvzxidxsg/ZltbWssbsRDlYW8UKSQMTGotuTotZ6A==}
+    dev: false
+
   /@react-dnd/invariant/2.0.0:
     resolution: {integrity: sha512-xL4RCQBCBDJ+GRwKTFhGUW8GXa4yoDfJrPbLblc3U09ciS+9ZJXJ3Qrcs/x2IODOdIE5kQxvMmE2UKyqUictUw==}
     dev: false
@@ -2869,12 +3090,20 @@ packages:
     resolution: {integrity: sha512-blqduwV86oiKw2Gr44wbe3pj3Z/OsXirc7ybCv9F/pLAR+Aih8F3rjeJzK0ANgtYKv5lCpkGVoZAeKitKDaD/g==}
     dev: false
 
+  /@react-dnd/invariant/4.0.2:
+    resolution: {integrity: sha512-xKCTqAK/FFauOM9Ta2pswIyT3D8AQlfrYdOi/toTPEhqCuAs1v5tcJ3Y08Izh1cJ5Jchwy9SeAXmMg6zrKs2iw==}
+    dev: false
+
   /@react-dnd/shallowequal/2.0.0:
     resolution: {integrity: sha512-Pc/AFTdwZwEKJxFJvlxrSmGe/di+aAOBn60sremrpLo6VI/6cmiUYNNwlI5KNYttg7uypzA3ILPMPgxB2GYZEg==}
     dev: false
 
   /@react-dnd/shallowequal/3.0.1:
     resolution: {integrity: sha512-XjDVbs3ZU16CO1h5Q3Ew2RPJqmZBDE/EVf1LYp6ePEffs3V/MX9ZbL5bJr8qiK5SbGmUMuDoaFgyKacYz8prRA==}
+    dev: false
+
+  /@react-dnd/shallowequal/4.0.2:
+    resolution: {integrity: sha512-/RVXdLvJxLg4QKvMoM5WlwNR9ViO9z8B/qPcc+C0Sa/teJY7QG7kJ441DwzOjMYEY7GmU4dj5EcGHIkKZiQZCA==}
     dev: false
 
   /@react-hook/merged-ref/1.3.2_react@17.0.2:
@@ -4033,33 +4262,6 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@udecode/plate-alignment/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-3edw9HIgKds72dxgfl3IaBA0dUOFZlDUoBvqWOp4UFxA0eMq32VZz8SIfgmmjt+9XF7bVzBv+VOwRIWpFZVP1g==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-    dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@urql/core'
-      - immer
-      - optics-ts
-      - react-query
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
   /@udecode/plate-alignment/10.5.3_ihv4zxojofrmeyi4engbk7g7im:
     resolution: {integrity: sha512-3edw9HIgKds72dxgfl3IaBA0dUOFZlDUoBvqWOp4UFxA0eMq32VZz8SIfgmmjt+9XF7bVzBv+VOwRIWpFZVP1g==}
     peerDependencies:
@@ -4114,16 +4316,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-autoformat/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-7rG9jRysWtCVZoyx/4LbOc/nwTyN7rrV177PzoY5EY4TNRR2tydsMxWtUriNL3+HBnNNvsUq+OQHU6h1h6rV9Q==}
+  /@udecode/plate-alignment/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-d/Fv88lQ6lkl007CSQoQaTaz8H38g2nYF88iA3imoPkWdfEphjWlNx5xR/4VU+DVNTH/tvUuNm/pSH0UWG+ZBg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -4132,10 +4334,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-alignment/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-d/Fv88lQ6lkl007CSQoQaTaz8H38g2nYF88iA3imoPkWdfEphjWlNx5xR/4VU+DVNTH/tvUuNm/pSH0UWG+ZBg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4195,20 +4428,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-basic-elements/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-2SACTm0qKTHiNESfEwa4cScx242Mk1y+qg5+x+03DAT3Y8e11P5tjAYhnBlKA6no1rVlkkCCLlt4Uzg3h4ciHA==}
+  /@udecode/plate-autoformat/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-DIrQV/A5yRiwlgjygxGWOiceIkmtDyvsXJ6K+lwyumOFu0XpLw1l67s6+s2TEnJYPitMcMOdhIxqCNE0pVedVw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-block-quote': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-code-block': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-heading': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-paragraph': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -4217,10 +4446,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-autoformat/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-DIrQV/A5yRiwlgjygxGWOiceIkmtDyvsXJ6K+lwyumOFu0XpLw1l67s6+s2TEnJYPitMcMOdhIxqCNE0pVedVw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4288,16 +4548,20 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-basic-marks/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-HQlHt+kdmtR+jz5VEOmj0bwZTY102vA3m4/tAWWlcgAvxiFH1GlN/+z6U8b6cCFK81d/AneklOnL8QRkkhnJDA==}
+  /@udecode/plate-basic-elements/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-qMzRL5N9RsoUjj+FcgSf5IEAyeR0ysfDaf7tQOL5lEqYhqk1vnJh8JZqQqxnRo1yugvFlE0WvszXU8Nq2ZFO1A==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-block-quote': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-code-block': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-heading': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-paragraph': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -4306,10 +4570,45 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-basic-elements/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-qMzRL5N9RsoUjj+FcgSf5IEAyeR0ysfDaf7tQOL5lEqYhqk1vnJh8JZqQqxnRo1yugvFlE0WvszXU8Nq2ZFO1A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-block-quote': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-code-block': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-heading': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-paragraph': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4369,16 +4668,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-block-quote/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-z90pBVH6o5TMGeLdtc/n7p8gZTKrgOTIeANP2Cc1lZbgnOVzSnbasqrP43beOczvJMRub1QiGNhhYGAnmjrHYA==}
+  /@udecode/plate-basic-marks/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-yqRVR+zowfjzOK9AxDZ//hiq6+tNUFY2gGJck8ClGMr5y9pbQfCDOyL7nkgbS7mUO4vzZmDIOjl+spGvOUVuSg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -4387,10 +4686,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-basic-marks/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-yqRVR+zowfjzOK9AxDZ//hiq6+tNUFY2gGJck8ClGMr5y9pbQfCDOyL7nkgbS7mUO4vzZmDIOjl+spGvOUVuSg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4450,16 +4780,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-break/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-C7VfPFEAFeNMkmZAYIwkJ9mmDUw3gWQ6ebI8AH8qRnhfWnpM7Q1z2gUq3aMQTVtsaFLryxmV57LyXSZBP4e24A==}
+  /@udecode/plate-block-quote/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-lVGotr93cMD4+3wJNV/LvF2aLRhnp3qOEMbFRKbFqt9sjuI98gviqizAtHo5yw34NoYiz4YDTa2wOyXNKg/FJg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -4468,10 +4798,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-block-quote/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-lVGotr93cMD4+3wJNV/LvF2aLRhnp3qOEMbFRKbFqt9sjuI98gviqizAtHo5yw34NoYiz4YDTa2wOyXNKg/FJg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4531,17 +4892,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-code-block/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-J3M0HDVpzoYRHfIlXoSZgzfCFoSEOZJUxsZZKVnCMHEWKCB6UFYCoG5HGlQCMkUbquqHNRe/AJXJPIu8bf3+9A==}
+  /@udecode/plate-break/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-48WpW9/SqngeTP6ZNRi90j89iOii7mhI6ImYd6uA4QbhrE9rtDLm+HRHmy1uNaOlJLECZ2jp4+2yWTN6rbObdg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      prismjs: 1.28.0
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -4550,10 +4910,99 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-break/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-48WpW9/SqngeTP6ZNRi90j89iOii7mhI6ImYd6uA4QbhrE9rtDLm+HRHmy1uNaOlJLECZ2jp4+2yWTN6rbObdg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-button/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-1FPMGTAYddSO08YoOJWf97wbrOLACUIxN2YI0QhOLl8k60bKKHlhhO5Bt/JV6uFElrpZiCjn6aBhE+wKxEs1gw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-button/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-1FPMGTAYddSO08YoOJWf97wbrOLACUIxN2YI0QhOLl8k60bKKHlhhO5Bt/JV6uFElrpZiCjn6aBhE+wKxEs1gw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4615,31 +5064,61 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-combobox/10.6.0_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-4wZpUqnAaf9M7nT6oNX5lJBoZ60q5cWwgBXDUmuoULgV9d8JdmA3JnKUoc3uXXU1cbmSlIBroT6PkOY6A1Oz3Q==}
+  /@udecode/plate-code-block/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-mtFy2IPuPF62qzMnqol6qk6Ag7dPco547Blcwf7UI/RFcRuCuX8/O/4phokz3ji35dZ06/oTrWWf0kGOpR/8Lw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/zustood': 0.4.4_zustand@3.7.0
-      downshift: 6.1.7_react@17.0.2
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      prismjs: 1.28.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      zustand: 3.7.0_react@17.0.2
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-code-block/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-mtFy2IPuPF62qzMnqol6qk6Ag7dPco547Blcwf7UI/RFcRuCuX8/O/4phokz3ji35dZ06/oTrWWf0kGOpR/8Lw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      prismjs: 1.28.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4705,33 +5184,65 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-core/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-OBu02wPV80AC55GmFUtB8WAWKDEYLzLiV8M9FODZjQXpp5QkVkE5947nEZR6qwnTwIzYNm41oY8YrJF3PcmjoA==}
+  /@udecode/plate-combobox/16.8.0_2iz6yodvf7grfiha3noi6klg7a:
+    resolution: {integrity: sha512-wyLavjSk58xsxp1vBwanRubx47CobjKEYOZY2zU2IHc/uSiPI4ut2Y6reXzEdG7NZYGHVJ2dNWLutFAcUc+NPg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/zustood': 0.4.4_zustand@3.7.0
-      clsx: 1.1.1
-      jotai: 1.5.3_q5xss7rtfecmc6foxtnji7xcae
-      lodash: 4.17.21
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-floating': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      downshift: 6.1.7_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      use-deep-compare: 1.1.0_react@17.0.2
-      zustand: 3.7.0_react@17.0.2
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-combobox/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-wyLavjSk58xsxp1vBwanRubx47CobjKEYOZY2zU2IHc/uSiPI4ut2Y6reXzEdG7NZYGHVJ2dNWLutFAcUc+NPg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-floating': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      downshift: 6.1.7_react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4801,28 +5312,73 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-find-replace/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-aJWrjzi6vCAEiqVDTj+qhjm5qB4BmQzB4Lxov3Dl1fen4P/lQH05BNYIFTrTz3Vn4V7ERvUFB73aXwRElBNArQ==}
+  /@udecode/plate-core/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-zd6ZxwDOuazKWGT4DFiQxQ8z3t2xAoBzg3JC5lY+4Xj/By5zjZD/ZmQAAogRWErC4ZNL6SqA2EbHDZij6hNrWg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@radix-ui/react-slot': 0.1.2_react@17.0.2
+      '@udecode/zustood': 1.1.3_bufjuvbfmumf3fm6mt4owofr5e
+      clsx: 1.2.1
+      jotai: 1.8.0_q5xss7rtfecmc6foxtnji7xcae
+      lodash: 4.17.21
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+      react-hotkeys-hook: 3.4.7_sfoxds7t5ydpegc3knd667wn6m
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      use-deep-compare: 1.1.0_react@17.0.2
+      zustand: 3.7.2_react@17.0.2
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-core/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-zd6ZxwDOuazKWGT4DFiQxQ8z3t2xAoBzg3JC5lY+4Xj/By5zjZD/ZmQAAogRWErC4ZNL6SqA2EbHDZij6hNrWg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@radix-ui/react-slot': 0.1.2_react@17.0.2
+      '@udecode/zustood': 1.1.3_bufjuvbfmumf3fm6mt4owofr5e
+      clsx: 1.2.1
+      jotai: 1.8.0_ffhxwjme62euxepxzcwca32yam
+      lodash: 4.17.21
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-hotkeys-hook: 3.4.7_sfoxds7t5ydpegc3knd667wn6m
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      use-deep-compare: 1.1.0_react@17.0.2
+      zustand: 3.7.2_react@17.0.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4882,16 +5438,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-font/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-ryZfztmL9/sm7HfqOXtEIIX7A5ziO4BbEKMEFmIH1Gpq9oD2adRm1GfigvBJyWa/Shv55mZ48CctFbnrWydzmw==}
+  /@udecode/plate-find-replace/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-VWtXbGdvP1mLu3MA9A7WrZl3rmIxzxOgnezpUCzZiGLsIuCsp87UCaS+e5FTpmxz1Ca7suer0ir2sJ//BErAIQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -4900,10 +5456,103 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-find-replace/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-VWtXbGdvP1mLu3MA9A7WrZl3rmIxzxOgnezpUCzZiGLsIuCsp87UCaS+e5FTpmxz1Ca7suer0ir2sJ//BErAIQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-floating/16.8.0_2iz6yodvf7grfiha3noi6klg7a:
+    resolution: {integrity: sha512-i9yHOGsHCaiFEFcqIj7k/8DQufTCqPmCV4seG2xyRqrzMULRgIsLCgogEosRF4mYvYXb04UhTkZ82aN6AfYdSw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@floating-ui/react-dom-interactions': 0.6.6_hiunvzosbwliizyirxfy6hjyim
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-floating/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-i9yHOGsHCaiFEFcqIj7k/8DQufTCqPmCV4seG2xyRqrzMULRgIsLCgogEosRF4mYvYXb04UhTkZ82aN6AfYdSw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@floating-ui/react-dom-interactions': 0.6.6_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -4963,16 +5612,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-heading/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-mOPA86HMkwQ1cCxVnKq5BnLhr3rburHc9u/5iIfsc9kDQsCqTw83OBEDncJ1WD1JAqcRSf2kD7gbkOONdwSguw==}
+  /@udecode/plate-font/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-jKAY0nUtwBPGBe1jdPhc2AZvPj1RwZicbG3v9nHQgQpcR/49MAmnR3fF8XV53CBu9LDPypAKvF2CI4V8bnXAJw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -4981,10 +5630,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-font/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-jKAY0nUtwBPGBe1jdPhc2AZvPj1RwZicbG3v9nHQgQpcR/49MAmnR3fF8XV53CBu9LDPypAKvF2CI4V8bnXAJw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -5039,6 +5719,64 @@ packages:
       - immer
       - optics-ts
       - react-query
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-heading/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-L6JUgeRFkDL6lrf/CpvOMHrBBDZScJPYrmXhGzdv11MU4f34sllf5C/WLCygMRERKaDZ/CO3wt6/B18nTDTOHA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-heading/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-L6JUgeRFkDL6lrf/CpvOMHrBBDZScJPYrmXhGzdv11MU4f34sllf5C/WLCygMRERKaDZ/CO3wt6/B18nTDTOHA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -5172,50 +5910,52 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-headless/10.6.0_ziw7kxoqo7x6nzvclllgv4kkke:
-    resolution: {integrity: sha512-JgZypic3z5dfAPbSxwg3hoQiOqF4kgugc4c8a0SLR3ooIAvf5XGJZdvd/5KBu9qD8bRFA7tEFVmeKWUJloEdQA==}
+  /@udecode/plate-headless/16.9.1_oewbns2qwwqpiem44egwqm2epm:
+    resolution: {integrity: sha512-wR0V4IwjnPXe+yWYDmIDTP7yVI1bXh6kr9iVKp6C2DCXX6+fn/n52KN6DWIth85ze+9KAa6IK1+T87dEifpqDA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
       slate-hyperscript: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-alignment': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-autoformat': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-basic-elements': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-basic-marks': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-block-quote': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-break': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-code-block': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-combobox': 10.6.0_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-find-replace': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-font': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-heading': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-highlight': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-horizontal-rule': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-image': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-indent': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-indent-list': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-juice': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-kbd': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-line-height': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-link': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-list': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-media-embed': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-mention': 10.6.0_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-node-id': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-normalizers': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-paragraph': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-reset-node': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-select': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-serializer-csv': 10.5.3_ziw7kxoqo7x6nzvclllgv4kkke
-      '@udecode/plate-serializer-docx': 10.5.3_ziw7kxoqo7x6nzvclllgv4kkke
-      '@udecode/plate-serializer-md': 10.6.0_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-table': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-trailing-block': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-alignment': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-autoformat': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-basic-elements': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-basic-marks': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-block-quote': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-break': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-button': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-code-block': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-combobox': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-find-replace': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-floating': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-font': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-heading': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-highlight': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-horizontal-rule': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-indent': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-indent-list': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-kbd': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-line-height': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-link': 16.9.1_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-list': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-media': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-mention': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-node-id': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-normalizers': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-paragraph': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-reset-node': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-select': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-selection': 16.8.1_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-serializer-csv': 16.8.0_jgrc3swrt27mwdtmswcvsriemy
+      '@udecode/plate-serializer-docx': 16.8.0_oewbns2qwwqpiem44egwqm2epm
+      '@udecode/plate-serializer-html': 16.8.0_jgrc3swrt27mwdtmswcvsriemy
+      '@udecode/plate-serializer-md': 16.9.1_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-table': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-trailing-block': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5225,39 +5965,82 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
-      - encoding
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
       - supports-color
       - valtio
       - wonka
       - xstate
     dev: false
 
-  /@udecode/plate-highlight/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-HS0tz2XT2eQHq+nEcR6Icm/oZmg3Jtrp34nRY44H/cyExdI70ddXE1ju22b4wwNi2cooo4FhhkGBm3kgd/JNVA==}
+  /@udecode/plate-headless/16.9.1_ziw7kxoqo7x6nzvclllgv4kkke:
+    resolution: {integrity: sha512-wR0V4IwjnPXe+yWYDmIDTP7yVI1bXh6kr9iVKp6C2DCXX6+fn/n52KN6DWIth85ze+9KAa6IK1+T87dEifpqDA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-alignment': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-autoformat': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-basic-elements': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-basic-marks': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-block-quote': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-break': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-button': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-code-block': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-combobox': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-find-replace': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-floating': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-font': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-heading': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-highlight': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-horizontal-rule': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-indent': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-indent-list': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-kbd': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-line-height': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-link': 16.9.1_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-list': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-media': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-mention': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-node-id': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-normalizers': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-paragraph': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-reset-node': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-select': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-selection': 16.8.1_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-serializer-csv': 16.8.0_ziw7kxoqo7x6nzvclllgv4kkke
+      '@udecode/plate-serializer-docx': 16.8.0_ziw7kxoqo7x6nzvclllgv4kkke
+      '@udecode/plate-serializer-html': 16.8.0_ziw7kxoqo7x6nzvclllgv4kkke
+      '@udecode/plate-serializer-md': 16.9.1_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-table': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-trailing-block': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - supports-color
       - valtio
       - wonka
       - xstate
@@ -5317,16 +6100,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-horizontal-rule/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-UMeGEG1eDEBa8frkkDYkALixDw7n4upR6Sd9feSw++RpiiLaGnFJOTze5Fv0YcFjkRGEG/fhTw53LFyA4uaiAg==}
+  /@udecode/plate-highlight/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-Rd7ufUlgDfQPy0AwALpWiQBPS9PLLUZvRdPutE0tJjGAq2YOF71DRVr2nk2CQduhAcg0mmhD4z0guy6ZeJManw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5335,10 +6118,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-highlight/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-Rd7ufUlgDfQPy0AwALpWiQBPS9PLLUZvRdPutE0tJjGAq2YOF71DRVr2nk2CQduhAcg0mmhD4z0guy6ZeJManw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -5398,16 +6212,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-image/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-C3y7zcU6Ze83BjYmb5gzgMmAlVNWyf1MhwKpGI2J4CSY6WyJXofo/WH/KJo+0pz/zddHcfF92siGP4CNnzEEEQ==}
+  /@udecode/plate-horizontal-rule/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-Gr8wfkIXabdMnNILPdgJzvOcXJF/VTvnky8NbH1JNrmim1n6bZLiSxY+Txo7KhVF0zbGX5UykAujPDzsjPz9ug==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5416,10 +6230,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-horizontal-rule/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-Gr8wfkIXabdMnNILPdgJzvOcXJF/VTvnky8NbH1JNrmim1n6bZLiSxY+Txo7KhVF0zbGX5UykAujPDzsjPz9ug==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -5462,35 +6307,6 @@ packages:
       slate-react: '>=0.74.2'
     dependencies:
       '@udecode/plate-core': 10.5.3_pvf3advrchepjjazllrkbnbae4
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@urql/core'
-      - immer
-      - optics-ts
-      - react-query
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
-  /@udecode/plate-indent-list/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-g3VVeUkaYfMg/TuwC74NPCDVh79kp0GkOp+6c00AH7Y9oL82V0VAlu96J377Z2HrTs/dl8CMIqQQ1ZHe3wM9Wg==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-    dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-indent': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-list': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5566,16 +6382,18 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-indent/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-oyFIKIOBl6npBP6B3h1KVyaeKnsgYAmq/9QDScTcQQXEjRssvZGI37wgftkCW15Gr9dgHqL7EGt4u1lqI5xrzA==}
+  /@udecode/plate-indent-list/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-sfRaYiEAqO1hsGHxfDidk1DXkIJOoTiAV5SARSSVdOmLu1m4YYT2Z/tmxMRxwI6ttV+rUjbKtnF1XbliQmWdlA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-indent': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-list': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5584,10 +6402,43 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-indent-list/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-sfRaYiEAqO1hsGHxfDidk1DXkIJOoTiAV5SARSSVdOmLu1m4YYT2Z/tmxMRxwI6ttV+rUjbKtnF1XbliQmWdlA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-indent': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-list': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -5647,17 +6498,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-juice/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-MWZNhYUk6V1CMEumoU2h5yC6FDWLm7c9r8NGtUIBsH1G7Fwv3rnruSN7VZfPeKjR7buSeSsriTybtsJlK+WZHQ==}
+  /@udecode/plate-indent/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-bvhWAUCS539AK4wDBXeYv1gnE6tGukiNOz+laV5urV/9hbHEgMYa5AeA9F9NY1erZtNjy6G+hwZNPh3yrkycWw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      juice: 8.0.0
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5666,11 +6516,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
-      - encoding
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-indent/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-bvhWAUCS539AK4wDBXeYv1gnE6tGukiNOz+laV5urV/9hbHEgMYa5AeA9F9NY1erZtNjy6G+hwZNPh3yrkycWw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -5734,33 +6614,6 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-kbd/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-6zPMj//Ie0zulplVUKpauUnpRd9gwfvo0YFvf0gchHGsqjtao0eqj9jF6qriX3o1DCWbtH8bPmWyPenh13rXuw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-    dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@urql/core'
-      - immer
-      - optics-ts
-      - react-query
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
   /@udecode/plate-kbd/10.5.3_ihv4zxojofrmeyi4engbk7g7im:
     resolution: {integrity: sha512-6zPMj//Ie0zulplVUKpauUnpRd9gwfvo0YFvf0gchHGsqjtao0eqj9jF6qriX3o1DCWbtH8bPmWyPenh13rXuw==}
     peerDependencies:
@@ -5815,16 +6668,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-line-height/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-YT9O9GWeP8M7iLCb/527OjnsrL5YD078ogzy31LYWUvg5tdxVha1dBgkSZhpIjT5uGCI2CARN2ekpwIbaLvJhg==}
+  /@udecode/plate-kbd/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-V6hYWFBf2LQVAU7Ewf4GmcJElsMrBzNa0fkPwzy8hDmRxG7z2dRJ0HEBK2SUX0UKP8iJv6r6VNklJu96S7U2kg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5833,10 +6686,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-kbd/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-V6hYWFBf2LQVAU7Ewf4GmcJElsMrBzNa0fkPwzy8hDmRxG7z2dRJ0HEBK2SUX0UKP8iJv6r6VNklJu96S7U2kg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -5896,17 +6780,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-link/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-2nbu7pcBXGWor1Jau2ED0dHSd64bftJ9aCd7LuBzAmrH74Szvw19Zvub1B2z27EhtrwYCTplV7XTTwtl3KQC6g==}
+  /@udecode/plate-line-height/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-eD4FOcTh3hmh54H0OK2sknc7XQeyQQOij5dAfsEqA88Ycb5d9Ku0o+6dDXcBneh/GVlrUba96bTKZkYWd1zqSA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-normalizers': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5915,10 +6798,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-line-height/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-eD4FOcTh3hmh54H0OK2sknc7XQeyQQOij5dAfsEqA88Ycb5d9Ku0o+6dDXcBneh/GVlrUba96bTKZkYWd1zqSA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -5980,17 +6894,18 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-list/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-Qhh8m2PuafA1X6dMuUojtp+yruGMFUJLUtd8tp9xHOzyxurqwR3oFz39f5CQfRfewAlpehZ+Lz/RjW3+zf8H8A==}
+  /@udecode/plate-link/16.9.1_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-pf2CkH2FP8JDl6ad9yZalYin6VtYmwMgCpFVVbjTMgWrpUUqMkyUtiVboha+B0jL3CS9xuDDhfds9/zYlEWYYg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-reset-node': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-button': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-normalizers': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -5999,10 +6914,43 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-link/16.9.1_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-pf2CkH2FP8JDl6ad9yZalYin6VtYmwMgCpFVVbjTMgWrpUUqMkyUtiVboha+B0jL3CS9xuDDhfds9/zYlEWYYg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-button': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-normalizers': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6064,16 +7012,17 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-media-embed/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-T1+7MVz4HiaIjtaf8seSdFgj7ZP0d+jiIiyM2GEC4vX+ytYCdXUyNFdyFxoxFDa14IorbtVPjfuMw/L5xHKQVQ==}
+  /@udecode/plate-list/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-TNEzHS0NfYAClV3rNVa7sOD0XGBK7ykwA/uEb/tLom2L0HSyITMJQuTyStLELQ15Yn8Bz4BBfo68h/dPYXKjHg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-reset-node': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -6082,10 +7031,42 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-list/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-TNEzHS0NfYAClV3rNVa7sOD0XGBK7ykwA/uEb/tLom2L0HSyITMJQuTyStLELQ15Yn8Bz4BBfo68h/dPYXKjHg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-reset-node': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6145,29 +7126,69 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-mention/10.6.0_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-WISiAhkNri6sJ+/EDGwTh4iocPhQhBRHgxc5WrnKqnN+FNn0cWN8XYZSQf2tX9gP1sPi14ryUioyhdRLQdtXUw==}
+  /@udecode/plate-media/16.8.0_2iz6yodvf7grfiha3noi6klg7a:
+    resolution: {integrity: sha512-EpYA/my8d0z2cBYxlPBtBTC134AOMYV60AH8n3TjnLpFdE69WcS2FjHlueDkt0QvteRlPILlMQ0o2zd7BMPe3Q==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-combobox': 10.6.0_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      js-video-url-parser: 0.5.1
+      re-resizable: 6.9.9_sfoxds7t5ydpegc3knd667wn6m
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+      react-textarea-autosize: 8.3.4_pxzommwrsowkd4kgag6q3sluym
+      scriptjs: 2.5.9
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-media/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-EpYA/my8d0z2cBYxlPBtBTC134AOMYV60AH8n3TjnLpFdE69WcS2FjHlueDkt0QvteRlPILlMQ0o2zd7BMPe3Q==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      js-video-url-parser: 0.5.1
+      re-resizable: 6.9.9_sfoxds7t5ydpegc3knd667wn6m
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-textarea-autosize: 8.3.4_react@17.0.2
+      scriptjs: 2.5.9
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6229,16 +7250,17 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-node-id/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-V3w9cMyrZ25DbV9dNJjlpWQ3HvCfhLVEE4IY+nEzuIdok0GQ/bRzXOJ5T9DQC7hk18qw2Nd+MR7VbqpWhqphRw==}
+  /@udecode/plate-mention/16.8.0_2iz6yodvf7grfiha3noi6klg7a:
+    resolution: {integrity: sha512-w9+6O1mjd8T/abJyD9XcfFR6nbRTY98nVQ7UYCosp+mr5DQGtRf54KaNv0vWtpdXmy5q2MolKRyu8J7Ot1ZqOA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-combobox': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -6247,10 +7269,44 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-mention/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-w9+6O1mjd8T/abJyD9XcfFR6nbRTY98nVQ7UYCosp+mr5DQGtRf54KaNv0vWtpdXmy5q2MolKRyu8J7Ot1ZqOA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-combobox': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6310,16 +7366,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-normalizers/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-8AgUMx6sVPXzA20Yg0psvU0DD/5x/3a+iSVJ8ROCG21qL4+VH/7GV5VlRpD0NvXw3jTVosVmPH3XBw20c14/mg==}
+  /@udecode/plate-node-id/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-QVEm+mZKqv9zfeFcx1IuW1F+qupR8P7evldoPxmx+nWKYk46mzoN0Zar2+mkiVtzyLS9VMTuNTbsIE975trQPg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -6328,10 +7384,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-node-id/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-QVEm+mZKqv9zfeFcx1IuW1F+qupR8P7evldoPxmx+nWKYk46mzoN0Zar2+mkiVtzyLS9VMTuNTbsIE975trQPg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6391,16 +7478,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-paragraph/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-89VV0tRIQtSh4uYxUsqrqdVQYkOmc0yx8t5BNPRrd/3D9h6IiX4UGpwUlo6AaGH4gyLAXF0AWEai5iccwS90gw==}
+  /@udecode/plate-normalizers/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-51o+2ir9yumTjbcMsvLu78PW/e9nXqkiHtM/eIw4QGUXjKDOJf2gAJk447OXLGPBnAn29ucfrSRAwVmAGzlpeg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -6409,10 +7496,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-normalizers/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-51o+2ir9yumTjbcMsvLu78PW/e9nXqkiHtM/eIw4QGUXjKDOJf2gAJk447OXLGPBnAn29ucfrSRAwVmAGzlpeg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6472,16 +7590,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-reset-node/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-Jmh0COs2a5NtB4eNU3vbZdB+dcG/jIjsme51eqbaZjiCslCNU95bBP/UCXnu8Wny6Sx11chnpxQxi/RfgTnXPg==}
+  /@udecode/plate-paragraph/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-p44WrWqIrtfJZpjslSjnqh6g9AcajlRs1BiJf6CGU9U5ITNTltUtl9+NL0Miabibgk0Hz1SguFZ7RCVOLWtL1w==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -6490,10 +7608,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-paragraph/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-p44WrWqIrtfJZpjslSjnqh6g9AcajlRs1BiJf6CGU9U5ITNTltUtl9+NL0Miabibgk0Hz1SguFZ7RCVOLWtL1w==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6553,16 +7702,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-select/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-t/yMkcBA5AghIXv/Mppyu4OmHAQhP7bXrbAthVbS20Gza0qCYA/Zc2mWF9CBHkLNx378KJOXIj0AhcII0J0IxA==}
+  /@udecode/plate-reset-node/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-ex6WEAAlgMAC4iEFxP3pxmbRPA7lCfMJJQDrJlZBT9VwOdBTSZDLWcjosPI4nYg+7r01frYH75pVwfkGlW/NUA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -6571,10 +7720,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-reset-node/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-ex6WEAAlgMAC4iEFxP3pxmbRPA7lCfMJJQDrJlZBT9VwOdBTSZDLWcjosPI4nYg+7r01frYH75pVwfkGlW/NUA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6629,6 +7809,124 @@ packages:
       - immer
       - optics-ts
       - react-query
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-select/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-W08xMr1UcXU9Kz9rU1CELTXzV9Sw5uBOj8efm7Bfg1jreAwEnGKZUQ9Ctx9JyQ2GgRHTzi69VF2LglSkTFeVwA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-select/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-W08xMr1UcXU9Kz9rU1CELTXzV9Sw5uBOj8efm7Bfg1jreAwEnGKZUQ9Ctx9JyQ2GgRHTzi69VF2LglSkTFeVwA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-selection/16.8.1_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-0PLuMU8A7ow5qmCio7s4G8WKarXVWO7a2fdt2DWIocdTo99JSCHGaZCzL8XTlyXxoNOCKrfoC297B8gVi3r72A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@viselect/vanilla': 3.1.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-selection/16.8.1_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-0PLuMU8A7ow5qmCio7s4G8WKarXVWO7a2fdt2DWIocdTo99JSCHGaZCzL8XTlyXxoNOCKrfoC297B8gVi3r72A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@viselect/vanilla': 3.1.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6694,17 +7992,17 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-serializer-csv/10.5.3_ziw7kxoqo7x6nzvclllgv4kkke:
-    resolution: {integrity: sha512-AuxguCW944S7o6yMuilL/HmMPfHaMEeZqD7Vd/81qftACEYUouAzTIiRdYAZ8Ohx9anpn1/swDFvoEDmKsUJkg==}
+  /@udecode/plate-serializer-csv/16.8.0_jgrc3swrt27mwdtmswcvsriemy:
+    resolution: {integrity: sha512-I+13F+1GcdoTTuC6HAb02nby8W3ATyBsI8eVZzmRccWgEbC5sAQ+pyx/SUZL5asxE6kg4hx7G+TOI0qjIZeeMw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-hyperscript: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-table': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-table': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
       papaparse: 5.3.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -6714,10 +8012,44 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - slate-history
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-serializer-csv/16.8.0_ziw7kxoqo7x6nzvclllgv4kkke:
+    resolution: {integrity: sha512-I+13F+1GcdoTTuC6HAb02nby8W3ATyBsI8eVZzmRccWgEbC5sAQ+pyx/SUZL5asxE6kg4hx7G+TOI0qjIZeeMw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-table': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      papaparse: 5.3.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - slate-history
       - valtio
       - wonka
@@ -6796,23 +8128,23 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-serializer-docx/10.5.3_ziw7kxoqo7x6nzvclllgv4kkke:
-    resolution: {integrity: sha512-1k5f6RR+0raxiCY35vkTm5evfOt0iggTcxh08xoq0Rjij8NhdXBfBrBpKlJCp2bRRLRd3B3y21sbF5FGW89nzA==}
+  /@udecode/plate-serializer-docx/16.8.0_oewbns2qwwqpiem44egwqm2epm:
+    resolution: {integrity: sha512-ZGXMIBT6HQIaDcSCHEatiUW4ekJMAy64wbtCpoByDIKwAliNzIcs2btMFVZkcjN+X1j5PrAfT4WfZ/bPt3NH3Q==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
       slate-hyperscript: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-heading': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-image': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-indent': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-indent-list': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-paragraph': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-table': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-heading': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-indent': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-indent-list': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-media': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-paragraph': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-table': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -6823,47 +8155,116 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
     dev: false
 
-  /@udecode/plate-serializer-md/10.6.0_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-d5ISdZKYVHQ+YXwR7ai3lKrxuwDm7RiBsh7RbXliISxWPYfY7NheKBvj83p53PD28/vcObmXfKl7He+vfaqfLA==}
+  /@udecode/plate-serializer-docx/16.8.0_ziw7kxoqo7x6nzvclllgv4kkke:
+    resolution: {integrity: sha512-ZGXMIBT6HQIaDcSCHEatiUW4ekJMAy64wbtCpoByDIKwAliNzIcs2btMFVZkcjN+X1j5PrAfT4WfZ/bPt3NH3Q==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-block-quote': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-code-block': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-heading': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-link': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-list': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-paragraph': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-heading': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-indent': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-indent-list': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-media': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-paragraph': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-table': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      remark-parse: 9.0.0
-      remark-slate: 1.8.6
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      unified: 9.2.2
+      validator: 13.7.0
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
-      - supports-color
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-serializer-html/16.8.0_jgrc3swrt27mwdtmswcvsriemy:
+    resolution: {integrity: sha512-AY2OvWLiLbuiubgV9LzagBBdwu9mEvgBH3MLIK19pw6yB01/yPqL0cbVT0HE8YKWG9KutzRcxinoFuNG/5FNAw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      html-entities: 2.3.3
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-serializer-html/16.8.0_ziw7kxoqo7x6nzvclllgv4kkke:
+    resolution: {integrity: sha512-AY2OvWLiLbuiubgV9LzagBBdwu9mEvgBH3MLIK19pw6yB01/yPqL0cbVT0HE8YKWG9KutzRcxinoFuNG/5FNAw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      html-entities: 2.3.3
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -6943,33 +8344,79 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-styled-components/10.5.3_fatvehatp6etkcumuegz5yj244:
-    resolution: {integrity: sha512-FYgC53IWat68MNZ4ZN4t/e7aZi0aY/pV/95VKtbWfJlCeBecJr4HLmNWP9PPZRfBeIUFpLyawf6y1yxRFkCv/A==}
+  /@udecode/plate-serializer-md/16.9.1_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-ceK1KKoRzZbUqptRMEumu+nDUyzi2Riu67QbXKtJAb1FkQ/cyxfyudvMdR+vSHwOsZAoByKnWHts/q0zoXuGew==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      react-is: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-      styled-components: '>=5.0.0'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      clsx: 1.2.1
+      '@udecode/plate-block-quote': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-code-block': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-heading': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-link': 16.9.1_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-list': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-paragraph': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-is: 18.2.0
+      remark-parse: 9.0.0
+      remark-slate: 1.8.6
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+      unified: 9.2.2
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - supports-color
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-serializer-md/16.9.1_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-ceK1KKoRzZbUqptRMEumu+nDUyzi2Riu67QbXKtJAb1FkQ/cyxfyudvMdR+vSHwOsZAoByKnWHts/q0zoXuGew==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-block-quote': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-code-block': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-heading': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-link': 16.9.1_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-list': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-paragraph': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      remark-parse: 9.0.0
+      remark-slate: 1.8.6
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      unified: 9.2.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
+      - supports-color
       - valtio
       - wonka
       - xstate
@@ -7039,28 +8486,69 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-table/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-0/6GAI9YeY92hdyPjGlaFeMeMQ1BcttguwW3DBRDeK6whknvOABubc6MsHc49xvYZlJYoC1xuv1pqBFTa8FLpg==}
+  /@udecode/plate-styled-components/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-wOHvK1wcUjUJRKNIzU2IAskBUycgJ3owlmh5b+1qwgByECjvvzjxISZiDZhnIHJFpx+CfmTreext0HicBAz58g==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      react-is: '>=16.8.0'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      clsx: 1.2.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+      react-is: 18.2.0
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-styled-components/16.8.0_pa6gwkhosklqqbdgmko6lgf62u:
+    resolution: {integrity: sha512-wOHvK1wcUjUJRKNIzU2IAskBUycgJ3owlmh5b+1qwgByECjvvzjxISZiDZhnIHJFpx+CfmTreext0HicBAz58g==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      react-is: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      clsx: 1.2.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.2.0
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7120,16 +8608,16 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-trailing-block/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-bwT6GHfw5u0SXfCaPdoTB/xEYVP/5qS83Ucs5STbEN/6nTBas8UJ5+RZutve6uTttWy8sfBZx06goS16RBJ4pw==}
+  /@udecode/plate-table/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-6GBRw0mpiYwMMnS1XyjOJ2jK7v0C+MlIsExs3P9JjHuIxy4BZKCHF9tBs2RMBJ7vK1hR9wxcwSVI1f9wG+C2nw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -7138,10 +8626,41 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-table/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-6GBRw0mpiYwMMnS1XyjOJ2jK7v0C+MlIsExs3P9JjHuIxy4BZKCHF9tBs2RMBJ7vK1hR9wxcwSVI1f9wG+C2nw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7201,35 +8720,59 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-alignment/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-/sMEBPM8NVRVx2TKx5o70obmMN3xKEGeoCuycSAbVTn8Wc4aewgfEr9v/knt4ZiuWc0DDcG5eSsmdI1r85bJIA==}
+  /@udecode/plate-trailing-block/16.8.0_f7mpy7ab2zum6rhrn3yye7lyci:
+    resolution: {integrity: sha512-eaawcb5oCyKfvPBrXmD6J+dXv7+7wypCXqAvDQwbdS/0pckc8SZKT6j6Un2vsticCTZkmtRyEc8+x2RdZLFikg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-      styled-components: '>=5.0.0'
+      slate-react: '>=0.79.0'
     dependencies:
-      '@udecode/plate-alignment': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
-      - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-trailing-block/16.8.0_ihv4zxojofrmeyi4engbk7g7im:
+    resolution: {integrity: sha512-eaawcb5oCyKfvPBrXmD6J+dXv7+7wypCXqAvDQwbdS/0pckc8SZKT6j6Un2vsticCTZkmtRyEc8+x2RdZLFikg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7303,19 +8846,20 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-block-quote/10.5.3_fatvehatp6etkcumuegz5yj244:
-    resolution: {integrity: sha512-by/tNFJv3iJEALAws+TRKUtJjh+CW7uS/1JmLykiGO4VXBq7XQUkFa8yGYzTE9jUvT5BAi7+jyTQe93Y1tnJGw==}
+  /@udecode/plate-ui-alignment/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-c+thv0uZKmhHN7LDJkVuQJSCg1C4DTrYexYirHT7zu85G9r8G/Brov9vpTnPLDM9P823lo/SkBMaY0qv1Bs2WQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-block-quote': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-alignment': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -7325,11 +8869,50 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-alignment/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-c+thv0uZKmhHN7LDJkVuQJSCg1C4DTrYexYirHT7zu85G9r8G/Brov9vpTnPLDM9P823lo/SkBMaY0qv1Bs2WQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-alignment': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7399,18 +8982,19 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-button/10.5.3_fatvehatp6etkcumuegz5yj244:
-    resolution: {integrity: sha512-WS1vPfRTKpMDoEgcb/OHwjdFkgt8qrM6akYLAA1ZvM0MXi93NjVdfgpa6FSsPH3n3hU3lbSfNiEDY4cTI/wzTg==}
+  /@udecode/plate-ui-block-quote/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-OgF7cDU/gBiadNCX7J2jqY8P96/RxrJX2JWsv0dEfVfmfArjas4J2vCOXEAVYpz79s77HBkhp3+3kImRQsUyIQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-block-quote': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -7420,11 +9004,47 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-block-quote/16.8.0_pa6gwkhosklqqbdgmko6lgf62u:
+    resolution: {integrity: sha512-OgF7cDU/gBiadNCX7J2jqY8P96/RxrJX2JWsv0dEfVfmfArjas4J2vCOXEAVYpz79s77HBkhp3+3kImRQsUyIQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-block-quote': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7492,20 +9112,19 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-code-block/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-sdf2j29ydGriOqtB65DJwU8FikKDia7UXFWsie3qYMlQcvilGzVIrhMwcL6TGWYoilclZCUL1ucP42QAqmF25w==}
+  /@udecode/plate-ui-button/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-19qS5BXtXRm7pnXxVKHbIacSSc9ml/931gU6ll9qim6gJ6wgqGyUXKK03ivpzS0Gk7+5cWbSV1ib5NyGqW8gyA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-code-block': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
+      '@udecode/plate-button': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -7515,12 +9134,47 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-button/16.8.0_pa6gwkhosklqqbdgmko6lgf62u:
+    resolution: {integrity: sha512-19qS5BXtXRm7pnXxVKHbIacSSc9ml/931gU6ll9qim6gJ6wgqGyUXKK03ivpzS0Gk7+5cWbSV1ib5NyGqW8gyA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-button': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7594,20 +9248,20 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-combobox/10.6.0_fatvehatp6etkcumuegz5yj244:
-    resolution: {integrity: sha512-bJ1A+Dqx6Ydh3KSZoQPVaXKs4KnY5mUAY72Xt7rF4XT5l/qNKuhM+QDud6apBLd5qlqFfDo5dO3/W3u+U556Vw==}
+  /@udecode/plate-ui-code-block/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-MT85/G/m9NGBATLEMImdY7F18V1wCe7CgBlhD7vuwom0diQjbwPEMQ9t7Q5yexiHbzFl+6WOSbjSYPWsLartsQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-combobox': 10.6.0_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-popper': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-code-block': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -7617,11 +9271,50 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-code-block/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-MT85/G/m9NGBATLEMImdY7F18V1wCe7CgBlhD7vuwom0diQjbwPEMQ9t7Q5yexiHbzFl+6WOSbjSYPWsLartsQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-code-block': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7688,6 +9381,144 @@ packages:
       - optics-ts
       - react-is
       - react-query
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-combobox/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-NLxW4jG89Xk2Qn01iyKMU8Ae9nXPhbPBeK76Ts5RgxlaqOsfIQDgNysv4yfMm1hYwsmc4cWhT4TYl+OkBqGe7A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-combobox': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-floating': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-combobox/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-NLxW4jG89Xk2Qn01iyKMU8Ae9nXPhbPBeK76Ts5RgxlaqOsfIQDgNysv4yfMm1hYwsmc4cWhT4TYl+OkBqGe7A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-combobox': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-floating': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-cursor/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-n4ry53exgKcz1P0NG9kGtfcZo7D5QbrURoRyOG6JYfNKUQ7HTXi5Du1+s9+3lSrs3ILv1BzsmNRSkDLDSvOpQA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-cursor/16.8.0_pa6gwkhosklqqbdgmko6lgf62u:
+    resolution: {integrity: sha512-n4ry53exgKcz1P0NG9kGtfcZo7D5QbrURoRyOG6JYfNKUQ7HTXi5Du1+s9+3lSrs3ILv1BzsmNRSkDLDSvOpQA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7769,44 +9600,6 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-dnd/10.5.3_fatvehatp6etkcumuegz5yj244:
-    resolution: {integrity: sha512-3VC9WtfcB+QB6l2cPD3rVWF6Qb9Vyhk13i2qR//q1uZq5XtQMDCeAQL/dRRd5ux1boIS1RtPJgzuWhFqKdTjjg==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-      styled-components: '>=5.0.0'
-    dependencies:
-      '@react-hook/merged-ref': 1.3.2_react@17.0.2
-      '@tippyjs/react': 4.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      react: 17.0.2
-      react-dnd: 14.0.5_react@17.0.2
-      react-dnd-html5-backend: 14.1.0
-      react-dom: 17.0.2_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - immer
-      - optics-ts
-      - react-is
-      - react-query
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
   /@udecode/plate-ui-dnd/10.5.3_mfca2hij22at4o6gttc7zlzrvq:
     resolution: {integrity: sha512-3VC9WtfcB+QB6l2cPD3rVWF6Qb9Vyhk13i2qR//q1uZq5XtQMDCeAQL/dRRd5ux1boIS1RtPJgzuWhFqKdTjjg==}
     peerDependencies:
@@ -7845,21 +9638,25 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-find-replace/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-AQYNMyQcMQgfw2ItEZ68SlG7QzR7D1mDgz1y+IdsjAZjQ3cc5f+XE0fd9v2M9tlIzJXMbDTPEibOl+QeSI+F/Q==}
+  /@udecode/plate-ui-dnd/16.8.0_2t22tp7xadg2mgclq4jzsf75ai:
+    resolution: {integrity: sha512-0OyDs/CbsWdz7WgrjVqNrrIxKLUDBxT478+HPDytcbJIYaKoexaOwN0IhUmFzy/XZSp8XnfoJMxuVLV43TSFKA==}
     peerDependencies:
       react: '>=16.8.0'
+      react-dnd: '>=14.0.0'
+      react-dnd-html5-backend: '>=14.0.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-find-replace': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
+      '@react-hook/merged-ref': 1.3.2_react@17.0.2
+      '@tippyjs/react': 4.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
       react: 17.0.2
+      react-dnd: 15.1.2_react@17.0.2
+      react-dnd-html5-backend: 15.1.3
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
@@ -7868,12 +9665,52 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-dnd/16.8.0_oevl5okuf225cbbd7g2dutu4pm:
+    resolution: {integrity: sha512-0OyDs/CbsWdz7WgrjVqNrrIxKLUDBxT478+HPDytcbJIYaKoexaOwN0IhUmFzy/XZSp8XnfoJMxuVLV43TSFKA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dnd: '>=14.0.0'
+      react-dnd-html5-backend: '>=14.0.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@react-hook/merged-ref': 1.3.2_react@17.0.2
+      '@tippyjs/react': 4.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      react: 17.0.2
+      react-dnd: 15.1.2_pxzommwrsowkd4kgag6q3sluym
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -7947,21 +9784,20 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-font/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-jsX1+UP2yZWeRy7ZXqYjavNLWLHivFXGbAznE/3kP3/2GYp0z0T5cfzemaqdqTEVohzLAO5V7I7q97Iget0l/Q==}
+  /@udecode/plate-ui-find-replace/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-oM+RjCQkzakFdXHJhkXSGtAPIldLkxoUSUAsSqYAa1jg6O0nMNHeD53di++0VhlGwlmqYikk+NAj4uysdZiy9A==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-font': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-button': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-find-replace': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -7971,12 +9807,50 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-find-replace/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-oM+RjCQkzakFdXHJhkXSGtAPIldLkxoUSUAsSqYAa1jg6O0nMNHeD53di++0VhlGwlmqYikk+NAj4uysdZiy9A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-find-replace': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -8052,24 +9926,23 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-image/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-UhJmfAp/VXQMuzwv2QJkBSmmrb8O08NBaY9PVbbEZFXPzDt1k8U20TTHrCzlX5O8aklDwnXeoACrKdpAP8DuQg==}
+  /@udecode/plate-ui-font/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-9hWHNnBxZLgWYsOaWsu7bqS/a8v5r1jgCnNqqoxfYLZVKTQtheS9/fuOIgfi5koiHklfii+fZ8punaNE/yElSg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-image': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      re-resizable: 6.9.9_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-font': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-button': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-textarea-autosize: 8.3.4_react@17.0.2
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
@@ -8077,13 +9950,51 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
       - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-font/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-9hWHNnBxZLgWYsOaWsu7bqS/a8v5r1jgCnNqqoxfYLZVKTQtheS9/fuOIgfi5koiHklfii+fZ8punaNE/yElSg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-font': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-button': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -8163,40 +10074,6 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-line-height/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-b6+Fov+UGecbSsJrHtnPpovld4yT4/NWc+qGZPYLVBjGX8swbkQWGJimNUEmjmP0tHCj4W/CKQIPQASYlEnwVg==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-      styled-components: '>=5.0.0'
-    dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-line-height': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@popperjs/core'
-      - '@urql/core'
-      - immer
-      - optics-ts
-      - react-is
-      - react-query
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
   /@udecode/plate-ui-line-height/10.5.3_e5akpelpkhtwsk5fcxhw62fjxe:
     resolution: {integrity: sha512-b6+Fov+UGecbSsJrHtnPpovld4yT4/NWc+qGZPYLVBjGX8swbkQWGJimNUEmjmP0tHCj4W/CKQIPQASYlEnwVg==}
     peerDependencies:
@@ -8265,20 +10142,20 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-link/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-OooB8MEmtV/6NE13/fbnLn8TbQoNxi5iaZcofmjxKb2X/HUOkG+ZY3yn1oVCXedVUsdgbEzUvoyBPBcnJL5PjA==}
+  /@udecode/plate-ui-line-height/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-mjdaM8eG289hxwA6U2b92BCVSI9LtpGYBndX9GzXLYRqPXvEkBTDOlMAXalOwZj/tUulxdni5P+4GmM2RKSu1A==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-link': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-line-height': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -8288,12 +10165,50 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-line-height/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-mjdaM8eG289hxwA6U2b92BCVSI9LtpGYBndX9GzXLYRqPXvEkBTDOlMAXalOwZj/tUulxdni5P+4GmM2RKSu1A==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-line-height': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -8367,20 +10282,21 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-list/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-LNrJMs1St3x6RR+4Uoeg8ZuuqnwU+5DPOEKSorSwzFxkoyHDvUZsluzQIzfRCYirXLWFhkadKvaxnyVmhGSkSA==}
+  /@udecode/plate-ui-link/16.9.1_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-iHzT3CeHGd9xE2zYmeTBaTRIw7UQbihaV+nnXHWwF/TumCtWfvungGySB55n9P0zJUy71Ye2U++N2M1AYQJBwg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-list': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-link': 16.9.1_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-button': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -8390,12 +10306,51 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-link/16.9.1_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-iHzT3CeHGd9xE2zYmeTBaTRIw7UQbihaV+nnXHWwF/TumCtWfvungGySB55n9P0zJUy71Ye2U++N2M1AYQJBwg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-link': 16.9.1_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-button': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -8469,20 +10424,20 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-media-embed/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-hwbHoYYldZjSTkUqcVGhZ8M8Vvc18jZPQKoBM9ZdKbxfQTeZNUfZEq12mzqJ+EtKjaw0vZqOHrsD3ydK+wFyew==}
+  /@udecode/plate-ui-list/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-hTXIiNkGhFgcbobJG/gai4kuKXIQAmtkDnACilmq0BKHQ2lzWs6y6qjei+KH3Ku5SSYbYxzX74SyyPv71wrYEw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-media-embed': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-list': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -8492,12 +10447,50 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-list/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-hTXIiNkGhFgcbobJG/gai4kuKXIQAmtkDnACilmq0BKHQ2lzWs6y6qjei+KH3Ku5SSYbYxzX74SyyPv71wrYEw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-list': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -8571,21 +10564,24 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-mention/10.6.0_fatvehatp6etkcumuegz5yj244:
-    resolution: {integrity: sha512-z+EqRXMAPAu0DdYaEbxOGj9Ny5FqB2lQVJgVSUnCL2o+gNx+C7nfbK1pHOj2XDGH839UNv3ambC7rJrcT1IhCg==}
+  /@udecode/plate-ui-media/16.9.1_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-nuclGmLFJ2wV4nJJ9njhH9zHOGLVU+6Ce96NbjJ2yXF3vw5i4kADsFXXQymvnkbtZ/FPQa4aTi54PMJJ6QTc7Q==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-combobox': 10.6.0_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-mention': 10.6.0_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-combobox': 10.6.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-floating': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-link': 16.9.1_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-media': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-link': 16.9.1_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      js-video-url-parser: 0.5.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -8595,11 +10591,54 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-media/16.9.1_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-nuclGmLFJ2wV4nJJ9njhH9zHOGLVU+6Ce96NbjJ2yXF3vw5i4kADsFXXQymvnkbtZ/FPQa4aTi54PMJJ6QTc7Q==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-floating': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-link': 16.9.1_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-media': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-link': 16.9.1_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      js-video-url-parser: 0.5.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -8673,18 +10712,21 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-placeholder/10.5.3_fatvehatp6etkcumuegz5yj244:
-    resolution: {integrity: sha512-t6R2qIFWDU6vd6J5Jpp9f7prQNgIf/1qjJUjeq5nO1/ZamovfAmNvRkJmRDPcl1eN6oZki6AgmLmNehVhKyqKA==}
+  /@udecode/plate-ui-mention/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-wtAt8OHsygQlt1zN7cTJZExeeKbuDXU2PR0stnmUbHw7hpqozvL29MAH3I1ZkcFv7RA5507fKsDawwzbOO2rQA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-combobox': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-mention': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-combobox': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -8694,11 +10736,51 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-mention/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-wtAt8OHsygQlt1zN7cTJZExeeKbuDXU2PR0stnmUbHw7hpqozvL29MAH3I1ZkcFv7RA5507fKsDawwzbOO2rQA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-combobox': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-mention': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-combobox': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -8766,32 +10848,67 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-popover/10.5.3_fatvehatp6etkcumuegz5yj244:
-    resolution: {integrity: sha512-ex5wqC01XV+vxZmfmmPcaSCuZbOrmyNQazm0bVs95TW8vV3bsRdPieWd6vX3a4jfX8sWGnXQMgWq3wpdWz6o7Q==}
+  /@udecode/plate-ui-placeholder/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-9zM5PE1BtHMLlcRc174YZeMxfvyevQ0VO+PQan29D35gCfiK5BajztznGirhYsJ7Bd/ruHdHeCXq5BnZ6d1KxQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
     dependencies:
-      '@tippyjs/react': 4.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
+      - '@tanstack/query-core'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
-      - styled-components
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-placeholder/16.8.0_pa6gwkhosklqqbdgmko6lgf62u:
+    resolution: {integrity: sha512-9zM5PE1BtHMLlcRc174YZeMxfvyevQ0VO+PQan29D35gCfiK5BajztznGirhYsJ7Bd/ruHdHeCXq5BnZ6d1KxQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -8859,35 +10976,6 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-popper/10.5.3_f7mpy7ab2zum6rhrn3yye7lyci:
-    resolution: {integrity: sha512-OoIlEgxdphITc+qEyO6Hw5bqNaoVv6RgJY8kLHZHSaKrPh60reZT/QyvRzZPz4TM4HEcBIfabNwBetAkcwL21A==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-    dependencies:
-      '@popperjs/core': 2.10.2
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-popper: 2.2.5_qofm6heeqcbukqym6fyxd6dvda
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@urql/core'
-      - immer
-      - optics-ts
-      - react-query
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
   /@udecode/plate-ui-popper/10.5.3_ihv4zxojofrmeyi4engbk7g7im:
     resolution: {integrity: sha512-OoIlEgxdphITc+qEyO6Hw5bqNaoVv6RgJY8kLHZHSaKrPh60reZT/QyvRzZPz4TM4HEcBIfabNwBetAkcwL21A==}
     peerDependencies:
@@ -8940,45 +11028,6 @@ packages:
       - '@urql/core'
       - immer
       - optics-ts
-      - react-query
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
-  /@udecode/plate-ui-table/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-mCT0CA8phY95kQVruSuUH3KNdRkZANC49LsEE1bsr1oj9RN+hESHM0XGnmvmpFRq94pKIfNhtnBD5QLMIFsGGw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
-      styled-components: '>=5.0.0'
-    dependencies:
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-table': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-ui-button': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-popover': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      jotai: 1.8.0_q5xss7rtfecmc6foxtnji7xcae
-      re-resizable: 6.9.9_sfoxds7t5ydpegc3knd667wn6m
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@popperjs/core'
-      - '@tanstack/query-core'
-      - '@urql/core'
-      - immer
-      - optics-ts
-      - react-is
       - react-query
       - valtio
       - wonka
@@ -9063,24 +11112,25 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui-toolbar/10.5.3_5nxm6wxcv4zescguqcoipsehpm:
-    resolution: {integrity: sha512-iLcjG6THgifVQWiBySRGpnQweGJCrd+hYg68+hk4OeNkMU5iTk1pw440bz3F2uAjx7I6ZzGRICBTiB00fceBPw==}
+  /@udecode/plate-ui-table/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-VH1Cu+txBQxbhhSoVsf6BC+fw6SKd3IzrT1tPgCVhJsaHnxqzJWoqX/9HZXd+a3vSdH7bQCo7A4VLBRIYVdGqQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
+      slate: '>=0.78.0'
       slate-history: '>=0.66.0'
-      slate-react: '>=0.74.2'
+      slate-react: '>=0.79.0'
       styled-components: '>=5.0.0'
     dependencies:
-      '@tippyjs/react': 4.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate-core': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-popper': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-floating': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-table': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-ui-button': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      re-resizable: 6.9.9_sfoxds7t5ydpegc3knd667wn6m
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
-      react-use: 17.4.0_sfoxds7t5ydpegc3knd667wn6m
       slate: 0.78.0
       slate-history: 0.66.0_slate@0.78.0
       slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
@@ -9088,12 +11138,53 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
-      - '@popperjs/core'
+      - '@tanstack/query-core'
+      - '@types/react'
       - '@urql/core'
       - immer
       - optics-ts
       - react-is
-      - react-query
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-table/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-VH1Cu+txBQxbhhSoVsf6BC+fw6SKd3IzrT1tPgCVhJsaHnxqzJWoqX/9HZXd+a3vSdH7bQCo7A4VLBRIYVdGqQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-floating': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-table': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-ui-button': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      re-resizable: 6.9.9_sfoxds7t5ydpegc3knd667wn6m
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -9166,6 +11257,82 @@ packages:
       - optics-ts
       - react-is
       - react-query
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-toolbar/16.8.0_7r62me5kr6d6rqpk5supurrbl4:
+    resolution: {integrity: sha512-KbUwxVUeFYJGmbVBBoLRv9VJxoveWZS7x6u9+RO7e8F0Yim5Szlg+A1yeF8kHcHNeBbv+4LyAPJOoL94EUkiOg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@tippyjs/react': 4.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate-core': 16.8.0_ihv4zxojofrmeyi4engbk7g7im
+      '@udecode/plate-floating': 16.8.0_2iz6yodvf7grfiha3noi6klg7a
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-button': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-use: 17.4.0_sfoxds7t5ydpegc3knd667wn6m
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui-toolbar/16.8.0_fatvehatp6etkcumuegz5yj244:
+    resolution: {integrity: sha512-KbUwxVUeFYJGmbVBBoLRv9VJxoveWZS7x6u9+RO7e8F0Yim5Szlg+A1yeF8kHcHNeBbv+4LyAPJOoL94EUkiOg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@tippyjs/react': 4.2.6_sfoxds7t5ydpegc3knd667wn6m
+      '@udecode/plate-core': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-floating': 16.8.0_f7mpy7ab2zum6rhrn3yye7lyci
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-button': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-use: 17.4.0_sfoxds7t5ydpegc3knd667wn6m
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - valtio
       - wonka
       - xstate
@@ -9289,65 +11456,6 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate-ui/10.6.0_ioccsxtwo6p6x7plrzgy7uau7i:
-    resolution: {integrity: sha512-TIp4yhXyNMQR+xRxBUZFc1qhhR4JtIRRUjzOThugkmykLCtyLXJcykBO2A6HSD9dNTDurIzBcnJs6h2HQFp3rA==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-hyperscript: '>=0.66.0'
-      slate-react: '>=0.74.2'
-      styled-components: '>=5.0.0'
-    dependencies:
-      '@udecode/plate-headless': 10.6.0_ziw7kxoqo7x6nzvclllgv4kkke
-      '@udecode/plate-styled-components': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-alignment': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-block-quote': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-button': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-code-block': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-combobox': 10.6.0_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-dnd': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-find-replace': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-font': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-image': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-line-height': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-link': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-list': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-media-embed': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-mention': 10.6.0_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-placeholder': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-popover': 10.5.3_fatvehatp6etkcumuegz5yj244
-      '@udecode/plate-ui-popper': 10.5.3_f7mpy7ab2zum6rhrn3yye7lyci
-      '@udecode/plate-ui-table': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      '@udecode/plate-ui-toolbar': 10.5.3_5nxm6wxcv4zescguqcoipsehpm
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@popperjs/core'
-      - '@tanstack/query-core'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - encoding
-      - immer
-      - optics-ts
-      - react-is
-      - react-query
-      - supports-color
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
   /@udecode/plate-ui/10.6.0_zbgnsurk2kmmwonkk662n2ndnu:
     resolution: {integrity: sha512-TIp4yhXyNMQR+xRxBUZFc1qhhR4JtIRRUjzOThugkmykLCtyLXJcykBO2A6HSD9dNTDurIzBcnJs6h2HQFp3rA==}
     peerDependencies:
@@ -9401,6 +11509,122 @@ packages:
       - optics-ts
       - react-is
       - react-query
+      - supports-color
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui/16.9.1_mothzmjgm5f2gwragmuqybfqoq:
+    resolution: {integrity: sha512-lxZw1EtfRd4vmcPm9bJgWCisIce4TJ4pPYKydM2r0XvQBpTw7epO2hjuMRaaeg30xf3JUmaTls5GhWjZ4q82nQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dnd: '>=14.0.0'
+      react-dnd-html5-backend: '>=14.0.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-headless': 16.9.1_oewbns2qwwqpiem44egwqm2epm
+      '@udecode/plate-styled-components': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-alignment': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-block-quote': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-button': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-code-block': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-combobox': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-cursor': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-dnd': 16.8.0_oevl5okuf225cbbd7g2dutu4pm
+      '@udecode/plate-ui-find-replace': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-font': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-line-height': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-link': 16.9.1_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-list': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-media': 16.9.1_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-mention': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-placeholder': 16.8.0_pa6gwkhosklqqbdgmko6lgf62u
+      '@udecode/plate-ui-table': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      '@udecode/plate-ui-toolbar': 16.8.0_7r62me5kr6d6rqpk5supurrbl4
+      react: 17.0.2
+      react-dnd: 15.1.2_pxzommwrsowkd4kgag6q3sluym
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
+      - supports-color
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate-ui/16.9.1_oqjzqtflmqyfkv74uvuckfm24m:
+    resolution: {integrity: sha512-lxZw1EtfRd4vmcPm9bJgWCisIce4TJ4pPYKydM2r0XvQBpTw7epO2hjuMRaaeg30xf3JUmaTls5GhWjZ4q82nQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dnd: '>=14.0.0'
+      react-dnd-html5-backend: '>=14.0.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-headless': 16.9.1_ziw7kxoqo7x6nzvclllgv4kkke
+      '@udecode/plate-styled-components': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-alignment': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-block-quote': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-button': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-code-block': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-combobox': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-cursor': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-dnd': 16.8.0_2t22tp7xadg2mgclq4jzsf75ai
+      '@udecode/plate-ui-find-replace': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-font': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-line-height': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-link': 16.9.1_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-list': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-media': 16.9.1_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-mention': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-placeholder': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-table': 16.8.0_fatvehatp6etkcumuegz5yj244
+      '@udecode/plate-ui-toolbar': 16.8.0_fatvehatp6etkcumuegz5yj244
+      react: 17.0.2
+      react-dnd: 15.1.2_react@17.0.2
+      react-dnd-html5-backend: 15.1.3
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-is
+      - react-native
+      - scheduler
       - supports-color
       - valtio
       - wonka
@@ -9487,46 +11711,6 @@ packages:
       - xstate
     dev: false
 
-  /@udecode/plate/10.6.0_ioccsxtwo6p6x7plrzgy7uau7i:
-    resolution: {integrity: sha512-6HKb6p+2dYF+c3PtHNcErfymLFI8XOiaV805wgJUWXKY9CT7r4OpEXFqerjFQrhx+wk+Lc/HW5sYgGmzT74RdQ==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      slate: '>=0.66.1'
-      slate-history: '>=0.66.0'
-      slate-hyperscript: '>=0.66.0'
-      slate-react: '>=0.74.2'
-      styled-components: '>=5.0.0'
-    dependencies:
-      '@udecode/plate-headless': 10.6.0_ziw7kxoqo7x6nzvclllgv4kkke
-      '@udecode/plate-ui': 10.6.0_ioccsxtwo6p6x7plrzgy7uau7i
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@popperjs/core'
-      - '@tanstack/query-core'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - encoding
-      - immer
-      - optics-ts
-      - react-is
-      - react-query
-      - supports-color
-      - valtio
-      - wonka
-      - xstate
-    dev: false
-
   /@udecode/plate/10.6.0_zbgnsurk2kmmwonkk662n2ndnu:
     resolution: {integrity: sha512-6HKb6p+2dYF+c3PtHNcErfymLFI8XOiaV805wgJUWXKY9CT7r4OpEXFqerjFQrhx+wk+Lc/HW5sYgGmzT74RdQ==}
     peerDependencies:
@@ -9567,6 +11751,84 @@ packages:
       - xstate
     dev: false
 
+  /@udecode/plate/16.9.1_mothzmjgm5f2gwragmuqybfqoq:
+    resolution: {integrity: sha512-Gs4atVprE+Y3xaY17fTkeN1SSjHAfowmoDbVR+jLLA8DpdG67/qNUVdIJNO81dLBsi9DMKffqi/eMwAuFf6GsQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-headless': 16.9.1_oewbns2qwwqpiem44egwqm2epm
+      '@udecode/plate-ui': 16.9.1_mothzmjgm5f2gwragmuqybfqoq
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-dnd
+      - react-dnd-html5-backend
+      - react-is
+      - react-native
+      - scheduler
+      - supports-color
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
+  /@udecode/plate/16.9.1_oqjzqtflmqyfkv74uvuckfm24m:
+    resolution: {integrity: sha512-Gs4atVprE+Y3xaY17fTkeN1SSjHAfowmoDbVR+jLLA8DpdG67/qNUVdIJNO81dLBsi9DMKffqi/eMwAuFf6GsQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      slate: '>=0.78.0'
+      slate-history: '>=0.66.0'
+      slate-hyperscript: '>=0.66.0'
+      slate-react: '>=0.79.0'
+      styled-components: '>=5.0.0'
+    dependencies:
+      '@udecode/plate-headless': 16.9.1_ziw7kxoqo7x6nzvclllgv4kkke
+      '@udecode/plate-ui': 16.9.1_oqjzqtflmqyfkv74uvuckfm24m
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      slate: 0.78.0
+      slate-history: 0.66.0_slate@0.78.0
+      slate-hyperscript: 0.77.0_slate@0.78.0
+      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
+      styled-components: 5.3.5_v5ja746gkdtknuc6tj46sve3be
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@urql/core'
+      - immer
+      - optics-ts
+      - react-dnd
+      - react-dnd-html5-backend
+      - react-is
+      - react-native
+      - scheduler
+      - supports-color
+      - valtio
+      - wonka
+      - xstate
+    dev: false
+
   /@udecode/zustood/0.4.4_zustand@3.7.0:
     resolution: {integrity: sha512-OtkRGu8TKBkidOOf28TY4tqYJRhMAiVt+BF6lHbF/FnXRmOa8eLal8Q/k9sqQcGzQAHBaZYcx0pR1+wlQzaurg==}
     peerDependencies:
@@ -9574,6 +11836,25 @@ packages:
     dependencies:
       immer: 9.0.6
       zustand: 3.7.0_react@17.0.2
+    dev: false
+
+  /@udecode/zustood/1.1.3_bufjuvbfmumf3fm6mt4owofr5e:
+    resolution: {integrity: sha512-f3mxHDaOF+q2XvDh/mMvLhCNs0LfCLhIBl8jGmvZT/i3WWq7YujzGXgnbK8mxIkun9irfe6wlPhg9sTIB9Gnug==}
+    peerDependencies:
+      zustand: '>=3.5.10'
+    dependencies:
+      immer: 9.0.15
+      react-tracked: 1.7.10_sfoxds7t5ydpegc3knd667wn6m
+      zustand: 3.7.2_react@17.0.2
+    transitivePeerDependencies:
+      - react
+      - react-dom
+      - react-native
+      - scheduler
+    dev: false
+
+  /@viselect/vanilla/3.1.1:
+    resolution: {integrity: sha512-aS1UF6WkV3TvO5vqg2uQk8WRI36b2SAtfozVrxtfVI1WTuaOG0uYxvdXTmIYwfki6fFF4qQpkiQcg8+NqpJA8Q==}
     dev: false
 
   /@vitejs/plugin-react/2.1.0_vite@3.0.4:
@@ -10714,6 +12995,14 @@ packages:
       redux: 4.2.0
     dev: false
 
+  /dnd-core/16.0.1:
+    resolution: {integrity: sha512-HK294sl7tbw6F6IeuK16YSBUoorvHpY8RHO+9yFfaJyCDVb6n7PRcezrOEOa2SBCqiYpemh5Jx20ZcjKdFAVng==}
+    dependencies:
+      '@react-dnd/asap': 5.0.2
+      '@react-dnd/invariant': 4.0.2
+      redux: 4.2.0
+    dev: false
+
   /doctrine/2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
@@ -11496,8 +13785,8 @@ packages:
       eslint: 8.23.1
     dev: true
 
-  /eslint-plugin-react-hooks/4.5.0_eslint@8.21.0:
-    resolution: {integrity: sha512-8k1gRt7D7h03kd+SAAlzXkQwWK22BnK6GKZG+FJA6BAGy22CFvl8kCIXKpVux0cCxMWDQUPqSok0LKaZ0aOcCw==}
+  /eslint-plugin-react-hooks/4.6.0_eslint@8.21.0:
+    resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
@@ -11505,8 +13794,8 @@ packages:
       eslint: 8.21.0
     dev: true
 
-  /eslint-plugin-react-hooks/4.5.0_eslint@8.23.1:
-    resolution: {integrity: sha512-8k1gRt7D7h03kd+SAAlzXkQwWK22BnK6GKZG+FJA6BAGy22CFvl8kCIXKpVux0cCxMWDQUPqSok0LKaZ0aOcCw==}
+  /eslint-plugin-react-hooks/4.6.0_eslint@8.23.1:
+    resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
@@ -11514,8 +13803,8 @@ packages:
       eslint: 8.23.1
     dev: true
 
-  /eslint-plugin-react/7.30.0_eslint@8.21.0:
-    resolution: {integrity: sha512-RgwH7hjW48BleKsYyHK5vUAvxtE9SMPDKmcPRQgtRCYaZA0XQPt5FSkrU3nhz5ifzMZcA8opwmRJ2cmOO8tr5A==}
+  /eslint-plugin-react/7.30.1_eslint@8.21.0:
+    resolution: {integrity: sha512-NbEvI9jtqO46yJA3wcRF9Mo0lF9T/jhdHqhCHXiXtD+Zcb98812wvokjWpU7Q4QH5edo6dmqrukxVvWWXHlsUg==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
@@ -11537,8 +13826,8 @@ packages:
       string.prototype.matchall: 4.0.7
     dev: true
 
-  /eslint-plugin-react/7.30.0_eslint@8.23.1:
-    resolution: {integrity: sha512-RgwH7hjW48BleKsYyHK5vUAvxtE9SMPDKmcPRQgtRCYaZA0XQPt5FSkrU3nhz5ifzMZcA8opwmRJ2cmOO8tr5A==}
+  /eslint-plugin-react/7.30.1_eslint@8.23.1:
+    resolution: {integrity: sha512-NbEvI9jtqO46yJA3wcRF9Mo0lF9T/jhdHqhCHXiXtD+Zcb98812wvokjWpU7Q4QH5edo6dmqrukxVvWWXHlsUg==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
@@ -12352,6 +14641,14 @@ packages:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
     dev: true
 
+  /hotkeys-js/3.9.4:
+    resolution: {integrity: sha512-2zuLt85Ta+gIyvs4N88pCYskNrxf1TFv3LR9t5mdAZIX8BcgQQ48F2opUptvHa6m8zsy5v/a0i9mWzTrlNWU0Q==}
+    dev: false
+
+  /html-entities/2.3.3:
+    resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
+    dev: false
+
   /htmlparser2/4.1.0:
     resolution: {integrity: sha512-4zDq1a1zhE4gQso/c5LP1OtrhYTncXNSpvJYtWJBtXAETPlMfi3IFNjGuQbYLuVY4ZR0QMqRVvo4Pdy9KLyP8Q==}
     dependencies:
@@ -12834,45 +15131,6 @@ packages:
       xstate: 4.33.2
     dev: false
 
-  /jotai/1.5.3_q5xss7rtfecmc6foxtnji7xcae:
-    resolution: {integrity: sha512-iD8MkbehxTjfRUtIJJdyQcjbAe2MqjW1+oFc5lvfgRjLHwjRQyWnZC3gdGAOQCOqUSPZHOBGgWyP/8gBDckaNQ==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      '@babel/core': '*'
-      '@babel/template': '*'
-      '@urql/core': '*'
-      immer: '*'
-      optics-ts: '*'
-      react: '>=16.8'
-      react-query: '*'
-      valtio: '*'
-      wonka: '*'
-      xstate: '*'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      '@babel/template':
-        optional: true
-      '@urql/core':
-        optional: true
-      immer:
-        optional: true
-      optics-ts:
-        optional: true
-      react-query:
-        optional: true
-      valtio:
-        optional: true
-      wonka:
-        optional: true
-      xstate:
-        optional: true
-    dependencies:
-      immer: 9.0.15
-      react: 17.0.2
-      xstate: 4.33.2
-    dev: false
-
   /jotai/1.5.3_wrqv4jt4zpg7jwkyjkj3xnmtx4:
     resolution: {integrity: sha512-iD8MkbehxTjfRUtIJJdyQcjbAe2MqjW1+oFc5lvfgRjLHwjRQyWnZC3gdGAOQCOqUSPZHOBGgWyP/8gBDckaNQ==}
     engines: {node: '>=12.7.0'}
@@ -13047,6 +15305,10 @@ packages:
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+
+  /js-video-url-parser/0.5.1:
+    resolution: {integrity: sha512-/vwqT67k0AyIGMHAvSOt+n4JfrZWF7cPKgKswDO35yr27GfW4HtjpQVlTx6JLF45QuPm8mkzFHkZgFVnFm4x/w==}
+    dev: false
 
   /js-yaml/4.1.0:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
@@ -14051,6 +16313,10 @@ packages:
       ipaddr.js: 1.9.1
     dev: true
 
+  /proxy-compare/2.3.0:
+    resolution: {integrity: sha512-c3L2CcAi7f7pvlD0D7xsF+2CQIW8C3HaYx2Pfgq8eA4HAl3GAH6/dVYsyBbYF/0XJs2ziGLrzmz5fmzPm6A0pQ==}
+    dev: false
+
   /proxy-from-env/1.0.0:
     resolution: {integrity: sha1-M8UDmPcOp+uW0h97gXYwpVeRx+4=}
     dev: true
@@ -14141,6 +16407,12 @@ packages:
       dnd-core: 15.1.2
     dev: false
 
+  /react-dnd-html5-backend/16.0.1:
+    resolution: {integrity: sha512-Wu3dw5aDJmOGw8WjH1I1/yTH+vlXEL4vmjk5p+MHxP8HuHJS1lAGeIdG/hze1AvNeXWo/JgULV87LyQOr+r5jw==}
+    dependencies:
+      dnd-core: 16.0.1
+    dev: false
+
   /react-dnd/14.0.5_pxzommwrsowkd4kgag6q3sluym:
     resolution: {integrity: sha512-9i1jSgbyVw0ELlEVt/NkCUkxy1hmhJOkePoCH713u75vzHGyXhPDm28oLfc2NMSBjZRM1Y+wRjHXJT3sPrTy+A==}
     peerDependencies:
@@ -14159,29 +16431,6 @@ packages:
       '@react-dnd/invariant': 2.0.0
       '@react-dnd/shallowequal': 2.0.0
       '@types/react': 17.0.50
-      dnd-core: 14.0.1
-      fast-deep-equal: 3.1.3
-      hoist-non-react-statics: 3.3.2
-      react: 17.0.2
-    dev: false
-
-  /react-dnd/14.0.5_react@17.0.2:
-    resolution: {integrity: sha512-9i1jSgbyVw0ELlEVt/NkCUkxy1hmhJOkePoCH713u75vzHGyXhPDm28oLfc2NMSBjZRM1Y+wRjHXJT3sPrTy+A==}
-    peerDependencies:
-      '@types/hoist-non-react-statics': '>= 3.3.1'
-      '@types/node': '>= 12'
-      '@types/react': '>= 16'
-      react: '>= 16.14'
-    peerDependenciesMeta:
-      '@types/hoist-non-react-statics':
-        optional: true
-      '@types/node':
-        optional: true
-      '@types/react':
-        optional: true
-    dependencies:
-      '@react-dnd/invariant': 2.0.0
-      '@react-dnd/shallowequal': 2.0.0
       dnd-core: 14.0.1
       fast-deep-equal: 3.1.3
       hoist-non-react-statics: 3.3.2
@@ -14285,6 +16534,30 @@ packages:
       react: 17.0.2
     dev: false
 
+  /react-dnd/16.0.1_pxzommwrsowkd4kgag6q3sluym:
+    resolution: {integrity: sha512-QeoM/i73HHu2XF9aKksIUuamHPDvRglEwdHL4jsp784BgUuWcg6mzfxT0QDdQz8Wj0qyRKx2eMg8iZtWvU4E2Q==}
+    peerDependencies:
+      '@types/hoist-non-react-statics': '>= 3.3.1'
+      '@types/node': '>= 12'
+      '@types/react': '>= 16'
+      react: '>= 16.14'
+    peerDependenciesMeta:
+      '@types/hoist-non-react-statics':
+        optional: true
+      '@types/node':
+        optional: true
+      '@types/react':
+        optional: true
+    dependencies:
+      '@react-dnd/invariant': 4.0.2
+      '@react-dnd/shallowequal': 4.0.2
+      '@types/react': 17.0.50
+      dnd-core: 16.0.1
+      fast-deep-equal: 3.1.3
+      hoist-non-react-statics: 3.3.2
+      react: 17.0.2
+    dev: false
+
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
@@ -14307,6 +16580,17 @@ packages:
 
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
+  /react-hotkeys-hook/3.4.7_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-+bbPmhPAl6ns9VkXkNNyxlmCAIyDAcWbB76O4I0ntr3uWCRuIQf/aRLartUahe9chVMPj+OEzzfk3CQSjclUEQ==}
+    peerDependencies:
+      react: '>=16.8.1'
+      react-dom: '>=16.8.1'
+    dependencies:
+      hotkeys-js: 3.9.4
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-is/16.13.1:
@@ -14396,6 +16680,25 @@ packages:
       use-latest: 1.2.1_react@17.0.2
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /react-tracked/1.7.10_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-+zOm+Pr+zFrrEOwtLUtHwoxf9Kg7Ur7OMjD9kNFw5JA9lAs+mInXVEOvwpReEoR2FQMS4KUFxLv5VYoR5ADBiQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '*'
+      react-native: '*'
+      scheduler: '>=0.19.0'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      proxy-compare: 2.3.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      use-context-selector: 1.4.1_sfoxds7t5ydpegc3knd667wn6m
     dev: false
 
   /react-universal-interface/0.6.2_react@17.0.2+tslib@2.4.0:
@@ -14695,6 +16998,10 @@ packages:
   /screenfull/5.2.0:
     resolution: {integrity: sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /scriptjs/2.5.9:
+    resolution: {integrity: sha512-qGVDoreyYiP1pkQnbnFAUIS5AjenNwwQBdl7zeos9etl+hYKWahjRTfzAZZYBv5xNHx7vNKCmaLDQZ6Fr2AEXg==}
     dev: false
 
   /scroll-into-view-if-needed/2.2.29:
@@ -15516,6 +17823,23 @@ packages:
       react: 17.0.2
     dev: false
 
+  /use-context-selector/1.4.1_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-Io2ArvcRO+6MWIhkdfMFt+WKQX+Vb++W8DS2l03z/Vw/rz3BclKpM0ynr4LYGyU85Eke+Yx5oIhTY++QR0ZDoA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '*'
+      react-native: '*'
+      scheduler: '>=0.19.0'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /use-deep-compare/1.1.0_react@17.0.2:
     resolution: {integrity: sha512-6yY3zmKNCJ1jjIivfZMZMReZjr8e6iC6Uqtp701jvWJ6ejC/usXD+JjmslZDPJQgX8P4B1Oi5XSLHkOLeYSJsA==}
     peerDependencies:
@@ -15999,6 +18323,18 @@ packages:
 
   /zustand/3.7.0_react@17.0.2:
     resolution: {integrity: sha512-USzVzLGrvZ8VK1/sEsOAmeqa8N7D3OBdZskVaL7DL89Q4QLTYD053iIlZ5KDidyZ+Od80Dttin/f8ZulOLFFDQ==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      react: '>=16.8'
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 17.0.2
+    dev: false
+
+  /zustand/3.7.2_react@17.0.2:
+    resolution: {integrity: sha512-PIJDIZKtokhof+9+60cpockVOq05sJzHCriyvaLBmEJixseQ1a5Kdov6fWZfWOu5SK9c+FhH1jU0tntLxRJYMA==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       react: '>=16.8'
