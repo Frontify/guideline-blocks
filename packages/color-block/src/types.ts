@@ -10,8 +10,6 @@ export type ColorBlockProps = {
 };
 
 export type Settings = {
-    name?: string;
-    description?: string;
     colorPaletteId: number;
     view: ColorBlockType;
     colorspaces: string[];
