@@ -396,7 +396,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             <div className="tw-w-full tw-p-px tw-mb-4 tw-border tw-border-line tw-rounded">
                 <div
                     data-test-id="color-scale-block"
-                    className={`tw-rounded-md tw-overflow-visible tw-flex tw-h-[${colorScaleHeight}]`}
+                    className={`tw-overflow-hidden tw-rounded tw-flex tw-h-[${colorScaleHeight}]`}
                     ref={colorScaleBlockRef}
                     // Note: onMouseUp and onResize are defined here intentionally, instead of being in the DragHandle component.
                     // The reason for this is that the dragging feature stops working if I move these to DragHandle,
@@ -428,7 +428,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                 const isLast = index === displayableItems.length - 1;
 
                                 return (
-                                    <div className={'color-square tw-flex tw-relative'} key={color.id}>
+                                    <div className="tw-flex tw-relative tw-h-full" key={color.id}>
                                         <>
                                             {color.color ? (
                                                 <>
@@ -448,11 +448,10 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                         treeId={listId}
                                                         before
                                                     />
+
                                                     <SquareWithColor
                                                         id={color.id}
                                                         index={index}
-                                                        isFirst={isFirst}
-                                                        isLast={isLast}
                                                         width={currentlyDraggedColorId === color.id ? 0 : width}
                                                         height={colorScaleHeight}
                                                         isDragging={
