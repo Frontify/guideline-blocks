@@ -25,13 +25,13 @@ export const ListItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
                 Color name
             </div>
 
-            <div className="tw-flex tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-w-[calc(100% - 306px)] tw-py-5">
+            <div className="tw-flex tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-py-5">
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId);
 
                     return (
                         <div key={colorSpaceId} className="tw-flex tw-items-center tw-w-1/3">
-                            <Badge size="s" emphasis={BadgeEmphasis.None}>
+                            <Badge size="small" emphasis={BadgeEmphasis.None}>
                                 {mappedColorSpace.label}
                             </Badge>
 

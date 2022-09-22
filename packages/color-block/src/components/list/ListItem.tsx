@@ -4,7 +4,7 @@ import {
     Badge,
     BadgeEmphasis,
     Button,
-    ButtonStyle,
+    ButtonEmphasis,
     Color,
     IconSize,
     IconTrashBin,
@@ -12,13 +12,12 @@ import {
     TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import { ColorName } from '../ColorName';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
 import { ColorSpaceValue } from '../ColorSpaceValue';
 import { TooltipContent } from '../TooltipContent';
-import { getRgbaColorValue } from '../../helpers/getRgbaColorValue';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorBlockType, ItemProps } from '../../types';
 
@@ -44,7 +43,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                             data-test-id="color-color-picker-flyout-trigger"
                             className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                             style={{
-                                backgroundColor: getRgbaColorValue(color),
+                                backgroundColor: toRgbaString(color as Color),
                             }}
                         />
                     </div>
@@ -61,7 +60,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
                                 style={{
-                                    backgroundColor: getRgbaColorValue(color),
+                                    backgroundColor: toRgbaString(color as Color),
                                 }}
                                 onClick={() => copy(mappedFirstColorSpace.value ?? '')}
                             />
@@ -80,7 +79,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 >
                     <Button
                         icon={<IconTrashBin size={IconSize.Size20} />}
-                        style={ButtonStyle.Secondary}
+                        emphasis={ButtonEmphasis.Default}
                         onClick={() => onDelete(color.id)}
                     />
                 </div>
@@ -93,14 +92,14 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 onBlur={onBlur}
             />
 
-            <div className="tw-flex tw-flex-[0_0_calc(100%-306px)] tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-py-5">
+            <div className="tw-flex tw-items-center tw-flex-wrap tw-grow tw-gap-y-2.5 tw-py-5">
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
                     return (
                         <div data-test-id="color-space" key={colorSpaceId} className="tw-flex tw-items-center tw-w-1/3">
                             <div>
-                                <Badge size="s" emphasis={BadgeEmphasis.None}>
+                                <Badge size="small" emphasis={BadgeEmphasis.None}>
                                     {mappedColorSpace.label}
                                 </Badge>
                             </div>

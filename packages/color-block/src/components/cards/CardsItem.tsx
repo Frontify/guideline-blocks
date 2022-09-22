@@ -2,7 +2,7 @@
 
 import {
     Button,
-    ButtonStyle,
+    ButtonEmphasis,
     Color,
     IconSize,
     IconTrashBin,
@@ -10,13 +10,12 @@ import {
     TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import { ColorName } from '../ColorName';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
 import { ColorSpaceValue } from '../ColorSpaceValue';
 import { TooltipContent } from '../TooltipContent';
-import { getRgbaColorValue } from '../../helpers/getRgbaColorValue';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorBlockType, ItemProps } from '../../types';
 
@@ -42,7 +41,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                             data-test-id="color-color-picker-flyout-trigger"
                             className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
-                                backgroundColor: getRgbaColorValue(color),
+                                backgroundColor: toRgbaString(color as Color),
                             }}
                         >
                             <div
@@ -54,7 +53,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                             >
                                 <Button
                                     icon={<IconTrashBin size={IconSize.Size20} />}
-                                    style={ButtonStyle.Secondary}
+                                    emphasis={ButtonEmphasis.Default}
                                     onClick={() => onDelete(color.id)}
                                 />
                             </div>
@@ -73,7 +72,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                                 style={{
-                                    backgroundColor: getRgbaColorValue(color),
+                                    backgroundColor: toRgbaString(color as Color),
                                 }}
                                 onClick={() => copy(mappedFirstColorSpace.value ?? '')}
                             />
