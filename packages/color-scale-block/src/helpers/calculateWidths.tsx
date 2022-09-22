@@ -1,42 +1,11 @@
-import { ColorProps, ColorScaleBlockRef } from './types';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const defaultColorSquareWidth = 100;
-export const minimumColorWidthToAllowResizing = 18;
-export const minimumAmountOfPixelsToMoveDuringResize = 8;
-export const minimumAmountOfPixelsToShiftWhenAddingNewColor = 18;
-
-export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRef: ColorScaleBlockRef) => {
-    if (!(colorScaleBlockRef && colorScaleBlockRef?.current)) {
-        return defaultColorSquareWidth;
-    }
-
-    const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
-    const defaultWidth = colorScaleBlockWidth / colorArray;
-
-    return defaultWidth;
-};
-
-export const getEmptySpace = (colorScaleBlockRef: ColorScaleBlockRef, colorArray: ColorProps[]) => {
-    if (!(colorScaleBlockRef && colorScaleBlockRef.current)) {
-        return 0;
-    }
-
-    const colorBlockWidth: number = colorScaleBlockRef?.current?.getBoundingClientRect().width;
-    let usedSpace = 0;
-    let emptySpace = 0;
-
-    colorArray?.map((color: ColorProps) => {
-        if (color && color.color && color.width) {
-            usedSpace += color.width;
-        }
-
-        return color;
-    });
-
-    emptySpace = colorBlockWidth - usedSpace;
-
-    return emptySpace;
-};
+import { ColorProps, ColorScaleBlockRef } from '../types';
+import { calculateDefaultColorWidth } from './calculateDefaultColorWidth';
+import { getEmptySpace } from './getEmptySpace';
+import { minimumAmountOfPixelsToMoveDuringResize } from '../helpers';
+import { minimumAmountOfPixelsToShiftWhenAddingNewColor } from '../helpers';
+import { minimumColorWidthToAllowResizing } from '../helpers';
 
 export const calculateWidths = (
     itemList: ColorProps[],
@@ -132,35 +101,4 @@ export const calculateWidths = (
     }
 
     return itemsWithWidths || [];
-};
-
-export const resizeEvenly = (itemList: ColorProps[], colorScaleBlockRef: ColorScaleBlockRef) => {
-    if (!itemList) {
-        return [];
-    }
-
-    const defaultWidth = calculateDefaultColorWidth(itemList.length, colorScaleBlockRef);
-
-    const newDisplayableItems = itemList.map((item) => {
-        return { ...item, width: defaultWidth };
-    });
-
-    return newDisplayableItems;
-};
-
-export const canExpandColorBlock = (displayableItems: ColorProps[], colorScaleBlockRef: ColorScaleBlockRef) => {
-    const colorScaleBlockWidth = colorScaleBlockRef?.current?.getBoundingClientRect().width || 0;
-    let usedSpace = 0;
-
-    displayableItems?.map((color: ColorProps) => {
-        const width = color?.width ?? calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
-
-        if (width) {
-            usedSpace += width;
-        }
-
-        return color;
-    });
-
-    return usedSpace < colorScaleBlockWidth;
 };
