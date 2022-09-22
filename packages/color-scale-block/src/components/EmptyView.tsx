@@ -5,6 +5,8 @@ type EmptyViewProps = {
     height: string;
     totalNumberOfBlocks: number;
     index: number;
+    isFirst: boolean;
+    isLast: boolean;
     width: number;
 };
 
@@ -12,12 +14,11 @@ export const EmptyView = ({
     placeholderBackgroundColor,
     totalNumberOfBlocks,
     index,
+    isFirst,
+    isLast,
     height,
     width,
 }: EmptyViewProps) => {
-    const isFirst = index === 0;
-    const isLast = totalNumberOfBlocks - 1;
-
     return (
         <div
             style={{

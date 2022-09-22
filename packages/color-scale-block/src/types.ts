@@ -43,6 +43,8 @@ export type SquareWithColorProps = {
     index: number;
     width: number;
     height: string;
+    isFirst: boolean;
+    isLast: boolean;
     currentColor: ColorProps;
     calculateLeftPosition: (index: number, width: number) => void;
     isEditing: boolean;
@@ -50,7 +52,7 @@ export type SquareWithColorProps = {
     setEditedColor: (color: ColorProps) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: (color?: ColorFormat) => void;
-    deleteColor: (color: number) => void;
+    deleteColor: (color: number | undefined) => void;
     handleDrop: (targetItem: ColorProps, sourceItem: ColorProps, position: DropZonePosition) => void;
     listId: string;
     backgroundColorRgba?: string;
@@ -115,5 +117,5 @@ export type DragHandleProps = {
 export type CustomizationOptionsModalProps = {
     id: number | undefined;
     isEditing: boolean;
-    deleteColor: (color: number) => void;
+    deleteColor: (color: number | undefined) => void;
 };

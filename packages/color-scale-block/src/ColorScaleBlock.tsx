@@ -67,7 +67,11 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const minimumNumberOfColors = 1;
     const maximumNumberOfPlaceholderSquares = 6;
 
-    const deleteColor = (id: number) => {
+    const deleteColor = (id: number | undefined) => {
+        if (!id) {
+            return;
+        }
+
         const reorderedList = displayableItems?.filter((item: ColorProps) => item.id !== id);
         setBlockSettings({ ...blockSettings, 'color-input': reorderedList });
     };
@@ -420,8 +424,11 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                     width = calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
                                 }
 
+                                const isFirst = index === 0;
+                                const isLast = index === displayableItems.length - 1;
+
                                 return (
-                                    <div className="color-square tw-flex tw-relative" key={color.id}>
+                                    <div className={'color-square tw-flex tw-relative'} key={color.id}>
                                         <>
                                             {color.color ? (
                                                 <>
@@ -444,6 +451,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                     <SquareWithColor
                                                         id={color.id}
                                                         index={index}
+                                                        isFirst={isFirst}
+                                                        isLast={isLast}
                                                         width={currentlyDraggedColorId === color.id ? 0 : width}
                                                         height={colorScaleHeight}
                                                         isDragging={
@@ -471,6 +480,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                     placeholderBackgroundColor={emptyBlockColors[index]}
                                                     totalNumberOfBlocks={displayableItems.length}
                                                     index={index}
+                                                    isFirst={isFirst}
+                                                    isLast={isLast}
                                                     width={width}
                                                     height={
                                                         blockSettings['customHeight']

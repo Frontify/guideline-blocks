@@ -48,10 +48,10 @@ export const DropZone = <T extends object>({
             <div
                 style={{
                     width: isActive ? `${parseInt(width)}px` : '0px',
-                    height: `${height - 5}px`,
+                    height: `${height - 2}px`,
                 }}
                 className={`drop-zone-offset tw-relative tw-transition-all tw-rounded-[3px] tw-bg-[#E3E8F6] ${
-                    isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[2px] tw-m-[1px]'
+                    isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]'
                 }`}
             ></div>
 

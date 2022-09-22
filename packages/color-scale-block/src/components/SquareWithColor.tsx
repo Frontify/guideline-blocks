@@ -35,9 +35,10 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     index,
     width,
     height,
+    isFirst,
+    isLast,
     currentColor,
     backgroundColorRgba,
-    totalNumberOfBlocks,
     onResizeStart,
     calculateLeftPosition,
     isEditing,
@@ -46,9 +47,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
     setCurrentlyDraggedColorId,
     isDragging,
 }) => {
-    const isFirst = index === 0;
-    const isLast = totalNumberOfBlocks - 1;
-
     const onDrag = () => {
         if (isDragging !== !!currentColor.id) {
             setCurrentlyDraggedColorId(currentColor.id);
@@ -103,7 +101,8 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 left: `${calculateLeftPosition(index, width)}px`,
                 height,
             }}
-            className={'hover:tw-z-30 row tw-overflow-x-visible tw-overflow-y-hidden tw-pb-8 tw-inline-block'}
+            className={`hover:tw-z-30 row tw-overflow-x-visible tw-overflow-y-hidden tw-pb-8 tw-inline-block
+            `}
         >
             <DragHandle index={index} currentColor={currentColor} isEditing={isEditing} onResizeStart={onResizeStart} />
             <div
@@ -116,7 +115,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                     width: `${width}px`,
                 }}
                 className={
-                    'tw-group tw-overflow-y-hidden tw-overflow-x-visible tw-top-2 tw-border-[0px] tw-border-white tw-w-full hover:tw-border-black hover:tw-border-[1px]'
+                    'tw-group tw-overflow-y-hidden tw-overflow-x-visible tw-top-2 tw-border-[0px] tw-border-white tw-w-full'
                 }
             >
                 <Tooltip
@@ -142,12 +141,14 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                                 width: `${width}px`,
                             }}
                             className={` tw-top-0 tw-left-0
+                            hover:tw-border-black hover:tw-border-[1px]
                             ${isFirst ? 'tw-pl-[1px]' : ''} 
                             ${isLast ? 'tw-pr-[1px]' : ''}
-                            ${isFirst ? 'tw-rounded-tl' : ''}
                             ${isFirst ? 'tw-rounded-bl' : ''}
-                            ${isLast ? 'tw-rounded-tr' : ''}
-                            ${isLast ? 'tw-rounded-br' : ''}`}
+                                    ${isLast ? 'tw-rounded-tr' : ''}
+                                    ${isLast ? 'tw-rounded-br' : ''}
+                                    ${isFirst ? 'tw-rounded-tl' : ''}
+                            `}
                         >
                             <CustomizationOptionsModal id={id} isEditing={isEditing} deleteColor={deleteColor} />
                         </div>
