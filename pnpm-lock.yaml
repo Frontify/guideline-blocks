@@ -371,7 +371,6 @@ importers:
       react-dnd: 16.0.1
       react-dnd-html5-backend: 16.0.1
       react-dom: 17.0.2
-      react-flip-toolkit: ^7.0.16
       tailwindcss: 3.1.8
       typescript: 4.8.3
     dependencies:
@@ -384,7 +383,6 @@ importers:
       react-dnd: 16.0.1_pxzommwrsowkd4kgag6q3sluym
       react-dnd-html5-backend: 16.0.1
       react-dom: 17.0.2_react@17.0.2
-      react-flip-toolkit: 7.0.16_sfoxds7t5ydpegc3knd667wn6m
     devDependencies:
       '@babel/core': 7.19.1
       '@frontify/eslint-config-react': 0.15.2_y3woi6nw5omnu2mv4lubyzhani
@@ -12096,13 +12094,6 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
-  /flip-toolkit/7.0.16:
-    resolution: {integrity: sha512-MeoLilutfKSGtN8kdUsIU3x0y+84RnnK2rgUcQ6CgVTeIsWxmEAmLBq+p3YGT0lNIZf6bqqUyyKLo0jkBTgRvg==}
-    engines: {node: '>=8', npm: '>=5'}
-    dependencies:
-      rematrix: 0.2.2
-    dev: false
-
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -14417,19 +14408,6 @@ packages:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
 
-  /react-flip-toolkit/7.0.16_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-ZLnXYJfYhZZ5lKP+FiUjX0lHKe8ZZoAd2HMuOAW3w5ZESNgNTyzu0pRu/bDBqlIox5UkeSlTDBt3dVBcTqv1gg==}
-    engines: {node: '>=8', npm: '>=5'}
-    peerDependencies:
-      react: '>= 16.x'
-      react-dom: '>= 16.x'
-    dependencies:
-      flip-toolkit: 7.0.16
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -14664,10 +14642,6 @@ packages:
     dependencies:
       '@types/escape-html': 1.0.2
       escape-html: 1.0.3
-    dev: false
-
-  /rematrix/0.2.2:
-    resolution: {integrity: sha512-agFFS3RzrLXJl5LY5xg/xYyXvUuVAnkhgKO7RaO9J1Ssth6yvbO+PIiV67V59MB5NCdAK2flvGvNT4mdKVniFA==}
     dev: false
 
   /request-progress/3.0.0:
