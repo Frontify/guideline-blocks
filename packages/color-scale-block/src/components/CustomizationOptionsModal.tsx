@@ -14,8 +14,11 @@ export const CustomizationOptionsModal: FC<CustomizationOptionsModalProps> = ({ 
             {isEditing ? (
                 <div
                     id="coloroptions"
+                    style={{
+                        right: '3%',
+                    }}
                     className={
-                        'color-options tw-hidden group-hover:tw-flex tw-absolute tw-top-2 tw-mr-3 tw-h-6 tw-right-[0px] tw-z-[2]'
+                        'color-options tw-hidden group-hover:tw-flex group-hover:tw-z-[30] tw-absolute tw-top-2 tw-h-6 tw-z-[2]'
                     }
                 >
                     <button

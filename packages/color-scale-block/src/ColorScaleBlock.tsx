@@ -63,6 +63,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const dragStartPos: { current?: number | null | undefined } = useRef();
     const dragStartWidth: { current?: number | null | undefined } = useRef();
     const lastDragPos: { current?: number | null | undefined } = useRef();
+    const timerToUpdateBlockSettings: { current?: number | undefined } = useRef(undefined);
     const minimumNumberOfColors = 1;
     const maximumNumberOfPlaceholderSquares = 6;
 
@@ -84,25 +85,29 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const updateColor = (newColor: ColorProps) => {
-        // If appearAfter is true, it means that this is a new color square being added. The new square will appear after the index provided by `id`.
-
         let updatedColors = [...displayableItems];
 
+        const alreadyExists = updatedColors.findIndex((item) => item.id === newColor.id) > -1;
+
+        if (alreadyExists) {
+            return;
+        }
+
         const addedFirstColor = displayableItems.filter((item) => item.color).length;
+        let colorsWithNewWidths;
 
         if (!addedFirstColor) {
             updatedColors = [newColor];
+            colorsWithNewWidths = calculateWidths(updatedColors, colorScaleBlockRef, false);
         } else {
             updatedColors.push(newColor);
+            colorsWithNewWidths = calculateWidths(updatedColors, colorScaleBlockRef, true);
         }
-
-        const colorsWithNewWidths = resizeEvenly(updatedColors, colorScaleBlockRef);
 
         setBlockSettings({
             ...blockSettings,
             'color-input': colorsWithNewWidths,
         });
-        setDisplayableItems(colorsWithNewWidths);
     };
 
     const populatePlaceholderSquares = () => {
@@ -118,7 +123,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             for (let i = 0; i < missingColors; i++) {
                 colorsArray.push({});
 
-                colorsWithNewWidths = calculateWidths(colorsArray, colorScaleBlockRef);
+                colorsWithNewWidths = calculateWidths(colorsArray, colorScaleBlockRef, false);
             }
             setBlockSettings({
                 ...blockSettings,
@@ -180,14 +185,18 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
             try {
                 if (blockSettings['color-input'] && blockSettings['color-input'].length >= minimumColors) {
-                    let needToCalculateWidths;
+                    let needToCalculateWidths = false;
 
                     for (const color of blockSettings['color-input']) {
                         needToCalculateWidths = !color || (color && !color.width);
                     }
 
                     if (needToCalculateWidths) {
-                        const colorsWithNewWidths = calculateWidths(blockSettings['color-input'], colorScaleBlockRef);
+                        const colorsWithNewWidths = calculateWidths(
+                            blockSettings['color-input'],
+                            colorScaleBlockRef,
+                            false
+                        );
                         setBlockSettings({
                             ...blockSettings,
                             'color-input': colorsWithNewWidths,
@@ -217,6 +226,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const onResize: MouseEventHandler = (event: MouseEvent) => {
+        clearTimeout(timerToUpdateBlockSettings.current);
+
         if (draggingId.current !== null) {
             const id = draggingId.current;
             if (!lastDragPos.current) {
@@ -278,10 +289,12 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
                     if (valuesChanged) {
                         setDisplayableItems(newDisplayableItems);
-                        setBlockSettings({
-                            ...blockSettings,
-                            'color-input': newDisplayableItems,
-                        });
+                        timerToUpdateBlockSettings.current = setTimeout(() => {
+                            setBlockSettings({
+                                ...blockSettings,
+                                'color-input': newDisplayableItems,
+                            });
+                        }, 1000);
                     }
                 }
             }
@@ -330,10 +343,12 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                     });
                     if (valuesChanged) {
                         setDisplayableItems(newDisplayableItems);
-                        setBlockSettings({
-                            ...blockSettings,
-                            'color-input': newDisplayableItems,
-                        });
+                        timerToUpdateBlockSettings.current = setTimeout(() => {
+                            setBlockSettings({
+                                ...blockSettings,
+                                'color-input': newDisplayableItems,
+                            });
+                        }, 1000);
                     }
                 }
             }
@@ -350,8 +365,13 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
     const handleDrop = (targetItem: ColorProps, movedItem: ColorProps, position: DropZonePosition) => {
         let targetItemIndex = 0;
+        let movedItemIndex = 0;
 
-        const updatedColors = [...displayableItems];
+        let updatedColors = [...displayableItems];
+
+        movedItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === movedItem.id);
+
+        updatedColors = updatedColors.filter((colorItem, index) => index !== movedItemIndex);
 
         targetItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === targetItem.id);
 
@@ -362,7 +382,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const [displayableItems, setDisplayableItems] = useState(
-        calculateWidths(blockSettings['color-input'], colorScaleBlockRef)
+        calculateWidths(blockSettings['color-input'], colorScaleBlockRef, false)
     );
 
     const listId = useMemoizedId();
@@ -399,8 +419,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                 } else {
                                     width = calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
                                 }
-
-                                console.log(width);
 
                                 return (
                                     <div className="color-square tw-flex tw-relative" key={color.id}>

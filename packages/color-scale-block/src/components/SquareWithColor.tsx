@@ -104,7 +104,6 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                 height,
             }}
             className={'hover:tw-z-30 row tw-overflow-x-visible tw-overflow-y-hidden tw-pb-8 tw-inline-block'}
-            key={id}
         >
             <DragHandle index={index} currentColor={currentColor} isEditing={isEditing} onResizeStart={onResizeStart} />
             <div
@@ -142,7 +141,7 @@ export const SquareWithColor: FC<SquareWithColorProps> = ({
                                 height,
                                 width: `${width}px`,
                             }}
-                            className={`tw-top-0 tw-left-0
+                            className={` tw-top-0 tw-left-0
                             ${isFirst ? 'tw-pl-[1px]' : ''} 
                             ${isLast ? 'tw-pr-[1px]' : ''}
                             ${isFirst ? 'tw-rounded-tl' : ''}

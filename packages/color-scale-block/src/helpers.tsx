@@ -1,6 +1,9 @@
 import { ColorProps, ColorScaleBlockRef } from './types';
 
 export const defaultColorSquareWidth = 100;
+export const minimumColorWidthToAllowResizing = 18;
+export const minimumAmountOfPixelsToMoveDuringResize = 8;
+export const minimumAmountOfPixelsToShiftWhenAddingNewColor = 18;
 
 export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRef: ColorScaleBlockRef) => {
     if (!(colorScaleBlockRef && colorScaleBlockRef?.current)) {
@@ -13,16 +16,41 @@ export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRe
     return defaultWidth;
 };
 
-export const calculateWidths = (itemList: ColorProps[], colorScaleBlockRef: ColorScaleBlockRef) => {
-    let emptySpace = 0;
+export const getEmptySpace = (colorScaleBlockRef: ColorScaleBlockRef, colorArray: ColorProps[]) => {
+    if (!(colorScaleBlockRef && colorScaleBlockRef.current)) {
+        return 0;
+    }
+
+    const colorBlockWidth: number = colorScaleBlockRef?.current?.getBoundingClientRect().width;
     let usedSpace = 0;
+    let emptySpace = 0;
+
+    colorArray?.map((color: ColorProps) => {
+        if (color && color.color && color.width) {
+            usedSpace += color.width;
+        }
+
+        return color;
+    });
+
+    emptySpace = colorBlockWidth - usedSpace;
+
+    return emptySpace;
+};
+
+export const calculateWidths = (
+    itemList: ColorProps[],
+    colorScaleBlockRef: ColorScaleBlockRef,
+    addingNewColor: boolean
+) => {
+    let emptySpace = 0;
     let emptySquares = 0;
     let emptySquareWidth = 12;
     let itemsWithWidths: ColorProps[] = [];
 
     itemsWithWidths = itemList?.map((color: ColorProps) => {
-        if (colorScaleBlockRef && colorScaleBlockRef.current && (!color || (color && !color.id))) {
-            // Square has no ID, so this is an empty placeholder square
+        if (colorScaleBlockRef && colorScaleBlockRef.current && (!color || (color && !color.color))) {
+            // Square has no color, so this is an empty placeholder square
             emptySquares++;
             return color;
         } else if (colorScaleBlockRef && colorScaleBlockRef.current && (!color || (color && !color.width))) {
@@ -36,22 +64,12 @@ export const calculateWidths = (itemList: ColorProps[], colorScaleBlockRef: Colo
     });
 
     if (colorScaleBlockRef && colorScaleBlockRef.current) {
-        const colorBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
+        const emptySpace: number = getEmptySpace(colorScaleBlockRef, itemList);
 
-        itemsWithWidths?.map((color: ColorProps) => {
-            if (color && color.id && color.width) {
-                usedSpace += color.width;
-            }
-
-            return color;
-        });
-
-        emptySpace = colorBlockWidth - usedSpace;
-
-        emptySquareWidth = emptySpace / emptySquares;
+        emptySquareWidth = addingNewColor ? emptySpace : emptySpace / emptySquares;
 
         itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
-            if (!color || (color && !color.id)) {
+            if (!color || (color && !color.color)) {
                 if (color) {
                     return { ...color, width: emptySquareWidth };
                 }
@@ -64,7 +82,19 @@ export const calculateWidths = (itemList: ColorProps[], colorScaleBlockRef: Colo
         });
     }
 
-    if (emptySpace === 0 && itemsWithWidths) {
+    emptySpace = getEmptySpace(colorScaleBlockRef, itemList);
+
+    if (addingNewColor) {
+        if (emptySpace > minimumAmountOfPixelsToMoveDuringResize) {
+            itemsWithWidths[itemsWithWidths.length - 1].width = emptySpace;
+
+            emptySquareWidth = 0;
+        }
+    }
+
+    emptySpace = getEmptySpace(colorScaleBlockRef, itemList);
+
+    if (emptySpace <= minimumColorWidthToAllowResizing && itemsWithWidths) {
         itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
             if (!color || (color && !color.id)) {
                 if (color) {
@@ -80,6 +110,25 @@ export const calculateWidths = (itemList: ColorProps[], colorScaleBlockRef: Colo
             }
             return color;
         });
+
+        if (addingNewColor) {
+            let resizingDone = false;
+            itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
+                if (!resizingDone) {
+                    if (color && color.width && color.width > minimumColorWidthToAllowResizing) {
+                        resizingDone = true;
+
+                        return {
+                            ...color,
+                            width: color && color.width - minimumAmountOfPixelsToShiftWhenAddingNewColor,
+                        };
+                    }
+                }
+                return color;
+            });
+
+            itemsWithWidths[itemsWithWidths.length - 1].width = minimumColorWidthToAllowResizing;
+        }
     }
 
     return itemsWithWidths || [];
