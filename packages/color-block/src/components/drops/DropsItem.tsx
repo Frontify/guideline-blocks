@@ -14,17 +14,16 @@ import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 import { ColorName } from '../ColorName';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
+import { ColorSpaceValue } from '../ColorSpaceValue';
 import { TooltipContent } from '../TooltipContent';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
+import { getRgbaColorValue } from '../../helpers/getRgbaColorValue';
 import { ColorBlockType, ItemProps } from '../../types';
-import { ColorSpaceValue } from '../ColorSpaceValue';
 
 export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { copy, status } = useCopy();
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
-
-    const hexColor = `#${color.hex}`;
 
     return (
         <div data-test-id="drops-item" className="tw-group tw-relative tw-flex tw-flex-col tw-items-center">
@@ -41,8 +40,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 data-test-id="color-color-picker-flyout-trigger"
                                 className="tw-relative tw-w-[100px] tw-h-[100px] tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                                 style={{
-                                    backgroundColor: hexColor,
-                                    opacity: (color.alpha && color.alpha / 255) || 1,
+                                    backgroundColor: getRgbaColorValue(color),
                                 }}
                             />
                         </div>
@@ -74,8 +72,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-relative tw-w-[100px] tw-h-[100px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                                 style={{
-                                    backgroundColor: hexColor,
-                                    opacity: (color.alpha && color.alpha / 255) || 1,
+                                    backgroundColor: getRgbaColorValue(color),
                                 }}
                                 onClick={() => copy(mappedFirstColorSpace.value ?? '')}
                             />

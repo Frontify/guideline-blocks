@@ -14,19 +14,16 @@ import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 import { ColorName } from '../ColorName';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
+import { ColorSpaceValue } from '../ColorSpaceValue';
 import { TooltipContent } from '../TooltipContent';
+import { getRgbaColorValue } from '../../helpers/getRgbaColorValue';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorBlockType, ItemProps } from '../../types';
-import { ColorSpaceValue } from '../ColorSpaceValue';
 
 export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { copy, status } = useCopy();
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
-
-    const rgbaBackgroundColor = `rgba(${color.red}, ${color.green}, ${color.blue}, ${
-        (color.alpha && color.alpha / 255) || 1
-    })`;
 
     return (
         <div
@@ -45,7 +42,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                             data-test-id="color-color-picker-flyout-trigger"
                             className="tw-relative tw-w-full tw-h-[60px] tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                             style={{
-                                backgroundColor: rgbaBackgroundColor,
+                                backgroundColor: getRgbaColorValue(color),
                             }}
                         >
                             <div
@@ -76,7 +73,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-w-full tw-h-[60px] tw-cursor-pointer tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
                                 style={{
-                                    backgroundColor: rgbaBackgroundColor,
+                                    backgroundColor: getRgbaColorValue(color),
                                 }}
                                 onClick={() => copy(mappedFirstColorSpace.value ?? '')}
                             />
