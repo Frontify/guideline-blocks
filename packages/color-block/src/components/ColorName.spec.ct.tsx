@@ -3,27 +3,27 @@
 import { mount } from 'cypress/react';
 
 import { ColorName } from './ColorName';
-import { ColorBlockType } from '../types';
+import { ColorBlockType, ColorNameProps } from '../types';
 
 const ColorNameSelector = '[data-test-id="color-name"]';
 
 const INITIAL_COLOR_NAME = 'Color Name';
 
-describe('ColorPickerFlyout component', () => {
-    const viewModeProps = {
+const DefaultColorName = (props: Partial<ColorNameProps>) => {
+    const defaults = {
+        viewType: ColorBlockType.List,
         initialColorName: INITIAL_COLOR_NAME,
         isEditing: false,
+        onBlur: cy.stub().as('onBlur'),
     };
+    const colorNameProps = { ...defaults, ...props };
 
-    const editModeProps = {
-        initialColorName: INITIAL_COLOR_NAME,
-        isEditing: true,
-    };
+    return <ColorName {...colorNameProps} />;
+};
 
+describe('ColorName component', () => {
     it('renders a ColorName component in list view', () => {
-        const onBlurStub = cy.stub().as('onBlur');
-
-        mount(<ColorName {...viewModeProps} viewType={ColorBlockType.List} onBlur={onBlurStub} />);
+        mount(<DefaultColorName viewType={ColorBlockType.List} isEditing={false} />);
 
         cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).contains(INITIAL_COLOR_NAME);
@@ -31,9 +31,7 @@ describe('ColorPickerFlyout component', () => {
     });
 
     it('renders a ColorName component in drops view', () => {
-        const onBlurStub = cy.stub().as('onBlur');
-
-        mount(<ColorName {...viewModeProps} viewType={ColorBlockType.Drops} onBlur={onBlurStub} />);
+        mount(<DefaultColorName viewType={ColorBlockType.Drops} isEditing={false} />);
 
         cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).contains(INITIAL_COLOR_NAME);
@@ -41,9 +39,7 @@ describe('ColorPickerFlyout component', () => {
     });
 
     it('renders a ColorName component in cards view', () => {
-        const onBlurStub = cy.stub().as('onBlur');
-
-        mount(<ColorName {...viewModeProps} viewType={ColorBlockType.Cards} onBlur={onBlurStub} />);
+        mount(<DefaultColorName viewType={ColorBlockType.Cards} isEditing={false} />);
 
         cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).contains(INITIAL_COLOR_NAME);
@@ -51,9 +47,7 @@ describe('ColorPickerFlyout component', () => {
     });
 
     it('renders a ColorName component in list view and edit mode', () => {
-        const onBlurStub = cy.stub().as('onBlur');
-
-        mount(<ColorName {...editModeProps} viewType={ColorBlockType.List} onBlur={onBlurStub} />);
+        mount(<DefaultColorName viewType={ColorBlockType.List} isEditing />);
 
         cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).find('input').should('have.value', INITIAL_COLOR_NAME);
@@ -63,9 +57,7 @@ describe('ColorPickerFlyout component', () => {
     });
 
     it('renders a ColorName component in drops view and edit mode', () => {
-        const onBlurStub = cy.stub().as('onBlur');
-
-        mount(<ColorName {...editModeProps} viewType={ColorBlockType.Drops} onBlur={onBlurStub} />);
+        mount(<DefaultColorName viewType={ColorBlockType.Drops} isEditing />);
 
         cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).find('input').should('have.value', INITIAL_COLOR_NAME);
@@ -74,9 +66,7 @@ describe('ColorPickerFlyout component', () => {
     });
 
     it('renders a ColorName component in cards view and edit mode', () => {
-        const onBlurStub = cy.stub().as('onBlur');
-
-        mount(<ColorName {...editModeProps} viewType={ColorBlockType.Cards} onBlur={onBlurStub} />);
+        mount(<DefaultColorName viewType={ColorBlockType.Cards} isEditing />);
 
         cy.get(ColorNameSelector).should('exist');
         cy.get(ColorNameSelector).find('input').should('have.value', INITIAL_COLOR_NAME);

@@ -1,16 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FocusEvent, FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { merge } from '@frontify/fondue';
 
-import { ColorBlockType } from '../types';
-
-type ColorNameProps = {
-    viewType: ColorBlockType;
-    initialColorName: string;
-    isEditing: boolean;
-    onBlur: (event: FocusEvent<HTMLInputElement>) => void;
-};
+import { ColorBlockType, ColorNameProps } from '../types';
 
 const nameWrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.List]: 'tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12',

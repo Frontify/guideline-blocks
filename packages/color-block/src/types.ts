@@ -60,6 +60,13 @@ export type TooltipContentProps = {
     status: 'error' | 'success' | 'idle';
 };
 
+export type ColorNameProps = {
+    viewType: ColorBlockType;
+    initialColorName: string;
+    isEditing: boolean;
+    onBlur: (event: FocusEvent<HTMLInputElement>) => void;
+};
+
 export type ColorSpaceValues = {
     hex?: string;
     rgb?: string;
