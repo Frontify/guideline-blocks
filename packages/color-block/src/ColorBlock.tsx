@@ -5,7 +5,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/fondue';
-import { updateArray, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { moveItemInArray, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 import { CardsItem } from './components/cards/CardsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
@@ -101,7 +101,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
                                 treeId={String(blockSettings.colorPaletteId)}
                                 colorBlockType={blockSettings.view}
                                 moveCard={(dragIndex, hoverIndex) => {
-                                    setColors(updateArray(colors, dragIndex, hoverIndex));
+                                    setColors(moveItemInArray(colors, dragIndex, hoverIndex));
                                 }}
                                 isEditing={isEditing}
                             >
