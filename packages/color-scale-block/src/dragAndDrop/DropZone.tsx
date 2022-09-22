@@ -1,7 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrop } from 'react-dnd';
-import { DraggableItem, DropZonePosition, OrderableListItem, merge } from '@frontify/fondue';
+import { DraggableItem, DropZonePosition, OrderableListItem } from '@frontify/fondue';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
+
 import { DropZoneProps } from '../types';
 
 export const DropZone = <T extends object>({
@@ -50,16 +52,17 @@ export const DropZone = <T extends object>({
                     width: isActive ? `${parseInt(width)}px` : '0px',
                     height: `${height - 2}px`,
                 }}
-                className={`drop-zone-offset tw-relative tw-transition-all tw-rounded-[3px] tw-bg-[#E3E8F6] ${
-                    isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]'
-                }`}
+                className={joinClassNames([
+                    'drop-zone-offset tw-relative tw-transition-all tw-rounded-[3px] tw-bg-[#E3E8F6]',
+                    isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]',
+                ])}
             ></div>
 
             <div
                 aria-hidden={!isActive}
                 data-test-id="drop-zone"
-                className={merge([
-                    'tw-top-[0px] tw-bottom-0',
+                className={joinClassNames([
+                    'tw-top-[0px] tw-bottom-0 tw-h-full',
                     data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
                     isActive && data.position !== DropZonePosition.Within && activeOuterDropZoneClassNames,
                     isActive && data.position === DropZonePosition.Within && bgColorClassName,
