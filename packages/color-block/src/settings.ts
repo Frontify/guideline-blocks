@@ -2,21 +2,22 @@
 
 import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings, Bundle, NotificationStyleType } from '@frontify/guideline-blocks-settings';
+import { ColorSpaceLabels } from './types';
 
 const COLORSPACES_ID = 'colorspaces';
 
 const COLORSPACES = [
     {
         id: 'hex',
-        label: 'HEX',
+        label: ColorSpaceLabels.Hex,
     },
     {
         id: 'rgb',
-        label: 'RGB',
+        label: ColorSpaceLabels.Rgb,
     },
     {
         id: 'cmyk',
-        label: 'CMYK',
+        label: ColorSpaceLabels.Cmyk,
         tooltip: {
             content:
                 'We automatically convert color values to CMYK. \n These values might differ, depending on what color profile you use. \n You can always change the values manually here.',
@@ -24,69 +25,69 @@ const COLORSPACES = [
     },
     {
         id: 'cmykCoated',
-        label: 'CMYK Coated',
+        label: ColorSpaceLabels.CmykC,
     },
     {
         id: 'cmykUncoated',
-        label: 'CMYK Uncoated',
+        label: ColorSpaceLabels.CmykU,
     },
     {
         id: 'cmykNewspaper',
-        label: 'CMYK Newspaper',
+        label: ColorSpaceLabels.CmykN,
     },
     {
         id: 'pantone',
-        label: 'Pantone',
+        label: ColorSpaceLabels.Pms,
     },
     {
         id: 'pantoneCoated',
-        label: 'Pantone Coated',
+        label: ColorSpaceLabels.PmsC,
     },
     {
         id: 'pantoneUncoated',
-        label: 'Pantone Uncoated',
+        label: ColorSpaceLabels.PmsU,
     },
     {
         id: 'pantoneCp',
-        label: 'Pantone CP',
+        label: ColorSpaceLabels.PmsCp,
     },
     {
         id: 'pantoneTextile',
-        label: 'Pantone Textile',
+        label: ColorSpaceLabels.PmsTcx,
     },
     {
         id: 'pantonePlastics',
-        label: 'Pantone Plastics',
+        label: ColorSpaceLabels.PmsPq,
     },
     {
         id: 'ral',
-        label: 'RAL',
+        label: ColorSpaceLabels.Ral,
     },
 
     {
         id: 'variable',
-        label: 'SCSS/LESS',
+        label: ColorSpaceLabels.Less,
     },
     {
         id: 'lab',
-        label: 'LAB',
+        label: ColorSpaceLabels.Lab,
     },
     {
         id: 'ncs',
-        label: 'NCS',
+        label: ColorSpaceLabels.Ncs,
     },
 
     {
         id: 'hks',
-        label: 'HKS',
+        label: ColorSpaceLabels.Hks,
     },
     {
         id: 'threeM',
-        label: '3M',
+        label: ColorSpaceLabels.ThreeM,
     },
     {
         id: 'oracal',
-        label: 'Oracal',
+        label: ColorSpaceLabels.Ora,
     },
 ];
 
