@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useEffect, useMemo, useState } from 'react';
+import { FormEvent, ReactElement, useEffect, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
-import { Color, RichTextEditor } from '@frontify/fondue';
-import { moveItemInArray, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { Color } from '@frontify/fondue';
+import { joinClassNames, moveItemInArray } from '@frontify/guideline-blocks-shared';
 
 import { CardsItem } from './components/cards/CardsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
@@ -23,8 +23,7 @@ const wrapperClasses: Record<ColorBlockType, string> = {
 };
 
 export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
-    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
+    const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(
@@ -37,14 +36,23 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     }, [colorsByPaletteId]);
 
     const memoizedColorPaletteId = useMemo(() => [blockSettings.colorPaletteId], [blockSettings.colorPaletteId]);
-    const { updateColorPalette } = useColorPalettes(appBridge, memoizedColorPaletteId);
+    const { colorPalettes, updateColorPalette } = useColorPalettes(appBridge, memoizedColorPaletteId);
 
     const handleDrop = (colorId: number, index: number) => {
         updateColor(colorId, { sort: index + 1 });
     };
 
-    const handleNameChange = (value: string) => setBlockSettings({ name: value });
-    const handleDescriptionChange = (value: string) => setBlockSettings({ description: value });
+    const [name, setName] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
+    const handleNameChange = (event: FormEvent<HTMLInputElement>) => setName(event.currentTarget.value);
+    const handleDescriptionChange = (event: FormEvent<HTMLInputElement>) => setDescription(event.currentTarget.value);
+
+    useEffect(() => {
+        if (colorPalettes[0]) {
+            setName(colorPalettes[0].name);
+            setDescription(colorPalettes[0].description);
+        }
+    }, [colorPalettes]);
 
     const colorSpaces = blockSettings.colorspaces as (keyof ColorSpaceValues)[];
     const handleCreateColor = (color: Color) => {
@@ -57,27 +65,33 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
         });
     };
 
+    const inputClasses = joinClassNames(['tw-w-full tw-outline-none', isEditing ? '' : 'tw-pointer-events-none']);
+
     return (
         <div data-test-id="color-block">
             <div className="tw-w-full tw-mb-3 tw-text-l tw-font-bold tw-text-black">
-                <RichTextEditor
-                    designTokens={designTokens ?? undefined}
+                <input
+                    className={inputClasses}
                     placeholder={isEditing ? 'Color palette name' : ''}
-                    value={blockSettings.name}
-                    onTextChange={handleNameChange}
-                    onBlur={(value) => updateColorPalette(blockSettings.colorPaletteId, { name: value })}
-                    readonly={!isEditing}
+                    value={name}
+                    onChange={handleNameChange}
+                    onBlur={(event) =>
+                        updateColorPalette(blockSettings.colorPaletteId, { name: event.currentTarget.value })
+                    }
+                    readOnly={!isEditing}
                 />
             </div>
 
             <div className="tw-w-full tw-mb-12 tw-text-s tw-text-black">
-                <RichTextEditor
-                    designTokens={designTokens ?? undefined}
+                <input
+                    className={inputClasses}
                     placeholder={isEditing ? 'Describe this color palette here' : ''}
-                    value={blockSettings.description}
-                    onTextChange={handleDescriptionChange}
-                    onBlur={(value) => updateColorPalette(blockSettings.colorPaletteId, { description: value })}
-                    readonly={!isEditing}
+                    value={description}
+                    onChange={handleDescriptionChange}
+                    onBlur={(event) =>
+                        updateColorPalette(blockSettings.colorPaletteId, { description: event.currentTarget.value })
+                    }
+                    readOnly={!isEditing}
                 />
             </div>
 
