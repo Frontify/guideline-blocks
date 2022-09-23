@@ -2,6 +2,7 @@
 
 import { MouseEvent } from 'react';
 import { Color, ColorFormat, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
+import { FrontifyColor, FrontifyColorPalette } from '@frontify/app-bridge';
 
 export type Settings = {
     customHeight: boolean;
@@ -28,7 +29,11 @@ export type FormattedColor = {
 export type ColorProps = {
     id?: number;
     sort?: number;
-    color?: Color;
+    red: number;
+    green: number;
+    blue: number;
+    alpha?: number;
+    name?: string;
     width?: number;
     alt?: string;
 };
@@ -36,7 +41,7 @@ export type ColorProps = {
 export type ColorPalette = {
     id: number | string;
     title: string;
-    colors: Color[];
+    colors: FrontifyColor[];
 };
 
 export type ColorScaleBlockRef = {
@@ -91,9 +96,10 @@ export type DropZoneProps<T> = {
 
 export type ColorPickerFlyoutProps = {
     newIndex: number;
+    colorPickerFlyoutPalettes: Palette[];
+    appBridgePalettes: FrontifyColorPalette[];
     isColorPickerOpen: boolean;
     setIsColorPickerOpen: (isOpen: boolean) => void;
-    colors: ColorPalette[];
     editedColor: ColorProps | undefined | null;
     setEditedColor: (color: ColorProps | undefined | null) => void;
     updateColor: (color: ColorProps) => void;
@@ -122,4 +128,8 @@ export type CustomizationOptionsModalProps = {
     id: number | undefined;
     isEditing: boolean;
     deleteColor: (color: number | undefined) => void;
+};
+
+export type EmptyViewProps = {
+    height: string;
 };

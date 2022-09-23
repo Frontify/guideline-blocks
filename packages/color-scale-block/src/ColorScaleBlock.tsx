@@ -11,7 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
-import { ColorPalette, ColorProps, Settings } from './types';
+import { ColorProps, Settings } from './types';
 import {
     Button,
     ButtonGroup,
@@ -20,6 +20,7 @@ import {
     DropZonePosition,
     IconArrowStretchBox12,
     IconPlus12,
+    Palette,
     useMemoizedId,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
@@ -43,15 +44,14 @@ type Props = {
 
 export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const { colorPalettes } = useColorPalettes(appBridge);
-    const [colorPickerPalette, setColorPickerPalette]: [ColorPalette[], (color: ColorPalette[]) => void] = useState(
-        [] as ColorPalette[]
+    const [colorPickerPalette, setColorPickerPalette]: [Palette[], (color: Palette[]) => void] = useState(
+        [] as Palette[]
     );
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
-    const emptyBlockColors = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
         number | null | undefined,
         (color?: number | null | undefined) => void
@@ -66,7 +66,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const dragStartPos: { current?: number | null | undefined } = useRef();
     const dragStartWidth: { current?: number | null | undefined } = useRef();
     const lastDragPos: { current?: number | null | undefined } = useRef();
-    const timerToUpdateBlockSettings: { current?: number | undefined } = useRef(undefined);
+    const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> | undefined } = useRef(undefined);
     const minimumNumberOfColors = 1;
     const maximumNumberOfPlaceholderSquares = 6;
 
@@ -100,7 +100,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             return;
         }
 
-        const addedFirstColor = displayableItems.filter((item) => item.color).length;
+        const addedFirstColor = displayableItems.length;
         let colorsWithNewWidths;
 
         if (!addedFirstColor) {
@@ -117,48 +117,24 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         });
     };
 
-    const populatePlaceholderSquares = () => {
-        // If the number of colors is less than the minimum amount defined in settings, add
-        // however many color squares are needed to match the minimum.
-        const colorsArray = blockSettings['color-input'] || [];
-        let missingColors = 0;
-
-        if (colorsArray.length < maximumNumberOfPlaceholderSquares) {
-            missingColors = maximumNumberOfPlaceholderSquares - colorsArray.length;
-            let colorsWithNewWidths;
-
-            for (let i = 0; i < missingColors; i++) {
-                colorsArray.push({});
-
-                colorsWithNewWidths = calculateWidths(colorsArray, colorScaleBlockRef, false);
-            }
-            setBlockSettings({
-                ...blockSettings,
-                'color-input': colorsWithNewWidths,
-            });
-            setDisplayableItems(colorsWithNewWidths || []);
-        }
-    };
-
     const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
-        const formattedPalettes: ColorPalette[] = [];
+        const formattedPalettes: Palette[] = [];
 
         for (const palette of inputPalettes) {
             if (palette && palette.colors) {
                 const colors = palette.colors.map((color) => {
                     return {
-                        id: color.id,
-                        alpha: color.alpha,
-                        red: color.red,
-                        green: color.green,
-                        blue: color.blue,
-                        name: color.name,
+                        alpha: color.alpha ?? 0,
+                        red: color.red ?? 0,
+                        green: color.green ?? 0,
+                        blue: color.blue ?? 0,
+                        name: color.name ?? '',
                     };
                 });
+
                 formattedPalettes.push({
                     id: palette.id,
                     title: palette.name,
-                    source: `#${palette.colors[0].hex}`,
                     colors,
                 });
             }
@@ -212,8 +188,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                     } else {
                         return setDisplayableItems(blockSettings['color-input']);
                     }
-                } else {
-                    populatePlaceholderSquares();
                 }
             } catch (error) {
                 console.error(error);
@@ -415,8 +389,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                             displayableItems?.map((color: ColorProps, index: number) => {
                                 let backgroundColorRgba;
 
-                                if (color && color.color) {
-                                    backgroundColorRgba = `${color.color.red},${color.color.green},${color.color.blue},${color.color.alpha}`;
+                                if (color && color) {
+                                    backgroundColorRgba = `${color.red},${color.green},${color.blue},${color.alpha}`;
                                 }
 
                                 let width;
@@ -427,75 +401,60 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                     width = calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
                                 }
 
-                                const isFirst = index === 0;
-                                const isLast = index === displayableItems.length - 1;
-
                                 return (
                                     <div className="tw-flex tw-relative tw-h-full" key={color.id}>
-                                        <>
-                                            {color.color ? (
-                                                <>
-                                                    <DropZone
-                                                        key={`orderable-list-item-${color.id}-before`}
-                                                        currentColor={color}
-                                                        height={parseInt(colorScaleHeight)}
-                                                        width={width}
-                                                        isDraggingActive={
-                                                            Number.isInteger(currentlyDraggedColorId) ? true : false
-                                                        }
-                                                        data={{
-                                                            targetItem: color,
-                                                            position: DropZonePosition.Before,
-                                                        }}
-                                                        onDrop={handleDrop}
-                                                        treeId={listId}
-                                                        before
-                                                    />
+                                        <DropZone
+                                            key={`orderable-list-item-${color.id}-before`}
+                                            currentColor={color}
+                                            height={parseInt(colorScaleHeight)}
+                                            width={width}
+                                            isDraggingActive={Number.isInteger(currentlyDraggedColorId) ? true : false}
+                                            data={{
+                                                targetItem: color,
+                                                position: DropZonePosition.Before,
+                                            }}
+                                            onDrop={handleDrop}
+                                            treeId={listId}
+                                            before
+                                        />
 
-                                                    <SquareWithColor
-                                                        id={color.id}
-                                                        index={index}
-                                                        width={currentlyDraggedColorId === color.id ? 0 : width}
-                                                        height={colorScaleHeight}
-                                                        isDragging={
-                                                            currentlyDraggedColorId !== null &&
-                                                            currentlyDraggedColorId !== undefined
-                                                        }
-                                                        setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
-                                                        currentColor={color}
-                                                        backgroundColorRgba={backgroundColorRgba}
-                                                        totalNumberOfBlocks={displayableItems.length}
-                                                        onResizeStart={handleResizeStart}
-                                                        calculateLeftPosition={calculateLeftPosition}
-                                                        isEditing={isEditing}
-                                                        editedColor={editedColor}
-                                                        setEditedColor={setEditedColor}
-                                                        updateColor={updateColor}
-                                                        setFormat={() => false}
-                                                        deleteColor={deleteColor}
-                                                        handleDrop={handleDrop}
-                                                        listId={listId}
-                                                    />
-                                                </>
-                                            ) : (
-                                                <EmptyView
-                                                    placeholderBackgroundColor={emptyBlockColors[index]}
-                                                    totalNumberOfBlocks={displayableItems.length}
-                                                    index={index}
-                                                    isFirst={isFirst}
-                                                    isLast={isLast}
-                                                    width={width}
-                                                    height={
-                                                        blockSettings['customHeight']
-                                                            ? blockSettings['heightInput']
-                                                            : blockSettings['heightSlider']
-                                                    }
-                                                />
-                                            )}
-                                        </>
+                                        <SquareWithColor
+                                            id={color.id}
+                                            index={index}
+                                            width={currentlyDraggedColorId === color.id ? 0 : width}
+                                            height={colorScaleHeight}
+                                            isDragging={
+                                                currentlyDraggedColorId !== null &&
+                                                currentlyDraggedColorId !== undefined
+                                            }
+                                            setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
+                                            currentColor={color}
+                                            backgroundColorRgba={backgroundColorRgba}
+                                            totalNumberOfBlocks={displayableItems.length}
+                                            onResizeStart={handleResizeStart}
+                                            calculateLeftPosition={calculateLeftPosition}
+                                            isEditing={isEditing}
+                                            editedColor={editedColor}
+                                            setEditedColor={setEditedColor}
+                                            updateColor={updateColor}
+                                            setFormat={() => false}
+                                            deleteColor={deleteColor}
+                                            handleDrop={handleDrop}
+                                            listId={listId}
+                                        />
                                     </div>
                                 );
                             })}
+
+                        {displayableItems.length === 0 && (
+                            <EmptyView
+                                height={
+                                    blockSettings['customHeight']
+                                        ? blockSettings['heightInput']
+                                        : blockSettings['heightSlider']
+                                }
+                            />
+                        )}
                     </DndProvider>
                 </div>
             </div>
@@ -528,7 +487,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         setIsColorPickerOpen={setIsColorPickerOpen}
                         editedColor={editedColor}
                         setEditedColor={setEditedColor}
-                        colors={colorPickerPalette}
+                        appBridgePalettes={colorPalettes}
+                        colorPickerFlyoutPalettes={colorPickerPalette}
                         updateColor={updateColor}
                         setFormat={() => false}
                     />

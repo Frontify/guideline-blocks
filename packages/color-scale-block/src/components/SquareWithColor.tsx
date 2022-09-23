@@ -48,8 +48,9 @@ export const SquareWithColor = ({
     const { copy, status } = useCopy();
 
     const bgColor = `rgba(${backgroundColorRgba}`;
-    const hexColor = currentColor.color && toHex8String(currentColor.color);
+    const hexColor = currentColor && toHex8String(currentColor);
 
+    console.log(bgColor);
     return (
         <div
             style={{

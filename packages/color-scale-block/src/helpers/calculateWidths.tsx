@@ -13,16 +13,10 @@ export const calculateWidths = (
     addingNewColor: boolean
 ) => {
     let emptySpace = 0;
-    let emptySquares = 0;
-    let emptySquareWidth = 12;
     let itemsWithWidths: ColorProps[] = [];
 
     itemsWithWidths = itemList?.map((color: ColorProps) => {
-        if (colorScaleBlockRef && colorScaleBlockRef.current && (!color || (color && !color.color))) {
-            // Square has no color, so this is an empty placeholder square
-            emptySquares++;
-            return color;
-        } else if (colorScaleBlockRef && colorScaleBlockRef.current && (!color || (color && !color.width))) {
+        if (colorScaleBlockRef && colorScaleBlockRef.current && color && !color.width) {
             // In this case, a width is missing
             return {
                 ...color,
@@ -32,54 +26,17 @@ export const calculateWidths = (
         return color;
     });
 
-    if (colorScaleBlockRef && colorScaleBlockRef.current) {
-        const emptySpace: number = getEmptySpace(colorScaleBlockRef, itemList);
-
-        emptySquareWidth = addingNewColor ? emptySpace : emptySpace / emptySquares;
-
-        itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
-            if (!color || (color && !color.color)) {
-                if (color) {
-                    return { ...color, width: emptySquareWidth };
-                }
-                return {
-                    width: emptySquareWidth,
-                    alt: 'Click to drag',
-                };
-            }
-            return color;
-        });
-    }
-
     emptySpace = getEmptySpace(colorScaleBlockRef, itemList);
 
     if (addingNewColor) {
         if (emptySpace > minimumAmountOfPixelsToMoveDuringResize) {
             itemsWithWidths[itemsWithWidths.length - 1].width = emptySpace;
-
-            emptySquareWidth = 0;
         }
     }
 
     emptySpace = getEmptySpace(colorScaleBlockRef, itemList);
 
     if (emptySpace <= minimumColorWidthToAllowResizing && itemsWithWidths) {
-        itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
-            if (!color || (color && !color.id)) {
-                if (color) {
-                    return {
-                        ...color,
-                        width: calculateDefaultColorWidth(itemList.length, colorScaleBlockRef),
-                    };
-                }
-                return {
-                    width: calculateDefaultColorWidth(itemList.length, colorScaleBlockRef),
-                    alt: 'Click to drag',
-                };
-            }
-            return color;
-        });
-
         if (addingNewColor) {
             let resizingDone = false;
             itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {

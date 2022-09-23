@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
-import { ColorPickerFlyoutColor, ColorPickerFlyoutProps, FormattedColor } from '../types';
+import { ColorPickerFlyoutProps } from '../types';
 
 export const ColorPickerFlyout = ({
     updateColor,
@@ -10,7 +10,8 @@ export const ColorPickerFlyout = ({
     setEditedColor,
     isColorPickerOpen,
     setIsColorPickerOpen,
-    colors,
+    appBridgePalettes,
+    colorPickerFlyoutPalettes,
 }: ColorPickerFlyoutProps) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
     const handleCancelClick = () => {
@@ -19,41 +20,53 @@ export const ColorPickerFlyout = ({
     };
 
     const handleSelectColor = (color: Color) => {
-        const { id } = color as ColorPickerFlyoutColor;
+        let id;
+        for (const palette of appBridgePalettes) {
+            for (const paletteColor of palette.colors) {
+                const frontifyColor = paletteColor;
+                if (
+                    paletteColor.red === color.red &&
+                    paletteColor.blue === color.blue &&
+                    paletteColor.green === color.green
+                ) {
+                    id = frontifyColor.id;
+                }
+            }
+        }
 
         if (!editedColor) {
             updateColor({
                 id,
-                color: {
-                    red: color.red,
-                    green: color.green,
-                    blue: color.blue,
-                },
+                red: color.red,
+                green: color.green,
+                blue: color.blue,
+                alpha: color.alpha,
+                name: color.name,
             });
             setEditedColor({
                 id,
-                color: {
-                    red: color.red,
-                    green: color.green,
-                    blue: color.blue,
-                },
+                red: color.red,
+                green: color.green,
+                blue: color.blue,
+                alpha: color.alpha,
+                name: color.name,
             });
         } else {
             updateColor({
                 id: editedColor.id,
-                color: {
-                    red: color.red,
-                    green: color.green,
-                    blue: color.blue,
-                },
+                red: color.red,
+                green: color.green,
+                blue: color.blue,
+                alpha: color.alpha,
+                name: color.name,
             });
             setEditedColor({
                 id: editedColor.id,
-                color: {
-                    red: color.red,
-                    green: color.green,
-                    blue: color.blue,
-                },
+                red: color.red,
+                green: color.green,
+                blue: color.blue,
+                alpha: color.alpha,
+                name: color.name,
             });
         }
     };
@@ -71,19 +84,11 @@ export const ColorPickerFlyout = ({
                 >
                     <ColorPicker
                         allowCustomColor={false}
-                        currentColor={
-                            editedColor && editedColor.color
-                                ? editedColor.color
-                                : {
-                                      blue: 255,
-                                      green: 102,
-                                      red: 85,
-                                  }
-                        }
+                        currentColor={editedColor ? editedColor : ({} as Color)}
                         currentFormat={colorPickerFormat}
                         setFormat={setColorPickerFormat}
                         onSelect={handleSelectColor}
-                        palettes={colors}
+                        palettes={colorPickerFlyoutPalettes}
                     />
                 </Flyout>
             </div>
