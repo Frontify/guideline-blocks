@@ -6,6 +6,12 @@ function readPackage(pkg) {
         pkg.dependencies = {
             ...pkg.dependencies,
             postcss: "^8.4.16",
+        };
+    }
+
+    if (pkg.name === "@frontify/fondue") {
+        pkg.dependencies = {
+            ...pkg.dependencies,
             scheduler: ">=0.19.0",
         };
     }
