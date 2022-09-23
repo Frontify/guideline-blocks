@@ -3,7 +3,7 @@
 import type { AppBridgeBlock, FrontifyColorPalette } from '@frontify/app-bridge';
 
 export type Settings = {
-    colorPalettes: number[];
+    colorPaletteIds: number[];
 };
 
 export type ColorKitBlockProps = {

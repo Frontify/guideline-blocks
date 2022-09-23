@@ -10,13 +10,14 @@ import type { ColorKitBlockProps, Settings } from './types';
 export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const memoizedColorPaletteIds = useMemo(
-        () => (blockSettings.colorPalettes ?? []).map((id) => Number(id)),
-        [blockSettings.colorPalettes]
+    const memoizedColorPaletteId = useMemo(
+        () => (blockSettings.colorPaletteIds ?? []).map((id) => Number(id)),
+        [blockSettings.colorPaletteIds]
     );
-    const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, memoizedColorPaletteIds);
-    const link = downloadColorKit(blockSettings.colorPalettes);
-    const isDownloadEnabled = blockSettings.colorPalettes?.length > 0;
+
+    const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, memoizedColorPaletteId);
+    const link = downloadColorKit(memoizedColorPaletteId);
+    const isDownloadEnabled = memoizedColorPaletteId?.length > 0;
 
     return (
         <div
