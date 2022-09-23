@@ -18,9 +18,7 @@ export const DragHandle: FC<DragHandleProps> = ({ index, currentColor, onResizeS
                 // identify which color square is being resized.
                 onMouseDown={handleMouseDown}
             >
-                <div
-                    className={'drag-handle tw-right-[-3px] tw-bg-black-20 tw-absolute tw-rounded-full tw-w-2 tw-h-6'}
-                ></div>
+                <div className="drag-handle tw-right-[-3px] tw-bg-black-20 tw-absolute tw-rounded-full tw-w-2 tw-h-6"></div>
             </div>
         </>
     );
