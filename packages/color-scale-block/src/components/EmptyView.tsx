@@ -16,7 +16,7 @@ export const EmptyView = ({ height }: EmptyViewProps) => {
                         }}
                         key={`placeholder-${index}`}
                         className="tw-w-1/6 tw-flex tw-overflow-hidden first:tw-pl-[1px] last:tw-pr-[1px] first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br"
-                    ></div>
+                    />
                 );
             })}
         </>
