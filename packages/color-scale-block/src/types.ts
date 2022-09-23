@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MouseEvent } from 'react';
-import { Color, ColorFormat, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
+import { Color, ColorFormat, DraggableItem, DropZonePosition } from '@frontify/fondue';
 
 export type Settings = {
     customHeight: boolean;
@@ -17,12 +17,6 @@ export type ColorPickerFlyoutColor = {
     green: number | undefined;
     blue: number | undefined;
     name: string | undefined;
-};
-
-export type FormattedColor = {
-    id: number | undefined;
-    color: Color;
-    width: number | undefined;
 };
 
 export type ColorProps = {
@@ -100,26 +94,9 @@ export type ColorPickerFlyoutProps = {
     setFormat: () => void;
 };
 
-export type EditExistingColorModalProps = {
-    id: number;
-    currentColor: ColorProps;
-    isEditing: boolean;
-    editedColor: ColorProps;
-    setEditedColor: (color: ColorProps | undefined | null) => void;
-    updateColor: (color: ColorProps) => void;
-    setFormat: () => void;
-    colors: Palette[];
-};
-
 export type DragHandleProps = {
     index: number;
     currentColor: ColorProps;
     isEditing: boolean;
     onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void | undefined;
-};
-
-export type CustomizationOptionsModalProps = {
-    id: number | undefined;
-    isEditing: boolean;
-    deleteColor: (color: number | undefined) => void;
 };

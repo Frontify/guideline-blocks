@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
-import { ColorPickerFlyoutColor, ColorPickerFlyoutProps, FormattedColor } from '../types';
+import { ColorPickerFlyoutColor, ColorPickerFlyoutProps } from '../types';
 
 export const ColorPickerFlyout = ({
     updateColor,
