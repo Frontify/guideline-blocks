@@ -1,19 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, ReactElement } from 'react';
+import { ReactElement, useMemo } from 'react';
 import { useBlockSettings, useColorPalettes } from '@frontify/app-bridge';
 import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
 
 import { Palette } from './Palette';
 import type { ColorKitBlockProps, Settings } from './types';
 
-export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactElement => {
+export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { colorPalettes, downloadColorKit } = useColorPalettes(
-        appBridge,
-        (blockSettings.colorPalettes ?? []).map((id) => Number(id))
+    const memoizedColorPaletteIds = useMemo(
+        () => (blockSettings.colorPalettes ?? []).map((id) => Number(id)),
+        [blockSettings.colorPalettes]
     );
+    const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, memoizedColorPaletteIds);
     const link = downloadColorKit(blockSettings.colorPalettes);
     const isDownloadEnabled = blockSettings.colorPalettes?.length > 0;
 
