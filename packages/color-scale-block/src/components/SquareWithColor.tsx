@@ -25,7 +25,7 @@ export const SquareWithColor = ({
 }: SquareWithColorProps) => {
     const handleDrag = () => {
         if (isDragging !== !!currentColor.id) {
-            setCurrentlyDraggedColorId(currentColor.id);
+            setCurrentlyDraggedColorId(currentColor.id ?? null);
         }
     };
 
@@ -54,7 +54,7 @@ export const SquareWithColor = ({
     ];
 
     const backgroundColor = `rgba(${rgbaValues.join(',')})`;
-    const hexColor = currentColor.color && toHex8String(currentColor.color);
+    const hexColor = currentColor && toHex8String(currentColor);
 
     return (
         <div

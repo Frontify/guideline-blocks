@@ -52,8 +52,10 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
-    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [number | null, (colorId: number | null) => void] =
-        useState(null);
+    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
+        number | null | undefined,
+        (value?: number | null | undefined) => void
+    ] = useState();
     const [editedColor, setEditedColor]: [
         ColorProps | null | undefined,
         (color: ColorProps | null | undefined) => void

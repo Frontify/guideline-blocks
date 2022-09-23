@@ -21,7 +21,7 @@ export type ColorPickerFlyoutColor = {
 };
 
 export type ColorProps = {
-    id: number;
+    id: number | undefined;
     sort?: number;
     red: number;
     green: number;
@@ -60,7 +60,7 @@ export type SquareWithColorProps = {
     onResizeStart: (event: MouseEvent, index?: number, currentColor?: ColorProps) => void;
     totalNumberOfBlocks: number;
     isDragging: boolean;
-    setCurrentlyDraggedColorId: (value: number | null) => void;
+    setCurrentlyDraggedColorId: (value: number | undefined | null) => void;
 };
 
 export type OnDropCallback<T> = (
