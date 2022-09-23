@@ -116,7 +116,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             'color-input': colorsWithNewWidths,
         });
     };
-
     const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
         const formattedPalettes: Palette[] = [];
 
@@ -139,11 +138,11 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                 });
             }
         }
-        setColorPickerPalette(formattedPalettes);
+        return formattedPalettes;
     };
 
     useEffect(() => {
-        populateColorPickerPalettes(colorPalettes);
+        setColorPickerPalette(populateColorPickerPalettes(colorPalettes));
     }, [colorPalettes]);
 
     useEffect(() => {
@@ -198,7 +197,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const handleResizeStop = () => {
         draggingId.current = null;
     };
-    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps) => {
+    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps): void => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
             dragStartWidth.current = currentColor?.width;
