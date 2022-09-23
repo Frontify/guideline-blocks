@@ -59,7 +59,7 @@ export type SquareWithColorProps = {
     handleDrop: (targetItem: ColorProps, sourceItem: ColorProps, position: DropZonePosition) => void;
     listId: string;
     backgroundColorRgba?: string;
-    onResizeStart: (event: MouseEvent, index?: number, currentColor?: ColorProps) => void | undefined;
+    onResizeStart: (event: MouseEvent, index?: number, currentColor?: ColorProps) => void;
     totalNumberOfBlocks: number;
     isDragging: boolean;
     setCurrentlyDraggedColorId: (value: number | null | undefined) => void;

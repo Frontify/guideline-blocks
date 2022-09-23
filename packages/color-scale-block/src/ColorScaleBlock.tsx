@@ -222,7 +222,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const handleResizeStop = () => {
         draggingId.current = null;
     };
-    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps) => {
+    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps): void => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
             dragStartWidth.current = currentColor?.width;
