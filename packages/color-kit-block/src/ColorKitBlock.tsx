@@ -27,10 +27,10 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     <Text as="p" size="large" weight="x-strong">
                         Color Kit
                     </Text>
-                    <Badge size="s">ASE</Badge>
-                    <Badge size="s">LESS</Badge>
-                    <Badge size="s">OCO</Badge>
-                    <Badge size="s">SCSS</Badge>
+                    <Badge size="small">ASE</Badge>
+                    <Badge size="small">LESS</Badge>
+                    <Badge size="small">OCO</Badge>
+                    <Badge size="small">SCSS</Badge>
                 </div>
                 <a
                     download
