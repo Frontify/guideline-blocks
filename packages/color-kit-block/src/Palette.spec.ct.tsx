@@ -13,7 +13,7 @@ const dummyPalette = FrontifyColorPaletteDummy.with(666, 'Palette Dummy');
 describe('Palette', () => {
     context('with colors', () => {
         beforeEach(() => {
-            mount(<Palette palette={dummyPalette} />);
+            mount(<Palette palette={dummyPalette} isEditing={false} />);
 
             cy.get(ColorKitPaletteSelector).should('exist').as('palette');
             cy.get(ColorKitPaletteSelector).find(ColorKitColorSelector).should('exist').as('colors');
@@ -31,13 +31,18 @@ describe('Palette', () => {
     });
 
     it('should render palette without colors', () => {
-        mount(<Palette palette={{ ...dummyPalette, colors: [] }} />);
+        mount(<Palette palette={{ ...dummyPalette, colors: [] }} isEditing={false} />);
 
         cy.get(ColorKitPaletteSelector).should('not.have.descendants', ColorKitColorSelector);
     });
 
     it('should not render color without color hex', () => {
-        mount(<Palette palette={{ ...dummyPalette, colors: [{ ...dummyPalette.colors[0], hex: null }] }} />);
+        mount(
+            <Palette
+                palette={{ ...dummyPalette, colors: [{ ...dummyPalette.colors[0], hex: null }] }}
+                isEditing={false}
+            />
+        );
 
         cy.get(ColorKitPaletteSelector).should('not.have.descendants', ColorKitColorSelector);
     });

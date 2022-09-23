@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ReactElement, useMemo } from 'react';
-import { useBlockSettings, useColorPalettes } from '@frontify/app-bridge';
+import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
 
 import { Palette } from './Palette';
@@ -9,6 +9,7 @@ import type { ColorKitBlockProps, Settings } from './types';
 
 export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const isEditing = useEditorState(appBridge);
 
     const memoizedColorPaletteIds = useMemo(
         () => (blockSettings.colorPaletteIds ?? []).map((id) => Number(id)),
@@ -49,7 +50,7 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
                 </a>
             </div>
             {colorPalettes.map((palette) => {
-                return <Palette key={palette.id} palette={palette} />;
+                return <Palette key={palette.id} palette={palette} isEditing={isEditing} />;
             })}
         </div>
     );

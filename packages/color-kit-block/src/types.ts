@@ -17,4 +17,5 @@ export type TooltipContentProps = {
 
 export type PaletteProps = {
     palette: FrontifyColorPalette;
+    isEditing: boolean;
 };
