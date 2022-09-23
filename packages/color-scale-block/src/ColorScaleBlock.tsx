@@ -144,7 +144,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         const formattedPalettes: ColorPalette[] = [];
 
         for (const palette of inputPalettes) {
-            if (palette && palette.colors) {
+            if (palette && palette.colors?.length > 0) {
                 const colors = palette.colors.map((color) => {
                     return {
                         id: color.id,
@@ -224,7 +224,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const handleResizeStop = () => {
         draggingId.current = null;
     };
-    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps) => {
+    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps): void => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
             dragStartWidth.current = currentColor?.width;
