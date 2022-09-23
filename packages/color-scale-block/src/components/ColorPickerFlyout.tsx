@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
-import { ColorPickerFlyoutProps } from '../types';
+import { ColorPickerFlyoutColor, ColorPickerFlyoutProps, FormattedColor } from '../types';
 
 export const ColorPickerFlyout = ({
     updateColor,
@@ -19,9 +19,11 @@ export const ColorPickerFlyout = ({
     };
 
     const handleSelectColor = (color: Color) => {
+        const { id } = color as ColorPickerFlyoutColor;
+
         if (!editedColor) {
             updateColor({
-                id: color.id,
+                id,
                 color: {
                     red: color.red,
                     green: color.green,
@@ -29,7 +31,7 @@ export const ColorPickerFlyout = ({
                 },
             });
             setEditedColor({
-                id: color.id,
+                id,
                 color: {
                     red: color.red,
                     green: color.green,
@@ -56,10 +58,6 @@ export const ColorPickerFlyout = ({
         }
     };
 
-    const handleSetFormat = (format: ColorFormat) => {
-        setColorPickerFormat(format);
-    };
-
     return (
         <>
             <div>
@@ -74,7 +72,7 @@ export const ColorPickerFlyout = ({
                     <ColorPicker
                         allowCustomColor={false}
                         currentColor={
-                            editedColor
+                            editedColor && editedColor.color
                                 ? editedColor.color
                                 : {
                                       blue: 255,
@@ -83,7 +81,7 @@ export const ColorPickerFlyout = ({
                                   }
                         }
                         currentFormat={colorPickerFormat}
-                        setFormat={handleSetFormat}
+                        setFormat={setColorPickerFormat}
                         onSelect={handleSelectColor}
                         palettes={colors}
                     />

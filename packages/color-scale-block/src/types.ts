@@ -10,13 +10,19 @@ export type Settings = {
     ['color-input']: ColorProps[];
 };
 
+export type ColorPickerFlyoutColor = {
+    id?: number | undefined;
+    alpha?: number | undefined;
+    red: number | undefined;
+    green: number | undefined;
+    blue: number | undefined;
+    name: string | undefined;
+};
+
 export type FormattedColor = {
-    id?: number | null;
-    alpha?: number | undefined | null;
-    red?: number | null;
-    green?: number | null;
-    blue?: number | null;
-    name?: string | undefined | null;
+    id: number | undefined;
+    color: Color;
+    width: number | undefined;
 };
 
 export type ColorProps = {
@@ -28,10 +34,9 @@ export type ColorProps = {
 };
 
 export type ColorPalette = {
-    id?: number;
-    title?: string;
-    source?: string;
-    colors?: FormattedColor[];
+    id: number | string;
+    title: string;
+    colors: Color[];
 };
 
 export type ColorScaleBlockRef = {
