@@ -17,6 +17,7 @@ import {
     ButtonGroup,
     ButtonSize,
     ButtonStyle,
+    Color,
     DropZonePosition,
     IconArrowStretchBox12,
     IconPlus12,
@@ -36,6 +37,7 @@ import {
     resizeEvenly,
 } from './helpers';
 import { MouseEventHandler } from 'react';
+import { FrontifyColor } from '@frontify/app-bridge/dist/types/FrontifyColor';
 
 type Props = {
     appBridge: AppBridgeBlock;
@@ -140,34 +142,30 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         }
     };
 
-    const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
-        const formattedPalettes: ColorPalette[] = [];
-
-        for (const palette of inputPalettes) {
-            if (palette && palette.colors) {
-                const colors = palette.colors.map((color) => {
-                    return {
-                        id: color.id,
-                        alpha: color.alpha,
-                        red: color.red,
-                        green: color.green,
-                        blue: color.blue,
-                        name: color.name,
-                    };
-                });
-                formattedPalettes.push({
-                    id: palette.id,
-                    title: palette.name,
-                    source: `#${palette.colors[0].hex}`,
-                    colors,
-                });
-            }
-        }
-        setColorPickerPalette(formattedPalettes);
+    const mapFrontifyColorPalettesToColorPalette = (frontifyColorPalettes: FrontifyColorPalette[]): ColorPalette[] => {
+        return frontifyColorPalettes.map((frontifyColorPalette: FrontifyColorPalette): ColorPalette => {
+            return {
+                id: frontifyColorPalette.id,
+                title: frontifyColorPalette.name,
+                colors: frontifyColorPalette.colors
+                    .filter((color: FrontifyColor): boolean => {
+                        return color.red !== null && color.green !== null && color.blue !== null;
+                    })
+                    .map((color: FrontifyColor): Color => {
+                        return {
+                            red: color.red as number,
+                            green: color.green as number,
+                            blue: color.blue as number,
+                            alpha: color.alpha ?? undefined,
+                            name: color.name ?? undefined,
+                        };
+                    }),
+            };
+        });
     };
 
     useEffect(() => {
-        populateColorPickerPalettes(colorPalettes);
+        setColorPickerPalette(mapFrontifyColorPalettesToColorPalette(colorPalettes));
     }, [colorPalettes]);
 
     useEffect(() => {
