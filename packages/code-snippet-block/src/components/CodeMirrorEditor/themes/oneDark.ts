@@ -30,16 +30,6 @@ export const oneDarkTheme = EditorView.theme(
             backgroundColor: background,
         },
 
-        '&.cm-editor': {
-            border: 'var(--editor-border)',
-            padding: 'var(--editor-padding)',
-            borderRadius: 'var(--editor-border-radius)',
-        },
-
-        '.cm-content': {
-            caretColor: cursor,
-        },
-
         '&.cm-focused .cm-cursor': { borderLeftColor: cursor, borderLeftWidth: '2px' },
         '&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection': {
             backgroundColor: selection,

@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { EditorView } from '@codemirror/view';
+
 import { Theme } from '../../../types';
 import { getTheme } from '../utils';
 import { useExtension } from './useExtension';

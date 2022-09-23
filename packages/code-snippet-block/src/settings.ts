@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
 
 export const settings: BlockSettings = {
@@ -56,7 +57,7 @@ export const settings: BlockSettings = {
         {
             id: 'withHeading',
             type: 'switch',
-            defaultValue: false,
+            defaultValue: true,
             label: 'Snippet heading',
         },
         {
@@ -66,55 +67,55 @@ export const settings: BlockSettings = {
             defaultValue: true,
         },
         {
-            id: 'withCustomPadding',
-            label: 'Padding',
+            id: 'withCustomMargin',
+            label: 'Margin',
             type: 'switch',
             switchLabel: 'Custom',
             defaultValue: false,
             on: [
                 {
-                    id: 'customPadding',
+                    id: 'customMargin',
                     type: 'multiInput',
                     layout: MultiInputLayout.Spider,
                     blocks: [
                         {
-                            id: 'paddingTop',
+                            id: 'marginTop',
                             type: 'input',
                             label: 'Top',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingTop'),
+                            onChange: (bundle) => appendUnit(bundle, 'marginTop'),
                         },
                         {
-                            id: 'paddingLeft',
+                            id: 'marginLeft',
                             type: 'input',
                             label: 'Left',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingLeft'),
+                            onChange: (bundle) => appendUnit(bundle, 'marginLeft'),
                         },
                         {
-                            id: 'paddingRight',
+                            id: 'marginRight',
                             type: 'input',
                             label: 'Right',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingRight'),
+                            onChange: (bundle) => appendUnit(bundle, 'marginRight'),
                         },
                         {
-                            id: 'paddingBottom',
+                            id: 'marginBottom',
                             type: 'input',
                             label: 'Bottom',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingBottom'),
+                            onChange: (bundle) => appendUnit(bundle, 'marginBottom'),
                         },
                     ],
                 },
             ],
             off: [
                 {
-                    id: 'padding',
+                    id: 'margin',
                     type: 'slider',
                     defaultValue: '0px',
                     choices: [
@@ -123,15 +124,15 @@ export const settings: BlockSettings = {
                             label: 'None',
                         },
                         {
-                            value: '6rem',
+                            value: '24px',
                             label: 'S',
                         },
                         {
-                            value: '9rem',
+                            value: '36px',
                             label: 'M',
                         },
                         {
-                            value: '15rem',
+                            value: '60px',
                             label: 'L',
                         },
                     ],
@@ -144,7 +145,7 @@ export const settings: BlockSettings = {
             id: 'theme',
             type: 'dropdown',
             defaultValue: DEFAULT_THEME_VALUE,
-            label: 'Color schema',
+            label: 'Color scheme',
             size: DropdownSize.Small,
             choices: [
                 {
@@ -206,56 +207,130 @@ export const settings: BlockSettings = {
             type: 'switch',
             defaultValue: true,
             label: 'Border',
+            on: [
+                {
+                    id: 'border',
+                    type: 'multiInput',
+                    lastItemFullWidth: true,
+                    onChange: (bundle) => {
+                        appendUnit(bundle, 'lineWidth');
+                    },
+                    blocks: [
+                        {
+                            id: 'lineStyle',
+                            type: 'dropdown',
+                            defaultValue: 'solid',
+                            size: DropdownSize.Small,
+                            choices: [
+                                {
+                                    value: 'dotted',
+                                    label: 'Dotted',
+                                },
+                                {
+                                    value: 'dashed',
+                                    label: 'Dashed',
+                                },
+                                {
+                                    value: 'solid',
+                                    label: 'Solid',
+                                },
+                                {
+                                    value: 'double',
+                                    label: 'Double',
+                                },
+                            ],
+                        },
+                        {
+                            id: 'lineWidth',
+                            type: 'input',
+                            defaultValue: '1px',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
+                        },
+                        {
+                            id: 'borderColor',
+                            type: 'colorInput',
+                            defaultValue: BORDER_COLOR_DEFAULT_VALUE,
+                        },
+                    ],
+                    layout: MultiInputLayout.Columns,
+                },
+            ],
         },
         {
-            id: 'border',
-            type: 'multiInput',
-            lastItemFullWidth: true,
-            show: (bundle: Bundle) => bundle.getBlock('withBorder')?.value === true,
-            onChange: (bundle: Bundle): void => {
-                appendUnit(bundle, 'lineWidth');
-            },
-            blocks: [
+            id: 'withCustomBorderRadius',
+            label: 'Corner Radius',
+            type: 'switch',
+            switchLabel: 'Custom',
+            defaultValue: false,
+            on: [
                 {
-                    id: 'lineStyle',
-                    type: 'dropdown',
-                    defaultValue: 'solid',
-                    choices: [
+                    id: 'customBorderRadius',
+                    type: 'multiInput',
+                    layout: MultiInputLayout.Spider,
+                    onChange: (bundle) => {
+                        appendUnit(bundle, 'borderRadiusTop');
+                        appendUnit(bundle, 'borderRadiusLeft');
+                        appendUnit(bundle, 'borderRadiusRight');
+                        appendUnit(bundle, 'borderRadiusBottom');
+                    },
+                    blocks: [
                         {
-                            value: 'none',
-                            label: 'None',
+                            id: 'borderRadiusTopLeft',
+                            type: 'input',
+                            label: 'Top left',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
                         },
                         {
-                            value: 'dotted',
-                            label: 'Dotted',
+                            id: 'borderRadiusTopRight',
+                            type: 'input',
+                            label: 'Top right',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
                         },
                         {
-                            value: 'dashed',
-                            label: 'Dashed',
+                            id: 'borderRadiusBottomRight',
+                            type: 'input',
+                            label: 'Bottom right',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
                         },
                         {
-                            value: 'solid',
-                            label: 'Solid',
-                        },
-                        {
-                            value: 'double',
-                            label: 'Double',
+                            id: 'borderRadiusBottomLeft',
+                            type: 'input',
+                            label: 'Bottom left',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
                         },
                     ],
                 },
+            ],
+            off: [
                 {
-                    id: 'lineWidth',
-                    type: 'input',
-                    placeholder: 'e.g. 2px',
-                    rules: [numericalOrPixelRule],
-                },
-                {
-                    id: 'borderColor',
-                    type: 'colorInput',
-                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
+                    id: 'borderRadius',
+                    type: 'slider',
+                    defaultValue: '4px',
+                    choices: [
+                        {
+                            value: '0px',
+                            label: 'None',
+                        },
+                        {
+                            value: '2px',
+                            label: 'S',
+                        },
+                        {
+                            value: '4px',
+                            label: 'M',
+                        },
+                        {
+                            value: '12px',
+                            label: 'L',
+                        },
+                    ],
                 },
             ],
-            layout: MultiInputLayout.Columns,
         },
     ],
 };
