@@ -103,7 +103,6 @@ export type ColorPickerFlyoutProps = {
 export type DragHandleProps = {
     index: number;
     currentColor: ColorProps;
-    isEditing: boolean;
     onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void | undefined;
 };
 

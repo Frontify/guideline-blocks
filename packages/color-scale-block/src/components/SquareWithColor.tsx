@@ -65,7 +65,7 @@ export const SquareWithColor = ({
             }}
             className="hover:tw-z-30 tw-overflow-x-visible tw-overflow-y-hidden tw-pb-8 tw-inline-block"
         >
-            <DragHandle index={index} currentColor={currentColor} isEditing={isEditing} onResizeStart={onResizeStart} />
+            {isEditing ? <DragHandle index={index} currentColor={currentColor} onResizeStart={onResizeStart} /> : <></>}
 
             <div
                 ref={drag}
