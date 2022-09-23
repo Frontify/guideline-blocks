@@ -88,7 +88,7 @@ export const SquareWithColor = ({
                 {isEditing ? (
                     <div
                         className={joinClassNames([
-                            'tw-hidden tw-absolute tw-top-1.5 tw-right-1.5 tw-transition-all',
+                            'tw-hidden tw-absolute tw-top-1.5 tw-right-[3%] tw-transition-all',
                             isEditing && 'group-hover:tw-block',
                         ])}
                     >
