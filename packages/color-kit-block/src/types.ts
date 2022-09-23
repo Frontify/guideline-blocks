@@ -11,7 +11,8 @@ export type ColorKitBlockProps = {
 };
 
 export type TooltipContentProps = {
-    color: string;
+    colorValue: string;
+    status: 'error' | 'success' | 'idle';
 };
 
 export type PaletteProps = {

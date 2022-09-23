@@ -1,13 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FrontifyColor } from '@frontify/app-bridge';
-import { Text, Tooltip, TooltipPosition } from '@frontify/fondue';
+import { Text, Tooltip, TooltipPosition, useCopy } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import { TooltipContent } from './TooltipContent';
 import type { PaletteProps } from './types';
 
 export const Palette = ({ palette }: PaletteProps) => {
+    const { copy, status } = useCopy();
+
     const { name, colors = [] } = palette;
 
     return (
@@ -28,9 +30,9 @@ export const Palette = ({ palette }: PaletteProps) => {
                         <Tooltip
                             withArrow
                             key={color.id}
-                            hoverDelay={100}
+                            hoverDelay={0}
                             position={TooltipPosition.Right}
-                            content={<TooltipContent color={color.hex} />}
+                            content={<TooltipContent colorValue={color.hex} status={status} />}
                             triggerElement={
                                 <div className="tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                                     <div
@@ -40,6 +42,7 @@ export const Palette = ({ palette }: PaletteProps) => {
                                             backgroundColor: toRgbaString(colorWithDecimalAlpha),
                                         }}
                                         className="tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow hover:!tw-shadow-inner-line-strong"
+                                        onClick={() => copy(`#${color.hex}`)}
                                     />
                                 </div>
                             }

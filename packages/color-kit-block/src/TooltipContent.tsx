@@ -1,26 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC } from 'react';
-import { useCopy } from '@frontify/fondue';
+import { TooltipContentProps } from './types';
 
-import type { TooltipContentProps } from './types';
-
-export const TooltipContent: FC<TooltipContentProps> = ({ color }) => {
-    const { copy, status } = useCopy();
-
-    const handleCopy = () => copy(color);
-
+export const TooltipContent = ({ colorValue, status }: TooltipContentProps) => {
     return (
-        <>
+        <span data-test-id="tooltip-content">
             <span className="tw-block">Color Name</span>
             <span data-test-id="color-hash" className="tw-block">
-                #{color}
+                #{colorValue}
             </span>
-            <span data-test-id="copy" className="tw-text-black-50" onClick={handleCopy}>
+            <span className="tw-text-black-50">
                 {status === 'error' && 'Error copying. Try again.'}
-                {status === 'idle' && 'Click to copy'}
+                {status === 'idle' && 'Click to copy.'}
                 {status === 'success' && 'Copied!'}
             </span>
-        </>
+        </span>
     );
 };
