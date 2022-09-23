@@ -1,5 +1,10 @@
 name: Continuous Integration
 
+# Ensures that only one workflow per branch will run at a time.
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
 on:
     pull_request:
     push:
