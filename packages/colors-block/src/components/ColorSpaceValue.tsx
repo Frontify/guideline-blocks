@@ -5,10 +5,10 @@ import { FrontifyColor, FrontifyColorPatch } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
 
 import { mapColorSpaces } from '../helpers/mapColorSpaces';
-import { ColorBlockType, ColorSpaceLabels, ColorSpaceValues } from '../types';
+import { ColorSpaceLabels, ColorSpaceValues, ColorsBlockType } from '../types';
 
 type ColorSpaceValueProps = {
-    viewType: ColorBlockType;
+    viewType: ColorsBlockType;
     color: FrontifyColor;
     colorSpaceId: keyof ColorSpaceValues;
     onUpdate: (colorPatch: FrontifyColorPatch) => void;
@@ -46,7 +46,7 @@ export const ColorSpaceValue = ({ viewType, color, colorSpaceId, onUpdate }: Col
         <div
             className={merge([
                 'tw-flex tw-items-center',
-                viewType === ColorBlockType.List ? 'tw-h-5 tw-ml-3' : 'tw-h-4',
+                viewType === ColorsBlockType.List ? 'tw-h-5 tw-ml-3' : 'tw-h-4',
             ])}
         >
             {[ColorSpaceLabels.Cmyk, ColorSpaceLabels.Hex, ColorSpaceLabels.Rgb].includes(mappedColorSpace.label) ? (

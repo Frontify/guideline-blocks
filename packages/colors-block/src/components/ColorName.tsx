@@ -3,12 +3,12 @@
 import { FormEvent, useState } from 'react';
 import { merge } from '@frontify/fondue';
 
-import { ColorBlockType, ColorNameProps } from '../types';
+import { ColorNameProps, ColorsBlockType } from '../types';
 
-const nameWrapperClasses: Record<ColorBlockType, string> = {
-    [ColorBlockType.List]: 'tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12',
-    [ColorBlockType.Drops]: 'tw-w-full tw-mb-3 tw-text-center',
-    [ColorBlockType.Cards]: 'tw-w-full tw-mb-3',
+const nameWrapperClasses: Record<ColorsBlockType, string> = {
+    [ColorsBlockType.List]: 'tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12',
+    [ColorsBlockType.Drops]: 'tw-w-full tw-mb-3 tw-text-center',
+    [ColorsBlockType.Cards]: 'tw-w-full tw-mb-3',
 };
 
 export const ColorName = ({ viewType, initialColorName, isEditing, onBlur }: ColorNameProps) => {

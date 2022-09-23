@@ -3,8 +3,8 @@
 import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 
-import { ColorBlock } from './ColorBlock';
-import { ColorBlockType } from './types';
+import { ColorsBlock } from './ColorsBlock';
+import { ColorsBlockType } from './types';
 
 const ColorBlockSelector = '[data-test-id="color-block"]';
 const ColorSpaceSelector = '[data-test-id="color-space"]';
@@ -35,9 +35,9 @@ const ALL_COLOR_SPACES = [
 
 describe('ColorBlock component', () => {
     it('renders a color block list view', () => {
-        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
+        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorsBlock, {
             blockSettings: {
-                view: ColorBlockType.List,
+                view: ColorsBlockType.List,
                 colorspaces: DEFAULT_COLOR_SPACES,
             },
         });
@@ -47,9 +47,9 @@ describe('ColorBlock component', () => {
     });
 
     it('renders a color block drops view', () => {
-        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
+        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorsBlock, {
             blockSettings: {
-                view: ColorBlockType.Drops,
+                view: ColorsBlockType.Drops,
                 colorspaces: DEFAULT_COLOR_SPACES,
             },
         });
@@ -59,9 +59,9 @@ describe('ColorBlock component', () => {
     });
 
     it('renders a color block cards view', () => {
-        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
+        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorsBlock, {
             blockSettings: {
-                view: ColorBlockType.Cards,
+                view: ColorsBlockType.Cards,
                 colorspaces: DEFAULT_COLOR_SPACES,
             },
         });
@@ -71,9 +71,9 @@ describe('ColorBlock component', () => {
     });
 
     it('renders color block with all colorspaces in list view', () => {
-        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
+        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorsBlock, {
             blockSettings: {
-                view: ColorBlockType.List,
+                view: ColorsBlockType.List,
                 colorspaces: ALL_COLOR_SPACES,
             },
         });
@@ -83,9 +83,9 @@ describe('ColorBlock component', () => {
     });
 
     it('renders color block with all colorspaces in drops view', () => {
-        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
+        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorsBlock, {
             blockSettings: {
-                view: ColorBlockType.Drops,
+                view: ColorsBlockType.Drops,
                 colorspaces: ALL_COLOR_SPACES,
             },
         });
@@ -95,9 +95,9 @@ describe('ColorBlock component', () => {
     });
 
     it('renders color block with all colorspaces in cards view', () => {
-        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorBlock, {
+        const [ColorBlockWithStubs] = withAppBridgeBlockStubs(ColorsBlock, {
             blockSettings: {
-                view: ColorBlockType.Cards,
+                view: ColorsBlockType.Cards,
                 colorspaces: ALL_COLOR_SPACES,
             },
         });
