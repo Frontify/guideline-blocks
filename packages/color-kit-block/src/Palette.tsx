@@ -34,7 +34,7 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
                                         key={color.id}
                                         data-test-id="color"
                                         style={{
-                                            backgroundColor: toRgbaString(color),
+                                            backgroundColor: toRgbaString(colorWithDecimalAlpha),
                                         }}
                                         className="tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow hover:!tw-shadow-inner-line-strong"
                                         onClick={() => copy(`#${color.hex}`)}
@@ -53,7 +53,7 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
                                                 key={color.id}
                                                 data-test-id="color"
                                                 style={{
-                                                    backgroundColor: toRgbaString(color),
+                                                    backgroundColor: toRgbaString(colorWithDecimalAlpha),
                                                 }}
                                                 className="tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow hover:!tw-shadow-inner-line-strong"
                                                 onClick={() => copy(`#${color.hex}`)}
