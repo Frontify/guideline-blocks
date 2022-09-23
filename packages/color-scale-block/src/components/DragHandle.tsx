@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, MouseEvent, MouseEventHandler } from 'react';
+import { MouseEvent, MouseEventHandler } from 'react';
 import { DragHandleProps } from '../types';
 
-export const DragHandle: FC<DragHandleProps> = ({ index, currentColor, onResizeStart }) => {
+export const DragHandle = ({ index, currentColor, onResizeStart }: DragHandleProps) => {
     const handleMouseDown: MouseEventHandler = (event: MouseEvent) =>
         onResizeStart && onResizeStart(event, index, currentColor);
 
