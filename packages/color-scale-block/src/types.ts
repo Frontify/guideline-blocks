@@ -60,7 +60,7 @@ export type SquareWithColorProps = {
     onResizeStart: (event: MouseEvent, index?: number, currentColor?: ColorProps) => void;
     totalNumberOfBlocks: number;
     isDragging: boolean;
-    setCurrentlyDraggedColorId: (value: number | null | undefined) => void;
+    setCurrentlyDraggedColorId: (value: number | null) => void;
 };
 
 export type OnDropCallback<T> = (
