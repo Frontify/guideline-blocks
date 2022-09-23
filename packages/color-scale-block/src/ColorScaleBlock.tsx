@@ -74,7 +74,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         }
 
         const reorderedList = displayableItems?.filter((item: ColorProps) => item.id !== id);
-        setBlockSettings({ ...blockSettings, 'color-input': reorderedList });
+        setBlockSettings({ ...blockSettings, colorInput: reorderedList });
     };
 
     const calculateLeftPosition = (index: number, width?: number) => {
@@ -111,7 +111,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         setBlockSettings({
             ...blockSettings,
-            'color-input': colorsWithNewWidths,
+            colorInput: colorsWithNewWidths,
         });
     };
     const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
@@ -154,8 +154,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             let addedFirstColor;
-            if (blockSettings['color-input']) {
-                addedFirstColor = blockSettings['color-input'].filter((item: ColorProps) =>
+            if (blockSettings.colorInput) {
+                addedFirstColor = blockSettings.colorInput.filter((item: ColorProps) =>
                     item.id ? true : false
                 ).length;
             } else {
@@ -164,26 +164,26 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             const minimumColors = addedFirstColor ? minimumNumberOfColors : maximumNumberOfPlaceholderSquares;
 
             try {
-                if (blockSettings['color-input'] && blockSettings['color-input'].length >= minimumColors) {
+                if (blockSettings.colorInput && blockSettings.colorInput.length >= minimumColors) {
                     let needToCalculateWidths = false;
 
-                    for (const color of blockSettings['color-input']) {
+                    for (const color of blockSettings.colorInput) {
                         needToCalculateWidths = !color || (color && !color.width);
                     }
 
                     if (needToCalculateWidths) {
                         const colorsWithNewWidths = calculateWidths(
-                            blockSettings['color-input'],
+                            blockSettings.colorInput,
                             colorScaleBlockRef,
                             false
                         );
                         setBlockSettings({
                             ...blockSettings,
-                            'color-input': colorsWithNewWidths,
+                            colorInput: colorsWithNewWidths,
                         });
                         setDisplayableItems(colorsWithNewWidths);
                     } else {
-                        return setDisplayableItems(blockSettings['color-input']);
+                        return setDisplayableItems(blockSettings.colorInput);
                     }
                 }
             } catch (error) {
@@ -270,7 +270,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         timerToUpdateBlockSettings.current = setTimeout(() => {
                             setBlockSettings({
                                 ...blockSettings,
-                                'color-input': newDisplayableItems,
+                                colorInput: newDisplayableItems,
                             });
                         }, 1000);
                     }
@@ -324,7 +324,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         timerToUpdateBlockSettings.current = setTimeout(() => {
                             setBlockSettings({
                                 ...blockSettings,
-                                'color-input': newDisplayableItems,
+                                colorInput: newDisplayableItems,
                             });
                         }, 1000);
                     }
@@ -334,7 +334,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const handleResizeEvenly = () => {
-        setBlockSettings({ ...blockSettings, 'color-input': resizeEvenly(displayableItems, colorScaleBlockRef) });
+        setBlockSettings({ ...blockSettings, colorInput: resizeEvenly(displayableItems, colorScaleBlockRef) });
     };
 
     const handleAddColor = () => {
@@ -355,12 +355,12 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         updatedColors.splice(position === 'after' ? targetItemIndex + 1 : targetItemIndex, 0, movedItem);
 
-        setBlockSettings({ ...blockSettings, 'color-input': updatedColors });
+        setBlockSettings({ ...blockSettings, colorInput: updatedColors });
         setDisplayableItems(updatedColors);
     };
 
     const [displayableItems, setDisplayableItems] = useState(
-        calculateWidths(blockSettings['color-input'], colorScaleBlockRef, false)
+        calculateWidths(blockSettings.colorInput, colorScaleBlockRef, false)
     );
 
     const listId = useMemoizedId();

@@ -8,7 +8,7 @@ export type Settings = {
     customHeight: boolean;
     heightSlider: string;
     heightInput: string;
-    ['color-input']: ColorProps[];
+    colorInput: ColorProps[];
 };
 
 export type ColorPickerFlyoutColor = {
