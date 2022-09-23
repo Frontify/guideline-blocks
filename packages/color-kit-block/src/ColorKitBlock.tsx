@@ -11,12 +11,13 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     const memoizedColorPaletteIds = useMemo(
-        () => (blockSettings.colorPalettes ?? []).map((id) => Number(id)),
-        [blockSettings.colorPalettes]
+        () => (blockSettings.colorPaletteIds ?? []).map((id) => Number(id)),
+        [blockSettings.colorPaletteIds]
     );
+
     const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, memoizedColorPaletteIds);
-    const link = downloadColorKit(blockSettings.colorPalettes);
-    const isDownloadEnabled = blockSettings.colorPalettes?.length > 0;
+    const link = downloadColorKit(memoizedColorPaletteIds);
+    const isDownloadEnabled = memoizedColorPaletteIds?.length > 0;
 
     return (
         <div
