@@ -28,7 +28,7 @@ export const Palette = ({ palette }: PaletteProps) => {
                         <Tooltip
                             withArrow
                             key={color.id}
-                            hoverDelay={0}
+                            hoverDelay={100}
                             position={TooltipPosition.Right}
                             content={<TooltipContent color={color.hex} />}
                             triggerElement={
