@@ -12,6 +12,7 @@ export const ColorPickerFlyout = ({
     setIsColorPickerOpen,
     appBridgePalettes,
     colorPickerFlyoutPalettes,
+    children,
 }: ColorPickerFlyoutProps) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
     const [selectedColor, setSelectedColor] = useState(editedColor ? editedColor : ({} as Color));
@@ -75,6 +76,7 @@ export const ColorPickerFlyout = ({
                 name: selectedColor.name,
             });
         }
+        setIsColorPickerOpen(false);
     };
 
     return (
@@ -87,7 +89,7 @@ export const ColorPickerFlyout = ({
                     onConfirm={handleSelectColor}
                     onOpenChange={() => true}
                     title="Pick color"
-                    trigger={<></>}
+                    trigger={children}
                 >
                     <ColorPicker
                         allowCustomColor={false}

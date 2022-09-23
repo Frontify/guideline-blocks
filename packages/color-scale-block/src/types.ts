@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MouseEvent } from 'react';
+import { MouseEvent, ReactChild } from 'react';
 import { ColorFormat, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
 import { FrontifyColor, FrontifyColorPalette } from '@frontify/app-bridge';
 
@@ -98,6 +98,7 @@ export type ColorPickerFlyoutProps = {
     setEditedColor: (color: ColorProps | undefined | null) => void;
     updateColor: (color: ColorProps) => void;
     setFormat: () => void;
+    children: ReactChild;
 };
 
 export type DragHandleProps = {

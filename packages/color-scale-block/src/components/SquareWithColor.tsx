@@ -50,7 +50,6 @@ export const SquareWithColor = ({
     const bgColor = `rgba(${backgroundColorRgba}`;
     const hexColor = currentColor && toHex8String(currentColor);
 
-    console.log(bgColor);
     return (
         <div
             style={{

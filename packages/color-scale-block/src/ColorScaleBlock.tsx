@@ -339,10 +339,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         setBlockSettings({ ...blockSettings, 'color-input': resizeEvenly(displayableItems, colorScaleBlockRef) });
     };
 
-    const handleAddColor = () => {
-        setIsColorPickerOpen(true);
-    };
-
     const handleDrop = (targetItem: ColorProps, movedItem: ColorProps, position: DropZonePosition) => {
         let targetItemIndex = 0;
         let movedItemIndex = 0;
@@ -359,6 +355,10 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         setBlockSettings({ ...blockSettings, 'color-input': updatedColors });
         setDisplayableItems(updatedColors);
+    };
+
+    const handleColorPickerFlyoutTrigger = () => {
+        setIsColorPickerOpen(!isColorPickerOpen);
     };
 
     const [displayableItems, setDisplayableItems] = useState(
@@ -470,27 +470,27 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         >
                             Resize Evenly
                         </Button>
-                        <Button
-                            onClick={handleAddColor}
-                            style={ButtonStyle.Secondary}
-                            size={ButtonSize.Small}
-                            icon={<IconPlus12 />}
+                        <ColorPickerFlyout
+                            newIndex={displayableItems.length}
+                            isColorPickerOpen={isColorPickerOpen}
+                            setIsColorPickerOpen={setIsColorPickerOpen}
+                            editedColor={editedColor}
+                            setEditedColor={setEditedColor}
+                            appBridgePalettes={colorPalettes}
+                            colorPickerFlyoutPalettes={colorPickerPalette}
+                            updateColor={updateColor}
+                            setFormat={() => false}
                         >
-                            Add Color
-                        </Button>
+                            <Button
+                                onClick={handleColorPickerFlyoutTrigger}
+                                style={ButtonStyle.Secondary}
+                                size={ButtonSize.Small}
+                                icon={<IconPlus12 />}
+                            >
+                                Add Color
+                            </Button>
+                        </ColorPickerFlyout>
                     </ButtonGroup>
-
-                    <ColorPickerFlyout
-                        newIndex={displayableItems.length}
-                        isColorPickerOpen={isColorPickerOpen}
-                        setIsColorPickerOpen={setIsColorPickerOpen}
-                        editedColor={editedColor}
-                        setEditedColor={setEditedColor}
-                        appBridgePalettes={colorPalettes}
-                        colorPickerFlyoutPalettes={colorPickerPalette}
-                        updateColor={updateColor}
-                        setFormat={() => false}
-                    />
                 </div>
             )}
         </>
