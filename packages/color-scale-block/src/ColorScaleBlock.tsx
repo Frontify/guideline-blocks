@@ -148,16 +148,18 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                 id: frontifyColorPalette.id,
                 title: frontifyColorPalette.name,
                 colors: frontifyColorPalette.colors
-                    .filter((color: FrontifyColor): boolean => {
-                        return color.red !== null && color.green !== null && color.blue !== null;
+                    .filter((frontifyColor: FrontifyColor): boolean => {
+                        return (
+                            frontifyColor.red !== null && frontifyColor.green !== null && frontifyColor.blue !== null
+                        );
                     })
-                    .map((color: FrontifyColor): Color => {
+                    .map((frontifyColor: FrontifyColor): Color => {
                         return {
-                            red: color.red as number,
-                            green: color.green as number,
-                            blue: color.blue as number,
-                            alpha: color.alpha ?? undefined,
-                            name: color.name ?? undefined,
+                            red: frontifyColor.red as number,
+                            green: frontifyColor.green as number,
+                            blue: frontifyColor.blue as number,
+                            alpha: frontifyColor.alpha ?? undefined,
+                            name: frontifyColor.name ?? undefined,
                         };
                     }),
             };
