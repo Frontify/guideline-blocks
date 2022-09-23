@@ -8,8 +8,6 @@ export const EmptyView = ({ height }: EmptyViewProps) => {
     return (
         <>
             {emptyBlockColors.map((color: string, index: number) => {
-                const isFirst = index === 0;
-                const isLast = index === emptyBlockColors.length - 1;
                 return (
                     <div
                         style={{
@@ -17,13 +15,7 @@ export const EmptyView = ({ height }: EmptyViewProps) => {
                             height,
                         }}
                         key={`placeholder-${index}`}
-                        className={`tw-w-1/6 tw-flex tw-overflow-hidden
-                            ${isFirst ? 'tw-pl-[1px]' : ''} 
-                            ${isLast ? 'tw-pr-[1px]' : ''}
-                            ${isFirst ? 'tw-rounded-tl' : ''}
-                            ${isFirst ? 'tw-rounded-bl' : ''}
-                            ${isLast ? 'tw-rounded-tr' : ''}
-                            ${isLast ? 'tw-rounded-br' : ''}`}
+                        className="tw-w-1/6 tw-flex tw-overflow-hidden first:tw-pl-[1px] last:tw-pr-[1px] first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br"
                     ></div>
                 );
             })}

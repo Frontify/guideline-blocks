@@ -47,6 +47,8 @@ export type SquareWithColorProps = {
     index: number;
     width: number;
     height: string;
+    isLast: boolean;
+    isFirst: boolean;
     currentColor: ColorProps;
     calculateLeftPosition: (index: number, width: number) => void;
     isEditing: boolean;

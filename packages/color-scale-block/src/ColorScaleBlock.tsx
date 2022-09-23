@@ -394,6 +394,9 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                     width = calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
                                 }
 
+                                const isFirst = index === 0;
+                                const isLast = index === displayableItems.length - 1;
+
                                 return (
                                     <div className="tw-flex tw-relative tw-h-full" key={color.id}>
                                         <DropZone
@@ -428,6 +431,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             updateColor={updateColor}
                                             setFormat={() => false}
                                             deleteColor={deleteColor}
+                                            isLast={isLast}
+                                            isFirst={isFirst}
                                             handleDrop={handleDrop}
                                             listId={listId}
                                         />
