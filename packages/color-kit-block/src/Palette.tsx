@@ -3,6 +3,7 @@
 import { FrontifyColor } from '@frontify/app-bridge';
 import { Text, Tooltip, TooltipPosition, useCopy } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { Fragment } from 'react';
 
 import { TooltipContent } from './TooltipContent';
 import type { PaletteProps } from './types';
@@ -11,6 +12,21 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
     const { copy, status } = useCopy();
 
     const { name, colors = [] } = palette;
+
+    const ColorBox = (color: FrontifyColor) => {
+        return (
+            <div className="tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                <div
+                    data-test-id="color"
+                    style={{
+                        backgroundColor: toRgbaString(color),
+                    }}
+                    className="tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow hover:!tw-shadow-inner-line-strong"
+                    onClick={() => copy(`#${color.hex}`)}
+                />
+            </div>
+        );
+    };
 
     return (
         <div data-test-id="palette" className="tw-flex tw-flex-col tw-space-y-2">
@@ -27,42 +43,19 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
                     }
 
                     return (
-                        <>
+                        <Fragment key={color.id}>
                             {isEditing ? (
-                                <div className="tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
-                                    <div
-                                        key={color.id}
-                                        data-test-id="color"
-                                        style={{
-                                            backgroundColor: toRgbaString(colorWithDecimalAlpha),
-                                        }}
-                                        className="tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow hover:!tw-shadow-inner-line-strong"
-                                        onClick={() => copy(`#${color.hex}`)}
-                                    />
-                                </div>
+                                ColorBox(colorWithDecimalAlpha)
                             ) : (
                                 <Tooltip
                                     withArrow
-                                    key={color.id}
                                     hoverDelay={0}
                                     position={TooltipPosition.Right}
                                     content={<TooltipContent colorValue={color.hex} status={status} />}
-                                    triggerElement={
-                                        <div className="tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
-                                            <div
-                                                key={color.id}
-                                                data-test-id="color"
-                                                style={{
-                                                    backgroundColor: toRgbaString(colorWithDecimalAlpha),
-                                                }}
-                                                className="tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow hover:!tw-shadow-inner-line-strong"
-                                                onClick={() => copy(`#${color.hex}`)}
-                                            />
-                                        </div>
-                                    }
+                                    triggerElement={ColorBox(colorWithDecimalAlpha)}
                                 />
                             )}
-                        </>
+                        </Fragment>
                     );
                 })}
             </div>
