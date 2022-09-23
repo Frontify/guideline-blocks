@@ -7,7 +7,7 @@ import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fond
 import { SquareWithColorProps } from '../types';
 import { DragHandle } from './DragHandle';
 import { TooltipContent } from './TooltipContent';
-import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 
 export const SquareWithColor = ({
     id,
@@ -24,13 +24,13 @@ export const SquareWithColor = ({
     setCurrentlyDraggedColorId,
     isDragging,
 }: SquareWithColorProps) => {
-    const onDrag = () => {
+    const handleDrag = () => {
         if (isDragging !== !!currentColor.id) {
             setCurrentlyDraggedColorId(currentColor.id);
         }
     };
 
-    const onDragEnd = () => {
+    const handleDragEnd = () => {
         setCurrentlyDraggedColorId(null);
     };
 
@@ -48,7 +48,7 @@ export const SquareWithColor = ({
     const { copy, status } = useCopy();
 
     const bgColor = `rgba(${backgroundColorRgba}`;
-    const hexColor = currentColor.color && toHexString(currentColor.color);
+    const hexColor = currentColor.color && toHex8String(currentColor.color);
 
     return (
         <div
@@ -64,8 +64,8 @@ export const SquareWithColor = ({
             <div
                 ref={drag}
                 draggable
-                onDrag={onDrag}
-                onDragEnd={onDragEnd}
+                onDrag={handleDrag}
+                onDragEnd={handleDragEnd}
                 style={{
                     height,
                     backgroundColor: bgColor,

@@ -56,7 +56,10 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         number | null | undefined,
         (color?: number | null | undefined) => void
     ] = useState();
-    const [editedColor, setEditedColor] = useState<Nullable<ColorProps>>();
+    const [editedColor, setEditedColor]: [
+        ColorProps | null | undefined,
+        (color: ColorProps | null | undefined) => void
+    ] = useState<Nullable<ColorProps>>();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
     const draggingId: { current?: number | null | undefined } = useRef(null);
@@ -218,10 +221,10 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         }
     }, [blockSettings]);
 
-    const onResizeStop = () => {
+    const handleResizeStop = () => {
         draggingId.current = null;
     };
-    const onResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps) => {
+    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps) => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
             dragStartWidth.current = currentColor?.width;
@@ -229,7 +232,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         draggingId.current = index;
     };
 
-    const onResize: MouseEventHandler = (event: MouseEvent) => {
+    const handleResize: MouseEventHandler = (event: MouseEvent) => {
         clearTimeout(timerToUpdateBlockSettings.current);
 
         if (draggingId.current !== null) {
@@ -359,11 +362,11 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         }
     };
 
-    const onResizeEvenly = () => {
+    const handleResizeEvenly = () => {
         setBlockSettings({ ...blockSettings, 'color-input': resizeEvenly(displayableItems, colorScaleBlockRef) });
     };
 
-    const onAddColor = () => {
+    const handleAddColor = () => {
         setIsColorPickerOpen(true);
     };
 
@@ -398,13 +401,13 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                     data-test-id="color-scale-block"
                     className={`tw-overflow-hidden tw-rounded tw-flex tw-h-[${colorScaleHeight}]`}
                     ref={colorScaleBlockRef}
-                    // Note: onMouseUp and onResize are defined here intentionally, instead of being in the DragHandle component.
+                    // Note: onMouseUp and handleResize are defined here intentionally, instead of being in the DragHandle component.
                     // The reason for this is that the dragging feature stops working if I move these to DragHandle,
                     // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
-                    // The 'onResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
+                    // The 'handleResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
                     // identify which color square is being resized.
-                    onMouseUp={onResizeStop}
-                    onMouseMove={onResize}
+                    onMouseUp={handleResizeStop}
+                    onMouseMove={handleResize}
                     draggable={true}
                 >
                     <DndProvider backend={HTML5Backend}>
@@ -462,7 +465,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                                         currentColor={color}
                                                         backgroundColorRgba={backgroundColorRgba}
                                                         totalNumberOfBlocks={displayableItems.length}
-                                                        onResizeStart={onResizeStart}
+                                                        onResizeStart={handleResizeStart}
                                                         calculateLeftPosition={calculateLeftPosition}
                                                         isEditing={isEditing}
                                                         editedColor={editedColor}
@@ -501,7 +504,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                 <div className="tw-text-right">
                     <ButtonGroup size={ButtonSize.Small}>
                         <Button
-                            onClick={onResizeEvenly}
+                            onClick={handleResizeEvenly}
                             style={ButtonStyle.Secondary}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}
@@ -510,7 +513,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                             Resize Evenly
                         </Button>
                         <Button
-                            onClick={onAddColor}
+                            onClick={handleAddColor}
                             style={ButtonStyle.Secondary}
                             size={ButtonSize.Small}
                             icon={<IconPlus12 />}
@@ -520,6 +523,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                     </ButtonGroup>
 
                     <ColorPickerFlyout
+                        newIndex={displayableItems.length}
                         isColorPickerOpen={isColorPickerOpen}
                         setIsColorPickerOpen={setIsColorPickerOpen}
                         editedColor={editedColor}

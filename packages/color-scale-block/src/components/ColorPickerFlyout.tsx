@@ -5,7 +5,6 @@ import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@front
 import { ColorPickerFlyoutProps } from '../types';
 
 export const ColorPickerFlyout = ({
-    newIndex,
     updateColor,
     editedColor,
     setEditedColor,
@@ -14,38 +13,50 @@ export const ColorPickerFlyout = ({
     colors,
 }: ColorPickerFlyoutProps) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
-    const onCancel = () => {
+    const handleCancelClick = () => {
         setIsColorPickerOpen(false);
         setEditedColor(null);
     };
 
-    const onSelectColor = (color: Color) => {
+    const handleSelectColor = (color: Color) => {
         if (!editedColor) {
             updateColor({
                 id: color.id,
-                color,
-                index: newIndex,
+                color: {
+                    red: color.red,
+                    green: color.green,
+                    blue: color.blue,
+                },
             });
             setEditedColor({
                 id: color.id,
-                color,
-                index: newIndex,
+                color: {
+                    red: color.red,
+                    green: color.green,
+                    blue: color.blue,
+                },
             });
         } else {
             updateColor({
-                id: color.id,
-                color,
+                id: editedColor.id,
+                color: {
+                    red: color.red,
+                    green: color.green,
+                    blue: color.blue,
+                },
             });
             setEditedColor({
                 id: editedColor.id,
-                color,
-                index: editedColor.index,
-                width: editedColor.width,
+                color: {
+                    red: color.red,
+                    green: color.green,
+                    blue: color.blue,
+                },
             });
         }
     };
 
-    const onSetFormat = (format: ColorFormat) => {
+    const handleSetFormat = (format: ColorFormat) => {
         setColorPickerFormat(format);
     };
 
@@ -55,7 +66,7 @@ export const ColorPickerFlyout = ({
                 <Flyout
                     placement={FlyoutPlacement.Top}
                     isOpen={isColorPickerOpen}
-                    onCancel={onCancel}
+                    onCancel={handleCancelClick}
                     onOpenChange={() => true}
                     title="Pick color"
                     trigger={<></>}
@@ -72,8 +83,8 @@ export const ColorPickerFlyout = ({
                                   }
                         }
                         currentFormat={colorPickerFormat}
-                        setFormat={onSetFormat}
-                        onSelect={onSelectColor}
+                        setFormat={handleSetFormat}
+                        onSelect={handleSelectColor}
                         palettes={colors}
                     />
                 </Flyout>
