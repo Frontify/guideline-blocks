@@ -8,7 +8,7 @@ export type Settings = {
     customHeight: boolean;
     heightSlider: string;
     heightInput: string;
-    ['color-input']: ColorProps[];
+    colorInput: ColorProps[];
 };
 
 export type ColorPickerFlyoutColor = {
@@ -21,7 +21,7 @@ export type ColorPickerFlyoutColor = {
 };
 
 export type ColorProps = {
-    id?: number;
+    id: number;
     sort?: number;
     red: number;
     green: number;
@@ -57,11 +57,10 @@ export type SquareWithColorProps = {
     deleteColor: (color: number | undefined) => void;
     handleDrop: (targetItem: ColorProps, sourceItem: ColorProps, position: DropZonePosition) => void;
     listId: string;
-    backgroundColorRgba?: string;
     onResizeStart: (event: MouseEvent, index?: number, currentColor?: ColorProps) => void;
     totalNumberOfBlocks: number;
     isDragging: boolean;
-    setCurrentlyDraggedColorId: (value: number | null | undefined) => void;
+    setCurrentlyDraggedColorId: (value: number | null) => void;
 };
 
 export type OnDropCallback<T> = (

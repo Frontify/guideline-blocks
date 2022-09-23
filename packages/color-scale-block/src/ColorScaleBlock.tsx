@@ -52,10 +52,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
-    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
-        number | null | undefined,
-        (color?: number | null | undefined) => void
-    ] = useState();
+    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [number | null, (colorId: number | null) => void] =
+        useState(null);
     const [editedColor, setEditedColor]: [
         ColorProps | null | undefined,
         (color: ColorProps | null | undefined) => void
@@ -76,7 +74,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
         }
 
         const reorderedList = displayableItems?.filter((item: ColorProps) => item.id !== id);
-        setBlockSettings({ ...blockSettings, 'color-input': reorderedList });
+        setBlockSettings({ ...blockSettings, colorInput: reorderedList });
     };
 
     const calculateLeftPosition = (index: number, width?: number) => {
@@ -113,7 +111,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         setBlockSettings({
             ...blockSettings,
-            'color-input': colorsWithNewWidths,
+            colorInput: colorsWithNewWidths,
         });
     };
     const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
@@ -156,8 +154,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             let addedFirstColor;
-            if (blockSettings['color-input']) {
-                addedFirstColor = blockSettings['color-input'].filter((item: ColorProps) =>
+            if (blockSettings.colorInput) {
+                addedFirstColor = blockSettings.colorInput.filter((item: ColorProps) =>
                     item.id ? true : false
                 ).length;
             } else {
@@ -166,26 +164,26 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
             const minimumColors = addedFirstColor ? minimumNumberOfColors : maximumNumberOfPlaceholderSquares;
 
             try {
-                if (blockSettings['color-input'] && blockSettings['color-input'].length >= minimumColors) {
+                if (blockSettings.colorInput && blockSettings.colorInput.length >= minimumColors) {
                     let needToCalculateWidths = false;
 
-                    for (const color of blockSettings['color-input']) {
+                    for (const color of blockSettings.colorInput) {
                         needToCalculateWidths = !color || (color && !color.width);
                     }
 
                     if (needToCalculateWidths) {
                         const colorsWithNewWidths = calculateWidths(
-                            blockSettings['color-input'],
+                            blockSettings.colorInput,
                             colorScaleBlockRef,
                             false
                         );
                         setBlockSettings({
                             ...blockSettings,
-                            'color-input': colorsWithNewWidths,
+                            colorInput: colorsWithNewWidths,
                         });
                         setDisplayableItems(colorsWithNewWidths);
                     } else {
-                        return setDisplayableItems(blockSettings['color-input']);
+                        return setDisplayableItems(blockSettings.colorInput);
                     }
                 }
             } catch (error) {
@@ -272,7 +270,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         timerToUpdateBlockSettings.current = setTimeout(() => {
                             setBlockSettings({
                                 ...blockSettings,
-                                'color-input': newDisplayableItems,
+                                colorInput: newDisplayableItems,
                             });
                         }, 1000);
                     }
@@ -326,7 +324,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                         timerToUpdateBlockSettings.current = setTimeout(() => {
                             setBlockSettings({
                                 ...blockSettings,
-                                'color-input': newDisplayableItems,
+                                colorInput: newDisplayableItems,
                             });
                         }, 1000);
                     }
@@ -336,7 +334,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const handleResizeEvenly = () => {
-        setBlockSettings({ ...blockSettings, 'color-input': resizeEvenly(displayableItems, colorScaleBlockRef) });
+        setBlockSettings({ ...blockSettings, colorInput: resizeEvenly(displayableItems, colorScaleBlockRef) });
     };
 
     const handleDrop = (targetItem: ColorProps, movedItem: ColorProps, position: DropZonePosition) => {
@@ -353,7 +351,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
 
         updatedColors.splice(position === 'after' ? targetItemIndex + 1 : targetItemIndex, 0, movedItem);
 
-        setBlockSettings({ ...blockSettings, 'color-input': updatedColors });
+        setBlockSettings({ ...blockSettings, colorInput: updatedColors });
         setDisplayableItems(updatedColors);
     };
 
@@ -362,7 +360,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     };
 
     const [displayableItems, setDisplayableItems] = useState(
-        calculateWidths(blockSettings['color-input'], colorScaleBlockRef, false)
+        calculateWidths(blockSettings.colorInput, colorScaleBlockRef, false)
     );
 
     const listId = useMemoizedId();
@@ -386,12 +384,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                     <DndProvider backend={HTML5Backend}>
                         {displayableItems &&
                             displayableItems?.map((color: ColorProps, index: number) => {
-                                let backgroundColorRgba;
-
-                                if (color && color) {
-                                    backgroundColorRgba = `${color.red},${color.green},${color.blue},${color.alpha}`;
-                                }
-
                                 let width;
 
                                 if (color && color.width) {
@@ -407,7 +399,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             currentColor={color}
                                             height={parseInt(colorScaleHeight)}
                                             width={width}
-                                            isDraggingActive={Number.isInteger(currentlyDraggedColorId) ? true : false}
+                                            isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                                             data={{
                                                 targetItem: color,
                                                 position: DropZonePosition.Before,
@@ -422,13 +414,9 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             index={index}
                                             width={currentlyDraggedColorId === color.id ? 0 : width}
                                             height={colorScaleHeight}
-                                            isDragging={
-                                                currentlyDraggedColorId !== null &&
-                                                currentlyDraggedColorId !== undefined
-                                            }
+                                            isDragging={currentlyDraggedColorId !== null}
                                             setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
                                             currentColor={color}
-                                            backgroundColorRgba={backgroundColorRgba}
                                             totalNumberOfBlocks={displayableItems.length}
                                             onResizeStart={handleResizeStart}
                                             calculateLeftPosition={calculateLeftPosition}
