@@ -21,7 +21,7 @@ export type ColorPickerFlyoutColor = {
 };
 
 export type ColorProps = {
-    id?: number;
+    id: number;
     sort?: number;
     red: number;
     green: number;

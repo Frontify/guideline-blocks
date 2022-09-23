@@ -52,10 +52,8 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
-    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
-        number | null | undefined,
-        (color?: number | null | undefined) => void
-    ] = useState();
+    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [number | null, (colorId: number | null) => void] =
+        useState(null);
     const [editedColor, setEditedColor]: [
         ColorProps | null | undefined,
         (color: ColorProps | null | undefined) => void
@@ -401,7 +399,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             currentColor={color}
                                             height={parseInt(colorScaleHeight)}
                                             width={width}
-                                            isDraggingActive={Number.isInteger(currentlyDraggedColorId) ? true : false}
+                                            isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                                             data={{
                                                 targetItem: color,
                                                 position: DropZonePosition.Before,
@@ -416,10 +414,7 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             index={index}
                                             width={currentlyDraggedColorId === color.id ? 0 : width}
                                             height={colorScaleHeight}
-                                            isDragging={
-                                                currentlyDraggedColorId !== null &&
-                                                currentlyDraggedColorId !== undefined
-                                            }
+                                            isDragging={currentlyDraggedColorId !== null}
                                             setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
                                             currentColor={color}
                                             totalNumberOfBlocks={displayableItems.length}
