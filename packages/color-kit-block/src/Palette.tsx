@@ -20,6 +20,10 @@ export const Palette = ({ palette }: PaletteProps) => {
                         alpha: color.alpha && parseFloat((color.alpha / 255).toFixed(2)),
                     };
 
+                    if (!color.hex) {
+                        return <></>;
+                    }
+
                     return (
                         <Tooltip
                             withArrow
