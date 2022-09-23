@@ -17,7 +17,7 @@ export const EmptyView = ({ height }: EmptyViewProps) => {
                             height,
                         }}
                         key={`placeholder-${index}`}
-                        className={`empty-view tw-w-1/6 tw-flex tw-overflow-hidden
+                        className={`tw-w-1/6 tw-flex tw-overflow-hidden
                             ${isFirst ? 'tw-pl-[1px]' : ''} 
                             ${isLast ? 'tw-pr-[1px]' : ''}
                             ${isFirst ? 'tw-rounded-tl' : ''}
