@@ -15,7 +15,6 @@ export const SquareWithColor = ({
     width,
     height,
     currentColor,
-    backgroundColorRgba,
     onResizeStart,
     calculateLeftPosition,
     isEditing,
@@ -47,10 +46,16 @@ export const SquareWithColor = ({
 
     const { copy, status } = useCopy();
 
-    const bgColor = `rgba(${backgroundColorRgba}`;
-    const hexColor = currentColor && toHex8String(currentColor);
+    const rgbaValues = [
+        currentColor.red,
+        currentColor.green,
+        currentColor.blue,
+        ...(currentColor.alpha ? [currentColor.alpha / 255] : []),
+    ];
 
-    console.log(bgColor);
+    const backgroundColor = `rgba(${rgbaValues.join(',')})`;
+    const hexColor = currentColor.color && toHex8String(currentColor.color);
+
     return (
         <div
             style={{
@@ -69,7 +74,7 @@ export const SquareWithColor = ({
                 onDragEnd={handleDragEnd}
                 style={{
                     height,
-                    backgroundColor: bgColor,
+                    backgroundColor,
                 }}
                 className="[&>div]:tw-h-full tw-group tw-relative tw-w-full tw-h-full tw-overflow-y-hidden tw-overflow-x-visible tw-border-none hover:tw-border hover:tw-border-black"
             >

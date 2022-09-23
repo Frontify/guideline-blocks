@@ -57,7 +57,6 @@ export type SquareWithColorProps = {
     deleteColor: (color: number | undefined) => void;
     handleDrop: (targetItem: ColorProps, sourceItem: ColorProps, position: DropZonePosition) => void;
     listId: string;
-    backgroundColorRgba?: string;
     onResizeStart: (event: MouseEvent, index?: number, currentColor?: ColorProps) => void;
     totalNumberOfBlocks: number;
     isDragging: boolean;

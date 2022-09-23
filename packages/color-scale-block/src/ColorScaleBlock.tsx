@@ -386,12 +386,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                     <DndProvider backend={HTML5Backend}>
                         {displayableItems &&
                             displayableItems?.map((color: ColorProps, index: number) => {
-                                let backgroundColorRgba;
-
-                                if (color && color) {
-                                    backgroundColorRgba = `${color.red},${color.green},${color.blue},${color.alpha}`;
-                                }
-
                                 let width;
 
                                 if (color && color.width) {
@@ -428,7 +422,6 @@ export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
                                             }
                                             setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
                                             currentColor={color}
-                                            backgroundColorRgba={backgroundColorRgba}
                                             totalNumberOfBlocks={displayableItems.length}
                                             onResizeStart={handleResizeStart}
                                             calculateLeftPosition={calculateLeftPosition}
