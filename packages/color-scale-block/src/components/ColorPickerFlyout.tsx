@@ -14,20 +14,26 @@ export const ColorPickerFlyout = ({
     colorPickerFlyoutPalettes,
 }: ColorPickerFlyoutProps) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
+    const [selectedColor, setSelectedColor] = useState(editedColor ? editedColor : ({} as Color));
     const handleCancelClick = () => {
         setIsColorPickerOpen(false);
         setEditedColor(null);
     };
 
-    const handleSelectColor = (color: Color) => {
+    const handleSelectColor = () => {
         let id;
+
+        if (!selectedColor.red && !selectedColor.green && !selectedColor.blue) {
+            return;
+        }
+
         for (const palette of appBridgePalettes) {
             for (const paletteColor of palette.colors) {
                 const frontifyColor = paletteColor;
                 if (
-                    paletteColor.red === color.red &&
-                    paletteColor.blue === color.blue &&
-                    paletteColor.green === color.green
+                    paletteColor.red === selectedColor.red &&
+                    paletteColor.blue === selectedColor.blue &&
+                    paletteColor.green === selectedColor.green
                 ) {
                     id = frontifyColor.id;
                 }
@@ -37,36 +43,36 @@ export const ColorPickerFlyout = ({
         if (!editedColor) {
             updateColor({
                 id,
-                red: color.red,
-                green: color.green,
-                blue: color.blue,
-                alpha: color.alpha,
-                name: color.name,
+                red: selectedColor.red,
+                green: selectedColor.green,
+                blue: selectedColor.blue,
+                alpha: selectedColor.alpha,
+                name: selectedColor.name,
             });
             setEditedColor({
                 id,
-                red: color.red,
-                green: color.green,
-                blue: color.blue,
-                alpha: color.alpha,
-                name: color.name,
+                red: selectedColor.red,
+                green: selectedColor.green,
+                blue: selectedColor.blue,
+                alpha: selectedColor.alpha,
+                name: selectedColor.name,
             });
         } else {
             updateColor({
                 id: editedColor.id,
-                red: color.red,
-                green: color.green,
-                blue: color.blue,
-                alpha: color.alpha,
-                name: color.name,
+                red: selectedColor.red,
+                green: selectedColor.green,
+                blue: selectedColor.blue,
+                alpha: selectedColor.alpha,
+                name: selectedColor.name,
             });
             setEditedColor({
                 id: editedColor.id,
-                red: color.red,
-                green: color.green,
-                blue: color.blue,
-                alpha: color.alpha,
-                name: color.name,
+                red: selectedColor.red,
+                green: selectedColor.green,
+                blue: selectedColor.blue,
+                alpha: selectedColor.alpha,
+                name: selectedColor.name,
             });
         }
     };
@@ -78,16 +84,17 @@ export const ColorPickerFlyout = ({
                     placement={FlyoutPlacement.Top}
                     isOpen={isColorPickerOpen}
                     onCancel={handleCancelClick}
+                    onConfirm={handleSelectColor}
                     onOpenChange={() => true}
                     title="Pick color"
                     trigger={<></>}
                 >
                     <ColorPicker
                         allowCustomColor={false}
-                        currentColor={editedColor ? editedColor : ({} as Color)}
+                        currentColor={selectedColor}
                         currentFormat={colorPickerFormat}
                         setFormat={setColorPickerFormat}
-                        onSelect={handleSelectColor}
+                        onSelect={setSelectedColor}
                         palettes={colorPickerFlyoutPalettes}
                     />
                 </Flyout>
