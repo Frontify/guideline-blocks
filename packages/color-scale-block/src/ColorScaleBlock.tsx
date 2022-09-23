@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import {
     AppBridgeBlock,
     FrontifyColorPalette,
@@ -42,7 +42,7 @@ type Props = {
     appBridge: AppBridgeBlock;
 };
 
-export const ColorScaleBlock: FC<Props> = ({ appBridge }) => {
+export const ColorScaleBlock = ({ appBridge }: Props) => {
     const { colorPalettes } = useColorPalettes(appBridge);
     const [colorPickerPalette, setColorPickerPalette]: [Palette[], (color: Palette[]) => void] = useState(
         [] as Palette[]
