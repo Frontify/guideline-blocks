@@ -409,11 +409,11 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                 >
                     <DndProvider backend={HTML5Backend}>
                         {displayableItems &&
-                            displayableItems?.map((color: BlockColor, index: number) => {
+                            displayableItems?.map((blockColor: BlockColor, index: number) => {
                                 let width;
 
-                                if (color?.width) {
-                                    width = color.width;
+                                if (blockColor?.width) {
+                                    width = blockColor.width;
                                 } else {
                                     width = calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
                                 }
@@ -422,15 +422,15 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                 const isLast = index === displayableItems.length - 1;
 
                                 return (
-                                    <div className="tw-flex tw-relative tw-h-full" key={color.id}>
+                                    <div className="tw-flex tw-relative tw-h-full" key={blockColor.id}>
                                         <DropZone
-                                            key={`orderable-list-item-${color.id}-before`}
-                                            currentColor={color}
+                                            key={`orderable-list-item-${blockColor.id}-before`}
+                                            currentColor={blockColor}
                                             height={parseInt(colorScaleHeight)}
                                             width={width}
                                             isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                                             data={{
-                                                targetItem: color,
+                                                targetItem: blockColor,
                                                 position: DropZonePosition.Before,
                                             }}
                                             onDrop={handleDrop}
@@ -439,13 +439,13 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                         />
 
                                         <SquareWithColor
-                                            id={color.id}
+                                            id={blockColor.id}
                                             index={index}
-                                            width={currentlyDraggedColorId === color.id ? 0 : width}
+                                            width={currentlyDraggedColorId === blockColor.id ? 0 : width}
                                             height={colorScaleHeight}
                                             isDragging={currentlyDraggedColorId !== null}
                                             setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
-                                            currentColor={color}
+                                            currentColor={blockColor}
                                             totalNumberOfBlocks={displayableItems.length}
                                             onResizeStart={handleResizeStart}
                                             calculateLeftPosition={calculateLeftPosition}

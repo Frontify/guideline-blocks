@@ -27,7 +27,7 @@ export const SquareWithColor = ({
 }: SquareWithColorProps) => {
     const handleDrag = () => {
         if (isDragging !== !!currentColor.id) {
-            setCurrentlyDraggedColorId(currentColor.id ?? null);
+            setCurrentlyDraggedColorId(currentColor.id);
         }
     };
 

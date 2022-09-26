@@ -15,7 +15,7 @@ export type Settings = {
 };
 
 export type BlockColor = {
-    id: number | undefined;
+    id: number;
     sort?: number;
     red: number;
     green: number;
@@ -31,7 +31,7 @@ export type ColorScaleBlockRef = {
 };
 
 export type SquareWithColorProps = {
-    id: number | undefined;
+    id: number;
     index: number;
     width: number;
     height: string;
@@ -50,7 +50,7 @@ export type SquareWithColorProps = {
     onResizeStart: (event: MouseEvent, index?: number, currentColor?: BlockColor) => void;
     totalNumberOfBlocks: number;
     isDragging: boolean;
-    setCurrentlyDraggedColorId: (value: number | undefined | null) => void;
+    setCurrentlyDraggedColorId: (value: number | null) => void;
 };
 
 export type OnDropCallback<T> = (
