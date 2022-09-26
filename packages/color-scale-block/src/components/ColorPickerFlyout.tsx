@@ -2,33 +2,39 @@
 
 import { useState } from 'react';
 import { ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
-import { ColorPickerFlyoutProps } from '../types';
+import { ColorPickerFlyoutProps, DefaultValues } from '../types';
 
 export const ColorPickerFlyout = ({
     updateColor,
-    currentColor,
     isColorPickerOpen,
     setIsColorPickerOpen,
     colorPalettes,
     children,
 }: ColorPickerFlyoutProps) => {
     const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
-    const [selectedColor, setSelectedColor] = useState(currentColor);
+    const [selectedColor, setSelectedColor] = useState(DefaultValues.startingColor);
+    const close = () => {
+        setSelectedColor(DefaultValues.startingColor);
+        setIsColorPickerOpen(false);
+    };
     return (
         <>
             <div>
                 <Flyout
                     placement={FlyoutPlacement.Top}
                     isOpen={isColorPickerOpen}
-                    onCancel={() => setIsColorPickerOpen(false)}
-                    onConfirm={() => updateColor(selectedColor)}
+                    onCancel={close}
+                    onConfirm={() => {
+                        updateColor(selectedColor);
+                        close();
+                    }}
                     onOpenChange={() => true}
                     title="Pick color"
                     trigger={children}
                 >
                     <ColorPicker
                         allowCustomColor={false}
-                        currentColor={currentColor}
+                        currentColor={selectedColor}
                         currentFormat={colorPickerFormat}
                         setFormat={setColorPickerFormat}
                         onSelect={setSelectedColor}

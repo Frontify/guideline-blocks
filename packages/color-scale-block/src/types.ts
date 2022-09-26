@@ -82,7 +82,6 @@ export type ColorPickerFlyoutProps = {
     isColorPickerOpen: boolean;
     setIsColorPickerOpen: (isOpen: boolean) => void;
     colorPalettes: Palette[];
-    currentColor: Color;
     updateColor: (color: Color) => void;
     children: ReactChild;
 };
