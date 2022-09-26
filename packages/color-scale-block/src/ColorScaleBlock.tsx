@@ -87,9 +87,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
         const blockColor = createBlockColorByColorAndFrontifyColor(color, frontifyColor);
 
-        const isFirstColor = displayableItems.filter((item) => !item.red || !item.green || !item.blue).length === 0;
-
-        const colors = !isFirstColor ? [...displayableItems] : [];
+        const colors = !isFirstBlockColor() ? [...displayableItems] : [];
 
         if (colors.findIndex((item) => item.id === blockColor.id) > -1) {
             return;
@@ -99,7 +97,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
         setBlockSettings({
             ...blockSettings,
-            colorInput: calculateWidths(colors, colorScaleBlockRef, isFirstColor),
+            colorInput: calculateWidths(colors, colorScaleBlockRef, !isFirstBlockColor()),
         });
     };
 
@@ -138,6 +136,10 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             alpha: color.alpha,
             name: color.name,
         };
+    };
+
+    const isFirstBlockColor = (): boolean => {
+        return displayableItems.filter((item: BlockColor) => !item.red || !item.green || !item.blue).length === 0;
     };
 
     const mapFrontifyColorPalettesToPalettes = (frontifyColorPalettes: FrontifyColorPalette[]): Palette[] => {
