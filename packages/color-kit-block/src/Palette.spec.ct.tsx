@@ -1,14 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import { FrontifyColorPaletteDummy } from '@frontify/app-bridge';
+import { ColorPaletteDummy } from '@frontify/app-bridge';
 
 import { Palette } from './Palette';
 
 const ColorKitPaletteSelector = '[data-test-id="palette"]';
 const ColorKitColorSelector = '[data-test-id="color"]';
 
-const dummyPalette = FrontifyColorPaletteDummy.with(666, 'Palette Dummy');
+const dummyPalette = ColorPaletteDummy.with(666, 'Palette Dummy');
 
 describe('Palette', () => {
     context('with colors', () => {

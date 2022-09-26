@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock, FrontifyAsset } from '@frontify/app-bridge';
+import type { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
@@ -40,7 +40,7 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ app
     // Asset chooser demo
     const onOpenAssetChooser = () => {
         appBridge.openAssetChooser(
-            (result: FrontifyAsset[]) => {
+            (result: Asset[]) => {
                 const resultId = result[0].id;
                 updateAssetIdsFromKey(IMAGE_SETTING_ID, [resultId]);
                 appBridge.closeAssetChooser();
@@ -70,7 +70,7 @@ export const ExampleAssetUploadBlock: FC<{ appBridge: AppBridgeBlock }> = ({ app
 
             <div data-test-id="example-asset-upload-block">
                 {blockAssets[IMAGE_SETTING_ID] ? (
-                    blockAssets[IMAGE_SETTING_ID].map((asset: FrontifyAsset) => (
+                    blockAssets[IMAGE_SETTING_ID].map((asset: Asset) => (
                         <div key={asset.id}>
                             <img src={asset.previewUrl} data-test-id="example-asset-upload-image" />
                             <div className="tw-flex tw-flex-col tw-gap-4">

@@ -3,7 +3,13 @@
 import { FormEvent, ReactElement, useEffect, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { FrontifyColor, useBlockSettings, useColorPalettes, useColors, useEditorState } from '@frontify/app-bridge';
+import {
+    Color as ColorType,
+    useBlockSettings,
+    useColorPalettes,
+    useColors,
+    useEditorState,
+} from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { joinClassNames, moveItemInArray } from '@frontify/guideline-blocks-shared';
 
@@ -30,7 +36,7 @@ export const ColorsBlock = ({ appBridge }: ColorsBlockProps): ReactElement => {
         appBridge,
         blockSettings.colorPaletteId
     );
-    const [colors, setColors] = useState<FrontifyColor[]>([]);
+    const [colors, setColors] = useState<ColorType[]>([]);
     useEffect(() => {
         setColors(colorsByPaletteId);
     }, [colorsByPaletteId]);

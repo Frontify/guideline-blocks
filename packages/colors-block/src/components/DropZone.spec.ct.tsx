@@ -3,7 +3,7 @@
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { mount } from 'cypress/react';
-import { FrontifyColorDummy } from '@frontify/app-bridge';
+import { ColorDummy } from '@frontify/app-bridge';
 
 import { CardsItem } from './cards/CardsItem';
 import { DropZone } from './DropZone';
@@ -29,7 +29,7 @@ describe('DropZone component', () => {
         };
 
         const cardsItemProps = {
-            color: FrontifyColorDummy.red(),
+            color: ColorDummy.red(),
             colorSpaces: COLOR_SPACES as (keyof ColorSpaceValues)[],
             isEditing: true,
             onBlur: onBlurStub,

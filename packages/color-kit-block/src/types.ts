@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock, FrontifyColorPalette } from '@frontify/app-bridge';
+import type { AppBridgeBlock, ColorPalette } from '@frontify/app-bridge';
 
 export type Settings = {
     colorPaletteIds: number[];
@@ -16,6 +16,6 @@ export type TooltipContentProps = {
 };
 
 export type PaletteProps = {
-    palette: FrontifyColorPalette;
+    palette: ColorPalette;
     isEditing: boolean;
 };

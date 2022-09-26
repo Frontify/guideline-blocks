@@ -1,15 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
+    Asset,
     AssetChooserObjectType,
     AssetChooserProjectType,
-    FrontifyAsset,
     useAssetChooser,
     useBlockAssets,
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Button, ButtonStyle, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
+import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -51,7 +51,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            (result: FrontifyAsset[]) => {
+            (result: Asset[]) => {
                 const resultId = result[0].id;
                 updateAssetIdsFromKey(ASSET_ID, [resultId]);
                 closeAssetChooser();
@@ -116,7 +116,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     <Button
                         icon={<IconArrowExpand />}
                         onClick={() => toggleFigmaLiveModal(true)}
-                        style={ButtonStyle.Secondary}
+                        emphasis={ButtonEmphasis.Default}
                     />
                 </div>
                 <iframe
@@ -145,7 +145,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                             toggleFigmaLiveModal(false);
                             modalRoot?.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);
                         }}
-                        style={ButtonStyle.Secondary}
+                        emphasis={ButtonEmphasis.Default}
                     />
                 </div>
 

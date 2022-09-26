@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import type { ReactElement } from 'react';
-import type { FrontifyColor } from '@frontify/app-bridge';
+import type { Color as ColorType } from '@frontify/app-bridge';
 import { Tooltip, TooltipPosition, useCopy } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
@@ -9,13 +9,13 @@ import { TooltipContent } from './TooltipContent';
 
 type ColorProps = {
     isEditing: boolean;
-    color: FrontifyColor;
+    color: ColorType;
 };
 
 export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
     const { copy, status } = useCopy();
 
-    const colorWithDecimalAlpha: FrontifyColor = {
+    const colorWithDecimalAlpha: ColorType = {
         ...color,
         alpha: color.alpha && parseFloat((color.alpha / 255).toFixed(2)),
     };

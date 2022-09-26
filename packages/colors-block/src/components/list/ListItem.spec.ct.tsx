@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import { FrontifyColorDummy } from '@frontify/app-bridge';
+import { ColorDummy } from '@frontify/app-bridge';
 
 import { ListItem } from './ListItem';
 import { ColorSpaceValues } from '../../types';
@@ -26,7 +26,7 @@ describe('ListItem component in view mode', () => {
 
         mount(
             <ListItem
-                color={FrontifyColorDummy.red()}
+                color={ColorDummy.red()}
                 colorSpaces={COLOR_SPACES as (keyof ColorSpaceValues)[]}
                 isEditing={false}
                 onBlur={onBlurStub}
@@ -61,7 +61,7 @@ describe('ListItem component in edit mode', () => {
 
         mount(
             <ListItem
-                color={FrontifyColorDummy.red()}
+                color={ColorDummy.red()}
                 colorSpaces={COLOR_SPACES as (keyof ColorSpaceValues)[]}
                 isEditing
                 onBlur={onBlurStub}
@@ -86,7 +86,7 @@ describe('ListItem component in edit mode', () => {
     });
 
     it('renders a color space input', () => {
-        cy.get(ColorSpaceSelector).find('input').should('have.value', FrontifyColorDummy.red().nameCss);
+        cy.get(ColorSpaceSelector).find('input').should('have.value', ColorDummy.red().nameCss);
         cy.get(ColorSpaceSelector).find('input').focus().blur();
         cy.get('@onUpdate').should('have.been.called');
     });
