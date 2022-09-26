@@ -3,9 +3,9 @@
 import { ColorProps, ColorScaleBlockRef } from '../types';
 import { calculateDefaultColorWidth } from './calculateDefaultColorWidth';
 import { getEmptySpace } from './getEmptySpace';
-import { minimumAmountOfPixelsToMoveDuringResize } from '../helpers';
-import { minimumAmountOfPixelsToShiftWhenAddingNewColor } from '../helpers';
-import { minimumColorWidthToAllowResizing } from '../helpers';
+import { MINIMUM_AMOUNT_OF_PIXELS_TO_MOVE_DURING_RESIZE } from '../helpers';
+import { MINIMUM_AMOUNT_OF_PIXELS_TO_SHIFT_WHEN_ADDING_NEW_COLOR } from '../helpers';
+import { MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING } from '../helpers';
 
 export const calculateWidths = (
     itemList: ColorProps[],
@@ -29,31 +29,31 @@ export const calculateWidths = (
     emptySpace = getEmptySpace(colorScaleBlockRef, itemList);
 
     if (addingNewColor) {
-        if (emptySpace > minimumAmountOfPixelsToMoveDuringResize) {
+        if (emptySpace > MINIMUM_AMOUNT_OF_PIXELS_TO_MOVE_DURING_RESIZE) {
             itemsWithWidths[itemsWithWidths.length - 1].width = emptySpace;
         }
     }
 
     emptySpace = getEmptySpace(colorScaleBlockRef, itemList);
 
-    if (emptySpace <= minimumColorWidthToAllowResizing && itemsWithWidths) {
+    if (emptySpace <= MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING && itemsWithWidths) {
         if (addingNewColor) {
             let resizingDone = false;
             itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
                 if (!resizingDone) {
-                    if (color && color.width && color.width > minimumColorWidthToAllowResizing) {
+                    if (color && color.width && color.width > MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING) {
                         resizingDone = true;
 
                         return {
                             ...color,
-                            width: color && color.width - minimumAmountOfPixelsToShiftWhenAddingNewColor,
+                            width: color && color.width - MINIMUM_AMOUNT_OF_PIXELS_TO_SHIFT_WHEN_ADDING_NEW_COLOR,
                         };
                     }
                 }
                 return color;
             });
 
-            itemsWithWidths[itemsWithWidths.length - 1].width = minimumColorWidthToAllowResizing;
+            itemsWithWidths[itemsWithWidths.length - 1].width = MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING;
         }
     }
 

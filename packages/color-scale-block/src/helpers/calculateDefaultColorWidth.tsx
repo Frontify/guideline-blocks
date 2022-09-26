@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ColorScaleBlockRef } from '../types';
-import { defaultColorSquareWidth } from './constants';
+import { DEFAULT_COLOR_SQUARE_WIDTH } from './constants';
 
 export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRef: ColorScaleBlockRef) => {
     if (!(colorScaleBlockRef && colorScaleBlockRef?.current)) {
-        return defaultColorSquareWidth;
+        return DEFAULT_COLOR_SQUARE_WIDTH;
     }
 
     const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;

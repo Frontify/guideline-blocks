@@ -30,10 +30,10 @@ import 'tailwindcss/tailwind.css';
 import { DropZone } from './dragAndDrop/DropZone';
 import { EmptyView } from './components/EmptyView';
 import {
+    DEFAULT_COLOR_SQUARE_WIDTH,
     calculateDefaultColorWidth,
     calculateWidths,
     canExpandColorBlock,
-    defaultColorSquareWidth,
     resizeEvenly,
 } from './helpers';
 import { MouseEventHandler } from 'react';
@@ -81,7 +81,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
-        const defaultWidth = width ? width : defaultColorSquareWidth;
+        const defaultWidth = width ? width : DEFAULT_COLOR_SQUARE_WIDTH;
         displayableItems?.map((color: ColorProps, loopIndex: number) => {
             if (loopIndex < index) {
                 leftPos += color && color.width ? color.width : defaultWidth;
