@@ -11,7 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
-import { ColorProps, Settings } from './types';
+import { ColorBlockColor, Settings } from './types';
 import {
     Button,
     ButtonGroup,
@@ -63,9 +63,9 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     ] = useState();
 
     const [editedColor, setEditedColor]: [
-        ColorProps | null | undefined,
-        (color: ColorProps | null | undefined) => void
-    ] = useState<Nullable<ColorProps>>();
+        ColorBlockColor | null | undefined,
+        (color: ColorBlockColor | null | undefined) => void
+    ] = useState<Nullable<ColorBlockColor>>();
 
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
@@ -82,14 +82,14 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             return;
         }
 
-        const reorderedList = displayableItems?.filter((item: ColorProps) => item.id !== id);
+        const reorderedList = displayableItems?.filter((item: ColorBlockColor) => item.id !== id);
         setBlockSettings({ ...blockSettings, colorInput: reorderedList });
     };
 
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
         const defaultWidth = width ? width : defaultColorSquareWidth;
-        displayableItems?.map((color: ColorProps, loopIndex: number) => {
+        displayableItems?.map((color: ColorBlockColor, loopIndex: number) => {
             if (loopIndex < index) {
                 leftPos += color && color.width ? color.width : defaultWidth;
             }
@@ -100,7 +100,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
     // todo
     const updateColor = (color: Color) => {
-        const newColor: ColorProps = {
+        const newColor: ColorBlockColor = {
             id: undefined,
             sort: 0,
             red: color.red,
@@ -171,7 +171,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             let addedFirstColor;
             if (blockSettings.colorInput) {
-                addedFirstColor = blockSettings.colorInput.filter((item: ColorProps) => !!item.id).length;
+                addedFirstColor = blockSettings.colorInput.filter((item: ColorBlockColor) => !!item.id).length;
             } else {
                 addedFirstColor = false;
             }
@@ -209,7 +209,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const handleResizeStop = () => {
         draggingId.current = null;
     };
-    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorProps): void => {
+    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: ColorBlockColor): void => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
             dragStartWidth.current = currentColor?.width;
@@ -341,7 +341,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         setBlockSettings({ ...blockSettings, colorInput: resizeEvenly(displayableItems, colorScaleBlockRef) });
     };
 
-    const handleDrop = (targetItem: ColorProps, movedItem: ColorProps, position: DropZonePosition) => {
+    const handleDrop = (targetItem: ColorBlockColor, movedItem: ColorBlockColor, position: DropZonePosition) => {
         let targetItemIndex = 0;
         let movedItemIndex = 0;
 
@@ -387,7 +387,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                 >
                     <DndProvider backend={HTML5Backend}>
                         {displayableItems &&
-                            displayableItems?.map((color: ColorProps, index: number) => {
+                            displayableItems?.map((color: ColorBlockColor, index: number) => {
                                 let width;
 
                                 if (color && color.width) {

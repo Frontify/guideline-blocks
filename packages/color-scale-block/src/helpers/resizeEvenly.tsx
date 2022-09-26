@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ColorProps, ColorScaleBlockRef } from '../types';
+import { ColorBlockColor, ColorScaleBlockRef } from '../types';
 import { calculateDefaultColorWidth } from './calculateDefaultColorWidth';
 
-export const resizeEvenly = (itemList: ColorProps[], colorScaleBlockRef: ColorScaleBlockRef) => {
+export const resizeEvenly = (itemList: ColorBlockColor[], colorScaleBlockRef: ColorScaleBlockRef) => {
     if (!itemList) {
         return [];
     }
