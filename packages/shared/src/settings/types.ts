@@ -78,3 +78,32 @@ export type RadiusSettings = {
     radiusValue: string;
     radiusChoice: Radius;
 };
+
+export enum Margin {
+    None = 'None',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+}
+
+export const marginStyleMap: Record<Margin, string> = {
+    [Margin.None]: '0px',
+    [Margin.Small]: '24px',
+    [Margin.Medium]: '36px',
+    [Margin.Large]: '60px',
+};
+
+export type MarginSettings = {
+    marginChoice: Margin;
+    hasCustomMarginValue: boolean;
+    marginValue: string;
+};
+
+export type MarginExtendedSettings = {
+    hasExtendedCustomMargin: boolean;
+    extendedMarginChoice: Margin;
+    extendedMarginTop: string;
+    extendedMarginRight: string;
+    extendedMarginBottom: string;
+    extendedMarginLeft: string;
+};
