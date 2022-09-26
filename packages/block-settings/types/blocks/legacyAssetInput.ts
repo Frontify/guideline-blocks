@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetChooserObjectType, AssetChooserProjectType, FileExtension } from '@frontify/app-bridge';
+import { AssetInputSize } from '@frontify/fondue';
 import { BaseBlock } from './base';
 
 export enum LegacyAssetInputSource {
@@ -26,4 +27,5 @@ export type LegacyAssetInputBlock = {
     projectTypes?: AssetChooserProjectType[];
     objectTypes?: AssetChooserObjectType[];
     mode?: LegacyAssetInputMode;
+    size?: AssetInputSize;
 } & BaseBlock<LegacyAssetInputValue | LegacyAssetInputValue['value']>;
