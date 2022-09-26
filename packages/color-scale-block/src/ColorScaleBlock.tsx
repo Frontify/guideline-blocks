@@ -159,7 +159,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
         const defaultWidth = width ?? DEFAULT_COLOR_SQUARE_WIDTH;
-        blockColors?.map((color: BlockColor, loopIndex: number) => {
+        blockColors.map((color: BlockColor, loopIndex: number) => {
             if (loopIndex < index) {
                 leftPos += color?.width ? color.width : defaultWidth;
             }
@@ -217,10 +217,10 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                     const movementSinceStart = dragStartPos.current - event.clientX;
 
                     const colorsBeforeCurrent = blockColors
-                        ?.filter((diValue, diIndex) => id !== undefined && diIndex < id)
+                        .filter((diValue, diIndex) => id !== undefined && diIndex < id)
                         .reverse();
 
-                    const newDisplayableItems = blockColors?.map((diValue, diIndex) => {
+                    const newDisplayableItems = blockColors.map((diValue, diIndex) => {
                         if (diValue && diIndex === id) {
                             if (diValue.width && diValue.width >= 16) {
                                 // need to make sure it's 16 because we're going to decrease width
@@ -270,9 +270,9 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
                     const movementSinceStart = event.clientX - (dragStartPos.current ?? 0);
 
-                    const colorsAfterCurrent = blockColors?.filter((diValue, diIndex) => !!(id && diIndex > id));
+                    const colorsAfterCurrent = blockColors.filter((diValue, diIndex) => !!(id && diIndex > id));
 
-                    const newDisplayableItems = blockColors?.map((diValue, diIndex) => {
+                    const newDisplayableItems = blockColors.map((diValue, diIndex) => {
                         if (canExpandColorBlock(blockColors, colorScaleBlockRef)) {
                             if (diIndex === id) {
                                 diValue.width = (dragStartWidth.current ?? 0) + movementSinceStart;
