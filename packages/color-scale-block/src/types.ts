@@ -1,23 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MouseEvent, ReactChild } from 'react';
-import { ColorFormat, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
-import { FrontifyColor, FrontifyColorPalette } from '@frontify/app-bridge';
+import { Color, ColorFormat, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
+
+export const DefaultValues = {
+    startingColor: { red: 85, green: 102, blue: 255 },
+};
 
 export type Settings = {
     customHeight: boolean;
     heightSlider: string;
     heightInput: string;
     colorInput: ColorProps[];
-};
-
-export type ColorPickerFlyoutColor = {
-    id?: number | undefined;
-    alpha?: number | undefined;
-    red: number | undefined;
-    green: number | undefined;
-    blue: number | undefined;
-    name: string | undefined;
 };
 
 export type ColorProps = {
@@ -30,12 +24,6 @@ export type ColorProps = {
     name?: string;
     width?: number;
     alt?: string;
-};
-
-export type ColorPalette = {
-    id: number | string;
-    title: string;
-    colors: FrontifyColor[];
 };
 
 export type ColorScaleBlockRef = {
@@ -91,14 +79,11 @@ export type DropZoneProps<T> = {
 
 export type ColorPickerFlyoutProps = {
     newIndex: number;
-    colorPickerFlyoutPalettes: Palette[];
-    appBridgePalettes: FrontifyColorPalette[];
     isColorPickerOpen: boolean;
     setIsColorPickerOpen: (isOpen: boolean) => void;
-    editedColor: ColorProps | undefined | null;
-    setEditedColor: (color: ColorProps | undefined | null) => void;
-    updateColor: (color: ColorProps) => void;
-    setFormat: () => void;
+    colorPalettes: Palette[];
+    currentColor: Color;
+    updateColor: (color: Color) => void;
     children: ReactChild;
 };
 

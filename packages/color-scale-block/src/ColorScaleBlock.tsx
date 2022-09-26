@@ -11,7 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
-import { ColorProps, Settings } from './types';
+import { ColorPalette, ColorProps, DefaultValues, Settings } from './types';
 import {
     Button,
     ButtonGroup,
@@ -44,8 +44,9 @@ type Props = {
 
 export const ColorScaleBlock = ({ appBridge }: Props) => {
     const { colorPalettes } = useColorPalettes(appBridge);
-    const [colorPickerPalette, setColorPickerPalette]: [Palette[], (color: Palette[]) => void] = useState(
-        [] as Palette[]
+
+    const [colorPickerPalettes, setColorPickerPalettes]: [ColorPalette[], (color: ColorPalette[]) => void] = useState(
+        [] as ColorPalette[]
     );
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -60,6 +61,11 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         ColorProps | null | undefined,
         (color: ColorProps | null | undefined) => void
     ] = useState<Nullable<ColorProps>>();
+
+    const [currentColor, setCurrentColor]: [Color, (color: Color) => void] = useState<Color>(
+        DefaultValues.startingColor
+    );
+
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
     const draggingId: { current?: number | null | undefined } = useRef(null);
@@ -91,29 +97,34 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         return leftPos;
     };
 
-    const updateColor = (newColor: ColorProps) => {
-        let updatedColors = [...displayableItems];
+    const updateColor = (color: Color) => {
+        console.log(color);
+        console.log(displayableItems);
 
-        const alreadyExists = updatedColors.findIndex((item) => item.id === newColor.id) > -1;
+        const newColor: ColorProps = {
+            id: ,
+            sort: ,
+            color,
+            width: ,
+            alt: ,
+        };
+
+        const isFirstColor = displayableItems.filter((item) => item.color).length === 0;
+
+        let colors = !isFirstColor ? [...displayableItems] : [];
+
+        const alreadyExists = colors.findIndex((item) => item.id === newColor.id) > -1;
+
 
         if (alreadyExists) {
             return;
         }
 
-        const addedFirstColor = displayableItems.length;
-        let colorsWithNewWidths;
-
-        if (!addedFirstColor) {
-            updatedColors = [newColor];
-            colorsWithNewWidths = calculateWidths(updatedColors, colorScaleBlockRef, false);
-        } else {
-            updatedColors.push(newColor);
-            colorsWithNewWidths = calculateWidths(updatedColors, colorScaleBlockRef, true);
-        }
+        colors.push(newColor);
 
         setBlockSettings({
             ...blockSettings,
-            colorInput: colorsWithNewWidths,
+            colorInput: calculateWidths(colors, colorScaleBlockRef, isFirstColor),
         });
     };
     const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
@@ -142,7 +153,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     };
 
     useEffect(() => {
-        setColorPickerPalette(populateColorPickerPalettes(colorPalettes));
+        setColorPickerPalettes(mapFrontifyColorPalettesToColorPalette(colorPalettes));
     }, [colorPalettes]);
 
     useEffect(() => {
@@ -457,10 +468,8 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             newIndex={displayableItems.length}
                             isColorPickerOpen={isColorPickerOpen}
                             setIsColorPickerOpen={setIsColorPickerOpen}
-                            editedColor={editedColor}
-                            setEditedColor={setEditedColor}
-                            appBridgePalettes={colorPalettes}
-                            colorPickerFlyoutPalettes={colorPickerPalette}
+                            colorPalettes={colorPickerPalettes}
+                            currentColor={currentColor}
                             updateColor={updateColor}
                             setFormat={() => false}
                         >
