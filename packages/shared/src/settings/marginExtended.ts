@@ -10,6 +10,10 @@ import { MARGIN_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { getMarginSlider } from './margin';
 import { marginStyleMap } from './types';
 
+type MarginSettingsType = {
+    id?: string;
+};
+
 /**
  * Returns margin settings: margin switch, margin slider, custom margin input for every direction
  *
@@ -17,11 +21,6 @@ import { marginStyleMap } from './types';
  * @param options.id Custom suffix for the setting ids
  * @returns {SettingBlock} Returns margin settings
  */
-
-type MarginSettingsType = {
-    id?: string;
-};
-
 export const getMarginExtendedSettings = (options?: MarginSettingsType): SettingBlock => {
     const hasId = options?.id ? `hasExtendedCustomMargin_${options?.id}` : 'hasExtendedCustomMargin';
     const valueId = options?.id ? `extendedMarginValues_${options?.id}` : 'extendedMarginValues';
