@@ -51,9 +51,10 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                         className={isQuotationMarkType ? '' : accentLineClassName}
                     >
                         <RichTextEditor
+                            id={appBridge.getBlockId().toString()}
                             designTokens={designTokens ?? undefined}
                             placeholder="Add your quote text here"
-                            value={blockSettings.content}
+                            value={blockSettings.content ?? '[{"type":"quote","children":[{"text":""}]}]'}
                             onTextChange={onChangeContent}
                             actions={ACTIONS}
                             readonly={!isEditing}
