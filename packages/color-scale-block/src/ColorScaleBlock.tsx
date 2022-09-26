@@ -59,7 +59,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId] = useState<number | null>();
     const [editedColor, setEditedColor] = useState<Nullable<BlockColor>>();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
-    const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
+    const colorScaleBlockRef: { current: Nullable<HTMLDivElement> } = useRef(null);
     const draggingId: { current?: number | null } = useRef(null);
     const dragStartPos: { current?: number | null } = useRef();
     const dragStartWidth: { current?: number | null } = useRef();
@@ -190,22 +190,21 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             setColorScaleHeight(currentHeight);
         }
 
-        if (colorScaleBlockRef && colorScaleBlockRef.current) {
+        if (colorScaleBlockRef?.current) {
             let addedFirstColor;
             if (blockSettings.colorInput) {
-                addedFirstColor = blockSettings.colorInput.filter((item: BlockColor) => !!item.id).length;
+                addedFirstColor = blockSettings.colorInput.filter((item) => item).length > 0 ? true : false;
             } else {
                 addedFirstColor = false;
             }
             const minimumColors = addedFirstColor ? MINIMUM_NUMBER_OF_COLORS : MAXIMUM_NUMBER_OF_PLACEHOLDER_SQUARES;
 
-            try {
-                if (blockSettings.colorInput && blockSettings.colorInput.length >= minimumColors) {
-                    let needToCalculateWidths = false;
+            if (blockSettings.colorInput && blockSettings.colorInput.length >= minimumColors) {
+                let needToCalculateWidths = false;
 
-                    for (const color of blockSettings.colorInput) {
-                        needToCalculateWidths = !color || (color && !color.width);
-                    }
+                for (const color of blockSettings.colorInput) {
+                    needToCalculateWidths = !color || (color && !color.width);
+                }
 
                     if (needToCalculateWidths) {
                         const colorsWithNewWidths = calculateWidths(
@@ -222,8 +221,6 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                         return setBlockColors(blockSettings.colorInput);
                     }
                 }
-            } catch (error) {
-                console.error(error);
             }
         }
     }, [blockSettings, colorScaleHeight, setBlockSettings]);
@@ -277,7 +274,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                 }
                             } else {
                                 let needToShrinkColor = true;
-                                colorsBeforeCurrent?.map((adjacentColor) => {
+                                for (const adjacentColor of colorsBeforeCurrent) {
                                     if (needToShrinkColor) {
                                         if (adjacentColor) {
                                             if (adjacentColor.width && adjacentColor.width >= 16) {
@@ -290,8 +287,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                             }
                                         }
                                     }
-                                    return adjacentColor;
-                                });
+                                }
                             }
                         }
                         return diValue;
@@ -328,7 +324,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             }
                         } else {
                             let needToShrinkColor = true;
-                            colorsAfterCurrent?.map((adjacentColor) => {
+                            for (const adjacentColor of colorsAfterCurrent) {
                                 if (needToShrinkColor) {
                                     if (adjacentColor) {
                                         if (adjacentColor.width && adjacentColor.width >= 16) {
@@ -342,7 +338,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                     }
                                 }
                                 return adjacentColor;
-                            });
+                            }
                         }
                         return diValue;
                     });

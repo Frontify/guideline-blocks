@@ -27,10 +27,11 @@ export type BlockColor = {
 };
 
 export type ColorScaleBlockRef = {
-    current: HTMLDivElement | null;
+    current: Nullable<HTMLDivElement>;
 };
 
 export type SquareWithColorProps = {
+    id: number;
     index: number;
     width: number;
     height: string;
@@ -88,7 +89,7 @@ export type ColorPickerFlyoutProps = {
 export type DragHandleProps = {
     index: number;
     currentColor: BlockColor;
-    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: BlockColor) => void | undefined;
+    onResizeStart: (event: MouseEvent, id?: number, currentColor?: BlockColor) => void;
 };
 
 export type EmptyViewProps = {

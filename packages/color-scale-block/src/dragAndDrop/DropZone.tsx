@@ -22,7 +22,7 @@ export const DropZone = <T extends object>({
         },
         canDrop: (item: OrderableListItem<T>) => {
             // can't drop an item on itself
-            return !(item.id === data.targetItem.id);
+            return item.id !== data.targetItem.id;
         },
         collect: (monitor) => ({
             isOver: monitor.isOver(),
@@ -49,7 +49,7 @@ export const DropZone = <T extends object>({
         <>
             <div
                 style={{
-                    width: isActive ? `${parseInt(width)}px` : '0px',
+                    width: isActive ? `${width}px` : '0px',
                     height: `${height - 2}px`,
                 }}
                 className={joinClassNames([

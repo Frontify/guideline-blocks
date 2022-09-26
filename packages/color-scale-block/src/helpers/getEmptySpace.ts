@@ -3,7 +3,7 @@
 import { BlockColor, ColorScaleBlockRef } from '../types';
 
 export const getEmptySpace = (colorScaleBlockRef: ColorScaleBlockRef, colorArray: BlockColor[]) => {
-    if (!(colorScaleBlockRef && colorScaleBlockRef.current)) {
+    if (!colorScaleBlockRef.current) {
         return 0;
     }
 
