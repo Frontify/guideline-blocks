@@ -2,7 +2,12 @@
 
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import {
+    appendUnit,
+    getExtendedBorderRadiusSettings,
+    getMarginExtendedSettings,
+    numericalOrPixelRule,
+} from '@frontify/guideline-blocks-shared';
 
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
 
@@ -66,79 +71,7 @@ export const settings: BlockSettings = {
             label: 'Row numbers',
             defaultValue: true,
         },
-        {
-            id: 'withCustomMargin',
-            label: 'Margin',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            on: [
-                {
-                    id: 'customMargin',
-                    type: 'multiInput',
-                    layout: MultiInputLayout.Spider,
-                    blocks: [
-                        {
-                            id: 'marginTop',
-                            type: 'input',
-                            label: 'Top',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle) => appendUnit(bundle, 'marginTop'),
-                        },
-                        {
-                            id: 'marginLeft',
-                            type: 'input',
-                            label: 'Left',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle) => appendUnit(bundle, 'marginLeft'),
-                        },
-                        {
-                            id: 'marginRight',
-                            type: 'input',
-                            label: 'Right',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle) => appendUnit(bundle, 'marginRight'),
-                        },
-                        {
-                            id: 'marginBottom',
-                            type: 'input',
-                            label: 'Bottom',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle) => appendUnit(bundle, 'marginBottom'),
-                        },
-                    ],
-                },
-            ],
-            off: [
-                {
-                    id: 'margin',
-                    type: 'slider',
-                    defaultValue: '0px',
-                    choices: [
-                        {
-                            value: '0px',
-                            label: 'None',
-                        },
-                        {
-                            value: '24px',
-                            label: 'S',
-                        },
-                        {
-                            value: '36px',
-                            label: 'M',
-                        },
-                        {
-                            value: '60px',
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
-        },
+        getMarginExtendedSettings(),
     ],
     style: [
         {
@@ -257,80 +190,6 @@ export const settings: BlockSettings = {
                 },
             ],
         },
-        {
-            id: 'withCustomBorderRadius',
-            label: 'Corner Radius',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            on: [
-                {
-                    id: 'customBorderRadius',
-                    type: 'multiInput',
-                    layout: MultiInputLayout.Spider,
-                    onChange: (bundle) => {
-                        appendUnit(bundle, 'borderRadiusTop');
-                        appendUnit(bundle, 'borderRadiusLeft');
-                        appendUnit(bundle, 'borderRadiusRight');
-                        appendUnit(bundle, 'borderRadiusBottom');
-                    },
-                    blocks: [
-                        {
-                            id: 'borderRadiusTopLeft',
-                            type: 'input',
-                            label: 'Top left',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                        },
-                        {
-                            id: 'borderRadiusTopRight',
-                            type: 'input',
-                            label: 'Top right',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                        },
-                        {
-                            id: 'borderRadiusBottomRight',
-                            type: 'input',
-                            label: 'Bottom right',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                        },
-                        {
-                            id: 'borderRadiusBottomLeft',
-                            type: 'input',
-                            label: 'Bottom left',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                        },
-                    ],
-                },
-            ],
-            off: [
-                {
-                    id: 'borderRadius',
-                    type: 'slider',
-                    defaultValue: '4px',
-                    choices: [
-                        {
-                            value: '0px',
-                            label: 'None',
-                        },
-                        {
-                            value: '2px',
-                            label: 'S',
-                        },
-                        {
-                            value: '4px',
-                            label: 'M',
-                        },
-                        {
-                            value: '12px',
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
-        },
+        getExtendedBorderRadiusSettings(),
     ],
 };
