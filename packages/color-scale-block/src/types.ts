@@ -2,7 +2,7 @@
 
 import { MouseEvent, ReactChild } from 'react';
 import { ColorFormat, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
-import { FrontifyColor, FrontifyColorPalette } from '@frontify/app-bridge';
+import { FrontifyColorPalette } from '@frontify/app-bridge';
 
 export type Settings = {
     customHeight: boolean;
@@ -11,17 +11,8 @@ export type Settings = {
     colorInput: ColorProps[];
 };
 
-export type ColorPickerFlyoutColor = {
-    id?: number | undefined;
-    alpha?: number | undefined;
-    red: number | undefined;
-    green: number | undefined;
-    blue: number | undefined;
-    name: string | undefined;
-};
-
 export type ColorProps = {
-    id: number | undefined;
+    id: number;
     sort?: number;
     red: number;
     green: number;
@@ -32,18 +23,12 @@ export type ColorProps = {
     alt?: string;
 };
 
-export type ColorPalette = {
-    id: number | string;
-    title: string;
-    colors: FrontifyColor[];
-};
-
 export type ColorScaleBlockRef = {
-    current: HTMLDivElement | null;
+    current: Nullable<HTMLDivElement>;
 };
 
 export type SquareWithColorProps = {
-    id: number | undefined;
+    id: number;
     index: number;
     width: number;
     height: string;
@@ -105,7 +90,7 @@ export type ColorPickerFlyoutProps = {
 export type DragHandleProps = {
     index: number;
     currentColor: ColorProps;
-    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void | undefined;
+    onResizeStart: (event: MouseEvent, id?: number, currentColor?: ColorProps) => void;
 };
 
 export type EmptyViewProps = {

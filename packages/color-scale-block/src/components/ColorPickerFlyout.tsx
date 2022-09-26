@@ -41,6 +41,10 @@ export const ColorPickerFlyout = ({
             }
         }
 
+        if (!id) {
+            return;
+        }
+
         if (!editedColor) {
             updateColor({
                 id,

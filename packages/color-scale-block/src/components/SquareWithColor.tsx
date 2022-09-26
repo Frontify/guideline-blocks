@@ -56,7 +56,7 @@ export const SquareWithColor = ({
     ];
 
     const backgroundColor = `rgba(${rgbaValues.join(',')})`;
-    const hexColor = currentColor && toHex8String(currentColor);
+    const hexColor = currentColor ? toHex8String(currentColor) : '';
 
     const firstElementClasses = 'first:tw-pl-[1px] last:tw-pr-[1px] first:tw-rounded-tl first:tw-rounded-bl';
     const lastElementClasses = 'last:tw-rounded-tr last:tw-rounded-br';
@@ -81,9 +81,13 @@ export const SquareWithColor = ({
                     height,
                     backgroundColor,
                 }}
-                className={`${isFirst ? firstElementClasses : ''} ${
-                    isLast ? lastElementClasses : ''
-                } [&>div]:tw-h-full tw-group tw-relative tw-w-full tw-h-full tw-overflow-y-hidden tw-overflow-x-visible tw-border-none hover:tw-border hover:tw-border-black`}
+                className={`
+                    merge(
+                        ${isFirst ? firstElementClasses : ''},
+                        ${isLast ? lastElementClasses : ''},
+                        [&>div]:tw-h-full tw-group tw-relative tw-w-full tw-h-full tw-overflow-y-hidden tw-overflow-x-visible tw-border-none hover:tw-border hover:tw-border-black
+                    )
+                `}
             >
                 {isEditing ? (
                     <div

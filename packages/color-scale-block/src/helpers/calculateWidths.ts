@@ -3,9 +3,9 @@
 import { ColorProps, ColorScaleBlockRef } from '../types';
 import { calculateDefaultColorWidth } from './calculateDefaultColorWidth';
 import { getEmptySpace } from './getEmptySpace';
-import { MINIMUM_AMOUNT_OF_PIXELS_TO_MOVE_DURING_RESIZE } from '../helpers';
-import { MINIMUM_AMOUNT_OF_PIXELS_TO_SHIFT_WHEN_ADDING_NEW_COLOR } from '../helpers';
-import { MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING } from '../helpers';
+import { MINIMUM_AMOUNT_OF_PIXELS_TO_MOVE_DURING_RESIZE } from '.';
+import { MINIMUM_AMOUNT_OF_PIXELS_TO_SHIFT_WHEN_ADDING_NEW_COLOR } from '.';
+import { MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING } from '.';
 
 export const calculateWidths = (
     itemList: ColorProps[],
@@ -16,7 +16,7 @@ export const calculateWidths = (
     let itemsWithWidths: ColorProps[] = [];
 
     itemsWithWidths = itemList?.map((color: ColorProps) => {
-        if (colorScaleBlockRef && colorScaleBlockRef.current && color && !color.width) {
+        if (colorScaleBlockRef?.current && !color?.width) {
             // In this case, a width is missing
             return {
                 ...color,
@@ -57,5 +57,5 @@ export const calculateWidths = (
         }
     }
 
-    return itemsWithWidths || [];
+    return itemsWithWidths;
 };

@@ -3,13 +3,13 @@
 import { ColorScaleBlockRef } from '../types';
 import { DEFAULT_COLOR_SQUARE_WIDTH } from './constants';
 
-export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRef: ColorScaleBlockRef) => {
+export const calculateDefaultColorWidth = (colorArrayLength: number, colorScaleBlockRef: ColorScaleBlockRef) => {
     if (!colorScaleBlockRef?.current) {
         return DEFAULT_COLOR_SQUARE_WIDTH;
     }
 
     const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
-    const defaultWidth = colorScaleBlockWidth / colorArray;
+    const defaultWidth = colorScaleBlockWidth / colorArrayLength;
 
     return defaultWidth;
 };
