@@ -73,7 +73,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
-        const defaultWidth = width ? width : DEFAULT_COLOR_SQUARE_WIDTH;
+        const defaultWidth = width ?? DEFAULT_COLOR_SQUARE_WIDTH;
         displayableItems?.map((color: ColorProps, loopIndex: number) => {
             if (loopIndex < index) {
                 leftPos += color && color.width ? color.width : defaultWidth;
