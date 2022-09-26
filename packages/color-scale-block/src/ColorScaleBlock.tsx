@@ -70,13 +70,11 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         calculateWidths(blockSettings.colorInput ?? ([] as BlockColor[]), colorScaleBlockRef, false)
     );
 
-    const deleteBlockColorById = (id: number | undefined) => {
-        if (!id) {
-            return;
-        }
-
-        const reorderedList = blockColors?.filter((item: BlockColor) => item.id !== id);
-        setBlockSettings({ ...blockSettings, colorInput: reorderedList });
+    const deleteBlockColorById = (blockColorId: number) => {
+        setBlockSettings({
+            ...blockSettings,
+            colorInput: blockColors.filter((blockColor: BlockColor) => blockColor.id !== blockColorId),
+        });
     };
 
     const updateBlockColorByColor = (color: Color) => {
@@ -438,7 +436,6 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                         />
 
                                         <SquareWithColor
-                                            id={blockColor.id}
                                             index={index}
                                             width={currentlyDraggedColorId === blockColor.id ? 0 : width}
                                             height={colorScaleHeight}

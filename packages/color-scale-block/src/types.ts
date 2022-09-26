@@ -31,7 +31,6 @@ export type ColorScaleBlockRef = {
 };
 
 export type SquareWithColorProps = {
-    id: number;
     index: number;
     width: number;
     height: string;
@@ -44,7 +43,7 @@ export type SquareWithColorProps = {
     setEditedColor: (color: BlockColor | undefined | null) => void;
     updateColor: (color: BlockColor) => void;
     setFormat: (color?: ColorFormat) => void;
-    deleteColor: (color: number | undefined) => void;
+    deleteColor: (color: number) => void;
     handleDrop: (targetItem: BlockColor, sourceItem: BlockColor, position: DropZonePosition) => void;
     listId: string;
     onResizeStart: (event: MouseEvent, index?: number, currentColor?: BlockColor) => void;

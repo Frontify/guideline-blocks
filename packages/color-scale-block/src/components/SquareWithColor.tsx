@@ -10,7 +10,6 @@ import { TooltipContent } from './TooltipContent';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 
 export const SquareWithColor = ({
-    id,
     index,
     width,
     height,
@@ -96,7 +95,7 @@ export const SquareWithColor = ({
                             icon={<IconTrashBin size={IconSize.Size16} />}
                             size={ButtonSize.Small}
                             style={ButtonStyle.Secondary}
-                            onClick={() => deleteColor(id)}
+                            onClick={() => deleteColor(currentColor.id)}
                         />
                     </div>
                 ) : (
