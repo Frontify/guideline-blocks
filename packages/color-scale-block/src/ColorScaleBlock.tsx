@@ -335,7 +335,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
         movedItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === movedItem.id);
 
-        updatedColors = updatedColors.filter((colorItem, index) => index !== movedItemIndex);
+        updatedColors = updatedColors.filter((_, index) => index !== movedItemIndex);
 
         targetItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === targetItem.id);
 
