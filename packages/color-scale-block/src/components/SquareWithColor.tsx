@@ -58,8 +58,8 @@ export const SquareWithColor = ({
     const backgroundColor = `rgba(${rgbaValues.join(',')})`;
     const hexColor = currentColor ? toHex8String(currentColor) : '';
 
-    const firstElementClasses = 'first:tw-pl-[1px] last:tw-pr-[1px] first:tw-rounded-tl first:tw-rounded-bl';
-    const lastElementClasses = 'last:tw-rounded-tr last:tw-rounded-br';
+    const firstElementClasses = 'tw-pl-[1px] tw-pr-[1px] tw-rounded-tl tw-rounded-bl';
+    const lastElementClasses = 'tw-rounded-tr last:tw-rounded-br';
 
     return (
         <div
