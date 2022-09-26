@@ -4,6 +4,7 @@ import 'tailwindcss/tailwind.css';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 import {
     AppBridgeBlock,
+    FrontifyColor,
     FrontifyColorPalette,
     useBlockSettings,
     useColorPalettes,
@@ -44,14 +45,16 @@ type Props = {
 };
 
 export const ColorScaleBlock = ({ appBridge }: Props) => {
-    const { colorPalettes } = useColorPalettes(appBridge);
+    const { colorPalettes: frontifyColorPalettes } = useColorPalettes(appBridge);
+    const [frontifyColors, setFrontifyColors]: [FrontifyColor[], (frontifyColors: FrontifyColor[]) => void] = useState(
+        [] as FrontifyColor[]
+    );
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const isEditing = useEditorState(appBridge);
 
     const [colorPickerPalettes, setColorPickerPalettes]: [Palette[], (color: Palette[]) => void] = useState(
         [] as Palette[]
     );
-    const isEditing = useEditorState(appBridge);
-
-    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
@@ -77,13 +80,100 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const minimumNumberOfColors = 1;
     const maximumNumberOfPlaceholderSquares = 6;
 
-    const deleteColor = (id: number | undefined) => {
+    const deleteBlockColorById = (id: number | undefined) => {
         if (!id) {
             return;
         }
 
         const reorderedList = displayableItems?.filter((item: BlockColor) => item.id !== id);
         setBlockSettings({ ...blockSettings, colorInput: reorderedList });
+    };
+
+    const updateBlockColorByColor = (color: Color) => {
+        const frontifyColor = findFrontifyColorByColor(color);
+
+        if (!frontifyColor) {
+            return;
+        }
+
+        const blockColor = createBlockColorByColorAndFrontifyColor(color, frontifyColor);
+
+        const isFirstColor = displayableItems.filter((item) => !item.red || !item.green || !item.blue).length === 0;
+
+        const colors = !isFirstColor ? [...displayableItems] : [];
+
+        if (colors.findIndex((item) => item.id === blockColor.id) > -1) {
+            return;
+        }
+
+        colors.push(blockColor);
+
+        setBlockSettings({
+            ...blockSettings,
+            colorInput: calculateWidths(colors, colorScaleBlockRef, isFirstColor),
+        });
+    };
+
+    const findFrontifyColorByColor = (color: Color): Nullable<FrontifyColor> => {
+        const colorMach = frontifyColors.find(
+            (frontifyColor: FrontifyColor) =>
+                frontifyColor.red === color.red &&
+                frontifyColor.green === color.green &&
+                frontifyColor.blue === color.blue &&
+                frontifyColor.alpha === color.alpha
+        );
+
+        return colorMach !== undefined ? colorMach : null;
+    };
+
+    const extractColorsByColorPalettes = (frontifyColorPalettes: FrontifyColorPalette[]): void => {
+        const colors: FrontifyColor[] = [];
+
+        for (const frontifyColorPalette of frontifyColorPalettes) {
+            if (frontifyColorPalette && frontifyColorPalette.colors) {
+                for (const frontifyColor of frontifyColorPalette.colors) {
+                    colors.push(frontifyColor);
+                }
+            }
+        }
+
+        setFrontifyColors(colors);
+    };
+
+    const createBlockColorByColorAndFrontifyColor = (color: Color, frontifyColor: FrontifyColor): BlockColor => {
+        return {
+            id: frontifyColor.id,
+            red: color.red,
+            green: color.green,
+            blue: color.blue,
+            alpha: color.alpha,
+            name: color.name,
+        };
+    };
+
+    const mapFrontifyColorPalettesToPalettes = (frontifyColorPalettes: FrontifyColorPalette[]): Palette[] => {
+        const palettes: Palette[] = [];
+
+        for (const frontifyColorPalette of frontifyColorPalettes) {
+            if (frontifyColorPalette && frontifyColorPalette.colors) {
+                const colors = frontifyColorPalette.colors.map((color) => {
+                    return {
+                        alpha: color.alpha ?? 0,
+                        red: color.red ?? 0,
+                        green: color.green ?? 0,
+                        blue: color.blue ?? 0,
+                        name: color.name ?? '',
+                    };
+                });
+
+                palettes.push({
+                    id: frontifyColorPalette.id,
+                    title: frontifyColorPalette.name,
+                    colors,
+                });
+            }
+        }
+        return palettes;
     };
 
     const calculateLeftPosition = (index: number, width?: number) => {
@@ -98,66 +188,10 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         return leftPos;
     };
 
-    // todo
-    const updateColor = (color: Color) => {
-        const newColor: BlockColor = {
-            id: undefined,
-            sort: 0,
-            red: color.red,
-            green: color.green,
-            blue: color.blue,
-            alpha: color.alpha,
-            name: color.name,
-            width: 0,
-            alt: '',
-        };
-
-        const isFirstColor = displayableItems.filter((item) => !item.red || !item.green || !item.blue).length === 0;
-
-        const colors = !isFirstColor ? [...displayableItems] : [];
-
-        const alreadyExists = colors.findIndex((item) => item.id === newColor.id) > -1;
-
-        if (alreadyExists) {
-            return;
-        }
-
-        colors.push(newColor);
-
-        setBlockSettings({
-            ...blockSettings,
-            colorInput: calculateWidths(colors, colorScaleBlockRef, isFirstColor),
-        });
-    };
-
-    const mapFrontifyColorPalettesToColorPalette = (frontifyColorPalettes: FrontifyColorPalette[]): Palette[] => {
-        const palettes: Palette[] = [];
-
-        for (const palette of frontifyColorPalettes) {
-            if (palette && palette.colors) {
-                const colors = palette.colors.map((color) => {
-                    return {
-                        alpha: color.alpha ?? 0,
-                        red: color.red ?? 0,
-                        green: color.green ?? 0,
-                        blue: color.blue ?? 0,
-                        name: color.name ?? '',
-                    };
-                });
-
-                palettes.push({
-                    id: palette.id,
-                    title: palette.name,
-                    colors,
-                });
-            }
-        }
-        return palettes;
-    };
-
     useEffect(() => {
-        setColorPickerPalettes(mapFrontifyColorPalettesToColorPalette(colorPalettes));
-    }, [colorPalettes]);
+        setColorPickerPalettes(mapFrontifyColorPalettesToPalettes(frontifyColorPalettes));
+        extractColorsByColorPalettes(frontifyColorPalettes);
+    }, [frontifyColorPalettes]);
 
     useEffect(() => {
         const currentHeight = blockSettings['customHeight']
@@ -209,6 +243,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const handleResizeStop = () => {
         draggingId.current = null;
     };
+
     const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: BlockColor): void => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
@@ -430,9 +465,9 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                             isEditing={isEditing}
                                             editedColor={editedColor}
                                             setEditedColor={setEditedColor}
-                                            updateColor={updateColor}
+                                            updateColor={updateBlockColorByColor}
                                             setFormat={() => false}
-                                            deleteColor={deleteColor}
+                                            deleteColor={deleteBlockColorById}
                                             isLast={isLast}
                                             isFirst={isFirst}
                                             handleDrop={handleDrop}
@@ -472,7 +507,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             isColorPickerOpen={isColorPickerOpen}
                             setIsColorPickerOpen={setIsColorPickerOpen}
                             colorPalettes={colorPickerPalettes}
-                            updateColor={updateColor}
+                            updateColor={updateBlockColorByColor}
                         >
                             <Button
                                 onClick={handleColorPickerFlyoutTrigger}
