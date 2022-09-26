@@ -6,7 +6,7 @@ import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
 import { presetCustomValue } from '../helpers/settings/presetCustomValue';
 import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNumericalOrPixelOrAutoRule';
 import { MARGIN_DEFAULT_PLACEHOLDER } from './defaultValues';
-import { marginStyleMap, Margin } from './types';
+import { Margin, marginStyleMap } from './types';
 
 type MarginSettingsType = {
     id?: string;
