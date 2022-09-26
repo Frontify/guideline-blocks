@@ -11,12 +11,13 @@ import {
 } from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
-import { ColorPalette, ColorProps, DefaultValues, Settings } from './types';
+import { ColorProps, Settings } from './types';
 import {
     Button,
     ButtonGroup,
     ButtonSize,
     ButtonStyle,
+    Color,
     DropZonePosition,
     IconArrowStretchBox12,
     IconPlus12,
@@ -45,26 +46,26 @@ type Props = {
 export const ColorScaleBlock = ({ appBridge }: Props) => {
     const { colorPalettes } = useColorPalettes(appBridge);
 
-    const [colorPickerPalettes, setColorPickerPalettes]: [ColorPalette[], (color: ColorPalette[]) => void] = useState(
-        [] as ColorPalette[]
+    const [colorPickerPalettes, setColorPickerPalettes]: [Palette[], (color: Palette[]) => void] = useState(
+        [] as Palette[]
     );
     const isEditing = useEditorState(appBridge);
+
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
     );
+
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
         number | null | undefined,
         (value?: number | null | undefined) => void
     ] = useState();
+
     const [editedColor, setEditedColor]: [
         ColorProps | null | undefined,
         (color: ColorProps | null | undefined) => void
     ] = useState<Nullable<ColorProps>>();
-
-    const [currentColor, setCurrentColor]: [Color, (color: Color) => void] = useState<Color>(
-        DefaultValues.startingColor
-    );
 
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
@@ -97,24 +98,25 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         return leftPos;
     };
 
+    // todo
     const updateColor = (color: Color) => {
-        console.log(color);
-        console.log(displayableItems);
-
         const newColor: ColorProps = {
-            id: ,
-            sort: ,
-            color,
-            width: ,
-            alt: ,
+            id: undefined,
+            sort: 0,
+            red: color.red,
+            green: color.green,
+            blue: color.blue,
+            alpha: color.alpha,
+            name: color.name,
+            width: 0,
+            alt: '',
         };
 
-        const isFirstColor = displayableItems.filter((item) => item.color).length === 0;
+        const isFirstColor = displayableItems.filter((item) => !item.red || !item.green || !item.blue).length === 0;
 
-        let colors = !isFirstColor ? [...displayableItems] : [];
+        const colors = !isFirstColor ? [...displayableItems] : [];
 
         const alreadyExists = colors.findIndex((item) => item.id === newColor.id) > -1;
-
 
         if (alreadyExists) {
             return;
@@ -127,10 +129,11 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             colorInput: calculateWidths(colors, colorScaleBlockRef, isFirstColor),
         });
     };
-    const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
-        const formattedPalettes: Palette[] = [];
 
-        for (const palette of inputPalettes) {
+    const mapFrontifyColorPalettesToColorPalette = (frontifyColorPalettes: FrontifyColorPalette[]): Palette[] => {
+        const palettes: Palette[] = [];
+
+        for (const palette of frontifyColorPalettes) {
             if (palette && palette.colors) {
                 const colors = palette.colors.map((color) => {
                     return {
@@ -142,14 +145,14 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                     };
                 });
 
-                formattedPalettes.push({
+                palettes.push({
                     id: palette.id,
                     title: palette.name,
                     colors,
                 });
             }
         }
-        return formattedPalettes;
+        return palettes;
     };
 
     useEffect(() => {
@@ -469,9 +472,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             isColorPickerOpen={isColorPickerOpen}
                             setIsColorPickerOpen={setIsColorPickerOpen}
                             colorPalettes={colorPickerPalettes}
-                            currentColor={currentColor}
                             updateColor={updateColor}
-                            setFormat={() => false}
                         >
                             <Button
                                 onClick={handleColorPickerFlyoutTrigger}
