@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 
 import { FC, ReactElement } from 'react';
 import { debounce } from '@frontify/fondue';
-import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { marginStyleMap, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { CodeMirrorEditor } from './components';
@@ -17,30 +17,27 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
 
     const {
         content,
-        margin,
         language,
         lineStyle,
         lineWidth,
         borderColor = BORDER_COLOR_DEFAULT_VALUE,
-        borderRadius = '0px',
-        marginTop = '0px',
-        marginLeft = '0px',
-        marginRight = '0px',
-        marginBottom = '0px',
-        borderRadiusTopLeft = '0px',
-        borderRadiusTopRight = '0px',
-        borderRadiusBottomLeft = '0px',
-        borderRadiusBottomRight = '0px',
         withBorder = false,
         withHeading = false,
         withRowNumbers = false,
-        withCustomMargin = false,
-        withCustomBorderRadius = false,
         theme = DEFAULT_THEME_VALUE,
     } = blockSettings;
 
-    const customMargin = `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`;
-    const customBorderRadius = `${borderRadiusTopLeft} ${borderRadiusTopRight} ${borderRadiusBottomRight} ${borderRadiusBottomLeft}`;
+    const customMarginStyle = {
+        margin: blockSettings.hasExtendedCustomMargin
+            ? `${blockSettings.extendedMarginTop} ${blockSettings.extendedMarginRight} ${blockSettings.extendedMarginBottom} ${blockSettings.extendedMarginLeft}`
+            : marginStyleMap[blockSettings.extendedMarginChoice],
+    };
+
+    const customCornerRadiusStyle = {
+        borderRadius: blockSettings.hasExtendedCustomRadius
+            ? `${blockSettings.extendedRadiusTopLeft} ${blockSettings.extendedRadiusTopRight} ${blockSettings.extendedRadiusBottomRight} ${blockSettings.extendedRadiusBottomLeft}`
+            : radiusStyleMap[blockSettings.extendedRadiusChoice],
+    };
 
     const borderColorRgba = toRgbaString(borderColor);
 
@@ -54,8 +51,8 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         withRowNumbers,
         initValue: content,
         onChange: handleChange,
-        borderRadius: withCustomBorderRadius ? customBorderRadius : borderRadius,
-        margin: withCustomMargin ? customMargin : margin,
+        borderRadius: customCornerRadiusStyle.borderRadius,
+        margin: customMarginStyle.margin,
         border: withBorder ? `${lineStyle} ${lineWidth} ${borderColorRgba}` : 'none',
     };
 
