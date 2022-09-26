@@ -1,18 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    EditorView,
-    drawSelection,
-    highlightActiveLine,
-    highlightSpecialChars,
-    keymap,
-    placeholder,
-} from '@codemirror/view';
+import { EditorView, drawSelection, highlightSpecialChars, keymap, placeholder } from '@codemirror/view';
 import { EditorState, Extension } from '@codemirror/state';
 import { history, historyKeymap } from '@codemirror/history';
-import { foldGutter, foldKeymap } from '@codemirror/fold';
+import { foldKeymap } from '@codemirror/fold';
 import { indentOnInput } from '@codemirror/language';
-import { highlightActiveLineGutter } from '@codemirror/gutter';
 import { defaultKeymap } from '@codemirror/commands';
 import { bracketMatching } from '@codemirror/matchbrackets';
 import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
@@ -41,8 +33,6 @@ import { EDITOR_PLACEHOLDER } from '../../../constants';
 ///  - [bracket closing](#closebrackets.closeBrackets)
 ///  - [autocompletion](#autocomplete.autocompletion)
 ///  - [rectangular selection](#rectangular-selection.rectangularSelection)
-///  - [active line highlighting](#view.highlightActiveLine)
-///  - [active line gutter highlighting](#gutter.highlightActiveLineGutter)
 ///  - [selection match highlighting](#search.highlightSelectionMatches)
 ///  - [search](#search.searchKeymap)
 ///  - [commenting](#comment.commentKeymap)
@@ -52,10 +42,8 @@ import { EDITOR_PLACEHOLDER } from '../../../constants';
 
 export const basicSetup: Extension = [
     placeholder(EDITOR_PLACEHOLDER),
-    highlightActiveLineGutter(),
     highlightSpecialChars(),
     history(),
-    foldGutter(),
     drawSelection(),
     EditorState.allowMultipleSelections.of(true),
     EditorView.lineWrapping,
@@ -65,7 +53,6 @@ export const basicSetup: Extension = [
     closeBrackets(),
     autocompletion(),
     rectangularSelection(),
-    highlightActiveLine(),
     highlightSelectionMatches(),
     keymap.of([
         ...closeBracketsKeymap,

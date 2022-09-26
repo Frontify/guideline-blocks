@@ -5,7 +5,7 @@ import type { BlockSettings } from '@frontify/guideline-blocks-settings';
 export const settings: BlockSettings = {
     basics: [
         {
-            id: 'colorPalettes',
+            id: 'colorPaletteIds',
             label: 'Color Palettes',
             type: 'checklist',
             columns: 2,

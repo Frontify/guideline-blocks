@@ -1,20 +1,24 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, ReactElement } from 'react';
-import { useBlockSettings, useColorPalettes } from '@frontify/app-bridge';
+import { ReactElement, useMemo } from 'react';
+import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
+
 import { Palette } from './Palette';
 import type { ColorKitBlockProps, Settings } from './types';
 
-export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactElement => {
+export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const isEditing = useEditorState(appBridge);
 
-    const { colorPalettes, downloadColorKit } = useColorPalettes(
-        appBridge,
-        (blockSettings.colorPalettes ?? []).map((id) => Number(id))
+    const memoizedColorPaletteIds = useMemo(
+        () => (blockSettings.colorPaletteIds ?? []).map((id) => Number(id)),
+        [blockSettings.colorPaletteIds]
     );
-    const link = downloadColorKit(blockSettings.colorPalettes);
-    const isDownloadEnabled = blockSettings.colorPalettes?.length > 0;
+
+    const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, memoizedColorPaletteIds);
+    const link = downloadColorKit(memoizedColorPaletteIds);
+    const isDownloadEnabled = memoizedColorPaletteIds?.length > 0;
 
     return (
         <div
@@ -26,10 +30,10 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     <Text as="p" size="large" weight="x-strong">
                         Color Kit
                     </Text>
-                    <Badge>ASE</Badge>
-                    <Badge>LESS</Badge>
-                    <Badge>OCO</Badge>
-                    <Badge>SCSS</Badge>
+                    <Badge size="small">ASE</Badge>
+                    <Badge size="small">LESS</Badge>
+                    <Badge size="small">OCO</Badge>
+                    <Badge size="small">SCSS</Badge>
                 </div>
                 <a
                     download
@@ -38,7 +42,7 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     rel="noreferrer"
                     data-test-id="download-button"
                     title="download color palettes"
-                    style={{ pointerEvents: isDownloadEnabled ? 'none' : 'initial' }}
+                    style={{ pointerEvents: isDownloadEnabled ? 'initial' : 'none' }}
                 >
                     <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />} disabled={!isDownloadEnabled}>
                         Download
@@ -46,7 +50,7 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                 </a>
             </div>
             {colorPalettes.map((palette) => {
-                return <Palette key={palette.id} palette={palette} />;
+                return <Palette key={palette.id} palette={palette} isEditing={isEditing} />;
             })}
         </div>
     );

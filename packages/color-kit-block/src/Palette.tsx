@@ -1,39 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Stack, Text, Tooltip, TooltipPosition } from '@frontify/fondue';
-import { TooltipContent } from './TooltipContent';
-import type { PaletteProps } from './types';
+import { Text } from '@frontify/fondue';
 
-export const Palette = ({ palette }: PaletteProps) => {
+import type { PaletteProps } from './types';
+import { Color } from './Color';
+
+export const Palette = ({ palette, isEditing }: PaletteProps) => {
     const { name, colors = [] } = palette;
+
     return (
         <div data-test-id="palette" className="tw-flex tw-flex-col tw-space-y-2">
             <Text color="x-weak">{name}</Text>
-            <Stack padding="none" spacing="none">
-                {colors.map(({ id, hex }) => {
-                    if (!hex) {
-                        return <></>;
-                    }
-
-                    return (
-                        <Tooltip
-                            withArrow
-                            key={id}
-                            hoverDelay={100}
-                            position={TooltipPosition.Right}
-                            content={<TooltipContent color={hex} />}
-                            triggerElement={
-                                <div
-                                    key={id}
-                                    data-test-id="color"
-                                    style={{ backgroundColor: `#${hex}` }}
-                                    className="tw-w-6 tw-h-6 tw-inline-block"
-                                />
-                            }
-                        />
-                    );
-                })}
-            </Stack>
+            <div className="tw-flex tw-flex-wrap [&>div]:tw-h-6 [&>div:first-child>div]:tw-shadow-inner-line-first [&>div:last-child>div]:tw-shadow-inner-line-last">
+                {colors.map((color) => (
+                    <Color key={color.id} isEditing={isEditing} color={color} />
+                ))}
+            </div>
         </div>
     );
 };
