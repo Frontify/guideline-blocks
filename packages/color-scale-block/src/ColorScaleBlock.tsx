@@ -67,7 +67,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> } = useRef(undefined);
 
     const [blockColors, setBlockColors] = useState(
-        calculateWidths(blockSettings.colorInput, colorScaleBlockRef, false)
+        calculateWidths(blockSettings.colorInput ?? ([] as BlockColor[]), colorScaleBlockRef, false)
     );
 
     const deleteBlockColorById = (id: number | undefined) => {

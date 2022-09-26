@@ -8,25 +8,24 @@ import { MINIMUM_AMOUNT_OF_PIXELS_TO_SHIFT_WHEN_ADDING_NEW_COLOR } from '../help
 import { MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING } from '../helpers';
 
 export const calculateWidths = (
-    itemList: BlockColor[],
+    blockColors: BlockColor[],
     colorScaleBlockRef: ColorScaleBlockRef,
     addingNewColor: boolean
 ) => {
-    let emptySpace = 0;
-    let itemsWithWidths: BlockColor[] = [];
+    let emptySpace, itemsWithWidths: BlockColor[];
 
-    itemsWithWidths = itemList?.map((color: BlockColor) => {
+    itemsWithWidths = blockColors.map((color: BlockColor) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current && color && !color.width) {
             // In this case, a width is missing
             return {
                 ...color,
-                width: calculateDefaultColorWidth(itemList.length, colorScaleBlockRef),
+                width: calculateDefaultColorWidth(blockColors.length, colorScaleBlockRef),
             };
         }
         return color;
     });
 
-    emptySpace = getEmptySpace(colorScaleBlockRef, itemList);
+    emptySpace = getEmptySpace(colorScaleBlockRef, blockColors);
 
     if (addingNewColor) {
         if (emptySpace > MINIMUM_AMOUNT_OF_PIXELS_TO_MOVE_DURING_RESIZE) {
@@ -34,12 +33,12 @@ export const calculateWidths = (
         }
     }
 
-    emptySpace = getEmptySpace(colorScaleBlockRef, itemList);
+    emptySpace = getEmptySpace(colorScaleBlockRef, blockColors);
 
     if (emptySpace <= MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING && itemsWithWidths) {
         if (addingNewColor) {
             let resizingDone = false;
-            itemsWithWidths = itemsWithWidths?.map((color: BlockColor) => {
+            itemsWithWidths = itemsWithWidths.map((color: BlockColor) => {
                 if (!resizingDone) {
                     if (color?.width && color.width > MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING) {
                         resizingDone = true;
