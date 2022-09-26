@@ -31,7 +31,6 @@ export type ColorScaleBlockRef = {
 };
 
 export type SquareWithColorProps = {
-    id: number;
     index: number;
     width: number;
     height: string;

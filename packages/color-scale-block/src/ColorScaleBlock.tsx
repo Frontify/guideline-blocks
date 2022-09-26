@@ -98,7 +98,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
     const findFrontifyColorByColor = (color: Color): Nullable<FrontifyColor> => {
         const colorMach = frontifyColors.find(
-            (frontifyColor: FrontifyColor) =>
+            (frontifyColor) =>
                 frontifyColor.red === color.red &&
                 frontifyColor.green === color.green &&
                 frontifyColor.blue === color.blue &&
@@ -193,7 +193,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         if (colorScaleBlockRef?.current) {
             let addedFirstColor;
             if (blockSettings.colorInput) {
-                addedFirstColor = blockSettings.colorInput.filter((item) => item).length > 0 ? true : false;
+                addedFirstColor = blockSettings.colorInput.filter((item) => item).length > 0;
             } else {
                 addedFirstColor = false;
             }
@@ -206,20 +206,15 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                     needToCalculateWidths = !color || (color && !color.width);
                 }
 
-                    if (needToCalculateWidths) {
-                        const colorsWithNewWidths = calculateWidths(
-                            blockSettings.colorInput,
-                            colorScaleBlockRef,
-                            false
-                        );
-                        setBlockSettings({
-                            ...blockSettings,
-                            colorInput: colorsWithNewWidths,
-                        });
-                        setBlockColors(colorsWithNewWidths);
-                    } else {
-                        return setBlockColors(blockSettings.colorInput);
-                    }
+                if (needToCalculateWidths) {
+                    const colorsWithNewWidths = calculateWidths(blockSettings.colorInput, colorScaleBlockRef, false);
+                    setBlockSettings({
+                        ...blockSettings,
+                        colorInput: colorsWithNewWidths,
+                    });
+                    setBlockColors(colorsWithNewWidths);
+                } else {
+                    return setBlockColors(blockSettings.colorInput);
                 }
             }
         }
