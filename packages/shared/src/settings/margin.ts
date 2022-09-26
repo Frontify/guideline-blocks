@@ -8,6 +8,11 @@ import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNum
 import { MARGIN_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { marginStyleMap, Margin } from './types';
 
+type MarginSettingsType = {
+    id?: string;
+    marginStyleMap?: Record<Margin, string>;
+};
+
 /**
  * Returns margin settings: margin switch, margin slider, custom margin input
  *
@@ -15,12 +20,6 @@ import { marginStyleMap, Margin } from './types';
  * @param options.id Custom suffix for the setting ids
  * @returns {SettingBlock} Returns margin settings
  */
-
-type MarginSettingsType = {
-    id?: string;
-    marginStyleMap?: Record<Margin, string>;
-};
-
 export const getMarginSlider = (id: string): SettingBlock => ({
     id,
     type: 'slider',
