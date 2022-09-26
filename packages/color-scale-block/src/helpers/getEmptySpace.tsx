@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ColorBlockColor, ColorScaleBlockRef } from '../types';
+import { blockColor, ColorScaleBlockRef } from '../types';
 
-export const getEmptySpace = (colorScaleBlockRef: ColorScaleBlockRef, colorArray: ColorBlockColor[]) => {
+export const getEmptySpace = (colorScaleBlockRef: ColorScaleBlockRef, colorArray: blockColor[]) => {
     if (!(colorScaleBlockRef && colorScaleBlockRef.current)) {
         return 0;
     }
@@ -11,7 +11,7 @@ export const getEmptySpace = (colorScaleBlockRef: ColorScaleBlockRef, colorArray
     let usedSpace = 0;
     let emptySpace = 0;
 
-    colorArray?.map((color: ColorBlockColor) => {
+    colorArray?.map((color: blockColor) => {
         if (color && color.width) {
             usedSpace += color.width;
         }

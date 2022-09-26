@@ -1,13 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ColorBlockColor, ColorScaleBlockRef } from '../types';
+import { blockColor, ColorScaleBlockRef } from '../types';
 import { calculateDefaultColorWidth } from './calculateDefaultColorWidth';
 
-export const canExpandColorBlock = (displayableItems: ColorBlockColor[], colorScaleBlockRef: ColorScaleBlockRef) => {
+export const canExpandColorBlock = (displayableItems: blockColor[], colorScaleBlockRef: ColorScaleBlockRef) => {
     const colorScaleBlockWidth = colorScaleBlockRef?.current?.getBoundingClientRect().width || 0;
     let usedSpace = 0;
 
-    displayableItems?.map((color: ColorBlockColor) => {
+    displayableItems?.map((color: blockColor) => {
         const width = color?.width ?? calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
 
         if (width) {
