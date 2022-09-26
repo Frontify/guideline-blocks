@@ -157,9 +157,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             let addedFirstColor;
             if (blockSettings.colorInput) {
-                addedFirstColor = blockSettings.colorInput.filter((item: ColorProps) =>
-                    item.id ? true : false
-                ).length;
+                addedFirstColor = blockSettings.colorInput.filter((item: ColorProps) => !!item.id).length;
             } else {
                 addedFirstColor = false;
             }
@@ -192,7 +190,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                 console.error(error);
             }
         }
-    }, [blockSettings]);
+    }, [blockSettings, colorScaleHeight, setBlockSettings]);
 
     const handleResizeStop = () => {
         draggingId.current = null;
@@ -227,12 +225,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                     const movementSinceStart = dragStartPos.current - event.clientX;
 
                     const colorsBeforeCurrent = displayableItems
-                        ?.filter((diValue, diIndex) => {
-                            if (id !== undefined && diIndex < id) {
-                                return true;
-                            }
-                            return false;
-                        })
+                        ?.filter((diValue, diIndex) => id !== undefined && diIndex < id)
                         .reverse();
 
                     const newDisplayableItems = displayableItems?.map((diValue, diIndex) => {
@@ -287,12 +280,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
                     const movementSinceStart = event.clientX - (dragStartPos.current ?? 0);
 
-                    const colorsAfterCurrent = displayableItems?.filter((diValue, diIndex) => {
-                        if (id && diIndex > id) {
-                            return true;
-                        }
-                        return false;
-                    });
+                    const colorsAfterCurrent = displayableItems?.filter((diValue, diIndex) => !!(id && diIndex > id));
 
                     const newDisplayableItems = displayableItems?.map((diValue, diIndex) => {
                         if (canExpandColorBlock(displayableItems, colorScaleBlockRef)) {
