@@ -10,9 +10,7 @@ export const resizeEvenly = (itemList: BlockColor[], colorScaleBlockRef: ColorSc
 
     const defaultWidth = calculateDefaultColorWidth(itemList.length, colorScaleBlockRef);
 
-    const newDisplayableItems = itemList.map((item) => {
+    return itemList.map((item) => {
         return { ...item, width: defaultWidth };
     });
-
-    return newDisplayableItems;
 };

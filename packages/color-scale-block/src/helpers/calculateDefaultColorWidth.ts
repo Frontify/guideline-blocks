@@ -9,7 +9,6 @@ export const calculateDefaultColorWidth = (colorArrayLength: number, colorScaleB
     }
 
     const colorScaleBlockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
-    const defaultWidth = colorScaleBlockWidth / colorArrayLength;
 
-    return defaultWidth;
+    return colorScaleBlockWidth / colorArrayLength;
 };

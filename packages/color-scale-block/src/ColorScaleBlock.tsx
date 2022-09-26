@@ -333,7 +333,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         setBlockSettings({ ...blockSettings, colorInput: updatedColors });
     };
 
-    const handleColorPickerFlyoutTrigger = () => {
+    const toggleColorPickerFlyout = () => {
         setIsColorPickerOpen(!isColorPickerOpen);
     };
 
@@ -430,7 +430,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             style={ButtonStyle.Secondary}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}
-                            disabled={!blockColors}
+                            disabled={blockColors.length === 0}
                         >
                             Resize Evenly
                         </Button>
@@ -442,7 +442,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             updateColor={updateBlockColorByColor}
                         >
                             <Button
-                                onClick={handleColorPickerFlyoutTrigger}
+                                onClick={toggleColorPickerFlyout}
                                 style={ButtonStyle.Secondary}
                                 size={ButtonSize.Small}
                                 icon={<IconPlus12 />}
