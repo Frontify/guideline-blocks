@@ -66,7 +66,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const lastDragPos: { current?: number | null } = useRef();
     const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> } = useRef(undefined);
 
-    const [displayableItems, setDisplayableItems] = useState(
+    const [blockColors, setBlockColors] = useState(
         calculateWidths(blockSettings.colorInput, colorScaleBlockRef, false)
     );
 
@@ -75,7 +75,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             return;
         }
 
-        const reorderedList = displayableItems?.filter((item: BlockColor) => item.id !== id);
+        const reorderedList = blockColors?.filter((item: BlockColor) => item.id !== id);
         setBlockSettings({ ...blockSettings, colorInput: reorderedList });
     };
 
@@ -88,7 +88,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
         const blockColor = createBlockColorByColorAndFrontifyColor(color, frontifyColor);
 
-        const colors = !isFirstBlockColor() ? [...displayableItems] : [];
+        const colors = !isFirstBlockColor() ? [...blockColors] : [];
 
         if (colors.findIndex((item) => item.id === blockColor.id) > -1) {
             return;
@@ -140,7 +140,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     };
 
     const isFirstBlockColor = (): boolean => {
-        return displayableItems.filter((item: BlockColor) => !item.red || !item.green || !item.blue).length === 0;
+        return blockColors.filter((item: BlockColor) => !item.red || !item.green || !item.blue).length === 0;
     };
 
     const mapFrontifyColorPalettesToPalettes = (frontifyColorPalettes: FrontifyColorPalette[]): Palette[] => {
@@ -171,7 +171,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
         const defaultWidth = width ?? DEFAULT_COLOR_SQUARE_WIDTH;
-        displayableItems?.map((color: BlockColor, loopIndex: number) => {
+        blockColors?.map((color: BlockColor, loopIndex: number) => {
             if (loopIndex < index) {
                 leftPos += color?.width ? color.width : defaultWidth;
             }
@@ -219,9 +219,9 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             ...blockSettings,
                             colorInput: colorsWithNewWidths,
                         });
-                        setDisplayableItems(colorsWithNewWidths);
+                        setBlockColors(colorsWithNewWidths);
                     } else {
-                        return setDisplayableItems(blockSettings.colorInput);
+                        return setBlockColors(blockSettings.colorInput);
                     }
                 }
             } catch (error) {
@@ -263,11 +263,11 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
                     const movementSinceStart = dragStartPos.current - event.clientX;
 
-                    const colorsBeforeCurrent = displayableItems
+                    const colorsBeforeCurrent = blockColors
                         ?.filter((diValue, diIndex) => id !== undefined && diIndex < id)
                         .reverse();
 
-                    const newDisplayableItems = displayableItems?.map((diValue, diIndex) => {
+                    const newDisplayableItems = blockColors?.map((diValue, diIndex) => {
                         if (diValue && diIndex === id) {
                             if (diValue.width && diValue.width >= 16) {
                                 // need to make sure it's 16 because we're going to decrease width
@@ -300,7 +300,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                     });
 
                     if (valuesChanged) {
-                        setDisplayableItems(newDisplayableItems);
+                        setBlockColors(newDisplayableItems);
                         timerToUpdateBlockSettings.current = setTimeout(() => {
                             setBlockSettings({
                                 ...blockSettings,
@@ -319,10 +319,10 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
                     const movementSinceStart = event.clientX - (dragStartPos.current ?? 0);
 
-                    const colorsAfterCurrent = displayableItems?.filter((diValue, diIndex) => !!(id && diIndex > id));
+                    const colorsAfterCurrent = blockColors?.filter((diValue, diIndex) => !!(id && diIndex > id));
 
-                    const newDisplayableItems = displayableItems?.map((diValue, diIndex) => {
-                        if (canExpandColorBlock(displayableItems, colorScaleBlockRef)) {
+                    const newDisplayableItems = blockColors?.map((diValue, diIndex) => {
+                        if (canExpandColorBlock(blockColors, colorScaleBlockRef)) {
                             if (diIndex === id) {
                                 diValue.width = (dragStartWidth.current ?? 0) + movementSinceStart;
 
@@ -349,7 +349,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                         return diValue;
                     });
                     if (valuesChanged) {
-                        setDisplayableItems(newDisplayableItems);
+                        setBlockColors(newDisplayableItems);
                         timerToUpdateBlockSettings.current = setTimeout(() => {
                             setBlockSettings({
                                 ...blockSettings,
@@ -363,14 +363,14 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     };
 
     const handleResizeEvenly = () => {
-        setBlockSettings({ ...blockSettings, colorInput: resizeEvenly(displayableItems, colorScaleBlockRef) });
+        setBlockSettings({ ...blockSettings, colorInput: resizeEvenly(blockColors, colorScaleBlockRef) });
     };
 
     const handleDrop = (targetItem: BlockColor, movedItem: BlockColor, position: DropZonePosition) => {
         let targetItemIndex = 0;
         let movedItemIndex = 0;
 
-        let updatedColors = [...displayableItems];
+        let updatedColors = [...blockColors];
 
         movedItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === movedItem.id);
 
@@ -381,7 +381,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         updatedColors.splice(position === 'after' ? targetItemIndex + 1 : targetItemIndex, 0, movedItem);
 
         setBlockSettings({ ...blockSettings, colorInput: updatedColors });
-        setDisplayableItems(updatedColors);
+        setBlockColors(updatedColors);
     };
 
     const handleColorPickerFlyoutTrigger = () => {
@@ -407,18 +407,18 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                     draggable={true}
                 >
                     <DndProvider backend={HTML5Backend}>
-                        {displayableItems &&
-                            displayableItems?.map((blockColor: BlockColor, index: number) => {
+                        {blockColors &&
+                            blockColors?.map((blockColor: BlockColor, index: number) => {
                                 let width;
 
                                 if (blockColor?.width) {
                                     width = blockColor.width;
                                 } else {
-                                    width = calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
+                                    width = calculateDefaultColorWidth(blockColors.length, colorScaleBlockRef);
                                 }
 
                                 const isFirst = index === 0;
-                                const isLast = index === displayableItems.length - 1;
+                                const isLast = index === blockColors.length - 1;
 
                                 return (
                                     <div className="tw-flex tw-relative tw-h-full" key={blockColor.id}>
@@ -445,7 +445,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                             isDragging={currentlyDraggedColorId !== null}
                                             setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
                                             currentColor={blockColor}
-                                            totalNumberOfBlocks={displayableItems.length}
+                                            totalNumberOfBlocks={blockColors.length}
                                             onResizeStart={handleResizeStart}
                                             calculateLeftPosition={calculateLeftPosition}
                                             isEditing={isEditing}
@@ -463,7 +463,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                 );
                             })}
 
-                        {displayableItems.length === 0 && (
+                        {blockColors.length === 0 && (
                             <EmptyView
                                 height={
                                     blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
@@ -482,12 +482,12 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             style={ButtonStyle.Secondary}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}
-                            disabled={!displayableItems}
+                            disabled={!blockColors}
                         >
                             Resize Evenly
                         </Button>
                         <ColorPickerFlyout
-                            newIndex={displayableItems.length}
+                            newIndex={blockColors.length}
                             isColorPickerOpen={isColorPickerOpen}
                             setIsColorPickerOpen={setIsColorPickerOpen}
                             colorPalettes={colorPickerPalettes}
