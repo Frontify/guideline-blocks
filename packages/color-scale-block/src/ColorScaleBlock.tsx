@@ -40,7 +40,6 @@ import {
     canExpandColorBlock,
     resizeEvenly,
 } from './helpers';
-import { MouseEventHandler } from 'react';
 
 type Props = {
     appBridge: AppBridgeBlock;
@@ -184,6 +183,8 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     }, [frontifyColorPalettes]);
 
     useEffect(() => {
+        setBlockColors(blockSettings.colorInput ?? ([] as BlockColor[]));
+
         const currentHeight = blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider;
 
         if (colorScaleHeight !== currentHeight) {
@@ -232,7 +233,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         draggingId.current = index;
     };
 
-    const handleResize: MouseEventHandler = (event: MouseEvent) => {
+    const handleResize = (event: MouseEvent) => {
         clearTimeout(timerToUpdateBlockSettings.current);
 
         if (draggingId.current !== null) {
@@ -396,8 +397,8 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                     draggable={true}
                 >
                     <DndProvider backend={HTML5Backend}>
-                        {blockColors &&
-                            blockColors?.map((blockColor: BlockColor, index: number) => {
+                        {blockColors.length > 0 &&
+                            blockColors.map((blockColor: BlockColor, index: number) => {
                                 let width;
 
                                 if (blockColor?.width) {
