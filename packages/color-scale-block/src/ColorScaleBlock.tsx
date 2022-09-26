@@ -50,7 +50,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [colorScaleHeight, setColorScaleHeight] = useState(
-        blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
+        blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
     );
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
         number | null | undefined,
@@ -146,9 +146,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     }, [colorPalettes]);
 
     useEffect(() => {
-        const currentHeight = blockSettings['customHeight']
-            ? blockSettings['heightInput']
-            : blockSettings['heightSlider'];
+        const currentHeight = blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider;
 
         if (colorScaleHeight !== currentHeight) {
             setColorScaleHeight(currentHeight);
@@ -431,9 +429,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                         {displayableItems.length === 0 && (
                             <EmptyView
                                 height={
-                                    blockSettings['customHeight']
-                                        ? blockSettings['heightInput']
-                                        : blockSettings['heightSlider']
+                                    blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
                                 }
                             />
                         )}
