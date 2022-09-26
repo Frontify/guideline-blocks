@@ -31,6 +31,8 @@ import { DropZone } from './dragAndDrop/DropZone';
 import { EmptyView } from './components/EmptyView';
 import {
     DEFAULT_COLOR_SQUARE_WIDTH,
+    MAXIMUM_NUMBER_OF_PLACEHOLDER_SQUARES,
+    MINIMUM_NUMBER_OF_COLORS,
     calculateDefaultColorWidth,
     calculateWidths,
     canExpandColorBlock,
@@ -44,31 +46,21 @@ type Props = {
 
 export const ColorScaleBlock = ({ appBridge }: Props) => {
     const { colorPalettes } = useColorPalettes(appBridge);
-    const [colorPickerPalette, setColorPickerPalette]: [Palette[], (color: Palette[]) => void] = useState(
-        [] as Palette[]
-    );
+    const [colorPickerPalette, setColorPickerPalette] = useState<Palette[]>([] as Palette[]);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
     );
-    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
-        number | null | undefined,
-        (value?: number | null | undefined) => void
-    ] = useState();
-    const [editedColor, setEditedColor]: [
-        ColorProps | null | undefined,
-        (color: ColorProps | null | undefined) => void
-    ] = useState<Nullable<ColorProps>>();
-    const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+    const [currentlyDraggedColorId, setCurrentlyDraggedColorId] = useState<number | null>();
+    const [editedColor, setEditedColor] = useState<Nullable<ColorProps>>();
+    const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
     const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
     const draggingId: { current?: number | null | undefined } = useRef(null);
     const dragStartPos: { current?: number | null | undefined } = useRef();
     const dragStartWidth: { current?: number | null | undefined } = useRef();
     const lastDragPos: { current?: number | null | undefined } = useRef();
     const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> | undefined } = useRef(undefined);
-    const minimumNumberOfColors = 1;
-    const maximumNumberOfPlaceholderSquares = 6;
 
     const deleteColor = (id: number | undefined) => {
         if (!id) {
@@ -159,7 +151,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             } else {
                 addedFirstColor = false;
             }
-            const minimumColors = addedFirstColor ? minimumNumberOfColors : maximumNumberOfPlaceholderSquares;
+            const minimumColors = addedFirstColor ? MINIMUM_NUMBER_OF_COLORS : MAXIMUM_NUMBER_OF_PLACEHOLDER_SQUARES;
 
             try {
                 if (blockSettings.colorInput && blockSettings.colorInput.length >= minimumColors) {
