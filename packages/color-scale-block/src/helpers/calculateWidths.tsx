@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { blockColor, ColorScaleBlockRef } from '../types';
+import { BlockColor, ColorScaleBlockRef } from '../types';
 import { calculateDefaultColorWidth } from './calculateDefaultColorWidth';
 import { getEmptySpace } from './getEmptySpace';
 import { minimumAmountOfPixelsToMoveDuringResize } from '../helpers';
@@ -8,14 +8,14 @@ import { minimumAmountOfPixelsToShiftWhenAddingNewColor } from '../helpers';
 import { minimumColorWidthToAllowResizing } from '../helpers';
 
 export const calculateWidths = (
-    itemList: blockColor[],
+    itemList: BlockColor[],
     colorScaleBlockRef: ColorScaleBlockRef,
     addingNewColor: boolean
 ) => {
     let emptySpace = 0;
-    let itemsWithWidths: blockColor[] = [];
+    let itemsWithWidths: BlockColor[] = [];
 
-    itemsWithWidths = itemList?.map((color: blockColor) => {
+    itemsWithWidths = itemList?.map((color: BlockColor) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current && color && !color.width) {
             // In this case, a width is missing
             return {
@@ -39,7 +39,7 @@ export const calculateWidths = (
     if (emptySpace <= minimumColorWidthToAllowResizing && itemsWithWidths) {
         if (addingNewColor) {
             let resizingDone = false;
-            itemsWithWidths = itemsWithWidths?.map((color: blockColor) => {
+            itemsWithWidths = itemsWithWidths?.map((color: BlockColor) => {
                 if (!resizingDone) {
                     if (color && color.width && color.width > minimumColorWidthToAllowResizing) {
                         resizingDone = true;

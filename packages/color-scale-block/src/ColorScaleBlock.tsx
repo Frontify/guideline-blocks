@@ -11,7 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import { SquareWithColor } from './components/SquareWithColor';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
-import { blockColor, Settings } from './types';
+import { BlockColor, Settings } from './types';
 import {
     Button,
     ButtonGroup,
@@ -63,9 +63,9 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     ] = useState();
 
     const [editedColor, setEditedColor]: [
-        blockColor | null | undefined,
-        (color: blockColor | null | undefined) => void
-    ] = useState<Nullable<blockColor>>();
+        BlockColor | null | undefined,
+        (color: BlockColor | null | undefined) => void
+    ] = useState<Nullable<BlockColor>>();
 
     const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
     const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
@@ -82,14 +82,14 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             return;
         }
 
-        const reorderedList = displayableItems?.filter((item: blockColor) => item.id !== id);
+        const reorderedList = displayableItems?.filter((item: BlockColor) => item.id !== id);
         setBlockSettings({ ...blockSettings, colorInput: reorderedList });
     };
 
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
         const defaultWidth = width ? width : defaultColorSquareWidth;
-        displayableItems?.map((color: blockColor, loopIndex: number) => {
+        displayableItems?.map((color: BlockColor, loopIndex: number) => {
             if (loopIndex < index) {
                 leftPos += color && color.width ? color.width : defaultWidth;
             }
@@ -100,7 +100,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
     // todo
     const updateColor = (color: Color) => {
-        const newColor: blockColor = {
+        const newColor: BlockColor = {
             id: undefined,
             sort: 0,
             red: color.red,
@@ -171,7 +171,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             let addedFirstColor;
             if (blockSettings.colorInput) {
-                addedFirstColor = blockSettings.colorInput.filter((item: blockColor) => !!item.id).length;
+                addedFirstColor = blockSettings.colorInput.filter((item: BlockColor) => !!item.id).length;
             } else {
                 addedFirstColor = false;
             }
@@ -209,7 +209,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const handleResizeStop = () => {
         draggingId.current = null;
     };
-    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: blockColor): void => {
+    const handleResizeStart = (event: MouseEvent, index?: number, currentColor?: BlockColor): void => {
         if (dragStartPos) {
             dragStartPos.current = event.clientX;
             dragStartWidth.current = currentColor?.width;
@@ -341,7 +341,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         setBlockSettings({ ...blockSettings, colorInput: resizeEvenly(displayableItems, colorScaleBlockRef) });
     };
 
-    const handleDrop = (targetItem: blockColor, movedItem: blockColor, position: DropZonePosition) => {
+    const handleDrop = (targetItem: BlockColor, movedItem: BlockColor, position: DropZonePosition) => {
         let targetItemIndex = 0;
         let movedItemIndex = 0;
 
@@ -387,7 +387,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                 >
                     <DndProvider backend={HTML5Backend}>
                         {displayableItems &&
-                            displayableItems?.map((color: blockColor, index: number) => {
+                            displayableItems?.map((color: BlockColor, index: number) => {
                                 let width;
 
                                 if (color && color.width) {

@@ -11,10 +11,10 @@ export type Settings = {
     customHeight: boolean;
     heightSlider: string;
     heightInput: string;
-    colorInput: blockColor[];
+    colorInput: BlockColor[];
 };
 
-export type blockColor = {
+export type BlockColor = {
     id: number | undefined;
     sort?: number;
     red: number;
@@ -37,17 +37,17 @@ export type SquareWithColorProps = {
     height: string;
     isLast: boolean;
     isFirst: boolean;
-    currentColor: blockColor;
+    currentColor: BlockColor;
     calculateLeftPosition: (index: number, width: number) => void;
     isEditing: boolean;
-    editedColor: blockColor | null | undefined;
-    setEditedColor: (color: blockColor | undefined | null) => void;
-    updateColor: (color: blockColor) => void;
+    editedColor: BlockColor | null | undefined;
+    setEditedColor: (color: BlockColor | undefined | null) => void;
+    updateColor: (color: BlockColor) => void;
     setFormat: (color?: ColorFormat) => void;
     deleteColor: (color: number | undefined) => void;
-    handleDrop: (targetItem: blockColor, sourceItem: blockColor, position: DropZonePosition) => void;
+    handleDrop: (targetItem: BlockColor, sourceItem: BlockColor, position: DropZonePosition) => void;
     listId: string;
-    onResizeStart: (event: MouseEvent, index?: number, currentColor?: blockColor) => void;
+    onResizeStart: (event: MouseEvent, index?: number, currentColor?: BlockColor) => void;
     totalNumberOfBlocks: number;
     isDragging: boolean;
     setCurrentlyDraggedColorId: (value: number | undefined | null) => void;
@@ -60,7 +60,7 @@ export type OnDropCallback<T> = (
 ) => void;
 
 export type DropZoneData<T> = {
-    targetItem: DraggableItem<T> | blockColor;
+    targetItem: DraggableItem<T> | BlockColor;
     position: DropZonePosition;
 };
 
@@ -69,7 +69,7 @@ export type DropZoneProps<T> = {
     onDrop?: OnDropCallback<T>;
     treeId: string;
     isDraggingActive: boolean;
-    currentColor: blockColor;
+    currentColor: BlockColor;
     children?: JSX.Element;
     before?: boolean;
     after?: boolean;
@@ -88,8 +88,8 @@ export type ColorPickerFlyoutProps = {
 
 export type DragHandleProps = {
     index: number;
-    currentColor: blockColor;
-    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: blockColor) => void | undefined;
+    currentColor: BlockColor;
+    onResizeStart?: (event: MouseEvent, id?: number, currentColor?: BlockColor) => void | undefined;
 };
 
 export type EmptyViewProps = {
