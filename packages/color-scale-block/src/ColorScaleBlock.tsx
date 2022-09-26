@@ -76,7 +76,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         const defaultWidth = width ?? DEFAULT_COLOR_SQUARE_WIDTH;
         displayableItems?.map((color: ColorProps, loopIndex: number) => {
             if (loopIndex < index) {
-                leftPos += color && color.width ? color.width : defaultWidth;
+                leftPos += color?.width ? color.width : defaultWidth;
             }
             return color;
         });
@@ -366,7 +366,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             displayableItems?.map((color: ColorProps, index: number) => {
                                 let width;
 
-                                if (color && color.width) {
+                                if (color?.width) {
                                     width = color.width;
                                 } else {
                                     width = calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);

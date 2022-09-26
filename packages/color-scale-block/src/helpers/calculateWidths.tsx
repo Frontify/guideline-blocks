@@ -41,12 +41,12 @@ export const calculateWidths = (
             let resizingDone = false;
             itemsWithWidths = itemsWithWidths?.map((color: ColorProps) => {
                 if (!resizingDone) {
-                    if (color && color.width && color.width > MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING) {
+                    if (color?.width && color.width > MINIMUM_COLOR_WIDTH_TO_ALLOW_RESIZING) {
                         resizingDone = true;
 
                         return {
                             ...color,
-                            width: color && color.width - MINIMUM_AMOUNT_OF_PIXELS_TO_SHIFT_WHEN_ADDING_NEW_COLOR,
+                            width: color?.width - MINIMUM_AMOUNT_OF_PIXELS_TO_SHIFT_WHEN_ADDING_NEW_COLOR,
                         };
                     }
                 }
