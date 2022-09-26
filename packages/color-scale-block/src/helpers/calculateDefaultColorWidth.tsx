@@ -4,7 +4,7 @@ import { ColorScaleBlockRef } from '../types';
 import { DEFAULT_COLOR_SQUARE_WIDTH } from './constants';
 
 export const calculateDefaultColorWidth = (colorArray: number, colorScaleBlockRef: ColorScaleBlockRef) => {
-    if (!(colorScaleBlockRef && colorScaleBlockRef?.current)) {
+    if (!colorScaleBlockRef?.current) {
         return DEFAULT_COLOR_SQUARE_WIDTH;
     }
 

@@ -108,33 +108,34 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             colorInput: colorsWithNewWidths,
         });
     };
-    const populateColorPickerPalettes = (inputPalettes: FrontifyColorPalette[]) => {
-        const formattedPalettes: Palette[] = [];
-
-        for (const palette of inputPalettes) {
-            if (palette && palette.colors) {
-                const colors = palette.colors.map((color) => {
-                    return {
-                        alpha: color.alpha ?? 0,
-                        red: color.red ?? 0,
-                        green: color.green ?? 0,
-                        blue: color.blue ?? 0,
-                        name: color.name ?? '',
-                    };
-                });
-
-                formattedPalettes.push({
-                    id: palette.id,
-                    title: palette.name,
-                    colors,
-                });
-            }
-        }
-        return formattedPalettes;
-    };
 
     useEffect(() => {
-        setColorPickerPalette(populateColorPickerPalettes(colorPalettes));
+        setColorPickerPalette(
+            ((inputPalettes: FrontifyColorPalette[]) => {
+                const formattedPalettes: Palette[] = [];
+
+                for (const palette of inputPalettes) {
+                    if (palette && palette.colors) {
+                        const colors = palette.colors.map((color) => {
+                            return {
+                                alpha: color.alpha ?? 0,
+                                red: color.red ?? 0,
+                                green: color.green ?? 0,
+                                blue: color.blue ?? 0,
+                                name: color.name ?? '',
+                            };
+                        });
+
+                        formattedPalettes.push({
+                            id: palette.id,
+                            title: palette.name,
+                            colors,
+                        });
+                    }
+                }
+                return formattedPalettes;
+            })(colorPalettes)
+        );
     }, [colorPalettes]);
 
     useEffect(() => {
@@ -144,7 +145,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             setColorScaleHeight(currentHeight);
         }
 
-        if (colorScaleBlockRef && colorScaleBlockRef.current) {
+        if (colorScaleBlockRef?.current) {
             let addedFirstColor;
             if (blockSettings.colorInput) {
                 addedFirstColor = blockSettings.colorInput.filter((item) => !!item.id).length;
