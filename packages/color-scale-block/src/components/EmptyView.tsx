@@ -1,17 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { EmptyViewProps } from '../types';
+import { EMPTY_BLOCK_COLORS } from '../helpers';
 
 export const EmptyView = ({ height }: EmptyViewProps) => {
-    const emptyBlockColors = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
-
     return (
         <>
-            {emptyBlockColors.map((color: string, index: number) => {
+            {EMPTY_BLOCK_COLORS.map((color: string, index: number) => {
                 return (
                     <div
                         style={{
-                            backgroundColor: emptyBlockColors[index],
+                            backgroundColor: EMPTY_BLOCK_COLORS[index],
                             height,
                         }}
                         key={`placeholder-${index}`}

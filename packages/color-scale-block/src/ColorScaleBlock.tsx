@@ -32,10 +32,12 @@ import 'tailwindcss/tailwind.css';
 import { DropZone } from './dragAndDrop/DropZone';
 import { EmptyView } from './components/EmptyView';
 import {
+    DEFAULT_COLOR_SQUARE_WIDTH,
+    MAXIMUM_NUMBER_OF_PLACEHOLDER_SQUARES,
+    MINIMUM_NUMBER_OF_COLORS,
     calculateDefaultColorWidth,
     calculateWidths,
     canExpandColorBlock,
-    defaultColorSquareWidth,
     resizeEvenly,
 } from './helpers';
 import { MouseEventHandler } from 'react';
@@ -46,39 +48,26 @@ type Props = {
 
 export const ColorScaleBlock = ({ appBridge }: Props) => {
     const { colorPalettes: frontifyColorPalettes } = useColorPalettes(appBridge);
-    const [frontifyColors, setFrontifyColors]: [FrontifyColor[], (frontifyColors: FrontifyColor[]) => void] = useState(
-        [] as FrontifyColor[]
-    );
-    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [frontifyColors, setFrontifyColors] = useState<FrontifyColor[]>([] as FrontifyColor[]);
     const isEditing = useEditorState(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const [colorPickerPalettes, setColorPickerPalettes]: [Palette[], (color: Palette[]) => void] = useState(
         [] as Palette[]
     );
 
     const [colorScaleHeight, setColorScaleHeight] = useState(
-        blockSettings['customHeight'] ? blockSettings['heightInput'] : blockSettings['heightSlider']
+        blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
     );
-
-    const [currentlyDraggedColorId, setCurrentlyDraggedColorId]: [
-        number | null | undefined,
-        (value?: number | null | undefined) => void
-    ] = useState();
-
-    const [editedColor, setEditedColor]: [
-        BlockColor | null | undefined,
-        (color: BlockColor | null | undefined) => void
-    ] = useState<Nullable<BlockColor>>();
-
-    const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+    const [currentlyDraggedColorId, setCurrentlyDraggedColorId] = useState<number | null>();
+    const [editedColor, setEditedColor] = useState<Nullable<BlockColor>>();
+    const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
     const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
-    const draggingId: { current?: number | null | undefined } = useRef(null);
-    const dragStartPos: { current?: number | null | undefined } = useRef();
-    const dragStartWidth: { current?: number | null | undefined } = useRef();
-    const lastDragPos: { current?: number | null | undefined } = useRef();
-    const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> | undefined } = useRef(undefined);
-    const minimumNumberOfColors = 1;
-    const maximumNumberOfPlaceholderSquares = 6;
+    const draggingId: { current?: number | null } = useRef(null);
+    const dragStartPos: { current?: number | null } = useRef();
+    const dragStartWidth: { current?: number | null } = useRef();
+    const lastDragPos: { current?: number | null } = useRef();
+    const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> } = useRef(undefined);
 
     const deleteBlockColorById = (id: number | undefined) => {
         if (!id) {
@@ -178,10 +167,10 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
     const calculateLeftPosition = (index: number, width?: number) => {
         let leftPos = 0;
-        const defaultWidth = width ? width : defaultColorSquareWidth;
+        const defaultWidth = width ?? DEFAULT_COLOR_SQUARE_WIDTH;
         displayableItems?.map((color: BlockColor, loopIndex: number) => {
             if (loopIndex < index) {
-                leftPos += color && color.width ? color.width : defaultWidth;
+                leftPos += color?.width ? color.width : defaultWidth;
             }
             return color;
         });
@@ -194,9 +183,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     }, [frontifyColorPalettes]);
 
     useEffect(() => {
-        const currentHeight = blockSettings['customHeight']
-            ? blockSettings['heightInput']
-            : blockSettings['heightSlider'];
+        const currentHeight = blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider;
 
         if (colorScaleHeight !== currentHeight) {
             setColorScaleHeight(currentHeight);
@@ -209,7 +196,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             } else {
                 addedFirstColor = false;
             }
-            const minimumColors = addedFirstColor ? minimumNumberOfColors : maximumNumberOfPlaceholderSquares;
+            const minimumColors = addedFirstColor ? MINIMUM_NUMBER_OF_COLORS : MAXIMUM_NUMBER_OF_PLACEHOLDER_SQUARES;
 
             try {
                 if (blockSettings.colorInput && blockSettings.colorInput.length >= minimumColors) {
@@ -384,7 +371,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
         movedItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === movedItem.id);
 
-        updatedColors = updatedColors.filter((colorItem, index) => index !== movedItemIndex);
+        updatedColors = updatedColors.filter((_, index) => index !== movedItemIndex);
 
         targetItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === targetItem.id);
 
@@ -425,7 +412,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                             displayableItems?.map((color: BlockColor, index: number) => {
                                 let width;
 
-                                if (color && color.width) {
+                                if (color?.width) {
                                     width = color.width;
                                 } else {
                                     width = calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
@@ -480,9 +467,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                         {displayableItems.length === 0 && (
                             <EmptyView
                                 height={
-                                    blockSettings['customHeight']
-                                        ? blockSettings['heightInput']
-                                        : blockSettings['heightSlider']
+                                    blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
                                 }
                             />
                         )}

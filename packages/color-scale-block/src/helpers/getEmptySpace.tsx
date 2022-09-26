@@ -12,7 +12,7 @@ export const getEmptySpace = (colorScaleBlockRef: ColorScaleBlockRef, colorArray
     let emptySpace = 0;
 
     colorArray?.map((color: BlockColor) => {
-        if (color && color.width) {
+        if (color?.width) {
             usedSpace += color.width;
         }
 
