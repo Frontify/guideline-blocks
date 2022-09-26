@@ -51,10 +51,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const [frontifyColors, setFrontifyColors] = useState<FrontifyColor[]>([] as FrontifyColor[]);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-
-    const [colorPickerPalettes, setColorPickerPalettes]: [Palette[], (color: Palette[]) => void] = useState(
-        [] as Palette[]
-    );
+    const [colorPickerPalettes, setColorPickerPalettes] = useState<Palette[]>([] as Palette[]);
 
     const [colorScaleHeight, setColorScaleHeight] = useState(
         blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
@@ -68,6 +65,10 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const dragStartWidth: { current?: number | null } = useRef();
     const lastDragPos: { current?: number | null } = useRef();
     const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> } = useRef(undefined);
+
+    const [displayableItems, setDisplayableItems] = useState(
+        calculateWidths(blockSettings.colorInput, colorScaleBlockRef, false)
+    );
 
     const deleteBlockColorById = (id: number | undefined) => {
         if (!id) {
@@ -386,10 +387,6 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const handleColorPickerFlyoutTrigger = () => {
         setIsColorPickerOpen(!isColorPickerOpen);
     };
-
-    const [displayableItems, setDisplayableItems] = useState(
-        calculateWidths(blockSettings.colorInput, colorScaleBlockRef, false)
-    );
 
     const listId = useMemoizedId();
 

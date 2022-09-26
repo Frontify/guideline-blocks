@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useState } from 'react';
-import { ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
+import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
 import { ColorPickerFlyoutProps, DefaultValues } from '../types';
 
 export const ColorPickerFlyout = ({
@@ -11,8 +11,8 @@ export const ColorPickerFlyout = ({
     colorPalettes,
     children,
 }: ColorPickerFlyoutProps) => {
-    const [colorPickerFormat, setColorPickerFormat] = useState(ColorFormat.Hex);
-    const [selectedColor, setSelectedColor] = useState(DefaultValues.startingColor);
+    const [colorPickerFormat, setColorPickerFormat] = useState<ColorFormat>(ColorFormat.Hex);
+    const [selectedColor, setSelectedColor] = useState<Color>(DefaultValues.startingColor);
     const close = () => {
         setSelectedColor(DefaultValues.startingColor);
         setIsColorPickerOpen(false);
