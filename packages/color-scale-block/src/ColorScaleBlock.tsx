@@ -55,12 +55,12 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId] = useState<number | null>();
     const [editedColor, setEditedColor] = useState<Nullable<ColorProps>>();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
-    const colorScaleBlockRef: { current?: HTMLDivElement | null } = useRef();
-    const draggingId: { current?: number | null } = useRef();
+    const colorScaleBlockRef: { current: HTMLDivElement | null } = useRef(null);
+    const draggingId: { current?: number | null } = useRef(null);
     const dragStartPos: { current?: number | null } = useRef();
     const dragStartWidth: { current?: number | null } = useRef();
     const lastDragPos: { current?: number | null } = useRef();
-    const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> } = useRef();
+    const timerToUpdateBlockSettings: { current?: ReturnType<typeof setTimeout> } = useRef(undefined);
 
     const deleteColor = (id: number | undefined) => {
         if (!id) {

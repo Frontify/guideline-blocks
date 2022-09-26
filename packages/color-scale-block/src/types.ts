@@ -39,7 +39,7 @@ export type ColorPalette = {
 };
 
 export type ColorScaleBlockRef = {
-    current?: HTMLDivElement | null;
+    current: HTMLDivElement | null;
 };
 
 export type SquareWithColorProps = {
