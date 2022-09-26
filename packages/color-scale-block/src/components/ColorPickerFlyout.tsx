@@ -22,26 +22,28 @@ export const ColorPickerFlyout = ({
     };
 
     const handleSelectColor = () => {
-        let id;
+        let id: number | undefined;
 
         if (!selectedColor.red && !selectedColor.green && !selectedColor.blue) {
             return;
         }
 
-        for (const palette of appBridgePalettes) {
-            for (const paletteColor of palette.colors) {
-                const frontifyColor = paletteColor;
-                if (
-                    paletteColor.red === selectedColor.red &&
-                    paletteColor.blue === selectedColor.blue &&
-                    paletteColor.green === selectedColor.green
-                ) {
-                    id = frontifyColor.id;
+        appBridgePalettes.find((palette) => {
+            palette.colors.find((paletteColor) => {
+                if (Object.entries(paletteColor).toString() === Object.entries(selectedColor).toString()) {
+                    id = paletteColor.id;
+                    return true;
                 }
-            }
-        }
+                return false;
+            });
 
-        if (!id) {
+            if (id !== undefined) {
+                return true;
+            }
+            return false;
+        });
+
+        if (id === undefined) {
             return;
         }
 

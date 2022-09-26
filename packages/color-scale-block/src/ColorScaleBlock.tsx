@@ -38,7 +38,6 @@ import {
     canExpandColorBlock,
     resizeEvenly,
 } from './helpers';
-import { MouseEventHandler } from 'react';
 
 type Props = {
     appBridge: AppBridgeBlock;
@@ -186,7 +185,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         draggingId.current = index;
     };
 
-    const handleResize: MouseEventHandler = (event: MouseEvent) => {
+    const handleResize = (event: MouseEvent) => {
         clearTimeout(timerToUpdateBlockSettings.current);
 
         if (draggingId.current !== null) {
