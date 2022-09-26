@@ -67,7 +67,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
             return;
         }
 
-        const reorderedList = displayableItems?.filter((item: ColorProps) => item.id !== id);
+        const reorderedList = displayableItems?.filter((item) => item.id !== id);
         setBlockSettings({ ...blockSettings, colorInput: reorderedList });
     };
 
@@ -147,7 +147,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         if (colorScaleBlockRef && colorScaleBlockRef.current) {
             let addedFirstColor;
             if (blockSettings.colorInput) {
-                addedFirstColor = blockSettings.colorInput.filter((item: ColorProps) => !!item.id).length;
+                addedFirstColor = blockSettings.colorInput.filter((item) => !!item.id).length;
             } else {
                 addedFirstColor = false;
             }
