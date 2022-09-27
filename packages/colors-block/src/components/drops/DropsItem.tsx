@@ -101,7 +101,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         data-test-id="color-space"
                         key={colorSpaceId}
                         className={merge([
-                            'tw-flex tw-items-center tw-mb-1 last:tw-mb-0',
+                            'tw-flex tw-items-center tw-mt-3 tw-mb-1 last:tw-mb-0',
                             isEditing && 'tw-w-full',
                             !isEditing && !mappedColorSpace.value && 'tw-mb-0',
                         ])}
