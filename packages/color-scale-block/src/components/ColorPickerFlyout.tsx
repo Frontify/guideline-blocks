@@ -71,25 +71,24 @@ export const ColorPickerFlyout = ({
     };
 
     return (
-        <div>
-            <Flyout
-                placement={FlyoutPlacement.Top}
-                isOpen={isColorPickerOpen}
-                onCancel={handleCancelClick}
-                onConfirm={handleSelectColor}
-                onOpenChange={() => true}
-                title="Pick color"
-                trigger={children}
-            >
-                <ColorPicker
-                    allowCustomColor={false}
-                    currentColor={selectedColor}
-                    currentFormat={colorPickerFormat}
-                    setFormat={setColorPickerFormat}
-                    onSelect={setSelectedColor}
-                    palettes={colorPickerFlyoutPalettes}
-                />
-            </Flyout>
-        </div>
+        <Flyout
+            placement={FlyoutPlacement.Top}
+            isOpen={isColorPickerOpen}
+            contentMinHeight={300}
+            onCancel={handleCancelClick}
+            onConfirm={handleSelectColor}
+            onOpenChange={() => true}
+            title="Pick color"
+            trigger={children}
+        >
+            <ColorPicker
+                allowCustomColor={false}
+                currentColor={selectedColor}
+                currentFormat={colorPickerFormat}
+                setFormat={setColorPickerFormat}
+                onSelect={setSelectedColor}
+                palettes={colorPickerFlyoutPalettes}
+            />
+        </Flyout>
     );
 };
