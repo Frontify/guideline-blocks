@@ -2,7 +2,7 @@
 
 import { useDrag } from 'react-dnd';
 import { DragSourceMonitor } from 'react-dnd';
-import { Button, ButtonSize, ButtonStyle, IconSize, IconTrashBin, Tooltip, useCopy } from '@frontify/fondue';
+import { Button, ButtonSize, ButtonStyle, IconSize, IconTrashBin, Tooltip, merge, useCopy } from '@frontify/fondue';
 import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
 import { SquareWithColorProps } from '../types';
 import { DragHandle } from './DragHandle';
@@ -59,7 +59,7 @@ export const SquareWithColor = ({
     const hexColor = currentColor ? toHex8String(currentColor) : '';
 
     const firstElementClasses = 'tw-pl-[1px] tw-pr-[1px] tw-rounded-tl tw-rounded-bl';
-    const lastElementClasses = 'tw-rounded-tr last:tw-rounded-br';
+    const lastElementClasses = 'tw-rounded-tr tw-rounded-br-[3px]';
 
     return (
         <div
@@ -81,13 +81,11 @@ export const SquareWithColor = ({
                     height,
                     backgroundColor,
                 }}
-                className={`
-                    merge(
-                        ${isFirst ? firstElementClasses : ''},
-                        ${isLast ? lastElementClasses : ''},
-                        [&>div]:tw-h-full tw-group tw-relative tw-w-full tw-h-full tw-overflow-y-hidden tw-overflow-x-visible tw-border-none hover:tw-border hover:tw-border-black
-                    )
-                `}
+                className={`${merge([
+                    isFirst ? firstElementClasses : '',
+                    isLast ? lastElementClasses : '',
+                    '[&>div]:tw-h-full tw-group tw-relative tw-w-full tw-h-full tw-overflow-y-hidden tw-overflow-x-visible tw-border-none hover:tw-border hover:tw-border-black',
+                ])}`}
             >
                 {isEditing ? (
                     <div
