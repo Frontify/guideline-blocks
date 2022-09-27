@@ -23,7 +23,7 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
     return (
         <div
             data-test-id="color-kit-block"
-            className="tw-p-8 tw-pt-7 tw-border tw-border-solid tw-border-line-strong tw-space-y-3"
+            className="tw-space-y-3 tw-p-8 tw-pt-7 tw-border tw-border-solid tw-border-line-strong tw-rounded"
         >
             <div className="tw-flex tw-justify-between">
                 <div className="tw-flex tw-items-center">
@@ -31,7 +31,7 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
                         Color Kit
                     </Text>
 
-                    <div className="tw-ml-3 tw-space-x-1">
+                    <div className="tw-space-x-1 tw-ml-3">
                         <Badge size="small">ASE</Badge>
                         <Badge size="small">LESS</Badge>
                         <Badge size="small">OCO</Badge>
