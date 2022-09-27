@@ -21,10 +21,7 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
     const isDownloadEnabled = memoizedColorPaletteIds?.length > 0;
 
     return (
-        <div
-            data-test-id="color-kit-block"
-            className="tw-space-y-3 tw-p-8 tw-pt-7 tw-border tw-border-solid tw-border-line-strong tw-rounded"
-        >
+        <div data-test-id="color-kit-block" className="tw-space-y-3 tw-p-8 tw-pt-7 tw-border tw-border-line tw-rounded">
             <div className="tw-flex tw-justify-between">
                 <div className="tw-flex tw-items-center">
                     <Text as="p" size="large" weight="x-strong">
