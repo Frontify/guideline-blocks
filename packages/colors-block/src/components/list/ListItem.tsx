@@ -129,7 +129,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                     triggerElement={
                                         <div
                                             data-test-id="color-space-value-trigger"
-                                            className="tw-ml-3 tw-cursor-pointer tw-text-s tw-text-black-80"
+                                            className="tw-w-28 tw-ml-3 tw-overflow-hidden tw-cursor-pointer tw-whitespace-nowrap tw-text-s tw-text-black-80 tw-overflow-ellipsis"
                                             onClick={() => copy(mappedColorSpace.value ?? '')}
                                         >
                                             {mappedColorSpace.value}
