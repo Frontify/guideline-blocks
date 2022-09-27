@@ -26,15 +26,19 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
             className="tw-p-8 tw-pt-7 tw-border tw-border-solid tw-border-line-strong tw-space-y-3"
         >
             <div className="tw-flex tw-justify-between">
-                <div className="tw-flex tw-space-x-1 tw-h-fit tw-items-center">
+                <div className="tw-flex tw-items-center">
                     <Text as="p" size="large" weight="x-strong">
                         Color Kit
                     </Text>
-                    <Badge size="small">ASE</Badge>
-                    <Badge size="small">LESS</Badge>
-                    <Badge size="small">OCO</Badge>
-                    <Badge size="small">SCSS</Badge>
+
+                    <div className="tw-ml-3 tw-space-x-1">
+                        <Badge size="small">ASE</Badge>
+                        <Badge size="small">LESS</Badge>
+                        <Badge size="small">OCO</Badge>
+                        <Badge size="small">SCSS</Badge>
+                    </div>
                 </div>
+
                 <a
                     download
                     href={link}
@@ -49,6 +53,7 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
                     </Button>
                 </a>
             </div>
+
             {colorPalettes.map((palette) => {
                 return <Palette key={palette.id} palette={palette} isEditing={isEditing} />;
             })}
