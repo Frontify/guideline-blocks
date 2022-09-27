@@ -18,9 +18,7 @@ export const DropsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
                 </div>
             </ColorPickerFlyout>
 
-            <div className="tw-flex tw-w-[100px] tw-mb-3 tw-pointer-events-none tw-text-m tw-font-bold tw-text-black tw-text-center">
-                Color name
-            </div>
+            <div className="tw-mb-3 tw-pointer-events-none tw-text-m tw-font-bold tw-text-black-50">Color name</div>
 
             {colorSpaces?.map((colorSpaceId) => {
                 const mappedColorSpace = mapColorSpaces(colorSpaceId);

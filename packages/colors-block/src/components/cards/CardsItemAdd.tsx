@@ -22,9 +22,7 @@ export const CardsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
             </ColorPickerFlyout>
 
             <div className="tw-pt-4 tw-px-6 tw-pb-5">
-                <div className="tw-w-[100px] tw-mb-3 tw-pointer-events-none tw-text-m tw-text-black-50 tw-font-bold">
-                    Color name
-                </div>
+                <div className="tw-mb-3 tw-pointer-events-none tw-text-m tw-text-black-50 tw-font-bold">Color name</div>
 
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId);
