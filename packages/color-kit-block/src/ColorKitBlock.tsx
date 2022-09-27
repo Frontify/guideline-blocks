@@ -4,6 +4,7 @@ import { ReactElement, useMemo } from 'react';
 import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
 
+import { EmptyView } from './EmptyView';
 import { Palette } from './Palette';
 import type { ColorKitBlockProps, Settings } from './types';
 
@@ -51,9 +52,11 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
                 </a>
             </div>
 
-            {colorPalettes.map((palette) => {
-                return <Palette key={palette.id} palette={palette} isEditing={isEditing} />;
-            })}
+            {colorPalettes.length > 0 ? (
+                colorPalettes.map((palette) => <Palette key={palette.id} palette={palette} isEditing={isEditing} />)
+            ) : (
+                <EmptyView />
+            )}
         </div>
     );
 };
