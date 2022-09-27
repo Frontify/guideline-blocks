@@ -10,7 +10,7 @@ export const EmptyView = ({ paletteName = 'Select color palettes for them to app
     const EMPTY_BLOCK_COLORS = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
 
     return (
-        <div className="tw-space-y-2">
+        <div data-test-id="empty-view" className="tw-space-y-2">
             <Text color="weak">{paletteName}</Text>
 
             <div className="tw-flex tw-shadow-inner-line">

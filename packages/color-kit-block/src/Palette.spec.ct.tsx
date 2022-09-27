@@ -7,6 +7,7 @@ import { Palette } from './Palette';
 
 const ColorKitPaletteSelector = '[data-test-id="palette"]';
 const ColorKitColorSelector = '[data-test-id="color"]';
+const EmptyViewSelector = '[data-test-id="empty-view"]';
 
 const dummyPalette = ColorPaletteDummy.with(666, 'Palette Dummy');
 
@@ -33,7 +34,7 @@ describe('Palette', () => {
     it('should render palette without colors', () => {
         mount(<Palette palette={{ ...dummyPalette, colors: [] }} isEditing={false} />);
 
-        cy.get(ColorKitPaletteSelector).should('not.have.descendants', ColorKitColorSelector);
+        cy.get(EmptyViewSelector).should('exist');
     });
 
     it('should not render color without color hex', () => {
