@@ -30,6 +30,8 @@ export const ColorName = ({ viewType, initialColorName, isEditing, onBlur }: Col
                     value={colorName}
                     onChange={handleColorNameChange}
                     onBlur={onBlur}
+                    draggable={true}
+                    onDragStart={(event) => event.preventDefault()}
                 />
             ) : (
                 <div title={colorName} className="tw-overflow-hidden tw-whitespace-nowrap tw-overflow-ellipsis">
