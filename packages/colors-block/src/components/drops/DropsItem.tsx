@@ -8,6 +8,7 @@ import {
     IconTrashBin,
     Tooltip,
     TooltipPosition,
+    merge,
     useCopy,
 } from '@frontify/fondue';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
@@ -94,10 +95,21 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     <div
                         data-test-id="color-space"
                         key={colorSpaceId}
-                        className="tw-flex tw-items-center tw-mb-1 last:tw-mb-0"
+                        className={merge([
+                            'tw-flex tw-items-center tw-mb-1 last:tw-mb-0',
+                            isEditing && 'tw-w-full',
+                            !isEditing && !mappedColorSpace.value && 'tw-mb-0',
+                        ])}
                     >
-                        <div className="tw-flex tw-items-center">
-                            <div className="tw-flex-[0_0_auto] tw-mr-1.5 tw-text-xs tw-text-black-70">
+                        <div
+                            className={merge(['tw-flex tw-items-center', isEditing && 'tw-justify-between tw-w-full'])}
+                        >
+                            <div
+                                className={merge([
+                                    'tw-flex-[0_0_auto] tw-mr-1.5 tw-text-xs tw-text-black-70',
+                                    !isEditing && !mappedColorSpace.value && 'tw-hidden',
+                                ])}
+                            >
                                 {mappedColorSpace.label}
                             </div>
 
@@ -112,7 +124,6 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 <Tooltip
                                     withArrow
                                     position={TooltipPosition.Right}
-                                    hoverDelay={0}
                                     content={
                                         <TooltipContent colorValue={mappedColorSpace.value ?? ''} status={status} />
                                     }

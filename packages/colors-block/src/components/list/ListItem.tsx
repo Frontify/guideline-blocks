@@ -96,8 +96,16 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
+                    if (!isEditing && !mappedColorSpace.value) {
+                        return <></>;
+                    }
+
                     return (
-                        <div data-test-id="color-space" key={colorSpaceId} className="tw-flex tw-items-center tw-w-1/3">
+                        <div
+                            data-test-id="color-space"
+                            key={colorSpaceId}
+                            className="tw-flex tw-items-center tw-w-1/3 tw-pr-2"
+                        >
                             <div>
                                 <Badge size="small" emphasis={BadgeEmphasis.None}>
                                     {mappedColorSpace.label}
@@ -115,7 +123,6 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                 <Tooltip
                                     withArrow
                                     position={TooltipPosition.Right}
-                                    hoverDelay={0}
                                     content={
                                         <TooltipContent colorValue={mappedColorSpace.value ?? ''} status={status} />
                                     }
