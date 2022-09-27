@@ -123,7 +123,7 @@ export const settings: BlockSettings = {
                 {
                     id: 'authorName',
                     type: 'input',
-                    placeholder: 'John Doe',
+                    placeholder: 'e.g. John Doe',
                 },
             ],
         },
