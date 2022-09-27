@@ -93,7 +93,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                 onBlur={onBlur}
             />
 
-            <div className="tw-mt-3">
+            <div className={merge([colorSpaces.length > 0 && 'tw-mt-3'])}>
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
