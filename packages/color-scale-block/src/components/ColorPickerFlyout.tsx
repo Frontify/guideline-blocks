@@ -23,6 +23,7 @@ export const ColorPickerFlyout = ({
                 <Flyout
                     placement={FlyoutPlacement.Top}
                     isOpen={isColorPickerOpen}
+                    contentMinHeight={300}
                     onCancel={close}
                     onConfirm={() => {
                         updateColor(selectedColor);
