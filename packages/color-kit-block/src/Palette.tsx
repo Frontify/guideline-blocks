@@ -10,13 +10,7 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
     const { name, colors = [] } = palette;
 
     if (colors.length === 0) {
-        return (
-            <EmptyView
-                paletteName={`You've selected a palette with no colors (${
-                    name || 'Unitled Palette'
-                }). Please add colors to the palette or remove it from the color kit.`}
-            />
-        );
+        return <EmptyView paletteName={`${name || 'Unitled Palette'}: No colors added`} />;
     }
 
     return (
