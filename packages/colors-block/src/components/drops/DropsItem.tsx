@@ -38,7 +38,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         <div className="tw-mb-3 tw-overflow-hidden tw-rounded-full tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                             <div
                                 data-test-id="color-color-picker-flyout-trigger"
-                                className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                                className="tw-relative tw-w-[100px] tw-h-[100px] tw-rounded-full tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-x-strong"
                                 style={{
                                     backgroundColor: toRgbaString(color as Color),
                                 }}
@@ -75,7 +75,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                         <div className="tw-mb-3 tw-overflow-hidden tw-rounded-full tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                             <div
                                 data-test-id="color-tooltip-trigger"
-                                className="tw-relative tw-w-[100px] tw-h-[100px] tw-cursor-pointer tw-rounded-full tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                                className="tw-relative tw-w-[100px] tw-h-[100px] tw-cursor-pointer tw-rounded-full tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-x-strong"
                                 style={{
                                     backgroundColor: toRgbaString(color as Color),
                                 }}
