@@ -316,21 +316,19 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         setBlockSettings({ ...blockSettings, colorInput: resizeEvenly(blockColors, colorScaleBlockRef) });
     };
 
-    const handleDrop = (targetItem: BlockColor, movedItem: BlockColor, position: DropZonePosition) => {
-        let targetItemIndex = 0;
-        let movedItemIndex = 0;
+    const handleDrop = (targetBlockColor: BlockColor, movedBlockColor: BlockColor, position: DropZonePosition) => {
+        const updatedBlockColors = blockColors.filter((blockColor) => blockColor.id !== movedBlockColor.id);
+        const targetBlockColorIndex = updatedBlockColors.findIndex(
+            (blockColor) => blockColor.id === targetBlockColor.id
+        );
 
-        let updatedColors = [...blockColors];
+        updatedBlockColors.splice(
+            position === DropZonePosition.After ? targetBlockColorIndex + 1 : targetBlockColorIndex,
+            0,
+            movedBlockColor
+        );
 
-        movedItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === movedItem.id);
-
-        updatedColors = updatedColors.filter((_, index) => index !== movedItemIndex);
-
-        targetItemIndex = updatedColors.findIndex((colorItem) => colorItem.id === targetItem.id);
-
-        updatedColors.splice(position === DropZonePosition.After ? targetItemIndex + 1 : targetItemIndex, 0, movedItem);
-
-        setBlockSettings({ ...blockSettings, colorInput: updatedColors });
+        setBlockSettings({ ...blockSettings, colorInput: updatedBlockColors });
     };
 
     const toggleColorPickerFlyout = () => {
