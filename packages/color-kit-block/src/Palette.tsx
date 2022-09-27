@@ -10,7 +10,7 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
     const { name, colors = [] } = palette;
 
     if (colors.length === 0) {
-        return <EmptyView paletteName={`${name || 'Unitled Palette'}: No colors added`} />;
+        return <EmptyView paletteName={`${name || 'Unitled Palette'} (no colors added)`} />;
     }
 
     return (
