@@ -10,6 +10,7 @@ import {
     IconTrashBin,
     Tooltip,
     TooltipPosition,
+    merge,
     useCopy,
 } from '@frontify/fondue';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
@@ -110,7 +111,10 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                         <div
                             data-test-id="color-space"
                             key={colorSpaceId}
-                            className="tw-flex tw-items-center tw-w-1/3 tw-pr-2"
+                            className={merge([
+                                'tw-flex tw-items-center tw-pr-2',
+                                colorSpaces.length === 2 ? 'tw-w-1/2' : 'tw-w-1/3',
+                            ])}
                         >
                             <div>
                                 <Badge size="small" emphasis={BadgeEmphasis.None}>
