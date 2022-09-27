@@ -2,11 +2,22 @@
 
 import { Text, merge } from '@frontify/fondue';
 
+import { EmptyView } from './EmptyView';
 import { Color } from './Color';
 import type { PaletteProps } from './types';
 
 export const Palette = ({ palette, isEditing }: PaletteProps) => {
     const { name, colors = [] } = palette;
+
+    if (colors.length === 0) {
+        return (
+            <EmptyView
+                paletteName={`You've selected a palette with no colors (${
+                    name || 'Unitled Palette'
+                }). Please add colors to the palette or remove it from the color kit.`}
+            />
+        );
+    }
 
     return (
         <div data-test-id="palette" className="tw-flex tw-flex-col tw-space-y-2 tw-mb-3 last:tw-mb-0">

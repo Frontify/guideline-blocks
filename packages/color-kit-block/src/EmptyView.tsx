@@ -2,12 +2,16 @@
 
 import { Text } from '@frontify/fondue';
 
-export const EmptyView = () => {
+type EmptyViewProps = {
+    paletteName?: string;
+};
+
+export const EmptyView = ({ paletteName = 'Select color palettes for them to appear here' }: EmptyViewProps) => {
     const EMPTY_BLOCK_COLORS = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
 
     return (
         <div className="tw-space-y-2">
-            <Text color="weak">Select color palettes for them to appear here</Text>
+            <Text color="weak">{paletteName}</Text>
 
             <div className="tw-flex tw-shadow-inner-line">
                 {EMPTY_BLOCK_COLORS.map((color) => (
