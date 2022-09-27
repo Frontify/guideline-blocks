@@ -73,8 +73,9 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 <div
                     data-test-id="delete-button"
                     className={joinClassNames([
-                        'tw-absolute tw-hidden tw-top-1/2 tw-right-3 tw-translate-y-[-50%]',
+                        'tw-absolute tw-hidden tw-right-3',
                         isEditing && 'group-hover:tw-block',
+                        colorSpaces.length > 3 ? 'tw-top-3' : 'tw-top-1/2 tw-translate-y-[-50%]',
                     ])}
                 >
                     <Button
