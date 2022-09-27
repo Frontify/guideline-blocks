@@ -53,7 +53,6 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
     );
     const [currentlyDraggedColorId, setCurrentlyDraggedColorId] = useState<number | null>();
-    const [editedColor, setEditedColor] = useState<Nullable<BlockColor>>();
     const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
     const colorScaleBlockRef: { current: Nullable<HTMLDivElement> } = useRef(null);
     const draggingId: { current?: number | null } = useRef(null);
@@ -80,13 +79,13 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
 
         const blockColor = createBlockColorByColorAndFrontifyColor(color, frontifyColor);
 
-        if (includesBlockColor(blockColor)) {
+        if (isBlockColorAlreadyIncluded(blockColor)) {
             return;
         }
 
         setBlockSettings({
             ...blockSettings,
-            colorInput: calculateWidths([...blockColors, blockColor], colorScaleBlockRef, blockColors.length === 0),
+            colorInput: calculateWidths([...blockColors, blockColor], colorScaleBlockRef),
         });
     };
 
@@ -127,7 +126,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         };
     };
 
-    const includesBlockColor = (blockColor: BlockColor): boolean => {
+    const isBlockColorAlreadyIncluded = (blockColor: BlockColor): boolean => {
         return blockColors.findIndex((existingBlockColor: BlockColor) => existingBlockColor.id === blockColor.id) > -1;
     };
 
@@ -181,7 +180,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
         if (colorScaleHeight !== currentHeight) {
             setColorScaleHeight(currentHeight);
         }
-    }, [blockColors, blockSettings, colorScaleHeight, setBlockSettings]);
+    }, [blockSettings, colorScaleHeight]);
 
     const handleResizeStop = () => {
         draggingId.current = null;
@@ -390,15 +389,10 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                             height={colorScaleHeight}
                                             isDragging={currentlyDraggedColorId !== null}
                                             setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
-                                            currentColor={blockColor}
-                                            totalNumberOfBlocks={blockColors.length}
+                                            blockColor={blockColor}
                                             onResizeStart={handleResizeStart}
                                             calculateLeftPosition={calculateLeftPosition}
                                             isEditing={isEditing}
-                                            editedColor={editedColor}
-                                            setEditedColor={setEditedColor}
-                                            updateColor={updateBlockColorByColor}
-                                            setFormat={() => false}
                                             deleteColor={deleteBlockColorById}
                                             isLast={isLast}
                                             isFirst={isFirst}

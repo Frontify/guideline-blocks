@@ -15,7 +15,7 @@ export const SquareWithColor = ({
     height,
     isFirst,
     isLast,
-    currentColor,
+    blockColor,
     onResizeStart,
     calculateLeftPosition,
     isEditing,
@@ -25,8 +25,8 @@ export const SquareWithColor = ({
     isDragging,
 }: SquareWithColorProps) => {
     const handleDrag = () => {
-        if (isDragging !== !!currentColor.id) {
-            setCurrentlyDraggedColorId(currentColor.id);
+        if (isDragging !== !!blockColor.id) {
+            setCurrentlyDraggedColorId(blockColor.id);
         }
     };
 
@@ -35,7 +35,7 @@ export const SquareWithColor = ({
     };
 
     const [{}, drag] = useDrag({
-        item: currentColor,
+        item: blockColor,
         collect: (monitor: DragSourceMonitor) => {
             return {
                 componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
@@ -48,14 +48,14 @@ export const SquareWithColor = ({
     const { copy, status } = useCopy();
 
     const rgbaValues = [
-        currentColor.red,
-        currentColor.green,
-        currentColor.blue,
-        ...(currentColor.alpha ? [currentColor.alpha / 255] : []),
+        blockColor.red,
+        blockColor.green,
+        blockColor.blue,
+        ...(blockColor.alpha ? [blockColor.alpha / 255] : []),
     ];
 
     const backgroundColor = `rgba(${rgbaValues.join(',')})`;
-    const hexColor = currentColor ? toHex8String(currentColor) : '';
+    const hexColor = blockColor ? toHex8String(blockColor) : '';
 
     const firstElementClasses = 'tw-pl-[1px] tw-pr-[1px] tw-rounded-tl tw-rounded-bl';
     const lastElementClasses = 'tw-rounded-tr last:tw-rounded-br';
@@ -69,7 +69,7 @@ export const SquareWithColor = ({
             }}
             className="hover:tw-z-30 tw-overflow-x-visible tw-overflow-y-hidden tw-pb-8 tw-inline-block"
         >
-            {isEditing ? <DragHandle index={index} currentColor={currentColor} onResizeStart={onResizeStart} /> : <></>}
+            {isEditing ? <DragHandle index={index} currentColor={blockColor} onResizeStart={onResizeStart} /> : <></>}
 
             <div
                 ref={drag}
@@ -99,7 +99,7 @@ export const SquareWithColor = ({
                             icon={<IconTrashBin size={IconSize.Size16} />}
                             size={ButtonSize.Small}
                             style={ButtonStyle.Secondary}
-                            onClick={() => deleteColor(currentColor.id)}
+                            onClick={() => deleteColor(blockColor.id)}
                         />
                     </div>
                 ) : (
