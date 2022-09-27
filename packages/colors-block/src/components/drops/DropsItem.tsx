@@ -65,7 +65,13 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    content={
+                        <TooltipContent
+                            colorName={color.name || ''}
+                            colorValue={mappedFirstColorSpace.value ?? ''}
+                            status={status}
+                        />
+                    }
                     triggerElement={
                         <div className="tw-mb-3 tw-overflow-hidden tw-rounded-full tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                             <div
@@ -125,7 +131,11 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                     withArrow
                                     position={TooltipPosition.Right}
                                     content={
-                                        <TooltipContent colorValue={mappedColorSpace.value ?? ''} status={status} />
+                                        <TooltipContent
+                                            colorName={color.name || ''}
+                                            colorValue={mappedColorSpace.value ?? ''}
+                                            status={status}
+                                        />
                                     }
                                     triggerElement={
                                         <div

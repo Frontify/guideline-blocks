@@ -53,7 +53,13 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     withArrow
                     position={TooltipPosition.Right}
                     hoverDelay={0}
-                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    content={
+                        <TooltipContent
+                            colorName={color.name || ''}
+                            colorValue={mappedFirstColorSpace.value ?? ''}
+                            status={status}
+                        />
+                    }
                     triggerElement={
                         <div className="tw-h-full tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                             <div
@@ -125,7 +131,11 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                     withArrow
                                     position={TooltipPosition.Right}
                                     content={
-                                        <TooltipContent colorValue={mappedColorSpace.value ?? ''} status={status} />
+                                        <TooltipContent
+                                            colorName={color.name || ''}
+                                            colorValue={mappedColorSpace.value ?? ''}
+                                            status={status}
+                                        />
                                     }
                                     triggerElement={
                                         <div

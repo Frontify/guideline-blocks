@@ -54,6 +54,7 @@ export type ColorPickerFlyoutProps = {
 };
 
 export type TooltipContentProps = {
+    colorName: string;
     colorValue: string;
     status: 'error' | 'success' | 'idle';
 };
