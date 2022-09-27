@@ -6,9 +6,9 @@ type EmptyViewProps = {
     paletteName?: string;
 };
 
-export const EmptyView = ({ paletteName = 'Select color palettes for them to appear here' }: EmptyViewProps) => {
-    const EMPTY_BLOCK_COLORS = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
+const EMPTY_BLOCK_COLORS = ['#D5D6D6', '#DFDFDF', '#E8E9E9', '#F1F1F1', '#FAFAFA', '#FFFFFF'];
 
+export const EmptyView = ({ paletteName = 'Select color palettes for them to appear here' }: EmptyViewProps) => {
     return (
         <div data-test-id="empty-view" className="tw-space-y-2">
             <Text color="weak">{paletteName}</Text>
@@ -19,7 +19,7 @@ export const EmptyView = ({ paletteName = 'Select color palettes for them to app
                         key={color}
                         className="tw-w-6 tw-h-6 tw-shadow-inner-line-y first:tw-shadow-inner-line-first last:tw-shadow-inner-line-last"
                         style={{ backgroundColor: color }}
-                    ></div>
+                    />
                 ))}
             </div>
         </div>

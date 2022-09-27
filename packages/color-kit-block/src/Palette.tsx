@@ -10,12 +10,12 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
     const { name, colors = [] } = palette;
 
     if (colors.length === 0) {
-        return <EmptyView paletteName={`${name || 'Unitled Palette'} (no colors added)`} />;
+        return <EmptyView paletteName={`${name || 'Untitled Palette'} (no colors added)`} />;
     }
 
     return (
         <div data-test-id="palette" className="tw-flex tw-flex-col tw-space-y-2 tw-mb-3 last:tw-mb-0">
-            <Text color="x-weak">{name}</Text>
+            <Text color="x-weak">{name || 'Untitled Palette'}</Text>
 
             <div
                 className={merge([
