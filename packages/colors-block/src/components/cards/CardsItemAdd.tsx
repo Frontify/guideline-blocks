@@ -15,7 +15,7 @@ export const CardsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
             <ColorPickerFlyout onConfirm={onConfirm}>
                 <div
                     data-test-id="color-color-picker-flyout-trigger"
-                    className="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-cursor-pointer tw-text-black tw-bg-button-background tw-rounded-t tw-shadow-inner-line tw-transition-all group-hover:tw-shadow-inner-line-strong"
+                    className="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-[60px] tw-cursor-pointer tw-text-black tw-bg-button-background tw-rounded-t tw-shadow-inner-line tw-transition-all hover:tw-bg-button-background-hover group-hover:tw-shadow-inner-line-strong"
                 >
                     <IconPlus size={IconSize.Size24} />
                 </div>

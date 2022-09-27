@@ -12,7 +12,7 @@ export const DropsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
             <ColorPickerFlyout onConfirm={onConfirm}>
                 <div
                     data-test-id="color-color-picker-flyout-trigger"
-                    className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-button-background tw-shadow-inner-line hover:tw-shadow-inner-line-strong"
+                    className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-button-background tw-shadow-inner-line tw-transition-all hover:tw-bg-button-background-hover hover:tw-shadow-inner-line-strong"
                 >
                     <IconPlus size={IconSize.Size24} />
                 </div>

@@ -15,7 +15,7 @@ export const ListItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
             <ColorPickerFlyout onConfirm={onConfirm}>
                 <div
                     data-test-id="color-color-picker-flyout-trigger"
-                    className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-h-full tw-min-h-[60px] tw-mr-9 tw-ml-[-1px] tw-cursor-pointer tw-text-black tw-bg-button-background tw-shadow-inner-line group:tw-shadow-inner-line-strong"
+                    className="tw-flex tw-justify-center tw-items-center tw-w-[120px] tw-h-full tw-min-h-[60px] tw-mr-9 tw-ml-[-1px] tw-cursor-pointer tw-text-black tw-bg-button-background tw-shadow-inner-line tw-transition-colors group:tw-shadow-inner-line-strong hover:tw-bg-button-background-hover"
                 >
                     <IconPlus size={IconSize.Size24} />
                 </div>
