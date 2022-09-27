@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
@@ -116,6 +116,7 @@ export const settings: BlockSettings = {
                 {
                     id: CUSTOM_ICON_LEFT_ID,
                     type: 'assetInput',
+                    size: AssetInputSize.Small,
                     label: 'Custom Icon Left',
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
@@ -132,6 +133,7 @@ export const settings: BlockSettings = {
                 {
                     id: CUSTOM_ICON_RIGHT_ID,
                     type: 'assetInput',
+                    size: AssetInputSize.Small,
                     label: 'Custom Icon Right',
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
