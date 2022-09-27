@@ -44,7 +44,6 @@ export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
         <Tooltip
             withArrow
             key={color.id}
-            hoverDelay={0}
             position={TooltipPosition.Right}
             content={<TooltipContent colorValue={color.hex} status={status} />}
             triggerElement={
