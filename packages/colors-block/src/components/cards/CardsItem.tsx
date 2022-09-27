@@ -95,61 +95,63 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     onBlur={onBlur}
                 />
 
-                {colorSpaces?.map((colorSpaceId) => {
-                    const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
+                <div className="tw-mt-3">
+                    {colorSpaces?.map((colorSpaceId) => {
+                        const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
-                    return (
-                        <div
-                            data-test-id="color-space"
-                            key={colorSpaceId}
-                            className={merge([
-                                'tw-flex tw-items-center tw-mt-3 tw-mb-1 last:tw-mb-0',
-                                !isEditing && !mappedColorSpace.value && 'tw-mb-0',
-                            ])}
-                        >
-                            <div className="tw-flex tw-items-center">
-                                <div
-                                    className={merge([
-                                        'tw-flex-[0_0_auto] tw-mr-1.5 tw-text-xs tw-text-black-70',
-                                        !isEditing && !mappedColorSpace.value && 'tw-hidden',
-                                    ])}
-                                >
-                                    {mappedColorSpace.label}
+                        return (
+                            <div
+                                data-test-id="color-space"
+                                key={colorSpaceId}
+                                className={merge([
+                                    'tw-flex tw-items-center tw-mb-1 last:tw-mb-0',
+                                    !isEditing && !mappedColorSpace.value && 'tw-mb-0',
+                                ])}
+                            >
+                                <div className="tw-flex tw-items-center">
+                                    <div
+                                        className={merge([
+                                            'tw-flex-[0_0_auto] tw-mr-1.5 tw-text-xs tw-text-black-70',
+                                            !isEditing && !mappedColorSpace.value && 'tw-hidden',
+                                        ])}
+                                    >
+                                        {mappedColorSpace.label}
+                                    </div>
+
+                                    {isEditing ? (
+                                        <ColorSpaceValue
+                                            viewType={ColorsBlockType.Cards}
+                                            color={color}
+                                            colorSpaceId={colorSpaceId}
+                                            onUpdate={onUpdate}
+                                        />
+                                    ) : (
+                                        <Tooltip
+                                            withArrow
+                                            position={TooltipPosition.Right}
+                                            content={
+                                                <TooltipContent
+                                                    colorName={color.name || ''}
+                                                    colorValue={mappedColorSpace.value ?? ''}
+                                                    status={status}
+                                                />
+                                            }
+                                            triggerElement={
+                                                <div
+                                                    data-test-id="color-space-value-trigger"
+                                                    className="tw-w-28 tw-overflow-hidden tw-cursor-pointer tw-whitespace-nowrap tw-text-s tw-text-black-80 tw-overflow-ellipsis"
+                                                    onClick={() => copy(mappedColorSpace.value ?? '')}
+                                                >
+                                                    {mappedColorSpace.value}
+                                                </div>
+                                            }
+                                        />
+                                    )}
                                 </div>
-
-                                {isEditing ? (
-                                    <ColorSpaceValue
-                                        viewType={ColorsBlockType.Cards}
-                                        color={color}
-                                        colorSpaceId={colorSpaceId}
-                                        onUpdate={onUpdate}
-                                    />
-                                ) : (
-                                    <Tooltip
-                                        withArrow
-                                        position={TooltipPosition.Right}
-                                        content={
-                                            <TooltipContent
-                                                colorName={color.name || ''}
-                                                colorValue={mappedColorSpace.value ?? ''}
-                                                status={status}
-                                            />
-                                        }
-                                        triggerElement={
-                                            <div
-                                                data-test-id="color-space-value-trigger"
-                                                className="tw-cursor-pointer tw-text-s tw-text-black-80"
-                                                onClick={() => copy(mappedColorSpace.value ?? '')}
-                                            >
-                                                {mappedColorSpace.value}
-                                            </div>
-                                        }
-                                    />
-                                )}
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
