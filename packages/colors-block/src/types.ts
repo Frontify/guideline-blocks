@@ -88,7 +88,7 @@ export type ColorSpaceValues = {
 };
 
 export enum ColorSpaceLabels {
-    Hex = 'RGB',
+    Hex = 'HEX',
     Rgb = 'RGB',
     Less = 'LESS',
     Ral = 'RAL',
