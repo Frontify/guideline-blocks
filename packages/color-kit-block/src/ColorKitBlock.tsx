@@ -2,7 +2,7 @@
 
 import { ReactElement, useMemo } from 'react';
 import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
-import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
+import { Badge, Button, ButtonEmphasis, IconArrowCircleDown, Text } from '@frontify/fondue';
 
 import { EmptyView } from './EmptyView';
 import { Palette } from './Palette';
@@ -46,7 +46,11 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
                     title="download color palettes"
                     style={{ pointerEvents: isDownloadEnabled ? 'initial' : 'none' }}
                 >
-                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />} disabled={!isDownloadEnabled}>
+                    <Button
+                        emphasis={ButtonEmphasis.Default}
+                        icon={<IconArrowCircleDown />}
+                        disabled={!isDownloadEnabled}
+                    >
                         Download
                     </Button>
                 </a>
