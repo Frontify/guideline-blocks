@@ -52,7 +52,6 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 <Tooltip
                     withArrow
                     position={TooltipPosition.Right}
-                    hoverDelay={0}
                     content={
                         <TooltipContent
                             colorName={color.name || ''}

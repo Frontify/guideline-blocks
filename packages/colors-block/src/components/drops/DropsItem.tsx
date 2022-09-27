@@ -64,7 +64,6 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                 <Tooltip
                     withArrow
                     position={TooltipPosition.Right}
-                    hoverDelay={0}
                     content={
                         <TooltipContent
                             colorName={color.name || ''}
