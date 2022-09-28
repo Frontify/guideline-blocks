@@ -2,16 +2,22 @@
 
 import { Text } from '@frontify/fondue';
 
-import type { PaletteProps } from './types';
+import { EmptyView } from './EmptyView';
 import { Color } from './Color';
+import type { PaletteProps } from './types';
 
 export const Palette = ({ palette, isEditing }: PaletteProps) => {
     const { name, colors = [] } = palette;
 
+    if (colors.length === 0) {
+        return <EmptyView paletteName={`${name || 'Untitled Palette'} (no colors added)`} />;
+    }
+
     return (
-        <div data-test-id="palette" className="tw-flex tw-flex-col tw-space-y-2">
-            <Text color="x-weak">{name}</Text>
-            <div className="tw-flex tw-flex-wrap [&>div]:tw-h-6 [&>div:first-child>div]:tw-shadow-inner-line-first [&>div:last-child>div]:tw-shadow-inner-line-last">
+        <div data-test-id="palette" className="tw-flex tw-flex-col tw-space-y-2 tw-mb-3 last:tw-mb-0">
+            <Text color="x-weak">{name || 'Untitled Palette'}</Text>
+
+            <div className="tw-flex tw-flex-wrap">
                 {colors.map((color) => (
                     <Color key={color.id} isEditing={isEditing} color={color} />
                 ))}
