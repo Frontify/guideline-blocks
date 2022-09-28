@@ -41,12 +41,17 @@ export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
         </div>
     );
 
+    const editModeSideShadows =
+        '[&:first-child>div>div]:tw-shadow-inner-line-first [&:last-child>div>div]:tw-shadow-inner-line-last';
+    const viewModeSideShadows =
+        '[&:first-child>div>div>div>div]:tw-shadow-inner-line-first [&:last-child>div>div>div>div]:tw-shadow-inner-line-last';
+
     return isEditing ? (
-        <div className="[&:first-child>div>div]:tw-shadow-inner-line-first [&:last-child>div>div]:tw-shadow-inner-line-last">
+        <div className={editModeSideShadows}>
             <ColorBox />
         </div>
     ) : (
-        <div className="[&:first-child>div>div>div>div]:tw-shadow-inner-line-first [&:last-child>div>div>div>div]:tw-shadow-inner-line-last">
+        <div className={viewModeSideShadows}>
             <Tooltip
                 withArrow
                 key={color.id}
