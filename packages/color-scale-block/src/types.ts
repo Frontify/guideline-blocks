@@ -8,9 +8,9 @@ export const DefaultValues = {
 };
 
 export type Settings = {
-    customHeight?: boolean;
-    heightSlider?: string;
-    heightInput?: string;
+    customHeight: boolean;
+    heightSlider: string;
+    heightInput: string;
     colorInput?: BlockColor[];
 };
 
