@@ -403,13 +403,7 @@ export const ColorScaleBlock = ({ appBridge }: Props) => {
                                 );
                             })}
 
-                        {blockColors.length === 0 && (
-                            <EmptyView
-                                height={
-                                    blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
-                                }
-                            />
-                        )}
+                        {blockColors.length === 0 && <EmptyView height={colorScaleHeight} />}
                     </DndProvider>
                 </div>
             </div>
