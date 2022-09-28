@@ -25,38 +25,39 @@ export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
     }
 
     const ColorBox = () => (
-        <div
-            className={merge([
-                "tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]",
-                isEditing &&
-                    '[&:first-child>div]:tw-shadow-inner-line-first [&:last-child>div]:tw-shadow-inner-line-last',
-            ])}
-        >
+        <div className="tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
             <div
                 key={color.id}
                 data-test-id="color"
                 style={{
                     backgroundColor: toRgbaString(colorWithDecimalAlpha),
                 }}
-                className="tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow hover:!tw-shadow-inner-line-strong"
+                className={merge([
+                    'tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow',
+                    !isEditing && 'hover:!tw-shadow-inner-line-strong',
+                ])}
                 onClick={() => copy(`#${color.hex}`)}
             />
         </div>
     );
 
     return isEditing ? (
-        <ColorBox />
+        <div className="[&:first-child>div>div]:tw-shadow-inner-line-first [&:last-child>div>div]:tw-shadow-inner-line-last">
+            <ColorBox />
+        </div>
     ) : (
-        <Tooltip
-            withArrow
-            key={color.id}
-            position={TooltipPosition.Right}
-            content={<TooltipContent colorValue={color.hex} status={status} />}
-            triggerElement={
-                <div>
-                    <ColorBox />
-                </div>
-            }
-        />
+        <div className="[&:first-child>div>div>div>div]:tw-shadow-inner-line-first [&:last-child>div>div>div>div]:tw-shadow-inner-line-last">
+            <Tooltip
+                withArrow
+                key={color.id}
+                position={TooltipPosition.Right}
+                content={<TooltipContent colorValue={color.hex} status={status} />}
+                triggerElement={
+                    <div>
+                        <ColorBox />
+                    </div>
+                }
+            />
+        </div>
     );
 };
