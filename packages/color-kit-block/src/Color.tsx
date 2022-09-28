@@ -2,7 +2,7 @@
 
 import type { ReactElement } from 'react';
 import type { Color as ColorType } from '@frontify/app-bridge';
-import { Tooltip, TooltipPosition, useCopy } from '@frontify/fondue';
+import { Tooltip, TooltipPosition, merge, useCopy } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import { TooltipContent } from './TooltipContent';
@@ -25,7 +25,13 @@ export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
     }
 
     const ColorBox = () => (
-        <div className="tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+        <div
+            className={merge([
+                "tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]",
+                isEditing &&
+                    '[&:first-child>div]:tw-shadow-inner-line-first [&:last-child>div]:tw-shadow-inner-line-last',
+            ])}
+        >
             <div
                 key={color.id}
                 data-test-id="color"

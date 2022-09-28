@@ -20,9 +20,8 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
             <div
                 className={merge([
                     'tw-flex tw-flex-wrap',
-                    isEditing
-                        ? '[&>div:first-child>div]:tw-shadow-inner-line-first [&>div:last-child>div]:tw-shadow-inner-line-last'
-                        : '[&>div:first-child>div>div>div]:tw-shadow-inner-line-first [&>div:last-child>div>div>div]:tw-shadow-inner-line-last',
+                    !isEditing &&
+                        '[&>div:first-child>div>div>div]:tw-shadow-inner-line-first [&>div:last-child>div>div>div]:tw-shadow-inner-line-last',
                 ])}
             >
                 {colors.map((color) => (
