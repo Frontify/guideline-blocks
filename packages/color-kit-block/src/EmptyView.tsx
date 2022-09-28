@@ -16,6 +16,7 @@ export const EmptyView = ({ paletteName = 'Select color palettes for them to app
             <div className="tw-flex tw-shadow-inner-line">
                 {EMPTY_BLOCK_COLORS.map((color) => (
                     <div
+                        data-test-id="empty-view-color"
                         key={color}
                         className="tw-w-6 tw-h-6 tw-shadow-inner-line-y first:tw-shadow-inner-line-first last:tw-shadow-inner-line-last"
                         style={{ backgroundColor: color }}
