@@ -1,13 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Asset } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
+import { Color, merge } from '@frontify/fondue';
 import { FC } from 'react';
 import { QuoteBlockIcon, QuoteBlockIconProps } from './QuoteBlockIcon';
 import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
 import { QuoteSize, QuoteStyle } from './types';
+import { flexBoxAlignmentClassNames } from './utilities';
 
 type QuotationProps = {
+    textAlignment?: string;
+    isFullWidth?: boolean;
     isQuotationMarkType: boolean;
     blockAssets: Record<string, Asset[]>;
     color?: Color;
@@ -16,10 +19,11 @@ type QuotationProps = {
     sizeChoice?: QuoteSize;
     quoteStyleLeft?: QuoteStyle;
     quoteStyleRight?: QuoteStyle;
-    children: React.ReactElement;
 };
 
 export const Quotations: FC<QuotationProps> = ({
+    textAlignment,
+    isFullWidth,
     isQuotationMarkType,
     blockAssets,
     color,
@@ -39,8 +43,19 @@ export const Quotations: FC<QuotationProps> = ({
         customIconId: CUSTOM_ICON_LEFT_ID,
         quoteStyle: quoteStyleLeft ?? QuoteStyle.DoubleUp,
     };
+
+    const getWrapperClasses = () => {
+        if (isQuotationMarkType && isFullWidth) {
+            return 'tw-flex tw-justify-between tw-gap-x-7';
+        }
+        if (isQuotationMarkType && !isFullWidth) {
+            return merge(['tw-flex tw-gap-x-7', flexBoxAlignmentClassNames[textAlignment ?? 'left']]);
+        }
+        return '';
+    };
+
     return isQuotationMarkType ? (
-        <div className="tw-flex tw-justify-between tw-gap-x-7">
+        <div className={getWrapperClasses()}>
             <QuoteBlockIcon {...defaultProps} />
             {children}
             <QuoteBlockIcon
@@ -50,6 +65,6 @@ export const Quotations: FC<QuotationProps> = ({
             />
         </div>
     ) : (
-        children
+        <>{children}</>
     );
 };

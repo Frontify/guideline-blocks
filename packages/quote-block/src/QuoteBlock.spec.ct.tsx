@@ -1,10 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { mount } from 'cypress/react';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { mount } from 'cypress/react';
 import { QuoteBlock } from './QuoteBlock';
-import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
 import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
 import { QuotationMarksAnchoring, QuoteSize, QuoteStyle, QuoteType, TextAlignment } from './types';
 
@@ -114,8 +112,8 @@ describe('Quote Block', () => {
                     quotesColor: EXAMPLE_COLOR,
                 },
                 blockAssets: {
-                    [CUSTOM_ICON_LEFT_ID]: [FrontifyAssetDummy.with(342)],
-                    [CUSTOM_ICON_RIGHT_ID]: [FrontifyAssetDummy.with(342)],
+                    [CUSTOM_ICON_LEFT_ID]: [AssetDummy.with(342)],
+                    [CUSTOM_ICON_RIGHT_ID]: [AssetDummy.with(342)],
                 },
             });
 
@@ -147,7 +145,7 @@ describe('Quote Block', () => {
                     quoteStyleRight: QuoteStyle.HookBracketRight,
                 },
                 blockAssets: {
-                    [CUSTOM_ICON_LEFT_ID]: [FrontifyAssetDummy.with(342)],
+                    [CUSTOM_ICON_LEFT_ID]: [AssetDummy.with(342)],
                 },
             });
 

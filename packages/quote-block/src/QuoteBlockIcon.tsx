@@ -21,14 +21,14 @@ export type QuoteBlockIconProps = {
 };
 
 export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
-                                                            customIconId,
-                                                            blockAssets,
-                                                            quoteStyle,
-                                                            color,
-                                                            isCustomSize,
-                                                            sizeValue,
-                                                            sizeChoice,
-                                                        }) => {
+    customIconId,
+    blockAssets,
+    quoteStyle,
+    color,
+    isCustomSize,
+    sizeValue,
+    sizeChoice,
+}) => {
     const customIconUrl = quoteStyle === QuoteStyle.Custom ? blockAssets?.[customIconId]?.[0]?.genericUrl : '';
     const rgbaColor = toRgbaString(color ?? DEFAULT_COLOR_VALUE);
     const size = isCustomSize ? sizeValue ?? '' : quoteSizeMap[sizeChoice ?? QuoteSize.SmallSize];
