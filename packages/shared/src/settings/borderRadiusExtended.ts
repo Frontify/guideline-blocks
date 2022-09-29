@@ -58,28 +58,52 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
                         type: 'input',
                         label: 'Top Left',
                         rules: [numericalOrPixelRule],
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, topLeftId),
+                        onChange: (bundle) => {
+                            if (bundle.getBlock(topLeftId)?.value === '') {
+                                bundle.setBlockValue(topLeftId, '0px');
+                            } else {
+                                appendUnit(bundle, topLeftId);
+                            }
+                        },
                     },
                     {
                         id: topRightId,
                         type: 'input',
                         label: 'Top Right',
                         rules: [numericalOrPixelRule],
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, topRightId),
+                        onChange: (bundle) => {
+                            if (bundle.getBlock(topRightId)?.value === '') {
+                                bundle.setBlockValue(topRightId, '0px');
+                            } else {
+                                appendUnit(bundle, topRightId);
+                            }
+                        },
                     },
                     {
                         id: bottomLeftId,
                         type: 'input',
                         label: 'Bottom Left',
                         rules: [numericalOrPixelRule],
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, bottomLeftId),
+                        onChange: (bundle) => {
+                            if (bundle.getBlock(bottomLeftId)?.value === '') {
+                                bundle.setBlockValue(bottomLeftId, '0px');
+                            } else {
+                                appendUnit(bundle, bottomLeftId);
+                            }
+                        },
                     },
                     {
                         id: bottomRightId,
                         type: 'input',
                         label: 'Bottom Right',
                         rules: [numericalOrPixelRule],
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, bottomRightId),
+                        onChange: (bundle) => {
+                            if (bundle.getBlock(bottomRightId)?.value === '') {
+                                bundle.setBlockValue(bottomRightId, '0px');
+                            } else {
+                                appendUnit(bundle, bottomRightId);
+                            }
+                        },
                     },
                 ],
             },

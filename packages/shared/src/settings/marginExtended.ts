@@ -54,7 +54,13 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
                         type: 'input',
                         label: 'Top',
                         placeholder: MARGIN_DEFAULT_PLACEHOLDER,
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, topId),
+                        onChange: (bundle) => {
+                            if (bundle.getBlock(topId)?.value === '') {
+                                bundle.setBlockValue(topId, '0px');
+                            } else {
+                                appendUnit(bundle, topId);
+                            }
+                        },
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
@@ -62,7 +68,13 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
                         type: 'input',
                         label: 'Left',
                         placeholder: MARGIN_DEFAULT_PLACEHOLDER,
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, leftId),
+                        onChange: (bundle) => {
+                            if (bundle.getBlock(leftId)?.value === '') {
+                                bundle.setBlockValue(leftId, '0px');
+                            } else {
+                                appendUnit(bundle, leftId);
+                            }
+                        },
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
@@ -70,7 +82,13 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
                         type: 'input',
                         label: 'Right',
                         placeholder: MARGIN_DEFAULT_PLACEHOLDER,
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, rightId),
+                        onChange: (bundle) => {
+                            if (bundle.getBlock(rightId)?.value === '') {
+                                bundle.setBlockValue(rightId, '0px');
+                            } else {
+                                appendUnit(bundle, rightId);
+                            }
+                        },
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
@@ -78,7 +96,13 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
                         type: 'input',
                         label: 'Bottom',
                         placeholder: MARGIN_DEFAULT_PLACEHOLDER,
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, bottomId),
+                        onChange: (bundle) => {
+                            if (bundle.getBlock(bottomId)?.value === '') {
+                                bundle.setBlockValue(bottomId, '0px');
+                            } else {
+                                appendUnit(bundle, bottomId);
+                            }
+                        },
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                 ],
