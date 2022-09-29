@@ -92,7 +92,6 @@ describe('DropsItem component in edit mode', () => {
     });
 
     it('renders a delete button', () => {
-        cy.get(DeleteButtonSelector).should('have.css', 'display', 'none');
         cy.get(DropsItemSelector).realHover();
         cy.get(DeleteButtonSelector).should('be.visible');
         cy.get(DeleteButtonSelector).click();
