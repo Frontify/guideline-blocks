@@ -9,15 +9,22 @@ export type Props = {
 
 export type Settings = {
     imageId?: string;
-    toggleIconIds?: string[];
-    toggleDescription?: string[];
     accentColor?: Color;
     prominentColor?: Color;
     complementaryColors?: Color[];
-    blockTitle?: string;
-    description?: string;
     headingTitle?: string;
     headingDescription?: string;
     sampleImagesIds?: string[];
     showComplementaryColor?: boolean;
+    iconDescriptionFirst?: string;
+    iconDescriptionSecond?: string;
+    useCustomLogo?: boolean;
+    useCustomIcons?: boolean;
+    imageTitle?: string;
+    imageDescription?: string;
 };
+
+export enum ColorMatchingType {
+    Render = 'Render',
+    Toolbar = 'Toolbar',
+}
