@@ -7,7 +7,7 @@ import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DEFAULT_COLOR_VALUE } from './settings';
-import { QuoteSize, quoteSizeMap, QuoteStyle } from './types';
+import { QuoteSize, QuoteStyle, quoteSizeMap } from './types';
 import { quoteIconMap } from './utilities';
 
 export type QuoteBlockIconProps = {
