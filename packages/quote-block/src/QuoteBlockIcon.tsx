@@ -33,5 +33,5 @@ export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
     const rgbaColor = toRgbaString(color ?? DEFAULT_COLOR_VALUE);
     const size = isCustomSize ? sizeValue ?? '' : quoteSizeMap[sizeChoice ?? QuoteSize.SmallSize];
 
-    return <>{quoteIconMap(size, rgbaColor, customIconUrl)[quoteStyle]}</>;
+    return quoteIconMap(size, rgbaColor, customIconUrl)[quoteStyle];
 };
