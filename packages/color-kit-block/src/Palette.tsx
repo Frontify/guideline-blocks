@@ -14,12 +14,12 @@ export const Palette = ({ palette, isEditing }: PaletteProps) => {
     }
 
     return (
-        <div data-test-id="palette" className="tw-flex tw-flex-col tw-space-y-2 tw-mb-3 last:tw-mb-0">
+        <div data-test-id="palette" className="tw-space-y-2 tw-mb-3 last:tw-mb-0">
             <Text color="x-weak">{name || 'Untitled Palette'}</Text>
 
             <div className="tw-flex tw-flex-wrap">
                 {colors.map((color) => (
-                    <Color key={color.id} isEditing={isEditing} color={color} />
+                    <Color key={color.id} isEditing={isEditing} color={color} colorsLength={colors.length} />
                 ))}
             </div>
         </div>
