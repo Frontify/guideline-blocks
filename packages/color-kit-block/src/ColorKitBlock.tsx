@@ -29,7 +29,7 @@ export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement =
                         Color Kit
                     </Text>
 
-                    <div className="tw-w-full tw-space-x-1 tw-mt-0 tw-ml-3 sm:tw-w-auto">
+                    <div className="tw-space-x-1 tw-mt-0 tw-ml-3">
                         <Badge size="small">ASE</Badge>
                         <Badge size="small">LESS</Badge>
                         <Badge size="small">OCO</Badge>
