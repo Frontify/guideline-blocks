@@ -10,14 +10,15 @@ export type DropZoneProps = {
     onDrop?: (index: number) => void;
     treeId: string;
     children?: JSX.Element;
-    colorBlockType: ColorsBlockType;
+    colorsBlockType: ColorsBlockType;
     index: number;
     moveCard: (dragIndex: number, hoverIndex: number) => void;
     isEditing: boolean;
+    isMoving: boolean;
 };
 
 export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
-    ({ index, treeId, onDrop, children, colorBlockType, moveCard, isEditing }, forwardedRef) => {
+    ({ index, treeId, onDrop, children, colorsBlockType, moveCard, isEditing, isMoving }, forwardedRef) => {
         const dropZoneRef = useRef<HTMLDivElement>(null);
 
         const [, drop] = useDrop({
@@ -55,7 +56,7 @@ export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
                 // Get pixels to the top
                 const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
 
-                if (colorBlockType === 'list') {
+                if (colorsBlockType === 'list') {
                     // Dragging downwards
                     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
                         return;
@@ -77,7 +78,9 @@ export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
                     }
                 }
 
+                // if (!isMoving) {
                 moveCard(dragIndex, hoverIndex);
+                // }
 
                 item.index = hoverIndex;
             },
@@ -96,7 +99,7 @@ export const DropZone = forwardRef<HTMLDivElement, DropZoneProps>(
 
         const activeOuterDropZoneClassNames = merge([
             'tw-py-0 tw-bg-violet-20 tw-border-2 tw-border-dashed tw-border-violet-60 tw-rounded tw-bg-clip-content',
-            colorBlockType === 'list' ? 'tw-h-[60px] tw-my-1' : 'tw-h-full',
+            colorsBlockType === 'list' ? 'tw-h-[60px] tw-my-1' : 'tw-h-full',
         ]);
 
         return (

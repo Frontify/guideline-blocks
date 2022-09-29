@@ -3,6 +3,7 @@
 import { FormEvent, ReactElement, useEffect, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Flipped, Flipper } from 'react-flip-toolkit';
 import {
     Color as ColorType,
     useBlockSettings,
@@ -71,6 +72,8 @@ export const ColorsBlock = ({ appBridge }: ColorsBlockProps): ReactElement => {
         });
     };
 
+    const [isMoving, setIsMoving] = useState(false);
+
     const inputClasses = joinClassNames(['tw-w-full tw-outline-none', isEditing ? '' : 'tw-pointer-events-none']);
 
     return (
@@ -101,54 +104,76 @@ export const ColorsBlock = ({ appBridge }: ColorsBlockProps): ReactElement => {
                 />
             </div>
 
-            <div className={wrapperClasses[blockSettings.view]}>
+            <div>
                 <DndProvider backend={HTML5Backend}>
-                    {colors.map((color, index) => {
-                        const itemProps: ItemProps = {
-                            color,
-                            colorSpaces,
-                            isEditing,
-                            onBlur: (event) => updateColor(color.id, { name: event.target.value }),
-                            onUpdate: (colorPatch) => updateColor(color.id, colorPatch),
-                            onDelete: (colorId) => deleteColor(colorId),
-                        };
+                    <Flipper
+                        flipKey={colors.map((item) => item.id).join('')}
+                        spring={{
+                            stiffness: 3948,
+                            damping: 126,
+                        }}
+                        className={wrapperClasses[blockSettings.view]}
+                        onStart={() => setIsMoving(true)}
+                        onComplete={() => setIsMoving(false)}
+                    >
+                        {colors.map((color, index) => {
+                            const itemProps: ItemProps = {
+                                color,
+                                colorSpaces,
+                                isEditing,
+                                onBlur: (event) => updateColor(color.id, { name: event.target.value }),
+                                onUpdate: (colorPatch) => updateColor(color.id, colorPatch),
+                                onDelete: (colorId) => deleteColor(colorId),
+                            };
 
-                        return (
-                            <DropZone
-                                key={`drop-zone-item-${color.id}`}
-                                index={index}
-                                onDrop={() => handleDrop(color.id, index)}
-                                treeId={String(blockSettings.colorPaletteId)}
-                                colorBlockType={blockSettings.view}
-                                moveCard={(dragIndex, hoverIndex) => {
-                                    setColors(moveItemInArray(colors, dragIndex, hoverIndex));
-                                }}
-                                isEditing={isEditing}
-                            >
-                                <div>
-                                    {blockSettings.view === ColorsBlockType.List && <ListItem {...itemProps} />}
-                                    {blockSettings.view === ColorsBlockType.Drops && <DropsItem {...itemProps} />}
-                                    {blockSettings.view === ColorsBlockType.Cards && <CardsItem {...itemProps} />}
-                                </div>
-                            </DropZone>
-                        );
-                    })}
+                            return (
+                                <Flipped key={color.id} flipId={color.id}>
+                                    <div>
+                                        <DropZone
+                                            key={`drop-zone-item-${color.id}`}
+                                            index={index}
+                                            onDrop={() => handleDrop(color.id, index)}
+                                            treeId={String(blockSettings.colorPaletteId)}
+                                            colorsBlockType={blockSettings.view}
+                                            moveCard={(dragIndex, hoverIndex) => {
+                                                setColors(moveItemInArray(colors, dragIndex, hoverIndex));
+                                            }}
+                                            isEditing={isEditing}
+                                            isMoving={isMoving}
+                                        >
+                                            <div>
+                                                {blockSettings.view === ColorsBlockType.List && (
+                                                    <ListItem {...itemProps} />
+                                                )}
+                                                {blockSettings.view === ColorsBlockType.Drops && (
+                                                    <DropsItem {...itemProps} />
+                                                )}
+                                                {blockSettings.view === ColorsBlockType.Cards && (
+                                                    <CardsItem {...itemProps} />
+                                                )}
+                                            </div>
+                                        </DropZone>
+                                    </div>
+                                </Flipped>
+                            );
+                        })}
 
-                    {isEditing && (
-                        <>
-                            {blockSettings.view === ColorsBlockType.List && (
-                                <ListItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
-                            )}
+                        {isEditing && (
+                            <>
+                                {blockSettings.view === ColorsBlockType.List && (
+                                    <ListItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
+                                )}
 
-                            {blockSettings.view === ColorsBlockType.Drops && (
-                                <DropsItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
-                            )}
+                                {blockSettings.view === ColorsBlockType.Drops && (
+                                    <DropsItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
+                                )}
 
-                            {blockSettings.view === ColorsBlockType.Cards && (
-                                <CardsItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
-                            )}
-                        </>
-                    )}
+                                {blockSettings.view === ColorsBlockType.Cards && (
+                                    <CardsItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
+                                )}
+                            </>
+                        )}
+                    </Flipper>
                 </DndProvider>
             </div>
         </div>
