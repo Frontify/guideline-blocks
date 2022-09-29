@@ -17,7 +17,7 @@ export const settings = {
         {
             id: IS_TOOLBAR_TYPE,
             type: 'dropdown',
-            size: 'Large' as DropdownSize.Large,
+            size: DropdownSize.Large,
             defaultValue: ColorMatchingType.Toolbar,
             disabled: false,
             choices: [
@@ -65,7 +65,7 @@ export const settings = {
                     id: LOGO_ID,
                     type: 'assetInput',
                     size: AssetInputSize.Small,
-                    extensions: ['svg' as FileExtension.Svg],
+                    extensions: [FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                 },
             ],
@@ -83,7 +83,7 @@ export const settings = {
                     type: 'sectionHeading',
                     blocks: [
                         {
-                            id: 'descriptionFirstToggle',
+                            id: 'iconDescriptionFirst',
                             type: 'input',
                             placeholder: 'Mode name toggle off',
                             defaultValue: 'Mobility',
@@ -93,7 +93,7 @@ export const settings = {
                             type: 'assetInput',
                             size: AssetInputSize.Small,
                             mode: AssetInputMode.BrowseOnly,
-                            extensions: ['svg' as FileExtension.Svg],
+                            extensions: [FileExtension.Svg],
                         },
                     ],
                     label: 'Left toggle',
@@ -102,7 +102,7 @@ export const settings = {
                     type: 'sectionHeading',
                     blocks: [
                         {
-                            id: 'descriptionSecondToggle',
+                            id: 'iconDescriptionSecond',
                             type: 'input',
                             placeholder: 'Mode name toggle on',
                             defaultValue: 'Delivery',
@@ -111,7 +111,7 @@ export const settings = {
                             id: ICON_RIGHT_ID,
                             type: 'assetInput',
                             size: AssetInputSize.Small,
-                            extensions: ['svg' as FileExtension.Svg],
+                            extensions: [FileExtension.Svg],
                             source: AssetInputSource.Library,
                             mode: AssetInputMode.BrowseOnly,
                         },

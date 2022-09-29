@@ -2,7 +2,6 @@
 
 import type { AppBridgeBlock } from '@frontify/app-bridge';
 import type { Color } from '@frontify/fondue';
-import { CSSProperties } from 'react';
 
 export type Props = {
     appBridge: AppBridgeBlock;
@@ -29,7 +28,3 @@ export enum ColorMatchingType {
     Render = 'Render',
     Toolbar = 'Toolbar',
 }
-
-export type IconProps = {
-    style?: CSSProperties;
-};

@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import React from 'react';
+import { IconProps } from './type';
 
-export const IconRender = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const IconRender = ({ style = { fill: 'black' } }: IconProps) => (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={style}>
         <path
             d="M17.5 9.47367C17.5 10.3847 16.8046 11.0789 16 11.0789C15.1954 11.0789 14.5 10.3847 14.5 9.47367C14.5 8.56263 15.1954 7.86841 16 7.86841C16.8046 7.86841 17.5 8.56263 17.5 9.47367Z"
             stroke="#434747"
