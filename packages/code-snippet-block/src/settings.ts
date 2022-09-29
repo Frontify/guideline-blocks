@@ -3,6 +3,7 @@
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import {
+    Radius,
     appendUnit,
     getExtendedBorderRadiusSettings,
     getMarginExtendedSettings,
@@ -167,10 +168,6 @@ export const settings: BlockSettings = {
                                     value: 'solid',
                                     label: 'Solid',
                                 },
-                                {
-                                    value: 'double',
-                                    label: 'Double',
-                                },
                             ],
                         },
                         {
@@ -179,6 +176,7 @@ export const settings: BlockSettings = {
                             defaultValue: '1px',
                             placeholder: 'e.g. 2px',
                             rules: [numericalOrPixelRule],
+                            clearable: false,
                         },
                         {
                             id: 'borderColor',
@@ -190,6 +188,6 @@ export const settings: BlockSettings = {
                 },
             ],
         },
-        getExtendedBorderRadiusSettings(),
+        getExtendedBorderRadiusSettings({ defaultValue: Radius.Medium }),
     ],
 };

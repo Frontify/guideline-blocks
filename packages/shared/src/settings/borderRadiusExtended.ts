@@ -6,7 +6,7 @@ import { appendUnit } from '../helpers/settings/appendUnit';
 import { presetCustomValue } from '../helpers/settings/presetCustomValue';
 import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
 import { getBorderRadiusSlider } from './borderRadius';
-import { radiusStyleMap } from './types';
+import { Radius, radiusStyleMap } from './types';
 
 /**
  * Returns border radius settings: border radius switch, radius slider, custom radius inputs for every corner
@@ -20,6 +20,7 @@ import { radiusStyleMap } from './types';
 type BorderRadiusSettingsType = {
     id?: string;
     dependentSettingId?: string;
+    defaultValue?: Radius;
 };
 
 export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsType): SettingBlock => {
@@ -83,6 +84,6 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
                 ],
             },
         ],
-        off: [getBorderRadiusSlider(choiceId)],
+        off: [getBorderRadiusSlider(choiceId, options?.defaultValue)],
     };
 };
