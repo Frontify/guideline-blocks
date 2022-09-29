@@ -42,8 +42,8 @@ export const ColorPickerFlyout = ({ currentColor, onConfirm, children }: ColorPi
                     currentColor={selectedColor}
                     currentFormat={currentFormat}
                     setFormat={setCurrentFormat}
-                    showPreview={false}
                     onSelect={setSelectedColor}
+                    showPreview
                 />
             </Flyout>
         </div>
