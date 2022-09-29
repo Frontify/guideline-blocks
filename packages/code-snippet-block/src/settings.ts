@@ -1,8 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import { appendUnit, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import {
+    appendUnit,
+    getExtendedBorderRadiusSettings,
+    getMarginExtendedSettings,
+    numericalOrPixelRule,
+} from '@frontify/guideline-blocks-shared';
+
 import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
 
 export const settings: BlockSettings = {
@@ -56,7 +62,7 @@ export const settings: BlockSettings = {
         {
             id: 'withHeading',
             type: 'switch',
-            defaultValue: false,
+            defaultValue: true,
             label: 'Snippet heading',
         },
         {
@@ -65,86 +71,14 @@ export const settings: BlockSettings = {
             label: 'Row numbers',
             defaultValue: true,
         },
-        {
-            id: 'withCustomPadding',
-            label: 'Padding',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            on: [
-                {
-                    id: 'customPadding',
-                    type: 'multiInput',
-                    layout: MultiInputLayout.Spider,
-                    blocks: [
-                        {
-                            id: 'paddingTop',
-                            type: 'input',
-                            label: 'Top',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingTop'),
-                        },
-                        {
-                            id: 'paddingLeft',
-                            type: 'input',
-                            label: 'Left',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingLeft'),
-                        },
-                        {
-                            id: 'paddingRight',
-                            type: 'input',
-                            label: 'Right',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingRight'),
-                        },
-                        {
-                            id: 'paddingBottom',
-                            type: 'input',
-                            label: 'Bottom',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingBottom'),
-                        },
-                    ],
-                },
-            ],
-            off: [
-                {
-                    id: 'padding',
-                    type: 'slider',
-                    defaultValue: '0px',
-                    choices: [
-                        {
-                            value: '0px',
-                            label: 'None',
-                        },
-                        {
-                            value: '6rem',
-                            label: 'S',
-                        },
-                        {
-                            value: '9rem',
-                            label: 'M',
-                        },
-                        {
-                            value: '15rem',
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
-        },
+        getMarginExtendedSettings(),
     ],
     style: [
         {
             id: 'theme',
             type: 'dropdown',
             defaultValue: DEFAULT_THEME_VALUE,
-            label: 'Color schema',
+            label: 'Color scheme',
             size: DropdownSize.Small,
             choices: [
                 {
@@ -206,56 +140,56 @@ export const settings: BlockSettings = {
             type: 'switch',
             defaultValue: true,
             label: 'Border',
-        },
-        {
-            id: 'border',
-            type: 'multiInput',
-            lastItemFullWidth: true,
-            show: (bundle: Bundle) => bundle.getBlock('withBorder')?.value === true,
-            onChange: (bundle: Bundle): void => {
-                appendUnit(bundle, 'lineWidth');
-            },
-            blocks: [
+            on: [
                 {
-                    id: 'lineStyle',
-                    type: 'dropdown',
-                    defaultValue: 'solid',
-                    choices: [
+                    id: 'border',
+                    type: 'multiInput',
+                    lastItemFullWidth: true,
+                    onChange: (bundle) => {
+                        appendUnit(bundle, 'lineWidth');
+                    },
+                    blocks: [
                         {
-                            value: 'none',
-                            label: 'None',
+                            id: 'lineStyle',
+                            type: 'dropdown',
+                            defaultValue: 'solid',
+                            size: DropdownSize.Small,
+                            choices: [
+                                {
+                                    value: 'dotted',
+                                    label: 'Dotted',
+                                },
+                                {
+                                    value: 'dashed',
+                                    label: 'Dashed',
+                                },
+                                {
+                                    value: 'solid',
+                                    label: 'Solid',
+                                },
+                                {
+                                    value: 'double',
+                                    label: 'Double',
+                                },
+                            ],
                         },
                         {
-                            value: 'dotted',
-                            label: 'Dotted',
+                            id: 'lineWidth',
+                            type: 'input',
+                            defaultValue: '1px',
+                            placeholder: 'e.g. 2px',
+                            rules: [numericalOrPixelRule],
                         },
                         {
-                            value: 'dashed',
-                            label: 'Dashed',
-                        },
-                        {
-                            value: 'solid',
-                            label: 'Solid',
-                        },
-                        {
-                            value: 'double',
-                            label: 'Double',
+                            id: 'borderColor',
+                            type: 'colorInput',
+                            defaultValue: BORDER_COLOR_DEFAULT_VALUE,
                         },
                     ],
-                },
-                {
-                    id: 'lineWidth',
-                    type: 'input',
-                    placeholder: 'e.g. 2px',
-                    rules: [numericalOrPixelRule],
-                },
-                {
-                    id: 'borderColor',
-                    type: 'colorInput',
-                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
+                    layout: MultiInputLayout.Columns,
                 },
             ],
-            layout: MultiInputLayout.Columns,
         },
+        getExtendedBorderRadiusSettings(),
     ],
 };

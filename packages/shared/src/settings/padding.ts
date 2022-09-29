@@ -8,19 +8,18 @@ import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNum
 import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { Padding, paddingStyleMap } from './types';
 
-/**
- * Returns padding settings: padding switch, padding slider, custom padding input
- *
- * @param options Options for the settings
- * @param options.id Custom suffix for the setting ids
- * @returns {SettingBlock} Returns border settings
- */
-
 type PaddingSettingsType = {
     id?: string;
     paddingStyleMap?: Record<Padding, string>;
 };
 
+/**
+ * Returns padding settings: padding switch, padding slider, custom padding input
+ *
+ * @param options Options for the settings
+ * @param options.id Custom suffix for the setting ids
+ * @returns {SettingBlock} Returns padding settings
+ */
 export const getPaddingSlider = (id: string): SettingBlock => ({
     id,
     type: 'slider',

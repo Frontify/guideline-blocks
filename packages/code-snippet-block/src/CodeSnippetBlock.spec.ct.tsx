@@ -3,6 +3,7 @@
 import { mount } from 'cypress/react';
 import { Color } from '@frontify/fondue';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { Margin, Radius } from '@frontify/guideline-blocks-shared';
 
 import { CodeSnippetBlock } from './CodeSnippetBlock';
 
@@ -89,14 +90,65 @@ it('renders code snippet with border', () => {
     cy.get(codeSnippetEditorSelector).should('have.css', 'border', '2px solid rgb(22, 181, 181)');
 });
 
-it('renders code snippet with padding', () => {
+it('renders code snippet with border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withCustomPadding: false,
-            padding: '6rem',
+            withBorder: true,
+            lineWidth: '2px',
+            lineStyle: 'solid',
+            borderColor: EXAMPLE_COLOR,
+            hasExtendedCustomRadius: false,
+            extendedRadiusChoice: Radius.Large,
         },
     });
 
     mount(<CodeSnippetWithStubs />);
-    cy.get(codeSnippetEditorSelector).should('have.css', 'padding', '96px');
+    cy.get(codeSnippetEditorSelector).should('have.css', 'border-radius', '12px');
+});
+
+it('renders code snippet with custom border radius', () => {
+    const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
+        blockSettings: {
+            withBorder: true,
+            lineWidth: '2px',
+            lineStyle: 'solid',
+            borderRadius: '12px',
+            borderColor: EXAMPLE_COLOR,
+            hasExtendedCustomRadius: true,
+            extendedRadiusTopLeft: '5px',
+            extendedRadiusTopRight: '2px',
+            extendedRadiusBottomRight: '10px',
+            extendedRadiusBottomLeft: '8px',
+        },
+    });
+
+    mount(<CodeSnippetWithStubs />);
+    cy.get(codeSnippetEditorSelector).should('have.css', 'border-radius', '5px 2px 10px 8px');
+});
+
+it('renders code snippet with margin', () => {
+    const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
+        blockSettings: {
+            hasExtendedCustomMargin: false,
+            extendedMarginChoice: Margin.Large,
+        },
+    });
+
+    mount(<CodeSnippetWithStubs />);
+    cy.get(codeSnippetEditorSelector).should('have.css', 'margin', '60px');
+});
+
+it('renders code snippet with custom margin', () => {
+    const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
+        blockSettings: {
+            hasExtendedCustomMargin: true,
+            extendedMarginTop: '5px',
+            extendedMarginLeft: '25px',
+            extendedMarginRight: '15px',
+            extendedMarginBottom: '60px',
+        },
+    });
+
+    mount(<CodeSnippetWithStubs />);
+    cy.get(codeSnippetEditorSelector).should('have.css', 'margin', '5px 15px 60px 25px');
 });

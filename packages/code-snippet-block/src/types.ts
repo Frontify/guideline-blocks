@@ -4,6 +4,7 @@ import { CSSProperties } from 'react';
 import { Color } from '@frontify/fondue';
 import { Globals, Property } from 'csstype';
 import { AppBridgeBlock } from '@frontify/app-bridge';
+import { MarginExtendedSettings, RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
 
 export type Language = 'js' | 'html' | 'css' | 'php' | 'json' | 'jsx' | 'ts';
 
@@ -29,11 +30,10 @@ export type TwBorderInlineStyle = Exclude<
 
 export interface CodeMirrorEditorStyle extends CSSProperties {
     '--editor-border': Property.Border;
-    '--editor-padding': Property.Padding;
+    '--editor-margin': Property.Margin;
     '--editor-border-radius': Property.BorderRadius;
 }
 
-export type PaddingSize = '0px' | '6rem' | '9rem' | '15rem';
 export type BorderRadiusSize = '0px' | '2px' | '4px' | '12px';
 
 export type Settings = {
@@ -43,34 +43,24 @@ export type Settings = {
     language?: Language;
     withBorder?: boolean;
     withHeading?: boolean;
-    paddingTop?: string;
-    paddingLeft?: string;
-    paddingRight?: string;
-    paddingBottom?: string;
-    padding?: PaddingSize;
     withRowNumbers?: boolean;
-    borderRadiusTop?: string;
-    borderRadiusLeft?: string;
-    borderRadiusRight?: string;
-    borderRadiusBottom?: string;
-    withCustomPadding?: boolean;
     lineStyle: TwBorderInlineStyle;
-    borderRadius?: BorderRadiusSize;
     lineWidth: Property.BorderWidth;
-    withCustomBorderRadius?: boolean;
-};
+} & RadiusExtendedSettings &
+    MarginExtendedSettings;
 
 export type CodeMirrorEditorProps = {
     id?: string;
     theme: Theme;
     initValue?: string;
+    isEditing?: boolean;
     language?: Language;
     withHeading?: boolean;
     withRowNumbers?: boolean;
     border?: Property.Border;
-    padding?: Property.Padding;
+    margin?: Property.Margin;
     onChange: (value: string) => void;
-    borderRadius?: Property.BorderRadius;
+    borderRadius: Property.BorderRadius;
 };
 
 export type CodeSnippetProps = {

@@ -2,7 +2,9 @@
 
 import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { QuoteBlock } from './QuoteBlock';
+import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
 import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
 import { QuotationMarksAnchoring, QuoteSize, QuoteStyle, QuoteType, TextAlignment } from './types';
 

@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Compartment, Extension, StateEffect } from '@codemirror/state';
-import { EditorView } from '@codemirror/view';
 import { useEffect, useMemo } from 'react';
+import { EditorView } from '@codemirror/view';
+import { Compartment, Extension, StateEffect } from '@codemirror/state';
 
 export const useExtension = (view: EditorView, extensionCreator: () => Extension, dependencies?: unknown[]) => {
     const compartment = useMemo(() => new Compartment(), []);

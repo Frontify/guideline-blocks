@@ -26,12 +26,6 @@ export const materialLighterTheme = EditorView.theme(
             backgroundColor: background,
         },
 
-        '&.cm-editor': {
-            border: 'var(--editor-border)',
-            padding: 'var(--editor-padding)',
-            borderRadius: 'var(--editor-border-radius)',
-        },
-
         '.cm-content': {
             caretColor: cursor,
         },

@@ -10,18 +10,17 @@ import { PADDING_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { getPaddingSlider } from './padding';
 import { paddingStyleMap } from './types';
 
+type PaddingSettingsType = {
+    id?: string;
+};
+
 /**
  * Returns padding settings: padding switch, padding slider, custom padding input for every direction
  *
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
- * @returns {SettingBlock} Returns border settings
+ * @returns {SettingBlock} Returns padding settings
  */
-
-type PaddingSettingsType = {
-    id?: string;
-};
-
 export const getPaddingExtendedSettings = (options?: PaddingSettingsType): SettingBlock => {
     const hasId = options?.id ? `hasExtendedCustomPadding_${options?.id}` : 'hasExtendedCustomPadding';
     const valueId = options?.id ? `extendedPaddingValues_${options?.id}` : 'extendedPaddingValues';

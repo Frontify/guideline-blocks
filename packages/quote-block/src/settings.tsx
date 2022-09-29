@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
+import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
@@ -124,11 +125,11 @@ export const settings: BlockSettings = {
                 {
                     id: CUSTOM_ICON_LEFT_ID,
                     type: 'assetInput',
+                    size: AssetInputSize.Small,
                     label: 'Custom Icon Left',
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
-                    show: (bundle: Bundle): boolean =>
-                        bundle.getBlock(QUOTE_STYLE_LEFT_ID)?.value === QuoteStyle.Custom,
+                    show: (bundle) => bundle.getBlock(QUOTE_STYLE_LEFT_ID)?.value === QuoteStyle.Custom,
                 },
                 {
                     id: QUOTE_STYLE_RIGHT_ID,
@@ -140,11 +141,11 @@ export const settings: BlockSettings = {
                 {
                     id: CUSTOM_ICON_RIGHT_ID,
                     type: 'assetInput',
+                    size: AssetInputSize.Small,
                     label: 'Custom Icon Right',
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
-                    show: (bundle: Bundle): boolean =>
-                        bundle.getBlock(QUOTE_STYLE_RIGHT_ID)?.value === QuoteStyle.Custom,
+                    show: (bundle) => bundle.getBlock(QUOTE_STYLE_RIGHT_ID)?.value === QuoteStyle.Custom,
                 },
             ],
         },
@@ -159,7 +160,7 @@ export const settings: BlockSettings = {
                 {
                     id: 'authorName',
                     type: 'input',
-                    placeholder: 'John Doe',
+                    placeholder: 'e.g. John Doe',
                 },
             ],
         },

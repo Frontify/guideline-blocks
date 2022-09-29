@@ -3,8 +3,8 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
+    ButtonEmphasis,
     ButtonSize,
-    ButtonStyle,
     DragProperties,
     IconEye,
     IconEyeOff,
@@ -191,7 +191,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     >
                         <Button
                             size={ButtonSize.Small}
-                            style={ButtonStyle.Secondary}
+                            emphasis={ButtonEmphasis.Default}
                             icon={
                                 showCompleted ? (
                                     <IconEye size={IconSize.Size16} />

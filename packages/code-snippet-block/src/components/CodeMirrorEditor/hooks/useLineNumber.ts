@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { lineNumbers } from '@codemirror/gutter';
 import { EditorView } from '@codemirror/view';
+import { lineNumbers } from '@codemirror/gutter';
+
 import { addExtensionIf } from '../utils';
 import { useExtension } from './useExtension';
 
