@@ -38,17 +38,17 @@ export const Quotations: FC<QuotationProps> = ({
         customIconId: CUSTOM_ICON_LEFT_ID,
         quoteStyle: quoteStyleLeft ?? QuoteStyle.DoubleUp,
     };
-    return (
-        (isQuotationMarkType && (
-            <div className="tw-flex tw-justify-between tw-gap-x-7">
-                <QuoteBlockIcon {...defaultProps} />
-                {children}
-                <QuoteBlockIcon
-                    {...defaultProps}
-                    customIconId={CUSTOM_ICON_RIGHT_ID}
-                    quoteStyle={quoteStyleRight ?? QuoteStyle.DoubleDown}
-                />
-            </div>
-        )) || <>{children}</>
+    return isQuotationMarkType ? (
+        <div className="tw-flex tw-justify-between tw-gap-x-7">
+            <QuoteBlockIcon {...defaultProps} />
+            {children}
+            <QuoteBlockIcon
+                {...defaultProps}
+                customIconId={CUSTOM_ICON_RIGHT_ID}
+                quoteStyle={quoteStyleRight ?? QuoteStyle.DoubleDown}
+            />
+        </div>
+    ) : (
+        children
     );
 };

@@ -120,8 +120,7 @@ export const settings: BlockSettings = {
                     label: 'Custom Icon Left',
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
-                    show: (bundle: Bundle): boolean =>
-                        bundle.getBlock(QUOTE_STYLE_LEFT_ID)?.value === QuoteStyle.Custom,
+                    show: (bundle) => bundle.getBlock(QUOTE_STYLE_LEFT_ID)?.value === QuoteStyle.Custom,
                 },
                 {
                     id: QUOTE_STYLE_RIGHT_ID,
@@ -137,8 +136,7 @@ export const settings: BlockSettings = {
                     label: 'Custom Icon Right',
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
-                    show: (bundle: Bundle): boolean =>
-                        bundle.getBlock(QUOTE_STYLE_RIGHT_ID)?.value === QuoteStyle.Custom,
+                    show: (bundle) => bundle.getBlock(QUOTE_STYLE_RIGHT_ID)?.value === QuoteStyle.Custom,
                 },
             ],
         },
