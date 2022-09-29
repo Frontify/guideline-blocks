@@ -9,6 +9,6 @@ export const BORDER_COLOR_DEFAULT_VALUE = {
 
 export const BORDER_WIDTH_DEFAULT_VALUE = '1px';
 
-export const PADDING_DEFAULT_PLACEHOLDER = '24px';
+export const PADDING_DEFAULT_PLACEHOLDER = 'e.g. 24px';
 
-export const MARGIN_DEFAULT_PLACEHOLDER = '24px';
+export const MARGIN_DEFAULT_PLACEHOLDER = 'e.g. 24px';
