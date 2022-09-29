@@ -16,6 +16,7 @@ type QuotationProps = {
     sizeChoice?: QuoteSize;
     quoteStyleLeft?: QuoteStyle;
     quoteStyleRight?: QuoteStyle;
+    children: React.ReactElement;
 };
 
 export const Quotations: FC<QuotationProps> = ({
