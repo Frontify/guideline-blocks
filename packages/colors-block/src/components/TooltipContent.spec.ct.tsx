@@ -16,7 +16,7 @@ describe('TooltipContent component', () => {
     it('renders a tooltip content component with idle status', () => {
         mount(<TooltipContent colorName={COLOR_NAME} colorValue={COLOR_VALUE} status="idle" />);
 
-        cy.get(TooltipContentSelector).contains('Color Name');
+        cy.get(TooltipContentSelector).contains(COLOR_NAME);
         cy.get(TooltipContentSelector).contains(COLOR_VALUE);
         cy.get(TooltipContentSelector).contains(STATUS_IDLE_MESSAGE);
     });
@@ -24,7 +24,7 @@ describe('TooltipContent component', () => {
     it('renders a tooltip content component with success status', () => {
         mount(<TooltipContent colorName={COLOR_NAME} colorValue={COLOR_VALUE} status="success" />);
 
-        cy.get(TooltipContentSelector).contains('Color Name');
+        cy.get(TooltipContentSelector).contains(COLOR_NAME);
         cy.get(TooltipContentSelector).contains(COLOR_VALUE);
         cy.get(TooltipContentSelector).contains(STATUS_SUCCESS_MESSAGE);
     });
@@ -32,7 +32,7 @@ describe('TooltipContent component', () => {
     it('renders a tooltip content component with error status', () => {
         mount(<TooltipContent colorName={COLOR_NAME} colorValue={COLOR_VALUE} status="error" />);
 
-        cy.get(TooltipContentSelector).contains('Color Name');
+        cy.get(TooltipContentSelector).contains(COLOR_NAME);
         cy.get(TooltipContentSelector).contains(COLOR_VALUE);
         cy.get(TooltipContentSelector).contains(STATUS_ERROR_MESSAGE);
     });
