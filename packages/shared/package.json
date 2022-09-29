@@ -21,12 +21,12 @@
         "@babel/core": "7.19.1",
         "@frontify/eslint-config-typescript": "0.15.2",
         "@testing-library/react-hooks": "8.0.1",
-        "@types/node": "18.7.18",
+        "@types/node": "18.7.21",
         "@types/react": "17.0.50",
         "@types/react-dom": "17.0.17",
         "@types/tinycolor2": "1.4.3",
         "@vitejs/plugin-react": "2.1.0",
-        "eslint": "8.23.1",
+        "eslint": "8.24.0",
         "happy-dom": "6.0.4",
         "mitt": "3.0.0",
         "msw": "0.47.3",
@@ -39,8 +39,8 @@
         "vite-plugin-dts": "1.5.0"
     },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.16",
-        "@frontify/fondue": "11.3.0",
+        "@frontify/app-bridge": "3.0.0-beta.17",
+        "@frontify/fondue": "12.0.0-beta.2",
         "@frontify/guideline-blocks-settings": "workspace:*",
         "tinycolor2": "1.4.2"
     },

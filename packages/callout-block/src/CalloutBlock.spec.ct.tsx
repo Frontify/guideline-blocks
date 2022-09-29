@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { CalloutBlock } from './CalloutBlock';
 import { ICON_ASSET_ID } from './settings';
 import { Alignment, Padding, Type, Width } from './types';
@@ -62,7 +62,7 @@ describe('Callout Block', () => {
     it('renders a callout block with an icon', () => {
         const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
             blockAssets: {
-                [ICON_ASSET_ID]: [FrontifyAssetDummy.with(342)],
+                [ICON_ASSET_ID]: [AssetDummy.with(342)],
             },
             blockSettings: {
                 iconSwitch: true,

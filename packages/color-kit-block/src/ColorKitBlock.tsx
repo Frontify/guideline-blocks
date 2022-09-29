@@ -1,36 +1,42 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, ReactElement } from 'react';
-import { useBlockSettings, useColorPalettes } from '@frontify/app-bridge';
-import { Badge, Button, ButtonStyle, IconArrowCircleDown, Text } from '@frontify/fondue';
+import { ReactElement, useMemo } from 'react';
+import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
+import { Badge, Button, ButtonEmphasis, IconArrowCircleDown, Text } from '@frontify/fondue';
+
+import { EmptyView } from './EmptyView';
 import { Palette } from './Palette';
 import type { ColorKitBlockProps, Settings } from './types';
 
-export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactElement => {
+export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const isEditing = useEditorState(appBridge);
 
-    const { colorPalettes, downloadColorKit } = useColorPalettes(
-        appBridge,
-        (blockSettings.colorPalettes ?? []).map((id) => Number(id))
+    const memoizedColorPaletteIds = useMemo(
+        () => (blockSettings.colorPaletteIds ?? []).map((id) => Number(id)),
+        [blockSettings.colorPaletteIds]
     );
-    const link = downloadColorKit(blockSettings.colorPalettes);
-    const isDownloadEnabled = blockSettings.colorPalettes?.length > 0;
+
+    const { colorPalettes, downloadColorKit } = useColorPalettes(appBridge, memoizedColorPaletteIds);
+    const link = downloadColorKit(memoizedColorPaletteIds);
+    const isDownloadEnabled = memoizedColorPaletteIds?.length > 0;
 
     return (
-        <div
-            data-test-id="color-kit-block"
-            className="tw-p-8 tw-pt-7 tw-border tw-border-solid tw-border-line-strong tw-space-y-3"
-        >
+        <div data-test-id="color-kit-block" className="tw-p-8 tw-pt-7 tw-border tw-border-line tw-rounded">
             <div className="tw-flex tw-justify-between">
-                <div className="tw-flex tw-space-x-1 tw-h-fit tw-items-center">
+                <div className="tw-flex tw-items-start">
                     <Text as="p" size="large" weight="x-strong">
                         Color Kit
                     </Text>
-                    <Badge>ASE</Badge>
-                    <Badge>LESS</Badge>
-                    <Badge>OCO</Badge>
-                    <Badge>SCSS</Badge>
+
+                    <div className="tw-w-full tw-space-x-1 tw-mt-0 tw-ml-3 sm:tw-w-auto">
+                        <Badge size="small">ASE</Badge>
+                        <Badge size="small">LESS</Badge>
+                        <Badge size="small">OCO</Badge>
+                        <Badge size="small">SCSS</Badge>
+                    </div>
                 </div>
+
                 <a
                     download
                     href={link}
@@ -38,16 +44,23 @@ export const ColorKitBlock: FC<ColorKitBlockProps> = ({ appBridge }): ReactEleme
                     rel="noreferrer"
                     data-test-id="download-button"
                     title="download color palettes"
-                    style={{ pointerEvents: isDownloadEnabled ? 'none' : 'initial' }}
+                    style={{ pointerEvents: isDownloadEnabled ? 'initial' : 'none' }}
                 >
-                    <Button style={ButtonStyle.Secondary} icon={<IconArrowCircleDown />} disabled={!isDownloadEnabled}>
+                    <Button
+                        emphasis={ButtonEmphasis.Default}
+                        icon={<IconArrowCircleDown />}
+                        disabled={!isDownloadEnabled}
+                    >
                         Download
                     </Button>
                 </a>
             </div>
-            {colorPalettes.map((palette) => {
-                return <Palette key={palette.id} palette={palette} />;
-            })}
+
+            {colorPalettes.length > 0 ? (
+                colorPalettes.map((palette) => <Palette key={palette.id} palette={palette} isEditing={isEditing} />)
+            ) : (
+                <EmptyView />
+            )}
         </div>
     );
 };

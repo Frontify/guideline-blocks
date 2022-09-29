@@ -1,29 +1,22 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
+
 import { TooltipContent } from './TooltipContent';
 
-const ColorKitTooltipContentSelector = '[data-test-id="color-hash"]';
-const ColorKitCopyButtonSelector = '[data-test-id="copy"]';
+const ColorKitTooltipContentSelector = '[data-test-id="tooltip-content"]';
 
+const dummyColorName = 'Color Name';
 const dummyColorValue = '27f006';
 
 describe('TooltipContent', () => {
     beforeEach(() => {
-        mount(<TooltipContent color={dummyColorValue} />);
+        mount(<TooltipContent colorName={dummyColorName} colorValue={dummyColorValue} status="idle" />);
     });
 
     it('renders color hex', () => {
         cy.get(ColorKitTooltipContentSelector).should('exist');
-        cy.get(ColorKitTooltipContentSelector).should('have.text', `#${dummyColorValue}`);
-    });
-
-    it('triggers copy button', () => {
-        cy.get(ColorKitCopyButtonSelector)
-            .invoke('text')
-            .then((text) => {
-                cy.get(ColorKitCopyButtonSelector).click();
-                cy.get(ColorKitCopyButtonSelector).should('not.have.text', text);
-            });
+        cy.get(ColorKitTooltipContentSelector).find('span').contains(dummyColorName);
+        cy.get(ColorKitTooltipContentSelector).find('span').contains(`#${dummyColorValue}`);
     });
 });

@@ -5,7 +5,7 @@ import type { BlockSettings } from '@frontify/guideline-blocks-settings';
 export const settings: BlockSettings = {
     basics: [
         {
-            id: 'colorPalettes',
+            id: 'colorPaletteIds',
             label: 'Color Palettes',
             type: 'checklist',
             columns: 2,
@@ -14,7 +14,7 @@ export const settings: BlockSettings = {
             choices: async ({ getAppBridge }) => {
                 const appBridge = getAppBridge();
                 const palettes = await appBridge.getColorPalettes();
-                return palettes.map(({ id, name }) => ({ id: id.toString(), label: name }));
+                return palettes.map(({ id, name }) => ({ id: id.toString(), label: name || 'Untitled Palette' }));
             },
         },
     ],

@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import { FrontifyColorDummy } from '@frontify/app-bridge';
+import { ColorDummy } from '@frontify/app-bridge';
 
-import { CardsItem } from './CardsItem';
+import { ListItem } from './ListItem';
 import { ColorSpaceValues } from '../../types';
 
-const CardsItemSelector = '[data-test-id="cards-item"]';
+const ListItemSelector = '[data-test-id="list-item"]';
 const ColorTooltipTriggerSelector = '[data-test-id="color-tooltip-trigger"]';
 const ColorPickerFlyoutSelector = '[data-test-id="color-picker-flyout"]';
 const ColorPickerFlyoutTriggerSelector = '[data-test-id="color-color-picker-flyout-trigger"]';
@@ -18,15 +18,15 @@ const DeleteButtonSelector = '[data-test-id="delete-button"]';
 
 const COLOR_SPACES = ['hex', 'rgb', 'variable'];
 
-describe('CardsItem component in view mode', () => {
+describe('ListItem component in view mode', () => {
     beforeEach(() => {
         const onBlurStub = cy.stub().as('onBlur');
         const onUpdateStub = cy.stub().as('onUpdate');
         const onDeleteStub = cy.stub().as('onDelete');
 
         mount(
-            <CardsItem
-                color={FrontifyColorDummy.red()}
+            <ListItem
+                color={ColorDummy.red()}
                 colorSpaces={COLOR_SPACES as (keyof ColorSpaceValues)[]}
                 isEditing={false}
                 onBlur={onBlurStub}
@@ -36,8 +36,8 @@ describe('CardsItem component in view mode', () => {
         );
     });
 
-    it('renders a CardsItem component', () => {
-        cy.get(CardsItemSelector).should('exist');
+    it('renders a ListItem component', () => {
+        cy.get(ListItemSelector).should('exist');
     });
 
     it('renders a color tooltip', () => {
@@ -53,15 +53,15 @@ describe('CardsItem component in view mode', () => {
     });
 });
 
-describe('CardsItem component in edit mode', () => {
+describe('ListItem component in edit mode', () => {
     beforeEach(() => {
         const onBlurStub = cy.stub().as('onBlur');
         const onUpdateStub = cy.stub().as('onUpdate');
         const onDeleteStub = cy.stub().as('onDelete');
 
         mount(
-            <CardsItem
-                color={FrontifyColorDummy.red()}
+            <ListItem
+                color={ColorDummy.red()}
                 colorSpaces={COLOR_SPACES as (keyof ColorSpaceValues)[]}
                 isEditing
                 onBlur={onBlurStub}
@@ -71,8 +71,8 @@ describe('CardsItem component in edit mode', () => {
         );
     });
 
-    it('renders a CardsItem component', () => {
-        cy.get(CardsItemSelector).should('exist');
+    it('renders a ListItem component', () => {
+        cy.get(ListItemSelector).should('exist');
     });
 
     it('renders a color picker flyout', () => {
@@ -86,14 +86,14 @@ describe('CardsItem component in edit mode', () => {
     });
 
     it('renders a color space input', () => {
-        cy.get(ColorSpaceSelector).find('input').should('have.value', FrontifyColorDummy.red().nameCss);
+        cy.get(ColorSpaceSelector).find('input').should('have.value', ColorDummy.red().nameCss);
         cy.get(ColorSpaceSelector).find('input').focus().blur();
         cy.get('@onUpdate').should('have.been.called');
     });
 
     it('renders a delete button', () => {
         cy.get(DeleteButtonSelector).should('not.be.visible');
-        cy.get(CardsItemSelector).realHover();
+        cy.get(ListItemSelector).realHover();
         cy.get(DeleteButtonSelector).should('be.visible');
         cy.get(DeleteButtonSelector).click();
         cy.get('@onDelete').should('have.been.called');

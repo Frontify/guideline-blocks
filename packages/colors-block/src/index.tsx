@@ -3,10 +3,10 @@
 import '@frontify/fondue-tokens/styles';
 import 'tailwindcss/tailwind.css';
 
-import { ColorBlock } from './ColorBlock';
+import { ColorsBlock } from './ColorsBlock';
 import { settings } from './settings';
 
 export default {
-    block: ColorBlock,
+    block: ColorsBlock,
     settings,
 };

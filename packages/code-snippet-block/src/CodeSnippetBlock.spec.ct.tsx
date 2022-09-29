@@ -3,6 +3,7 @@
 import { mount } from 'cypress/react';
 import { Color } from '@frontify/fondue';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { Margin, Radius } from '@frontify/guideline-blocks-shared';
 
 import { CodeSnippetBlock } from './CodeSnippetBlock';
 
@@ -95,9 +96,9 @@ it('renders code snippet with border radius', () => {
             withBorder: true,
             lineWidth: '2px',
             lineStyle: 'solid',
-            borderRadius: '12px',
             borderColor: EXAMPLE_COLOR,
-            withCustomBorderRadius: false,
+            hasExtendedCustomRadius: false,
+            extendedRadiusChoice: Radius.Large,
         },
     });
 
@@ -113,11 +114,11 @@ it('renders code snippet with custom border radius', () => {
             lineStyle: 'solid',
             borderRadius: '12px',
             borderColor: EXAMPLE_COLOR,
-            withCustomBorderRadius: true,
-            borderRadiusTopLeft: '5px',
-            borderRadiusTopRight: '2px',
-            borderRadiusBottomRight: '10px',
-            borderRadiusBottomLeft: '8px',
+            hasExtendedCustomRadius: true,
+            extendedRadiusTopLeft: '5px',
+            extendedRadiusTopRight: '2px',
+            extendedRadiusBottomRight: '10px',
+            extendedRadiusBottomLeft: '8px',
         },
     });
 
@@ -128,8 +129,8 @@ it('renders code snippet with custom border radius', () => {
 it('renders code snippet with margin', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withCustomPadding: false,
-            margin: '60px',
+            hasExtendedCustomMargin: false,
+            extendedMarginChoice: Margin.Large,
         },
     });
 
@@ -140,11 +141,11 @@ it('renders code snippet with margin', () => {
 it('renders code snippet with custom margin', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withCustomMargin: true,
-            marginTop: '5px',
-            marginLeft: '25px',
-            marginRight: '15px',
-            marginBottom: '60px',
+            hasExtendedCustomMargin: true,
+            extendedMarginTop: '5px',
+            extendedMarginLeft: '25px',
+            extendedMarginRight: '15px',
+            extendedMarginBottom: '60px',
         },
     });
 

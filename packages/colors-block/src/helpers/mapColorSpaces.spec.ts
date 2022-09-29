@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FrontifyColorDummy } from '@frontify/app-bridge';
+import { ColorDummy } from '@frontify/app-bridge';
 import { describe, expect, test } from 'vitest';
 import { ColorSpaceLabels, ColorSpaceValues } from '../types';
 import { mapColorSpaces } from './mapColorSpaces';
@@ -9,7 +9,7 @@ describe('mapColorSpaces', () => {
     const data = [
         {
             colorSpaceId: 'hex',
-            color: FrontifyColorDummy.red(),
+            color: ColorDummy.red(),
             expected: {
                 id: 'hex',
                 label: ColorSpaceLabels.Hex,
@@ -19,7 +19,7 @@ describe('mapColorSpaces', () => {
         },
         {
             colorSpaceId: 'rgb',
-            color: FrontifyColorDummy.red(),
+            color: ColorDummy.red(),
             expected: {
                 id: 'rgb',
                 label: ColorSpaceLabels.Rgb,
@@ -29,7 +29,7 @@ describe('mapColorSpaces', () => {
         },
         {
             colorSpaceId: 'cmyk',
-            color: FrontifyColorDummy.red(),
+            color: ColorDummy.red(),
             expected: {
                 id: 'cmyk',
                 label: ColorSpaceLabels.Cmyk,

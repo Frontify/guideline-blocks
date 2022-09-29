@@ -21,10 +21,10 @@ type BorderRadiusSettingsType = {
     radiusStyleMap?: Record<Radius, string>;
 };
 
-export const getBorderRadiusSlider = (id: string): SettingBlock => ({
+export const getBorderRadiusSlider = (id: string, defaultValue: Radius = Radius.None): SettingBlock => ({
     id,
     type: 'slider',
-    defaultValue: Radius.None,
+    defaultValue,
     choices: [
         {
             value: Radius.None,

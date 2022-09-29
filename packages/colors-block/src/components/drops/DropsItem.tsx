@@ -17,7 +17,7 @@ import { ColorPickerFlyout } from '../ColorPickerFlyout';
 import { ColorSpaceValue } from '../ColorSpaceValue';
 import { TooltipContent } from '../TooltipContent';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
-import { ColorBlockType, ItemProps } from '../../types';
+import { ColorsBlockType, ItemProps } from '../../types';
 
 export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { copy, status } = useCopy();
@@ -81,7 +81,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
             )}
 
             <ColorName
-                viewType={ColorBlockType.Drops}
+                viewType={ColorsBlockType.Drops}
                 initialColorName={color.name || ''}
                 isEditing={isEditing}
                 onBlur={onBlur}
@@ -103,7 +103,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
 
                             {isEditing ? (
                                 <ColorSpaceValue
-                                    viewType={ColorBlockType.Drops}
+                                    viewType={ColorsBlockType.Drops}
                                     color={color}
                                     colorSpaceId={colorSpaceId}
                                     onUpdate={onUpdate}

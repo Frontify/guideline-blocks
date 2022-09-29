@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FrontifyColor } from '@frontify/app-bridge';
+import { Color } from '@frontify/app-bridge';
 
 import { ColorSpaceLabels, ColorSpaceValues } from '../types';
 
@@ -12,7 +12,7 @@ type ColorSpace = {
     placeholder?: string;
 };
 
-export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceValues, color?: FrontifyColor): ColorSpace => {
+export const mapColorSpaces = (colorSpaceId: keyof ColorSpaceValues, color?: Color): ColorSpace => {
     switch (colorSpaceId) {
         case 'hex':
             return {

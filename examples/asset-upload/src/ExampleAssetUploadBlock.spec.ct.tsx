@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ExampleAssetUploadBlock } from './ExampleAssetUploadBlock';
 import { IMAGE_SETTING_ID } from './settings';
 
@@ -19,7 +19,7 @@ describe('Example Asset Upload Block', () => {
     });
 
     it('renders an image', () => {
-        const asset = FrontifyAssetDummy.with(ASSET_ID);
+        const asset = AssetDummy.with(ASSET_ID);
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(ExampleAssetUploadBlock, {
             blockAssets: {
                 [IMAGE_SETTING_ID]: [asset],

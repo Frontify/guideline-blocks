@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
-import { FrontifyAssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { FigmaBlock } from './FigmaBlock';
 import { ASSET_ID } from './settings';
 import { BlockPreview, BlockProps } from './types';
@@ -38,7 +38,7 @@ describe('Figma Block', () => {
     it('renders a Figma image preview', () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [FrontifyAssetDummy.with(345)],
+                [ASSET_ID]: [AssetDummy.with(345)],
             },
             editorState: true,
         });
@@ -49,7 +49,7 @@ describe('Figma Block', () => {
     it('renders a Figma Live iframe preview', () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [FrontifyAssetDummy.with(345)],
+                [ASSET_ID]: [AssetDummy.with(345)],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,
@@ -61,7 +61,7 @@ describe('Figma Block', () => {
     it('toggles Figma Live preview Full screen', () => {
         const [FigmaBlockWithStubs] = withAppBridgeBlockStubs(FigmaBlock, {
             blockAssets: {
-                [ASSET_ID]: [FrontifyAssetDummy.with(345)],
+                [ASSET_ID]: [AssetDummy.with(345)],
             },
             blockSettings: { figmaPreviewId: BlockPreview.Live },
             editorState: true,
