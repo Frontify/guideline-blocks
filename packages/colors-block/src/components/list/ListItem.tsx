@@ -10,6 +10,7 @@ import {
     IconTrashBin,
     Tooltip,
     TooltipPosition,
+    merge,
     useCopy,
 } from '@frontify/fondue';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
@@ -29,7 +30,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
     return (
         <div
             data-test-id="list-item"
-            className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all hover:tw-shadow-t-inner-line-strong"
+            className="tw-group tw-relative tw-flex tw-shadow-t-inner-line tw-transition-all hover:tw-shadow-y-inner-line-x-strong"
         >
             {isEditing ? (
                 <ColorPickerFlyout
@@ -41,7 +42,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     <div className="tw-h-full tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                         <div
                             data-test-id="color-color-picker-flyout-trigger"
-                            className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
+                            className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-y-inner-line-x-strong"
                             style={{
                                 backgroundColor: toRgbaString(color as Color),
                             }}
@@ -52,13 +53,18 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 <Tooltip
                     withArrow
                     position={TooltipPosition.Right}
-                    hoverDelay={0}
-                    content={<TooltipContent colorValue={mappedFirstColorSpace.value ?? ''} status={status} />}
+                    content={
+                        <TooltipContent
+                            colorName={color.name ?? ''}
+                            colorValue={mappedFirstColorSpace.value ?? ''}
+                            status={status}
+                        />
+                    }
                     triggerElement={
                         <div className="tw-h-full tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
                             <div
                                 data-test-id="color-tooltip-trigger"
-                                className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-t-inner-line-strong"
+                                className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-y-inner-line-x-strong"
                                 style={{
                                     backgroundColor: toRgbaString(color as Color),
                                 }}
@@ -73,8 +79,9 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 <div
                     data-test-id="delete-button"
                     className={joinClassNames([
-                        'tw-absolute tw-hidden tw-top-1/2 tw-right-3 tw-translate-y-[-50%]',
+                        'tw-absolute tw-hidden tw-right-3',
                         isEditing && 'group-hover:tw-block',
+                        colorSpaces.length > 3 ? 'tw-top-3' : 'tw-top-1/2 tw-translate-y-[-50%]',
                     ])}
                 >
                     <Button
@@ -87,7 +94,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
 
             <ColorName
                 viewType={ColorsBlockType.List}
-                initialColorName={color.name || ''}
+                initialColorName={color.name ?? ''}
                 isEditing={isEditing}
                 onBlur={onBlur}
             />
@@ -96,8 +103,19 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
+                    if (!isEditing && !mappedColorSpace.value) {
+                        return <></>;
+                    }
+
                     return (
-                        <div data-test-id="color-space" key={colorSpaceId} className="tw-flex tw-items-center tw-w-1/3">
+                        <div
+                            data-test-id="color-space"
+                            key={colorSpaceId}
+                            className={merge([
+                                'tw-flex tw-items-center tw-pr-2',
+                                colorSpaces.length === 2 ? 'tw-w-1/2' : 'tw-w-1/3',
+                            ])}
+                        >
                             <div>
                                 <Badge size="small" emphasis={BadgeEmphasis.None}>
                                     {mappedColorSpace.label}
@@ -115,14 +133,17 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                 <Tooltip
                                     withArrow
                                     position={TooltipPosition.Right}
-                                    hoverDelay={0}
                                     content={
-                                        <TooltipContent colorValue={mappedColorSpace.value ?? ''} status={status} />
+                                        <TooltipContent
+                                            colorName={color.name ?? ''}
+                                            colorValue={mappedColorSpace.value ?? ''}
+                                            status={status}
+                                        />
                                     }
                                     triggerElement={
                                         <div
                                             data-test-id="color-space-value-trigger"
-                                            className="tw-ml-3 tw-cursor-pointer tw-text-s tw-text-black-80"
+                                            className="tw-w-28 tw-ml-3 tw-overflow-hidden tw-cursor-pointer tw-whitespace-nowrap tw-text-s tw-text-black-80 tw-overflow-ellipsis"
                                             onClick={() => copy(mappedColorSpace.value ?? '')}
                                         >
                                             {mappedColorSpace.value}

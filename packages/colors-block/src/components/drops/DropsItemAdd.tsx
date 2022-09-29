@@ -12,15 +12,13 @@ export const DropsItemAdd = ({ colorSpaces, onConfirm }: ItemAddProps) => {
             <ColorPickerFlyout onConfirm={onConfirm}>
                 <div
                     data-test-id="color-color-picker-flyout-trigger"
-                    className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-button-background tw-shadow-inner-line hover:tw-shadow-inner-line-strong"
+                    className="tw-flex tw-justify-center tw-items-center tw-w-[100px] tw-h-[100px] tw-mx-auto tw-cursor-pointer tw-rounded-full tw-mb-3 tw-text-black tw-bg-button-background tw-shadow-inner-line tw-transition-all hover:tw-bg-button-background-hover hover:tw-shadow-inner-line-x-strong"
                 >
                     <IconPlus size={IconSize.Size24} />
                 </div>
             </ColorPickerFlyout>
 
-            <div className="tw-flex tw-w-[100px] tw-mb-3 tw-pointer-events-none tw-text-m tw-font-bold tw-text-black tw-text-center">
-                Color name
-            </div>
+            <div className="tw-mb-3 tw-pointer-events-none tw-text-m tw-font-bold tw-text-black-50">Color name</div>
 
             {colorSpaces?.map((colorSpaceId) => {
                 const mappedColorSpace = mapColorSpaces(colorSpaceId);
