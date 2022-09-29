@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { EditorActions, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
@@ -22,6 +22,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
+    const { blockAssets } = useBlockAssets(appBridge);
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
     const borderRgba = toRgbaString(blockSettings.accentLinecolor ?? DEFAULT_COLOR_VALUE);
@@ -40,7 +41,16 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     return (
         <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
-            <Quotations blockSettings={blockSettings} hasQuotationMarks={isQuotationMarkType} appBridge={appBridge}>
+            <Quotations
+                isQuotationMarkType={isQuotationMarkType}
+                blockAssets={blockAssets}
+                color={blockSettings.quotesColor}
+                isCustomSize={blockSettings.isCustomSize}
+                sizeValue={blockSettings.sizeValue}
+                sizeChoice={blockSettings.sizeChoice}
+                quoteStyleLeft={blockSettings.quoteStyleLeft}
+                quoteStyleRight={blockSettings.quoteStyleRight}
+            >
                 <div data-test-id="quote-block-author" className="tw-flex-1 tw-w-full">
                     <div
                         style={isQuotationMarkType ? {} : borderStyles}

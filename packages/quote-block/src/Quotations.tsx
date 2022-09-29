@@ -1,37 +1,54 @@
-import { AppBridgeBlock } from '@frontify/app-bridge';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { Asset } from '@frontify/app-bridge';
+import { Color } from '@frontify/fondue';
 import { FC } from 'react';
 import { QuoteBlockIcon, QuoteBlockIconProps } from './QuoteBlockIcon';
 import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
-import { QuoteStyle, Settings } from './types';
+import { QuoteSize, QuoteStyle } from './types';
 
 type QuotationProps = {
-    hasQuotationMarks: boolean;
-    blockSettings: Settings;
-    appBridge: AppBridgeBlock;
+    isQuotationMarkType: boolean;
+    blockAssets: Record<string, Asset[]>;
+    color?: Color;
+    isCustomSize?: boolean;
+    sizeValue?: string;
+    sizeChoice?: QuoteSize;
+    quoteStyleLeft?: QuoteStyle;
+    quoteStyleRight?: QuoteStyle;
 };
 
-export const Quotations: FC<QuotationProps> = ({ hasQuotationMarks, blockSettings, children, appBridge }) => {
-    if (!hasQuotationMarks) {
-        return <div>{children}</div>;
-    }
+export const Quotations: FC<QuotationProps> = ({
+    isQuotationMarkType,
+    blockAssets,
+    color,
+    isCustomSize,
+    sizeValue,
+    sizeChoice,
+    quoteStyleLeft,
+    quoteStyleRight,
+    children,
+}) => {
     const defaultProps: QuoteBlockIconProps = {
-        appBridge,
-        color: blockSettings.quotesColor,
-        isCustomSize: blockSettings.isCustomSize,
-        sizeValue: blockSettings.sizeValue,
-        sizeChoice: blockSettings.sizeChoice,
+        color,
+        blockAssets,
+        isCustomSize,
+        sizeValue,
+        sizeChoice,
         customIconId: CUSTOM_ICON_LEFT_ID,
-        quoteStyle: blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp,
+        quoteStyle: quoteStyleLeft ?? QuoteStyle.DoubleUp,
     };
     return (
-        <div className="tw-flex tw-justify-between tw-gap-x-7">
-            <QuoteBlockIcon {...defaultProps} />
-            {children}
-            <QuoteBlockIcon
-                {...defaultProps}
-                customIconId={CUSTOM_ICON_RIGHT_ID}
-                quoteStyle={blockSettings.quoteStyleRight ?? QuoteStyle.DoubleDown}
-            />
-        </div>
+        (isQuotationMarkType && (
+            <div className="tw-flex tw-justify-between tw-gap-x-7">
+                <QuoteBlockIcon {...defaultProps} />
+                {children}
+                <QuoteBlockIcon
+                    {...defaultProps}
+                    customIconId={CUSTOM_ICON_RIGHT_ID}
+                    quoteStyle={quoteStyleRight ?? QuoteStyle.DoubleDown}
+                />
+            </div>
+        )) || <>{children}</>
     );
 };
