@@ -2,8 +2,8 @@
 
 import { FocusEvent, ReactNode } from 'react';
 
-import { AppBridgeBlock, FrontifyColor, FrontifyColorPatch } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
+import { AppBridgeBlock, Color, ColorPatch } from '@frontify/app-bridge';
+import { Color as ColorFondue } from '@frontify/fondue';
 
 export type ColorsBlockProps = {
     appBridge: AppBridgeBlock;
@@ -22,17 +22,17 @@ export enum ColorsBlockType {
 }
 
 export type ItemProps = {
-    color: FrontifyColor;
+    color: Color;
     colorSpaces: (keyof ColorSpaceValues)[];
     isEditing: boolean;
     onBlur: (event: FocusEvent<HTMLInputElement>) => void;
-    onUpdate: (colorPatch: FrontifyColorPatch) => void;
+    onUpdate: (colorPatch: ColorPatch) => void;
     onDelete: (colorId: number) => void;
 };
 
 export type ItemAddProps = {
     colorSpaces: (keyof ColorSpaceValues)[];
-    onConfirm: (colorPatch: Color) => void;
+    onConfirm: (colorPatch: ColorFondue) => void;
 };
 
 export type ColorBlockDropsViewProps = {
@@ -48,8 +48,8 @@ export type ColorBlockCardsViewProps = {
 };
 
 export type ColorPickerFlyoutProps = {
-    currentColor?: Nullable<Color>;
-    onConfirm: (colorPatch: Color) => void;
+    currentColor?: Nullable<ColorFondue>;
+    onConfirm: (colorPatch: ColorFondue) => void;
     children: ReactNode;
 };
 

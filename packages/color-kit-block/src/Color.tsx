@@ -1,21 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import type { ReactElement } from 'react';
-import type { FrontifyColor } from '@frontify/app-bridge';
-import { Tooltip, TooltipPosition, useCopy } from '@frontify/fondue';
+import type { Color as ColorType } from '@frontify/app-bridge';
+import { Tooltip, TooltipPosition, merge, useCopy } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import { TooltipContent } from './TooltipContent';
 
 type ColorProps = {
     isEditing: boolean;
-    color: FrontifyColor;
+    color: ColorType;
 };
 
 export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
     const { copy, status } = useCopy();
 
-    const colorWithDecimalAlpha: FrontifyColor = {
+    const colorWithDecimalAlpha: ColorType = {
         ...color,
         alpha: color.alpha && parseFloat((color.alpha / 255).toFixed(2)),
     };
@@ -32,26 +32,37 @@ export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
                 style={{
                     backgroundColor: toRgbaString(colorWithDecimalAlpha),
                 }}
-                className="tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow hover:!tw-shadow-inner-line-strong"
+                className={merge([
+                    'tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow',
+                    !isEditing && 'hover:!tw-shadow-inner-line-strong',
+                ])}
                 onClick={() => copy(`#${color.hex}`)}
             />
         </div>
     );
 
+    const editModeSideShadows =
+        '[&:first-child>div>div]:tw-shadow-inner-line-first [&:last-child>div>div]:tw-shadow-inner-line-last';
+    const viewModeSideShadows =
+        '[&:first-child>div>div>div>div]:tw-shadow-inner-line-first [&:last-child>div>div>div>div]:tw-shadow-inner-line-last';
+
     return isEditing ? (
-        <ColorBox />
+        <div className={editModeSideShadows}>
+            <ColorBox />
+        </div>
     ) : (
-        <Tooltip
-            withArrow
-            key={color.id}
-            hoverDelay={0}
-            position={TooltipPosition.Right}
-            content={<TooltipContent colorValue={color.hex} status={status} />}
-            triggerElement={
-                <div>
-                    <ColorBox />
-                </div>
-            }
-        />
+        <div className={viewModeSideShadows}>
+            <Tooltip
+                withArrow
+                key={color.id}
+                position={TooltipPosition.Right}
+                content={<TooltipContent colorValue={color.hex} status={status} />}
+                triggerElement={
+                    <div>
+                        <ColorBox />
+                    </div>
+                }
+            />
+        </div>
     );
 };

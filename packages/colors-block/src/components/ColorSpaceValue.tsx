@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FormEvent, useState } from 'react';
-import { FrontifyColor, FrontifyColorPatch } from '@frontify/app-bridge';
+import { Color, ColorPatch } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
 
 import { mapColorSpaces } from '../helpers/mapColorSpaces';
@@ -9,9 +9,9 @@ import { ColorSpaceLabels, ColorSpaceValues, ColorsBlockType } from '../types';
 
 type ColorSpaceValueProps = {
     viewType: ColorsBlockType;
-    color: FrontifyColor;
+    color: Color;
     colorSpaceId: keyof ColorSpaceValues;
-    onUpdate: (colorPatch: FrontifyColorPatch) => void;
+    onUpdate: (colorPatch: ColorPatch) => void;
 };
 
 export const ColorSpaceValue = ({ viewType, color, colorSpaceId, onUpdate }: ColorSpaceValueProps) => {

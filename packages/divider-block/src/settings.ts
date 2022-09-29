@@ -197,6 +197,7 @@ export const settings: BlockSettings = {
             id: 'lineStyle',
             type: 'multiInput',
             label: 'Line Styling',
+            show: lineIsSelected,
             onChange: (bundle) => {
                 appendUnit(bundle, THICKNESS_ID);
             },
