@@ -56,7 +56,7 @@ export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
                 withArrow
                 key={color.id}
                 position={TooltipPosition.Right}
-                content={<TooltipContent colorValue={color.hex} status={status} />}
+                content={<TooltipContent colorName={color.name} colorValue={color.hex} status={status} />}
                 triggerElement={
                     <div>
                         <ColorBox />
