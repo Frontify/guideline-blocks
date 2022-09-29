@@ -66,7 +66,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     position={TooltipPosition.Right}
                     content={
                         <TooltipContent
-                            colorName={color.name || ''}
+                            colorName={color.name ?? ''}
                             colorValue={mappedFirstColorSpace.value ?? ''}
                             status={status}
                         />
@@ -88,12 +88,12 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
 
             <ColorName
                 viewType={ColorsBlockType.Drops}
-                initialColorName={color.name || ''}
+                initialColorName={color.name ?? ''}
                 isEditing={isEditing}
                 onBlur={onBlur}
             />
 
-            <div className={merge([colorSpaces.length > 0 && 'tw-mt-3'])}>
+            <div className={merge([colorSpaces.length > 0 && 'tw-max-w-full tw-mt-3'])}>
                 {colorSpaces?.map((colorSpaceId) => {
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
@@ -104,19 +104,15 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                             className={merge([
                                 'tw-flex tw-justify-center tw-items-center tw-mb-1 last:tw-mb-0',
                                 isEditing && 'tw-w-full',
-                                !isEditing && !mappedColorSpace.value && 'tw-mb-0',
+                                isEditing || mappedColorSpace.value ? '' : 'tw-mb-0',
                             ])}
                         >
-                            <div
-                                className={merge([
-                                    'tw-flex tw-items-center',
-                                    isEditing && 'tw-justify-between tw-w-full',
-                                ])}
-                            >
+                            <div className="tw-flex tw-items-center tw-max-w-full">
                                 <div
                                     className={merge([
                                         'tw-flex-[0_0_auto] tw-mr-1.5 tw-text-xs tw-text-black-70',
-                                        !isEditing && !mappedColorSpace.value && 'tw-hidden',
+                                        isEditing || mappedColorSpace.value ? '' : 'tw-hidden',
+                                        !isEditing && '[&~div]:tw-overflow-hidden',
                                     ])}
                                 >
                                     {mappedColorSpace.label}
@@ -135,7 +131,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                         position={TooltipPosition.Right}
                                         content={
                                             <TooltipContent
-                                                colorName={color.name || ''}
+                                                colorName={color.name ?? ''}
                                                 colorValue={mappedColorSpace.value ?? ''}
                                                 status={status}
                                             />
@@ -143,7 +139,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                         triggerElement={
                                             <div
                                                 data-test-id="color-space-value-trigger"
-                                                className="tw-max-w-[86px] tw-overflow-hidden tw-cursor-pointer tw-whitespace-nowrap tw-text-s tw-text-black-80 tw-overflow-ellipsis"
+                                                className="tw-cursor-pointer tw-text-s tw-text-black-80 tw-truncate"
                                                 onClick={() => copy(mappedColorSpace.value ?? '')}
                                             >
                                                 {mappedColorSpace.value}

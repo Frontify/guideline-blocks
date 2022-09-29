@@ -67,7 +67,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     position={TooltipPosition.Right}
                     content={
                         <TooltipContent
-                            colorName={color.name || ''}
+                            colorName={color.name ?? ''}
                             colorValue={mappedFirstColorSpace.value ?? ''}
                             status={status}
                         />
@@ -90,7 +90,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
             <div className="tw-pt-4 tw-px-6 tw-pb-5">
                 <ColorName
                     viewType={ColorsBlockType.Cards}
-                    initialColorName={color.name || ''}
+                    initialColorName={color.name ?? ''}
                     isEditing={isEditing}
                     onBlur={onBlur}
                 />
@@ -105,14 +105,15 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                 key={colorSpaceId}
                                 className={merge([
                                     'tw-flex tw-items-center tw-mb-1 last:tw-mb-0',
-                                    !isEditing && !mappedColorSpace.value && 'tw-mb-0',
+                                    isEditing || mappedColorSpace.value ? '' : 'tw-mb-0',
                                 ])}
                             >
-                                <div className="tw-flex tw-items-center">
+                                <div className="tw-flex tw-items-center tw-max-w-full">
                                     <div
                                         className={merge([
                                             'tw-flex-[0_0_auto] tw-mr-1.5 tw-text-xs tw-text-black-70',
-                                            !isEditing && !mappedColorSpace.value && 'tw-hidden',
+                                            isEditing || mappedColorSpace.value ? '' : 'tw-hidden',
+                                            !isEditing && '[&~div]:tw-overflow-hidden',
                                         ])}
                                     >
                                         {mappedColorSpace.label}
@@ -131,7 +132,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                             position={TooltipPosition.Right}
                                             content={
                                                 <TooltipContent
-                                                    colorName={color.name || ''}
+                                                    colorName={color.name ?? ''}
                                                     colorValue={mappedColorSpace.value ?? ''}
                                                     status={status}
                                                 />
@@ -139,7 +140,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                             triggerElement={
                                                 <div
                                                     data-test-id="color-space-value-trigger"
-                                                    className="tw-w-28 tw-overflow-hidden tw-cursor-pointer tw-whitespace-nowrap tw-text-s tw-text-black-80 tw-overflow-ellipsis"
+                                                    className="tw-cursor-pointer tw-text-s tw-text-black-80 tw-truncate"
                                                     onClick={() => copy(mappedColorSpace.value ?? '')}
                                                 >
                                                     {mappedColorSpace.value}

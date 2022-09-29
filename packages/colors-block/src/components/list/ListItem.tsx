@@ -55,7 +55,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     position={TooltipPosition.Right}
                     content={
                         <TooltipContent
-                            colorName={color.name || ''}
+                            colorName={color.name ?? ''}
                             colorValue={mappedFirstColorSpace.value ?? ''}
                             status={status}
                         />
@@ -94,7 +94,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
 
             <ColorName
                 viewType={ColorsBlockType.List}
-                initialColorName={color.name || ''}
+                initialColorName={color.name ?? ''}
                 isEditing={isEditing}
                 onBlur={onBlur}
             />
@@ -135,7 +135,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                     position={TooltipPosition.Right}
                                     content={
                                         <TooltipContent
-                                            colorName={color.name || ''}
+                                            colorName={color.name ?? ''}
                                             colorValue={mappedColorSpace.value ?? ''}
                                             status={status}
                                         />
