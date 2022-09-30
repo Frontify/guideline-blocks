@@ -79,7 +79,7 @@ describe('ColorBlock component', () => {
         });
 
         mount(<ColorBlockWithStubs />);
-        cy.get(ColorSpaceSelector).should('have.length', ALL_COLOR_SPACES.length * 3);
+        cy.get(ColorSpaceSelector).should('have.length', 12);
     });
 
     it('renders color block with all colorspaces in drops view', () => {

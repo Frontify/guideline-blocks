@@ -7,6 +7,7 @@ module.exports = {
     theme: {
         extend: {
             boxShadow: {
+                'inner-line': 'inset 0 0 0 var(--line-width) var(--line-color)',
                 'inner-line-first':
                     'inset var(--line-width) 0 0 0 var(--line-color), inset 0 var(--line-width) 0 0 var(--line-color), inset 0 calc(var(--line-width) * -1) 0 0 var(--line-color)',
                 'inner-line-last':

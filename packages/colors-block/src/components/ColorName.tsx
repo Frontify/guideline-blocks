@@ -7,8 +7,8 @@ import { ColorNameProps, ColorsBlockType } from '../types';
 
 const nameWrapperClasses: Record<ColorsBlockType, string> = {
     [ColorsBlockType.List]: 'tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12',
-    [ColorsBlockType.Drops]: 'tw-w-full tw-mb-3 tw-text-center',
-    [ColorsBlockType.Cards]: 'tw-w-full tw-mb-3',
+    [ColorsBlockType.Drops]: 'tw-w-full tw-text-center',
+    [ColorsBlockType.Cards]: 'tw-w-full',
 };
 
 export const ColorName = ({ viewType, initialColorName, isEditing, onBlur }: ColorNameProps) => {
@@ -30,6 +30,8 @@ export const ColorName = ({ viewType, initialColorName, isEditing, onBlur }: Col
                     value={colorName}
                     onChange={handleColorNameChange}
                     onBlur={onBlur}
+                    draggable={true}
+                    onDragStart={(event) => event.preventDefault()}
                 />
             ) : (
                 <div title={colorName} className="tw-overflow-hidden tw-whitespace-nowrap tw-overflow-ellipsis">

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Asset } from '@frontify/app-bridge';
-import { Color, merge } from '@frontify/fondue';
+import { Color } from '@frontify/fondue';
 import { FC } from 'react';
 import { QuoteBlockIcon, QuoteBlockIconProps } from './QuoteBlockIcon';
 import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
@@ -11,6 +11,8 @@ import { flexBoxAlignmentClassNames } from './utilities';
 type QuotationProps = {
     textAlignment?: string;
     isFullWidth?: boolean;
+
+type QuotationProps = {
     isQuotationMarkType: boolean;
     blockAssets: Record<string, Asset[]>;
     color?: Color;
@@ -24,6 +26,10 @@ type QuotationProps = {
 export const Quotations: FC<QuotationProps> = ({
     textAlignment,
     isFullWidth,
+    children: React.ReactElement;
+};
+
+export const Quotations: FC<QuotationProps> = ({
     isQuotationMarkType,
     blockAssets,
     color,
@@ -56,6 +62,8 @@ export const Quotations: FC<QuotationProps> = ({
 
     return isQuotationMarkType ? (
         <div className={getWrapperClasses()}>
+    return isQuotationMarkType ? (
+        <div className="tw-flex tw-justify-between tw-gap-x-7">
             <QuoteBlockIcon {...defaultProps} />
             {children}
             <QuoteBlockIcon
@@ -65,6 +73,6 @@ export const Quotations: FC<QuotationProps> = ({
             />
         </div>
     ) : (
-        <>{children}</>
+        children
     );
 };

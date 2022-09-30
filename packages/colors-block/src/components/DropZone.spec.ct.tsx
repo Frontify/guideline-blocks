@@ -54,7 +54,7 @@ describe('DropZone component', () => {
             </div>
         );
 
-        cy.get(CardsItemSelector).first().trigger('dragstart');
+        cy.get(CardsItemSelector).first().trigger('dragstart', 'bottom');
         cy.get(CardsItemSelector).last().trigger('dragenter', 'right').trigger('dragover');
         cy.get('@moveCard').should('have.been.called');
     });
