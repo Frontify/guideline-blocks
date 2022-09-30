@@ -1,14 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { EditorActions, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
+import { Quotations } from './Quotations';
 import { DEFAULT_COLOR_VALUE } from './settings';
-import { LineType, Props, QuoteSize, QuoteStyle, QuoteType, Settings, quoteSizeMap } from './types';
-import { quoteIconMap } from './utilities';
+import { LineType, Props, QuoteType, Settings } from './types';
 
 const ACTIONS = [
     [EditorActions.TEXT_STYLES],
@@ -22,12 +22,9 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
+    const { blockAssets } = useBlockAssets(appBridge);
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
-    const size = blockSettings.isCustomSize
-        ? blockSettings.sizeValue ?? ''
-        : quoteSizeMap[blockSettings.sizeChoice ?? QuoteSize.SmallSize];
-    const quotesRgba = toRgbaString(blockSettings.quotesColor ?? DEFAULT_COLOR_VALUE);
     const borderRgba = toRgbaString(blockSettings.accentLinecolor ?? DEFAULT_COLOR_VALUE);
     const borderStyles = blockSettings.showAccentLine
         ? {
@@ -44,9 +41,16 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     return (
         <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
-            <div className={isQuotationMarkType ? 'tw-flex tw-justify-between tw-gap-x-7' : ''}>
-                {isQuotationMarkType &&
-                    quoteIconMap(size, quotesRgba)[blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp]}
+            <Quotations
+                isQuotationMarkType={isQuotationMarkType}
+                blockAssets={blockAssets}
+                color={blockSettings.quotesColor}
+                isCustomSize={blockSettings.isCustomSize}
+                sizeValue={blockSettings.sizeValue}
+                sizeChoice={blockSettings.sizeChoice}
+                quoteStyleLeft={blockSettings.quoteStyleLeft}
+                quoteStyleRight={blockSettings.quoteStyleRight}
+            >
                 <div data-test-id="quote-block-author" className="tw-flex-1 tw-w-full">
                     <div
                         style={isQuotationMarkType ? {} : borderStyles}
@@ -64,9 +68,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                     </div>
                     {showAuthor && <p className="tw-text-right">{`- ${blockSettings.authorName}`}</p>}
                 </div>
-                {isQuotationMarkType &&
-                    quoteIconMap(size, quotesRgba)[blockSettings.quoteStyleRight ?? QuoteStyle.DoubleDown]}
-            </div>
+            </Quotations>
         </div>
     );
 };
