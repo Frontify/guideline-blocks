@@ -10,7 +10,15 @@ import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
 import { IconHookBracketRight } from './foundation/IconHookBracketRight';
 import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
 import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
-import { LineType, QuoteSize, QuoteStyle, QuoteType, quoteSizeMap } from './types';
+import {
+    LineType,
+    QuotationMarksAnchoring,
+    QuoteSize,
+    QuoteStyle,
+    QuoteType,
+    TextAlignment,
+    quoteSizeMap,
+} from './types';
 
 export const CUSTOM_ICON_LEFT_ID = 'customIconLeft';
 export const CUSTOM_ICON_RIGHT_ID = 'customIconRight';
@@ -152,6 +160,42 @@ export const settings: BlockSettings = {
                     id: 'authorName',
                     type: 'input',
                     placeholder: 'e.g. John Doe',
+                },
+            ],
+        },
+        {
+            id: 'textAlignment',
+            type: 'slider',
+            label: 'Text alignment',
+            defaultValue: TextAlignment.Left,
+            choices: [
+                {
+                    icon: IconEnum.TextAlignmentLeft as IconEnum.TextAlignmentLeft,
+                    value: TextAlignment.Left,
+                },
+                {
+                    icon: IconEnum.TextAlignmentCentre as IconEnum.TextAlignmentCentre,
+                    value: TextAlignment.Center,
+                },
+                {
+                    icon: IconEnum.TextAlignmentRight as IconEnum.TextAlignmentRight,
+                    value: TextAlignment.Right,
+                },
+            ],
+        },
+        {
+            id: 'quotationMarksAnchoring',
+            type: 'slider',
+            label: 'Quotation marks anchoring',
+            defaultValue: QuotationMarksAnchoring.FullWidth,
+            choices: [
+                {
+                    label: 'Full width',
+                    value: QuotationMarksAnchoring.FullWidth,
+                },
+                {
+                    label: 'Hug Text',
+                    value: QuotationMarksAnchoring.HugText,
                 },
             ],
         },
