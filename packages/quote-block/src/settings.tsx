@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
+import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
@@ -9,8 +10,20 @@ import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
 import { IconHookBracketRight } from './foundation/IconHookBracketRight';
 import { IconSingleQuoteDown } from './foundation/IconSingleQuoteDown';
 import { IconSingleQuoteUp } from './foundation/IconSingleQuoteUp';
-import { LineType, QuoteSize, QuoteStyle, QuoteType, quoteSizeMap } from './types';
+import {
+    LineType,
+    QuotationMarksAnchoring,
+    QuoteSize,
+    QuoteStyle,
+    QuoteType,
+    TextAlignment,
+    quoteSizeMap,
+} from './types';
 
+export const CUSTOM_ICON_LEFT_ID = 'customIconLeft';
+export const CUSTOM_ICON_RIGHT_ID = 'customIconRight';
+const QUOTE_STYLE_LEFT_ID = 'quoteStyleLeft';
+const QUOTE_STYLE_RIGHT_ID = 'quoteStyleRight';
 const QUOTE_TYPE_ID = 'type';
 const SIZE_CHOICE_ID = 'sizeChoice';
 const SIZE_VALUE_ID = 'sizeValue';
@@ -62,6 +75,11 @@ const QUOTE_STYLE_CHOICES = [
         label: 'Hook Bracket Right',
     },
     { value: QuoteStyle.None, icon: IconEnum.StrikethroughBox20, label: 'None' },
+    {
+        value: QuoteStyle.Custom,
+        icon: IconEnum.Plus16,
+        label: 'Custom Icon',
+    },
 ] as Choice[];
 
 export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
@@ -97,18 +115,36 @@ export const settings: BlockSettings = {
             show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
             blocks: [
                 {
-                    id: 'quoteStyleLeft',
+                    id: QUOTE_STYLE_LEFT_ID,
                     label: 'Left',
                     type: 'dropdown',
                     defaultValue: QuoteStyle.DoubleUp,
                     choices: QUOTE_STYLE_CHOICES,
                 },
                 {
-                    id: 'quoteStyleRight',
+                    id: CUSTOM_ICON_LEFT_ID,
+                    type: 'assetInput',
+                    size: AssetInputSize.Small,
+                    label: 'Custom Icon Left',
+                    extensions: ['svg' as FileExtension.Svg],
+                    objectTypes: [AssetChooserObjectType.ImageVideo],
+                    show: (bundle) => bundle.getBlock(QUOTE_STYLE_LEFT_ID)?.value === QuoteStyle.Custom,
+                },
+                {
+                    id: QUOTE_STYLE_RIGHT_ID,
                     label: 'Right',
                     type: 'dropdown',
                     defaultValue: QuoteStyle.DoubleUp,
                     choices: QUOTE_STYLE_CHOICES,
+                },
+                {
+                    id: CUSTOM_ICON_RIGHT_ID,
+                    type: 'assetInput',
+                    size: AssetInputSize.Small,
+                    label: 'Custom Icon Right',
+                    extensions: ['svg' as FileExtension.Svg],
+                    objectTypes: [AssetChooserObjectType.ImageVideo],
+                    show: (bundle) => bundle.getBlock(QUOTE_STYLE_RIGHT_ID)?.value === QuoteStyle.Custom,
                 },
             ],
         },
@@ -124,6 +160,42 @@ export const settings: BlockSettings = {
                     id: 'authorName',
                     type: 'input',
                     placeholder: 'e.g. John Doe',
+                },
+            ],
+        },
+        {
+            id: 'textAlignment',
+            type: 'slider',
+            label: 'Text alignment',
+            defaultValue: TextAlignment.Left,
+            choices: [
+                {
+                    icon: IconEnum.TextAlignmentLeft as IconEnum.TextAlignmentLeft,
+                    value: TextAlignment.Left,
+                },
+                {
+                    icon: IconEnum.TextAlignmentCentre as IconEnum.TextAlignmentCentre,
+                    value: TextAlignment.Center,
+                },
+                {
+                    icon: IconEnum.TextAlignmentRight as IconEnum.TextAlignmentRight,
+                    value: TextAlignment.Right,
+                },
+            ],
+        },
+        {
+            id: 'quotationMarksAnchoring',
+            type: 'slider',
+            label: 'Quotation marks anchoring',
+            defaultValue: QuotationMarksAnchoring.FullWidth,
+            choices: [
+                {
+                    label: 'Full width',
+                    value: QuotationMarksAnchoring.FullWidth,
+                },
+                {
+                    label: 'Hug Text',
+                    value: QuotationMarksAnchoring.HugText,
                 },
             ],
         },

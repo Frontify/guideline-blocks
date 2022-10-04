@@ -10,9 +10,10 @@ import { TooltipContent } from './TooltipContent';
 type ColorProps = {
     isEditing: boolean;
     color: ColorType;
+    colorsLength: number;
 };
 
-export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
+export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElement => {
     const { copy, status } = useCopy();
 
     const colorWithDecimalAlpha: ColorType = {
@@ -33,7 +34,8 @@ export const Color = ({ isEditing, color }: ColorProps): ReactElement => {
                     backgroundColor: toRgbaString(colorWithDecimalAlpha),
                 }}
                 className={merge([
-                    'tw-w-6 tw-h-6 tw-overflow-hidden tw-shadow-inner-line-y tw-transition-shadow',
+                    'tw-w-6 tw-h-6 tw-overflow-hidden tw-transition-shadow',
+                    colorsLength === 1 ? '!tw-shadow-inner-line' : 'tw-shadow-inner-line-y',
                     !isEditing && 'hover:!tw-shadow-inner-line-strong',
                 ])}
                 onClick={() => copy(`#${color.hex}`)}

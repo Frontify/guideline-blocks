@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { Color, ColorPatch } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue';
+import { IconExclamationMarkTriangle, IconSize, TooltipIcon, merge } from '@frontify/fondue';
 
 import { mapColorSpaces } from '../helpers/mapColorSpaces';
 import { ColorSpaceLabels, ColorSpaceValues, ColorsBlockType } from '../types';
@@ -54,19 +54,30 @@ export const ColorSpaceValue = ({ viewType, color, colorSpaceId, onUpdate }: Col
                     {mappedColorSpace.value || mappedColorSpace.placeholder}
                 </div>
             ) : (
-                <input
-                    name={colorSpaceId}
-                    className="tw-w-full tw-outline-none tw-text-s"
-                    type="text"
-                    value={ColorSpaceValues[colorSpaceId]}
-                    onChange={handleColorSpaceValueChange}
-                    placeholder={mappedColorSpace.placeholder}
-                    onBlur={(event) => {
-                        onUpdate({
-                            [mappedColorSpace.key || colorSpaceId]: event.target.value,
-                        });
-                    }}
-                />
+                <div className="tw-flex tw-items-center">
+                    <input
+                        name={colorSpaceId}
+                        className="tw-w-full tw-mr-1 tw-outline-none tw-text-s"
+                        type="text"
+                        value={ColorSpaceValues[colorSpaceId]}
+                        onChange={handleColorSpaceValueChange}
+                        placeholder={mappedColorSpace.placeholder}
+                        onBlur={(event) => {
+                            onUpdate({
+                                [mappedColorSpace.key || colorSpaceId]: event.target.value,
+                            });
+                        }}
+                    />
+
+                    <TooltipIcon
+                        tooltip={{
+                            content:
+                                'There is no automatic conversion for this color space. Please enter the value manually.',
+                        }}
+                        triggerIcon={<IconExclamationMarkTriangle />}
+                        iconSize={IconSize.Size12}
+                    />
+                </div>
             )}
         </div>
     );

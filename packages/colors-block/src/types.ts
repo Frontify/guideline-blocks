@@ -54,6 +54,7 @@ export type ColorPickerFlyoutProps = {
 };
 
 export type TooltipContentProps = {
+    colorName: string;
     colorValue: string;
     status: 'error' | 'success' | 'idle';
 };
@@ -88,7 +89,7 @@ export type ColorSpaceValues = {
 };
 
 export enum ColorSpaceLabels {
-    Hex = 'RGB',
+    Hex = 'HEX',
     Rgb = 'RGB',
     Less = 'LESS',
     Ral = 'RAL',

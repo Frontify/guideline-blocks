@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 import { IconDoubleChevronLeft } from './foundation/IconDoubleChevronLeft';
 import { IconDoubleChevronRight } from './foundation/IconDoubleChevronRight';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
@@ -15,11 +15,13 @@ import { QuoteStyle } from './types';
 
 export const ICON_CLASS_NAME = 'tw-flex tw-items-center tw-justify-center tw-fill-current';
 
-export const quoteIconMap = (size: string, color: string): Record<QuoteStyle, ReactNode> => {
+export const quoteIconMap = (size: string, color: string, customIconUrl?: string): Record<QuoteStyle, ReactElement> => {
     const style: CSSProperties = {
         color,
         width: size,
         height: size,
+        minWidth: size,
+        minHeight: size,
     };
 
     return {
@@ -34,5 +36,18 @@ export const quoteIconMap = (size: string, color: string): Record<QuoteStyle, Re
         HookBracketLeft: <IconHookBracketLeft style={style} />,
         HookBracketRight: <IconHookBracketRight style={style} />,
         None: <></>,
+        Custom: customIconUrl ? <img style={style} alt="Quote Icon" src={customIconUrl} /> : <> </>,
     };
+};
+
+export const textAlignmentClassNames: Record<string, string> = {
+    left: 'tw-text-left',
+    right: 'tw-text-right',
+    center: 'tw-text-center',
+};
+
+export const flexBoxAlignmentClassNames: Record<string, string> = {
+    left: 'tw-justify-start',
+    right: 'tw-justify-end',
+    center: 'tw-justify-center',
 };

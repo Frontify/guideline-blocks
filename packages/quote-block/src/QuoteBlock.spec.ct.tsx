@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
-import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { QuoteBlock } from './QuoteBlock';
-import { QuoteSize, QuoteStyle, QuoteType } from './types';
+import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
+import { QuotationMarksAnchoring, QuoteSize, QuoteStyle, QuoteType, TextAlignment } from './types';
 
 const QuoteBlockSelector = '[data-test-id="quote-block"]';
 const QuoteBlockAuthor = '[data-test-id="quote-block-author"]';
@@ -88,16 +89,128 @@ describe('Quote Block', () => {
     });
 
     it('renders a quote block with correct styling', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+        const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
             blockSettings: {
                 sizeChoice: QuoteSize.LargeSize,
                 quotesColor: EXAMPLE_COLOR,
             },
         });
 
-        mount(<PersonalNoteBlockWithStubs />);
+        mount(<QuoteBlockWithStubs />);
         cy.get(QuoteBlockSelector).find('svg').should('have.css', 'width', '32px');
         cy.get(QuoteBlockSelector).find('svg').should('have.css', 'height', '32px');
         cy.get(QuoteBlockSelector).find('svg').should('have.css', 'color', 'rgb(22, 181, 181)');
+    });
+
+    describe('custom icons', () => {
+        it('renders a quote block with custom icons', () => {
+            const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+                blockSettings: {
+                    quoteStyleLeft: QuoteStyle.Custom,
+                    quoteStyleRight: QuoteStyle.Custom,
+                    sizeChoice: QuoteSize.LargeSize,
+                    quotesColor: EXAMPLE_COLOR,
+                },
+                blockAssets: {
+                    [CUSTOM_ICON_LEFT_ID]: [AssetDummy.with(342)],
+                    [CUSTOM_ICON_RIGHT_ID]: [AssetDummy.with(342)],
+                },
+            });
+
+            mount(<QuoteBlockWithStubs />);
+            cy.get(QuoteBlockSelector).find('svg').should('not.exist');
+            cy.get(QuoteBlockSelector).find('img').should('have.length', 2);
+            cy.get(QuoteBlockSelector).find('img').first().should('have.css', 'width', '32px');
+            cy.get(QuoteBlockSelector).find('img').first().should('have.css', 'height', '32px');
+            cy.get(QuoteBlockSelector).find('img').first().should('have.css', 'color', 'rgb(22, 181, 181)');
+        });
+
+        it('renders a quote block without custom icons', () => {
+            const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+                blockSettings: {
+                    quoteStyleLeft: QuoteStyle.Custom,
+                    quoteStyleRight: QuoteStyle.Custom,
+                },
+            });
+
+            mount(<QuoteBlockWithStubs />);
+            cy.get(QuoteBlockSelector).find('svg').should('not.exist');
+            cy.get(QuoteBlockSelector).find('img').should('not.exist');
+        });
+
+        it(' renders a quote block with one custom and one default icon', () => {
+            const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+                blockSettings: {
+                    quoteStyleLeft: QuoteStyle.Custom,
+                    quoteStyleRight: QuoteStyle.HookBracketRight,
+                },
+                blockAssets: {
+                    [CUSTOM_ICON_LEFT_ID]: [AssetDummy.with(342)],
+                },
+            });
+
+            mount(<QuoteBlockWithStubs />);
+            cy.get(QuoteBlockSelector).find('svg').should('have.length', 1);
+            cy.get(QuoteBlockSelector).find('img').should('have.length', 1);
+        });
+    });
+
+    describe('alignments', () => {
+        it('renders a quote block with left alignment', () => {
+            const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+                blockSettings: {
+                    textAlignment: TextAlignment.Left,
+                },
+            });
+
+            mount(<QuoteBlockWithStubs />);
+            cy.get(QuoteBlockAuthor).children().first().should('have.class', 'tw-text-left');
+        });
+
+        it('renders a quote block with center alignment', () => {
+            const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+                blockSettings: {
+                    textAlignment: TextAlignment.Center,
+                },
+            });
+
+            mount(<QuoteBlockWithStubs />);
+            cy.get(QuoteBlockAuthor).children().first().should('have.class', 'tw-text-center');
+        });
+
+        it('renders a quote block with right alignment', () => {
+            const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+                blockSettings: {
+                    textAlignment: TextAlignment.Right,
+                },
+            });
+
+            mount(<QuoteBlockWithStubs />);
+            cy.get(QuoteBlockAuthor).children().first().should('have.class', 'tw-text-right');
+        });
+    });
+
+    describe('quotationMarksAnchoring', () => {
+        it('renders a quote block with quotation marks hugText', () => {
+            const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+                blockSettings: {
+                    quotationMarksAnchoring: QuotationMarksAnchoring.HugText,
+                },
+            });
+
+            mount(<QuoteBlockWithStubs />);
+            cy.get(QuoteBlockSelector).children().first().should('not.have.class', 'tw-justify-between');
+        });
+
+        it('renders a quote block with quotation marks fullWidth', () => {
+            const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
+                blockSettings: {
+                    quotationMarksAnchoring: QuotationMarksAnchoring.FullWidth,
+                },
+            });
+
+            mount(<QuoteBlockWithStubs />);
+            cy.get(QuoteBlockSelector).children().first().should('have.class', 'tw-justify-between');
+        });
     });
 });
