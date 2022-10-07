@@ -106,8 +106,8 @@ describe('Quote Block', () => {
         it('renders a quote block with custom icons', () => {
             const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
                 blockSettings: {
-                    quoteStyleLeft: QuoteStyle.Custom,
-                    quoteStyleRight: QuoteStyle.Custom,
+                    isCustomQuoteStyleLeft: true,
+                    isCustomQuoteStyleRight: true,
                     sizeChoice: QuoteSize.LargeSize,
                     quotesColor: EXAMPLE_COLOR,
                 },
@@ -128,8 +128,8 @@ describe('Quote Block', () => {
         it('renders a quote block without custom icons', () => {
             const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
                 blockSettings: {
-                    quoteStyleLeft: QuoteStyle.Custom,
-                    quoteStyleRight: QuoteStyle.Custom,
+                    isCustomQuoteStyleLeft: true,
+                    isCustomQuoteStyleRight: true,
                 },
             });
 
@@ -141,7 +141,7 @@ describe('Quote Block', () => {
         it(' renders a quote block with one custom and one default icon', () => {
             const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
                 blockSettings: {
-                    quoteStyleLeft: QuoteStyle.Custom,
+                    isCustomQuoteStyleLeft: true,
                     quoteStyleRight: QuoteStyle.HookBracketRight,
                 },
                 blockAssets: {
