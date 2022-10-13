@@ -18,6 +18,7 @@ export type QuoteBlockIconProps = {
     isCustomSize?: boolean;
     sizeValue?: string;
     sizeChoice?: QuoteSize;
+    isCustomQuoteStyle?: boolean;
 };
 
 export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
@@ -28,10 +29,10 @@ export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
     isCustomSize,
     sizeValue,
     sizeChoice,
+    isCustomQuoteStyle,
 }) => {
-    const customIconUrl = quoteStyle === QuoteStyle.Custom ? blockAssets?.[customIconId]?.[0]?.genericUrl : '';
+    const customIconUrl = isCustomQuoteStyle ? blockAssets?.[customIconId]?.[0]?.genericUrl : '';
     const rgbaColor = toRgbaString(color ?? DEFAULT_COLOR_VALUE);
     const size = isCustomSize ? sizeValue ?? '' : quoteSizeMap[sizeChoice ?? QuoteSize.SmallSize];
-
     return quoteIconMap(size, rgbaColor, customIconUrl)[quoteStyle];
 };

@@ -3,7 +3,7 @@
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
 import { QuoteBlock } from './QuoteBlock';
-import { CUSTOM_ICON_LEFT_ID, CUSTOM_ICON_RIGHT_ID } from './settings';
+import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID } from './settings';
 import { QuotationMarksAnchoring, QuoteSize, QuoteStyle, QuoteType, TextAlignment } from './types';
 
 const QuoteBlockSelector = '[data-test-id="quote-block"]';
@@ -106,14 +106,14 @@ describe('Quote Block', () => {
         it('renders a quote block with custom icons', () => {
             const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
                 blockSettings: {
-                    quoteStyleLeft: QuoteStyle.Custom,
-                    quoteStyleRight: QuoteStyle.Custom,
+                    isCustomQuoteStyleLeft: true,
+                    isCustomQuoteStyleRight: true,
                     sizeChoice: QuoteSize.LargeSize,
                     quotesColor: EXAMPLE_COLOR,
                 },
                 blockAssets: {
-                    [CUSTOM_ICON_LEFT_ID]: [AssetDummy.with(342)],
-                    [CUSTOM_ICON_RIGHT_ID]: [AssetDummy.with(342)],
+                    [CUSTOM_QUOTE_STYLE_LEFT_ID]: [AssetDummy.with(342)],
+                    [CUSTOM_QUOTE_STYLE_RIGHT_ID]: [AssetDummy.with(342)],
                 },
             });
 
@@ -128,8 +128,8 @@ describe('Quote Block', () => {
         it('renders a quote block without custom icons', () => {
             const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
                 blockSettings: {
-                    quoteStyleLeft: QuoteStyle.Custom,
-                    quoteStyleRight: QuoteStyle.Custom,
+                    isCustomQuoteStyleLeft: true,
+                    isCustomQuoteStyleRight: true,
                 },
             });
 
@@ -141,11 +141,11 @@ describe('Quote Block', () => {
         it(' renders a quote block with one custom and one default icon', () => {
             const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {
                 blockSettings: {
-                    quoteStyleLeft: QuoteStyle.Custom,
+                    isCustomQuoteStyleLeft: true,
                     quoteStyleRight: QuoteStyle.HookBracketRight,
                 },
                 blockAssets: {
-                    [CUSTOM_ICON_LEFT_ID]: [AssetDummy.with(342)],
+                    [CUSTOM_QUOTE_STYLE_LEFT_ID]: [AssetDummy.with(342)],
                 },
             });
 

@@ -20,8 +20,10 @@ import {
     quoteSizeMap,
 } from './types';
 
-export const CUSTOM_ICON_LEFT_ID = 'customIconLeft';
-export const CUSTOM_ICON_RIGHT_ID = 'customIconRight';
+export const CUSTOM_QUOTE_STYLE_LEFT_ID = 'customQuoteStyleLeft';
+export const CUSTOM_QUOTE_STYLE_RIGHT_ID = 'customQuoteStyleRight';
+const IS_CUSTOM_QUOTE_STYLE_LEFT_ID = 'isCustomQuoteStyleLeft';
+const IS_CUSTOM_QUOTE_STYLE_RIGHT_ID = 'isCustomQuoteStyleRight';
 const QUOTE_STYLE_LEFT_ID = 'quoteStyleLeft';
 const QUOTE_STYLE_RIGHT_ID = 'quoteStyleRight';
 const QUOTE_TYPE_ID = 'type';
@@ -75,11 +77,6 @@ const QUOTE_STYLE_CHOICES = [
         label: 'Hook Bracket Right',
     },
     { value: QuoteStyle.None, icon: IconEnum.StrikethroughBox20, label: 'None' },
-    {
-        value: QuoteStyle.Custom,
-        icon: IconEnum.Plus16,
-        label: 'Custom Icon',
-    },
 ] as Choice[];
 
 export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, name: 'Light Grey' };
@@ -115,36 +112,52 @@ export const settings: BlockSettings = {
             show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
             blocks: [
                 {
-                    id: QUOTE_STYLE_LEFT_ID,
+                    id: IS_CUSTOM_QUOTE_STYLE_LEFT_ID,
+                    type: 'switch',
                     label: 'Left',
-                    type: 'dropdown',
-                    defaultValue: QuoteStyle.DoubleUp,
-                    choices: QUOTE_STYLE_CHOICES,
+                    switchLabel: 'Custom',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: CUSTOM_QUOTE_STYLE_LEFT_ID,
+                            type: 'assetInput',
+                            size: AssetInputSize.Small,
+                            extensions: ['svg' as FileExtension.Svg],
+                            objectTypes: [AssetChooserObjectType.ImageVideo],
+                        },
+                    ],
+                    off: [
+                        {
+                            id: QUOTE_STYLE_LEFT_ID,
+                            type: 'dropdown',
+                            defaultValue: QuoteStyle.DoubleUp,
+                            choices: QUOTE_STYLE_CHOICES,
+                        },
+                    ],
                 },
                 {
-                    id: CUSTOM_ICON_LEFT_ID,
-                    type: 'assetInput',
-                    size: AssetInputSize.Small,
-                    label: 'Custom Icon Left',
-                    extensions: ['svg' as FileExtension.Svg],
-                    objectTypes: [AssetChooserObjectType.ImageVideo],
-                    show: (bundle) => bundle.getBlock(QUOTE_STYLE_LEFT_ID)?.value === QuoteStyle.Custom,
-                },
-                {
-                    id: QUOTE_STYLE_RIGHT_ID,
+                    id: IS_CUSTOM_QUOTE_STYLE_RIGHT_ID,
+                    type: 'switch',
                     label: 'Right',
-                    type: 'dropdown',
-                    defaultValue: QuoteStyle.DoubleUp,
-                    choices: QUOTE_STYLE_CHOICES,
-                },
-                {
-                    id: CUSTOM_ICON_RIGHT_ID,
-                    type: 'assetInput',
-                    size: AssetInputSize.Small,
-                    label: 'Custom Icon Right',
-                    extensions: ['svg' as FileExtension.Svg],
-                    objectTypes: [AssetChooserObjectType.ImageVideo],
-                    show: (bundle) => bundle.getBlock(QUOTE_STYLE_RIGHT_ID)?.value === QuoteStyle.Custom,
+                    switchLabel: 'Custom',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: CUSTOM_QUOTE_STYLE_RIGHT_ID,
+                            type: 'assetInput',
+                            size: AssetInputSize.Small,
+                            extensions: ['svg' as FileExtension.Svg],
+                            objectTypes: [AssetChooserObjectType.ImageVideo],
+                        },
+                    ],
+                    off: [
+                        {
+                            id: QUOTE_STYLE_RIGHT_ID,
+                            type: 'dropdown',
+                            defaultValue: QuoteStyle.DoubleDown,
+                            choices: QUOTE_STYLE_CHOICES,
+                        },
+                    ],
                 },
             ],
         },
@@ -182,6 +195,7 @@ export const settings: BlockSettings = {
                     value: TextAlignment.Right,
                 },
             ],
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: 'quotationMarksAnchoring',
@@ -198,6 +212,7 @@ export const settings: BlockSettings = {
                     value: QuotationMarksAnchoring.HugText,
                 },
             ],
+            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
     style: [
