@@ -25,6 +25,8 @@ export type Settings = {
     content?: string;
     textAlignment?: string;
     quotationMarksAnchoring?: string;
+    isCustomQuoteStyleLeft?: boolean;
+    isCustomQuoteStyleRight?: boolean;
 };
 
 export type IconProps = {
