@@ -12,7 +12,7 @@ export type BaseBlock<T = undefined> = {
     label?: ValueOrPromisedValue<string>;
     info?: ValueOrPromisedValue<string>;
     value?: T;
-    defaultValue?: ValueOrPromisedValue<T>;
+    defaultValue?: T;
     showForTranslations?: boolean;
     show?: (bundle: Bundle) => boolean;
     onChange?: (bundle: Bundle) => void;
