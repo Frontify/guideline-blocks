@@ -28,14 +28,9 @@ export const settings: BlockSettings = {
             size: 'Large' as DropdownSize.Large,
             choices: [
                 {
-                    value: Type.Warning,
-                    icon: 'ExclamationMarkTriangle' as IconEnum.ExclamationMarkTriangle,
-                    label: 'Warning',
-                },
-                {
-                    value: Type.Tip,
-                    icon: 'CheckMark' as IconEnum.CheckMark,
-                    label: 'Tip',
+                    value: Type.Info,
+                    icon: 'Info' as IconEnum.Info,
+                    label: 'Info',
                 },
                 {
                     value: Type.Note,
@@ -43,9 +38,14 @@ export const settings: BlockSettings = {
                     label: 'Note',
                 },
                 {
-                    value: Type.Info,
-                    icon: 'Info' as IconEnum.Info,
-                    label: 'Info',
+                    value: Type.Tip,
+                    icon: 'CheckMark' as IconEnum.CheckMark,
+                    label: 'Tip',
+                },
+                {
+                    value: Type.Warning,
+                    icon: 'ExclamationMarkTriangle' as IconEnum.ExclamationMarkTriangle,
+                    label: 'Warning',
                 },
             ],
         },
