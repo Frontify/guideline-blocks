@@ -208,7 +208,7 @@ export const settings: BlockSettings = {
                     value: QuotationMarksAnchoring.FullWidth,
                 },
                 {
-                    label: 'Hug Text',
+                    label: 'Hug text',
                     value: QuotationMarksAnchoring.HugText,
                 },
             ],
@@ -312,7 +312,7 @@ export const settings: BlockSettings = {
                             placeholder: 'e.g. 3px',
                         },
                         {
-                            id: 'accentLinecolor',
+                            id: 'accentLineColor',
                             type: 'colorInput',
                             defaultValue: DEFAULT_COLOR_VALUE,
                         },
