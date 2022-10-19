@@ -6,10 +6,10 @@ import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { Quotations } from './Quotations';
-import { DEFAULT_COLOR_VALUE } from './settings';
-import { LineType, Props, QuotationMarksAnchoring, QuoteType, Settings } from './types';
-import { textAlignmentClassNames } from './utilities';
+import { QuoteBlockIcon } from './QuoteBlockIcon';
+import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
+import { LineType, Props, QuotationMarksAnchoring, QuoteStyle, QuoteType, Settings } from './types';
+import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities';
 
 const ACTIONS = [
     [EditorActions.TEXT_STYLES],
@@ -25,7 +25,9 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const { blockAssets } = useBlockAssets(appBridge);
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
-    const isFullWidth = blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText;
+    const isFullWidth =
+        blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText && isQuotationMarkType;
+    const textAlignment = !isQuotationMarkType ? 'left' : blockSettings.textAlignment ?? 'left';
     const borderRgba = toRgbaString(blockSettings.accentLinecolor ?? DEFAULT_COLOR_VALUE);
     const borderStyles = blockSettings.showAccentLine
         ? {
@@ -40,29 +42,45 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
+    const getWrapperClasses = () => {
+        if (isFullWidth) {
+            return 'tw-flex tw-justify-between tw-gap-x-7';
+        }
+        if (!isFullWidth) {
+            return merge(['tw-flex tw-gap-x-7', flexBoxAlignmentClassNames[textAlignment]]);
+        }
+        return '';
+    };
+
     return (
         <div data-test-id="quote-block" className={isEditing ? '' : 'tw-text-text'}>
-            <Quotations
-                textAlignment={blockSettings.textAlignment}
-                isFullWidth={isFullWidth}
-                isQuotationMarkType={isQuotationMarkType}
-                blockAssets={blockAssets}
-                color={blockSettings.quotesColor}
-                isCustomSize={blockSettings.isCustomSize}
-                sizeValue={blockSettings.sizeValue}
-                sizeChoice={blockSettings.sizeChoice}
-                quoteStyleLeft={blockSettings.quoteStyleLeft}
-                quoteStyleRight={blockSettings.quoteStyleRight}
-            >
+            <div className={getWrapperClasses()}>
+                {isQuotationMarkType && (
+                    <QuoteBlockIcon
+                        color={blockSettings.quotesColor}
+                        blockAssets={blockAssets}
+                        isCustomSize={blockSettings.isCustomSize}
+                        sizeValue={blockSettings.sizeValue}
+                        sizeChoice={blockSettings.sizeChoice}
+                        customIconId={CUSTOM_QUOTE_STYLE_LEFT_ID}
+                        quoteStyle={
+                            blockSettings.isCustomQuoteStyleLeft
+                                ? QuoteStyle.Custom
+                                : blockSettings.quoteStyleLeft ?? QuoteStyle.DoubleUp
+                        }
+                        isCustomQuoteStyle={blockSettings.isCustomQuoteStyleLeft}
+                    />
+                )}
+
                 <div
                     data-test-id="quote-block-author"
-                    className={isFullWidth ? 'tw-flex-1 tw-w-full' : 'tw-min-w-[1rem]'}
+                    className={isFullWidth && isQuotationMarkType ? 'tw-flex-1 tw-w-full' : 'tw-min-w-[1rem]'}
                 >
                     <div
                         style={isQuotationMarkType ? {} : borderStyles}
                         className={merge([
                             isQuotationMarkType ? '' : accentLineClassName,
-                            textAlignmentClassNames[blockSettings.textAlignment ?? 'left'],
+                            textAlignmentClassNames[textAlignment],
                         ])}
                     >
                         <RichTextEditor
@@ -77,7 +95,23 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                     </div>
                     {showAuthor && <p className="tw-text-right">{`- ${blockSettings.authorName}`}</p>}
                 </div>
-            </Quotations>
+                {isQuotationMarkType && (
+                    <QuoteBlockIcon
+                        color={blockSettings.quotesColor}
+                        blockAssets={blockAssets}
+                        isCustomSize={blockSettings.isCustomSize}
+                        sizeValue={blockSettings.sizeValue}
+                        sizeChoice={blockSettings.sizeChoice}
+                        customIconId={CUSTOM_QUOTE_STYLE_RIGHT_ID}
+                        quoteStyle={
+                            blockSettings.isCustomQuoteStyleRight
+                                ? QuoteStyle.Custom
+                                : blockSettings.quoteStyleRight ?? QuoteStyle.DoubleDown
+                        }
+                        isCustomQuoteStyle={blockSettings.isCustomQuoteStyleRight}
+                    />
+                )}
+            </div>
         </div>
     );
 };
