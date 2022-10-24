@@ -38,7 +38,7 @@ export const ColorPickerFlyout = ({ currentColor, onConfirm, children }: ColorPi
                 onOpenChange={handleOpenChange}
                 trigger={(props: HTMLAttributes<HTMLDivElement>, ref: MutableRefObject<HTMLDivElement>) => {
                     return (
-                        <div {...props} ref={ref} draggable>
+                        <div {...props} data-test-id="flyout-trigger" ref={ref} draggable>
                             {children}
                         </div>
                     );

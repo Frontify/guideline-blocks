@@ -5,7 +5,7 @@ import { mount } from 'cypress/react';
 import { ColorPickerFlyout } from './ColorPickerFlyout';
 
 const ColorPickerFlyoutSelector = '[data-test-id="color-picker-flyout"]';
-const FlyoutTriggerSelector = `${ColorPickerFlyoutSelector}>div`;
+const FlyoutTriggerSelector = '[data-test-id="flyout-trigger"]';
 const CustomColorPickerSelector = '[data-test-id="custom-color-picker"]';
 const ButtonSelector = '[data-test-id="button"]';
 
