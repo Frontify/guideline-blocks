@@ -28,7 +28,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const isFullWidth =
         blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText && isQuotationMarkType;
     const textAlignment = !isQuotationMarkType ? 'left' : blockSettings.textAlignment ?? 'left';
-    const borderRgba = toRgbaString(blockSettings.accentLinecolor ?? DEFAULT_COLOR_VALUE);
+    const borderRgba = toRgbaString(blockSettings.accentLineColor ?? DEFAULT_COLOR_VALUE);
     const borderStyles = blockSettings.showAccentLine
         ? {
               borderLeftStyle: blockSettings.lineType ?? LineType.Solid,
