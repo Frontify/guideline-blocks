@@ -51,7 +51,7 @@
         "@codemirror/text": "0.19.6",
         "@codemirror/view": "0.19.48",
         "@frontify/app-bridge": "3.0.0-beta.17",
-        "@frontify/fondue": "12.0.0-beta.2",
+        "@frontify/fondue": "12.0.0-beta.10",
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "workspace:*",
         "@frontify/guideline-blocks-shared": "workspace:*",
