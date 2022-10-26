@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconReject, IconSize, Tooltip } from '@frontify/fondue';
+import { IconCross, IconSize, Tooltip } from '@frontify/fondue';
 import { FC } from 'react';
 
 type RemoveButtonProps = {
@@ -18,7 +18,7 @@ export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
                         className="tw-flex tw-w-9 tw-h-9 tw-items-center tw-justify-center tw-bg-black-20 hover:tw-bg-black-30 tw-transition-colors tw-rounded tw-text-text"
                         onClick={onClick}
                     >
-                        <IconReject size={IconSize.Size20} />
+                        <IconCross size={IconSize.Size20} />
                     </button>
                 }
             />

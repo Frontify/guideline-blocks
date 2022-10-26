@@ -1,5 +1,10 @@
 name: Continuous Integration
 
+# Ensures that only one workflow per branch will run at a time.
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
 on:
     pull_request:
     push:
@@ -9,7 +14,7 @@ on:
 env:
     NODE_VERSION: 16
     CI: true
-    NUMBER_OF_RUNNERS: 6
+    NUMBER_OF_RUNNERS: 7
 
 jobs:
     linting:
@@ -26,7 +31,7 @@ jobs:
                   node-version: ${{ env.NODE_VERSION }}
 
             - name: Use pnpm
-              uses: pnpm/action-setup@v2.2.2
+              uses: pnpm/action-setup@v2.2.4
               with:
                   version: latest
                   run_install: false
@@ -64,7 +69,7 @@ jobs:
                   node-version: ${{ env.NODE_VERSION }}
 
             - name: Use pnpm
-              uses: pnpm/action-setup@v2.2.2
+              uses: pnpm/action-setup@v2.2.4
               with:
                   version: latest
                   run_install: false
@@ -105,7 +110,7 @@ jobs:
                   node-version: ${{ env.NODE_VERSION }}
 
             - name: Use pnpm
-              uses: pnpm/action-setup@v2.2.2
+              uses: pnpm/action-setup@v2.2.4
               with:
                   version: latest
                   run_install: false
@@ -129,33 +134,14 @@ jobs:
             - name: Unit Tests
               run: pnpm run test:unit
 
-    prepare-tests:
-        runs-on: ubuntu-latest
-        timeout-minutes: 5
-
-        outputs:
-            component-tests: ${{ steps.parse-specs.outputs.component-tests }}
-
-        steps:
-            - name: Checkout default branch
-              uses: actions/checkout@v3
-
-            - name: Parse test files for parallelization
-              id: parse-specs
-              uses: tgamauf/cypress-parallel@v1
-              with:
-                  count-runners: ${{ env.NUMBER_OF_RUNNERS }}
-
     component-tests:
         runs-on: ubuntu-latest
         timeout-minutes: 10
 
-        needs: [prepare-tests]
-
         strategy:
             fail-fast: false
             matrix:
-                spec: ${{ fromJson(needs.prepare-tests.outputs.component-tests) }}
+                containers: [0, 1, 2, 3, 4, 5, 6]
 
         steps:
             - name: Checkout current commit
@@ -167,7 +153,7 @@ jobs:
                   node-version: ${{ env.NODE_VERSION }}
 
             - name: Use pnpm
-              uses: pnpm/action-setup@v2.2.2
+              uses: pnpm/action-setup@v2.2.4
               with:
                   version: latest
                   run_install: false
@@ -192,7 +178,4 @@ jobs:
               run: pnpm run build
 
             - name: Component Tests
-              run: pnpm run test:components --spec ${{ matrix.spec }}
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+              run: pnpm run test:components --spec $(node ./.github/lib/cypress-matrix.js ${{ env.NUMBER_OF_RUNNERS }} ${{ matrix.containers }})

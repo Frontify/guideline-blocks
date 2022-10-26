@@ -1,15 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
+    Asset,
     AssetChooserObjectType,
     AssetChooserProjectType,
-    AssetChooserResult,
     useAssetChooser,
     useBlockAssets,
     useBlockSettings,
     useEditorState,
 } from '@frontify/app-bridge';
-import { Button, ButtonStyle, IconExpand, IconProjects, IconReject, IconSize } from '@frontify/fondue';
+import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -38,20 +38,21 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         hasBorder = true,
         isCustomHeight = false,
         heightValue = heights[HeightChoices.Small],
-        heightChoice = HeightChoices.Medium,
+        heightChoice = HeightChoices.Small,
         showFigmaLink = true,
         hasBackground = false,
+        hasLimitedOptions = true,
     } = blockSettings;
 
     useEffect(() => {
-        setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.external_url));
+        setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.externalUrl ?? undefined));
         setIsLivePreview(figmaPreviewId === BlockPreview.Live);
     }, [asset, figmaPreviewId]);
 
     const onOpenAssetChooser = () => {
         openAssetChooser(
-            (result: AssetChooserResult) => {
-                const resultId = result.screenData[0].id;
+            (result: Asset[]) => {
+                const resultId = result[0].id;
                 updateAssetIdsFromKey(ASSET_ID, [resultId]);
                 closeAssetChooser();
             },
@@ -71,7 +72,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             onClick={onOpenAssetChooser}
         >
             <div className="tw-text-xl tw-mb-4 tw-flex tw-justify-center tw-text-black-40 group-hover:tw-text-violet-60">
-                <IconProjects size={IconSize.Size32} />
+                <IconSuitcase size={IconSize.Size32} />
             </div>
             <span className="tw-text-text-x-weak group-hover:tw-text-black">Choose Figma asset</span>
         </div>
@@ -93,16 +94,16 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
                 <ImageStage
                     title={asset.title}
-                    url={asset.preview_url}
-                    isContainerVector={true}
+                    url={asset.previewUrl}
+                    hasLimitedOptions={hasLimitedOptions}
                     height={height}
                     hasBorder={hasBorder}
-                    hasBackground={hasBackground}
+                    hasBackground={!hasLimitedOptions && hasBackground}
                 />
                 {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
             </div>
         ),
-        [ShowFigmaLink, asset?.preview_url, asset?.title, assetExternalUrl]
+        [ShowFigmaLink, asset?.previewUrl, asset?.title, assetExternalUrl, hasLimitedOptions]
     );
 
     const ShowFigmaLive = useCallback(
@@ -113,12 +114,16 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             >
                 <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
                     <Button
-                        icon={<IconExpand />}
+                        icon={<IconArrowExpand />}
                         onClick={() => toggleFigmaLiveModal(true)}
-                        style={ButtonStyle.Secondary}
+                        emphasis={ButtonEmphasis.Default}
                     />
                 </div>
-                <iframe src={asset?.external_url} className="tw-h-full tw-w-full tw-border-none" loading="lazy" />
+                <iframe
+                    src={asset?.externalUrl ?? undefined}
+                    className="tw-h-full tw-w-full tw-border-none"
+                    loading="lazy"
+                />
             </div>
         ),
         [asset]
@@ -135,23 +140,27 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             >
                 <div className="tw-fixed tw-flex tw-top-4 tw-right-4 tw-z-[200]">
                     <Button
-                        icon={<IconReject />}
+                        icon={<IconCross />}
                         onClick={() => {
                             toggleFigmaLiveModal(false);
                             modalRoot?.classList.remove(FIGMA_BLOCK_MODAL_CLASSES);
                         }}
-                        style={ButtonStyle.Secondary}
+                        emphasis={ButtonEmphasis.Default}
                     />
                 </div>
 
                 <div className="tw-relative tw-w-full tw-h-full">
-                    <iframe src={asset?.external_url} className="tw-h-full tw-w-full tw-border-none" loading="lazy" />
+                    <iframe
+                        src={asset?.externalUrl ?? undefined}
+                        className="tw-h-full tw-w-full tw-border-none"
+                        loading="lazy"
+                    />
                 </div>
             </div>
         );
 
         return createPortal(modal, modalRoot);
-    }, [asset?.external_url]);
+    }, [asset?.externalUrl]);
 
     return (
         <div data-test-id="figma-block">

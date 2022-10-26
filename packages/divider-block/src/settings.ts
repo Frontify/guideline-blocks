@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     betweenPercentRule,
@@ -10,36 +10,24 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import {
-    DividerAlignment,
-    DividerHeight,
-    DividerStyle,
-    DividerThickness,
-    DividerWidth,
-    dividerHeightValues,
-    dividerThicknessValues,
-} from './types';
+import { DividerAlignment, DividerHeight, DividerStyle, DividerWidth, dividerHeightValues } from './types';
 
 const IS_LINE_ID = 'isLine';
 const WIDTH_SIMPLE_ID = 'widthSimple';
 const WIDTH_CUSTOM_ID = 'widthCustom';
-const HEIGHT_CUSTOM_ID = 'heightCustom';
-const THICKNESS_CUSTOM_ID = 'thicknessCustom';
-const THICKNESS_SIMPLE_ID = 'thicknessSimple';
 const HEIGHT_SIMPLE_ID = 'heightSimple';
+const HEIGHT_CUSTOM_ID = 'heightCustom';
 const IS_CUSTOM_WIDTH_ID = 'isWidthCustom';
+const THICKNESS_ID = 'thickness';
 
-export const IS_LINE_DEFAULT_VALUE = DividerStyle.Solid;
 export const ALIGNMENT_DEFAULT_VALUE = DividerAlignment.Left;
 export const STYLE_DEFAULT_VALUE = DividerStyle.Solid;
-export const WIDTH_DEFAULT_VALUE = DividerWidth['100%'];
 export const HEIGHT_DEFAULT_VALUE = DividerHeight.Small;
-export const THICKNESS_DEFAULT_VALUE = DividerThickness.Small;
 export const COLOR_DEFAULT_RGBA_VALUE = {
-    r: 213,
-    g: 214,
-    b: 214,
-    a: 1,
+    red: 213,
+    green: 214,
+    blue: 214,
+    alpha: 1,
     name: 'Light Grey',
 };
 
@@ -55,16 +43,16 @@ export const settings: BlockSettings = {
             id: IS_LINE_ID,
             type: 'dropdown',
             size: 'Large' as DropdownSize.Large,
-            defaultValue: IS_LINE_DEFAULT_VALUE,
+            defaultValue: DividerStyle.Solid,
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: 'LineSpacer' as IconEnum.LineSpacer,
+                    icon: 'DividerBlank' as IconEnum.DividerBlank,
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: 'LineSolid' as IconEnum.LineSolid,
+                    icon: 'DividerSolid' as IconEnum.DividerSolid,
                     label: 'Line',
                 },
             ],
@@ -83,23 +71,26 @@ export const settings: BlockSettings = {
                     label: 'Width',
                     switchLabel: 'Custom',
                     defaultValue: false,
-                    onChange: (bundle: Bundle): void =>
-                        presetCustomValue(bundle, WIDTH_SIMPLE_ID, WIDTH_CUSTOM_ID, DividerWidth),
+                    onChange: (bundle) => {
+                        presetCustomValue(bundle, WIDTH_SIMPLE_ID, WIDTH_CUSTOM_ID, DividerWidth);
+                    },
                     on: [
                         {
                             id: WIDTH_CUSTOM_ID,
                             type: 'input',
-                            placeholder: '75%',
-                            clearable: false,
+                            placeholder: 'e.g. 60%',
+                            clearable: true,
                             rules: [numericalOrPercentRule, betweenPercentRule(0, 100)],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
+                            onChange: (bundle) => {
+                                appendUnit(bundle, WIDTH_CUSTOM_ID, '%');
+                            },
                         },
                     ],
                     off: [
                         {
                             id: WIDTH_SIMPLE_ID,
                             type: 'slider',
-                            defaultValue: WIDTH_DEFAULT_VALUE,
+                            defaultValue: DividerWidth['100%'],
                             choices: [
                                 {
                                     value: DividerWidth['10%'],
@@ -130,15 +121,15 @@ export const settings: BlockSettings = {
                     choices: [
                         {
                             value: DividerAlignment.Left,
-                            icon: 'AlignLeft' as IconEnum.AlignLeft,
+                            icon: 'ArrowAlignLeft' as IconEnum.ArrowAlignLeft,
                         },
                         {
                             value: DividerAlignment.Center,
-                            icon: 'AlignCenter' as IconEnum.AlignCenter,
+                            icon: 'ArrowAlignVerticalCentre' as IconEnum.ArrowAlignVerticalCentre,
                         },
                         {
                             value: DividerAlignment.Right,
-                            icon: 'AlignRight' as IconEnum.AlignRight,
+                            icon: 'ArrowAlignRight' as IconEnum.ArrowAlignRight,
                         },
                     ],
                     show: limitedWidthIsSelected,
@@ -153,20 +144,27 @@ export const settings: BlockSettings = {
                 {
                     id: 'isHeightCustom',
                     type: 'switch',
-                    label: 'Block Height',
+                    label: 'Height',
                     switchLabel: 'Custom',
-                    info: 'Determines the block height. This will not affect the dividing line in any way.',
+                    info: (bundle) => {
+                        return bundle.getBlock(IS_LINE_ID)?.value === DividerStyle.Solid
+                            ? 'Determines the block height. This will not affect the dividing line in any way.'
+                            : 'Determines the block height.';
+                    },
                     defaultValue: false,
-                    onChange: (bundle: Bundle): void =>
-                        presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeightValues),
+                    onChange: (bundle) => {
+                        presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeightValues);
+                    },
                     on: [
                         {
                             id: HEIGHT_CUSTOM_ID,
                             type: 'input',
-                            placeholder: '100px',
-                            clearable: false,
+                            placeholder: 'e.g. 50px',
+                            clearable: true,
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(10)],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_CUSTOM_ID),
+                            onChange: (bundle) => {
+                                appendUnit(bundle, HEIGHT_CUSTOM_ID);
+                            },
                         },
                     ],
                     off: [
@@ -196,15 +194,19 @@ export const settings: BlockSettings = {
     ],
     style: [
         {
-            id: 'lineStyleSection',
-            type: 'sectionHeading',
-            label: 'Line',
+            id: 'lineStyle',
+            type: 'multiInput',
+            label: 'Line Styling',
             show: lineIsSelected,
+            onChange: (bundle) => {
+                appendUnit(bundle, THICKNESS_ID);
+            },
+            layout: MultiInputLayout.Columns,
+            lastItemFullWidth: true,
             blocks: [
                 {
                     id: 'style',
-                    type: 'slider',
-                    label: 'Styling',
+                    type: 'dropdown',
                     defaultValue: STYLE_DEFAULT_VALUE,
                     choices: [
                         {
@@ -212,58 +214,26 @@ export const settings: BlockSettings = {
                             label: 'Solid',
                         },
                         {
-                            value: DividerStyle.Dashed,
-                            label: 'Dashes',
+                            value: DividerStyle.Dotted,
+                            label: 'Dotted',
                         },
                         {
-                            value: DividerStyle.Dotted,
-                            label: 'Dots',
+                            value: DividerStyle.Dashed,
+                            label: 'Dashed',
                         },
                     ],
                 },
                 {
-                    id: 'isThicknessCustom',
-                    type: 'switch',
-                    label: 'Thickness',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
-                    onChange: (bundle: Bundle): void =>
-                        presetCustomValue(bundle, THICKNESS_SIMPLE_ID, THICKNESS_CUSTOM_ID, dividerThicknessValues),
-                    on: [
-                        {
-                            id: THICKNESS_CUSTOM_ID,
-                            type: 'input',
-                            clearable: false,
-                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, THICKNESS_CUSTOM_ID),
-                        },
-                    ],
-                    off: [
-                        {
-                            id: THICKNESS_SIMPLE_ID,
-                            type: 'slider',
-                            defaultValue: THICKNESS_DEFAULT_VALUE,
-                            choices: [
-                                {
-                                    value: DividerThickness.Small,
-                                    label: 'S',
-                                },
-                                {
-                                    value: DividerThickness.Medium,
-                                    label: 'M',
-                                },
-                                {
-                                    value: DividerThickness.Large,
-                                    label: 'L',
-                                },
-                            ],
-                        },
-                    ],
+                    id: THICKNESS_ID,
+                    type: 'input',
+                    defaultValue: '1px',
+                    placeholder: 'e.g. 3px',
+                    clearable: false,
+                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                 },
                 {
                     id: 'color',
                     type: 'colorInput',
-                    label: 'Color',
                     defaultValue: COLOR_DEFAULT_RGBA_VALUE,
                 },
             ],

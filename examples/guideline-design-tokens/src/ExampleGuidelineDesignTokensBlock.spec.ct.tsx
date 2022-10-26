@@ -1,20 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/app-bridge';
-import type { Emitter } from 'mitt';
-import mitt from 'mitt';
+import { mount } from 'cypress/react';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ExampleGuidelineDesignTokensBlock } from './ExampleGuidelineDesignTokensBlock';
 
 const EXAMPLE_GUIDELINE_DESIGN_TOKENS_BLOCK_SELECTOR = '[data-test-id="example-guideline-design-tokens-block"]';
-
-declare global {
-    interface Window {
-        emitter: Emitter<any>;
-    }
-}
-
-window.emitter = mitt();
 
 describe('Example Guideline Design Token Block', () => {
     before(() => {
@@ -43,7 +33,7 @@ describe('Example Guideline Design Token Block', () => {
     });
 
     it('renders an example block with styles from the api', () => {
-        const [ExampleGuidelineDesignTokensBlockWithStubs] = withAppBridgeStubs(ExampleGuidelineDesignTokensBlock, {});
+        const [ExampleGuidelineDesignTokensBlockWithStubs] = withAppBridgeBlockStubs(ExampleGuidelineDesignTokensBlock);
 
         mount(<ExampleGuidelineDesignTokensBlockWithStubs />);
         cy.get(EXAMPLE_GUIDELINE_DESIGN_TOKENS_BLOCK_SELECTOR).should('exist');

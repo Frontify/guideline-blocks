@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { mount } from 'cypress/react';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { OrderableListItem } from '@frontify/fondue';
 import { Padding, paddingStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { ChecklistBlock } from './ChecklistBlock';
@@ -54,25 +54,25 @@ const testSettings: Settings = {
     extendedPaddingBottom: '0px',
     extendedPaddingLeft: '0px',
     extendedPaddingRight: '0px',
-    incompleteTextColor: { r: 45, g: 50, b: 50, a: 1 },
-    incompleteCheckboxColor: { r: 108, g: 112, b: 112, a: 1 },
-    completeTextColor: { r: 255, g: 55, b: 90, a: 1 },
-    completeCheckboxColor: { r: 255, g: 55, b: 90, a: 1 },
+    incompleteTextColor: { red: 45, green: 50, blue: 50, alpha: 1 },
+    incompleteCheckboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
+    completeTextColor: { red: 255, green: 55, blue: 90, alpha: 1 },
+    completeCheckboxColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completedDecoration: ChecklistDecoration.Strikethrough,
-    highlightColor: { r: 190, g: 225, b: 212, a: 1 },
+    highlightColor: { red: 190, green: 225, blue: 212, alpha: 1 },
     dateVisible: true,
     progressBarVisible: true,
     progressBarType: ProgressBarType.Bar,
-    progressBarFillColor: { r: 0, g: 200, b: 165, a: 1 },
-    progressBarTrackColor: { r: 222, g: 240, b: 233, a: 1 },
+    progressBarFillColor: { red: 0, green: 200, blue: 165, alpha: 1 },
+    progressBarTrackColor: { red: 222, green: 240, blue: 233, alpha: 1 },
     strikethroughStyle: StrikethroughType.Dashed,
     strikethroughWidth: '5px',
-    strikethroughColor: { r: 255, g: 55, b: 90, a: 1 },
+    strikethroughColor: { red: 255, green: 55, blue: 90, alpha: 1 },
 };
 
 describe('Checklist Block', () => {
     it('Renders a checklist block', () => {
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {});
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {});
 
         mount(<ChecklistBlockWithStubs />);
         cy.get(CHECKLIST_BLOCK_SELECTOR).should('exist');
@@ -81,7 +81,7 @@ describe('Checklist Block', () => {
     it('Displays the correct number of checklist items in View Mode', () => {
         const length = randomInteger(0, 10);
         const content = createContentArray(length);
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, { blockSettings: { content } });
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, { blockSettings: { content } });
 
         mount(<ChecklistBlockWithStubs />);
         cy.get(CHECKLIST_ITEM).should('have.length', length);
@@ -90,7 +90,7 @@ describe('Checklist Block', () => {
     it('Displays the correct number of checklist items in Edit Mode', () => {
         const length = Math.ceil(Math.random() * 10);
         const content = createContentArray(length);
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content },
             editorState: true,
         });
@@ -99,8 +99,8 @@ describe('Checklist Block', () => {
         cy.get(CHECKLIST_CONTAINER).find(CHECKLIST_ITEM).should('have.length', length);
     });
 
-    it.skip('Allows users to create new item in Edit Mode', () => {
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+    it('Allows users to create new item in Edit Mode', () => {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content: [] },
             editorState: true,
         });
@@ -112,9 +112,9 @@ describe('Checklist Block', () => {
         cy.get(CHECKLIST_ITEM_CREATOR).should('be.visible').find(TEXT_EDITOR).should('have.value', '');
     });
 
-    it.skip('Allows users to remove item in Edit Mode', () => {
+    it('Allows users to remove item in Edit Mode', () => {
         const content = createContentArray(5);
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content },
             editorState: true,
         });
@@ -124,9 +124,9 @@ describe('Checklist Block', () => {
         cy.get(CHECKLIST_CONTAINER).find(CHECKLIST_ITEM).should('have.length', 4);
     });
 
-    it.skip('Allows users to move item up or down in Edit Mode', () => {
+    it('Allows users to move item up or down in Edit Mode', () => {
         const content = createContentArray(3);
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content },
             editorState: true,
         });
@@ -153,7 +153,7 @@ describe('Checklist Block', () => {
 
     // it('Allows users to move item with keyboard', () => {
     //     const content = createContentArray(3, { completed: false });
-    //     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+    //     const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
     //         blockSettings: { content },
     //         editorState: true,
     //     });
@@ -188,7 +188,7 @@ describe('Checklist Block', () => {
     // it('Allows users to remove item with keyboard', () => {
     //     const length = randomInteger(3, 10);
     //     const content = createContentArray(length, { completed: false });
-    //     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+    //     const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
     //         blockSettings: { content },
     //         editorState: true,
     //     });
@@ -215,7 +215,7 @@ describe('Checklist Block', () => {
     // });
 
     // it('Allows users to create item with keyboard', () => {
-    //     const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+    //     const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
     //         blockSettings: { content: [] },
     //         editorState: true,
     //     });
@@ -235,7 +235,7 @@ describe('Checklist Block', () => {
         const completedItems = createContentArray(1, { completed: true });
         const incompleteItems = createContentArray(1, { completed: false });
         const content = [...completedItems, ...incompleteItems];
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content },
             editorState: false,
         });
@@ -254,7 +254,7 @@ describe('Checklist Block', () => {
 
     it('Disables Up arrow if first item and Down arrow if last item', () => {
         const content = createContentArray(3);
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content },
             editorState: true,
         });
@@ -282,7 +282,7 @@ describe('Checklist Block', () => {
         const completedItems = createContentArray(5, { completed: true });
         const incompleteItems = createContentArray(5, { completed: false });
         const content = [...completedItems, ...incompleteItems];
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, { blockSettings: { content } });
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, { blockSettings: { content } });
 
         mount(<ChecklistBlockWithStubs />);
         cy.get(CHECKLIST_ITEM).should('have.length', 10);
@@ -296,8 +296,7 @@ describe('Checklist Block', () => {
             .then(($button) => {
                 const text = $button.text();
                 expect(text).to.match(/Hide/);
-                // TODO: remove {force: true} when tailwind is bundled correctly in cypress
-                cy.wrap($button).click({ force: true });
+                cy.wrap($button).click();
             });
         cy.get(CHECKLIST_ITEM).should('have.length', 5);
         cy.get('[checked]').should('have.length', 0);
@@ -307,7 +306,7 @@ describe('Checklist Block', () => {
         const completedItems = createContentArray(5, { completed: true });
         const incompleteItems = createContentArray(5, { completed: false });
         const content = [...completedItems, ...incompleteItems];
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content },
             editorState: true,
         });
@@ -319,7 +318,7 @@ describe('Checklist Block', () => {
     });
 
     it('Hides progress bar if no checklist items', () => {
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content: [], progressBarType: ProgressBarType.Bar, progressBarVisible: true },
         });
 
@@ -329,7 +328,7 @@ describe('Checklist Block', () => {
 
     it('Shows progress bar if setting is true and checklist is not empty', () => {
         const content = createContentArray(1);
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content, progressBarType: ProgressBarType.Bar, progressBarVisible: true },
         });
 
@@ -345,7 +344,7 @@ describe('Checklist Block', () => {
         const completedLength = completedItems.length;
         const totalLength = content.length;
 
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content, progressBarType: ProgressBarType.Fraction, progressBarVisible: true },
         });
 
@@ -362,7 +361,7 @@ describe('Checklist Block', () => {
         const totalLength = content.length;
         const percentage = ((completedLength / totalLength) * 100).toFixed(0);
 
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { content, progressBarType: ProgressBarType.Percentage, progressBarVisible: true },
         });
 
@@ -375,7 +374,7 @@ describe('Checklist Block', () => {
         const incompleteItems = createContentArray(5, { completed: false });
         const content = [...completedItems, ...incompleteItems];
 
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: { ...testSettings, content },
         });
 
@@ -425,7 +424,7 @@ describe('Checklist Block', () => {
     });
 
     it('Uses custom padding if advanced it set to true', () => {
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: {
                 hasExtendedCustomPadding: true,
                 extendedPaddingChoice: Padding.Large,
@@ -441,7 +440,7 @@ describe('Checklist Block', () => {
 
     it('Does not show date if visibility is off', () => {
         const content = createContentArray(5, { completed: true });
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: {
                 content,
                 dateVisible: false,
@@ -453,8 +452,8 @@ describe('Checklist Block', () => {
 
     it('Correctly displays highlight color', () => {
         const content = createContentArray(5, { completed: true });
-        const highlightColor = { r: 85, g: 85, b: 85 };
-        const [ChecklistBlockWithStubs] = withAppBridgeStubs(ChecklistBlock, {
+        const highlightColor = { red: 85, green: 85, blue: 85 };
+        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
             blockSettings: {
                 content,
                 completedDecoration: ChecklistDecoration.Highlight,

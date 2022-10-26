@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
+import { mount } from 'cypress/react';
 import { BlockContainerStub } from '../../tests/BlockContainerStub';
 
 const IMAGE_CONTAINER_SELECTOR = '[id="image-container"]';
@@ -37,7 +37,7 @@ describe('BitmapContainerOperator', () => {
         });
     });
 
-    it('render element with Padding 0.2 (in percenteges)', () => {
+    it('render element with Padding 0.2 (in percentages)', () => {
         mount(<BlockContainerStub height="500px" padding={0.2} />);
 
         cy.get(IMAGE_STAGE_SELECTOR).then((stageElement) => {

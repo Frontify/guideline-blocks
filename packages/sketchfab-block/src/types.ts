@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeNative } from '@frontify/app-bridge';
+import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 
 export type SketchfabBlockProps = {
-    appBridge: AppBridgeNative;
+    appBridge: AppBridgeBlock;
 };
 
 export enum SketchfabSettings {
@@ -37,7 +37,8 @@ export enum SketchfabSettings {
     STARTING_SPIN = 'startingSpin',
     AUTO_SPIN = 'autoSpin',
     AUTO_SPIN_COUNT = 'autoSpinCount',
-    PREVENT_LIGHT_ROTATION = 'preventLightRotation',
+    ALLOW_LIGHT_ROTATION = 'allowLightRotation',
+    NAVIGATION_CONSTRAINTS = 'navigationConstraints',
     ORBIT_CONSTRAINT_PAN = 'orbitConstraintPan',
     ORBIT_CONSTRAINT_PITCH = 'orbitConstraintPitch',
     ORBIT_CONTRAINT_PITCH_LIMITS_UP = 'orbitConstraintPitchLimitsUp',
@@ -54,16 +55,18 @@ export enum SketchfabSettings {
     ANNOTATION_CYCLE_COUNT = 'annotationCycleCount',
     ANNOTATION_TOOLTIP_VISIBLE = 'annotationTooltipVisible',
     STARTING_ANNOTATION = 'startingAnnotation',
+    STARTING_ANNOTATION_VALUE = 'startingAnnotationValue',
     UI_THEME = 'uiTheme',
     UI_DOF = 'uiDOF',
+    SHOW_UI = 'showUI',
     UI_DISABLE_VIEWER = 'uiDisableViewer',
     UI_COLOR = 'uiColor',
+    UI_COLOR_VALUE = 'uiColorValue',
     UI_ANIMATIONS = 'uiAnimations',
     UI_ANNOTATIONS = 'uiAnnotations',
-    UI_CONTROLS = 'uiControls',
     UI_FADEOUT = 'uiFadeout',
+    SHOW_BUTTONS = 'showButtons',
     UI_FULLSCREEN = 'uiFullscreen',
-    UI_GENERAL_CONTROLS = 'uiGeneralControls',
     UI_HELP = 'uiHelp',
     UI_HINT = 'uiHint',
     UI_INFOS = 'uiInfos',
@@ -83,7 +86,7 @@ export type Settings = {
     [SketchfabSettings.ACCOUNT_TYPE]: SketchfabAccount;
     [SketchfabSettings.URL]: string;
     [SketchfabSettings.HEIGHT]: SketchfabHeight;
-    [SketchfabSettings.HAS_BORDER]?: boolean;
+    [SketchfabSettings.HAS_BORDER]: boolean;
     [SketchfabSettings.BORDER_COLOR]: Color;
     [SketchfabSettings.BORDER_STYLE]: BorderStyle;
     [SketchfabSettings.BORDER_WIDTH]: string;
@@ -108,7 +111,8 @@ export type Settings = {
     [SketchfabSettings.STARTING_SPIN]: boolean;
     [SketchfabSettings.AUTO_SPIN]: boolean;
     [SketchfabSettings.AUTO_SPIN_COUNT]: string;
-    [SketchfabSettings.PREVENT_LIGHT_ROTATION]: boolean;
+    [SketchfabSettings.ALLOW_LIGHT_ROTATION]: boolean;
+    [SketchfabSettings.NAVIGATION_CONSTRAINTS]: boolean;
     [SketchfabSettings.ORBIT_CONSTRAINT_PAN]: boolean;
     [SketchfabSettings.ORBIT_CONSTRAINT_PITCH]: boolean;
     [SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_UP]: string;
@@ -124,17 +128,19 @@ export type Settings = {
     [SketchfabSettings.ANNOTATION_CYCLE]: boolean;
     [SketchfabSettings.ANNOTATION_CYCLE_COUNT]: string;
     [SketchfabSettings.ANNOTATION_TOOLTIP_VISIBLE]: boolean;
-    [SketchfabSettings.STARTING_ANNOTATION]: string;
+    [SketchfabSettings.STARTING_ANNOTATION]: boolean;
+    [SketchfabSettings.STARTING_ANNOTATION_VALUE]: string;
     [SketchfabSettings.UI_THEME]: SketchfabTheme;
     [SketchfabSettings.UI_DOF]: boolean;
+    [SketchfabSettings.SHOW_UI]: boolean;
     [SketchfabSettings.UI_DISABLE_VIEWER]: boolean;
-    [SketchfabSettings.UI_COLOR]: Color;
+    [SketchfabSettings.UI_COLOR]: boolean;
+    [SketchfabSettings.UI_COLOR_VALUE]: Color;
     [SketchfabSettings.UI_ANIMATIONS]: boolean;
     [SketchfabSettings.UI_ANNOTATIONS]: boolean;
-    [SketchfabSettings.UI_CONTROLS]: boolean;
     [SketchfabSettings.UI_FADEOUT]: boolean;
+    [SketchfabSettings.SHOW_BUTTONS]: boolean;
     [SketchfabSettings.UI_FULLSCREEN]: boolean;
-    [SketchfabSettings.UI_GENERAL_CONTROLS]: boolean;
     [SketchfabSettings.UI_HELP]: boolean;
     [SketchfabSettings.UI_HINT]: boolean;
     [SketchfabSettings.UI_INFOS]: boolean;
@@ -162,17 +168,17 @@ export const borderStyles: Record<BorderStyle, string> = {
     [BorderStyle.Dashed]: 'dashed',
 };
 
-export const borderRadiusClasses: Record<Radius, string> = {
-    [Radius.None]: 'tw-rounded-none',
-    [Radius.Small]: 'tw-rounded',
-    [Radius.Medium]: 'tw-rounded-md',
-    [Radius.Large]: 'tw-rounded-lg',
+export const heights: Record<SketchfabHeight, string> = {
+    [SketchfabHeight.Small]: '300px',
+    [SketchfabHeight.Medium]: '500px',
+    [SketchfabHeight.Large]: '700px',
 };
 
-export const heights: Record<SketchfabHeight, string> = {
-    [SketchfabHeight.Small]: '400px',
-    [SketchfabHeight.Medium]: '600px',
-    [SketchfabHeight.Large]: '800px',
+export const radiusClassMap: Record<Radius, string> = {
+    [Radius.None]: '',
+    [Radius.Small]: 'tw-rounded-sm',
+    [Radius.Medium]: 'tw-rounded',
+    [Radius.Large]: 'tw-rounded-xl',
 };
 
 export enum SketchfabAccount {

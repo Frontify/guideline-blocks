@@ -2,8 +2,8 @@
 
 import { AssetChooserObjectType } from '@frontify/app-bridge';
 import type { FileExtension } from '@frontify/app-bridge';
-import type { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import { BlockSettings, Bundle, NotificationStyleType } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     getExtendedBorderRadiusSettings,
@@ -24,42 +24,43 @@ export const settings: BlockSettings = {
         {
             id: 'type',
             type: 'dropdown',
-            defaultValue: Type.Warning,
+            defaultValue: Type.Info,
             size: 'Large' as DropdownSize.Large,
             choices: [
-                {
-                    value: Type.Warning,
-                    icon: 'Callout' as IconEnum.Callout,
-                    label: 'Warning',
-                },
-                {
-                    value: Type.Tip,
-                    icon: 'Check' as IconEnum.Check,
-                    label: 'Tip',
-                },
-                {
-                    value: Type.Note,
-                    icon: 'Briefing' as IconEnum.Briefing,
-                    label: 'Note',
-                },
                 {
                     value: Type.Info,
                     icon: 'Info' as IconEnum.Info,
                     label: 'Info',
                 },
+                {
+                    value: Type.Note,
+                    icon: 'DocumentText' as IconEnum.DocumentText,
+                    label: 'Note',
+                },
+                {
+                    value: Type.Tip,
+                    icon: 'CheckMark' as IconEnum.CheckMark,
+                    label: 'Tip',
+                },
+                {
+                    value: Type.Warning,
+                    icon: 'ExclamationMarkTriangle' as IconEnum.ExclamationMarkTriangle,
+                    label: 'Warning',
+                },
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: 'iconSwitch',
             type: 'switch',
-            defaultValue: true,
+            defaultValue: false,
             label: 'Icon',
             on: [
                 {
                     id: ICON_ASSET_ID,
                     type: 'assetInput',
+                    size: AssetInputSize.Small,
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                 },
@@ -94,20 +95,21 @@ export const settings: BlockSettings = {
                     type: 'slider',
                     label: 'Alignment',
                     defaultValue: Alignment.Left,
+                    show: (bundle) => bundle.getBlock('width')?.value === Width.HugContents,
                     choices: [
                         {
                             value: Alignment.Left,
-                            icon: 'AlignLeft' as IconEnum.AlignLeft,
+                            icon: 'ArrowAlignLeft' as IconEnum.ArrowAlignLeft,
                             label: 'Left',
                         },
                         {
                             value: Alignment.Center,
-                            icon: 'AlignCenter' as IconEnum.AlignCenter,
+                            icon: 'ArrowAlignVerticalCentre' as IconEnum.ArrowAlignVerticalCentre,
                             label: 'Center',
                         },
                         {
                             value: Alignment.Right,
-                            icon: 'AlignRight' as IconEnum.AlignRight,
+                            icon: 'ArrowAlignRight' as IconEnum.ArrowAlignRight,
                             label: 'Right',
                         },
                     ],
@@ -118,6 +120,7 @@ export const settings: BlockSettings = {
                     defaultValue: false,
                     switchLabel: 'Custom',
                     label: 'Padding',
+                    info: 'The spacing around UI elements to create more negative space',
                     onChange: (bundle: Bundle): void => {
                         presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_TOP_ID, topBottomPaddingMap);
                         presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_BOTTOM_ID, topBottomPaddingMap);
@@ -186,5 +189,22 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-    style: [getExtendedBorderRadiusSettings()],
+    style: [
+        getExtendedBorderRadiusSettings(),
+        {
+            id: 'colorInGlobalSettingsInfo',
+            type: 'notification',
+            title: 'Color',
+            text: 'This has been defined in the Global Settings.',
+            styles: {
+                type: NotificationStyleType.Info,
+                icon: true,
+            },
+            link: {
+                href: 'https://help.frontify.com/en/articles/1346386-how-to-customize-your-style-guide',
+                label: 'Read more here.',
+                target: '_blank',
+            },
+        },
+    ],
 };

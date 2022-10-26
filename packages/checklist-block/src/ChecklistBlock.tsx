@@ -3,18 +3,17 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
+    ButtonEmphasis,
     ButtonSize,
-    ButtonStyle,
     DragProperties,
+    IconEye,
+    IconEyeOff,
     IconSize,
-    IconView,
-    IconViewSlash,
     ItemDragState,
     OrderableList,
     OrderableListItem,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import '@frontify/fondue/style';
 import {
     generatePaddingString,
     joinClassNames,
@@ -192,12 +191,12 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     >
                         <Button
                             size={ButtonSize.Small}
-                            style={ButtonStyle.Secondary}
+                            emphasis={ButtonEmphasis.Default}
                             icon={
                                 showCompleted ? (
-                                    <IconView size={IconSize.Size16} />
+                                    <IconEye size={IconSize.Size16} />
                                 ) : (
-                                    <IconViewSlash size={IconSize.Size16} />
+                                    <IconEyeOff size={IconSize.Size16} />
                                 )
                             }
                             onClick={toggleCompletedVisibility}

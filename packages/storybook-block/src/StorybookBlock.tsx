@@ -1,14 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
-import { Button, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { useHover } from '@react-aria/interactions';
-import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/fondue-tokens/styles';
+import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/app-bridge';
+import { Button, FormControl, FormControlStyle, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
+import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { useHover } from '@react-aria/interactions';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { RemoveButton } from './components/RemoveButton';
-import { BORDER_COLOR_DEFAULT_VALUE, URL_INPUT_PLACEHOLDER } from './settings';
+import { Resizeable } from './components/Resizable';
+import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
     BlockProps,
     Settings,
@@ -17,27 +18,24 @@ import {
     StorybookHeight,
     StorybookPosition,
     StorybookStyle,
-    borderRadiusClasses,
     heights,
 } from './types';
+import { addMissingUrlProtocol } from './utils/addMissingUrlProtocol';
+import { buildIframeUrl } from './utils/buildIframeUrl';
+import { decodeEntities } from './utils/decodeEntities';
+import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
-    const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const [localUrl, setLocalUrl] = useState('');
-    const [iframeUrl, setIframeUrl] = useState<URL | null>(null);
-    const { hoverProps, isHovered } = useHover({});
-    const { containerRef, setIsReadyForPrint } = useReadyForPrint();
-
     const {
         style = StorybookStyle.Default,
         url = '',
         isCustomHeight = false,
-        heightChoice = StorybookHeight.Medium,
+        heightChoice = !url ? StorybookHeight.Small : StorybookHeight.Medium,
         heightValue = '',
-        positioning = StorybookPosition.Horizontal,
+        positioning = StorybookPosition.Vertical,
         hasBorder = true,
         borderColor = BORDER_COLOR_DEFAULT_VALUE,
         borderStyle = StorybookBorderStyle.Solid,
@@ -47,97 +45,124 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusValue = '',
     } = blockSettings;
 
-    const deleteUrl = () => {
-        setIframeUrl(null);
-        setLocalUrl('');
-        setBlockSettings({
-            ...blockSettings,
-            url: '',
-        });
-    };
+    const isEditing = useEditorState(appBridge);
+    const [input, setInput] = useState(url);
+    const [submittedUrl, setSubmittedUrl] = useState(url);
+    const { hoverProps, isHovered } = useHover({});
+    const { setIsReadyForPrint } = useReadyForPrint(appBridge);
 
-    const saveLink = () => {
-        setBlockSettings({
-            ...blockSettings,
-            url: localUrl,
-        });
-    };
+    const activeHeight = isCustomHeight ? heightValue : heights[heightChoice];
+
+    const iframeUrl = buildIframeUrl(decodeEntities(submittedUrl), style === StorybookStyle.WithAddons, positioning);
+    const saveInputLink = useCallback(() => {
+        setIsReadyForPrint(false);
+        setSubmittedUrl(input);
+
+        if (isValidStorybookUrl(input)) {
+            setBlockSettings({
+                ...blockSettings,
+                url: addMissingUrlProtocol(input),
+            });
+        }
+    }, [blockSettings, input, setBlockSettings, setIsReadyForPrint]);
 
     useEffect(() => {
-        if (url !== '') {
-            setIsReadyForPrint(false);
-            const newIframeUrl = new URL(url);
-            newIframeUrl.searchParams.set('nav', 'false');
+        setIsReadyForPrint(true);
+    }, [setIsReadyForPrint]);
 
-            const hasAddons = style === StorybookStyle.Default;
-            const shouldAddIframeToUrl = !hasAddons;
-            const includesIframe = newIframeUrl.pathname.toString().includes('iframe.html');
-            const positionValue = positioning === StorybookPosition.Horizontal ? 'right' : 'bottom';
-            const panelValue = !hasAddons ? 'false' : positionValue;
+    useEffect(() => {
+        setSubmittedUrl(url);
+        setInput(url);
+    }, [url]);
 
-            newIframeUrl.searchParams.set('panel', panelValue);
-
-            if (shouldAddIframeToUrl && !includesIframe) {
-                newIframeUrl.pathname = `${newIframeUrl.pathname}iframe.html`;
+    const saveHeight = (height: number) => {
+        setBlockSettings({
+            ...blockSettings,
+            heightValue: `${height}px`,
+            isCustomHeight: true,
+        });
+    };
+    const iframe = iframeUrl && (
+        <iframe
+            onLoad={() => setIsReadyForPrint(true)}
+            onError={() => setIsReadyForPrint(true)}
+            className="tw-w-full tw-flex tw-shrink tw-grow"
+            style={
+                hasBorder
+                    ? {
+                          borderColor: toRgbaString(borderColor),
+                          borderStyle,
+                          borderWidth,
+                          borderRadius: hasRadius ? radiusValue : radiusStyleMap[radiusChoice],
+                      }
+                    : {}
             }
-
-            if (!shouldAddIframeToUrl && includesIframe) {
-                const pathname = newIframeUrl.pathname.toString().replace('iframe.html', '');
-                newIframeUrl.pathname = pathname;
-            }
-
-            setIframeUrl(newIframeUrl);
-        } else if (url === '') {
-            setIsReadyForPrint(true);
-            deleteUrl();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [url, style, positioning]);
+            src={iframeUrl.toString()}
+            height={activeHeight}
+            frameBorder="0"
+            loading="lazy"
+            data-test-id="storybook-iframe"
+        />
+    );
 
     return (
-        <div ref={containerRef} data-test-id="storybook-block" className="tw-relative">
-            {iframeUrl ? (
-                <div {...hoverProps}>
-                    {isEditing && isHovered && <RemoveButton onClick={deleteUrl} />}
-                    <iframe
-                        onLoad={() => setIsReadyForPrint(true)}
-                        className={joinClassNames(['tw-w-full', !hasRadius && borderRadiusClasses[radiusChoice]])}
-                        style={
-                            hasBorder
-                                ? {
-                                      borderColor: toRgbaString(borderColor),
-                                      borderStyle,
-                                      borderWidth,
-                                      borderRadius: radiusValue,
-                                  }
-                                : {}
-                        }
-                        height={isCustomHeight ? heightValue : heights[heightChoice]}
-                        src={iframeUrl.toString()}
-                        frameBorder="0"
-                        data-test-id="storybook-iframe"
-                    />
-                </div>
+        <div data-test-id="storybook-block" className="tw-relative">
+            {iframe ? (
+                isEditing ? (
+                    <Resizeable saveHeight={saveHeight} initialHeight={activeHeight} {...hoverProps}>
+                        {isHovered && (
+                            <RemoveButton
+                                onClick={() => {
+                                    setBlockSettings({
+                                        ...blockSettings,
+                                        url: '',
+                                    });
+                                }}
+                            />
+                        )}
+                        <div>{iframe}</div>
+                    </Resizeable>
+                ) : (
+                    <div style={{ height: activeHeight }}>{iframe}</div>
+                )
             ) : (
                 <>
                     {isEditing ? (
-                        <div
-                            className="tw-flex tw-items-stretch tw-justify-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2"
-                            data-test-id="storybook-empty-wrapper"
-                        >
-                            <IconStorybook size={IconSize.Size32} />
-                            <div className="tw-w-full tw-max-w-sm">
-                                <TextInput
-                                    value={localUrl}
-                                    onChange={setLocalUrl}
-                                    onEnterPressed={saveLink}
-                                    placeholder={URL_INPUT_PLACEHOLDER}
-                                />
+                        <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
+                            <div
+                                className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
+                                data-test-id="storybook-empty-wrapper"
+                            >
+                                <IconStorybook size={IconSize.Size32} />
+                                <div
+                                    className={`tw-w-full tw-max-w-sm ${
+                                        !isValidStorybookUrl(submittedUrl) && 'tw-pt-6'
+                                    }`}
+                                >
+                                    <FormControl
+                                        helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
+                                        style={
+                                            !isValidStorybookUrl(submittedUrl)
+                                                ? FormControlStyle.Danger
+                                                : FormControlStyle.Primary
+                                        }
+                                    >
+                                        <TextInput
+                                            value={input}
+                                            onChange={setInput}
+                                            onEnterPressed={saveInputLink}
+                                            placeholder={URL_INPUT_PLACEHOLDER}
+                                        />
+                                    </FormControl>
+                                </div>
+                                <Button onClick={saveInputLink}>Confirm</Button>
                             </div>
-                            <Button onClick={saveLink}>Confirm</Button>
-                        </div>
+                        </Resizeable>
                     ) : (
-                        <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5 tw-p-20">
+                        <div
+                            className="tw-flex tw-items-center tw-justify-center tw-bg-black-5"
+                            style={{ height: activeHeight }}
+                        >
                             No Storybook-URL defined.
                         </div>
                     )}

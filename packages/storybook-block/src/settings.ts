@@ -12,12 +12,15 @@ import {
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
 import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
+import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
+
+export const ERROR_MSG = 'Please enter a valid Storybook url';
 
 export const BORDER_COLOR_DEFAULT_VALUE = {
-    r: 234,
-    g: 235,
-    b: 235,
-    a: 1,
+    red: 234,
+    green: 235,
+    blue: 235,
+    alpha: 1,
     name: 'Light Grey',
 };
 export const URL_INPUT_PLACEHOLDER = 'https://brand.storybook.com/?path=/story/buttons';
@@ -26,6 +29,8 @@ const STYLE_ID = 'style';
 const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
 
+export const MIN_HEIGHT_VALUE = 30;
+export const MAX_HEIGHT_VALUE = 5000;
 export const settings: BlockSettings = {
     main: [
         {
@@ -36,23 +41,24 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: StorybookStyle.Default,
-                    icon: 'Iframe' as IconEnum.Iframe,
-                    label: 'Story (with add-ons)',
+                    icon: 'CodeFrame' as IconEnum.CodeFrame,
+                    label: 'Story only',
                 },
                 {
-                    value: StorybookStyle.WithoutAddons,
-                    icon: 'Iframe' as IconEnum.Iframe,
-                    label: 'Story (no add-ons)',
+                    value: StorybookStyle.WithAddons,
+                    icon: 'CodeFrame' as IconEnum.CodeFrame,
+                    label: 'Story with add-ons',
                 },
             ],
         },
     ],
-    content: [
+    basics: [
         {
             id: 'url',
             label: 'Link',
             type: 'input',
             placeholder: URL_INPUT_PLACEHOLDER,
+            rules: [{ validate: (value: string) => isValidStorybookUrl(value), errorMessage: ERROR_MSG }],
         },
     ],
     layout: [
@@ -69,11 +75,12 @@ export const settings: BlockSettings = {
                 {
                     id: HEIGHT_VALUE_ID,
                     type: 'input',
-                    placeholder: '400px',
+                    placeholder: 'e.g. 500px',
+                    defaultValue: StorybookHeight.Medium,
                     rules: [
                         numericalOrPixelRule,
-                        minimumNumericalOrPixelOrAutoRule(10),
-                        maximumNumericalOrPixelOrAutoRule(5000),
+                        minimumNumericalOrPixelOrAutoRule(MIN_HEIGHT_VALUE),
+                        maximumNumericalOrPixelOrAutoRule(MAX_HEIGHT_VALUE),
                     ],
                     onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
                 },
@@ -104,17 +111,17 @@ export const settings: BlockSettings = {
             id: 'positioning',
             label: 'Positioning',
             type: 'slider',
-            defaultValue: StorybookPosition.Horizontal,
+            defaultValue: StorybookPosition.Vertical,
             info: 'Where the UI elements are in relation to one another',
-            show: (bundle: Bundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.Default,
+            show: (bundle: Bundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.WithAddons,
             choices: [
                 {
                     value: StorybookPosition.Horizontal,
-                    icon: 'FigureTextRight' as IconEnum.FigureTextRight,
+                    icon: 'MediaObjectTextRight' as IconEnum.MediaObjectTextRight,
                 },
                 {
                     value: StorybookPosition.Vertical,
-                    icon: 'FigureTextBottom' as IconEnum.FigureTextBottom,
+                    icon: 'MediaObjectTextBottom' as IconEnum.MediaObjectTextBottom,
                 },
             ],
         },

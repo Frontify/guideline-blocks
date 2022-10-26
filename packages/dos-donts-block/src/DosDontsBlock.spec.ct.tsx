@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from '@cypress/react';
-import { withAppBridgeStubs } from '@frontify/app-bridge';
+import { mount } from 'cypress/react';
+import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { DosDontsBlock } from './DosDontsBlock';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
 import { DoDontLayout, DoDontSpacing, DoDontStyle } from './types';
@@ -13,14 +13,14 @@ const DosDontsIcon = '[data-test-id="dos-donts-icon"]';
 
 describe("Do's & Don'ts Block", () => {
     it('renders a dos donts block', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {});
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
         mount(<DosDontsBlockWithStubs />);
         cy.get(DosDontsBlockSelector).should('exist');
     });
 
     it('renders an empty dos donts block in view mode', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {});
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
         mount(<DosDontsBlockWithStubs />);
         cy.get(DosDontsBlockSelector).find('[data-slate-placeholder]').should('not.exist');
@@ -28,7 +28,7 @@ describe("Do's & Don'ts Block", () => {
     });
 
     it('renders an empty dos donts block in edit mode', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, { editorState: true });
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, { editorState: true });
 
         mount(<DosDontsBlockWithStubs />);
         cy.get(DosDontsBlockSelector).find('[data-slate-placeholder]').first().should('exist').contains('Add a title');
@@ -41,7 +41,7 @@ describe("Do's & Don'ts Block", () => {
     });
 
     it('renders a dos donts block with the underline style', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: {
                 style: DoDontStyle.Underline,
             },
@@ -53,7 +53,7 @@ describe("Do's & Don'ts Block", () => {
     });
 
     it('renders a dos donts block with the correct layout', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: {
                 columns: 3,
                 layout: DoDontLayout.Stacked,
@@ -69,7 +69,7 @@ describe("Do's & Don'ts Block", () => {
     });
 
     it('renders a dos donts block with the correct colors', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: {
                 columns: 2,
                 layout: DoDontLayout.Stacked,
@@ -86,7 +86,7 @@ describe("Do's & Don'ts Block", () => {
     });
 
     it('writes content to a dos donts block', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeStubs(DosDontsBlock, {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             editorState: true,
         });
 

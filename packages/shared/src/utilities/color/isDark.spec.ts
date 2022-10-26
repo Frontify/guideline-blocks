@@ -5,9 +5,9 @@ import { describe, expect, test } from 'vitest';
 
 describe('isDark', () => {
     const data = [
-        { color: { r: 0, g: 0, b: 0 }, expected: true },
-        { color: { r: 255, g: 255, b: 255 }, expected: false },
-        { color: { r: 130, g: 95, b: 255 }, expected: true },
+        { color: { red: 0, green: 0, blue: 0 }, expected: true },
+        { color: { red: 255, green: 255, blue: 255 }, expected: false },
+        { color: { red: 130, green: 95, blue: 255 }, expected: true },
     ];
 
     test.each(data)('validate correctly values', ({ color, expected }) => {
