@@ -6,7 +6,7 @@ import { BaseBlock } from './base';
 
 export type InputBlock = {
     type: 'input';
-    decorator?: IconEnum;
+    decoratorIcon?: IconEnum;
     inputType?: TextInputType;
     placeholder?: string;
     clearable?: boolean;
