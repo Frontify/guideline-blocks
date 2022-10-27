@@ -2,7 +2,7 @@
 
 import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
 import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import type { BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
+import type { AssetInputBlock, BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
 import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
@@ -124,7 +124,9 @@ export const settings: BlockSettings = {
                             size: AssetInputSize.Small,
                             extensions: ['svg' as FileExtension.Svg],
                             objectTypes: [AssetChooserObjectType.ImageVideo],
-                        },
+                            hideSize: true,
+                            hideExtension: true,
+                        } as AssetInputBlock,
                     ],
                     off: [
                         {
@@ -148,7 +150,9 @@ export const settings: BlockSettings = {
                             size: AssetInputSize.Small,
                             extensions: ['svg' as FileExtension.Svg],
                             objectTypes: [AssetChooserObjectType.ImageVideo],
-                        },
+                            hideSize: true,
+                            hideExtension: true,
+                        } as AssetInputBlock,
                     ],
                     off: [
                         {
