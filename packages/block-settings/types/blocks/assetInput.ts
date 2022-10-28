@@ -28,4 +28,6 @@ export type AssetInputBlock = {
     objectTypes?: AssetChooserObjectType[];
     mode?: AssetInputMode;
     size?: AssetInputSize;
+    hideExtension?: boolean;
+    hideSize?: boolean;
 } & BaseBlock<AssetInputValue | AssetInputValue['value']>;

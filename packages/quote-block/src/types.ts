@@ -20,7 +20,7 @@ export type Settings = {
     showAccentLine?: boolean;
     lineType?: LineType;
     lineWidthValue?: string;
-    accentLinecolor?: Color;
+    accentLineColor?: Color;
     quotesColor?: Color;
     content?: string;
     textAlignment?: string;

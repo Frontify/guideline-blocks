@@ -12,7 +12,7 @@
         "jsx": "react-jsx",
         "resolveJsonModule": true,
         "baseUrl": ".",
-        "types": ["cypress", "cypress-real-events"]
+        "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"]
     },
     "exclude": ["**/dist", "**/node_modules"]
 }

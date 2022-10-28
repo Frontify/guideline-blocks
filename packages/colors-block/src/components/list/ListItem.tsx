@@ -116,7 +116,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                 colorSpaces.length === 2 ? 'tw-w-1/2' : 'tw-w-1/3',
                             ])}
                         >
-                            <div>
+                            <div className="tw-flex">
                                 <Badge size="small" emphasis={BadgeEmphasis.None}>
                                     {mappedColorSpace.label}
                                 </Badge>

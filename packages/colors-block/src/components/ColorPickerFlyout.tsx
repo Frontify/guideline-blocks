@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useState } from 'react';
+import { HTMLAttributes, MutableRefObject, useState } from 'react';
 import { Color, ColorFormat, ColorPicker, Flyout } from '@frontify/fondue';
 
 import { ColorPickerFlyoutProps } from '../types';
@@ -36,7 +36,13 @@ export const ColorPickerFlyout = ({ currentColor, onConfirm, children }: ColorPi
                 isOpen={open}
                 onCancel={() => handleOpenChange(false)}
                 onOpenChange={handleOpenChange}
-                trigger={children}
+                trigger={(props: HTMLAttributes<HTMLDivElement>, ref: MutableRefObject<HTMLDivElement>) => {
+                    return (
+                        <div {...props} data-test-id="flyout-trigger" ref={ref} draggable>
+                            {children}
+                        </div>
+                    );
+                }}
             >
                 <ColorPicker
                     currentColor={selectedColor}

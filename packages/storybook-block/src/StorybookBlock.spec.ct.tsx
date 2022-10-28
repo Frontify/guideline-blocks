@@ -30,6 +30,7 @@ describe('Storybook Block', () => {
         cy.get(EmptyStateSelector).find('input').type(EXAMPLE_URL).blur();
         cy.get(EmptyStateSelector).find('button').click();
         cy.get(IframeSelector).should('have.attr', 'src').and('include', 'fondue-components.netlify.app');
+        cy.get(IframeSelector).should('have.attr', 'loading').and('include', 'lazy');
     });
 
     it('renders storybook iframe without addons', () => {
