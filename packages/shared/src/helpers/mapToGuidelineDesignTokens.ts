@@ -25,10 +25,10 @@ const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
 
 const transformObjectValues = (key: string, cssStyles: TokenValues, value: DirectionalCssProperties) => {
     if (key === DesignTokenPropertiesEnum.frame) {
-        cssStyles.marginTop = value.top;
-        cssStyles.marginRight = value.right;
-        cssStyles.marginBottom = value.bottom;
-        cssStyles.marginLeft = value.left;
+        cssStyles.paddingTop = value.top;
+        cssStyles.paddingRight = value.right;
+        cssStyles.paddingBottom = value.bottom;
+        cssStyles.paddingLeft = value.left;
     }
 };
 
