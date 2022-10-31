@@ -20,15 +20,15 @@ import { DropsItemAdd } from './components/drops/DropsItemAdd';
 import { DropZone } from './components/DropZone';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
-import { ColorSpaceValues, ColorsBlockProps, ColorsBlockType, ItemProps, Settings } from './types';
+import { ColorSpaceValues, ColorBlockProps, ColorBlockType, ItemProps, Settings } from './types';
 
-const wrapperClasses: Record<ColorsBlockType, string> = {
-    [ColorsBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
-    [ColorsBlockType.Drops]: 'tw-grid tw-gap-4 tw-grid-cols-6',
-    [ColorsBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
+const wrapperClasses: Record<ColorBlockType, string> = {
+    [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
+    [ColorBlockType.Drops]: 'tw-grid tw-gap-4 tw-grid-cols-6',
+    [ColorBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
 };
 
-export const ColorBlock = ({ appBridge }: ColorsBlockProps): ReactElement => {
+export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 
@@ -126,9 +126,9 @@ export const ColorBlock = ({ appBridge }: ColorsBlockProps): ReactElement => {
                                 isEditing={isEditing}
                             >
                                 <div>
-                                    {blockSettings.view === ColorsBlockType.List && <ListItem {...itemProps} />}
-                                    {blockSettings.view === ColorsBlockType.Drops && <DropsItem {...itemProps} />}
-                                    {blockSettings.view === ColorsBlockType.Cards && <CardsItem {...itemProps} />}
+                                    {blockSettings.view === ColorBlockType.List && <ListItem {...itemProps} />}
+                                    {blockSettings.view === ColorBlockType.Drops && <DropsItem {...itemProps} />}
+                                    {blockSettings.view === ColorBlockType.Cards && <CardsItem {...itemProps} />}
                                 </div>
                             </DropZone>
                         );
@@ -136,15 +136,15 @@ export const ColorBlock = ({ appBridge }: ColorsBlockProps): ReactElement => {
 
                     {isEditing && (
                         <>
-                            {blockSettings.view === ColorsBlockType.List && (
+                            {blockSettings.view === ColorBlockType.List && (
                                 <ListItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
                             )}
 
-                            {blockSettings.view === ColorsBlockType.Drops && (
+                            {blockSettings.view === ColorBlockType.Drops && (
                                 <DropsItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
                             )}
 
-                            {blockSettings.view === ColorsBlockType.Cards && (
+                            {blockSettings.view === ColorBlockType.Cards && (
                                 <CardsItemAdd colorSpaces={colorSpaces} onConfirm={handleCreateColor} />
                             )}
                         </>
