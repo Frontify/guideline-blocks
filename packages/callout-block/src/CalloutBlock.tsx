@@ -39,7 +39,13 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             : radiusStyleMap[blockSettings.extendedRadiusChoice],
     };
 
+    const isSvgIcon = blockAssets?.[ICON_ASSET_ID]?.[0].extension === 'svg';
+
+    console.log({ isSvgIcon });
+
     const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
+
+    console.log(blockAssets?.[ICON_ASSET_ID]?.[0]);
 
     const onTextChange = (value: string) => setBlockSettings({ textValue: value });
 
@@ -51,7 +57,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                 style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}
             >
                 {blockSettings.iconSwitch && iconUrl && (
-                    <span className="tw-mr-3 tw-flex-none tw-w-6 tw-h-6">
+                    <span className="tw-mr-3 tw-flex-none tw-w-6 tw-h-6 tw-text-white">
                         <img data-test-id="callout-icon" alt="Callout icon" src={iconUrl} />
                     </span>
                 )}
