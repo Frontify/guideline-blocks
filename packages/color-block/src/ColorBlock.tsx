@@ -28,7 +28,7 @@ const wrapperClasses: Record<ColorsBlockType, string> = {
     [ColorsBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
 };
 
-export const ColorsBlock = ({ appBridge }: ColorsBlockProps): ReactElement => {
+export const ColorBlock = ({ appBridge }: ColorsBlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 
