@@ -3,7 +3,7 @@
 import { mount } from 'cypress/react';
 
 import { ColorName } from './ColorName';
-import { ColorNameProps, ColorBlockType } from '../types';
+import { ColorBlockType, ColorNameProps } from '../types';
 
 const ColorNameSelector = '[data-test-id="color-name"]';
 

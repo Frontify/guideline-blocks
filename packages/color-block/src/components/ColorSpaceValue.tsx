@@ -5,7 +5,7 @@ import { Color, ColorPatch } from '@frontify/app-bridge';
 import { IconExclamationMarkTriangle, IconSize, TooltipIcon, merge } from '@frontify/fondue';
 
 import { mapColorSpaces } from '../helpers/mapColorSpaces';
-import { ColorSpaceLabels, ColorSpaceValues, ColorBlockType } from '../types';
+import { ColorBlockType, ColorSpaceLabels, ColorSpaceValues } from '../types';
 
 type ColorSpaceValueProps = {
     viewType: ColorBlockType;

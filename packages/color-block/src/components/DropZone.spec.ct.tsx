@@ -7,7 +7,7 @@ import { ColorDummy } from '@frontify/app-bridge';
 
 import { CardsItem } from './cards/CardsItem';
 import { DropZone } from './DropZone';
-import { ColorSpaceValues, ColorBlockType } from '../types';
+import { ColorBlockType, ColorSpaceValues } from '../types';
 
 const CardsItemSelector = '[data-test-id="cards-item"]';
 

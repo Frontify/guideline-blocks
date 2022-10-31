@@ -3,7 +3,7 @@
 import { FormEvent, useState } from 'react';
 import { merge } from '@frontify/fondue';
 
-import { ColorNameProps, ColorBlockType } from '../types';
+import { ColorBlockType, ColorNameProps } from '../types';
 
 const nameWrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.List]: 'tw-flex tw-items-center tw-w-[100px] tw-py-4 tw-mr-12',

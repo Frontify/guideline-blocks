@@ -20,7 +20,7 @@ import { DropsItemAdd } from './components/drops/DropsItemAdd';
 import { DropZone } from './components/DropZone';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
-import { ColorSpaceValues, ColorBlockProps, ColorBlockType, ItemProps, Settings } from './types';
+import { ColorBlockProps, ColorBlockType, ColorSpaceValues, ItemProps, Settings } from './types';
 
 const wrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
