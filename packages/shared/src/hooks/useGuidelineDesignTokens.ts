@@ -15,6 +15,14 @@ export enum DesignTokenPropertiesEnum {
     italic = 'italic',
     underline = 'underline',
     color = 'color',
+    background_color = 'background_color',
+    background_color_hover = 'background_color_hover',
+    border_color = 'border_color',
+    border_color_hover = 'border_color_hover',
+    border_radius = 'border_radius',
+    border_width = 'border_width',
+    color_hover = 'color_hover',
+    frame = 'frame',
 }
 
 export type DesignTokenName =
@@ -27,15 +35,28 @@ export type DesignTokenName =
     | 'custom3'
     | 'body'
     | 'link'
-    | 'quote';
-export type DesignTokenProperties = Partial<Record<DesignTokenPropertiesEnum, string>>;
+    | 'quote'
+    | 'button_primary'
+    | 'button_secondary'
+    | 'button_tertiary';
+
+export type DirectionalCssProperties = {
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+};
+
+export type DesignTokenProperties = Partial<Record<DesignTokenPropertiesEnum, string | DirectionalCssProperties>>;
 export type DesignTokens = Partial<Record<DesignTokenName, DesignTokenProperties>>;
 export type DesignTokenApiResponse = {
     hub: {
         appearance: DesignTokens;
     };
 };
-export type TransformedDesignTokens = Partial<Record<DesignTokenName, CSSProperties>>;
+
+export type TokenValues = CSSProperties & { hover?: CSSProperties };
+export type TransformedDesignTokens = Partial<Record<DesignTokenName, TokenValues>>;
 
 export const useGuidelineDesignTokens = () => {
     const [designTokens, setDesignTokens] = useState<TransformedDesignTokens | null>(null);
