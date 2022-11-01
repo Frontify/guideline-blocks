@@ -10,13 +10,6 @@ export enum Type {
     Info = 'info',
 }
 
-export const typeMap: Record<Type, string> = {
-    [Type.Warning]: 'tw-bg-red-60',
-    [Type.Tip]: 'tw-bg-green-60',
-    [Type.Note]: 'tw-bg-violet-60',
-    [Type.Info]: 'tw-bg-yellow-60',
-};
-
 export enum Width {
     FullWidth = 'fullWidth',
     HugContents = 'hugContents',

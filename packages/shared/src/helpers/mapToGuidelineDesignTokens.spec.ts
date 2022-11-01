@@ -105,6 +105,12 @@ const mockedDesignTokens = {
         border_color_hover: 'rgb(255, 7, 212)',
         background_color_hover: 'rgb(0, 0, 0)',
     },
+    callout: {
+        info: 'rgb(0, 255, 21)',
+        note: 'rgb(255, 246, 0)',
+        tip: 'rgb(255, 7, 212)',
+        warning: 'rgb(255, 0, 0)',
+    },
 };
 
 const expectedTransformedDesignTokens = {
@@ -208,6 +214,12 @@ const expectedTransformedDesignTokens = {
         borderWidth: '3px',
         borderRadius: '6px',
         backgroundColor: 'rgb(255, 0, 0)',
+    },
+    callout: {
+        info: 'rgb(0, 255, 21)',
+        note: 'rgb(255, 246, 0)',
+        tip: 'rgb(255, 7, 212)',
+        warning: 'rgb(255, 0, 0)',
     },
 };
 
