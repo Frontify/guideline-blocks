@@ -23,6 +23,11 @@ export enum DesignTokenPropertiesEnum {
     border_width = 'border_width',
     color_hover = 'color_hover',
     frame = 'frame',
+    callout = 'callout',
+    info = 'info',
+    note = 'note',
+    tip = 'tip',
+    warning = 'warning',
 }
 
 export type DesignTokenName =
@@ -38,7 +43,8 @@ export type DesignTokenName =
     | 'quote'
     | 'button_primary'
     | 'button_secondary'
-    | 'button_tertiary';
+    | 'button_tertiary'
+    | 'callout';
 
 export type DirectionalCssProperties = {
     top: number;
@@ -47,7 +53,16 @@ export type DirectionalCssProperties = {
     left: number;
 };
 
-export type DesignTokenProperties = Partial<Record<DesignTokenPropertiesEnum, string | DirectionalCssProperties>>;
+export type AccentColorProperties = {
+    info: string;
+    note: string;
+    tip: string;
+    warning: string;
+};
+
+export type DesignTokenProperties = Partial<
+    Record<DesignTokenPropertiesEnum, string | DirectionalCssProperties> | AccentColorProperties
+>;
 export type DesignTokens = Partial<Record<DesignTokenName, DesignTokenProperties>>;
 export type DesignTokenApiResponse = {
     hub: {
