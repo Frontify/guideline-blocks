@@ -6,7 +6,6 @@ import {
     Radius,
     appendUnit,
     getExtendedBorderRadiusSettings,
-    getMarginExtendedSettings,
     numericalOrPixelRule,
 } from '@frontify/guideline-blocks-shared';
 
@@ -72,7 +71,6 @@ export const settings: BlockSettings = {
             label: 'Row numbers',
             defaultValue: true,
         },
-        getMarginExtendedSettings(),
     ],
     style: [
         {
