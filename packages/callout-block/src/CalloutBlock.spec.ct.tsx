@@ -4,7 +4,7 @@ import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
 import { CalloutBlock } from './CalloutBlock';
 import { ICON_ASSET_ID } from './settings';
-import { Alignment, Padding, Type, Width } from './types';
+import { Alignment, Padding, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 const CalloutWrapper = '[data-test-id="callout-wrapper"]';
@@ -16,17 +16,6 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutBlockSelector).should('exist');
-    });
-
-    it('renders a callout block with the correct background color', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
-            blockSettings: {
-                type: Type.Note,
-            },
-        });
-
-        mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgb(240, 173, 78)');
     });
 
     it('renders a callout block with the correct layout settings', () => {
