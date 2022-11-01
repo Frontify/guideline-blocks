@@ -23,13 +23,13 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const getBackgroundColor = (type: Type) => {
         switch (type) {
             case Type.Info:
-                return { backgroundColor: designTokens?.callout?.info ?? '#5bc0de' };
+                return designTokens?.callout?.info ?? '#5bc0de';
             case Type.Note:
-                return { backgroundColor: designTokens?.callout?.note ?? '#f0ad4e' };
+                return designTokens?.callout?.note ?? '#f0ad4e';
             case Type.Tip:
-                return { backgroundColor: designTokens?.callout?.tip ?? '#5cb85c' };
+                return designTokens?.callout?.tip ?? '#5cb85c';
             case Type.Warning:
-                return { backgroundColor: designTokens?.callout?.warning ?? '#d9534f' };
+                return designTokens?.callout?.warning ?? '#d9534f';
         }
     };
 
@@ -61,7 +61,11 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             <div
                 data-test-id="callout-wrapper"
                 className={textDivClassNames}
-                style={{ ...getBackgroundColor(blockSettings.type), ...customPaddingStyle, ...customCornerRadiusStyle }}
+                style={{
+                    backgroundColor: getBackgroundColor(blockSettings.type),
+                    ...customPaddingStyle,
+                    ...customCornerRadiusStyle,
+                }}
             >
                 {blockSettings.iconSwitch && iconUrl && (
                     <span className="tw-mr-3 tw-flex-none tw-w-6 tw-h-6">
