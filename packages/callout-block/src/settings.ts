@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetChooserObjectType } from '@frontify/app-bridge';
 import type { FileExtension } from '@frontify/app-bridge';
+import { AssetChooserObjectType } from '@frontify/app-bridge';
 import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import { BlockSettings, Bundle, NotificationStyleType } from '@frontify/guideline-blocks-settings';
 import {

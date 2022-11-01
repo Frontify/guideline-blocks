@@ -3,11 +3,11 @@
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, radiusStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { isDark, joinClassNames, radiusStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { ICON_ASSET_ID } from './settings';
-import { BlockSettings, CalloutBlockProps, Width, alignmentMap, outerWidthMap, paddingMap, typeMap } from './types';
+import { BlockSettings, CalloutBlockProps, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -15,16 +15,41 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
 
-    console.log({ designTokens });
+    const defaultCalloutColors = {
+        info: '#5bc0de',
+        note: '#f0ad4e',
+        tip: '#5cb85c',
+        warning: '#d9534f',
+    };
 
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
+    const getBackgroundColor = (type: Type) => {
+        switch (type) {
+            case Type.Info:
+                return designTokens?.callout?.info ?? defaultCalloutColors.info;
+            case Type.Note:
+                return designTokens?.callout?.note ?? defaultCalloutColors.note;
+            case Type.Tip:
+                return designTokens?.callout?.tip ?? defaultCalloutColors.tip;
+            case Type.Warning:
+                return designTokens?.callout?.warning ?? defaultCalloutColors.warning;
+        }
+    };
+
+    const getColorClassNames = (type: Type) => {
+        const backgroundColor = getBackgroundColor(type).replace(/\s/g, '');
+        const bgColorClassName = `tw-bg-[${backgroundColor}]`;
+        const textClassName = isDark(backgroundColor) ? 'tw-text-white' : 'tw-text-black';
+        return joinClassNames([bgColorClassName, textClassName]);
+    };
+
     const textDivClassNames = joinClassNames([
-        'tw-flex tw-items-center tw-text-white',
-        typeMap[blockSettings.type],
+        'tw-flex tw-items-center',
+        getColorClassNames(blockSettings.type),
         blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
         !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
     ]);
