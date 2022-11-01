@@ -26,7 +26,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutWrapper).should('have.class', 'tw-bg-violet-60');
+        cy.get(CalloutWrapper).should('have.class', 'tw-bg-[#f0ad4e]');
     });
 
     it('renders a callout block with the correct layout settings', () => {

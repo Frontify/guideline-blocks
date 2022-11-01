@@ -41,8 +41,8 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     };
 
     const getColorClassNames = (type: Type) => {
-        const backgroundColor = getBackgroundColor(type).replace(/\s/g, '');
-        const bgColorClassName = `tw-bg-[${backgroundColor}]`;
+        const backgroundColor = getBackgroundColor(type);
+        const bgColorClassName = backgroundColor ? `tw-bg-[${backgroundColor.replace(/\s/g, '')}]` : '';
         const textClassName = isDark(backgroundColor) ? 'tw-text-white' : 'tw-text-black';
         return joinClassNames([bgColorClassName, textClassName]);
     };
