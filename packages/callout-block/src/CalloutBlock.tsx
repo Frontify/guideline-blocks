@@ -15,13 +15,6 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
 
-    const defaultCalloutColors = {
-        info: '#5bc0de',
-        note: '#f0ad4e',
-        tip: '#5cb85c',
-        warning: '#d9534f',
-    };
-
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
@@ -30,26 +23,19 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const getBackgroundColor = (type: Type) => {
         switch (type) {
             case Type.Info:
-                return designTokens?.callout?.info ?? defaultCalloutColors.info;
+                return { backgroundColor: designTokens?.callout?.info };
             case Type.Note:
-                return designTokens?.callout?.note ?? defaultCalloutColors.note;
+                return { backgroundColor: designTokens?.callout?.note };
             case Type.Tip:
-                return designTokens?.callout?.tip ?? defaultCalloutColors.tip;
+                return { backgroundColor: designTokens?.callout?.tip };
             case Type.Warning:
-                return designTokens?.callout?.warning ?? defaultCalloutColors.warning;
+                return { backgroundColor: designTokens?.callout?.warning };
         }
-    };
-
-    const getColorClassNames = (type: Type) => {
-        const backgroundColor = getBackgroundColor(type);
-        const bgColorClassName = backgroundColor ? `tw-bg-[${backgroundColor.replace(/\s/g, '')}]` : '';
-        const textClassName = isDark(backgroundColor) ? 'tw-text-white' : 'tw-text-black';
-        return joinClassNames([bgColorClassName, textClassName]);
     };
 
     const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center',
-        getColorClassNames(blockSettings.type),
+        isDark(getBackgroundColor(blockSettings.type)) ? 'tw-text-white' : 'tw-text-black',
         blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
         !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
     ]);
@@ -75,7 +61,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             <div
                 data-test-id="callout-wrapper"
                 className={textDivClassNames}
-                style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}
+                style={{ ...getBackgroundColor(blockSettings.type), ...customPaddingStyle, ...customCornerRadiusStyle }}
             >
                 {blockSettings.iconSwitch && iconUrl && (
                     <span className="tw-mr-3 tw-flex-none tw-w-6 tw-h-6">
