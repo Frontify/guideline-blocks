@@ -26,7 +26,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutWrapper).should('have.css', 'background-color', '#f0ad4e');
+        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgb(240, 173, 78)');
     });
 
     it('renders a callout block with the correct layout settings', () => {

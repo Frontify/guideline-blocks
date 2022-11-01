@@ -23,13 +23,13 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const getBackgroundColor = (type: Type) => {
         switch (type) {
             case Type.Info:
-                return { backgroundColor: designTokens?.callout?.info };
+                return { backgroundColor: designTokens?.callout?.info ?? '#5bc0de' };
             case Type.Note:
-                return { backgroundColor: designTokens?.callout?.note };
+                return { backgroundColor: designTokens?.callout?.note ?? '#f0ad4e' };
             case Type.Tip:
-                return { backgroundColor: designTokens?.callout?.tip };
+                return { backgroundColor: designTokens?.callout?.tip ?? '#5cb85c' };
             case Type.Warning:
-                return { backgroundColor: designTokens?.callout?.warning };
+                return { backgroundColor: designTokens?.callout?.warning ?? '#d9534f' };
         }
     };
 
