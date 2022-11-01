@@ -70,7 +70,7 @@ export type DesignTokenApiResponse = {
     };
 };
 
-export type TokenValues = CSSProperties & { hover?: CSSProperties };
+export type TokenValues = CSSProperties & { hover?: CSSProperties } & Partial<AccentColorProperties>;
 export type TransformedDesignTokens = Partial<Record<DesignTokenName, TokenValues>>;
 
 export const useGuidelineDesignTokens = () => {

@@ -34,7 +34,6 @@ const transformObjectValues = (key: string, cssStyles: TokenValues, value: Direc
 };
 
 const transformStringValues = (key: string, cssStyles: TokenValues, value: string) => {
-    console.log('transformStringValues', key, cssStyles, value);
     cssStyles.hover = cssStyles.hover || {};
     switch (key) {
         case DesignTokenPropertiesEnum.family:
@@ -90,6 +89,18 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
             break;
         case DesignTokenPropertiesEnum.border_color_hover:
             cssStyles.hover.borderColor = value;
+            break;
+        case DesignTokenPropertiesEnum.info:
+            cssStyles.info = value;
+            break;
+        case DesignTokenPropertiesEnum.note:
+            cssStyles.note = value;
+            break;
+        case DesignTokenPropertiesEnum.tip:
+            cssStyles.tip = value;
+            break;
+        case DesignTokenPropertiesEnum.warning:
+            cssStyles.warning = value;
             break;
     }
     if (Object.keys(cssStyles.hover).length === 0) {

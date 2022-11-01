@@ -15,6 +15,8 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
 
+    console.log({ designTokens });
+
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
