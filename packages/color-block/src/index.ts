@@ -12,7 +12,7 @@ export default {
     settings,
     onBlockCreated: async ({ appBridge }: { appBridge: AppBridgeBlock }) => {
         const colorPalette = await appBridge.createColorPalette({ name: 'Untitled palette' });
-        appBridge.updateBlockSettings({ colorPaletteId: colorPalette.id });
+        await appBridge.updateBlockSettings({ colorPaletteId: colorPalette.id });
     },
     onBlockDeleted: async ({ appBridge }: { appBridge: AppBridgeBlock }) => {
         const settings = await appBridge.getBlockSettings<{ colorPaletteId: number }>();
