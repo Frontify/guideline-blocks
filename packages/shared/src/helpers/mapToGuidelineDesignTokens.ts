@@ -9,6 +9,7 @@ import {
     TokenValues,
     TransformedDesignTokens,
 } from '../hooks/useGuidelineDesignTokens';
+import { provideDefaultCalloutColors } from './provideDefaultCalloutColors';
 
 const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
     const cssStyles: TokenValues = {};
@@ -89,6 +90,18 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
         case DesignTokenPropertiesEnum.border_color_hover:
             cssStyles.hover.borderColor = value;
             break;
+        case DesignTokenPropertiesEnum.info:
+            cssStyles.info = value;
+            break;
+        case DesignTokenPropertiesEnum.note:
+            cssStyles.note = value;
+            break;
+        case DesignTokenPropertiesEnum.tip:
+            cssStyles.tip = value;
+            break;
+        case DesignTokenPropertiesEnum.warning:
+            cssStyles.warning = value;
+            break;
     }
     if (Object.keys(cssStyles.hover).length === 0) {
         delete cssStyles.hover;
@@ -97,8 +110,9 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
 
 export const mapToGuidelineDesignTokens = (dataToTransform: DesignTokens) => {
     const transformedDesignTokens: TransformedDesignTokens = {};
+    const enrichedDataToTransform = provideDefaultCalloutColors(dataToTransform);
 
-    for (const [key, value] of Object.entries(dataToTransform)) {
+    for (const [key, value] of Object.entries(enrichedDataToTransform)) {
         transformedDesignTokens[key as DesignTokenName] = transformDesignTokens(value) as TokenValues;
     }
     return transformedDesignTokens;
