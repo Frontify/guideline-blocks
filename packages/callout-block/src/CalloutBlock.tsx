@@ -3,11 +3,11 @@
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, radiusStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { isDark, joinClassNames, radiusStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { ICON_ASSET_ID } from './settings';
-import { BlockSettings, CalloutBlockProps, Width, alignmentMap, outerWidthMap, paddingMap, typeMap } from './types';
+import { BlockSettings, CalloutBlockProps, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -20,9 +20,22 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
+    const getBackgroundColor = (type: Type) => {
+        switch (type) {
+            case Type.Info:
+                return designTokens?.callout?.info;
+            case Type.Note:
+                return designTokens?.callout?.note;
+            case Type.Tip:
+                return designTokens?.callout?.tip;
+            case Type.Warning:
+                return designTokens?.callout?.warning;
+        }
+    };
+
     const textDivClassNames = joinClassNames([
-        'tw-flex tw-items-center tw-text-white',
-        typeMap[blockSettings.type],
+        'tw-flex tw-items-center',
+        isDark(getBackgroundColor(blockSettings.type)) ? 'tw-text-white' : 'tw-text-black',
         blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
         !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
     ]);
@@ -48,7 +61,11 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             <div
                 data-test-id="callout-wrapper"
                 className={textDivClassNames}
-                style={{ ...customPaddingStyle, ...customCornerRadiusStyle }}
+                style={{
+                    backgroundColor: getBackgroundColor(blockSettings.type),
+                    ...customPaddingStyle,
+                    ...customCornerRadiusStyle,
+                }}
             >
                 {blockSettings.iconSwitch && iconUrl && (
                     <span className="tw-mr-3 tw-flex-none tw-w-6 tw-h-6">

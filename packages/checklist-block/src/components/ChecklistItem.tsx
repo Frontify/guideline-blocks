@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconCrossCircle, ItemDragState } from '@frontify/fondue';
+import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconCross, ItemDragState } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { getInteractionModality, useFocusWithin, useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
@@ -115,7 +115,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                         />
                         <ChecklistButton
                             disabled={notEditable}
-                            icon={<IconCrossCircle />}
+                            icon={<IconCross />}
                             onClick={() => onRemoveItem && onRemoveItem(id)}
                         />
                     </ButtonGroup>

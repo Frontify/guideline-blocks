@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetChooserObjectType } from '@frontify/app-bridge';
 import type { FileExtension } from '@frontify/app-bridge';
+import { AssetChooserObjectType } from '@frontify/app-bridge';
 import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import { BlockSettings, Bundle, NotificationStyleType } from '@frontify/guideline-blocks-settings';
 import {
@@ -136,28 +136,28 @@ export const settings: BlockSettings = {
                                 {
                                     id: PADDING_TOP_ID,
                                     type: 'input',
-                                    label: 'Top',
+                                    icon: IconEnum.ArrowAlignUp16,
                                     onChange: (bundle: Bundle): void => appendUnit(bundle, PADDING_TOP_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_LEFT_ID,
                                     type: 'input',
-                                    label: 'Left',
+                                    icon: IconEnum.ArrowAlignLeft16,
                                     onChange: (bundle: Bundle): void => appendUnit(bundle, PADDING_LEFT_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_RIGHT_ID,
                                     type: 'input',
-                                    label: 'Right',
+                                    icon: IconEnum.ArrowAlignRight16,
                                     onChange: (bundle: Bundle): void => appendUnit(bundle, PADDING_RIGHT_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_BOTTOM_ID,
                                     type: 'input',
-                                    label: 'Bottom',
+                                    icon: IconEnum.ArrowAlignDown16,
                                     onChange: (bundle: Bundle): void => appendUnit(bundle, PADDING_BOTTOM_ID),
                                     rules: [numericalOrPixelRule],
                                 },
