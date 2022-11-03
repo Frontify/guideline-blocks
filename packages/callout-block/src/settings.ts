@@ -55,6 +55,7 @@ export const settings: BlockSettings = {
             id: 'iconSwitch',
             type: 'switch',
             defaultValue: false,
+            info: 'Custom icons will always display the same way, they were created. To tweak icon colors, apply the changes in the icon, then upload it again.',
             label: 'Icon',
             on: [
                 {
