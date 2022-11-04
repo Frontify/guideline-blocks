@@ -20,7 +20,7 @@ const COLORSPACES = [
         label: ColorSpaceLabels.Cmyk,
         tooltip: {
             content:
-                'We automatically convert color values to CMYK. \n These values might differ, depending on what color profile you use. \n You can always change the values manually here.',
+                'We automatically convert color values to CMYK.\nThese values might differ, depending on what color profile you use.\nYou can always change the values manually here.',
         },
     },
     {

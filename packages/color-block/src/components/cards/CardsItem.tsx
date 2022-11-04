@@ -18,7 +18,7 @@ import { ColorPickerFlyout } from '../ColorPickerFlyout';
 import { ColorSpaceValue } from '../ColorSpaceValue';
 import { TooltipContent } from '../TooltipContent';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
-import { ColorsBlockType, ItemProps } from '../../types';
+import { ColorBlockType, ItemProps } from '../../types';
 
 export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
     const { copy, status } = useCopy();
@@ -89,7 +89,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
 
             <div className="tw-pt-4 tw-px-6 tw-pb-5">
                 <ColorName
-                    viewType={ColorsBlockType.Cards}
+                    viewType={ColorBlockType.Cards}
                     initialColorName={color.name ?? ''}
                     isEditing={isEditing}
                     onBlur={onBlur}
@@ -121,7 +121,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
 
                                     {isEditing ? (
                                         <ColorSpaceValue
-                                            viewType={ColorsBlockType.Cards}
+                                            viewType={ColorBlockType.Cards}
                                             color={color}
                                             colorSpaceId={colorSpaceId}
                                             onUpdate={onUpdate}

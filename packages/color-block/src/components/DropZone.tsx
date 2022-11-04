@@ -4,13 +4,13 @@ import { forwardRef, useRef } from 'react';
 import { XYCoord, useDrag, useDrop } from 'react-dnd';
 import { merge } from '@frontify/fondue';
 
-import { ColorsBlockType } from '../types';
+import { ColorBlockType } from '../types';
 
 export type DropZoneProps = {
     onDrop?: (index: number) => void;
     treeId: string;
     children?: JSX.Element;
-    colorBlockType: ColorsBlockType;
+    colorBlockType: ColorBlockType;
     index: number;
     moveCard: (dragIndex: number, hoverIndex: number) => void;
     isEditing: boolean;

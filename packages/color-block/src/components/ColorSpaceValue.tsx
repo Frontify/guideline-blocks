@@ -5,10 +5,10 @@ import { Color, ColorPatch } from '@frontify/app-bridge';
 import { IconExclamationMarkTriangle, IconSize, TooltipIcon, merge } from '@frontify/fondue';
 
 import { mapColorSpaces } from '../helpers/mapColorSpaces';
-import { ColorSpaceLabels, ColorSpaceValues, ColorsBlockType } from '../types';
+import { ColorBlockType, ColorSpaceLabels, ColorSpaceValues } from '../types';
 
 type ColorSpaceValueProps = {
-    viewType: ColorsBlockType;
+    viewType: ColorBlockType;
     color: Color;
     colorSpaceId: keyof ColorSpaceValues;
     onUpdate: (colorPatch: ColorPatch) => void;
@@ -46,7 +46,7 @@ export const ColorSpaceValue = ({ viewType, color, colorSpaceId, onUpdate }: Col
         <div
             className={merge([
                 'tw-flex tw-items-center',
-                viewType === ColorsBlockType.List ? 'tw-h-5 tw-ml-3' : 'tw-h-4',
+                viewType === ColorBlockType.List ? 'tw-h-5 tw-ml-3' : 'tw-h-4',
             ])}
         >
             {[ColorSpaceLabels.Cmyk, ColorSpaceLabels.Hex, ColorSpaceLabels.Rgb].includes(mappedColorSpace.label) ? (
