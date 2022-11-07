@@ -83,14 +83,4 @@ describe('Personal Note Block', () => {
         cy.get(PersonalNoteBlockSelector).should('have.css', 'border-color', 'rgb(22, 181, 181)');
         cy.get(PersonalNoteBlockSelector).should('have.css', 'border-radius', '5px');
     });
-
-    it('does not render personal note block if permissions are set to editors only', () => {
-        const [PersonalNoteBlockWithStubs] = withAppBridgeBlockStubs(PersonalNoteBlock, {
-            editorState: false,
-            blockSettings: { visibility: 'Editors' },
-        });
-
-        mount(<PersonalNoteBlockWithStubs />);
-        cy.get(PersonalNoteBlockSelector).should('not.exist');
-    });
 });
