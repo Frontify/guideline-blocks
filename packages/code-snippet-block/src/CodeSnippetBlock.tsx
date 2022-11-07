@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 
 import { FC, ReactElement } from 'react';
 import { debounce } from '@frontify/fondue';
-import { marginStyleMap, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { CodeMirrorEditor } from './components';
@@ -27,12 +27,6 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         theme = DEFAULT_THEME_VALUE,
     } = blockSettings;
 
-    const customMarginStyle = {
-        margin: blockSettings.hasExtendedCustomMargin
-            ? `${blockSettings.extendedMarginTop} ${blockSettings.extendedMarginRight} ${blockSettings.extendedMarginBottom} ${blockSettings.extendedMarginLeft}`
-            : marginStyleMap[blockSettings.extendedMarginChoice],
-    };
-
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
             ? `${blockSettings.extendedRadiusTopLeft} ${blockSettings.extendedRadiusTopRight} ${blockSettings.extendedRadiusBottomRight} ${blockSettings.extendedRadiusBottomLeft}`
@@ -52,7 +46,6 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         initValue: content,
         onChange: handleChange,
         borderRadius: customCornerRadiusStyle.borderRadius,
-        margin: customMarginStyle.margin,
         border: withBorder ? `${lineStyle} ${lineWidth} ${borderColorRgba}` : 'none',
     };
 
