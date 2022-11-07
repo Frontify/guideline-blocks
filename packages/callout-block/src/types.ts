@@ -15,6 +15,11 @@ export enum Width {
     HugContents = 'hugContents',
 }
 
+export enum Appearance {
+    Light = 'light',
+    Strong = 'strong',
+}
+
 export const outerWidthMap: Record<Width, string> = {
     [Width.FullWidth]: 'tw-block',
     [Width.HugContents]: 'tw-flex',
@@ -52,6 +57,7 @@ export type BlockSettings = {
     textValue?: string;
     hasCustomPadding: boolean;
     paddingChoice: Padding;
+    appearance: Appearance;
 } & RadiusExtendedSettings &
     CustomPaddingStyles;
 

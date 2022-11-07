@@ -10,7 +10,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { Alignment, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
+import { Alignment, Appearance, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_TOP_ID = 'paddingTop';
@@ -30,7 +30,7 @@ export const settings: BlockSettings = {
                 {
                     value: Type.Info,
                     icon: 'Info' as IconEnum.Info,
-                    label: 'Info',
+                    label: 'Information',
                 },
                 {
                     value: Type.Note,
@@ -51,6 +51,24 @@ export const settings: BlockSettings = {
         },
     ],
     basics: [
+        {
+            id: 'appearance',
+            type: 'slider',
+            label: 'Appearance',
+            defaultValue: Appearance.Light,
+            info: 'Defines how the accent color is shown on this block. Select between a subtle and more prominent style.',
+            choices: [
+                {
+                    label: 'Light',
+                    value: Appearance.Light,
+                },
+                {
+                    label: 'Strong',
+                    value: Appearance.Strong,
+                },
+            ],
+        },
+
         {
             id: 'iconSwitch',
             type: 'switch',
