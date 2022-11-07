@@ -1,3 +1,4 @@
 {
-    "appId": "cl5wcj62600010uw87b9xmvtw"
+    "appId": "cl5wcj62600010uw87b9xmvtw",
+    "searchFields": [{ "type": "fondueRte", "settingId": "note" }]
 }

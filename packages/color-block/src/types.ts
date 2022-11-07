@@ -5,17 +5,17 @@ import { FocusEvent, ReactNode } from 'react';
 import { AppBridgeBlock, Color, ColorPatch } from '@frontify/app-bridge';
 import { Color as ColorFondue } from '@frontify/fondue';
 
-export type ColorsBlockProps = {
+export type ColorBlockProps = {
     appBridge: AppBridgeBlock;
 };
 
 export type Settings = {
     colorPaletteId: number;
-    view: ColorsBlockType;
+    view: ColorBlockType;
     colorspaces: string[];
 };
 
-export enum ColorsBlockType {
+export enum ColorBlockType {
     List = 'list',
     Drops = 'drops',
     Cards = 'cards',
@@ -60,7 +60,7 @@ export type TooltipContentProps = {
 };
 
 export type ColorNameProps = {
-    viewType: ColorsBlockType;
+    viewType: ColorBlockType;
     initialColorName: string;
     isEditing: boolean;
     onBlur: (event: FocusEvent<HTMLInputElement>) => void;
