@@ -25,7 +25,6 @@ export const CodeMirrorEditor = ({
     isEditing = false,
     language = 'html',
     border = 'none',
-    margin = 'none',
     withHeading = false,
     withRowNumbers = false,
     initValue = '',
@@ -65,7 +64,6 @@ export const CodeMirrorEditor = ({
 
     const style: CodeMirrorEditorStyle = {
         '--editor-border': border,
-        '--editor-margin': margin,
         '--editor-border-radius': borderRadius,
     };
 

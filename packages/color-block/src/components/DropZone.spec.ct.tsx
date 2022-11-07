@@ -7,7 +7,7 @@ import { ColorDummy } from '@frontify/app-bridge';
 
 import { CardsItem } from './cards/CardsItem';
 import { DropZone } from './DropZone';
-import { ColorSpaceValues, ColorsBlockType } from '../types';
+import { ColorBlockType, ColorSpaceValues } from '../types';
 
 const CardsItemSelector = '[data-test-id="cards-item"]';
 
@@ -23,7 +23,7 @@ describe('DropZone component', () => {
 
         const dropZoneProps = {
             treeId: 'test',
-            colorBlockType: ColorsBlockType.Cards,
+            colorBlockType: ColorBlockType.Cards,
             moveCard: moveCardStub,
             isEditing: true,
         };

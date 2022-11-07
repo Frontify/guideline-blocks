@@ -4,7 +4,7 @@ import { CSSProperties } from 'react';
 import { Color } from '@frontify/fondue';
 import { Globals, Property } from 'csstype';
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import { MarginExtendedSettings, RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
+import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
 
 export type Language = 'js' | 'html' | 'css' | 'php' | 'json' | 'jsx' | 'ts';
 
@@ -30,7 +30,6 @@ export type TwBorderInlineStyle = Exclude<
 
 export interface CodeMirrorEditorStyle extends CSSProperties {
     '--editor-border': Property.Border;
-    '--editor-margin': Property.Margin;
     '--editor-border-radius': Property.BorderRadius;
 }
 
@@ -46,8 +45,7 @@ export type Settings = {
     withRowNumbers?: boolean;
     lineStyle: TwBorderInlineStyle;
     lineWidth: Property.BorderWidth;
-} & RadiusExtendedSettings &
-    MarginExtendedSettings;
+} & RadiusExtendedSettings;
 
 export type CodeMirrorEditorProps = {
     id?: string;
@@ -58,7 +56,6 @@ export type CodeMirrorEditorProps = {
     withHeading?: boolean;
     withRowNumbers?: boolean;
     border?: Property.Border;
-    margin?: Property.Margin;
     onChange: (value: string) => void;
     borderRadius: Property.BorderRadius;
 };

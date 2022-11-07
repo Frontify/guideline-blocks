@@ -13,11 +13,11 @@ import {
     toRgbaString,
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, FC, useEffect, useState } from 'react';
+import { CSSProperties, FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-import { BlockProps, NoteVisibility, Settings, paddingStyleMap } from './types';
+import { BlockProps, Settings, paddingStyleMap } from './types';
 
 const getBorderStyles = (
     style = BorderStyle.Solid,
@@ -35,8 +35,6 @@ const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
 export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const [userId, setUserId] = useState<number | null>(null);
-
     const { designTokens } = useGuidelineDesignTokens();
 
     const {
@@ -59,7 +57,6 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         createdByUser,
         username,
         avatar,
-        visibility = NoteVisibility.Everyone,
     } = blockSettings;
 
     const saveNote = (value: string) => {
@@ -75,7 +72,6 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             await appBridge.getCurrentLoggedUser().then((data) => {
                 if (data) {
                     const { id, name, image } = data;
-                    setUserId(id);
                     if (!createdByUser) {
                         setBlockSettings({
                             ...blockSettings,
@@ -90,13 +86,6 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         getUserData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    if (
-        (visibility === NoteVisibility.Editors && !isEditing) || // If visibility "editors" is selected, hide block when not in editing mode
-        (visibility === NoteVisibility.YouOnly && createdByUser !== userId) // If visibility "you only" is selected, hide block when current user is not matching user who created the block
-    ) {
-        return <></>;
-    }
 
     return (
         <div
