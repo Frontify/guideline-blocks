@@ -35,7 +35,7 @@ describe('Richtext has value', () => {
     });
     test('It should return false if RTE has only new lines', () => {
         const text =
-            '[{"type":"quote","children":[{"text":""}]},{"type":"quote","children":[{"text":""}]},{"type":"quote","children":[{"text":""}]},{"type":"quote","children":[{"text":""}]},{"type":"quote","children":[{"text":""}]}]"';
+            '[{"type":"quote","children":[{"text":""}]},{"type":"quote","children":[{"text":""}]},{"type":"quote","children":[{"text":""}]},{"type":"quote","children":[{"text":""}]},{"type":"quote","children":[{"text":""}]}]';
         const result = hasRichTextValue(text);
         expect(result).toBeFalsy();
     });
