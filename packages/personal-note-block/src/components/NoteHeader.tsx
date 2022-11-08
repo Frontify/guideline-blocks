@@ -26,7 +26,7 @@ export const NoteHeader: FC<NoteHeaderProps> = ({
             {hasAvatarName && <span className={useLightText ? 'tw-text-white' : 'tw-text-black'}>{name}</span>}
             {hasDateEdited && dateEdited && (
                 <span className={useLightText ? 'tw-text-white tw-opacity-60' : 'tw-text-x-weak'}>
-                    Last edited on {dayjs(dateEdited).format('L, LT')}
+                    Last edited on {dayjs(dateEdited).isValid() ? dayjs(dateEdited).format('L LT') : dateEdited}
                 </span>
             )}
         </div>
