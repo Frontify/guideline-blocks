@@ -2,7 +2,6 @@
 
 import { Color } from '@frontify/fondue';
 import tinycolor, { ColorInput } from 'tinycolor2';
-import { isRgbaLongFormat } from './isRgbaLongFormat';
 import { toShortRgba } from './toShortRgba';
 
 /**
@@ -11,6 +10,11 @@ import { toShortRgba } from './toShortRgba';
  * @param {Object} Object of RGBA values
  * @returns {Boolean} Return if the color is dark
  */
+
+const isRgbaLongFormat = (value: Color) => {
+    const requiredKeys = ['red', 'green', 'blue'];
+    return typeof value === 'object' && requiredKeys.every((i) => value.hasOwnProperty(i));
+};
 
 export const isDark = (color: unknown): boolean => {
     const inputColor = isRgbaLongFormat(color as Color) ? toShortRgba(color) : (color as ColorInput);

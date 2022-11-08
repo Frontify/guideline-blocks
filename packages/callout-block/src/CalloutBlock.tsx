@@ -55,10 +55,11 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     };
 
     const color = getBackgroundColor(blockSettings.type);
-    const backgroundColor = blockSettings.appearance === Appearance.Strong ? setAlpha(color, 1) : setAlpha(color, 0.1);
+    console.log(color);
+    const backgroundColor = blockSettings.appearance === Appearance.Strong ? color : setAlpha(0.1, color);
 
     const defaultTextColor = isDark(color) ? 'white' : 'black';
-    const textColor = blockSettings.appearance === Appearance.Light ? setAlpha(color, 1) : defaultTextColor;
+    const textColor = blockSettings.appearance === Appearance.Light ? color : defaultTextColor;
 
     const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center',
