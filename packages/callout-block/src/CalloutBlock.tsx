@@ -55,7 +55,6 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     };
 
     const color = getBackgroundColor(blockSettings.type);
-    console.log(color);
     const backgroundColor = blockSettings.appearance === Appearance.Strong ? color : setAlpha(0.1, color);
 
     const defaultTextColor = isDark(color) ? 'white' : 'black';
