@@ -12,6 +12,7 @@ type CalloutIconProps = {
 };
 export const CalloutIcon = ({ iconType, isActive, iconUrl }: CalloutIconProps) => (
     <div
+        data-test-id="callout-icon"
         className={joinClassNames([
             isActive ? 'tw-opacity-100' : 'tw-opacity-30',
             'tw-mr-2 tw-w-6 tw-h-full tw-flex tw-justify-center tw-items-center',
@@ -23,8 +24,8 @@ export const CalloutIcon = ({ iconType, isActive, iconUrl }: CalloutIconProps) =
 
 export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactElement> => ({
     none: <></>,
-    info: <IconInfo20 />,
+    info: <IconInfo20 data-test-id="callout-icon-info" />,
     lightbulb: <IconLightbulb20 />,
     megaphone: <IconMegaphone20 />,
-    custom: <img data-test-id="callout-icon" src={iconUrl} />,
+    custom: <img data-test-id="callout-icon-custom" src={iconUrl} />,
 });
