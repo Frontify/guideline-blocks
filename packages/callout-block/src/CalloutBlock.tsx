@@ -32,7 +32,6 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
-    const iconType = blockSettings.iconType ?? Icon.None;
 
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
@@ -92,9 +91,9 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     ...customCornerRadiusStyle,
                 }}
             >
-                {iconType === Icon.None || (blockSettings.iconSwitch && !iconUrl) ? null : (
+                {blockSettings.iconType === Icon.None || (blockSettings.iconSwitch && !iconUrl) ? null : (
                     <CalloutIcon
-                        iconType={blockSettings.iconSwitch ? Icon.Custom : iconType}
+                        iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
                         iconUrl={iconUrl}
                         isActive={hasRichTextValue(blockSettings.textValue)}
                     />

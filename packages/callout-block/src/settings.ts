@@ -89,6 +89,7 @@ export const settings: BlockSettings = {
                 {
                     id: 'iconType',
                     type: 'slider',
+                    defaultValue: Icon.None,
                     choices: [
                         {
                             label: 'None',
