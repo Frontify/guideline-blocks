@@ -80,9 +80,9 @@ it('renders code snippet with line numbers', () => {
 it('renders code snippet with border', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withBorder: true,
-            lineWidth: '2px',
-            lineStyle: 'solid',
+            hasBorder: true,
+            borderWidth: '2px',
+            borderStyle: 'solid',
             borderColor: EXAMPLE_COLOR,
         },
     });
