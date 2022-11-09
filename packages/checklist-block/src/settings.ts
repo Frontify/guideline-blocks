@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import type { DropdownSize, IconEnum, MultiInputLayout, SwitchSize } from '@frontify/fondue';
 import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { appendUnit, minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
@@ -44,6 +44,7 @@ export const settings: BlockSettings = {
             id: PROGRESS_BAR_VISIBLE,
             label: 'Progress Indicator',
             type: 'switch',
+            size: 'Small' as SwitchSize.Small,
             defaultValue: DefaultValues.progressBarVisible,
             info: 'Change the type of progress indicator for your checklist',
             on: [
@@ -73,6 +74,7 @@ export const settings: BlockSettings = {
             id: 'dateVisible',
             label: 'Date completed',
             type: 'switch',
+            size: 'Small' as SwitchSize.Small,
             info: 'Show the completion date for each checklist item',
             defaultValue: DefaultValues.dateVisible,
         },
