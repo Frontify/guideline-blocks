@@ -44,7 +44,8 @@ export type DesignTokenName =
     | 'button_primary'
     | 'button_secondary'
     | 'button_tertiary'
-    | 'callout';
+    | 'callout'
+    | 'image-caption';
 
 export type DirectionalCssProperties = {
     top: number;
