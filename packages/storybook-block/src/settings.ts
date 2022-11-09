@@ -6,7 +6,6 @@ import {
     appendUnit,
     getBorderRadiusSettings,
     getBorderSettings,
-    maximumNumericalOrPixelOrAutoRule,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
@@ -30,7 +29,6 @@ const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
 
 export const MIN_HEIGHT_VALUE = 30;
-export const MAX_HEIGHT_VALUE = 5000;
 export const settings: BlockSettings = {
     main: [
         {
@@ -77,11 +75,7 @@ export const settings: BlockSettings = {
                     type: 'input',
                     placeholder: 'e.g. 500px',
                     defaultValue: StorybookHeight.Medium,
-                    rules: [
-                        numericalOrPixelRule,
-                        minimumNumericalOrPixelOrAutoRule(MIN_HEIGHT_VALUE),
-                        maximumNumericalOrPixelOrAutoRule(MAX_HEIGHT_VALUE),
-                    ],
+                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(MIN_HEIGHT_VALUE)],
                     onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
                 },
             ],
