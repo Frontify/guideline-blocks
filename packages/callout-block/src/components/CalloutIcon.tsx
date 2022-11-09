@@ -7,22 +7,18 @@ import { Icon } from '../types';
 
 type CalloutIconProps = {
     iconType: Icon;
-    hasValue: boolean;
+    isActive: boolean;
     iconUrl?: string;
 };
-export const CalloutIcon = ({ iconType, hasValue, iconUrl }: CalloutIconProps) => (
-    <>
-        {iconType === Icon.None || (iconType === Icon.Custom && !iconUrl) ? null : (
-            <div
-                className={joinClassNames([
-                    hasValue ? 'tw-opacity-100' : 'tw-opacity-30',
-                    'tw-mr-2 tw-w-6 tw-h-full tw-flex tw-justify-center tw-items-center',
-                ])}
-            >
-                {calloutIconMap(iconUrl)[iconType]}
-            </div>
-        )}
-    </>
+export const CalloutIcon = ({ iconType, isActive, iconUrl }: CalloutIconProps) => (
+    <div
+        className={joinClassNames([
+            isActive ? 'tw-opacity-100' : 'tw-opacity-30',
+            'tw-mr-2 tw-w-6 tw-h-full tw-flex tw-justify-center tw-items-center',
+        ])}
+    >
+        {calloutIconMap(iconUrl)[iconType]}
+    </div>
 );
 
 export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactElement> => ({
@@ -30,5 +26,5 @@ export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactElement> => 
     info: <IconInfo20 />,
     lightbulb: <IconLightbulb20 />,
     megaphone: <IconMegaphone20 />,
-    custom: <img data-test-id="callout-icon" alt="Callout icon" src={iconUrl} />,
+    custom: <img data-test-id="callout-icon" src={iconUrl} />,
 });

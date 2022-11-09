@@ -1,13 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export const hasRichTextValue = (string?: string) => {
     if (!string) {
         return false;
     }
-    const json = JSON.parse(string);
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const hasText = (children: any) =>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         children.some((child: { text: string; children: any }) => {
             if (child.text) {
                 return child.text !== '';
@@ -17,5 +16,11 @@ export const hasRichTextValue = (string?: string) => {
             }
             return false;
         });
-    return hasText(json);
+
+    try {
+        const json = JSON.parse(string);
+        return hasText(json);
+    } catch (e) {
+        return false;
+    }
 };

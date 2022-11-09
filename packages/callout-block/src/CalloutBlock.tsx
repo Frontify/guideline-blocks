@@ -76,6 +76,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     };
 
     const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
+    const hasNoIcon = blockSettings.iconType === Icon.None || (blockSettings.iconType === Icon.Custom && !iconUrl);
 
     const onTextChange = (value: string) => setBlockSettings({ textValue: value });
 
@@ -91,11 +92,13 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     ...customCornerRadiusStyle,
                 }}
             >
-                <CalloutIcon
-                    iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
-                    iconUrl={iconUrl}
-                    hasValue={hasRichTextValue(blockSettings.textValue)}
-                />
+                {hasNoIcon ? null : (
+                    <CalloutIcon
+                        iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
+                        iconUrl={iconUrl}
+                        isActive={hasRichTextValue(blockSettings.textValue)}
+                    />
+                )}
                 <RichTextEditor
                     onTextChange={onTextChange}
                     readonly={!isEditing}

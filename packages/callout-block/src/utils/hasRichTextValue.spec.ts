@@ -23,13 +23,18 @@ describe('Richtext has value', () => {
         expect(result).toBeTruthy();
     });
     // Check if richtext has no value
-    test('It should return false, if RTE is empty', () => {
+    test('It should return false if RTE is empty', () => {
         const text = '[{"type":"p","children":[{"text":""}]}]';
         const result = hasRichTextValue(text);
         expect(result).toBeFalsy();
     });
-    test('It should return false, if RTE is empty 2.0', () => {
+    test('It should return false if RTE is empty 2.0', () => {
         const text = '[{"type":"heading1","children":[{"text":"","bold":true,"underline":true}]}]';
+        const result = hasRichTextValue(text);
+        expect(result).toBeFalsy();
+    });
+    test('It should return false if value is an invalid json', () => {
+        const text = 'abcd';
         const result = hasRichTextValue(text);
         expect(result).toBeFalsy();
     });
