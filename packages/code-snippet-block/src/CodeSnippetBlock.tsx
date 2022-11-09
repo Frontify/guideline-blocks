@@ -8,7 +8,7 @@ import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared'
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { CodeMirrorEditor } from './components';
-import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
+import { DEFAULT_THEME_VALUE } from './constants';
 import { CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
 
 export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
@@ -18,10 +18,10 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
     const {
         content,
         language,
-        lineStyle,
-        lineWidth,
-        borderColor = BORDER_COLOR_DEFAULT_VALUE,
-        withBorder = false,
+        borderStyle,
+        borderWidth,
+        borderColor,
+        hasBorder = false,
         withHeading = false,
         withRowNumbers = false,
         theme = DEFAULT_THEME_VALUE,
@@ -46,7 +46,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         initValue: content,
         onChange: handleChange,
         borderRadius: customCornerRadiusStyle.borderRadius,
-        border: withBorder ? `${lineStyle} ${lineWidth} ${borderColorRgba}` : 'none',
+        border: hasBorder ? `${borderStyle} ${borderWidth} ${borderColorRgba}` : 'none',
     };
 
     return <CodeMirrorEditor {...codeMirrorEditorProps} />;
