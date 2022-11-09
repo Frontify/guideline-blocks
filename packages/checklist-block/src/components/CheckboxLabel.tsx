@@ -72,10 +72,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
     const decoratedChildren = decorateLabelChildren(children, labelStyles);
 
     return (
-        <div
-            className="tw-text-s tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0"
-            data-test-id="input-label-container"
-        >
+        <div className="tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0" data-test-id="input-label-container">
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([

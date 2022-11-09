@@ -2,7 +2,6 @@
 
 import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState, OrderableListItem } from '@frontify/fondue';
-import { Padding, PaddingExtendedSettings, paddingStyleMap } from '@frontify/guideline-blocks-shared';
 import { MouseEvent, ReactElement } from 'react';
 
 export type ChecklistProps = {
@@ -133,7 +132,7 @@ export type DecorationStyle = {
     [key: string]: string;
 };
 
-export type Settings = PaddingExtendedSettings & {
+export type Settings = {
     content: OrderableListItem<ChecklistContent>[];
     incompleteTextColor: Color;
     incompleteCheckboxColor: Color;
@@ -153,17 +152,11 @@ export type Settings = PaddingExtendedSettings & {
 
 export const DefaultValues: Settings = {
     content: [],
-    hasExtendedCustomPadding: false,
-    extendedPaddingChoice: Padding.Small,
-    extendedPaddingTop: paddingStyleMap[Padding.Small],
-    extendedPaddingRight: paddingStyleMap[Padding.Small],
-    extendedPaddingBottom: paddingStyleMap[Padding.Small],
-    extendedPaddingLeft: paddingStyleMap[Padding.Small],
     incompleteTextColor: { red: 45, green: 50, blue: 50, alpha: 1 },
     incompleteCheckboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
     completeTextColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completeCheckboxColor: { red: 255, green: 55, blue: 90, alpha: 1 },
-    completedDecoration: ChecklistDecoration.Strikethrough,
+    completedDecoration: ChecklistDecoration.Checkbox,
     highlightColor: { red: 190, green: 225, blue: 212, alpha: 1 },
     dateVisible: true,
     progressBarVisible: true,

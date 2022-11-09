@@ -2,12 +2,7 @@
 
 import type { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
-import {
-    appendUnit,
-    getPaddingExtendedSettings,
-    minimumNumericalOrPixelOrAutoRule,
-    numericalOrPixelRule,
-} from '@frontify/guideline-blocks-shared';
+import { appendUnit, minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const COMPLETED_DECORATION = 'completedDecoration';
@@ -45,7 +40,6 @@ export const settings: BlockSettings = {
         },
     ],
     layout: [
-        getPaddingExtendedSettings(),
         {
             id: PROGRESS_BAR_VISIBLE,
             label: 'Progress Indicator',
