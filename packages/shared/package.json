@@ -18,7 +18,7 @@
     "private": true,
     "author": "Frontify Developers <developers@frontify.com>",
     "devDependencies": {
-        "@babel/core": "7.19.1",
+        "@babel/core": "7.20.2",
         "@frontify/eslint-config-typescript": "0.15.2",
         "@testing-library/react-hooks": "8.0.1",
         "@types/node": "18.7.21",
