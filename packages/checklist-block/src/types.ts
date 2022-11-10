@@ -2,7 +2,7 @@
 
 import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState, OrderableListItem } from '@frontify/fondue';
-import { MouseEvent, ReactElement } from 'react';
+import { CSSProperties, MouseEvent, ReactElement } from 'react';
 
 export type ChecklistProps = {
     appBridge: AppBridgeBlock;
@@ -15,6 +15,7 @@ export type ChecklistItemProps = {
     dragState?: ItemDragState;
     onTextModified?: (text: string) => void;
     mode: ChecklistItemMode;
+    designTokens: DesignTokens;
     isFirst?: boolean;
     isLast?: boolean;
     onMoveItem?: (id: string, num: number) => void;
@@ -30,6 +31,7 @@ export type CheckboxProps = {
     showLabel: boolean;
     label: string;
     dateCompleted?: number;
+    designTokens: DesignTokens;
 };
 
 export type CheckboxLabelProps = {
@@ -37,7 +39,10 @@ export type CheckboxLabelProps = {
     disabled?: boolean;
     dateInMs?: number;
     children: string;
+    designTokens: DesignTokens;
 };
+
+export type DesignTokens = Partial<Record<'image-caption', CSSProperties>>;
 
 export type ChecklistButtonProps = {
     disabled?: boolean;

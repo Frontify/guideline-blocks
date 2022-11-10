@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color } from '@frontify/fondue';
-import { joinClassNames, toHex8String, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CSSProperties, FC, Fragment, useContext } from 'react';
@@ -27,14 +27,11 @@ const getLabelDecorationStylesMap = (
         textDecorationStyle: StrikethroughStyleType[style],
         textDecorationThickness: thickness,
         textDecorationColor: toHex8String(color),
-        fontWeight: '500',
     },
     [ChecklistDecoration.Highlight]: {
         backgroundColor: toHex8String(highlightColor),
     },
-    [ChecklistDecoration.Checkbox]: {
-        fontWeight: '500',
-    },
+    [ChecklistDecoration.Checkbox]: {},
 });
 
 const decorateLabelChildren = (children: string, style: CSSProperties) =>
@@ -49,7 +46,13 @@ const decorateLabelChildren = (children: string, style: CSSProperties) =>
         </Fragment>
     ));
 
-export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {
+export const CheckboxLabel: FC<CheckboxLabelProps> = ({
+    children = '',
+    htmlFor,
+    disabled = false,
+    dateInMs,
+    designTokens,
+}) => {
     const {
         strikethroughStyle,
         strikethroughWidth,
@@ -67,8 +70,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
         highlightColor
     )[completedDecoration];
 
-    const { designTokens } = useGuidelineDesignTokens();
-    const imageCaptionStyles = designTokens?.['image-caption'];
+    const imageCaptionStyles = designTokens?.['image-caption'] ?? {};
 
     const labelStyles = { color: toHex8String(completeTextColor), ...decorationStyles };
 

@@ -14,7 +14,7 @@ import {
     OrderableListItem,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -37,6 +37,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Partial<Settings>>(appBridge);
     const [showCompleted, setShowCompleted] = useState(true);
+    const { designTokens } = useGuidelineDesignTokens();
     const { hoverProps, isHovered } = useHover({});
     const settings = { ...DefaultValues, ...blockSettings };
 
@@ -89,6 +90,7 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                         updatedAt: Date.now(),
                     })
                 }
+                designTokens={designTokens ?? {}}
                 dragState={componentDragState}
                 onMoveItem={moveByIncrement}
                 onRemoveItem={removeItem}
@@ -187,7 +189,11 @@ export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps
                     {isEditing && (
                         <>
                             <hr className="tw-my-2 tw-border-black-40" />
-                            <ChecklistItem mode={ChecklistItemMode.Create} onTextModified={addNewItem} />
+                            <ChecklistItem
+                                mode={ChecklistItemMode.Create}
+                                designTokens={designTokens ?? {}}
+                                onTextModified={addNewItem}
+                            />
                         </>
                     )}
                 </div>

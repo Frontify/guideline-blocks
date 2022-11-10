@@ -29,6 +29,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
     onMoveItem,
     onRemoveItem,
     dragState,
+    designTokens,
 }) => {
     const [focused, setFocused] = useState(false);
 
@@ -89,6 +90,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
                             showLabel={completed}
                             label={text}
                             dateCompleted={updatedAt}
+                            designTokens={designTokens}
                         />
                         {!completed && accessibleEditor}
                     </div>

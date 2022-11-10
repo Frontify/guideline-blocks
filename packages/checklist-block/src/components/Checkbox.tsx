@@ -19,6 +19,7 @@ export const Checkbox: FC<CheckboxProps> = ({
     ariaLabel,
     checked,
     showLabel,
+    designTokens,
     onChange,
 }) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -81,7 +82,7 @@ export const Checkbox: FC<CheckboxProps> = ({
                 {checked && <IconCheckMark />}
             </span>
             {showLabel && (
-                <CheckboxLabel disabled={disabled} htmlFor={id} dateInMs={dateCompleted}>
+                <CheckboxLabel disabled={disabled} htmlFor={id} dateInMs={dateCompleted} designTokens={designTokens}>
                     {label}
                 </CheckboxLabel>
             )}
