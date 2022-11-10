@@ -90,7 +90,7 @@ it('renders code snippet with border', () => {
     cy.get(codeSnippetEditorSelector).should('have.css', 'border', '2px solid rgb(22, 181, 181)');
 });
 
-it.only('renders code snippet with border radius', () => {
+it('renders code snippet with border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
             hasBorder: true,
