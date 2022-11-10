@@ -8,7 +8,14 @@ const CHECKBOX_DISPLAY = '[data-test-id="checkbox"]';
 const CHECKBOX_LABEL = '[data-test-id="checkbox-label"]';
 
 const DefaultCheckbox = (props: Partial<CheckboxProps>) => {
-    const defaults = { id: 'id', showLabel: true, label: 'label', checked: false, onChange: cy.stub() };
+    const defaults = {
+        id: 'id',
+        showLabel: true,
+        label: 'label',
+        checked: false,
+        onChange: cy.stub(),
+        designTokens: {},
+    };
     const checkboxProps = { ...defaults, ...props };
 
     return <Checkbox {...checkboxProps} />;
@@ -29,7 +36,7 @@ describe('Checkbox', () => {
         cy.get('@onChange').should('have.been.calledTwice');
     });
 
-    it('Should hide label if showlabel is false', () => {
+    it('Should hide label if showLabel is false', () => {
         mount(<DefaultCheckbox showLabel={false} />);
         cy.get(CHECKBOX_LABEL).should('have.length', 0);
     });
