@@ -93,9 +93,6 @@ it('renders code snippet with border', () => {
 it('renders code snippet with border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            hasBorder: true,
-            borderWidth: '2px',
-            borderStyle: 'Solid',
             borderColor: EXAMPLE_COLOR,
             hasExtendedCustomRadius: false,
             extendedRadiusChoice: Radius.Large,
@@ -109,9 +106,6 @@ it('renders code snippet with border radius', () => {
 it('renders code snippet with custom border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            hasBorder: true,
-            borderWidth: '2px',
-            borderStyle: 'Solid',
             borderRadius: '12px',
             borderColor: EXAMPLE_COLOR,
             hasExtendedCustomRadius: true,
