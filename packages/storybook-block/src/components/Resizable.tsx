@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC, MouseEvent as ReactMouseEvent, useEffect, useState } from 'react';
-import { MAX_HEIGHT_VALUE, MIN_HEIGHT_VALUE } from '../settings';
+import { MIN_HEIGHT_VALUE } from '../settings';
 
 type Props = {
     saveHeight: (height: number) => void;
@@ -31,7 +31,7 @@ export const Resizeable: FC<Props> = ({ children, saveHeight, initialHeight }) =
         const onMouseMove = (mouseMoveEvent: MouseEvent) => {
             setActive(true);
             const newHeight = startSize - startPosition + mouseMoveEvent.pageY;
-            if (newHeight > MIN_HEIGHT_VALUE && newHeight < MAX_HEIGHT_VALUE) {
+            if (newHeight > MIN_HEIGHT_VALUE) {
                 setHeight(newHeight);
             }
         };

@@ -49,12 +49,21 @@ export const paddingMap: Record<Padding, string> = {
     [Padding.L]: 'tw-p-9',
 };
 
+export enum Icon {
+    None = 'none',
+    Info = 'info',
+    Lightbulb = 'lightbulb',
+    Megaphone = 'megaphone',
+    Custom = 'custom',
+}
+
 export type BlockSettings = {
     type: Type;
     alignment: Alignment;
     iconSwitch: boolean;
     width: Width;
     textValue?: string;
+    iconType: Icon;
     hasCustomPadding: boolean;
     paddingChoice: Padding;
     appearance: Appearance;
