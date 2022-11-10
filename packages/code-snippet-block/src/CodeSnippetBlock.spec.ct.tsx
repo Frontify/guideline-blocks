@@ -80,9 +80,9 @@ it('renders code snippet with line numbers', () => {
 it('renders code snippet with border', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withBorder: true,
-            lineWidth: '2px',
-            lineStyle: 'solid',
+            hasBorder: true,
+            borderWidth: '2px',
+            borderStyle: 'Solid',
             borderColor: EXAMPLE_COLOR,
         },
     });
@@ -93,9 +93,6 @@ it('renders code snippet with border', () => {
 it('renders code snippet with border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withBorder: true,
-            lineWidth: '2px',
-            lineStyle: 'solid',
             borderColor: EXAMPLE_COLOR,
             hasExtendedCustomRadius: false,
             extendedRadiusChoice: Radius.Large,
@@ -109,9 +106,6 @@ it('renders code snippet with border radius', () => {
 it('renders code snippet with custom border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withBorder: true,
-            lineWidth: '2px',
-            lineStyle: 'solid',
             borderRadius: '12px',
             borderColor: EXAMPLE_COLOR,
             hasExtendedCustomRadius: true,

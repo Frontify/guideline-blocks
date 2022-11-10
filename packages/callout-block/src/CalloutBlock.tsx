@@ -12,11 +12,14 @@ import {
 } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
+import { CalloutIcon } from './components/CalloutIcon';
+import { hasRichTextValue } from './utils/hasRichTextValue';
 import { ICON_ASSET_ID } from './settings';
 import {
     Appearance,
     BlockSettings,
     CalloutBlockProps,
+    Icon,
     Type,
     Width,
     alignmentMap,
@@ -88,10 +91,12 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     ...customCornerRadiusStyle,
                 }}
             >
-                {blockSettings.iconSwitch && iconUrl && (
-                    <span className="tw-mr-3 tw-flex-none tw-w-6 tw-h-6">
-                        <img data-test-id="callout-icon" alt="Callout icon" src={iconUrl} />
-                    </span>
+                {blockSettings.iconType === Icon.None || (blockSettings.iconSwitch && !iconUrl) ? null : (
+                    <CalloutIcon
+                        iconUrl={iconUrl}
+                        isActive={hasRichTextValue(blockSettings.textValue)}
+                        iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
+                    />
                 )}
                 <RichTextEditor
                     onTextChange={onTextChange}

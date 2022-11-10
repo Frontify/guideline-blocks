@@ -10,7 +10,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { Alignment, Appearance, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
+import { Alignment, Appearance, Icon, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_TOP_ID = 'paddingTop';
@@ -73,6 +73,7 @@ export const settings: BlockSettings = {
             id: 'iconSwitch',
             type: 'switch',
             defaultValue: false,
+            switchLabel: 'Custom',
             info: 'Custom icons will always display the same way, they were created. To tweak icon colors, apply the changes in the icon, then upload it again.',
             label: 'Icon',
             on: [
@@ -82,6 +83,31 @@ export const settings: BlockSettings = {
                     size: AssetInputSize.Small,
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
+                },
+            ],
+            off: [
+                {
+                    id: 'iconType',
+                    type: 'slider',
+                    defaultValue: Icon.None,
+                    choices: [
+                        {
+                            label: 'None',
+                            value: Icon.None,
+                        },
+                        {
+                            icon: IconEnum.Info,
+                            value: Icon.Info,
+                        },
+                        {
+                            icon: IconEnum.Lightbulb,
+                            value: Icon.Lightbulb,
+                        },
+                        {
+                            icon: IconEnum.Megaphone,
+                            value: Icon.Megaphone,
+                        },
+                    ],
                 },
             ],
         },
