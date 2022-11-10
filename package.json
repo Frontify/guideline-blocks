@@ -27,7 +27,7 @@
         "@types/react-dom": "17.0.17",
         "@vitejs/plugin-react": "2.1.0",
         "cypress": "10.8.0",
-        "cypress-real-events": "1.7.1",
+        "cypress-real-events": "1.7.4",
         "happy-dom": "6.0.4",
         "postcss": "8.4.16",
         "tailwindcss": "3.1.8",
