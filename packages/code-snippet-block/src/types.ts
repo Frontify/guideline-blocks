@@ -40,11 +40,11 @@ export type Settings = {
     content?: string;
     borderColor: Color;
     language?: Language;
-    withBorder?: boolean;
+    hasBorder?: boolean;
     withHeading?: boolean;
     withRowNumbers?: boolean;
-    lineStyle: TwBorderInlineStyle;
-    lineWidth: Property.BorderWidth;
+    borderStyle: TwBorderInlineStyle;
+    borderWidth: Property.BorderWidth;
 } & RadiusExtendedSettings;
 
 export type CodeMirrorEditorProps = {

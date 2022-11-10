@@ -1,15 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import {
-    Radius,
-    appendUnit,
-    getExtendedBorderRadiusSettings,
-    numericalOrPixelRule,
-} from '@frontify/guideline-blocks-shared';
+import { DropdownSize, IconEnum } from '@frontify/fondue';
+import { Radius, getBorderSettings, getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
 
-import { BORDER_COLOR_DEFAULT_VALUE, DEFAULT_THEME_VALUE } from './constants';
+import { DEFAULT_THEME_VALUE } from './constants';
 
 export const settings: BlockSettings = {
     main: [
@@ -134,58 +129,7 @@ export const settings: BlockSettings = {
                 },
             ],
         },
-        {
-            id: 'withBorder',
-            type: 'switch',
-            defaultValue: true,
-            label: 'Border',
-            on: [
-                {
-                    id: 'border',
-                    type: 'multiInput',
-                    lastItemFullWidth: true,
-                    onChange: (bundle) => {
-                        appendUnit(bundle, 'lineWidth');
-                    },
-                    blocks: [
-                        {
-                            id: 'lineStyle',
-                            type: 'dropdown',
-                            defaultValue: 'solid',
-                            size: DropdownSize.Small,
-                            choices: [
-                                {
-                                    value: 'dotted',
-                                    label: 'Dotted',
-                                },
-                                {
-                                    value: 'dashed',
-                                    label: 'Dashed',
-                                },
-                                {
-                                    value: 'solid',
-                                    label: 'Solid',
-                                },
-                            ],
-                        },
-                        {
-                            id: 'lineWidth',
-                            type: 'input',
-                            defaultValue: '1px',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            clearable: false,
-                        },
-                        {
-                            id: 'borderColor',
-                            type: 'colorInput',
-                            defaultValue: BORDER_COLOR_DEFAULT_VALUE,
-                        },
-                    ],
-                    layout: MultiInputLayout.Columns,
-                },
-            ],
-        },
+        getBorderSettings({ defaultValue: true }),
         getExtendedBorderRadiusSettings({ defaultValue: Radius.Medium }),
     ],
 };
