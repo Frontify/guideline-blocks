@@ -82,7 +82,7 @@ it('renders code snippet with border', () => {
         blockSettings: {
             hasBorder: true,
             borderWidth: '2px',
-            borderStyle: 'solid',
+            borderStyle: 'Solid',
             borderColor: EXAMPLE_COLOR,
         },
     });
@@ -90,12 +90,12 @@ it('renders code snippet with border', () => {
     cy.get(codeSnippetEditorSelector).should('have.css', 'border', '2px solid rgb(22, 181, 181)');
 });
 
-it('renders code snippet with border radius', () => {
+it.only('renders code snippet with border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withBorder: true,
-            lineWidth: '2px',
-            lineStyle: 'solid',
+            hasBorder: true,
+            borderWidth: '2px',
+            borderStyle: 'Solid',
             borderColor: EXAMPLE_COLOR,
             hasExtendedCustomRadius: false,
             extendedRadiusChoice: Radius.Large,
@@ -109,9 +109,9 @@ it('renders code snippet with border radius', () => {
 it('renders code snippet with custom border radius', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
-            withBorder: true,
-            lineWidth: '2px',
-            lineStyle: 'solid',
+            hasBorder: true,
+            borderWidth: '2px',
+            borderStyle: 'Solid',
             borderRadius: '12px',
             borderColor: EXAMPLE_COLOR,
             hasExtendedCustomRadius: true,
