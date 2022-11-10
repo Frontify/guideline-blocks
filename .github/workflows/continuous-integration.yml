@@ -129,5 +129,9 @@ jobs:
             - name: Build packages
               run: pnpm run build
 
-            - name: Component Tests
-              run: pnpm run test:components --spec $(node ./.github/lib/cypress-matrix.js ${{ env.NUMBER_OF_RUNNERS }} ${{ matrix.containers }})
+            - name: Component tests
+              uses: cypress-io/github-action@v4.2.0
+              with:
+                  install: false
+                  component: true
+                  spec: $(node ./.github/lib/cypress-matrix.js ${{ env.NUMBER_OF_RUNNERS }} ${{ matrix.containers }})
