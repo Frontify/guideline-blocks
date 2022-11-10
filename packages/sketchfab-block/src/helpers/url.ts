@@ -33,7 +33,7 @@ const getUrlStringWithoutSearchParams = (url?: string) => {
         }
         const urlObj = new URL(url);
         return urlObj.origin + urlObj.pathname.replace(/\/$/, '');
-    } catch (e) {
+    } catch (error) {
         return '';
     }
 };
@@ -55,7 +55,7 @@ export const generateSketchfabEmbedUrl = (url: string) => {
         }
 
         throw 'Unsupported Sketchfab URL';
-    } catch (e) {
+    } catch (error) {
         return '';
     }
 };

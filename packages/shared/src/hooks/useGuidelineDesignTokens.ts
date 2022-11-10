@@ -102,8 +102,8 @@ export const useGuidelineDesignTokens = () => {
                 const json = await response.json();
                 const transformedCategories = mapToGuidelineDesignTokens(json.hub.appearance);
                 setDesignTokens(transformedCategories);
-            } catch (err) {
-                setError(err);
+            } catch (error_) {
+                setError(error_);
             } finally {
                 setIsLoading(false);
             }

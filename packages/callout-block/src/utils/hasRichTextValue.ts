@@ -20,7 +20,7 @@ export const hasRichTextValue = (string?: string) => {
     try {
         const json = JSON.parse(string);
         return hasText(json);
-    } catch (e) {
+    } catch (error) {
         return false;
     }
 };
