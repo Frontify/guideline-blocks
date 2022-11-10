@@ -20,7 +20,7 @@
         "@types/react": "17.0.50",
         "@types/react-dom": "17.0.17",
         "@react-types/shared": "3.11.2",
-        "autoprefixer": "10.4.12",
+        "autoprefixer": "10.4.13",
         "cypress": "10.8.0",
         "cypress-real-events": "1.7.1",
         "eslint": "8.24.0",
