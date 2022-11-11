@@ -5,10 +5,12 @@ Provides the block settings types for the guideline-blocks.
 ## Example
 
 ```ts
-import { Bundle, BlockSettings } from '@frontify/guideline-blocks-settings';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import { IconEnum } from '@frontify/fondue';
 
-const Settings: BlockSettings = {
+export const settings: BlockSettings = {
     main: [
         {
             id: 'example',
@@ -35,4 +37,5 @@ const Settings: BlockSettings = {
             },
         },
     ],
+};
 ```
