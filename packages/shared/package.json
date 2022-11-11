@@ -27,6 +27,7 @@
         "@types/tinycolor2": "1.4.3",
         "@vitejs/plugin-react": "2.2.0",
         "eslint": "8.27.0",
+        "eslint-plugin-notice": "0.9.10",
         "happy-dom": "7.6.7",
         "mitt": "3.0.0",
         "msw": "0.48.1",
