@@ -139,8 +139,8 @@ export type DecorationStyle = {
 
 export type Settings = {
     content: OrderableListItem<ChecklistContent>[];
-    incompleteTextColor: Color;
-    incompleteCheckboxColor: Color;
+    textColor: Color;
+    checkboxColor: Color;
     completeTextColor: Color;
     completeCheckboxColor: Color;
     completedDecoration: ChecklistDecoration;
@@ -157,8 +157,8 @@ export type Settings = {
 
 export const DefaultValues: Settings = {
     content: [],
-    incompleteTextColor: { red: 45, green: 50, blue: 50, alpha: 1 },
-    incompleteCheckboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
+    textColor: { red: 45, green: 50, blue: 50, alpha: 1 },
+    checkboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
     completeTextColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completeCheckboxColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completedDecoration: ChecklistDecoration.Checkbox,

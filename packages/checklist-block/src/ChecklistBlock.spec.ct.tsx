@@ -48,8 +48,8 @@ const createContentArray = (length: number, fixedParams?: Partial<OrderableListI
 
 const testSettings: Settings = {
     content: [],
-    incompleteTextColor: { red: 45, green: 50, blue: 50, alpha: 1 },
-    incompleteCheckboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
+    textColor: { red: 45, green: 50, blue: 50, alpha: 1 },
+    checkboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
     completeTextColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completeCheckboxColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completedDecoration: ChecklistDecoration.Strikethrough,
@@ -381,13 +381,13 @@ describe('Checklist Block', () => {
                 expect(border).to.equal(toRgbaString(testSettings.completeCheckboxColor));
                 expect(fill).to.equal(toRgbaString(testSettings.completeCheckboxColor));
             } else {
-                expect(border).to.equal(toRgbaString(testSettings.incompleteCheckboxColor));
+                expect(border).to.equal(toRgbaString(testSettings.checkboxColor));
                 expect(fill).to.equal('rgb(255, 255, 255)');
             }
         });
         cy.get(TEXT_EDITOR).each(($editor) => {
             const color = $editor.css('color');
-            expect(color).to.equal(toRgbaString(testSettings.incompleteTextColor));
+            expect(color).to.equal(toRgbaString(testSettings.textColor));
         });
         cy.get(CHECKBOX_LABEL)
             .find('span')
