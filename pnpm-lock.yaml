@@ -66,11 +66,12 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
-      postcss: 8.4.18
+      eslint-plugin-notice: 0.9.10
+      postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
-      tailwindcss: 3.1.8
+      tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.24_sfoxds7t5ydpegc3knd667wn6m
@@ -86,12 +87,13 @@ importers:
       '@frontify/guideline-blocks-shared': link:../../packages/shared
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
-      autoprefixer: 10.4.13_postcss@8.4.18
+      autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
-      postcss: 8.4.18
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
+      postcss: 8.4.19
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.18
+      tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   examples/guideline-design-tokens:
@@ -108,12 +110,13 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       mitt: ^3.0.0
-      postcss: 8.4.18
+      postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
-      tailwindcss: 3.1.8
+      tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.24_sfoxds7t5ydpegc3knd667wn6m
@@ -128,13 +131,14 @@ importers:
       '@frontify/guideline-blocks-shared': link:../../packages/shared
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
-      autoprefixer: 10.4.13_postcss@8.4.18
+      autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       mitt: 3.0.0
-      postcss: 8.4.18
+      postcss: 8.4.19
       prettier: 2.7.1
-      tailwindcss: 3.1.8_postcss@8.4.18
+      tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/block-settings:
@@ -143,6 +147,7 @@ importers:
       '@frontify/eslint-config-typescript': 0.15.5
       '@frontify/fondue': latest
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
@@ -155,6 +160,7 @@ importers:
     devDependencies:
       '@frontify/eslint-config-typescript': 0.15.5_pcit6nykmxit3vv6c7deq76n7y
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -177,6 +183,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -200,6 +207,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -210,7 +218,7 @@ importers:
       '@babel/core': 7.20.2
       '@frontify/app-bridge': 3.0.0-beta.24
       '@frontify/eslint-config-react': 0.15.5
-      '@frontify/fondue': 12.0.0-beta.19
+      '@frontify/fondue': 12.0.0-beta.11
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/frontify-cli': 5.1.2
       '@frontify/guideline-blocks-settings': workspace:*
@@ -228,6 +236,7 @@ importers:
       cypress-real-events: 1.7.4
       dayjs: 1.11.6
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -236,7 +245,7 @@ importers:
       typescript: 4.8.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.24_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.19_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue': 12.0.0-beta.11_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/guideline-blocks-settings': link:../block-settings
       '@frontify/guideline-blocks-shared': link:../shared
@@ -259,6 +268,7 @@ importers:
       cypress: 11.0.1
       cypress-real-events: 1.7.4_cypress@11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -302,6 +312,7 @@ importers:
       csstype: 3.1.1
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -348,6 +359,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -369,6 +381,7 @@ importers:
       cypress: 11.0.1
       cypress-real-events: 1.7.4
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -397,6 +410,7 @@ importers:
       cypress: 11.0.1
       cypress-real-events: 1.7.4_cypress@11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.1_postcss@8.4.19
@@ -417,6 +431,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -440,6 +455,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -461,6 +477,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -489,6 +506,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -509,6 +527,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -532,6 +551,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -552,6 +572,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -575,6 +596,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -640,6 +662,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -663,6 +686,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -684,6 +708,7 @@ importers:
       cypress: 11.0.1
       dayjs: 1.11.6
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -708,6 +733,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -728,6 +754,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -751,6 +778,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -770,6 +798,7 @@ importers:
       '@types/tinycolor2': 1.4.3
       '@vitejs/plugin-react': 2.2.0
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       happy-dom: 7.6.7
       mitt: 3.0.0
       msw: 0.48.1
@@ -797,6 +826,7 @@ importers:
       '@types/tinycolor2': 1.4.3
       '@vitejs/plugin-react': 2.2.0_vite@3.2.3
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       happy-dom: 7.6.7
       mitt: 3.0.0
       msw: 0.48.1_typescript@4.8.4
@@ -824,6 +854,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -847,6 +878,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -868,6 +900,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       postcss: 8.4.19
       prettier: 2.7.1
       react: 17.0.2
@@ -892,6 +925,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -913,6 +947,7 @@ importers:
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
       lodash-es: 4.17.21
       postcss: 8.4.19
       prettier: 2.7.1
@@ -939,6 +974,7 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       cypress: 11.0.1
       eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
       tailwindcss: 3.2.3_postcss@8.4.19
@@ -2039,88 +2075,6 @@ packages:
       '@react-stately/tree': 3.3.1_react@17.0.2
       '@storybook/addon-a11y': 6.5.9_sfoxds7t5ydpegc3knd667wn6m
       '@udecode/plate': 16.9.1_3applnbcmonz6yjsxb2hv5truu
-      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
-      '@xstate/react': 1.6.3_3u7fm7vqjqg5ddhec34i275fya
-      date-fns: 2.28.0
-      framer-motion: 6.5.1_sfoxds7t5ydpegc3knd667wn6m
-      immer: 9.0.12
-      react: 17.0.2
-      react-colorful: 5.5.1_sfoxds7t5ydpegc3knd667wn6m
-      react-datepicker: 4.7.0_sfoxds7t5ydpegc3knd667wn6m
-      react-dnd: 15.1.2_pxzommwrsowkd4kgag6q3sluym
-      react-dnd-html5-backend: 15.1.3
-      react-dom: 17.0.2_react@17.0.2
-      react-is: 18.1.0
-      react-popper: 2.3.0_kz2vxbzpsgxv356x2ucg6oykdm
-      react-textarea-autosize: 8.3.4_pxzommwrsowkd4kgag6q3sluym
-      scheduler: 0.20.2
-      slate: 0.78.0
-      slate-history: 0.66.0_slate@0.78.0
-      slate-hyperscript: 0.77.0_slate@0.78.0
-      slate-react: 0.79.0_73yv25gc2m6entrjrcdpahn2yi
-      styled-components: 5.3.5_ukrbqhh2t6r2q67fyfhmpyy5um
-      tinycolor2: 1.4.2
-      xstate: 4.32.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@tanstack/query-core'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - optics-ts
-      - react-native
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/fondue/12.0.0-beta.19_angvksxlvvfhyjj3xhcshgfg2m:
-    resolution: {integrity: sha512-oulFlvtUba9+kA4JMZZo+tujGH2KxbPBfHM9rRLfp6WOIEFBUXAE6joW1clG0vxZL9UCcKj4LtMXhwP5ioZZZQ==}
-    engines: {node: ~16}
-    peerDependencies:
-      react: ^17.0.2
-      react-dom: ^17.0.2
-    dependencies:
-      '@frontify/fondue-tokens': 3.2.0
-      '@popperjs/core': 2.11.5
-      '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
-      '@react-aria/aria-modal-polyfill': 3.4.4_react@17.0.2
-      '@react-aria/breadcrumbs': 3.1.10_react@17.0.2
-      '@react-aria/button': 3.5.1_react@17.0.2
-      '@react-aria/checkbox': 3.5.1_react@17.0.2
-      '@react-aria/combobox': 3.2.6_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/dialog': 3.1.9_react@17.0.2
-      '@react-aria/focus': 3.8.0_react@17.0.2
-      '@react-aria/interactions': 3.11.0_react@17.0.2
-      '@react-aria/link': 3.2.5_react@17.0.2
-      '@react-aria/listbox': 3.4.5_react@17.0.2
-      '@react-aria/menu': 3.4.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/overlays': 3.8.2_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/radio': 3.1.11_react@17.0.2
-      '@react-aria/select': 3.6.5_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/selection': 3.9.1_react@17.0.2
-      '@react-aria/table': 3.2.4_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/tooltip': 3.1.8_react@17.0.2
-      '@react-aria/utils': 3.13.3_react@17.0.2
-      '@react-aria/visually-hidden': 3.2.8_react@17.0.2
-      '@react-stately/checkbox': 3.2.1_react@17.0.2
-      '@react-stately/collections': 3.4.2_react@17.0.2
-      '@react-stately/combobox': 3.2.0_react@17.0.2
-      '@react-stately/list': 3.5.2_react@17.0.2
-      '@react-stately/menu': 3.4.0_react@17.0.2
-      '@react-stately/overlays': 3.4.0_react@17.0.2
-      '@react-stately/radio': 3.5.0_react@17.0.2
-      '@react-stately/select': 3.3.0_react@17.0.2
-      '@react-stately/table': 3.3.0_react@17.0.2
-      '@react-stately/toggle': 3.4.1_react@17.0.2
-      '@react-stately/tooltip': 3.2.0_react@17.0.2
-      '@react-stately/tree': 3.3.1_react@17.0.2
-      '@storybook/addon-a11y': 6.5.13_sfoxds7t5ydpegc3knd667wn6m
-      '@udecode/plate': 18.9.0_3applnbcmonz6yjsxb2hv5truu
       '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.32.0
       '@xstate/react': 1.6.3_3u7fm7vqjqg5ddhec34i275fya
       date-fns: 2.28.0
@@ -8595,7 +8549,7 @@ packages:
       '@udecode/plate-core': 16.8.0_lzld3l452jl7ai3c5z6wescmva
       '@udecode/plate-styled-components': 16.8.0_3u2a2wscqng4lreiczswztzzfe
       react: 17.0.2
-      react-dnd: 15.1.2_smc5esni47gpbltvxzeziduyte
+      react-dnd: 15.1.2_pxzommwrsowkd4kgag6q3sluym
       react-dnd-html5-backend: 15.1.3
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -9837,7 +9791,7 @@ packages:
       '@udecode/plate-ui-table': 16.8.0_jbz7ghep6wjhxqiau5fvi2yqxy
       '@udecode/plate-ui-toolbar': 16.8.0_jbz7ghep6wjhxqiau5fvi2yqxy
       react: 17.0.2
-      react-dnd: 15.1.2_smc5esni47gpbltvxzeziduyte
+      react-dnd: 15.1.2_pxzommwrsowkd4kgag6q3sluym
       react-dnd-html5-backend: 15.1.3
       react-dom: 17.0.2_react@17.0.2
       slate: 0.78.0
@@ -10439,22 +10393,6 @@ packages:
   /atomic-sleep/1.0.0:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
     engines: {node: '>=8.0.0'}
-    dev: true
-
-  /autoprefixer/10.4.13_postcss@8.4.18:
-    resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
-    engines: {node: ^10 || ^12 || >=14}
-    hasBin: true
-    peerDependencies:
-      postcss: ^8.1.0
-    dependencies:
-      browserslist: 4.21.4
-      caniuse-lite: 1.0.30001427
-      fraction.js: 4.2.0
-      normalize-range: 0.1.2
-      picocolors: 1.0.0
-      postcss: 8.4.18
-      postcss-value-parser: 4.2.0
     dev: true
 
   /autoprefixer/10.4.13_postcss@8.4.19:
@@ -14030,18 +13968,6 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /postcss-import/14.1.0_postcss@8.4.18:
-    resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      postcss: ^8.0.0
-    dependencies:
-      postcss: 8.4.18
-      postcss-value-parser: 4.2.0
-      read-cache: 1.0.0
-      resolve: 1.22.1
-    dev: true
-
   /postcss-import/14.1.0_postcss@8.4.19:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
@@ -14053,16 +13979,6 @@ packages:
       read-cache: 1.0.0
       resolve: 1.22.1
 
-  /postcss-js/4.0.0_postcss@8.4.18:
-    resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
-    engines: {node: ^12 || ^14 || >= 16}
-    peerDependencies:
-      postcss: ^8.3.3
-    dependencies:
-      camelcase-css: 2.0.1
-      postcss: 8.4.18
-    dev: true
-
   /postcss-js/4.0.0_postcss@8.4.19:
     resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}
     engines: {node: ^12 || ^14 || >= 16}
@@ -14071,23 +13987,6 @@ packages:
     dependencies:
       camelcase-css: 2.0.1
       postcss: 8.4.19
-
-  /postcss-load-config/3.1.4_postcss@8.4.18:
-    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 2.0.6
-      postcss: 8.4.18
-      yaml: 1.10.2
-    dev: true
 
   /postcss-load-config/3.1.4_postcss@8.4.19:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
@@ -14122,16 +14021,6 @@ packages:
       ts-node: 10.9.1_27ec3h7d2bmjwz3w2efi2jw4se
       yaml: 1.10.2
 
-  /postcss-nested/5.0.6_postcss@8.4.18:
-    resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.2.14
-    dependencies:
-      postcss: 8.4.18
-      postcss-selector-parser: 6.0.10
-    dev: true
-
   /postcss-nested/6.0.0_postcss@8.4.19:
     resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
     engines: {node: '>=12.0'}
@@ -14150,15 +14039,6 @@ packages:
 
   /postcss-value-parser/4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
-
-  /postcss/8.4.18:
-    resolution: {integrity: sha512-Wi8mWhncLJm11GATDaQKobXSNEYGUHeQLiQqDFG1qQ5UTDPTEvKw0Xt5NsTpktGTwLps3ByrWsBrG0rB8YQ9oA==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.4
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
 
   /postcss/8.4.19:
     resolution: {integrity: sha512-h+pbPsyhlYj6N2ozBmHhHrs9DzGmbaarbLvWipMRO7RLS+v4onj26MPFXA5OBYFxyqYhUJK456SwDcY9H2/zsA==}
@@ -15308,39 +15188,6 @@ packages:
     resolution: {integrity: sha512-J8jTXuZzRlvU7HemDgHi3pGnh/rkoqR/OZSjhTyyZrEkkYQbk7Z33AXp37mkPfPpfdOuj7Ex3H/TJM1z48uPQw==}
     dependencies:
       get-port: 3.2.0
-    dev: true
-
-  /tailwindcss/3.1.8_postcss@8.4.18:
-    resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
-    engines: {node: '>=12.13.0'}
-    hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
-    dependencies:
-      arg: 5.0.2
-      chokidar: 3.5.3
-      color-name: 1.1.4
-      detective: 5.2.1
-      didyoumean: 1.2.2
-      dlv: 1.1.3
-      fast-glob: 3.2.12
-      glob-parent: 6.0.2
-      is-glob: 4.0.3
-      lilconfig: 2.0.6
-      normalize-path: 3.0.0
-      object-hash: 3.0.0
-      picocolors: 1.0.0
-      postcss: 8.4.18
-      postcss-import: 14.1.0_postcss@8.4.18
-      postcss-js: 4.0.0_postcss@8.4.18
-      postcss-load-config: 3.1.4_postcss@8.4.18
-      postcss-nested: 5.0.6_postcss@8.4.18
-      postcss-selector-parser: 6.0.10
-      postcss-value-parser: 4.2.0
-      quick-lru: 5.1.1
-      resolve: 1.22.1
-    transitivePeerDependencies:
-      - ts-node
     dev: true
 
   /tailwindcss/3.2.1_postcss@8.4.19:
