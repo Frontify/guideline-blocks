@@ -2,7 +2,7 @@
 
 import { FOCUS_STYLE, merge } from '@frontify/fondue';
 import { useFocusRing } from '@react-aria/focus';
-import { FC, KeyboardEvent, MouseEvent, ReactElement, useRef } from 'react';
+import { Children, FC, KeyboardEvent, MouseEvent, ReactElement, cloneElement, useRef } from 'react';
 
 type FocusControllerProps = {
     children: ReactElement;
@@ -82,7 +82,7 @@ export const FocusController: FC<FocusControllerProps> = ({ children, width = Fo
             {...focusProps}
         >
             <div hidden={true} className={merge(['tw-flex', FocusControllerWidthClass[width]])}>
-                {{ ...children, ref: childRef }}
+                {Children.map(children, (child) => cloneElement(child, { ref: childRef }))}
             </div>
         </div>
     );

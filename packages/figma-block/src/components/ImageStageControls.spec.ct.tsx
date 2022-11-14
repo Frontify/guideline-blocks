@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { DrawFullScreenActionButton, DrawZoomInOutButtons } from './ImageStageControls';
 
-const ICON_ZOOM_IN_SELECTOR = '[name="IconPlus20"]';
-const ICON_ZOOM_OUT_SELECTOR = '[name="IconMinus20"]';
+const ICON_ZOOM_IN_SELECTOR = '[name="IconPlus16"]';
+const ICON_ZOOM_OUT_SELECTOR = '[name="IconMinus16"]';
 const ICON_REJECT_SELECTOR = '[name="IconCross20"]';
 const ICON_EXPAND_SELECTOR = '[name="IconArrowExpand20"]';
 

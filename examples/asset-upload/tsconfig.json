@@ -13,9 +13,9 @@
         "jsx": "react-jsx",
         "lib": ["ES2021", "DOM"],
         "resolveJsonModule": true,
-        "types": ["cypress"],
+        "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"],
         "skipLibCheck": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "../../packages/shared/src/**/*"],
     "exclude": ["node_modules", "dist"]
 }

@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { OrderableListItem } from '@frontify/fondue';
-import { Padding, paddingStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { LegacyOrderableListItem } from '@frontify/fondue';
+import { toRgbaString } from '@frontify/guideline-blocks-settings';
+import { mount } from 'cypress/react18';
 import { ChecklistBlock } from './ChecklistBlock';
 import { createItem } from './helpers';
 import {
@@ -34,8 +34,8 @@ const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 const DRAGGABLE_ITEM = '[data-test-id=draggable-item]';
 const INSERTION_INDICATOR = '[data-test-id=insertion-indicator]';
 
-const createContentArray = (length: number, fixedParams?: Partial<OrderableListItem<ChecklistContent>>) => {
-    const createRandomItem = (fixedParams?: Partial<OrderableListItem<ChecklistContent>>) => {
+const createContentArray = (length: number, fixedParams?: Partial<LegacyOrderableListItem<ChecklistContent>>) => {
+    const createRandomItem = (fixedParams?: Partial<LegacyOrderableListItem<ChecklistContent>>) => {
         const item = createItem('text', null);
 
         item.completed = Math.random() > 0.5;
@@ -48,14 +48,8 @@ const createContentArray = (length: number, fixedParams?: Partial<OrderableListI
 
 const testSettings: Settings = {
     content: [],
-    hasExtendedCustomPadding: false,
-    extendedPaddingChoice: Padding.Large,
-    extendedPaddingTop: '0px',
-    extendedPaddingBottom: '0px',
-    extendedPaddingLeft: '0px',
-    extendedPaddingRight: '0px',
-    incompleteTextColor: { red: 45, green: 50, blue: 50, alpha: 1 },
-    incompleteCheckboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
+    textColor: { red: 45, green: 50, blue: 50, alpha: 1 },
+    checkboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
     completeTextColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completeCheckboxColor: { red: 255, green: 55, blue: 90, alpha: 1 },
     completedDecoration: ChecklistDecoration.Strikethrough,
@@ -266,7 +260,7 @@ describe('Checklist Block', () => {
             .find(CONTROL_BUTTONS)
             .find('button')
             .each(($button, index) =>
-                index === 0 ? expect($button).to.be.disabled : expect($button).not.to.be.disabled
+                index === 0 ? expect($button).to.be.disabled : expect($button).not.to.be.disabled,
             );
         cy.get(CHECKLIST_CONTAINER)
             .find(CHECKLIST_ITEM)
@@ -274,7 +268,7 @@ describe('Checklist Block', () => {
             .find(CONTROL_BUTTONS)
             .find('button')
             .each(($button, index) =>
-                index === 1 ? expect($button).to.be.disabled : expect($button).not.to.be.disabled
+                index === 1 ? expect($button).to.be.disabled : expect($button).not.to.be.disabled,
             );
     });
 
@@ -387,13 +381,13 @@ describe('Checklist Block', () => {
                 expect(border).to.equal(toRgbaString(testSettings.completeCheckboxColor));
                 expect(fill).to.equal(toRgbaString(testSettings.completeCheckboxColor));
             } else {
-                expect(border).to.equal(toRgbaString(testSettings.incompleteCheckboxColor));
+                expect(border).to.equal(toRgbaString(testSettings.checkboxColor));
                 expect(fill).to.equal('rgb(255, 255, 255)');
             }
         });
         cy.get(TEXT_EDITOR).each(($editor) => {
             const color = $editor.css('color');
-            expect(color).to.equal(toRgbaString(testSettings.incompleteTextColor));
+            expect(color).to.equal(toRgbaString(testSettings.textColor));
         });
         cy.get(CHECKBOX_LABEL)
             .find('span')
@@ -413,29 +407,9 @@ describe('Checklist Block', () => {
         cy.get(PROGRESS_BAR_FILL).should(
             'have.css',
             'background-color',
-            toRgbaString(testSettings.progressBarFillColor)
-        );
-        cy.get(CHECKLIST_BLOCK_SELECTOR).should(
-            'have.css',
-            'padding',
-            paddingStyleMap[testSettings.extendedPaddingChoice]
+            toRgbaString(testSettings.progressBarFillColor),
         );
         cy.get(CHECKBOX_DATE).should('have.length', 5);
-    });
-
-    it('Uses custom padding if advanced it set to true', () => {
-        const [ChecklistBlockWithStubs] = withAppBridgeBlockStubs(ChecklistBlock, {
-            blockSettings: {
-                hasExtendedCustomPadding: true,
-                extendedPaddingChoice: Padding.Large,
-                extendedPaddingTop: '3px',
-                extendedPaddingRight: '5px',
-                extendedPaddingBottom: '6px',
-                extendedPaddingLeft: '4px',
-            },
-        });
-        mount(<ChecklistBlockWithStubs />);
-        cy.get(CHECKLIST_BLOCK_SELECTOR).should('have.css', 'padding', '3px 5px 6px 4px');
     });
 
     it('Does not show date if visibility is off', () => {

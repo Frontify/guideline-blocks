@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { OrderableListItem } from '@frontify/fondue';
+import { LegacyOrderableListItem } from '@frontify/fondue';
 import { ChecklistContent } from '../types';
 
-export const reorderList = <T extends OrderableListItem<ChecklistContent>>(
+export const reorderList = <T extends LegacyOrderableListItem<ChecklistContent>>(
     array: T[],
     originalIndex: number,
-    newIndex: number
+    newIndex: number,
 ): T[] =>
     array.map((value, index) => {
         if (index === newIndex) {

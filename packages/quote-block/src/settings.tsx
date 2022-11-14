@@ -1,9 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
-import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import type { AssetInputBlock, BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import {
+    AssetChooserObjectType,
+    BorderStyle,
+    Bundle,
+    Choice,
+    FileExtension,
+    IconEnum,
+    appendUnit,
+    defineSettings,
+    numericalOrPixelRule,
+    presetCustomValue,
+} from '@frontify/guideline-blocks-settings';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
 import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
 import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
@@ -33,7 +41,6 @@ const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const style = { width: '20px', height: '20px' };
 const QUOTE_STYLE_CHOICES = [
-    // TODO: replace icons as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
     {
         value: QuoteStyle.DoubleUp,
         icon: <IconDoubleQuotesUp style={style} />,
@@ -83,22 +90,22 @@ export const DEFAULT_COLOR_VALUE = { red: 179, green: 181, blue: 181, alpha: 1, 
 
 const isSelected = (bundle: Bundle, choice: QuoteType): boolean => bundle.getBlock(QUOTE_TYPE_ID)?.value === choice;
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: QUOTE_TYPE_ID,
             type: 'dropdown',
             defaultValue: QuoteType.QuotationMarks,
-            size: 'Large' as DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
-                    icon: 'SpeechBubbleQuote' as IconEnum.SpeechBubbleQuote,
+                    icon: IconEnum.SpeechBubbleQuote,
                     label: 'Quotation Marks',
                 },
                 {
                     value: QuoteType.Indentation,
-                    icon: 'ListIndented' as IconEnum.ListIndented,
+                    icon: IconEnum.ListIndented,
                     label: 'Indentation',
                 },
             ],
@@ -109,7 +116,7 @@ export const settings: BlockSettings = {
             id: 'quotationMarksContentSection',
             type: 'sectionHeading',
             label: 'Quotation marks',
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle) => isSelected(bundle, QuoteType.QuotationMarks),
             blocks: [
                 {
                     id: IS_CUSTOM_QUOTE_STYLE_LEFT_ID,
@@ -121,12 +128,12 @@ export const settings: BlockSettings = {
                         {
                             id: CUSTOM_QUOTE_STYLE_LEFT_ID,
                             type: 'assetInput',
-                            size: AssetInputSize.Small,
-                            extensions: ['svg' as FileExtension.Svg],
+                            size: 'small',
+                            extensions: [FileExtension.Svg],
                             objectTypes: [AssetChooserObjectType.ImageVideo],
                             hideSize: true,
                             hideExtension: true,
-                        } as AssetInputBlock,
+                        },
                     ],
                     off: [
                         {
@@ -147,18 +154,18 @@ export const settings: BlockSettings = {
                         {
                             id: CUSTOM_QUOTE_STYLE_RIGHT_ID,
                             type: 'assetInput',
-                            size: AssetInputSize.Small,
-                            extensions: ['svg' as FileExtension.Svg],
+                            size: 'small',
+                            extensions: [FileExtension.Svg],
                             objectTypes: [AssetChooserObjectType.ImageVideo],
                             hideSize: true,
                             hideExtension: true,
-                        } as AssetInputBlock,
+                        },
                     ],
                     off: [
                         {
                             id: QUOTE_STYLE_RIGHT_ID,
                             type: 'dropdown',
-                            defaultValue: QuoteStyle.DoubleDown,
+                            defaultValue: QuoteStyle.None,
                             choices: QUOTE_STYLE_CHOICES,
                         },
                     ],
@@ -182,28 +189,28 @@ export const settings: BlockSettings = {
         },
         {
             id: 'textAlignment',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Text alignment',
             defaultValue: TextAlignment.Left,
             choices: [
                 {
-                    icon: IconEnum.TextAlignmentLeft as IconEnum.TextAlignmentLeft,
+                    icon: IconEnum.TextAlignmentLeft,
                     value: TextAlignment.Left,
                 },
                 {
-                    icon: IconEnum.TextAlignmentCentre as IconEnum.TextAlignmentCentre,
+                    icon: IconEnum.TextAlignmentCentre,
                     value: TextAlignment.Center,
                 },
                 {
-                    icon: IconEnum.TextAlignmentRight as IconEnum.TextAlignmentRight,
+                    icon: IconEnum.TextAlignmentRight,
                     value: TextAlignment.Right,
                 },
             ],
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle) => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: 'quotationMarksAnchoring',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Quotation marks anchoring',
             defaultValue: QuotationMarksAnchoring.FullWidth,
             choices: [
@@ -216,7 +223,7 @@ export const settings: BlockSettings = {
                     value: QuotationMarksAnchoring.HugText,
                 },
             ],
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle) => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
     style: [
@@ -224,7 +231,7 @@ export const settings: BlockSettings = {
             id: 'quotationMarksStyleSection',
             type: 'sectionHeading',
             label: 'Quotation marks',
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle) => isSelected(bundle, QuoteType.QuotationMarks),
             blocks: [
                 {
                     id: 'isCustomSize',
@@ -232,22 +239,21 @@ export const settings: BlockSettings = {
                     type: 'switch',
                     switchLabel: 'Custom',
                     defaultValue: false,
-                    onChange: (bundle: Bundle): void =>
-                        presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
+                    onChange: (bundle) => presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
                     on: [
                         {
                             id: SIZE_VALUE_ID,
                             type: 'input',
                             placeholder: 'e.g. 20px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, SIZE_VALUE_ID),
+                            onChange: (bundle) => appendUnit(bundle, SIZE_VALUE_ID),
                         },
                     ],
                     off: [
                         {
                             id: SIZE_CHOICE_ID,
-                            type: 'slider',
-                            defaultValue: QuoteSize.SmallSize,
+                            type: 'segmentedControls',
+                            defaultValue: QuoteSize.LargeSize,
                             choices: [
                                 {
                                     label: 'S',
@@ -266,10 +272,20 @@ export const settings: BlockSettings = {
                     ],
                 },
                 {
-                    id: 'quotesColor',
-                    label: 'Color',
-                    type: 'colorInput',
-                    defaultValue: DEFAULT_COLOR_VALUE,
+                    id: 'isCustomQuotesColor',
+                    label: 'Custom color',
+                    type: 'switch',
+                    size: 'small',
+                    info: 'The default color is derived from the “Quote” heading style, which can be defined in the design settings.',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: 'quotesColor',
+                            label: 'Color',
+                            type: 'colorInput',
+                            defaultValue: DEFAULT_COLOR_VALUE,
+                        },
+                    ],
                 },
             ],
         },
@@ -278,16 +294,14 @@ export const settings: BlockSettings = {
             label: 'Accent line',
             type: 'switch',
             defaultValue: true,
-            show: (bundle: Bundle): boolean => isSelected(bundle, QuoteType.Indentation),
+            show: (bundle) => isSelected(bundle, QuoteType.Indentation),
             on: [
                 {
                     id: 'accentLineStyle',
                     type: 'multiInput',
-                    onChange: (bundle: Bundle): void => {
-                        appendUnit(bundle, LINE_WIDTH_VALUE_ID);
-                    },
-                    layout: MultiInputLayout.Columns,
-                    lastItemFullWidth: true,
+                    onChange: (bundle) => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
+                    layout: 'columns',
+                    lastItemFullWidth: false,
                     blocks: [
                         {
                             id: 'lineType',
@@ -315,6 +329,16 @@ export const settings: BlockSettings = {
                             rules: [numericalOrPixelRule],
                             placeholder: 'e.g. 3px',
                         },
+                    ],
+                },
+                {
+                    id: 'isCustomLineColor',
+                    label: 'Custom color',
+                    type: 'switch',
+                    size: 'small',
+                    info: 'The default color is derived from the “Quote” heading style, which can be defined in the design settings.',
+                    defaultValue: false,
+                    on: [
                         {
                             id: 'accentLineColor',
                             type: 'colorInput',
@@ -325,4 +349,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

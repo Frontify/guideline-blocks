@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconCross, ItemDragState } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { ButtonGroup, ButtonSize, IconCaretDown, IconCaretUp, IconCross, LegacyItemDragState } from '@frontify/fondue';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
 import { getInteractionModality, useFocusWithin, useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
 import { ChecklistItemMode, ChecklistItemProps } from '../types';
@@ -42,14 +42,14 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
     const shouldDisplayControlPanel =
         (isHovered || focused || isDragFocusVisible) &&
         mode === ChecklistItemMode.Edit &&
-        dragState === ItemDragState.Idle;
+        dragState === LegacyItemDragState.Idle;
 
     const { completed, updatedAt, id, text } = item || DefaultChecklistItem;
 
     const containerClasses = joinClassNames([
-        'tw-flex tw-content-center tw-rounded tw-p-1',
-        dragState === ItemDragState.Preview && 'tw-bg-white',
-        dragState === ItemDragState.Dragging && 'tw-bg-black-5 tw-opacity-70',
+        'tw-relative tw-rounded tw-p-1',
+        dragState === LegacyItemDragState.Preview && 'tw-bg-white',
+        dragState === LegacyItemDragState.Dragging && 'tw-bg-black-5 tw-opacity-70',
         shouldDisplayControlPanel && 'tw-bg-black-5',
     ]);
 
@@ -77,7 +77,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
             data-mode={mode}
             data-key={id}
         >
-            <div className="tw-flex tw-flex-auto tw-content-center tw-p-1">
+            <div className="tw-flex tw-flex-auto tw-content-center tw-p-2">
                 <div className="tw-flex tw-flex-auto tw-items-center">
                     <div className="tw-flex tw-flex-auto tw-items-start">
                         <Checkbox
@@ -97,7 +97,7 @@ export const ChecklistItem: FC<ChecklistItemProps> = ({
             {mode !== ChecklistItemMode.Create && (
                 <div
                     className={joinClassNames([
-                        'tw-flex-none tw-flex tw-items-center',
+                        'tw-absolute tw-top-3 tw-right-3',
                         shouldDisplayControlPanel ? 'tw-opacity-1' : 'tw-opacity-0 tw-pointer-events-none',
                     ])}
                     data-test-id="control-buttons"

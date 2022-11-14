@@ -8,12 +8,12 @@ import {
     Color,
     IconSize,
     IconTrashBin,
-    Tooltip,
+    LegacyTooltip,
     TooltipPosition,
     merge,
     useCopy,
 } from '@frontify/fondue';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import { ColorName } from '../ColorName';
 import { ColorPickerFlyout } from '../ColorPickerFlyout';
@@ -50,7 +50,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     </div>
                 </ColorPickerFlyout>
             ) : (
-                <Tooltip
+                <LegacyTooltip
                     withArrow
                     position={TooltipPosition.Right}
                     content={
@@ -62,6 +62,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     }
                     triggerElement={
                         <div className="tw-h-full tw-mr-9 tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+                            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                             <div
                                 data-test-id="color-tooltip-trigger"
                                 className="tw-w-[120px] tw-h-full tw-min-h-[60px] tw-cursor-pointer tw-shadow-t-inner-line tw-transition-all group-hover:tw-shadow-y-inner-line-x-strong"
@@ -104,7 +105,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
                     if (!isEditing && !mappedColorSpace.value) {
-                        return <></>;
+                        return null;
                     }
 
                     return (
@@ -130,7 +131,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                     onUpdate={onUpdate}
                                 />
                             ) : (
-                                <Tooltip
+                                <LegacyTooltip
                                     withArrow
                                     position={TooltipPosition.Right}
                                     content={
@@ -141,6 +142,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                                         />
                                     }
                                     triggerElement={
+                                        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
                                         <div
                                             data-test-id="color-space-value-trigger"
                                             className="tw-w-28 tw-ml-3 tw-overflow-hidden tw-cursor-pointer tw-whitespace-nowrap tw-text-s tw-text-black-80 tw-overflow-ellipsis"

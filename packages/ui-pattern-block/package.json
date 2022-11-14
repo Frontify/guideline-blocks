@@ -1,0 +1,48 @@
+{
+    "name": "ui-pattern-block",
+    "private": true,
+    "author": "Frontify Developers <developers@frontify.com>",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "serve": "frontify-cli serve --entryPath src/index.ts",
+        "deploy": "frontify-cli deploy --entryPath src/index.ts",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write .",
+        "typecheck": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.22.17",
+        "@frontify/eslint-config-react": "0.16.1",
+        "@frontify/frontify-cli": "^5.3.17",
+        "@types/lodash": "^4.14.199",
+        "@types/lodash-es": "^4.17.9",
+        "@types/react": "^18.2.21",
+        "@types/react-dom": "^18.2.7",
+        "autoprefixer": "^10.4.15",
+        "cypress": "^13.2.0",
+        "eslint": "^8.48.0",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-notice": "^0.9.10",
+        "postcss": "^8.4.29",
+        "prettier": "^3.0.3",
+        "sinon": "^17.0.0",
+        "tailwindcss": "^3.3.3",
+        "typescript": "^5.2.2"
+    },
+    "dependencies": {
+        "@codesandbox/sandpack-react": "^2.9.0",
+        "@codesandbox/sandpack-themes": "^2.0.21",
+        "@frontify/app-bridge": "^3.0.0-beta.98",
+        "@frontify/fondue": "12.0.0-beta.341",
+        "@frontify/guideline-blocks-settings": "^0.29.10",
+        "@frontify/guideline-blocks-shared": "workspace:*",
+        "@mantine/core": "^7.1.2",
+        "lodash": "^4.17.21",
+        "lodash-es": "^4.17.21",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    }
+}

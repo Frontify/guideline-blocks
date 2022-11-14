@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { Validation, validationClassMap } from '@frontify/fondue';
-import { SKETCHFAB_RULE_ERROR } from './helpers';
+import { validationClassMap } from '@frontify/fondue';
+import { mount } from 'cypress/react18';
 import { SketchfabBlock } from './SketchfabBlock';
+import { SKETCHFAB_RULE_ERROR } from './helpers';
 import { SketchfabHeight, SketchfabSettings, heights } from './types';
 
 const MAIN_BLOCK_ID = '[data-test-id="sketchfab-block"]';
@@ -92,7 +92,7 @@ describe('Sketchfab Block', () => {
         cy.get(TEXT_INPUT_ID).type(INVALID_URL);
         cy.get(BUTTON_ID).click();
         cy.get(IFRAME_ID).should('not.exist');
-        cy.get(TEXT_INPUT_ID).parent().should('have.class', validationClassMap[Validation.Error]);
+        cy.get(TEXT_INPUT_ID).parent().should('have.class', validationClassMap['Error']);
         cy.get(EMPTY_BLOCK_EDIT_ID).contains(SKETCHFAB_RULE_ERROR).should('be.visible');
     });
 
@@ -178,7 +178,7 @@ describe('Sketchfab Block', () => {
         cy.get(IFRAME_ID).should(
             'have.attr',
             'src',
-            `${SKETCHFAB_URL}?autospin=${AUTO_SPIN_COUNT}&annotation_cycle=${ANNOTATION_CYCLE_COUNT}`
+            `${SKETCHFAB_URL}?autospin=${AUTO_SPIN_COUNT}&annotation_cycle=${ANNOTATION_CYCLE_COUNT}`,
         );
     });
 });

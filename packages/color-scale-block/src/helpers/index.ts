@@ -3,4 +3,3 @@
 export * from './calculateDefaultColorWidth';
 export * from './constants';
 export * from './resizeEvenly';
-export * from './canExpandColorBlock';

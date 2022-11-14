@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrop } from 'react-dnd';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { DropZonePosition } from '@frontify/fondue';
+import { joinClassNames } from '@frontify/guideline-blocks-settings';
+import { CollisionPosition } from '@frontify/fondue';
 
 import { ColorProps } from '../types';
 import { DropZoneProps } from '../types';
@@ -58,9 +58,9 @@ export const DropZone = ({ data, isDraggingActive, onDrop, width, height, before
                         data-test-id="drop-zone"
                         className={joinClassNames([
                             'tw-top-[0px] tw-bottom-0 tw-h-full',
-                            data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
-                            isActive && data.position !== DropZonePosition.Within && activeOuterDropZoneClassNames,
-                            isActive && data.position === DropZonePosition.Within && bgColorClassName,
+                            data.position !== 'within' ? outerDropZoneClassNames : 'tw-h-auto',
+                            isActive && data.position !== 'within' && activeOuterDropZoneClassNames,
+                            isActive && data.position === 'within' && bgColorClassName,
                             isDraggingActive ? isDraggingActiveClassNames : isDraggingNotActiveClassNames,
                         ])}
                         ref={drop}
@@ -75,9 +75,9 @@ export const DropZone = ({ data, isDraggingActive, onDrop, width, height, before
                         className={joinClassNames([
                             'tw-top-[0px] tw-bottom-0 tw-h-full',
                             afterClassNames,
-                            data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
-                            isActive && data.position !== DropZonePosition.Within && activeOuterDropZoneClassNames,
-                            isActive && data.position === DropZonePosition.Within && bgColorClassName,
+                            data.position !== ('within' as CollisionPosition) ? outerDropZoneClassNames : 'tw-h-auto',
+                            isActive && data.position !== 'within' && activeOuterDropZoneClassNames,
+                            isActive && data.position === 'within' && bgColorClassName,
                             isDraggingActive ? isDraggingActiveClassNames : isDraggingNotActiveClassNames,
                         ])}
                         ref={drop}

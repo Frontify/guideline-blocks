@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 
 import { ColorPickerFlyout } from './ColorPickerFlyout';
 
@@ -16,7 +16,7 @@ describe('ColorPickerFlyout component', () => {
         mount(
             <ColorPickerFlyout currentColor={null} onConfirm={onConfirmStub}>
                 <div data-test-id="color-picker-flyout-trigger">Hello</div>
-            </ColorPickerFlyout>
+            </ColorPickerFlyout>,
         );
     });
 

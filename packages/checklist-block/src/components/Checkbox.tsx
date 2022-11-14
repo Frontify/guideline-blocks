@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FOCUS_STYLE, IconCheckMark } from '@frontify/fondue';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
@@ -37,14 +37,14 @@ export const Checkbox: FC<CheckboxProps> = ({
             'aria-label': ariaLabel || label,
         },
         toggleState,
-        inputRef
+        inputRef,
     );
 
-    const { completeCheckboxColor, incompleteCheckboxColor } = useContext(SettingsContext);
+    const { completeCheckboxColor, checkboxColor } = useContext(SettingsContext);
 
     const checkboxStyles = {
         background: checked ? toHex8String(completeCheckboxColor) : '',
-        borderColor: checked ? toHex8String(completeCheckboxColor) : toHex8String(incompleteCheckboxColor),
+        borderColor: checked ? toHex8String(completeCheckboxColor) : toHex8String(checkboxColor),
     };
 
     const handleLabelClick = (event: MouseEvent<HTMLLabelElement>) => {
@@ -53,6 +53,7 @@ export const Checkbox: FC<CheckboxProps> = ({
     };
 
     return (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
         <label
             className={joinClassNames([
                 'tw-flex tw-select-none tw-outline-none tw-self-start tw-items-start',

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ERROR_MSG } from './settings';
 import { StorybookBlock } from './StorybookBlock';
@@ -12,7 +12,7 @@ const IframeSelector = '[data-test-id="storybook-iframe"]';
 const ResizeBar = '[data-test-id="resize-bar"]';
 const ResizableChildrenContainer = '[data-test-id="resizable-children-container"]';
 
-const EXAMPLE_URL = 'https://fondue-components.netlify.app/?path=/story/components-tooltip--tooltip';
+const EXAMPLE_URL = 'https://beta-fondue-components.frontify.com/?path=/story/tokens--alias-tokens';
 const EXAMPLE_COLOR = { red: 22, green: 181, blue: 181, alpha: 1, name: 'Java' };
 
 describe('Storybook Block', () => {
@@ -29,7 +29,7 @@ describe('Storybook Block', () => {
         mount(<StorybookBlockWithStubs />);
         cy.get(EmptyStateSelector).find('input').type(EXAMPLE_URL).blur();
         cy.get(EmptyStateSelector).find('button').click();
-        cy.get(IframeSelector).should('have.attr', 'src').and('include', 'fondue-components.netlify.app');
+        cy.get(IframeSelector).should('have.attr', 'src').and('include', 'beta-fondue-components.frontify.com');
         cy.get(IframeSelector).should('have.attr', 'loading').and('include', 'lazy');
     });
 
@@ -150,6 +150,7 @@ describe('Storybook Block', () => {
         cy.get(ResizeBar)
             .trigger('mousedown', { which: 1, pageX: 600, pageY: 100 })
             .trigger('mousemove', { which: 1, pageX: 600, pageY: 600 })
+            .wait(1)
             .trigger('mouseup', { force: true });
 
         cy.get(ResizableChildrenContainer).should('have.css', 'height', '700px');

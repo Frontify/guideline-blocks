@@ -1,17 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { DosDontsBlock } from './DosDontsBlock';
-import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
-import { DoDontLayout, DoDontSpacing, DoDontStyle } from './types';
+import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE, DosDontsBlock } from './DosDontsBlock';
+import { DoDontSpacing, DoDontStyle, ItemIconChoice } from './types';
+import './__tests__/themes.css';
 
 const DosDontsBlockSelector = '[data-test-id="dos-donts-block"]';
 const DosDontsHeading = '[data-test-id="dos-donts-heading"]';
 const DosDontsContent = '[data-test-id="dos-donts-content"]';
 const DosDontsIcon = '[data-test-id="dos-donts-icon"]';
+const FLOATING_LINK_BUTTON = '[data-plugin-id="a"]';
+const FLOATING_BUTTON_BUTTON = '[data-plugin-id="button"]';
+const INTERNAL_LINK_SELECTOR = '[data-test-id="internal-link-selector"]';
 
-describe("Do's & Don'ts Block", () => {
+describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
@@ -19,25 +22,27 @@ describe("Do's & Don'ts Block", () => {
         cy.get(DosDontsBlockSelector).should('exist');
     });
 
-    it('renders an empty dos donts block in view mode', () => {
+    it('renders an dos donts block in view mode', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get(DosDontsBlockSelector).find('[data-slate-placeholder]').should('not.exist');
-        cy.get(DosDontsIcon).should('not.exist');
+        cy.get('[data-test-id="rte-content-html"]').should('not.exist');
+        cy.get('[data-test-id="rich-text-editor"]').should('not.exist');
     });
 
     it('renders an empty dos donts block in edit mode', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, { editorState: true });
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+            editorState: true,
+            blockSettings: {
+                style: DoDontStyle.Icons,
+                dontIconChoice: ItemIconChoice.CHECKMARK,
+                doIconChoice: ItemIconChoice.CHECKMARK,
+            },
+        });
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get(DosDontsBlockSelector).find('[data-slate-placeholder]').first().should('exist').contains('Add a title');
-        cy.get(DosDontsBlockSelector)
-            .find('[data-slate-placeholder]')
-            .last()
-            .should('exist')
-            .contains('Add a description');
-        cy.get(DosDontsIcon).should('have.class', 'tw-opacity-30');
+        cy.get(DosDontsBlockSelector).find('textarea[placeholder="Add a title"]').should('exist');
+        cy.get(DosDontsBlockSelector).find('[data-slate-placeholder]').should('exist').contains('Add a description');
     });
 
     it('renders a dos donts block with the underline style', () => {
@@ -56,23 +61,22 @@ describe("Do's & Don'ts Block", () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: {
                 columns: 3,
-                layout: DoDontLayout.Stacked,
-                spacingChoice: DoDontSpacing.Large,
+                isCustomColumnGutter: true,
+                customColumnGutterValue: '20px',
             },
         });
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get(DosDontsBlockSelector).children().should('have.length', 6);
-        cy.get(DosDontsBlockSelector).should('have.class', 'tw-grid-flow-col');
-        cy.get(DosDontsBlockSelector).should('have.class', 'tw-grid-cols-3');
-        cy.get(DosDontsBlockSelector).should('have.css', 'column-gap', '32px');
+        cy.get(DosDontsBlockSelector).should('have.class', 'lg:tw-grid-cols-3');
+        cy.get(DosDontsBlockSelector).should('have.css', 'column-gap', '20px');
     });
 
     it('renders a dos donts block with the correct colors', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: {
                 columns: 2,
-                layout: DoDontLayout.Stacked,
+                hasCustomDoColor: true,
+                hasCustomDontColor: true,
                 doColor: DO_COLOR_DEFAULT_VALUE,
                 dontColor: DONT_COLOR_DEFAULT_VALUE,
             },
@@ -81,31 +85,76 @@ describe("Do's & Don'ts Block", () => {
         mount(<DosDontsBlockWithStubs />);
         cy.get(DosDontsHeading).first().should('have.css', 'color', 'rgb(0, 200, 165)');
         cy.get(DosDontsHeading).eq(1).should('have.css', 'color', 'rgb(255, 55, 90)');
-        cy.get(DosDontsHeading).eq(2).should('have.css', 'color', 'rgb(0, 200, 165)');
-        cy.get(DosDontsHeading).eq(3).should('have.css', 'color', 'rgb(255, 55, 90)');
     });
 
     it('writes content to a dos donts block', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             editorState: true,
+            blockSettings: {
+                columnGutterChoice: DoDontSpacing.Large,
+                rowGutterChoice: DoDontSpacing.Large,
+            },
         });
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get(DosDontsHeading).first().find('[contenteditable=true]').type('Do this').blur();
-        cy.get(DosDontsHeading).first().find('[contenteditable=true]').contains('Do this');
+        cy.get(DosDontsHeading).first().find('textarea').type('Do this');
+        cy.get(DosDontsHeading).first().find('textarea').contains('Do this');
+        cy.get(DosDontsContent).first().find('[contenteditable=true]').click().should('be.focused');
         cy.get(DosDontsContent)
             .first()
             .find('[contenteditable=true]')
-            .type('This is an example do description.')
-            .blur();
+            .click()
+            .type('This is an example do description.');
         cy.get(DosDontsContent).first().find('[contenteditable=true]').contains('This is an example do description.');
-        cy.get(DosDontsHeading).eq(1).find('[contenteditable=true]').type('Dont do this').blur();
-        cy.get(DosDontsHeading).eq(1).find('[contenteditable=true]').contains('Dont do this');
+        cy.get(DosDontsHeading).eq(1).find('textarea').type('Dont do this');
+        cy.get(DosDontsHeading).eq(1).find('textarea').contains('Dont do this');
+        cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').click();
+        cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').click().should('be.focused');
         cy.get(DosDontsContent)
             .eq(1)
             .find('[contenteditable=true]')
-            .type('This is an example dont description.')
-            .blur();
+            .click()
+            .type('This is an example dont description.');
         cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').contains('This is an example dont description.');
+    });
+
+    it('has an internal link chooser in the RTE', () => {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+            editorState: true,
+            blockSettings: {
+                columnGutterChoice: DoDontSpacing.Large,
+                rowGutterChoice: DoDontSpacing.Large,
+            },
+        });
+
+        mount(<DosDontsBlockWithStubs />);
+        cy.get(DosDontsContent)
+            .first()
+            .find('[contenteditable=true]')
+            .dblclick()
+            .type('This is an example do description.{selectall}', { force: true });
+
+        cy.get(FLOATING_LINK_BUTTON).should('exist').click();
+        cy.get(INTERNAL_LINK_SELECTOR).should('exist');
+    });
+
+    it('has an internal link chooser for buttons in the RTE', () => {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+            editorState: true,
+            blockSettings: {
+                columnGutterChoice: DoDontSpacing.Large,
+                rowGutterChoice: DoDontSpacing.Large,
+            },
+        });
+
+        mount(<DosDontsBlockWithStubs />);
+        cy.get(DosDontsContent)
+            .first()
+            .find('[contenteditable=true]')
+            .dblclick()
+            .type('This is an example do description.{selectall}', { force: true });
+
+        cy.get(FLOATING_BUTTON_BUTTON).should('exist').click();
+        cy.get(INTERNAL_LINK_SELECTOR).should('exist');
     });
 });

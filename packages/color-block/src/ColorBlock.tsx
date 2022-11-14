@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FormEvent, ReactElement, useEffect, useMemo, useState } from 'react';
+import { FC, FormEvent, useEffect, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import {
@@ -11,7 +11,7 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { joinClassNames, moveItemInArray } from '@frontify/guideline-blocks-shared';
+import { BlockProps, joinClassNames, moveItemInArray } from '@frontify/guideline-blocks-settings';
 
 import { CardsItem } from './components/cards/CardsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
@@ -20,7 +20,7 @@ import { DropsItemAdd } from './components/drops/DropsItemAdd';
 import { DropZone } from './components/DropZone';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
-import { ColorBlockProps, ColorBlockType, ColorSpaceValues, ItemProps, Settings } from './types';
+import { ColorBlockType, ColorSpaceValues, ItemProps, Settings } from './types';
 
 const wrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
@@ -28,13 +28,13 @@ const wrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
 };
 
-export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
+export const ColorBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 
     const { colorsByPaletteId, createColor, updateColor, deleteColor } = useColors(
         appBridge,
-        blockSettings.colorPaletteId
+        blockSettings.colorPaletteId,
     );
     const [colors, setColors] = useState<ColorType[]>([]);
     useEffect(() => {
@@ -74,7 +74,7 @@ export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
     const inputClasses = joinClassNames(['tw-w-full tw-outline-none', isEditing ? '' : 'tw-pointer-events-none']);
 
     return (
-        <div data-test-id="color-block">
+        <div className="color-block" data-test-id="color-block">
             <div className="tw-w-full tw-mb-3 tw-text-l tw-font-bold tw-text-black">
                 <input
                     className={inputClasses}

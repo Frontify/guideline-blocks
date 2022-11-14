@@ -8,12 +8,14 @@ export const IconDoubleChevronRight: FC<IconProps> = ({ style }) => (
     <svg
         style={style}
         className={ICON_CLASS_NAME}
-        viewBox="0 0 16 12"
-        fill="currentColor"
         width="100%"
         height="100%"
+        viewBox="0 0 1 1"
         xmlns="http://www.w3.org/2000/svg"
     >
-        <path d="M7.799 12V9.727l5.841-3.568V5.84L7.799 2.247V0h.158l7.612 4.784v2.432L7.957 12H7.8zM.715 9.727l5.868-3.568V5.84L.715 2.247V0h.158l7.64 4.784v2.432L.872 12H.715V9.727z" />
+        <path
+            d="M0.166992 0.351933V0.149994L0.457174 0.399448V0.601388L0.166992 0.849994V0.648054L0.340083 0.500418L0.166992 0.351933ZM0.542871 0.648054L0.715962 0.500418L0.542871 0.351933V0.149994L0.833053 0.399448V0.601388L0.542871 0.849994V0.648054Z"
+            fill="currentColor"
+        />
     </svg>
 );

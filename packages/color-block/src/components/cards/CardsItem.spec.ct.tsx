@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { ColorDummy } from '@frontify/app-bridge';
 
 import { CardsItem } from './CardsItem';
@@ -32,7 +32,7 @@ describe('CardsItem component in view mode', () => {
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}
                 onDelete={onDeleteStub}
-            />
+            />,
         );
     });
 
@@ -41,13 +41,11 @@ describe('CardsItem component in view mode', () => {
     });
 
     it('renders a color tooltip', () => {
-        cy.get(TooltipSelector).should('not.exist');
         cy.get(ColorTooltipTriggerSelector).trigger('mouseover');
         cy.get(TooltipSelector).should('exist');
     });
 
     it('renders a color space tooltip', () => {
-        cy.get(TooltipSelector).should('not.exist');
         cy.get(ColorSpaceValueTriggerSelector).first().trigger('mouseover');
         cy.get(TooltipSelector).should('exist');
     });
@@ -67,7 +65,7 @@ describe('CardsItem component in edit mode', () => {
                 onBlur={onBlurStub}
                 onUpdate={onUpdateStub}
                 onDelete={onDeleteStub}
-            />
+            />,
         );
     });
 
@@ -92,7 +90,6 @@ describe('CardsItem component in edit mode', () => {
     });
 
     it('renders a delete button', () => {
-        cy.get(DeleteButtonSelector).should('not.be.visible');
         cy.get(CardsItemSelector).realHover();
         cy.get(DeleteButtonSelector).should('be.visible');
         cy.get(DeleteButtonSelector).click();

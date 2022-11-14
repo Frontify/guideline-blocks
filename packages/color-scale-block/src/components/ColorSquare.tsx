@@ -5,14 +5,15 @@ import {
     Button,
     ButtonSize,
     ButtonStyle,
-    DropZonePosition,
     IconSize,
     IconTrashBin,
-    Tooltip,
+    LegacyItemDragState,
+    LegacyTooltip,
+    TooltipAlignment,
+    TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
-import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 
 import { DragHandle } from './DragHandle';
 import { TooltipContent } from './TooltipContent';
@@ -43,7 +44,7 @@ export const ColorSquare = ({
         item: color,
         collect: (monitor) => {
             return {
-                componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
+                componentDragState: monitor.isDragging() ? LegacyItemDragState.Dragging : LegacyItemDragState.Idle,
             };
         },
         type: 'color',
@@ -76,7 +77,7 @@ export const ColorSquare = ({
                 isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                 data={{
                     targetItem: color,
-                    position: DropZonePosition.Before,
+                    position: 'before',
                 }}
                 onDrop={onDrop}
             />
@@ -106,7 +107,7 @@ export const ColorSquare = ({
                     ])}
                 >
                     {!isEditing && (
-                        <Tooltip
+                        <LegacyTooltip
                             alignment={TooltipAlignment.Middle}
                             content={
                                 <TooltipContent
@@ -117,7 +118,10 @@ export const ColorSquare = ({
                             }
                             hoverDelay={0}
                             position={TooltipPosition.Right}
-                            triggerElement={<div className="tw-w-full tw-h-full" onClick={copyColor} />}
+                            triggerElement={
+                                // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+                                <div className="tw-w-full tw-h-full" onClick={copyColor} />
+                            }
                             withArrow
                         />
                     )}
@@ -154,7 +158,7 @@ export const ColorSquare = ({
                 isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                 data={{
                     targetItem: color,
-                    position: DropZonePosition.After,
+                    position: 'after',
                 }}
                 onDrop={onDrop}
             />

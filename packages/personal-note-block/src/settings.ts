@@ -1,8 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { Color, DropdownSize, IconEnum } from '@frontify/fondue';
-import { BlockSettings } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings, getPaddingSettings } from '@frontify/guideline-blocks-shared';
+import {
+    Color,
+    IconEnum,
+    defineSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
+    getPaddingSettings,
+} from '@frontify/guideline-blocks-settings';
 import { NoteStyle, NoteVisibility, paddingStyleMap } from './types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
@@ -20,17 +25,17 @@ export const BORDER_COLOR_DEFAULT_VALUE: Color = {
 
 const HAS_BACKGROUND_ID = 'hasBackground';
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: 'style',
             type: 'dropdown',
             defaultValue: NoteStyle.Card,
-            size: 'Large' as DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: NoteStyle.Card,
-                    icon: 'Card' as IconEnum.Card,
+                    icon: IconEnum.Card,
                     label: 'Card',
                 },
             ],
@@ -73,7 +78,7 @@ export const settings: BlockSettings = {
     security: [
         {
             id: 'visibility',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Visible to',
             defaultValue: NoteVisibility.Everyone,
             info: 'Switch between Block visibility permissions',
@@ -93,4 +98,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

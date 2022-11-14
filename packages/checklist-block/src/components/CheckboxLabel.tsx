@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color } from '@frontify/fondue';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+import { BlockStyles, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CSSProperties, FC, Fragment, useContext } from 'react';
@@ -20,21 +20,18 @@ const getLabelDecorationStylesMap = (
     style: StrikethroughType,
     thickness: string,
     color: Color,
-    highlightColor: Color
+    highlightColor: Color,
 ): Record<ChecklistDecoration, DecorationStyle> => ({
     [ChecklistDecoration.Strikethrough]: {
         textDecoration: 'line-through',
         textDecorationStyle: StrikethroughStyleType[style],
         textDecorationThickness: thickness,
         textDecorationColor: toHex8String(color),
-        fontWeight: '500',
     },
     [ChecklistDecoration.Highlight]: {
         backgroundColor: toHex8String(highlightColor),
     },
-    [ChecklistDecoration.Checkbox]: {
-        fontWeight: '500',
-    },
+    [ChecklistDecoration.Checkbox]: {},
 });
 
 const decorateLabelChildren = (children: string, style: CSSProperties) =>
@@ -64,7 +61,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
         strikethroughStyle,
         strikethroughWidth,
         strikethroughColor,
-        highlightColor
+        highlightColor,
     )[completedDecoration];
 
     const labelStyles = { color: toHex8String(completeTextColor), ...decorationStyles };
@@ -72,10 +69,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
     const decoratedChildren = decorateLabelChildren(children, labelStyles);
 
     return (
-        <div
-            className="tw-text-s tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0"
-            data-test-id="input-label-container"
-        >
+        <div className="tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0" data-test-id="input-label-container">
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
@@ -87,10 +81,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
                 {decoratedChildren}
             </label>
             {dateVisible && Boolean(dateInMs) && (
-                <span
-                    className="tw-text-x-weak tw-font-sans tw-text-xxs tw-font-normal tw-block tw-mt-[2px]"
-                    data-test-id="checkbox-date"
-                >
+                <span className="tw-block tw-mt-[2px]" style={BlockStyles.imageCaption} data-test-id="checkbox-date">
                     {dayjs(dateInMs).fromNow()}
                 </span>
             )}

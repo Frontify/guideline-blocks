@@ -1,28 +1,31 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Color, RichTextEditor } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
+import { Color } from '@frontify/fondue';
+
 import {
+    BlockProps,
     BorderStyle,
     Padding,
     Radius,
+    RichTextEditor,
     borderStyleMap,
+    getDefaultPluginsWithLinkChooser,
     isDark,
     radiusStyleMap,
     toRgbaString,
-    useGuidelineDesignTokens,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { CSSProperties, FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-import { BlockProps, Settings, paddingStyleMap } from './types';
+import { Settings, paddingStyleMap } from './types';
 
 const getBorderStyles = (
     style = BorderStyle.Solid,
     width = '1px',
-    color = BORDER_COLOR_DEFAULT_VALUE
+    color = BORDER_COLOR_DEFAULT_VALUE,
 ): CSSProperties => ({
     borderStyle: borderStyleMap[style],
     borderWidth: width,
@@ -35,8 +38,6 @@ const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
 export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
-
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
         radiusChoice = Radius.None,
@@ -59,13 +60,12 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         avatar,
     } = blockSettings;
 
-    const saveNote = (value: string) => {
+    const saveNote = (value: string) =>
+        value !== blockSettings.note &&
         setBlockSettings({
-            ...blockSettings,
             note: value,
             dateEdited: new Date().toString(),
         });
-    };
 
     useEffect(() => {
         async function getUserData() {
@@ -74,7 +74,6 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     const { id, name, image } = data;
                     if (!createdByUser) {
                         setBlockSettings({
-                            ...blockSettings,
                             createdByUser: id,
                             username: name,
                             avatar: image?.image || '',
@@ -88,34 +87,38 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     }, []);
 
     return (
-        <div
-            data-test-id="personal-note-block"
-            className={hasBackground && !!backgroundColor && isDark(backgroundColor) ? 'tw-text-white' : ''}
-            style={{
-                ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
-                ...(hasBackground && getBackgroundStyles(backgroundColor)),
-                borderRadius: hasRadius && (hasBorder || hasBackground) ? radiusValue : radiusStyleMap[radiusChoice],
-                padding: hasCustomPaddingValue ? paddingValue : paddingStyleMap[paddingChoice],
-            }}
-        >
-            {(hasAvatarName || hasDateEdited) && (
-                <NoteHeader
-                    hasAvatarName={hasAvatarName}
-                    name={username}
-                    avatar={avatar}
-                    hasDateEdited={hasDateEdited}
-                    dateEdited={dateEdited}
-                    useLightText={hasBackground && !!backgroundColor && isDark(backgroundColor)}
-                />
-            )}
+        <div className="personal-note-block">
+            <div
+                data-test-id="personal-note-block"
+                className={hasBackground && !!backgroundColor && isDark(backgroundColor) ? 'tw-text-white' : ''}
+                style={{
+                    ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
+                    ...(hasBackground && getBackgroundStyles(backgroundColor)),
+                    borderRadius:
+                        hasRadius && (hasBorder || hasBackground) ? radiusValue : radiusStyleMap[radiusChoice],
+                    padding: hasCustomPaddingValue ? paddingValue : paddingStyleMap[paddingChoice],
+                }}
+            >
+                {(hasAvatarName || hasDateEdited) && (
+                    <NoteHeader
+                        hasAvatarName={hasAvatarName}
+                        name={username}
+                        avatar={avatar}
+                        hasDateEdited={hasDateEdited}
+                        dateEdited={dateEdited}
+                        useLightText={hasBackground && !!backgroundColor && isDark(backgroundColor)}
+                    />
+                )}
 
-            <RichTextEditor
-                designTokens={designTokens ?? undefined}
-                value={note}
-                onTextChange={saveNote}
-                placeholder="Write personal note here ..."
-                readonly={!isEditing}
-            />
+                <RichTextEditor
+                    id={`${appBridge.getBlockId().toString()}-title`}
+                    value={note}
+                    onTextChange={saveNote}
+                    placeholder="Write personal note here ..."
+                    isEditing={isEditing}
+                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                />
+            </div>
         </div>
     );
 };

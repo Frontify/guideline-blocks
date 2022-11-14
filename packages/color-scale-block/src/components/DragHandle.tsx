@@ -8,6 +8,7 @@ export const DragHandle = ({ index, onResizeStart }: DragHandleProps) => {
     const handleMouseDown: MouseEventHandler = (event: MouseEvent) => onResizeStart?.(event, index);
 
     return (
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
             className="tw-absolute tw-opacity-0 hover:tw-opacity-100 group-hover:tw-flex tw-w-2 tw-flex tw-h-full tw-items-center tw-right-[0px] tw-cursor-ew-resize tw-z-[99]"
             // Note: onMouseUp and onDrag are defined here intentionally, instead of being in the DragHandle component.
@@ -18,7 +19,8 @@ export const DragHandle = ({ index, onResizeStart }: DragHandleProps) => {
             onMouseDown={handleMouseDown}
         >
             <div
-                className="drag-handle tw-right-[-3px] tw-bg-black-20 tw-absolute tw-rounded-full tw-w-2 tw-h-6"
+                data-test-id="drag-handle"
+                className="tw-right-[-3px] tw-bg-black-20 tw-absolute tw-rounded-full tw-w-2 tw-h-6"
                 draggable
             />
         </div>

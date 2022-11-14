@@ -10,13 +10,17 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { ReactElement, useCallback, useEffect, useState } from 'react';
+
+import { BlockProps, Color, joinClassNames } from '@frontify/guideline-blocks-settings';
+import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import 'tailwindcss/tailwind.css';
+import '@frontify/guideline-blocks-settings/styles';
+import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ImageStage } from './ImageStage';
+import ReferenceErrorMessage from './ReferenceErrorMessage';
 import { ASSET_ID, heights } from './settings';
-import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
+import { BlockPreview, HeightChoices, Settings } from './types';
 import { extractUrlParameterFromUriQueries } from './utilities';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
@@ -24,13 +28,15 @@ const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
+    const [isMobile, setIsMobile] = useState(false);
     const [assetExternalUrl, setAssetExternalUrl] = useState<string>('');
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const isInEditMode = useEditorState(appBridge);
-
     const asset = blockAssets?.[ASSET_ID]?.[0];
+    const ref = useRef<HTMLDivElement>(null);
+    const [referenceUrl, setReferenceUrl] = useState('');
     const isAssetAvailable = !!asset;
 
     const {
@@ -42,7 +48,38 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         showFigmaLink = true,
         hasBackground = false,
         hasLimitedOptions = true,
+        borderColor = { red: 0, green: 0, blue: 0, name: 'black' } as Color,
+        borderStyle = 'solid',
+        borderWidth = '1px',
+        backgroundColor = { red: 0, green: 0, blue: 0, name: 'black' } as Color,
+        hasRadius,
+        radiusValue,
+        radiusChoice,
+        allowFullScreen,
+        allowZooming,
     } = blockSettings;
+
+    useEffect(() => {
+        setReferenceUrl(
+            (
+                document.querySelector(`[data-block="${appBridge.getBlockId()}"].referenced`) as
+                    | HTMLDivElement
+                    | undefined
+            )?.dataset.referenceUrl || '',
+        );
+    }, []);
+
+    useEffect(() => {
+        const resize = () => {
+            if (window.innerWidth < 768) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        };
+        window.addEventListener('resize', resize);
+        () => window.removeEventListener('resize', resize);
+    }, []);
 
     useEffect(() => {
         setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.externalUrl ?? undefined));
@@ -61,36 +98,46 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 projectTypes: [AssetChooserProjectType.Workspace],
                 objectTypes: [AssetChooserObjectType.Url],
                 urlContains: 'https://www.figma',
-            }
+            },
         );
     };
 
     const FigmaEmptyBlock = () => (
-        <div
+        <button
             data-test-id="figma-empty-block"
-            className="tw-group tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-line-x-strong hover:tw-border-black"
+            className="tw-group tw-w-full tw-py-16 tw-px-4 tw-border-dashed tw-border tw-cursor-pointer tw-text-center tw-border-line-x-strong hover:tw-border-black"
             onClick={onOpenAssetChooser}
         >
             <div className="tw-text-xl tw-mb-4 tw-flex tw-justify-center tw-text-black-40 group-hover:tw-text-violet-60">
                 <IconSuitcase size={IconSize.Size32} />
             </div>
             <span className="tw-text-text-x-weak group-hover:tw-text-black">Choose Figma asset</span>
-        </div>
+        </button>
     );
 
     const ShowFigmaLink = useCallback(
-        ({ title, assetExternalUrl }) => (
+        ({ title, assetExternalUrl }: { title: string; assetExternalUrl: string }) => (
             <div className="tw-p-2 tw-text-sm">
-                <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-underline">
+                <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-text-[#4a90e2]">
                     {title}
                 </a>
             </div>
         ),
-        []
+        [],
     );
 
     const ShowImagePreview = useCallback(
-        ({ hasBorder, height, showFigmaLink, hasBackground }) => (
+        ({
+            hasBorder,
+            height,
+            showFigmaLink,
+            hasBackground,
+        }: {
+            hasBorder: boolean;
+            height: string;
+            showFigmaLink: boolean;
+            hasBackground: boolean;
+        }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
                 <ImageStage
                     title={asset.title}
@@ -98,35 +145,78 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     hasLimitedOptions={hasLimitedOptions}
                     height={height}
                     hasBorder={hasBorder}
+                    borderStyle={borderStyle}
+                    borderColor={borderColor}
+                    borderWidth={borderWidth}
+                    isMobile={isMobile}
                     hasBackground={!hasLimitedOptions && hasBackground}
+                    backgroundColor={backgroundColor}
+                    hasRadius={hasRadius}
+                    radiusValue={radiusValue}
+                    radiusChoice={radiusChoice}
+                    allowFullScreen={allowFullScreen}
+                    allowZooming={allowZooming}
                 />
                 {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
             </div>
         ),
-        [ShowFigmaLink, asset?.previewUrl, asset?.title, assetExternalUrl, hasLimitedOptions]
+        [
+            ShowFigmaLink,
+            asset?.previewUrl,
+            asset?.title,
+            assetExternalUrl,
+            hasLimitedOptions,
+            isMobile,
+            borderColor,
+            borderStyle,
+            borderWidth,
+            allowFullScreen,
+            allowZooming,
+            backgroundColor,
+            hasRadius,
+            radiusChoice,
+            radiusValue,
+        ],
     );
 
     const ShowFigmaLive = useCallback(
         () => (
             <div
                 data-test-id="figma-live-preview"
-                className="tw-relative tw-flex tw-justify-center tw-h-[500px] tw-group"
+                style={{
+                    border: getBorderOfBlock(hasBorder, borderStyle, borderWidth, borderColor),
+                    height: getHeightOfBlock(isCustomHeight ? heightValue : heights[heightChoice], isMobile),
+                }}
+                className={joinClassNames(['tw-relative tw-flex tw-justify-center tw-group'])}
             >
-                <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
-                    <Button
-                        icon={<IconArrowExpand />}
-                        onClick={() => toggleFigmaLiveModal(true)}
-                        emphasis={ButtonEmphasis.Default}
-                    />
-                </div>
+                {allowFullScreen && (
+                    <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
+                        <Button
+                            icon={<IconArrowExpand />}
+                            onClick={() => toggleFigmaLiveModal(true)}
+                            emphasis={ButtonEmphasis.Default}
+                        />
+                    </div>
+                )}
                 <iframe
                     src={asset?.externalUrl ?? undefined}
                     className="tw-h-full tw-w-full tw-border-none"
-                    loading="lazy"
+                    title="figma-iframe"
                 />
             </div>
         ),
-        [asset]
+        [
+            asset,
+            hasBorder,
+            isMobile,
+            isCustomHeight,
+            heightValue,
+            heightChoice,
+            borderWidth,
+            borderColor,
+            borderStyle,
+            allowFullScreen,
+        ],
     );
 
     const FigmaLivePortal = useCallback(() => {
@@ -154,6 +244,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         src={asset?.externalUrl ?? undefined}
                         className="tw-h-full tw-w-full tw-border-none"
                         loading="lazy"
+                        title={asset.title}
                     />
                 </div>
             </div>
@@ -163,18 +254,24 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [asset?.externalUrl]);
 
     return (
-        <div data-test-id="figma-block">
-            {isInEditMode && !isAssetAvailable && <FigmaEmptyBlock />}
-            {isAssetAvailable && !isLivePreview && (
-                <ShowImagePreview
-                    hasBorder={hasBorder}
-                    hasBackground={hasBackground}
-                    height={isCustomHeight ? heightValue : heights[heightChoice]}
-                    showFigmaLink={showFigmaLink}
-                />
+        <div ref={ref} data-test-id="figma-block" className="figma-block">
+            {referenceUrl ? (
+                <ReferenceErrorMessage originalUrl={referenceUrl} />
+            ) : (
+                <>
+                    {isInEditMode && !isAssetAvailable && <FigmaEmptyBlock />}
+                    {isAssetAvailable && !isLivePreview && (
+                        <ShowImagePreview
+                            hasBorder={hasBorder}
+                            hasBackground={hasBackground}
+                            height={isCustomHeight ? heightValue : heights[heightChoice]}
+                            showFigmaLink={showFigmaLink}
+                        />
+                    )}
+                    {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
+                    {showFigmaLiveModal && <FigmaLivePortal />}
+                </>
             )}
-            {isAssetAvailable && isLivePreview && <ShowFigmaLive />}
-            {showFigmaLiveModal && <FigmaLivePortal />}
         </div>
     );
 };

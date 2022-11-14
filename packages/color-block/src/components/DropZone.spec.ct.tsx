@@ -2,7 +2,7 @@
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { ColorDummy } from '@frontify/app-bridge';
 
 import { CardsItem } from './cards/CardsItem';
@@ -51,7 +51,7 @@ describe('DropZone component', () => {
                         </div>
                     </DropZone>
                 </DndProvider>
-            </div>
+            </div>,
         );
 
         cy.get(CardsItemSelector).first().trigger('dragstart', 'bottom');

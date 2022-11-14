@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { ColorPaletteDummy } from '@frontify/app-bridge';
 
 import { Palette } from './Palette';
@@ -46,7 +46,7 @@ describe('Palette', () => {
             <Palette
                 palette={{ ...dummyPalette, colors: [{ ...dummyPalette.colors[0], hex: null }] }}
                 isEditing={false}
-            />
+            />,
         );
 
         cy.get(ColorKitPaletteSelector).should('not.have.descendants', ColorKitColorSelector);

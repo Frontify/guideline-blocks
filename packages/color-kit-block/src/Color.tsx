@@ -2,8 +2,8 @@
 
 import type { ReactElement } from 'react';
 import type { Color as ColorType } from '@frontify/app-bridge';
-import { Tooltip, TooltipPosition, merge, useCopy } from '@frontify/fondue';
-import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { LegacyTooltip, TooltipPosition, merge, useCopy } from '@frontify/fondue';
+import { toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import { TooltipContent } from './TooltipContent';
 
@@ -13,7 +13,7 @@ type ColorProps = {
     colorsLength: number;
 };
 
-export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElement => {
+export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElement | null => {
     const { copy, status } = useCopy();
 
     const colorWithDecimalAlpha: ColorType = {
@@ -22,11 +22,12 @@ export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElem
     };
 
     if (!color.hex) {
-        return <></>;
+        return null;
     }
 
     const ColorBox = () => (
         <div className="tw-bg-[url('https://cdn.frontify.com/img/transparent.png')] tw-bg-[length:10px_10px]">
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
             <div
                 key={color.id}
                 data-test-id="color"
@@ -54,7 +55,7 @@ export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElem
         </div>
     ) : (
         <div className={viewModeSideShadows}>
-            <Tooltip
+            <LegacyTooltip
                 withArrow
                 key={color.id}
                 position={TooltipPosition.Right}
