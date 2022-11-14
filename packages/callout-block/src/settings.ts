@@ -10,7 +10,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-shared';
-import { Alignment, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
+import { Alignment, Appearance, Icon, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_TOP_ID = 'paddingTop';
@@ -30,7 +30,7 @@ export const settings: BlockSettings = {
                 {
                     value: Type.Info,
                     icon: 'Info' as IconEnum.Info,
-                    label: 'Info',
+                    label: 'Information',
                 },
                 {
                     value: Type.Note,
@@ -52,9 +52,28 @@ export const settings: BlockSettings = {
     ],
     basics: [
         {
+            id: 'appearance',
+            type: 'slider',
+            label: 'Appearance',
+            defaultValue: Appearance.Light,
+            info: 'Defines how the accent color is shown on this block. Select between a subtle and more prominent style.',
+            choices: [
+                {
+                    label: 'Light',
+                    value: Appearance.Light,
+                },
+                {
+                    label: 'Strong',
+                    value: Appearance.Strong,
+                },
+            ],
+        },
+
+        {
             id: 'iconSwitch',
             type: 'switch',
             defaultValue: false,
+            switchLabel: 'Custom',
             info: 'Custom icons will always display the same way, they were created. To tweak icon colors, apply the changes in the icon, then upload it again.',
             label: 'Icon',
             on: [
@@ -64,6 +83,31 @@ export const settings: BlockSettings = {
                     size: AssetInputSize.Small,
                     extensions: ['svg' as FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
+                },
+            ],
+            off: [
+                {
+                    id: 'iconType',
+                    type: 'slider',
+                    defaultValue: Icon.None,
+                    choices: [
+                        {
+                            label: 'None',
+                            value: Icon.None,
+                        },
+                        {
+                            icon: IconEnum.Info,
+                            value: Icon.Info,
+                        },
+                        {
+                            icon: IconEnum.Lightbulb,
+                            value: Icon.Lightbulb,
+                        },
+                        {
+                            icon: IconEnum.Megaphone,
+                            value: Icon.Megaphone,
+                        },
+                    ],
                 },
             ],
         },

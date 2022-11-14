@@ -43,7 +43,7 @@ export const settings: BlockSettings = {
             label: 'Arrange',
             type: 'slider',
             defaultValue: DoDontLayout.SideBySide,
-            info: "Side by Side: Do's & Don'ts are arranged in their respective categories next to one another. Stacked: Do's are arranged above, and Don'ts are below",
+            info: "Side by Side: Dos & Don'ts are arranged in their respective categories next to one another. Stacked: Do's are arranged above, and Don'ts are below",
             choices: [
                 {
                     value: DoDontLayout.SideBySide,
@@ -61,7 +61,7 @@ export const settings: BlockSettings = {
             type: 'slider',
             show: (bundle: Bundle) => bundle.getBlock('layout')?.value === DoDontLayout.Stacked,
             defaultValue: 2,
-            info: "The number of columns for Do's and Don'ts",
+            info: "The number of columns for Dos and Don'ts",
             choices: [
                 {
                     value: 1,
