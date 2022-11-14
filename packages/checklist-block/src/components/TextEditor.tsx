@@ -1,7 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { toHex8String } from '@frontify/guideline-blocks-shared';
-import { FocusEvent, KeyboardEvent, forwardRef, useContext, useEffect, useImperativeHandle, useRef } from 'react';
+import {
+    ClipboardEvent,
+    FocusEvent,
+    KeyboardEvent,
+    forwardRef,
+    useContext,
+    useEffect,
+    useImperativeHandle,
+    useRef,
+} from 'react';
 import { SettingsContext } from '../SettingsContext';
 import { ImperativeFocusHandle, TextEditorProps } from '../types';
 
@@ -35,6 +44,12 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
             }
         };
 
+        const handlePaste = (event: ClipboardEvent) => {
+            event.preventDefault();
+            const text = event.clipboardData.getData('text/plain');
+            document.execCommand('insertHTML', false, text);
+        };
+
         useEffect(() => {
             if (editorRef.current) {
                 editorRef.current.innerText = value;
@@ -52,6 +67,7 @@ export const TextEditor = forwardRef<ImperativeFocusHandle, TextEditorProps>(
                     style={{ color: toHex8String(textColor) }}
                     onKeyDown={handleKeyPress}
                     onBlur={handleChange}
+                    onPaste={handlePaste}
                     ref={editorRef}
                     data-test-id="text-editor"
                 />

@@ -1,4 +1,4 @@
-# CheckList Block
+# Checklist Block
 
 This block can be used to create a checklist with customizable text styles, checkbox color & decoration.
 An optional progress bar can also be displayed if there are 1 or more active items in the list.
