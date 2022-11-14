@@ -11,7 +11,7 @@ const DosDontsHeading = '[data-test-id="dos-donts-heading"]';
 const DosDontsContent = '[data-test-id="dos-donts-content"]';
 const DosDontsIcon = '[data-test-id="dos-donts-icon"]';
 
-describe("Do's & Don'ts Block", () => {
+describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
