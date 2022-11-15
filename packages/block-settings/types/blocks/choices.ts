@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconEnum } from '@frontify/fondue';
-import { BaseBlock } from './base';
+import { BaseBlock, ValueOrPromisedValue } from './base';
 
 export type Choice = {
     label?: string | number;
@@ -10,5 +10,5 @@ export type Choice = {
 };
 
 export type ChoicesType = {
-    choices: Choice[];
+    choices: ValueOrPromisedValue<Choice[]>;
 } & BaseBlock<string | number>;
