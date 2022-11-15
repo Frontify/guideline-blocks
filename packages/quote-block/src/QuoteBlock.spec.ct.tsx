@@ -93,6 +93,7 @@ describe('Quote Block', () => {
             blockSettings: {
                 sizeChoice: QuoteSize.LargeSize,
                 quotesColor: EXAMPLE_COLOR,
+                isCustomQuotesColor: true,
             },
         });
 
@@ -109,6 +110,7 @@ describe('Quote Block', () => {
                     isCustomQuoteStyleLeft: true,
                     isCustomQuoteStyleRight: true,
                     sizeChoice: QuoteSize.LargeSize,
+                    isCustomQuotesColor: true,
                     quotesColor: EXAMPLE_COLOR,
                 },
                 blockAssets: {

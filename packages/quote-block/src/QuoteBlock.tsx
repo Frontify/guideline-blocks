@@ -28,12 +28,20 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const isFullWidth =
         blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText && isQuotationMarkType;
     const textAlignment = !isQuotationMarkType ? 'left' : blockSettings.textAlignment ?? 'left';
-    const borderRgba = toRgbaString(blockSettings.accentLineColor ?? DEFAULT_COLOR_VALUE);
+
+    const iconColor = blockSettings.isCustomQuotesColor
+        ? toRgbaString(blockSettings.quotesColor ?? DEFAULT_COLOR_VALUE)
+        : designTokens?.quote?.color ?? toRgbaString(DEFAULT_COLOR_VALUE);
+
+    const accentLineColor = blockSettings.isCustomLineColor
+        ? toRgbaString(blockSettings.accentLineColor ?? DEFAULT_COLOR_VALUE)
+        : designTokens?.quote?.color ?? toRgbaString(DEFAULT_COLOR_VALUE);
+
     const borderStyles = blockSettings.showAccentLine
         ? {
               borderLeftStyle: blockSettings.lineType ?? LineType.Solid,
               borderLeftWidth: blockSettings.lineWidthValue ?? '2px',
-              borderLeftColor: borderRgba,
+              borderLeftColor: accentLineColor,
           }
         : undefined;
 
@@ -57,7 +65,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
             <div className={getWrapperClasses()}>
                 {isQuotationMarkType && (
                     <QuoteBlockIcon
-                        color={blockSettings.quotesColor}
+                        color={iconColor}
                         blockAssets={blockAssets}
                         isCustomSize={blockSettings.isCustomSize}
                         sizeValue={blockSettings.sizeValue}
@@ -97,7 +105,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                 </div>
                 {isQuotationMarkType && (
                     <QuoteBlockIcon
-                        color={blockSettings.quotesColor}
+                        color={iconColor}
                         blockAssets={blockAssets}
                         isCustomSize={blockSettings.isCustomSize}
                         sizeValue={blockSettings.sizeValue}
