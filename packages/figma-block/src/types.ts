@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
+import type { AppBridgeBlock, Color } from '@frontify/app-bridge';
 
 export enum BlockPreview {
     Image = 'image',
@@ -47,6 +47,9 @@ export type Settings = {
     showFigmaLink?: boolean;
     hasBackground?: boolean;
     hasLimitedOptions?: boolean;
+    borderStyle?: string;
+    borderWidth?: string;
+    borderColor?: Color;
 };
 
 export type BoundingClientRectProperties = {
@@ -63,6 +66,7 @@ export type BoundingClientRectProperties = {
 export type UseImageStageProps = {
     height: string;
     hasLimitedOptions: boolean;
+    isMobile: boolean;
 };
 
 export type ImageStageProps = {
@@ -72,6 +76,10 @@ export type ImageStageProps = {
     height?: string;
     hasBorder?: boolean;
     hasBackground?: boolean;
+    isMobile: boolean;
+    borderStyle: string;
+    borderColor: Color;
+    borderWidth: string;
 };
 
 export type DrawFullScreenActionButtonProps = {
