@@ -5,6 +5,9 @@ import { html } from '@codemirror/lang-html';
 import { javascript } from '@codemirror/lang-javascript';
 import { json } from '@codemirror/lang-json';
 import { php } from '@codemirror/lang-php';
+import { sql } from '@codemirror/lang-sql';
+import { xml } from '@codemirror/lang-xml';
+import { slim } from '@codemirror/legacy-modes/mode/slim';
 import { Extension } from '@codemirror/state';
 import { Language, Theme } from '../../types';
 import {
@@ -52,6 +55,11 @@ export const getLanguage = (type: Language): Extension => {
         json: json(),
         jsx: javascript({ jsx: true }),
         ts: javascript({ typescript: true }),
+        java: java(),
+        markdown: markdown(),
+        xml: xml(),
+        sql: sql(),
+        slim: slim(),
     };
 
     return langMapping[type] || langMapping['html'];

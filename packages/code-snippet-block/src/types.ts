@@ -6,7 +6,19 @@ import { Globals, Property } from 'csstype';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
 
-export type Language = 'js' | 'html' | 'css' | 'php' | 'json' | 'jsx' | 'ts';
+export type Language =
+    | 'js'
+    | 'html'
+    | 'css'
+    | 'php'
+    | 'json'
+    | 'jsx'
+    | 'ts'
+    | 'java'
+    | 'markdown'
+    | 'xml'
+    | 'sql'
+    | 'slim';
 
 export type Theme =
     | 'cobalt'

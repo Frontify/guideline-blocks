@@ -1,13 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-
-import { FC, ReactElement } from 'react';
+import { javascript } from '@codemirror/lang-javascript';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { debounce } from '@frontify/fondue';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-
-import { CodeMirrorEditor } from './components';
+import CodeMirror from '@uiw/react-codemirror';
+import { FC, ReactElement } from 'react';
+import 'tailwindcss/tailwind.css';
 import { DEFAULT_THEME_VALUE } from './constants';
 import { CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
 
@@ -49,5 +48,22 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         border: hasBorder ? `${borderStyle} ${borderWidth} ${borderColorRgba}` : 'none',
     };
 
-    return <CodeMirrorEditor {...codeMirrorEditorProps} />;
+    return (
+        <div
+            className="tw-overflow-hidden"
+            style={{
+                border: hasBorder ? `${borderStyle} ${borderWidth} ${borderColorRgba}` : 'none',
+                borderRadius: customCornerRadiusStyle.borderRadius,
+            }}
+        >
+            <header className="tw-p-2">Heading</header>
+            <CodeMirror
+                value={content}
+                extensions={[javascript({ jsx: true })]}
+                onChange={handleChange}
+                editable={isEditing}
+                basicSetup={{ lineNumbers: withRowNumbers }}
+            />
+        </div>
+    );
 };
