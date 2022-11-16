@@ -7,6 +7,8 @@ import { javascript } from '@codemirror/lang-javascript';
 import { json } from '@codemirror/lang-json';
 import { markdown } from '@codemirror/lang-markdown';
 import { php } from '@codemirror/lang-php';
+import { sql } from '@codemirror/lang-sql';
+import { xml } from '@codemirror/lang-xml';
 import { Extension } from '@codemirror/state';
 import { Language, Theme } from '../../types';
 import {
@@ -56,6 +58,8 @@ export const getLanguage = (type: Language): Extension => {
         ts: javascript({ typescript: true }),
         java: java(),
         markdown: markdown(),
+        xml: xml(),
+        sql: sql(),
     };
 
     return langMapping[type] || langMapping['html'];

@@ -292,6 +292,8 @@ importers:
       '@codemirror/lang-json': 0.19.2
       '@codemirror/lang-markdown': 0.19.6
       '@codemirror/lang-php': 0.19.1
+      '@codemirror/lang-sql': 0.19.4
+      '@codemirror/lang-xml': 0.19.2
       '@codemirror/language': 0.19.10
       '@codemirror/lint': 0.19.6
       '@codemirror/matchbrackets': 0.19.4
@@ -337,6 +339,8 @@ importers:
       '@codemirror/lang-json': 0.19.2
       '@codemirror/lang-markdown': 0.19.6
       '@codemirror/lang-php': 0.19.1
+      '@codemirror/lang-sql': 0.19.4
+      '@codemirror/lang-xml': 0.19.2
       '@codemirror/language': 0.19.10
       '@codemirror/lint': 0.19.6
       '@codemirror/matchbrackets': 0.19.4
@@ -1423,6 +1427,27 @@ packages:
       '@codemirror/state': 0.19.9
       '@lezer/common': 0.15.12
       '@lezer/php': 0.15.0
+    dev: false
+
+  /@codemirror/lang-sql/0.19.4:
+    resolution: {integrity: sha512-4FqLC8aNe1iCDyAWbJmSqa8K7rgz2xTwW36V35z4oiyLoyOLsCayKIwoQqp5DNIq2ckGCsyzotgxXKpgtg/pgg==}
+    dependencies:
+      '@codemirror/autocomplete': 0.19.15
+      '@codemirror/highlight': 0.19.8
+      '@codemirror/language': 0.19.10
+      '@codemirror/state': 0.19.9
+      '@lezer/lr': 0.15.8
+    dev: false
+
+  /@codemirror/lang-xml/0.19.2:
+    resolution: {integrity: sha512-9VIjxvqcH1sk8bmYbxQon0lXhVZgdHdfjGes+e4Akgvb43aMBDNvIQVALwrCb+XMEHTxLUMQtrsBN0G64yCUXw==}
+    dependencies:
+      '@codemirror/autocomplete': 0.19.15
+      '@codemirror/highlight': 0.19.8
+      '@codemirror/language': 0.19.10
+      '@codemirror/state': 0.19.9
+      '@lezer/common': 0.15.12
+      '@lezer/xml': 0.15.1
     dev: false
 
   /@codemirror/language/0.19.10:
@@ -2604,6 +2629,12 @@ packages:
 
   /@lezer/php/0.15.0:
     resolution: {integrity: sha512-kU3QSOko0jsv3RLhABPrRD4wEhaWYh2Uh0lTj9Q9BOsBJ5SoADfifO4gHkEDav7AgL/j+ulkKiHiilciTa/RaQ==}
+    dependencies:
+      '@lezer/lr': 0.15.8
+    dev: false
+
+  /@lezer/xml/0.15.1:
+    resolution: {integrity: sha512-vVh01enxM9hSGOcFtztmX+Pa460HDq5jIeft9bDCe17PUOU0nAbfo883I3cW9lUOcmWNQ3btbkmXMGjRszJE6g==}
     dependencies:
       '@lezer/lr': 0.15.8
     dev: false

@@ -20,6 +20,7 @@ export const settings: BlockSettings = {
                 { value: 'html', icon: IconEnum.Code, label: 'HTML' },
                 { value: 'java', icon: IconEnum.Code, label: 'Java' },
                 { value: 'javascript', icon: IconEnum.Code, label: 'JavaScript' },
+                { value: 'json', icon: IconEnum.Code, label: 'JSON' },
                 { value: 'jsp', icon: IconEnum.Code, label: 'JSP' },
                 { value: 'jsx', icon: IconEnum.Code, label: 'JSX' },
                 { value: 'kotlin', icon: IconEnum.Code, label: 'Kotlin' },
