@@ -2,7 +2,7 @@
 
 import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
-import { getBorderSettings, getExtendedBorderRadiusSettings, Radius } from '@frontify/guideline-blocks-shared';
+import { Radius, getBorderSettings, getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
 
 export const settings: BlockSettings = {
     main: [
@@ -15,21 +15,16 @@ export const settings: BlockSettings = {
                 { value: 'coffeescript', icon: IconEnum.Code, label: 'CoffeeScript' },
                 { value: 'css', icon: IconEnum.Code, label: 'CSS' },
                 { value: 'sass', icon: IconEnum.Code, label: 'CSS (Sass)' },
-                { value: 'haml', icon: IconEnum.Code, label: 'Haml' },
                 { value: 'html', icon: IconEnum.Code, label: 'HTML' },
                 { value: 'java', icon: IconEnum.Code, label: 'Java' },
                 { value: 'javascript', icon: IconEnum.Code, label: 'JavaScript' },
                 { value: 'json', icon: IconEnum.Code, label: 'JSON' },
-                { value: 'jsp', icon: IconEnum.Code, label: 'JSP' },
                 { value: 'jsx', icon: IconEnum.Code, label: 'JSX' },
                 { value: 'kotlin', icon: IconEnum.Code, label: 'Kotlin' },
                 { value: 'livescript', icon: IconEnum.Code, label: 'LiveScript' },
                 { value: 'markdown', icon: IconEnum.Code, label: 'Markdown' },
-                { value: 'jade', icon: IconEnum.Code, label: 'Pug (Jade)' },
-                { value: 'plaintext', icon: IconEnum.Code, label: 'Plain text' },
                 { value: 'php', icon: IconEnum.Code, label: 'PHP' },
                 { value: 'shell', icon: IconEnum.Code, label: 'Shell' },
-                { value: 'slim', icon: IconEnum.Code, label: 'Slim' },
                 { value: 'sql', icon: IconEnum.Code, label: 'SQL' },
                 { value: 'swift', icon: IconEnum.Code, label: 'Swift' },
                 { value: 'typescript', icon: IconEnum.Code, label: 'TypeScript' },

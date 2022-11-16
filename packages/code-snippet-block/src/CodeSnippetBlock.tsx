@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { javascript } from '@codemirror/lang-javascript';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { debounce } from '@frontify/fondue';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { langNames, langs, loadLanguage } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import { FC, ReactElement } from 'react';
@@ -16,7 +16,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
 
     const {
         content,
-        language,
+        language = 'html',
         borderStyle,
         borderWidth,
         borderColor,
@@ -26,14 +26,30 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         theme = 'default',
     } = blockSettings;
 
+    loadLanguage('tsx');
+
+    langs.tsx();
+
+    console.log('langNames:', langNames);
+
     const getTheme = () => {
         if (theme === 'default') {
             return 'light';
-        } else if (themes[theme]) {
+        } else if (Object.keys(themes).includes(theme)) {
             return themes[theme];
         }
-        return undefined;
+        return 'light';
     };
+
+    const getLanguage = () => {
+        if (langNames.includes(language)) {
+            console.log('found language!', language);
+            return langs[language];
+        }
+        return langs['html'];
+    };
+
+    console.log(getLanguage());
 
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
@@ -57,7 +73,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
             <CodeMirror
                 theme={getTheme()}
                 value={content}
-                extensions={[javascript({ jsx: true })]}
+                extensions={[langs.tsx()]}
                 onChange={handleChange}
                 editable={isEditing}
                 basicSetup={{ lineNumbers: withRowNumbers }}
