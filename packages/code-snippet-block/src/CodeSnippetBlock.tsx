@@ -56,7 +56,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
         >
-            <header className="tw-p-2">Heading</header>
+            <header className="tw-p-2 tw-bg-[#f5f5f5]">Heading</header>
             <CodeMirror
                 value={content}
                 extensions={[javascript({ jsx: true })]}
