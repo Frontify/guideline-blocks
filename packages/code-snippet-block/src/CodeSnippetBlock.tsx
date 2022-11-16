@@ -1,12 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
-
-import { FC, ReactElement } from 'react';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { debounce } from '@frontify/fondue';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-
+import { FC, ReactElement } from 'react';
+import 'tailwindcss/tailwind.css';
 import { CodeMirrorEditor } from './components';
 import { DEFAULT_THEME_VALUE } from './constants';
 import { CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';

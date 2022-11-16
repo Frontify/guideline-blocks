@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { DropdownSize, IconEnum } from '@frontify/fondue';
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { Radius, getBorderSettings, getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
-
 import { DEFAULT_THEME_VALUE } from './constants';
 
 export const settings: BlockSettings = {

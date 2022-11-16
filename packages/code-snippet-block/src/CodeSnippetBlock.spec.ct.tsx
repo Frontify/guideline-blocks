@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
-import { Color } from '@frontify/fondue';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { Color } from '@frontify/fondue';
 import { Radius } from '@frontify/guideline-blocks-shared';
-
+import { mount } from 'cypress/react';
 import { CodeSnippetBlock } from './CodeSnippetBlock';
 
 const codeSnippetEditorSelector = '.cm-editor';

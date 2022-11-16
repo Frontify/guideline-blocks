@@ -1,12 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties } from 'react';
-import { Color } from '@frontify/fondue';
-import { Globals, Property } from 'csstype';
 import { AppBridgeBlock } from '@frontify/app-bridge';
+import { Color } from '@frontify/fondue';
 import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
+import { Globals, Property } from 'csstype';
+import { CSSProperties } from 'react';
 
-export type Language = 'js' | 'html' | 'css' | 'php' | 'json' | 'jsx' | 'ts';
+export type Language = 'js' | 'html' | 'css' | 'php' | 'json' | 'jsx' | 'ts' | 'java' | 'markdown';
 
 export type Theme =
     | 'cobalt'

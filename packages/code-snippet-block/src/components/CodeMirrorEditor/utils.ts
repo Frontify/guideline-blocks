@@ -2,8 +2,10 @@
 
 import { css } from '@codemirror/lang-css';
 import { html } from '@codemirror/lang-html';
+import { java } from '@codemirror/lang-java';
 import { javascript } from '@codemirror/lang-javascript';
 import { json } from '@codemirror/lang-json';
+import { markdown } from '@codemirror/lang-markdown';
 import { php } from '@codemirror/lang-php';
 import { Extension } from '@codemirror/state';
 import { Language, Theme } from '../../types';
@@ -52,6 +54,8 @@ export const getLanguage = (type: Language): Extension => {
         json: json(),
         jsx: javascript({ jsx: true }),
         ts: javascript({ typescript: true }),
+        java: java(),
+        markdown: markdown(),
     };
 
     return langMapping[type] || langMapping['html'];
