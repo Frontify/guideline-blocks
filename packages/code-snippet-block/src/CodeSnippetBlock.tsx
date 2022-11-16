@@ -4,11 +4,11 @@ import { javascript } from '@codemirror/lang-javascript';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { debounce } from '@frontify/fondue';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import { FC, ReactElement } from 'react';
 import 'tailwindcss/tailwind.css';
-import { DEFAULT_THEME_VALUE } from './constants';
-import { CodeMirrorEditorProps, CodeSnippetProps, Settings } from './types';
+import { CodeSnippetProps, Settings } from './types';
 
 export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -23,8 +23,17 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         hasBorder = false,
         withHeading = false,
         withRowNumbers = false,
-        theme = DEFAULT_THEME_VALUE,
+        theme = 'default',
     } = blockSettings;
+
+    const getTheme = () => {
+        if (theme === 'default') {
+            return 'light';
+        } else if (themes[theme]) {
+            return themes[theme];
+        }
+        return undefined;
+    };
 
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
@@ -32,37 +41,27 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
             : radiusStyleMap[blockSettings.extendedRadiusChoice],
     };
 
-    const borderColorRgba = toRgbaString(borderColor);
-
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
-
-    const codeMirrorEditorProps: CodeMirrorEditorProps = {
-        theme,
-        language,
-        isEditing,
-        withHeading,
-        withRowNumbers,
-        initValue: content,
-        onChange: handleChange,
-        borderRadius: customCornerRadiusStyle.borderRadius,
-        border: hasBorder ? `${borderStyle} ${borderWidth} ${borderColorRgba}` : 'none',
-    };
 
     return (
         <div
             className="tw-overflow-hidden"
             style={{
-                border: hasBorder ? `${borderStyle} ${borderWidth} ${borderColorRgba}` : 'none',
+                border: hasBorder ? `${borderStyle} ${borderWidth} ${toRgbaString(borderColor)}` : 'none',
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
         >
-            <header className="tw-p-2 tw-bg-[#f5f5f5]">Heading</header>
+            {withHeading && (
+                <header className="tw-p-2 tw-bg-[#f5f5f5] tw-border-b tw-border-current">{language}</header>
+            )}
             <CodeMirror
+                theme={getTheme()}
                 value={content}
                 extensions={[javascript({ jsx: true })]}
                 onChange={handleChange}
                 editable={isEditing}
                 basicSetup={{ lineNumbers: withRowNumbers }}
+                placeholder="< please add snippet here >"
             />
         </div>
     );

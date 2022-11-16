@@ -35,6 +35,7 @@
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "workspace:*",
         "@frontify/guideline-blocks-shared": "workspace:*",
+        "@uiw/codemirror-themes-all": "^4.13.2",
         "@uiw/react-codemirror": "^4.13.2",
         "csstype": "3.1.1",
         "react": "17.0.2",

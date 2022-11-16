@@ -1,27 +1,55 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties } from 'react';
-import { Color } from '@frontify/fondue';
-import { Globals, Property } from 'csstype';
 import { AppBridgeBlock } from '@frontify/app-bridge';
+import { Color } from '@frontify/fondue';
 import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
+import { Globals, Property } from 'csstype';
+import { CSSProperties } from 'react';
 
-export type Language = 'js' | 'html' | 'css' | 'php' | 'json' | 'jsx' | 'ts';
+export type Language =
+    | 'coffeescript'
+    | 'css'
+    | 'sass'
+    | 'haml'
+    | 'html'
+    | 'java'
+    | 'javascript'
+    | 'json'
+    | 'jsp'
+    | 'jsx'
+    | 'kotlin'
+    | 'livescript'
+    | 'markdown'
+    | 'jade'
+    | 'plaintext'
+    | 'php'
+    | 'shell'
+    | 'slim'
+    | 'sql'
+    | 'swift'
+    | 'typescript'
+    | 'tsx'
+    | 'xml'
+    | 'yaml';
 
 export type Theme =
-    | 'cobalt'
     | 'default'
+    | 'androidstudio'
+    | 'atomone'
+    | 'bbedit'
+    | 'bespin'
+    | 'darcula'
     | 'dracula'
-    | 'oneDark'
-    | 'oneLight'
-    | 'evaLight'
-    | 'base16Dark'
-    | 'gitHubDark'
-    | 'gitHubLight'
-    | 'base16Light'
-    | 'materialDarker'
-    | 'materialLighter'
-    | 'materialPalenight';
+    | 'duotoneDark'
+    | 'duotoneLight'
+    | 'eclipse'
+    | 'githubDark'
+    | 'githubLight'
+    | 'gruvboxDark'
+    | 'okaidia'
+    | 'sublime'
+    | 'xcodeDark'
+    | 'xcodeLight';
 
 export type TwBorderInlineStyle = Exclude<
     Property.BorderInlineStyle,
@@ -46,19 +74,6 @@ export type Settings = {
     borderStyle: TwBorderInlineStyle;
     borderWidth: Property.BorderWidth;
 } & RadiusExtendedSettings;
-
-export type CodeMirrorEditorProps = {
-    id?: string;
-    theme: Theme;
-    initValue?: string;
-    isEditing?: boolean;
-    language?: Language;
-    withHeading?: boolean;
-    withRowNumbers?: boolean;
-    border?: Property.Border;
-    onChange: (value: string) => void;
-    borderRadius: Property.BorderRadius;
-};
 
 export type CodeSnippetProps = {
     appBridge: AppBridgeBlock;
