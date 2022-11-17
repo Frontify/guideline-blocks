@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Extension } from '@codemirror/state';
+import { showPanel } from '@codemirror/view';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { debounce } from '@frontify/fondue';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
@@ -14,8 +15,6 @@ import { CodeSnippetProps, Settings } from './types';
 export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
-
-    console.log({ langs });
 
     const {
         content,
@@ -52,6 +51,18 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         extensions.push(possibleLang());
     }
 
+    const panelExtension = () => {
+        const dom = document.createElement('div');
+        dom.textContent = language?.toUpperCase() ?? '';
+        dom.setAttribute('data-test-id', 'code-snippet-header');
+        dom.className = 'cm-header-panel tw-p-2 tw-text-s';
+        return showPanel.of(() => ({ dom, top: true }));
+    };
+
+    if (withHeading) {
+        extensions.push(panelExtension());
+    }
+
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
             ? `${blockSettings.extendedRadiusTopLeft} ${blockSettings.extendedRadiusTopRight} ${blockSettings.extendedRadiusBottomRight} ${blockSettings.extendedRadiusBottomLeft}`
@@ -69,9 +80,6 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
         >
-            {withHeading && (
-                <header className="tw-p-2 tw-bg-[#f5f5f5] tw-border-b tw-border-current">{language}</header>
-            )}
             <CodeMirror
                 theme={getTheme()}
                 value={content}
