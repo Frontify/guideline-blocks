@@ -15,6 +15,7 @@ import { CodeSnippetProps, Settings } from './types';
 export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
+    const extensions = [] as Extension[];
 
     const {
         content,
@@ -44,11 +45,9 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         return langs.html;
     };
 
-    const extensions = [] as Extension[];
-
-    const possibleLang = getCurrentLanguageFromLangs();
-    if (possibleLang) {
-        extensions.push(possibleLang());
+    const activeLanguage = getCurrentLanguageFromLangs();
+    if (activeLanguage) {
+        extensions.push(activeLanguage());
     }
 
     const panelExtension = () => {
