@@ -25,7 +25,12 @@ export type Language =
     | 'typescript'
     | 'tsx'
     | 'xml'
-    | 'yaml';
+    | 'yaml'
+    | 'python'
+    | 'go'
+    | 'c'
+    | 'cpp'
+    | 'csharp';
 
 export type Theme =
     | 'default'

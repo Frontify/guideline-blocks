@@ -15,6 +15,8 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 
+    console.log({ langs });
+
     const {
         content,
         language = 'html',
@@ -60,6 +62,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
 
     return (
         <div
+            data-test-id="code-snippet-block"
             className="tw-overflow-hidden"
             style={{
                 border: hasBorder ? `${borderStyle} ${borderWidth} ${toRgbaString(borderColor)}` : 'none',
