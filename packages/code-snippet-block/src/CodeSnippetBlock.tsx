@@ -4,6 +4,7 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { debounce } from '@frontify/fondue';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { langNames, langs, loadLanguage } from '@uiw/codemirror-extensions-langs';
+import { LanguageSupport, StreamLanguage, StreamParser } from '@codemirror/language';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import { FC, ReactElement } from 'react';
@@ -26,12 +27,6 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         theme = 'default',
     } = blockSettings;
 
-    loadLanguage('tsx');
-
-    langs.tsx();
-
-    console.log('langNames:', langNames);
-
     const getTheme = () => {
         if (theme === 'default') {
             return 'light';
@@ -41,15 +36,24 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         return 'light';
     };
 
-    const getLanguage = () => {
+    const getLanguage = (): LanguageSupport => {
         if (langNames.includes(language)) {
-            console.log('found language!', language);
-            return langs[language];
+            const loadedLanguage = loadLanguage(language);
+            console.log(loadedLanguage);
+            if (loadedLanguage instanceof StreamLanguage<unknown>) {
+                console.log(loadedLanguage?.streamParser);
+                const streamLanguage = () => StreamLanguage.define(loadedLanguage);
+                console.log({ streamLanguage });
+                return streamLanguage;
+            }
+            if (loadedLanguage instanceof LanguageSupport) {
+                return loadedLanguage;
+            }
         }
-        return langs['html'];
+        return loadLanguage('html');
     };
 
-    console.log(getLanguage());
+    console.log('get language', getLanguage());
 
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
@@ -73,7 +77,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
             <CodeMirror
                 theme={getTheme()}
                 value={content}
-                extensions={[langs.tsx()]}
+                extensions={[getLanguage()]}
                 onChange={handleChange}
                 editable={isEditing}
                 basicSetup={{ lineNumbers: withRowNumbers }}
