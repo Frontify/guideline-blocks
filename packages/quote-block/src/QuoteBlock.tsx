@@ -8,7 +8,16 @@ import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';
 import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
-import { LineType, Props, QuotationMarksAnchoring, QuoteStyle, QuoteType, Settings } from './types';
+import {
+    LineType,
+    Props,
+    QuotationMarksAnchoring,
+    QuoteSize,
+    QuoteStyle,
+    QuoteType,
+    Settings,
+    quoteSizeMap,
+} from './types';
 import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities';
 
 const ACTIONS = [
@@ -28,17 +37,26 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const isFullWidth =
         blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText && isQuotationMarkType;
     const textAlignment = !isQuotationMarkType ? 'left' : blockSettings.textAlignment ?? 'left';
-    const borderRgba = toRgbaString(blockSettings.accentLineColor ?? DEFAULT_COLOR_VALUE);
+
+    const iconColor = blockSettings.isCustomQuotesColor
+        ? toRgbaString(blockSettings.quotesColor ?? DEFAULT_COLOR_VALUE)
+        : designTokens?.quote?.color ?? toRgbaString(DEFAULT_COLOR_VALUE);
+
+    const accentLineColor = blockSettings.isCustomLineColor
+        ? toRgbaString(blockSettings.accentLineColor ?? DEFAULT_COLOR_VALUE)
+        : designTokens?.quote?.color ?? toRgbaString(DEFAULT_COLOR_VALUE);
+
     const borderStyles = blockSettings.showAccentLine
         ? {
               borderLeftStyle: blockSettings.lineType ?? LineType.Solid,
               borderLeftWidth: blockSettings.lineWidthValue ?? '2px',
-              borderLeftColor: borderRgba,
+              borderLeftColor: accentLineColor,
           }
         : undefined;
 
     const accentLineClassName = blockSettings.showAccentLine ? 'tw-pl-7' : 'tw-ml-7';
     const showAuthor = blockSettings.showAuthor && blockSettings.authorName;
+    const sizeValue = blockSettings.sizeValue || quoteSizeMap[QuoteSize.LargeSize];
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
@@ -57,10 +75,10 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
             <div className={getWrapperClasses()}>
                 {isQuotationMarkType && (
                     <QuoteBlockIcon
-                        color={blockSettings.quotesColor}
+                        color={iconColor}
                         blockAssets={blockAssets}
                         isCustomSize={blockSettings.isCustomSize}
-                        sizeValue={blockSettings.sizeValue}
+                        sizeValue={sizeValue}
                         sizeChoice={blockSettings.sizeChoice}
                         customIconId={CUSTOM_QUOTE_STYLE_LEFT_ID}
                         quoteStyle={
@@ -97,10 +115,10 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                 </div>
                 {isQuotationMarkType && (
                     <QuoteBlockIcon
-                        color={blockSettings.quotesColor}
+                        color={iconColor}
                         blockAssets={blockAssets}
                         isCustomSize={blockSettings.isCustomSize}
-                        sizeValue={blockSettings.sizeValue}
+                        sizeValue={sizeValue}
                         sizeChoice={blockSettings.sizeChoice}
                         customIconId={CUSTOM_QUOTE_STYLE_RIGHT_ID}
                         quoteStyle={
