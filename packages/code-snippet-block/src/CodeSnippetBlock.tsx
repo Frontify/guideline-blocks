@@ -10,7 +10,7 @@ import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import { FC, ReactElement } from 'react';
 import 'tailwindcss/tailwind.css';
-import { CodeSnippetProps, Settings } from './types';
+import { CodeSnippetProps, Settings, languageNameMap } from './types';
 
 export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -52,7 +52,7 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
 
     const panelExtension = () => {
         const dom = document.createElement('div');
-        dom.textContent = language?.toUpperCase() ?? '';
+        dom.textContent = languageNameMap[language];
         dom.setAttribute('data-test-id', 'code-snippet-header');
         dom.className = 'cm-header-panel tw-p-2 tw-text-s';
         return showPanel.of(() => ({ dom, top: true }));

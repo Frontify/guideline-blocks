@@ -3,8 +3,6 @@
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
-import { Globals, Property } from 'csstype';
-import { CSSProperties } from 'react';
 
 export type Language =
     | 'coffeescript'
@@ -32,6 +30,33 @@ export type Language =
     | 'cpp'
     | 'csharp';
 
+export const languageNameMap: Record<Language, string> = {
+    coffeescript: 'CoffeeScript',
+    css: 'CSS',
+    sass: 'Sass',
+    c: 'C',
+    cpp: 'C++',
+    csharp: 'C#',
+    go: 'Go',
+    html: 'HTML',
+    java: 'Java',
+    javascript: 'JavaScript',
+    json: 'JSON',
+    jsx: 'JSX',
+    kotlin: 'Kotlin',
+    livescript: 'LiveScript',
+    markdown: 'Markdown',
+    python: 'Python',
+    php: 'PHP',
+    shell: 'Shell',
+    sql: 'SQL',
+    swift: 'Swift',
+    typescript: 'TypeScript',
+    tsx: 'TSX',
+    xml: 'XML',
+    yaml: 'Yaml',
+};
+
 export type Theme =
     | 'default'
     | 'androidstudio'
@@ -51,17 +76,11 @@ export type Theme =
     | 'xcodeDark'
     | 'xcodeLight';
 
-export type TwBorderInlineStyle = Exclude<
-    Property.BorderInlineStyle,
-    Globals | 'groove' | 'inset' | 'outset' | 'ridge' | 'hidden'
->;
-
-export interface CodeMirrorEditorStyle extends CSSProperties {
-    '--editor-border': Property.Border;
-    '--editor-border-radius': Property.BorderRadius;
+export enum CodeSnippetBorderStyle {
+    Solid = 'Solid',
+    Dotted = 'Dotted',
+    Dashed = 'Dashed',
 }
-
-export type BorderRadiusSize = '0px' | '2px' | '4px' | '12px';
 
 export type Settings = {
     theme?: Theme;
@@ -71,9 +90,15 @@ export type Settings = {
     hasBorder?: boolean;
     withHeading?: boolean;
     withRowNumbers?: boolean;
-    borderStyle: TwBorderInlineStyle;
-    borderWidth: Property.BorderWidth;
+    borderStyle: CodeSnippetBorderStyle;
+    borderWidth: string;
 } & RadiusExtendedSettings;
+
+export const borderStyles: Record<CodeSnippetBorderStyle, string> = {
+    [CodeSnippetBorderStyle.Solid]: 'solid',
+    [CodeSnippetBorderStyle.Dotted]: 'dotted',
+    [CodeSnippetBorderStyle.Dashed]: 'dashed',
+};
 
 export type CodeSnippetProps = {
     appBridge: AppBridgeBlock;
