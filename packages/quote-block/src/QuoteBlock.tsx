@@ -8,7 +8,16 @@ import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';
 import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
-import { LineType, Props, QuotationMarksAnchoring, QuoteStyle, QuoteType, Settings } from './types';
+import {
+    LineType,
+    Props,
+    QuotationMarksAnchoring,
+    QuoteSize,
+    QuoteStyle,
+    QuoteType,
+    Settings,
+    quoteSizeMap,
+} from './types';
 import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities';
 
 const ACTIONS = [
@@ -47,6 +56,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const accentLineClassName = blockSettings.showAccentLine ? 'tw-pl-7' : 'tw-ml-7';
     const showAuthor = blockSettings.showAuthor && blockSettings.authorName;
+    const sizeValue = blockSettings.sizeValue || quoteSizeMap[QuoteSize.LargeSize];
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
@@ -68,7 +78,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                         color={iconColor}
                         blockAssets={blockAssets}
                         isCustomSize={blockSettings.isCustomSize}
-                        sizeValue={blockSettings.sizeValue}
+                        sizeValue={sizeValue}
                         sizeChoice={blockSettings.sizeChoice}
                         customIconId={CUSTOM_QUOTE_STYLE_LEFT_ID}
                         quoteStyle={
@@ -108,7 +118,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                         color={iconColor}
                         blockAssets={blockAssets}
                         isCustomSize={blockSettings.isCustomSize}
-                        sizeValue={blockSettings.sizeValue}
+                        sizeValue={sizeValue}
                         sizeChoice={blockSettings.sizeChoice}
                         customIconId={CUSTOM_QUOTE_STYLE_RIGHT_ID}
                         quoteStyle={
