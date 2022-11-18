@@ -48,22 +48,12 @@ it('renders code snippet with heading panel', () => {
     const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
         blockSettings: {
             withHeading: true,
+            language: 'typescript',
         },
     });
 
     mount(<CodeSnippetWithStubs />);
 
-    cy.get(codeSnippetHeaderSelector).should('exist');
-});
-
-it('renders code snippet heading panel with language title', () => {
-    const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
-        blockSettings: {
-            withHeading: true,
-            language: 'ts',
-        },
-    });
-    mount(<CodeSnippetWithStubs />);
     cy.get(codeSnippetHeaderSelector).should('exist').contains('TypeScript');
 });
 
@@ -128,4 +118,17 @@ it('renders code snippet with custom border radius', () => {
 
     mount(<CodeSnippetWithStubs />);
     cy.get(codeSnippetBlockSelector).should('have.css', 'border-radius', '5px 2px 10px 8px');
+});
+
+it('renders code snippet with syntax highlighting for javascript', () => {
+    const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
+        blockSettings: {
+            language: 'javascript',
+            content: 'const a = 1;',
+        },
+    });
+
+    mount(<CodeSnippetWithStubs />);
+    cy.get(codeSnippetEditorSelector).find('.cm-line span').first().should('have.css', 'color', 'rgb(119, 0, 136)');
+    cy.get(codeSnippetEditorSelector).find('.cm-line span').eq(1).should('have.css', 'color', 'rgb(0, 0, 255)');
 });
