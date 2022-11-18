@@ -11,7 +11,7 @@ export type Settings = {
     cypressTest: boolean;
 };
 
-export type ColorProps = Color & { id: number; width: number };
+export type ColorProps = Color & { id: number; width: number; resized?: boolean };
 
 export type ColorScaleBlockRef = {
     current: Nullable<HTMLDivElement>;

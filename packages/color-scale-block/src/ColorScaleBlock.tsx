@@ -102,9 +102,22 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
     };
 
     const handleColorSquareDelete = (id: number) => {
-        const reorderedList = displayableItems.filter((item) => item.id !== id);
-        setBlockSettings({ ...blockSettings, colorInput: reorderedList });
-        setDisplayableItems(reorderedList);
+        const colorListWithoutDeletedColor = displayableItems.filter((item) => item.id !== id);
+
+        const newWidthForUnresizedColors = calculateNewWidthForUnresizedColors(colorListWithoutDeletedColor);
+
+        const updatedColors = colorListWithoutDeletedColor.map((color) => {
+            if (!color.resized) {
+                return {
+                    ...color,
+                    width: newWidthForUnresizedColors ?? color.width,
+                };
+            }
+            return color;
+        });
+
+        setBlockSettings({ ...blockSettings, colorInput: updatedColors });
+        setDisplayableItems(updatedColors);
     };
 
     const handleColorPickerClose = () => {
@@ -123,40 +136,31 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
             return;
         }
 
-        if (colorScaleBlockRef.current === null) {
-            return;
-        }
+        const colorListWithNewColor = displayableItems.filter((color) => color);
 
-        const updateColors = displayableItems.map((item) => ({ ...item }));
+        colorListWithNewColor.push({
+            ...flyoutColor,
+            width: MINIMUM_COLOR_WIDTH,
+            resized: false,
+            id,
+        });
 
-        const blockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
-        const takenWidth = displayableItems.reduce((prevWidth, item) => prevWidth + item.width, 0);
-        const availableSpace = blockWidth - takenWidth;
-        let newColorWidth = availableSpace;
+        const newWidthForUnresizedColors = calculateNewWidthForUnresizedColors(colorListWithNewColor);
 
-        if (availableSpace < MINIMUM_COLOR_WIDTH * 2) {
-            // check if sibling color has min width
-            const resizedSiblingColorIndex = updateColors.findIndex((color) => color.width >= MINIMUM_COLOR_WIDTH * 2);
-
-            if (resizedSiblingColorIndex === -1) {
-                return;
+        const updatedColors = colorListWithNewColor.map((color) => {
+            if (!color.resized) {
+                return {
+                    ...color,
+                    width: newWidthForUnresizedColors ?? color.width,
+                };
             }
+            return color;
+        });
 
-            updateColors[resizedSiblingColorIndex].width -= MINIMUM_COLOR_WIDTH * 2;
-            newColorWidth = MINIMUM_COLOR_WIDTH * 2;
-        }
-
-        updateColors.push({ ...flyoutColor, width: newColorWidth, id });
-
-        if (updateColors.length === 2 && blockWidth) {
-            updateColors[0].width = blockWidth / 2;
-            updateColors[1].width = blockWidth / 2;
-        }
-
-        setDisplayableItems(updateColors);
+        setDisplayableItems(updatedColors);
         setBlockSettings({
             ...blockSettings,
-            colorInput: updateColors,
+            colorInput: updatedColors,
         });
     };
 
@@ -178,6 +182,43 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
         resizeStartWidth.current = displayableItems[index].width;
 
         resizedColorIndex.current = index;
+    };
+
+    const calculateNewWidthForUnresizedColors = (colorArray: ColorProps[]) => {
+        if (colorScaleBlockRef.current === null) {
+            return;
+        }
+
+        const unresizedColors = colorArray.filter((color) => !color.resized);
+
+        const numberOfUnresizedColors = unresizedColors.length ?? 0;
+
+        const unresizedColorsTotalWidth = colorArray.reduce((accumulator, color) => {
+            if (!color.resized) {
+                return accumulator + color.width;
+            }
+            return accumulator;
+        }, 0);
+
+        const resizedColorsTotalWidth = colorArray.reduce((accumulator, color) => {
+            if (color.resized) {
+                return accumulator + color.width;
+            }
+            return accumulator;
+        }, 0);
+
+        const blockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
+        const takenWidth = colorArray.reduce((prevWidth, item) => prevWidth + item.width, 0);
+        const emptySpace = blockWidth - takenWidth;
+
+        const spaceToDivide =
+            unresizedColorsTotalWidth > blockWidth
+                ? blockWidth - resizedColorsTotalWidth
+                : unresizedColorsTotalWidth + emptySpace;
+
+        const calculatedNewWidth = colorArray.length > 0 ? spaceToDivide / numberOfUnresizedColors : blockWidth;
+
+        return calculatedNewWidth >= MINIMUM_COLOR_WIDTH ? calculatedNewWidth : MINIMUM_COLOR_WIDTH;
     };
 
     const handleResize = (event: MouseEvent) => {
@@ -217,6 +258,7 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (index === colorIndex && !siblingNeedsShrinking && color.width > MINIMUM_COLOR_WIDTH) {
+                    color.resized = true;
                     color.width = (resizeStartWidth.current ?? 0) - movementSinceStart;
                 }
                 return color;
@@ -231,6 +273,7 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
             setDisplayableItems(
                 displayableItemsWithCurrentColorResized.map((siblingColor, index) => {
                     if (siblingNeedsShrinking && index === resizedSiblingIndex) {
+                        siblingColor.resized = true;
                         siblingColor.width -= displacement;
                     }
                     return siblingColor;
@@ -260,6 +303,7 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (canExpandCurrentColor && index === colorIndex) {
                     color.width = (resizeStartWidth.current ?? 0) + movementSinceStart;
+                    color.resized = true;
                 }
 
                 return color;
@@ -279,6 +323,7 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                 displayableItemsWithCurrentColorResized.map((siblingColor, index) => {
                     if (index === resizedSiblingIndex) {
                         siblingColor.width -= displacement;
+                        siblingColor.resized = true;
                     }
 
                     return siblingColor;
