@@ -56,6 +56,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const accentLineClassName = blockSettings.showAccentLine ? 'tw-pl-7' : 'tw-ml-7';
     const showAuthor = blockSettings.showAuthor && blockSettings.authorName;
+    const sizeValue = blockSettings.sizeValue ? blockSettings.sizeValue : quoteSizeMap[QuoteSize.LargeSize];
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
@@ -77,11 +78,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                         color={iconColor}
                         blockAssets={blockAssets}
                         isCustomSize={blockSettings.isCustomSize}
-                        sizeValue={
-                            blockSettings.sizeValue && blockSettings.sizeValue !== ''
-                                ? blockSettings.sizeValue
-                                : quoteSizeMap[QuoteSize.LargeSize]
-                        }
+                        sizeValue={sizeValue}
                         sizeChoice={blockSettings.sizeChoice}
                         customIconId={CUSTOM_QUOTE_STYLE_LEFT_ID}
                         quoteStyle={
@@ -121,7 +118,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                         color={iconColor}
                         blockAssets={blockAssets}
                         isCustomSize={blockSettings.isCustomSize}
-                        sizeValue={blockSettings.sizeValue}
+                        sizeValue={sizeValue}
                         sizeChoice={blockSettings.sizeChoice}
                         customIconId={CUSTOM_QUOTE_STYLE_RIGHT_ID}
                         quoteStyle={
