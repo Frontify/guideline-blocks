@@ -8,17 +8,17 @@ import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared'
 import { langs } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
-import { FC, ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { CodeSnippetProps, Settings, languageNameMap } from './types';
 
-export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElement => {
+export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
+    const [contentValue] = useState(blockSettings.content);
     const extensions = [] as Extension[];
 
     const {
-        content,
         language = 'html',
         borderStyle,
         borderWidth,
@@ -81,11 +81,19 @@ export const CodeSnippetBlock: FC<CodeSnippetProps> = ({ appBridge }): ReactElem
         >
             <CodeMirror
                 theme={getTheme()}
-                value={content}
+                value={contentValue}
                 extensions={extensions}
                 onChange={handleChange}
                 editable={isEditing}
-                basicSetup={{ lineNumbers: withRowNumbers }}
+                basicSetup={{
+                    lineNumbers: withRowNumbers,
+                    foldGutter: false,
+                    searchKeymap: false,
+                    highlightActiveLineGutter: false,
+                    highlightActiveLine: false,
+                    lintKeymap: false,
+                    autocompletion: false,
+                }}
                 placeholder="< please add snippet here >"
             />
         </div>

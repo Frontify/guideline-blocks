@@ -64,7 +64,7 @@ it('renders code snippet heading panel with language title', () => {
         },
     });
     mount(<CodeSnippetWithStubs />);
-    cy.get(codeSnippetHeaderSelector).should('exist').contains('TS');
+    cy.get(codeSnippetHeaderSelector).should('exist').contains('TypeScript');
 });
 
 it('renders code snippet with line numbers', () => {
