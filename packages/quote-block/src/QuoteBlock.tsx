@@ -56,7 +56,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
 
     const accentLineClassName = blockSettings.showAccentLine ? 'tw-pl-7' : 'tw-ml-7';
     const showAuthor = blockSettings.showAuthor && blockSettings.authorName;
-    const sizeValue = blockSettings.sizeValue ? blockSettings.sizeValue : quoteSizeMap[QuoteSize.LargeSize];
+    const sizeValue = blockSettings.sizeValue || quoteSizeMap[QuoteSize.LargeSize];
 
     const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
 
