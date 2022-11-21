@@ -1,25 +1,28 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Extension } from '@codemirror/state';
-import { showPanel } from '@codemirror/view';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { debounce } from '@frontify/fondue';
+import { Dropdown, DropdownSize, debounce } from '@frontify/fondue';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import { CodeSnippetProps, Settings, languageNameMap } from './types';
+import { CodeSnippetProps, Language, Settings, languageNameMap } from './types';
 
 export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const [contentValue] = useState(blockSettings.content);
+    const [selectedLanguage, setSelectedLanguage] = useState(blockSettings.language ?? 'plain');
     const extensions = [] as Extension[];
 
+    useEffect(() => {
+        setSelectedLanguage(blockSettings.language ?? 'plain');
+    }, [blockSettings.language]);
+
     const {
-        language = 'html',
         borderStyle,
         borderWidth,
         borderColor,
@@ -39,8 +42,11 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
     };
 
     const getCurrentLanguageFromLangs = () => {
-        if (Object.keys(langs).includes(language)) {
-            return langs[language];
+        if (selectedLanguage === 'plain') {
+            return null;
+        }
+        if (Object.keys(langs).includes(selectedLanguage)) {
+            return langs[selectedLanguage];
         }
         return langs.html;
     };
@@ -48,18 +54,6 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
     const activeLanguage = getCurrentLanguageFromLangs();
     if (activeLanguage) {
         extensions.push(activeLanguage());
-    }
-
-    const panelExtension = () => {
-        const dom = document.createElement('div');
-        dom.textContent = languageNameMap[language];
-        dom.setAttribute('data-test-id', 'code-snippet-header');
-        dom.className = 'cm-header-panel tw-p-2 tw-text-s';
-        return showPanel.of(() => ({ dom, top: true }));
-    };
-
-    if (withHeading) {
-        extensions.push(panelExtension());
     }
 
     const customCornerRadiusStyle = {
@@ -70,6 +64,11 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
 
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
 
+    const handleLanguageChange = (value: Language) => {
+        setSelectedLanguage(value);
+        setBlockSettings({ language: value });
+    };
+
     return (
         <div
             data-test-id="code-snippet-block"
@@ -79,6 +78,30 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
         >
+            {withHeading && (
+                <div className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s">
+                    {!isEditing && <span>{languageNameMap[selectedLanguage]}</span>}
+
+                    {isEditing && (
+                        <div className="tw-max-w-[150px]">
+                            <Dropdown
+                                size={DropdownSize.Small}
+                                activeItemId={selectedLanguage}
+                                menuBlocks={[
+                                    {
+                                        id: 'languages',
+                                        menuItems: Object.entries(languageNameMap).map(([value, label]) => ({
+                                            id: value,
+                                            title: label,
+                                        })),
+                                    },
+                                ]}
+                                onChange={(value) => handleLanguageChange(value as Language)}
+                            />
+                        </div>
+                    )}
+                </div>
+            )}
             <CodeMirror
                 theme={getTheme()}
                 value={contentValue}

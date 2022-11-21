@@ -28,7 +28,8 @@ export type Language =
     | 'go'
     | 'c'
     | 'cpp'
-    | 'csharp';
+    | 'csharp'
+    | 'plain';
 
 export const languageNameMap: Record<Language, string> = {
     coffeescript: 'CoffeeScript',
@@ -46,6 +47,7 @@ export const languageNameMap: Record<Language, string> = {
     kotlin: 'Kotlin',
     livescript: 'LiveScript',
     markdown: 'Markdown',
+    plain: 'Plain text',
     python: 'Python',
     php: 'PHP',
     shell: 'Shell',
