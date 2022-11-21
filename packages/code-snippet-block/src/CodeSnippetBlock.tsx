@@ -79,7 +79,10 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
             }}
         >
             {withHeading && (
-                <div className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s">
+                <div
+                    data-test-id="code-snippet-header"
+                    className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s"
+                >
                     {!isEditing && <span>{languageNameMap[selectedLanguage]}</span>}
 
                     {isEditing && (
