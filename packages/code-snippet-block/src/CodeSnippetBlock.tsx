@@ -33,22 +33,17 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
     } = blockSettings;
 
     const getTheme = () => {
-        if (theme === 'default') {
-            return 'light';
-        } else if (Object.keys(themes).includes(theme)) {
+        if (theme !== 'default' && Object.keys(themes).includes(theme)) {
             return themes[theme];
         }
         return 'light';
     };
 
     const getCurrentLanguageFromLangs = () => {
-        if (selectedLanguage === 'plain') {
-            return null;
-        }
-        if (Object.keys(langs).includes(selectedLanguage)) {
+        if (selectedLanguage !== 'plain' && Object.keys(langs).includes(selectedLanguage)) {
             return langs[selectedLanguage];
         }
-        return langs.html;
+        return null;
     };
 
     const activeLanguage = getCurrentLanguageFromLangs();
