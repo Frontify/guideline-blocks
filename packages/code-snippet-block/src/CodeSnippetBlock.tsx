@@ -78,9 +78,7 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
                     data-test-id="code-snippet-header"
                     className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s"
                 >
-                    {!isEditing && <span>{languageNameMap[selectedLanguage]}</span>}
-
-                    {isEditing && (
+                    {isEditing ? (
                         <div className="tw-max-w-[150px]">
                             <Dropdown
                                 size={DropdownSize.Small}
@@ -97,6 +95,8 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
                                 onChange={(value) => handleLanguageChange(value as Language)}
                             />
                         </div>
+                    ) : (
+                        <span>{languageNameMap[selectedLanguage]}</span>
                     )}
                 </div>
             )}
