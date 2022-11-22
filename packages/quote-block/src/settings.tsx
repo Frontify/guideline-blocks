@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetChooserObjectType, FileExtension } from '@frontify/app-bridge';
-import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import { AssetInputSize, DropdownSize, IconEnum, MultiInputLayout, SwitchSize } from '@frontify/fondue';
 import type { AssetInputBlock, BlockSettings, Bundle, Choice } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
@@ -33,7 +33,6 @@ const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const style = { width: '20px', height: '20px' };
 const QUOTE_STYLE_CHOICES = [
-    // TODO: replace icons as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
     {
         value: QuoteStyle.DoubleUp,
         icon: <IconDoubleQuotesUp style={style} />,
@@ -158,7 +157,7 @@ export const settings: BlockSettings = {
                         {
                             id: QUOTE_STYLE_RIGHT_ID,
                             type: 'dropdown',
-                            defaultValue: QuoteStyle.DoubleDown,
+                            defaultValue: QuoteStyle.None,
                             choices: QUOTE_STYLE_CHOICES,
                         },
                     ],
@@ -247,7 +246,7 @@ export const settings: BlockSettings = {
                         {
                             id: SIZE_CHOICE_ID,
                             type: 'slider',
-                            defaultValue: QuoteSize.SmallSize,
+                            defaultValue: QuoteSize.LargeSize,
                             choices: [
                                 {
                                     label: 'S',
@@ -266,10 +265,20 @@ export const settings: BlockSettings = {
                     ],
                 },
                 {
-                    id: 'quotesColor',
-                    label: 'Color',
-                    type: 'colorInput',
-                    defaultValue: DEFAULT_COLOR_VALUE,
+                    id: 'isCustomQuotesColor',
+                    label: 'Custom color',
+                    type: 'switch',
+                    size: 'Small' as SwitchSize.Small,
+                    info: 'The default color is derived from the “Quote” heading style, which can be defined in the design settings.',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: 'quotesColor',
+                            label: 'Color',
+                            type: 'colorInput',
+                            defaultValue: DEFAULT_COLOR_VALUE,
+                        },
+                    ],
                 },
             ],
         },
@@ -287,7 +296,7 @@ export const settings: BlockSettings = {
                         appendUnit(bundle, LINE_WIDTH_VALUE_ID);
                     },
                     layout: MultiInputLayout.Columns,
-                    lastItemFullWidth: true,
+                    lastItemFullWidth: false,
                     blocks: [
                         {
                             id: 'lineType',
@@ -315,6 +324,16 @@ export const settings: BlockSettings = {
                             rules: [numericalOrPixelRule],
                             placeholder: 'e.g. 3px',
                         },
+                    ],
+                },
+                {
+                    id: 'isCustomLineColor',
+                    label: 'Custom color',
+                    type: 'switch',
+                    size: 'Small' as SwitchSize.Small,
+                    info: 'The default color is derived from the “Quote” heading style, which can be defined in the design settings.',
+                    defaultValue: false,
+                    on: [
                         {
                             id: 'accentLineColor',
                             type: 'colorInput',

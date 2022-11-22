@@ -8,12 +8,11 @@ export const IconHookBracketLeft: FC<IconProps> = ({ style }) => (
     <svg
         style={style}
         className={ICON_CLASS_NAME}
-        viewBox="0 0 7 12"
-        fill="currentColor"
         width="100%"
         height="100%"
+        viewBox="0 0 1 1"
         xmlns="http://www.w3.org/2000/svg"
     >
-        <path d="M6.073 0H.213v12h1.372V1.28h4.488V0z" />
+        <path d="M0.318604 0.149994V0.849994H0.447868V0.268304H0.681201V0.149994H0.318604Z" fill="currentColor" />
     </svg>
 );
