@@ -33,7 +33,6 @@ const LINE_WIDTH_VALUE_ID = 'lineWidthValue';
 const ACCENT_LINE_SWITCH_ID = 'showAccentLine';
 const style = { width: '20px', height: '20px' };
 const QUOTE_STYLE_CHOICES = [
-    // TODO: replace icons as soon as available in fondue (https://app.clickup.com/t/2y3u4nk)
     {
         value: QuoteStyle.DoubleUp,
         icon: <IconDoubleQuotesUp style={style} />,
