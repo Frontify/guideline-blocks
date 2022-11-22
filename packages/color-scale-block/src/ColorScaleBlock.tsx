@@ -198,21 +198,18 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
         const unresizedColors = colorArray.filter((color) => !color.resized);
 
-        const numberOfUnresizedColors = unresizedColors.length ?? 0;
+        const numberOfUnresizedColors = unresizedColors.length;
 
-        const unresizedColorsTotalWidth = colorArray.reduce((accumulator, color) => {
-            if (!color.resized) {
-                return accumulator + color.width + COLOR_SQUARE_SPACING;
-            }
-            return accumulator;
-        }, 0);
+        let unresizedColorsTotalWidth = 0;
+        let resizedColorsTotalWidth = 0;
 
-        const resizedColorsTotalWidth = colorArray.reduce((accumulator, color) => {
-            if (color.resized) {
-                return accumulator + color.width + COLOR_SQUARE_SPACING;
+        for (const color in colorArray) {
+            if (!colorArray[color].resized) {
+                unresizedColorsTotalWidth += unresizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
+            } else {
+                resizedColorsTotalWidth += resizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
             }
-            return accumulator;
-        }, 0);
+        }
 
         const blockWidth =
             colorScaleBlockRef.current.getBoundingClientRect().width - COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
@@ -226,9 +223,13 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
         const calculatedNewWidth = colorArray.length > 0 ? spaceToDivide / numberOfUnresizedColors : blockWidth;
 
-        return calculatedNewWidth >= MINIMUM_COLOR_WIDTH
-            ? calculatedNewWidth - COLOR_SQUARE_SPACING
-            : MINIMUM_COLOR_WIDTH - COLOR_SQUARE_SPACING;
+        const newColorWidthWithoutPadding = calculatedNewWidth - COLOR_SQUARE_SPACING;
+
+        const defaultColorWidthWithoutPadding = MINIMUM_COLOR_WIDTH - COLOR_SQUARE_SPACING;
+
+        const calculatedNewWidthIsMoreThanDefaultWidth = calculatedNewWidth >= MINIMUM_COLOR_WIDTH;
+
+        return calculatedNewWidthIsMoreThanDefaultWidth ? newColorWidthWithoutPadding : defaultColorWidthWithoutPadding;
     };
 
     const handleResize = (event: MouseEvent) => {
@@ -378,7 +379,7 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                     style={{
                         height: colorScaleHeight,
                     }}
-                    className={'tw-rounded tw-flex tw-max-w-full'}
+                    className="tw-rounded tw-flex tw-max-w-full"
                     // Note: onMouseUp and handleResize are defined here intentionally, instead of being in the DragHandle component.
                     // The reason for this is that the dragging feature stops working if I move these to DragHandle,
                     // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
