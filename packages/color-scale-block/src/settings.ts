@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 
 export const settings: BlockSettings = {
