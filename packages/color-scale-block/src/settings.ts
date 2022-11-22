@@ -39,7 +39,7 @@ export const settings: BlockSettings = {
                     defaultValue: '100px',
                     clearable: false,
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: Bundle): void => {
+                    onChange: (bundle) => {
                         const height = Number(bundle.getBlock('heightInput')?.value);
                         if (!isNaN(height)) {
                             bundle.setBlockValue('heightInput', `${height}px`);
