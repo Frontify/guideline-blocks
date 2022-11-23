@@ -104,7 +104,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                         <RichTextEditor
                             id={appBridge.getBlockId().toString()}
                             designTokens={designTokens ?? undefined}
-                            placeholder="Add your quote text here"
+                            placeholder={isEditing ? 'Add your quote text here' : undefined}
                             value={blockSettings.content ?? DEFAULT_CONTENT_VALUE}
                             onTextChange={onChangeContent}
                             actions={ACTIONS}
