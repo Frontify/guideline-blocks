@@ -19,7 +19,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const onChangeText = (value: string, key: string) => setBlockSettings({ ...blockSettings, [key]: value });
 
     const onTemplateSelected = useCallback((result: Template) => {
-        setBlockSettings({ ...blockSettings, template: result.id });
+        console.log(result);
+        //setBlockSettings({ ...blockSettings, template: result.id });
         appBridge.closeTemplateChooser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -50,7 +51,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 />
             </div>
 
-            {isEditing && blockSettings.previewType === PreviewType.None && (
+            {isEditing && blockSettings.preview === PreviewType.None && (
                 <div className="tw-mt-4 tw-flex tw-justify-end">
                     <Button
                         icon={<IconPlus12 />}
