@@ -4,6 +4,7 @@ import {
     Asset,
     AssetChooserObjectType,
     AssetChooserProjectType,
+    Color,
     useAssetChooser,
     useBlockAssets,
     useBlockSettings,
@@ -11,9 +12,11 @@ import {
 } from '@frontify/app-bridge';
 import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import 'tailwindcss/tailwind.css';
+import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ImageStage } from './ImageStage';
 import { ASSET_ID, heights } from './settings';
 import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
@@ -24,6 +27,7 @@ const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';
 export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showFigmaLiveModal, toggleFigmaLiveModal] = useState<boolean>(false);
     const [isLivePreview, setIsLivePreview] = useState<boolean>(false);
+    const [isMobile, setIsMobile] = useState(false);
     const [assetExternalUrl, setAssetExternalUrl] = useState<string>('');
     const { openAssetChooser, closeAssetChooser } = useAssetChooser(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -42,7 +46,22 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         showFigmaLink = true,
         hasBackground = false,
         hasLimitedOptions = true,
+        borderColor = { r: 0, g: 0, b: 0, name: 'black' } as unknown as Color,
+        borderStyle = 'solid',
+        borderWidth = '1px',
     } = blockSettings;
+
+    useEffect(() => {
+        const resize = () => {
+            if (window.innerWidth < 768) {
+                setIsMobile(true);
+            } else {
+                setIsMobile(false);
+            }
+        };
+        window.addEventListener('resize', resize);
+        () => window.removeEventListener('resize', resize);
+    }, []);
 
     useEffect(() => {
         setAssetExternalUrl(extractUrlParameterFromUriQueries(asset?.externalUrl ?? undefined));
@@ -98,19 +117,37 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     hasLimitedOptions={hasLimitedOptions}
                     height={height}
                     hasBorder={hasBorder}
+                    borderStyle={borderStyle}
+                    borderColor={borderColor}
+                    borderWidth={borderWidth}
+                    isMobile={isMobile}
                     hasBackground={!hasLimitedOptions && hasBackground}
                 />
                 {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
             </div>
         ),
-        [ShowFigmaLink, asset?.previewUrl, asset?.title, assetExternalUrl, hasLimitedOptions]
+        [
+            ShowFigmaLink,
+            asset?.previewUrl,
+            asset?.title,
+            assetExternalUrl,
+            hasLimitedOptions,
+            isMobile,
+            borderColor,
+            borderStyle,
+            borderWidth,
+        ]
     );
 
     const ShowFigmaLive = useCallback(
         () => (
             <div
                 data-test-id="figma-live-preview"
-                className="tw-relative tw-flex tw-justify-center tw-h-[500px] tw-group"
+                style={{
+                    border: getBorderOfBlock(hasBorder, borderStyle, borderWidth, borderColor),
+                    height: getHeightOfBlock(isCustomHeight ? heightValue : heights[heightChoice], isMobile),
+                }}
+                className={joinClassNames(['tw-relative tw-flex tw-justify-center tw-group'])}
             >
                 <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
                     <Button
@@ -119,14 +156,10 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                         emphasis={ButtonEmphasis.Default}
                     />
                 </div>
-                <iframe
-                    src={asset?.externalUrl ?? undefined}
-                    className="tw-h-full tw-w-full tw-border-none"
-                    loading="lazy"
-                />
+                <iframe src={asset?.externalUrl ?? undefined} className="tw-h-full tw-w-full tw-border-none" />
             </div>
         ),
-        [asset]
+        [asset, hasBorder, isMobile, isCustomHeight, heightValue, heightChoice, borderWidth, borderColor, borderStyle]
     );
 
     const FigmaLivePortal = useCallback(() => {
