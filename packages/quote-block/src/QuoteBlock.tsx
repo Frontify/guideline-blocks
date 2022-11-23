@@ -1,7 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { EditorActions, RichTextEditor, merge } from '@frontify/fondue';
+import {
+    BoldPlugin,
+    InitPlugin,
+    ItalicPlugin,
+    PluginComposer,
+    RichTextEditor,
+    StrikethroughPlugin,
+    TextStylePlugin,
+    UnderlinePlugin,
+    merge,
+} from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
@@ -20,10 +30,10 @@ import {
 } from './types';
 import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities';
 
-const ACTIONS = [
-    [EditorActions.TEXT_STYLES],
-    [EditorActions.BOLD, EditorActions.ITALIC, EditorActions.UNDERLINE, EditorActions.STRIKETHROUGH],
-];
+const customPlugins = new PluginComposer();
+customPlugins
+    .setPlugin([new InitPlugin(), new TextStylePlugin()])
+    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()]);
 
 const DEFAULT_CONTENT_VALUE = '[{"type":"quote","children":[{"text":""}]}]';
 
@@ -107,7 +117,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                             placeholder={isEditing ? 'Add your quote text here' : undefined}
                             value={blockSettings.content ?? DEFAULT_CONTENT_VALUE}
                             onTextChange={onChangeContent}
-                            actions={ACTIONS}
+                            plugins={customPlugins}
                             readonly={!isEditing}
                         />
                     </div>
