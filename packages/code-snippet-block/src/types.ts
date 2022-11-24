@@ -79,6 +79,27 @@ export type Theme =
     | 'xcodeDark'
     | 'xcodeLight';
 
+export const themeNameMap: Record<Theme, string> = {
+    default: 'Default theme',
+    abcdef: 'Abcdef',
+    androidstudio: 'Android Studio',
+    atomone: 'Atom One',
+    bbedit: 'BBEdit',
+    bespin: 'Bespin',
+    darcula: 'Darcula',
+    dracula: 'Dracula',
+    duotoneDark: 'Duotone Dark',
+    duotoneLight: 'Duotone Light',
+    eclipse: 'Eclipse',
+    githubDark: 'GitHub Dark',
+    githubLight: 'GitHub Light',
+    gruvboxDark: 'Gruvbox Dark',
+    okaidia: 'Okaidia',
+    sublime: 'Sublime',
+    xcodeDark: 'Xcode Dark',
+    xcodeLight: 'Xcode Light',
+};
+
 export enum CodeSnippetBorderStyle {
     Solid = 'Solid',
     Dotted = 'Dotted',
