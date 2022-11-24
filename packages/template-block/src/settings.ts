@@ -93,28 +93,28 @@ export const settings: BlockSettings = {
                                     id: 'cardPaddingCustomTop',
                                     type: 'input',
                                     label: 'Top',
-                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingTop'),
+                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'cardPaddingCustomTop'),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: 'cardPaddingCustomLeft',
                                     type: 'input',
                                     label: 'Left',
-                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingLeft'),
+                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'cardPaddingCustomLeft'),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: 'cardPaddingCustomRight',
                                     type: 'input',
                                     label: 'Right',
-                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingRight'),
+                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'cardPaddingCustomRight'),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: 'cardPaddingCustomBottom',
                                     type: 'input',
                                     label: 'Bottom',
-                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'paddingBottom'),
+                                    onChange: (bundle: Bundle): void => appendUnit(bundle, 'cardPaddingCustomBottom'),
                                     rules: [numericalOrPixelRule],
                                 },
                             ],
@@ -355,7 +355,7 @@ export const settings: BlockSettings = {
                             type: 'multiInput',
                             lastItemFullWidth: true,
                             onChange: (bundle) => {
-                                appendUnit(bundle, 'lineWidth');
+                                appendUnit(bundle, 'cardBorderWidth');
                             },
                             blocks: [
                                 {
@@ -369,12 +369,12 @@ export const settings: BlockSettings = {
                                             label: 'Dotted',
                                         },
                                         {
-                                            value: 'dashed',
-                                            label: BorderStyleType.Dashed,
+                                            value: BorderStyleType.Dashed,
+                                            label: 'Dashed',
                                         },
                                         {
-                                            value: 'solid',
-                                            label: BorderStyleType.Solid,
+                                            value: BorderStyleType.Solid,
+                                            label: 'Solid',
                                         },
                                     ],
                                 },
@@ -457,7 +457,7 @@ export const settings: BlockSettings = {
             label: 'Preview',
             blocks: [
                 {
-                    id: 'previewHasBackgroundColor',
+                    id: 'hasPreviewBackgroundColor',
                     label: 'Background',
                     type: 'switch',
                     defaultValue: false,
@@ -471,7 +471,7 @@ export const settings: BlockSettings = {
                     off: [],
                 },
                 {
-                    id: 'previewHasBorder',
+                    id: 'hasPreviewBorder',
                     type: 'switch',
                     defaultValue: false,
                     label: 'Border',
@@ -481,7 +481,7 @@ export const settings: BlockSettings = {
                             type: 'multiInput',
                             lastItemFullWidth: true,
                             onChange: (bundle) => {
-                                appendUnit(bundle, 'lineWidth');
+                                appendUnit(bundle, 'previewBorderWidth');
                             },
                             blocks: [
                                 {
@@ -495,12 +495,12 @@ export const settings: BlockSettings = {
                                             label: 'Dotted',
                                         },
                                         {
-                                            value: 'dashed',
-                                            label: BorderStyleType.Dashed,
+                                            value: BorderStyleType.Dashed,
+                                            label: 'Dashed',
                                         },
                                         {
-                                            value: 'solid',
-                                            label: BorderStyleType.Solid,
+                                            value: BorderStyleType.Solid,
+                                            label: 'Solid',
                                         },
                                     ],
                                 },

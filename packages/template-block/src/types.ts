@@ -24,7 +24,7 @@ export type Settings = {
     cardPaddingCustomLeft?: string;
     cardPaddingCustomRight?: string;
     cardPaddingCustomBottom?: string;
-    cardPaddingSimple: string;
+    cardPaddingSimple: CardPaddingType;
 
     textPositioning: TextPositioningType;
 
@@ -34,7 +34,7 @@ export type Settings = {
 
     isPreviewHeightCustom: boolean;
     previewHeightCustom?: string;
-    previewHeightSimple: string;
+    previewHeightSimple: PreviewHeightType;
 
     previewDisplay: PreviewDisplayType;
 
@@ -52,7 +52,7 @@ export type Settings = {
 
     isCardCornerRadiusCustom: boolean;
     cardCornerRadiusCustom?: string;
-    cardCorderRadiusSimple: string;
+    cardCornerRadiusSimple: CornerRadiusType;
 
     hasPreviewBackgroundColor: boolean;
     previewBackgroundColor?: Color;
@@ -64,7 +64,7 @@ export type Settings = {
 
     isPreviewCorderRadiusCustom: boolean;
     previewCornerRadiusCustom?: string;
-    previewCorderRadiusSimple: string;
+    previewCornerRadiusSimple: CornerRadiusType;
 };
 
 export type Template = {
@@ -107,11 +107,11 @@ export enum AnchoringType {
 }
 
 export enum TextRatioType {
-    OneQuarter = '1/4',
-    OneThird = '1/3',
-    OneHalf = '1/2',
-    TwoThirds = '2/3',
-    ThreeQuarters = '3/4',
+    OneQuarter = '25%',
+    OneThird = '33.3333%',
+    OneHalf = '50%',
+    TwoThirds = '66.6666%',
+    ThreeQuarters = '75%',
 }
 
 export enum PreviewHeightType {
