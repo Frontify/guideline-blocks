@@ -61,6 +61,7 @@ export const languageNameMap: Record<Language, string> = {
 
 export type Theme =
     | 'default'
+    | 'abcdef'
     | 'androidstudio'
     | 'atomone'
     | 'bbedit'
