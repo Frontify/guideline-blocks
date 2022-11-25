@@ -63,3 +63,11 @@ export const heights: Record<StorybookHeight, string> = {
     [StorybookHeight.Medium]: '400px',
     [StorybookHeight.Large]: '600px',
 };
+
+const textPositioningToFlexDirection: Record<TextPositioningType, 'row' | 'row-reverse' | 'column' | 'column-reverse'> =
+    {
+        [TextPositioningType.Bottom]: 'column',
+        [TextPositioningType.Top]: 'column-reverse',
+        [TextPositioningType.Right]: 'row',
+        [TextPositioningType.Left]: 'row-reverse',
+    };

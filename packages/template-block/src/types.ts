@@ -30,7 +30,8 @@ export type Settings = {
 
     textRatio: TextRatioType;
 
-    textAnchoring: AnchoringType;
+    textAnchoringHorizontal: AnchoringType;
+    textAnchoringVertical: AnchoringType;
 
     isPreviewHeightCustom: boolean;
     previewHeightCustom?: string;
@@ -100,6 +101,16 @@ export enum TextPositioningType {
     Left = 'left',
 }
 
+export const textPositioningToFlexDirection: Record<
+    TextPositioningType,
+    'row' | 'row-reverse' | 'column' | 'column-reverse'
+> = {
+    [TextPositioningType.Bottom]: 'column',
+    [TextPositioningType.Top]: 'column-reverse',
+    [TextPositioningType.Right]: 'row',
+    [TextPositioningType.Left]: 'row-reverse',
+};
+
 export enum AnchoringType {
     Start = 'start',
     Center = 'center',
@@ -107,11 +118,11 @@ export enum AnchoringType {
 }
 
 export enum TextRatioType {
-    OneQuarter = '25%',
-    OneThird = '33.3333%',
-    OneHalf = '50%',
-    TwoThirds = '66.6666%',
-    ThreeQuarters = '75%',
+    OneQuarter = '25',
+    OneThird = '33.3333',
+    OneHalf = '50',
+    TwoThirds = '66.6666',
+    ThreeQuarters = '75',
 }
 
 export enum PreviewHeightType {
@@ -132,6 +143,17 @@ export enum PreviewDisplayType {
     Fit = 'fit',
     Fill = 'fill',
 }
+
+export const previewDisplayValues: Record<PreviewDisplayType, string> = {
+    [PreviewDisplayType.Fit]: 'contain',
+    [PreviewDisplayType.Fill]: 'cover',
+};
+
+export const previewImageAnchoringValues: Record<AnchoringType, string> = {
+    [AnchoringType.Start]: 'left',
+    [AnchoringType.Center]: 'center',
+    [AnchoringType.End]: 'right',
+};
 
 export enum BorderStyleType {
     Solid = 'solid',

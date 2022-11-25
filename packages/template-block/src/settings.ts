@@ -42,10 +42,6 @@ export const settings: BlockSettings = {
             label: 'Preview',
             choices: [
                 {
-                    label: 'None',
-                    value: PreviewType.None,
-                },
-                {
                     label: 'Template',
                     value: PreviewType.Template,
                 },
@@ -53,8 +49,12 @@ export const settings: BlockSettings = {
                     label: 'Custom',
                     value: PreviewType.Custom,
                 },
+                {
+                    label: 'None',
+                    value: PreviewType.None,
+                },
             ],
-            defaultValue: PreviewType.None,
+            defaultValue: PreviewType.Template,
         },
         {
             id: 'previewCustom',
@@ -180,6 +180,13 @@ export const settings: BlockSettings = {
                     type: 'slider',
                     defaultValue: TextRatioType.OneQuarter,
                     info: 'The text to image width ratio.',
+                    show: (bundle: Bundle) => {
+                        const textPositioning = bundle.getBlock('textPositioning')?.value;
+                        return (
+                            textPositioning === TextPositioningType.Right ||
+                            textPositioning === TextPositioningType.Left
+                        );
+                    },
                     choices: [
                         {
                             value: TextRatioType.OneQuarter,
@@ -204,10 +211,17 @@ export const settings: BlockSettings = {
                     ],
                 },
                 {
-                    id: 'textAnchoring',
+                    id: 'textAnchoringHorizontal',
                     type: 'slider',
                     label: 'Text anchoring',
                     defaultValue: AnchoringType.Start,
+                    show: (bundle: Bundle) => {
+                        const textPositioning = bundle.getBlock('textPositioning')?.value;
+                        return (
+                            textPositioning === TextPositioningType.Right ||
+                            textPositioning === TextPositioningType.Left
+                        );
+                    },
                     choices: [
                         {
                             value: AnchoringType.Start,
@@ -223,6 +237,36 @@ export const settings: BlockSettings = {
                             value: AnchoringType.End,
                             icon: IconEnum.ArrowAlignDown,
                             label: 'Bottom',
+                        },
+                    ],
+                },
+                {
+                    id: 'textAnchoringVertical',
+                    type: 'slider',
+                    label: 'Text anchoring',
+                    defaultValue: AnchoringType.Start,
+                    show: (bundle: Bundle) => {
+                        const textPositioning = bundle.getBlock('textPositioning')?.value;
+                        return (
+                            textPositioning === TextPositioningType.Top ||
+                            textPositioning === TextPositioningType.Bottom
+                        );
+                    },
+                    choices: [
+                        {
+                            value: AnchoringType.Start,
+                            icon: IconEnum.ArrowAlignLeft,
+                            label: 'Left',
+                        },
+                        {
+                            value: AnchoringType.Center,
+                            icon: IconEnum.ArrowAlignVerticalCentre,
+                            label: 'Center',
+                        },
+                        {
+                            value: AnchoringType.End,
+                            icon: IconEnum.ArrowAlignRight,
+                            label: 'Right',
                         },
                     ],
                 },

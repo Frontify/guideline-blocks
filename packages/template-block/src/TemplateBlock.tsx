@@ -4,8 +4,27 @@ import { Color, Template, useBlockSettings, useEditorState } from '@frontify/app
 import '@frontify/fondue-tokens/styles';
 import { ReactElement, useCallback } from 'react';
 import 'tailwindcss/tailwind.css';
-import { BlockProps, PreviewType, Settings, TextPositioningType, cardPaddingValues, cornerRadiusValues } from './types';
-import { Button, ButtonEmphasis, ButtonSize, EditorActions, IconPlus12, RichTextEditor, Text } from '@frontify/fondue';
+import {
+    BlockProps,
+    PreviewType,
+    Settings,
+    cardPaddingValues,
+    cornerRadiusValues,
+    previewDisplayValues,
+    previewHeightValues,
+    previewImageAnchoringValues,
+    textPositioningToFlexDirection,
+} from './types';
+import {
+    Button,
+    ButtonEmphasis,
+    ButtonSize,
+    EditorActions,
+    IconPlus12,
+    RichTextEditor,
+    Text,
+    merge,
+} from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
 const TITLE_ACTIONS = [[EditorActions.TEXT_STYLES], [EditorActions.BOLD, EditorActions.ITALIC]];
@@ -22,17 +41,10 @@ const DESCRIPTION_ACTIONS = [
     ],
 ];
 
-const textPositioningToFlexDirection: Record<TextPositioningType, 'row' | 'row-reverse' | 'column' | 'column-reverse'> =
-    {
-        [TextPositioningType.Bottom]: 'column',
-        [TextPositioningType.Top]: 'column-reverse',
-        [TextPositioningType.Right]: 'row',
-        [TextPositioningType.Left]: 'row-reverse',
-    };
+const GAP = '32px';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    //const { blockAssets } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
 
@@ -64,9 +76,23 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         previewCornerRadiusCustom,
         textPositioning,
         textRatio,
+        textAnchoringHorizontal,
+        textAnchoringVertical,
+        isPreviewHeightCustom,
+        previewHeightSimple,
+        previewHeightCustom,
+        previewDisplay,
+        previewImageAnchoring,
     } = blockSettings;
 
-    const hasPreview = preview !== PreviewType.None;
+    console.log(isPreviewHeightCustom, previewHeightSimple, previewHeightCustom);
+
+    const hasPreview = useCallback(() => preview !== PreviewType.None, [preview]);
+    const flexDirection = textPositioningToFlexDirection[textPositioning];
+    const isRows = useCallback(
+        () => hasPreview() && (flexDirection === 'row' || flexDirection === 'row-reverse'),
+        [flexDirection, hasPreview]
+    );
 
     const onChangeText = (value: string, key: string) => setBlockSettings({ ...blockSettings, [key]: value });
 
@@ -99,32 +125,54 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <div
                     className="tw-flex"
                     style={{
-                        flexDirection: textPositioningToFlexDirection[textPositioning],
+                        flexDirection,
+                        gap: GAP,
+                        alignItems: isRows() ? textAnchoringHorizontal : textAnchoringVertical,
                     }}
                 >
-                    {hasPreview && (
+                    {hasPreview() && (
                         <div
-                            className="tw-grow"
                             style={{
-                                backgroundColor: hasPreviewBackgroundColor
-                                    ? toRgbaString(previewBackgroundColor as Color)
-                                    : undefined,
-                                borderRadius: isPreviewCorderRadiusCustom
-                                    ? previewCornerRadiusCustom
-                                    : cornerRadiusValues[previewCornerRadiusSimple],
-                                border: hasPreviewBorder
-                                    ? `${previewBorderWidth} ${previewBorderStyle} ${toRgbaString(
-                                          previewBorderColor as Color
-                                      )}`
-                                    : 'none',
+                                width: isRows() ? `${100 - parseInt(textRatio)}%` : '100%',
                             }}
                         >
-                            Preview
+                            <div
+                                className="tw-relative"
+                                style={{
+                                    backgroundColor: hasPreviewBackgroundColor
+                                        ? toRgbaString(previewBackgroundColor as Color)
+                                        : undefined,
+                                    borderRadius: isPreviewCorderRadiusCustom
+                                        ? previewCornerRadiusCustom
+                                        : cornerRadiusValues[previewCornerRadiusSimple],
+                                    border: hasPreviewBorder
+                                        ? `${previewBorderWidth} ${previewBorderStyle} ${toRgbaString(
+                                              previewBorderColor as Color
+                                          )}`
+                                        : 'none',
+                                    height: isPreviewHeightCustom
+                                        ? previewHeightCustom
+                                        : previewHeightValues[previewHeightSimple],
+                                }}
+                            >
+                                <img
+                                    src=""
+                                    className={merge([
+                                        'tw-w-full tw-h-full',
+                                        `tw-object-${previewDisplayValues[previewDisplay]}`,
+                                    ])}
+                                    style={{
+                                        objectPosition: previewImageAnchoring
+                                            ? previewImageAnchoringValues[previewImageAnchoring]
+                                            : 'center',
+                                    }}
+                                />
+                            </div>
                         </div>
                     )}
                     <div
                         style={{
-                            width: hasPreview ? textRatio : '100%',
+                            width: isRows() ? `${textRatio}%` : 'auto',
                         }}
                     >
                         <div className="tw-mb-2">
