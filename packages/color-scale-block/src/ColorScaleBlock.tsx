@@ -60,6 +60,9 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
     const resizeStartPos = useRef<Nullable<number>>();
     const resizeStartWidth = useRef<Nullable<number>>();
     const lastDragPos = useRef<Nullable<number>>();
+    const positionWhereSiblingColorNeededResizing = useRef<number>(0);
+    const originalSiblingColorWidthBeforeResizing = useRef<number>(0);
+    const resizedSiblingIndex = useRef<Nullable<number>>();
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
     useEffect(() => {
@@ -181,6 +184,9 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                 colorInput: displayableItems,
             });
         }, 500);
+
+        positionWhereSiblingColorNeededResizing.current = 0;
+        originalSiblingColorWidthBeforeResizing.current = 0;
     };
 
     const handleResizeStart = (event: MouseEvent, index: number): void => {
@@ -243,12 +249,18 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
             lastDragPos.current = event.clientX;
         }
 
+        if (resizeStartWidth.current === null || resizeStartWidth.current === undefined) {
+            resizeStartWidth.current = MINIMUM_COLOR_WIDTH;
+        }
+
+        if (resizeStartWidth.current < MINIMUM_COLOR_WIDTH) {
+            resizeStartWidth.current = MINIMUM_COLOR_WIDTH;
+        }
+
         const resizingToTheLeft = event.clientX < lastDragPos.current;
         const resizingToTheRight = event.clientX > lastDragPos.current;
 
         if (resizingToTheLeft) {
-            const displacement = lastDragPos.current - event.clientX;
-
             lastDragPos.current = event.clientX;
 
             if (!resizeStartPos.current) {
@@ -265,7 +277,22 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                 (color) => color.width >= MINIMUM_COLOR_WIDTH
             );
 
-            const resizedSiblingIndex = colorsBeforeCurrentColorThatCanBeResized.length - 1;
+            const nextResizeableSiblingIndex = colorsBeforeCurrentColorThatCanBeResized.length - 1;
+
+            if (nextResizeableSiblingIndex !== resizedSiblingIndex.current) {
+                positionWhereSiblingColorNeededResizing.current = 0;
+                originalSiblingColorWidthBeforeResizing.current = 0;
+                resizedSiblingIndex.current = nextResizeableSiblingIndex;
+            }
+
+            let movementSinceSiblingNeededResizing = 0;
+
+            if (siblingNeedsShrinking && !positionWhereSiblingColorNeededResizing.current) {
+                positionWhereSiblingColorNeededResizing.current = event.clientX;
+                originalSiblingColorWidthBeforeResizing.current = displayableItems[nextResizeableSiblingIndex].width;
+            }
+
+            movementSinceSiblingNeededResizing = positionWhereSiblingColorNeededResizing.current - event.clientX;
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (index === colorIndex && !siblingNeedsShrinking && color.width > MINIMUM_COLOR_WIDTH) {
@@ -283,9 +310,16 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
             setDisplayableItems(
                 displayableItemsWithCurrentColorResized.map((siblingColor, index) => {
-                    if (siblingNeedsShrinking && index === resizedSiblingIndex) {
-                        siblingColor.resized = true;
-                        siblingColor.width -= displacement;
+                    if (siblingNeedsShrinking && index === nextResizeableSiblingIndex) {
+                        const siblingWidth =
+                            siblingColor.width >= MINIMUM_COLOR_WIDTH
+                                ? originalSiblingColorWidthBeforeResizing.current - movementSinceSiblingNeededResizing
+                                : MINIMUM_COLOR_WIDTH;
+                        return {
+                            ...siblingColor,
+                            resized: true,
+                            width: siblingWidth,
+                        };
                     }
                     return siblingColor;
                 })
@@ -293,23 +327,36 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
         }
 
         if (resizingToTheRight) {
-            const displacement = event.clientX - lastDragPos.current;
-
             lastDragPos.current = event.clientX;
 
             const movementSinceStart = event.clientX - (resizeStartPos.current ?? 0);
 
             const freeSpaceExists = canExpandColorBlock(displayableItems, colorScaleBlockRef);
 
-            const resizedSiblingIndex = displayableItems.findIndex(
+            const nextResizeableSiblingIndex = displayableItems.findIndex(
                 (color, index) => index > colorIndex && color.width >= MINIMUM_COLOR_WIDTH
             );
 
-            const siblingsNeedShrinking = !freeSpaceExists && resizedSiblingIndex !== -1;
+            if (nextResizeableSiblingIndex !== resizedSiblingIndex.current) {
+                positionWhereSiblingColorNeededResizing.current = 0;
+                originalSiblingColorWidthBeforeResizing.current = 0;
+                resizedSiblingIndex.current = nextResizeableSiblingIndex;
+            }
 
-            const siblingsCannotBeResized = !freeSpaceExists && resizedSiblingIndex === -1;
+            const siblingNeedsShrinking = !freeSpaceExists && nextResizeableSiblingIndex !== -1;
 
-            const canExpandCurrentColor = freeSpaceExists || siblingsNeedShrinking;
+            let movementSinceSiblingNeededResizing = 0;
+
+            if (siblingNeedsShrinking && !positionWhereSiblingColorNeededResizing.current) {
+                positionWhereSiblingColorNeededResizing.current = event.clientX;
+                originalSiblingColorWidthBeforeResizing.current = displayableItems[nextResizeableSiblingIndex].width;
+            }
+
+            movementSinceSiblingNeededResizing = event.clientX - positionWhereSiblingColorNeededResizing.current;
+
+            const siblingsCannotBeResized = !freeSpaceExists && nextResizeableSiblingIndex === -1;
+
+            const canExpandCurrentColor = freeSpaceExists || siblingNeedsShrinking;
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (canExpandCurrentColor && index === colorIndex) {
@@ -320,7 +367,7 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                 return color;
             });
 
-            if (!siblingsNeedShrinking) {
+            if (!siblingNeedsShrinking) {
                 setDisplayableItems(displayableItemsWithCurrentColorResized);
 
                 return;
@@ -332,9 +379,16 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
             setDisplayableItems(
                 displayableItemsWithCurrentColorResized.map((siblingColor, index) => {
-                    if (index === resizedSiblingIndex) {
-                        siblingColor.width -= displacement;
-                        siblingColor.resized = true;
+                    if (index === nextResizeableSiblingIndex) {
+                        const siblingWidth =
+                            siblingColor.width >= MINIMUM_COLOR_WIDTH
+                                ? originalSiblingColorWidthBeforeResizing.current - movementSinceSiblingNeededResizing
+                                : MINIMUM_COLOR_WIDTH;
+                        return {
+                            ...siblingColor,
+                            resized: true,
+                            width: siblingWidth,
+                        };
                     }
 
                     return siblingColor;
