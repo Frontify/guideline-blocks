@@ -33,7 +33,7 @@
         "@codemirror/state": "^6.1.4",
         "@codemirror/view": "^6.5.1",
         "@frontify/app-bridge": "3.0.0-beta.27",
-        "@frontify/fondue": "12.0.0-beta.25",
+        "@frontify/fondue": "12.0.0-beta.27",
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "workspace:*",
         "@frontify/guideline-blocks-shared": "workspace:*",

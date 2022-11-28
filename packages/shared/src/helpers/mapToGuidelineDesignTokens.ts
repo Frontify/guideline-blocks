@@ -11,6 +11,14 @@ import {
 } from '../hooks/useGuidelineDesignTokens';
 import { provideDefaultCalloutColors } from './provideDefaultCalloutColors';
 
+const TokenNameMapper: Record<string, DesignTokenName> = {
+    button_primary: 'buttonPrimary',
+    button_secondary: 'buttonSecondary',
+    button_tertiary: 'buttonTertiary',
+    'image-caption': 'imageCaption',
+    body: 'p',
+};
+
 const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
     const cssStyles: TokenValues = {};
 
@@ -113,7 +121,8 @@ export const mapToGuidelineDesignTokens = (dataToTransform: DesignTokens) => {
     const enrichedDataToTransform = provideDefaultCalloutColors(dataToTransform);
 
     for (const [key, value] of Object.entries(enrichedDataToTransform)) {
-        transformedDesignTokens[key as DesignTokenName] = transformDesignTokens(value) as TokenValues;
+        const designTokenName = TokenNameMapper[key] ?? key;
+        transformedDesignTokens[designTokenName] = transformDesignTokens(value) as TokenValues;
     }
     return transformedDesignTokens;
 };
