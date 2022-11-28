@@ -29,6 +29,6 @@ export const QuoteBlockIcon: FC<QuoteBlockIconProps> = ({
     isCustomQuoteStyle,
 }) => {
     const customIconUrl = isCustomQuoteStyle ? blockAssets?.[customIconId]?.[0]?.genericUrl : '';
-    const size = isCustomSize ? sizeValue ?? '' : quoteSizeMap[sizeChoice ?? QuoteSize.SmallSize];
+    const size = isCustomSize ? sizeValue ?? '' : quoteSizeMap[sizeChoice ?? QuoteSize.LargeSize];
     return quoteIconMap(size, color, customIconUrl)[quoteStyle];
 };

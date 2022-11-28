@@ -23,11 +23,11 @@ const LEFT_ICON_PATH =
 const RIGHT_ICON_PATH = 'M0.681201 0.849994V0.149994H0.551937V0.731684H0.318604V0.849994H0.681201Z';
 
 describe('Quote Block', () => {
-    it('renders a quote block with two quotation marks', () => {
+    it('renders a quote block with a quotation marks', () => {
         const [QuoteBlockWithStubs] = withAppBridgeBlockStubs(QuoteBlock, {});
 
         mount(<QuoteBlockWithStubs />);
-        cy.get(QuoteBlockSelector).find('svg').should('have.length', 2);
+        cy.get(QuoteBlockSelector).find('svg').should('have.length', 1);
     });
 
     it('renders a quote block with indentation', () => {
