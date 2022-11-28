@@ -3,7 +3,7 @@
 import { DropdownSize, IconEnum } from '@frontify/fondue';
 import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { Radius, getBorderSettings, getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
-import { languageNameMap } from './types';
+import { languageNameMap, themeNameMap } from './types';
 
 export const settings: BlockSettings = {
     main: [
@@ -37,26 +37,7 @@ export const settings: BlockSettings = {
             defaultValue: 'default',
             label: 'Color scheme',
             size: DropdownSize.Small,
-            choices: [
-                { value: 'default', label: 'Default Theme' },
-                { value: 'abcdef', label: 'Abcdef' },
-                { value: 'androidstudio', label: 'Android Studio' },
-                { value: 'atomone', label: 'Atom One' },
-                { value: 'bbedit', label: 'BBEdit' },
-                { value: 'bespin', label: 'Bespin' },
-                { value: 'darcula', label: 'Darcula' },
-                { value: 'dracula', label: 'Dracula' },
-                { value: 'duotoneDark', label: 'Duotone Dark' },
-                { value: 'duotoneLight', label: 'Duotone Light' },
-                { value: 'eclipse', label: 'Eclipse' },
-                { value: 'githubDark', label: 'GitHub Dark' },
-                { value: 'githubLight', label: 'GitHub Light' },
-                { value: 'gruvboxDark', label: 'Gruvbox Dark' },
-                { value: 'okaidia', label: 'Okaidia' },
-                { value: 'sublime', label: 'Sublime' },
-                { value: 'xcodeDark', label: 'Xcode Dark' },
-                { value: 'xcodeLight', label: 'Xcode Light' },
-            ],
+            choices: Object.entries(themeNameMap).map(([value, label]) => ({ value, label })),
         },
         getBorderSettings({ defaultValue: true }),
         getExtendedBorderRadiusSettings({ defaultValue: Radius.Medium }),
