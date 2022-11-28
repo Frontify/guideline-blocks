@@ -66,7 +66,7 @@ const mockedDesignTokens = {
     quote: {
         italic: '1',
     },
-    buttonPrimary: {
+    button_primary: {
         family: 'inherit',
         size: '13px',
         color: 'rgba(102,102,102,1)',
@@ -82,8 +82,8 @@ const mockedDesignTokens = {
         },
         background_color_hover: 'rgba(172, 172, 172, 1)',
     },
-    buttonSecondary: {},
-    buttonTertiary: {
+    button_secondary: {},
+    button_tertiary: {
         size: '14px',
         color: 'rgb(255, 246, 0)',
         frame: {
