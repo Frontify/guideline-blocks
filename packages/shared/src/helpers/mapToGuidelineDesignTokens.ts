@@ -4,7 +4,6 @@ import {
     DesignTokenName,
     DesignTokenProperties,
     DesignTokenPropertiesEnum,
-    DesignTokens,
     DirectionalCssProperties,
     TokenValues,
     TransformedDesignTokens,
@@ -116,7 +115,7 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
     }
 };
 
-export const mapToGuidelineDesignTokens = (dataToTransform: DesignTokens) => {
+export const mapToGuidelineDesignTokens = (dataToTransform: Partial<Record<string, DesignTokenProperties>>) => {
     const transformedDesignTokens: TransformedDesignTokens = {};
     const enrichedDataToTransform = provideDefaultCalloutColors(dataToTransform);
 

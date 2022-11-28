@@ -166,7 +166,7 @@ const expectedTransformedDesignTokens = {
     custom3: {
         fontFamily: 'Roboto',
     },
-    body: {
+    p: {
         fontSize: '14px',
         color: '#333',
     },
@@ -232,22 +232,22 @@ describe('mapToGuidelineDesignTokens', () => {
     });
 
     it('should transform uppercase to textTransform', () => {
-        const result = mapToGuidelineDesignTokens({ p: { uppercase: '1' } });
-        expect(result).toMatchObject({ body: { textTransform: 'uppercase' } });
+        const result = mapToGuidelineDesignTokens({ body: { uppercase: '1' } });
+        expect(result).toMatchObject({ p: { textTransform: 'uppercase' } });
     });
 
     it('should transform italic to fontStyle', () => {
-        const result = mapToGuidelineDesignTokens({ p: { italic: '1' } });
-        expect(result).toMatchObject({ body: { fontStyle: 'italic' } });
+        const result = mapToGuidelineDesignTokens({ body: { italic: '1' } });
+        expect(result).toMatchObject({ p: { fontStyle: 'italic' } });
     });
 
     it('should transform underline to textDecoration', () => {
-        const result = mapToGuidelineDesignTokens({ p: { underline: '1' } });
-        expect(result).toMatchObject({ body: { textDecoration: 'underline' } });
+        const result = mapToGuidelineDesignTokens({ body: { underline: '1' } });
+        expect(result).toMatchObject({ p: { textDecoration: 'underline' } });
     });
 
     it('should transform color value', () => {
-        const result = mapToGuidelineDesignTokens({ p: { color: '#fff' } });
-        expect(result).toMatchObject({ body: { color: '#fff' } });
+        const result = mapToGuidelineDesignTokens({ body: { color: '#fff' } });
+        expect(result).toMatchObject({ p: { color: '#fff' } });
     });
 });
