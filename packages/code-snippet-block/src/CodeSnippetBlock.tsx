@@ -9,6 +9,7 @@ import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import { ReactElement, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import { headerThemes } from './headerThemes';
 import { CodeSnippetProps, Language, Settings, languageNameMap } from './types';
 
 export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement => {
@@ -77,6 +78,7 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
                 <div
                     data-test-id="code-snippet-header"
                     className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s"
+                    style={headerThemes[blockSettings.theme ?? 'default']}
                 >
                     {isEditing ? (
                         <div className="tw-max-w-[150px]">
@@ -115,7 +117,7 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
                     lintKeymap: false,
                     autocompletion: false,
                 }}
-                placeholder="< please add snippet here >"
+                placeholder={isEditing ? '< please add snippet here >' : ''}
             />
         </div>
     );
