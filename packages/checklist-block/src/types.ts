@@ -2,6 +2,7 @@
 
 import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState, OrderableListItem } from '@frontify/fondue';
+import { DesignTokenName } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, MouseEvent, ReactElement } from 'react';
 
 export type ChecklistProps = {
@@ -42,7 +43,7 @@ export type CheckboxLabelProps = {
     designTokens: DesignTokens;
 };
 
-export type DesignTokens = Partial<Record<'image-caption', CSSProperties>>;
+export type DesignTokens = Partial<Record<DesignTokenName, CSSProperties>>;
 
 export type ChecklistButtonProps = {
     disabled?: boolean;

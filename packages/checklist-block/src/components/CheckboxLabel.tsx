@@ -70,7 +70,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({
         highlightColor
     )[completedDecoration];
 
-    const imageCaptionStyles = designTokens?.['image-caption'] ?? {};
+    const imageCaptionStyles = designTokens?.imageCaption ?? {};
 
     const labelStyles = { color: toHex8String(completeTextColor), ...decorationStyles };
 
