@@ -32,11 +32,11 @@ import { ColorPickerFlyout } from './components/ColorPickerFlyout';
 import { ColorProps, Settings } from './types';
 import { EmptyView } from './components/EmptyView';
 import {
+    COLOR_SCALE_BLOCK_BORDER_WIDTH,
     COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING,
     COLOR_SQUARE_SPACING,
     MINIMUM_COLOR_WIDTH,
     calculateDefaultColorWidth,
-    canExpandColorBlock,
     resizeEvenly,
 } from './helpers';
 
@@ -56,6 +56,7 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
     const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
     const [displayableItems, setDisplayableItems] = useState<ColorProps[]>(blockSettings.colorInput ?? []);
     const colorScaleBlockRef = useRef<HTMLDivElement>(null);
+    const colorScaleBlockInnerRef = useRef<HTMLDivElement>(null);
     const resizedColorIndex = useRef<Nullable<number>>();
     const resizeStartPos = useRef<Nullable<number>>();
     const resizeStartWidth = useRef<Nullable<number>>();
@@ -331,7 +332,14 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
             const movementSinceStart = event.clientX - (resizeStartPos.current ?? 0);
 
-            const freeSpaceExists = canExpandColorBlock(displayableItems, colorScaleBlockRef);
+            const colorScaleBlockInnerWidth = colorScaleBlockInnerRef?.current?.getBoundingClientRect().width ?? 0;
+
+            const colorScaleBlockWidth =
+                (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
+                COLOR_SCALE_BLOCK_BORDER_WIDTH -
+                COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
+
+            const freeSpaceExists = colorScaleBlockInnerWidth < colorScaleBlockWidth;
 
             const nextResizeableSiblingIndex = displayableItems.findIndex(
                 (color, index) => index > colorIndex && color.width >= MINIMUM_COLOR_WIDTH
@@ -356,10 +364,14 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
             const siblingsCannotBeResized = !freeSpaceExists && nextResizeableSiblingIndex === -1;
 
-            const canExpandCurrentColor = freeSpaceExists || siblingNeedsShrinking;
+            const canResizeToTheRight = freeSpaceExists || siblingNeedsShrinking;
+
+            if (!canResizeToTheRight) {
+                return;
+            }
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
-                if (canExpandCurrentColor && index === colorIndex) {
+                if (canResizeToTheRight && index === colorIndex) {
                     color.width = (resizeStartWidth.current ?? 0) + movementSinceStart;
                     color.resized = true;
                 }
@@ -430,10 +442,11 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                 className="tw-w-full tw-p-px tw-mb-4 tw-border tw-border-line tw-rounded"
             >
                 <div
+                    ref={colorScaleBlockInnerRef}
                     style={{
                         height: colorScaleHeight,
                     }}
-                    className="tw-rounded tw-flex tw-max-w-full"
+                    className="tw-rounded tw-inline-flex"
                     // Note: onMouseUp and handleResize are defined here intentionally, instead of being in the DragHandle component.
                     // The reason for this is that the dragging feature stops working if I move these to DragHandle,
                     // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
