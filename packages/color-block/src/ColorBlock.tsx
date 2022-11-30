@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FormEvent, ReactElement, useEffect, useMemo, useState } from 'react';
+import { FC, FormEvent, useEffect, useMemo, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import {
@@ -20,7 +20,8 @@ import { DropsItemAdd } from './components/drops/DropsItemAdd';
 import { DropZone } from './components/DropZone';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
-import { ColorBlockProps, ColorBlockType, ColorSpaceValues, ItemProps, Settings } from './types';
+import { ColorBlockType, ColorSpaceValues, ItemProps, Settings } from './types';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 
 const wrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',
@@ -28,7 +29,7 @@ const wrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.Cards]: 'tw-grid tw-gap-4 tw-grid-cols-4',
 };
 
-export const ColorBlock = ({ appBridge }: ColorBlockProps): ReactElement => {
+export const ColorBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 

@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
@@ -11,27 +10,27 @@ export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 
 const SPACING_VALUE_ID = 'spacingValue';
 const SPACING_CHOICE_ID = 'spacingChoice';
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: 'style',
             type: 'dropdown',
             defaultValue: DoDontStyle.Icons,
-            size: 'Large' as DropdownSize.Large,
+            size: DropdownSize.Large,
             choices: [
                 {
                     value: DoDontStyle.Icons,
-                    icon: 'DoAndDont' as IconEnum.DoAndDont,
+                    icon: IconEnum.DoAndDont,
                     label: 'Icons',
                 },
                 {
                     value: DoDontStyle.Underline,
-                    icon: 'TextFormatUnderline' as IconEnum.TextFormatUnderline,
+                    icon: IconEnum.TextFormatUnderline,
                     label: 'Underline',
                 },
                 {
                     value: DoDontStyle.Text,
-                    icon: 'TextAlignmentLeft' as IconEnum.TextAlignmentLeft,
+                    icon: IconEnum.TextAlignmentLeft,
                     label: 'Text',
                 },
             ],
@@ -59,7 +58,7 @@ export const settings: BlockSettings = {
             id: 'columns',
             label: 'Columns',
             type: 'slider',
-            show: (bundle: Bundle) => bundle.getBlock('layout')?.value === DoDontLayout.Stacked,
+            show: (bundle) => bundle.getBlock('layout')?.value === DoDontLayout.Stacked,
             defaultValue: 2,
             info: "The number of columns for Dos and Don'ts",
             choices: [
@@ -88,14 +87,13 @@ export const settings: BlockSettings = {
             switchLabel: 'Custom',
             defaultValue: false,
             info: "An official nerd's term for 'column gap'",
-            onChange: (bundle: Bundle): void =>
-                presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
+            onChange: (bundle): void => presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
             on: [
                 {
                     id: SPACING_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle: Bundle): void => appendUnit(bundle, SPACING_VALUE_ID),
+                    onChange: (bundle): void => appendUnit(bundle, SPACING_VALUE_ID),
                 },
             ],
             off: [
@@ -135,4 +133,4 @@ export const settings: BlockSettings = {
             defaultValue: DONT_COLOR_DEFAULT_VALUE,
         },
     ],
-};
+});

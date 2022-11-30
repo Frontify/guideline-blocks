@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MultiInputLayout } from '@frontify/fondue';
-import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
+import { MultiInputLayout, SettingBlock } from '@frontify/guideline-blocks-settings';
 import { appendUnit } from '../helpers/settings/appendUnit';
 import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNumericalOrPixelOrAutoRule';
 import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
@@ -38,7 +37,7 @@ export const getBorderSettings = (options?: BorderSettingsType): SettingBlock =>
             {
                 id: selectionId,
                 type: 'multiInput',
-                onChange: (bundle: Bundle): void => {
+                onChange: (bundle): void => {
                     appendUnit(bundle, widthId);
                 },
                 layout: MultiInputLayout.Columns,

@@ -1,12 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
+import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
-
-export type SketchfabBlockProps = {
-    appBridge: AppBridgeBlock;
-};
 
 export enum SketchfabSettings {
     ACCOUNT_TYPE = 'accountType',

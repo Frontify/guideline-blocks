@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
+import { SettingBlock } from '@frontify/guideline-blocks-settings';
 import { appendUnit } from '../helpers/settings/appendUnit';
 import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
 import { presetCustomValue } from '../helpers/settings/presetCustomValue';
@@ -56,7 +56,7 @@ export const getPaddingSettings = (options?: PaddingSettingsType): SettingBlock 
         switchLabel: 'Custom',
         defaultValue: false,
         info: 'The spacing around UI elements to create more negative space',
-        onChange: (bundle: Bundle): void =>
+        onChange: (bundle): void =>
             presetCustomValue(bundle, choiceId, valueId, options?.paddingStyleMap || paddingStyleMap),
         on: [
             {
@@ -64,7 +64,7 @@ export const getPaddingSettings = (options?: PaddingSettingsType): SettingBlock 
                 type: 'input',
                 placeholder: PADDING_DEFAULT_PLACEHOLDER,
                 rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                onChange: (bundle: Bundle): void => appendUnit(bundle, valueId),
+                onChange: (bundle): void => appendUnit(bundle, valueId),
             },
         ],
         off: [getPaddingSlider(choiceId)],

@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import { Bundle, DropdownSize, IconEnum, MultiInputLayout, defineSettings } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     betweenPercentRule,
@@ -37,22 +36,22 @@ const limitedWidthIsSelected = (bundle: Bundle): boolean =>
         ? bundle.getBlock(WIDTH_CUSTOM_ID)?.value !== DividerWidth['100%']
         : bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'];
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: IS_LINE_ID,
             type: 'dropdown',
-            size: 'Large' as DropdownSize.Large,
+            size: DropdownSize.Large,
             defaultValue: DividerStyle.Solid,
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: 'DividerBlank' as IconEnum.DividerBlank,
+                    icon: IconEnum.DividerBlank,
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: 'DividerSolid' as IconEnum.DividerSolid,
+                    icon: IconEnum.DividerSolid,
                     label: 'Line',
                 },
             ],
@@ -121,15 +120,15 @@ export const settings: BlockSettings = {
                     choices: [
                         {
                             value: DividerAlignment.Left,
-                            icon: 'ArrowAlignLeft' as IconEnum.ArrowAlignLeft,
+                            icon: IconEnum.ArrowAlignLeft,
                         },
                         {
                             value: DividerAlignment.Center,
-                            icon: 'ArrowAlignVerticalCentre' as IconEnum.ArrowAlignVerticalCentre,
+                            icon: IconEnum.ArrowAlignVerticalCentre,
                         },
                         {
                             value: DividerAlignment.Right,
-                            icon: 'ArrowAlignRight' as IconEnum.ArrowAlignRight,
+                            icon: IconEnum.ArrowAlignRight,
                         },
                     ],
                     show: limitedWidthIsSelected,
@@ -239,4 +238,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

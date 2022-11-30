@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MultiInputLayout } from '@frontify/fondue';
-import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
+import { MultiInputLayout, SettingBlock } from '@frontify/guideline-blocks-settings';
 import { appendUnit } from '../helpers/settings/appendUnit';
 import { presetCustomValue } from '../helpers/settings/presetCustomValue';
 import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNumericalOrPixelOrAutoRule';
@@ -37,7 +36,7 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
         switchLabel: 'Custom',
         defaultValue: false,
         info: 'The spacing around UI elements to create more negative space',
-        onChange: (bundle: Bundle): void => {
+        onChange: (bundle): void => {
             presetCustomValue(bundle, choiceId, topId, marginStyleMap);
             presetCustomValue(bundle, choiceId, leftId, marginStyleMap);
             presetCustomValue(bundle, choiceId, rightId, marginStyleMap);
@@ -54,7 +53,7 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
                         type: 'input',
                         label: 'Top',
                         placeholder: MARGIN_DEFAULT_PLACEHOLDER,
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, topId),
+                        onChange: (bundle): void => appendUnit(bundle, topId),
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
@@ -62,7 +61,7 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
                         type: 'input',
                         label: 'Left',
                         placeholder: MARGIN_DEFAULT_PLACEHOLDER,
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, leftId),
+                        onChange: (bundle): void => appendUnit(bundle, leftId),
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
@@ -70,7 +69,7 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
                         type: 'input',
                         label: 'Right',
                         placeholder: MARGIN_DEFAULT_PLACEHOLDER,
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, rightId),
+                        onChange: (bundle): void => appendUnit(bundle, rightId),
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                     {
@@ -78,7 +77,7 @@ export const getMarginExtendedSettings = (options?: MarginSettingsType): Setting
                         type: 'input',
                         label: 'Bottom',
                         placeholder: MARGIN_DEFAULT_PLACEHOLDER,
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, bottomId),
+                        onChange: (bundle): void => appendUnit(bundle, bottomId),
                         rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     },
                 ],

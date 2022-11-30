@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
+import { Color } from '@frontify/guideline-blocks-settings';
 import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
 
 export type Language =
@@ -122,8 +121,4 @@ export const borderStyles: Record<CodeSnippetBorderStyle, string> = {
     [CodeSnippetBorderStyle.Solid]: 'solid',
     [CodeSnippetBorderStyle.Dotted]: 'dotted',
     [CodeSnippetBorderStyle.Dashed]: 'dashed',
-};
-
-export type CodeSnippetProps = {
-    appBridge: AppBridgeBlock;
 };
