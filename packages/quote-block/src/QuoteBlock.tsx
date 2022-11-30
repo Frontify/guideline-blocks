@@ -68,7 +68,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
     const showAuthor = blockSettings.showAuthor && blockSettings.authorName;
     const sizeValue = blockSettings.sizeValue || quoteSizeMap[QuoteSize.LargeSize];
 
-    const onChangeContent = (value: string) => setBlockSettings({ ...blockSettings, content: value });
+    const onChangeContent = (value: string) => setBlockSettings({ content: value });
 
     const getWrapperClasses = () => {
         if (isFullWidth) {
