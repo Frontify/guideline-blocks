@@ -3,14 +3,15 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
 import './styles.css';
-import { GRID_CLASSES, Props, Settings } from './types';
+import { GRID_CLASSES, Settings } from './types';
 
-export const TextBlock: FC<Props> = ({ appBridge }) => {
+export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { designTokens } = useGuidelineDesignTokens();

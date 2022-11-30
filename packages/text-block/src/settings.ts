@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 
 export const PLACEHOLDER = 'Your text here';
@@ -42,18 +41,18 @@ export const columnNumberChoices = [
     },
 ];
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'text',
-            size: 'Large' as DropdownSize.Large,
+            size: DropdownSize.Large,
             disabled: true,
             choices: [
                 {
                     value: 'text',
-                    icon: 'TextAlignmentLeft' as IconEnum.TextAlignmentLeft,
+                    icon: IconEnum.TextAlignmentLeft,
                     label: 'Text',
                 },
             ],
@@ -85,7 +84,7 @@ export const settings: BlockSettings = {
                             type: 'input',
                             defaultValue: DEFAULT_COLUMN_GUTTER,
                             rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                            onChange: (bundle: Bundle): void => {
+                            onChange: (bundle): void => {
                                 const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
                                 if (!isNaN(gutter)) {
                                     bundle.setBlockValue('columnGutterCustom', `${gutter}px`);
@@ -105,4 +104,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

@@ -1,5 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { BlockSettings } from '@frontify/guideline-blocks-settings';
+import { defineSettings } from '@frontify/guideline-blocks-settings';
 
-export const settings: BlockSettings = {};
+export const settings = defineSettings({});

@@ -15,19 +15,10 @@ import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { hasRichTextValue } from './utils/hasRichTextValue';
 import { ICON_ASSET_ID } from './settings';
-import {
-    Appearance,
-    BlockSettings,
-    CalloutBlockProps,
-    Icon,
-    Type,
-    Width,
-    alignmentMap,
-    outerWidthMap,
-    paddingMap,
-} from './types';
+import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
+import type { BlockProps } from '@frontify/guideline-blocks-settings';
 
-export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
+export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);

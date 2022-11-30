@@ -2,6 +2,7 @@
 
 import { useBlockSettings } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -12,16 +13,9 @@ import {
     STYLE_DEFAULT_VALUE,
 } from './settings';
 import css from './styles.module.css';
-import {
-    DividerStyle,
-    Props,
-    Settings,
-    dividerAlignmentClasses,
-    dividerHeightValues,
-    dividerStyleClasses,
-} from './types';
+import { DividerStyle, Settings, dividerAlignmentClasses, dividerHeightValues, dividerStyleClasses } from './types';
 
-export const DividerBlock: FC<Props> = ({ appBridge }) => {
+export const DividerBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     return (

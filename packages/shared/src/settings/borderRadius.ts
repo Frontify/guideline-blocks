@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
+import { SettingBlock } from '@frontify/guideline-blocks-settings';
 import { presetCustomValue } from '../helpers';
 import { appendUnit } from '../helpers/settings/appendUnit';
 import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
@@ -57,9 +57,9 @@ export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): Set
         switchLabel: 'Custom',
         defaultValue: false,
         info: 'Determining how rounded the corners are',
-        show: (bundle: Bundle): boolean =>
+        show: (bundle): boolean =>
             options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
-        onChange: (bundle: Bundle): void =>
+        onChange: (bundle): void =>
             presetCustomValue(bundle, choiceId, valueId, options?.radiusStyleMap || radiusStyleMap),
         on: [
             {
@@ -67,7 +67,7 @@ export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): Set
                 type: 'input',
                 placeholder: 'e.g. 10px',
                 rules: [numericalOrPixelRule],
-                onChange: (bundle: Bundle): void => appendUnit(bundle, valueId),
+                onChange: (bundle): void => appendUnit(bundle, valueId),
             },
         ],
         off: [getBorderRadiusSlider(choiceId)],

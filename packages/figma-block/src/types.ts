@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock, Color } from '@frontify/app-bridge';
+import { Color } from '@frontify/guideline-blocks-settings';
 
 export enum BlockPreview {
     Image = 'image',
@@ -23,10 +23,6 @@ export enum Cursor {
     GRABBING = 'grabbing',
     DEFAULT = 'default',
 }
-
-export type BlockProps = {
-    appBridge: AppBridgeBlock;
-};
 
 export type Point = {
     x: number;

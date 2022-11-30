@@ -13,21 +13,13 @@ import {
     merge,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';
 import { CUSTOM_QUOTE_STYLE_LEFT_ID, CUSTOM_QUOTE_STYLE_RIGHT_ID, DEFAULT_COLOR_VALUE } from './settings';
-import {
-    LineType,
-    Props,
-    QuotationMarksAnchoring,
-    QuoteSize,
-    QuoteStyle,
-    QuoteType,
-    Settings,
-    quoteSizeMap,
-} from './types';
+import { LineType, QuotationMarksAnchoring, QuoteSize, QuoteStyle, QuoteType, Settings, quoteSizeMap } from './types';
 import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities';
 
 const customPlugins = new PluginComposer();
@@ -37,7 +29,7 @@ customPlugins
 
 const DEFAULT_CONTENT_VALUE = '[{"type":"quote","children":[{"text":""}]}]';
 
-export const QuoteBlock: FC<Props> = ({ appBridge }) => {
+export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { designTokens } = useGuidelineDesignTokens();

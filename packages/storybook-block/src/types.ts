@@ -1,11 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
-
-export type BlockProps = {
-    appBridge: AppBridgeBlock;
-};
+import { Color } from '@frontify/guideline-blocks-settings';
 
 export type Settings = {
     style?: StorybookStyle;

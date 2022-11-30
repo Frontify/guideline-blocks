@@ -13,13 +13,14 @@ import {
 import { Button, ButtonEmphasis, IconArrowExpand, IconCross, IconSize, IconSuitcase } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import 'tailwindcss/tailwind.css';
 import { getBorderOfBlock, getHeightOfBlock } from './helpers';
 import { ImageStage } from './ImageStage';
 import { ASSET_ID, heights } from './settings';
-import { BlockPreview, BlockProps, HeightChoices, Settings } from './types';
+import { BlockPreview, HeightChoices, Settings } from './types';
 import { extractUrlParameterFromUriQueries } from './utilities';
 
 const FIGMA_BLOCK_MODAL_CLASSES = 'tw-overflow-y-hidden';

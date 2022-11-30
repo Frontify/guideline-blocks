@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/app-bridge';
+import { Color } from '@frontify/guideline-blocks-settings';
 import { toHex8String } from '@frontify/guideline-blocks-shared';
 
 export const getBorderOfBlock = (hasBorder: boolean, borderStyle: string, borderWidth: string, borderColor: Color) => {

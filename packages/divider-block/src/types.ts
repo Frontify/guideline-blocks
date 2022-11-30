@@ -1,11 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
 import type { Color } from '@frontify/fondue';
-
-export type Props = {
-    appBridge: AppBridgeBlock;
-};
 
 export type Settings = {
     alignment?: DividerAlignment;

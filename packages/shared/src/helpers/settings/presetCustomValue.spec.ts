@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle, SettingValue } from '@frontify/guideline-blocks-settings';
+import { Bundle } from '@frontify/guideline-blocks-settings';
 import { describe, expect, test, vi } from 'vitest';
 import { presetCustomValue } from './presetCustomValue';
 
@@ -16,7 +16,7 @@ describe('presetCustomValue', () => {
         const INPUT_ID = 'inputId';
 
         const bundle: Bundle = {
-            getBlock(id: string): SettingValue | null {
+            getBlock(id: string) {
                 if (id === SLIDER_ID) {
                     return { value: 'large' };
                 } else if (id === INPUT_ID) {
@@ -41,7 +41,7 @@ describe('presetCustomValue', () => {
         const INPUT_ID = 'inputId';
 
         const bundle: Bundle = {
-            getBlock(id): SettingValue | null {
+            getBlock(id) {
                 if (id === SLIDER_ID) {
                     return { value: 'small' };
                 } else if (id === INPUT_ID) {
