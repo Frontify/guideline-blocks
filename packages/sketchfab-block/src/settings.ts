@@ -92,7 +92,7 @@ export const settings: BlockSettingsStructureExport & {
         {
             id: SketchfabSettings.ACCOUNT_TYPE,
             type: 'dropdown',
-            size: 'Large' as DropdownSize.Large,
+            size: DropdownSize.Large,
             defaultValue: SketchfabAccount.Basic,
             choices: [
                 { value: SketchfabAccount.Basic, label: SketchfabAccount.Basic },
