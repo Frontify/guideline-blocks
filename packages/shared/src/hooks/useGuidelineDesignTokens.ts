@@ -38,13 +38,14 @@ export type DesignTokenName =
     | 'custom1'
     | 'custom2'
     | 'custom3'
-    | 'body'
+    | 'p'
     | 'link'
     | 'quote'
-    | 'button_primary'
-    | 'button_secondary'
-    | 'button_tertiary'
-    | 'callout';
+    | 'buttonPrimary'
+    | 'buttonSecondary'
+    | 'buttonTertiary'
+    | 'callout'
+    | 'imageCaption';
 
 export type DirectionalCssProperties = {
     top: number;
