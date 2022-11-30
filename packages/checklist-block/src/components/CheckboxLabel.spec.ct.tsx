@@ -8,7 +8,7 @@ const CHECKBOX_LABEL = '[data-test-id="checkbox-label"]';
 const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 
 const DefaultCheckboxLabel = (props: Partial<CheckboxLabelProps>) => {
-    const defaults = { htmlFor: 'test', disabled: false, dateInMs: 0, children: 'Label' };
+    const defaults = { htmlFor: 'test', disabled: false, dateInMs: 0, children: 'Label', designTokens: {} };
     const checkboxLabelProps = { ...defaults, ...props };
 
     return <CheckboxLabel {...checkboxLabelProps} />;

@@ -166,7 +166,7 @@ const expectedTransformedDesignTokens = {
     custom3: {
         fontFamily: 'Roboto',
     },
-    body: {
+    p: {
         fontSize: '14px',
         color: '#333',
     },
@@ -176,7 +176,7 @@ const expectedTransformedDesignTokens = {
     quote: {
         fontStyle: 'italic',
     },
-    button_primary: {
+    buttonPrimary: {
         hover: {
             color: 'rgba(76, 76, 76, 1)',
             backgroundColor: 'rgba(172, 172, 172, 1)',
@@ -192,8 +192,8 @@ const expectedTransformedDesignTokens = {
         color: 'rgba(102,102,102,1)',
         borderColor: 'rgba(207, 207, 207, 1)',
     },
-    button_secondary: {},
-    button_tertiary: {
+    buttonSecondary: {},
+    buttonTertiary: {
         hover: {
             color: 'rgb(194, 185, 223)',
             borderColor: 'rgb(255, 7, 212)',
@@ -233,21 +233,21 @@ describe('mapToGuidelineDesignTokens', () => {
 
     it('should transform uppercase to textTransform', () => {
         const result = mapToGuidelineDesignTokens({ body: { uppercase: '1' } });
-        expect(result).toMatchObject({ body: { textTransform: 'uppercase' } });
+        expect(result).toMatchObject({ p: { textTransform: 'uppercase' } });
     });
 
     it('should transform italic to fontStyle', () => {
         const result = mapToGuidelineDesignTokens({ body: { italic: '1' } });
-        expect(result).toMatchObject({ body: { fontStyle: 'italic' } });
+        expect(result).toMatchObject({ p: { fontStyle: 'italic' } });
     });
 
     it('should transform underline to textDecoration', () => {
         const result = mapToGuidelineDesignTokens({ body: { underline: '1' } });
-        expect(result).toMatchObject({ body: { textDecoration: 'underline' } });
+        expect(result).toMatchObject({ p: { textDecoration: 'underline' } });
     });
 
     it('should transform color value', () => {
         const result = mapToGuidelineDesignTokens({ body: { color: '#fff' } });
-        expect(result).toMatchObject({ body: { color: '#fff' } });
+        expect(result).toMatchObject({ p: { color: '#fff' } });
     });
 });

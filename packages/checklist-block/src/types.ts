@@ -2,8 +2,8 @@
 
 import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState, OrderableListItem } from '@frontify/fondue';
-import { Padding, PaddingExtendedSettings, paddingStyleMap } from '@frontify/guideline-blocks-shared';
-import { MouseEvent, ReactElement } from 'react';
+import { DesignTokenName } from '@frontify/guideline-blocks-shared';
+import { CSSProperties, MouseEvent, ReactElement } from 'react';
 
 export type ChecklistProps = {
     appBridge: AppBridgeBlock;
@@ -16,6 +16,7 @@ export type ChecklistItemProps = {
     dragState?: ItemDragState;
     onTextModified?: (text: string) => void;
     mode: ChecklistItemMode;
+    designTokens: DesignTokens;
     isFirst?: boolean;
     isLast?: boolean;
     onMoveItem?: (id: string, num: number) => void;
@@ -31,6 +32,7 @@ export type CheckboxProps = {
     showLabel: boolean;
     label: string;
     dateCompleted?: number;
+    designTokens: DesignTokens;
 };
 
 export type CheckboxLabelProps = {
@@ -38,7 +40,10 @@ export type CheckboxLabelProps = {
     disabled?: boolean;
     dateInMs?: number;
     children: string;
+    designTokens: DesignTokens;
 };
+
+export type DesignTokens = Partial<Record<DesignTokenName, CSSProperties>>;
 
 export type ChecklistButtonProps = {
     disabled?: boolean;
@@ -133,10 +138,10 @@ export type DecorationStyle = {
     [key: string]: string;
 };
 
-export type Settings = PaddingExtendedSettings & {
+export type Settings = {
     content: OrderableListItem<ChecklistContent>[];
-    incompleteTextColor: Color;
-    incompleteCheckboxColor: Color;
+    textColor: Color;
+    checkboxColor: Color;
     completeTextColor: Color;
     completeCheckboxColor: Color;
     completedDecoration: ChecklistDecoration;
@@ -153,24 +158,18 @@ export type Settings = PaddingExtendedSettings & {
 
 export const DefaultValues: Settings = {
     content: [],
-    hasExtendedCustomPadding: false,
-    extendedPaddingChoice: Padding.Small,
-    extendedPaddingTop: paddingStyleMap[Padding.Small],
-    extendedPaddingRight: paddingStyleMap[Padding.Small],
-    extendedPaddingBottom: paddingStyleMap[Padding.Small],
-    extendedPaddingLeft: paddingStyleMap[Padding.Small],
-    incompleteTextColor: { red: 45, green: 50, blue: 50, alpha: 1 },
-    incompleteCheckboxColor: { red: 108, green: 112, blue: 112, alpha: 1 },
-    completeTextColor: { red: 255, green: 55, blue: 90, alpha: 1 },
-    completeCheckboxColor: { red: 255, green: 55, blue: 90, alpha: 1 },
-    completedDecoration: ChecklistDecoration.Strikethrough,
-    highlightColor: { red: 190, green: 225, blue: 212, alpha: 1 },
+    textColor: { red: 45, green: 50, blue: 50, alpha: 1 },
+    checkboxColor: { red: 45, green: 50, blue: 50, alpha: 1 },
+    completeTextColor: { red: 45, green: 50, blue: 50, alpha: 1 },
+    completeCheckboxColor: { red: 0, green: 200, blue: 165, alpha: 1 },
+    completedDecoration: ChecklistDecoration.Checkbox,
+    highlightColor: { red: 0, green: 200, blue: 165, alpha: 1 },
     dateVisible: true,
     progressBarVisible: true,
     progressBarType: ProgressBarType.Bar,
     progressBarFillColor: { red: 0, green: 200, blue: 165, alpha: 1 },
-    progressBarTrackColor: { red: 222, green: 240, blue: 233, alpha: 1 },
+    progressBarTrackColor: { red: 250, green: 250, blue: 250, alpha: 1 },
     strikethroughStyle: StrikethroughType.Solid,
     strikethroughWidth: '1px',
-    strikethroughColor: { red: 255, green: 55, blue: 90, alpha: 1 },
+    strikethroughColor: { red: 0, green: 200, blue: 165, alpha: 1 },
 };

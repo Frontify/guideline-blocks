@@ -134,7 +134,7 @@ export const QuoteBlock: FC<Props> = ({ appBridge }) => {
                         quoteStyle={
                             blockSettings.isCustomQuoteStyleRight
                                 ? QuoteStyle.Custom
-                                : blockSettings.quoteStyleRight ?? QuoteStyle.DoubleDown
+                                : blockSettings.quoteStyleRight ?? QuoteStyle.None
                         }
                         isCustomQuoteStyle={blockSettings.isCustomQuoteStyleRight}
                     />

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ChecklistContent } from '../types';
 import { ItemDropTarget } from '@react-types/shared';
+import { ChecklistContent } from '../types';
 import { findIndexById } from './findIndexById';
 
 export const findIndexesForMove = (
