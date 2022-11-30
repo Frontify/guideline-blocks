@@ -4,12 +4,19 @@ import {
     DesignTokenName,
     DesignTokenProperties,
     DesignTokenPropertiesEnum,
-    DesignTokens,
     DirectionalCssProperties,
     TokenValues,
     TransformedDesignTokens,
 } from '../hooks/useGuidelineDesignTokens';
 import { provideDefaultCalloutColors } from './provideDefaultCalloutColors';
+
+const TokenNameMapper: Record<string, DesignTokenName> = {
+    button_primary: 'buttonPrimary',
+    button_secondary: 'buttonSecondary',
+    button_tertiary: 'buttonTertiary',
+    'image-caption': 'imageCaption',
+    body: 'p',
+};
 
 const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
     const cssStyles: TokenValues = {};
@@ -108,12 +115,13 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
     }
 };
 
-export const mapToGuidelineDesignTokens = (dataToTransform: DesignTokens) => {
+export const mapToGuidelineDesignTokens = (dataToTransform: Partial<Record<string, DesignTokenProperties>>) => {
     const transformedDesignTokens: TransformedDesignTokens = {};
     const enrichedDataToTransform = provideDefaultCalloutColors(dataToTransform);
 
     for (const [key, value] of Object.entries(enrichedDataToTransform)) {
-        transformedDesignTokens[key as DesignTokenName] = transformDesignTokens(value) as TokenValues;
+        const designTokenName = TokenNameMapper[key] ?? key;
+        transformedDesignTokens[designTokenName] = transformDesignTokens(value) as TokenValues;
     }
     return transformedDesignTokens;
 };

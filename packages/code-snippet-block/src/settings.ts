@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { DropdownSize, IconEnum } from '@frontify/fondue';
+import { BlockSettings } from '@frontify/guideline-blocks-settings';
 import { Radius, getBorderSettings, getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
-
-import { DEFAULT_THEME_VALUE } from './constants';
+import { languageNameMap, themeNameMap } from './types';
 
 export const settings: BlockSettings = {
     main: [
@@ -13,43 +12,7 @@ export const settings: BlockSettings = {
             type: 'dropdown',
             defaultValue: 'html',
             size: DropdownSize.Large,
-            choices: [
-                {
-                    value: 'html',
-                    icon: IconEnum.Code,
-                    label: 'HTML',
-                },
-                {
-                    value: 'css',
-                    icon: IconEnum.Code,
-                    label: 'CSS',
-                },
-                {
-                    value: 'js',
-                    icon: IconEnum.Code,
-                    label: 'JS',
-                },
-                {
-                    value: 'jsx',
-                    icon: IconEnum.Code,
-                    label: 'JSX',
-                },
-                {
-                    value: 'ts',
-                    icon: IconEnum.Code,
-                    label: 'TS',
-                },
-                {
-                    value: 'json',
-                    icon: IconEnum.Code,
-                    label: 'JSON',
-                },
-                {
-                    value: 'php',
-                    icon: IconEnum.Code,
-                    label: 'PHP',
-                },
-            ],
+            choices: Object.entries(languageNameMap).map(([value, label]) => ({ value, icon: IconEnum.Code, label })),
         },
     ],
     basics: [],
@@ -71,63 +34,10 @@ export const settings: BlockSettings = {
         {
             id: 'theme',
             type: 'dropdown',
-            defaultValue: DEFAULT_THEME_VALUE,
+            defaultValue: 'default',
             label: 'Color scheme',
             size: DropdownSize.Small,
-            choices: [
-                {
-                    value: 'default',
-                    label: 'Default Theme',
-                },
-                {
-                    value: 'dracula',
-                    label: 'Dracula',
-                },
-                {
-                    value: 'evaLight',
-                    label: 'Eva Light',
-                },
-                {
-                    value: 'gitHubDark',
-                    label: 'GitHub Dark',
-                },
-                {
-                    value: 'gitHubLight',
-                    label: 'GitHub Light',
-                },
-                {
-                    value: 'materialDarker',
-                    label: 'Material Darker',
-                },
-                {
-                    value: 'materialLighter',
-                    label: 'Material Lighter',
-                },
-                {
-                    value: 'materialPalenight',
-                    label: 'Material Palenight',
-                },
-                {
-                    value: 'oneDark',
-                    label: 'One Dark',
-                },
-                {
-                    value: 'oneLight',
-                    label: 'One Light',
-                },
-                {
-                    value: 'base16Dark',
-                    label: 'Base16 Dark',
-                },
-                {
-                    value: 'base16Light',
-                    label: 'Base16 Light',
-                },
-                {
-                    value: 'cobalt',
-                    label: 'Cobalt',
-                },
-            ],
+            choices: Object.entries(themeNameMap).map(([value, label]) => ({ value, label })),
         },
         getBorderSettings({ defaultValue: true }),
         getExtendedBorderRadiusSettings({ defaultValue: Radius.Medium }),

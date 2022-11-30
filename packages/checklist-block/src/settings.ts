@@ -1,13 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
+import type { DropdownSize, IconEnum, MultiInputLayout, SwitchSize } from '@frontify/fondue';
 import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
-import {
-    appendUnit,
-    getPaddingExtendedSettings,
-    minimumNumericalOrPixelOrAutoRule,
-    numericalOrPixelRule,
-} from '@frontify/guideline-blocks-shared';
+import { appendUnit, minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const COMPLETED_DECORATION = 'completedDecoration';
@@ -32,24 +27,24 @@ export const settings: BlockSettings = {
                     label: 'Checkbox',
                 },
                 {
-                    value: ChecklistDecoration.Strikethrough,
-                    icon: 'TextFormatStrikethrough' as IconEnum.TextFormatStrikethrough,
-                    label: 'Strikethrough',
-                },
-                {
                     value: ChecklistDecoration.Highlight,
                     icon: 'Highlighter' as IconEnum.Highlighter,
                     label: 'Highlight',
+                },
+                {
+                    value: ChecklistDecoration.Strikethrough,
+                    icon: 'TextFormatStrikethrough' as IconEnum.TextFormatStrikethrough,
+                    label: 'Strikethrough',
                 },
             ],
         },
     ],
     layout: [
-        getPaddingExtendedSettings(),
         {
             id: PROGRESS_BAR_VISIBLE,
             label: 'Progress Indicator',
             type: 'switch',
+            size: 'Small' as SwitchSize.Small,
             defaultValue: DefaultValues.progressBarVisible,
             info: 'Change the type of progress indicator for your checklist',
             on: [
@@ -59,16 +54,16 @@ export const settings: BlockSettings = {
                     defaultValue: DefaultValues.progressBarType,
                     choices: [
                         {
-                            value: ProgressBarType.Percentage,
-                            label: 'Percentage',
+                            value: ProgressBarType.Bar,
+                            label: 'Bar',
                         },
                         {
                             value: ProgressBarType.Fraction,
                             label: 'Fraction',
                         },
                         {
-                            value: ProgressBarType.Bar,
-                            label: 'Bar',
+                            value: ProgressBarType.Percentage,
+                            label: 'Percentage',
                         },
                     ],
                 },
@@ -79,59 +74,74 @@ export const settings: BlockSettings = {
             id: 'dateVisible',
             label: 'Date completed',
             type: 'switch',
+            size: 'Small' as SwitchSize.Small,
             info: 'Show the completion date for each checklist item',
             defaultValue: DefaultValues.dateVisible,
         },
     ],
     style: [
         {
-            id: 'incompleteSection',
+            id: 'textSection',
             type: 'sectionHeading',
-            label: 'Incomplete',
+            label: 'Text',
             blocks: [
                 {
-                    id: 'incompleteTextColor',
+                    id: 'textColor',
                     type: 'colorInput',
-                    label: 'Text',
-                    defaultValue: DefaultValues.incompleteTextColor,
+                    label: 'Default',
+                    defaultValue: DefaultValues.textColor,
                 },
                 {
-                    id: 'incompleteCheckboxColor',
+                    id: 'completeTextColor',
                     type: 'colorInput',
-                    label: 'Checkbox',
-                    defaultValue: DefaultValues.incompleteCheckboxColor,
+                    label: 'Completed',
+                    defaultValue: DefaultValues.completeTextColor,
                 },
             ],
         },
         {
-            id: 'completeSection',
+            id: 'checkboxSection',
             type: 'sectionHeading',
-            label: 'Complete',
+            label: 'Checkbox',
             blocks: [
                 {
-                    id: 'completeTextColor',
+                    id: 'checkboxColor',
                     type: 'colorInput',
-                    label: 'Text',
-                    defaultValue: DefaultValues.completeTextColor,
+                    label: 'Default',
+                    defaultValue: DefaultValues.checkboxColor,
                 },
                 {
                     id: 'completeCheckboxColor',
                     type: 'colorInput',
-                    label: 'Checkbox',
+                    label: 'Completed',
                     defaultValue: DefaultValues.completeCheckboxColor,
                 },
+            ],
+        },
+        {
+            id: 'highlightSection',
+            type: 'sectionHeading',
+            label: 'Highlight',
+            blocks: [
                 {
                     id: 'highlightColor',
                     type: 'colorInput',
-                    label: 'Highlight',
+                    label: 'Completed',
                     defaultValue: DefaultValues.highlightColor,
                     show: (bundle: Bundle) =>
                         bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
                 },
+            ],
+        },
+        {
+            id: 'strikethroughSection',
+            type: 'sectionHeading',
+            label: 'Line',
+            blocks: [
                 {
                     id: 'strikethroughMultiInput',
                     type: 'multiInput',
-                    label: 'Line',
+                    label: 'Completed',
                     layout: 'Columns' as MultiInputLayout.Columns,
                     lastItemFullWidth: true,
                     show: (bundle: Bundle) =>
@@ -187,16 +197,16 @@ export const settings: BlockSettings = {
             show: showProgressStyles,
             blocks: [
                 {
-                    id: 'progressBarFillColor',
-                    type: 'colorInput',
-                    label: 'Complete',
-                    defaultValue: DefaultValues.progressBarFillColor,
-                },
-                {
                     id: 'progressBarTrackColor',
                     type: 'colorInput',
-                    label: 'Track',
+                    label: 'Default',
                     defaultValue: DefaultValues.progressBarTrackColor,
+                },
+                {
+                    id: 'progressBarFillColor',
+                    type: 'colorInput',
+                    label: 'Completed',
+                    defaultValue: DefaultValues.progressBarFillColor,
                 },
             ],
         },

@@ -27,14 +27,11 @@ const getLabelDecorationStylesMap = (
         textDecorationStyle: StrikethroughStyleType[style],
         textDecorationThickness: thickness,
         textDecorationColor: toHex8String(color),
-        fontWeight: '500',
     },
     [ChecklistDecoration.Highlight]: {
         backgroundColor: toHex8String(highlightColor),
     },
-    [ChecklistDecoration.Checkbox]: {
-        fontWeight: '500',
-    },
+    [ChecklistDecoration.Checkbox]: {},
 });
 
 const decorateLabelChildren = (children: string, style: CSSProperties) =>
@@ -49,7 +46,13 @@ const decorateLabelChildren = (children: string, style: CSSProperties) =>
         </Fragment>
     ));
 
-export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {
+export const CheckboxLabel: FC<CheckboxLabelProps> = ({
+    children = '',
+    htmlFor,
+    disabled = false,
+    dateInMs,
+    designTokens,
+}) => {
     const {
         strikethroughStyle,
         strikethroughWidth,
@@ -67,15 +70,14 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
         highlightColor
     )[completedDecoration];
 
+    const imageCaptionStyles = designTokens?.imageCaption ?? {};
+
     const labelStyles = { color: toHex8String(completeTextColor), ...decorationStyles };
 
     const decoratedChildren = decorateLabelChildren(children, labelStyles);
 
     return (
-        <div
-            className="tw-text-s tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0"
-            data-test-id="input-label-container"
-        >
+        <div className="tw-max-w-full tw-px-0.5 tw-flex-initial tw-min-w-0" data-test-id="input-label-container">
             <label
                 htmlFor={htmlFor}
                 className={joinClassNames([
@@ -87,10 +89,7 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, 
                 {decoratedChildren}
             </label>
             {dateVisible && Boolean(dateInMs) && (
-                <span
-                    className="tw-text-x-weak tw-font-sans tw-text-xxs tw-font-normal tw-block tw-mt-[2px]"
-                    data-test-id="checkbox-date"
-                >
+                <span className="tw-block tw-mt-[2px]" style={imageCaptionStyles} data-test-id="checkbox-date">
                     {dayjs(dateInMs).fromNow()}
                 </span>
             )}
