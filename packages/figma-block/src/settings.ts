@@ -4,11 +4,13 @@ import {
     AssetChooserObjectType,
     AssetChooserProjectType,
     AssetInputMode,
+    DropdownSize,
+    IconEnum,
+    MultiInputLayout,
     defineSettings,
 } from '@frontify/guideline-blocks-settings';
 import { appendUnit, minimumNumericRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { BlockPreview, HeightChoices } from './types';
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 
 export const ASSET_ID = 'asset';
 export const DEFAULT_HEIGHT = '500px';

@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum } from '@frontify/fondue';
-import { defineSettings } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
 export const settings = defineSettings({
     main: [
@@ -9,12 +8,12 @@ export const settings = defineSettings({
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'custom_block',
-            size: 'Large' as DropdownSize.Large,
+            size: DropdownSize.Large,
             disabled: true,
             choices: [
                 {
                     value: 'custom_block',
-                    icon: 'Code' as IconEnum.Code,
+                    icon: IconEnum.Code,
                     label: 'Custom Block',
                 },
             ],
