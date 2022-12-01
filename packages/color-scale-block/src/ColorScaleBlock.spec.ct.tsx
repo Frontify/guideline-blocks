@@ -17,6 +17,7 @@ const COLOR_SQUARE_BACKGROUND_SELECTOR = '[data-test-id="color-scale-block-color
 const COLOR_SQUARE_DROP_ZONE_SELECTOR = '[data-test-id="drop-zone"]';
 const COLOR_SQUARE_WRAPPER_SELECTOR = '[data-test-id="color-wrapper"]';
 const COLOR_SQUARE_DELETE_BUTTON_SELECTOR = '[data-test-id="delete-color"]';
+const COLOR_SQUARE_DRAG_HANDLE_SELECTOR = '[data-test-id="drag-handle"]';
 const COLOR_SCALE_BLOCK_BORDER_WIDTH = 2;
 const COLOR_SCALE_BLOCK_PADDING = 2;
 const COLOR_SQUARE_HARDCODED_WIDTH = 100;
@@ -150,7 +151,7 @@ describe('Color Scale Block', () => {
             .eq(COLOR_PICKER_FLYOUT_COLOR_INDEX)
             .find('span')
             .invoke('attr', 'style')
-            .as('style_1');
+            .as('style1');
 
         cy.get(COLOR_PICKER_FLYOUT_SELECTOR)
             .find(COLOR_PICKER_FLYOUT_BRAND_COLOR_SELECTOR)
@@ -167,11 +168,11 @@ describe('Color Scale Block', () => {
             .find(COLOR_SQUARE_BACKGROUND_SELECTOR)
             .eq(COLOR_PICKER_FLYOUT_COLOR_INDEX)
             .invoke('attr', 'style')
-            .as('style_2');
+            .as('style2');
 
-        cy.get('@style_1').then((style_1) => {
-            cy.get('@style_2').then((style_2) => {
-                expect(style_2).to.include(style_1);
+        cy.get('@style1').then((style1) => {
+            cy.get('@style2').then((style2) => {
+                expect(style2).to.include(style1);
             });
         });
     });
@@ -243,11 +244,6 @@ describe('Color Scale Block', () => {
             },
         });
 
-        let colorBlockWidth: number;
-        let firstColorSquareWidth: number;
-        let secondColorSquareWidth: number;
-        let thirdColorSquareWidth: number;
-
         mount(<ColorScaleBlockWithStubs />);
 
         cy.get(COLOR_SCALE_BLOCK_SELECTOR).find(COLOR_SQUARE_WRAPPER_SELECTOR).should('have.length', 3);
@@ -258,112 +254,106 @@ describe('Color Scale Block', () => {
             .click();
 
         cy.get(COLOR_SCALE_BLOCK_SELECTOR)
+            .then(($element) => $element[0].getBoundingClientRect())
+            .its('width')
+            .as('colorBlockWidth');
+
+        cy.get(COLOR_SCALE_BLOCK_SELECTOR)
+            .find(COLOR_SQUARE_WRAPPER_SELECTOR)
             .eq(0)
-            .then(($colorBlock) => {
-                colorBlockWidth = $colorBlock[0].getBoundingClientRect().width;
+            .then(($element) => $element[0].getBoundingClientRect())
+            .its('width')
+            .as('firstColorSquareWidth');
 
-                cy.get(COLOR_SCALE_BLOCK_SELECTOR)
-                    .find(COLOR_SQUARE_WRAPPER_SELECTOR)
-                    .eq(0)
-                    .then(($colorSquare) => {
-                        firstColorSquareWidth = $colorSquare[0].getBoundingClientRect().width;
+        cy.get(COLOR_SCALE_BLOCK_SELECTOR)
+            .find(COLOR_SQUARE_WRAPPER_SELECTOR)
+            .eq(1)
+            .then(($element) => $element[0].getBoundingClientRect())
+            .its('width')
+            .as('secondColorSquareWidth');
 
-                        cy.get(COLOR_SCALE_BLOCK_SELECTOR)
-                            .find(COLOR_SQUARE_WRAPPER_SELECTOR)
-                            .eq(1)
-                            .then(($colorSquare2) => {
-                                secondColorSquareWidth = $colorSquare2[0].getBoundingClientRect().width;
+        cy.get(COLOR_SCALE_BLOCK_SELECTOR)
+            .find(COLOR_SQUARE_WRAPPER_SELECTOR)
+            .eq(2)
+            .then(($element) => $element[0].getBoundingClientRect())
+            .its('width')
+            .as('thirdColorSquareWidth');
 
-                                cy.get(COLOR_SCALE_BLOCK_SELECTOR)
-                                    .find(COLOR_SQUARE_WRAPPER_SELECTOR)
-                                    .eq(2)
-                                    .then(($colorSquare3) => {
-                                        thirdColorSquareWidth = $colorSquare3[0].getBoundingClientRect().width;
-
-                                        expect(firstColorSquareWidth).to.be.closeTo(colorBlockWidth / 3, 3);
-                                        expect(secondColorSquareWidth).to.be.closeTo(colorBlockWidth / 3, 3);
-                                        expect(thirdColorSquareWidth).to.be.closeTo(colorBlockWidth / 3, 3);
-                                    });
-                            });
-                    });
-            });
+        cy.get<number>('@colorBlockWidth').then((colorBlockWidth) => {
+            cy.get('@firstColorSquareWidth').should('be.closeTo', colorBlockWidth / 3, 3);
+            cy.get('@secondColorSquareWidth').should('be.closeTo', colorBlockWidth / 3, 3);
+            cy.get('@thirdColorSquareWidth').should('be.closeTo', colorBlockWidth / 3, 3);
+        });
     });
 
-    // it('allows the user to resize a color square', () => {
-    //     const [ColorScaleBlockWithStubs] = withAppBridgeBlockStubs(ColorScaleBlock, {
-    //         editorState: true,
-    //         blockSettings: {
-    //             customHeight: false,
-    //             heightSlider: '96px',
-    //             heightInput: '100px',
-    //             cypressTest: true,
-    //             colorInput: [
-    //                 {
-    //                     red: 255,
-    //                     alpha: 1,
-    //                     green: 0,
-    //                     blue: 0,
-    //                     id: 1,
-    //                     width: 300,
-    //                 },
-    //             ],
-    //         },
-    //     });
+    it('allows the user to resize a color square', () => {
+        const COLOR_WIDTH = 300;
 
-    //     const COLOR_PICKER_FLYOUT_COLOR_INDEX = 0;
+        const [ColorScaleBlockWithStubs] = withAppBridgeBlockStubs(ColorScaleBlock, {
+            editorState: true,
+            blockSettings: {
+                customHeight: false,
+                heightSlider: '96px',
+                heightInput: '100px',
+                cypressTest: true,
+                colorInput: [
+                    {
+                        red: 255,
+                        alpha: 1,
+                        green: 0,
+                        blue: 0,
+                        id: 1,
+                        width: COLOR_WIDTH,
+                    },
+                ],
+            },
+        });
 
-    //     let dragHandlePosition;
-    //     let colorSquareWidthBeforeResize = 1;
-    //     let colorSquareWidthAfterResize = 1;
+        mount(<ColorScaleBlockWithStubs />);
 
-    //     mount(<ColorScaleBlockWithStubs />);
+        cy.get(COLOR_SCALE_BLOCK_SELECTOR).find(COLOR_SQUARE_BACKGROUND_SELECTOR).should('have.length', 1);
 
-    //     cy.on('uncaught:exception', (err) => {
-    //         if (err.message.includes('Cannot call hover while not dragging')) {
-    //             // return false to prevent the error from
-    //             // failing this test
-    //             return false;
-    //         }
+        cy.get(COLOR_SCALE_BLOCK_SELECTOR)
+            .find(COLOR_SQUARE_SELECTOR)
+            .then(($element) => $element[0].getBoundingClientRect())
+            .its('width')
+            .as('colorSquareWidthBeforeResize');
 
-    //         // fail test on any other errors
-    //         return true;
-    //     });
+        cy.get(COLOR_SCALE_BLOCK_SELECTOR)
+            .eq(0)
+            .find(COLOR_SQUARE_DRAG_HANDLE_SELECTOR)
+            .as('dragHandle')
+            .then(($element) => $element[0].getBoundingClientRect())
+            .as('dragHandlePosition');
 
-    //     cy.get(COLOR_SCALE_BLOCK_SELECTOR).find(COLOR_SQUARE_BACKGROUND_SELECTOR).should('have.length', 1);
+        cy.get('@dragHandle')
+            .realHover()
+            .should('have.css', 'opacity', '1')
+            .and('be.visible')
+            .and('have.attr', 'draggable');
 
-    //     cy.get(COLOR_SCALE_BLOCK_SELECTOR)
-    //         .find(COLOR_SQUARE_SELECTOR)
-    //         .then(($colorSquare) => {
-    //             colorSquareWidthBeforeResize = $colorSquare[0].getBoundingClientRect().width;
+        cy.get<DOMRect>('@dragHandlePosition').then((dragHandlePosition) => {
+            cy.get('@dragHandle')
+                .trigger('mousedown')
+                .trigger('mousemove', {
+                    clientX: dragHandlePosition.x + dragHandlePosition.width / 2,
+                    clientY: dragHandlePosition.y + dragHandlePosition.height / 2,
+                });
 
-    //             cy.get(COLOR_SCALE_BLOCK_SELECTOR)
-    //                 .find(COLOR_SQUARE_SELECTOR)
-    //                 .find('.drag-handle')
-    //                 .then(($dragHandle) => {
-    //                     dragHandlePosition = $dragHandle[0].getBoundingClientRect();
+            cy.get('@dragHandle')
+                .trigger('mousedown')
+                .trigger('mousemove', {
+                    clientX: dragHandlePosition.x + dragHandlePosition.width / 2 - COLOR_WIDTH / 2,
+                    clientY: dragHandlePosition.y + dragHandlePosition.height / 2,
+                });
+        });
 
-    //                     cy.get(COLOR_SCALE_BLOCK_SELECTOR)
-    //                         .find(COLOR_SQUARE_SELECTOR)
-    //                         .eq(COLOR_PICKER_FLYOUT_COLOR_INDEX)
-    //                         .eq(0)
-    //                         .find('.drag-handle')
-    //                         .parent()
-    //                         .eq(0)
-    //                         .realHover()
-    //                         .drag('body');
-
-    //                     cy.get('body').click(dragHandlePosition.x / 2, dragHandlePosition.height / 2);
-
-    //                     cy.get(COLOR_SCALE_BLOCK_SELECTOR)
-    //                         .find(COLOR_SQUARE_SELECTOR)
-    //                         .then(($colorSquare) => {
-    //                             colorSquareWidthAfterResize = $colorSquare[0].getBoundingClientRect().width;
-
-    //                             expect(colorSquareWidthAfterResize).to.be.closeTo(colorSquareWidthBeforeResize / 2, 5);
-    //                         });
-    //                 });
-    //         });
-    // });
+        cy.get(COLOR_SCALE_BLOCK_SELECTOR)
+            .find(COLOR_SQUARE_SELECTOR)
+            .then(($element) => $element[0].getBoundingClientRect())
+            .its('width')
+            .should('be.closeTo', COLOR_WIDTH / 2, 0.1);
+    });
 
     it('allows the user to drag and drop a color square', () => {
         const [ColorScaleBlockWithStubs] = withAppBridgeBlockStubs(ColorScaleBlock, {
@@ -398,8 +388,8 @@ describe('Color Scale Block', () => {
 
         mount(<ColorScaleBlockWithStubs />);
 
-        cy.on('uncaught:exception', (err) => {
-            if (err.message.includes('Cannot call hover while not dragging')) {
+        cy.on('uncaught:exception', (error) => {
+            if (error.message.includes('Cannot call hover while not dragging')) {
                 // return false to prevent the error from
                 // failing this test
                 return false;
@@ -414,7 +404,7 @@ describe('Color Scale Block', () => {
             .eq(COLOR_PICKER_FLYOUT_COLOR_INDEX_2)
             .find(COLOR_SQUARE_BACKGROUND_SELECTOR)
             .invoke('attr', 'style')
-            .as('dragged_element_style');
+            .as('draggedElementStyle');
 
         cy.get(COLOR_SCALE_BLOCK_SELECTOR)
             .find(COLOR_SQUARE_SELECTOR)
@@ -431,12 +421,10 @@ describe('Color Scale Block', () => {
             .eq(COLOR_PICKER_FLYOUT_COLOR_INDEX_1)
             .find(COLOR_SQUARE_BACKGROUND_SELECTOR)
             .invoke('attr', 'style')
-            .as('first_color_in_block_style');
+            .as('firstColorInBlockStyle');
 
-        cy.get('@dragged_element_style').then((dragged_element_style) => {
-            cy.get('@first_color_in_block_style').then((first_color_in_block_style) => {
-                expect(dragged_element_style).to.equal(first_color_in_block_style);
-            });
+        cy.get('@draggedElementStyle').then((draggedElementStyle) => {
+            cy.get('@firstColorInBlockStyle').should('equal', draggedElementStyle);
         });
     });
 
