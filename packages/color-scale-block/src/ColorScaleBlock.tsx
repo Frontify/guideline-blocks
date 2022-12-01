@@ -19,6 +19,7 @@ import {
     Palette,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 import { ColorSquare } from './components/ColorSquare';
@@ -33,10 +34,6 @@ import {
     calculateDefaultColorWidth,
     resizeEvenly,
 } from './helpers';
-
-export type ColorScaleBlockProps = {
-    appBridge: AppBridgeBlock;
-};
 
 const COLOR_SQUARE_FIRST_ELEMENT_CLASSES = 'tw-pl-[1px] tw-pr-[1px] tw-rounded-tl tw-rounded-bl';
 const COLOR_SQUARE_LAST_ELEMENT_CLASSES = 'tw-rounded-tr tw-rounded-br';
