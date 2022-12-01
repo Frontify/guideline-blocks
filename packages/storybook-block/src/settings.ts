@@ -1,14 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import {
+    DropdownSize,
+    IconEnum,
     appendUnit,
-    getBorderRadiusSettings,
-    getBorderSettings,
+    defineSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
+import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
@@ -55,7 +56,7 @@ export const settings = defineSettings({
             label: 'Link',
             type: 'input',
             placeholder: URL_INPUT_PLACEHOLDER,
-            rules: [{ validate: (value: string) => isValidStorybookUrl(value), errorMessage: ERROR_MSG }],
+            rules: [{ validate: (value) => isValidStorybookUrl(value), errorMessage: ERROR_MSG }],
         },
     ],
     layout: [
@@ -66,7 +67,7 @@ export const settings = defineSettings({
             switchLabel: 'Custom',
             defaultValue: false,
             info: 'Determines the maximum height. Height is predefined or restricted to make sure UI elements don’t look broken or strange when viewed on different devices',
-            onChange: (bundle): void => presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
+            onChange: (bundle) => presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
 
             on: [
                 {
@@ -75,7 +76,7 @@ export const settings = defineSettings({
                     placeholder: 'e.g. 500px',
                     defaultValue: StorybookHeight.Medium,
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(MIN_HEIGHT_VALUE)],
-                    onChange: (bundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
+                    onChange: (bundle) => appendUnit(bundle, HEIGHT_VALUE_ID),
                 },
             ],
             off: [
@@ -106,7 +107,7 @@ export const settings = defineSettings({
             type: 'slider',
             defaultValue: StorybookPosition.Vertical,
             info: 'Where the UI elements are in relation to one another',
-            show: (bundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.WithAddons,
+            show: (bundle) => bundle.getBlock('style')?.value === StorybookStyle.WithAddons,
             choices: [
                 {
                     value: StorybookPosition.Horizontal,

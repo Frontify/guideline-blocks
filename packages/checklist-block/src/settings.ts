@@ -6,9 +6,11 @@ import {
     IconEnum,
     MultiInputLayout,
     SwitchSize,
+    appendUnit,
     defineSettings,
+    minimumNumericalOrPixelOrAutoRule,
+    numericalOrPixelRule,
 } from '@frontify/guideline-blocks-settings';
-import { appendUnit, minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const COMPLETED_DECORATION = 'completedDecoration';
@@ -183,7 +185,7 @@ export const settings = defineSettings({
                             id: STRIKETHROUGH_WIDTH,
                             type: 'input',
                             defaultValue: DefaultValues.strikethroughWidth,
-                            onChange: (bundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
+                            onChange: (bundle) => appendUnit(bundle, STRIKETHROUGH_WIDTH),
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                         },
                         {

@@ -1,7 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
-import { betweenPixelRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import {
+    DropdownSize,
+    IconEnum,
+    betweenPixelRule,
+    defineSettings,
+    numericalOrPixelRule,
+} from '@frontify/guideline-blocks-settings';
 
 export const PLACEHOLDER = 'Your text here';
 export const DEFAULT_COLUMN_NUMBER = 1;
@@ -84,7 +89,7 @@ export const settings = defineSettings({
                             type: 'input',
                             defaultValue: DEFAULT_COLUMN_GUTTER,
                             rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                            onChange: (bundle): void => {
+                            onChange: (bundle) => {
                                 const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
                                 if (!isNaN(gutter)) {
                                     bundle.setBlockValue('columnGutterCustom', `${gutter}px`);

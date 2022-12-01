@@ -8,14 +8,12 @@ import {
     IconEnum,
     MultiInputLayout,
     NotificationStyleType,
-    defineSettings,
-} from '@frontify/guideline-blocks-settings';
-import {
     appendUnit,
-    getExtendedBorderRadiusSettings,
+    defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
+import { getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
 import { Alignment, Appearance, Icon, Padding, Type, Width, leftRightPaddingMap, topBottomPaddingMap } from './types';
 
 const PADDING_CHOICE_ID = 'paddingChoice';
@@ -172,7 +170,7 @@ export const settings = defineSettings({
                     switchLabel: 'Custom',
                     label: 'Padding',
                     info: 'The spacing around UI elements to create more negative space',
-                    onChange: (bundle): void => {
+                    onChange: (bundle) => {
                         presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_TOP_ID, topBottomPaddingMap);
                         presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_BOTTOM_ID, topBottomPaddingMap);
                         presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_LEFT_ID, leftRightPaddingMap);
@@ -188,28 +186,28 @@ export const settings = defineSettings({
                                     id: PADDING_TOP_ID,
                                     type: 'input',
                                     icon: IconEnum.ArrowAlignUp16,
-                                    onChange: (bundle): void => appendUnit(bundle, PADDING_TOP_ID),
+                                    onChange: (bundle) => appendUnit(bundle, PADDING_TOP_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_LEFT_ID,
                                     type: 'input',
                                     icon: IconEnum.ArrowAlignLeft16,
-                                    onChange: (bundle): void => appendUnit(bundle, PADDING_LEFT_ID),
+                                    onChange: (bundle) => appendUnit(bundle, PADDING_LEFT_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_RIGHT_ID,
                                     type: 'input',
                                     icon: IconEnum.ArrowAlignRight16,
-                                    onChange: (bundle): void => appendUnit(bundle, PADDING_RIGHT_ID),
+                                    onChange: (bundle) => appendUnit(bundle, PADDING_RIGHT_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                                 {
                                     id: PADDING_BOTTOM_ID,
                                     type: 'input',
                                     icon: IconEnum.ArrowAlignDown16,
-                                    onChange: (bundle): void => appendUnit(bundle, PADDING_BOTTOM_ID),
+                                    onChange: (bundle) => appendUnit(bundle, PADDING_BOTTOM_ID),
                                     rules: [numericalOrPixelRule],
                                 },
                             ],
