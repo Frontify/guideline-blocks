@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, Template } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
+import { DesignTokenName } from '@frontify/guideline-blocks-shared';
 
 export type BlockProps = {
     appBridge: AppBridgeBlock;
@@ -16,6 +17,7 @@ export type Settings = {
     template?: Template;
     preview: PreviewType;
     previewCustom?: Asset;
+    buttonStyle?: DesignTokenName;
 
     // layout
 
@@ -66,14 +68,6 @@ export type Settings = {
     isPreviewCorderRadiusCustom: boolean;
     previewCornerRadiusCustom?: string;
     previewCornerRadiusSimple: CornerRadiusType;
-};
-
-export type Template = {
-    id: number;
-    name: string;
-    description: string;
-    pages: number;
-    previewUrl: string[];
 };
 
 export enum PreviewType {
