@@ -1,11 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetChooserObjectType, AssetChooserProjectType } from '@frontify/app-bridge';
-import { AssetInputMode, Bundle } from '@frontify/guideline-blocks-settings';
-import type { BlockSettings } from '@frontify/guideline-blocks-settings';
+import {
+    AssetChooserObjectType,
+    AssetChooserProjectType,
+    AssetInputMode,
+    DropdownSize,
+    IconEnum,
+    MultiInputLayout,
+    defineSettings,
+} from '@frontify/guideline-blocks-settings';
 import { appendUnit, minimumNumericRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { BlockPreview, HeightChoices } from './types';
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 
 export const ASSET_ID = 'asset';
 export const DEFAULT_HEIGHT = '500px';
@@ -24,7 +29,7 @@ export const heights: Record<HeightChoices, string> = {
     [HeightChoices.Large]: '800px',
 };
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: PREVIEW_MODE,
@@ -60,7 +65,7 @@ export const settings: BlockSettings = {
             type: 'switch',
             label: 'Show Background',
             defaultValue: false,
-            show: (bundle: Bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            show: (bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
             id: HAS_BORDER_ID,
@@ -121,7 +126,7 @@ export const settings: BlockSettings = {
             type: 'switch',
             label: 'Show Figma Link',
             defaultValue: true,
-            show: (bundle: Bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            show: (bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
             id: HAS_LIMITED_OPTIONS,
@@ -129,7 +134,7 @@ export const settings: BlockSettings = {
             label: 'Image fixed height',
             defaultValue: true,
             info: 'The image uploaded will have the same height as in your Figma file.',
-            show: (bundle: Bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            show: (bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
             id: 'isCustomHeight',
@@ -137,7 +142,7 @@ export const settings: BlockSettings = {
             label: 'Height',
             switchLabel: 'Custom',
             defaultValue: false,
-            show: (bundle: Bundle): boolean =>
+            show: (bundle): boolean =>
                 bundle.getBlock(HAS_LIMITED_OPTIONS)?.value === false ||
                 bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Live,
             on: [
@@ -172,4 +177,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

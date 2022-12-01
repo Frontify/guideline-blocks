@@ -1,16 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import {
-    AppBridgeBlock,
-    Color as AppBridgeColor,
-    useBlockSettings,
-    useColorPalettes,
-    useEditorState,
-} from '@frontify/app-bridge';
+import { Color as AppBridgeColor, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
     ButtonEmphasis,
@@ -47,7 +41,7 @@ export type ColorScaleBlockProps = {
 const COLOR_SQUARE_FIRST_ELEMENT_CLASSES = 'tw-pl-[1px] tw-pr-[1px] tw-rounded-tl tw-rounded-bl';
 const COLOR_SQUARE_LAST_ELEMENT_CLASSES = 'tw-rounded-tr tw-rounded-br';
 
-export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
+export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const { colorPalettes: appBridgePalettes } = useColorPalettes(appBridge);
     const [colorPickerPalettes, setColorPickerPalettes] = useState<Palette[]>([]);
     const isEditing = useEditorState(appBridge);

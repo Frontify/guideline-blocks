@@ -1,11 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
-
-export type Props = {
-    appBridge: AppBridgeBlock;
-};
-
 export type Settings = {
     columnGutterCustom: string;
     columnGutterSimple: string;

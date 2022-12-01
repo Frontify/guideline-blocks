@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
+import { SettingBlock } from '@frontify/guideline-blocks-settings';
 import { appendUnit } from '../helpers/settings/appendUnit';
 import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
 import { presetCustomValue } from '../helpers/settings/presetCustomValue';
@@ -16,8 +16,7 @@ type MarginSettingsType = {
 /**
  * Returns margin settings: margin switch, margin slider, custom margin input
  *
- * @param options Options for the settings
- * @param options.id Custom suffix for the setting ids
+ * @param {string} id Custom suffix for the setting ids
  * @returns {SettingBlock} Returns margin settings
  */
 export const getMarginSlider = (id: string): SettingBlock => ({
@@ -56,7 +55,7 @@ export const getMarginSettings = (options?: MarginSettingsType): SettingBlock =>
         switchLabel: 'Custom',
         defaultValue: false,
         info: 'The spacing around UI elements to create more space',
-        onChange: (bundle: Bundle): void =>
+        onChange: (bundle): void =>
             presetCustomValue(bundle, choiceId, valueId, options?.marginStyleMap || marginStyleMap),
         on: [
             {
@@ -64,7 +63,7 @@ export const getMarginSettings = (options?: MarginSettingsType): SettingBlock =>
                 type: 'input',
                 placeholder: MARGIN_DEFAULT_PLACEHOLDER,
                 rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                onChange: (bundle: Bundle): void => appendUnit(bundle, valueId),
+                onChange: (bundle): void => appendUnit(bundle, valueId),
             },
         ],
         off: [getMarginSlider(choiceId)],
