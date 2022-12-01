@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { defineSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { appendUnit, defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
 
 export const settings = defineSettings({
     layout: [
@@ -39,12 +38,7 @@ export const settings = defineSettings({
                     defaultValue: '100px',
                     clearable: false,
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle) => {
-                        const height = Number(bundle.getBlock('heightInput')?.value);
-                        if (!isNaN(height)) {
-                            bundle.setBlockValue('heightInput', `${height}px`);
-                        }
-                    },
+                    onChange: (bundle) => appendUnit(bundle, 'heightInput'),
                 },
             ],
         },
