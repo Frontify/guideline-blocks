@@ -24,7 +24,7 @@ import {
     previewHeightValues,
 } from './types';
 
-const BACKGROUND_COLOR_DEFAULT_VALUE: Color = { red: 8, green: 8, blue: 8, alpha: 0.1, name: 'Background Default' };
+const BACKGROUND_COLOR_DEFAULT_VALUE: Color = { red: 250, green: 250, blue: 250, alpha: 1, name: 'Background Default' };
 const BORDER_COLOR_DEFAULT_VALUE: Color = { red: 8, green: 8, blue: 8, alpha: 0.1, name: 'Border Default' };
 
 export const settings: BlockSettings = {
@@ -153,7 +153,7 @@ export const settings: BlockSettings = {
                     id: 'textPositioning',
                     label: 'Positioning',
                     type: 'slider',
-                    defaultValue: TextPositioningType.Bottom,
+                    defaultValue: TextPositioningType.Right,
                     info: 'Where the UI elements are in relation to one another',
                     choices: [
                         {
@@ -178,7 +178,7 @@ export const settings: BlockSettings = {
                     id: 'textRatio',
                     label: 'Ratio',
                     type: 'slider',
-                    defaultValue: TextRatioType.OneQuarter,
+                    defaultValue: TextRatioType.OneHalf,
                     info: 'The text to image width ratio.',
                     show: (bundle: Bundle) => {
                         const textPositioning = bundle.getBlock('textPositioning')?.value;
@@ -303,7 +303,7 @@ export const settings: BlockSettings = {
                         {
                             id: 'previewHeightSimple',
                             type: 'slider',
-                            defaultValue: 'small',
+                            defaultValue: PreviewHeightType.Small,
                             choices: [
                                 {
                                     value: PreviewHeightType.Auto,
@@ -345,7 +345,7 @@ export const settings: BlockSettings = {
                     id: 'previewImageAnchoring',
                     type: 'slider',
                     label: 'Image anchoring',
-                    defaultValue: AnchoringType.Start,
+                    defaultValue: AnchoringType.Center,
                     show: (bundle: Bundle) => bundle.getBlock('previewDisplay')?.value === PreviewDisplayType.Fit,
                     choices: [
                         {
@@ -391,7 +391,7 @@ export const settings: BlockSettings = {
                 {
                     id: 'hasCardBorder',
                     type: 'switch',
-                    defaultValue: false,
+                    defaultValue: true,
                     label: 'Border',
                     on: [
                         {
@@ -471,7 +471,7 @@ export const settings: BlockSettings = {
                         {
                             id: 'cardCornerRadiusSimple',
                             type: 'slider',
-                            defaultValue: 'none',
+                            defaultValue: CornerRadiusType.Medium,
                             choices: [
                                 {
                                     value: CornerRadiusType.None,
@@ -504,7 +504,7 @@ export const settings: BlockSettings = {
                     id: 'hasPreviewBackgroundColor',
                     label: 'Background',
                     type: 'switch',
-                    defaultValue: false,
+                    defaultValue: true,
                     on: [
                         {
                             id: 'previewBackgroundColor',
@@ -517,7 +517,7 @@ export const settings: BlockSettings = {
                 {
                     id: 'hasPreviewBorder',
                     type: 'switch',
-                    defaultValue: false,
+                    defaultValue: true,
                     label: 'Border',
                     on: [
                         {
@@ -597,7 +597,7 @@ export const settings: BlockSettings = {
                         {
                             id: 'previewCornerRadiusSimple',
                             type: 'slider',
-                            defaultValue: 'none',
+                            defaultValue: CornerRadiusType.Medium,
                             choices: [
                                 {
                                     value: CornerRadiusType.None,
