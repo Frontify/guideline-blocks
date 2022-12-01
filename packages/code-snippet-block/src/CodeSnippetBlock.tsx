@@ -71,6 +71,8 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
             data-test-id="code-snippet-block"
             className="tw-overflow-hidden"
             style={{
+                fontFamily: 'Menlo, Courier, monospace',
+                fontSize: '12px',
                 border: hasBorder ? `${borderStyle} ${borderWidth} ${toRgbaString(borderColor)}` : 'none',
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
@@ -108,7 +110,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                 value={contentValue}
                 extensions={extensions}
                 onChange={handleChange}
-                editable={isEditing}
+                readOnly={!isEditing}
                 basicSetup={{
                     lineNumbers: withRowNumbers,
                     foldGutter: false,
