@@ -26,6 +26,7 @@ import {
     outerWidthMap,
     paddingMap,
 } from './types';
+import { useCalloutColors as useCalloutColors } from './utils/useCalloutColors';
 
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -38,7 +39,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
-    const getBackgroundColor = (type: Type) => {
+    const getAccentColor = (type: Type) => {
         switch (type) {
             case Type.Info:
                 return designTokens?.callout?.info;
@@ -57,7 +58,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
             : '',
     };
 
-    const color = getBackgroundColor(blockSettings.type);
+    const color = getAccentColor(blockSettings.type);
     const backgroundColor = blockSettings.appearance === Appearance.Strong ? color : setAlpha(0.1, color);
 
     const defaultTextColor = isDark(color) ? 'white' : 'black';
@@ -86,7 +87,6 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                 className={textDivClassNames}
                 style={{
                     backgroundColor,
-                    color: textColor,
                     ...customPaddingStyle,
                     ...customCornerRadiusStyle,
                 }}
@@ -103,7 +103,7 @@ export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
                     readonly={!isEditing}
                     value={blockSettings.textValue}
                     placeholder="Type your text here"
-                    designTokens={designTokens ?? undefined}
+                    designTokens={useCalloutColors(designTokens, textColor)}
                 />
             </div>
         </div>
