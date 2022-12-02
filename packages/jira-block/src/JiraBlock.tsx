@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { ReactElement } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/fondue';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { FC } from 'react';
+
 import { DEFAULT_BACKGROUND_COLOR, FULL_WIDTH } from './settings';
 
 type Settings = {
@@ -17,7 +18,7 @@ const toRgbaString = (color: Color): string => {
     return `rgba(${color.red}, ${color.green}, ${color.blue}, ${color.alpha})`;
 };
 
-export const JiraBlock: FC<BlockProps> = ({ appBridge }) => {
+export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
@@ -35,10 +36,10 @@ export const JiraBlock: FC<BlockProps> = ({ appBridge }) => {
         backgroundColor: toRgbaString(backgroundColor),
     };
 
-    console.log(appBridge.getGuidelineTitle());
+    // console.log(appBridge.getGuidelineTitle());
 
     return (
-        <div className={'style.container'} style={customStyles}>
+        <div style={customStyles} data-test-id="jira-block">
             <RichTextEditor
                 onTextChange={onTextChange}
                 readonly={!isEditing || !showRichTextEditor}
