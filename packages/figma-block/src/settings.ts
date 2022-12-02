@@ -7,9 +7,11 @@ import {
     DropdownSize,
     IconEnum,
     MultiInputLayout,
+    appendUnit,
     defineSettings,
+    minimumNumericRule,
+    numericalOrPixelRule,
 } from '@frontify/guideline-blocks-settings';
-import { appendUnit, minimumNumericRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
 import { BlockPreview, HeightChoices } from './types';
 
 export const ASSET_ID = 'asset';
@@ -65,7 +67,7 @@ export const settings = defineSettings({
             type: 'switch',
             label: 'Show Background',
             defaultValue: false,
-            show: (bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
             id: HAS_BORDER_ID,
@@ -77,9 +79,7 @@ export const settings = defineSettings({
                     id: 'border',
                     type: 'multiInput',
                     lastItemFullWidth: true,
-                    onChange: (bundle) => {
-                        appendUnit(bundle, 'borderWidth');
-                    },
+                    onChange: (bundle) => appendUnit(bundle, 'borderWidth'),
                     blocks: [
                         {
                             id: 'borderStyle',
@@ -126,7 +126,7 @@ export const settings = defineSettings({
             type: 'switch',
             label: 'Show Figma Link',
             defaultValue: true,
-            show: (bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
             id: HAS_LIMITED_OPTIONS,
@@ -134,7 +134,7 @@ export const settings = defineSettings({
             label: 'Image fixed height',
             defaultValue: true,
             info: 'The image uploaded will have the same height as in your Figma file.',
-            show: (bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
             id: 'isCustomHeight',
@@ -142,7 +142,7 @@ export const settings = defineSettings({
             label: 'Height',
             switchLabel: 'Custom',
             defaultValue: false,
-            show: (bundle): boolean =>
+            show: (bundle) =>
                 bundle.getBlock(HAS_LIMITED_OPTIONS)?.value === false ||
                 bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Live,
             on: [

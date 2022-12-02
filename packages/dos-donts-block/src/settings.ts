@@ -1,7 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
-import { appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import {
+    DropdownSize,
+    IconEnum,
+    appendUnit,
+    defineSettings,
+    numericalOrPixelRule,
+    presetCustomValue,
+} from '@frontify/guideline-blocks-settings';
 import { DoDontLayout, DoDontSpacing, DoDontStyle, spacingValues } from './types';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
@@ -87,13 +93,13 @@ export const settings = defineSettings({
             switchLabel: 'Custom',
             defaultValue: false,
             info: "An official nerd's term for 'column gap'",
-            onChange: (bundle): void => presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
+            onChange: (bundle) => presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_VALUE_ID, spacingValues),
             on: [
                 {
                     id: SPACING_VALUE_ID,
                     type: 'input',
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle): void => appendUnit(bundle, SPACING_VALUE_ID),
+                    onChange: (bundle) => appendUnit(bundle, SPACING_VALUE_ID),
                 },
             ],
             off: [
