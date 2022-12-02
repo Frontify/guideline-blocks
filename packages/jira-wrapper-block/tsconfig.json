@@ -13,7 +13,9 @@
         "jsx": "react-jsx",
         "lib": ["ES2021", "DOM"],
         "resolveJsonModule": true,
+        "types": ["cypress"],
         "skipLibCheck": true
     },
-    "exclude": ["dist", "node_modules"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
 }
