@@ -1,10 +1,17 @@
-import { DropdownSize, IconEnum } from '@frontify/fondue';
-import { BlockSettings } from '@frontify/guideline-blocks-settings';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const DEFAULT_BACKGROUND_COLOR = { red: 250, green: 191, blue: 89, alpha: 1, name: 'Saffron Mango' };
+import { Color, DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
+
+export const DEFAULT_BACKGROUND_COLOR: Color = {
+    red: 250,
+    green: 191,
+    blue: 89,
+    alpha: 1,
+    name: 'Saffron Mango',
+};
 export const FULL_WIDTH = '100%';
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: 'main-dropdown',
@@ -15,7 +22,7 @@ export const settings: BlockSettings = {
             choices: [
                 {
                     value: 'custom_block',
-                    icon: 'Snippet' as IconEnum,
+                    icon: IconEnum.BuildingBlock,
                     label: 'Custom Block',
                 },
             ],
@@ -39,7 +46,7 @@ export const settings: BlockSettings = {
             rules: [
                 {
                     errorMessage: "Please use a percentage value with '%'",
-                    validate: (value: string) => value.match(/^-?\d+%$/g) !== null,
+                    validate: (value) => value.match(/^-?\d+%$/g) !== null,
                 },
             ],
         },
@@ -52,4 +59,4 @@ export const settings: BlockSettings = {
             defaultValue: DEFAULT_BACKGROUND_COLOR,
         },
     ],
-};
+});

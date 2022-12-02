@@ -1,8 +1,10 @@
-import { AppBridgeBlock, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/fondue';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { FC } from 'react';
 import { DEFAULT_BACKGROUND_COLOR, FULL_WIDTH } from './settings';
-import style from './style.module.css';
 
 type Settings = {
     width: string;
@@ -11,15 +13,11 @@ type Settings = {
     showRichTextEditor: boolean;
 };
 
-type Props = {
-    appBridge: AppBridgeBlock;
-};
-
 const toRgbaString = (color: Color): string => {
     return `rgba(${color.red}, ${color.green}, ${color.blue}, ${color.alpha})`;
 };
 
-export const AnExampleBlock: FC<Props> = ({ appBridge }) => {
+export const JiraBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
@@ -40,7 +38,7 @@ export const AnExampleBlock: FC<Props> = ({ appBridge }) => {
     console.log(appBridge.getGuidelineTitle());
 
     return (
-        <div className={style.container} style={customStyles}>
+        <div className={'style.container'} style={customStyles}>
             <RichTextEditor
                 onTextChange={onTextChange}
                 readonly={!isEditing || !showRichTextEditor}
