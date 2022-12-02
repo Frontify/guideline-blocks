@@ -1,62 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
-
-export const DEFAULT_BACKGROUND_COLOR: Color = {
-    red: 250,
-    green: 191,
-    blue: 89,
-    alpha: 1,
-    name: 'Saffron Mango',
-};
-export const FULL_WIDTH = '100%';
+import { defineSettings } from '@frontify/guideline-blocks-settings';
 
 export const settings = defineSettings({
-    main: [
-        {
-            id: 'main-dropdown',
-            type: 'dropdown',
-            defaultValue: 'custom_block',
-            size: DropdownSize.Large,
-            disabled: true,
-            choices: [
-                {
-                    value: 'custom_block',
-                    icon: IconEnum.BuildingBlock,
-                    label: 'Custom Block',
-                },
-            ],
-        },
-    ],
+    main: [],
     basics: [
         {
-            id: 'showRichTextEditor',
-            type: 'switch',
-            defaultValue: true,
-            label: 'Enable Rich Text Editor',
-        },
-    ],
-    layout: [
-        {
-            id: 'width',
+            id: 'jiraProjectKey',
             type: 'input',
-            defaultValue: FULL_WIDTH,
-            placeholder: '75%',
-            label: 'Width',
-            rules: [
-                {
-                    errorMessage: "Please use a percentage value with '%'",
-                    validate: (value) => value.match(/^-?\d+%$/g) !== null,
-                },
-            ],
+            label: 'Jira Project Key',
         },
-    ],
-    style: [
         {
-            id: 'backgroundColor',
-            label: 'Background Color',
-            type: 'colorInput',
-            defaultValue: DEFAULT_BACKGROUND_COLOR,
+            id: 'jiraProjectId',
+            type: 'input',
+            label: 'Jira Project Id',
         },
     ],
 });
