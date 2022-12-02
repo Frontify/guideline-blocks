@@ -62,7 +62,6 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const saveNote = (value: string) => {
         setBlockSettings({
-            ...blockSettings,
             note: value,
             dateEdited: new Date().toString(),
         });
@@ -75,7 +74,6 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     const { id, name, image } = data;
                     if (!createdByUser) {
                         setBlockSettings({
-                            ...blockSettings,
                             createdByUser: id,
                             username: name,
                             avatar: image?.image || '',
