@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color } from '@frontify/guideline-blocks-settings';
+import { Radius } from '@frontify/guideline-blocks-shared';
 
 export enum BlockPreview {
     Image = 'image',
@@ -46,6 +47,10 @@ export type Settings = {
     borderStyle?: string;
     borderWidth?: string;
     borderColor?: Color;
+    backgroundColor?: Color;
+    hasRadius: boolean;
+    radiusChoice: Radius;
+    radiusValue: string;
 };
 
 export type BoundingClientRectProperties = {
@@ -75,7 +80,11 @@ export type ImageStageProps = {
     isMobile: boolean;
     borderStyle: string;
     borderColor: Color;
+    backgroundColor?: Color;
     borderWidth: string;
+    hasRadius: boolean;
+    radiusValue: string;
+    radiusChoice: Radius;
 };
 
 export type DrawFullScreenActionButtonProps = {
