@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { ReactElement, useState } from 'react';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockSettings } from '@frontify/app-bridge';
 import {
     Button,
     ButtonEmphasis,
@@ -16,20 +16,77 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { Settings } from './types';
 
 export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
-    const isEditing = useEditorState(appBridge);
+    // const isEditing = useEditorState(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { jiraProjectKey, jiraProjectId } = blockSettings;
-    console.log(window.location.href);
+    const { jiraRestEndpointUrl, jiraEmail, jiraAuthToken } = blockSettings;
 
     const [open, setOpen] = useState(false);
+    const [jiraProjectName, setJiraProjectName] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [guidelineUrl, setGuidelineUrl] = useState(window.location.href);
 
-    const dummyFetch = () => {
-        const payload = JSON.stringify({ title, description, guidelineUrl, jiraProjectKey, jiraProjectId });
-        console.log('sending payload: ', payload);
+    const dummyFetch = async () => {
+        const jiraPayload = {
+            fields: {
+                project: {
+                    key: jiraProjectName,
+                },
+                summary: title,
+                description: {
+                    type: 'doc',
+                    version: 1,
+                    content: [
+                        {
+                            type: 'paragraph',
+                            content: [
+                                {
+                                    text: `Guideline url: ${guidelineUrl}`,
+                                    type: 'text',
+                                },
+                            ],
+                        },
+                        {
+                            type: 'paragraph',
+                            content: [
+                                {
+                                    text: description,
+                                    type: 'text',
+                                },
+                            ],
+                        },
+                    ],
+                },
+                issuetype: {
+                    name: 'Task',
+                },
+            },
+        };
+
+        const jiraUrl = `${jiraRestEndpointUrl}/rest/api/3/issue`;
+        const authentication = btoa(unescape(encodeURIComponent(`${jiraEmail}:${jiraAuthToken}`)));
+        const body = {
+            payload: JSON.stringify(jiraPayload),
+            url: jiraUrl,
+            authorization: authentication,
+        };
+
+        try {
+            const res = await fetch('http://localhost:3000', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify(body),
+            });
+
+            const jiraResponse = await res.json();
+            console.debug('Created item: ', jiraResponse);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
@@ -54,6 +111,14 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
                         }}
                     >
                         <TextInput id={'input-id'} onChange={setGuidelineUrl} value={guidelineUrl} disabled={true} />
+                    </FormControl>{' '}
+                    <FormControl
+                        label={{
+                            children: 'Jira Project Name',
+                            htmlFor: 'input-id',
+                        }}
+                    >
+                        <TextInput id={'input-id'} onChange={setJiraProjectName} value={jiraProjectName} />
                     </FormControl>
                     <FormControl
                         label={{
@@ -63,7 +128,6 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
                     >
                         <TextInput id="title-id" value={title} onChange={setTitle} />
                     </FormControl>
-
                     <FormControl
                         label={{
                             children: 'Description',

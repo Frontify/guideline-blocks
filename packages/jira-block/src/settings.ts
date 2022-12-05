@@ -1,19 +1,27 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { defineSettings } from '@frontify/guideline-blocks-settings';
+import { TextInputType, defineSettings } from '@frontify/guideline-blocks-settings';
 
 export const settings = defineSettings({
     main: [],
     basics: [
         {
-            id: 'jiraProjectKey',
+            id: 'jiraRestEndpointUrl',
             type: 'input',
-            label: 'Jira Project Key',
+            label: 'Jira Endpoint Url',
+        },
+    ],
+    security: [
+        {
+            id: 'jiraEmail',
+            type: 'input',
+            label: 'Jira e-mail address',
         },
         {
-            id: 'jiraProjectId',
+            id: 'jiraAuthToken',
             type: 'input',
-            label: 'Jira Project Id',
+            inputType: TextInputType.Password,
+            label: 'Jira Project Key (Generate at https://id.atlassian.com/manage-profile/security)',
         },
     ],
 });
