@@ -26,7 +26,7 @@ import {
     outerWidthMap,
     paddingMap,
 } from './types';
-import { useCalloutColors as useCalloutColors } from './utils/useCalloutColors';
+import { useCalloutColors } from './utils/useCalloutColors';
 
 export const CalloutBlock: FC<CalloutBlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
