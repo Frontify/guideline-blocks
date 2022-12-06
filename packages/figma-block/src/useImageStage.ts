@@ -18,13 +18,13 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
     const imageStage = useRef<ImageStage>();
     const containerOperator = useRef<ContainerOperator>();
     const hasLimitedOptionsRef = useRef<boolean>(hasLimitedOptions);
+    const isFullScreenRef = useRef<boolean>(isFullScreen);
     const imageRef = useRef<HTMLImageElement | null>(null);
     const stageRef = useRef<HTMLDivElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     const onZoomIn = () => containerOperator?.current?.resize(Zoom.IN);
     const onZoomOut = () => containerOperator?.current?.resize(Zoom.OUT);
-
     useEffect(() => {
         if (isImageLoaded && stageRef.current) {
             const calculatedHeight = getHeightOfBlock(height, isMobile);
@@ -33,10 +33,10 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
                 imageStage.current.alterHeight(calculatedHeight);
             }
         }
-    }, [height, isImageLoaded, isMobile, hasLimitedOptions]);
+    }, [height, isImageLoaded, isMobile, hasLimitedOptions, isFullScreen]);
 
     useEffect(() => {
-        if (imageStage.current && hasLimitedOptions) {
+        if (imageStage.current) {
             imageStage.current.alterHeight(isFullScreen ? '100vh' : 'auto');
             containerOperator.current?.centerTheImageContainerWithinTheImageStage();
         }
@@ -50,7 +50,12 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
                     const imageContainer = new ImageContainer(containerRef.current);
                     containerOperator.current = hasLimitedOptionsRef.current
                         ? new BitmapContainerOperator(imageContainer, imageStage.current, imageElement)
-                        : new VectorContainerOperator(imageContainer, imageStage.current, imageElement);
+                        : new VectorContainerOperator(
+                              imageContainer,
+                              imageStage.current,
+                              imageElement,
+                              isFullScreenRef.current
+                          );
                     containerOperator.current.fitAndCenterTheImageContainerWithinTheImageStage();
                 }
             }).observe(stageRef.current);
@@ -60,6 +65,10 @@ export const useImageStage = ({ height, hasLimitedOptions, isMobile }: UseImageS
     useEffect(() => {
         hasLimitedOptionsRef.current = hasLimitedOptions;
     }, [hasLimitedOptions]);
+
+    useEffect(() => {
+        isFullScreenRef.current = isFullScreen;
+    }, [isFullScreen]);
 
     return { isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, stageRef, containerRef, imageRef, setIsImageLoaded };
 };
