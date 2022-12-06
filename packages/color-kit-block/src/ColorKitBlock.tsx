@@ -1,14 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { Badge, Button, ButtonEmphasis, IconArrowCircleDown, Text } from '@frontify/fondue';
 
 import { EmptyView } from './EmptyView';
 import { Palette } from './Palette';
-import type { ColorKitBlockProps, Settings } from './types';
+import type { Settings } from './types';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 
-export const ColorKitBlock = ({ appBridge }: ColorKitBlockProps): ReactElement => {
+export const ColorKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 

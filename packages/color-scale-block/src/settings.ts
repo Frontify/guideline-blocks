@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     layout: [
         {
             id: 'customHeight',
@@ -43,4 +42,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

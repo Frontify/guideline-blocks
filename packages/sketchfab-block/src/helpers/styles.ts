@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/fondue';
+import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 import { borderStyles } from '../types';

@@ -1,11 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-
-export type DosDontsBlockProps = {
-    appBridge: AppBridgeBlock;
-};
 
 export type Settings = {
     columns: number;

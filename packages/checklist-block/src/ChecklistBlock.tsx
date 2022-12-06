@@ -14,6 +14,7 @@ import {
     OrderableListItem,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { joinClassNames, toHex8String, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
 import { FC, useState } from 'react';
@@ -30,10 +31,10 @@ import {
     updateItemById,
 } from './helpers';
 import { SettingsContext } from './SettingsContext';
-import { ChecklistContent, ChecklistItemMode, ChecklistProps, DefaultValues, ProgressBarType, Settings } from './types';
+import { ChecklistContent, ChecklistItemMode, DefaultValues, ProgressBarType, Settings } from './types';
 import { reorderList } from './utilities';
 
-export const ChecklistBlock: FC<ChecklistProps> = ({ appBridge }: ChecklistProps) => {
+export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Partial<Settings>>(appBridge);
     const [showCompleted, setShowCompleted] = useState(true);

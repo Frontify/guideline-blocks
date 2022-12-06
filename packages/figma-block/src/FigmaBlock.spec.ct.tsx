@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { mount } from 'cypress/react';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { FigmaBlock } from './FigmaBlock';
 import { ASSET_ID } from './settings';
-import { BlockPreview, BlockProps } from './types';
+import { BlockPreview } from './types';
 
 const MAIN_BLOCK_SELECTOR = '[data-test-id="figma-block"]';
 const EMPTY_BLOCK_SELECTOR = '[data-test-id="figma-empty-block"]';
