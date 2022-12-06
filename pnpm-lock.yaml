@@ -58,7 +58,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -83,7 +83,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-shared': link:../../packages/shared
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
@@ -102,7 +102,7 @@ importers:
       '@frontify/app-bridge': 3.0.0-beta.27
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -127,7 +127,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-shared': link:../../packages/shared
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
@@ -148,7 +148,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -174,7 +174,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -193,7 +193,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@react-aria/checkbox': 3.5.1
@@ -233,7 +233,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@react-types/shared': 3.11.2_react@17.0.2
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
@@ -257,7 +257,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -292,7 +292,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -311,7 +311,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.2.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -342,7 +342,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -362,7 +362,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -388,7 +388,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -458,7 +458,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -484,7 +484,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -503,7 +503,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -529,7 +529,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -548,7 +548,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.2.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -574,7 +574,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -593,7 +593,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -619,7 +619,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -638,7 +638,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -666,7 +666,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -685,7 +685,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -711,7 +711,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -785,7 +785,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
@@ -811,7 +811,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -830,7 +830,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@react-aria/interactions': 3.7.0
@@ -858,7 +858,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -877,7 +877,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.27
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.2
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/lodash-es': 4.17.6
@@ -906,7 +906,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
-      '@frontify/frontify-cli': 5.3.0
+      '@frontify/frontify-cli': 5.3.1
       '@types/lodash-es': 4.17.6
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
@@ -1932,8 +1932,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue/12.0.0-beta.28_angvksxlvvfhyjj3xhcshgfg2m:
-    resolution: {integrity: sha512-xlRQUICjsV0C6OHsZYbCpNeplypcnW68UuQWRtnKO+2g5W4cy4gX5pke2k/mglo+zHyiA3m4TOf0lVEndZs0Xw==}
+  /@frontify/fondue/12.0.0-beta.30_angvksxlvvfhyjj3xhcshgfg2m:
+    resolution: {integrity: sha512-JB2+8MPiVBROVGa/FbHgPTgJLKN94iwIR/mXKPAtu9l9KuX8qrOpu7dQkizBkDUA2kjO01GHuprvBGKyG23XAw==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
@@ -2020,8 +2020,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue/12.0.0-beta.28_rv2t7de65xq26o5frb4lun64yi:
-    resolution: {integrity: sha512-xlRQUICjsV0C6OHsZYbCpNeplypcnW68UuQWRtnKO+2g5W4cy4gX5pke2k/mglo+zHyiA3m4TOf0lVEndZs0Xw==}
+  /@frontify/fondue/12.0.0-beta.30_rv2t7de65xq26o5frb4lun64yi:
+    resolution: {integrity: sha512-JB2+8MPiVBROVGa/FbHgPTgJLKN94iwIR/mXKPAtu9l9KuX8qrOpu7dQkizBkDUA2kjO01GHuprvBGKyG23XAw==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
@@ -2108,35 +2108,6 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/frontify-cli/5.3.0:
-    resolution: {integrity: sha512-nkXhHss5O5mbaLBer+ePaBWZAMrAda8s0RNzd2GDggpWnlrru7H2O+cNYfJW75jQuucMQhH3Fv5tg4Fks3LhWA==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dependencies:
-      '@fastify/cors': 8.2.0
-      '@vitejs/plugin-react': 2.2.0_vite@3.2.4
-      archiver: 5.3.1
-      cac: 6.7.14
-      conf: 10.2.0
-      fast-glob: 3.2.12
-      fastify: 4.10.2
-      glob-to-regexp: 0.4.1
-      node-fetch: 3.3.0
-      open: 8.4.0
-      picocolors: 1.0.0
-      prompts: 2.4.2
-      vite: 3.2.4
-      vite-plugin-externals: 0.5.1_vite@3.2.4
-    transitivePeerDependencies:
-      - '@types/node'
-      - less
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-    dev: true
-
   /@frontify/frontify-cli/5.3.1:
     resolution: {integrity: sha512-S+kkaV9mBRXAHtZBXZrWVmEwZ5P0iJRhDZ5SqfZBOixIIMxtpiPeOzRb/GnEVf2L3g2iItezOOw6GQDqTHnfBA==}
     engines: {node: '>=16'}
@@ -2172,7 +2143,7 @@ packages:
       '@frontify/app-bridge': '*'
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.27_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.28_rv2t7de65xq26o5frb4lun64yi
+      '@frontify/fondue': 12.0.0-beta.30_rv2t7de65xq26o5frb4lun64yi
       '@frontify/sidebar-settings': 0.0.6_mk2ype4jgwjksa7wcjaoylkxii
     transitivePeerDependencies:
       - '@babel/core'
@@ -2202,7 +2173,7 @@ packages:
       '@frontify/app-bridge': '*'
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.27_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.28_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue': 12.0.0-beta.30_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/sidebar-settings': 0.0.6_zyabdf2doc4i6bj6jrgj7a4kam
     transitivePeerDependencies:
       - '@babel/core'
@@ -2232,7 +2203,7 @@ packages:
       '@frontify/app-bridge': '*'
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.27_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.28_rv2t7de65xq26o5frb4lun64yi
+      '@frontify/fondue': 12.0.0-beta.30_rv2t7de65xq26o5frb4lun64yi
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -2261,7 +2232,7 @@ packages:
       '@frontify/app-bridge': '*'
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.27_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.28_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue': 12.0.0-beta.30_angvksxlvvfhyjj3xhcshgfg2m
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'

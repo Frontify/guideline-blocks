@@ -12,15 +12,12 @@ import {
     SettingBlock,
     SwitchSize,
     TextInputType,
-} from '@frontify/guideline-blocks-settings';
-import {
-    getBorderRadiusSettings,
-    getBorderSettings,
     maximumNumericalRule,
     minimumNumericalOrPixelOrAutoRule,
     minimumNumericalRule,
     presetCustomValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
+import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 import { parseSketchfabSettingsUrl, pitchRule, sketchfabUrlRule, yawRule } from './helpers';
 import {
     SketchfabAccount,

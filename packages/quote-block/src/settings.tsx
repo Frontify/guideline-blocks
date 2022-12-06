@@ -10,9 +10,12 @@ import {
     IconEnum,
     MultiInputLayout,
     SwitchSize,
+    appendUnit,
     defineSettings,
+    numericalOrPixelRule,
+    presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, appendUnit, numericalOrPixelRule, presetCustomValue } from '@frontify/guideline-blocks-shared';
+import { BorderStyle } from '@frontify/guideline-blocks-shared';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
 import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
 import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';
@@ -117,7 +120,7 @@ export const settings = defineSettings({
             id: 'quotationMarksContentSection',
             type: 'sectionHeading',
             label: 'Quotation marks',
-            show: (bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle) => isSelected(bundle, QuoteType.QuotationMarks),
             blocks: [
                 {
                     id: IS_CUSTOM_QUOTE_STYLE_LEFT_ID,
@@ -207,7 +210,7 @@ export const settings = defineSettings({
                     value: TextAlignment.Right,
                 },
             ],
-            show: (bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle) => isSelected(bundle, QuoteType.QuotationMarks),
         },
         {
             id: 'quotationMarksAnchoring',
@@ -224,7 +227,7 @@ export const settings = defineSettings({
                     value: QuotationMarksAnchoring.HugText,
                 },
             ],
-            show: (bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle) => isSelected(bundle, QuoteType.QuotationMarks),
         },
     ],
     style: [
@@ -232,7 +235,7 @@ export const settings = defineSettings({
             id: 'quotationMarksStyleSection',
             type: 'sectionHeading',
             label: 'Quotation marks',
-            show: (bundle): boolean => isSelected(bundle, QuoteType.QuotationMarks),
+            show: (bundle) => isSelected(bundle, QuoteType.QuotationMarks),
             blocks: [
                 {
                     id: 'isCustomSize',
@@ -240,14 +243,14 @@ export const settings = defineSettings({
                     type: 'switch',
                     switchLabel: 'Custom',
                     defaultValue: false,
-                    onChange: (bundle): void => presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
+                    onChange: (bundle) => presetCustomValue(bundle, SIZE_CHOICE_ID, SIZE_VALUE_ID, quoteSizeMap),
                     on: [
                         {
                             id: SIZE_VALUE_ID,
                             type: 'input',
                             placeholder: 'e.g. 20px',
                             rules: [numericalOrPixelRule],
-                            onChange: (bundle): void => appendUnit(bundle, SIZE_VALUE_ID),
+                            onChange: (bundle) => appendUnit(bundle, SIZE_VALUE_ID),
                         },
                     ],
                     off: [
@@ -295,14 +298,12 @@ export const settings = defineSettings({
             label: 'Accent line',
             type: 'switch',
             defaultValue: true,
-            show: (bundle): boolean => isSelected(bundle, QuoteType.Indentation),
+            show: (bundle) => isSelected(bundle, QuoteType.Indentation),
             on: [
                 {
                     id: 'accentLineStyle',
                     type: 'multiInput',
-                    onChange: (bundle): void => {
-                        appendUnit(bundle, LINE_WIDTH_VALUE_ID);
-                    },
+                    onChange: (bundle) => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
                     layout: MultiInputLayout.Columns,
                     lastItemFullWidth: false,
                     blocks: [
@@ -338,7 +339,7 @@ export const settings = defineSettings({
                     id: 'isCustomLineColor',
                     label: 'Custom color',
                     type: 'switch',
-                    size: 'Small' as SwitchSize.Small,
+                    size: SwitchSize.Small,
                     info: 'The default color is derived from the “Quote” heading style, which can be defined in the design settings.',
                     defaultValue: false,
                     on: [
