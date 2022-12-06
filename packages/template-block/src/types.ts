@@ -3,6 +3,7 @@
 import { AppBridgeBlock, Asset, Template } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { DesignTokenName } from '@frontify/guideline-blocks-shared';
+import { CSSProperties, ReactNode } from 'react';
 
 export type BlockProps = {
     appBridge: AppBridgeBlock;
@@ -19,6 +20,7 @@ export type Settings = {
     preview: PreviewType;
     previewCustom?: Asset;
     buttonStyle?: DesignTokenName;
+    buttonText?: string;
 
     // layout
 
@@ -168,4 +170,12 @@ export const cornerRadiusValues: Record<CornerRadiusType, string> = {
     [CornerRadiusType.Small]: '2px',
     [CornerRadiusType.Medium]: '4px',
     [CornerRadiusType.Large]: '12px',
+};
+
+export type ButtonProps = {
+    id: string;
+    styles?: CSSProperties & { hover?: CSSProperties };
+    isActive?: boolean;
+    onClick: () => void;
+    children: ReactNode;
 };
