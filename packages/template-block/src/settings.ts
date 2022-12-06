@@ -31,7 +31,7 @@ export const settings: BlockSettings = {
     main: [],
     basics: [
         {
-            id: 'template',
+            id: 'templateId',
             type: 'templateInput',
             label: 'Template',
             multiSelection: false,

@@ -15,6 +15,7 @@ export type Settings = {
     // basics
 
     template?: Template;
+    templateId?: number;
     preview: PreviewType;
     previewCustom?: Asset;
     buttonStyle?: DesignTokenName;
