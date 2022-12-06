@@ -1,17 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useBlockSettings } from '@frontify/app-bridge';
-import {
-    Button,
-    ButtonEmphasis,
-    ButtonStyle,
-    Flyout,
-    FlyoutPlacement,
-    FormControl,
-    TextInput,
-    Textarea,
-} from '@frontify/fondue';
+import { Flyout, FormControl, TextInput, Textarea } from '@frontify/fondue';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { Settings } from './types';
 
@@ -25,9 +16,10 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [jiraProjectName, setJiraProjectName] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [username, setUsername] = useState('Hans Test');
     const [guidelineUrl, setGuidelineUrl] = useState(window.location.href);
 
-    const dummyFetch = async () => {
+    const sendToJira = async () => {
         const jiraPayload = {
             fields: {
                 project: {
@@ -52,6 +44,15 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
                             content: [
                                 {
                                     text: description,
+                                    type: 'text',
+                                },
+                            ],
+                        },
+                        {
+                            type: 'paragraph',
+                            content: [
+                                {
+                                    text: `User: ${username}`,
                                     type: 'text',
                                 },
                             ],
@@ -83,20 +84,32 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
             });
 
             const jiraResponse = await res.json();
+            setOpen(false);
+            cleanup();
             console.debug('Created item: ', jiraResponse);
         } catch (error) {
             console.error(error);
         }
     };
 
+    const cleanup = () => {
+        setJiraProjectName('');
+        setTitle('');
+        setDescription('');
+    };
+
     return (
         <div className="tw-flex" data-test-id="jira-block">
             <Flyout
-                offset={5}
                 onOpenChange={setOpen}
-                onCancel={() => setOpen(false)}
+                onCancel={() => {
+                    setOpen(false);
+                }}
+                onConfirm={() => {
+                    sendToJira();
+                    setOpen(false);
+                }}
                 isOpen={open}
-                placement={FlyoutPlacement.Bottom}
                 trigger={
                     <span className="tw-flex tw-h-full tw-items-center tw-p-1 tw-rounded tw-bg-black-20 hover:tw-bg-black-30 dark:tw-bg-black-80 dark:hover:tw-bg-black-70">
                         <div>Ticket</div>
@@ -104,14 +117,6 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
                 }
             >
                 <div className="tw-flex tw-flex-col tw-gap-y-8 tw-p-8 tw-gap-4">
-                    <FormControl
-                        label={{
-                            children: 'Guideline Reference',
-                            htmlFor: 'input-id',
-                        }}
-                    >
-                        <TextInput id={'input-id'} onChange={setGuidelineUrl} value={guidelineUrl} disabled={true} />
-                    </FormControl>{' '}
                     <FormControl
                         label={{
                             children: 'Jira Project Name',
@@ -122,7 +127,7 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
                     </FormControl>
                     <FormControl
                         label={{
-                            children: 'Ticket Titel',
+                            children: 'Ticket Title',
                             htmlFor: 'title-id',
                         }}
                     >
@@ -130,7 +135,7 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
                     </FormControl>
                     <FormControl
                         label={{
-                            children: 'Description',
+                            children: 'Ticket Decriptions',
                             htmlFor: 'textarea-id',
                         }}
                     >
@@ -141,16 +146,24 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
                             onInput={setDescription}
                         />
                     </FormControl>
-                    <Button
-                        style={ButtonStyle.Default}
-                        emphasis={ButtonEmphasis.Strong}
-                        onClick={() => {
-                            dummyFetch();
-                            setOpen(false);
+                    <FormControl
+                        label={{
+                            children: 'Guideline Page Name',
+                            htmlFor: 'input-id',
                         }}
+                        disabled={true}
                     >
-                        Submit
-                    </Button>
+                        <TextInput id={'input-id'} value={guidelineUrl} disabled={true} />
+                    </FormControl>
+                    <FormControl
+                        label={{
+                            children: 'Username',
+                            htmlFor: 'input-id',
+                        }}
+                        disabled={true}
+                    >
+                        <TextInput id={'input-id'} value={username} disabled={true} />
+                    </FormControl>
                 </div>
             </Flyout>
         </div>
