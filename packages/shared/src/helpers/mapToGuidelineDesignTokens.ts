@@ -8,7 +8,7 @@ import {
     TokenValues,
     TransformedDesignTokens,
 } from '../hooks/useGuidelineDesignTokens';
-import { parseIntIfPossible } from '../utilities/parseIntIfPossible';
+import { suffixPlainNumberWithPx } from '../utilities/suffixPlainNumberWithPx';
 import { provideDefaultCalloutColors } from './provideDefaultCalloutColors';
 
 const TokenNameMapper: Record<string, DesignTokenName> = {
@@ -34,10 +34,10 @@ const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
 
 const transformObjectValues = (key: string, cssStyles: TokenValues, value: DirectionalCssProperties) => {
     if (key === DesignTokenPropertiesEnum.frame) {
-        cssStyles.paddingTop = parseIntIfPossible(value.top);
-        cssStyles.paddingRight = parseIntIfPossible(value.right);
-        cssStyles.paddingBottom = parseIntIfPossible(value.bottom);
-        cssStyles.paddingLeft = parseIntIfPossible(value.left);
+        cssStyles.paddingTop = suffixPlainNumberWithPx(value.top);
+        cssStyles.paddingRight = suffixPlainNumberWithPx(value.right);
+        cssStyles.paddingBottom = suffixPlainNumberWithPx(value.bottom);
+        cssStyles.paddingLeft = suffixPlainNumberWithPx(value.left);
     }
 };
 
