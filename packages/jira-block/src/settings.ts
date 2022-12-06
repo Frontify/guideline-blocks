@@ -10,6 +10,11 @@ export const settings = defineSettings({
             type: 'input',
             label: 'Jira Endpoint Url',
         },
+        {
+            id: 'jiraProjectName',
+            type: 'input',
+            label: 'Jira Projekt Key',
+        },
     ],
     security: [
         {

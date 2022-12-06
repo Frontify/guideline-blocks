@@ -4,4 +4,5 @@ export type Settings = {
     jiraRestEndpointUrl: string;
     jiraEmail: string;
     jiraAuthToken: string;
+    jiraProjectName: string;
 };

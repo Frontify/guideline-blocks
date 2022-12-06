@@ -5,73 +5,39 @@ import { useBlockSettings } from '@frontify/app-bridge';
 import { Flyout, FormControl, TextInput, Textarea } from '@frontify/fondue';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { Settings } from './types';
+import { generateTicketMarkup, getIssueUrl } from './module/Jira';
+import { generateBase64Encoding } from './utility/Uri';
 
 export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
     // const isEditing = useEditorState(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const { jiraRestEndpointUrl, jiraEmail, jiraAuthToken } = blockSettings;
+    const { jiraRestEndpointUrl, jiraEmail, jiraAuthToken, jiraProjectName } = blockSettings;
 
     const [open, setOpen] = useState(false);
-    const [jiraProjectName, setJiraProjectName] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [username, setUsername] = useState('Hans Test');
-    const [guidelineUrl, setGuidelineUrl] = useState(window.location.href);
+    const [username] = useState('Hans Test');
+    const [guidelineUrl] = useState(window.location.href);
 
     const sendToJira = async () => {
-        const jiraPayload = {
-            fields: {
-                project: {
-                    key: jiraProjectName,
-                },
-                summary: title,
-                description: {
-                    type: 'doc',
-                    version: 1,
-                    content: [
-                        {
-                            type: 'paragraph',
-                            content: [
-                                {
-                                    text: `Guideline url: ${guidelineUrl}`,
-                                    type: 'text',
-                                },
-                            ],
-                        },
-                        {
-                            type: 'paragraph',
-                            content: [
-                                {
-                                    text: description,
-                                    type: 'text',
-                                },
-                            ],
-                        },
-                        {
-                            type: 'paragraph',
-                            content: [
-                                {
-                                    text: `User: ${username}`,
-                                    type: 'text',
-                                },
-                            ],
-                        },
-                    ],
-                },
-                issuetype: {
-                    name: 'Task',
-                },
-            },
-        };
-
-        const jiraUrl = `${jiraRestEndpointUrl}/rest/api/3/issue`;
-        const authentication = btoa(unescape(encodeURIComponent(`${jiraEmail}:${jiraAuthToken}`)));
+        const jiraUrl = getIssueUrl(jiraRestEndpointUrl);
+        const authentication = generateBase64Encoding(`${jiraEmail}:${jiraAuthToken}`);
         const body = {
-            payload: JSON.stringify(jiraPayload),
+            payload: JSON.stringify(
+                generateTicketMarkup({
+                    jiraProjectName,
+                    title,
+                    guidelineUrl,
+                    description,
+                    username,
+                })
+            ),
             url: jiraUrl,
             authorization: authentication,
         };
+
+        // Todo: here we can encode everything with public key -> then decode with private in the lambda
 
         try {
             const res = await fetch('http://localhost:3000', {
@@ -93,7 +59,6 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const cleanup = () => {
-        setJiraProjectName('');
         setTitle('');
         setDescription('');
     };
@@ -117,14 +82,6 @@ export const JiraBlock = ({ appBridge }: BlockProps): ReactElement => {
                 }
             >
                 <div className="tw-flex tw-flex-col tw-gap-y-8 tw-p-8 tw-gap-4">
-                    <FormControl
-                        label={{
-                            children: 'Jira Project Name',
-                            htmlFor: 'input-id',
-                        }}
-                    >
-                        <TextInput id={'input-id'} onChange={setJiraProjectName} value={jiraProjectName} />
-                    </FormControl>
                     <FormControl
                         label={{
                             children: 'Ticket Title',
