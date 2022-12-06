@@ -1932,8 +1932,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue/12.0.0-beta.30_angvksxlvvfhyjj3xhcshgfg2m:
-    resolution: {integrity: sha512-JB2+8MPiVBROVGa/FbHgPTgJLKN94iwIR/mXKPAtu9l9KuX8qrOpu7dQkizBkDUA2kjO01GHuprvBGKyG23XAw==}
+  /@frontify/fondue/12.0.0-beta.28_angvksxlvvfhyjj3xhcshgfg2m:
+    resolution: {integrity: sha512-xlRQUICjsV0C6OHsZYbCpNeplypcnW68UuQWRtnKO+2g5W4cy4gX5pke2k/mglo+zHyiA3m4TOf0lVEndZs0Xw==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
@@ -2020,8 +2020,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue/12.0.0-beta.30_rv2t7de65xq26o5frb4lun64yi:
-    resolution: {integrity: sha512-JB2+8MPiVBROVGa/FbHgPTgJLKN94iwIR/mXKPAtu9l9KuX8qrOpu7dQkizBkDUA2kjO01GHuprvBGKyG23XAw==}
+  /@frontify/fondue/12.0.0-beta.28_rv2t7de65xq26o5frb4lun64yi:
+    resolution: {integrity: sha512-xlRQUICjsV0C6OHsZYbCpNeplypcnW68UuQWRtnKO+2g5W4cy4gX5pke2k/mglo+zHyiA3m4TOf0lVEndZs0Xw==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
@@ -2143,7 +2143,7 @@ packages:
       '@frontify/app-bridge': '*'
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.27_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.30_rv2t7de65xq26o5frb4lun64yi
+      '@frontify/fondue': 12.0.0-beta.28_rv2t7de65xq26o5frb4lun64yi
       '@frontify/sidebar-settings': 0.0.6_mk2ype4jgwjksa7wcjaoylkxii
     transitivePeerDependencies:
       - '@babel/core'
@@ -2173,7 +2173,7 @@ packages:
       '@frontify/app-bridge': '*'
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.27_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.30_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue': 12.0.0-beta.28_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/sidebar-settings': 0.0.6_zyabdf2doc4i6bj6jrgj7a4kam
     transitivePeerDependencies:
       - '@babel/core'
@@ -2203,7 +2203,7 @@ packages:
       '@frontify/app-bridge': '*'
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.27_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.30_rv2t7de65xq26o5frb4lun64yi
+      '@frontify/fondue': 12.0.0-beta.28_rv2t7de65xq26o5frb4lun64yi
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -2232,7 +2232,7 @@ packages:
       '@frontify/app-bridge': '*'
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.27_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.30_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue': 12.0.0-beta.28_angvksxlvvfhyjj3xhcshgfg2m
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -10396,7 +10396,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.2
+      chalk: 4.1.1
       cli-cursor: 3.1.0
       cli-spinners: 2.7.0
       is-interactive: 1.0.0
