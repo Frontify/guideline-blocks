@@ -18,7 +18,8 @@ export const DragHandle = ({ index, onResizeStart }: DragHandleProps) => {
             onMouseDown={handleMouseDown}
         >
             <div
-                className="drag-handle tw-right-[-3px] tw-bg-black-20 tw-absolute tw-rounded-full tw-w-2 tw-h-6"
+                data-test-id="drag-handle"
+                className="tw-right-[-3px] tw-bg-black-20 tw-absolute tw-rounded-full tw-w-2 tw-h-6"
                 draggable
             />
         </div>

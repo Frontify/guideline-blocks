@@ -16,7 +16,12 @@ export const BlockContainerStub = ({ height, padding = 0 }: { height: string; pa
             const imageStage = new ImageStage(stageRef.current, height);
             imageStage.alterHeight(height);
 
-            const bitmapContainerOperator = new VectorContainerOperator(imageContainer, imageStage, imageElement);
+            const bitmapContainerOperator = new VectorContainerOperator(
+                imageContainer,
+                imageStage,
+                imageElement,
+                false
+            );
             bitmapContainerOperator.setPadding(padding).fitAndCenterTheImageContainerWithinTheImageStage();
         }
     }, [height, isImageLoaded, padding]);
