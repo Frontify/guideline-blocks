@@ -5,12 +5,12 @@ export type Settings = {
     columnGutterSimple: string;
     columnNumber: number;
     isColumnGutterCustom: boolean;
-    content?: string[];
+    content?: string;
 };
 
 export const GRID_CLASSES: Record<number, string> = {
-    1: 'tw-grid-cols-1',
-    2: 'tw-grid-cols-2',
-    3: 'tw-grid-cols-3',
-    4: 'tw-grid-cols-4',
+    1: 'tw-columns-1',
+    2: 'tw-columns-2',
+    3: 'tw-columns-3',
+    4: 'tw-columns-4',
 };

@@ -7,6 +7,7 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
+import { getPlugins } from './getPlugins';
 import { DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
 import './styles.css';
 import { GRID_CLASSES, Settings } from './types';
@@ -18,16 +19,13 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const {
         columnNumber = DEFAULT_COLUMN_NUMBER,
-        content = [...Array(parseInt(columnNumber.toString()))],
+        content,
         isColumnGutterCustom,
         columnGutterCustom,
         columnGutterSimple,
     } = blockSettings;
 
-    const onTextChange = (value: string, index: number) => {
-        const newContent = [...content, (content[index] = value)];
-        setBlockSettings({ ...blockSettings, content: newContent });
-    };
+    const onTextChange = (value: string) => setBlockSettings({ content: value });
 
     return (
         <div
@@ -35,23 +33,18 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
             style={{
                 gap: isColumnGutterCustom ? columnGutterCustom : columnGutterSimple,
             }}
-            className={`text-block tw-grid ${GRID_CLASSES[columnNumber]}`}
+            className={`text-block tw-gap-2 tw-block ${GRID_CLASSES[columnNumber]}`}
         >
-            {
-                // TODO: parseInt and toString cast can be remove after https://app.clickup.com/t/263cwaw is done
-                [...Array(parseInt(columnNumber.toString()))].map((_, index) => {
-                    return (
-                        <RichTextEditor
-                            designTokens={designTokens ?? undefined}
-                            key={`text-block-editor-${index}`}
-                            value={content[index]}
-                            placeholder={PLACEHOLDER}
-                            readonly={!isEditing}
-                            onTextChange={(value) => onTextChange(value, index)}
-                        />
-                    );
-                })
-            }
+            {/* // TODO: parseInt and toString cast can be remove after https://app.clickup.com/t/263cwaw is done */}
+            <RichTextEditor
+                designTokens={designTokens ?? undefined}
+                key={'text-block-editor'}
+                value={content}
+                plugins={getPlugins(columnNumber)}
+                placeholder={PLACEHOLDER}
+                readonly={!isEditing}
+                onTextChange={onTextChange}
+            />
         </div>
     );
 };
