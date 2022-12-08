@@ -1,6 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 export const getIssueUrl = (hostName: string) => `${hostName}/rest/api/3/issue`;
+
+// todo: add a paragraph array and build content with it
 export const generateTicketMarkup = ({ jiraProjectName, title, guidelineUrl, description, username }: any) => ({
     fields: {
         project: {
