@@ -431,6 +431,9 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 ref={colorScaleBlockRef}
                 data-test-id="color-scale-block"
                 className="tw-w-full tw-p-px tw-mb-4 tw-border tw-border-line tw-rounded"
+                style={{
+                    height: `${parseInt(colorScaleHeight) + COLOR_SCALE_BLOCK_BORDER_WIDTH * 2}px`,
+                }}
             >
                 <div
                     ref={colorScaleBlockInnerRef}
