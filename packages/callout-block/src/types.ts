@@ -43,9 +43,9 @@ export enum Padding {
 }
 
 export const paddingMap: Record<Padding, string> = {
-    [Padding.S]: 'tw-px-8 tw-py-4',
-    [Padding.M]: 'tw-px-8 tw-py-6',
-    [Padding.L]: 'tw-p-9',
+    [Padding.S]: 'tw-px-4 tw-py-3',
+    [Padding.M]: 'tw-px-[25px] tw-py-5',
+    [Padding.L]: 'tw-px-[30px] tw-py-[25px]',
 };
 
 export enum Icon {

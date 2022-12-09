@@ -48,10 +48,10 @@ export type DesignTokenName =
     | 'imageCaption';
 
 export type DirectionalCssProperties = {
-    top: number;
-    right: number;
-    bottom: number;
-    left: number;
+    top: string;
+    right: string;
+    bottom: string;
+    left: string;
 };
 
 export type AccentColorProperties = {
