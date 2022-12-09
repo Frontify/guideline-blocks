@@ -48,7 +48,7 @@ export const DropZone = ({ data, isDraggingActive, onDrop, width, height, before
                             height: `${height - DROP_ZONE_BOTTOM_SPACING}px`,
                         }}
                         className={joinClassNames([
-                            'drop-zone-offset tw-relative tw-transition-all tw-rounded-[3px]',
+                            'drop-zone-offset tw-relative tw-rounded-[3px]',
                             bgColorClassName,
                             isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]',
                         ])}
@@ -88,7 +88,7 @@ export const DropZone = ({ data, isDraggingActive, onDrop, width, height, before
                             height: `${height - DROP_ZONE_BOTTOM_SPACING}px`,
                         }}
                         className={joinClassNames([
-                            'drop-zone-offset tw-relative tw-transition-all tw-rounded-[3px]',
+                            'drop-zone-offset tw-relative tw-rounded-[3px]',
                             bgColorClassName,
                             isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]',
                         ])}
