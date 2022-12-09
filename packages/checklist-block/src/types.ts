@@ -1,13 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { ButtonSize, Color, ItemDragState, OrderableListItem } from '@frontify/fondue';
 import { DesignTokenName } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, MouseEvent, ReactElement } from 'react';
-
-export type ChecklistProps = {
-    appBridge: AppBridgeBlock;
-};
 
 export type ChecklistItemProps = {
     item?: ChecklistContent;

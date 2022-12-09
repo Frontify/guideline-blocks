@@ -2,14 +2,12 @@
     "name": "root",
     "private": true,
     "scripts": {
-        "build": "npm run build:block-settings && npm run build:shared",
-        "build:block-settings": "npm -C packages/block-settings run build",
+        "build": "npm run build:shared",
         "build:shared": "npm -C packages/shared run build",
         "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint",
         "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint:fix",
         "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier",
         "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier:fix",
-        "publish:block-settings": "cd packages/block-settings && pnpm publish",
         "test": "npm run test:unit && npm run test:components",
         "test:components": "cypress run --component",
         "test:components:browser": "cypress open --component",
@@ -38,7 +36,7 @@
         "vitest": "0.25.0"
     },
     "dependencies": {
-        "@frontify/fondue": "12.0.0-beta.27",
+        "@frontify/fondue": "12.0.0-beta.31",
         "glob": "8.0.3",
         "react": "17.0.2",
         "react-dom": "17.0.2"

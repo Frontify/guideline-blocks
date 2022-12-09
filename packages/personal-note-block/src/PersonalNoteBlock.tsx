@@ -3,6 +3,7 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     BorderStyle,
     Padding,
@@ -17,7 +18,7 @@ import { CSSProperties, FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-import { BlockProps, Settings, paddingStyleMap } from './types';
+import { Settings, paddingStyleMap } from './types';
 
 const getBorderStyles = (
     style = BorderStyle.Solid,

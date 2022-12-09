@@ -1,10 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
-import { appendUnit } from '../helpers/settings/appendUnit';
-import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
-import { presetCustomValue } from '../helpers/settings/presetCustomValue';
-import { maximumNumericalOrPixelOrAutoRule } from '../utilities/rules/maximumNumericalOrPixelOrAutoRule';
+import {
+    SettingBlock,
+    appendUnit,
+    maximumNumericalOrPixelOrAutoRule,
+    numericalOrPixelRule,
+    presetCustomValue,
+} from '@frontify/guideline-blocks-settings';
 import { MARGIN_DEFAULT_PLACEHOLDER } from './defaultValues';
 import { Margin, marginStyleMap } from './types';
 
@@ -16,8 +18,7 @@ type MarginSettingsType = {
 /**
  * Returns margin settings: margin switch, margin slider, custom margin input
  *
- * @param options Options for the settings
- * @param options.id Custom suffix for the setting ids
+ * @param {string} id Custom suffix for the setting ids
  * @returns {SettingBlock} Returns margin settings
  */
 export const getMarginSlider = (id: string): SettingBlock => ({
@@ -56,15 +57,14 @@ export const getMarginSettings = (options?: MarginSettingsType): SettingBlock =>
         switchLabel: 'Custom',
         defaultValue: false,
         info: 'The spacing around UI elements to create more space',
-        onChange: (bundle: Bundle): void =>
-            presetCustomValue(bundle, choiceId, valueId, options?.marginStyleMap || marginStyleMap),
+        onChange: (bundle) => presetCustomValue(bundle, choiceId, valueId, options?.marginStyleMap || marginStyleMap),
         on: [
             {
                 id: valueId,
                 type: 'input',
                 placeholder: MARGIN_DEFAULT_PLACEHOLDER,
                 rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                onChange: (bundle: Bundle): void => appendUnit(bundle, valueId),
+                onChange: (bundle) => appendUnit(bundle, valueId),
             },
         ],
         off: [getMarginSlider(choiceId)],

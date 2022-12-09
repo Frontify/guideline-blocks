@@ -1,8 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum, MultiInputLayout, SwitchSize } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
-import { appendUnit, minimumNumericalOrPixelOrAutoRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import {
+    Bundle,
+    DropdownSize,
+    IconEnum,
+    MultiInputLayout,
+    SwitchSize,
+    appendUnit,
+    defineSettings,
+    minimumNumericalOrPixelOrAutoRule,
+    numericalOrPixelRule,
+} from '@frontify/guideline-blocks-settings';
 import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const COMPLETED_DECORATION = 'completedDecoration';
@@ -13,27 +21,27 @@ const PROGRESS_BAR_TYPE = 'progressBarType';
 const showProgressStyles = (bundle: Bundle): boolean =>
     !!bundle.getBlock(PROGRESS_BAR_VISIBLE)?.value && bundle.getBlock(PROGRESS_BAR_TYPE)?.value === ProgressBarType.Bar;
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: COMPLETED_DECORATION,
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
-            size: 'Large' as DropdownSize.Large,
+            size: DropdownSize.Large,
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,
-                    icon: 'ListCheck' as IconEnum.ListCheck,
+                    icon: IconEnum.ListCheck,
                     label: 'Checkbox',
                 },
                 {
                     value: ChecklistDecoration.Highlight,
-                    icon: 'Highlighter' as IconEnum.Highlighter,
+                    icon: IconEnum.Highlighter,
                     label: 'Highlight',
                 },
                 {
                     value: ChecklistDecoration.Strikethrough,
-                    icon: 'TextFormatStrikethrough' as IconEnum.TextFormatStrikethrough,
+                    icon: IconEnum.TextFormatStrikethrough,
                     label: 'Strikethrough',
                 },
             ],
@@ -44,7 +52,7 @@ export const settings: BlockSettings = {
             id: PROGRESS_BAR_VISIBLE,
             label: 'Progress Indicator',
             type: 'switch',
-            size: 'Small' as SwitchSize.Small,
+            size: SwitchSize.Small,
             defaultValue: DefaultValues.progressBarVisible,
             info: 'Change the type of progress indicator for your checklist',
             on: [
@@ -74,7 +82,7 @@ export const settings: BlockSettings = {
             id: 'dateVisible',
             label: 'Date completed',
             type: 'switch',
-            size: 'Small' as SwitchSize.Small,
+            size: SwitchSize.Small,
             info: 'Show the completion date for each checklist item',
             defaultValue: DefaultValues.dateVisible,
         },
@@ -128,8 +136,7 @@ export const settings: BlockSettings = {
                     type: 'colorInput',
                     label: 'Completed',
                     defaultValue: DefaultValues.highlightColor,
-                    show: (bundle: Bundle) =>
-                        bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
+                    show: (bundle) => bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
                 },
             ],
         },
@@ -142,9 +149,9 @@ export const settings: BlockSettings = {
                     id: 'strikethroughMultiInput',
                     type: 'multiInput',
                     label: 'Completed',
-                    layout: 'Columns' as MultiInputLayout.Columns,
+                    layout: MultiInputLayout.Columns,
                     lastItemFullWidth: true,
-                    show: (bundle: Bundle) =>
+                    show: (bundle) =>
                         bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,
                     blocks: [
                         {
@@ -178,7 +185,7 @@ export const settings: BlockSettings = {
                             id: STRIKETHROUGH_WIDTH,
                             type: 'input',
                             defaultValue: DefaultValues.strikethroughWidth,
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
+                            onChange: (bundle) => appendUnit(bundle, STRIKETHROUGH_WIDTH),
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                         },
                         {
@@ -211,4 +218,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

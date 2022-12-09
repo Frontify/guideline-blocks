@@ -3,16 +3,17 @@
 import { Extension } from '@codemirror/state';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Dropdown, DropdownSize, debounce } from '@frontify/fondue';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
-import { ReactElement, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { headerThemes } from './headerThemes';
-import { CodeSnippetProps, Language, Settings, languageNameMap } from './types';
+import { Language, Settings, languageNameMap } from './types';
 
-export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement => {
+export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const [contentValue] = useState(blockSettings.content);
@@ -70,6 +71,8 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
             data-test-id="code-snippet-block"
             className="tw-overflow-hidden"
             style={{
+                fontFamily: 'Menlo, Courier, monospace',
+                fontSize: '12px',
                 border: hasBorder ? `${borderStyle} ${borderWidth} ${toRgbaString(borderColor)}` : 'none',
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
@@ -107,7 +110,7 @@ export const CodeSnippetBlock = ({ appBridge }: CodeSnippetProps): ReactElement 
                 value={contentValue}
                 extensions={extensions}
                 onChange={handleChange}
-                editable={isEditing}
+                readOnly={!isEditing}
                 basicSetup={{
                     lineNumbers: withRowNumbers,
                     foldGutter: false,

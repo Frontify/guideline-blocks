@@ -1,11 +1,21 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetChooserObjectType, AssetChooserProjectType } from '@frontify/app-bridge';
-import { AssetInputMode, Bundle } from '@frontify/guideline-blocks-settings';
-import type { BlockSettings } from '@frontify/guideline-blocks-settings';
-import { appendUnit, minimumNumericRule, numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import {
+    AssetChooserObjectType,
+    AssetChooserProjectType,
+    AssetInputMode,
+    DropdownSize,
+    IconEnum,
+    MultiInputLayout,
+    appendUnit,
+    defineSettings,
+    minimumNumericalOrPixelOrAutoRule,
+    numericalOrPixelRule,
+} from '@frontify/guideline-blocks-settings';
+import { getBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
+import { Bundle } from '@frontify/guideline-blocks-settings';
+
 import { BlockPreview, HeightChoices } from './types';
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
 
 export const ASSET_ID = 'asset';
 export const DEFAULT_HEIGHT = '500px';
@@ -24,7 +34,7 @@ export const heights: Record<HeightChoices, string> = {
     [HeightChoices.Large]: '800px',
 };
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: PREVIEW_MODE,
@@ -61,6 +71,13 @@ export const settings: BlockSettings = {
             label: 'Show Background',
             defaultValue: false,
             show: (bundle: Bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            on: [
+                {
+                    id: 'backgroundColor',
+                    type: 'colorInput',
+                    defaultValue: { red: 16, green: 16, blue: 16 },
+                },
+            ],
         },
         {
             id: HAS_BORDER_ID,
@@ -72,9 +89,7 @@ export const settings: BlockSettings = {
                     id: 'border',
                     type: 'multiInput',
                     lastItemFullWidth: true,
-                    onChange: (bundle) => {
-                        appendUnit(bundle, 'borderWidth');
-                    },
+                    onChange: (bundle) => appendUnit(bundle, 'borderWidth'),
                     blocks: [
                         {
                             id: 'borderStyle',
@@ -114,6 +129,10 @@ export const settings: BlockSettings = {
                 },
             ],
         },
+        {
+            ...getBorderRadiusSettings(),
+            show: (bundle: Bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+        },
     ],
     layout: [
         {
@@ -121,7 +140,7 @@ export const settings: BlockSettings = {
             type: 'switch',
             label: 'Show Figma Link',
             defaultValue: true,
-            show: (bundle: Bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
             id: HAS_LIMITED_OPTIONS,
@@ -129,7 +148,7 @@ export const settings: BlockSettings = {
             label: 'Image fixed height',
             defaultValue: true,
             info: 'The image uploaded will have the same height as in your Figma file.',
-            show: (bundle: Bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
             id: 'isCustomHeight',
@@ -137,7 +156,7 @@ export const settings: BlockSettings = {
             label: 'Height',
             switchLabel: 'Custom',
             defaultValue: false,
-            show: (bundle: Bundle): boolean =>
+            show: (bundle) =>
                 bundle.getBlock(HAS_LIMITED_OPTIONS)?.value === false ||
                 bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Live,
             on: [
@@ -146,7 +165,10 @@ export const settings: BlockSettings = {
                     type: 'input',
                     placeholder: '50px',
                     defaultValue: heights[HeightChoices.Small],
-                    rules: [minimumNumericRule(50)],
+                    onChange: (bundle) => {
+                        appendUnit(bundle, HEIGHT_VALUE_ID);
+                    },
+                    rules: [minimumNumericalOrPixelOrAutoRule(50)],
                 },
             ],
             off: [
@@ -172,4 +194,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

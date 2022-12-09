@@ -1,10 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MultiInputLayout } from '@frontify/fondue';
-import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
-import { appendUnit } from '../helpers/settings/appendUnit';
-import { presetCustomValue } from '../helpers/settings/presetCustomValue';
-import { numericalOrPixelRule } from '../utilities/rules/numericalOrPixelRule';
+import {
+    MultiInputLayout,
+    SettingBlock,
+    appendUnit,
+    numericalOrPixelRule,
+    presetCustomValue,
+} from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSlider } from './borderRadius';
 import { Radius, radiusStyleMap } from './types';
 
@@ -39,9 +41,8 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
         switchLabel: 'Custom',
         defaultValue: false,
         info: 'Determining how rounded the corners are',
-        show: (bundle: Bundle): boolean =>
-            options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true,
-        onChange: (bundle: Bundle): void => {
+        show: (bundle) => (options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true),
+        onChange: (bundle) => {
             presetCustomValue(bundle, choiceId, topLeftId, radiusStyleMap);
             presetCustomValue(bundle, choiceId, topRightId, radiusStyleMap);
             presetCustomValue(bundle, choiceId, bottomLeftId, radiusStyleMap);
@@ -58,28 +59,28 @@ export const getExtendedBorderRadiusSettings = (options?: BorderRadiusSettingsTy
                         type: 'input',
                         label: 'Top Left',
                         rules: [numericalOrPixelRule],
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, topLeftId),
+                        onChange: (bundle) => appendUnit(bundle, topLeftId),
                     },
                     {
                         id: topRightId,
                         type: 'input',
                         label: 'Top Right',
                         rules: [numericalOrPixelRule],
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, topRightId),
+                        onChange: (bundle) => appendUnit(bundle, topRightId),
                     },
                     {
                         id: bottomLeftId,
                         type: 'input',
                         label: 'Bottom Left',
                         rules: [numericalOrPixelRule],
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, bottomLeftId),
+                        onChange: (bundle) => appendUnit(bundle, bottomLeftId),
                     },
                     {
                         id: bottomRightId,
                         type: 'input',
                         label: 'Bottom Right',
                         rules: [numericalOrPixelRule],
-                        onChange: (bundle: Bundle): void => appendUnit(bundle, bottomRightId),
+                        onChange: (bundle) => appendUnit(bundle, bottomRightId),
                     },
                 ],
             },

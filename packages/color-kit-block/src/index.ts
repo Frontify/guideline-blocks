@@ -5,8 +5,9 @@ import '@frontify/fondue-tokens/styles';
 
 import { ColorKitBlock } from './ColorKitBlock';
 import { settings } from './settings';
+import { defineBlock } from '@frontify/guideline-blocks-settings';
 
-export default {
+export default defineBlock({
     block: ColorKitBlock,
     settings,
-};
+});

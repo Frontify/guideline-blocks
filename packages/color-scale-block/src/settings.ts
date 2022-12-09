@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BlockSettings } from '@frontify/guideline-blocks-settings';
-import { numericalOrPixelRule } from '@frontify/guideline-blocks-shared';
+import { appendUnit, defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     layout: [
         {
             id: 'customHeight',
@@ -39,8 +38,9 @@ export const settings: BlockSettings = {
                     defaultValue: '100px',
                     clearable: false,
                     rules: [numericalOrPixelRule],
+                    onChange: (bundle) => appendUnit(bundle, 'heightInput'),
                 },
             ],
         },
     ],
-};
+});

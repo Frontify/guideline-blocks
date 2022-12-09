@@ -1,15 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
+    Bundle,
+    DropdownSize,
+    IconEnum,
+    MultiInputLayout,
     appendUnit,
     betweenPercentRule,
+    defineSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPercentRule,
     numericalOrPixelRule,
     presetCustomValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { DividerAlignment, DividerHeight, DividerStyle, DividerWidth, dividerHeightValues } from './types';
 
 const IS_LINE_ID = 'isLine';
@@ -37,22 +40,22 @@ const limitedWidthIsSelected = (bundle: Bundle): boolean =>
         ? bundle.getBlock(WIDTH_CUSTOM_ID)?.value !== DividerWidth['100%']
         : bundle.getBlock(WIDTH_SIMPLE_ID)?.value !== DividerWidth['100%'];
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: IS_LINE_ID,
             type: 'dropdown',
-            size: 'Large' as DropdownSize.Large,
+            size: DropdownSize.Large,
             defaultValue: DividerStyle.Solid,
             choices: [
                 {
                     value: DividerStyle.NoLine,
-                    icon: 'DividerBlank' as IconEnum.DividerBlank,
+                    icon: IconEnum.DividerBlank,
                     label: 'Spacer (no line)',
                 },
                 {
                     value: DividerStyle.Solid,
-                    icon: 'DividerSolid' as IconEnum.DividerSolid,
+                    icon: IconEnum.DividerSolid,
                     label: 'Line',
                 },
             ],
@@ -71,9 +74,7 @@ export const settings: BlockSettings = {
                     label: 'Width',
                     switchLabel: 'Custom',
                     defaultValue: false,
-                    onChange: (bundle) => {
-                        presetCustomValue(bundle, WIDTH_SIMPLE_ID, WIDTH_CUSTOM_ID, DividerWidth);
-                    },
+                    onChange: (bundle) => presetCustomValue(bundle, WIDTH_SIMPLE_ID, WIDTH_CUSTOM_ID, DividerWidth),
                     on: [
                         {
                             id: WIDTH_CUSTOM_ID,
@@ -81,9 +82,7 @@ export const settings: BlockSettings = {
                             placeholder: 'e.g. 60%',
                             clearable: true,
                             rules: [numericalOrPercentRule, betweenPercentRule(0, 100)],
-                            onChange: (bundle) => {
-                                appendUnit(bundle, WIDTH_CUSTOM_ID, '%');
-                            },
+                            onChange: (bundle) => appendUnit(bundle, WIDTH_CUSTOM_ID, '%'),
                         },
                     ],
                     off: [
@@ -121,15 +120,15 @@ export const settings: BlockSettings = {
                     choices: [
                         {
                             value: DividerAlignment.Left,
-                            icon: 'ArrowAlignLeft' as IconEnum.ArrowAlignLeft,
+                            icon: IconEnum.ArrowAlignLeft,
                         },
                         {
                             value: DividerAlignment.Center,
-                            icon: 'ArrowAlignVerticalCentre' as IconEnum.ArrowAlignVerticalCentre,
+                            icon: IconEnum.ArrowAlignVerticalCentre,
                         },
                         {
                             value: DividerAlignment.Right,
-                            icon: 'ArrowAlignRight' as IconEnum.ArrowAlignRight,
+                            icon: IconEnum.ArrowAlignRight,
                         },
                     ],
                     show: limitedWidthIsSelected,
@@ -152,9 +151,8 @@ export const settings: BlockSettings = {
                             : 'Determines the block height.';
                     },
                     defaultValue: false,
-                    onChange: (bundle) => {
-                        presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeightValues);
-                    },
+                    onChange: (bundle) =>
+                        presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, dividerHeightValues),
                     on: [
                         {
                             id: HEIGHT_CUSTOM_ID,
@@ -162,9 +160,7 @@ export const settings: BlockSettings = {
                             placeholder: 'e.g. 50px',
                             clearable: true,
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(10)],
-                            onChange: (bundle) => {
-                                appendUnit(bundle, HEIGHT_CUSTOM_ID);
-                            },
+                            onChange: (bundle) => appendUnit(bundle, HEIGHT_CUSTOM_ID),
                         },
                     ],
                     off: [
@@ -239,4 +235,4 @@ export const settings: BlockSettings = {
             ],
         },
     ],
-};
+});

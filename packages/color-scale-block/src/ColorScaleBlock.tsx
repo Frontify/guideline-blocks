@@ -1,16 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import 'tailwindcss/tailwind.css';
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import {
-    AppBridgeBlock,
-    Color as AppBridgeColor,
-    useBlockSettings,
-    useColorPalettes,
-    useEditorState,
-} from '@frontify/app-bridge';
+import { Color as AppBridgeColor, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import {
     Button,
     ButtonEmphasis,
@@ -25,22 +19,26 @@ import {
     Palette,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 import { ColorSquare } from './components/ColorSquare';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
 import { ColorProps, Settings } from './types';
 import { EmptyView } from './components/EmptyView';
-import { MINIMUM_COLOR_WIDTH, calculateDefaultColorWidth, canExpandColorBlock, resizeEvenly } from './helpers';
-
-export type ColorScaleBlockProps = {
-    appBridge: AppBridgeBlock;
-};
+import {
+    COLOR_SCALE_BLOCK_BORDER_WIDTH,
+    COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING,
+    COLOR_SQUARE_SPACING,
+    MINIMUM_COLOR_WIDTH,
+    calculateDefaultColorWidth,
+    resizeEvenly,
+} from './helpers';
 
 const COLOR_SQUARE_FIRST_ELEMENT_CLASSES = 'tw-pl-[1px] tw-pr-[1px] tw-rounded-tl tw-rounded-bl';
 const COLOR_SQUARE_LAST_ELEMENT_CLASSES = 'tw-rounded-tr tw-rounded-br';
 
-export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
+export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const { colorPalettes: appBridgePalettes } = useColorPalettes(appBridge);
     const [colorPickerPalettes, setColorPickerPalettes] = useState<Palette[]>([]);
     const isEditing = useEditorState(appBridge);
@@ -49,10 +47,14 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
     const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
     const [displayableItems, setDisplayableItems] = useState<ColorProps[]>(blockSettings.colorInput ?? []);
     const colorScaleBlockRef = useRef<HTMLDivElement>(null);
+    const colorScaleBlockInnerRef = useRef<HTMLDivElement>(null);
     const resizedColorIndex = useRef<Nullable<number>>();
     const resizeStartPos = useRef<Nullable<number>>();
     const resizeStartWidth = useRef<Nullable<number>>();
     const lastDragPos = useRef<Nullable<number>>();
+    const positionWhereSiblingColorNeededResizing = useRef<number>(0);
+    const originalSiblingColorWidthBeforeResizing = useRef<number>(0);
+    const resizedSiblingIndex = useRef<Nullable<number>>();
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
     useEffect(() => {
@@ -102,9 +104,22 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
     };
 
     const handleColorSquareDelete = (id: number) => {
-        const reorderedList = displayableItems.filter((item) => item.id !== id);
-        setBlockSettings({ ...blockSettings, colorInput: reorderedList });
-        setDisplayableItems(reorderedList);
+        const colorListWithoutDeletedColor = displayableItems.filter((item) => item.id !== id);
+
+        const newWidthForUnresizedColors = calculateNewWidthForUnresizedColors(colorListWithoutDeletedColor);
+
+        const updatedColors = colorListWithoutDeletedColor.map((color) => {
+            if (!color.resized) {
+                return {
+                    ...color,
+                    width: newWidthForUnresizedColors ?? color.width,
+                };
+            }
+            return color;
+        });
+
+        setBlockSettings({ ...blockSettings, colorInput: updatedColors });
+        setDisplayableItems(updatedColors);
     };
 
     const handleColorPickerClose = () => {
@@ -123,40 +138,31 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
             return;
         }
 
-        if (colorScaleBlockRef.current === null) {
-            return;
-        }
+        const colorListWithNewColor = displayableItems.filter((color) => color);
 
-        const updateColors = displayableItems.map((item) => ({ ...item }));
+        colorListWithNewColor.push({
+            ...flyoutColor,
+            width: MINIMUM_COLOR_WIDTH,
+            resized: false,
+            id,
+        });
 
-        const blockWidth = colorScaleBlockRef.current.getBoundingClientRect().width;
-        const takenWidth = displayableItems.reduce((prevWidth, item) => prevWidth + item.width, 0);
-        const availableSpace = blockWidth - takenWidth;
-        let newColorWidth = availableSpace;
+        const newWidthForUnresizedColors = calculateNewWidthForUnresizedColors(colorListWithNewColor);
 
-        if (availableSpace < MINIMUM_COLOR_WIDTH * 2) {
-            // check if sibling color has min width
-            const resizedSiblingColorIndex = updateColors.findIndex((color) => color.width >= MINIMUM_COLOR_WIDTH * 2);
-
-            if (resizedSiblingColorIndex === -1) {
-                return;
+        const updatedColors = colorListWithNewColor.map((color) => {
+            if (!color.resized) {
+                return {
+                    ...color,
+                    width: newWidthForUnresizedColors ?? color.width,
+                };
             }
+            return color;
+        });
 
-            updateColors[resizedSiblingColorIndex].width -= MINIMUM_COLOR_WIDTH * 2;
-            newColorWidth = MINIMUM_COLOR_WIDTH * 2;
-        }
-
-        updateColors.push({ ...flyoutColor, width: newColorWidth, id });
-
-        if (updateColors.length === 2 && blockWidth) {
-            updateColors[0].width = blockWidth / 2;
-            updateColors[1].width = blockWidth / 2;
-        }
-
-        setDisplayableItems(updateColors);
+        setDisplayableItems(updatedColors);
         setBlockSettings({
             ...blockSettings,
-            colorInput: updateColors,
+            colorInput: updatedColors,
         });
     };
 
@@ -170,6 +176,9 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                 colorInput: displayableItems,
             });
         }, 500);
+
+        positionWhereSiblingColorNeededResizing.current = 0;
+        originalSiblingColorWidthBeforeResizing.current = 0;
     };
 
     const handleResizeStart = (event: MouseEvent, index: number): void => {
@@ -178,6 +187,47 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
         resizeStartWidth.current = displayableItems[index].width;
 
         resizedColorIndex.current = index;
+    };
+
+    const calculateNewWidthForUnresizedColors = (colorArray: ColorProps[]) => {
+        if (colorScaleBlockRef.current === null) {
+            return;
+        }
+
+        const unresizedColors = colorArray.filter((color) => !color.resized);
+
+        const numberOfUnresizedColors = unresizedColors.length;
+
+        let unresizedColorsTotalWidth = 0;
+        let resizedColorsTotalWidth = 0;
+
+        for (const color in colorArray) {
+            if (!colorArray[color].resized) {
+                unresizedColorsTotalWidth += unresizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
+            } else {
+                resizedColorsTotalWidth += resizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
+            }
+        }
+
+        const blockWidth =
+            colorScaleBlockRef.current.getBoundingClientRect().width - COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
+        const takenWidth = colorArray.reduce((prevWidth, item) => prevWidth + item.width + COLOR_SQUARE_SPACING, 0);
+        const emptySpace = blockWidth - takenWidth;
+
+        const spaceToDivide =
+            unresizedColorsTotalWidth > blockWidth
+                ? blockWidth - resizedColorsTotalWidth
+                : unresizedColorsTotalWidth + emptySpace;
+
+        const calculatedNewWidth = colorArray.length > 0 ? spaceToDivide / numberOfUnresizedColors : blockWidth;
+
+        const newColorWidthWithoutPadding = calculatedNewWidth - COLOR_SQUARE_SPACING;
+
+        const defaultColorWidthWithoutPadding = MINIMUM_COLOR_WIDTH - COLOR_SQUARE_SPACING;
+
+        const calculatedNewWidthIsMoreThanDefaultWidth = calculatedNewWidth >= MINIMUM_COLOR_WIDTH;
+
+        return calculatedNewWidthIsMoreThanDefaultWidth ? newColorWidthWithoutPadding : defaultColorWidthWithoutPadding;
     };
 
     const handleResize = (event: MouseEvent) => {
@@ -191,12 +241,18 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
             lastDragPos.current = event.clientX;
         }
 
+        if (resizeStartWidth.current === null || resizeStartWidth.current === undefined) {
+            resizeStartWidth.current = MINIMUM_COLOR_WIDTH;
+        }
+
+        if (resizeStartWidth.current < MINIMUM_COLOR_WIDTH) {
+            resizeStartWidth.current = MINIMUM_COLOR_WIDTH;
+        }
+
         const resizingToTheLeft = event.clientX < lastDragPos.current;
         const resizingToTheRight = event.clientX > lastDragPos.current;
 
         if (resizingToTheLeft) {
-            const displacement = lastDragPos.current - event.clientX;
-
             lastDragPos.current = event.clientX;
 
             if (!resizeStartPos.current) {
@@ -213,10 +269,26 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                 (color) => color.width >= MINIMUM_COLOR_WIDTH
             );
 
-            const resizedSiblingIndex = colorsBeforeCurrentColorThatCanBeResized.length - 1;
+            const nextResizeableSiblingIndex = colorsBeforeCurrentColorThatCanBeResized.length - 1;
+
+            if (nextResizeableSiblingIndex !== resizedSiblingIndex.current) {
+                positionWhereSiblingColorNeededResizing.current = 0;
+                originalSiblingColorWidthBeforeResizing.current = 0;
+                resizedSiblingIndex.current = nextResizeableSiblingIndex;
+            }
+
+            let movementSinceSiblingNeededResizing = 0;
+
+            if (siblingNeedsShrinking && !positionWhereSiblingColorNeededResizing.current) {
+                positionWhereSiblingColorNeededResizing.current = event.clientX;
+                originalSiblingColorWidthBeforeResizing.current = displayableItems[nextResizeableSiblingIndex].width;
+            }
+
+            movementSinceSiblingNeededResizing = positionWhereSiblingColorNeededResizing.current - event.clientX;
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (index === colorIndex && !siblingNeedsShrinking && color.width > MINIMUM_COLOR_WIDTH) {
+                    color.resized = true;
                     color.width = (resizeStartWidth.current ?? 0) - movementSinceStart;
                 }
                 return color;
@@ -230,8 +302,16 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
             setDisplayableItems(
                 displayableItemsWithCurrentColorResized.map((siblingColor, index) => {
-                    if (siblingNeedsShrinking && index === resizedSiblingIndex) {
-                        siblingColor.width -= displacement;
+                    if (siblingNeedsShrinking && index === nextResizeableSiblingIndex) {
+                        const siblingWidth =
+                            siblingColor.width >= MINIMUM_COLOR_WIDTH
+                                ? originalSiblingColorWidthBeforeResizing.current - movementSinceSiblingNeededResizing
+                                : MINIMUM_COLOR_WIDTH;
+                        return {
+                            ...siblingColor,
+                            resized: true,
+                            width: siblingWidth,
+                        };
                     }
                     return siblingColor;
                 })
@@ -239,33 +319,58 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
         }
 
         if (resizingToTheRight) {
-            const displacement = event.clientX - lastDragPos.current;
-
             lastDragPos.current = event.clientX;
 
             const movementSinceStart = event.clientX - (resizeStartPos.current ?? 0);
 
-            const freeSpaceExists = canExpandColorBlock(displayableItems, colorScaleBlockRef);
+            const colorScaleBlockInnerWidth = colorScaleBlockInnerRef?.current?.getBoundingClientRect().width ?? 0;
 
-            const resizedSiblingIndex = displayableItems.findIndex(
+            const colorScaleBlockWidth =
+                (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
+                COLOR_SCALE_BLOCK_BORDER_WIDTH -
+                COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
+
+            const freeSpaceExists = colorScaleBlockInnerWidth < colorScaleBlockWidth;
+
+            const nextResizeableSiblingIndex = displayableItems.findIndex(
                 (color, index) => index > colorIndex && color.width >= MINIMUM_COLOR_WIDTH
             );
 
-            const siblingsNeedShrinking = !freeSpaceExists && resizedSiblingIndex !== -1;
+            if (nextResizeableSiblingIndex !== resizedSiblingIndex.current) {
+                positionWhereSiblingColorNeededResizing.current = 0;
+                originalSiblingColorWidthBeforeResizing.current = 0;
+                resizedSiblingIndex.current = nextResizeableSiblingIndex;
+            }
 
-            const siblingsCannotBeResized = !freeSpaceExists && resizedSiblingIndex === -1;
+            const siblingNeedsShrinking = !freeSpaceExists && nextResizeableSiblingIndex !== -1;
 
-            const canExpandCurrentColor = freeSpaceExists || siblingsNeedShrinking;
+            let movementSinceSiblingNeededResizing = 0;
+
+            if (siblingNeedsShrinking && !positionWhereSiblingColorNeededResizing.current) {
+                positionWhereSiblingColorNeededResizing.current = event.clientX;
+                originalSiblingColorWidthBeforeResizing.current = displayableItems[nextResizeableSiblingIndex].width;
+            }
+
+            movementSinceSiblingNeededResizing = event.clientX - positionWhereSiblingColorNeededResizing.current;
+
+            const siblingsCannotBeResized = !freeSpaceExists && nextResizeableSiblingIndex === -1;
+
+            const canResizeToTheRight = freeSpaceExists || siblingNeedsShrinking;
+
+            if (!canResizeToTheRight) {
+                return;
+            }
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
-                if (canExpandCurrentColor && index === colorIndex) {
+                if (canResizeToTheRight && index === colorIndex) {
                     color.width = (resizeStartWidth.current ?? 0) + movementSinceStart;
+                    color.resized = true;
                 }
 
                 return color;
             });
 
-            if (!siblingsNeedShrinking) {
+            if (!siblingNeedsShrinking) {
                 setDisplayableItems(displayableItemsWithCurrentColorResized);
 
                 return;
@@ -277,8 +382,16 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
 
             setDisplayableItems(
                 displayableItemsWithCurrentColorResized.map((siblingColor, index) => {
-                    if (index === resizedSiblingIndex) {
-                        siblingColor.width -= displacement;
+                    if (index === nextResizeableSiblingIndex) {
+                        const siblingWidth =
+                            siblingColor.width >= MINIMUM_COLOR_WIDTH
+                                ? originalSiblingColorWidthBeforeResizing.current - movementSinceSiblingNeededResizing
+                                : MINIMUM_COLOR_WIDTH;
+                        return {
+                            ...siblingColor,
+                            resized: true,
+                            width: siblingWidth,
+                        };
                     }
 
                     return siblingColor;
@@ -320,10 +433,11 @@ export const ColorScaleBlock = ({ appBridge }: ColorScaleBlockProps) => {
                 className="tw-w-full tw-p-px tw-mb-4 tw-border tw-border-line tw-rounded"
             >
                 <div
+                    ref={colorScaleBlockInnerRef}
                     style={{
                         height: colorScaleHeight,
                     }}
-                    className={'tw-overflow-hidden tw-rounded tw-flex tw-max-w-full'}
+                    className="tw-rounded tw-inline-flex"
                     // Note: onMouseUp and handleResize are defined here intentionally, instead of being in the DragHandle component.
                     // The reason for this is that the dragging feature stops working if I move these to DragHandle,
                     // perhaps because the component is being destroyed on every re-render and causing issues with dragging.

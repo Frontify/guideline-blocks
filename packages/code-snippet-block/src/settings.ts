@@ -1,11 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/fondue';
-import { BlockSettings } from '@frontify/guideline-blocks-settings';
+import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { Radius, getBorderSettings, getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
 import { languageNameMap, themeNameMap } from './types';
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: 'language',
@@ -42,4 +41,4 @@ export const settings: BlockSettings = {
         getBorderSettings({ defaultValue: true }),
         getExtendedBorderRadiusSettings({ defaultValue: Radius.Medium }),
     ],
-};
+});
