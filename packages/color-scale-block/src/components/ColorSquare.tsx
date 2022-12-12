@@ -116,7 +116,7 @@ export const ColorSquare = ({
                                 />
                             }
                             hoverDelay={0}
-                            position={TooltipPosition.Right}
+                            position={TooltipPosition.Bottom}
                             triggerElement={<div className="tw-w-full tw-h-full" onClick={copyColor} />}
                             withArrow
                         />
