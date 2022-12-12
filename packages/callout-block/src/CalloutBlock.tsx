@@ -87,6 +87,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                         iconUrl={iconUrl}
                         isActive={hasRichTextValue(blockSettings.textValue)}
                         iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
+                        color={textColor}
                     />
                 )}
                 <RichTextEditor
