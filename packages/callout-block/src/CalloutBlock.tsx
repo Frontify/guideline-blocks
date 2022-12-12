@@ -16,6 +16,7 @@ import { CalloutIcon } from './components/CalloutIcon';
 import { hasRichTextValue } from './utils/hasRichTextValue';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
+import { useCalloutColors } from './utils/useCalloutColors';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -29,7 +30,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
-    const getBackgroundColor = (type: Type) => {
+    const getAccentColor = (type: Type) => {
         switch (type) {
             case Type.Info:
                 return designTokens?.callout?.info;
@@ -48,7 +49,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
             : '',
     };
 
-    const color = getBackgroundColor(blockSettings.type);
+    const color = getAccentColor(blockSettings.type);
     const backgroundColor = blockSettings.appearance === Appearance.Strong ? color : setAlpha(0.1, color);
 
     const defaultTextColor = isDark(color) ? 'white' : 'black';
@@ -77,7 +78,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                 className={textDivClassNames}
                 style={{
                     backgroundColor,
-                    color: textColor,
                     ...customPaddingStyle,
                     ...customCornerRadiusStyle,
                 }}
@@ -94,7 +94,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     readonly={!isEditing}
                     value={blockSettings.textValue}
                     placeholder="Type your text here"
-                    designTokens={designTokens ?? undefined}
+                    designTokens={useCalloutColors(designTokens, textColor)}
                 />
             </div>
         </div>
