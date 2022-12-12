@@ -487,16 +487,13 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                 </div>
                             );
                         })}
-
-                        {displayableItems.length === 0 && (
-                            <EmptyView
-                                height={
-                                    blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider
-                                }
-                            />
-                        )}
                     </DndProvider>
                 </div>
+                {displayableItems.length === 0 && (
+                    <EmptyView
+                        height={blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider}
+                    />
+                )}
             </div>
 
             {isEditing && (
