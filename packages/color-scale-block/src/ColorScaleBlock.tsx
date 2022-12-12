@@ -434,6 +434,10 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 style={{
                     height: `${parseInt(colorScaleHeight) + COLOR_SCALE_BLOCK_BORDER_WIDTH * 2}px`,
                 }}
+                onMouseLeave={!blockSettings?.cypressTest ? handleResizeStop : undefined}
+                onMouseUp={handleResizeStop}
+                onMouseMove={handleResize}
+                draggable
             >
                 <div
                     ref={colorScaleBlockInnerRef}
@@ -446,10 +450,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                     // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
                     // The 'handleResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
                     // identify which color square is being resized.
-                    onMouseUp={handleResizeStop}
-                    onMouseLeave={!blockSettings?.cypressTest ? handleResizeStop : undefined}
-                    onMouseMove={handleResize}
-                    draggable
                 >
                     <DndProvider backend={HTML5Backend}>
                         {displayableItems.map((color: ColorProps, index: number) => {
