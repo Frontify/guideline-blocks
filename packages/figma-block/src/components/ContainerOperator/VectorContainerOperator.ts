@@ -17,17 +17,18 @@ export class VectorContainerOperator extends ContainerOperator {
     constructor(
         protected imageContainer: ImageContainer,
         protected imageStage: ImageStage,
-        protected imageElement: ImageElement
+        protected imageElement: ImageElement,
+        protected isFullScreen: boolean
     ) {
         super(imageContainer, imageStage, imageElement);
-
         imageContainer.node.addEventListener('mouseover', this.onMouseOver.bind(this));
         imageContainer.node.addEventListener('mousedown', this.onMouseDown.bind(this));
 
         this.mouseMoveListener = this.onMouseMove.bind(this);
         this.mouseUpListener = this.onMouseUp.bind(this);
-
-        this.imageStage.alterHeight(this.imageStage.customHeight);
+        if (!isFullScreen) {
+            this.imageStage.alterHeight(this.imageStage.customHeight);
+        }
         this.imageContainer.setContainerToAbsolute();
     }
 

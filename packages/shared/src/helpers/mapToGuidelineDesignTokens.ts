@@ -8,6 +8,7 @@ import {
     TokenValues,
     TransformedDesignTokens,
 } from '../hooks/useGuidelineDesignTokens';
+import { suffixPlainNumberWithPx } from '../utilities/suffixPlainNumberWithPx';
 import { provideDefaultCalloutColors } from './provideDefaultCalloutColors';
 
 const TokenNameMapper: Record<string, DesignTokenName> = {
@@ -33,10 +34,10 @@ const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
 
 const transformObjectValues = (key: string, cssStyles: TokenValues, value: DirectionalCssProperties) => {
     if (key === DesignTokenPropertiesEnum.frame) {
-        cssStyles.paddingTop = value.top;
-        cssStyles.paddingRight = value.right;
-        cssStyles.paddingBottom = value.bottom;
-        cssStyles.paddingLeft = value.left;
+        cssStyles.paddingTop = suffixPlainNumberWithPx(value.top);
+        cssStyles.paddingRight = suffixPlainNumberWithPx(value.right);
+        cssStyles.paddingBottom = suffixPlainNumberWithPx(value.bottom);
+        cssStyles.paddingLeft = suffixPlainNumberWithPx(value.left);
     }
 };
 

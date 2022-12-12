@@ -32,7 +32,7 @@ describe('Callout Block', () => {
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutBlockSelector).should('have.class', 'tw-flex');
         cy.get(CalloutBlockSelector).should('have.class', 'tw-justify-end');
-        cy.get(CalloutWrapper).should('have.class', 'tw-p-9');
+        cy.get(CalloutWrapper).should('have.class', 'tw-px-[30px]').should('have.class', 'tw-py-[25px]');
     });
 
     it('renders a callout block with the correct border radius style', () => {
