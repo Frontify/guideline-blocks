@@ -51,23 +51,22 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
         }
         const newItem = createItem(trimmed, content.length | 0);
         const updatedContent = [...content, newItem];
-        setBlockSettings({ ...blockSettings, content: updatedContent });
+        setBlockSettings({ content: updatedContent });
     };
 
     const removeItem = (idToDelete: string): Promise<void> =>
         setBlockSettings({
-            ...blockSettings,
             content: content.filter(({ id }) => id !== idToDelete),
         });
 
     const updateItem = (idToUpdate: string, properties: Partial<ChecklistContent>) =>
-        setBlockSettings({ ...blockSettings, content: updateItemById(content, idToUpdate, properties) });
+        setBlockSettings({ content: updateItemById(content, idToUpdate, properties) });
 
     const toggleCompletedVisibility = () => setShowCompleted((prev) => !prev);
 
     const moveByIncrement = (id: string, positionChange: number) => {
         const index = findIndexById(content, id);
-        setBlockSettings({ ...blockSettings, content: reorderList(content, index, index + positionChange) });
+        setBlockSettings({ content: reorderList(content, index, index + positionChange) });
     };
 
     const renderChecklistItem = (
@@ -120,7 +119,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
             return { ...item };
         });
 
-        setBlockSettings({ ...blockSettings, content: modifiedArray });
+        setBlockSettings({ content: modifiedArray });
     };
 
     const orderableListItems = displayableItems.map(
