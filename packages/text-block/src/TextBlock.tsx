@@ -25,7 +25,6 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
     } = blockSettings;
 
     const onTextChange = (value: string) => setBlockSettings({ content: value });
-
     return (
         <div
             data-test-id="text-block"
