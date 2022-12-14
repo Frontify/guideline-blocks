@@ -9,7 +9,6 @@ import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { getPlugins } from './getPlugins';
 import { DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
-import './styles.css';
 import { GRID_CLASSES, Settings } from './types';
 
 export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -33,15 +32,14 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
             style={{
                 gap: isColumnGutterCustom ? columnGutterCustom : columnGutterSimple,
             }}
-            className={`text-block tw-gap-2 tw-block ${GRID_CLASSES[columnNumber]}`}
+            className={`tw-gap-2 tw-block ${GRID_CLASSES[columnNumber]}`}
         >
-            {/* // TODO: parseInt and toString cast can be remove after https://app.clickup.com/t/263cwaw is done */}
             <RichTextEditor
                 designTokens={designTokens ?? undefined}
                 key={'text-block-editor'}
                 value={content}
                 plugins={getPlugins(columnNumber)}
-                placeholder={PLACEHOLDER}
+                placeholder={isEditing ? PLACEHOLDER : undefined}
                 readonly={!isEditing}
                 onTextChange={onTextChange}
             />

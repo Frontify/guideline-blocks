@@ -65,46 +65,40 @@ export const settings = defineSettings({
     ],
     layout: [
         {
-            id: 'columnsSection',
-            type: 'sectionHeading',
+            id: 'columnNumber',
+            type: 'slider',
             label: 'Columns',
-            blocks: [
+            defaultValue: DEFAULT_COLUMN_NUMBER,
+            choices: columnNumberChoices,
+        },
+        {
+            id: 'isColumnGutterCustom',
+            label: 'Gutter',
+            type: 'switch',
+            switchLabel: 'Custom',
+            defaultValue: false,
+            info: "An official nerd's term for 'column gap'",
+            show: (bundle) => Number(bundle.getBlock('columnNumber')?.value) > 1,
+            on: [
                 {
-                    id: 'columnNumber',
-                    type: 'slider',
-                    label: 'Number',
-                    defaultValue: DEFAULT_COLUMN_NUMBER,
-                    choices: columnNumberChoices,
+                    id: 'columnGutterCustom',
+                    type: 'input',
+                    defaultValue: DEFAULT_COLUMN_GUTTER,
+                    rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
+                    onChange: (bundle) => {
+                        const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
+                        if (!isNaN(gutter)) {
+                            bundle.setBlockValue('columnGutterCustom', `${gutter}px`);
+                        }
+                    },
                 },
+            ],
+            off: [
                 {
-                    id: 'isColumnGutterCustom',
-                    label: 'Gutter',
-                    type: 'switch',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
-                    info: "An official nerd's term for 'column gap",
-                    on: [
-                        {
-                            id: 'columnGutterCustom',
-                            type: 'input',
-                            defaultValue: DEFAULT_COLUMN_GUTTER,
-                            rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                            onChange: (bundle) => {
-                                const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
-                                if (!isNaN(gutter)) {
-                                    bundle.setBlockValue('columnGutterCustom', `${gutter}px`);
-                                }
-                            },
-                        },
-                    ],
-                    off: [
-                        {
-                            id: 'columnGutterSimple',
-                            type: 'slider',
-                            defaultValue: DEFAULT_COLUMN_GUTTER,
-                            choices: columnGutterChoices,
-                        },
-                    ],
+                    id: 'columnGutterSimple',
+                    type: 'slider',
+                    defaultValue: DEFAULT_COLUMN_GUTTER,
+                    choices: columnGutterChoices,
                 },
             ],
         },
