@@ -119,7 +119,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             return color;
         });
 
-        setBlockSettings({ ...blockSettings, colorInput: updatedColors });
+        setBlockSettings({ colorInput: updatedColors });
         setDisplayableItems(updatedColors);
     };
 
@@ -159,7 +159,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
         setDisplayableItems(updatedColors);
         setBlockSettings({
-            ...blockSettings,
             colorInput: updatedColors,
         });
     };
@@ -170,7 +169,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         clearTimeout(timerToUpdateBlockSettings.current);
         timerToUpdateBlockSettings.current = setTimeout(() => {
             setBlockSettings({
-                ...blockSettings,
                 colorInput: displayableItems,
             });
         }, 500);
@@ -471,7 +469,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const handleResizeEvenly = () => {
         const updatedColors = resizeEvenly(displayableItems, colorScaleBlockRef);
-        setBlockSettings({ ...blockSettings, colorInput: updatedColors });
+        setBlockSettings({ colorInput: updatedColors });
         setDisplayableItems(updatedColors);
     };
 
@@ -484,7 +482,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
         updatedColors.splice(position === 'after' ? targetItemIndex + 1 : targetItemIndex, 0, movedItem);
 
-        setBlockSettings({ ...blockSettings, colorInput: updatedColors });
+        setBlockSettings({ colorInput: updatedColors });
         setDisplayableItems(updatedColors);
     };
 

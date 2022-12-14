@@ -9,14 +9,16 @@ type CalloutIconProps = {
     iconType: Icon;
     isActive: boolean;
     iconUrl?: string;
+    color?: string;
 };
-export const CalloutIcon = ({ iconType, isActive, iconUrl }: CalloutIconProps) => (
+export const CalloutIcon = ({ iconType, isActive, iconUrl, color }: CalloutIconProps) => (
     <div
         data-test-id="callout-icon"
         className={joinClassNames([
             isActive ? 'tw-opacity-100' : 'tw-opacity-30',
             'tw-mr-2 tw-w-6 tw-h-full tw-flex tw-justify-center tw-items-center',
         ])}
+        style={{ color }}
     >
         {calloutIconMap(iconUrl)[iconType]}
     </div>

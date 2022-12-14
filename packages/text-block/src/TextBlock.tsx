@@ -26,7 +26,7 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const onTextChange = (value: string, index: number) => {
         const newContent = [...content, (content[index] = value)];
-        setBlockSettings({ ...blockSettings, content: newContent });
+        setBlockSettings({ content: newContent });
     };
 
     return (

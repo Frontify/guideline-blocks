@@ -60,7 +60,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
         if (isValidStorybookUrl(input)) {
             setBlockSettings({
-                ...blockSettings,
                 url: addMissingUrlProtocol(input),
             });
         }
@@ -77,7 +76,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const saveHeight = (height: number) => {
         setBlockSettings({
-            ...blockSettings,
             heightValue: `${height}px`,
             isCustomHeight: true,
         });
@@ -114,7 +112,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                             <RemoveButton
                                 onClick={() => {
                                     setBlockSettings({
-                                        ...blockSettings,
                                         url: '',
                                     });
                                 }}
