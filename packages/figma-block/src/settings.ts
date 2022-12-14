@@ -143,6 +143,21 @@ export const settings = defineSettings({
             show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
         },
         {
+            id: 'allowFullScreen',
+            type: 'switch',
+            label: 'Allow full screen',
+            defaultValue: true,
+        },
+        {
+            id: 'allowZooming',
+            type: 'switch',
+            label: 'Allow zooming',
+            defaultValue: true,
+            show: (bundle) =>
+                bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image &&
+                !bundle.getBlock(HAS_LIMITED_OPTIONS)?.value,
+        },
+        {
             id: HAS_LIMITED_OPTIONS,
             type: 'switch',
             label: 'Image fixed height',

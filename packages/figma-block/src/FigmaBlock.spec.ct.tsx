@@ -64,7 +64,7 @@ describe('Figma Block', () => {
             blockAssets: {
                 [ASSET_ID]: [AssetDummy.with(345)],
             },
-            blockSettings: { figmaPreviewId: BlockPreview.Live },
+            blockSettings: { figmaPreviewId: BlockPreview.Live, allowFullScreen: true },
             editorState: true,
         });
         mount(<FigmaBlockWithStubs />);
