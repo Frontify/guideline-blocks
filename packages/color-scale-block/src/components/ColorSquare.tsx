@@ -37,6 +37,7 @@ export const ColorSquare = ({
     isEditing,
     setCurrentlyDraggedColorId,
     currentlyDraggedColorId,
+    isLast,
 }: ColorSquareProps) => {
     const { copy, status } = useCopy();
     const [, drag] = useDrag({
@@ -88,7 +89,7 @@ export const ColorSquare = ({
                 }}
                 className="hover:tw-z-30 tw-overflow-x-visible tw-overflow-y-hidden tw-pb-8 tw-inline-block"
             >
-                {isEditing && <DragHandle index={index} onResizeStart={onResizeStart} />}
+                {isEditing && !isLast && <DragHandle index={index} onResizeStart={onResizeStart} />}
 
                 <div
                     data-test-id="color-scale-block-color-square-with-background"

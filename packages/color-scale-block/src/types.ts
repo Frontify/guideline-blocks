@@ -31,6 +31,7 @@ export type ColorSquareProps = {
     onResizeStart: (event: MouseEvent, id: number, currentColor?: ColorProps) => void;
     currentlyDraggedColorId: Nullable<number> | undefined;
     setCurrentlyDraggedColorId: (value: Nullable<number>) => void;
+    isLast: boolean;
 };
 
 export type OnDropCallback<T> = (

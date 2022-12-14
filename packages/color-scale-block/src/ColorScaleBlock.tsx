@@ -106,7 +106,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const handleColorSquareDelete = (id: number) => {
         const colorListWithoutDeletedColor = displayableItems.filter((item) => item.id !== id);
 
-        const newWidthForUnresizedColors = calculateNewWidthForUnresizedColors(colorListWithoutDeletedColor);
+        const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithoutDeletedColor);
 
         const updatedColors = colorListWithoutDeletedColor.map((color) => {
             if (!color.resized) {
@@ -147,16 +147,13 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             id,
         });
 
-        const newWidthForUnresizedColors = calculateNewWidthForUnresizedColors(colorListWithNewColor);
+        const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithNewColor);
 
         const updatedColors = colorListWithNewColor.map((color) => {
-            if (!color.resized) {
-                return {
-                    ...color,
-                    width: newWidthForUnresizedColors ?? color.width,
-                };
-            }
-            return color;
+            return {
+                ...color,
+                width: newWidthForUnresizedColors ?? color.width,
+            };
         });
 
         setDisplayableItems(updatedColors);
@@ -181,6 +178,35 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         originalSiblingColorWidthBeforeResizing.current = 0;
     };
 
+    const fillEmptySpace = (colorArray: ColorProps[]) => {
+        const colorScaleBlockWidth =
+            (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
+            COLOR_SCALE_BLOCK_BORDER_WIDTH -
+            COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
+
+        let pixelsTakenByColorSquares = 0;
+
+        return colorArray.map((color, index) => {
+            const lastColorInBlock = index === colorArray.length - 1;
+
+            if (!lastColorInBlock) {
+                pixelsTakenByColorSquares += color.width;
+            } else {
+                return {
+                    ...color,
+                    resized: color.resized,
+                    width:
+                        colorScaleBlockWidth -
+                        pixelsTakenByColorSquares -
+                        COLOR_SCALE_BLOCK_BORDER_WIDTH -
+                        COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING,
+                };
+            }
+
+            return color;
+        });
+    };
+
     const handleResizeStart = (event: MouseEvent, index: number): void => {
         resizeStartPos.current = event.clientX;
 
@@ -189,12 +215,32 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         resizedColorIndex.current = index;
     };
 
-    const calculateNewWidthForUnresizedColors = (colorArray: ColorProps[]) => {
+    const detectIfSquaresTooWide = (colorArray: ColorProps[]) => {
+        const colorScaleBlockWidth =
+            (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
+            COLOR_SCALE_BLOCK_BORDER_WIDTH -
+            COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING -
+            5;
+
+        let pixelsTakenByColorSquares = 0;
+
+        for (const color of colorArray) {
+            pixelsTakenByColorSquares += color.width;
+        }
+
+        if (pixelsTakenByColorSquares >= colorScaleBlockWidth) {
+            return true;
+        }
+
+        return false;
+    };
+
+    const calculateNewWidthForColors = (colorArray: ColorProps[]) => {
         if (colorScaleBlockRef.current === null) {
             return;
         }
 
-        const unresizedColors = colorArray.filter((color) => !color.resized);
+        const unresizedColors = colorArray.filter((color) => color);
 
         const numberOfUnresizedColors = unresizedColors.length;
 
@@ -289,19 +335,23 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (index === colorIndex && !siblingNeedsShrinking && color.width > MINIMUM_COLOR_WIDTH) {
                     color.resized = true;
-                    color.width = (resizeStartWidth.current ?? 0) - movementSinceStart;
+
+                    // const newWidth = (resizeStartWidth.current ?? 0) - movementSinceStart;
+
+                    color.width -= 1;
                 }
+
                 return color;
             });
 
             if (!siblingNeedsShrinking) {
-                setDisplayableItems(displayableItemsWithCurrentColorResized);
+                setDisplayableItems(fillEmptySpace(displayableItemsWithCurrentColorResized));
 
                 return;
             }
 
-            setDisplayableItems(
-                displayableItemsWithCurrentColorResized.map((siblingColor, index) => {
+            const displayableItemsWithLeftSiblingResized = displayableItemsWithCurrentColorResized.map(
+                (siblingColor, index) => {
                     if (siblingNeedsShrinking && index === nextResizeableSiblingIndex) {
                         const siblingWidth =
                             siblingColor.width >= MINIMUM_COLOR_WIDTH
@@ -310,12 +360,15 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                         return {
                             ...siblingColor,
                             resized: true,
-                            width: siblingWidth,
+                            width: siblingColor.width - 1,
                         };
                     }
+
                     return siblingColor;
-                })
+                }
             );
+
+            setDisplayableItems(fillEmptySpace(displayableItemsWithLeftSiblingResized));
         }
 
         if (resizingToTheRight) {
@@ -323,14 +376,14 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
             const movementSinceStart = event.clientX - (resizeStartPos.current ?? 0);
 
-            const colorScaleBlockInnerWidth = colorScaleBlockInnerRef?.current?.getBoundingClientRect().width ?? 0;
+            // const colorScaleBlockInnerWidth = colorScaleBlockInnerRef?.current?.getBoundingClientRect().width ?? 0;
 
-            const colorScaleBlockWidth =
-                (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
-                COLOR_SCALE_BLOCK_BORDER_WIDTH -
-                COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
+            // const colorScaleBlockWidth =
+            //     (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
+            //     COLOR_SCALE_BLOCK_BORDER_WIDTH -
+            //     COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
 
-            const freeSpaceExists = colorScaleBlockInnerWidth < colorScaleBlockWidth;
+            const freeSpaceExists = detectIfSquaresTooWide(displayableItems) ? false : true;
 
             const nextResizeableSiblingIndex = displayableItems.findIndex(
                 (color, index) => index > colorIndex && color.width >= MINIMUM_COLOR_WIDTH
@@ -357,13 +410,14 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
             const canResizeToTheRight = freeSpaceExists || siblingNeedsShrinking;
 
-            if (!canResizeToTheRight) {
-                return;
-            }
+            // if (!canResizeToTheRight) {
+            //     return;
+            // }
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (canResizeToTheRight && index === colorIndex) {
-                    color.width = (resizeStartWidth.current ?? 0) + movementSinceStart;
+                    // color.width = (resizeStartWidth.current ?? 0) + movementSinceStart;
+                    color.width += 1;
                     color.resized = true;
                 }
 
@@ -371,6 +425,11 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             });
 
             if (!siblingNeedsShrinking) {
+                // if (detectIfSquaresTooWide(displayableItemsWithCurrentColorResized)) {
+                //     handleResizeStop();
+                //     return;
+                // }
+
                 setDisplayableItems(displayableItemsWithCurrentColorResized);
 
                 return;
@@ -380,23 +439,32 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 return;
             }
 
-            setDisplayableItems(
-                displayableItemsWithCurrentColorResized.map((siblingColor, index) => {
+            const displayableItemsWithRightSiblingResized = displayableItemsWithCurrentColorResized.map(
+                (siblingColor, index) => {
                     if (index === nextResizeableSiblingIndex) {
                         const siblingWidth =
                             siblingColor.width >= MINIMUM_COLOR_WIDTH
-                                ? originalSiblingColorWidthBeforeResizing.current - movementSinceSiblingNeededResizing
+                                ? originalSiblingColorWidthBeforeResizing.current -
+                                  movementSinceSiblingNeededResizing -
+                                  COLOR_SQUARE_SPACING
                                 : MINIMUM_COLOR_WIDTH;
                         return {
                             ...siblingColor,
                             resized: true,
-                            width: siblingWidth,
+                            width: siblingColor.width - 1,
                         };
                     }
 
                     return siblingColor;
-                })
+                }
             );
+
+            // if (detectIfSquaresTooWide(displayableItemsWithRightSiblingResized)) {
+            //     handleResizeStop();
+            //     return;
+            // }
+
+            setDisplayableItems(displayableItemsWithRightSiblingResized);
         }
     };
 
@@ -444,7 +512,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                     style={{
                         height: colorScaleHeight,
                     }}
-                    className="tw-rounded tw-inline-flex"
+                    className="tw-rounded tw-w-full tw-flex"
                     // Note: onMouseUp and handleResize are defined here intentionally, instead of being in the DragHandle component.
                     // The reason for this is that the dragging feature stops working if I move these to DragHandle,
                     // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
@@ -483,6 +551,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                         isEditing={isEditing}
                                         setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
                                         currentlyDraggedColorId={currentlyDraggedColorId}
+                                        isLast={index === displayableItems.length - 1}
                                     />
                                 </div>
                             );
