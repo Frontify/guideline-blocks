@@ -338,7 +338,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
                     // const newWidth = (resizeStartWidth.current ?? 0) - movementSinceStart;
 
-                    color.width -= 1;
+                    color.width -= 2;
                 }
 
                 return color;
@@ -360,7 +360,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                         return {
                             ...siblingColor,
                             resized: true,
-                            width: siblingColor.width - 1,
+                            width: siblingColor.width - 2,
                         };
                     }
 
@@ -417,7 +417,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (canResizeToTheRight && index === colorIndex) {
                     // color.width = (resizeStartWidth.current ?? 0) + movementSinceStart;
-                    color.width += 1;
+                    color.width += 2;
                     color.resized = true;
                 }
 
@@ -451,7 +451,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                         return {
                             ...siblingColor,
                             resized: true,
-                            width: siblingColor.width - 1,
+                            width: siblingColor.width - 2,
                         };
                     }
 
