@@ -305,7 +305,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 return;
             }
 
-            const movementSinceStart = resizeStartPos.current - event.clientX;
+            // const movementSinceStart = resizeStartPos.current - event.clientX;
 
             const siblingNeedsShrinking = displayableItems[colorIndex].width <= MINIMUM_COLOR_WIDTH;
 
@@ -323,14 +323,14 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 resizedSiblingIndex.current = nextResizeableSiblingIndex;
             }
 
-            let movementSinceSiblingNeededResizing = 0;
+            // let movementSinceSiblingNeededResizing = 0;
 
             if (siblingNeedsShrinking && !positionWhereSiblingColorNeededResizing.current) {
                 positionWhereSiblingColorNeededResizing.current = event.clientX;
                 originalSiblingColorWidthBeforeResizing.current = displayableItems[nextResizeableSiblingIndex].width;
             }
 
-            movementSinceSiblingNeededResizing = positionWhereSiblingColorNeededResizing.current - event.clientX;
+            // movementSinceSiblingNeededResizing = positionWhereSiblingColorNeededResizing.current - event.clientX;
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (index === colorIndex && !siblingNeedsShrinking && color.width > MINIMUM_COLOR_WIDTH) {
@@ -353,10 +353,10 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const displayableItemsWithLeftSiblingResized = displayableItemsWithCurrentColorResized.map(
                 (siblingColor, index) => {
                     if (siblingNeedsShrinking && index === nextResizeableSiblingIndex) {
-                        const siblingWidth =
-                            siblingColor.width >= MINIMUM_COLOR_WIDTH
-                                ? originalSiblingColorWidthBeforeResizing.current - movementSinceSiblingNeededResizing
-                                : MINIMUM_COLOR_WIDTH;
+                        // const siblingWidth =
+                        //     siblingColor.width >= MINIMUM_COLOR_WIDTH
+                        //         ? originalSiblingColorWidthBeforeResizing.current - movementSinceSiblingNeededResizing
+                        //         : MINIMUM_COLOR_WIDTH;
                         return {
                             ...siblingColor,
                             resized: true,
@@ -374,7 +374,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         if (resizingToTheRight) {
             lastDragPos.current = event.clientX;
 
-            const movementSinceStart = event.clientX - (resizeStartPos.current ?? 0);
+            // const movementSinceStart = event.clientX - (resizeStartPos.current ?? 0);
 
             // const colorScaleBlockInnerWidth = colorScaleBlockInnerRef?.current?.getBoundingClientRect().width ?? 0;
 
@@ -397,14 +397,14 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
             const siblingNeedsShrinking = !freeSpaceExists && nextResizeableSiblingIndex !== -1;
 
-            let movementSinceSiblingNeededResizing = 0;
+            // let movementSinceSiblingNeededResizing = 0;
 
             if (siblingNeedsShrinking && !positionWhereSiblingColorNeededResizing.current) {
                 positionWhereSiblingColorNeededResizing.current = event.clientX;
                 originalSiblingColorWidthBeforeResizing.current = displayableItems[nextResizeableSiblingIndex].width;
             }
 
-            movementSinceSiblingNeededResizing = event.clientX - positionWhereSiblingColorNeededResizing.current;
+            // movementSinceSiblingNeededResizing = event.clientX - positionWhereSiblingColorNeededResizing.current;
 
             const siblingsCannotBeResized = !freeSpaceExists && nextResizeableSiblingIndex === -1;
 
@@ -442,12 +442,12 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const displayableItemsWithRightSiblingResized = displayableItemsWithCurrentColorResized.map(
                 (siblingColor, index) => {
                     if (index === nextResizeableSiblingIndex) {
-                        const siblingWidth =
-                            siblingColor.width >= MINIMUM_COLOR_WIDTH
-                                ? originalSiblingColorWidthBeforeResizing.current -
-                                  movementSinceSiblingNeededResizing -
-                                  COLOR_SQUARE_SPACING
-                                : MINIMUM_COLOR_WIDTH;
+                        // const siblingWidth =
+                        //     siblingColor.width >= MINIMUM_COLOR_WIDTH
+                        //         ? originalSiblingColorWidthBeforeResizing.current -
+                        //           movementSinceSiblingNeededResizing -
+                        //           COLOR_SQUARE_SPACING
+                        //         : MINIMUM_COLOR_WIDTH;
                         return {
                             ...siblingColor,
                             resized: true,
