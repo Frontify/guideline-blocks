@@ -1,13 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
+import { RichTextEditor, defaultPlugins, defaultPluginsWithColumns } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
-import { getPlugins } from './getPlugins';
 import { DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
 import { GRID_CLASSES, Settings } from './types';
 
@@ -31,13 +30,13 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
             style={{
                 gap: isColumnGutterCustom ? columnGutterCustom : columnGutterSimple,
             }}
-            className={`tw-gap-2 tw-block ${GRID_CLASSES[columnNumber]}`}
+            className={`tw-gap-2 tw-block ${hasRichTextValue(content) && GRID_CLASSES[columnNumber]}`}
         >
             <RichTextEditor
                 designTokens={designTokens ?? undefined}
                 key={'text-block-editor'}
                 value={content}
-                plugins={getPlugins(columnNumber)}
+                plugins={columnNumber > 1 ? defaultPluginsWithColumns : defaultPlugins}
                 placeholder={isEditing ? PLACEHOLDER : undefined}
                 readonly={!isEditing}
                 onTextChange={onTextChange}

@@ -10,7 +10,7 @@ export type Settings = {
 
 export const GRID_CLASSES: Record<number, string> = {
     1: 'tw-columns-1',
-    2: 'lg:tw-columns-2',
-    3: 'lg:tw-columns-3',
-    4: 'lg:tw-columns-4',
+    2: '[&>div]:lg:tw-columns-2',
+    3: '[&>div]:lg:tw-columns-3',
+    4: '[&>div]:lg:tw-columns-4',
 };
