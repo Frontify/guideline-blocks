@@ -32,6 +32,8 @@ export type ColorSquareProps = {
     currentlyDraggedColorId: Nullable<number> | undefined;
     setCurrentlyDraggedColorId: (value: Nullable<number>) => void;
     isLast: boolean;
+    setDraggedColorWidth: (value: Nullable<number>) => void;
+    draggedColorWidth: Nullable<number> | undefined;
 };
 
 export type OnDropCallback<T> = (
@@ -47,7 +49,7 @@ export type DropZoneData<T> = {
 
 export type DropZoneProps = {
     onDrop?: (targetItem: ColorProps, movedItem: ColorProps, position: DropZonePosition) => void;
-    width: number;
+    width: Nullable<number> | undefined;
     before?: boolean;
     after?: boolean;
     height: number;

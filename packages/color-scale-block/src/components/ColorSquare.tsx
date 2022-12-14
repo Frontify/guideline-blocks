@@ -37,6 +37,8 @@ export const ColorSquare = ({
     isEditing,
     setCurrentlyDraggedColorId,
     currentlyDraggedColorId,
+    setDraggedColorWidth,
+    draggedColorWidth,
     isLast,
 }: ColorSquareProps) => {
     const { copy, status } = useCopy();
@@ -60,11 +62,13 @@ export const ColorSquare = ({
     const handleDrag = () => {
         if (!currentlyDraggedColorId && color !== null) {
             setCurrentlyDraggedColorId(color.id ?? null);
+            setDraggedColorWidth(color.width);
         }
     };
 
     const handleDragEnd = () => {
         setCurrentlyDraggedColorId(null);
+        setDraggedColorWidth(null);
     };
 
     return (
@@ -73,7 +77,7 @@ export const ColorSquare = ({
                 key={`orderable-list-item-${color.id}-before`}
                 height={parseInt(height)}
                 before
-                width={DROP_ZONE_WIDTH}
+                width={draggedColorWidth}
                 isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                 data={{
                     targetItem: color,

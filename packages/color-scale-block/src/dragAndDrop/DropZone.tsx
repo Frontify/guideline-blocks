@@ -6,8 +6,17 @@ import { DropZonePosition } from '@frontify/fondue';
 
 import { ColorProps } from '../types';
 import { DropZoneProps } from '../types';
+import { DROP_ZONE_WIDTH } from '../helpers';
 
-export const DropZone = ({ data, isDraggingActive, onDrop, width, height, before, after }: DropZoneProps) => {
+export const DropZone = ({
+    data,
+    isDraggingActive,
+    onDrop,
+    width = DROP_ZONE_WIDTH,
+    height,
+    before,
+    after,
+}: DropZoneProps) => {
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: 'color',
         drop: (item: ColorProps) => {
@@ -29,7 +38,7 @@ export const DropZone = ({ data, isDraggingActive, onDrop, width, height, before
 
     // When no dragging is happening
     const outerDropZoneClassNames = 'tw-absolute tw-w-1/2 tw-py-1 tw-outline-none';
-    const isDraggingNotActiveClassNames = 'tw-z-[-1] tw-border-0';
+    const isDraggingNotActiveClassNames = 'tw-z-[-1] tw-border-0 tw-border-dashed tw-border-2 tw-m-[1px]';
 
     // When dragging is happening and another square is hovered over this one
     const activeOuterDropZoneClassNames = 'tw-absolute tw-z-[100] tw-h-[96px] tw-w-1/2 tw-bg-clip-content';
@@ -48,7 +57,7 @@ export const DropZone = ({ data, isDraggingActive, onDrop, width, height, before
                             height: `${height - DROP_ZONE_BOTTOM_SPACING}px`,
                         }}
                         className={joinClassNames([
-                            'drop-zone-offset tw-relative tw-rounded-[3px]',
+                            'drop-zone-offset tw-transition-all tw-relative tw-rounded-[3px]',
                             bgColorClassName,
                             isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]',
                         ])}
@@ -88,7 +97,7 @@ export const DropZone = ({ data, isDraggingActive, onDrop, width, height, before
                             height: `${height - DROP_ZONE_BOTTOM_SPACING}px`,
                         }}
                         className={joinClassNames([
-                            'drop-zone-offset tw-relative tw-rounded-[3px]',
+                            'drop-zone-offset tw-transition-all tw-relative tw-rounded-[3px]',
                             bgColorClassName,
                             isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]',
                         ])}

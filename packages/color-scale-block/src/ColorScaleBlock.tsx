@@ -54,6 +54,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const lastDragPos = useRef<Nullable<number>>();
     const positionWhereSiblingColorNeededResizing = useRef<number>(0);
     const originalSiblingColorWidthBeforeResizing = useRef<number>(0);
+    const [draggedColorWidth, setDraggedColorWidth] = useState<Nullable<number>>(null);
     const resizedSiblingIndex = useRef<Nullable<number>>();
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
@@ -552,6 +553,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                         setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
                                         currentlyDraggedColorId={currentlyDraggedColorId}
                                         isLast={index === displayableItems.length - 1}
+                                        setDraggedColorWidth={setDraggedColorWidth}
+                                        draggedColorWidth={draggedColorWidth}
                                     />
                                 </div>
                             );
