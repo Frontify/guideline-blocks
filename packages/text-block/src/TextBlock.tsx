@@ -4,7 +4,7 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor, defaultPlugins, defaultPluginsWithColumns } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { hasRichTextValue, joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
@@ -30,7 +30,7 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
             style={{
                 gap: isColumnGutterCustom ? columnGutterCustom : columnGutterSimple,
             }}
-            className={`tw-block ${hasRichTextValue(content) ? GRID_CLASSES[columnNumber] : ''}`}
+            className={joinClassNames(['tw-block', hasRichTextValue(content) && GRID_CLASSES[columnNumber]])}
         >
             <RichTextEditor
                 designTokens={designTokens ?? undefined}
