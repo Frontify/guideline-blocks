@@ -30,7 +30,7 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
             style={{
                 gap: isColumnGutterCustom ? columnGutterCustom : columnGutterSimple,
             }}
-            className={`tw-gap-2 tw-block ${hasRichTextValue(content) ? GRID_CLASSES[columnNumber]  : ''}`}
+            className={`tw-block ${hasRichTextValue(content) ? GRID_CLASSES[columnNumber] : ''}`}
         >
             <RichTextEditor
                 designTokens={designTokens ?? undefined}
