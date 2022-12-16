@@ -140,6 +140,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                             <span>{languageNameMap[selectedLanguage]}</span>
                         )}
                         <button
+                            data-test-id="header-copy-button"
                             className="tw-items-center tw-justify-end tw-gap-1 tw-hidden group-hover/copy:tw-flex"
                             style={getStyle()}
                             onClick={handleCopy}
@@ -166,12 +167,17 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                     placeholder={isEditing ? '< please add snippet here >' : ''}
                 />
                 {!withHeading && (
-                    <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover:tw-block">
+                    <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover/copy:tw-block">
                         {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
                             <Tooltip
                                 content={isCopied ? 'Copied' : 'Copy to clipboard'}
                                 triggerElement={
-                                    <button className="tw-p-2 tw-rounded-md" style={getStyle()} onClick={handleCopy}>
+                                    <button
+                                        data-test-id="copy-button"
+                                        className="tw-p-2 tw-rounded-md"
+                                        style={getStyle()}
+                                        onClick={handleCopy}
+                                    >
                                         {isCopied ? iconsMap[IconEnum.CheckMark24] : iconsMap[IconEnum.Clipboard24]}
                                     </button>
                                 }
