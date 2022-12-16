@@ -21,6 +21,7 @@ import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { headerThemes } from './headerThemes';
 import { Language, Settings, languageNameMap } from './types';
+import { setAlpha } from '@frontify/guideline-blocks-shared';
 
 export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -102,7 +103,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
         >
-            <div className="tw-relative tw-group">
+            <div className="tw-relative tw-group/copy">
                 {withHeading && (
                     <div
                         data-test-id="code-snippet-header"
@@ -110,7 +111,16 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         style={getStyle()}
                     >
                         {isEditing ? (
-                            <div className="tw-max-w-[150px]">
+                            <div
+                                className="tw-max-w-[150px]"
+                                style={
+                                    {
+                                        '--base-color': getStyle().backgroundColor,
+                                        '--text-color': getStyle().color,
+                                        '--line-color-xx-strong': setAlpha(0.8, getStyle().color),
+                                    } as React.CSSProperties
+                                }
+                            >
                                 <Dropdown
                                     size={DropdownSize.Small}
                                     activeItemId={selectedLanguage}
@@ -130,7 +140,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                             <span>{languageNameMap[selectedLanguage]}</span>
                         )}
                         <button
-                            className="tw-items-center tw-justify-end tw-gap-1 tw-hidden group-hover:tw-flex"
+                            className="tw-items-center tw-justify-end tw-gap-1 tw-hidden group-hover/copy:tw-flex"
                             style={getStyle()}
                             onClick={handleCopy}
                         >
