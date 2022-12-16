@@ -2,7 +2,16 @@
 
 import { Extension } from '@codemirror/state';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Dropdown, DropdownSize, debounce } from '@frontify/fondue';
+import {
+    Dropdown,
+    DropdownSize,
+    IconEnum,
+    Tooltip,
+    TooltipAlignment,
+    TooltipPosition,
+    debounce,
+    iconsMap,
+} from '@frontify/fondue';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { langs } from '@uiw/codemirror-extensions-langs';
@@ -19,6 +28,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const [contentValue] = useState(blockSettings.content);
     const [selectedLanguage, setSelectedLanguage] = useState(blockSettings.language ?? 'plain');
     const extensions = [] as Extension[];
+    const [isCopied, setIsCopied] = useState(false);
 
     useEffect(() => {
         setSelectedLanguage(blockSettings.language ?? 'plain');
@@ -41,6 +51,11 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         return 'light';
     };
 
+    const getStyle = () => headerThemes[blockSettings.theme ?? 'default'];
+
+    const getCopyButtonText = () =>
+        isCopied ? <>{iconsMap[IconEnum.CheckMark16]} Copied</> : <>{iconsMap[IconEnum.Clipboard16]} Copy</>;
+
     const getCurrentLanguageFromLangs = () => {
         if (selectedLanguage !== 'plain' && Object.keys(langs).includes(selectedLanguage)) {
             return langs[selectedLanguage];
@@ -61,6 +76,16 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
 
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(blockSettings.content || '');
+        setIsCopied(true);
+        window.dispatchEvent(new Event('resize')); // trigger resize event to update alignment of the tooltip
+        debounce(() => {
+            setIsCopied(false);
+            window.dispatchEvent(new Event('resize'));
+        }, 2000)();
+    };
+
     const handleLanguageChange = (value: Language) => {
         setSelectedLanguage(value);
         setBlockSettings({ language: value });
@@ -77,51 +102,85 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
         >
-            {withHeading && (
-                <div
-                    data-test-id="code-snippet-header"
-                    className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s"
-                    style={headerThemes[blockSettings.theme ?? 'default']}
-                >
-                    {isEditing ? (
-                        <div className="tw-max-w-[150px]">
-                            <Dropdown
-                                size={DropdownSize.Small}
-                                activeItemId={selectedLanguage}
-                                menuBlocks={[
-                                    {
-                                        id: 'languages',
-                                        menuItems: Object.entries(languageNameMap).map(([value, label]) => ({
-                                            id: value,
-                                            title: label,
-                                        })),
-                                    },
-                                ]}
-                                onChange={(value) => handleLanguageChange(value as Language)}
-                            />
-                        </div>
-                    ) : (
-                        <span>{languageNameMap[selectedLanguage]}</span>
-                    )}
-                </div>
-            )}
-            <CodeMirror
-                theme={getTheme()}
-                value={contentValue}
-                extensions={extensions}
-                onChange={handleChange}
-                readOnly={!isEditing}
-                basicSetup={{
-                    lineNumbers: withRowNumbers,
-                    foldGutter: false,
-                    searchKeymap: false,
-                    highlightActiveLineGutter: false,
-                    highlightActiveLine: false,
-                    lintKeymap: false,
-                    autocompletion: false,
-                }}
-                placeholder={isEditing ? '< please add snippet here >' : ''}
-            />
+            <div className="tw-relative tw-group">
+                {withHeading && (
+                    <div
+                        data-test-id="code-snippet-header"
+                        className="tw-py-2 tw-px-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center"
+                        style={getStyle()}
+                    >
+                        {isEditing ? (
+                            <div className="tw-max-w-[150px]">
+                                <Dropdown
+                                    size={DropdownSize.Small}
+                                    activeItemId={selectedLanguage}
+                                    menuBlocks={[
+                                        {
+                                            id: 'languages',
+                                            menuItems: Object.entries(languageNameMap).map(([value, label]) => ({
+                                                id: value,
+                                                title: label,
+                                            })),
+                                        },
+                                    ]}
+                                    onChange={(value) => handleLanguageChange(value as Language)}
+                                />
+                            </div>
+                        ) : (
+                            <span>{languageNameMap[selectedLanguage]}</span>
+                        )}
+                        <button
+                            className="tw-items-center tw-justify-end tw-gap-1 tw-hidden group-hover:tw-flex"
+                            style={getStyle()}
+                            onClick={handleCopy}
+                        >
+                            {getCopyButtonText()}
+                        </button>
+                    </div>
+                )}
+                <CodeMirror
+                    theme={getTheme()}
+                    value={contentValue}
+                    extensions={extensions}
+                    onChange={handleChange}
+                    readOnly={!isEditing}
+                    basicSetup={{
+                        lineNumbers: withRowNumbers,
+                        foldGutter: false,
+                        searchKeymap: false,
+                        highlightActiveLineGutter: false,
+                        highlightActiveLine: false,
+                        lintKeymap: false,
+                        autocompletion: false,
+                    }}
+                    placeholder={isEditing ? '< please add snippet here >' : ''}
+                />
+                {!withHeading && (
+                    <div className="tw-absolute tw-p-1 tw-dark tw-top-0 tw-right-0 tw-hidden group-hover:tw-block">
+                        {blockSettings.content && (blockSettings.content.match(/\n/g) || []).length > 1 ? (
+                            <Tooltip
+                                content={isCopied ? 'Copied' : 'Copy to clipboard'}
+                                triggerElement={
+                                    <button className="tw-p-2 tw-rounded-md" style={getStyle()} onClick={handleCopy}>
+                                        {isCopied ? iconsMap[IconEnum.CheckMark24] : iconsMap[IconEnum.Clipboard24]}
+                                    </button>
+                                }
+                                withArrow
+                                position={TooltipPosition.Top}
+                                alignment={TooltipAlignment.Middle}
+                            ></Tooltip>
+                        ) : (
+                            <button
+                                className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
+                                style={getStyle()}
+                                onClick={handleCopy}
+                            >
+                                {getCopyButtonText()}
+                            </button>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
