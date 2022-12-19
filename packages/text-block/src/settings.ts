@@ -3,48 +3,15 @@
 import {
     DropdownSize,
     IconEnum,
+    appendUnit,
     betweenPixelRule,
     defineSettings,
     numericalOrPixelRule,
 } from '@frontify/guideline-blocks-settings';
+import { TextGutter, spacingValues } from './types';
 
 export const PLACEHOLDER = 'Your text here';
-export const DEFAULT_COLUMN_NUMBER = 1;
-export const DEFAULT_COLUMN_GUTTER = '24px';
-
-export const columnGutterChoices = [
-    {
-        value: DEFAULT_COLUMN_GUTTER,
-        label: 'S',
-    },
-    {
-        value: '36px',
-        label: 'M',
-    },
-    {
-        value: '60px',
-        label: 'L',
-    },
-];
-
-export const columnNumberChoices = [
-    {
-        value: DEFAULT_COLUMN_NUMBER,
-        label: `${DEFAULT_COLUMN_NUMBER}`,
-    },
-    {
-        value: 2,
-        label: '2',
-    },
-    {
-        value: 3,
-        label: '3',
-    },
-    {
-        value: 4,
-        label: '4',
-    },
-];
+const columnGutterCustomId = 'columnGutterCustom';
 
 export const settings = defineSettings({
     main: [
@@ -68,8 +35,25 @@ export const settings = defineSettings({
             id: 'columnNumber',
             type: 'slider',
             label: 'Columns',
-            defaultValue: DEFAULT_COLUMN_NUMBER,
-            choices: columnNumberChoices,
+            defaultValue: '1',
+            choices: [
+                {
+                    value: 1,
+                    label: '1',
+                },
+                {
+                    value: 2,
+                    label: '2',
+                },
+                {
+                    value: 3,
+                    label: '3',
+                },
+                {
+                    value: 4,
+                    label: '4',
+                },
+            ],
         },
         {
             id: 'isColumnGutterCustom',
@@ -81,24 +65,36 @@ export const settings = defineSettings({
             show: (bundle) => Number(bundle.getBlock('columnNumber')?.value) > 1,
             on: [
                 {
-                    id: 'columnGutterCustom',
+                    id: columnGutterCustomId,
                     type: 'input',
-                    defaultValue: DEFAULT_COLUMN_GUTTER,
+                    defaultValue: spacingValues[TextGutter.Auto],
                     rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                    onChange: (bundle) => {
-                        const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
-                        if (!isNaN(gutter)) {
-                            bundle.setBlockValue('columnGutterCustom', `${gutter}px`);
-                        }
-                    },
+                    onChange: (bundle) => appendUnit(bundle, columnGutterCustomId),
                 },
             ],
             off: [
                 {
                     id: 'columnGutterSimple',
                     type: 'slider',
-                    defaultValue: DEFAULT_COLUMN_GUTTER,
-                    choices: columnGutterChoices,
+                    defaultValue: TextGutter.S,
+                    choices: [
+                        {
+                            value: TextGutter.Auto,
+                            label: TextGutter.Auto,
+                        },
+                        {
+                            value: TextGutter.S,
+                            label: TextGutter.S,
+                        },
+                        {
+                            value: TextGutter.M,
+                            label: TextGutter.M,
+                        },
+                        {
+                            value: TextGutter.L,
+                            label: TextGutter.L,
+                        },
+                    ],
                 },
             ],
         },
