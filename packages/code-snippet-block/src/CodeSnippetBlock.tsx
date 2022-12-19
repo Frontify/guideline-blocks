@@ -11,6 +11,7 @@ import {
     TooltipPosition,
     debounce,
     iconsMap,
+    merge,
 } from '@frontify/fondue';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
@@ -19,6 +20,7 @@ import * as themes from '@uiw/codemirror-themes-all';
 import CodeMirror from '@uiw/react-codemirror';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import './styles.css';
 import { headerThemes } from './headerThemes';
 import { Language, Settings, languageNameMap } from './types';
 import { setAlpha } from '@frontify/guideline-blocks-shared';
@@ -103,7 +105,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                 borderRadius: customCornerRadiusStyle.borderRadius,
             }}
         >
-            <div className="tw-relative tw-group/copy">
+            <div className={merge(['tw-relative tw-group/copy', !isEditing && 'CodeMirror-readonly'])}>
                 {withHeading && (
                     <div
                         data-test-id="code-snippet-header"
@@ -184,7 +186,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                 withArrow
                                 position={TooltipPosition.Top}
                                 alignment={TooltipAlignment.Middle}
-                            ></Tooltip>
+                            />
                         ) : (
                             <button
                                 className="tw-flex tw-items-center tw-justify-end tw-gap-1 tw-pr-2 tw-rounded-md"
