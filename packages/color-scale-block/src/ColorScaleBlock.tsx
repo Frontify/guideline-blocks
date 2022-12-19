@@ -29,7 +29,6 @@ import { EmptyView } from './components/EmptyView';
 import {
     COLOR_SCALE_BLOCK_BORDER_WIDTH,
     COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING,
-    COLOR_SQUARE_SPACING,
     MINIMUM_COLOR_WIDTH,
     calculateDefaultColorWidth,
     resizeEvenly,
@@ -107,17 +106,19 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const handleColorSquareDelete = (id: number) => {
         const colorListWithoutDeletedColor = displayableItems.filter((item) => item.id !== id);
 
-        const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithoutDeletedColor);
+        // const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithoutDeletedColor);
 
-        const updatedColors = colorListWithoutDeletedColor.map((color) => {
-            if (!color.resized) {
-                return {
-                    ...color,
-                    width: newWidthForUnresizedColors ?? color.width,
-                };
-            }
-            return color;
-        });
+        const updatedColors = resizeEvenly(colorListWithoutDeletedColor, colorScaleBlockRef);
+
+        // const updatedColors = colorListWithoutDeletedColor.map((color) => {
+        //     if (!color.resized) {
+        //         return {
+        //             ...color,
+        //             width: newWidthForUnresizedColors ?? color.width,
+        //         };
+        //     }
+        //     return color;
+        // });
 
         setBlockSettings({ ...blockSettings, colorInput: updatedColors });
         setDisplayableItems(updatedColors);
@@ -148,14 +149,16 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             id,
         });
 
-        const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithNewColor);
+        // const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithNewColor);
 
-        const updatedColors = colorListWithNewColor.map((color) => {
-            return {
-                ...color,
-                width: newWidthForUnresizedColors ?? color.width,
-            };
-        });
+        const updatedColors = resizeEvenly(colorListWithNewColor, colorScaleBlockRef);
+
+        // const updatedColors = colorListWithNewColor.map((color) => {
+        //     return {
+        //         ...color,
+        //         width: newWidthForUnresizedColors ?? color.width,
+        //     };
+        // });
 
         setDisplayableItems(updatedColors);
         setBlockSettings({
@@ -236,46 +239,46 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         return false;
     };
 
-    const calculateNewWidthForColors = (colorArray: ColorProps[]) => {
-        if (colorScaleBlockRef.current === null) {
-            return;
-        }
+    // const calculateNewWidthForColors = (colorArray: ColorProps[]) => {
+    //     if (colorScaleBlockRef.current === null) {
+    //         return;
+    //     }
 
-        const unresizedColors = colorArray.filter((color) => color);
+    //     const unresizedColors = colorArray.filter((color) => color);
 
-        const numberOfUnresizedColors = unresizedColors.length;
+    //     const numberOfUnresizedColors = unresizedColors.length;
 
-        let unresizedColorsTotalWidth = 0;
-        let resizedColorsTotalWidth = 0;
+    //     let unresizedColorsTotalWidth = 0;
+    //     let resizedColorsTotalWidth = 0;
 
-        for (const color in colorArray) {
-            if (!colorArray[color].resized) {
-                unresizedColorsTotalWidth += unresizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
-            } else {
-                resizedColorsTotalWidth += resizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
-            }
-        }
+    //     for (const color in colorArray) {
+    //         if (!colorArray[color].resized) {
+    //             unresizedColorsTotalWidth += unresizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
+    //         } else {
+    //             resizedColorsTotalWidth += resizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
+    //         }
+    //     }
 
-        const blockWidth =
-            colorScaleBlockRef.current.getBoundingClientRect().width - COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
-        const takenWidth = colorArray.reduce((prevWidth, item) => prevWidth + item.width + COLOR_SQUARE_SPACING, 0);
-        const emptySpace = blockWidth - takenWidth;
+    //     const blockWidth =
+    //         colorScaleBlockRef.current.getBoundingClientRect().width - COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
+    //     const takenWidth = colorArray.reduce((prevWidth, item) => prevWidth + item.width + COLOR_SQUARE_SPACING, 0);
+    //     const emptySpace = blockWidth - takenWidth;
 
-        const spaceToDivide =
-            unresizedColorsTotalWidth > blockWidth
-                ? blockWidth - resizedColorsTotalWidth
-                : unresizedColorsTotalWidth + emptySpace;
+    //     const spaceToDivide =
+    //         unresizedColorsTotalWidth > blockWidth
+    //             ? blockWidth - resizedColorsTotalWidth
+    //             : unresizedColorsTotalWidth + emptySpace;
 
-        const calculatedNewWidth = colorArray.length > 0 ? spaceToDivide / numberOfUnresizedColors : blockWidth;
+    //     const calculatedNewWidth = colorArray.length > 0 ? spaceToDivide / numberOfUnresizedColors : blockWidth;
 
-        const newColorWidthWithoutPadding = calculatedNewWidth - COLOR_SQUARE_SPACING;
+    //     const newColorWidthWithoutPadding = calculatedNewWidth - COLOR_SQUARE_SPACING;
 
-        const defaultColorWidthWithoutPadding = MINIMUM_COLOR_WIDTH - COLOR_SQUARE_SPACING;
+    //     const defaultColorWidthWithoutPadding = MINIMUM_COLOR_WIDTH - COLOR_SQUARE_SPACING;
 
-        const calculatedNewWidthIsMoreThanDefaultWidth = calculatedNewWidth >= MINIMUM_COLOR_WIDTH;
+    //     const calculatedNewWidthIsMoreThanDefaultWidth = calculatedNewWidth >= MINIMUM_COLOR_WIDTH;
 
-        return calculatedNewWidthIsMoreThanDefaultWidth ? newColorWidthWithoutPadding : defaultColorWidthWithoutPadding;
-    };
+    //     return calculatedNewWidthIsMoreThanDefaultWidth ? newColorWidthWithoutPadding : defaultColorWidthWithoutPadding;
+    // };
 
     const handleResize = (event: MouseEvent) => {
         const colorIndex = resizedColorIndex.current;
@@ -508,59 +511,61 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 onMouseMove={handleResize}
                 draggable
             >
-                <div
-                    ref={colorScaleBlockInnerRef}
-                    style={{
-                        height: colorScaleHeight,
-                    }}
-                    className="tw-rounded tw-w-full tw-flex"
-                    // Note: onMouseUp and handleResize are defined here intentionally, instead of being in the DragHandle component.
-                    // The reason for this is that the dragging feature stops working if I move these to DragHandle,
-                    // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
-                    // The 'handleResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
-                    // identify which color square is being resized.
-                >
-                    <DndProvider backend={HTML5Backend}>
-                        {displayableItems.map((color: ColorProps, index: number) => {
-                            const width = color.width
-                                ? color.width
-                                : calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
+                {displayableItems.length > 0 && (
+                    <div
+                        ref={colorScaleBlockInnerRef}
+                        style={{
+                            height: colorScaleHeight,
+                        }}
+                        className="tw-rounded tw-w-full tw-flex"
+                        // Note: onMouseUp and handleResize are defined here intentionally, instead of being in the DragHandle component.
+                        // The reason for this is that the dragging feature stops working if I move these to DragHandle,
+                        // perhaps because the component is being destroyed on every re-render and causing issues with dragging.
+                        // The 'handleResizeStart' method, on the other hand, needs to stay in DragHandle, because it needs to
+                        // identify which color square is being resized.
+                    >
+                        <DndProvider backend={HTML5Backend}>
+                            {displayableItems.map((color: ColorProps, index: number) => {
+                                const width = color.width
+                                    ? color.width
+                                    : calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
 
-                            const isFirst = index === 0;
-                            const isLast = index === displayableItems.length - 1;
+                                const isFirst = index === 0;
+                                const isLast = index === displayableItems.length - 1;
 
-                            return (
-                                <div
-                                    data-test-id="color-wrapper"
-                                    className="tw-pr-[1px] tw-flex tw-group tw-relative tw-h-full"
-                                    key={color.id}
-                                >
-                                    <ColorSquare
-                                        id={color.id}
-                                        index={index}
-                                        width={currentlyDraggedColorId === color.id ? 0 : width}
-                                        height={colorScaleHeight}
-                                        className={joinClassNames([
-                                            isFirst ? COLOR_SQUARE_FIRST_ELEMENT_CLASSES : '',
-                                            isLast ? COLOR_SQUARE_LAST_ELEMENT_CLASSES : '',
-                                        ])}
-                                        color={color}
-                                        onDrop={handleDrop}
-                                        onDelete={handleColorSquareDelete}
-                                        onResizeStart={handleResizeStart}
-                                        canDragAndDrop={!resizedColorIndex.current}
-                                        isEditing={isEditing}
-                                        setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
-                                        currentlyDraggedColorId={currentlyDraggedColorId}
-                                        isLast={index === displayableItems.length - 1}
-                                        setDraggedColorWidth={setDraggedColorWidth}
-                                        draggedColorWidth={draggedColorWidth}
-                                    />
-                                </div>
-                            );
-                        })}
-                    </DndProvider>
-                </div>
+                                return (
+                                    <div
+                                        data-test-id="color-wrapper"
+                                        className="tw-pr-[1px] tw-flex tw-group tw-relative tw-h-full"
+                                        key={color.id}
+                                    >
+                                        <ColorSquare
+                                            id={color.id}
+                                            index={index}
+                                            width={currentlyDraggedColorId === color.id ? 0 : width}
+                                            height={colorScaleHeight}
+                                            className={joinClassNames([
+                                                isFirst ? COLOR_SQUARE_FIRST_ELEMENT_CLASSES : '',
+                                                isLast ? COLOR_SQUARE_LAST_ELEMENT_CLASSES : '',
+                                            ])}
+                                            color={color}
+                                            onDrop={handleDrop}
+                                            onDelete={handleColorSquareDelete}
+                                            onResizeStart={handleResizeStart}
+                                            canDragAndDrop={!resizedColorIndex.current}
+                                            isEditing={isEditing}
+                                            setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
+                                            currentlyDraggedColorId={currentlyDraggedColorId}
+                                            isLast={index === displayableItems.length - 1}
+                                            setDraggedColorWidth={setDraggedColorWidth}
+                                            draggedColorWidth={draggedColorWidth}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </DndProvider>
+                    </div>
+                )}
                 {displayableItems.length === 0 && (
                     <EmptyView
                         height={blockSettings.customHeight ? blockSettings.heightInput : blockSettings.heightSlider}
