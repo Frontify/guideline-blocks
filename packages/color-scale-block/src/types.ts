@@ -76,3 +76,7 @@ export type DragHandleProps = {
 export type EmptyViewProps = {
     height: string;
 };
+
+export type ResizeEvenlyOptions = {
+    skipResizedColors: boolean;
+};
