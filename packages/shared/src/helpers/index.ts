@@ -2,3 +2,4 @@
 
 export * from './mapToGuidelineDesignTokens';
 export * from './provideDefaultCalloutColors';
+export * from './hasRichTextValue';

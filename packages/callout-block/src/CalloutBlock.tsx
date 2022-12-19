@@ -4,6 +4,7 @@ import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-
 import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import {
+    hasRichTextValue,
     isDark,
     joinClassNames,
     radiusStyleMap,
@@ -13,7 +14,6 @@ import {
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
-import { hasRichTextValue } from './utils/hasRichTextValue';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 import { useCalloutColors } from './utils/useCalloutColors';

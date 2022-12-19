@@ -3,48 +3,15 @@
 import {
     DropdownSize,
     IconEnum,
+    appendUnit,
     betweenPixelRule,
     defineSettings,
     numericalOrPixelRule,
 } from '@frontify/guideline-blocks-settings';
+import { TextGutter, spacingValues } from './types';
 
 export const PLACEHOLDER = 'Your text here';
-export const DEFAULT_COLUMN_NUMBER = 1;
-export const DEFAULT_COLUMN_GUTTER = '24px';
-
-export const columnGutterChoices = [
-    {
-        value: DEFAULT_COLUMN_GUTTER,
-        label: 'S',
-    },
-    {
-        value: '36px',
-        label: 'M',
-    },
-    {
-        value: '60px',
-        label: 'L',
-    },
-];
-
-export const columnNumberChoices = [
-    {
-        value: DEFAULT_COLUMN_NUMBER,
-        label: `${DEFAULT_COLUMN_NUMBER}`,
-    },
-    {
-        value: 2,
-        label: '2',
-    },
-    {
-        value: 3,
-        label: '3',
-    },
-    {
-        value: 4,
-        label: '4',
-    },
-];
+const columnGutterCustomId = 'columnGutterCustom';
 
 export const settings = defineSettings({
     main: [
@@ -65,44 +32,67 @@ export const settings = defineSettings({
     ],
     layout: [
         {
-            id: 'columnsSection',
-            type: 'sectionHeading',
+            id: 'columnNumber',
+            type: 'slider',
             label: 'Columns',
-            blocks: [
+            defaultValue: '1',
+            choices: [
                 {
-                    id: 'columnNumber',
-                    type: 'slider',
-                    label: 'Number',
-                    defaultValue: DEFAULT_COLUMN_NUMBER,
-                    choices: columnNumberChoices,
+                    value: 1,
+                    label: '1',
                 },
                 {
-                    id: 'isColumnGutterCustom',
-                    label: 'Gutter',
-                    type: 'switch',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
-                    info: "An official nerd's term for 'column gap",
-                    on: [
+                    value: 2,
+                    label: '2',
+                },
+                {
+                    value: 3,
+                    label: '3',
+                },
+                {
+                    value: 4,
+                    label: '4',
+                },
+            ],
+        },
+        {
+            id: 'isColumnGutterCustom',
+            label: 'Gutter',
+            type: 'switch',
+            switchLabel: 'Custom',
+            defaultValue: false,
+            info: "An official nerd's term for 'column gap'",
+            show: (bundle) => Number(bundle.getBlock('columnNumber')?.value) > 1,
+            on: [
+                {
+                    id: columnGutterCustomId,
+                    type: 'input',
+                    defaultValue: spacingValues[TextGutter.Auto],
+                    rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
+                    onChange: (bundle) => appendUnit(bundle, columnGutterCustomId),
+                },
+            ],
+            off: [
+                {
+                    id: 'columnGutterSimple',
+                    type: 'slider',
+                    defaultValue: TextGutter.S,
+                    choices: [
                         {
-                            id: 'columnGutterCustom',
-                            type: 'input',
-                            defaultValue: DEFAULT_COLUMN_GUTTER,
-                            rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                            onChange: (bundle) => {
-                                const gutter = Number(bundle.getBlock('columnGutterCustom')?.value);
-                                if (!isNaN(gutter)) {
-                                    bundle.setBlockValue('columnGutterCustom', `${gutter}px`);
-                                }
-                            },
+                            value: TextGutter.Auto,
+                            label: TextGutter.Auto,
                         },
-                    ],
-                    off: [
                         {
-                            id: 'columnGutterSimple',
-                            type: 'slider',
-                            defaultValue: DEFAULT_COLUMN_GUTTER,
-                            choices: columnGutterChoices,
+                            value: TextGutter.S,
+                            label: TextGutter.S,
+                        },
+                        {
+                            value: TextGutter.M,
+                            label: TextGutter.M,
+                        },
+                        {
+                            value: TextGutter.L,
+                            label: TextGutter.L,
                         },
                     ],
                 },
