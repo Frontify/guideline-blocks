@@ -22,7 +22,6 @@ export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
         const embedUrl = generateSketchfabEmbedUrl(localUrl);
         if (embedUrl) {
             setBlockSettings({
-                ...blockSettings,
                 url: embedUrl,
             });
             setInputError(false);

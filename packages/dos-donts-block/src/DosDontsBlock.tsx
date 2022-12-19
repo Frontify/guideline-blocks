@@ -55,7 +55,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], [type]: value };
 
         setBlockSettings({
-            ...blockSettings,
             items: [...updatedItems],
         });
     };
