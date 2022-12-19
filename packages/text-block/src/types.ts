@@ -16,7 +16,7 @@ export enum TextGutter {
 }
 
 export const spacingValues: Record<TextGutter, string> = {
-    [TextGutter.Auto]: '30px',
+    [TextGutter.Auto]: 'normal',
     [TextGutter.S]: '10px',
     [TextGutter.M]: '30px',
     [TextGutter.L]: '50px',
