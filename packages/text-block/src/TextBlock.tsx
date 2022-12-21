@@ -15,7 +15,8 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
 
-    const onTextChange = (value: string) => setBlockSettings({ content: value });
+    const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
+
     return (
         <div
             data-test-id="text-block"
@@ -37,6 +38,7 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
                 placeholder={isEditing ? PLACEHOLDER : undefined}
                 readonly={!isEditing}
                 onTextChange={onTextChange}
+                onBlur={onTextChange}
             />
         </div>
     );

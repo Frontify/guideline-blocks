@@ -69,7 +69,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
 
-    const onTextChange = (value: string) => setBlockSettings({ textValue: value });
+    const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
 
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
@@ -92,6 +92,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                 )}
                 <RichTextEditor
                     onTextChange={onTextChange}
+                    onBlur={onTextChange}
                     readonly={!isEditing}
                     value={blockSettings.textValue}
                     placeholder="Type your text here"
