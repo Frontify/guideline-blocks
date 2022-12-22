@@ -112,15 +112,17 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
         detectIfAddColorShouldBeDisabled(colorListWithoutDeletedColor);
 
-        const updatedColors = colorListWithoutDeletedColor.map((color) => {
-            if (!color.resized) {
-                return {
-                    ...color,
-                    width: !color.resized && newWidthForUnresizedColors ? newWidthForUnresizedColors : color.width,
-                };
-            }
-            return color;
-        });
+        const updatedColors = fillEmptySpace(
+            colorListWithoutDeletedColor.map((color) => {
+                if (!color.resized) {
+                    return {
+                        ...color,
+                        width: !color.resized && newWidthForUnresizedColors ? newWidthForUnresizedColors : color.width,
+                    };
+                }
+                return color;
+            })
+        );
 
         setBlockSettings({ colorInput: updatedColors });
         setDisplayableItems(updatedColors);
@@ -155,12 +157,14 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
         detectIfAddColorShouldBeDisabled(colorListWithNewColor);
 
-        const updatedColors = colorListWithNewColor.map((color) => {
-            return {
-                ...color,
-                width: !color.resized && newWidthForUnresizedColors ? newWidthForUnresizedColors : color.width,
-            };
-        });
+        const updatedColors = fillEmptySpace(
+            colorListWithNewColor.map((color) => {
+                return {
+                    ...color,
+                    width: !color.resized && newWidthForUnresizedColors ? newWidthForUnresizedColors : color.width,
+                };
+            })
+        );
 
         setDisplayableItems(updatedColors);
         setBlockSettings({
@@ -186,6 +190,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         const colorScaleBlockWidth =
             (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
             COLOR_SCALE_BLOCK_BORDER_WIDTH -
+            COLOR_SQUARE_SPACING -
             COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
 
         let pixelsTakenByColorSquares = 0;
@@ -194,16 +199,12 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const lastColorInBlock = index === colorArray.length - 1;
 
             if (!lastColorInBlock) {
-                pixelsTakenByColorSquares += color.width;
+                pixelsTakenByColorSquares += color.width + COLOR_SQUARE_SPACING;
             } else {
                 return {
                     ...color,
                     resized: color.resized,
-                    width:
-                        colorScaleBlockWidth -
-                        pixelsTakenByColorSquares -
-                        COLOR_SCALE_BLOCK_BORDER_WIDTH -
-                        COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING,
+                    width: color.resized ? color.width : colorScaleBlockWidth - pixelsTakenByColorSquares,
                 };
             }
 
@@ -224,7 +225,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
             COLOR_SCALE_BLOCK_BORDER_WIDTH -
             COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING -
-            5;
+            COLOR_SQUARE_SPACING * colorArray.length -
+            1;
 
         let pixelsTakenByColorSquares = 0;
 
@@ -253,7 +255,10 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         }
 
         const blockWidth =
-            colorScaleBlockRef.current.getBoundingClientRect().width - COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
+            colorScaleBlockRef.current.getBoundingClientRect().width -
+            COLOR_SQUARE_SPACING * colorArray.length -
+            COLOR_SCALE_BLOCK_BORDER_WIDTH -
+            COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
 
         const blockWidthExcludingResizedColors = blockWidth - resizedColorsTotalWidth;
 
