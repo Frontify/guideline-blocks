@@ -29,6 +29,7 @@ import { EmptyView } from './components/EmptyView';
 import {
     COLOR_SCALE_BLOCK_BORDER_WIDTH,
     COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING,
+    COLOR_SQUARE_SPACING,
     MINIMUM_COLOR_WIDTH,
     calculateDefaultColorWidth,
     resizeEvenly,
@@ -51,6 +52,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const resizeStartPos = useRef<Nullable<number>>();
     const resizeStartWidth = useRef<Nullable<number>>();
     const lastDragPos = useRef<Nullable<number>>();
+    const [addColorDisabled, setAddColorDisabled] = useState(false);
     const positionWhereSiblingColorNeededResizing = useRef<number>(0);
     const originalSiblingColorWidthBeforeResizing = useRef<number>(0);
     const [draggedColorWidth, setDraggedColorWidth] = useState<Nullable<number>>(null);
@@ -106,19 +108,19 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const handleColorSquareDelete = (id: number) => {
         const colorListWithoutDeletedColor = displayableItems.filter((item) => item.id !== id);
 
-        // const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithoutDeletedColor);
+        const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithoutDeletedColor);
 
-        const updatedColors = resizeEvenly(colorListWithoutDeletedColor, colorScaleBlockRef);
+        detectIfAddColorShouldBeDisabled(colorListWithoutDeletedColor);
 
-        // const updatedColors = colorListWithoutDeletedColor.map((color) => {
-        //     if (!color.resized) {
-        //         return {
-        //             ...color,
-        //             width: newWidthForUnresizedColors ?? color.width,
-        //         };
-        //     }
-        //     return color;
-        // });
+        const updatedColors = colorListWithoutDeletedColor.map((color) => {
+            if (!color.resized) {
+                return {
+                    ...color,
+                    width: !color.resized && newWidthForUnresizedColors ? newWidthForUnresizedColors : color.width,
+                };
+            }
+            return color;
+        });
 
         setBlockSettings({ colorInput: updatedColors });
         setDisplayableItems(updatedColors);
@@ -149,16 +151,16 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             id,
         });
 
-        // const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithNewColor);
+        const newWidthForUnresizedColors = calculateNewWidthForColors(colorListWithNewColor);
 
-        const updatedColors = resizeEvenly(colorListWithNewColor, colorScaleBlockRef);
+        detectIfAddColorShouldBeDisabled(colorListWithNewColor);
 
-        // const updatedColors = colorListWithNewColor.map((color) => {
-        //     return {
-        //         ...color,
-        //         width: newWidthForUnresizedColors ?? color.width,
-        //     };
-        // });
+        const updatedColors = colorListWithNewColor.map((color) => {
+            return {
+                ...color,
+                width: !color.resized && newWidthForUnresizedColors ? newWidthForUnresizedColors : color.width,
+            };
+        });
 
         setDisplayableItems(updatedColors);
         setBlockSettings({
@@ -237,46 +239,38 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         return false;
     };
 
-    // const calculateNewWidthForColors = (colorArray: ColorProps[]) => {
-    //     if (colorScaleBlockRef.current === null) {
-    //         return;
-    //     }
+    const getBlockWidthExcludingResizedColors = (colorArray: ColorProps[]) => {
+        if (colorScaleBlockRef.current === null) {
+            return;
+        }
 
-    //     const unresizedColors = colorArray.filter((color) => color);
+        let resizedColorsTotalWidth = 0;
 
-    //     const numberOfUnresizedColors = unresizedColors.length;
+        for (const color in colorArray) {
+            if (colorArray[color].resized) {
+                resizedColorsTotalWidth += colorArray[color].width + COLOR_SQUARE_SPACING;
+            }
+        }
 
-    //     let unresizedColorsTotalWidth = 0;
-    //     let resizedColorsTotalWidth = 0;
+        const blockWidth =
+            colorScaleBlockRef.current.getBoundingClientRect().width - COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
 
-    //     for (const color in colorArray) {
-    //         if (!colorArray[color].resized) {
-    //             unresizedColorsTotalWidth += unresizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
-    //         } else {
-    //             resizedColorsTotalWidth += resizedColorsTotalWidth + colorArray[color].width + COLOR_SQUARE_SPACING;
-    //         }
-    //     }
+        const blockWidthExcludingResizedColors = blockWidth - resizedColorsTotalWidth;
 
-    //     const blockWidth =
-    //         colorScaleBlockRef.current.getBoundingClientRect().width - COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
-    //     const takenWidth = colorArray.reduce((prevWidth, item) => prevWidth + item.width + COLOR_SQUARE_SPACING, 0);
-    //     const emptySpace = blockWidth - takenWidth;
+        return blockWidthExcludingResizedColors;
+    };
 
-    //     const spaceToDivide =
-    //         unresizedColorsTotalWidth > blockWidth
-    //             ? blockWidth - resizedColorsTotalWidth
-    //             : unresizedColorsTotalWidth + emptySpace;
+    const calculateNewWidthForColors = (colorArray: ColorProps[]) => {
+        const blockWidthExcludingResizedColors = getBlockWidthExcludingResizedColors(colorArray);
 
-    //     const calculatedNewWidth = colorArray.length > 0 ? spaceToDivide / numberOfUnresizedColors : blockWidth;
+        const unresizedColors = colorArray.filter((color) => !color.resized);
 
-    //     const newColorWidthWithoutPadding = calculatedNewWidth - COLOR_SQUARE_SPACING;
+        const numberOfUnresizedColors = unresizedColors.length;
 
-    //     const defaultColorWidthWithoutPadding = MINIMUM_COLOR_WIDTH - COLOR_SQUARE_SPACING;
+        const calculatedNewWidth = (blockWidthExcludingResizedColors ?? 0) / numberOfUnresizedColors;
 
-    //     const calculatedNewWidthIsMoreThanDefaultWidth = calculatedNewWidth >= MINIMUM_COLOR_WIDTH;
-
-    //     return calculatedNewWidthIsMoreThanDefaultWidth ? newColorWidthWithoutPadding : defaultColorWidthWithoutPadding;
-    // };
+        return calculatedNewWidth;
+    };
 
     const handleResize = (event: MouseEvent) => {
         const colorIndex = resizedColorIndex.current;
@@ -346,6 +340,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 return color;
             });
 
+            detectIfAddColorShouldBeDisabled(displayableItemsWithCurrentColorResized);
+
             if (!siblingNeedsShrinking) {
                 setDisplayableItems(fillEmptySpace(displayableItemsWithCurrentColorResized));
 
@@ -361,7 +357,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                         //         : MINIMUM_COLOR_WIDTH;
                         return {
                             ...siblingColor,
-                            resized: true,
+                            resized: false,
                             width: siblingColor.width - 2,
                         };
                     }
@@ -426,6 +422,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 return color;
             });
 
+            detectIfAddColorShouldBeDisabled(displayableItemsWithCurrentColorResized);
+
             if (!siblingNeedsShrinking) {
                 // if (detectIfSquaresTooWide(displayableItemsWithCurrentColorResized)) {
                 //     handleResizeStop();
@@ -452,7 +450,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                         //         : MINIMUM_COLOR_WIDTH;
                         return {
                             ...siblingColor,
-                            resized: true,
+                            resized: false,
                             width: siblingColor.width - 2,
                         };
                     }
@@ -467,6 +465,21 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             // }
 
             setDisplayableItems(displayableItemsWithRightSiblingResized);
+        }
+    };
+
+    const detectIfAddColorShouldBeDisabled = (colorArray: ColorProps[]) => {
+        const blockWidthExcludingResizedColors = getBlockWidthExcludingResizedColors(colorArray) ?? 0;
+
+        const noMoreRoomForAdditionalColor =
+            blockWidthExcludingResizedColors / (colorArray.length + 1) < MINIMUM_COLOR_WIDTH;
+
+        if (noMoreRoomForAdditionalColor && addColorDisabled === false) {
+            setAddColorDisabled(true);
+        }
+
+        if (!noMoreRoomForAdditionalColor && addColorDisabled === true) {
+            setAddColorDisabled(false);
         }
     };
 
@@ -602,6 +615,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                 inverted={false}
                                 size={ButtonSize.Small}
                                 icon={<IconPlus12 />}
+                                disabled={addColorDisabled}
                             >
                                 Add Color
                             </Button>
