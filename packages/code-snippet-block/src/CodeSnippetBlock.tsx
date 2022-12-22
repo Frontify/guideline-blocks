@@ -143,7 +143,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         )}
                         <button
                             data-test-id="header-copy-button"
-                            className="tw-items-center tw-justify-end tw-gap-1 tw-hidden group-hover/copy:tw-flex"
+                            className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
                             style={getStyle()}
                             onClick={handleCopy}
                         >
