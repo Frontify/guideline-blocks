@@ -1,38 +1,23 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    DropdownSize,
-    IconEnum,
     appendUnit,
     betweenPixelRule,
     defineSettings,
     numericalOrPixelRule,
+    presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 import { TextGutter, spacingValues } from './types';
 
 export const PLACEHOLDER = 'Your text here';
-const columnGutterCustomId = 'columnGutterCustom';
+const CUSTOM_GUTTER_ID = 'columnGutterCustom';
+const SIMPLE_GUTTER_ID = 'columnGutterSimple';
+const COLUMN_NR_ID = 'columnNumber';
 
 export const settings = defineSettings({
-    main: [
-        {
-            id: 'main-dropdown',
-            type: 'dropdown',
-            defaultValue: 'text',
-            size: DropdownSize.Large,
-            disabled: true,
-            choices: [
-                {
-                    value: 'text',
-                    icon: IconEnum.TextAlignmentLeft,
-                    label: 'Text',
-                },
-            ],
-        },
-    ],
     layout: [
         {
-            id: 'columnNumber',
+            id: COLUMN_NR_ID,
             type: 'slider',
             label: 'Columns',
             defaultValue: '1',
@@ -62,21 +47,22 @@ export const settings = defineSettings({
             switchLabel: 'Custom',
             defaultValue: false,
             info: "An official nerd's term for 'column gap'",
-            show: (bundle) => Number(bundle.getBlock('columnNumber')?.value) > 1,
+            onChange: (bundle) => presetCustomValue(bundle, SIMPLE_GUTTER_ID, CUSTOM_GUTTER_ID, spacingValues),
+            show: (bundle) => Number(bundle.getBlock(COLUMN_NR_ID)?.value) > 1,
             on: [
                 {
-                    id: columnGutterCustomId,
+                    id: CUSTOM_GUTTER_ID,
                     type: 'input',
                     defaultValue: spacingValues[TextGutter.Auto],
                     rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                    onChange: (bundle) => appendUnit(bundle, columnGutterCustomId),
+                    onChange: (bundle) => appendUnit(bundle, CUSTOM_GUTTER_ID),
                 },
             ],
             off: [
                 {
-                    id: 'columnGutterSimple',
+                    id: SIMPLE_GUTTER_ID,
                     type: 'slider',
-                    defaultValue: TextGutter.S,
+                    defaultValue: TextGutter.Auto,
                     choices: [
                         {
                             value: TextGutter.Auto,
