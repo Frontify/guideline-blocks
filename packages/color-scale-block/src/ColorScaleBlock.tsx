@@ -10,8 +10,6 @@ import {
     ButtonEmphasis,
     ButtonGroup,
     ButtonSize,
-    ButtonStyle,
-    ButtonType,
     Color,
     DropZonePosition,
     IconArrowStretchBox12,
@@ -542,10 +540,11 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                     >
                         <DndProvider backend={HTML5Backend}>
                             {displayableItems.map((color: ColorProps, index: number) => {
-                                const width = color.width
-                                    ? color.width
-                                    : calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
-
+                                const width =
+                                    currentlyDraggedColorId === color.id
+                                        ? 0
+                                        : color.width ??
+                                          calculateDefaultColorWidth(displayableItems.length, colorScaleBlockRef);
                                 const isFirst = index === 0;
                                 const isLast = index === displayableItems.length - 1;
 
@@ -572,7 +571,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                             isEditing={isEditing}
                                             setCurrentlyDraggedColorId={setCurrentlyDraggedColorId}
                                             currentlyDraggedColorId={currentlyDraggedColorId}
-                                            isLast={index === displayableItems.length - 1}
+                                            isLast={isLast}
                                             setDraggedColorWidth={setDraggedColorWidth}
                                             draggedColorWidth={draggedColorWidth}
                                         />
@@ -593,12 +592,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 <div data-test-id="color-scale-block-editor-mode-buttons" className="tw-text-right">
                     <ButtonGroup size={ButtonSize.Small}>
                         <Button
-                            type={ButtonType.Button}
-                            solid
-                            inverted={false}
                             emphasis={ButtonEmphasis.Default}
                             onClick={handleResizeEvenly}
-                            style={ButtonStyle.Default}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}
                             disabled={blockSettings?.colorInput?.length < 2}
@@ -612,12 +607,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                             colorPickerFlyoutPalettes={colorPickerPalettes}
                         >
                             <Button
-                                type={ButtonType.Button}
-                                solid
                                 emphasis={ButtonEmphasis.Default}
                                 onClick={handleColorPickerFlyoutTrigger}
-                                style={ButtonStyle.Default}
-                                inverted={false}
                                 size={ButtonSize.Small}
                                 icon={<IconPlus12 />}
                                 disabled={addColorDisabled}
