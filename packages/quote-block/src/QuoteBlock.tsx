@@ -60,7 +60,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const showAuthor = blockSettings.showAuthor && blockSettings.authorName;
     const sizeValue = blockSettings.sizeValue || quoteSizeMap[QuoteSize.LargeSize];
 
-    const onChangeContent = (value: string) => setBlockSettings({ content: value });
+    const onChangeContent = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
 
     const getWrapperClasses = () => {
         if (isFullWidth) {
@@ -109,6 +109,7 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                             placeholder={isEditing ? 'Add your quote text here' : undefined}
                             value={blockSettings.content ?? DEFAULT_CONTENT_VALUE}
                             onTextChange={onChangeContent}
+                            onBlur={onChangeContent}
                             plugins={customPlugins}
                             readonly={!isEditing}
                         />
