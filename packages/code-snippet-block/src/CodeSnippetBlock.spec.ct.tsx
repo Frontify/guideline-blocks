@@ -148,3 +148,64 @@ it('switches language from dropdown inside block', () => {
     cy.get('[data-test-id=menu-item]').eq(9).click({ force: true });
     cy.get('[data-test-id=menu-item-title]').first().contains('JavaScript');
 });
+
+it('can copy using the copy button in the header', () => {
+    const content = 'const a = 1;';
+
+    const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
+        editorState: true,
+        blockSettings: {
+            withHeading: true,
+            language: 'javascript',
+            content,
+        },
+    });
+
+    mount(<CodeSnippetWithStubs />);
+
+    cy.get('[data-test-id=header-copy-button]').should('be.visible');
+    cy.get('[data-test-id=header-copy-button]').contains('Copy');
+    cy.get('[data-test-id=header-copy-button]').click();
+    cy.window()
+        .its('navigator.clipboard')
+        .invoke('readText')
+        .then((text) => {
+            expect(text).to.eq(content);
+        });
+    cy.get('[data-test-id=header-copy-button]').contains('Copied');
+});
+
+it('can copy using the copy button without a header', () => {
+    const content = `const counter = function() {
+        let count = 0;
+        return function() {
+            return ++count;
+        }
+    };`;
+
+    const [CodeSnippetWithStubs] = withAppBridgeBlockStubs(CodeSnippetBlock, {
+        editorState: true,
+        blockSettings: {
+            language: 'javascript',
+            content,
+        },
+    });
+
+    mount(<CodeSnippetWithStubs />);
+
+    cy.get('[data-test-id=copy-button]').should('not.be.visible');
+    cy.get('[data-test-id=tooltip]').should('not.exist');
+    cy.get('[data-test-id=code-snippet-block]').realHover();
+    cy.get('[data-test-id=copy-button]').should('be.visible');
+    cy.get('[data-test-id=copy-button]').realHover();
+    cy.get('[data-test-id=tooltip]').should('exist');
+    cy.get('[data-test-id=tooltip]').contains('Copy to clipboard');
+    cy.get('[data-test-id=copy-button]').click();
+    cy.window()
+        .its('navigator.clipboard')
+        .invoke('readText')
+        .then((text) => {
+            expect(text).to.eq(content);
+        });
+    cy.get('[data-test-id=tooltip]').contains('Copied');
+});

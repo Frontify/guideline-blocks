@@ -1,0 +1,6 @@
+/* Hide cursor in readonly fields
+   see https://codemirror.net/examples/styling/#things-you-can-style
+*/
+.CodeMirror-readonly .cm-cursorLayer {
+    display: none !important;
+}
