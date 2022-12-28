@@ -6,11 +6,9 @@ import { calculateDefaultColorWidth } from './calculateDefaultColorWidth';
 export const resizeEvenly = (unfilteredList: ColorProps[], colorScaleBlockRef: ColorScaleBlockRef) => {
     const defaultWidth = calculateDefaultColorWidth(unfilteredList.length, colorScaleBlockRef);
 
-    return unfilteredList.map((item) => {
-        return {
-            ...item,
-            width: defaultWidth,
-            resized: false,
-        };
-    });
+    return unfilteredList.map((item) => ({
+        ...item,
+        width: defaultWidth,
+        resized: false,
+    }));
 };
