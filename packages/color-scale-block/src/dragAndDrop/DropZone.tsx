@@ -43,7 +43,27 @@ export const DropZone = ({
     // When dragging is happening and another square is hovered over this one
     const activeOuterDropZoneClassNames = 'tw-absolute tw-z-[100] tw-h-[96px] tw-w-1/2 tw-bg-clip-content';
     const bgColorClassName = 'tw-bg-violet-20';
-    const afterClassNames = 'tw-right-0';
+
+    const rightSideDropZoneClassNames = 'tw-right-0';
+
+    const visibleDropZonePersistentClasses = 'drop-zone-offset tw-relative tw-rounded-[3px]';
+    const visibleDropZoneActiveClasses = 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]';
+
+    const invisibleDropZonePersistentClasses = 'tw-top-[0px] tw-bottom-0 tw-h-full';
+
+    const visibleDropZoneClassNames = joinClassNames([
+        visibleDropZonePersistentClasses,
+        bgColorClassName,
+        isActive && visibleDropZoneActiveClasses,
+    ]);
+
+    const invisiblePersistentDropZone = joinClassNames([
+        invisibleDropZonePersistentClasses,
+        data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
+        isActive && data.position !== DropZonePosition.Within && activeOuterDropZoneClassNames,
+        isActive && data.position === DropZonePosition.Within && bgColorClassName,
+        isDraggingActive ? isDraggingActiveClassNames : isDraggingNotActiveClassNames,
+    ]);
 
     const DROP_ZONE_BOTTOM_SPACING = 2;
 
@@ -56,22 +76,12 @@ export const DropZone = ({
                             width: isActive ? `${width}px` : '0px',
                             height: `${height - DROP_ZONE_BOTTOM_SPACING}px`,
                         }}
-                        className={joinClassNames([
-                            'drop-zone-offset tw-transition-all tw-relative tw-rounded-[3px]',
-                            bgColorClassName,
-                            isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]',
-                        ])}
+                        className={visibleDropZoneClassNames}
                     />
                     <div
                         aria-hidden={!isActive}
                         data-test-id="drop-zone"
-                        className={joinClassNames([
-                            'tw-top-[0px] tw-bottom-0 tw-h-full',
-                            data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
-                            isActive && data.position !== DropZonePosition.Within && activeOuterDropZoneClassNames,
-                            isActive && data.position === DropZonePosition.Within && bgColorClassName,
-                            isDraggingActive ? isDraggingActiveClassNames : isDraggingNotActiveClassNames,
-                        ])}
+                        className={invisiblePersistentDropZone}
                         ref={drop}
                     />
                 </>
@@ -81,14 +91,7 @@ export const DropZone = ({
                     <div
                         aria-hidden={!isActive}
                         data-test-id="drop-zone"
-                        className={joinClassNames([
-                            'tw-top-[0px] tw-bottom-0 tw-h-full',
-                            afterClassNames,
-                            data.position !== DropZonePosition.Within ? outerDropZoneClassNames : 'tw-h-auto',
-                            isActive && data.position !== DropZonePosition.Within && activeOuterDropZoneClassNames,
-                            isActive && data.position === DropZonePosition.Within && bgColorClassName,
-                            isDraggingActive ? isDraggingActiveClassNames : isDraggingNotActiveClassNames,
-                        ])}
+                        className={joinClassNames([rightSideDropZoneClassNames, invisiblePersistentDropZone])}
                         ref={drop}
                     />
                     <div
@@ -96,11 +99,7 @@ export const DropZone = ({
                             width: isActive ? `${width}px` : '0px',
                             height: `${height - DROP_ZONE_BOTTOM_SPACING}px`,
                         }}
-                        className={joinClassNames([
-                            'drop-zone-offset tw-transition-all tw-relative tw-rounded-[3px]',
-                            bgColorClassName,
-                            isActive && 'tw-border-violet-60 tw-border-dashed tw-border-2 tw-top-[0px] tw-m-[1px]',
-                        ])}
+                        className={visibleDropZoneClassNames}
                     />
                 </>
             )}

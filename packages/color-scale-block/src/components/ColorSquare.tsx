@@ -19,7 +19,6 @@ import { TooltipContent } from './TooltipContent';
 import { ColorSquareProps } from '../types';
 import { DropZone } from '../dragAndDrop/DropZone';
 import {
-    DROP_ZONE_WIDTH,
     MINIMUM_WIDTH_TO_SHOW_TRASH_ICON_AT_FURTHEST_RIGHT_POSITION,
     MINIMUM_WIDTH_TO_SHOW_TRASH_ICON_AT_NEGATIVE_RIGHT_POSITION,
 } from '../helpers';
@@ -155,7 +154,7 @@ export const ColorSquare = ({
                 key={`orderable-list-item-${color.id}-after`}
                 height={parseInt(height)}
                 after
-                width={DROP_ZONE_WIDTH}
+                width={draggedColorWidth}
                 isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                 data={{
                     targetItem: color,

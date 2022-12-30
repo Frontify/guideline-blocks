@@ -47,14 +47,11 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false);
     const [displayableItems, setDisplayableItems] = useState<ColorProps[]>(blockSettings.colorInput ?? []);
     const colorScaleBlockRef = useRef<HTMLDivElement>(null);
-    const colorScaleBlockInnerRef = useRef<HTMLDivElement>(null);
     const resizedColorIndex = useRef<Nullable<number>>();
     const resizeStartPos = useRef<Nullable<number>>();
     const resizeStartWidth = useRef<Nullable<number>>();
     const lastDragPos = useRef<Nullable<number>>();
     const [addColorDisabled, setAddColorDisabled] = useState(false);
-    const positionWhereSiblingColorNeededResizing = useRef<number>(0);
-    const originalSiblingColorWidthBeforeResizing = useRef<number>(0);
     const [draggedColorWidth, setDraggedColorWidth] = useState<Nullable<number>>(null);
     const resizedSiblingIndex = useRef<Nullable<number>>();
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
@@ -186,9 +183,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 colorInput: displayableItems,
             });
         }, 500);
-
-        positionWhereSiblingColorNeededResizing.current = 0;
-        originalSiblingColorWidthBeforeResizing.current = 0;
     };
 
     const fillEmptySpace = (colorArray: ColorProps[]) => {
@@ -276,26 +270,9 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
             const nextResizeableSiblingIndex = colorsBeforeCurrentColorThatCanBeResized.length - 1;
 
-            if (nextResizeableSiblingIndex !== resizedSiblingIndex.current) {
-                positionWhereSiblingColorNeededResizing.current = 0;
-                originalSiblingColorWidthBeforeResizing.current = 0;
-                resizedSiblingIndex.current = nextResizeableSiblingIndex;
-            }
-
-            // let movementSinceSiblingNeededResizing = 0;
-
-            if (siblingNeedsShrinking && !positionWhereSiblingColorNeededResizing.current) {
-                positionWhereSiblingColorNeededResizing.current = event.clientX;
-                originalSiblingColorWidthBeforeResizing.current = displayableItems[nextResizeableSiblingIndex].width;
-            }
-
-            // movementSinceSiblingNeededResizing = positionWhereSiblingColorNeededResizing.current - event.clientX;
-
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (index === colorIndex && !siblingNeedsShrinking && color.width > MINIMUM_COLOR_WIDTH) {
                     color.resized = true;
-
-                    // const newWidth = (resizeStartWidth.current ?? 0) - movementSinceStart;
 
                     color.width -= 2;
                 }
@@ -351,29 +328,14 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             );
 
             if (nextResizeableSiblingIndex !== resizedSiblingIndex.current) {
-                positionWhereSiblingColorNeededResizing.current = 0;
-                originalSiblingColorWidthBeforeResizing.current = 0;
                 resizedSiblingIndex.current = nextResizeableSiblingIndex;
             }
 
             const siblingNeedsShrinking = !freeSpaceExists && nextResizeableSiblingIndex !== -1;
 
-            // let movementSinceSiblingNeededResizing = 0;
-
-            if (siblingNeedsShrinking && !positionWhereSiblingColorNeededResizing.current) {
-                positionWhereSiblingColorNeededResizing.current = event.clientX;
-                originalSiblingColorWidthBeforeResizing.current = displayableItems[nextResizeableSiblingIndex].width;
-            }
-
-            // movementSinceSiblingNeededResizing = event.clientX - positionWhereSiblingColorNeededResizing.current;
-
             const siblingsCannotBeResized = !freeSpaceExists && nextResizeableSiblingIndex === -1;
 
             const canResizeToTheRight = freeSpaceExists || siblingNeedsShrinking;
-
-            // if (!canResizeToTheRight) {
-            //     return;
-            // }
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (canResizeToTheRight && index === colorIndex) {
@@ -466,7 +428,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             >
                 {displayableItems.length > 0 && (
                     <div
-                        ref={colorScaleBlockInnerRef}
                         style={{
                             height: colorScaleHeight,
                         }}
