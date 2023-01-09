@@ -60,13 +60,12 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         avatar,
     } = blockSettings;
 
-    const saveNote = (value: string) => {
+    const saveNote = (value: string) =>
+        value !== blockSettings.note &&
         setBlockSettings({
-            ...blockSettings,
             note: value,
             dateEdited: new Date().toString(),
         });
-    };
 
     useEffect(() => {
         async function getUserData() {
@@ -75,7 +74,6 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     const { id, name, image } = data;
                     if (!createdByUser) {
                         setBlockSettings({
-                            ...blockSettings,
                             createdByUser: id,
                             username: name,
                             avatar: image?.image || '',
@@ -114,6 +112,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                 designTokens={designTokens ?? undefined}
                 value={note}
                 onTextChange={saveNote}
+                onBlur={saveNote}
                 placeholder="Write personal note here ..."
                 readonly={!isEditing}
             />

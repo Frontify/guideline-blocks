@@ -64,6 +64,84 @@ export const settings = defineSettings({
             mode: AssetInputMode.BrowseOnly,
         },
     ],
+    layout: [
+        {
+            id: HAS_LIMITED_OPTIONS,
+            type: 'switch',
+            label: 'Image fixed height',
+            defaultValue: true,
+            info: 'The image uploaded will have the same height as in your Figma file.',
+            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+        },
+        {
+            id: 'isCustomHeight',
+            type: 'switch',
+            label: 'Height',
+            switchLabel: 'Custom',
+            defaultValue: false,
+            show: (bundle) =>
+                bundle.getBlock(HAS_LIMITED_OPTIONS)?.value === false ||
+                bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Live,
+            on: [
+                {
+                    id: HEIGHT_VALUE_ID,
+                    type: 'input',
+                    placeholder: '50px',
+                    defaultValue: heights[HeightChoices.Small],
+                    onChange: (bundle) => {
+                        appendUnit(bundle, HEIGHT_VALUE_ID);
+                    },
+                    rules: [minimumNumericalOrPixelOrAutoRule(50)],
+                },
+            ],
+            off: [
+                {
+                    id: HEIGHT_CHOICE_ID,
+                    type: 'slider',
+                    defaultValue: HeightChoices.Medium,
+                    choices: [
+                        {
+                            value: HeightChoices.Small,
+                            label: 'S',
+                        },
+                        {
+                            value: HeightChoices.Medium,
+                            label: 'M',
+                        },
+                        {
+                            value: HeightChoices.Large,
+                            label: 'L',
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: 'allowFullScreen',
+            type: 'switch',
+            label: 'Allow full screen',
+            defaultValue: true,
+            show: (bundle) =>
+                bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image &&
+                !bundle.getBlock(HAS_LIMITED_OPTIONS)?.value,
+        },
+        {
+            id: 'allowZooming',
+            type: 'switch',
+            label: 'Allow zooming',
+            defaultValue: true,
+            show: (bundle) =>
+                bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image &&
+                !bundle.getBlock(HAS_LIMITED_OPTIONS)?.value,
+        },
+        {
+            id: SHOW_FIGMA_LINK_ID,
+            type: 'switch',
+            label: 'Show Figma Link',
+            defaultValue: true,
+            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
+        },
+    ],
     style: [
         {
             id: HAS_BACKGROUND_ID,
@@ -132,81 +210,6 @@ export const settings = defineSettings({
         {
             ...getBorderRadiusSettings(),
             show: (bundle: Bundle): boolean => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
-        },
-    ],
-    layout: [
-        {
-            id: SHOW_FIGMA_LINK_ID,
-            type: 'switch',
-            label: 'Show Figma Link',
-            defaultValue: true,
-            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
-        },
-        {
-            id: 'allowFullScreen',
-            type: 'switch',
-            label: 'Allow full screen',
-            defaultValue: true,
-        },
-        {
-            id: 'allowZooming',
-            type: 'switch',
-            label: 'Allow zooming',
-            defaultValue: true,
-            show: (bundle) =>
-                bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image &&
-                !bundle.getBlock(HAS_LIMITED_OPTIONS)?.value,
-        },
-        {
-            id: HAS_LIMITED_OPTIONS,
-            type: 'switch',
-            label: 'Image fixed height',
-            defaultValue: true,
-            info: 'The image uploaded will have the same height as in your Figma file.',
-            show: (bundle) => bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Image,
-        },
-        {
-            id: 'isCustomHeight',
-            type: 'switch',
-            label: 'Height',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            show: (bundle) =>
-                bundle.getBlock(HAS_LIMITED_OPTIONS)?.value === false ||
-                bundle.getBlock(PREVIEW_MODE)?.value === BlockPreview.Live,
-            on: [
-                {
-                    id: HEIGHT_VALUE_ID,
-                    type: 'input',
-                    placeholder: '50px',
-                    defaultValue: heights[HeightChoices.Small],
-                    onChange: (bundle) => {
-                        appendUnit(bundle, HEIGHT_VALUE_ID);
-                    },
-                    rules: [minimumNumericalOrPixelOrAutoRule(50)],
-                },
-            ],
-            off: [
-                {
-                    id: HEIGHT_CHOICE_ID,
-                    type: 'slider',
-                    defaultValue: HeightChoices.Medium,
-                    choices: [
-                        {
-                            value: HeightChoices.Small,
-                            label: 'S',
-                        },
-                        {
-                            value: HeightChoices.Medium,
-                            label: 'M',
-                        },
-                        {
-                            value: HeightChoices.Large,
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
         },
     ],
 });
