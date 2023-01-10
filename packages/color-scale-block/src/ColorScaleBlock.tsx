@@ -56,11 +56,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const resizedSiblingIndex = useRef<Nullable<number>>();
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
-    // on trigger element his event onMouseMove => you would set target element to observe, in handleResize you would resize that element via the DOM style prop,
-    // that resize will trigger resizeObserver in resizeObserver you would update siblings widths and after resizing stoped and timer passed
-    // you would update blockSettings.
-    // you should need only one ref for observer to subscribe and nothing else.
-
     useEffect(() => {
         setColorPickerPalettes(
             appBridgePalettes.map((palette) => {
@@ -186,16 +181,17 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const fillEmptySpace = (colorArray: ColorProps[]) => {
-        const colorScaleBlockWidth =
-            (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
-            COLOR_SCALE_BLOCK_BORDER_WIDTH -
-            COLOR_SQUARE_SPACING -
-            COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
+        const colorScaleBlockWidth = colorScaleBlockRef?.current?.getBoundingClientRect().width
+            ? colorScaleBlockRef?.current?.getBoundingClientRect().width -
+              COLOR_SCALE_BLOCK_BORDER_WIDTH -
+              COLOR_SQUARE_SPACING -
+              COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING
+            : 0;
 
         let pixelsTakenByColorSquares = 0;
 
         return colorArray.map((color, index) => {
-            if (!(index === colorArray.length - 1)) {
+            if (index !== colorArray.length - 1) {
                 pixelsTakenByColorSquares += color.width + COLOR_SQUARE_SPACING;
             } else {
                 return {
@@ -258,8 +254,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 return;
             }
 
-            // const movementSinceStart = resizeStartPos.current - event.clientX;
-
             const siblingNeedsShrinking = displayableItems[colorIndex].width <= MINIMUM_COLOR_WIDTH;
 
             const colorsBeforeCurrent = displayableItems?.filter((_, index) => index < colorIndex);
@@ -291,10 +285,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             const displayableItemsWithLeftSiblingResized = displayableItemsWithCurrentColorResized.map(
                 (siblingColor, index) => {
                     if (siblingNeedsShrinking && index === nextResizeableSiblingIndex) {
-                        // const siblingWidth =
-                        //     siblingColor.width >= MINIMUM_COLOR_WIDTH
-                        //         ? originalSiblingColorWidthBeforeResizing.current - movementSinceSiblingNeededResizing
-                        //         : MINIMUM_COLOR_WIDTH;
                         return {
                             ...siblingColor,
                             resized: false,
@@ -311,15 +301,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
         if (resizingToTheRight) {
             lastDragPos.current = event.clientX;
-
-            // const movementSinceStart = event.clientX - (resizeStartPos.current ?? 0);
-
-            // const colorScaleBlockInnerWidth = colorScaleBlockInnerRef?.current?.getBoundingClientRect().width ?? 0;
-
-            // const colorScaleBlockWidth =
-            //     (colorScaleBlockRef?.current?.getBoundingClientRect().width ?? 0) -
-            //     COLOR_SCALE_BLOCK_BORDER_WIDTH -
-            //     COLOR_SCALE_BLOCK_OUTER_HORIZONTAL_PADDING;
 
             const freeSpaceExists = !detectIfSquaresTooWide(displayableItems, colorScaleBlockRef);
 
@@ -339,7 +320,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
 
             const displayableItemsWithCurrentColorResized = displayableItems.map((color, index) => {
                 if (canResizeToTheRight && index === colorIndex) {
-                    // color.width = (resizeStartWidth.current ?? 0) + movementSinceStart;
                     color.width += 2;
                     color.resized = true;
                 }

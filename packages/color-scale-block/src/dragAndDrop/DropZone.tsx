@@ -67,14 +67,17 @@ export const DropZone = ({
 
     const DROP_ZONE_BOTTOM_SPACING = 2;
 
+    const dropZoneWidth = isActive ? `${width ?? DROP_ZONE_WIDTH}px` : '0px';
+    const dropZoneHeight = `${height - DROP_ZONE_BOTTOM_SPACING}px`;
+
     return (
         <>
             {before && (
                 <>
                     <div
                         style={{
-                            width: isActive ? `${width}px` : '0px',
-                            height: `${height - DROP_ZONE_BOTTOM_SPACING}px`,
+                            width: dropZoneWidth,
+                            height: dropZoneHeight,
                         }}
                         className={visibleDropZoneClassNames}
                     />
@@ -96,8 +99,8 @@ export const DropZone = ({
                     />
                     <div
                         style={{
-                            width: isActive ? `${width}px` : '0px',
-                            height: `${height - DROP_ZONE_BOTTOM_SPACING}px`,
+                            width: dropZoneWidth,
+                            height: dropZoneHeight,
                         }}
                         className={visibleDropZoneClassNames}
                     />
