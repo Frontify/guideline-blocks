@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import 'tailwindcss/tailwind.css';
 import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -22,7 +21,7 @@ import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 import { ColorSquare } from './components/ColorSquare';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
-import { ColorProps, Settings } from './types';
+import { ColorProps, Settings, spacingValues } from './types';
 import { EmptyView } from './components/EmptyView';
 import {
     COLOR_SCALE_BLOCK_BORDER_WIDTH,
@@ -77,8 +76,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             })
         );
     }, [appBridgePalettes, appBridge]);
-
-    const { customHeight, heightInput, heightSlider } = blockSettings;
 
     const getColorId = (selectedColor: Color) => {
         let color: AppBridgeColor | undefined;
@@ -390,7 +387,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         setIsColorPickerOpen(!isColorPickerOpen);
     };
 
-    const colorScaleHeight = customHeight ? heightInput : heightSlider;
+    const height = blockSettings.customHeight ? blockSettings.heightInput : spacingValues[blockSettings.heightSlider];
 
     return (
         <>
@@ -399,7 +396,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 data-test-id="color-scale-block"
                 className="tw-w-full tw-p-px tw-mb-4 tw-border tw-border-line tw-rounded"
                 style={{
-                    height: `${parseInt(colorScaleHeight) + COLOR_SCALE_BLOCK_BORDER_WIDTH * 2}px`,
+                    height: `${parseInt(height) + COLOR_SCALE_BLOCK_BORDER_WIDTH * 2}px`,
                 }}
                 onMouseLeave={!blockSettings?.cypressTest ? handleResizeStop : undefined}
                 onMouseUp={handleResizeStop}
@@ -409,7 +406,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                 {displayableItems.length > 0 && (
                     <div
                         style={{
-                            height: colorScaleHeight,
+                            height,
                         }}
                         className="tw-rounded tw-w-full tw-flex"
                         // Note: onMouseUp and handleResize are defined here intentionally, instead of being in the DragHandle component.
@@ -438,7 +435,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                             id={color.id}
                                             index={index}
                                             width={currentlyDraggedColorId === color.id ? 0 : width}
-                                            height={colorScaleHeight}
+                                            height={height}
                                             className={joinClassNames([
                                                 isFirst ? COLOR_SQUARE_FIRST_ELEMENT_CLASSES : '',
                                                 isLast ? COLOR_SQUARE_LAST_ELEMENT_CLASSES : '',
@@ -461,7 +458,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                         </DndProvider>
                     </div>
                 )}
-                {displayableItems.length === 0 && <EmptyView height={colorScaleHeight} />}
+                {displayableItems.length === 0 && <EmptyView height={height} />}
             </div>
 
             {isEditing && (

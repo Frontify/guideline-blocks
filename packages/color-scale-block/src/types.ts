@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MouseEvent, ReactChild } from 'react';
 import { Color, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
+import { MouseEvent, ReactChild } from 'react';
 
 export type Settings = {
     customHeight: boolean;
-    heightSlider: string;
+    heightSlider: BlockHeight;
     heightInput: string;
     colorInput: ColorProps[];
     cypressTest: boolean;
@@ -75,4 +75,16 @@ export type DragHandleProps = {
 
 export type EmptyViewProps = {
     height: string;
+};
+
+export enum BlockHeight {
+    S = 'S',
+    M = 'M',
+    L = 'L',
+}
+
+export const spacingValues: Record<BlockHeight, string> = {
+    [BlockHeight.S]: '48px',
+    [BlockHeight.M]: '72px',
+    [BlockHeight.L]: '96px',
 };

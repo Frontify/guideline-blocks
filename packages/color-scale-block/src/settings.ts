@@ -1,6 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { appendUnit, defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
+import {
+    appendUnit,
+    defineSettings,
+    numericalOrPixelRule,
+    presetCustomValue,
+} from '@frontify/guideline-blocks-settings';
+import { BlockHeight, spacingValues } from './types';
+
+const SIMPLE_HEIGHT_ID = 'heightSlider';
+const CUSTOM_HEIGHT_ID = 'heightInput';
 
 export const settings = defineSettings({
     layout: [
@@ -9,36 +18,37 @@ export const settings = defineSettings({
             label: 'Height',
             type: 'switch',
             switchLabel: 'Custom',
+            onChange: (bundle) => presetCustomValue(bundle, SIMPLE_HEIGHT_ID, CUSTOM_HEIGHT_ID, spacingValues),
             defaultValue: false,
             off: [
                 {
-                    id: 'heightSlider',
+                    id: SIMPLE_HEIGHT_ID,
                     type: 'slider',
-                    defaultValue: '96px',
+                    defaultValue: BlockHeight.L,
                     choices: [
                         {
-                            value: '48px',
-                            label: 'S',
+                            value: BlockHeight.S,
+                            label: BlockHeight.S,
                         },
                         {
-                            value: '72px',
-                            label: 'M',
+                            value: BlockHeight.M,
+                            label: BlockHeight.M,
                         },
                         {
-                            value: '96px',
-                            label: 'L',
+                            value: BlockHeight.L,
+                            label: BlockHeight.L,
                         },
                     ],
                 },
             ],
             on: [
                 {
-                    id: 'heightInput',
+                    id: CUSTOM_HEIGHT_ID,
                     type: 'input',
                     defaultValue: '100px',
                     clearable: false,
                     rules: [numericalOrPixelRule],
-                    onChange: (bundle) => appendUnit(bundle, 'heightInput'),
+                    onChange: (bundle) => appendUnit(bundle, CUSTOM_HEIGHT_ID),
                 },
             ],
         },
