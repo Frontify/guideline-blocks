@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useState } from 'react';
 import { Color, ColorFormat, ColorPicker, Flyout, FlyoutPlacement } from '@frontify/fondue';
+import { useState } from 'react';
+import { DEFAULT_COLOR_PICKER_FLYOUT_COLOR } from '../helpers';
 
 import { ColorPickerFlyoutProps } from '../types';
-import { DEFAULT_COLOR_PICKER_FLYOUT_COLOR } from '../helpers';
 
 export const ColorPickerFlyout = ({
     onAdd,
@@ -42,16 +42,15 @@ export const ColorPickerFlyout = ({
             title="Pick color"
             trigger={children}
         >
-            <div data-test-id="color-scale-block-color-picker-content">
-                <ColorPicker
-                    allowCustomColor={false}
-                    currentColor={selectedColor ? selectedColor : DEFAULT_COLOR_PICKER_FLYOUT_COLOR}
-                    currentFormat={colorPickerFormat}
-                    setFormat={setColorPickerFormat}
-                    onSelect={setSelectedColor}
-                    palettes={colorPickerFlyoutPalettes}
-                />
-            </div>
+            <ColorPicker
+                data-test-id="color-scale-block-color-picker-content"
+                allowCustomColor={false}
+                currentColor={selectedColor ?? DEFAULT_COLOR_PICKER_FLYOUT_COLOR}
+                currentFormat={colorPickerFormat}
+                setFormat={setColorPickerFormat}
+                onSelect={setSelectedColor}
+                palettes={colorPickerFlyoutPalettes}
+            />
         </Flyout>
     );
 };

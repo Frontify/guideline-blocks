@@ -1,167 +1,119 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useDrag } from 'react-dnd';
 import {
     Button,
     ButtonSize,
     ButtonStyle,
-    DropZonePosition,
     IconSize,
     IconTrashBin,
     Tooltip,
+    TooltipAlignment,
+    TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
-import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
-
-import { DragHandle } from './DragHandle';
+import { joinClassNames, toHex8String, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { LegacyRef, useRef } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
+import { ColorProps, ColorSquareProps } from '../types';
 import { TooltipContent } from './TooltipContent';
-import { ColorSquareProps } from '../types';
-import { DropZone } from '../dragAndDrop/DropZone';
-import {
-    MINIMUM_WIDTH_TO_SHOW_TRASH_ICON_AT_FURTHEST_RIGHT_POSITION,
-    MINIMUM_WIDTH_TO_SHOW_TRASH_ICON_AT_NEGATIVE_RIGHT_POSITION,
-} from '../helpers';
 
 export const ColorSquare = ({
-    index,
-    width,
-    height,
-    className,
     color,
-    onDrop,
-    onDelete,
-    onResizeStart,
-    canDragAndDrop,
+    blockId,
+    totalWidth,
+    setDisplayableItems,
     isEditing,
-    setCurrentlyDraggedColorId,
-    currentlyDraggedColorId,
-    setDraggedColorWidth,
-    draggedColorWidth,
-    isLast,
+    width,
+    onDelete,
+    onDrop,
 }: ColorSquareProps) => {
+    const ref = useRef<HTMLDivElement>(null);
     const { copy, status } = useCopy();
-    const [, drag] = useDrag({
-        item: color,
-        collect: (monitor) => {
-            return {
-                componentDragState: monitor.isDragging() ? ItemDragState.Dragging : ItemDragState.Idle,
-            };
-        },
-        type: 'color',
-        canDrag: isEditing && canDragAndDrop,
+    const hexColor = (color: ColorProps) => (color ? toHex8String(color) : '');
+    const [{ isDragging }, drag] = useDrag({
+        type: `color-${blockId}`,
+        item: { ...color, width },
+        canDrag: isEditing,
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
     });
 
-    const copyColor = () => copy(hexColor ?? '');
+    const [, drop] = useDrop({
+        accept: `color-${blockId}`,
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+        }),
 
-    const rgbaValues = [color.red, color.green, color.blue, color.alpha];
-    const backgroundColor = `rgba(${rgbaValues.join(',')})`;
-    const hexColor = color ? toHex8String(color) : '';
+        hover: (item: ColorProps, monitor) => {
+            if (color.id === item.id) {
+                return;
+            }
+            const rect = ref.current?.getBoundingClientRect() ?? { width: 0, x: 0 };
+            const x = monitor.getClientOffset()?.x ?? 0;
+            const right = rect?.x + rect?.width / 2 < x;
+            setDisplayableItems((prev: ColorProps[]) => {
+                const newColors = prev.filter((currentColor) => currentColor.id !== item.id);
+                const newIndex = newColors.findIndex((currentColor: ColorProps) => currentColor.id === color.id);
+                newColors.splice(newIndex + (right ? 1 : 0), 0, item);
+                return newColors;
+            });
+        },
 
-    const handleDrag = () => {
-        if (!currentlyDraggedColorId && color !== null) {
-            setCurrentlyDraggedColorId(color.id ?? null);
-            setDraggedColorWidth(color.width);
-        }
-    };
-
-    const handleDragEnd = () => {
-        setCurrentlyDraggedColorId(null);
-        setDraggedColorWidth(null);
-    };
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        drop: (item: ColorProps) => {
+            onDrop();
+        },
+    });
 
     return (
         <>
-            <DropZone
-                key={`orderable-list-item-${color.id}-before`}
-                height={parseInt(height)}
-                before
-                width={draggedColorWidth}
-                isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
-                data={{
-                    targetItem: color,
-                    position: DropZonePosition.Before,
-                }}
-                onDrop={onDrop}
-            />
             <div
-                data-test-id="color-scale-block-color-square"
+                data-test-id="color-wrapper"
+                className={joinClassNames([
+                    'tw-group tw-relative [&>div]:tw-h-full',
+                    isDragging
+                        ? 'tw-transition-all tw-bg-violet-20 tw-border-violet-60 tw-border-dashed tw-border-2'
+                        : '',
+                ])}
+                draggable
+                ref={drop(drag(ref)) as LegacyRef<HTMLDivElement>}
                 style={{
-                    width: `${width}px`,
-                    height,
+                    backgroundColor: isDragging ? '' : toRgbaString(color),
+                    width: `${(width / totalWidth) * 100}%`,
+                    cursor: isEditing ? 'grab' : 'pointer',
                 }}
-                className="hover:tw-z-30 tw-overflow-x-visible tw-overflow-y-hidden tw-pb-8 tw-inline-block"
             >
-                {isEditing && !isLast && <DragHandle index={index} onResizeStart={onResizeStart} />}
-
-                <div
-                    data-test-id="color-scale-block-color-square-with-background"
-                    ref={drag}
-                    draggable
-                    onDrag={handleDrag}
-                    onDragEnd={handleDragEnd}
-                    style={{
-                        height,
-                        background: backgroundColor,
-                    }}
-                    className={joinClassNames([
-                        '[&>div]:tw-h-full tw-group tw-relative tw-w-full tw-h-full tw-overflow-y-hidden tw-overflow-x-visible tw-border-none hover:tw-border hover:tw-border-black',
-                        className,
-                    ])}
-                >
-                    {!isEditing && (
-                        <Tooltip
-                            alignment={TooltipAlignment.Middle}
-                            content={
-                                <TooltipContent
-                                    colorName={color.name ?? ''}
-                                    colorValue={hexColor ?? ''}
-                                    status={status}
-                                />
-                            }
-                            hoverDelay={0}
-                            position={TooltipPosition.Bottom}
-                            triggerElement={<div className="tw-w-full tw-h-full" onClick={copyColor} />}
-                            withArrow
+                {isEditing ? (
+                    <div
+                        data-test-id="delete-color"
+                        className={joinClassNames([
+                            'tw-absolute tw-top-1.5 tw-right-2 tw-hidden group-hover:tw-block tw-h-full',
+                            isDragging ? 'tw-transition-all' : '',
+                        ])}
+                    >
+                        <Button
+                            icon={<IconTrashBin size={IconSize.Size16} />}
+                            size={ButtonSize.Small}
+                            style={ButtonStyle.Default}
+                            onClick={() => onDelete(color)}
                         />
-                    )}
-                </div>
-            </div>
-            {isEditing && (
-                <div
-                    data-test-id="delete-color"
-                    className={joinClassNames([
-                        'tw-z-[99] tw-hidden tw-absolute tw-top-1.5 tw-transition-all tw-right-2',
-                        color.width && color.width <= MINIMUM_WIDTH_TO_SHOW_TRASH_ICON_AT_NEGATIVE_RIGHT_POSITION
-                            ? 'tw-right-[-2px]'
-                            : '',
-                        color.width && color.width <= MINIMUM_WIDTH_TO_SHOW_TRASH_ICON_AT_FURTHEST_RIGHT_POSITION
-                            ? 'tw-right-[-4px]'
-                            : '',
-                        isEditing && 'group-hover:tw-block',
-                    ])}
-                >
-                    <Button
-                        icon={<IconTrashBin size={IconSize.Size16} />}
-                        size={ButtonSize.Small}
-                        style={ButtonStyle.Secondary}
-                        onClick={() => onDelete(color.id)}
+                    </div>
+                ) : (
+                    <Tooltip
+                        alignment={TooltipAlignment.Middle}
+                        content={
+                            <TooltipContent colorName={color.name ?? ''} colorValue={hexColor(color)} status={status} />
+                        }
+                        hoverDelay={0}
+                        position={TooltipPosition.Bottom}
+                        triggerElement={
+                            <div className="tw-w-full tw-h-full" onClick={() => copy(hexColor(color) ?? '')} />
+                        }
+                        withArrow
                     />
-                </div>
-            )}
-
-            <DropZone
-                key={`orderable-list-item-${color.id}-after`}
-                height={parseInt(height)}
-                after
-                width={draggedColorWidth}
-                isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
-                data={{
-                    targetItem: color,
-                    position: DropZonePosition.After,
-                }}
-                onDrop={onDrop}
-            />
+                )}
+            </div>
         </>
     );
 };
