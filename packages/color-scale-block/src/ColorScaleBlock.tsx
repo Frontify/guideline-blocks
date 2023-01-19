@@ -91,7 +91,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         const updateColors = [...displayableItems];
         updateColors.push({
             ...flyoutColor,
-            width: ((totalWidth || colorScaleBlockRef.current?.clientWidth) ?? 800) / (updateColors.length ?? 1),
+            // eslint-disable-next-line unicorn/explicit-length-check
+            width: ((totalWidth || colorScaleBlockRef.current?.clientWidth) ?? 800) / (updateColors.length || 1),
             id,
         });
         const normalize =
