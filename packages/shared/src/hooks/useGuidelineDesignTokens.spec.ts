@@ -7,7 +7,7 @@ import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { DesignTokenApiResponse, useGuidelineDesignTokens } from './useGuidelineDesignTokens';
 
-const emitter = mitt<{ HubAppearanceUpdated: DesignTokenApiResponse['hub'] }>();
+const emitter = mitt<{ HubAppearanceUpdated: DesignTokenApiResponse }>();
 
 window.emitter = emitter;
 window.location = { ...window.location, origin: 'http://api.dev' };
@@ -19,34 +19,25 @@ enum ResponseStatus {
 
 const setResponseType = (status: ResponseStatus) => {
     document.body.setAttribute('data-hub', status);
-    document.body.setAttribute('data-document', status);
 };
 
 const restHandlers = [
-    rest.get(
-        `${window.location.origin}/api/hub/settings/${ResponseStatus.Success}/${ResponseStatus.Success}`,
-        (req, res, ctx) => {
-            const response: DesignTokenApiResponse = {
-                hub: {
-                    appearance: {
-                        heading1: {
-                            family: 'Arial',
-                            weight: 'bold',
-                            size: '24px',
-                        },
-                    },
+    rest.get(`${window.location.origin}/api/portal/${ResponseStatus.Success}/appearance`, (req, res, ctx) => {
+        const response: DesignTokenApiResponse = {
+            data: {
+                heading1: {
+                    family: 'Arial',
+                    weight: 'bold',
+                    size: '24px',
                 },
-            };
-            return res(ctx.status(200), ctx.json(response));
-        }
-    ),
+            },
+        };
+        return res(ctx.status(200), ctx.json(response));
+    }),
 
-    rest.get(
-        `${window.location.origin}/api/hub/settings/${ResponseStatus.Error}/${ResponseStatus.Error}`,
-        (req, res, ctx) => {
-            return res(ctx.status(400), ctx.json({}));
-        }
-    ),
+    rest.get(`${window.location.origin}/api/portal/${ResponseStatus.Error}/appearance`, (req, res, ctx) => {
+        return res(ctx.status(400), ctx.json({}));
+    }),
 ];
 
 const server = setupServer(...restHandlers);
@@ -62,6 +53,8 @@ describe('useGuidelineDesignTokens', () => {
 
         const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
         await waitForNextUpdate();
+
+        console.log(result.current);
 
         expect(result.current).toMatchObject({
             designTokens: {

@@ -30,9 +30,10 @@ const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
                 transformStringValues(key, cssStyles, value);
             }
         }
+        return cssStyles;
     }
 
-    return cssStyles;
+    return null;
 };
 
 const transformObjectValues = (key: string, cssStyles: TokenValues, value: DirectionalCssProperties) => {
