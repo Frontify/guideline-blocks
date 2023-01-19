@@ -22,13 +22,16 @@ const TokenNameMapper: Record<string, DesignTokenName> = {
 const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
     const cssStyles: TokenValues = {};
 
-    for (const [key, value] of Object.entries(dataToTransform)) {
-        if (typeof value === 'object') {
-            transformObjectValues(key, cssStyles, value);
-        } else {
-            transformStringValues(key, cssStyles, value);
+    if (dataToTransform) {
+        for (const [key, value] of Object.entries(dataToTransform)) {
+            if (typeof value === 'object') {
+                transformObjectValues(key, cssStyles, value);
+            } else {
+                transformStringValues(key, cssStyles, value);
+            }
         }
     }
+
     return cssStyles;
 };
 

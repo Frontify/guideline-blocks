@@ -66,9 +66,7 @@ export type DesignTokenProperties = Partial<
 >;
 export type DesignTokens = Partial<Record<DesignTokenName, DesignTokenProperties>>;
 export type DesignTokenApiResponse = {
-    hub: {
-        appearance: DesignTokens;
-    };
+    data: DesignTokens;
 };
 
 export type TokenValues = CSSProperties & { hover?: CSSProperties } & Partial<AccentColorProperties>;
@@ -79,16 +77,12 @@ export const useGuidelineDesignTokens = () => {
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const requestParams = {
-        hubId: document.body.getAttribute('data-hub'),
-        documentId: document.body.getAttribute('data-document'),
-    };
-
-    const url = `${window.location.origin}/api/hub/settings/${requestParams.hubId}/${requestParams.documentId}`;
+    const portalId = document.body.getAttribute('data-hub');
+    const url = `${window.location.origin}/api/portal/${portalId}/appearance`;
 
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
-            const transformedDesignTokens = mapToGuidelineDesignTokens(data.appearance);
+            const transformedDesignTokens = mapToGuidelineDesignTokens(data);
             setDesignTokens({ ...designTokens, ...transformedDesignTokens });
         });
 
@@ -101,7 +95,7 @@ export const useGuidelineDesignTokens = () => {
                 }
 
                 const json = await response.json();
-                const transformedCategories = mapToGuidelineDesignTokens(json.hub.appearance);
+                const transformedCategories = mapToGuidelineDesignTokens(json.data);
                 setDesignTokens(transformedCategories);
             } catch (error_) {
                 setError(error_);
