@@ -15,7 +15,8 @@ const TokenNameMapper: Record<string, DesignTokenName> = {
     button_primary: 'buttonPrimary',
     button_secondary: 'buttonSecondary',
     button_tertiary: 'buttonTertiary',
-    'image-caption': 'imageCaption',
+    image_caption: 'imageCaption',
+    image_title: 'imageTitle',
     body: 'p',
 };
 
@@ -57,7 +58,7 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
         case DesignTokenPropertiesEnum.size:
             cssStyles.fontSize = value;
             break;
-        case DesignTokenPropertiesEnum.letterspacing:
+        case DesignTokenPropertiesEnum.letter_spacing:
             cssStyles.letterSpacing = value;
             break;
         case DesignTokenPropertiesEnum.line_height:

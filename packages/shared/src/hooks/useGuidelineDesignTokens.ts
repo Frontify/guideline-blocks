@@ -7,7 +7,7 @@ export enum DesignTokenPropertiesEnum {
     family = 'family',
     weight = 'weight',
     size = 'size',
-    letterspacing = 'letterspacing',
+    letter_spacing = 'letter_spacing',
     line_height = 'line_height',
     margin_top = 'margin_top',
     margin_bottom = 'margin_bottom',
@@ -45,7 +45,8 @@ export type DesignTokenName =
     | 'buttonSecondary'
     | 'buttonTertiary'
     | 'callout'
-    | 'imageCaption';
+    | 'imageCaption'
+    | 'imageTitle';
 
 export type DirectionalCssProperties = {
     top: string;
