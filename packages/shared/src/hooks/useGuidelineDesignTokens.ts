@@ -82,7 +82,7 @@ export const useGuidelineDesignTokens = () => {
 
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
-            const transformedDesignTokens = mapToGuidelineDesignTokens(data);
+            const transformedDesignTokens = mapToGuidelineDesignTokens(data.appearance);
             setDesignTokens({ ...designTokens, ...transformedDesignTokens });
         });
 
