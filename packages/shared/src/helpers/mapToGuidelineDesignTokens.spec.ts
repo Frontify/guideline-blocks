@@ -44,12 +44,12 @@ const mockedDesignTokens = {
     custom1: {
         family: 'Helvetica Neue',
         size: '24px',
-        letterspacing: '2px',
+        letter_spacing: '2px',
     },
     custom2: {
         family: 'Helvetica Neue',
         size: '28px',
-        letterspacing: '2px',
+        letter_spacing: '2px',
         italic: '1',
         underline: '1',
     },
