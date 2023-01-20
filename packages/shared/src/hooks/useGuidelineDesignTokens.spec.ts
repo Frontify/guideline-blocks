@@ -54,8 +54,6 @@ describe('useGuidelineDesignTokens', () => {
         const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
         await waitForNextUpdate();
 
-        console.log(result.current);
-
         expect(result.current).toMatchObject({
             designTokens: {
                 heading1: { fontFamily: 'Arial', fontWeight: 'bold', fontSize: '24px' },
@@ -88,13 +86,7 @@ describe('useGuidelineDesignTokens', () => {
         const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
         await waitForNextUpdate();
         window.emitter.emit('HubAppearanceUpdated', {
-            heading1: { family: 'family' },
-            callout: {
-                info: '#5bc0de',
-                note: '#f0ad4e',
-                tip: '#5cb85c',
-                warning: '#d9534f',
-            },
+            appearance: { heading1: { family: 'family' } },
         });
 
         expect(result.current).toMatchObject({
