@@ -25,10 +25,14 @@ const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
 
     if (dataToTransform) {
         for (const [key, value] of Object.entries(dataToTransform)) {
-            if (typeof value === 'object') {
-                transformObjectValues(key, cssStyles, value);
+            if (typeof value === 'object' && key === DesignTokenPropertiesEnum.frame) {
+                const paddingValues = transformPaddingValues(value as DirectionalCssProperties);
+                cssStyles.paddingTop = paddingValues.paddingTop;
+                cssStyles.paddingRight = paddingValues.paddingRight;
+                cssStyles.paddingBottom = paddingValues.paddingBottom;
+                cssStyles.paddingLeft = paddingValues.paddingLeft;
             } else {
-                transformStringValues(key, cssStyles, value);
+                transformStringValues(key, cssStyles, value as string);
             }
         }
         return cssStyles;
@@ -37,13 +41,13 @@ const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
     return null;
 };
 
-const transformObjectValues = (key: string, cssStyles: TokenValues, value: DirectionalCssProperties) => {
-    if (key === DesignTokenPropertiesEnum.frame) {
-        cssStyles.paddingTop = suffixPlainNumberWithPx(value.top);
-        cssStyles.paddingRight = suffixPlainNumberWithPx(value.right);
-        cssStyles.paddingBottom = suffixPlainNumberWithPx(value.bottom);
-        cssStyles.paddingLeft = suffixPlainNumberWithPx(value.left);
-    }
+const transformPaddingValues = (value: DirectionalCssProperties) => {
+    return {
+        paddingTop: suffixPlainNumberWithPx(value.top),
+        paddingRight: suffixPlainNumberWithPx(value.right),
+        paddingBottom: suffixPlainNumberWithPx(value.bottom),
+        paddingLeft: suffixPlainNumberWithPx(value.left),
+    };
 };
 
 const transformStringValues = (key: string, cssStyles: TokenValues, value: string) => {
