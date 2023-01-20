@@ -9,23 +9,20 @@ const EXAMPLE_GUIDELINE_DESIGN_TOKENS_BLOCK_SELECTOR = '[data-test-id="example-g
 describe('Example Guideline Design Token Block', () => {
     before(() => {
         document.body.setAttribute('data-hub', '1');
-        document.body.setAttribute('data-document', '1');
     });
 
     beforeEach(() => {
-        cy.intercept(`${window.location.origin}/api/hub/settings/1/1`, {
+        cy.intercept(`${window.location.origin}/api/portal/1/appearance`, {
             statusCode: 200,
             body: {
-                hub: {
-                    appearance: {
-                        heading1: {
-                            family: 'Arial',
-                            size: '24px',
-                        },
-                        heading2: {
-                            family: 'Helvetica Neue',
-                            size: '18px',
-                        },
+                data: {
+                    heading1: {
+                        family: 'Arial',
+                        size: '24px',
+                    },
+                    heading2: {
+                        family: 'Helvetica Neue',
+                        size: '18px',
                     },
                 },
             },
