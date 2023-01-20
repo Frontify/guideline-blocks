@@ -88,7 +88,7 @@ describe('useGuidelineDesignTokens', () => {
         const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
         await waitForNextUpdate();
         window.emitter.emit('HubAppearanceUpdated', {
-            appearance: { heading1: { family: 'family' } },
+            data: { heading1: { family: 'family' } },
         });
 
         expect(result.current).toMatchObject({

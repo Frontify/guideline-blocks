@@ -35,8 +35,6 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const { designTokens } = useGuidelineDesignTokens();
     const { blockAssets } = useBlockAssets(appBridge);
 
-    console.log({ designTokens });
-
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
     const isFullWidth =
         blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText && isQuotationMarkType;
