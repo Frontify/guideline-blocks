@@ -81,7 +81,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const handleAddNewColorToBlockSettings = (flyoutColor: Color) => {
         const id = getColorId(flyoutColor);
 
-        const colorExists = blockSettings?.colorInput?.some((color) => color.id === id);
+        const colorExists = displayableItems.some((color) => color.id === id);
         if (colorExists) {
             // TODO add proper error handling
             console.warn("can't add new color as color already exists");
@@ -175,7 +175,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                                 style={{
                                                     left: `${widthPercentage}%`,
                                                 }}
-                                                className="tw-absolute group-hover:tw-flex tw-w-2 tw-flex tw-h-full tw-items-center tw-justify-center tw-cursor-ew-resize tw-opacity-0 hover:tw-opacity-100"
+                                                className="tw-absolute group-hover:tw-flex -tw-ml-1 tw-w-2 tw-flex tw-h-full tw-items-center tw-justify-center tw-cursor-ew-resize tw-opacity-0 hover:tw-opacity-100"
                                                 onMouseDown={(e) => {
                                                     const startX = e.clientX;
                                                     const startWidth = displayableItems[idx].width;
@@ -211,7 +211,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                             >
                                                 <div
                                                     data-test-id="drag-handle"
-                                                    className="tw-bg-black-20 tw-rounded-full tw-w-2 tw-h-6 -tw-ml-2"
+                                                    className="tw-bg-black-20 tw-rounded-full tw-w-2 tw-h-6"
                                                 />
                                             </div>
                                         );
@@ -231,7 +231,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                             onClick={handleResizeEvenly}
                             size={ButtonSize.Small}
                             icon={<IconArrowStretchBox12 />}
-                            disabled={blockSettings?.colorInput?.length < 2}
+                            disabled={displayableItems.length < 2}
                         >
                             Resize Evenly
                         </Button>
