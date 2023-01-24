@@ -2,6 +2,7 @@
 
 import {
     Button,
+    ButtonEmphasis,
     ButtonSize,
     ButtonStyle,
     IconSize,
@@ -96,6 +97,7 @@ export const ColorSquare = ({
                             icon={<IconTrashBin size={IconSize.Size16} />}
                             size={ButtonSize.Small}
                             style={ButtonStyle.Default}
+                            emphasis={ButtonEmphasis.Default}
                             onClick={() => onDelete(color)}
                         />
                     </div>
