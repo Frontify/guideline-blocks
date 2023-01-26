@@ -9,6 +9,7 @@ import {
     TransformedDesignTokens,
 } from '../hooks/useGuidelineDesignTokens';
 import { suffixPlainNumberWithPx } from '../utilities/suffixPlainNumberWithPx';
+import { getFont, getSystemFont } from './font';
 import { provideDefaultCalloutColors } from './provideDefaultCalloutColors';
 
 const TokenNameMapper: Record<string, DesignTokenName> = {
@@ -45,9 +46,7 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
     cssStyles.hover = cssStyles.hover || {};
     switch (key) {
         case DesignTokenPropertiesEnum.family:
-            const useMainFont = value === 'inherit' ? mainFontFamily : undefined;
-            const newValue = value === 'default' ? 'system-ui' : value;
-            cssStyles.fontFamily = useMainFont ?? newValue;
+            cssStyles.fontFamily = getFont(value, mainFontFamily);
             break;
         case DesignTokenPropertiesEnum.weight:
             cssStyles.fontWeight = value;
@@ -121,10 +120,9 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
 export const mapToGuidelineDesignTokens = (dataToTransform: Partial<Record<string, DesignTokenProperties>>) => {
     const transformedDesignTokens: TransformedDesignTokens = {};
     const enrichedDataToTransform = provideDefaultCalloutColors(dataToTransform);
-    const mainFontFamily =
-        (dataToTransform['main_font'] as Record<DesignTokenPropertiesEnum, string>)?.family === 'default'
-            ? 'system-ui'
-            : (dataToTransform['main_font'] as Record<DesignTokenPropertiesEnum, string>)?.family;
+    const mainFontFamily = getSystemFont(
+        (dataToTransform?.['main_font'] as Record<DesignTokenPropertiesEnum, string>)?.family
+    );
 
     for (const [key, value] of Object.entries(enrichedDataToTransform)) {
         const designTokenName = TokenNameMapper[key] ?? key;
