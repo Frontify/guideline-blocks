@@ -4,11 +4,11 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { RichTextEditor, defaultPlugins, defaultPluginsWithColumns } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { hasRichTextValue, joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
-import { GRID_CLASSES, Settings, spacingValues } from './types';
+import { Settings, spacingValues } from './types';
 
 export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
@@ -16,24 +16,19 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
+    const gap = blockSettings.isColumnGutterCustom
+        ? blockSettings.columnGutterCustom
+        : spacingValues[blockSettings.columnGutterSimple];
 
     return (
-        <div
-            data-test-id="text-block"
-            style={{
-                gap: blockSettings.isColumnGutterCustom
-                    ? blockSettings.columnGutterCustom
-                    : spacingValues[blockSettings.columnGutterSimple],
-            }}
-            className={joinClassNames([
-                'tw-block tw-p-0 tw-m-0',
-                hasRichTextValue(blockSettings.content) && GRID_CLASSES[blockSettings.columnNumber],
-            ])}
-        >
+        <div data-test-id="text-block">
             <RichTextEditor
                 designTokens={designTokens ?? undefined}
                 key={'text-block-editor'}
                 value={blockSettings.content}
+                columns={blockSettings.columnNumber}
+                // gap={gap}
+                border={false}
                 plugins={blockSettings.columnNumber > 1 ? defaultPluginsWithColumns : defaultPlugins}
                 placeholder={isEditing ? PLACEHOLDER : undefined}
                 readonly={!isEditing}

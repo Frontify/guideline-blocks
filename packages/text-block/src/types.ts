@@ -21,10 +21,3 @@ export const spacingValues: Record<TextGutter, string> = {
     [TextGutter.M]: '30px',
     [TextGutter.L]: '50px',
 };
-
-export const GRID_CLASSES: Record<number, string> = {
-    1: 'tw-columns-1',
-    2: 'lg:tw-columns-2',
-    3: 'lg:tw-columns-3',
-    4: 'lg:tw-columns-4',
-};

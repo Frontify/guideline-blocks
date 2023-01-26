@@ -36,8 +36,8 @@ describe('Text Block', () => {
             },
         });
         mount(<TextBlockWithStubs />);
-        cy.get(TextBlockSelector).should('have.class', 'lg:tw-columns-2');
-        cy.get(TextBlockSelector).should('have.css', 'gap', '10px');
+        cy.get(RichTextEditor).should('have.css', 'columns: 2;');
+        cy.get(RichTextEditor).should('have.css', 'gap', '10px');
     });
 
     it('should render a text block with the custom spacing', () => {
@@ -51,8 +51,8 @@ describe('Text Block', () => {
             },
         });
         mount(<TextBlockWithStubs />);
-        cy.get(TextBlockSelector).should('have.class', 'lg:tw-columns-4');
-        cy.get(TextBlockSelector).should('have.css', 'gap', '100px');
+        cy.get(RichTextEditor).should('have.class', 'lg:tw-columns-4');
+        cy.get(RichTextEditor).should('have.css', 'gap', '100px');
     });
 
     it('placeholder should be visible when there is no content', () => {
