@@ -5,14 +5,15 @@ import { EMPTY_BLOCK_COLORS } from '../helpers';
 export const EmptyView = () => {
     return (
         <div className="tw-rounded tw-inline-flex tw-w-full tw-h-full tw-overflow-hidden">
-            {EMPTY_BLOCK_COLORS.map((color: string) => {
+            {EMPTY_BLOCK_COLORS.map((backgroundColor: string) => {
                 return (
                     <div
                         style={{
-                            backgroundColor: color,
+                            backgroundColor,
+                            width: `${100 / EMPTY_BLOCK_COLORS.length}%`,
                         }}
-                        key={color}
-                        className="tw-w-1/6 tw-inline-flex tw-overflow-hidden first:tw-pl-[1px] last:tw-pr-[1px] first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br"
+                        key={backgroundColor}
+                        className="tw-inline-flex tw-overflow-hidden first:tw-pl-[1px] last:tw-pr-[1px] first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br"
                     />
                 );
             })}

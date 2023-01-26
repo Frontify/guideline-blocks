@@ -134,7 +134,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             <div
                 ref={colorScaleBlockRef}
                 data-test-id="color-scale-block"
-                className="tw-w-full tw-mb-4 tw-rounded"
+                className="tw-w-full tw-mb-4 tw-rounded tw-border tw-border-line"
                 style={{
                     height,
                 }}
@@ -174,8 +174,9 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                                 key={idx}
                                                 style={{
                                                     left: `${widthPercentage}%`,
+                                                    cursor: 'ew-resize',
                                                 }}
-                                                className="tw-absolute group-hover:tw-flex -tw-ml-1 tw-w-2 tw-flex tw-h-full tw-items-center tw-justify-center tw-cursor-ew-resize tw-opacity-0 hover:tw-opacity-100"
+                                                className="tw-absolute group-hover:tw-flex -tw-ml-1 tw-w-2 tw-flex tw-h-full tw-items-center tw-justify-center tw-opacity-0 hover:tw-opacity-100"
                                                 onMouseDown={(e) => {
                                                     const startX = e.clientX;
                                                     const startWidth = displayableItems[idx].width;
@@ -222,7 +223,6 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                     <EmptyView />
                 )}
             </div>
-
             {isEditing && (
                 <div data-test-id="color-scale-block-editor-mode-buttons" className="tw-text-right">
                     <ButtonGroup size={ButtonSize.Small}>
