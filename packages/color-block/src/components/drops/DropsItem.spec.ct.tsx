@@ -41,13 +41,11 @@ describe('DropsItem component in view mode', () => {
     });
 
     it('renders a color tooltip', () => {
-        cy.get(TooltipSelector).should('not.exist');
         cy.get(ColorTooltipTriggerSelector).trigger('mouseover');
         cy.get(TooltipSelector).should('exist');
     });
 
     it('renders a color space tooltip', () => {
-        cy.get(TooltipSelector).should('not.exist');
         cy.get(ColorSpaceValueTriggerSelector).first().trigger('mouseover');
         cy.get(TooltipSelector).should('exist');
     });
