@@ -38,7 +38,7 @@ describe('Text Block', () => {
         mount(<TextBlockWithStubs />);
         cy.get(RichTextEditor)
             .should('have.attr', 'style')
-            .and('contain', 'display: block; columns: auto 5; gap: 10px;');
+            .and('contain', 'display: block; columns: auto 2; gap: 10px;');
     });
 
     it('should render a text block with the custom spacing', () => {
