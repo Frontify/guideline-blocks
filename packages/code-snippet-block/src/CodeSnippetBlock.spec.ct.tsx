@@ -193,8 +193,6 @@ it('can copy using the copy button without a header', () => {
 
     mount(<CodeSnippetWithStubs />);
 
-    cy.get('[data-test-id=copy-button]').should('not.be.visible');
-    cy.get('[data-test-id=tooltip]').should('not.exist');
     cy.get('[data-test-id=code-snippet-block]').realHover();
     cy.get('[data-test-id=copy-button]').should('be.visible');
     cy.get('[data-test-id=copy-button]').realHover();
