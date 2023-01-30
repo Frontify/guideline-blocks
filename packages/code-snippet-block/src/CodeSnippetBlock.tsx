@@ -94,8 +94,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
         setBlockSettings({ language: value });
     };
 
-    console.log('blockSettings.content', blockSettings.content);
-
     return (
         <div
             data-test-id="code-snippet-block"
