@@ -20,8 +20,6 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
         ? blockSettings.columnGutterCustom
         : spacingValues[blockSettings.columnGutterSimple];
 
-    console.log('blockSettings', blockSettings);
-
     return (
         <div data-test-id="text-block">
             <RichTextEditor
