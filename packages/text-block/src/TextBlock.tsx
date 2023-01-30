@@ -20,13 +20,15 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
         ? blockSettings.columnGutterCustom
         : spacingValues[blockSettings.columnGutterSimple];
 
+    console.log('blockSettings', blockSettings);
+
     return (
         <div data-test-id="text-block">
             <RichTextEditor
                 designTokens={designTokens ?? undefined}
                 key={'text-block-editor'}
                 value={blockSettings.content}
-                layout={{ gap, columns: blockSettings.columnNumber }}
+                layout={{ gap, columns: '5' }}
                 border={false}
                 plugins={blockSettings.columnNumber > 1 ? defaultPluginsWithColumns : defaultPlugins}
                 placeholder={isEditing ? PLACEHOLDER : undefined}

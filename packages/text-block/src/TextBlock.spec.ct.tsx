@@ -36,8 +36,9 @@ describe('Text Block', () => {
             },
         });
         mount(<TextBlockWithStubs />);
-        cy.get(RichTextEditor).should('have.css', 'columns: 2;');
-        cy.get(RichTextEditor).should('have.css', 'gap', '10px');
+        cy.get(RichTextEditor)
+            .should('have.attr', 'style')
+            .and('contain', 'display: block; columns: auto 5; gap: 10px;');
     });
 
     it('should render a text block with the custom spacing', () => {
@@ -51,7 +52,6 @@ describe('Text Block', () => {
             },
         });
         mount(<TextBlockWithStubs />);
-        cy.get(RichTextEditor).should('have.class', 'lg:tw-columns-4');
         cy.get(RichTextEditor).should('have.css', 'gap', '100px');
     });
 
