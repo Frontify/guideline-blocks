@@ -122,7 +122,7 @@ export const mapToGuidelineDesignTokens = (dataToTransform: Partial<Record<strin
 
     for (const [key, value] of Object.entries(enrichedDataToTransform)) {
         const designTokenName = TokenNameMapper[key] ?? key;
-        if (value) {
+        if (value !== null) {
             transformedDesignTokens[designTokenName] = transformDesignTokens(value) as TokenValues;
         }
     }
