@@ -4,7 +4,7 @@ import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
 import { ImageBlock } from './ImageBlock';
 
-const ImageBlockSelector = '[data-test-id="text-block"]';
+const ImageBlockSelector = '[data-test-id="image-block"]';
 
 describe('Image Block', () => {
     it('renders an image block', () => {
