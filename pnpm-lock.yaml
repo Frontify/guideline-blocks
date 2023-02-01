@@ -633,6 +633,53 @@ importers:
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
+  packages/image-block:
+    specifiers:
+      '@babel/core': 7.20.2
+      '@frontify/app-bridge': 3.0.0-beta.38
+      '@frontify/eslint-config-react': 0.15.5
+      '@frontify/fondue': 12.0.0-beta.76
+      '@frontify/fondue-tokens': 3.1.0
+      '@frontify/frontify-cli': 5.3.1
+      '@frontify/guideline-blocks-settings': 0.25.10
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/lodash-es': 4.17.6
+      '@types/react': 17.0.50
+      '@types/react-dom': 17.0.17
+      autoprefixer: 10.4.13
+      cypress: 11.0.1
+      eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10
+      postcss: 8.4.19
+      prettier: 2.7.1
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.2.3
+      typescript: 4.8.4
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 12.0.0-beta.76_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue-tokens': 3.1.0
+      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-shared': link:../shared
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.20.2
+      '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
+      '@frontify/frontify-cli': 5.3.1
+      '@types/lodash-es': 4.17.6
+      '@types/react': 17.0.50
+      '@types/react-dom': 17.0.17
+      autoprefixer: 10.4.13_postcss@8.4.19
+      cypress: 11.0.1
+      eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
+      postcss: 8.4.19
+      prettier: 2.7.1
+      tailwindcss: 3.2.3_postcss@8.4.19
+      typescript: 4.8.4
+
   packages/personal-note-block:
     specifiers:
       '@babel/core': 7.20.2
@@ -1674,6 +1721,21 @@ packages:
       type-fest: 3.2.0
     dev: false
 
+  /@frontify/app-bridge/3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-6MXS1rAB2zfhfsqbOPTBH/gMJRUCaK/iI8bg1Wn5kBYuDEg1ZsdesenKfG6af2CFafOJZMrGBJ63t2lxkWLGfw==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: '>=17 || >=18'
+      react-dom: '>=17 || >=18'
+    dependencies:
+      lodash-es: 4.17.21
+      mitt: 3.0.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      sinon: 15.0.1
+      type-fest: 3.5.3
+    dev: false
+
   /@frontify/eslint-config-basic/0.17.0_mbd4zptqpjbepwpyh2zbtslqey:
     resolution: {integrity: sha512-ItI+e0+WXZgHGnhNPjlfQKAeeHn70V9gBvYLQrzq8uQ3pjwf+GkAyexHZjRblSlkdsG5kmJHeP6ymkxpRswzBQ==}
     peerDependencies:
@@ -2034,6 +2096,95 @@ packages:
       - ts-node
     dev: false
 
+  /@frontify/fondue/12.0.0-beta.76_angvksxlvvfhyjj3xhcshgfg2m:
+    resolution: {integrity: sha512-oUbIkMZxn1nbOAnWdc3QyuHuGkKTUwkUB0ZbLxwcTR/4VV2x/q0oEnGNgoTRix9f/G7kj53NU3JtPCnSUOfzpQ==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@frontify/fondue-tokens': 3.2.1
+      '@popperjs/core': 2.11.6
+      '@react-aria/accordion': 3.0.0-alpha.13_react@17.0.2
+      '@react-aria/aria-modal-polyfill': 3.6.1_pxzommwrsowkd4kgag6q3sluym
+      '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
+      '@react-aria/button': 3.6.3_react@17.0.2
+      '@react-aria/checkbox': 3.7.0_react@17.0.2
+      '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/focus': 3.10.0_react@17.0.2
+      '@react-aria/interactions': 3.13.0_react@17.0.2
+      '@react-aria/link': 3.3.5_react@17.0.2
+      '@react-aria/listbox': 3.7.1_react@17.0.2
+      '@react-aria/menu': 3.7.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/overlays': 3.12.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/radio': 3.4.1_react@17.0.2
+      '@react-aria/select': 3.8.3_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/selection': 3.12.0_react@17.0.2
+      '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
+      '@react-aria/tooltip': 3.3.3_react@17.0.2
+      '@react-aria/utils': 3.14.1_react@17.0.2
+      '@react-aria/visually-hidden': 3.6.0_react@17.0.2
+      '@react-stately/checkbox': 3.3.2_react@17.0.2
+      '@react-stately/collections': 3.4.4_react@17.0.2
+      '@react-stately/combobox': 3.2.2_react@17.0.2
+      '@react-stately/list': 3.5.4_react@17.0.2
+      '@react-stately/menu': 3.4.4_react@17.0.2
+      '@react-stately/overlays': 3.4.2_react@17.0.2
+      '@react-stately/radio': 3.6.0_react@17.0.2
+      '@react-stately/select': 3.3.2_react@17.0.2
+      '@react-stately/table': 3.5.0_react@17.0.2
+      '@react-stately/toggle': 3.4.2_react@17.0.2
+      '@react-stately/tooltip': 3.2.2_react@17.0.2
+      '@react-stately/tree': 3.3.4_react@17.0.2
+      '@udecode/plate': 19.0.5_46lb47almn5glegy4zpoj25ooe
+      '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.28.1
+      '@xstate/react': 1.6.3_gcyz5mxmyrgibkcjljkbjmosn4
+      date-fns: 2.29.3
+      escape-html: 1.0.3
+      framer-motion: 6.4.3_sfoxds7t5ydpegc3knd667wn6m
+      immer: 9.0.12
+      react: 17.0.2
+      react-colorful: 5.6.1_sfoxds7t5ydpegc3knd667wn6m
+      react-datepicker: 4.8.0_sfoxds7t5ydpegc3knd667wn6m
+      react-dnd: 16.0.1_pxzommwrsowkd4kgag6q3sluym
+      react-dnd-html5-backend: 15.1.2
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 18.2.0
+      react-popper: 2.3.0_vov5yimr6vvxyufd6uigwwkst4
+      react-textarea-autosize: 8.4.0_pxzommwrsowkd4kgag6q3sluym
+      remark-gfm: 3.0.1
+      remark-parse: 10.0.1
+      scheduler: 0.23.0
+      slate: 0.87.0
+      slate-history: 0.86.0_slate@0.87.0
+      slate-hyperscript: 0.77.0_slate@0.87.0
+      slate-react: 0.88.0_zuw6cui5cs3cobsmg3u6vuy52i
+      styled-components: 5.3.6_v5ja746gkdtknuc6tj46sve3be
+      tinycolor2: 1.4.2
+      unified: 10.1.2
+      unist-util-visit: 4.1.1
+      xstate: 4.28.1
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@xstate/fsm'
+      - jotai-immer
+      - jotai-optics
+      - jotai-redux
+      - jotai-tanstack-query
+      - jotai-urql
+      - jotai-valtio
+      - jotai-xstate
+      - jotai-zustand
+      - react-native
+      - supports-color
+      - ts-node
+    dev: false
+
   /@frontify/fondue/12.0.0-beta.77_angvksxlvvfhyjj3xhcshgfg2m:
     resolution: {integrity: sha512-C9I0qq5XJ2c5dB+mtqrOYmR0LTJHTRzzmlm2scR/0x4g2+Kp9ZOsQS1092pILD8YxkFri8Jc++pmeUKzeHixCg==}
     engines: {node: '>=16'}
@@ -2241,6 +2392,42 @@ packages:
       - terser
     dev: true
 
+  /@frontify/guideline-blocks-settings/0.25.10_angvksxlvvfhyjj3xhcshgfg2m:
+    resolution: {integrity: sha512-ZBbsCo8XGrUQltv01Y2XqbTDHhjPsG3IfGmjv7VYGprTWT18Lm5c+cjbFssFMjGKeKu2XY5TTPdDDsbgMzEGAQ==}
+    peerDependencies:
+      react: '>=17 || >=18'
+      react-dom: '>=17 || >=18'
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/sidebar-settings': 0.0.6_lr6ekrp7b6xyh6zugoaougvuee
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - jotai-immer
+      - jotai-optics
+      - jotai-redux
+      - jotai-tanstack-query
+      - jotai-urql
+      - jotai-valtio
+      - jotai-xstate
+      - jotai-zustand
+      - optics-ts
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
   /@frontify/guideline-blocks-settings/0.25.2_t2lnk2qhgvs3f2wqugd34vbhdu:
     resolution: {integrity: sha512-sVSHLZxoTpsRJ8OJ+NcqsoWmedRvP0puTEcJcc8fb4l4kdJ9fqAvk9oT2aMfid+RJzqFcK55kq/lGK4glXpaGA==}
     peerDependencies:
@@ -2284,6 +2471,40 @@ packages:
       '@frontify/app-bridge': 3.0.0-beta.30_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/sidebar-settings': 0.0.6_vv7cpewgmcw25x4o2lxdmrwwxe
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - jotai-immer
+      - jotai-optics
+      - jotai-redux
+      - jotai-tanstack-query
+      - jotai-urql
+      - jotai-valtio
+      - jotai-xstate
+      - jotai-zustand
+      - optics-ts
+      - react
+      - react-dom
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/sidebar-settings/0.0.6_lr6ekrp7b6xyh6zugoaougvuee:
+    resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
+    peerDependencies:
+      '@frontify/app-bridge': '*'
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -3920,6 +4141,12 @@ packages:
     resolution: {integrity: sha512-uLa0j859mMrg2slwQYdO/AkrOfmH+X6LTVmNTS9CqexuE2IvVORIkSpJLqePAbEnKJ77aMmCwr1NUZ57120Xcg==}
     dependencies:
       type-detect: 4.0.8
+    dev: false
+
+  /@sinonjs/fake-timers/10.0.2:
+    resolution: {integrity: sha512-SwUDyjWnah1AaNl7kxsa7cfLhlTYoiyhDAIgyh+El30YvXs/o7OLXpYH88Zdhyx9JExKrmHDJ+10bwIcY80Jmw==}
+    dependencies:
+      '@sinonjs/commons': 2.0.0
     dev: false
 
   /@sinonjs/fake-timers/7.1.2:
@@ -11625,7 +11852,7 @@ packages:
     dev: false
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
   /concat-stream/1.6.2:
@@ -16212,6 +16439,17 @@ packages:
       supports-color: 7.2.0
     dev: false
 
+  /sinon/15.0.1:
+    resolution: {integrity: sha512-PZXKc08f/wcA/BMRGBze2Wmw50CWPiAH3E21EOi4B49vJ616vW4DQh4fQrqsYox2aNR/N3kCqLuB0PwwOucQrg==}
+    dependencies:
+      '@sinonjs/commons': 2.0.0
+      '@sinonjs/fake-timers': 10.0.2
+      '@sinonjs/samsam': 7.0.1
+      diff: 5.1.0
+      nise: 5.1.2
+      supports-color: 7.2.0
+    dev: false
+
   /sisteransi/1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
     dev: true
@@ -16969,6 +17207,11 @@ packages:
 
   /type-fest/3.2.0:
     resolution: {integrity: sha512-Il3wdLRzWvbAEtocgxGQA9YOoRVeVUGOMBtel5LdEpNeEAol6GJTLw8GbX6Z8EIMfvfhoOXs2bwOijtAZdK5og==}
+    engines: {node: '>=14.16'}
+    dev: false
+
+  /type-fest/3.5.3:
+    resolution: {integrity: sha512-V2+og4j/rWReWvaFrse3s9g2xvUv/K9Azm/xo6CjIuq7oeGqsoimC7+9/A3tfvNcbQf8RPSVj/HV81fB4DJrjA==}
     engines: {node: '>=14.16'}
     dev: false
 
