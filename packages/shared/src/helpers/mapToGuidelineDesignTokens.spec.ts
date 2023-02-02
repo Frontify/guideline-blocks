@@ -67,7 +67,7 @@ const mockedDesignTokens = {
         italic: '1',
     },
     buttonPrimary: {
-        family: 'inherit',
+        family: 'Arial',
         size: '13px',
         color: 'rgba(102,102,102,1)',
         color_hover: 'rgba(76, 76, 76, 1)',
@@ -111,6 +111,7 @@ const mockedDesignTokens = {
         tip: 'rgb(255, 7, 212)',
         warning: 'rgb(255, 0, 0)',
     },
+    main_font: { family: 'Arial' },
 };
 
 const expectedTransformedDesignTokens = {
@@ -182,7 +183,7 @@ const expectedTransformedDesignTokens = {
             backgroundColor: 'rgba(172, 172, 172, 1)',
             borderColor: 'rgba(155, 155, 155, 1)',
         },
-        fontFamily: 'inherit',
+        fontFamily: 'Arial',
         fontSize: '13px',
         backgroundColor: 'rgba(230,230,230,1)',
         paddingTop: '10rem',
@@ -249,5 +250,25 @@ describe('mapToGuidelineDesignTokens', () => {
     it('should transform color value', () => {
         const result = mapToGuidelineDesignTokens({ body: { color: '#fff' } });
         expect(result).toMatchObject({ p: { color: '#fff' } });
+    });
+
+    it('should transform fontfamily', () => {
+        const result = mapToGuidelineDesignTokens({ body: { family: 'Helvetia' }, main_font: { family: 'Arial' } });
+        expect(result).toMatchObject({ p: { fontFamily: 'Helvetia' } });
+    });
+
+    it('should transform main fontfamily', () => {
+        const result = mapToGuidelineDesignTokens({ body: { family: 'inherit' }, main_font: { family: 'Arial' } });
+        expect(result).toMatchObject({ p: { fontFamily: 'Arial' } });
+    });
+
+    it('should use system font', () => {
+        const result = mapToGuidelineDesignTokens({ body: { family: 'default' }, main_font: { family: 'Arial' } });
+        expect(result).toMatchObject({ p: { fontFamily: 'system-ui' } });
+    });
+
+    it('should use system when no main font is defined', () => {
+        const result = mapToGuidelineDesignTokens({ body: { family: 'inherit' }, main_font: { family: 'default' } });
+        expect(result).toMatchObject({ p: { fontFamily: 'system-ui' } });
     });
 });

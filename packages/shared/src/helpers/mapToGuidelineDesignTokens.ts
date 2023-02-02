@@ -9,6 +9,7 @@ import {
     TransformedDesignTokens,
 } from '../hooks/useGuidelineDesignTokens';
 import { suffixPlainNumberWithPx } from '../utilities/suffixPlainNumberWithPx';
+import { getFont, getSystemFont } from './font';
 import { provideDefaultCalloutColors } from './provideDefaultCalloutColors';
 
 const TokenNameMapper: Record<string, DesignTokenName> = {
@@ -19,14 +20,14 @@ const TokenNameMapper: Record<string, DesignTokenName> = {
     body: 'p',
 };
 
-const transformDesignTokens = (dataToTransform: DesignTokenProperties) => {
+const transformDesignTokens = (dataToTransform: DesignTokenProperties, mainFontFamily: string) => {
     const cssStyles: TokenValues = {};
 
     for (const [key, value] of Object.entries(dataToTransform)) {
         if (typeof value === 'object') {
             transformObjectValues(key, cssStyles, value);
         } else {
-            transformStringValues(key, cssStyles, value);
+            transformStringValues(key, cssStyles, value, mainFontFamily);
         }
     }
     return cssStyles;
@@ -41,11 +42,11 @@ const transformObjectValues = (key: string, cssStyles: TokenValues, value: Direc
     }
 };
 
-const transformStringValues = (key: string, cssStyles: TokenValues, value: string) => {
+const transformStringValues = (key: string, cssStyles: TokenValues, value: string, mainFontFamily: string) => {
     cssStyles.hover = cssStyles.hover || {};
     switch (key) {
         case DesignTokenPropertiesEnum.family:
-            cssStyles.fontFamily = value;
+            cssStyles.fontFamily = getFont(value, mainFontFamily);
             break;
         case DesignTokenPropertiesEnum.weight:
             cssStyles.fontWeight = value;
@@ -119,11 +120,14 @@ const transformStringValues = (key: string, cssStyles: TokenValues, value: strin
 export const mapToGuidelineDesignTokens = (dataToTransform: Partial<Record<string, DesignTokenProperties>>) => {
     const transformedDesignTokens: TransformedDesignTokens = {};
     const enrichedDataToTransform = provideDefaultCalloutColors(dataToTransform);
+    const mainFontFamily = getSystemFont(
+        (dataToTransform?.['main_font'] as Record<DesignTokenPropertiesEnum, string>)?.family
+    );
 
     for (const [key, value] of Object.entries(enrichedDataToTransform)) {
         const designTokenName = TokenNameMapper[key] ?? key;
         if (value !== null) {
-            transformedDesignTokens[designTokenName] = transformDesignTokens(value) as TokenValues;
+            transformedDesignTokens[designTokenName] = transformDesignTokens(value, mainFontFamily) as TokenValues;
         }
     }
 
