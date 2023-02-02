@@ -78,6 +78,7 @@ export class VectorContainerOperator extends ContainerOperator {
             this.imageContainer.width * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT),
             this.imageContainer.height * (1 + zoom * MAGNIFICATION_PERCENTAGE_DEFAULT)
         );
+        this.centerImageContainerWithinTheImageStage();
         return this;
     }
 

@@ -51,6 +51,8 @@ export type Settings = {
     hasRadius: boolean;
     radiusChoice: Radius;
     radiusValue: string;
+    allowFullScreen: boolean;
+    allowZooming: boolean;
 };
 
 export type BoundingClientRectProperties = {
@@ -85,6 +87,8 @@ export type ImageStageProps = {
     hasRadius: boolean;
     radiusValue: string;
     radiusChoice: Radius;
+    allowFullScreen: boolean;
+    allowZooming: boolean;
 };
 
 export type DrawFullScreenActionButtonProps = {
@@ -95,4 +99,5 @@ export type DrawFullScreenActionButtonProps = {
 export type DrawZoomInOutButtonsProps = {
     onClickZoomIn: () => void;
     onClickZoomOut: () => void;
+    isFullScreen?: boolean;
 };

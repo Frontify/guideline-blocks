@@ -126,7 +126,10 @@ export const mapToGuidelineDesignTokens = (dataToTransform: Partial<Record<strin
 
     for (const [key, value] of Object.entries(enrichedDataToTransform)) {
         const designTokenName = TokenNameMapper[key] ?? key;
-        transformedDesignTokens[designTokenName] = transformDesignTokens(value, mainFontFamily) as TokenValues;
+        if (value !== null) {
+            transformedDesignTokens[designTokenName] = transformDesignTokens(value, mainFontFamily) as TokenValues;
+        }
     }
+
     return transformedDesignTokens;
 };

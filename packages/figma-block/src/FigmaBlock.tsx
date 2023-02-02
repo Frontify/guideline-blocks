@@ -56,6 +56,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
         hasRadius,
         radiusValue,
         radiusChoice,
+        allowFullScreen,
+        allowZooming,
     } = blockSettings;
 
     useEffect(() => {
@@ -143,6 +145,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                     hasRadius={hasRadius}
                     radiusValue={radiusValue}
                     radiusChoice={radiusChoice}
+                    allowFullScreen={allowFullScreen}
+                    allowZooming={allowZooming}
                 />
                 {showFigmaLink && <ShowFigmaLink title={asset?.title} assetExternalUrl={assetExternalUrl} />}
             </div>
@@ -157,6 +161,8 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
             borderColor,
             borderStyle,
             borderWidth,
+            allowFullScreen,
+            allowZooming,
             backgroundColor,
             hasRadius,
             radiusChoice,
@@ -174,17 +180,30 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
                 }}
                 className={joinClassNames(['tw-relative tw-flex tw-justify-center tw-group'])}
             >
-                <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
-                    <Button
-                        icon={<IconArrowExpand />}
-                        onClick={() => toggleFigmaLiveModal(true)}
-                        emphasis={ButtonEmphasis.Default}
-                    />
-                </div>
+                {allowFullScreen && (
+                    <div className="tw-absolute tw-top-4 tw-right-4 tw-opacity-0 tw-transition-opacity group-hover:tw-opacity-100">
+                        <Button
+                            icon={<IconArrowExpand />}
+                            onClick={() => toggleFigmaLiveModal(true)}
+                            emphasis={ButtonEmphasis.Default}
+                        />
+                    </div>
+                )}
                 <iframe src={asset?.externalUrl ?? undefined} className="tw-h-full tw-w-full tw-border-none" />
             </div>
         ),
-        [asset, hasBorder, isMobile, isCustomHeight, heightValue, heightChoice, borderWidth, borderColor, borderStyle]
+        [
+            asset,
+            hasBorder,
+            isMobile,
+            isCustomHeight,
+            heightValue,
+            heightChoice,
+            borderWidth,
+            borderColor,
+            borderStyle,
+            allowFullScreen,
+        ]
     );
 
     const FigmaLivePortal = useCallback(() => {
