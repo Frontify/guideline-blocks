@@ -16,6 +16,7 @@ export type ColorProps = Color & { id: number; width: number; resized?: boolean 
 export type ColorSquareProps = {
     color: ColorProps;
     totalWidth: number;
+    roundedClassNames: string;
     width: number;
     blockId: number;
     isEditing: boolean;

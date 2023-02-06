@@ -20,6 +20,7 @@ import { ColorPickerFlyout } from './components/ColorPickerFlyout';
 import { ColorSquare } from './components/ColorSquare';
 import { EmptyView } from './components/EmptyView';
 import { MINIMUM_COLOR_WIDTH } from './helpers';
+import { getRoundedClassNames } from './helpers/getRoundedClassNames';
 import { ColorProps, Settings, spacingValues } from './types';
 
 export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -134,15 +135,15 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
             <div
                 ref={colorScaleBlockRef}
                 data-test-id="color-scale-block"
-                className="tw-w-full tw-mb-4 tw-rounded tw-border tw-border-line"
+                className="tw-mb-4 tw-rounded tw-border tw-border-line"
                 style={{
                     height,
                 }}
             >
                 {displayableItems.length > 0 ? (
                     <DndProvider backend={HTML5Backend}>
-                        <div className="tw-h-full tw-flex tw-relative tw-rounded tw-overflow-hidden tw-border tw-border-line tw-gap-px">
-                            {displayableItems.map((color) => {
+                        <div className="tw-p-px tw-h-full tw-flex tw-relative tw-gap-px">
+                            {displayableItems.map((color, index) => {
                                 return (
                                     <ColorSquare
                                         key={color.id}
@@ -151,6 +152,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
                                         width={color.width}
                                         totalWidth={totalWidth}
                                         isEditing={isEditing}
+                                        roundedClassNames={getRoundedClassNames(index, displayableItems)}
                                         onDelete={onDelete}
                                         onDrop={() => {
                                             setBlockSettings({ colorInput: displayableItems });

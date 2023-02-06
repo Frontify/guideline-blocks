@@ -13,7 +13,7 @@ import {
     useCopy,
 } from '@frontify/fondue';
 import { joinClassNames, toHex8String, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { LegacyRef, useRef } from 'react';
+import { LegacyRef, useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { ColorProps, ColorSquareProps } from '../types';
 import { TooltipContent } from './TooltipContent';
@@ -24,6 +24,7 @@ export const ColorSquare = ({
     totalWidth,
     setDisplayableItems,
     isEditing,
+    roundedClassNames,
     width,
     onDelete,
     onDrop,
@@ -67,40 +68,46 @@ export const ColorSquare = ({
         },
     });
 
+    const [showTooltip, setShowTooltip] = useState(false);
+
     return (
         <>
             <div
                 data-test-id="color-wrapper"
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+                onDragStart={() => setShowTooltip(false)}
                 className={joinClassNames([
-                    'tw-group tw-relative [&>div]:tw-h-full',
-                    isDragging
-                        ? 'tw-transition-all tw-bg-violet-20 tw-border-violet-60 tw-border-dashed tw-border-2'
-                        : '',
+                    'tw-relative [&>div]:tw-h-full',
+                    isDragging && 'tw-transition-all tw-bg-violet-20 tw-border-violet-60 tw-border-dashed tw-border-2',
+                    roundedClassNames,
                 ])}
                 draggable
                 ref={drop(drag(ref)) as LegacyRef<HTMLDivElement>}
                 style={{
                     backgroundColor: isDragging ? '' : toRgbaString(color),
                     width: `${(width / totalWidth) * 100}%`,
-                    cursor: isEditing ? 'grab' : 'pointer',
+                    cursor: isDragging ? 'grabbing' : 'pointer',
                 }}
             >
                 {isEditing ? (
-                    <div
-                        data-test-id="delete-color"
-                        className={joinClassNames([
-                            'tw-absolute tw-top-1.5 tw-right-2 tw-hidden group-hover:tw-block tw-h-full',
-                            isDragging ? 'tw-transition-all' : '',
-                        ])}
-                    >
-                        <Button
-                            icon={<IconTrashBin size={IconSize.Size16} />}
-                            size={ButtonSize.Small}
-                            style={ButtonStyle.Default}
-                            emphasis={ButtonEmphasis.Default}
-                            onClick={() => onDelete(color)}
-                        />
-                    </div>
+                    showTooltip && (
+                        <div
+                            data-test-id="delete-color"
+                            className={joinClassNames([
+                                'tw-absolute tw-top-1.5 tw-right-2 tw-h-full',
+                                isDragging ? 'tw-transition-all' : '',
+                            ])}
+                        >
+                            <Button
+                                icon={<IconTrashBin size={IconSize.Size16} />}
+                                size={ButtonSize.Small}
+                                style={ButtonStyle.Default}
+                                emphasis={ButtonEmphasis.Default}
+                                onClick={() => onDelete(color)}
+                            />
+                        </div>
+                    )
                 ) : (
                     <Tooltip
                         alignment={TooltipAlignment.Middle}
