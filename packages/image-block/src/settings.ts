@@ -38,11 +38,12 @@ export const settings = defineSettings({
         {
             id: 'imageSection',
             type: 'sectionHeading',
-            label: 'Image',
+            label: '',
             blocks: [
                 {
                     id: 'image',
                     type: 'assetInput',
+                    label: 'Image',
                     size: AssetInputSize.Small,
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                 },
