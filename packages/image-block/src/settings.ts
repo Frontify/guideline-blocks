@@ -10,13 +10,27 @@ import {
     appendUnit,
     defineSettings,
     numericalOrPixelRule,
+    presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 
-import { Alignment, BorderStyle, CaptionPosition, ImageSecurity, Padding, Ratio } from './types';
+import {
+    Alignment,
+    BorderStyle,
+    CaptionPosition,
+    ImageSecurity,
+    Padding,
+    Ratio,
+    paddingValues,
+    radiusValues,
+} from './types';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
 const HAS_BORDER_ID = 'hasBorder';
+const PADDING_CHOICE_ID = 'paddingChoice';
+const PADDING_CUSTOM_ID = 'paddingCustom';
+const RADIUS_CHOICE_ID = 'radiusChoice';
+const RADIUS_CUSTOM_ID = 'radiusCustom';
 
 export const settings = defineSettings({
     basics: [
@@ -120,19 +134,20 @@ export const settings = defineSettings({
             type: 'switch',
             defaultValue: false,
             switchLabel: 'Custom',
-            label: 'Padding',
+            label: 'Image padding',
             info: 'The spacing around the image.',
+            onChange: (bundle) => presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_CUSTOM_ID, paddingValues),
             on: [
                 {
-                    id: 'customPadding',
+                    id: PADDING_CUSTOM_ID,
                     type: 'input',
-                    onChange: (bundle) => appendUnit(bundle, 'customPadding'),
                     rules: [numericalOrPixelRule],
+                    onChange: (bundle) => appendUnit(bundle, PADDING_CUSTOM_ID),
                 },
             ],
             off: [
                 {
-                    id: 'paddingChoice',
+                    id: PADDING_CHOICE_ID,
                     type: 'slider',
                     defaultValue: Padding.None,
                     choices: [
@@ -161,7 +176,7 @@ export const settings = defineSettings({
         {
             id: HAS_BACKGROUND_ID,
             type: 'switch',
-            label: 'Show Background',
+            label: 'Background',
             defaultValue: false,
             on: [
                 {
@@ -175,7 +190,7 @@ export const settings = defineSettings({
             id: HAS_BORDER_ID,
             type: 'switch',
             defaultValue: false,
-            label: 'Show border',
+            label: 'Border',
             on: [
                 {
                     id: 'border',
@@ -218,6 +233,47 @@ export const settings = defineSettings({
                         },
                     ],
                     layout: MultiInputLayout.Columns,
+                },
+            ],
+        },
+        {
+            id: 'cornerRadius',
+            type: 'switch',
+            defaultValue: false,
+            switchLabel: 'Custom',
+            label: 'Corner radius',
+            onChange: (bundle) => presetCustomValue(bundle, RADIUS_CHOICE_ID, RADIUS_CUSTOM_ID, radiusValues),
+            on: [
+                {
+                    id: RADIUS_CUSTOM_ID,
+                    type: 'input',
+                    rules: [numericalOrPixelRule],
+                    onChange: (bundle) => appendUnit(bundle, RADIUS_CUSTOM_ID),
+                },
+            ],
+            off: [
+                {
+                    id: RADIUS_CHOICE_ID,
+                    type: 'slider',
+                    defaultValue: Padding.None,
+                    choices: [
+                        {
+                            value: Padding.None,
+                            label: 'None',
+                        },
+                        {
+                            value: Padding.Small,
+                            label: 'S',
+                        },
+                        {
+                            value: Padding.Medium,
+                            label: 'M',
+                        },
+                        {
+                            value: Padding.Large,
+                            label: 'L',
+                        },
+                    ],
                 },
             ],
         },

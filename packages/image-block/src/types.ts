@@ -35,8 +35,29 @@ export enum Padding {
     Large = 'Large',
 }
 
+export const paddingValues: Record<Padding, string> = {
+    [Padding.None]: '0px',
+    [Padding.Small]: '10px',
+    [Padding.Medium]: '20px',
+    [Padding.Large]: '50px',
+};
+
 export enum BorderStyle {
     Dotted = 'Dotted',
     Dashed = 'Dashed',
     Solid = 'Solid',
 }
+
+export enum CornerRadius {
+    None = 'None',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+}
+
+export const radiusValues: Record<CornerRadius, string> = {
+    [CornerRadius.None]: '0px',
+    [CornerRadius.Small]: '2px',
+    [CornerRadius.Medium]: '4px',
+    [CornerRadius.Large]: '12px',
+};
