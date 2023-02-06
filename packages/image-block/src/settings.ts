@@ -31,6 +31,7 @@ const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
 const RADIUS_CHOICE_ID = 'radiusChoice';
 const RADIUS_CUSTOM_ID = 'radiusCustom';
+const SECURITY_ID = 'security';
 
 export const settings = defineSettings({
     basics: [
@@ -61,7 +62,6 @@ export const settings = defineSettings({
                 },
             ],
         },
-
         {
             id: 'imageResolutionInfo',
             type: 'notification',
@@ -280,10 +280,10 @@ export const settings = defineSettings({
     ],
     security: [
         {
-            id: 'security',
+            id: SECURITY_ID,
             type: 'slider',
             defaultValue: ImageSecurity.Global,
-            info: 'This setting is only available for images that are uploaded to Frontify.',
+            helperText: 'Change global settings here.',
             choices: [
                 {
                     value: ImageSecurity.Global,
@@ -294,6 +294,13 @@ export const settings = defineSettings({
                     label: 'Custom',
                 },
             ],
+        },
+        {
+            id: 'downloadable',
+            type: 'switch',
+            defaultValue: false,
+            label: 'Downloadable',
+            show: (bundle) => bundle.getBlock(SECURITY_ID)?.value === ImageSecurity.Custom,
         },
     ],
 });
