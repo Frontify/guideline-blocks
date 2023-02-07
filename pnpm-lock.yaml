@@ -698,7 +698,7 @@ importers:
       '@frontify/fondue': 12.0.0-beta.77
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/frontify-cli': 5.3.1
-      '@frontify/guideline-blocks-settings': 0.25.2
+      '@frontify/guideline-blocks-settings': 0.25.10
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
@@ -717,7 +717,7 @@ importers:
       '@frontify/app-bridge': 3.0.0-beta.30_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 12.0.0-beta.77_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.2_vv7cpewgmcw25x4o2lxdmrwwxe
+      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/guideline-blocks-shared': link:../shared
       dayjs: 1.11.6
       react: 17.0.2
