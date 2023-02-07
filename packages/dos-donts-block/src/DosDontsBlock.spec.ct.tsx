@@ -2,8 +2,7 @@
 
 import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { DosDontsBlock } from './DosDontsBlock';
-import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
+import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE, DosDontsBlock } from './DosDontsBlock';
 import { DoDontStyle, ItemIconChoice } from './types';
 
 const DosDontsBlockSelector = '[data-test-id="dos-donts-block"]';
