@@ -3,34 +3,21 @@
 import {
     AssetChooserObjectType,
     AssetInputSize,
-    DropdownSize,
     IconEnum,
-    MultiInputLayout,
     NotificationStyleType,
     appendUnit,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
+import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
-import {
-    Alignment,
-    BorderStyle,
-    CaptionPosition,
-    ImageSecurity,
-    Padding,
-    Ratio,
-    paddingValues,
-    radiusValues,
-} from './types';
+import { Alignment, CaptionPosition, ImageSecurity, Padding, Ratio, paddingValues, radiusValues } from './types';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
-const HAS_BORDER_ID = 'hasBorder';
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
-const RADIUS_CHOICE_ID = 'radiusChoice';
-const RADIUS_CUSTOM_ID = 'radiusCustom';
 const SECURITY_ID = 'security';
 
 export const settings = defineSettings({
@@ -187,97 +174,11 @@ export const settings = defineSettings({
                 },
             ],
         },
-        {
-            id: HAS_BORDER_ID,
-            type: 'switch',
-            defaultValue: false,
-            label: 'Border',
-            on: [
-                {
-                    id: 'border',
-                    type: 'multiInput',
-                    lastItemFullWidth: true,
-                    onChange: (bundle) => appendUnit(bundle, 'borderWidth'),
-                    blocks: [
-                        {
-                            id: 'borderStyle',
-                            type: 'dropdown',
-                            defaultValue: BorderStyle.Solid,
-                            size: DropdownSize.Small,
-                            choices: [
-                                {
-                                    value: BorderStyle.Dotted,
-                                    label: 'Dotted',
-                                },
-                                {
-                                    value: BorderStyle.Dashed,
-                                    label: 'Dashed',
-                                },
-                                {
-                                    value: BorderStyle.Solid,
-                                    label: 'Solid',
-                                },
-                            ],
-                        },
-                        {
-                            id: 'borderWidth',
-                            type: 'input',
-                            defaultValue: '1px',
-                            placeholder: 'e.g. 2px',
-                            rules: [numericalOrPixelRule],
-                            clearable: false,
-                        },
-                        {
-                            id: 'borderColor',
-                            type: 'colorInput',
-                            defaultValue: { r: 153, g: 153, b: 153 },
-                        },
-                    ],
-                    layout: MultiInputLayout.Columns,
-                },
-            ],
-        },
-        {
+        getBorderSettings(),
+        getBorderRadiusSettings({
             id: 'cornerRadius',
-            type: 'switch',
-            defaultValue: false,
-            switchLabel: 'Custom',
-            label: 'Corner radius',
-            onChange: (bundle) => presetCustomValue(bundle, RADIUS_CHOICE_ID, RADIUS_CUSTOM_ID, radiusValues),
-            on: [
-                {
-                    id: RADIUS_CUSTOM_ID,
-                    type: 'input',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle) => appendUnit(bundle, RADIUS_CUSTOM_ID),
-                },
-            ],
-            off: [
-                {
-                    id: RADIUS_CHOICE_ID,
-                    type: 'slider',
-                    defaultValue: Padding.None,
-                    choices: [
-                        {
-                            value: Padding.None,
-                            label: 'None',
-                        },
-                        {
-                            value: Padding.Small,
-                            label: 'S',
-                        },
-                        {
-                            value: Padding.Medium,
-                            label: 'M',
-                        },
-                        {
-                            value: Padding.Large,
-                            label: 'L',
-                        },
-                    ],
-                },
-            ],
-        },
+            radiusStyleMap: radiusValues,
+        }),
     ],
     security: [
         {
