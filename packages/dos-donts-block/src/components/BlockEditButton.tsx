@@ -68,7 +68,7 @@ const BlockEditButton = ({
         <button
             ref={buttonRef}
             className={joinClassNames([
-                ' tw-relative tw-text-[14px] tw-text-text-weak tw-border [&:not(:first-child)]:tw-border-l-0 first:tw-rounded-tl-[4px] first:tw-rounded-bl-[4px] last:tw-rounded-tr-[4px] last:tw-rounded-br-[4px] tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
+                ' tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border [&:not(:first-child)]:tw-border-l-0 first:tw-rounded-tl-[4px] first:tw-rounded-bl-[4px] last:tw-rounded-tr-[4px] last:tw-rounded-br-[4px] tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
                 !isLoading &&
                     'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover',
                 isDraggingOver && '[&>*]:tw-pointer-events-none',
@@ -76,7 +76,7 @@ const BlockEditButton = ({
                     ? 'tw-text-blank-state-pressed tw-bg-blank-state-pressed-inverse tw-border-blank-state-line-hover hover:tw-text-blank-state-pressed hover:tw-border-blank-state-line-hover hover:tw-bg-blank-state-pressed-inverse'
                     : 'tw-bg-blank-state-shaded-inverse tw-border-blank-state-line tw-text-blank-state-shaded ',
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
-                !!onDrop && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
+                !!onDrop && isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
             ])}
             onDragEnter={() => setIsDraggingOver(true)}
             onDragLeave={() => setIsDraggingOver(false)}
@@ -112,7 +112,7 @@ const BlockEditButton = ({
                                               {
                                                   id: 'upload',
                                                   size: MenuItemContentSize.XSmall,
-                                                  title: 'Upload',
+                                                  title: 'Upload asset',
                                                   onClick: () => {
                                                       onUploadClick();
                                                       setMenuPosition(undefined);
@@ -135,7 +135,7 @@ const BlockEditButton = ({
                                               {
                                                   id: 'asset',
                                                   size: MenuItemContentSize.XSmall,
-                                                  title: 'Choose',
+                                                  title: 'Browse asset',
                                                   onClick: () => {
                                                       onAssetChooseClick();
                                                       setMenuPosition(undefined);
