@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
+import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
@@ -14,12 +14,24 @@ export const TextBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
-    const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
     const gap = blockSettings.isColumnGutterCustom
         ? blockSettings.columnGutterCustom
         : spacingValues[blockSettings.columnGutterSimple];
-    const plugins = getPlugins(Number(blockSettings.columnNumber), Number(gap.replace('px', '')) || undefined);
-    console.log(isEditing);
+
+    if (!isEditing) {
+        const style = { columns: blockSettings.columnNumber, columnGap: gap };
+        const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.content ?? '' }));
+        const html = serializeRawToHtml(rawValue, designTokens ?? undefined);
+        return (
+            <div
+                className="tw-relative tw-w-full tw-break-words"
+                style={style}
+                dangerouslySetInnerHTML={{ __html: html }}
+            />
+        );
+    }
+
+    const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
 
     return (
         <div data-test-id="text-block">
@@ -31,8 +43,7 @@ export const TextBlock = ({ appBridge }: BlockProps) => {
                 placeholder={isEditing ? PLACEHOLDER : undefined}
                 onTextChange={onTextChange}
                 onBlur={onTextChange}
-                plugins={plugins}
-                readonly={false} // atm we need to set this to false to make the editor work
+                plugins={getPlugins(Number(blockSettings.columnNumber), Number(gap.replace('px', '')) || undefined)}
             />
         </div>
     );

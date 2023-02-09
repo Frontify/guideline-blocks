@@ -15,6 +15,7 @@ import {
     ItalicPlugin,
     LinkPlugin,
     OrderedListPlugin,
+    ParagraphPlugin,
     PluginComposer,
     ResetFormattingPlugin,
     StrikethroughPlugin,
@@ -25,11 +26,11 @@ import {
 
 export const getPlugins = (columns?: number, gap?: number) => {
     if (!columns || columns === 1) {
-        console.log('getPlugins', 'columns === 1');
         return undefined;
     }
     const plugins = new PluginComposer();
-    plugins.setPlugin([new InitPlugin(), new TextStylePlugin() as any]);
+    plugins.setPlugin([new InitPlugin(), new ParagraphPlugin()]);
+    plugins.setPlugin(new TextStylePlugin());
     plugins.setPlugin([
         new BoldPlugin(),
         new ItalicPlugin(),
@@ -39,7 +40,7 @@ export const getPlugins = (columns?: number, gap?: number) => {
         new LinkPlugin(),
         new ButtonPlugin(),
         new CodePlugin(),
-        new BreakAfterPlugin({ columns, gap }) as any,
+        new BreakAfterPlugin({ columns, gap }),
     ]);
     plugins.setPlugin([
         new AlignLeftPlugin(),
