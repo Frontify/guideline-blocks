@@ -20,7 +20,7 @@ import {
 } from '@dnd-kit/core';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toColorObject, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
@@ -38,7 +38,9 @@ import {
     generateRandomId,
 } from '@frontify/fondue';
 import BlockEditButton from './components/BlockEditButton';
-import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE } from './settings';
+
+export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
+export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
 
 export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -94,8 +96,27 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const sensors = useSensors(useSensor(PointerSensor));
     const { dontIconAsset, doIconAsset, itemImages } = blockAssets;
     const [localItems, setLocalItems] = useState<Item[]>(items);
-    const doColor = hasCustomDoColor ? customDoColor : DO_COLOR_DEFAULT_VALUE;
-    const dontColor = hasCustomDontColor ? customDontColor : DONT_COLOR_DEFAULT_VALUE;
+    const defaultDoColor = designTokens?.callout?.tip
+        ? toColorObject(designTokens.callout.tip)
+        : DO_COLOR_DEFAULT_VALUE;
+    const defaultDontColor = designTokens?.callout?.warning
+        ? toColorObject(designTokens.callout.warning)
+        : DONT_COLOR_DEFAULT_VALUE;
+    const doColor = hasCustomDoColor ? customDoColor : defaultDoColor;
+    const dontColor = hasCustomDontColor ? customDontColor : defaultDontColor;
+
+    /**
+     * Save the design tokens to the settings initially
+     */
+    useEffect(() => {
+        if (designTokens && !customDoColor && !customDontColor) {
+            setBlockSettings({
+                doColor,
+                dontColor,
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [designTokens, customDoColor, customDontColor]);
 
     /**
      * Create placeholders on mount if empty
@@ -358,7 +379,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             >
                 <Modal.Header title="What should be the type of those images?" />
                 <Modal.Body>
-                    <div>You can always change the type later on each item</div>
+                    <div>You can always change the type later on each item.</div>
                 </Modal.Body>
                 <Modal.Footer
                     buttons={

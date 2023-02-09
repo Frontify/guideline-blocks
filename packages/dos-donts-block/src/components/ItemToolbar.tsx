@@ -6,11 +6,13 @@ import {
     IconArrowCircleUp20,
     IconArrowMove16,
     IconArrowSwap20,
-    IconDotsVertical16,
+    IconDotsHorizontal16,
     IconImageStack20,
     IconTrashBin16,
     IconTrashBin20,
     MenuItemContentSize,
+    Tooltip,
+    TooltipPosition,
 } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { DoDontType, ItemToolbarProps } from '../types';
@@ -30,23 +32,45 @@ const ItemToolbar = ({
     return (
         <div className="tw-flex tw-justify-end">
             <div className="tw-bg-white tw-text-box-selected-inverse tw-flex tw-flex-shrink-0 tw-gap-[2px] tw-px-[1px] tw-spacing tw-items-center tw-h-[28px] tw-self-start tw-border tw-border-box-selected-inverse tw-rounded-[4px]">
-                <button
-                    {...draggableProps}
-                    className={joinClassNames([
-                        'tw-bg-base  tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',
-                        isDragging
-                            ? 'tw-cursor-grabbing hover:tw-bg-box-selected-pressed'
-                            : 'tw-cursor-grab hover:tw-bg-box-selected-hover',
-                    ])}
-                >
-                    <IconArrowMove16 />
-                </button>
-                <div
-                    onClick={onRemoveSelf}
-                    className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm"
-                >
-                    <IconTrashBin16 />
-                </div>
+                <Tooltip
+                    withArrow
+                    hoverDelay={0}
+                    enterDelay={300}
+                    disabled={isDragging}
+                    position={TooltipPosition.Top}
+                    content={<div>Drag to move</div>}
+                    triggerElement={
+                        <button
+                            {...draggableProps}
+                            className={joinClassNames([
+                                'tw-bg-base  tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',
+                                isDragging
+                                    ? 'tw-cursor-grabbing hover:tw-bg-box-selected-pressed'
+                                    : 'tw-cursor-grab hover:tw-bg-box-selected-hover',
+                            ])}
+                        >
+                            <IconArrowMove16 />
+                        </button>
+                    }
+                />
+
+                <Tooltip
+                    withArrow
+                    enterDelay={300}
+                    hoverDelay={0}
+                    disabled={isDragging}
+                    position={TooltipPosition.Top}
+                    content={<div>Delete item</div>}
+                    triggerElement={
+                        <div
+                            onClick={onRemoveSelf}
+                            className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm"
+                        >
+                            <IconTrashBin16 />
+                        </div>
+                    }
+                />
+
                 <div className="tw-flex tw-flex-shrink-0 tw-flex-1 tw-h-[24px]">
                     <Flyout
                         isOpen={isFlyoutOpen}
@@ -55,9 +79,19 @@ const ItemToolbar = ({
                         hug={false}
                         onOpenChange={setIsFlyoutOpen}
                         trigger={
-                            <div className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm">
-                                <IconDotsVertical16 />
-                            </div>
+                            <Tooltip
+                                withArrow
+                                hoverDelay={0}
+                                enterDelay={300}
+                                disabled={isDragging}
+                                position={TooltipPosition.Top}
+                                content={<div>Options</div>}
+                                triggerElement={
+                                    <div className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm">
+                                        <IconDotsHorizontal16 />
+                                    </div>
+                                }
+                            />
                         }
                     >
                         <ActionMenu

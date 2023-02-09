@@ -155,7 +155,9 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                 <div
                     className={joinClassNames([
                         'tw-relative tw-group tw-border-[transparent] tw-border',
-                        editing && !replaceWithPlaceholder && 'hover:tw-border-box-selected-inverse ',
+                        editing &&
+                            !replaceWithPlaceholder &&
+                            'hover:tw-outline-offset-[1px] hover:tw-outline hover:tw-outline-[1px] hover:tw-outline-box-selected-inverse',
                         isDragging && !replaceWithPlaceholder && 'tw-bg-base',
                         (isFlyoutOpen || isDragging) && !replaceWithPlaceholder && 'tw-border-line-x-strong',
                     ])}
