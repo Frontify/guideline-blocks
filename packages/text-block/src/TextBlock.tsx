@@ -24,6 +24,7 @@ export const TextBlock = ({ appBridge }: BlockProps) => {
         const html = serializeRawToHtml(rawValue, designTokens ?? undefined);
         return (
             <div
+                data-test-id="text-block-html"
                 className="tw-relative tw-w-full tw-break-words"
                 style={style}
                 dangerouslySetInnerHTML={{ __html: html }}
@@ -34,17 +35,16 @@ export const TextBlock = ({ appBridge }: BlockProps) => {
     const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
 
     return (
-        <div data-test-id="text-block">
-            <RichTextEditor
-                id={appBridge.getBlockId().toString()}
-                designTokens={designTokens ?? undefined}
-                value={blockSettings.content}
-                border={false}
-                placeholder={isEditing ? PLACEHOLDER : undefined}
-                onTextChange={onTextChange}
-                onBlur={onTextChange}
-                plugins={getPlugins(Number(blockSettings.columnNumber), Number(gap.replace('px', '')) || undefined)}
-            />
-        </div>
+        <RichTextEditor
+            data-test-id="rich-text-editor"
+            id={appBridge.getBlockId().toString()}
+            designTokens={designTokens ?? undefined}
+            value={blockSettings.content}
+            border={false}
+            placeholder={isEditing ? PLACEHOLDER : undefined}
+            onTextChange={onTextChange}
+            onBlur={onTextChange}
+            plugins={getPlugins(Number(blockSettings.columnNumber), Number((gap ?? '').replace('px', '')) || undefined)}
+        />
     );
 };

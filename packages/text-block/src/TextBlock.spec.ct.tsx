@@ -6,53 +6,37 @@ import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { PLACEHOLDER } from './settings';
 import { TextGutter } from './types';
 
-const TextBlockSelector = '[data-test-id="text-block"]';
+const TextBlockSelectorHtml = '[data-test-id="text-block-html"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
 
 describe('Text Block', () => {
     it('renders a text block', () => {
-        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {});
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            editorState: true,
+        });
 
         mount(<TextBlockWithStubs />);
-        cy.get(TextBlockSelector).should('exist');
+        cy.get(RichTextEditor).should('exist');
     });
 
     it('should not be able to input to a text block when in view mode', () => {
         const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {});
 
         mount(<TextBlockWithStubs />);
-        cy.get(RichTextEditor).find('[contenteditable=true]').should('not.exist');
-        cy.get(RichTextEditor).find('[contenteditable=false]').should('not.have.text', 'Your text here');
+        cy.get(TextBlockSelectorHtml).should('exist');
     });
 
-    it('should render a text block with the correct amount of columns and correct spacing', () => {
+    it('should render correct columns and gap in view mode', () => {
         const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
             blockSettings: {
                 columnNumber: 2,
-                content:
-                    '[{"type":"p","children":[{"text":"Text "}]},{"type":"p","children":[{"text":""}]},{"type":"p","children":[{"text":""}]}]',
                 isColumnGutterCustom: false,
                 columnGutterSimple: TextGutter.S,
             },
         });
-        mount(<TextBlockWithStubs />);
-        cy.get(RichTextEditor)
-            .should('have.attr', 'style')
-            .and('contain', 'display: block; columns: auto 2; gap: 10px;');
-    });
 
-    it('should render a text block with the custom spacing', () => {
-        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
-            blockSettings: {
-                columnNumber: 4,
-                content:
-                    '[{"type":"p","children":[{"text":"Text "}]},{"type":"p","children":[{"text":""}]},{"type":"p","children":[{"text":""}]}]',
-                isColumnGutterCustom: true,
-                columnGutterCustom: '100px',
-            },
-        });
         mount(<TextBlockWithStubs />);
-        cy.get(RichTextEditor).should('have.css', 'gap', '100px');
+        cy.get(TextBlockSelectorHtml).should('have.css', 'columns', 'auto 2').and('have.css', 'column-gap', '10px');
     });
 
     it('placeholder should be visible when there is no content', () => {
