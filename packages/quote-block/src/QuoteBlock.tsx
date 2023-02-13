@@ -5,7 +5,9 @@ import {
     BoldPlugin,
     InitPlugin,
     ItalicPlugin,
+    Plugin,
     PluginComposer,
+    PluginProps,
     RichTextEditor,
     StrikethroughPlugin,
     TextStylePlugin,
@@ -24,7 +26,7 @@ import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities
 
 const customPlugins = new PluginComposer();
 customPlugins
-    .setPlugin([new InitPlugin(), new TextStylePlugin()])
+    .setPlugin([new InitPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
     .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()]);
 
 const DEFAULT_CONTENT_VALUE = '[{"type":"quote","children":[{"text":""}]}]';
