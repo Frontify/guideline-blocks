@@ -32,7 +32,7 @@ export enum SettingsEnum {
 
 export type Settings = {
     [SettingsEnum.Type]: TileType;
-    [SettingsEnum.Columns]: string;
+    [SettingsEnum.Columns]: TileColumns;
     [SettingsEnum.Spacing]: boolean;
     [SettingsEnum.SpacingChoice]: TileSpacing;
     [SettingsEnum.SpacingCustom]: string;
@@ -87,6 +87,8 @@ export enum TileDisplay {
     Fill = 'Fill',
     Fit = 'Fit',
 }
+
+export type TileColumns = '1' | '2' | '3' | '4';
 
 export enum TileImagePositioning {
     Top = 'Top',
