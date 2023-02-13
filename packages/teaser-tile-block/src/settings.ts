@@ -8,6 +8,7 @@ import {
     SwitchBlock,
     TextInputType,
     defineSettings,
+    SwitchSize,
 } from '@frontify/guideline-blocks-settings';
 
 enum TileType {
@@ -78,6 +79,7 @@ const SPACING_BLOCK: SwitchBlock = {
     id: 'spacing',
     type: 'switch',
     label: 'Spacing',
+    switchLabel: 'Custom',
     info: 'Another word for ‘gap’. Refers to both column gutter and row gutter.',
     off: [
         {
@@ -98,6 +100,7 @@ const HEIGHT_BLOCK: SwitchBlock = {
     id: 'height',
     type: 'switch',
     label: 'Height',
+    switchLabel: 'Custom',
     off: [
         {
             id: 'heightChoice',
@@ -117,6 +120,7 @@ const PADDING_BLOCK: SwitchBlock = {
     id: 'padding',
     type: 'switch',
     label: 'Padding',
+    switchLabel: 'Custom',
     info: 'The spacing between the text and the outer parameters of the tile',
     off: [
         {
@@ -135,6 +139,7 @@ const PADDING_BLOCK: SwitchBlock = {
 const DISPLAY_BLOCK: SliderBlock = {
     id: 'display',
     type: 'slider',
+    label: 'Display',
     info: 'Determines how the image fits within the available space. Fill: fits as much into the frame as possible with possible cropping. Fit: Makes sure the whole image is visible in the frame',
     choices: [
         { value: TileDisplay.Fill, label: TileDisplay.Fill },
@@ -148,6 +153,7 @@ export const settings = defineSettings({
             id: 'type',
             type: 'dropdown',
             size: DropdownSize.Large,
+            defaultValue: TileType.Text,
             choices: [
                 { value: TileType.Text, icon: IconEnum.TextAlignmentLeft, label: 'Text' },
                 { value: TileType.Image, icon: IconEnum.Image, label: 'Image' },
