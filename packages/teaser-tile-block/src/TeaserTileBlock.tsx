@@ -10,5 +10,9 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
 
-    return <div data-test-id="teasertile-block" className="tw-relative"></div>;
+    return (
+        <div data-test-id="teasertile-block" className="tw-relative">
+            Tile
+        </div>
+    );
 };

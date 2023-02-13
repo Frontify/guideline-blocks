@@ -11,60 +11,20 @@ import {
     defineSettings,
 } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-
-enum TileType {
-    Text = 'Text',
-    Image = 'Image',
-    ImageText = 'ImageText',
-}
-
-enum TileSpacing {
-    None = 'None',
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large',
-}
-
-enum TilePadding {
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large',
-}
-
-enum TileHeight {
-    Auto = 'Auto',
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large',
-}
-
-enum TileDisplay {
-    Fill = 'Fill',
-    Fit = 'Fit',
-}
-
-enum TileImagePositioning {
-    Top = 'Top',
-    Bottom = 'Bottom',
-    Left = 'Left',
-    Right = 'Right',
-    Behind = 'Behind',
-}
-
-enum TileHoizontalAlignment {
-    Left = 'Left',
-    Right = 'Right',
-    Center = 'Center',
-}
-
-enum TileVerticalAlignment {
-    Top = 'Top',
-    Bottom = 'Bottom',
-    Center = 'Center',
-}
+import {
+    SettingsEnum,
+    TileDisplay,
+    TileHeight,
+    TileHoizontalAlignment,
+    TileImagePositioning,
+    TilePadding,
+    TileSpacing,
+    TileType,
+    TileVerticalAlignment,
+} from './types';
 
 const COLUMN_BLOCK: SliderBlock = {
-    id: 'columns',
+    id: SettingsEnum.Columns,
     type: 'slider',
     label: 'Columns',
     info: 'Sets the maximum amount of columns in this block. On smaller devices, this will be responsive to be fewer',
@@ -78,7 +38,7 @@ const COLUMN_BLOCK: SliderBlock = {
 };
 
 const SPACING_BLOCK: SwitchBlock = {
-    id: 'spacing',
+    id: SettingsEnum.Spacing,
     type: 'switch',
     label: 'Spacing',
     switchLabel: 'Custom',
@@ -87,7 +47,7 @@ const SPACING_BLOCK: SwitchBlock = {
     defaultValue: false,
     off: [
         {
-            id: 'spacingChoice',
+            id: SettingsEnum.SpacingChoice,
             type: 'slider',
             defaultValue: TileSpacing.Small,
             choices: [
@@ -98,18 +58,18 @@ const SPACING_BLOCK: SwitchBlock = {
             ],
         },
     ],
-    on: [{ id: 'spacingCustom', type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
+    on: [{ id: SettingsEnum.SpacingCustom, type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
 };
 
 const HEIGHT_BLOCK: SwitchBlock = {
-    id: 'height',
+    id: SettingsEnum.Height,
     type: 'switch',
     label: 'Height',
     switchLabel: 'Custom',
     defaultValue: false,
     off: [
         {
-            id: 'heightChoice',
+            id: SettingsEnum.HeightChoice,
             type: 'slider',
             defaultValue: TileHeight.Auto,
             choices: [
@@ -120,11 +80,11 @@ const HEIGHT_BLOCK: SwitchBlock = {
             ],
         },
     ],
-    on: [{ id: 'heightCustom', type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
+    on: [{ id: SettingsEnum.HeightCustom, type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
 };
 
 const PADDING_BLOCK: SwitchBlock = {
-    id: 'padding',
+    id: SettingsEnum.Padding,
     type: 'switch',
     label: 'Padding',
     switchLabel: 'Custom',
@@ -132,7 +92,7 @@ const PADDING_BLOCK: SwitchBlock = {
     defaultValue: false,
     off: [
         {
-            id: 'paddingChoice',
+            id: SettingsEnum.PaddingChoice,
             type: 'slider',
             defaultValue: TilePadding.Small,
             choices: [
@@ -142,16 +102,19 @@ const PADDING_BLOCK: SwitchBlock = {
             ],
         },
     ],
-    on: [{ id: 'paddingCustom', type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
+    on: [{ id: SettingsEnum.PaddingCustom, type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
 };
 
 const DISPLAY_BLOCK: SliderBlock = {
-    id: 'display',
+    id: SettingsEnum.Display,
     type: 'slider',
     label: 'Display',
     info: 'Determines how the image fits within the available space. Fill: fits as much into the frame as possible with possible cropping. Fit: Makes sure the whole image is visible in the frame',
     show: (bundle: Bundle) =>
-        Boolean(bundle.getBlock('height')?.value || bundle.getBlock('heightChoice')?.value !== TileHeight.Auto),
+        Boolean(
+            bundle.getBlock(SettingsEnum.Height)?.value ||
+                bundle.getBlock(SettingsEnum.HeightChoice)?.value !== TileHeight.Auto
+        ),
     defaultValue: TileDisplay.Fill,
     choices: [
         { value: TileDisplay.Fill, label: TileDisplay.Fill },
@@ -162,7 +125,7 @@ const DISPLAY_BLOCK: SliderBlock = {
 export const settings = defineSettings({
     main: [
         {
-            id: 'type',
+            id: SettingsEnum.Type,
             type: 'dropdown',
             size: DropdownSize.Large,
             defaultValue: TileType.ImageText,
@@ -179,7 +142,7 @@ export const settings = defineSettings({
             id: 'text-layout',
             type: 'sectionHeading',
             label: '',
-            show: (bundle: Bundle) => bundle.getBlock('type')?.value === TileType.Text,
+            show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.Text,
             blocks: [COLUMN_BLOCK, SPACING_BLOCK, HEIGHT_BLOCK, PADDING_BLOCK],
         },
         // Image Layout Options
@@ -187,7 +150,7 @@ export const settings = defineSettings({
             id: 'image-layout',
             type: 'sectionHeading',
             label: '',
-            show: (bundle: Bundle) => bundle.getBlock('type')?.value === TileType.Image,
+            show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.Image,
             blocks: [COLUMN_BLOCK, SPACING_BLOCK, HEIGHT_BLOCK, DISPLAY_BLOCK],
         },
         // Image/Text Layout Options
@@ -195,17 +158,17 @@ export const settings = defineSettings({
             id: 'imageText-columns',
             type: 'sectionHeading',
             label: 'Columns',
-            show: (bundle: Bundle) => bundle.getBlock('type')?.value === TileType.ImageText,
+            show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText,
             blocks: [{ ...COLUMN_BLOCK, label: 'Number' }, SPACING_BLOCK],
         },
         {
             id: 'imageText-tiles',
             type: 'sectionHeading',
             label: 'Tiles',
-            show: (bundle: Bundle) => bundle.getBlock('type')?.value === TileType.ImageText,
+            show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText,
             blocks: [
                 {
-                    id: 'positioning',
+                    id: SettingsEnum.Positioning,
                     type: 'slider',
                     label: 'Positioning',
                     defaultValue: TileImagePositioning.Top,
@@ -218,11 +181,12 @@ export const settings = defineSettings({
                     ],
                 },
                 {
-                    id: 'verticalAlignment',
+                    id: SettingsEnum.VerticalAlignment,
                     type: 'slider',
                     label: 'Alignment',
                     info: 'This will determine where content is anchored',
-                    show: (bundle: Bundle) => bundle.getBlock('positioning')?.value === TileImagePositioning.Behind,
+                    show: (bundle: Bundle) =>
+                        bundle.getBlock(SettingsEnum.Positioning)?.value === TileImagePositioning.Behind,
                     defaultValue: TileVerticalAlignment.Center,
                     choices: [
                         { icon: IconEnum.ArrowAlignUp, value: TileVerticalAlignment.Top },
@@ -231,11 +195,12 @@ export const settings = defineSettings({
                     ],
                 },
                 {
-                    id: 'hoizontalAlignment',
+                    id: SettingsEnum.HorizontalAlignment,
                     type: 'slider',
                     label: 'Alignment',
                     info: 'This will determine where content is anchored',
-                    show: (bundle: Bundle) => bundle.getBlock('positioning')?.value !== TileImagePositioning.Behind,
+                    show: (bundle: Bundle) =>
+                        bundle.getBlock(SettingsEnum.Positioning)?.value !== TileImagePositioning.Behind,
                     defaultValue: TileHoizontalAlignment.Left,
                     choices: [
                         { icon: IconEnum.ArrowAlignLeft, value: TileHoizontalAlignment.Left },
@@ -256,12 +221,12 @@ export const settings = defineSettings({
     ],
     style: [
         {
-            id: 'background',
+            id: SettingsEnum.Background,
             type: 'switch',
             label: 'Background',
             size: SwitchSize.Small,
             defaultValue: false,
-            on: [{ id: 'backgroundColor', type: 'colorInput' }],
+            on: [{ id: SettingsEnum.BackgroundColor, type: 'colorInput' }],
         },
         getBorderSettings(),
         getBorderRadiusSettings(),
