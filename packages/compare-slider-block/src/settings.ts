@@ -10,6 +10,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 
 import { BorderStyle, Radius, getBorderRadiusSlider, radiusStyleMap } from '../../shared';
+import { Alignment } from './types';
 
 export const settings = defineSettings({
     basics: [
@@ -85,15 +86,15 @@ export const settings = defineSettings({
             id: 'alignment',
             type: 'slider',
             label: 'Alignment',
-            defaultValue: 'horizontal',
+            defaultValue: Alignment.Vertical,
             info: 'This tooltip needs copy!',
             choices: [
                 {
-                    value: 'horizontal',
+                    value: Alignment.Horizontal,
                     label: 'Left/Right',
                 },
                 {
-                    value: 'vertical',
+                    value: Alignment.Vertical,
                     label: 'Top/Bottom',
                 },
             ],
