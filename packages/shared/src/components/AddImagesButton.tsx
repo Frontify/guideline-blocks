@@ -15,7 +15,7 @@ export type AddImagesButtonProps = {
     label: string;
     secondaryLabel?: string;
     icon?: JSX.Element;
-    onDrop: (files: FileList) => void;
+    onDrop?: (files: FileList) => void;
     fillParentContainer?: boolean;
     onUploadClick: () => void;
     onAssetChooseClick: () => void;
@@ -59,7 +59,7 @@ export const AddImagesButton = ({
     const handleDrop: React.DragEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault();
         setIsDraggingOver(false);
-        onDrop(e.dataTransfer.files);
+        onDrop && onDrop(e.dataTransfer.files);
     };
 
     const openMenu: React.MouseEventHandler<HTMLButtonElement> = (e) => {
