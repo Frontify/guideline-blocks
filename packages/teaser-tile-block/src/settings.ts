@@ -6,10 +6,11 @@ import {
     IconEnum,
     SliderBlock,
     SwitchBlock,
+    SwitchSize,
     TextInputType,
     defineSettings,
-    SwitchSize,
 } from '@frontify/guideline-blocks-settings';
+import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
 enum TileType {
     Text = 'Text',
@@ -238,5 +239,16 @@ export const settings = defineSettings({
             show: (bundle: Bundle) => bundle.getBlock('type')?.value === TileType.ImageText,
             blocks: [HEIGHT_BLOCK, DISPLAY_BLOCK],
         },
+    ],
+    style: [
+        {
+            id: 'background',
+            type: 'switch',
+            label: 'Background',
+            size: SwitchSize.Small,
+            on: [{ id: 'backgroundColor', type: 'colorInput' }],
+        },
+        getBorderSettings(),
+        getBorderRadiusSettings(),
     ],
 });

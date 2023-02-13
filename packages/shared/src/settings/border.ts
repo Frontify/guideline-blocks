@@ -3,6 +3,7 @@
 import {
     MultiInputLayout,
     SettingBlock,
+    SwitchSize,
     appendUnit,
     maximumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
@@ -36,6 +37,7 @@ export const getBorderSettings = (options?: BorderSettingsType): SettingBlock =>
         label: 'Border',
         type: 'switch',
         defaultValue: !!options?.defaultValue,
+        size: SwitchSize.Small,
         on: [
             {
                 id: selectionId,
