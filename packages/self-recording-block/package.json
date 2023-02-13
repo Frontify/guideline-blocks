@@ -17,6 +17,7 @@
         "@babel/core": "7.20.12",
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.7",
+        "@types/p5": "^1.3.3",
         "@types/react": "17.0.50",
         "@types/react-dom": "17.0.17",
         "autoprefixer": "10.4.13",
@@ -34,7 +35,9 @@
         "@frontify/fondue-tokens": "3.2.1",
         "@frontify/guideline-blocks-settings": "0.25.11",
         "@frontify/guideline-blocks-shared": "workspace:*",
+        "p5": "^1.5.0",
         "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "react-dom": "17.0.2",
+        "react-p5": "^1.3.33"
     }
 }

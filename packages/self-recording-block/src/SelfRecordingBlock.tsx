@@ -2,146 +2,82 @@
 
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useState } from 'react';
+import Sketch from 'react-p5';
+import p5Types from 'p5';
 import 'tailwindcss/tailwind.css';
 
-type CanvasRectangleElement = {
-    shape: 'rectangle';
-    source: HTMLVideoElement;
-    width?: number;
-    height?: number;
-    top?: number;
-    bottom?: number;
-};
+import { CAMERA_CONSTRAINTS, SCREEN_CONSTRAINTS } from './constants';
+import { createDisplayCapture } from './utils';
 
-type CanvasCircleElement = {
-    shape: 'circle';
-    source: HTMLVideoElement;
-    radius: number;
-    top?: number;
-    bottom?: number;
-};
+// const bindMicrophoneToAudioElement = async (audioElement: HTMLAudioElement) => {
+//     const displayMediaOptions: MediaStreamConstraints = {
+//         video: false,
+//         audio: true,
+//     };
 
-type CanvasElement = CanvasRectangleElement | CanvasCircleElement;
-
-const bindScreenToVideoElement = async (videoElement: HTMLVideoElement) => {
-    // TS doesn't have the correct type yet for this
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const displayMediaOptions: any = {
-        video: {
-            displaySurface: 'window',
-        },
-        audio: false,
-    };
-
-    try {
-        videoElement.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
-    } catch (error) {
-        console.error('No permission to record the screen.');
-    }
-};
-
-const bindCameraToVideoElement = async (videoElement: HTMLVideoElement) => {
-    const displayMediaOptions: MediaStreamConstraints = {
-        video: {
-            width: {
-                min: 1280,
-                max: 1920,
-            },
-            height: {
-                min: 720,
-                max: 1080,
-            },
-            facingMode: 'user',
-        },
-        audio: false,
-    };
-
-    try {
-        videoElement.srcObject = await navigator.mediaDevices.getUserMedia(displayMediaOptions);
-    } catch (error) {
-        console.error('No permission to record the camera.');
-    }
-};
-
-const bindMicrophoneToAudioElement = async (audioElement: HTMLAudioElement) => {
-    const displayMediaOptions: MediaStreamConstraints = {
-        video: false,
-        audio: true,
-    };
-
-    try {
-        audioElement.srcObject = await navigator.mediaDevices.getUserMedia(displayMediaOptions);
-    } catch (error) {
-        console.error('No permission to record the camera.');
-    }
-};
-
-const bindVideoElementsToCanvas = (canvasShapeElements: CanvasElement[], canvasElement: HTMLCanvasElement) => {
-    const ctx = canvasElement.getContext('2d');
-    if (!ctx) {
-        throw new Error('Could not get the canvas context.');
-    }
-
-    const step = () => {
-        for (const canvasShapeElement of canvasShapeElements) {
-            if (canvasShapeElement.shape === 'circle') {
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(25, 25, 25, 0, Math.PI * 2, true);
-                ctx.closePath();
-                ctx.clip();
-
-                ctx.drawImage(
-                    canvasShapeElement.source,
-                    0,
-                    0,
-                    canvasShapeElement.radius * 2,
-                    canvasShapeElement.radius * 2
-                );
-
-                ctx.beginPath();
-                ctx.arc(0, 0, 25, 0, Math.PI * 2, true);
-                ctx.clip();
-                ctx.closePath();
-                ctx.restore();
-            } else {
-            }
-            // console.log(videoFrame);
-            // ctx.drawImage(canvasShapeElement.source, 0, 0, canvasElement.width, canvasElement.height);
-        }
-        requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-};
+//     try {
+//         audioElement.srcObject = await navigator.mediaDevices.getUserMedia(displayMediaOptions);
+//     } catch (error) {
+//         console.error('No permission to record the camera.');
+//     }
+// };
 
 export const SelfRecordingBlock: FC<BlockProps> = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const microphoneRef = useRef<HTMLAudioElement>(null);
-    const cameraRef = useRef<HTMLVideoElement>(null);
-    const screenRef = useRef<HTMLVideoElement>(null);
+    let cameraCapture: p5Types.Element;
+    let screenCapture: p5Types.Element;
 
-    useEffect(() => {
-        if (screenRef.current && microphoneRef.current && cameraRef.current && canvasRef.current) {
-            bindScreenToVideoElement(screenRef.current);
-            bindCameraToVideoElement(cameraRef.current);
-            bindMicrophoneToAudioElement(microphoneRef.current);
-            bindVideoElementsToCanvas(
-                [
-                    { shape: 'rectangle', source: screenRef.current },
-                    { shape: 'circle', source: cameraRef.current, radius: 20, top: 200 },
-                ],
-                canvasRef.current
-            );
-        }
-    }, []);
+    let cameraGraphics: p5Types.Graphics;
+    let screenGraphics: p5Types.Graphics;
+
+    let shape: p5Types.Graphics;
+
+    let screenRatio = 1;
+
+    const [state, setState] = useState<'idle' | 'record'>('idle');
+
+    const setup = (p5: p5Types, canvasParentRef: Element) => {
+        screenRatio = SCREEN_CONSTRAINTS.video.width / canvasParentRef.clientWidth;
+
+        p5.createCanvas(canvasParentRef.clientWidth, SCREEN_CONSTRAINTS.video.height / screenRatio).parent(
+            canvasParentRef
+        );
+
+        cameraCapture = p5.createCapture(CAMERA_CONSTRAINTS);
+        cameraCapture.hide();
+
+        cameraGraphics = p5.createGraphics(CAMERA_CONSTRAINTS.video.width, CAMERA_CONSTRAINTS.video.height);
+
+        shape = p5.createGraphics(400, 400);
+        shape.circle(200, 200, 200);
+
+        screenCapture = createDisplayCapture(SCREEN_CONSTRAINTS, p5);
+        screenCapture.hide();
+
+        screenGraphics = p5.createGraphics(SCREEN_CONSTRAINTS.video.width, SCREEN_CONSTRAINTS.video.height);
+    };
+
+    const draw = (p5: p5Types) => {
+        // Render screen
+        screenGraphics.image(screenCapture, 0, 0, SCREEN_CONSTRAINTS.video.width, SCREEN_CONSTRAINTS.video.height);
+        const screenFrame = screenGraphics.get();
+        p5.image(screenFrame, 0, 0, p5.width, p5.height);
+
+        // Apply mask on webcam
+        p5.imageMode(p5.CENTER);
+        cameraGraphics.image(cameraCapture, 0, 0, CAMERA_CONSTRAINTS.video.width, CAMERA_CONSTRAINTS.video.height);
+        const cameraFrame = cameraGraphics.get();
+        cameraFrame.mask(shape.get());
+
+        // Render masked webcam
+        p5.image(cameraFrame, 100, p5.height - 100, 200, 200);
+        p5.imageMode(p5.CORNER);
+    };
 
     return (
-        <div data-test-id="example-block">
-            <video ref={screenRef} autoPlay={true}></video>
-            <video ref={cameraRef} autoPlay={true}></video>
-            <audio ref={microphoneRef} autoPlay={true}></audio>
-            <canvas ref={canvasRef} className="tw-w-[480px] tw-h-[360px]"></canvas>
-        </div>
+        <>
+            {state === 'idle' && <button onClick={() => setState('record')}>Go to record</button>}
+            {state === 'record' && <Sketch setup={setup} draw={draw} />}
+        </>
     );
 };
