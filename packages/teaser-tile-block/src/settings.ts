@@ -68,6 +68,7 @@ const COLUMN_BLOCK: SliderBlock = {
     type: 'slider',
     label: 'Columns',
     info: 'Sets the maximum amount of columns in this block. On smaller devices, this will be responsive to be fewer',
+    defaultValue: '2',
     choices: [
         { value: '1', label: '1' },
         { value: '2', label: '2' },
@@ -82,10 +83,13 @@ const SPACING_BLOCK: SwitchBlock = {
     label: 'Spacing',
     switchLabel: 'Custom',
     info: 'Another word for ‘gap’. Refers to both column gutter and row gutter.',
+    show: (bundle: Bundle) => bundle.getBlock('columns')?.value !== '1',
+    defaultValue: false,
     off: [
         {
             id: 'spacingChoice',
             type: 'slider',
+            defaultValue: TileSpacing.Small,
             choices: [
                 { value: TileSpacing.None, label: 'None' },
                 { value: TileSpacing.Small, label: 'S' },
@@ -102,10 +106,12 @@ const HEIGHT_BLOCK: SwitchBlock = {
     type: 'switch',
     label: 'Height',
     switchLabel: 'Custom',
+    defaultValue: false,
     off: [
         {
             id: 'heightChoice',
             type: 'slider',
+            defaultValue: TileHeight.Auto,
             choices: [
                 { value: TileHeight.Auto, label: 'Auto' },
                 { value: TileHeight.Small, label: 'S' },
@@ -123,10 +129,12 @@ const PADDING_BLOCK: SwitchBlock = {
     label: 'Padding',
     switchLabel: 'Custom',
     info: 'The spacing between the text and the outer parameters of the tile',
+    defaultValue: false,
     off: [
         {
             id: 'paddingChoice',
             type: 'slider',
+            defaultValue: TilePadding.Small,
             choices: [
                 { value: TilePadding.Small, label: 'S' },
                 { value: TilePadding.Medium, label: 'M' },
@@ -142,6 +150,9 @@ const DISPLAY_BLOCK: SliderBlock = {
     type: 'slider',
     label: 'Display',
     info: 'Determines how the image fits within the available space. Fill: fits as much into the frame as possible with possible cropping. Fit: Makes sure the whole image is visible in the frame',
+    show: (bundle: Bundle) =>
+        Boolean(bundle.getBlock('height')?.value || bundle.getBlock('heightChoice')?.value !== TileHeight.Auto),
+    defaultValue: TileDisplay.Fill,
     choices: [
         { value: TileDisplay.Fill, label: TileDisplay.Fill },
         { value: TileDisplay.Fit, label: TileDisplay.Fit },
@@ -154,7 +165,7 @@ export const settings = defineSettings({
             id: 'type',
             type: 'dropdown',
             size: DropdownSize.Large,
-            defaultValue: TileType.Text,
+            defaultValue: TileType.ImageText,
             choices: [
                 { value: TileType.Text, icon: IconEnum.TextAlignmentLeft, label: 'Text' },
                 { value: TileType.Image, icon: IconEnum.Image, label: 'Image' },
@@ -197,6 +208,7 @@ export const settings = defineSettings({
                     id: 'positioning',
                     type: 'slider',
                     label: 'Positioning',
+                    defaultValue: TileImagePositioning.Top,
                     choices: [
                         { value: TileImagePositioning.Top, icon: IconEnum.MediaObjectTextBottom },
                         { value: TileImagePositioning.Bottom, icon: IconEnum.MediaObjectTextTop },
@@ -211,6 +223,7 @@ export const settings = defineSettings({
                     label: 'Alignment',
                     info: 'This will determine where content is anchored',
                     show: (bundle: Bundle) => bundle.getBlock('positioning')?.value === TileImagePositioning.Behind,
+                    defaultValue: TileVerticalAlignment.Center,
                     choices: [
                         { icon: IconEnum.ArrowAlignUp, value: TileVerticalAlignment.Top },
                         { icon: IconEnum.ArrowAlignVerticalCentre, value: TileVerticalAlignment.Center },
@@ -223,6 +236,7 @@ export const settings = defineSettings({
                     label: 'Alignment',
                     info: 'This will determine where content is anchored',
                     show: (bundle: Bundle) => bundle.getBlock('positioning')?.value !== TileImagePositioning.Behind,
+                    defaultValue: TileHoizontalAlignment.Left,
                     choices: [
                         { icon: IconEnum.ArrowAlignLeft, value: TileHoizontalAlignment.Left },
                         { icon: IconEnum.ArrowAlignHorizontalCentre, value: TileHoizontalAlignment.Center },
@@ -246,6 +260,7 @@ export const settings = defineSettings({
             type: 'switch',
             label: 'Background',
             size: SwitchSize.Small,
+            defaultValue: false,
             on: [{ id: 'backgroundColor', type: 'colorInput' }],
         },
         getBorderSettings(),
