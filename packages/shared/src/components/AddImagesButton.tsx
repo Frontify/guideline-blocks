@@ -19,7 +19,12 @@ export type AddImagesButtonProps = {
     fillParentContainer?: boolean;
     onUploadClick: () => void;
     onAssetChooseClick: () => void;
+    setIsMenuOpen?: (isOpen: boolean) => void;
 };
+
+export const textAndBgColor = 'tw-bg-blank-state-shaded-inverse tw-border-blank-state-line tw-text-blank-state-shaded';
+export const textAndBgColorHover =
+    'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover';
 
 export const AddImagesButton = ({
     onDrop,
@@ -30,6 +35,7 @@ export const AddImagesButton = ({
     fillParentContainer,
     onAssetChooseClick,
     onUploadClick,
+    setIsMenuOpen,
 }: AddImagesButtonProps) => {
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
@@ -39,13 +45,16 @@ export const AddImagesButton = ({
         const handleClickOutside = (event: MouseEvent) => {
             if (buttonRef.current && !buttonRef.current.contains(event.target as HTMLElement)) {
                 setMenuPosition(undefined);
+                if (setIsMenuOpen) {
+                    setIsMenuOpen(false);
+                }
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+    }, [setIsMenuOpen]);
 
     const handleDrop: React.DragEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault();
@@ -61,20 +70,21 @@ export const AddImagesButton = ({
         const XInsideComponent = e.clientX - left;
         const YInsideComponent = e.clientY - top;
         setMenuPosition([XInsideComponent, YInsideComponent]);
+        if (setIsMenuOpen) {
+            setIsMenuOpen(true);
+        }
     };
 
     return (
         <button
             ref={buttonRef}
             className={joinClassNames([
-                'tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border tw-rounded-[4px] tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
-                isLoading
-                    ? 'tw-cursor-pointer-none'
-                    : 'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-pressed-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover',
+                ' tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border tw-rounded-[4px] tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
+                !isLoading && textAndBgColorHover,
                 isDraggingOver && '[&>*]:tw-pointer-events-none',
                 isDraggingOver || !!menuPosition
                     ? 'tw-text-blank-state-pressed tw-bg-blank-state-pressed-inverse tw-border-blank-state-line-hover hover:tw-text-blank-state-pressed hover:tw-border-blank-state-line-hover hover:tw-bg-blank-state-pressed-inverse'
-                    : 'tw-bg-blank-state-shaded-inverse tw-border-blank-state-line tw-text-blank-state-shaded',
+                    : textAndBgColor,
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
                 isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
             ])}
@@ -116,6 +126,9 @@ export const AddImagesButton = ({
                                                   onClick: () => {
                                                       onUploadClick();
                                                       setMenuPosition(undefined);
+                                                      if (setIsMenuOpen) {
+                                                          setIsMenuOpen(true);
+                                                      }
                                                   },
 
                                                   initialValue: true,
@@ -136,6 +149,9 @@ export const AddImagesButton = ({
                                                   onClick: () => {
                                                       onAssetChooseClick();
                                                       setMenuPosition(undefined);
+                                                      if (setIsMenuOpen) {
+                                                          setIsMenuOpen(true);
+                                                      }
                                                   },
                                                   initialValue: true,
                                                   decorator: (

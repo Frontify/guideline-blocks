@@ -20,7 +20,12 @@ import {
 } from '@dnd-kit/core';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, toColorObject, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import {
+    AddImagesButton,
+    joinClassNames,
+    toColorObject,
+    useGuidelineDesignTokens,
+} from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
@@ -37,7 +42,7 @@ import {
     PatternTheme,
     generateRandomId,
 } from '@frontify/fondue';
-import BlockEditButton from './components/BlockEditButton';
+import AddItemButton from './components/BlockEditButton';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -314,6 +319,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
 
     const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
+    console.log(mode);
 
     return (
         <>
@@ -347,25 +353,23 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             {isEditing && (
                 <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9">
                     {mode === BlockMode.TEXT_AND_IMAGE && (
-                        <div className="tw-flex tw-flex-wrap tw-w-full tw-gap-3 tw-justify-center">
-                            <BlockEditButton
-                                label="Add images"
-                                secondaryLabel="Or drop them here"
-                                icon={<IconPlus20 />}
-                                onUploadClick={openFileDialog}
-                                onAssetChooseClick={openAssetChooser}
-                                onDrop={setSelectedFiles}
-                                isLoading={isUploadLoading}
-                            />
-                        </div>
+                        <AddImagesButton
+                            label="Add images"
+                            secondaryLabel="Or drop them here"
+                            icon={<IconPlus20 />}
+                            onUploadClick={openFileDialog}
+                            onAssetChooseClick={openAssetChooser}
+                            onDrop={setSelectedFiles}
+                            isLoading={isUploadLoading}
+                        />
                     )}
                     <div className="tw-flex tw-w-full">
-                        <BlockEditButton
+                        <AddItemButton
                             label="Add do"
                             icon={<IconCheckMarkCircle20 />}
                             onClick={() => addItem(DoDontType.Do)}
                         />
-                        <BlockEditButton
+                        <AddItemButton
                             label="Add don't"
                             icon={<IconCrossCircle20 />}
                             onClick={() => addItem(DoDontType.Dont)}
