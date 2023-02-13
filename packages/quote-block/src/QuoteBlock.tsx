@@ -5,15 +5,14 @@ import {
     BoldPlugin,
     InitPlugin,
     ItalicPlugin,
-    Plugin,
     PluginComposer,
-    PluginProps,
     RichTextEditor,
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
     merge,
 } from '@frontify/fondue';
+import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
