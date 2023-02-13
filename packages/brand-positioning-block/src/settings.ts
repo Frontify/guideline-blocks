@@ -12,18 +12,41 @@ import {
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 
-import { brandItemBrandItemSizeMap } from './types';
+import { brandItemBrandItemSizeMap, cornerRadiusMap } from './types';
 
-const BORDER_COLOR_DEFAULT_VALUE: Color = {
+const WHITE_COLOR_VALUE: Color = {
+    red: 255,
+    green: 255,
+    blue: 255,
+    alpha: 1,
+    name: 'White',
+};
+
+const GREY_COLOR_VALUE: Color = {
+    red: 173,
+    green: 173,
+    blue: 173,
+    alpha: 1,
+    name: 'Grey',
+};
+
+const LIGHT_GREY_COLOR_VALUE: Color = {
     red: 8,
     green: 8,
     blue: 8,
     alpha: 0.1,
-    name: 'Line Default',
+    name: 'Light Grey',
 };
 
+const BOARD_AXIS_LINES_COLOR_DEFAULT_VALUE = LIGHT_GREY_COLOR_VALUE;
+const BOARD_AXIS_LABELS_COLOR_DEFAULT_VALUE = GREY_COLOR_VALUE;
+const BOARD_BACKGROUND_COLOR_DEFAULT_VALUE = WHITE_COLOR_VALUE;
+const BOARD_BORDER_COLOR_DEFAULT_VALUE = LIGHT_GREY_COLOR_VALUE;
+
+const BRAND_ITEM_BACKGROUND_COLOR_DEFAULT_VALUE = WHITE_COLOR_VALUE;
+const BRAND_ITEM_BORDER_COLOR_DEFAULT_VALUE = LIGHT_GREY_COLOR_VALUE;
+
 export const settings = defineSettings({
-    main: [],
     basics: [
         {
             id: 'brands',
@@ -48,7 +71,7 @@ export const settings = defineSettings({
             label: 'Brand item',
             blocks: [
                 {
-                    id: 'isSizeCustom',
+                    id: 'isBrandItemCustom',
                     type: 'switch',
                     label: 'Size',
                     switchLabel: 'Custom',
@@ -151,7 +174,7 @@ export const settings = defineSettings({
                     lastItemFullWidth: true,
                     blocks: [
                         {
-                            id: 'boardAxisLineStyle',
+                            id: 'boardAxisLinesStyle',
                             type: 'dropdown',
                             defaultValue: 'solid',
                             size: DropdownSize.Small,
@@ -171,21 +194,34 @@ export const settings = defineSettings({
                             ],
                         },
                         {
-                            id: 'boardAxisLineWidth',
+                            id: 'boardAxisLinesWidth',
                             type: 'input',
+                            defaultValue: '1px',
                             placeholder: '1px',
                             rules: [numericalOrPixelRule],
                             onChange: (bundle) => {
-                                appendUnit(bundle, 'boardAxisLineWidth');
+                                appendUnit(bundle, 'boardAxisLinesWidth');
                             },
                         },
                         {
                             id: 'borderColor',
                             type: 'colorInput',
-                            defaultValue: BORDER_COLOR_DEFAULT_VALUE,
+                            defaultValue: BOARD_AXIS_LINES_COLOR_DEFAULT_VALUE,
                         },
                     ],
                     layout: MultiInputLayout.Columns,
+                },
+                {
+                    id: 'boardAxisLabelsColor',
+                    type: 'colorInput',
+                    label: 'Axis labels',
+                    defaultValue: BOARD_AXIS_LABELS_COLOR_DEFAULT_VALUE,
+                },
+                {
+                    id: 'boardBackgroundColor',
+                    type: 'colorInput',
+                    label: 'Background',
+                    defaultValue: BOARD_BACKGROUND_COLOR_DEFAULT_VALUE,
                 },
                 {
                     id: 'boardBorderGroup',
@@ -199,7 +235,7 @@ export const settings = defineSettings({
                             lastItemFullWidth: true,
                             blocks: [
                                 {
-                                    id: 'boardBorderLineStyle',
+                                    id: 'boardBorderStyle',
                                     type: 'dropdown',
                                     defaultValue: 'solid',
                                     size: DropdownSize.Small,
@@ -219,21 +255,180 @@ export const settings = defineSettings({
                                     ],
                                 },
                                 {
-                                    id: 'boardBorderLineWidth',
+                                    id: 'boardBorderWidth',
                                     type: 'input',
+                                    defaultValue: '1px',
                                     placeholder: '1px',
                                     rules: [numericalOrPixelRule],
                                     onChange: (bundle) => {
-                                        appendUnit(bundle, 'boardBorderLineWidth');
+                                        appendUnit(bundle, 'boardBorderWidth');
                                     },
                                 },
                                 {
-                                    id: 'boardBorderLineColor',
+                                    id: 'boardBorderColor',
                                     type: 'colorInput',
-                                    defaultValue: BORDER_COLOR_DEFAULT_VALUE,
+                                    defaultValue: BOARD_BORDER_COLOR_DEFAULT_VALUE,
                                 },
                             ],
                             layout: MultiInputLayout.Columns,
+                        },
+                    ],
+                },
+                {
+                    id: 'isBoardCornerRadiusCustom',
+                    type: 'switch',
+                    label: 'Corner radius',
+                    switchLabel: 'Custom',
+                    defaultValue: false,
+                    onChange: (bundle) => {
+                        presetCustomValue(
+                            bundle,
+                            'boardCornerRadiusSimple',
+                            'boardCornerRadiusCustom',
+                            cornerRadiusMap
+                        );
+                    },
+                    on: [
+                        {
+                            id: 'boardCornerRadiusCustom',
+                            type: 'input',
+                            placeholder: 'e.g. 50px',
+                            rules: [numericalOrPixelRule],
+                            onChange: (bundle) => {
+                                appendUnit(bundle, 'brandItemSizeCustom');
+                            },
+                        },
+                    ],
+                    off: [
+                        {
+                            id: 'boardCornerRadiusSimple',
+                            type: 'slider',
+                            defaultValue: 'medium',
+                            choices: [
+                                {
+                                    value: 'small',
+                                    label: 'S',
+                                },
+                                {
+                                    value: 'medium',
+                                    label: 'M',
+                                },
+                                {
+                                    value: 'large',
+                                    label: 'L',
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: 'brandItem',
+            type: 'sectionHeading',
+            label: 'Brand item',
+            blocks: [
+                {
+                    id: 'brandItemBackground',
+                    type: 'colorInput',
+                    label: 'Background',
+                    defaultValue: BRAND_ITEM_BACKGROUND_COLOR_DEFAULT_VALUE,
+                },
+                {
+                    id: 'brandItemBorderGroup',
+                    type: 'switch',
+                    defaultValue: false,
+                    label: 'Border',
+                    on: [
+                        {
+                            id: 'brandItemBorder',
+                            type: 'multiInput',
+                            lastItemFullWidth: true,
+                            blocks: [
+                                {
+                                    id: 'brandItemBorderStyle',
+                                    type: 'dropdown',
+                                    defaultValue: 'solid',
+                                    size: DropdownSize.Small,
+                                    choices: [
+                                        {
+                                            value: 'dotted',
+                                            label: 'Dotted',
+                                        },
+                                        {
+                                            value: 'dashed',
+                                            label: 'Dashed',
+                                        },
+                                        {
+                                            value: 'solid',
+                                            label: 'Solid',
+                                        },
+                                    ],
+                                },
+                                {
+                                    id: 'brandItemBorderWidth',
+                                    type: 'input',
+                                    defaultValue: '1px',
+                                    placeholder: '1px',
+                                    rules: [numericalOrPixelRule],
+                                    onChange: (bundle) => {
+                                        appendUnit(bundle, 'brandItemBorderWidth');
+                                    },
+                                },
+                                {
+                                    id: 'brandItemBorderColor',
+                                    type: 'colorInput',
+                                    defaultValue: BRAND_ITEM_BORDER_COLOR_DEFAULT_VALUE,
+                                },
+                            ],
+                            layout: MultiInputLayout.Columns,
+                        },
+                    ],
+                },
+                {
+                    id: 'isBrandIteCornerRadiusCustom',
+                    type: 'switch',
+                    label: 'Corner radius',
+                    switchLabel: 'Custom',
+                    defaultValue: false,
+                    onChange: (bundle) => {
+                        presetCustomValue(
+                            bundle,
+                            'brandItemCornerRadiusSimple',
+                            'brandItemCornerRadiusCustom',
+                            cornerRadiusMap
+                        );
+                    },
+                    on: [
+                        {
+                            id: 'brandItemCornerRadiusCustom',
+                            type: 'input',
+                            placeholder: 'e.g. 50px',
+                            rules: [numericalOrPixelRule],
+                            onChange: (bundle) => {
+                                appendUnit(bundle, 'brandItemSizeCustom');
+                            },
+                        },
+                    ],
+                    off: [
+                        {
+                            id: 'brandItemCornerRadiusSimple',
+                            type: 'slider',
+                            defaultValue: 'medium',
+                            choices: [
+                                {
+                                    value: 'small',
+                                    label: 'S',
+                                },
+                                {
+                                    value: 'medium',
+                                    label: 'M',
+                                },
+                                {
+                                    value: 'large',
+                                    label: 'L',
+                                },
+                            ],
                         },
                     ],
                 },
