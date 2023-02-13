@@ -42,7 +42,7 @@ import {
     PatternTheme,
     generateRandomId,
 } from '@frontify/fondue';
-import AddItemButton from './components/BlockEditButton';
+import AddItemButton from './components/AddItemButton';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
