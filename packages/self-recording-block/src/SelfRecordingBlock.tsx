@@ -2,13 +2,14 @@
 
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import Sketch from 'react-p5';
 import p5Types from 'p5';
 import 'tailwindcss/tailwind.css';
 
 import { CAMERA_CONSTRAINTS, SCREEN_CONSTRAINTS } from './constants';
 import { createDisplayCapture } from './utils';
+import { useFileUpload } from '@frontify/app-bridge';
 
 // const bindMicrophoneToAudioElement = async (audioElement: HTMLAudioElement) => {
 //     const displayMediaOptions: MediaStreamConstraints = {
@@ -26,22 +27,47 @@ import { createDisplayCapture } from './utils';
 export const SelfRecordingBlock: FC<BlockProps> = () => {
     let cameraCapture: p5Types.Element;
     let screenCapture: p5Types.Element;
-
     let cameraGraphics: p5Types.Graphics;
-    let screenGraphics: p5Types.Graphics;
-
     let shape: p5Types.Graphics;
+
+    let canvas: HTMLCanvasElement;
 
     let screenRatio = 1;
 
     const [state, setState] = useState<'idle' | 'record'>('idle');
+    const recorder = useRef<MediaRecorder | null>(null);
+    const [uploadFiles] = useFileUpload();
+
+    const onStartRecord = () => {
+        const stream = canvas.captureStream();
+        recorder.current = new MediaRecorder(stream, {
+            mimeType: 'video/webm',
+        });
+
+        const allChunks: BlobPart[] = [];
+
+        recorder.current.ondataavailable = function (event) {
+            allChunks.push(event.data);
+        };
+
+        recorder.current.onstop = () => {
+            const blob = new Blob(allChunks, { type: 'video/webm' });
+            uploadFiles(new File([blob], 'self-record.webm'));
+        };
+
+        recorder.current.start();
+    };
+
+    const onStopRecord = () => {
+        recorder.current?.stop();
+    };
 
     const setup = (p5: p5Types, canvasParentRef: Element) => {
         screenRatio = SCREEN_CONSTRAINTS.video.width / canvasParentRef.clientWidth;
 
-        p5.createCanvas(canvasParentRef.clientWidth, SCREEN_CONSTRAINTS.video.height / screenRatio).parent(
-            canvasParentRef
-        );
+        const p5canvas = p5.createCanvas(canvasParentRef.clientWidth, SCREEN_CONSTRAINTS.video.height / screenRatio);
+        p5canvas.parent(canvasParentRef);
+        canvas = p5canvas.elt;
 
         cameraCapture = p5.createCapture(CAMERA_CONSTRAINTS);
         cameraCapture.hide();
@@ -53,15 +79,11 @@ export const SelfRecordingBlock: FC<BlockProps> = () => {
 
         screenCapture = createDisplayCapture(SCREEN_CONSTRAINTS, p5);
         screenCapture.hide();
-
-        screenGraphics = p5.createGraphics(SCREEN_CONSTRAINTS.video.width, SCREEN_CONSTRAINTS.video.height);
     };
 
     const draw = (p5: p5Types) => {
         // Render screen
-        screenGraphics.image(screenCapture, 0, 0, SCREEN_CONSTRAINTS.video.width, SCREEN_CONSTRAINTS.video.height);
-        const screenFrame = screenGraphics.get();
-        p5.image(screenFrame, 0, 0, p5.width, p5.height);
+        p5.image(screenCapture, 0, 0, p5.width, p5.height);
 
         // Apply mask on webcam
         p5.imageMode(p5.CENTER);
@@ -76,8 +98,16 @@ export const SelfRecordingBlock: FC<BlockProps> = () => {
 
     return (
         <>
-            {state === 'idle' && <button onClick={() => setState('record')}>Go to record</button>}
-            {state === 'record' && <Sketch setup={setup} draw={draw} />}
+            {state === 'idle' && <button onClick={() => setState('record')}>Start recording!</button>}
+            {state === 'record' && (
+                <div className="tw-flex tw-flex-col">
+                    <Sketch setup={setup} draw={draw} />
+                    <div className="tw-flex tw-gap-4">
+                        <button onClick={onStartRecord}>Record</button>
+                        <button onClick={onStopRecord}>Stop</button>
+                    </div>
+                </div>
+            )}
         </>
     );
 };
