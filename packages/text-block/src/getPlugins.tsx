@@ -23,14 +23,15 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
+import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 
 export const getPlugins = (columns?: number, gap?: number) => {
     if (!columns || columns === 1) {
         return undefined;
     }
     const plugins = new PluginComposer();
-    plugins.setPlugin([new InitPlugin(), new ParagraphPlugin()]);
-    plugins.setPlugin(new TextStylePlugin());
+    plugins.setPlugin([new InitPlugin(), new ParagraphPlugin() as Plugin<PluginProps>]);
+    plugins.setPlugin(new TextStylePlugin() as Plugin<PluginProps>);
     plugins.setPlugin([
         new BoldPlugin(),
         new ItalicPlugin(),
