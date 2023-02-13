@@ -19,6 +19,7 @@ const HAS_BACKGROUND_ID = 'hasBackground';
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
 const SECURITY_ID = 'security';
+export const IMAGE_SETTING_ID = 'image';
 
 export const settings = defineSettings({
     basics: [
@@ -28,7 +29,7 @@ export const settings = defineSettings({
             label: '',
             blocks: [
                 {
-                    id: 'image',
+                    id: IMAGE_SETTING_ID,
                     type: 'assetInput',
                     label: 'Image',
                     size: AssetInputSize.Small,
