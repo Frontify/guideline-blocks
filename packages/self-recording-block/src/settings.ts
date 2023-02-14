@@ -69,6 +69,12 @@ export const settings = defineSettings({
     ],
     style: [
         { id: 'style-sectionHeading-1', type: 'sectionHeading', label: '', blocks: [getBorderSettings()] },
-        { id: 'style-sectionHeading-2', type: 'sectionHeading', label: '', blocks: [getBorderRadiusSettings()] },
+        {
+            id: 'style-sectionHeading-2',
+            type: 'sectionHeading',
+            label: '',
+            blocks: [getBorderRadiusSettings()],
+            show: (bundle) => bundle.getBlock('shape')?.value !== VideoShape.Circle,
+        },
     ],
 });
