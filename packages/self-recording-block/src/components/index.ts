@@ -2,3 +2,4 @@
 
 export * from './VideoPlayer';
 export * from './VideoRecorder';
+export * from './VideoRecorderToolbar';

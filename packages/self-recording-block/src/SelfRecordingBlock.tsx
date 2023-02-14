@@ -29,6 +29,10 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const { hasBorder, hasRadius, radiusChoice, radiusValue, borderColor, borderStyle, borderWidth } = blockSettings;
 
+    const onRecordingEnd = (assetIds: number[]) => {
+        updateAssetIdsFromKey('video', assetIds);
+    };
+
     return (
         <div
             style={{
@@ -41,9 +45,8 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
         >
             {editorState ? (
                 <VideoRecorder
-                    updateAssetIdsFromKey={updateAssetIdsFromKey}
+                    onRecordingEnd={onRecordingEnd}
                     size={blockSettings.size}
-                    asset={blockAssets?.video?.[0]}
                     cameraDeviceId={blockSettings.cameraDeviceId}
                     microphoneDeviceId={blockSettings.microphoneDeviceId}
                 />
