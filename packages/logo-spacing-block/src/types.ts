@@ -15,3 +15,8 @@ export enum LineStyle {
     Solid = 'Solid',
     Dotted = 'Dotted',
 }
+
+export enum Property {
+    Height = 'height',
+    Width = 'width',
+}
