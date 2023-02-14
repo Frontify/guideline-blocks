@@ -2,12 +2,13 @@
 
 import {
     ActionMenu,
+    Flyout,
     IconArrowCircleUp20,
     IconImageStack20,
     LoadingCircle,
     MenuItemContentSize,
 } from '@frontify/fondue';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { joinClassNames } from '../utilities/react/joinClassNames';
 
 export type AddImagesButtonProps = {
@@ -40,21 +41,6 @@ export const AddImagesButton = ({
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
     const buttonRef = useRef<HTMLButtonElement>(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (buttonRef.current && !buttonRef.current.contains(event.target as HTMLElement)) {
-                setMenuPosition(undefined);
-                if (setIsMenuOpen) {
-                    setIsMenuOpen(false);
-                }
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [setIsMenuOpen]);
 
     const handleDrop: React.DragEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault();
@@ -112,60 +98,73 @@ export const AddImagesButton = ({
                         top: menuPosition[1],
                     }}
                 >
-                    <ActionMenu
-                        menuBlocks={[
-                            {
-                                id: 'menu',
-                                menuItems: [
-                                    ...(onUploadClick
-                                        ? [
-                                              {
-                                                  id: 'upload',
-                                                  size: MenuItemContentSize.XSmall,
-                                                  title: 'Upload asset',
-                                                  onClick: () => {
-                                                      onUploadClick();
-                                                      setMenuPosition(undefined);
-                                                      if (setIsMenuOpen) {
-                                                          setIsMenuOpen(true);
-                                                      }
-                                                  },
+                    <Flyout
+                        onOpenChange={(isOpen) => {
+                            if (!isOpen) {
+                                setMenuPosition(undefined);
+                            }
+                        }}
+                        isOpen={true}
+                        fitContent
+                        hug={false}
+                        legacyFooter={false}
+                        trigger={<div />}
+                    >
+                        <ActionMenu
+                            menuBlocks={[
+                                {
+                                    id: 'menu',
+                                    menuItems: [
+                                        ...(onUploadClick
+                                            ? [
+                                                  {
+                                                      id: 'upload',
+                                                      size: MenuItemContentSize.XSmall,
+                                                      title: 'Upload asset',
+                                                      onClick: () => {
+                                                          onUploadClick();
+                                                          setMenuPosition(undefined);
+                                                          if (setIsMenuOpen) {
+                                                              setIsMenuOpen(true);
+                                                          }
+                                                      },
 
-                                                  initialValue: true,
-                                                  decorator: (
-                                                      <div className="tw-mr-2">
-                                                          <IconArrowCircleUp20 />
-                                                      </div>
-                                                  ),
-                                              },
-                                          ]
-                                        : []),
-                                    ...(onAssetChooseClick
-                                        ? [
-                                              {
-                                                  id: 'asset',
-                                                  size: MenuItemContentSize.XSmall,
-                                                  title: 'Browse asset',
-                                                  onClick: () => {
-                                                      onAssetChooseClick();
-                                                      setMenuPosition(undefined);
-                                                      if (setIsMenuOpen) {
-                                                          setIsMenuOpen(true);
-                                                      }
+                                                      initialValue: true,
+                                                      decorator: (
+                                                          <div className="tw-mr-2">
+                                                              <IconArrowCircleUp20 />
+                                                          </div>
+                                                      ),
                                                   },
-                                                  initialValue: true,
-                                                  decorator: (
-                                                      <div className="tw-mr-2">
-                                                          <IconImageStack20 />
-                                                      </div>
-                                                  ),
-                                              },
-                                          ]
-                                        : []),
-                                ],
-                            },
-                        ]}
-                    />
+                                              ]
+                                            : []),
+                                        ...(onAssetChooseClick
+                                            ? [
+                                                  {
+                                                      id: 'asset',
+                                                      size: MenuItemContentSize.XSmall,
+                                                      title: 'Browse asset',
+                                                      onClick: () => {
+                                                          onAssetChooseClick();
+                                                          setMenuPosition(undefined);
+                                                          if (setIsMenuOpen) {
+                                                              setIsMenuOpen(true);
+                                                          }
+                                                      },
+                                                      initialValue: true,
+                                                      decorator: (
+                                                          <div className="tw-mr-2">
+                                                              <IconImageStack20 />
+                                                          </div>
+                                                      ),
+                                                  },
+                                              ]
+                                            : []),
+                                    ],
+                                },
+                            ]}
+                        />
+                    </Flyout>
                 </div>
             )}
         </button>

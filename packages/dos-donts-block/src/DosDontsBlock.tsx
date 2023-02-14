@@ -2,6 +2,7 @@
 
 import {
     Asset,
+    AssetChooserObjectType,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -300,6 +301,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             },
             {
                 multiSelection: true,
+                objectTypes: [AssetChooserObjectType.ImageVideo],
             }
         );
     };
