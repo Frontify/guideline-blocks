@@ -1,33 +1,107 @@
-import { defineSettings, DropdownSize, IconEnum } from '@frontify/guideline-blocks-settings';
+import {
+    IconEnum,
+    SwitchSize,
+    defineSettings,
+    maximumNumericalOrPixelOrAutoRule,
+    maximumNumericalRule,
+} from '@frontify/guideline-blocks-settings';
+import { Height, Orientation } from './types';
 
 export const settings = defineSettings({
-    main: [
+    basics: [
         {
-            id: 'main-dropdown',
-            type: 'dropdown',
-            defaultValue: 'content_block',
-            size: DropdownSize.Large,
-            disabled: true,
-            choices: [
+            id: 'gradientInspect',
+            type: 'sectionHeading',
+            label: 'Inspect',
+            blocks: [
                 {
-                    value: 'content_block',
-                    icon: IconEnum.BuildingBlock,
-                    label: 'Content Block',
+                    id: 'gradientCss',
+                    label: 'Display CSS Code',
+                    type: 'switch',
+                    size: SwitchSize.Small,
+                    defaultValue: true,
                 },
             ],
         },
     ],
-    style: [
+    layout: [
         {
-            id: 'color',
-            label: 'Text Color',
-            type: 'slider',
-            defaultValue: 'violet',
-            choices: [
-                { label: 'Violet', value: 'violet' },
-                { label: 'Blue', value: 'blue' },
-                { label: 'Green', value: 'green' },
-                { label: 'Red', value: 'red' },
+            id: 'gradientLayout',
+            type: 'sectionHeading',
+            label: '',
+            blocks: [
+                {
+                    id: 'gradientHeight',
+                    type: 'switch',
+                    label: 'Height',
+                    switchLabel: 'Custom',
+                    info: 'Determines the block height.',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: 'gradientHeightCustom',
+                            type: 'input',
+                            placeholder: 'e.g. 50px',
+                            clearable: true,
+                            rules: [maximumNumericalOrPixelOrAutoRule(100)],
+                        },
+                    ],
+                    off: [
+                        {
+                            id: 'gradientHeightSimple',
+                            type: 'slider',
+                            defaultValue: Height.Small,
+                            choices: [
+                                {
+                                    label: 'S',
+                                    value: Height.Small,
+                                },
+                                {
+                                    label: 'M',
+                                    value: Height.Medium,
+                                },
+                                {
+                                    label: 'L',
+                                    value: Height.Large,
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    id: 'gradientOrientation',
+                    type: 'switch',
+                    label: 'Orientation',
+                    switchLabel: 'Custom',
+                    info: 'Determines the block orientation.',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: 'gradientOrientationCustom',
+                            type: 'input',
+                            placeholder: 'e.g. 90°',
+                            clearable: true,
+                            rules: [maximumNumericalRule(90)],
+                        },
+                    ],
+                    off: [
+                        {
+                            id: 'gradientOrientationSimple',
+                            type: 'slider',
+                            defaultValue: Orientation.Horizontal,
+                            choices: [
+                                {
+                                    icon: IconEnum.ArrowAlignVerticalCentre,
+                                    value: Orientation.Horizontal,
+                                },
+                                {
+                                    icon: IconEnum.ArrowBidirectional24,
+                                    value: Orientation.Vertical,
+                                },
+                            ],
+                        },
+                    ],
+                },
             ],
         },
     ],
