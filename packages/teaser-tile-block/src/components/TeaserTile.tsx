@@ -1,8 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ImageFlyout } from './ImageFlyout';
 import { AppBridgeBlock } from '@frontify/app-bridge';
+
 import { useTileAsset } from '../hooks';
+
+import { ImageFlyout } from './ImageFlyout';
 
 type TeaserTileProps = {
     appBridge: AppBridgeBlock;

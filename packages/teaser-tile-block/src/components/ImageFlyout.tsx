@@ -48,10 +48,10 @@ export const ImageFlyout = ({
 
     return (
         <Flyout
-            trigger={<button>Trigger</button>}
             isOpen={isOpen}
-            onOpenChange={(isOpen) => setIsOpen(isOpen)}
             legacyFooter={false}
+            trigger={<button>Trigger</button>}
+            onOpenChange={(isOpen) => setIsOpen(isOpen)}
             fixedHeader={
                 <div className="tw-flex tw-justify-between tw-w-full tw-bg-base tw-pl-6 tw-pr-3 tw-py-1.5 tw-items-center tw-border-b tw-border-b-line tw-border-b-solid">
                     <h1 className="tw-text-s tw-font-bold">Configure Tile</h1>
