@@ -77,6 +77,12 @@ export const VideoRecorder = ({
                 throw new Error('No `canvas` registered');
             }
             const stream = canvasRef.current.captureStream();
+            const audio = cameraRef.current?.srcObject?.getAudioTracks();
+
+            if (audio.length > 0) {
+                stream.addTrack(audio[0]);
+            }
+
             recorder.current = new MediaRecorder(stream, {
                 mimeType: 'video/webm',
             });
@@ -131,7 +137,7 @@ export const VideoRecorder = ({
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
             <canvas ref={canvasRef}></canvas>
-            <video ref={cameraRef} autoPlay={true} className="tw-hidden"></video>
+            <video ref={cameraRef} autoPlay={true} className="tw-hidden" muted></video>
 
             <div className="tw-flex tw-gap-2 tw-px-2 tw-py-1 tw-mt-6 tw-bg-box-neutral tw-rounded-lg">
                 {['idle', 'paused'].includes(state) ? (

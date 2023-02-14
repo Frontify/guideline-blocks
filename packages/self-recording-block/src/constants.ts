@@ -9,7 +9,7 @@ export const CAMERA_CONSTRAINTS = {
         height: 1080,
         facingMode: 'user',
     },
-    audio: false,
+    audio: true,
 };
 
 export const cameraSizeToScaleMap: Record<CameraSize, number> = {
