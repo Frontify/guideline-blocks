@@ -3,7 +3,7 @@ export enum LogoSpacingType {
     Pixels = 'pixel_clearspace',
 }
 
-export enum Offset {
+export enum Size {
     S = 's',
     M = 'm',
     L = 'l',

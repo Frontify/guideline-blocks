@@ -9,59 +9,23 @@ import {
     defineSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
+    pixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { LineStyle, LogoSpacingType, Offset, Property } from './types';
-
-const LOGO_SPACING = 'logo-spacing';
-const BOUNDARIES_THICKNESS_ID = 'thickness';
-const BOUNDARIES_COLOR_ID = 'boundariesColor';
-const CLEARSPACE_BG_COLOR_ID = 'clearSpaceBgColor';
-export const LOGO_ID = 'logo';
-
-const CLEAR_SPACE_LABELS = {
-    [LogoSpacingType.Pixels]: 'Pixel clearspace',
-    [LogoSpacingType.Percentage]: 'Percentage clearspace',
-};
-
-export const CLEAR_SPACE_UNITS = [
-    {
-        value: LogoSpacingType.Pixels,
-        label: CLEAR_SPACE_LABELS[LogoSpacingType.Pixels],
-    },
-    {
-        value: LogoSpacingType.Percentage,
-        label: CLEAR_SPACE_LABELS[LogoSpacingType.Percentage],
-    },
-];
-
-const topBottomOffsetMap: Record<Offset, string> = {
-    [Offset.S]: '16px',
-    [Offset.M]: '24px',
-    [Offset.L]: '36px',
-};
-
-const leftRightOffsetMap: Record<Offset, string> = {
-    [Offset.S]: '32px',
-    [Offset.M]: '32px',
-    [Offset.L]: '36px',
-};
-
-const STYLE_DEFAULT_VALUE = LineStyle.Solid;
-const COLOR_DEFAULT_CLEARSPACE = {
-    red: 213,
-    green: 214,
-    blue: 214,
-    alpha: 1,
-    name: 'Light Grey',
-};
-const COLOR_DEFAULT_LABEL = {
-    red: 8,
-    green: 8,
-    blue: 8,
-    alpha: 1,
-    name: 'Dark Grey',
-};
+import {
+    BOUNDARIES_COLOR_ID,
+    BOUNDARIES_THICKNESS_ID,
+    CLEARSPACE_BG_COLOR_ID,
+    CLEAR_SPACE_UNITS,
+    COLOR_DEFAULT_CLEARSPACE,
+    COLOR_DEFAULT_LABEL,
+    LOGO_ID,
+    LOGO_SPACING,
+    STYLE_DEFAULT_VALUE,
+    leftRightOffsetMap,
+    topBottomOffsetMap,
+} from './constants';
+import { LineStyle, LogoSpacingType, Property, Size } from './types';
 
 const appendPixelOrPercentage = (bundle: Bundle, property: string) => {
     if (bundle.getBlock(LOGO_SPACING)?.value === LogoSpacingType.Percentage) {
@@ -127,7 +91,7 @@ export const settings = defineSettings({
                                     id: 'offsetTop',
                                     type: 'input',
                                     onChange: (bundle) => appendUnit(bundle, 'offsetTop'),
-                                    rules: [numericalOrPixelRule],
+                                    rules: [pixelRule],
                                     defaultValue: '0',
                                 },
                                 {
@@ -135,7 +99,7 @@ export const settings = defineSettings({
                                     id: 'offsetLeft',
                                     type: 'input',
                                     onChange: (bundle) => appendUnit(bundle, 'offsetLeft'),
-                                    rules: [numericalOrPixelRule],
+                                    rules: [pixelRule],
                                     defaultValue: '0',
                                 },
                                 {
@@ -143,7 +107,7 @@ export const settings = defineSettings({
                                     id: 'offsetRight',
                                     type: 'input',
                                     onChange: (bundle) => appendUnit(bundle, 'offsetRight'),
-                                    rules: [numericalOrPixelRule],
+                                    rules: [pixelRule],
                                     defaultValue: '0',
                                 },
                                 {
@@ -151,7 +115,7 @@ export const settings = defineSettings({
                                     id: 'offsetBottom',
                                     type: 'input',
                                     onChange: (bundle) => appendUnit(bundle, 'offsetBottom'),
-                                    rules: [numericalOrPixelRule],
+                                    rules: [pixelRule],
                                     defaultValue: '0',
                                 },
                             ],
@@ -161,26 +125,22 @@ export const settings = defineSettings({
                 },
                 {
                     defaultValue: 'none',
-                    id: 'whiteSpaceChoice',
+                    id: 'containerSizeChoice',
                     info: 'Whitespace is an extra white space around your logo and clearspace.',
-                    label: 'Whitespace space',
+                    label: 'Container size',
                     type: 'slider',
                     choices: [
                         {
-                            label: 'None',
-                            value: 'none',
-                        },
-                        {
                             label: 'S',
-                            value: Offset.S,
+                            value: Size.S,
                         },
                         {
                             label: 'M',
-                            value: Offset.M,
+                            value: Size.M,
                         },
                         {
                             label: 'L',
-                            value: Offset.L,
+                            value: Size.L,
                         },
                     ],
                 },
@@ -189,13 +149,13 @@ export const settings = defineSettings({
         {
             id: 'clearSpaceSection',
             type: 'sectionHeading',
-            label: 'Logo clearspace',
+            label: 'Clear space',
             blocks: [
                 {
                     defaultValue: Property.Height,
                     id: 'clearSpacePropertyChoice',
                     info: 'Select what is the clearspace percentage value based on',
-                    label: 'Clearspace based on',
+                    label: 'Defined by',
                     type: 'slider',
                     show: (bundle) => bundle.getBlock(LOGO_SPACING)?.value === LogoSpacingType.Percentage,
                     choices: [
@@ -213,7 +173,7 @@ export const settings = defineSettings({
                     id: 'clearSpaceValue',
                     type: 'switch',
                     defaultValue: false,
-                    label: 'Clearspace value',
+                    label: 'Size',
                     info: 'Clearspace defines a safe space around logo which should always be empty.',
                     switchLabel: 'Custom',
                     onChange: (bundle) => {
@@ -275,15 +235,15 @@ export const settings = defineSettings({
                                 },
                                 {
                                     label: '20%',
-                                    value: Offset.S,
+                                    value: Size.S,
                                 },
                                 {
                                     label: '40%',
-                                    value: Offset.M,
+                                    value: Size.M,
                                 },
                                 {
                                     label: '60%',
-                                    value: Offset.L,
+                                    value: Size.L,
                                 },
                             ],
                         },
@@ -307,7 +267,7 @@ export const settings = defineSettings({
             ],
         },
         {
-            id: 'clearSpaceSection',
+            id: 'boundariesSection',
             type: 'sectionHeading',
             label: 'Clearspace',
             blocks: [

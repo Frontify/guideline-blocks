@@ -1,7 +1,8 @@
-import { FC, useEffect } from 'react';
 import { Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
+import { FC, useEffect } from 'react';
+
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
-import { LOGO_ID } from './settings';
+import { LOGO_ID } from './constants';
 
 type Settings = {
     color: 'violet' | 'blue' | 'green' | 'red';
