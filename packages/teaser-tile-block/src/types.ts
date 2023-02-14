@@ -109,3 +109,5 @@ export enum TileVerticalAlignment {
     Bottom = 'Bottom',
     Center = 'Center',
 }
+
+export type Nullable<T> = T | null;

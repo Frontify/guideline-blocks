@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { Asset } from '@frontify/app-bridge';
 import {
     AssetInput,
     AssetInputSize,
@@ -8,21 +9,41 @@ import {
     Checkbox,
     ColorPickerFlyout,
     Flyout,
+    IconArrowCircleUp,
     IconCheckMark,
     IconCross,
+    IconImageStack,
+    IconLink,
     InputLabel,
     Slider,
     Switch,
     SwitchSize,
     TextInput,
 } from '@frontify/fondue';
-import { ReactNode, useState } from 'react';
-import { TileDisplay } from '../types';
+import { useState } from 'react';
+import { Nullable, TileDisplay } from '../types';
 
-type ImageFlyoutProps = { children: ReactNode };
+type ImageFlyoutProps = {
+    onReplaceAssetFromUpload: () => void;
+    onReplaceAssetFromWorkspace: () => void;
+    isAssetLoading: boolean;
+    asset: Nullable<Asset>;
+};
 
-export const ImageFlyout = ({}: ImageFlyoutProps) => {
+export const ImageFlyout = ({
+    isAssetLoading,
+    onReplaceAssetFromUpload,
+    onReplaceAssetFromWorkspace,
+}: ImageFlyoutProps) => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const onReplaceWithAsset = () => {
+        onReplaceAssetFromWorkspace();
+    };
+
+    const onReplaceWithUpload = () => {
+        onReplaceAssetFromUpload();
+    };
 
     return (
         <Flyout
@@ -48,9 +69,34 @@ export const ImageFlyout = ({}: ImageFlyoutProps) => {
             <div className="tw-p-6 tw-gap-6 tw-flex tw-flex-col">
                 <div className="tw-flex tw-flex-col tw-gap-4">
                     <InputLabel htmlFor="asset-replace">Asset</InputLabel>
-                    <AssetInput size={AssetInputSize.Small} />
+                    <AssetInput
+                        isLoading={isAssetLoading}
+                        actions={[
+                            {
+                                id: 'asset-input-options',
+                                ariaLabel: 'Asset Input Options',
+                                menuItems: [
+                                    {
+                                        id: 'replace-upload',
+                                        title: 'Replace with upload',
+                                        decorator: <IconArrowCircleUp />,
+                                        onClick: onReplaceWithUpload,
+                                    },
+                                    {
+                                        id: 'replace-asset',
+                                        title: 'Replace with asset',
+                                        decorator: <IconImageStack />,
+                                        onClick: onReplaceWithAsset,
+                                    },
+                                ],
+                            },
+                        ]}
+                        size={AssetInputSize.Small}
+                        onLibraryClick={console.log}
+                        onUploadClick={console.log}
+                    />
                     <InputLabel htmlFor="asset-replace">Link</InputLabel>
-                    <TextInput placeholder="https://www.example.com" />
+                    <TextInput placeholder="https://www.example.com" decorator={<IconLink />} />
                     <Checkbox label="Open link in new tab" />
                 </div>
                 <div className="tw-w-full tw-border-b-line tw-border-b tw-border-b-solid" />
