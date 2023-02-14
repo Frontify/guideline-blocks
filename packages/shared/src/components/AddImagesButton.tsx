@@ -8,7 +8,7 @@ import {
     LoadingCircle,
     MenuItemContentSize,
 } from '@frontify/fondue';
-import React, { useRef, useState } from 'react';
+import { DragEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { joinClassNames } from '../utilities/react/joinClassNames';
 
 export type AddImagesButtonProps = {
@@ -27,7 +27,7 @@ export const textAndBgColor = 'tw-bg-blank-state-shaded-inverse tw-border-blank-
 export const textAndBgColorHover =
     'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover';
 
-export const AddImagesButton = ({
+export const BlockInjectButton = ({
     onDrop,
     label,
     icon,
@@ -42,19 +42,19 @@ export const AddImagesButton = ({
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
     const buttonRef = useRef<HTMLButtonElement>(null);
 
-    const handleDrop: React.DragEventHandler<HTMLButtonElement> = (e) => {
-        e.preventDefault();
+    const handleDrop: DragEventHandler<HTMLButtonElement> = (event) => {
+        event.preventDefault();
         setIsDraggingOver(false);
-        onDrop && onDrop(e.dataTransfer.files);
+        onDrop && onDrop(event.dataTransfer.files);
     };
 
-    const openMenu: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const openMenu: MouseEventHandler<HTMLButtonElement> = (event) => {
         if (!buttonRef.current || isLoading) {
             return;
         }
         const { left, top } = buttonRef.current.getBoundingClientRect();
-        const XInsideComponent = e.clientX - left;
-        const YInsideComponent = e.clientY - top;
+        const XInsideComponent = event.clientX - left;
+        const YInsideComponent = event.clientY - top;
         setMenuPosition([XInsideComponent, YInsideComponent]);
         if (setIsMenuOpen) {
             setIsMenuOpen(true);
@@ -65,8 +65,10 @@ export const AddImagesButton = ({
         <button
             ref={buttonRef}
             className={joinClassNames([
-                ' tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border tw-rounded-[4px] tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
-                !isLoading && textAndBgColorHover,
+                'tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border tw-rounded tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
+                isLoading
+                    ? 'tw-cursor-pointer-none'
+                    : 'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-pressed-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover',
                 isDraggingOver && '[&>*]:tw-pointer-events-none',
                 isDraggingOver || !!menuPosition
                     ? 'tw-text-blank-state-pressed tw-bg-blank-state-pressed-inverse tw-border-blank-state-line-hover hover:tw-text-blank-state-pressed hover:tw-border-blank-state-line-hover hover:tw-bg-blank-state-pressed-inverse'
@@ -107,7 +109,6 @@ export const AddImagesButton = ({
                         isOpen={true}
                         fitContent
                         hug={false}
-                        legacyFooter={false}
                         trigger={<div />}
                     >
                         <ActionMenu
@@ -124,9 +125,6 @@ export const AddImagesButton = ({
                                                       onClick: () => {
                                                           onUploadClick();
                                                           setMenuPosition(undefined);
-                                                          if (setIsMenuOpen) {
-                                                              setIsMenuOpen(true);
-                                                          }
                                                       },
 
                                                       initialValue: true,
