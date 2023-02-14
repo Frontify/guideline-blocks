@@ -1,14 +1,16 @@
 import { Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
-import { FC, useEffect } from 'react';
+import { CONTAINER_SIZE, LOGO_ID } from './constants';
 
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
-import { LOGO_ID } from './constants';
+import { Size } from './types';
+import { useEffect } from 'react';
 
 type Settings = {
     color: 'violet' | 'blue' | 'green' | 'red';
+    containerSizeChoice: Size;
 };
 
-export const AnExampleBlock: FC<BlockProps> = ({ appBridge }) => {
+export const AnExampleBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
 
@@ -20,12 +22,23 @@ export const AnExampleBlock: FC<BlockProps> = ({ appBridge }) => {
         <div className="tw-flex tw-justify-center" data-test-id="example-asset-upload-block">
             {blockAssets[LOGO_ID] ? (
                 blockAssets[LOGO_ID].map((asset: Asset) => (
-                    <div key={asset.id}>
-                        <img src={asset.previewUrl} data-test-id="example-asset-upload-image" />
+                    <div key={asset.id} className="tw-w-full tw-flex tw-justify-center">
+                        <div style={{ width: CONTAINER_SIZE[blockSettings.containerSizeChoice] }}>
+                            <div>
+                                <img
+                                    className="tw-w-full"
+                                    src={asset.previewUrl}
+                                    data-test-id="example-asset-upload-image"
+                                />
+                            </div>
+                        </div>
                     </div>
                 ))
             ) : (
-                <p>No image set</p>
+                <div className=" tw-bg-black-5 tw-w-full tw-flex tw-items-center">
+                    <div className=" tw-font-semibold">Add logo asset</div>
+                    <div>or drop it here</div>
+                </div>
             )}
         </div>
     );

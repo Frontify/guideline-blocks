@@ -34,6 +34,12 @@ export const leftRightOffsetMap: Record<Size, string> = {
     [Size.L]: '36px',
 };
 
+export const CONTAINER_SIZE: Record<Size, string> = {
+    [Size.S]: '40%',
+    [Size.M]: '60%',
+    [Size.L]: '80%',
+};
+
 export const STYLE_DEFAULT_VALUE = LineStyle.Solid;
 export const COLOR_DEFAULT_CLEARSPACE = {
     red: 213,

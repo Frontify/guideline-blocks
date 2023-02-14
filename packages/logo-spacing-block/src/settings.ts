@@ -124,7 +124,7 @@ export const settings = defineSettings({
                     off: [],
                 },
                 {
-                    defaultValue: 'none',
+                    defaultValue: Size.M,
                     id: 'containerSizeChoice',
                     info: 'Whitespace is an extra white space around your logo and clearspace.',
                     label: 'Container size',
@@ -324,7 +324,7 @@ export const settings = defineSettings({
                     off: [],
                 },
                 {
-                    id: 'clearspaceBackgroundSwitch',
+                    id: 'clearSpaceBackgroundSwitch',
                     label: 'Clearspace background',
                     type: 'switch',
                     on: [
