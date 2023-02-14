@@ -10,19 +10,6 @@ import { radiusClassMap } from './constants';
 import { Settings } from './types';
 import { VideoPlayer, VideoRecorder } from './components';
 
-// const bindMicrophoneToAudioElement = async (audioElement: HTMLAudioElement) => {
-//     const displayMediaOptions: MediaStreamConstraints = {
-//         video: false,
-//         audio: true,
-//     };
-
-//     try {
-//         audioElement.srcObject = await navigator.mediaDevices.getUserMedia(displayMediaOptions);
-//     } catch (error) {
-//         console.error('No permission to record the microphone.');
-//     }
-// };
-
 export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     const editorState = useEditorState(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
