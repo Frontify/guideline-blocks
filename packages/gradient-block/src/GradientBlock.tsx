@@ -2,15 +2,17 @@
 
 import { FC, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
-import { useBlockSettings } from '@frontify/app-bridge';
+import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Divider, DividerStyle } from '@frontify/fondue';
+import { Divider, DividerStyle, Tooltip, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import { Settings, gradientHeightValues } from './types';
 import { HEIGHT_DEFAULT_VALUE } from './settings';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const isEditing = useEditorState(appBridge);
     const [gradientColors, setGradientColors] = useState([
         {
             hex: '#243c5a',
@@ -25,6 +27,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             position: '80.11%',
         },
     ]);
+    const lastIndex = gradientColors.length - 1;
 
     const height = blockSettings.isHeightCustom
         ? blockSettings.heightCustom
@@ -37,10 +40,108 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 style={{
                     height,
                 }}
-            >
-                slider
-            </div>
-            <Divider height="36px" style={DividerStyle.Solid} />
+            ></div>
+            {isEditing && (
+                <div>
+                    <Divider height="36px" style={DividerStyle.Solid} />
+
+                    {gradientColors.map((color, index) => (
+                        <>
+                            {index === 0 && (
+                                <div key={index} className={joinClassNames(['tw-absolute'])} style={{ left: 0 }}>
+                                    <Tooltip
+                                        key={index}
+                                        alignment={TooltipAlignment.Middle}
+                                        content={
+                                            <div
+                                                className={joinClassNames([
+                                                    'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
+                                                ])}
+                                                style={{
+                                                    backgroundColor: color.hex,
+                                                }}
+                                            ></div>
+                                        }
+                                        heading=""
+                                        open
+                                        position={TooltipPosition.Bottom}
+                                        triggerElement={
+                                            <div
+                                                className={joinClassNames([
+                                                    'tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong tw-mt-[-22px] tw-bg-[#CCCCCC]',
+                                                ])}
+                                            ></div>
+                                        }
+                                        withArrow
+                                    />
+                                </div>
+                            )}
+                            {index !== 0 && index !== lastIndex && (
+                                <div
+                                    key={index}
+                                    className={joinClassNames([`tw-left-[${color.position}]`, 'tw-absolute'])}
+                                    style={{ left: color.position }}
+                                >
+                                    <Tooltip
+                                        key={index}
+                                        alignment={TooltipAlignment.Middle}
+                                        content={
+                                            <div
+                                                className={joinClassNames([
+                                                    'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
+                                                ])}
+                                                style={{
+                                                    backgroundColor: color.hex,
+                                                }}
+                                            ></div>
+                                        }
+                                        heading=""
+                                        open
+                                        position={TooltipPosition.Bottom}
+                                        triggerElement={
+                                            <div
+                                                className={joinClassNames([
+                                                    'tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong tw-mt-[-22px] tw-bg-[#CCCCCC]',
+                                                ])}
+                                            ></div>
+                                        }
+                                        withArrow
+                                    />
+                                </div>
+                            )}
+                            {index === lastIndex && (
+                                <div key={index} className={joinClassNames(['tw-absolute'])} style={{ right: 5 }}>
+                                    <Tooltip
+                                        key={index}
+                                        alignment={TooltipAlignment.Middle}
+                                        content={
+                                            <div
+                                                className={joinClassNames([
+                                                    'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
+                                                ])}
+                                                style={{
+                                                    backgroundColor: color.hex,
+                                                }}
+                                            ></div>
+                                        }
+                                        heading=""
+                                        position={TooltipPosition.Bottom}
+                                        open
+                                        triggerElement={
+                                            <div
+                                                className={joinClassNames([
+                                                    'tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong tw-mt-[-22px] tw-bg-[#CCCCCC]',
+                                                ])}
+                                            ></div>
+                                        }
+                                        withArrow
+                                    />
+                                </div>
+                            )}
+                        </>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
