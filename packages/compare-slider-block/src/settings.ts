@@ -16,70 +16,18 @@ import { Alignment, Handle, Height } from './types';
 export const settings = defineSettings({
     basics: [
         {
-            id: 'firstAssetSection',
-            type: 'sectionHeading',
-            label: '',
-            blocks: [
-                {
-                    id: 'firstAsset',
-                    type: 'assetInput',
-                    label: 'First Image',
-                    size: AssetInputSize.Small,
-                    objectTypes: [AssetChooserObjectType.ImageVideo],
-                },
-                {
-                    id: 'firstAssetHasLink',
-                    type: 'switch',
-                    label: 'Link',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'firstAssetLink',
-                            type: 'linkChooser',
-                            placeholder: 'Paste link, or type to search',
-                        },
-                    ],
-                },
-                {
-                    id: 'firstAssetHasStrikeThrough',
-                    type: 'switch',
-                    label: 'Strike-Trough',
-                    defaultValue: false,
-                },
-            ],
+            id: 'firstAsset',
+            type: 'assetInput',
+            label: 'First Image',
+            size: AssetInputSize.Small,
+            objectTypes: [AssetChooserObjectType.ImageVideo],
         },
         {
-            id: 'secondAssetSection',
-            type: 'sectionHeading',
-            label: '',
-            blocks: [
-                {
-                    id: 'secondAsset',
-                    type: 'assetInput',
-                    label: 'Second Image',
-                    size: AssetInputSize.Small,
-                    objectTypes: [AssetChooserObjectType.ImageVideo],
-                },
-                {
-                    id: 'secondAssetHasLink',
-                    type: 'switch',
-                    label: 'Link',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'secondAssetLink',
-                            type: 'linkChooser',
-                            placeholder: 'Paste link, or type to search',
-                        },
-                    ],
-                },
-                {
-                    id: 'secondAssetHasStrikeThrough',
-                    type: 'switch',
-                    label: 'Strike-Trough',
-                    defaultValue: false,
-                },
-            ],
+            id: 'secondAsset',
+            type: 'assetInput',
+            label: 'Second Image',
+            size: AssetInputSize.Small,
+            objectTypes: [AssetChooserObjectType.ImageVideo],
         },
     ],
     layout: [

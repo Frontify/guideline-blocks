@@ -9,14 +9,10 @@ export type BlockSettings = {
     borderWidth: string;
     customBorderRadius: string;
     customHeight: number;
-    firstAssetHasLink: boolean;
-    firstAssetLink: { link: { link: string }; openInNewTab: boolean };
     handle: Handle;
     hasCustomBorderRadius: boolean;
     hasCustomHeight: boolean;
     height: Height;
-    secondAssetHasLink: boolean;
-    secondAssetLink: { link: { link: string }; openInNewTab: boolean };
     sliderColor: Color;
     sliderWidth: string;
 };

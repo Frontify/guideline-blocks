@@ -65,23 +65,6 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const getSliderItem = (slot: SliderImageSlot) => {
-        const hasLink =
-            slot === SliderImageSlot.First ? blockSettings.firstAssetHasLink : blockSettings.secondAssetHasLink;
-        const link = slot === SliderImageSlot.First ? blockSettings.firstAssetLink : blockSettings.secondAssetLink;
-
-        if (hasLink && link?.link?.link) {
-            return (
-                <a slot={slot} target={`${link.openInNewTab ? '_blank' : '_self'}`} href={link?.link?.link}>
-                    <img
-                        src={slot === SliderImageSlot.First ? getFirstAssetPreviewUrl() : getSecondAssetPreviewUrl()}
-                        alt={slot === SliderImageSlot.First ? getFirstAssetTitle() : getSecondAssetTitle()}
-                        className={'tw-w-full tw-object-cover'}
-                        style={{ height: getImageHeight() }}
-                    />
-                </a>
-            );
-        }
-
         return (
             <img
                 slot={slot}
