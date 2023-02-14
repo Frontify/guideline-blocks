@@ -33,6 +33,7 @@ export const cornerRadiusMap: Record<CornerRadius, string> = {
 export type AxisProps = {
     minLabel: string;
     maxLabel: string;
+    orientation: 'horizontal' | 'vertical';
 };
 
 export type ItemProps = {
