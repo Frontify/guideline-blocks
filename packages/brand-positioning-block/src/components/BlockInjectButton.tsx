@@ -13,7 +13,6 @@ import { DragEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { BlockInjectButtonProps } from '../types';
 
 const BlockInjectButton = ({
-    onClick,
     onDrop,
     label,
     icon,
@@ -62,7 +61,7 @@ const BlockInjectButton = ({
             onDragEnter={() => setIsDraggingOver(true)}
             onDragLeave={() => setIsDraggingOver(false)}
             onDrop={handleDrop}
-            onClick={onClick || openMenu}
+            onClick={openMenu}
         >
             {isLoading ? (
                 <LoadingCircle />

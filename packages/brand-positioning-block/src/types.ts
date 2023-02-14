@@ -50,12 +50,11 @@ export type ToolbarProps = {
 };
 
 export type BlockInjectButtonProps = {
-    onClick?: () => void;
     isLoading?: boolean;
     label: string;
     secondaryLabel?: string;
     icon?: JSX.Element;
-    onDrop?: (files: FileList) => void;
-    onUploadClick?: () => void;
-    onAssetChooseClick?: () => void;
+    onDrop: (files: FileList) => void;
+    onUploadClick: () => void;
+    onAssetChooseClick: () => void;
 };

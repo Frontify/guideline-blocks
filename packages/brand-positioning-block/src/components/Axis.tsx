@@ -21,7 +21,11 @@ export const Axis = ({ minLabel, maxLabel, orientation }: AxisProps) => {
                 style={{
                     minWidth: orientation === 'horizontal' ? `${labelHeight}px` : 'auto',
                 }}
-                className={orientation === 'horizontal' ? 'tw-flex tw-items-center tw-justify-center tw-relative' : ''}
+                className={
+                    orientation === 'horizontal'
+                        ? 'tw-shrink-0 tw-flex tw-items-center tw-justify-center tw-relative'
+                        : ''
+                }
             >
                 <div
                     className={
@@ -42,7 +46,11 @@ export const Axis = ({ minLabel, maxLabel, orientation }: AxisProps) => {
                 style={{
                     minWidth: orientation === 'horizontal' ? `${labelHeight}px` : 'auto',
                 }}
-                className={orientation === 'horizontal' ? 'tw-flex tw-items-center tw-justify-center tw-relative' : ''}
+                className={
+                    orientation === 'horizontal'
+                        ? 'tw-flex tw-shrink-0 tw-items-center tw-justify-center tw-relative'
+                        : ''
+                }
             >
                 <div
                     className={
