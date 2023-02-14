@@ -116,7 +116,7 @@ export const settings = defineSettings({
                     defaultValue: TileVerticalAlignment.Center,
                     choices: [
                         { icon: IconEnum.ArrowAlignUp, value: TileVerticalAlignment.Top },
-                        { icon: IconEnum.ArrowAlignVerticalCentre, value: TileVerticalAlignment.Center },
+                        { icon: IconEnum.ArrowAlignHorizontalCentre, value: TileVerticalAlignment.Center },
                         { icon: IconEnum.ArrowAlignDown, value: TileVerticalAlignment.Bottom },
                     ],
                 },
@@ -131,7 +131,7 @@ export const settings = defineSettings({
                     defaultValue: TileHorizontalAlignment.Left,
                     choices: [
                         { icon: IconEnum.ArrowAlignLeft, value: TileHorizontalAlignment.Left },
-                        { icon: IconEnum.ArrowAlignHorizontalCentre, value: TileHorizontalAlignment.Center },
+                        { icon: IconEnum.ArrowAlignVerticalCentre, value: TileHorizontalAlignment.Center },
                         { icon: IconEnum.ArrowAlignRight, value: TileHorizontalAlignment.Right },
                     ],
                 },
