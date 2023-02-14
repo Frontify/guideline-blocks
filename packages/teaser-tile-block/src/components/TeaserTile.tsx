@@ -6,11 +6,11 @@ import { useTileAsset } from '../hooks';
 
 type TeaserTileProps = {
     appBridge: AppBridgeBlock;
-    index: number;
+    id: string;
 };
 
-export const TeaserTile = ({ appBridge, index }: TeaserTileProps) => {
-    const { tileAsset, isAssetLoading, openFileDialog, onOpenAssetChooser } = useTileAsset(appBridge, index);
+export const TeaserTile = ({ appBridge, id }: TeaserTileProps) => {
+    const { tileAsset, isAssetLoading, openFileDialog, onOpenAssetChooser } = useTileAsset(appBridge, id);
 
     return (
         <div>

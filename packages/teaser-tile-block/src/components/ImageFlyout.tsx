@@ -34,6 +34,7 @@ export const ImageFlyout = ({
     isAssetLoading,
     onReplaceAssetFromUpload,
     onReplaceAssetFromWorkspace,
+    asset,
 }: ImageFlyoutProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -71,6 +72,21 @@ export const ImageFlyout = ({
                     <InputLabel htmlFor="asset-replace">Asset</InputLabel>
                     <AssetInput
                         isLoading={isAssetLoading}
+                        assets={
+                            asset
+                                ? [
+                                      {
+                                          name: asset.fileName,
+                                          type: 'image',
+                                          src: asset.previewUrl,
+                                          alt: asset.title,
+                                          extension: asset.extension,
+                                          size: asset.fileSize,
+                                          source: 'upload',
+                                      },
+                                  ]
+                                : undefined
+                        }
                         actions={[
                             {
                                 id: 'asset-input-options',
@@ -92,8 +108,8 @@ export const ImageFlyout = ({
                             },
                         ]}
                         size={AssetInputSize.Small}
-                        onLibraryClick={console.log}
-                        onUploadClick={console.log}
+                        onLibraryClick={onReplaceAssetFromWorkspace}
+                        onUploadClick={onReplaceAssetFromUpload}
                     />
                     <InputLabel htmlFor="asset-replace">Link</InputLabel>
                     <TextInput placeholder="https://www.example.com" decorator={<IconLink />} />
