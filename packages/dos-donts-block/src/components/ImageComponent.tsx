@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconPlus32 } from '@frontify/fondue';
-import { AddImagesButton, joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton, joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { DoDontImageHeight, IMAGE_HEIGHT_VALUES, ImageComponentProps, ImageFitChoice } from '../types';
 
 const ImageComponent = ({
@@ -23,7 +23,7 @@ const ImageComponent = ({
     hasRadius,
     radiusChoice,
     radiusValue,
-    setIsMenuOpen,
+    onClick,
     dontColor,
     border,
 }: ImageComponentProps) => {
@@ -76,14 +76,14 @@ const ImageComponent = ({
         <div className="tw-mb-3">
             {(!src && isEditing) || isUploadLoading ? (
                 <div style={{ height: imageHeight === 'auto' ? '180px' : imageHeight }}>
-                    <AddImagesButton
+                    <BlockInjectButton
                         onAssetChooseClick={onAssetChooseClick}
                         onUploadClick={onUploadClick}
                         fillParentContainer
                         icon={<IconPlus32 />}
                         label=""
                         isLoading={isUploadLoading}
-                        setIsMenuOpen={setIsMenuOpen}
+                        onClick={onClick}
                     />
                 </div>
             ) : (

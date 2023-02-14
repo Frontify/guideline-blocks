@@ -22,7 +22,7 @@ import {
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
-    AddImagesButton,
+    BlockInjectButton,
     joinClassNames,
     toColorObject,
     useGuidelineDesignTokens,
@@ -43,7 +43,6 @@ import {
     PatternTheme,
     generateRandomId,
 } from '@frontify/fondue';
-import AddItemButton from './components/AddItemButton';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -355,7 +354,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             {isEditing && (
                 <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9">
                     {mode === BlockMode.TEXT_AND_IMAGE && (
-                        <AddImagesButton
+                        <BlockInjectButton
                             label="Add images"
                             secondaryLabel="Or drop them here"
                             icon={<IconPlus20 />}
@@ -366,12 +365,12 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                         />
                     )}
                     <div className="tw-flex tw-w-full">
-                        <AddItemButton
+                        <BlockInjectButton
                             label="Add do"
                             icon={<IconCheckMarkCircle20 />}
                             onClick={() => addItem(DoDontType.Do)}
                         />
-                        <AddItemButton
+                        <BlockInjectButton
                             label="Add don't"
                             icon={<IconCrossCircle20 />}
                             onClick={() => addItem(DoDontType.Dont)}

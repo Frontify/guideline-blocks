@@ -20,12 +20,10 @@ export type BlockInjectButtonProps = {
     fillParentContainer?: boolean;
     onUploadClick: () => void;
     onAssetChooseClick: () => void;
+    withMenu?: boolean;
     setIsMenuOpen?: (isOpen: boolean) => void;
+    onClick?: () => void;
 };
-
-export const textAndBgColor = 'tw-bg-blank-state-shaded-inverse tw-border-blank-state-line tw-text-blank-state-shaded';
-export const textAndBgColorHover =
-    'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover';
 
 export const BlockInjectButton = ({
     onDrop,
@@ -36,7 +34,8 @@ export const BlockInjectButton = ({
     fillParentContainer,
     onAssetChooseClick,
     onUploadClick,
-    setIsMenuOpen,
+    withMenu = true,
+    onClick,
 }: BlockInjectButtonProps) => {
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
@@ -56,30 +55,29 @@ export const BlockInjectButton = ({
         const XInsideComponent = event.clientX - left;
         const YInsideComponent = event.clientY - top;
         setMenuPosition([XInsideComponent, YInsideComponent]);
-        if (setIsMenuOpen) {
-            setIsMenuOpen(true);
-        }
     };
 
     return (
         <button
             ref={buttonRef}
             className={joinClassNames([
-                'tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border tw-rounded tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
-                isLoading
-                    ? 'tw-cursor-pointer-none'
-                    : 'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-pressed-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover',
+                ' tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border [&:not(:first-child)]:tw-border-l-0 first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
+                !isLoading &&
+                    'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover',
                 isDraggingOver && '[&>*]:tw-pointer-events-none',
                 isDraggingOver || !!menuPosition
                     ? 'tw-text-blank-state-pressed tw-bg-blank-state-pressed-inverse tw-border-blank-state-line-hover hover:tw-text-blank-state-pressed hover:tw-border-blank-state-line-hover hover:tw-bg-blank-state-pressed-inverse'
-                    : textAndBgColor,
+                    : 'tw-bg-blank-state-shaded-inverse tw-border-blank-state-line tw-text-blank-state-shaded ',
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
-                isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
+                !!onDrop && isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
             ])}
-            onDragEnter={() => setIsDraggingOver(true)}
-            onDragLeave={() => setIsDraggingOver(false)}
-            onDrop={handleDrop}
-            onClick={openMenu}
+            onDragEnter={onDrop ? () => setIsDraggingOver(true) : undefined}
+            onDragLeave={onDrop ? () => setIsDraggingOver(false) : undefined}
+            onDrop={onDrop ? handleDrop : undefined}
+            onClick={(event) => {
+                withMenu && openMenu(event);
+                onClick?.();
+            }}
         >
             {isLoading ? (
                 <LoadingCircle />
@@ -109,6 +107,7 @@ export const BlockInjectButton = ({
                         isOpen={true}
                         fitContent
                         hug={false}
+                        legacyFooter={false}
                         trigger={<div />}
                     >
                         <ActionMenu
@@ -145,9 +144,6 @@ export const BlockInjectButton = ({
                                                       onClick: () => {
                                                           onAssetChooseClick();
                                                           setMenuPosition(undefined);
-                                                          if (setIsMenuOpen) {
-                                                              setIsMenuOpen(true);
-                                                          }
                                                       },
                                                       initialValue: true,
                                                       decorator: (
