@@ -8,7 +8,7 @@ import {
     LoadingCircle,
     MenuItemContentSize,
 } from '@frontify/fondue';
-import React, { useRef, useState } from 'react';
+import { DragEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { joinClassNames } from '../utilities/react/joinClassNames';
 
 export type AddImagesButtonProps = {
@@ -22,7 +22,7 @@ export type AddImagesButtonProps = {
     onAssetChooseClick: () => void;
 };
 
-export const AddImagesButton = ({
+export const BlockInjectButton = ({
     onDrop,
     label,
     icon,
@@ -36,19 +36,19 @@ export const AddImagesButton = ({
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
     const buttonRef = useRef<HTMLButtonElement>(null);
 
-    const handleDrop: React.DragEventHandler<HTMLButtonElement> = (e) => {
-        e.preventDefault();
+    const handleDrop: DragEventHandler<HTMLButtonElement> = (event) => {
+        event.preventDefault();
         setIsDraggingOver(false);
-        onDrop(e.dataTransfer.files);
+        onDrop(event.dataTransfer.files);
     };
 
-    const openMenu: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const openMenu: MouseEventHandler<HTMLButtonElement> = (event) => {
         if (!buttonRef.current || isLoading) {
             return;
         }
         const { left, top } = buttonRef.current.getBoundingClientRect();
-        const XInsideComponent = e.clientX - left;
-        const YInsideComponent = e.clientY - top;
+        const XInsideComponent = event.clientX - left;
+        const YInsideComponent = event.clientY - top;
         setMenuPosition([XInsideComponent, YInsideComponent]);
     };
 
