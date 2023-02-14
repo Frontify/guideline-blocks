@@ -96,7 +96,11 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     const getHandle = () => {
         if (blockSettings.handle === Handle.Circles) {
             return (
-                <div slot="handle" className="tw-flex" style={{ color: toRgbaString(blockSettings.sliderColor) }}>
+                <div
+                    slot="handle"
+                    className="tw-flex"
+                    style={{ color: toRgbaString(blockSettings.sliderColor), gap: blockSettings.sliderWidth }}
+                >
                     <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-1 tw-bg-white/[.7] tw-rounded-full tw-mr-2">
                         <Icon icon={IconEnum.CaretLeft} size={IconSize.Size24} />
                     </div>
