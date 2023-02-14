@@ -4,8 +4,6 @@ import {
     Bundle,
     DropdownSize,
     IconEnum,
-    SliderBlock,
-    SwitchBlock,
     SwitchSize,
     TextInputType,
     defineSettings,
@@ -23,105 +21,6 @@ import {
     TileVerticalAlignment,
 } from './types';
 
-const COLUMN_BLOCK: SliderBlock = {
-    id: SettingsEnum.Columns,
-    type: 'slider',
-    label: 'Columns',
-    info: 'Sets the maximum amount of columns in this block. On smaller devices, this will be responsive to be fewer',
-    defaultValue: '2',
-    choices: [
-        { value: '1', label: '1' },
-        { value: '2', label: '2' },
-        { value: '3', label: '3' },
-        { value: '4', label: '4' },
-    ],
-};
-
-const SPACING_BLOCK: SwitchBlock = {
-    id: SettingsEnum.Spacing,
-    type: 'switch',
-    label: 'Spacing',
-    switchLabel: 'Custom',
-    info: 'Another word for ‘gap’. Refers to both column gutter and row gutter.',
-    show: (bundle: Bundle) => bundle.getBlock('columns')?.value !== '1',
-    defaultValue: false,
-    off: [
-        {
-            id: SettingsEnum.SpacingChoice,
-            type: 'slider',
-            defaultValue: TileSpacing.Small,
-            choices: [
-                { value: TileSpacing.None, label: 'None' },
-                { value: TileSpacing.Small, label: 'S' },
-                { value: TileSpacing.Medium, label: 'M' },
-                { value: TileSpacing.Large, label: 'L' },
-            ],
-        },
-    ],
-    on: [{ id: SettingsEnum.SpacingCustom, type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
-};
-
-const HEIGHT_BLOCK: SwitchBlock = {
-    id: SettingsEnum.Height,
-    type: 'switch',
-    label: 'Height',
-    switchLabel: 'Custom',
-    defaultValue: false,
-    off: [
-        {
-            id: SettingsEnum.HeightChoice,
-            type: 'slider',
-            defaultValue: TileHeight.Auto,
-            choices: [
-                { value: TileHeight.Auto, label: 'Auto' },
-                { value: TileHeight.Small, label: 'S' },
-                { value: TileHeight.Medium, label: 'M' },
-                { value: TileHeight.Large, label: 'L' },
-            ],
-        },
-    ],
-    on: [{ id: SettingsEnum.HeightCustom, type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
-};
-
-const PADDING_BLOCK: SwitchBlock = {
-    id: SettingsEnum.Padding,
-    type: 'switch',
-    label: 'Padding',
-    switchLabel: 'Custom',
-    info: 'The spacing between the text and the outer parameters of the tile',
-    defaultValue: false,
-    off: [
-        {
-            id: SettingsEnum.PaddingChoice,
-            type: 'slider',
-            defaultValue: TilePadding.Small,
-            choices: [
-                { value: TilePadding.Small, label: 'S' },
-                { value: TilePadding.Medium, label: 'M' },
-                { value: TilePadding.Large, label: 'L' },
-            ],
-        },
-    ],
-    on: [{ id: SettingsEnum.PaddingCustom, type: 'input', inputType: TextInputType.Text, placeholder: '20px' }],
-};
-
-const DISPLAY_BLOCK: SliderBlock = {
-    id: SettingsEnum.Display,
-    type: 'slider',
-    label: 'Display',
-    info: 'Determines how the image fits within the available space. Fill: fits as much into the frame as possible with possible cropping. Fit: Makes sure the whole image is visible in the frame',
-    show: (bundle: Bundle) =>
-        Boolean(
-            bundle.getBlock(SettingsEnum.Height)?.value ||
-                bundle.getBlock(SettingsEnum.HeightChoice)?.value !== TileHeight.Auto
-        ),
-    defaultValue: TileDisplay.Fill,
-    choices: [
-        { value: TileDisplay.Fill, label: TileDisplay.Fill },
-        { value: TileDisplay.Fit, label: TileDisplay.Fit },
-    ],
-};
-
 export const settings = defineSettings({
     main: [
         {
@@ -137,40 +36,66 @@ export const settings = defineSettings({
         },
     ],
     layout: [
-        // Text Layout options
         {
-            id: 'text-layout',
-            type: 'sectionHeading',
-            label: '',
-            show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.Text,
-            blocks: [COLUMN_BLOCK, SPACING_BLOCK, HEIGHT_BLOCK, PADDING_BLOCK],
-        },
-        // Image Layout Options
-        {
-            id: 'image-layout',
-            type: 'sectionHeading',
-            label: '',
-            show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.Image,
-            blocks: [COLUMN_BLOCK, SPACING_BLOCK, HEIGHT_BLOCK, DISPLAY_BLOCK],
-        },
-        // Image/Text Layout Options
-        {
-            id: 'imageText-columns',
+            id: 'columns-section',
             type: 'sectionHeading',
             label: 'Columns',
-            show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText,
-            blocks: [{ ...COLUMN_BLOCK, label: 'Number' }, SPACING_BLOCK],
+            blocks: [
+                {
+                    id: SettingsEnum.Columns,
+                    type: 'slider',
+                    label: 'Number',
+                    info: 'Sets the maximum amount of columns in this block. On smaller devices, this will be responsive to be fewer',
+                    defaultValue: '2',
+                    choices: [
+                        { value: '1', label: '1' },
+                        { value: '2', label: '2' },
+                        { value: '3', label: '3' },
+                        { value: '4', label: '4' },
+                    ],
+                },
+                {
+                    id: SettingsEnum.Spacing,
+                    type: 'switch',
+                    label: 'Spacing',
+                    switchLabel: 'Custom',
+                    info: 'Another word for ‘gap’. Refers to both column gutter and row gutter.',
+                    show: (bundle: Bundle) => bundle.getBlock('columns')?.value !== '1',
+                    defaultValue: false,
+                    off: [
+                        {
+                            id: SettingsEnum.SpacingChoice,
+                            type: 'slider',
+                            defaultValue: TileSpacing.Small,
+                            choices: [
+                                { value: TileSpacing.None, label: 'None' },
+                                { value: TileSpacing.Small, label: 'S' },
+                                { value: TileSpacing.Medium, label: 'M' },
+                                { value: TileSpacing.Large, label: 'L' },
+                            ],
+                        },
+                    ],
+                    on: [
+                        {
+                            id: SettingsEnum.SpacingCustom,
+                            type: 'input',
+                            inputType: TextInputType.Text,
+                            placeholder: '20px',
+                        },
+                    ],
+                },
+            ],
         },
         {
-            id: 'imageText-tiles',
+            id: 'tiles-section',
             type: 'sectionHeading',
             label: 'Tiles',
-            show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText,
             blocks: [
                 {
                     id: SettingsEnum.Positioning,
                     type: 'slider',
                     label: 'Positioning',
+                    show: (bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText,
                     defaultValue: TileImagePositioning.Top,
                     choices: [
                         { value: TileImagePositioning.Top, icon: IconEnum.MediaObjectTextBottom },
@@ -186,6 +111,7 @@ export const settings = defineSettings({
                     label: 'Alignment',
                     info: 'This will determine where content is anchored',
                     show: (bundle: Bundle) =>
+                        bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText &&
                         bundle.getBlock(SettingsEnum.Positioning)?.value === TileImagePositioning.Behind,
                     defaultValue: TileVerticalAlignment.Center,
                     choices: [
@@ -200,6 +126,7 @@ export const settings = defineSettings({
                     label: 'Alignment',
                     info: 'This will determine where content is anchored',
                     show: (bundle: Bundle) =>
+                        bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText &&
                         bundle.getBlock(SettingsEnum.Positioning)?.value !== TileImagePositioning.Behind,
                     defaultValue: TileHorizontalAlignment.Left,
                     choices: [
@@ -208,15 +135,89 @@ export const settings = defineSettings({
                         { icon: IconEnum.ArrowAlignRight, value: TileHorizontalAlignment.Right },
                     ],
                 },
-                { ...PADDING_BLOCK, label: 'Text Padding' },
+                {
+                    id: SettingsEnum.Padding,
+                    type: 'switch',
+                    label: (bundle: Bundle) =>
+                        bundle.getBlock(SettingsEnum.Type)?.value === TileType.Text ? 'Padding' : 'Text padding',
+                    switchLabel: 'Custom',
+                    info: 'The spacing between the text and the outer parameters of the tile',
+                    show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value !== TileType.Image,
+                    defaultValue: false,
+                    off: [
+                        {
+                            id: SettingsEnum.PaddingChoice,
+                            type: 'slider',
+                            defaultValue: TilePadding.Small,
+                            choices: [
+                                { value: TilePadding.Small, label: 'S' },
+                                { value: TilePadding.Medium, label: 'M' },
+                                { value: TilePadding.Large, label: 'L' },
+                            ],
+                        },
+                    ],
+                    on: [
+                        {
+                            id: SettingsEnum.PaddingCustom,
+                            type: 'input',
+                            inputType: TextInputType.Text,
+                            placeholder: '20px',
+                        },
+                    ],
+                },
             ],
         },
         {
-            id: 'imageText-images',
+            id: 'images-section',
             type: 'sectionHeading',
             label: 'Images',
-            show: (bundle: Bundle) => bundle.getBlock('type')?.value === TileType.ImageText,
-            blocks: [HEIGHT_BLOCK, DISPLAY_BLOCK],
+            blocks: [
+                {
+                    id: SettingsEnum.Height,
+                    type: 'switch',
+                    label: 'Height',
+                    switchLabel: 'Custom',
+                    defaultValue: false,
+                    off: [
+                        {
+                            id: SettingsEnum.HeightChoice,
+                            type: 'slider',
+                            defaultValue: TileHeight.Auto,
+                            choices: [
+                                { value: TileHeight.Auto, label: 'Auto' },
+                                { value: TileHeight.Small, label: 'S' },
+                                { value: TileHeight.Medium, label: 'M' },
+                                { value: TileHeight.Large, label: 'L' },
+                            ],
+                        },
+                    ],
+                    on: [
+                        {
+                            id: SettingsEnum.HeightCustom,
+                            type: 'input',
+                            inputType: TextInputType.Text,
+                            placeholder: '20px',
+                        },
+                    ],
+                },
+                {
+                    id: SettingsEnum.Display,
+                    type: 'slider',
+                    label: 'Display',
+                    info: 'Determines how the image fits within the available space. Fill: fits as much into the frame as possible with possible cropping. Fit: Makes sure the whole image is visible in the frame',
+                    show: (bundle: Bundle) =>
+                        Boolean(
+                            bundle.getBlock(SettingsEnum.Type)?.value !== TileType.Text &&
+                                (bundle.getBlock(SettingsEnum.Height)?.value ||
+                                    bundle.getBlock(SettingsEnum.HeightChoice)?.value !== TileHeight.Auto)
+                        ),
+                    defaultValue: TileDisplay.Fill,
+                    choices: [
+                        { value: TileDisplay.Fill, label: TileDisplay.Fill },
+                        { value: TileDisplay.Fit, label: TileDisplay.Fit },
+                    ],
+                },
+            ],
         },
     ],
     style: [
