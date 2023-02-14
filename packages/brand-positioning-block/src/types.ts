@@ -15,12 +15,14 @@ export const brandItemBrandItemSizeMap: Record<BrandItemSize, string> = {
 };
 
 export enum CornerRadius {
+    NONE = 'none',
     S = 's',
     M = 'm',
     L = 'l',
 }
 
 export const cornerRadiusMap: Record<CornerRadius, string> = {
+    [CornerRadius.NONE]: '0',
     [CornerRadius.S]: '2px',
     [CornerRadius.M]: '4px',
     [CornerRadius.L]: '12px',
