@@ -8,6 +8,7 @@ import {
     LoadingCircle,
     MenuItemContentSize,
 } from '@frontify/fondue';
+import React from 'react';
 import { DragEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { joinClassNames } from '../utilities/react/joinClassNames';
 
@@ -21,7 +22,6 @@ export type BlockInjectButtonProps = {
     onUploadClick?: () => void;
     onAssetChooseClick?: () => void;
     withMenu?: boolean;
-    setIsMenuOpen?: (isOpen: boolean) => void;
     onClick?: () => void;
 };
 
@@ -60,6 +60,7 @@ export const BlockInjectButton = ({
     return (
         <button
             ref={buttonRef}
+            data-test-id="block-inject-button"
             className={joinClassNames([
                 ' tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border [&:not(:first-child)]:tw-border-l-0 first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
                 !isLoading &&

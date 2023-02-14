@@ -28,3 +28,11 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         </div>
     );
 };
+
+export const Image = ({ url, blockSettings }: { url: string; blockSettings: Settings }) => {
+    return (
+        <div>
+            <img src={url} />
+        </div>
+    );
+};
