@@ -49,23 +49,6 @@ const BRAND_ITEM_BORDER_COLOR_DEFAULT_VALUE = LIGHT_GREY_COLOR_VALUE;
 export const settings = defineSettings({
     basics: [
         {
-            id: 'brands',
-            type: 'sectionHeading',
-            label: 'Brands',
-            blocks: [
-                {
-                    id: 'brandAssetImages',
-                    type: 'assetInput',
-                    label: 'Images',
-                    info: 'Placeholder tooltip',
-                    projectTypes: [], // TODO: Ask about the type
-                    objectTypes: [AssetChooserObjectType.ImageVideo], // TODO: Maybe ask Luca about this
-                    mode: AssetInputMode.BrowseAndUpload,
-                    multiSelection: true,
-                },
-            ],
-        },
-        {
             id: 'brandItem',
             type: 'sectionHeading',
             label: 'Brand item',
