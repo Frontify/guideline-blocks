@@ -1,6 +1,7 @@
 import {
     AssetChooserObjectType,
     AssetInputSize,
+    Bundle,
     DropdownSize,
     IconEnum,
     MultiInputLayout,
@@ -32,6 +33,19 @@ const leftRightOffsetMap: Record<Offset, string> = {
     [Offset.S]: '32px',
     [Offset.M]: '32px',
     [Offset.L]: '36px',
+};
+
+enum Property {
+    Height = 'height',
+    Width = 'width',
+}
+
+const appendPixelOrPercentage = (bundle: Bundle, property: string) => {
+    if (bundle.getBlock(LOGO_SPACING)?.value === LogoSpacingType.Percentage) {
+        appendUnit(bundle, property, '%');
+    } else {
+        appendUnit(bundle, property, 'px');
+    }
 };
 
 export const settings = defineSettings({
@@ -83,48 +97,48 @@ export const settings = defineSettings({
                     label: 'Container offset',
                     info: 'You can adjust the default logo container',
                     onChange: (bundle) => {
-                        presetCustomValue(bundle, 'paddingChoice', 'paddingTop', topBottomOffsetMap);
-                        presetCustomValue(bundle, 'paddingChoice', 'paddingBottom', topBottomOffsetMap);
-                        presetCustomValue(bundle, 'paddingChoice', 'paddingLeft', leftRightOffsetMap);
-                        presetCustomValue(bundle, 'paddingChoice', 'paddingRight', leftRightOffsetMap);
+                        presetCustomValue(bundle, 'hasCustomOffset', 'offsetTop', topBottomOffsetMap);
+                        presetCustomValue(bundle, 'hasCustomOffset', 'offsetBottom', topBottomOffsetMap);
+                        presetCustomValue(bundle, 'hasCustomOffset', 'offsetLeft', leftRightOffsetMap);
+                        presetCustomValue(bundle, 'hasCustomOffset', 'offsetRight', leftRightOffsetMap);
                     },
                     on: [
                         {
-                            id: 'customPadding',
+                            id: 'customOffset',
                             type: 'multiInput',
                             layout: MultiInputLayout.Spider,
                             blocks: [
                                 {
                                     icon: IconEnum.ArrowUp,
-                                    id: 'paddingTop',
+                                    id: 'offsetTop',
                                     type: 'input',
-                                    onChange: (bundle) => appendUnit(bundle, 'paddingTop'),
+                                    onChange: (bundle) => appendUnit(bundle, 'offsetTop'),
                                     rules: [numericalOrPixelRule],
-                                    defaultValue: '0px',
+                                    defaultValue: '0',
                                 },
                                 {
                                     icon: IconEnum.ArrowLeft,
-                                    id: 'paddingLeft',
+                                    id: 'offsetLeft',
                                     type: 'input',
-                                    onChange: (bundle) => appendUnit(bundle, 'paddingLeft'),
+                                    onChange: (bundle) => appendUnit(bundle, 'offsetLeft'),
                                     rules: [numericalOrPixelRule],
-                                    defaultValue: '0px',
+                                    defaultValue: '0',
                                 },
                                 {
                                     icon: IconEnum.ArrowRight,
-                                    id: 'paddingRight',
+                                    id: 'offsetRight',
                                     type: 'input',
-                                    onChange: (bundle) => appendUnit(bundle, 'paddingRight'),
+                                    onChange: (bundle) => appendUnit(bundle, 'offsetRight'),
                                     rules: [numericalOrPixelRule],
-                                    defaultValue: '0px',
+                                    defaultValue: '0',
                                 },
                                 {
                                     icon: IconEnum.ArrowDown,
-                                    id: 'paddingBottom',
+                                    id: 'offsetBottom',
                                     type: 'input',
-                                    onChange: (bundle) => appendUnit(bundle, 'paddingBottom'),
+                                    onChange: (bundle) => appendUnit(bundle, 'offsetBottom'),
                                     rules: [numericalOrPixelRule],
-                                    defaultValue: '0px',
+                                    defaultValue: '0',
                                 },
                             ],
                         },
@@ -164,20 +178,20 @@ export const settings = defineSettings({
             label: 'Logo clearspace',
             blocks: [
                 {
-                    defaultValue: 'height',
-                    id: 'clearSpaceChoice',
+                    defaultValue: Property.Height,
+                    id: 'clearSpacePropertyChoice',
                     info: 'Select what is the clearspace percentage value based on',
                     label: 'Clearspace based on',
-                    show: (bundle) => bundle.getBlock(LOGO_SPACING)?.value === LogoSpacingType.Percentage,
                     type: 'slider',
+                    show: (bundle) => bundle.getBlock(LOGO_SPACING)?.value === LogoSpacingType.Percentage,
                     choices: [
                         {
                             label: 'Height',
-                            value: 'height',
+                            value: Property.Height,
                         },
                         {
                             label: 'Width',
-                            value: 'width',
+                            value: Property.Width,
                         },
                     ],
                 },
@@ -189,48 +203,48 @@ export const settings = defineSettings({
                     info: 'Clearspace defines a safe space around logo which should always be empty.',
                     switchLabel: 'Custom',
                     onChange: (bundle) => {
-                        presetCustomValue(bundle, 'paddingChoice', 'paddingTop', topBottomOffsetMap);
-                        presetCustomValue(bundle, 'paddingChoice', 'paddingBottom', topBottomOffsetMap);
-                        presetCustomValue(bundle, 'paddingChoice', 'paddingLeft', leftRightOffsetMap);
-                        presetCustomValue(bundle, 'paddingChoice', 'paddingRight', leftRightOffsetMap);
+                        presetCustomValue(bundle, 'clearSpaceValue', 'clearSpaceTop', topBottomOffsetMap);
+                        presetCustomValue(bundle, 'clearSpaceValue', 'clearSpaceBottom', topBottomOffsetMap);
+                        presetCustomValue(bundle, 'clearSpaceValue', 'clearSpaceLeft', leftRightOffsetMap);
+                        presetCustomValue(bundle, 'clearSpaceValue', 'clearSpaceRight', leftRightOffsetMap);
                     },
                     on: [
                         {
-                            id: 'customPadding',
+                            id: 'customClearSpace',
                             type: 'multiInput',
                             layout: MultiInputLayout.Spider,
                             blocks: [
                                 {
                                     icon: IconEnum.ArrowAlignUp,
-                                    id: 'paddingTop',
+                                    id: 'clearSpaceTop',
                                     type: 'input',
-                                    onChange: (bundle) => appendUnit(bundle, 'paddingTop'),
+                                    onChange: (bundle) => appendPixelOrPercentage(bundle, 'clearSpaceTop'),
                                     rules: [numericalOrPixelRule],
-                                    defaultValue: '0px',
+                                    defaultValue: '0',
                                 },
                                 {
                                     icon: IconEnum.ArrowAlignLeft,
-                                    id: 'paddingLeft',
+                                    id: 'clearSpaceLeft',
                                     type: 'input',
-                                    onChange: (bundle) => appendUnit(bundle, 'paddingLeft'),
+                                    onChange: (bundle) => appendPixelOrPercentage(bundle, 'clearSpaceLeft'),
                                     rules: [numericalOrPixelRule],
-                                    defaultValue: '0px',
+                                    defaultValue: '0',
                                 },
                                 {
                                     icon: IconEnum.ArrowAlignRight,
-                                    id: 'paddingRight',
+                                    id: 'clearSpaceRight',
                                     type: 'input',
-                                    onChange: (bundle) => appendUnit(bundle, 'paddingRight'),
+                                    onChange: (bundle) => appendPixelOrPercentage(bundle, 'clearSpaceRight'),
                                     rules: [numericalOrPixelRule],
-                                    defaultValue: '0px',
+                                    defaultValue: '0',
                                 },
                                 {
                                     icon: IconEnum.ArrowAlignDown,
-                                    id: 'paddingBottom',
+                                    id: 'clearSpaceBottom',
                                     type: 'input',
-                                    onChange: (bundle) => appendUnit(bundle, 'paddingBottom'),
+                                    onChange: (bundle) => appendPixelOrPercentage(bundle, 'clearSpaceBottom'),
                                     rules: [numericalOrPixelRule],
-                                    defaultValue: '0px',
+                                    defaultValue: '0',
                                 },
                             ],
                         },
@@ -238,7 +252,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             defaultValue: 'none',
-                            id: 'whiteSpaceChoice',
+                            id: 'clearSpaceChoice',
                             type: 'slider',
                             choices: [
                                 {
