@@ -1,51 +1,45 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
-
-import { cameraSizeToScaleMap } from '../constants';
-import { CameraSize } from '../types';
-import { bindCameraToVideoElement } from '../utilities';
+import { bindMicrophoneToAudioElement } from '../utilities';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
-import { bindVideoToCanvas } from '../utilities';
 
-type VideoRecorderProps = {
+type AudioRecorderProps = {
     onRecordingEnd: (assetIds: number[]) => void;
-    size: CameraSize;
-    cameraDeviceId?: string;
     microphoneDeviceId?: string;
 };
 
-export const VideoRecorder = ({
-    onRecordingEnd,
-    size,
-    cameraDeviceId,
-    microphoneDeviceId,
-}: VideoRecorderProps): ReactElement => {
-    const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'previewing' | 'uploading'>('idle');
+export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecorderProps) => {
+    const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'uploading'>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
-    const cameraRef = useRef<HTMLVideoElement>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const microphoneRef = useRef<HTMLAudioElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
     const [uploadFiles, { results, doneAll }] = useAssetUpload();
 
+    useEffect(() => {
+        if (results.length > 0 && doneAll) {
+            onRecordingEnd(results.map((asset) => asset.id));
+            setState('idle');
+        }
+    }, [doneAll, results, onRecordingEnd]);
+
     const onStartClick = () => {
-        if (!canvasRef.current) {
-            throw new Error('No `canvas` registered');
+        // const stream = new MediaStream();
+        const stream = microphoneRef.current?.srcObject as MediaStream | null;
+
+        if (!stream) {
+            throw new Error('No stream');
         }
 
-        const stream = canvasRef.current.captureStream();
-        const audio = (cameraRef.current?.srcObject as MediaStream | null)?.getAudioTracks();
-
-        if (audio && audio.length > 0) {
-            stream.addTrack(audio[0]);
-        }
+        console.log(stream);
 
         recorder.current = new MediaRecorder(stream, {
             mimeType: 'video/webm',
         });
 
         recorder.current.addEventListener('dataavailable', (event) => {
+            console.log(event.data);
             allChunks.current.push(event.data);
         });
 
@@ -53,6 +47,7 @@ export const VideoRecorder = ({
             setState('uploading');
             if (allChunks.current.length > 0) {
                 const blob = new Blob(allChunks.current, { type: 'video/webm' });
+                console.log(blob);
                 uploadFiles(new File([blob], 'self-record.webm'));
             }
         });
@@ -86,27 +81,18 @@ export const VideoRecorder = ({
     };
 
     useEffect(() => {
-        if (results.length > 0 && doneAll) {
-            onRecordingEnd(results.map((asset) => asset.id));
-            setState('idle');
-        }
-    }, [doneAll, results, onRecordingEnd]);
-
-    useEffect(() => {
         const bindElements = async () => {
-            if (cameraRef.current && canvasRef.current) {
-                await bindCameraToVideoElement(cameraRef.current, cameraDeviceId, microphoneDeviceId);
-                bindVideoToCanvas(cameraRef.current, canvasRef.current, cameraSizeToScaleMap[size]);
+            if (microphoneRef.current) {
+                await bindMicrophoneToAudioElement(microphoneRef.current, microphoneDeviceId);
             }
         };
 
         bindElements();
-    }, [size, cameraDeviceId, microphoneDeviceId]);
+    }, [microphoneDeviceId]);
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            <canvas ref={canvasRef}></canvas>
-            <video ref={cameraRef} className="tw-hidden" muted></video>
+            <audio ref={microphoneRef} className="tw-hidden" muted></audio>
 
             <div className="tw-mt-6">
                 <VideoRecorderToolbar

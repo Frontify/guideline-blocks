@@ -12,6 +12,10 @@ export const CAMERA_CONSTRAINTS = {
     audio: true,
 };
 
+export const MICROPHONE_CONSTRAINTS = {
+    audio: true,
+};
+
 export const cameraSizeToScaleMap: Record<CameraSize, number> = {
     [CameraSize.Small]: 0.5,
     [CameraSize.Medium]: 0.7,
