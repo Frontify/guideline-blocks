@@ -11,7 +11,7 @@ import { Settings } from './types';
 import { VideoPlayer, VideoRecorder } from './components';
 
 export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
-    const editorState = useEditorState(appBridge);
+    const isEditing = useEditorState(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const { hasBorder, hasRadius, radiusChoice, radiusValue, borderColor, borderStyle, borderWidth } = blockSettings;
@@ -30,7 +30,7 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
             }}
             className={merge([!hasRadius && radiusClassMap[radiusChoice]])}
         >
-            {editorState ? (
+            {isEditing ? (
                 <VideoRecorder
                     onRecordingEnd={onRecordingEnd}
                     size={blockSettings.size}
