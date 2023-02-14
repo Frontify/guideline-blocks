@@ -792,19 +792,16 @@ importers:
       '@frontify/frontify-cli': 5.3.7
       '@frontify/guideline-blocks-settings': 0.25.11
       '@frontify/guideline-blocks-shared': workspace:*
-      '@types/p5': 1.5.0
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.34.0
       eslint-plugin-notice: 0.9.10
-      p5: 1.5.0
       postcss: 8.4.21
       prettier: 2.8.4
       react: 17.0.2
       react-dom: 17.0.2
-      react-p5: 1.3.33
       tailwindcss: 3.2.6
       typescript: 4.9.5
     dependencies:
@@ -813,15 +810,12 @@ importers:
       '@frontify/fondue-tokens': 3.2.1
       '@frontify/guideline-blocks-settings': 0.25.11_hhfiskz7fhmlseotgd4h3d4gru
       '@frontify/guideline-blocks-shared': link:../shared
-      p5: 1.5.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-p5: 1.3.33_sfoxds7t5ydpegc3knd667wn6m
     devDependencies:
       '@babel/core': 7.20.12
       '@frontify/eslint-config-react': 0.15.5_u73ouknumuxmyh7roh4fqp35ue
       '@frontify/frontify-cli': 5.3.7
-      '@types/p5': 1.5.0
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13_postcss@8.4.21
@@ -5338,14 +5332,6 @@ packages:
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
-    dev: true
-
-  /@types/p5/1.3.3:
-    resolution: {integrity: sha512-PBSFnX6IgV6Pqlx9wocUjSkGlm1I1ymz9tEiTbdNCqig6FOGiWcVUHx13TXRTBfRIhZC9+MqqgztMsgzpueaUg==}
-    dev: false
-
-  /@types/p5/1.5.0:
-    resolution: {integrity: sha512-EhaRGjqGcv5lKWvBUfC4Oxi2J5T1C1HuoQnJCdxJJMrRf+HTVdh7hCgBo88nHe6LbUXxkrxVj9tc1zOuemefFA==}
     dev: true
 
   /@types/prop-types/15.7.5:
@@ -20523,11 +20509,6 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
-  /opencollective-postinstall/2.0.2:
-    resolution: {integrity: sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==}
-    hasBin: true
-    dev: false
-
   /optionator/0.9.1:
     resolution: {integrity: sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==}
     engines: {node: '>= 0.8.0'}
@@ -20625,14 +20606,6 @@ packages:
   /p-try/2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
-
-  /p5/1.3.1:
-    resolution: {integrity: sha512-g7W2htgEwiAEGcl0WHccAJKbunUJwrUojUSR9+KihphJ33p5VpDdh1K8pDx4ppYjOr/lVEXaZ1XXDj27nwlNOg==}
-    dev: false
-
-  /p5/1.5.0:
-    resolution: {integrity: sha512-zZFMVUmGkXe2G5H6Sw7xsVhgdxMyEN/6SZnZqYdQ51513kTqPslLnukkwTbGf8YtW0RetTU0FTjYQMXnFD7KnQ==}
-    dev: false
 
   /papaparse/5.3.2:
     resolution: {integrity: sha512-6dNZu0Ki+gyV0eBsFKJhYr+MdQYAzFUGlBMNj3GNrmHxmz1lfRa24CjFObPXtjcetlOv5Ad299MhIK0znp3afw==}
@@ -21331,20 +21304,6 @@ packages:
       react: ^15.5.x || ^16.x || ^17.x || ^18.x
       react-dom: ^15.5.x || ^16.x || ^17.x || ^18.x
     dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /react-p5/1.3.33_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-CCfkGksk5H9ze6YMAg9vj+pQJUIDyU334M9aeeb9V7nRk6bjUPNy5tp74PKGRgXu2UqBoZYH04b25NWx7Y9t0w==}
-    requiresBuild: true
-    peerDependencies:
-      react: '>= 17.0.1'
-      react-dom: '>= 17.0.1'
-    dependencies:
-      '@types/p5': 1.3.3
-      opencollective-postinstall: 2.0.2
-      p5: 1.3.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false

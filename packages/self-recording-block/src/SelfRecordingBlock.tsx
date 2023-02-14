@@ -1,15 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { Button, ButtonEmphasis, ButtonSize, IconPlayCircle12 } from '@frontify/fondue';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockSettings, useFileUpload } from '@frontify/app-bridge';
-import Sketch from 'react-p5';
-import p5Types from 'p5';
 
-import { CAMERA_CONSTRAINTS, SCREEN_CONSTRAINTS } from './constants';
-import { createDisplayCapture } from './utils';
-import { RecordingMode, Settings } from './types';
+import { CAMERA_CONSTRAINTS, cameraSizeToRatioMap } from './constants';
+import { Settings } from './types';
 
 // const bindMicrophoneToAudioElement = async (audioElement: HTMLAudioElement) => {
 //     const displayMediaOptions: MediaStreamConstraints = {
@@ -20,28 +17,75 @@ import { RecordingMode, Settings } from './types';
 //     try {
 //         audioElement.srcObject = await navigator.mediaDevices.getUserMedia(displayMediaOptions);
 //     } catch (error) {
-//         console.error('No permission to record the camera.');
+//         console.error('No permission to record the microphone.');
 //     }
 // };
+
+const bindCameraToVideoElement = async (videoElement: HTMLVideoElement) => {
+    return new Promise<void>(async (resolve, reject) => {
+        try {
+            videoElement.srcObject = await navigator.mediaDevices.getUserMedia(CAMERA_CONSTRAINTS);
+            videoElement.addEventListener('loadedmetadata', () => resolve());
+            videoElement.play();
+        } catch (error) {
+            reject('No permission to record the camera.');
+        }
+    });
+};
+
+const bindVideoToCanvas = (videoElement: HTMLVideoElement, canvasElement: HTMLCanvasElement) => {
+    canvasElement.width = videoElement.videoWidth;
+    canvasElement.height = videoElement.videoHeight;
+
+    const size = Math.min(videoElement.videoWidth, videoElement.videoHeight);
+
+    const ctx = canvasElement.getContext('2d');
+    if (!ctx) {
+        throw new Error('Could not get the canvas context.');
+    }
+
+    const step = () => {
+        ctx.drawImage(videoElement, 0, 0);
+
+        // only draw image where mask is
+        ctx.globalCompositeOperation = 'destination-in';
+
+        // Draw circle mask
+        ctx.beginPath();
+        ctx.arc(canvasElement.width / 2, canvasElement.height / 2, size * 0.5, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // restore to default composite operation (is draw over current image)
+        ctx.globalCompositeOperation = 'source-over';
+
+        requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+};
 
 export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     const [state, setState] = useState<'idle' | 'record'>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
+    const cameraRef = useRef<HTMLVideoElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
     const [uploadFiles] = useFileUpload();
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    let cameraCapture: p5Types.Element;
-    let screenCapture: p5Types.Element;
-    let cameraGraphics: p5Types.Graphics;
-    let cameraCircleMaskGraphic: p5Types.Graphics;
+    const sizeRatio = cameraSizeToRatioMap[blockSettings.size];
 
-    let canvas: HTMLCanvasElement;
-
-    let screenRatio = 1;
-    let cameraRatio = 1;
+    // let cameraCapture: p5Types.Element;
+    // let cameraGraphics: p5Types.Graphics;
+    // let cameraCircleMaskGraphic: p5Types.Graphics;
+    // let cameraRatio = 1;
+    // let canvas: HTMLCanvasElement;
 
     const onStartRecord = () => {
-        const stream = canvas.captureStream();
+        if (!canvasRef.current) {
+            throw new Error('No `canvas` registered');
+        }
+        const stream = canvasRef.current.captureStream();
         recorder.current = new MediaRecorder(stream, {
             mimeType: 'video/webm',
         });
@@ -64,61 +108,17 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
         recorder.current?.stop();
     };
 
-    const setup = (p5: p5Types, canvasParentRef: Element) => {
-        let p5canvas;
-        if (blockSettings.recordingMode === RecordingMode.ScreenAndCamera) {
-            screenRatio = SCREEN_CONSTRAINTS.video.width / canvasParentRef.clientWidth;
-            p5canvas = p5.createCanvas(canvasParentRef.clientWidth, SCREEN_CONSTRAINTS.video.height / screenRatio);
-        } else {
-            screenRatio = CAMERA_CONSTRAINTS.video.width / canvasParentRef.clientWidth;
-            p5canvas = p5.createCanvas(canvasParentRef.clientWidth, CAMERA_CONSTRAINTS.video.height / screenRatio);
-        }
-        p5canvas.parent(canvasParentRef);
-        canvas = p5canvas.elt;
+    useEffect(() => {
+        const bindElements = async () => {
+            if (cameraRef.current && canvasRef.current && state === 'record') {
+                await bindCameraToVideoElement(cameraRef.current);
 
-        cameraCapture = p5.createCapture(CAMERA_CONSTRAINTS);
-        cameraCapture.hide();
+                bindVideoToCanvas(cameraRef.current, canvasRef.current);
+            }
+        };
 
-        cameraRatio = CAMERA_CONSTRAINTS.video.width / 300;
-        cameraGraphics = p5.createGraphics(CAMERA_CONSTRAINTS.video.width, CAMERA_CONSTRAINTS.video.height);
-
-        cameraCircleMaskGraphic = p5.createGraphics(cameraGraphics.width, cameraGraphics.height);
-        cameraCircleMaskGraphic.circle(cameraGraphics.width / 2, cameraGraphics.height / 2, (300 * cameraRatio) / 2);
-
-        if (blockSettings.recordingMode === RecordingMode.ScreenAndCamera) {
-            screenCapture = createDisplayCapture(SCREEN_CONSTRAINTS, p5);
-            screenCapture.hide();
-        }
-    };
-
-    const draw = (p5: p5Types) => {
-        // Render screen
-        if (blockSettings.recordingMode === RecordingMode.ScreenAndCamera) {
-            p5.image(
-                screenCapture,
-                0,
-                0,
-                SCREEN_CONSTRAINTS.video.width / screenRatio,
-                SCREEN_CONSTRAINTS.video.height / screenRatio
-            );
-        }
-
-        // Apply mask on webcam
-        cameraGraphics.image(cameraCapture, 0, 0, cameraGraphics.width, cameraGraphics.height);
-        const cameraFrame = cameraGraphics.get();
-        cameraFrame.mask(cameraCircleMaskGraphic.get());
-
-        // Render masked webcam
-        p5.imageMode(p5.CENTER);
-        p5.image(
-            cameraFrame,
-            100,
-            p5.height - 100,
-            CAMERA_CONSTRAINTS.video.width / cameraRatio,
-            CAMERA_CONSTRAINTS.video.height / cameraRatio
-        );
-        p5.imageMode(p5.CORNER);
-    };
+        bindElements();
+    }, [state]);
 
     return (
         <>
@@ -137,9 +137,9 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
 
             {state === 'record' && (
                 <div className="tw-flex tw-flex-col">
-                    {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        //@ts-ignore */}
-                    <Sketch setup={setup} draw={draw} />
+                    <canvas ref={canvasRef}></canvas>
+                    <video ref={cameraRef} autoPlay={true} className="tw-hidden"></video>
+
                     <div className="tw-flex tw-gap-4">
                         <button onClick={onStartRecord}>Record</button>
                         <button onClick={onStopRecord}>Stop</button>

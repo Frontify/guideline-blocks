@@ -1,10 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 export enum RecordingMode {
-    CameraOnly = 'camera-only',
-    ScreenAndCamera = 'screen-and-camera',
+    CameraAndAudio = 'camera-and-audio',
+    AudioOnly = 'audio-only',
+}
+
+export enum CameraSize {
+    Small = 'small',
+    Medium = 'medium',
+    Large = 'large',
 }
 
 export type Settings = {
     recordingMode: RecordingMode;
+    size: CameraSize;
 };

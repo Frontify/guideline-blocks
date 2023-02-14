@@ -1,25 +1,44 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
-import { RecordingMode } from './types';
+import { CameraSize, RecordingMode } from './types';
 
 export const settings = defineSettings({
     main: [
         {
             id: 'recordingMode',
             type: 'dropdown',
-            defaultValue: RecordingMode.ScreenAndCamera,
+            defaultValue: RecordingMode.CameraAndAudio,
             size: DropdownSize.Large,
             choices: [
                 {
-                    value: RecordingMode.ScreenAndCamera,
+                    value: RecordingMode.CameraAndAudio,
                     icon: IconEnum.PlayCircle16,
-                    label: 'Screen and camera',
+                    label: 'Camera and Audio',
                 },
                 {
-                    value: RecordingMode.CameraOnly,
+                    value: RecordingMode.AudioOnly,
                     icon: IconEnum.PlayCircle16,
-                    label: 'Camera only',
+                    label: 'Audio only',
+                },
+            ],
+        },
+        {
+            id: 'size',
+            type: 'slider',
+            defaultValue: CameraSize.Small,
+            choices: [
+                {
+                    value: CameraSize.Small,
+                    label: 'S',
+                },
+                {
+                    value: CameraSize.Medium,
+                    label: 'M',
+                },
+                {
+                    value: CameraSize.Large,
+                    label: 'L',
                 },
             ],
         },
