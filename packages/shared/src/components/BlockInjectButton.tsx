@@ -100,6 +100,7 @@ export const BlockInjectButton = ({
                         isOpen={true}
                         fitContent
                         hug={false}
+                        legacyFooter={false}
                         trigger={<div />}
                     >
                         <ActionMenu
