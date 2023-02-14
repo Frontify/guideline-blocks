@@ -6,7 +6,7 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockSettings, useFileUpload } from '@frontify/app-bridge';
 
 import { CAMERA_CONSTRAINTS, cameraSizeToRatioMap } from './constants';
-import { Settings } from './types';
+import { Settings, VideoCanvasElement, VideoShape } from './types';
 
 // const bindMicrophoneToAudioElement = async (audioElement: HTMLAudioElement) => {
 //     const displayMediaOptions: MediaStreamConstraints = {
@@ -21,6 +21,26 @@ import { Settings } from './types';
 //     }
 // };
 
+function drawVideFrameScaled(video: HTMLVideoElement, ctx: CanvasRenderingContext2D) {
+    const canvas = ctx.canvas;
+    const hRatio = canvas.width / video.videoWidth;
+    const vRatio = canvas.height / video.videoHeight;
+    const ratio = Math.min(hRatio, vRatio);
+    const centerShiftX = (canvas.width - video.videoWidth * ratio) / 2;
+    const centerShiftY = (canvas.height - video.videoHeight * ratio) / 2;
+    ctx.drawImage(
+        video,
+        0,
+        0,
+        video.videoWidth,
+        video.videoHeight,
+        centerShiftX,
+        centerShiftY,
+        video.videoWidth * ratio,
+        video.videoHeight * ratio
+    );
+}
+
 const bindCameraToVideoElement = async (videoElement: HTMLVideoElement) => {
     return new Promise<void>(async (resolve, reject) => {
         try {
@@ -33,30 +53,36 @@ const bindCameraToVideoElement = async (videoElement: HTMLVideoElement) => {
     });
 };
 
-const bindVideoToCanvas = (videoElement: HTMLVideoElement, canvasElement: HTMLCanvasElement) => {
-    canvasElement.width = videoElement.videoWidth;
-    canvasElement.height = videoElement.videoHeight;
-
-    const size = Math.min(videoElement.videoWidth, videoElement.videoHeight);
-
+const bindVideoToCanvas = (videoCanvasElement: VideoCanvasElement, canvasElement: HTMLCanvasElement) => {
     const ctx = canvasElement.getContext('2d');
     if (!ctx) {
         throw new Error('Could not get the canvas context.');
     }
 
+    const parentContainerWidth = (canvasElement.parentElement as HTMLDivElement).clientWidth * videoCanvasElement.ratio;
+    const videoAspectRatio = videoCanvasElement.source.videoWidth / videoCanvasElement.source.videoHeight;
+    canvasElement.width = parentContainerWidth;
+    canvasElement.style.width = `${parentContainerWidth}px`;
+    canvasElement.height = parentContainerWidth / videoAspectRatio;
+    canvasElement.style.height = `${parentContainerWidth / videoAspectRatio}px`;
+
+    const size = Math.min(canvasElement.width, canvasElement.height);
+
     const step = () => {
-        ctx.drawImage(videoElement, 0, 0);
+        if (videoCanvasElement.shape === VideoShape.Circle) {
+            drawVideFrameScaled(videoCanvasElement.source, ctx);
 
-        // only draw image where mask is
-        ctx.globalCompositeOperation = 'destination-in';
+            // only draw image where mask is
+            ctx.globalCompositeOperation = 'destination-in';
 
-        // Draw circle mask
-        ctx.beginPath();
-        ctx.arc(canvasElement.width / 2, canvasElement.height / 2, size * 0.5, 0, 2 * Math.PI);
-        ctx.fill();
+            // Draw circle mask
+            ctx.beginPath();
+            ctx.arc(canvasElement.width / 2, canvasElement.height / 2, size / 2, 0, 2 * Math.PI);
+            ctx.fill();
 
-        // restore to default composite operation (is draw over current image)
-        ctx.globalCompositeOperation = 'source-over';
+            // restore to default composite operation (is draw over current image)
+            ctx.globalCompositeOperation = 'source-over';
+        }
 
         requestAnimationFrame(step);
     };
@@ -74,12 +100,6 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     const sizeRatio = cameraSizeToRatioMap[blockSettings.size];
-
-    // let cameraCapture: p5Types.Element;
-    // let cameraGraphics: p5Types.Graphics;
-    // let cameraCircleMaskGraphic: p5Types.Graphics;
-    // let cameraRatio = 1;
-    // let canvas: HTMLCanvasElement;
 
     const onStartRecord = () => {
         if (!canvasRef.current) {
@@ -113,12 +133,15 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
             if (cameraRef.current && canvasRef.current && state === 'record') {
                 await bindCameraToVideoElement(cameraRef.current);
 
-                bindVideoToCanvas(cameraRef.current, canvasRef.current);
+                bindVideoToCanvas(
+                    { shape: VideoShape.Circle, ratio: sizeRatio, source: cameraRef.current },
+                    canvasRef.current
+                );
             }
         };
 
         bindElements();
-    }, [state]);
+    }, [sizeRatio, state]);
 
     return (
         <>
@@ -136,7 +159,7 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
             )}
 
             {state === 'record' && (
-                <div className="tw-flex tw-flex-col">
+                <div className="tw-flex tw-flex-col tw-items-center">
                     <canvas ref={canvasRef}></canvas>
                     <video ref={cameraRef} autoPlay={true} className="tw-hidden"></video>
 

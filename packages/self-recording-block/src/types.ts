@@ -11,7 +11,18 @@ export enum CameraSize {
     Large = 'large',
 }
 
+export enum VideoShape {
+    Circle = 'circle',
+    FullFrame = 'full-frame',
+}
+
 export type Settings = {
     recordingMode: RecordingMode;
     size: CameraSize;
+};
+
+export type VideoCanvasElement = {
+    source: HTMLVideoElement;
+    ratio: number;
+    shape: VideoShape;
 };
