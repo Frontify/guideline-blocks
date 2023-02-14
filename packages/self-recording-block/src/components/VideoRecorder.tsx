@@ -79,7 +79,7 @@ export const VideoRecorder = ({
             const stream = canvasRef.current.captureStream();
             const audio = cameraRef.current?.srcObject?.getAudioTracks();
 
-            if (audio.length > 0) {
+            if (audio && audio.length > 0) {
                 stream.addTrack(audio[0]);
             }
 
