@@ -18,8 +18,8 @@ export type BlockInjectButtonProps = {
     icon?: JSX.Element;
     onDrop?: (files: FileList) => void;
     fillParentContainer?: boolean;
-    onUploadClick: () => void;
-    onAssetChooseClick: () => void;
+    onUploadClick?: () => void;
+    onAssetChooseClick?: () => void;
     withMenu?: boolean;
     setIsMenuOpen?: (isOpen: boolean) => void;
     onClick?: () => void;
@@ -69,7 +69,7 @@ export const BlockInjectButton = ({
                     ? 'tw-text-blank-state-pressed tw-bg-blank-state-pressed-inverse tw-border-blank-state-line-hover hover:tw-text-blank-state-pressed hover:tw-border-blank-state-line-hover hover:tw-bg-blank-state-pressed-inverse'
                     : 'tw-bg-blank-state-shaded-inverse tw-border-blank-state-line tw-text-blank-state-shaded ',
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
-                !!onDrop && isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
+                isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
             ])}
             onDragEnter={onDrop ? () => setIsDraggingOver(true) : undefined}
             onDragLeave={onDrop ? () => setIsDraggingOver(false) : undefined}
@@ -99,11 +99,7 @@ export const BlockInjectButton = ({
                     }}
                 >
                     <Flyout
-                        onOpenChange={(isOpen) => {
-                            if (!isOpen) {
-                                setMenuPosition(undefined);
-                            }
-                        }}
+                        onOpenChange={(isOpen) => !isOpen && setMenuPosition(undefined)}
                         isOpen={true}
                         fitContent
                         hug={false}
