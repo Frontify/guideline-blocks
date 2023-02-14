@@ -1,11 +1,20 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import {
     IconEnum,
     SwitchSize,
     defineSettings,
     maximumNumericalOrPixelOrAutoRule,
     maximumNumericalRule,
+    appendUnit,
 } from '@frontify/guideline-blocks-settings';
-import { Height, Orientation } from './types';
+import { GradientHeight, Orientation } from './types';
+
+const IS_CUSTOM_HEIGHT_ID = 'isHeightCustom';
+const HEIGHT_CUSTOM_ID = 'heightCustom';
+const HEIGHT_SIMPLE_ID = 'heightSimple';
+
+export const HEIGHT_DEFAULT_VALUE = GradientHeight.Small;
 
 export const settings = defineSettings({
     basics: [
@@ -31,7 +40,7 @@ export const settings = defineSettings({
             label: '',
             blocks: [
                 {
-                    id: 'gradientHeight',
+                    id: IS_CUSTOM_HEIGHT_ID,
                     type: 'switch',
                     label: 'Height',
                     switchLabel: 'Custom',
@@ -39,30 +48,31 @@ export const settings = defineSettings({
                     defaultValue: false,
                     on: [
                         {
-                            id: 'gradientHeightCustom',
+                            id: HEIGHT_CUSTOM_ID,
                             type: 'input',
                             placeholder: 'e.g. 50px',
                             clearable: true,
                             rules: [maximumNumericalOrPixelOrAutoRule(800)],
+                            onChange: (bundle) => appendUnit(bundle, HEIGHT_CUSTOM_ID),
                         },
                     ],
                     off: [
                         {
-                            id: 'gradientHeightSimple',
+                            id: HEIGHT_SIMPLE_ID,
                             type: 'slider',
-                            defaultValue: Height.Small,
+                            defaultValue: HEIGHT_DEFAULT_VALUE,
                             choices: [
                                 {
                                     label: 'S',
-                                    value: Height.Small,
+                                    value: GradientHeight.Small,
                                 },
                                 {
                                     label: 'M',
-                                    value: Height.Medium,
+                                    value: GradientHeight.Medium,
                                 },
                                 {
                                     label: 'L',
-                                    value: Height.Large,
+                                    value: GradientHeight.Large,
                                 },
                             ],
                         },
