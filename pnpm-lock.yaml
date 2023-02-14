@@ -839,7 +839,7 @@ importers:
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       '@types/tinycolor2': 1.4.3
-      '@vitejs/plugin-react': 2.2.0
+      cypress: 11.0.1
       eslint: 8.27.0
       eslint-plugin-notice: 0.9.10
       happy-dom: 7.6.7
@@ -867,7 +867,7 @@ importers:
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       '@types/tinycolor2': 1.4.3
-      '@vitejs/plugin-react': 2.2.0_vite@3.2.3
+      cypress: 11.0.1
       eslint: 8.27.0
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       happy-dom: 7.6.7
@@ -14078,7 +14078,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       ansi-escapes: 4.3.2
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-width: 3.0.0
       external-editor: 3.1.0
@@ -15546,7 +15546,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.7.0
       is-interactive: 1.0.0
