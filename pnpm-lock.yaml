@@ -459,6 +459,8 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/frontify-cli': 5.3.6
       '@frontify/guideline-blocks-settings': 0.25.10
+      '@frontify/guideline-blocks-shared': workspace:^1.0.0
+      '@img-comparison-slider/react': ^7.8.1
       '@types/react': 17.0.53
       '@types/react-dom': 17.0.18
       autoprefixer: 10.4.13
@@ -470,6 +472,8 @@ importers:
       typescript: 4.9.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/guideline-blocks-shared': link:../shared
+      '@img-comparison-slider/react': 7.8.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -2308,6 +2312,7 @@ packages:
       tailwindcss: 3.2.3_postcss@8.4.19
     transitivePeerDependencies:
       - ts-node
+    dev: false
 
   /@frontify/fondue-tokens/3.2.0_ts-node@10.9.1:
     resolution: {integrity: sha512-GR2neBdz4bKlqxN+WdBWYHLpJRP+ERGonP97jdekeS/Rxgji6u6ddP4Gwgeu8vZQOorOX9c8bD6IBgKeGg4GCw==}
@@ -2325,7 +2330,6 @@ packages:
       tailwindcss: 3.2.3_postcss@8.4.19
     transitivePeerDependencies:
       - ts-node
-    dev: false
 
   /@frontify/fondue-tokens/3.2.1_ts-node@10.9.1:
     resolution: {integrity: sha512-EAXgbiy1+Yg2panx4XVOUvJ97wyOe0HeRiqGujDdxa2c4nACkK2Q+dQmSAe/aEiZupRGIjkmpiMFcKHbNFlnew==}
@@ -2520,17 +2524,17 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.2.0
+      '@frontify/fondue-tokens': 3.2.1
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
       '@react-aria/aria-modal-polyfill': 3.6.1_h7fc2el62uaa77gho3xhys6ola
       '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/checkbox': 3.5.1_react@17.0.2
+      '@react-aria/checkbox': 3.7.0_react@17.0.2
       '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/focus': 3.8.0_react@17.0.2
-      '@react-aria/interactions': 3.11.0_react@17.0.2
+      '@react-aria/focus': 3.10.0_react@17.0.2
+      '@react-aria/interactions': 3.13.0_react@17.0.2
       '@react-aria/link': 3.3.5_react@17.0.2
       '@react-aria/listbox': 3.7.1_react@17.0.2
       '@react-aria/menu': 3.7.0_sfoxds7t5ydpegc3knd667wn6m
@@ -2540,7 +2544,7 @@ packages:
       '@react-aria/selection': 3.12.0_react@17.0.2
       '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/tooltip': 3.3.3_react@17.0.2
-      '@react-aria/utils': 3.13.3_react@17.0.2
+      '@react-aria/utils': 3.14.1_react@17.0.2
       '@react-aria/visually-hidden': 3.6.0_react@17.0.2
       '@react-stately/checkbox': 3.3.2_react@17.0.2
       '@react-stately/collections': 3.5.0_react@17.0.2
@@ -2551,7 +2555,7 @@ packages:
       '@react-stately/radio': 3.6.1_react@17.0.2
       '@react-stately/select': 3.3.3_react@17.0.2
       '@react-stately/table': 3.6.0_react@17.0.2
-      '@react-stately/toggle': 3.4.1_react@17.0.2
+      '@react-stately/toggle': 3.4.4_react@17.0.2
       '@react-stately/tooltip': 3.2.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@storybook/addon-a11y': 6.5.15_sfoxds7t5ydpegc3knd667wn6m
@@ -3326,6 +3330,12 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@img-comparison-slider/react/7.8.1:
+    resolution: {integrity: sha512-lqxvNmrbqOm3VUF8Ie7UUJLES9LiBawLNmAoQI/CNJAPyouAy1Kx6lvMSrMVuPfeHZ/utoIrCWv8TzY/D5AqIQ==}
+    dependencies:
+      img-comparison-slider: 7.7.2
+    dev: false
+
   /@internationalized/date/3.0.1:
     resolution: {integrity: sha512-E/3lASs4mAeJ2Z2ye6ab7eUD0bPUfTeNVTAv6IS+ne9UtMu9Uepb9A1U2Ae0hDr6WAlBuvUtrakaxEdYB9TV6Q==}
     dependencies:
@@ -3661,9 +3671,9 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/interactions': 3.11.0_react@17.0.2
+      '@react-aria/interactions': 3.13.0_react@17.0.2
       '@react-aria/selection': 3.12.0_react@17.0.2
-      '@react-aria/utils': 3.13.3_react@17.0.2
+      '@react-aria/utils': 3.14.1_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@react-types/accordion': 3.0.0-alpha.7_react@17.0.2
       '@react-types/button': 3.7.0_react@17.0.2
@@ -3738,6 +3748,7 @@ packages:
       '@react-types/checkbox': 3.4.1_react@17.0.2
       '@react-types/shared': 3.16.0_react@17.0.2
       react: 17.0.2
+    dev: false
 
   /@react-aria/checkbox/3.7.0_react@17.0.2:
     resolution: {integrity: sha512-CGVfBcCK3e8YwjPSgIMTQbMxbjTtsDy9xGkw/7iCMVIsHC7MfzO8Ny5qJJbQ2dVkNnSfIgQdtWikYGJN2QjeDw==}
@@ -3753,7 +3764,6 @@ packages:
       '@react-types/checkbox': 3.4.1_react@17.0.2
       '@react-types/shared': 3.16.0_react@17.0.2
       react: 17.0.2
-    dev: false
 
   /@react-aria/combobox/3.4.3_sfoxds7t5ydpegc3knd667wn6m:
     resolution: {integrity: sha512-MrpxrpJOOIRKMKkFDxTzQFu6y31eL15IsMbTRttO0NsrnQiJl19ojz6MpnhIJjnaC/Wz2EEWqnUawQsJjAVxyQ==}
@@ -3819,6 +3829,7 @@ packages:
       '@react-types/shared': 3.16.0_react@17.0.2
       clsx: 1.2.1
       react: 17.0.2
+    dev: false
 
   /@react-aria/grid/3.5.1_sfoxds7t5ydpegc3knd667wn6m:
     resolution: {integrity: sha512-eWwhG9wHb6l6poZSvnhoSSCpNy1kG3HxIpcbMaR2/qllbUYgZ4PASyx4N2TT/VqBUsxCSwC/WqcDka11U9d94w==}
@@ -3866,6 +3877,7 @@ packages:
       '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-types/shared': 3.16.0_react@17.0.2
       react: 17.0.2
+    dev: false
 
   /@react-aria/interactions/3.13.0_react@17.0.2:
     resolution: {integrity: sha512-gbZL+qs+6FPitR/abAramth4lqz/drEzXwzIDF6p6WyajF805mjyAgZin1/3mQygSE5BwJNDU7jMUSGRvgFyTw==}
@@ -4112,6 +4124,7 @@ packages:
       '@react-types/shared': 3.16.0_react@17.0.2
       clsx: 1.2.1
       react: 17.0.2
+    dev: false
 
   /@react-aria/utils/3.14.1_react@17.0.2:
     resolution: {integrity: sha512-+ynP0YlxN02MHVEBaeuTrIhBsfBYpfJn36pZm2t7ZEFbafH8DPaMGZ70ffYZXAESkWzRULXL3e79DheWOFI1qA==}
@@ -4201,6 +4214,7 @@ packages:
       '@react-types/checkbox': 3.4.1_react@17.0.2
       '@react-types/shared': 3.16.0_react@17.0.2
       react: 17.0.2
+    dev: false
 
   /@react-stately/checkbox/3.3.2_react@17.0.2:
     resolution: {integrity: sha512-eU3zvWgQrcqS8UK8ZVkb3fMP816PeuN9N0/dOJKuOXXhkoLPuxtuja1oEqKU3sFMa5+bx3czZhhNIRpr60NAdw==}
@@ -4470,6 +4484,7 @@ packages:
       '@react-types/checkbox': 3.4.1_react@17.0.2
       '@react-types/shared': 3.16.0_react@17.0.2
       react: 17.0.2
+    dev: false
 
   /@react-stately/toggle/3.4.2_react@17.0.2:
     resolution: {integrity: sha512-+pO13Ap/tj4optu6VjQrEAaAoZvJAEwarMUaZvrkc0kdvMTNPdiT/2vhN32yvsSW0ssuFqToa3jMrTylCbpo8w==}
@@ -16984,6 +16999,10 @@ packages:
     resolution: {integrity: sha512-d2qQLzTJ9WxQftPAuEQpSPmKqzxePjzVbpAVv62AQ64NTL+wR4JkrVqR/LqFsFEUsHDAiId52mJteHDFuDkElA==}
     engines: {node: '>= 4'}
     dev: true
+
+  /img-comparison-slider/7.7.2:
+    resolution: {integrity: sha512-xL01b6bd2rAXfYTT44Lq0nYmrwB9RESfkJVdcgbRB/PUsYfkqEr2J4oGYWFm5BYZ1FoSiH+uW2+3500qCF0dbA==}
+    dev: false
 
   /immer/9.0.12:
     resolution: {integrity: sha512-lk7UNmSbAukB5B6dh9fnh5D0bJTOFKxVg2cyJWTYrWRfhLrLMBquONcUs3aFq507hNoIZEDDh8lb8UtOizSMhA==}

@@ -5,42 +5,43 @@ import {
     appendUnit,
     defineSettings,
     maximumNumericalOrPixelOrAutoRule,
+    minimumNumericRule,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 
 import { BorderStyle, Radius, getBorderRadiusSlider, radiusStyleMap } from '../../shared';
-import { Alignment } from './types';
+import { Alignment, Handle, Height } from './types';
 
 export const settings = defineSettings({
     basics: [
         {
-            id: 'firstImageSection',
+            id: 'firstAssetSection',
             type: 'sectionHeading',
             label: '',
             blocks: [
                 {
-                    id: 'firstImage',
+                    id: 'firstAsset',
                     type: 'assetInput',
                     label: 'First Image',
                     size: AssetInputSize.Small,
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                 },
                 {
-                    id: 'firstImageHasLink',
+                    id: 'firstAssetHasLink',
                     type: 'switch',
                     label: 'Link',
                     defaultValue: false,
                     on: [
                         {
-                            id: 'linkUrl',
+                            id: 'firstAssetLink',
                             type: 'linkChooser',
                             placeholder: 'Paste link, or type to search',
                         },
                     ],
                 },
                 {
-                    id: 'firstImageHasStrikeThrough',
+                    id: 'firstAssetHasStrikeThrough',
                     type: 'switch',
                     label: 'Strike-Trough',
                     defaultValue: false,
@@ -48,32 +49,32 @@ export const settings = defineSettings({
             ],
         },
         {
-            id: 'secondImageSection',
+            id: 'secondAssetSection',
             type: 'sectionHeading',
             label: '',
             blocks: [
                 {
-                    id: 'secondImage',
+                    id: 'secondAsset',
                     type: 'assetInput',
                     label: 'Second Image',
                     size: AssetInputSize.Small,
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                 },
                 {
-                    id: 'secondImageHasLink',
+                    id: 'secondAssetHasLink',
                     type: 'switch',
                     label: 'Link',
                     defaultValue: false,
                     on: [
                         {
-                            id: 'linkUrl',
+                            id: 'secondAssetLink',
                             type: 'linkChooser',
                             placeholder: 'Paste link, or type to search',
                         },
                     ],
                 },
                 {
-                    id: 'secondImageHasStrikeThrough',
+                    id: 'secondAssetHasStrikeThrough',
                     type: 'switch',
                     label: 'Strike-Trough',
                     defaultValue: false,
@@ -86,7 +87,7 @@ export const settings = defineSettings({
             id: 'alignment',
             type: 'slider',
             label: 'Alignment',
-            defaultValue: Alignment.Vertical,
+            defaultValue: Alignment.Horizontal,
             info: 'This tooltip needs copy!',
             choices: [
                 {
@@ -100,20 +101,19 @@ export const settings = defineSettings({
             ],
         },
         {
-            id: 'heightSwitch',
+            id: 'hasCustomHeight',
             label: 'Height',
             type: 'switch',
             info: 'This tooltip needs copy!',
             switchLabel: 'Custom',
             defaultValue: false,
             show: () => true,
-            onChange: (bundle) => presetCustomValue(bundle, Radius.None, 'customHeight', radiusStyleMap),
             on: [
                 {
                     id: 'customHeight',
                     type: 'input',
                     placeholder: 'e.g. 500px',
-                    rules: [numericalOrPixelRule],
+                    rules: [numericalOrPixelRule, minimumNumericRule(100)],
                     onChange: (bundle) => appendUnit(bundle, 'customHeight'),
                 },
             ],
@@ -124,19 +124,19 @@ export const settings = defineSettings({
                     defaultValue: 'auto',
                     choices: [
                         {
-                            value: 'auto',
+                            value: Height.Auto,
                             label: 'Auto',
                         },
                         {
-                            value: 's',
+                            value: Height.Small,
                             label: 'S',
                         },
                         {
-                            value: 'm',
+                            value: Height.Medium,
                             label: 'M',
                         },
                         {
-                            value: 'l',
+                            value: Height.Large,
                             label: 'L',
                         },
                     ],
@@ -151,9 +151,8 @@ export const settings = defineSettings({
             label: 'Slider',
             onChange: (bundle) => appendUnit(bundle, 'sliderWidth'),
             layout: MultiInputLayout.Columns,
-            lastItemFullWidth: true,
             blocks: [
-                {
+                /*{
                     id: 'sliderStyle',
                     type: 'dropdown',
                     defaultValue: BorderStyle.Solid,
@@ -171,7 +170,7 @@ export const settings = defineSettings({
                             label: BorderStyle.Dashed,
                         },
                     ],
-                },
+                },*/
                 {
                     id: 'sliderWidth',
                     type: 'input',
@@ -183,9 +182,9 @@ export const settings = defineSettings({
                     id: 'sliderColor',
                     type: 'colorInput',
                     defaultValue: {
-                        red: 0,
-                        green: 0,
-                        blue: 0,
+                        red: 255,
+                        green: 255,
+                        blue: 255,
                         alpha: 1,
                     },
                 },
@@ -195,18 +194,18 @@ export const settings = defineSettings({
             id: 'handle',
             type: 'slider',
             label: 'Handles',
-            defaultValue: 'arrows',
+            defaultValue: Handle.Arrows,
             choices: [
                 {
-                    value: 'arrows',
+                    value: Handle.Arrows,
                     label: 'Arrows',
                 },
                 {
-                    value: 'circles',
+                    value: Handle.Circles,
                     label: 'Circles',
                 },
                 {
-                    value: 'none',
+                    value: Handle.None,
                     label: 'None',
                 },
             ],
@@ -215,7 +214,7 @@ export const settings = defineSettings({
             id: 'borderSection',
             type: 'multiInput',
             label: 'Border',
-            onChange: (bundle) => appendUnit(bundle, 'sliderWidth'),
+            onChange: (bundle) => appendUnit(bundle, 'borderWidth'),
             layout: MultiInputLayout.Columns,
             lastItemFullWidth: true,
             blocks: [
@@ -241,7 +240,7 @@ export const settings = defineSettings({
                 {
                     id: 'borderWidth',
                     type: 'input',
-                    defaultValue: '1px',
+                    defaultValue: '0px',
                     rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
                     placeholder: 'e.g. 1px',
                 },
@@ -249,16 +248,16 @@ export const settings = defineSettings({
                     id: 'borderColor',
                     type: 'colorInput',
                     defaultValue: {
-                        red: 0,
-                        green: 0,
-                        blue: 0,
+                        red: 255,
+                        green: 255,
+                        blue: 255,
                         alpha: 1,
                     },
                 },
             ],
         },
         {
-            id: 'borderRadiusSwitch',
+            id: 'hasCustomBorderRadius',
             label: 'Border Radius',
             type: 'switch',
             switchLabel: 'Custom',
