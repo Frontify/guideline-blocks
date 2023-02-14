@@ -17,7 +17,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
 
     return (
         <div data-test-id="image-block">
-            {!imageUrl ? <UploadPlaceholder appBridge={appBridge} /> : <div>image</div>}
+            {!imageUrl ? isEditing && <UploadPlaceholder appBridge={appBridge} /> : <div>image</div>}
             <ImageCaption
                 name={blockSettings.name}
                 description={blockSettings.description}
