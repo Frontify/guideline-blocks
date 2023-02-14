@@ -11,7 +11,7 @@ import {
 import { DragEventHandler, MouseEventHandler, useRef, useState } from 'react';
 import { joinClassNames } from '../utilities/react/joinClassNames';
 
-export type AddImagesButtonProps = {
+export type BlockInjectButtonProps = {
     isLoading?: boolean;
     label: string;
     secondaryLabel?: string;
@@ -31,7 +31,7 @@ export const BlockInjectButton = ({
     fillParentContainer,
     onAssetChooseClick,
     onUploadClick,
-}: AddImagesButtonProps) => {
+}: BlockInjectButtonProps) => {
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -100,7 +100,6 @@ export const BlockInjectButton = ({
                         isOpen={true}
                         fitContent
                         hug={false}
-                        legacyFooter={false}
                         trigger={<div />}
                     >
                         <ActionMenu
