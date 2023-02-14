@@ -17,6 +17,7 @@ const LOGO_SPACING = 'logo-spacing';
 const BOUNDARIES_THICKNESS_ID = 'thickness';
 const BOUNDARIES_COLOR_ID = 'boundariesColor';
 const CLEARSPACE_BG_COLOR_ID = 'clearSpaceBgColor';
+export const LOGO_ID = 'logo';
 
 const CLEAR_SPACE_LABELS = {
     [LogoSpacingType.Pixels]: 'Pixel clearspace',
@@ -88,7 +89,7 @@ export const settings = defineSettings({
             label: '',
             blocks: [
                 {
-                    id: 'image',
+                    id: LOGO_ID,
                     type: 'assetInput',
                     label: 'Image',
                     size: AssetInputSize.Small,

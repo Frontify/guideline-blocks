@@ -1,24 +1,31 @@
-import type { FC } from 'react';
-import { useBlockSettings } from '@frontify/app-bridge';
+import { FC, useEffect } from 'react';
+import { Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
+import { LOGO_ID } from './settings';
 
 type Settings = {
     color: 'violet' | 'blue' | 'green' | 'red';
 };
 
-const colorTailwindMap: Record<Settings['color'], string> = {
-    violet: 'tw-text-[rgb(113,89,215)]',
-    blue: 'tw-text-blue-600',
-    green: 'tw-text-green-600',
-    red: 'tw-text-red-600',
-};
-
 export const AnExampleBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const { blockAssets } = useBlockAssets(appBridge);
+
+    useEffect(() => {
+        console.log('Block Settings', blockSettings);
+    }, [blockSettings]);
 
     return (
-        <span className={`${colorTailwindMap[blockSettings.color]} tw-underline`}>
-            A custom block in {blockSettings.color?.toLowerCase()} and underlined
-        </span>
+        <div className="tw-flex tw-justify-center" data-test-id="example-asset-upload-block">
+            {blockAssets[LOGO_ID] ? (
+                blockAssets[LOGO_ID].map((asset: Asset) => (
+                    <div key={asset.id}>
+                        <img src={asset.previewUrl} data-test-id="example-asset-upload-image" />
+                    </div>
+                ))
+            ) : (
+                <p>No image set</p>
+            )}
+        </div>
     );
 };
