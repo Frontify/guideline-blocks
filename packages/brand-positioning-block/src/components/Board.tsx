@@ -61,7 +61,7 @@ export const Board = () => {
     };
 
     return (
-        <div className="tw-w-full tw-flex tw-rounded tw-h-[613px] sm:tw-h-[500px] tw-relative tw-border tw-p-3">
+        <div className="tw-w-full tw-flex tw-rounded tw-h-[613px] sm:tw-h-[500px] tw-relative tw-border tw-p-2 sm:tw-p-3">
             <DndContext modifiers={[restrictToParentElement]} sensors={sensors} onDragEnd={handleDragEnd}>
                 <div ref={containerRef} className="tw-relative tw-h-full tw-w-full">
                     <div className="tw-absolute tw-w-full tw-top-1/2 -tw-translate-y-1/2">
