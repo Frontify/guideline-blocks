@@ -13,7 +13,7 @@ export const Axis = ({ minLabel, maxLabel, orientation }: AxisProps) => {
         <div
             style={designTokens?.imageCaption}
             className={joinClassNames([
-                'tw-flex tw-h-full tw-gap-3 tw-items-center tw-whitespace-nowrap',
+                'tw-flex tw-h-full tw-gap-2 sm:tw-gap-3 tw-items-center tw-whitespace-nowrap',
                 orientation === 'vertical' && 'tw-flex-col',
             ])}
         >
