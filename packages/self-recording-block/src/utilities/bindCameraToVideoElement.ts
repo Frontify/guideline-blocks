@@ -2,10 +2,19 @@
 
 import { CAMERA_CONSTRAINTS } from '../constants';
 
-export const bindCameraToVideoElement = async (videoElement: HTMLVideoElement) => {
+export const bindCameraToVideoElement = async (
+    videoElement: HTMLVideoElement,
+    cameraDeviceId?: string,
+    microphoneDeviceId?: string
+) => {
     return new Promise<void>(async (resolve, reject) => {
         try {
-            videoElement.srcObject = await navigator.mediaDevices.getUserMedia(CAMERA_CONSTRAINTS);
+            videoElement.srcObject = await navigator.mediaDevices.getUserMedia({
+                ...CAMERA_CONSTRAINTS,
+                video: { ...CAMERA_CONSTRAINTS, deviceId: cameraDeviceId },
+                audio: { ...CAMERA_CONSTRAINTS, deviceId: microphoneDeviceId },
+            });
+
             videoElement.addEventListener('loadedmetadata', () => {
                 videoElement.play();
                 resolve();

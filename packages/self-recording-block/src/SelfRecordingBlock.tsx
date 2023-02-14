@@ -44,6 +44,8 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
                     updateAssetIdsFromKey={updateAssetIdsFromKey}
                     size={blockSettings.size}
                     asset={blockAssets?.video?.[0]}
+                    cameraDeviceId={blockSettings.cameraDeviceId}
+                    microphoneDeviceId={blockSettings.microphoneDeviceId}
                 />
             ) : (
                 <VideoPlayer asset={blockAssets?.video?.[0]} />

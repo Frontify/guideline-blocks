@@ -2,6 +2,7 @@
 
 import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import { LOCAL_STORAGE_PREFFERED_CAMERA_KEY, LOCAL_STORAGE_PREFFERED_MICROPHONE_KEY } from './constants';
 import { CameraSize, RecordingMode, VideoShape } from './types';
 
 export const settings = defineSettings({
@@ -23,6 +24,36 @@ export const settings = defineSettings({
                     label: 'Audio only',
                 },
             ],
+        },
+    ],
+    basics: [
+        {
+            id: 'microphoneDeviceId',
+            label: 'Microphone',
+            type: 'dropdown',
+            choices: async () => {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+
+                const microphoneDevices = devices.filter((device) => device.kind === 'audioinput');
+                return microphoneDevices.map((device) => ({
+                    value: device.deviceId,
+                    label: device.label,
+                }));
+            },
+        },
+        {
+            id: 'cameraDeviceId',
+            label: 'Camera',
+            type: 'dropdown',
+            choices: async () => {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+
+                const videoDevices = devices.filter((device) => device.kind === 'videoinput');
+                return videoDevices.map((device) => ({
+                    value: device.deviceId,
+                    label: device.label,
+                }));
+            },
         },
     ],
     layout: [
@@ -68,11 +99,14 @@ export const settings = defineSettings({
         },
     ],
     style: [
-        { id: 'style-sectionHeading-1', type: 'sectionHeading', label: '', blocks: [getBorderSettings()] },
         {
-            id: 'style-sectionHeading-2',
+            id: 'borderHeading',
             type: 'sectionHeading',
-            label: '',
+            blocks: [getBorderSettings()],
+        },
+        {
+            id: 'borderRadiusHeading',
+            type: 'sectionHeading',
             blocks: [getBorderRadiusSettings()],
             show: (bundle) => bundle.getBlock('shape')?.value !== VideoShape.Circle,
         },

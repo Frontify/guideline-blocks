@@ -30,3 +30,6 @@ export const borderStyleMap: Record<BorderStyle, string> = {
     [BorderStyle.Dotted]: 'dotted',
     [BorderStyle.Dashed]: 'dashed',
 };
+
+export const LOCAL_STORAGE_PREFFERED_CAMERA_KEY = 'SelfRecordingBlock_preferredCameraDeviceId';
+export const LOCAL_STORAGE_PREFFERED_MICROPHONE_KEY = 'SelfRecordingBlock_preferredMicrophoneDeviceId';

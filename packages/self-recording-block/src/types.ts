@@ -24,6 +24,8 @@ export type Settings = {
     recordingMode: RecordingMode;
     shape: VideoShape;
     size: CameraSize;
+    microphoneDeviceId?: string;
+    cameraDeviceId?: string;
     hasBorder: boolean;
     borderColor: Color;
     borderStyle: BorderStyle;

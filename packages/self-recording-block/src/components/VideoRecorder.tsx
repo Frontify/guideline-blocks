@@ -14,6 +14,8 @@ import {
     IconPause16,
     IconPlay16,
     IconTrashBin16,
+    LoadingCircle,
+    LoadingCircleSize,
     Tooltip,
     TooltipPosition,
 } from '@frontify/fondue';
@@ -44,12 +46,16 @@ export const VideoRecorder = ({
     updateAssetIdsFromKey,
     size,
     asset,
+    cameraDeviceId,
+    microphoneDeviceId,
 }: {
     //TODO: remove any
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     updateAssetIdsFromKey: any;
     size: CameraSize;
     asset?: Asset;
+    cameraDeviceId?: string;
+    microphoneDeviceId?: string;
 }) => {
     const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'uploading'>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
@@ -69,39 +75,34 @@ export const VideoRecorder = ({
     }, [doneAll, results, updateAssetIdsFromKey]);
 
     const onStartClick = () => {
-        if (state === 'paused') {
-            recorder.current?.resume();
-            setState('recording');
-        } else {
-            if (!canvasRef.current) {
-                throw new Error('No `canvas` registered');
-            }
-            const stream = canvasRef.current.captureStream();
-            const audio = cameraRef.current?.srcObject?.getAudioTracks();
-
-            if (audio && audio.length > 0) {
-                stream.addTrack(audio[0]);
-            }
-
-            recorder.current = new MediaRecorder(stream, {
-                mimeType: 'video/webm',
-            });
-
-            recorder.current.addEventListener('dataavailable', (event) => {
-                allChunks.current.push(event.data);
-            });
-
-            recorder.current.addEventListener('stop', () => {
-                setState('uploading');
-                if (allChunks.current.length > 0) {
-                    const blob = new Blob(allChunks.current, { type: 'video/webm' });
-                    uploadFiles(new File([blob], 'self-record.webm'));
-                }
-            });
-
-            recorder.current.start();
-            setState('recording');
+        if (!canvasRef.current) {
+            throw new Error('No `canvas` registered');
         }
+        const stream = canvasRef.current.captureStream();
+        const audio = (cameraRef.current?.srcObject as MediaStream | null)?.getAudioTracks();
+
+        if (audio && audio.length > 0) {
+            stream.addTrack(audio[0]);
+        }
+
+        recorder.current = new MediaRecorder(stream, {
+            mimeType: 'video/webm',
+        });
+
+        recorder.current.addEventListener('dataavailable', (event) => {
+            allChunks.current.push(event.data);
+        });
+
+        recorder.current.addEventListener('stop', () => {
+            setState('uploading');
+            if (allChunks.current.length > 0) {
+                const blob = new Blob(allChunks.current, { type: 'video/webm' });
+                uploadFiles(new File([blob], 'self-record.webm'));
+            }
+        });
+
+        recorder.current.start();
+        setState('recording');
     };
 
     const onStopClick = () => {
@@ -111,6 +112,11 @@ export const VideoRecorder = ({
     const onPauseClick = () => {
         recorder.current?.pause();
         setState('paused');
+    };
+
+    const onResumeClick = () => {
+        recorder.current?.resume();
+        setState('recording');
     };
 
     const onRestartClick = () => {
@@ -126,13 +132,14 @@ export const VideoRecorder = ({
     useEffect(() => {
         const bindElements = async () => {
             if (cameraRef.current && canvasRef.current) {
-                await bindCameraToVideoElement(cameraRef.current);
+                await bindCameraToVideoElement(cameraRef.current, cameraDeviceId, microphoneDeviceId);
+
                 bindVideoToCanvas(cameraRef.current, canvasRef.current, cameraSizeToScaleMap[size]);
             }
         };
 
         bindElements();
-    }, [size]);
+    }, [size, cameraDeviceId, microphoneDeviceId]);
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
@@ -140,7 +147,7 @@ export const VideoRecorder = ({
             <video ref={cameraRef} autoPlay={true} className="tw-hidden" muted></video>
 
             <div className="tw-flex tw-gap-2 tw-px-2 tw-py-1 tw-mt-6 tw-bg-box-neutral tw-rounded-lg">
-                {['idle', 'paused'].includes(state) ? (
+                {state === 'idle' ? (
                     <Tooltip
                         content="Start recording"
                         position={TooltipPosition.Top}
@@ -149,78 +156,105 @@ export const VideoRecorder = ({
                             <Button
                                 rounding={ButtonRounding.Full}
                                 emphasis={ButtonEmphasis.Weak}
-                                icon={<IconPlay16 />}
+                                icon={
+                                    <div className="tw-min-h-[16px] tw-min-w-[16px] tw-h-4 tw-w-4 tw-rounded-full tw-cursor-pointer tw-bg-box-negative-strong hover:tw-bg-box-negative-strong-hover active:tw-bg-box-negative-strong-pressed" />
+                                }
                                 onClick={onStartClick}
                                 aria-label="Start recording"
                             />
                         }
                     />
-                ) : (
+                ) : null}
+
+                {state === 'uploading' ? (
+                    <div className="tw-inline-flex tw-items-center tw-justify-center tw-px-2">
+                        <LoadingCircle size={LoadingCircleSize.Small} />
+                    </div>
+                ) : null}
+
+                {['recording', 'paused'].includes(state) ? (
                     <Tooltip
                         content="Stop recording"
                         position={TooltipPosition.Top}
                         enterDelay={800}
-                        disabled={state !== 'recording'}
                         triggerElement={
                             <Button
                                 rounding={ButtonRounding.Full}
                                 emphasis={ButtonEmphasis.Weak}
                                 icon={
-                                    <div className="tw-min-h-[16px] tw-min-w-[16px] tw-h-4 tw-w-4 tw-bg-box-negative-strong hover:tw-bg-box-negative-strong-hover active:tw-bg-box-negative-strong-pressed tw-rounded-[1px]" />
+                                    <div className="tw-min-h-[16px] tw-min-w-[16px] tw-h-4 tw-w-4 tw-rounded tw-cursor-pointer tw-bg-button-icon group-hover:tw-bg-button-icon-hover group-active:tw-bg-button-icon-pressed" />
                                 }
                                 onClick={onStopClick}
-                                disabled={state !== 'recording'}
                                 aria-label="Stop recording"
                             />
                         }
                     />
-                )}
+                ) : null}
 
                 <Tooltip
                     content="Restart recording"
                     position={TooltipPosition.Top}
                     enterDelay={800}
-                    disabled={!['recording', 'paused'].includes(state)}
+                    disabled={!['recording', 'paused'].includes(state) || state === 'uploading'}
                     triggerElement={
                         <Button
                             rounding={ButtonRounding.Full}
                             emphasis={ButtonEmphasis.Weak}
                             icon={<IconArrowRoundAntiClockwise16 />}
-                            disabled={!['recording', 'paused'].includes(state)}
+                            disabled={!['recording', 'paused'].includes(state) || state === 'uploading'}
                             onClick={onRestartClick}
                             aria-label="Restart recording"
                         />
                     }
                 />
 
-                <Tooltip
-                    content="Pause recording"
-                    position={TooltipPosition.Top}
-                    enterDelay={800}
-                    disabled={['idle', 'paused'].includes(state)}
-                    triggerElement={
-                        <Button
-                            rounding={ButtonRounding.Full}
-                            emphasis={ButtonEmphasis.Weak}
-                            icon={<IconPause16 />}
-                            onClick={onPauseClick}
-                            disabled={['idle', 'paused'].includes(state)}
-                            aria-label="Pause recording"
-                        />
-                    }
-                />
-
-                {asset !== undefined ? (
+                {state === 'paused' ? (
                     <Tooltip
-                        content="Delete saved recording"
+                        content="Resume recording"
                         position={TooltipPosition.Top}
                         enterDelay={800}
                         triggerElement={
                             <Button
                                 rounding={ButtonRounding.Full}
                                 emphasis={ButtonEmphasis.Weak}
+                                icon={<IconPlay16 />}
+                                onClick={onResumeClick}
+                                aria-label="Resume recording"
+                            />
+                        }
+                    />
+                ) : (
+                    <Tooltip
+                        content="Pause recording"
+                        position={TooltipPosition.Top}
+                        enterDelay={800}
+                        disabled={['idle', 'paused', 'uploading'].includes(state)}
+                        triggerElement={
+                            <Button
+                                rounding={ButtonRounding.Full}
+                                emphasis={ButtonEmphasis.Weak}
+                                icon={<IconPause16 />}
+                                onClick={onPauseClick}
+                                disabled={['idle', 'paused', 'uploading'].includes(state)}
+                                aria-label="Pause recording"
+                            />
+                        }
+                    />
+                )}
+
+                {asset !== undefined ? (
+                    <Tooltip
+                        content="Delete saved recording"
+                        position={TooltipPosition.Top}
+                        enterDelay={800}
+                        disabled={state === 'uploading'}
+                        triggerElement={
+                            <Button
+                                rounding={ButtonRounding.Full}
+                                emphasis={ButtonEmphasis.Weak}
                                 icon={<IconTrashBin16 />}
                                 onClick={onDeleteClick}
+                                disabled={state === 'uploading'}
                                 aria-label="Delete saved recording"
                             />
                         }
