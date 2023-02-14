@@ -43,7 +43,7 @@ export const settings = defineSettings({
                             type: 'input',
                             placeholder: 'e.g. 50px',
                             clearable: true,
-                            rules: [maximumNumericalOrPixelOrAutoRule(100)],
+                            rules: [maximumNumericalOrPixelOrAutoRule(800)],
                         },
                     ],
                     off: [
@@ -81,7 +81,7 @@ export const settings = defineSettings({
                             type: 'input',
                             placeholder: 'e.g. 90°',
                             clearable: true,
-                            rules: [maximumNumericalRule(90)],
+                            rules: [maximumNumericalRule(360)],
                         },
                     ],
                     off: [

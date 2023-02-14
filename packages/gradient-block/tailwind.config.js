@@ -1,6 +1,8 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 module.exports = {
+    presets: [require('@frontify/fondue/tailwind')],
     content: ['src/**/*.{ts,tsx}'],
-    prefix: 'tw-',
     corePlugins: {
         preflight: false,
     },
