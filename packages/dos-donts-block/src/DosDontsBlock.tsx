@@ -367,11 +367,13 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                     <div className="tw-flex tw-w-full">
                         <BlockInjectButton
                             label="Add do"
+                            withMenu={false}
                             icon={<IconCheckMarkCircle20 />}
                             onClick={() => addItem(DoDontType.Do)}
                         />
                         <BlockInjectButton
                             label="Add don't"
+                            withMenu={false}
                             icon={<IconCrossCircle20 />}
                             onClick={() => addItem(DoDontType.Dont)}
                         />
