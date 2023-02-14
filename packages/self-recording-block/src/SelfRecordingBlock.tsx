@@ -40,11 +40,7 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
             className={merge([!hasRadius && radiusClassMap[radiusChoice]])}
         >
             {editorState ? (
-                <VideoRecorder
-                    updateAssetIdsFromKey={updateAssetIdsFromKey}
-                    size={blockSettings.size}
-                    shape={blockSettings.shape}
-                />
+                <VideoRecorder updateAssetIdsFromKey={updateAssetIdsFromKey} size={blockSettings.size} />
             ) : (
                 <VideoPlayer asset={blockAssets?.video?.[0]} />
             )}
