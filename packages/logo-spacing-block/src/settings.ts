@@ -6,21 +6,32 @@ import {
     MultiInputLayout,
     appendUnit,
     defineSettings,
+    minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
+import { LineStyle, LogoSpacingType, Offset } from './types';
 
 const LOGO_SPACING = 'logo-spacing';
-enum LogoSpacingType {
-    Percentage = 'percentage_clearspace',
-    Pixels = 'pixel_clearspace',
-}
+const BOUNDARIES_THICKNESS_ID = 'thickness';
+const BOUNDARIES_COLOR_ID = 'boundariesColor';
+const CLEARSPACE_BG_COLOR_ID = 'clearSpaceBgColor';
 
-enum Offset {
-    S = 's',
-    M = 'm',
-    L = 'l',
-}
+const CLEAR_SPACE_LABELS = {
+    [LogoSpacingType.Pixels]: 'Pixel clearspace',
+    [LogoSpacingType.Percentage]: 'Percentage clearspace',
+};
+
+export const CLEAR_SPACE_UNITS = [
+    {
+        value: LogoSpacingType.Pixels,
+        label: CLEAR_SPACE_LABELS[LogoSpacingType.Pixels],
+    },
+    {
+        value: LogoSpacingType.Percentage,
+        label: CLEAR_SPACE_LABELS[LogoSpacingType.Percentage],
+    },
+];
 
 const topBottomOffsetMap: Record<Offset, string> = {
     [Offset.S]: '16px',
@@ -34,6 +45,22 @@ const leftRightOffsetMap: Record<Offset, string> = {
     [Offset.L]: '36px',
 };
 
+const STYLE_DEFAULT_VALUE = LineStyle.Solid;
+const COLOR_DEFAULT_CLEARSPACE = {
+    red: 213,
+    green: 214,
+    blue: 214,
+    alpha: 1,
+    name: 'Light Grey',
+};
+const COLOR_DEFAULT_LABEL = {
+    red: 8,
+    green: 8,
+    blue: 8,
+    alpha: 1,
+    name: 'Dark Grey',
+};
+
 export const settings = defineSettings({
     main: [
         {
@@ -42,16 +69,7 @@ export const settings = defineSettings({
             defaultValue: LogoSpacingType.Percentage,
             size: DropdownSize.Large,
             disabled: false,
-            choices: [
-                {
-                    value: LogoSpacingType.Percentage,
-                    label: 'Percentage clearspace',
-                },
-                {
-                    value: LogoSpacingType.Pixels,
-                    label: 'Pixel clearspace',
-                },
-            ],
+            choices: CLEAR_SPACE_UNITS,
         },
     ],
     basics: [
@@ -260,6 +278,94 @@ export const settings = defineSettings({
                             ],
                         },
                     ],
+                },
+            ],
+        },
+    ],
+    style: [
+        {
+            id: 'labelsSection',
+            type: 'sectionHeading',
+            label: 'Labels',
+            blocks: [
+                {
+                    id: 'labelColor',
+                    label: 'Label color',
+                    type: 'colorInput',
+                    defaultValue: COLOR_DEFAULT_LABEL,
+                },
+            ],
+        },
+        {
+            id: 'clearSpaceSection',
+            type: 'sectionHeading',
+            label: 'Clearspace',
+            blocks: [
+                {
+                    id: 'boundariesColorSwitch',
+                    label: 'Custom boundaries',
+                    type: 'switch',
+                    on: [
+                        {
+                            id: 'lineStyle',
+                            type: 'multiInput',
+                            label: '',
+                            onChange: (bundle) => {
+                                appendUnit(bundle, BOUNDARIES_THICKNESS_ID);
+                            },
+                            layout: MultiInputLayout.Columns,
+                            lastItemFullWidth: true,
+                            blocks: [
+                                {
+                                    id: 'style',
+                                    type: 'dropdown',
+                                    defaultValue: STYLE_DEFAULT_VALUE,
+                                    choices: [
+                                        {
+                                            value: LineStyle.Solid,
+                                            label: 'Solid',
+                                        },
+                                        {
+                                            value: LineStyle.Dotted,
+                                            label: 'Dotted',
+                                        },
+                                        {
+                                            value: LineStyle.Dashed,
+                                            label: 'Dashed',
+                                        },
+                                    ],
+                                },
+                                {
+                                    id: BOUNDARIES_THICKNESS_ID,
+                                    type: 'input',
+                                    defaultValue: '1px',
+                                    placeholder: 'e.g. 3px',
+                                    clearable: false,
+                                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                                },
+                                {
+                                    id: BOUNDARIES_COLOR_ID,
+                                    type: 'colorInput',
+                                    defaultValue: COLOR_DEFAULT_CLEARSPACE,
+                                },
+                            ],
+                        },
+                    ],
+                    off: [],
+                },
+                {
+                    id: 'clearspaceBackgroundSwitch',
+                    label: 'Clearspace background',
+                    type: 'switch',
+                    on: [
+                        {
+                            id: CLEARSPACE_BG_COLOR_ID,
+                            label: '',
+                            type: 'colorInput',
+                            defaultValue: COLOR_DEFAULT_CLEARSPACE,
+                        },
+                    ],
+                    off: [],
                 },
             ],
         },

@@ -18,7 +18,7 @@ export const AnExampleBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <span className={`${colorTailwindMap[blockSettings.color]} tw-underline`}>
-            A custom block in {blockSettings.color.toLowerCase()} and underlined
+            A custom block in {blockSettings.color?.toLowerCase()} and underlined
         </span>
     );
 };
