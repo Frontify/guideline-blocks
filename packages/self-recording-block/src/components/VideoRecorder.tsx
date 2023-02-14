@@ -1,19 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useRef, useState } from 'react';
-import { Button, ButtonEmphasis, ButtonSize, IconPlayCircle12 } from '@frontify/fondue';
 import { useAssetUpload } from '@frontify/app-bridge';
 
 import { cameraSizeToScaleMap } from '../constants';
 import { CameraSize, VideoShape } from '../types';
 import { bindCameraToVideoElement, drawVideoFrameScaled } from '../utilities';
 
-const bindVideoToCanvas = (
-    videoElement: HTMLVideoElement,
-    canvasElement: HTMLCanvasElement,
-    scale: number,
-    shape: VideoShape
-) => {
+const bindVideoToCanvas = (videoElement: HTMLVideoElement, canvasElement: HTMLCanvasElement, scale: number) => {
     const ctx = canvasElement.getContext('2d');
     if (!ctx) {
         throw new Error('Could not get the canvas context.');
@@ -26,39 +20,8 @@ const bindVideoToCanvas = (
     canvasElement.height = parentContainerWidth / videoAspectRatio;
     canvasElement.style.height = `${parentContainerWidth / videoAspectRatio}px`;
 
-    const size = Math.min(canvasElement.width, canvasElement.height);
-
     const step = () => {
         drawVideoFrameScaled(videoElement, ctx);
-
-        if (shape === VideoShape.Circle) {
-            // only draw image where mask is
-            ctx.globalCompositeOperation = 'destination-in';
-
-            // Draw circle mask
-            ctx.beginPath();
-            ctx.arc(canvasElement.width / 2, canvasElement.height / 2, size / 2, 0, 2 * Math.PI);
-            ctx.fill();
-
-            // restore to default composite operation (is draw over current image)
-            ctx.globalCompositeOperation = 'source-over';
-        } else if (shape === VideoShape.Square) {
-            // only draw image where mask is
-            ctx.globalCompositeOperation = 'destination-in';
-
-            // Draw square mask
-            ctx.beginPath();
-            ctx.rect(
-                canvasElement.width / 2 - size / 2,
-                canvasElement.height / 2 - size / 2,
-                canvasElement.width / 2 + size / 2,
-                canvasElement.height / 2 + size
-            );
-            ctx.fill();
-
-            // restore to default composite operation (is draw over current image)
-            ctx.globalCompositeOperation = 'source-over';
-        }
 
         requestAnimationFrame(step);
     };
@@ -129,12 +92,12 @@ export const VideoRecorder = ({
 
                 const sizeScale = cameraSizeToScaleMap[size];
 
-                bindVideoToCanvas(cameraRef.current, canvasRef.current, sizeScale, shape);
+                bindVideoToCanvas(cameraRef.current, canvasRef.current, sizeScale);
             }
         };
 
         bindElements();
-    }, [shape, size, state]);
+    }, [size, state]);
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
