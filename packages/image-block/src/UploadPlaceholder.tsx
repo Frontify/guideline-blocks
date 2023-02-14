@@ -3,7 +3,7 @@
 import { AssetChooserObjectType, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { IconPlus24 } from '@frontify/fondue';
-import { AddImagesButton } from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 import { IMAGE_SETTING_ID } from './settings';
 
@@ -60,7 +60,7 @@ export const UploadPlaceholder = ({ appBridge }: BlockProps) => {
 
     return (
         <div className="tw-h-64">
-            <AddImagesButton
+            <BlockInjectButton
                 label="Add image"
                 icon={<IconPlus24 />}
                 fillParentContainer={true}
