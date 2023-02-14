@@ -354,15 +354,17 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             {isEditing && (
                 <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9">
                     {mode === BlockMode.TEXT_AND_IMAGE && (
-                        <BlockInjectButton
-                            label="Add images"
-                            secondaryLabel="Or drop them here"
-                            icon={<IconPlus20 />}
-                            onUploadClick={openFileDialog}
-                            onAssetChooseClick={openAssetChooser}
-                            onDrop={setSelectedFiles}
-                            isLoading={isUploadLoading}
-                        />
+                        <div className="tw-flex tw-flex-wrap tw-w-full tw-gap-3 tw-justify-center">
+                            <BlockInjectButton
+                                label="Add images"
+                                secondaryLabel="Or drop them here"
+                                icon={<IconPlus20 />}
+                                onUploadClick={openFileDialog}
+                                onAssetChooseClick={openAssetChooser}
+                                onDrop={setSelectedFiles}
+                                isLoading={isUploadLoading}
+                            />
+                        </div>
                     )}
                     <div className="tw-flex tw-w-full">
                         <BlockInjectButton
