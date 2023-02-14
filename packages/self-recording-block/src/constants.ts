@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
-import { CameraSize } from './types';
+import { AudioSpectrum, CameraSize } from './types';
 
 export const CAMERA_CONSTRAINTS = {
     video: {
@@ -14,6 +14,11 @@ export const CAMERA_CONSTRAINTS = {
 
 export const MICROPHONE_CONSTRAINTS = {
     audio: true,
+};
+
+export const audioSpectrumSpecs: AudioSpectrum = {
+    barWidth: 8,
+    barGap: 2,
 };
 
 export const cameraSizeToScaleMap: Record<CameraSize, number> = {

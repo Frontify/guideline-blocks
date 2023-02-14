@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
-import { bindMicrophoneToAudioElement } from '../utilities';
+import { bindAudioToCanvas, bindMicrophoneToAudioElement } from '../utilities';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
 
 type AudioRecorderProps = {
@@ -13,6 +13,7 @@ type AudioRecorderProps = {
 export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecorderProps) => {
     const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'uploading'>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const microphoneRef = useRef<HTMLAudioElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
     const [uploadFiles, { results, doneAll }] = useAssetUpload();
@@ -25,14 +26,15 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
     }, [doneAll, results, onRecordingEnd]);
 
     const onStartClick = () => {
-        // const stream = new MediaStream();
+        if (!canvasRef.current) {
+            throw new Error('No `canvas` registered');
+        }
+
         const stream = microphoneRef.current?.srcObject as MediaStream | null;
 
         if (!stream) {
             throw new Error('No stream');
         }
-
-        console.log(stream);
 
         recorder.current = new MediaRecorder(stream, {
             mimeType: 'video/webm',
@@ -82,8 +84,9 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
 
     useEffect(() => {
         const bindElements = async () => {
-            if (microphoneRef.current) {
+            if (microphoneRef.current && canvasRef.current) {
                 await bindMicrophoneToAudioElement(microphoneRef.current, microphoneDeviceId);
+                bindAudioToCanvas(microphoneRef.current, canvasRef.current);
             }
         };
 
@@ -92,6 +95,7 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
+            <canvas ref={canvasRef}></canvas>
             <audio ref={microphoneRef} className="tw-hidden" muted></audio>
 
             <div className="tw-mt-6">

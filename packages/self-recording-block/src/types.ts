@@ -20,6 +20,11 @@ export enum VideoShape {
     FullFrame = 'full-frame',
 }
 
+export type AudioSpectrum = {
+    barWidth: number;
+    barGap: number;
+};
+
 export type Settings = {
     recordingMode: RecordingMode;
     shape: VideoShape;
