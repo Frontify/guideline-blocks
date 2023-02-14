@@ -8,7 +8,7 @@ import { IconPlus32, merge } from '@frontify/fondue';
 import { TileType } from '../types';
 import { useTileAsset } from '../hooks';
 
-import { ImageFlyout } from './ImageFlyout';
+import { TileSettingsFlyout } from './TileSettingsFlyout';
 
 type TeaserTileBaseProps = {
     id: string;
@@ -43,11 +43,20 @@ export const TeaserTile = ({ appBridge, id, variant = TileType.ImageText, height
     return (
         <div className="tw-border tw-border-line tw-flex tw-flex-col">
             {variant !== TileType.Text && (
-                <ImageFlyout
+                <TileSettingsFlyout
+                    variant={variant}
                     onReplaceAssetFromUpload={openFileDialog}
                     onReplaceAssetFromWorkspace={onOpenAssetChooser}
                     isAssetLoading={isAssetLoading}
                     asset={tileAsset}
+                    backgroundColor={null}
+                    onBackgroundColorChange={console.log}
+                    backgroundVisibility={null}
+                    onBackgroundVisibilityChange={console.log}
+                    display={null}
+                    onDisplayChange={console.log}
+                    link={null}
+                    onLinkChange={console.log}
                 >
                     {(props, triggerRef: MutableRefObject<HTMLDivElement>) => {
                         return (
@@ -67,7 +76,7 @@ export const TeaserTile = ({ appBridge, id, variant = TileType.ImageText, height
                         );
                     }}
                     {/* <img>Image part</img> */}
-                </ImageFlyout>
+                </TileSettingsFlyout>
             )}
             {variant !== TileType.Image && (
                 <div
