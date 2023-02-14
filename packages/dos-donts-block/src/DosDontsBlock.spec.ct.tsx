@@ -3,7 +3,7 @@
 import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE, DosDontsBlock } from './DosDontsBlock';
-import { DoDontStyle, ItemIconChoice } from './types';
+import { DoDontSpacing, DoDontStyle, ItemIconChoice } from './types';
 
 const DosDontsBlockSelector = '[data-test-id="dos-donts-block"]';
 const DosDontsHeading = '[data-test-id="dos-donts-heading"]';
@@ -84,6 +84,10 @@ describe("Dos & Don'ts Block", () => {
     it('writes content to a dos donts block', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             editorState: true,
+            blockSettings: {
+                columnGutterChoice: DoDontSpacing.Large,
+                rowGutterChoice: DoDontSpacing.Large,
+            },
         });
 
         mount(<DosDontsBlockWithStubs />);
@@ -92,6 +96,7 @@ describe("Dos & Don'ts Block", () => {
         cy.get(DosDontsContent)
             .first()
             .find('[contenteditable=true]')
+            .dblclick()
             .type('This is an example do description.', { force: true })
             .blur();
         cy.get(DosDontsContent).first().find('[contenteditable=true]').contains('This is an example do description.');
@@ -100,6 +105,7 @@ describe("Dos & Don'ts Block", () => {
         cy.get(DosDontsContent)
             .eq(1)
             .find('[contenteditable=true]')
+            .dblclick()
             .type('This is an example dont description.', { force: true })
             .blur();
         cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').contains('This is an example dont description.');
