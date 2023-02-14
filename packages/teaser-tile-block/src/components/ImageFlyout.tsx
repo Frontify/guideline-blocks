@@ -11,7 +11,6 @@ import {
     Flyout,
     FlyoutProps,
     IconArrowCircleUp,
-    IconCheckMark,
     IconCross,
     IconImageStack,
     IconLink,
@@ -21,7 +20,7 @@ import {
     SwitchSize,
     TextInput,
 } from '@frontify/fondue';
-import { ReactElement, useState } from 'react';
+import { useState } from 'react';
 import { Nullable, TileDisplay } from '../types';
 
 type ImageFlyoutProps = {
@@ -41,14 +40,6 @@ export const ImageFlyout = ({
 }: ImageFlyoutProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const onReplaceWithAsset = () => {
-        onReplaceAssetFromWorkspace();
-    };
-
-    const onReplaceWithUpload = () => {
-        onReplaceAssetFromUpload();
-    };
-
     return (
         <Flyout
             isOpen={isOpen}
@@ -61,14 +52,6 @@ export const ImageFlyout = ({
                     <Button icon={<IconCross />} emphasis={ButtonEmphasis.Weak} onClick={() => setIsOpen(false)} />
                 </div>
             }
-            fixedFooter={
-                <div className="tw-flex tw-items-center tw-justify-end tw-gap-3 tw-p-4 tw-bg-base tw-border-t tw-border-t-line tw-border-t-solid">
-                    <Button emphasis={ButtonEmphasis.Default}>Cancel</Button>
-                    <Button icon={<IconCheckMark />} emphasis={ButtonEmphasis.Strong}>
-                        Save
-                    </Button>
-                </div>
-            }
         >
             <div className="tw-p-6 tw-gap-6 tw-flex tw-flex-col">
                 <div className="tw-flex tw-flex-col tw-gap-4">
@@ -79,12 +62,13 @@ export const ImageFlyout = ({
                             asset
                                 ? [
                                       {
-                                          name: asset.fileName,
+                                          name: asset.title ?? asset.fileName,
                                           type: 'image',
-                                          src: asset.previewUrl,
-                                          alt: asset.title,
+                                          src: asset.previewUrl ?? asset.genericUrl,
+                                          alt: asset.title ?? asset.fileName,
                                           extension: asset.extension,
-                                          size: asset.fileSize,
+                                          // Type must be corrected in Fondue
+                                          size: asset.fileSizeHumanReadable as unknown as number,
                                           source: 'upload',
                                       },
                                   ]
@@ -99,13 +83,13 @@ export const ImageFlyout = ({
                                         id: 'replace-upload',
                                         title: 'Replace with upload',
                                         decorator: <IconArrowCircleUp />,
-                                        onClick: onReplaceWithUpload,
+                                        onClick: onReplaceAssetFromUpload,
                                     },
                                     {
                                         id: 'replace-asset',
                                         title: 'Replace with asset',
                                         decorator: <IconImageStack />,
-                                        onClick: onReplaceWithAsset,
+                                        onClick: onReplaceAssetFromWorkspace,
                                     },
                                 ],
                             },
