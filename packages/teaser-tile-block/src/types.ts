@@ -18,7 +18,7 @@ export enum SettingsEnum {
     Display = 'display',
     Positioning = 'positioning',
     VerticalAlignment = 'verticalAlignment',
-    HorizontalAlignment = 'HorizontalAlignment',
+    HorizontalAlignment = 'horizontalAlignment',
     Background = 'background',
     BackgroundColor = 'backgroundColor',
     HasBorder = 'hasBorder',
@@ -45,7 +45,7 @@ export type Settings = {
     [SettingsEnum.Display]: TileDisplay;
     [SettingsEnum.Positioning]: TileImagePositioning;
     [SettingsEnum.VerticalAlignment]: TileVerticalAlignment;
-    [SettingsEnum.HorizontalAlignment]: TileHoizontalAlignment;
+    [SettingsEnum.HorizontalAlignment]: TileHorizontalAlignment;
     [SettingsEnum.Background]: boolean;
     [SettingsEnum.BackgroundColor]: Color;
     [SettingsEnum.HasBorder]: boolean;
@@ -98,7 +98,7 @@ export enum TileImagePositioning {
     Behind = 'Behind',
 }
 
-export enum TileHoizontalAlignment {
+export enum TileHorizontalAlignment {
     Left = 'Left',
     Right = 'Right',
     Center = 'Center',
