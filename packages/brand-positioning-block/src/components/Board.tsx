@@ -11,9 +11,8 @@ import {
 } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { useRef, useState } from 'react';
-import { HorizontalAxis } from './HorizontalAxis';
+import { Axis } from './Axis';
 import { Item } from './Item';
-import { VerticalAxis } from './VerticalAxis';
 
 export const Board = () => {
     const [items, setItems] = useState([
@@ -66,10 +65,10 @@ export const Board = () => {
             <DndContext modifiers={[restrictToParentElement]} sensors={sensors} onDragEnd={handleDragEnd}>
                 <div ref={containerRef} className="tw-relative tw-h-full tw-w-full">
                     <div className="tw-absolute tw-w-full tw-top-1/2 -tw-translate-y-1/2">
-                        <HorizontalAxis minLabel="Low Price" maxLabel="High Price" />
+                        <Axis minLabel="Low Price" maxLabel="High Price" orientation="horizontal" />
                     </div>
                     <div className="tw-absolute tw-h-full tw-left-1/2 -tw-translate-x-1/2">
-                        <VerticalAxis minLabel="Low Quality" maxLabel="High Quality" />
+                        <Axis minLabel="Low Quality" maxLabel="High Quality" orientation="vertical" />
                     </div>
                     {items.map((item, i) => (
                         <Item
