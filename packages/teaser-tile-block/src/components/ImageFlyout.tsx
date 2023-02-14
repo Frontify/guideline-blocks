@@ -9,6 +9,7 @@ import {
     Checkbox,
     ColorPickerFlyout,
     Flyout,
+    FlyoutProps,
     IconArrowCircleUp,
     IconCheckMark,
     IconCross,
@@ -20,7 +21,7 @@ import {
     SwitchSize,
     TextInput,
 } from '@frontify/fondue';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { Nullable, TileDisplay } from '../types';
 
 type ImageFlyoutProps = {
@@ -28,9 +29,11 @@ type ImageFlyoutProps = {
     onReplaceAssetFromWorkspace: () => void;
     isAssetLoading: boolean;
     asset: Nullable<Asset>;
+    children: FlyoutProps['trigger'];
 };
 
 export const ImageFlyout = ({
+    children,
     isAssetLoading,
     onReplaceAssetFromUpload,
     onReplaceAssetFromWorkspace,
@@ -50,7 +53,7 @@ export const ImageFlyout = ({
         <Flyout
             isOpen={isOpen}
             legacyFooter={false}
-            trigger={<button>Trigger</button>}
+            trigger={children}
             onOpenChange={(isOpen) => setIsOpen(isOpen)}
             fixedHeader={
                 <div className="tw-flex tw-justify-between tw-w-full tw-bg-base tw-pl-6 tw-pr-3 tw-py-1.5 tw-items-center tw-border-b tw-border-b-line tw-border-b-solid">

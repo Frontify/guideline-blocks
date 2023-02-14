@@ -6,35 +6,68 @@ import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
-import { Settings } from './types';
+import { Settings, TileHeight, TileSpacing, TileType } from './types';
 import { TeaserTile } from './components/TeaserTile';
+import { useMemo } from 'react';
 
-const MOCK_TILES = [{ id: '1234' }, { id: '5678' }];
+const spacingMap: Record<TileSpacing, string> = {
+    [TileSpacing.None]: '0px',
+    [TileSpacing.Small]: '10px',
+    [TileSpacing.Medium]: '30px',
+    [TileSpacing.Large]: '50px',
+};
+
+const heightMap: Record<TileHeight, string> = {
+    [TileHeight.Auto]: 'auto',
+    [TileHeight.Small]: '150px',
+    [TileHeight.Medium]: '200px',
+    [TileHeight.Large]: '300px',
+};
+
+const MOCK_TILES = [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }];
 
 export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
+
+    const height = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
+    const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
+
+    const tileProps: Record<TileType, any> = useMemo(
+        () => ({
+            [TileType.Text]: {
+                height,
+            },
+            [TileType.Image]: {
+                imageHeight: height,
+            },
+            [TileType.ImageText]: {
+                imageHeight: height,
+            },
+        }),
+        [height]
+    );
 
     return (
         <div
             className="tw-relative"
             data-test-id="teaser-tile-block"
             style={{
+                gridGap,
                 display: 'grid',
                 gridAutoFlow: 'row',
                 gridTemplateRows: 'auto',
                 gridTemplateColumns: `repeat(${blockSettings.columns}, 1fr)`,
-                gridGap: blockSettings.spacing ? blockSettings.spacingChoice : 0,
-                gridAutoRows: blockSettings.height ? blockSettings.heightChoice : 100,
             }}
         >
-            {/* <div style={{ background: 'red' }}>Item 1</div>
-            <div style={{ background: 'blue' }}>Item 2</div>
-            <div style={{ background: 'green' }}>Item 3</div>
-            <div style={{ background: 'yellow' }}>Item 4</div> */}
-
             {MOCK_TILES.map(({ id }) => (
-                <TeaserTile appBridge={appBridge} key={id} id={id} />
+                <TeaserTile
+                    id={id}
+                    key={id}
+                    appBridge={appBridge}
+                    variant={blockSettings.type}
+                    {...tileProps[blockSettings.type]}
+                />
             ))}
         </div>
     );

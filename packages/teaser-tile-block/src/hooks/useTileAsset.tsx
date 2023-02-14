@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { useEffect, useState } from 'react';
+import { AppBridgeBlock, Asset, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 
 export const IMAGE_SETTING_ID = 'tileAssets';
 
@@ -13,15 +13,12 @@ export const useTileAsset = (appBridge: AppBridgeBlock, id: string) => {
         onUploadProgress: () => !isAssetLoading && setIsAssetLoading(true),
     });
 
-    console.log(blockAssets);
-
     useEffect(() => {
         if (selectedFiles) {
             console.log('uploading');
             setIsAssetLoading(true);
             uploadFile(selectedFiles);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
@@ -36,7 +33,6 @@ export const useTileAsset = (appBridge: AppBridgeBlock, id: string) => {
                 setIsAssetLoading(false);
             })(uploadResults);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
     // Asset chooser demo
