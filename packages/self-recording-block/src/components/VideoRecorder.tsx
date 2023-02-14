@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useRef, useState } from 'react';
-import { useAssetUpload } from '@frontify/app-bridge';
+import { Asset, useAssetUpload } from '@frontify/app-bridge';
 
 import { cameraSizeToScaleMap } from '../constants';
 import { CameraSize } from '../types';
@@ -43,11 +43,13 @@ const bindVideoToCanvas = (videoElement: HTMLVideoElement, canvasElement: HTMLCa
 export const VideoRecorder = ({
     updateAssetIdsFromKey,
     size,
+    asset,
 }: {
     //TODO: remove any
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     updateAssetIdsFromKey: any;
     size: CameraSize;
+    asset?: Asset;
 }) => {
     const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'uploading'>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
@@ -202,22 +204,22 @@ export const VideoRecorder = ({
                     }
                 />
 
-                <Tooltip
-                    content="Delete recording"
-                    position={TooltipPosition.Top}
-                    enterDelay={800}
-                    disabled={state === 'idle'}
-                    triggerElement={
-                        <Button
-                            rounding={ButtonRounding.Full}
-                            emphasis={ButtonEmphasis.Weak}
-                            icon={<IconTrashBin16 />}
-                            disabled={state === 'idle'}
-                            onClick={onDeleteClick}
-                            aria-label="Delete recording"
-                        />
-                    }
-                />
+                {asset !== undefined ? (
+                    <Tooltip
+                        content="Delete saved recording"
+                        position={TooltipPosition.Top}
+                        enterDelay={800}
+                        triggerElement={
+                            <Button
+                                rounding={ButtonRounding.Full}
+                                emphasis={ButtonEmphasis.Weak}
+                                icon={<IconTrashBin16 />}
+                                onClick={onDeleteClick}
+                                aria-label="Delete saved recording"
+                            />
+                        }
+                    />
+                ) : null}
             </div>
         </div>
     );
