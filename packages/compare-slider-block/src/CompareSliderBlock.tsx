@@ -117,10 +117,10 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                 className={!blockSettings.hasCustomHeight && blockSettings.height === Height.Auto ? 'tw-w-full' : ''}
                 style={
                     {
-                        'border-width': blockSettings.borderWidth,
-                        'border-color': toRgbaString(blockSettings.borderColor),
-                        'border-style': blockSettings.borderStyle,
-                        'border-radius': getBorderRadius(),
+                        borderWidth: blockSettings.borderWidth,
+                        borderColor: toRgbaString(blockSettings.borderColor),
+                        borderStyle: blockSettings.borderStyle,
+                        borderRadius: getBorderRadius(),
                         '--divider-width': blockSettings.sliderWidth,
                         '--divider-color': toRgbaString(blockSettings.sliderColor),
                         '--default-handle-opacity': blockSettings.handle === Handle.None ? 0 : 1,
