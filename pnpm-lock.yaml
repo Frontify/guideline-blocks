@@ -782,6 +782,51 @@ importers:
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
+  packages/press-kit-block:
+    specifiers:
+      '@babel/core': 7.20.2
+      '@frontify/app-bridge': 3.0.0-beta.38
+      '@frontify/eslint-config-react': 0.15.5
+      '@frontify/fondue': 12.0.0-beta.77
+      '@frontify/fondue-tokens': 3.2.0
+      '@frontify/frontify-cli': 5.3.1
+      '@frontify/guideline-blocks-settings': 0.25.10
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@types/react': 17.0.50
+      '@types/react-dom': 17.0.17
+      autoprefixer: 10.4.13
+      cypress: 11.0.1
+      eslint: 8.27.0
+      eslint-plugin-notice: ^0.9.10
+      postcss: 8.4.19
+      prettier: 2.7.1
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.2.3
+      typescript: 4.8.4
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 12.0.0-beta.77_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue-tokens': 3.2.0
+      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-shared': link:../shared
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.20.2
+      '@frontify/eslint-config-react': 0.15.5_tqtb6p63k47ar5fqn5ecbn22g4
+      '@frontify/frontify-cli': 5.3.1
+      '@types/react': 17.0.50
+      '@types/react-dom': 17.0.17
+      autoprefixer: 10.4.13_postcss@8.4.19
+      cypress: 11.0.1
+      eslint: 8.27.0
+      eslint-plugin-notice: 0.9.10_eslint@8.27.0
+      postcss: 8.4.19
+      prettier: 2.7.1
+      tailwindcss: 3.2.3_postcss@8.4.19
+      typescript: 4.8.4
+
   packages/quote-block:
     specifiers:
       '@babel/core': 7.20.2
@@ -1927,6 +1972,15 @@ packages:
       - ts-node
     dev: false
 
+  /@frontify/fondue-tokens/3.2.0_ts-node@10.9.1:
+    resolution: {integrity: sha512-GR2neBdz4bKlqxN+WdBWYHLpJRP+ERGonP97jdekeS/Rxgji6u6ddP4Gwgeu8vZQOorOX9c8bD6IBgKeGg4GCw==}
+    dependencies:
+      postcss: 8.4.19
+      tailwindcss: 3.2.3_v776zzvn44o7tpgzieipaairwm
+    transitivePeerDependencies:
+      - ts-node
+    dev: false
+
   /@frontify/fondue-tokens/3.2.1:
     resolution: {integrity: sha512-EAXgbiy1+Yg2panx4XVOUvJ97wyOe0HeRiqGujDdxa2c4nACkK2Q+dQmSAe/aEiZupRGIjkmpiMFcKHbNFlnew==}
     dependencies:
@@ -1951,17 +2005,17 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.2.1
+      '@frontify/fondue-tokens': 3.2.0
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
       '@react-aria/aria-modal-polyfill': 3.6.1_pxzommwrsowkd4kgag6q3sluym
       '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/checkbox': 3.7.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.1_react@17.0.2
       '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/focus': 3.10.0_react@17.0.2
-      '@react-aria/interactions': 3.13.0_react@17.0.2
+      '@react-aria/focus': 3.8.0_react@17.0.2
+      '@react-aria/interactions': 3.11.0_react@17.0.2
       '@react-aria/link': 3.3.5_react@17.0.2
       '@react-aria/listbox': 3.7.1_react@17.0.2
       '@react-aria/menu': 3.7.0_sfoxds7t5ydpegc3knd667wn6m
@@ -1971,7 +2025,7 @@ packages:
       '@react-aria/selection': 3.12.0_react@17.0.2
       '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/tooltip': 3.3.3_react@17.0.2
-      '@react-aria/utils': 3.14.1_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.6.0_react@17.0.2
       '@react-stately/checkbox': 3.3.2_react@17.0.2
       '@react-stately/collections': 3.5.0_react@17.0.2
@@ -1982,7 +2036,7 @@ packages:
       '@react-stately/radio': 3.6.1_react@17.0.2
       '@react-stately/select': 3.3.3_react@17.0.2
       '@react-stately/table': 3.6.0_react@17.0.2
-      '@react-stately/toggle': 3.4.4_react@17.0.2
+      '@react-stately/toggle': 3.4.1_react@17.0.2
       '@react-stately/tooltip': 3.2.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@storybook/addon-a11y': 6.5.15_sfoxds7t5ydpegc3knd667wn6m
@@ -2040,17 +2094,17 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.2.1_ts-node@10.9.1
+      '@frontify/fondue-tokens': 3.2.0_ts-node@10.9.1
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
       '@react-aria/aria-modal-polyfill': 3.6.1_pxzommwrsowkd4kgag6q3sluym
       '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/checkbox': 3.7.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.1_react@17.0.2
       '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/focus': 3.10.0_react@17.0.2
-      '@react-aria/interactions': 3.13.0_react@17.0.2
+      '@react-aria/focus': 3.8.0_react@17.0.2
+      '@react-aria/interactions': 3.11.0_react@17.0.2
       '@react-aria/link': 3.3.5_react@17.0.2
       '@react-aria/listbox': 3.7.1_react@17.0.2
       '@react-aria/menu': 3.7.0_sfoxds7t5ydpegc3knd667wn6m
@@ -2060,7 +2114,7 @@ packages:
       '@react-aria/selection': 3.12.0_react@17.0.2
       '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/tooltip': 3.3.3_react@17.0.2
-      '@react-aria/utils': 3.14.1_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.6.0_react@17.0.2
       '@react-stately/checkbox': 3.3.2_react@17.0.2
       '@react-stately/collections': 3.5.0_react@17.0.2
@@ -2071,7 +2125,7 @@ packages:
       '@react-stately/radio': 3.6.1_react@17.0.2
       '@react-stately/select': 3.3.3_react@17.0.2
       '@react-stately/table': 3.6.0_react@17.0.2
-      '@react-stately/toggle': 3.4.4_react@17.0.2
+      '@react-stately/toggle': 3.4.1_react@17.0.2
       '@react-stately/tooltip': 3.2.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@storybook/addon-a11y': 6.5.15_sfoxds7t5ydpegc3knd667wn6m
@@ -3261,9 +3315,9 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/interactions': 3.13.0_react@17.0.2
+      '@react-aria/interactions': 3.11.0_react@17.0.2
       '@react-aria/selection': 3.12.0_react@17.0.2
-      '@react-aria/utils': 3.14.1_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@react-types/accordion': 3.0.0-alpha.7_react@17.0.2
       '@react-types/button': 3.7.0_react@17.0.2
@@ -15546,7 +15600,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.7.0
       is-interactive: 1.0.0
