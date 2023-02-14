@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
-import { CameraSize, RecordingMode } from './types';
+import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import { CameraSize, RecordingMode, VideoShape } from './types';
 
 export const settings = defineSettings({
     main: [
@@ -23,9 +24,32 @@ export const settings = defineSettings({
                 },
             ],
         },
+    ],
+    layout: [
+        {
+            id: 'shape',
+            type: 'slider',
+            label: 'Shape',
+            defaultValue: VideoShape.Circle,
+            choices: [
+                {
+                    value: VideoShape.Circle,
+                    icon: IconEnum.Circle16,
+                },
+                {
+                    value: VideoShape.Square,
+                    icon: IconEnum.Icon16,
+                },
+                {
+                    value: VideoShape.FullFrame,
+                    icon: IconEnum.RectangleLandscape16,
+                },
+            ],
+        },
         {
             id: 'size',
             type: 'slider',
+            label: 'Size',
             defaultValue: CameraSize.Small,
             choices: [
                 {
@@ -42,5 +66,9 @@ export const settings = defineSettings({
                 },
             ],
         },
+    ],
+    style: [
+        { id: 'style-sectionHeading-1', type: 'sectionHeading', label: '', blocks: [getBorderSettings()] },
+        { id: 'style-sectionHeading-2', type: 'sectionHeading', label: '', blocks: [getBorderRadiusSettings()] },
     ],
 });
