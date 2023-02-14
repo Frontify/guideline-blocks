@@ -551,7 +551,7 @@ importers:
       '@dnd-kit/utilities': ^3.2.1
       '@frontify/app-bridge': 3.0.0-beta.38
       '@frontify/eslint-config-react': 0.15.5
-      '@frontify/fondue': 12.0.0-beta.100
+      '@frontify/fondue': 12.0.0-beta.77
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.10
@@ -575,7 +575,7 @@ importers:
       '@dnd-kit/sortable': 7.0.1_hynla2khvukk42jomlue7cq3k4
       '@dnd-kit/utilities': 3.2.1_react@17.0.2
       '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.100_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue': 12.0.0-beta.77_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/guideline-blocks-shared': link:../shared
@@ -1742,6 +1742,7 @@ packages:
 
   /@floating-ui/react-dom-interactions/0.6.6_hiunvzosbwliizyirxfy6hjyim:
     resolution: {integrity: sha512-qnao6UPjSZNHnXrF+u4/n92qVroQkx0Umlhy3Avk1oIebm/5ee6yvDm4xbHob0OjY7ya8WmUnV3rQlPwX3Atwg==}
+    deprecated: Package renamed to @floating-ui/react
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'

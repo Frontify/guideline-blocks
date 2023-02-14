@@ -143,7 +143,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
                     value={body}
-                    border={false}
                     onBlur={(value) => onChangeItem(id, value, 'body')}
                     placeholder={editing ? 'Add a description' : ''}
                     readonly={!editing}
