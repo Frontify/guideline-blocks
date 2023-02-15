@@ -5,7 +5,6 @@ import '@tensorflow/tfjs-backend-webgl';
 import * as bodySegmentation from '@tensorflow-models/body-segmentation';
 import * as mpSelfieSegmentation from '@mediapipe/selfie_segmentation';
 
-import { drawFrameContain as drawFrameContain } from './drawFrameContain';
 import { VideoMode } from '../types';
 import { drawFrameCover } from './drawFrameCover';
 
@@ -25,22 +24,20 @@ export const bindVideoToCanvas = async (
     signal: AbortSignal
 ) => {
     const ctx = canvasElement.getContext('2d');
-    const tmpCtx = tmpCanvasElement.getContext('2d');
-    if (!ctx || !tmpCtx) {
+    const backgroundCtx = tmpCanvasElement.getContext('2d');
+    if (!ctx || !backgroundCtx) {
         throw new Error('Could not get the canvas context.');
     }
 
     const parentContainerWidth =
         (canvasElement.parentElement?.parentElement?.parentElement as HTMLDivElement).clientWidth * scale;
+    setCanvasWidth(canvasElement, parentContainerWidth);
+    setCanvasWidth(tmpCanvasElement, videoElement.videoWidth);
+
     const videoAspectRatio = videoElement.videoWidth / videoElement.videoHeight;
-    canvasElement.width = tmpCanvasElement.width = parentContainerWidth;
-    tmpCanvasElement.width = parentContainerWidth;
-    canvasElement.style.width = tmpCanvasElement.style.width = `${parentContainerWidth}px`;
-    tmpCanvasElement.style.width = `${parentContainerWidth}px`;
-    canvasElement.height = tmpCanvasElement.height = parentContainerWidth / videoAspectRatio;
-    tmpCanvasElement.height = parentContainerWidth / videoAspectRatio;
-    canvasElement.style.height = tmpCanvasElement.style.height = `${parentContainerWidth / videoAspectRatio}px`;
-    tmpCanvasElement.style.height = `${parentContainerWidth / videoAspectRatio}px`;
+    const height = parentContainerWidth / videoAspectRatio;
+    setCanvasHeight(canvasElement, height);
+    setCanvasHeight(tmpCanvasElement, videoElement.videoHeight);
 
     let segmenter: bodySegmentation.BodySegmenter | undefined;
     if (options.videoMode === VideoMode.Custom || options.videoMode === VideoMode.Blur) {
@@ -74,8 +71,14 @@ export const bindVideoToCanvas = async (
                 0.5
             );
 
-            drawFrameCover(image, tmpCtx);
-            const backgroundAssetData = tmpCtx.getImageData(0, 0, canvasElement.width, canvasElement.height);
+            drawFrameCover(image, backgroundCtx);
+
+            const backgroundAssetData = backgroundCtx.getImageData(
+                0,
+                0,
+                tmpCanvasElement.width,
+                tmpCanvasElement.height
+            );
 
             for (let i = 0; i < backgroundAssetData.data.length; i += 4) {
                 bodyMask.data[i] = backgroundAssetData.data[i];
@@ -88,11 +91,21 @@ export const bindVideoToCanvas = async (
             const peopleSegmentation = await segmenter.segmentPeople(videoElement);
             await bodySegmentation.drawBokehEffect(canvasElement, videoElement, peopleSegmentation, 0.5, 9, 3, true);
         } else {
-            drawFrameContain(videoElement, ctx);
+            drawFrameCover(videoElement, ctx);
         }
 
         requestAnimationFrame(step);
     };
 
     requestAnimationFrame(step);
+};
+
+const setCanvasWidth = (canvasElement: HTMLCanvasElement, width: number) => {
+    canvasElement.width = width;
+    canvasElement.style.width = `${width}px`;
+};
+
+const setCanvasHeight = (canvasElement: HTMLCanvasElement, height: number) => {
+    canvasElement.height = height;
+    canvasElement.style.height = `${height}px`;
 };

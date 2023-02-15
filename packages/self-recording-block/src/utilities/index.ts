@@ -6,5 +6,4 @@ export * from './bindMicrophoneToAudioElement';
 export * from './bindVideoToCanvas';
 export * from './countdown';
 export * from './drawAudioSpectrum';
-export * from './drawFrameContain';
 export * from './drawFrameCover';
