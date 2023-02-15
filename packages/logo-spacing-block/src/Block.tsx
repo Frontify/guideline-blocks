@@ -71,11 +71,6 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
 
         const percent = clearSpaceChoice === 'none' ? 0 : CLEAR_SPACE_PERCENT_SIZE[clearSpaceChoice];
 
-        // let offsetValue = 0;
-        // if (hasCustomOffset) {
-        //     offsetValue = convertToNumber(offset);
-        // }
-
         return getContainerSizeByPercentage(percent);
     };
 
@@ -83,18 +78,27 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         const firstColumn = getTempateSize(clearSpaceLeft) - convertToNumber(offsetLeft);
         const thirdColumn = getTempateSize(clearSpaceRight) - convertToNumber(offsetRight);
 
-        // const secondColumn = width - firstColumn - thirdColumn;
-
         return `${firstColumn}px auto ${thirdColumn}px`;
     };
 
-    const getTemplateRow = () => {
+    const getUsedHeight = () => {
         const firstRow = getTempateSize(clearSpaceTop);
         const thirdRow = getTempateSize(clearSpaceBottom);
 
         const usedHeight = firstRow + thirdRow - convertToNumber(offsetTop) - convertToNumber(offsetBottom);
 
-        return `${firstRow}px calc(100% - ${usedHeight}px) ${thirdRow}px`;
+        return {
+            firstRow,
+            thirdRow,
+            usedHeight,
+            total: height + firstRow + thirdRow + convertToNumber(offsetTop) + convertToNumber(offsetBottom),
+        };
+    };
+
+    const getTemplateRow = () => {
+        const heights = getUsedHeight();
+
+        return `${heights.firstRow}px calc(100% - ${heights.usedHeight}px) ${heights.thirdRow}px`;
     };
 
     return (
@@ -102,27 +106,15 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
             ref={blockContainer}
             className="tw-flex tw-relative tw-justify-center"
             data-test-id="example-asset-upload-block"
+            style={{ minHeight: `${getUsedHeight().total}px`, marginTop: `${convertToNumber(offsetTop)}px` }}
         >
             {blockAssets[LOGO_ID] ? (
                 blockAssets[LOGO_ID].map((asset: Asset) => (
                     <Fragment key={asset.id}>
                         {isContainerReady && (
-                            // <div
-                            //     style={{
-                            //         width: `${width}px`,
-                            //         marginTop: `${convertToNumber(offsetTop)}px`,
-                            //         marginRight: `${convertToNumber(offsetRight)}px`,
-                            //         marginBottom: `${convertToNumber(offsetBottom)}px`,
-                            //         marginLeft: `${convertToNumber(offsetLeft)}px`,
-                            //     }}
-                            // >
                             <div
                                 style={{
-                                    //         width: `${width}px`,
                                     marginTop: `${convertToNumber(offsetTop) * -1}px`,
-                                    //         marginRight: `${convertToNumber(offsetRight)}px`,
-                                    //         marginBottom: `${convertToNumber(offsetBottom)}px`,
-                                    //         marginLeft: `${convertToNumber(offsetLeft)}px`,
                                 }}
                             >
                                 <LogoGrid

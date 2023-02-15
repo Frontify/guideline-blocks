@@ -18,7 +18,7 @@ export const LogoGrid = ({
                         gridTemplateColumns,
                         gridTemplateRows,
                         width: `${containerWidth}px`,
-                        minHeight: `${containerHeight}px`,
+                        minHeight: '100%',
                     }}
                 >
                     <GridElement position={GridElementPosition.TopLeft} col="1" row="1" />
