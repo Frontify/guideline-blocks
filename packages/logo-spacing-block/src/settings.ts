@@ -92,7 +92,7 @@ export const settings = defineSettings({
                                     type: 'input',
                                     onChange: (bundle) => appendUnit(bundle, 'offsetTop'),
                                     rules: [pixelRule],
-                                    defaultValue: '0',
+                                    defaultValue: '0px',
                                 },
                                 {
                                     icon: IconEnum.ArrowLeft,
@@ -100,7 +100,7 @@ export const settings = defineSettings({
                                     type: 'input',
                                     onChange: (bundle) => appendUnit(bundle, 'offsetLeft'),
                                     rules: [pixelRule],
-                                    defaultValue: '0',
+                                    defaultValue: '0px',
                                 },
                                 {
                                     icon: IconEnum.ArrowRight,
@@ -108,7 +108,7 @@ export const settings = defineSettings({
                                     type: 'input',
                                     onChange: (bundle) => appendUnit(bundle, 'offsetRight'),
                                     rules: [pixelRule],
-                                    defaultValue: '0',
+                                    defaultValue: '0px',
                                 },
                                 {
                                     icon: IconEnum.ArrowDown,
@@ -116,7 +116,7 @@ export const settings = defineSettings({
                                     type: 'input',
                                     onChange: (bundle) => appendUnit(bundle, 'offsetBottom'),
                                     rules: [pixelRule],
-                                    defaultValue: '0',
+                                    defaultValue: '0px',
                                 },
                             ],
                         },
@@ -170,17 +170,17 @@ export const settings = defineSettings({
                     ],
                 },
                 {
-                    id: 'clearSpaceValue',
+                    id: 'hasCustomClearSpace',
                     type: 'switch',
                     defaultValue: false,
                     label: 'Size',
                     info: 'Clearspace defines a safe space around logo which should always be empty.',
                     switchLabel: 'Custom',
                     onChange: (bundle) => {
-                        presetCustomValue(bundle, 'clearSpaceValue', 'clearSpaceTop', topBottomOffsetMap);
-                        presetCustomValue(bundle, 'clearSpaceValue', 'clearSpaceBottom', topBottomOffsetMap);
-                        presetCustomValue(bundle, 'clearSpaceValue', 'clearSpaceLeft', leftRightOffsetMap);
-                        presetCustomValue(bundle, 'clearSpaceValue', 'clearSpaceRight', leftRightOffsetMap);
+                        presetCustomValue(bundle, 'hasCustomClearSpace', 'clearSpaceTop', topBottomOffsetMap);
+                        presetCustomValue(bundle, 'hasCustomClearSpace', 'clearSpaceBottom', topBottomOffsetMap);
+                        presetCustomValue(bundle, 'hasCustomClearSpace', 'clearSpaceLeft', leftRightOffsetMap);
+                        presetCustomValue(bundle, 'hasCustomClearSpace', 'clearSpaceRight', leftRightOffsetMap);
                     },
                     on: [
                         {

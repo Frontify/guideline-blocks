@@ -741,6 +741,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/frontify-cli': 5.3.6
       '@frontify/guideline-blocks-settings': 0.25.10
+      '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.53
       '@types/react-dom': 17.0.18
       autoprefixer: 10.4.13
@@ -758,6 +759,7 @@ importers:
       '@frontify/eslint-config-react': 0.15.5_grjnxz3vgkki62yt72dtf6imje
       '@frontify/frontify-cli': 5.3.6
       '@frontify/guideline-blocks-settings': 0.25.10_zsjcj4gvi24ks76nprapl4hsmq
+      '@frontify/guideline-blocks-shared': link:../shared
       '@types/react': 17.0.53
       '@types/react-dom': 17.0.18
       autoprefixer: 10.4.13
