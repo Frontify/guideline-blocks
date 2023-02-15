@@ -1,10 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Divider, DividerStyle, Tooltip, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
+import {
+    Divider,
+    DividerStyle,
+    IconPlus,
+    IconSize,
+    Tooltip,
+    TooltipAlignment,
+    TooltipPosition,
+} from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import { Settings, gradientHeightValues } from './types';
 import { HEIGHT_DEFAULT_VALUE } from './settings';
@@ -18,6 +26,8 @@ type GradientBlockColor = {
     name: string;
     position: string;
 };
+const ADD_BUTTON_SIZE_PX = 17;
+const BUFFER_PX = 10;
 
 export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -26,7 +36,10 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         'background: linear-gradient(0deg, rgb(36, 60, 90), rgb(215, 23, 203), 25.43%, rgb(23, 108, 215) 80.11%);'
     );
     const isEditing = useEditorState(appBridge);
+    const dividerRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
+    const [showAddButton, setShowAddButton] = useState(false);
+    const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
     const [gradientColors, setGradientColors] = useState([
         {
             hex: '#243c5a',
@@ -63,6 +76,41 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             setIsCopied(false);
         }, 2000)();
     };
+
+    const handleMouseMove = (event: MouseEvent) => {
+        if (!dividerRef.current) {
+            return;
+        }
+
+        const rect = dividerRef.current.getBoundingClientRect();
+
+        debounce(() => {
+            const { clientX: mouseX, clientY: mouseY } = event;
+
+            const sliderLeft = rect.x;
+            const sliderRight = rect.x + rect.width;
+
+            const sliderTop = rect.height / 2 + rect.top - BUFFER_PX;
+            const sliderBottom = rect.height / 2 + rect.top + BUFFER_PX;
+
+            const isWithinWidth = mouseX >= sliderLeft && mouseX <= sliderRight;
+            const isWithinHeight = mouseY >= sliderTop && mouseY <= sliderBottom;
+
+            if (isWithinWidth && isWithinHeight) {
+                setAddButtonPosition({ left: mouseX - sliderLeft - ADD_BUTTON_SIZE_PX / 2, top: 9 });
+                setShowAddButton(true);
+            } else {
+                setShowAddButton(false);
+            }
+        }, 50)();
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
 
     const CSSBlock = (
         <div
@@ -118,7 +166,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         colorSquarePosition = ColorSquarePositionType.Left,
     }: {
         color: GradientBlockColor;
-        colorSquarePosition: ColorSquarePositionType;
+        colorSquarePosition?: ColorSquarePositionType;
     }) => {
         return (
             <div className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group">
@@ -168,6 +216,21 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             </div>
         );
     };
+    const AddButton = (
+        <div
+            data-test-id="gradient-add"
+            className={joinClassNames([
+                'tw-absolute',
+                `tw-h-[${ADD_BUTTON_SIZE_PX}px] tw-w-[${ADD_BUTTON_SIZE_PX}px]`,
+                'tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded-sm',
+            ])}
+            style={{ ...addButtonPosition }}
+        >
+            <span className="tw-text-white tw-pt-[1px]">
+                <IconPlus size={IconSize.Size12} />
+            </span>
+        </div>
+    );
 
     return (
         <div data-test-id="gradient-block">
@@ -205,8 +268,10 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             )}
             {isEditing && (
                 <div>
-                    <Divider height="36px" style={DividerStyle.Solid} />
-
+                    <div className="tw-relative" ref={dividerRef}>
+                        <Divider height="36px" style={DividerStyle.Solid} />
+                        {showAddButton && AddButton}
+                    </div>
                     {gradientColors.map((color, index) => (
                         <>
                             {index === 0 && (
