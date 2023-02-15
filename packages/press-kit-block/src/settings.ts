@@ -1,16 +1,29 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SettingBlock, defineSettings } from '@frontify/guideline-blocks-settings';
-import { Padding, getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import { Color, SettingBlock, defineSettings } from '@frontify/guideline-blocks-settings';
+import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+
+export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
+    red: 247,
+    green: 247,
+    blue: 247,
+    alpha: 1,
+};
+export const BORDER_COLOR_DEFAULT_VALUE: Color = {
+    red: 234,
+    green: 235,
+    blue: 235,
+    alpha: 1,
+};
 
 const backgroundColor = (id: string): SettingBlock => ({
-    id: `has${id}Background`,
+    id: `hasBackground_${id}`,
     label: 'Background',
     type: 'switch',
     defaultValue: true,
     on: [
         {
-            id: `${id}BackgroundColor`,
+            id: `backgroundColor_${id}`,
             type: 'colorInput',
         },
     ],
@@ -25,8 +38,8 @@ export const settings = defineSettings({
             label: 'Block',
             blocks: [
                 backgroundColor('blocks'),
-                getBorderSettings({ id: 'blocksBorder' }),
-                getBorderRadiusSettings({ dependentSettingId: 'hasBorder_blocksBorder' }),
+                getBorderSettings({ id: 'blocks' }),
+                getBorderRadiusSettings({ id: 'blocks', dependentSettingId: 'hasBorder_blocks' }),
             ],
         },
         {
