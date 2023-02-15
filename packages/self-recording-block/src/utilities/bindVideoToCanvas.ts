@@ -39,8 +39,7 @@ export const bindVideoToCanvas = async (
     setCanvasWidth(tmpCanvasElement, videoElement.videoWidth);
 
     const videoAspectRatio = videoElement.videoWidth / videoElement.videoHeight;
-    const height = parentContainerWidth / videoAspectRatio;
-    setCanvasHeight(canvasElement, height);
+    setCanvasHeight(canvasElement, parentContainerWidth / videoAspectRatio);
     setCanvasHeight(tmpCanvasElement, videoElement.videoHeight);
 
     if ((options.videoMode === VideoMode.Custom || options.videoMode === VideoMode.Blur) && !segmenter) {
