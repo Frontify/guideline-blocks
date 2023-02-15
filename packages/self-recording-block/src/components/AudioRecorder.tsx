@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
-import { bindAudioToCanvas, bindMicrophoneToAudioElement } from '../utilities';
+import { Countdown, bindAudioToCanvas, bindMicrophoneToAudioElement } from '../utilities';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
-import { RecorderState } from '../types';
+import { CountdownState, RecorderState } from '../types';
+import { COUNTDOWN_IN_SECONDS } from '../constants';
+import { merge } from '@frontify/fondue';
 
 type AudioRecorderProps = {
     onRecordingEnd: (assetIds: number[]) => void;
@@ -14,11 +16,13 @@ type AudioRecorderProps = {
 
 export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecorderProps) => {
     const [state, setState] = useState<RecorderState>('idle');
+    const [countdownState, setCountdownState] = useState<CountdownState>({ count: COUNTDOWN_IN_SECONDS });
     const recorder = useRef<MediaRecorder | null>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const microphoneRef = useRef<HTMLAudioElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
     const [uploadFiles, { results, doneAll }] = useAssetUpload();
+    const countdown = new Countdown(COUNTDOWN_IN_SECONDS);
 
     useEffect(() => {
         if (results.length > 0 && doneAll) {
@@ -28,10 +32,36 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
     }, [doneAll, results, onRecordingEnd]);
 
     const onStartClick = () => {
-        if (!canvasRef.current) {
-            throw new Error('No `canvas` registered');
-        }
+        const audioContext = new AudioContext();
+        const oscillator = audioContext.createOscillator();
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+        oscillator.start();
 
+        countdown.init(startRecording, async (timeLeft: number): Promise<void> => {
+            if (timeLeft === COUNTDOWN_IN_SECONDS) {
+                setState('countdown');
+            }
+            setCountdownState({ count: timeLeft });
+
+            if (timeLeft === 0) {
+                return;
+            }
+
+            await beep(oscillator, audioContext.destination, 150);
+        });
+    };
+
+    function beep(oscillator: OscillatorNode, destination: AudioDestinationNode, duration: number) {
+        oscillator.connect(destination);
+        return new Promise(() =>
+            setTimeout(() => {
+                oscillator.disconnect(destination);
+            }, duration)
+        );
+    }
+
+    const startRecording = () => {
         const stream = microphoneRef.current?.srcObject as MediaStream | null;
 
         if (!stream) {
@@ -103,6 +133,14 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
         <div className="tw-flex tw-flex-col tw-items-center">
             {state !== 'permissions-error' ? (
                 <>
+                    <div
+                        className={merge([
+                            state !== 'countdown' && 'tw-hidden',
+                            'tw-absolute tw-w-full tw-h-full tw-text-center tw-text-white tw-bg-black/[.3] tw-text-7xl',
+                        ])}
+                    >
+                        {countdownState.count}
+                    </div>
                     <canvas ref={canvasRef}></canvas>
                     <audio ref={microphoneRef} className="tw-hidden" muted></audio>
                     <div className="tw-mt-6">
