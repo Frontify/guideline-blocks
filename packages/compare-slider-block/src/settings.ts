@@ -1,6 +1,7 @@
 import {
     AssetChooserObjectType,
     AssetInputSize,
+    IconEnum,
     MultiInputLayout,
     appendUnit,
     defineSettings,
@@ -11,23 +12,97 @@ import {
 } from '@frontify/guideline-blocks-settings';
 
 import { BorderStyle, Radius, getBorderRadiusSlider, radiusStyleMap } from '../../shared';
-import { Alignment, Handle, Height } from './types';
+import { Alignment, CaptionPlacement, Handle, Height } from './types';
 
 export const settings = defineSettings({
     basics: [
         {
-            id: 'firstAsset',
-            type: 'assetInput',
+            id: 'firstAssetSection',
+            type: 'sectionHeading',
             label: 'First Image',
-            size: AssetInputSize.Small,
-            objectTypes: [AssetChooserObjectType.ImageVideo],
+            blocks: [
+                {
+                    id: 'firstAsset',
+                    type: 'assetInput',
+                    label: '',
+                    size: AssetInputSize.Small,
+                    objectTypes: [AssetChooserObjectType.ImageVideo],
+                },
+                {
+                    id: 'firstAssetHasCaption',
+                    type: 'switch',
+                    label: 'Caption',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: 'firstAssetCaption',
+                            type: 'textarea',
+                        },
+                        {
+                            id: 'firstAssetCaptionPlacement',
+                            type: 'slider',
+                            choices: [
+                                {
+                                    value: CaptionPlacement.Top,
+                                    icon: IconEnum.ArrowAlignUp,
+                                },
+                                {
+                                    value: CaptionPlacement.Center,
+                                    icon: IconEnum.ArrowAlignHorizontalCentre,
+                                },
+                                {
+                                    value: CaptionPlacement.Bottom,
+                                    icon: IconEnum.ArrowAlignDown,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
         {
-            id: 'secondAsset',
-            type: 'assetInput',
+            id: 'secondAssetSection',
+            type: 'sectionHeading',
             label: 'Second Image',
-            size: AssetInputSize.Small,
-            objectTypes: [AssetChooserObjectType.ImageVideo],
+            blocks: [
+                {
+                    id: 'secondAsset',
+                    type: 'assetInput',
+                    label: 'Second Image',
+                    size: AssetInputSize.Small,
+                    objectTypes: [AssetChooserObjectType.ImageVideo],
+                },
+                {
+                    id: 'secondAssetHasCaption',
+                    type: 'switch',
+                    label: 'Caption',
+                    defaultValue: false,
+                    on: [
+                        {
+                            id: 'secondAssetCaption',
+                            type: 'textarea',
+                        },
+                        {
+                            id: 'secondAssetCaptionPlacement',
+                            type: 'slider',
+                            choices: [
+                                {
+                                    value: CaptionPlacement.Top,
+                                    icon: IconEnum.ArrowAlignUp,
+                                },
+                                {
+                                    value: CaptionPlacement.Center,
+                                    icon: IconEnum.ArrowAlignHorizontalCentre,
+                                },
+                                {
+                                    value: CaptionPlacement.Bottom,
+                                    icon: IconEnum.ArrowAlignDown,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
     ],
     layout: [
