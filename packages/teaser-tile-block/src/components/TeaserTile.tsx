@@ -1,14 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MutableRefObject } from 'react';
+import { MutableRefObject, useState } from 'react';
 
-import { IconPlus32, merge } from '@frontify/fondue';
+import { Button, ButtonEmphasis, ButtonSize, IconDotsVertical, IconPlus32, merge } from '@frontify/fondue';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 
 import { useTileAsset } from '../hooks';
 import { TileImagePositioning, TileSettings, TileType } from '../types';
 
-import { TileSettingsFlyout } from './TileSettingsFlyout';
+import { TileSettingsFlyout, TileSettingsFlyoutProps } from './TileSettingsFlyout';
 
 export type TeaserTileBaseProps = {
     id: string;
@@ -86,6 +86,8 @@ export const TeaserTile = ({
     tileSettings,
 }: TeaserTileProps) => {
     const { tileAsset, isAssetLoading, openFileDialog, onOpenAssetChooser } = useTileAsset(appBridge, id);
+    const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);
+    const [isMenuFlyoutOpen, setIsMenuFlyoutOpen] = useState(false);
 
     const imageClassName = merge([
         'tw-w-full tw-bg-base-alt tw-flex tw-justify-center tw-items-center',
@@ -98,52 +100,80 @@ export const TeaserTile = ({
         variant === TileType.Text ? 'tw-my-4' : 'tw-mb-4 tw-mt-2',
     ]);
 
+    const tileFlyoutProps: Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children'> = {
+        link: tileSettings.link ?? null,
+        display: tileSettings.display ?? null,
+        variant,
+        asset: tileAsset,
+        backgroundColor: tileSettings.backgroundColor ?? null,
+        onLinkChange: (link) => onTileSettingsChange({ link }),
+        backgroundVisibility: tileSettings.backgroundVisibility ?? Boolean(background),
+        onDisplayChange: (display) => onTileSettingsChange({ display }),
+        isAssetLoading,
+        onBackgroundColorChange: (backgroundColor) => onTileSettingsChange({ backgroundColor }),
+        onReplaceAssetFromUpload: openFileDialog,
+        onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange({ backgroundVisibility }),
+        onReplaceAssetFromWorkspace: onOpenAssetChooser,
+    };
+
     return (
-        <div
-            style={{ background, borderRadius, border }}
-            className={merge(['tw-flex tw-overflow-auto', twPositioningMap[positioning]])}
-        >
-            {variant !== TileType.Text && (
-                <TileSettingsFlyout
-                    link={tileSettings.link ?? null}
-                    display={tileSettings.display ?? null}
-                    variant={variant}
-                    asset={tileAsset}
-                    backgroundColor={tileSettings.backgroundColor ?? null}
-                    onLinkChange={(link) => onTileSettingsChange({ link })}
-                    backgroundVisibility={tileSettings.backgroundVisibility ?? Boolean(background)}
-                    onDisplayChange={(display) => onTileSettingsChange({ display })}
-                    isAssetLoading={isAssetLoading}
-                    onBackgroundColorChange={(backgroundColor) => onTileSettingsChange({ backgroundColor })}
-                    onReplaceAssetFromUpload={openFileDialog}
-                    onBackgroundVisibilityChange={(backgroundVisibility) =>
-                        onTileSettingsChange({ backgroundVisibility })
-                    }
-                    onReplaceAssetFromWorkspace={onOpenAssetChooser}
-                >
-                    {(props, triggerRef: MutableRefObject<HTMLDivElement>) => {
-                        return tileAsset?.originUrl ? (
+        <div className="tw-relative tw-group">
+            <div
+                style={{ background, borderRadius, border }}
+                className={merge(['tw-flex tw-overflow-auto ', twPositioningMap[positioning]])}
+            >
+                {variant !== TileType.Text && (
+                    <>
+                        {tileAsset?.originUrl ? (
                             <img
-                                {...props}
                                 className={imageClassName}
                                 src={tileAsset?.originUrl}
                                 style={{ height: imageHeight, objectFit }}
                             />
                         ) : (
-                            <div {...props} className={imageClassName} style={{ height: imageHeight }}>
-                                <div ref={triggerRef}>
-                                    <IconPlus32 />
-                                </div>
-                            </div>
-                        );
-                    }}
+                            <TileSettingsFlyout
+                                {...tileFlyoutProps}
+                                variant={variant}
+                                isOpen={isPlaceholderImageFlyoutOpen}
+                                setIsOpen={setIsPlaceholderImageFlyoutOpen}
+                            >
+                                {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
+                                    <div {...props} className={imageClassName} style={{ height: imageHeight }}>
+                                        <div ref={triggerRef}>
+                                            <IconPlus32 />
+                                        </div>
+                                    </div>
+                                )}
+                            </TileSettingsFlyout>
+                        )}
+                    </>
+                )}
+                {variant !== TileType.Image && (
+                    <div style={{ height, padding, textAlign }} className={textClassName}>
+                        <h6 className="tw-text-base tw-text-blank-state-weak tw-font-semibold">Teaser Title</h6>
+                        <p className="tw-text-sm tw-text-blank-state-weak tw-font-normal">Add a description</p>
+                    </div>
+                )}
+            </div>
+            {(variant === TileType.Text || !!tileAsset?.originUrl) && (
+                <TileSettingsFlyout {...tileFlyoutProps} isOpen={isMenuFlyoutOpen} setIsOpen={setIsMenuFlyoutOpen}>
+                    {(_, triggerRef: MutableRefObject<HTMLButtonElement>) => (
+                        <div
+                            className={merge([
+                                'tw-absolute tw-right-2 tw-top-2 focus-within:tw-z-[200] group-hover:tw-z-[200]',
+                                isMenuFlyoutOpen ? 'tw-z-[200]' : 'tw-z-[-1]',
+                            ])}
+                        >
+                            <Button
+                                emphasis={ButtonEmphasis.Weak}
+                                icon={<IconDotsVertical />}
+                                ref={triggerRef}
+                                size={ButtonSize.Small}
+                                onClick={() => setIsMenuFlyoutOpen((open) => !open)}
+                            ></Button>
+                        </div>
+                    )}
                 </TileSettingsFlyout>
-            )}
-            {variant !== TileType.Image && (
-                <div style={{ height, padding, textAlign }} className={textClassName}>
-                    <h6 className="tw-text-base tw-text-blank-state-weak tw-font-semibold">Teaser Title</h6>
-                    <p className="tw-text-sm tw-text-blank-state-weak tw-font-normal">Add a description</p>
-                </div>
             )}
         </div>
     );
