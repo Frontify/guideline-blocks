@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 import { merge } from '@frontify/fondue';
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius, borderStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
@@ -33,31 +33,37 @@ export const Mask: FC<MaskProps> = ({ shape, children, size, border }) => {
 
     const canHaveBorderRadius = [MaskShape.Square, MaskShape.FullFrame].includes(shape);
 
-    const style = {
-        width: [MaskShape.Circle, MaskShape.Square].includes(shape)
-            ? cameraSizeToMaskSizeMap[size].height
-            : cameraSizeToMaskSizeMap[size].width,
-        borderRadius: canHaveBorderRadius && border.hasRadius ? border.radiusValue : undefined,
-        ...(border.hasBorder
-            ? {
-                  borderStyle: borderStyleMap[border.borderStyle],
-                  borderWidth: border.borderWidth,
-                  borderColor: toRgbaString(border.borderColor),
-              }
-            : {}),
-    };
+    const style = useMemo(
+        () => ({
+            width: [MaskShape.Circle, MaskShape.Square].includes(shape)
+                ? cameraSizeToMaskSizeMap[size].height
+                : cameraSizeToMaskSizeMap[size].width,
+            borderRadius: canHaveBorderRadius && border.hasRadius ? border.radiusValue : undefined,
+            ...(border.hasBorder
+                ? {
+                      borderStyle: borderStyleMap[border.borderStyle],
+                      borderWidth: border.borderWidth,
+                      borderColor: toRgbaString(border.borderColor),
+                  }
+                : {}),
+        }),
+        [border, canHaveBorderRadius, shape, size]
+    );
 
-    return (
-        <div
-            style={style}
-            className={merge([
+    const classes = useMemo(
+        () =>
+            merge([
                 overlayFullClasses,
                 shape === MaskShape.Circle && circleClasses,
                 shape === MaskShape.Square && squareClasses,
                 shape === MaskShape.FullFrame && fullFrameClasses,
                 canHaveBorderRadius && !border.hasRadius && radiusClassMap[border.radiusChoice],
-            ])}
-        >
+            ]),
+        [border.hasRadius, border.radiusChoice, canHaveBorderRadius, shape]
+    );
+
+    return (
+        <div style={style} className={classes}>
             {children}
         </div>
     );

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
 import { CameraSize, MaskShape, RecorderState, VideoMode } from '../types';
@@ -9,7 +9,7 @@ import { Camera } from './Camera';
 import { Mask, MaskProps } from './Mask';
 
 type VideoRecorderProps = {
-    onRecordingEnd: (assetIds: number[]) => void;
+    onRecordingEnd: (assetIds: number[]) => Promise<void>;
     size: CameraSize;
     cameraDeviceId?: string;
     microphoneDeviceId?: string;
@@ -32,9 +32,9 @@ export const VideoRecorder = ({
     const cameraRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
-    const [uploadFiles, { results, doneAll }] = useAssetUpload();
+    const [uploadFiles, { results: uploadedAssets, doneAll }] = useAssetUpload();
 
-    const onStartClick = () => {
+    const onStartClick = useCallback(() => {
         if (!canvasRef.current) {
             throw new Error('No `canvas` registered');
         }
@@ -55,7 +55,6 @@ export const VideoRecorder = ({
         });
 
         recorder.current.addEventListener('stop', () => {
-            setState('uploading');
             if (allChunks.current.length > 0) {
                 const blob = new Blob(allChunks.current, { type: 'video/webm' });
                 uploadFiles(new File([blob], 'self-record.webm'));
@@ -64,42 +63,50 @@ export const VideoRecorder = ({
 
         recorder.current.start();
         setState('recording');
-    };
+    }, [uploadFiles]);
 
-    const onStopClick = () => {
+    const onStopClick = useCallback(() => {
         recorder.current?.stop();
-    };
+        setState('uploading');
+    }, []);
 
-    const onPauseClick = () => {
+    const onPauseClick = useCallback(() => {
         recorder.current?.pause();
         setState('paused');
-    };
+    }, []);
 
-    const onResumeClick = () => {
+    const onResumeClick = useCallback(() => {
         recorder.current?.resume();
         setState('recording');
-    };
+    }, []);
 
-    const onRestartClick = () => {
+    const onRestartClick = useCallback(() => {
         recorder.current?.pause();
         allChunks.current = [];
         setState('idle');
-    };
+    }, []);
 
-    const onDeleteClick = () => {
+    const onDeleteClick = useCallback(() => {
         console.log('delete');
-    };
+    }, []);
+
+    const onDevicePermissionDenied = useCallback(() => {
+        setState('permissions-error');
+    }, []);
 
     useEffect(() => {
-        if (results.length > 0 && doneAll) {
-            onRecordingEnd(results.map((asset) => asset.id));
+        const associateAssetWithBlock = async () => {
+            await onRecordingEnd(uploadedAssets.map((asset) => asset.id));
             setState('idle');
-        }
-    }, [doneAll, results, onRecordingEnd]);
+        };
 
-    const onDevicePermissionDenied = () => {
-        setState('permissions-error');
-    };
+        if (doneAll) {
+            associateAssetWithBlock();
+        }
+        // TODO: This is a workaround for the upload going crazy
+        // If we add `onRecordingEnd` to the deps the upload goes crazy
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [doneAll, uploadedAssets]);
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
@@ -131,7 +138,7 @@ export const VideoRecorder = ({
                 </>
             ) : (
                 <div className="tw-h-12 tw-flex tw-items-center tw-justify-center tw-select-none">
-                    <span>No permissions to record you</span>&nbsp;
+                    <span>No permissions to record</span>&nbsp;
                     <span className="tw-animate-spin">🥲</span>
                 </div>
             )}
