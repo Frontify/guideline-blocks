@@ -21,7 +21,8 @@ export const bindVideoToCanvas = async (
     canvasElement: HTMLCanvasElement,
     tmpCanvasElement: HTMLCanvasElement,
     scale: number,
-    options: { videoMode: VideoMode; backgroundAssetUrl?: string }
+    options: { videoMode: VideoMode; backgroundAssetUrl?: string },
+    signal: AbortSignal
 ) => {
     const ctx = canvasElement.getContext('2d');
     const tmpCtx = tmpCanvasElement.getContext('2d');
@@ -47,7 +48,7 @@ export const bindVideoToCanvas = async (
     }
 
     let image: HTMLImageElement | undefined;
-    if (options.videoMode === VideoMode.Custom) {
+    if (options.videoMode === VideoMode.Custom && options.backgroundAssetUrl) {
         image = await new Promise<HTMLImageElement>((resolve) => {
             const img = new Image(canvasElement.width, canvasElement.height);
             img.crossOrigin = 'anonymous';
@@ -59,6 +60,10 @@ export const bindVideoToCanvas = async (
     }
 
     const step = async () => {
+        if (signal.aborted) {
+            return;
+        }
+
         if (options.videoMode === VideoMode.Custom && segmenter && image) {
             const peopleSegmentation = await segmenter.segmentPeople(videoElement);
             const bodyMask = await bodySegmentation.toBinaryMask(

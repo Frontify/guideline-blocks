@@ -30,6 +30,7 @@ export const Camera = ({
 }: CameraProps): ReactElement => {
     const tmpCanvasElement = useRef(null);
     useEffect(() => {
+        const canvasAbortController = new AbortController();
         const bindElements = async () => {
             if (cameraRef.current && canvasRef.current && tmpCanvasElement.current) {
                 try {
@@ -39,7 +40,8 @@ export const Camera = ({
                         canvasRef.current,
                         tmpCanvasElement.current,
                         cameraSizeToScaleMap[size],
-                        videoOptions
+                        videoOptions,
+                        canvasAbortController.signal
                     );
                 } catch {
                     onDevicePermissionDenied();
@@ -48,8 +50,12 @@ export const Camera = ({
         };
 
         bindElements();
-    }, [size, cameraDeviceId, microphoneDeviceId, canvasRef, onDevicePermissionDenied, cameraRef, videoOptions]);
 
+        return () => {
+            canvasAbortController.abort();
+        };
+    }, [size, cameraDeviceId, microphoneDeviceId, canvasRef, onDevicePermissionDenied, cameraRef, videoOptions]);
+    console.log(videoOptions);
     return (
         <>
             <canvas ref={canvasRef}></canvas>
