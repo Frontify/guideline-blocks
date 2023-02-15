@@ -3,10 +3,10 @@
 import {
     IconEnum,
     SwitchSize,
+    appendUnit,
     defineSettings,
     maximumNumericalOrPixelOrAutoRule,
     maximumNumericalRule,
-    appendUnit,
 } from '@frontify/guideline-blocks-settings';
 import { GradientHeight, Orientation } from './types';
 
@@ -24,7 +24,7 @@ export const settings = defineSettings({
             label: 'Inspect',
             blocks: [
                 {
-                    id: 'gradientCss',
+                    id: 'displayCss',
                     label: 'Display CSS Code',
                     type: 'switch',
                     size: SwitchSize.Small,

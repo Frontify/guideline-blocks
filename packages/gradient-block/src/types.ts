@@ -15,6 +15,8 @@ export type Settings = {
     isHeightCustom?: boolean;
     heightCustom?: string;
     heightSimple?: GradientHeight;
+    displayCss?: boolean;
+    content?: string;
 };
 
 export const gradientHeightValues: Record<GradientHeight, string> = {

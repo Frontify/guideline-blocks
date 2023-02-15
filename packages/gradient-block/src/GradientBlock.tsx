@@ -9,10 +9,18 @@ import 'tailwindcss/tailwind.css';
 import { Settings, gradientHeightValues } from './types';
 import { HEIGHT_DEFAULT_VALUE } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { IconEnum, debounce, iconsMap, merge } from '@frontify/fondue';
+import CodeMirror from '@uiw/react-codemirror';
+import { langs } from '@uiw/codemirror-extensions-langs';
 
 export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
-    const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    // TODO - replace with const [contentValue] = useState(blockSettings.content);
+    const [contentValue] = useState(
+        'background: linear-gradient(0deg, rgb(36, 60, 90), rgb(215, 23, 203), 25.43%, rgb(23, 108, 215) 80.11%);'
+    );
     const isEditing = useEditorState(appBridge);
+    const [isCopied, setIsCopied] = useState(false);
     const [gradientColors, setGradientColors] = useState([
         {
             hex: '#243c5a',
@@ -32,6 +40,64 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const height = blockSettings.isHeightCustom
         ? blockSettings.heightCustom
         : gradientHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE];
+
+    const getCopyButtonText = () =>
+        isCopied ? <>{iconsMap[IconEnum.CheckMark16]} Copied</> : <>{iconsMap[IconEnum.Clipboard16]} Copy</>;
+
+    // TODO - use this to update the CSS snippet when gradient changes
+    const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(blockSettings.content || '');
+        setIsCopied(true);
+        debounce(() => {
+            setIsCopied(false);
+        }, 2000)();
+    };
+
+    const CSSBlock = (
+        <div
+            data-test-id="gradient-css-snippet-block"
+            className="tw-mt-8 tw-overflow-hidden tw-border tw-border-line tw-rounded-[4px] tw-text-sm"
+            style={{
+                fontFamily: 'Courier, monospace',
+            }}
+        >
+            <div className={merge(['tw-relative tw-group/copy CodeMirror-readonly'])}>
+                <div
+                    data-test-id="gradient-css-snippet-header"
+                    className="tw-py-2.5 tw-pl-5 tw-pr-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center"
+                >
+                    <span
+                        className="tw-text-text-weak"
+                        style={{
+                            fontFamily: 'Space Grotesk Frontify, sans-serif',
+                        }}
+                    >
+                        CSS
+                    </span>
+                    <button
+                        data-test-id="gradient-css-copy-button"
+                        className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
+                        onClick={handleCopy}
+                    >
+                        {getCopyButtonText()}
+                    </button>
+                </div>
+                <CodeMirror
+                    theme="light"
+                    value={contentValue}
+                    extensions={[langs['css']()]}
+                    readOnly={!isEditing}
+                    basicSetup={{
+                        highlightActiveLineGutter: false,
+                        highlightActiveLine: false,
+                    }}
+                    placeholder={contentValue ? '' : '<add colors to generate CSS code>'}
+                />
+            </div>
+        </div>
+    );
 
     return (
         <div data-test-id="gradient-block">
@@ -142,6 +208,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     ))}
                 </div>
             )}
+            {blockSettings.displayCss ? CSSBlock : null}
         </div>
     );
 };
