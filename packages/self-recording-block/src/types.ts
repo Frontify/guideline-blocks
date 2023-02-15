@@ -48,10 +48,21 @@ export type Settings = {
     radiusChoice: Radius;
 };
 
-export type RecorderState = 'idle' | 'recording' | 'paused' | 'previewing' | 'uploading' | 'permissions-error';
+export type RecorderState =
+    | 'idle'
+    | 'countdown'
+    | 'recording'
+    | 'paused'
+    | 'previewing'
+    | 'uploading'
+    | 'permissions-error';
 
 export type MaskProps = {
     shape: VideoShape;
     children: ReactNode;
     size: CameraSize;
+};
+
+export type CountdownState = {
+    count: number;
 };

@@ -118,14 +118,14 @@ export const VideoRecorderToolbar = ({
                     content="Pause recording"
                     position={TooltipPosition.Top}
                     enterDelay={800}
-                    disabled={['idle', 'paused', 'uploading'].includes(state)}
+                    disabled={['idle', 'paused', 'uploading', 'countdown'].includes(state)}
                     triggerElement={
                         <Button
                             rounding={ButtonRounding.Full}
                             emphasis={ButtonEmphasis.Weak}
                             icon={<IconPause16 />}
                             onClick={onPauseClick}
-                            disabled={['idle', 'paused', 'uploading'].includes(state)}
+                            disabled={['idle', 'paused', 'uploading', 'countdown'].includes(state)}
                             aria-label="Pause recording"
                         />
                     }

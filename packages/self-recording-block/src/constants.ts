@@ -3,6 +3,8 @@
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 import { AudioSpectrum, CameraSize } from './types';
 
+export const COUNTDOWN_IN_SECONDS = 3;
+
 export const CAMERA_CONSTRAINTS = {
     video: {
         width: 1920,
