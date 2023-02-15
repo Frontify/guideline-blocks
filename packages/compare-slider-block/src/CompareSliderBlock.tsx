@@ -108,8 +108,8 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
             >
                 <div
                     className={joinClassNames([
-                        `${blockSettings?.alignment === Alignment.Horizontal ? 'tw-w-[50%]' : 'tw-h-[50%]'}`,
-                        'tw-h-full tw-flex tw-justify-center tw-items-center',
+                        `${blockSettings?.alignment === Alignment.Horizontal ? 'tw-h-full tw-w-[50%]' : 'tw-h-[50%]'}`,
+                        'tw-flex tw-justify-center tw-items-center',
                     ])}
                 >
                     Empty first
@@ -129,10 +129,10 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     className={joinClassNames([
                         `${
                             blockSettings?.alignment === Alignment.Horizontal
-                                ? 'tw-w-[50%] tw-absolute tw-left-[50%]'
+                                ? 'tw-h-full tw-w-[50%] tw-absolute tw-left-[50%]'
                                 : 'tw-w-full tw-h-[50%] tw-absolute tw-top-[50%]'
                         }`,
-                        'tw-h-full tw-flex tw-justify-center tw-items-center',
+                        'tw-flex tw-justify-center tw-items-center',
                     ])}
                 >
                     Empty second
