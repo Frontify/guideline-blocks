@@ -45,7 +45,7 @@ export const settings = defineSettings({
             label: 'Camera',
             type: 'dropdown',
             show: (bundle) => bundle.getBlock('recordingMode')?.value === RecordingMode.CameraAndAudio,
-            choices: async (bundle) => {
+            choices: async () => {
                 const devices = await navigator.mediaDevices.enumerateDevices();
 
                 const videoDevices = devices.filter((device) => device.kind === 'videoinput');
@@ -59,6 +59,7 @@ export const settings = defineSettings({
             id: 'cameraAsset',
             label: 'Camera',
             type: 'assetInput',
+
             show: (bundle) => bundle.getBlock('recordingMode')?.value === RecordingMode.AudioOnly,
         },
         {
