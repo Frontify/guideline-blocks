@@ -25,7 +25,7 @@ import {
 import { useState } from 'react';
 import { Nullable, TileDisplay, TileType } from '../types';
 
-type Link = { href?: string; target?: string };
+export type Link = { href?: string; target?: string };
 
 type BaseFlyoutProps = {
     children: FlyoutProps['trigger'];

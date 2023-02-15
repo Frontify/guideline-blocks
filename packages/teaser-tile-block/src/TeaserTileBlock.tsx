@@ -5,15 +5,15 @@ import '@frontify/fondue-tokens/styles';
 
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-
-import { Settings, TileDisplay, TileHeight, TilePadding, TileSpacing, TileType } from './types';
+import { generateRandomId } from '@frontify/fondue';
+import { Settings, Tile, TileDisplay, TileHeight, TilePadding, TileSettings, TileSpacing, TileType } from './types';
 import {
     TeaserTile,
     TeaserTileImageProps,
     TeaserTileImageTextProps,
     TeaserTileTextProps,
 } from './components/TeaserTile';
-import { useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Radius, toRgbaString } from '@frontify/guideline-blocks-shared';
 
 type VariantProps = {
@@ -37,19 +37,17 @@ const heightMap: Record<TileHeight, string> = {
     [TileHeight.Large]: '300px',
 };
 
-// ! TODO: add proper map value
 const paddingMap: Record<TilePadding, string> = {
-    [TilePadding.Small]: '15px',
-    [TilePadding.Medium]: '20px',
-    [TilePadding.Large]: '30px',
+    [TilePadding.Small]: '12px',
+    [TilePadding.Medium]: '30px',
+    [TilePadding.Large]: '50px',
 };
 
-// ! TODO: add proper map value
 const radiusMap: Record<Radius, string> = {
     [Radius.None]: '0px',
-    [Radius.Small]: '6px',
-    [Radius.Medium]: '10px',
-    [Radius.Large]: '14px',
+    [Radius.Small]: '2px',
+    [Radius.Medium]: '4px',
+    [Radius.Large]: '12px',
 };
 
 const objectFitMap: Record<TileDisplay, string> = {
@@ -57,10 +55,17 @@ const objectFitMap: Record<TileDisplay, string> = {
     [TileDisplay.Fit]: 'contain',
 };
 
-const MOCK_TILES = [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }];
+const INIT_TILE_SETTINGS: TileSettings = {
+    link: null,
+    backgroundVisibility: null,
+    backgroundColor: null,
+    display: null,
+};
 
 export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    // Required workaround for bug in clarify
+    const [blockTiles, setBlockTiles] = useState(blockSettings.tiles);
     const isEditing = useEditorState(appBridge);
 
     const height = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
@@ -110,10 +115,56 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 borderRadius,
                 imageHeight: height,
                 variant: TileType.ImageText,
+                positioning: blockSettings.positioning,
             },
         }),
         [height, blockSettings.positioning, padding, textAlign, border, background, borderRadius, objectFit]
     );
+
+    const setInternalTiles = useCallback(
+        (tiles: Tile[]) => {
+            setBlockSettings({ tiles });
+            setBlockTiles(tiles);
+        },
+        [setBlockSettings, setBlockTiles]
+    );
+
+    const updateTile = (id: string, partialSettings: Partial<TileSettings>) => {
+        if (!blockTiles) {
+            return;
+        }
+        const newTiles = blockTiles.map((tile) => {
+            if (tile.id === id) {
+                return { ...tile, settings: { ...tile.settings, ...partialSettings } };
+            } else {
+                return tile;
+            }
+        });
+        setInternalTiles(newTiles);
+    };
+
+    const removeTile = (id: string) => {
+        const newTiles = (blockTiles ?? [])?.filter((tile) => tile.id !== id);
+        setInternalTiles(newTiles);
+    };
+
+    const addTile = () => {
+        const tiles = [...(blockTiles ?? []), { id: generateRandomId(), settings: { ...INIT_TILE_SETTINGS } }];
+        setInternalTiles(tiles);
+    };
+
+    // Used on first render to create tiles array of when number of columns changes
+    useEffect(() => {
+        const currentColumnCount = parseInt(blockSettings.columns);
+        const columnDifference = currentColumnCount - (blockTiles?.length ?? 0);
+        if (columnDifference > 0) {
+            const tiles = [...(blockTiles ?? [])];
+            for (let i = 0; i < columnDifference; i++) {
+                tiles.push({ id: generateRandomId(), settings: { ...INIT_TILE_SETTINGS } });
+            }
+            setInternalTiles(tiles);
+        }
+    }, [blockTiles, blockSettings.columns, setBlockSettings, setInternalTiles]);
 
     return (
         <div
@@ -127,9 +178,23 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 gridTemplateColumns: `repeat(${blockSettings.columns}, 1fr)`,
             }}
         >
-            {MOCK_TILES.map(({ id }) => (
-                <TeaserTile id={id} key={id} appBridge={appBridge} {...props[blockSettings.type]} />
+            {blockTiles?.map(({ id, settings }) => (
+                <TeaserTile
+                    id={id}
+                    key={id}
+                    appBridge={appBridge}
+                    tileSettings={settings}
+                    onTileSettingsChange={(partialSettings) => updateTile(id, partialSettings)}
+                    {...props[blockSettings.type]}
+                />
             ))}
+            <div
+                className="tw-bg-base-alt tw-rounded tw-border tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center"
+                style={{ height: '200px' }}
+                onClick={addTile}
+            >
+                Add New Tile
+            </div>
         </div>
     );
 };

@@ -6,7 +6,7 @@ import { IconPlus32, merge } from '@frontify/fondue';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 
 import { useTileAsset } from '../hooks';
-import { TileImagePositioning, TilePadding, TileType } from '../types';
+import { TileImagePositioning, TileSettings, TileType } from '../types';
 
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 
@@ -17,6 +17,8 @@ export type TeaserTileBaseProps = {
     background?: string;
     borderRadius?: string;
     appBridge: AppBridgeBlock;
+    tileSettings: TileSettings;
+    onTileSettingsChange: (partialSettings: Partial<TileSettings>) => void;
 };
 
 export type TeaserTileImageProps = {
@@ -77,9 +79,11 @@ export const TeaserTile = ({
     imageHeight,
     borderRadius,
     textAlign = 'left',
-    padding = TilePadding.Small, // ! TODO: check with Simone about padding. As there is mismatch between design and settings.
+    padding, // ! TODO: check with Simone about padding. As there is mismatch between design and settings.
     variant = TileType.ImageText,
     positioning = TileImagePositioning.Top,
+    onTileSettingsChange,
+    tileSettings,
 }: TeaserTileProps) => {
     const { tileAsset, isAssetLoading, openFileDialog, onOpenAssetChooser } = useTileAsset(appBridge, id);
 
@@ -101,18 +105,20 @@ export const TeaserTile = ({
         >
             {variant !== TileType.Text && (
                 <TileSettingsFlyout
-                    link={null}
-                    display={null}
+                    link={tileSettings.link ?? null}
+                    display={tileSettings.display ?? null}
                     variant={variant}
                     asset={tileAsset}
-                    backgroundColor={null}
-                    onLinkChange={console.log}
-                    backgroundVisibility={null}
-                    onDisplayChange={console.log}
+                    backgroundColor={tileSettings.backgroundColor ?? null}
+                    onLinkChange={(link) => onTileSettingsChange({ link })}
+                    backgroundVisibility={tileSettings.backgroundVisibility ?? Boolean(background)}
+                    onDisplayChange={(display) => onTileSettingsChange({ display })}
                     isAssetLoading={isAssetLoading}
-                    onBackgroundColorChange={console.log}
+                    onBackgroundColorChange={(backgroundColor) => onTileSettingsChange({ backgroundColor })}
                     onReplaceAssetFromUpload={openFileDialog}
-                    onBackgroundVisibilityChange={console.log}
+                    onBackgroundVisibilityChange={(backgroundVisibility) =>
+                        onTileSettingsChange({ backgroundVisibility })
+                    }
                     onReplaceAssetFromWorkspace={onOpenAssetChooser}
                 >
                     {(props, triggerRef: MutableRefObject<HTMLDivElement>) => {

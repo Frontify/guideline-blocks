@@ -2,6 +2,7 @@
 
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { Link } from './components/TileSettingsFlyout';
 
 export enum SettingsEnum {
     Type = 'type',
@@ -28,7 +29,20 @@ export enum SettingsEnum {
     HasRadius = 'hasRadius',
     RadiusChoice = 'radiusChoice',
     RadiusValue = 'radiusValue',
+    Tiles = 'tiles',
 }
+
+export type TileSettings = {
+    link: Nullable<Link>;
+    display: Nullable<TileDisplay>;
+    backgroundColor: Nullable<Color>;
+    backgroundVisibility: Nullable<boolean>;
+};
+
+export type Tile = {
+    id: string;
+    settings: TileSettings;
+};
 
 export type Settings = {
     [SettingsEnum.Type]: TileType;
@@ -55,6 +69,7 @@ export type Settings = {
     [SettingsEnum.HasRadius]: boolean;
     [SettingsEnum.RadiusChoice]: Radius;
     [SettingsEnum.RadiusValue]: string;
+    [SettingsEnum.Tiles]?: Tile[];
 };
 
 export enum TileType {
