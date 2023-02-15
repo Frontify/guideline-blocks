@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
+
 import { bindAudioToCanvas, bindMicrophoneToAudioElement } from '../utilities';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
+import { RecorderState } from '../types';
 
 type AudioRecorderProps = {
     onRecordingEnd: (assetIds: number[]) => void;
@@ -11,7 +13,7 @@ type AudioRecorderProps = {
 };
 
 export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecorderProps) => {
-    const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'uploading'>('idle');
+    const [state, setState] = useState<RecorderState>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const microphoneRef = useRef<HTMLAudioElement>(null);
@@ -85,8 +87,12 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
     useEffect(() => {
         const bindElements = async () => {
             if (microphoneRef.current && canvasRef.current) {
-                await bindMicrophoneToAudioElement(microphoneRef.current, microphoneDeviceId);
-                bindAudioToCanvas(microphoneRef.current, canvasRef.current);
+                try {
+                    await bindMicrophoneToAudioElement(microphoneRef.current, microphoneDeviceId);
+                    bindAudioToCanvas(microphoneRef.current, canvasRef.current);
+                } catch {
+                    setState('permissions-error');
+                }
             }
         };
 
@@ -95,20 +101,28 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            <canvas ref={canvasRef}></canvas>
-            <audio ref={microphoneRef} className="tw-hidden" muted></audio>
-
-            <div className="tw-mt-6">
-                <VideoRecorderToolbar
-                    state={state}
-                    onDeleteClick={onDeleteClick}
-                    onPauseClick={onPauseClick}
-                    onRestartClick={onRestartClick}
-                    onResumeClick={onResumeClick}
-                    onStartClick={onStartClick}
-                    onStopClick={onStopClick}
-                />
-            </div>
+            {state !== 'permissions-error' ? (
+                <>
+                    <canvas ref={canvasRef}></canvas>
+                    <audio ref={microphoneRef} className="tw-hidden" muted></audio>
+                    <div className="tw-mt-6">
+                        <VideoRecorderToolbar
+                            state={state}
+                            onDeleteClick={onDeleteClick}
+                            onPauseClick={onPauseClick}
+                            onRestartClick={onRestartClick}
+                            onResumeClick={onResumeClick}
+                            onStartClick={onStartClick}
+                            onStopClick={onStopClick}
+                        />
+                    </div>
+                </>
+            ) : (
+                <div className="tw-h-12 tw-flex tw-items-center tw-justify-center tw-select-none">
+                    <span>No permissions to record you</span>&nbsp;
+                    <span className="tw-animate-spin">🥲</span>
+                </div>
+            )}
         </div>
     );
 };

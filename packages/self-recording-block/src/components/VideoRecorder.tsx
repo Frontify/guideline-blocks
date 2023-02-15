@@ -3,11 +3,9 @@
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
-import { cameraSizeToScaleMap } from '../constants';
-import { CameraSize, VideoShape } from '../types';
-import { bindCameraToVideoElement } from '../utilities';
+import { CameraSize, RecorderState, VideoMode, VideoShape } from '../types';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
-import { bindVideoToCanvas } from '../utilities';
+import { Camera } from './Camera';
 import { Mask } from './Mask';
 
 type VideoRecorderProps = {
@@ -15,6 +13,7 @@ type VideoRecorderProps = {
     size: CameraSize;
     cameraDeviceId?: string;
     microphoneDeviceId?: string;
+    videoOptions: { videoMode: VideoMode; backgroundAssetUrl?: string };
     shape: VideoShape;
 };
 
@@ -23,9 +22,10 @@ export const VideoRecorder = ({
     size,
     cameraDeviceId,
     microphoneDeviceId,
+    videoOptions,
     shape,
 }: VideoRecorderProps): ReactElement => {
-    const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'previewing' | 'uploading'>('idle');
+    const [state, setState] = useState<RecorderState>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
     const cameraRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -95,36 +95,44 @@ export const VideoRecorder = ({
         }
     }, [doneAll, results, onRecordingEnd]);
 
-    useEffect(() => {
-        const bindElements = async () => {
-            if (cameraRef.current && canvasRef.current) {
-                await bindCameraToVideoElement(cameraRef.current, cameraDeviceId, microphoneDeviceId);
-                bindVideoToCanvas(cameraRef.current, canvasRef.current, cameraSizeToScaleMap[size]);
-            }
-        };
-
-        bindElements();
-    }, [size, cameraDeviceId, microphoneDeviceId]);
+    const onDevicePermissionDenied = () => {
+        setState('permissions-error');
+    };
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            <Mask shape={shape} size={size}>
-                <canvas ref={canvasRef}></canvas>
-            </Mask>
+            {state !== 'permissions-error' ? (
+                <>
+                    <Mask shape={shape} size={size}>
+                        <Camera
+                            cameraDeviceId={cameraDeviceId}
+                            microphoneDeviceId={microphoneDeviceId}
+                            size={size}
+                            canvasRef={canvasRef}
+                            cameraRef={cameraRef}
+                            onDevicePermissionDenied={onDevicePermissionDenied}
+                            videoOptions={videoOptions}
+                        />
+                    </Mask>
 
-            <video ref={cameraRef} className="tw-hidden" muted></video>
-
-            <div className="tw-mt-6">
-                <VideoRecorderToolbar
-                    state={state}
-                    onDeleteClick={onDeleteClick}
-                    onPauseClick={onPauseClick}
-                    onRestartClick={onRestartClick}
-                    onResumeClick={onResumeClick}
-                    onStartClick={onStartClick}
-                    onStopClick={onStopClick}
-                />
-            </div>
+                    <div className="tw-mt-6">
+                        <VideoRecorderToolbar
+                            state={state}
+                            onDeleteClick={onDeleteClick}
+                            onPauseClick={onPauseClick}
+                            onRestartClick={onRestartClick}
+                            onResumeClick={onResumeClick}
+                            onStartClick={onStartClick}
+                            onStopClick={onStopClick}
+                        />
+                    </div>
+                </>
+            ) : (
+                <div className="tw-h-12 tw-flex tw-items-center tw-justify-center tw-select-none">
+                    <span>No permissions to record you</span>&nbsp;
+                    <span className="tw-animate-spin">🥲</span>
+                </div>
+            )}
         </div>
     );
 };

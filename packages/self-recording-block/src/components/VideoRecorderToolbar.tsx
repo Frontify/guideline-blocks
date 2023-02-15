@@ -14,9 +14,10 @@ import {
     TooltipPosition,
 } from '@frontify/fondue';
 import { ReactElement } from 'react';
+import { RecorderState } from '../types';
 
 type VideoRecorderToolbarProps = {
-    state: 'idle' | 'recording' | 'paused' | 'previewing' | 'uploading';
+    state: RecorderState;
     onStartClick: () => void;
     onDeleteClick: () => void;
     onRestartClick: () => void;

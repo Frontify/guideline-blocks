@@ -26,12 +26,19 @@ export type AudioSpectrum = {
     barGap: number;
 };
 
+export enum VideoMode {
+    None = 'none',
+    Blur = 'blur',
+    Custom = 'custom',
+}
+
 export type Settings = {
     recordingMode: RecordingMode;
     shape: VideoShape;
     size: CameraSize;
     microphoneDeviceId?: string;
     cameraDeviceId?: string;
+    videoMode: VideoMode;
     hasBorder: boolean;
     borderColor: Color;
     borderStyle: BorderStyle;
@@ -40,6 +47,8 @@ export type Settings = {
     radiusValue: string;
     radiusChoice: Radius;
 };
+
+export type RecorderState = 'idle' | 'recording' | 'paused' | 'previewing' | 'uploading' | 'permissions-error';
 
 export type MaskProps = {
     shape: VideoShape;
