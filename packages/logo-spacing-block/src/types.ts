@@ -1,4 +1,5 @@
 import { Asset } from '@frontify/app-bridge';
+import { ReactNode } from 'react';
 
 export enum LogoSpacingType {
     Percentage = 'percentage_clearspace',
@@ -45,4 +46,19 @@ export type LogoGridProps = {
     containerWidth: number;
     settings: LogoSpacingSettings;
     showLogo: boolean;
+};
+
+export enum GridElementPosition {
+    Top = 'Top',
+    Right = 'Right',
+    Bottom = 'Bottom',
+    Left = 'Left',
+}
+
+export type GridElementProps = {
+    position: GridElementPosition;
+    children?: ReactNode;
+    col: string;
+    row: string;
+    showBorder: boolean;
 };
