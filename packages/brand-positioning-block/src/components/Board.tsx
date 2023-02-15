@@ -14,13 +14,20 @@ import { useRef } from 'react';
 import { BoardProps } from '../types';
 import { Axis } from './Axis';
 import { Item } from './Item';
+import { styleSettingsToCSS } from '../utilities/settingsToCss';
+import { splitBlockSettingsByArea } from '../utilities/splitBlockSettingsByArea';
 
-export const Board = ({ items, assets, setItems, deleteItem, isEditing }: BoardProps) => {
+export const Board = ({ items, assets, setItems, deleteItem, isEditing, blockSettings }: BoardProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const mouseSensor = useSensor(MouseSensor);
     const touchSensor = useSensor(TouchSensor);
     const keyboardSensor = useSensor(KeyboardSensor);
     const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
+
+    const { xAxisLeftLabel, xAxisRightLabel, yAxisTopLabel, yAxisBottomLabel } = blockSettings;
+    const { axisStyle, boardStyle, itemStyle } = splitBlockSettingsByArea(blockSettings);
+
+    const boardCss = styleSettingsToCSS(boardStyle);
 
     const handleDragEnd = (event: DragEndEvent) => {
         if (!containerRef.current) {
@@ -49,14 +56,27 @@ export const Board = ({ items, assets, setItems, deleteItem, isEditing }: BoardP
     }));
 
     return (
-        <div className="tw-w-full tw-flex tw-rounded tw-h-[613px] sm:tw-h-[500px] tw-relative tw-border tw-p-2 sm:tw-p-3">
+        <div
+            style={boardCss}
+            className="tw-w-full tw-flex tw-rounded tw-h-[613px] sm:tw-h-[500px] tw-relative tw-border tw-p-2 sm:tw-p-3"
+        >
             <DndContext modifiers={[restrictToParentElement]} sensors={sensors} onDragEnd={handleDragEnd}>
                 <div ref={containerRef} className="tw-relative tw-h-full tw-w-full">
                     <div className="tw-absolute tw-w-full tw-top-1/2 -tw-translate-y-1/2">
-                        <Axis minLabel="Low Price" maxLabel="High Price" orientation="horizontal" />
+                        <Axis
+                            minLabel={xAxisLeftLabel}
+                            maxLabel={xAxisRightLabel}
+                            orientation="horizontal"
+                            style={axisStyle}
+                        />
                     </div>
                     <div className="tw-absolute tw-h-full tw-left-1/2 -tw-translate-x-1/2">
-                        <Axis minLabel="Low Quality" maxLabel="High Quality" orientation="vertical" />
+                        <Axis
+                            minLabel={yAxisBottomLabel}
+                            maxLabel={yAxisTopLabel}
+                            orientation="vertical"
+                            style={axisStyle}
+                        />
                     </div>
                     {itemsWithImages.map((item, i) => (
                         <Item
@@ -66,6 +86,7 @@ export const Board = ({ items, assets, setItems, deleteItem, isEditing }: BoardP
                             src={item.src}
                             xPosition={item.position.x}
                             yPosition={item.position.y}
+                            style={itemStyle}
                             deleteItem={() => deleteItem(item)}
                         />
                     ))}

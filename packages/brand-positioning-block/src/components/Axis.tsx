@@ -1,13 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHex8String, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { AxisProps } from '../types';
+import { borderSettingsToCss } from '../utilities/settingsToCss';
 
-export const Axis = ({ minLabel, maxLabel, orientation }: AxisProps) => {
+export const Axis = ({ minLabel, maxLabel, orientation, style }: AxisProps) => {
     const { designTokens } = useGuidelineDesignTokens();
+    const { labelsColor, lineColor, lineWidth, lineStyle } = style;
     const fontSize = parseFloat(String(designTokens?.imageCaption?.fontSize ?? '0'));
     const lineHeight = parseFloat(String(designTokens?.imageCaption?.lineHeight ?? '0'));
     const labelHeight = fontSize * lineHeight;
+    const borderProperty = orientation === 'horizontal' ? 'borderTop' : 'borderLeft';
 
     return (
         <div
@@ -20,6 +23,7 @@ export const Axis = ({ minLabel, maxLabel, orientation }: AxisProps) => {
             <div
                 style={{
                     minWidth: orientation === 'horizontal' ? `${labelHeight}px` : 'auto',
+                    color: toHex8String(labelsColor),
                 }}
                 className={
                     orientation === 'horizontal'
@@ -36,15 +40,18 @@ export const Axis = ({ minLabel, maxLabel, orientation }: AxisProps) => {
                 </div>
             </div>
             <div
+                style={{
+                    [borderProperty]: borderSettingsToCss(lineWidth, lineStyle, lineColor),
+                }}
                 className={joinClassNames([
-                    'tw-bg-line',
-                    orientation === 'horizontal' && 'tw-w-full tw-h-[1px]',
-                    orientation === 'vertical' && 'tw-w-[1px] tw-h-full',
+                    orientation === 'horizontal' && 'tw-w-full tw-h-0',
+                    orientation === 'vertical' && 'tw-w-0 tw-h-full',
                 ])}
             />
             <div
                 style={{
                     minWidth: orientation === 'horizontal' ? `${labelHeight}px` : 'auto',
+                    color: toHex8String(labelsColor),
                 }}
                 className={
                     orientation === 'horizontal'
