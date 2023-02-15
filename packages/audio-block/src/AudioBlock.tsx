@@ -11,7 +11,7 @@ import {
     RichTextEditor,
     Position,
 } from '@frontify/fondue';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
@@ -21,13 +21,13 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
-    const colDirection =
-        blockSettings.positioning === TextPosition.Above
-            ? 'tw-flex tw-flex-col tw-gap-4 tw-flex-col-reverse'
-            : 'tw-flex tw-flex-col tw-gap-4 ';
-
     const { title, description } = blockSettings;
     const audio = blockAssets?.audio?.[0];
+
+    const audioDivClassNames = joinClassNames([
+        'tw-flex tw-flex-col tw-gap-2',
+        blockSettings.positioning === TextPosition.Above && 'tw-flex-col-reverse',
+    ]);
 
     const saveTitle = (value: string) =>
         value !== blockSettings.title &&
@@ -57,11 +57,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     return (
         <div data-test-id="audio-block">
             {audio ? (
-                <div className={colDirection}>
+                <div className={audioDivClassNames}>
                     <audio key={audio.id} controls className="tw-w-full" controlsList="nodownload" preload="metadata">
                         <source src={audio.genericUrl} type={audio['type']} />
                     </audio>
-                    <div className="tw-flex tw-justify-between">
+                    <div className="tw-flex tw-gap-2 tw-justify-between">
                         <div className="tw-self-stretch">
                             <RichTextEditor
                                 designTokens={designTokens ?? undefined}
