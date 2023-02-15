@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { defineBlock } from '@frontify/guideline-blocks-settings';
-import { PressKitBlock } from './PressKitBlock';
+import { AssetKitBlock } from './AssetKitBlock';
 import { settings } from './settings';
 
 export default defineBlock({
-    block: PressKitBlock,
+    block: AssetKitBlock,
     settings,
 });
