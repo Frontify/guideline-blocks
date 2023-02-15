@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useRef } from 'react';
-import { useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import { Alignment, BlockSettings, Handle, Height, SliderImageSlot, blankSlateWidthStyleMap, heightMap } from './types';
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
@@ -9,6 +9,7 @@ import { Icon, IconEnum, IconSize } from '@frontify/fondue';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { firstAsset, secondAsset } = blockAssets;
 
@@ -59,11 +60,11 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const renderSliderItem = (slot: SliderImageSlot) => {
-        if (slot === SliderImageSlot.First && !firstAsset) {
+        if (slot === SliderImageSlot.First && !firstAsset && (isEditing || secondAsset)) {
             return renderFirstSlotBlankSlate();
         }
 
-        if (slot === SliderImageSlot.Second && !secondAsset) {
+        if (slot === SliderImageSlot.Second && !secondAsset && (isEditing || firstAsset)) {
             return renderSecondSlotBlankSlate();
         }
 
