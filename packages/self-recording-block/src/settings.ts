@@ -2,7 +2,7 @@
 
 import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-import { CameraSize, RecordingMode, VideoMode, MaskShape } from './types';
+import { CameraSize, MaskShape, RecordingMode, VideoMode } from './types';
 
 export const settings = defineSettings({
     main: [
