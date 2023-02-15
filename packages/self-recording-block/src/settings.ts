@@ -110,15 +110,16 @@ export const settings = defineSettings({
             type: 'sectionHeading',
             label: '',
             blocks: [
+                //TODO: Update type in the shared package
+
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                //@ts-ignore
+                getBorderSettings(),
+
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                //@ts-ignore
                 {
-                    id: 'borderStyleHeading',
-                    type: 'sectionHeading',
-                    blocks: [getBorderSettings()],
-                },
-                {
-                    id: 'borderRadiusHeading',
-                    type: 'sectionHeading',
-                    blocks: [getBorderRadiusSettings()],
+                    ...getBorderRadiusSettings(),
                     show: (bundle) => bundle.getBlock('shape')?.value !== MaskShape.Circle,
                 },
             ],
