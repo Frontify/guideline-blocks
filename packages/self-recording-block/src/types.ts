@@ -2,6 +2,7 @@
 
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { ReactNode } from 'react';
 
 export enum RecordingMode {
     CameraAndAudio = 'camera-and-audio',
@@ -47,4 +48,21 @@ export type Settings = {
     radiusChoice: Radius;
 };
 
-export type RecorderState = 'idle' | 'recording' | 'paused' | 'previewing' | 'uploading' | 'permissions-error';
+export type RecorderState =
+    | 'idle'
+    | 'countdown'
+    | 'recording'
+    | 'paused'
+    | 'previewing'
+    | 'uploading'
+    | 'permissions-error';
+
+export type MaskProps = {
+    shape: VideoShape;
+    children: ReactNode;
+    size: CameraSize;
+};
+
+export type CountdownState = {
+    count: number;
+};
