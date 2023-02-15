@@ -700,6 +700,8 @@ importers:
       '@frontify/guideline-blocks-shared': workspace:*
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
+      '@uiw/codemirror-extensions-langs': ^4.15.1
+      '@uiw/react-codemirror': ^4.15.1
       autoprefixer: 10.4.13
       cypress: 11.0.1
       eslint: 8.27.0
@@ -716,6 +718,8 @@ importers:
       '@frontify/fondue-tokens': 3.2.0
       '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/guideline-blocks-shared': link:../shared
+      '@uiw/codemirror-extensions-langs': 4.15.1
+      '@uiw/react-codemirror': 4.15.1_sfoxds7t5ydpegc3knd667wn6m
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -11028,6 +11032,23 @@ packages:
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
       '@codemirror/view': 6.6.0
+    dev: false
+
+  /@uiw/react-codemirror/4.15.1_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-lgtMFS8D2t9ri3ug3kgWoLPPdxDkqkYBWm3dVU9Z7GRs4R1iN2WSr2Z/biQ8KbdyLygRT5isi1k3Ud9ZY6j+YA==}
+    peerDependencies:
+      '@codemirror/view': '>=6.0.0'
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@codemirror/commands': 6.1.2
+      '@codemirror/state': 6.1.4
+      '@codemirror/theme-one-dark': 6.1.0
+      '@uiw/codemirror-extensions-basic-setup': 4.15.1
+      codemirror: 6.0.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /@uiw/react-codemirror/4.15.1_tsqroltqy4j27r2h576o2pxd6u:

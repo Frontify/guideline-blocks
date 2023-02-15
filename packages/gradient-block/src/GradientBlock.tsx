@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -13,6 +13,12 @@ import { IconEnum, debounce, iconsMap, merge } from '@frontify/fondue';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
+type GradientBlockColor = {
+    hex: string;
+    name: string;
+    position: string;
+};
+
 export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     // TODO - replace with const [contentValue] = useState(blockSettings.content);
@@ -24,14 +30,17 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [gradientColors, setGradientColors] = useState([
         {
             hex: '#243c5a',
+            name: 'Black',
             position: '0%',
         },
         {
             hex: '#d717cb',
+            name: 'Hot pink',
             position: '25.43%',
         },
         {
             hex: '#176cd7',
+            name: 'Electric blue',
             position: '80.11%',
         },
     ]);
@@ -99,6 +108,67 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         </div>
     );
 
+    enum ColorSquarePositionType {
+        Left = 'left',
+        Right = 'right',
+    }
+
+    const SquareBadge = ({
+        color,
+        colorSquarePosition = ColorSquarePositionType.Left,
+    }: {
+        color: GradientBlockColor;
+        colorSquarePosition: ColorSquarePositionType;
+    }) => {
+        return (
+            <div className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group">
+                {colorSquarePosition === ColorSquarePositionType.Left && (
+                    <>
+                        <div
+                            className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-ml-[1px]"
+                            style={{
+                                backgroundColor: color.hex,
+                            }}
+                        ></div>
+                        <span className="tw-text-weak tw-pl-[5px] tw-pr-[5px] tw-text-xs">
+                            <strong>{color.name}</strong>
+                        </span>
+                        <span className="tw-text-x-weak tw-text-xs tw-pr-[5px]">{color.hex}</span>
+                        <button
+                            data-test-id="gradient-css-copy-button"
+                            className="tw-inline-flex tw-pr-[4px] tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex"
+                            onClick={handleCopy}
+                        >
+                            {iconsMap[IconEnum.Clipboard16]}
+                        </button>
+                    </>
+                )}
+
+                {colorSquarePosition === ColorSquarePositionType.Right && (
+                    <>
+                        <button
+                            data-test-id="gradient-css-copy-button"
+                            className="tw-inline-flex tw-pl-[5px] tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex"
+                            onClick={handleCopy}
+                        >
+                            {iconsMap[IconEnum.Clipboard16]}
+                        </button>
+                        <span className="tw-text-weak tw-pl-[4px] tw-pr-[5px] tw-text-xs">
+                            <strong>{color.name}</strong>
+                        </span>
+                        <span className="tw-text-x-weak tw-text-xs">{color.hex}</span>
+                        <div
+                            className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-ml-[5px] tw-mr-[1px]"
+                            style={{
+                                backgroundColor: color.hex,
+                            }}
+                        ></div>
+                    </>
+                )}
+            </div>
+        );
+    };
+
     return (
         <div data-test-id="gradient-block">
             <div
@@ -107,6 +177,32 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     height,
                 }}
             ></div>
+            {!isEditing && (
+                <div className="tw-pt-[9px]">
+                    {gradientColors.map((color, index) => (
+                        <>
+                            {index === 0 && (
+                                <div key={index} className="tw-absolute" style={{ left: 0 }}>
+                                    <SquareBadge color={color}></SquareBadge>
+                                </div>
+                            )}
+                            {index !== 0 && index !== lastIndex && (
+                                <div key={index} className="tw-absolute" style={{ left: color.position }}>
+                                    <SquareBadge color={color}></SquareBadge>
+                                </div>
+                            )}
+                            {index === lastIndex && (
+                                <div key={index} className="tw-absolute" style={{ right: 0 }}>
+                                    <SquareBadge
+                                        color={color}
+                                        colorSquarePosition={ColorSquarePositionType.Right}
+                                    ></SquareBadge>
+                                </div>
+                            )}
+                        </>
+                    ))}
+                </div>
+            )}
             {isEditing && (
                 <div>
                     <Divider height="36px" style={DividerStyle.Solid} />
@@ -114,7 +210,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     {gradientColors.map((color, index) => (
                         <>
                             {index === 0 && (
-                                <div key={index} className={joinClassNames(['tw-absolute'])} style={{ left: 0 }}>
+                                <div key={index} className="tw-absolute" style={{ left: 0 }}>
                                     <Tooltip
                                         key={index}
                                         alignment={TooltipAlignment.Middle}
@@ -143,11 +239,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 </div>
                             )}
                             {index !== 0 && index !== lastIndex && (
-                                <div
-                                    key={index}
-                                    className={joinClassNames([`tw-left-[${color.position}]`, 'tw-absolute'])}
-                                    style={{ left: color.position }}
-                                >
+                                <div key={index} className="tw-absolute" style={{ left: color.position }}>
                                     <Tooltip
                                         key={index}
                                         alignment={TooltipAlignment.Middle}
@@ -176,7 +268,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 </div>
                             )}
                             {index === lastIndex && (
-                                <div key={index} className={joinClassNames(['tw-absolute'])} style={{ right: 5 }}>
+                                <div key={index} className="tw-absolute" style={{ right: 5 }}>
                                     <Tooltip
                                         key={index}
                                         alignment={TooltipAlignment.Middle}
