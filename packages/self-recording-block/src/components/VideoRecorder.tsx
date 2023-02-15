@@ -3,11 +3,9 @@
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
-import { cameraSizeToScaleMap } from '../constants';
 import { CameraSize, RecorderState } from '../types';
-import { bindCameraToVideoElement } from '../utilities';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
-import { bindVideoToCanvas } from '../utilities';
+import { Camera } from './Camera';
 
 type VideoRecorderProps = {
     onRecordingEnd: (assetIds: number[]) => void;
@@ -92,27 +90,22 @@ export const VideoRecorder = ({
         }
     }, [doneAll, results, onRecordingEnd]);
 
-    useEffect(() => {
-        const bindElements = async () => {
-            if (cameraRef.current && canvasRef.current) {
-                try {
-                    await bindCameraToVideoElement(cameraRef.current, cameraDeviceId, microphoneDeviceId);
-                    bindVideoToCanvas(cameraRef.current, canvasRef.current, cameraSizeToScaleMap[size]);
-                } catch {
-                    setState('permissions-error');
-                }
-            }
-        };
-
-        bindElements();
-    }, [size, cameraDeviceId, microphoneDeviceId]);
+    const onDevicePermissionDenied = () => {
+        setState('permissions-error');
+    };
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
             {state !== 'permissions-error' ? (
                 <>
-                    <canvas ref={canvasRef}></canvas>
-                    <video ref={cameraRef} className="tw-hidden" muted></video>
+                    <Camera
+                        cameraDeviceId={cameraDeviceId}
+                        microphoneDeviceId={microphoneDeviceId}
+                        size={size}
+                        canvasRef={canvasRef}
+                        cameraRef={cameraRef}
+                        onDevicePermissionDenied={onDevicePermissionDenied}
+                    />
 
                     <div className="tw-mt-6">
                         <VideoRecorderToolbar

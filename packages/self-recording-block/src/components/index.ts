@@ -2,6 +2,7 @@
 
 export * from './AudioPlayer';
 export * from './AudioRecorder';
+export * from './Camera';
 export * from './VideoPlayer';
 export * from './VideoRecorder';
 export * from './VideoRecorderToolbar';
