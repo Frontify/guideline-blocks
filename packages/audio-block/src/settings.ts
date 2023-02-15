@@ -14,22 +14,6 @@ import { TextPosition } from './types';
 export const AUDIO_ID = 'audio';
 
 export const settings = defineSettings({
-    main: [
-        {
-            id: 'main-dropdown',
-            type: 'dropdown',
-            defaultValue: 'custom_block',
-            size: DropdownSize.Large,
-            disabled: true,
-            choices: [
-                {
-                    value: 'custom_block',
-                    icon: IconEnum.Code,
-                    label: 'Custom Block',
-                },
-            ],
-        },
-    ],
     basics: [
         {
             id: AUDIO_ID,
