@@ -175,25 +175,6 @@ export const settings = defineSettings({
             onChange: (bundle) => appendUnit(bundle, 'sliderWidth'),
             layout: MultiInputLayout.Columns,
             blocks: [
-                /*{
-                    id: 'sliderStyle',
-                    type: 'dropdown',
-                    defaultValue: BorderStyle.Solid,
-                    choices: [
-                        {
-                            value: BorderStyle.Solid,
-                            label: BorderStyle.Solid,
-                        },
-                        {
-                            value: BorderStyle.Dotted,
-                            label: BorderStyle.Dotted,
-                        },
-                        {
-                            value: BorderStyle.Dashed,
-                            label: BorderStyle.Dashed,
-                        },
-                    ],
-                },*/
                 {
                     id: 'sliderWidth',
                     type: 'input',
