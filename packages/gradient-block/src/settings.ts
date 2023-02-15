@@ -101,7 +101,9 @@ export const settings = defineSettings({
                             defaultValue: Orientation.Horizontal,
                             choices: [
                                 {
-                                    icon: IconEnum.ArrowAlignVerticalCentre,
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    //@ts-ignore
+                                    icon: IconEnum.ArrowBidirectionalHorizontal24,
                                     value: Orientation.Horizontal,
                                 },
                                 {
