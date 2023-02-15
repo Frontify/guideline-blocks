@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
 import { Countdown, bindAudioToCanvas, bindMicrophoneToAudioElement } from '../utilities';
@@ -10,7 +10,7 @@ import { COUNTDOWN_IN_SECONDS } from '../constants';
 import { merge } from '@frontify/fondue';
 
 type AudioRecorderProps = {
-    onRecordingEnd: (assetIds: number[]) => void;
+    onRecordingEnd: (assetIds: number[]) => Promise<void>;
     microphoneDeviceId?: string;
 };
 
@@ -21,15 +21,22 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const microphoneRef = useRef<HTMLAudioElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
-    const [uploadFiles, { results, doneAll }] = useAssetUpload();
+    const [uploadFiles, { results: uploadedAssets, doneAll }] = useAssetUpload();
     const countdown = new Countdown(COUNTDOWN_IN_SECONDS);
 
     useEffect(() => {
-        if (results.length > 0 && doneAll) {
-            onRecordingEnd(results.map((asset) => asset.id));
+        const associateAssetWithBlock = async () => {
+            await onRecordingEnd(uploadedAssets.map((asset) => asset.id));
             setState('idle');
+        };
+
+        if (doneAll) {
+            associateAssetWithBlock();
         }
-    }, [doneAll, results, onRecordingEnd]);
+        // TODO: This is a workaround for the upload going crazy
+        // If we add `onRecordingEnd` to the deps the upload goes crazy
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [doneAll, uploadedAssets]);
 
     const onStartClick = () => {
         const audioContext = new AudioContext();
@@ -52,16 +59,16 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
         });
     };
 
-    function beep(oscillator: OscillatorNode, destination: AudioDestinationNode, duration: number) {
+    const beep = (oscillator: OscillatorNode, destination: AudioDestinationNode, duration: number) => {
         oscillator.connect(destination);
         return new Promise(() =>
             setTimeout(() => {
                 oscillator.disconnect(destination);
             }, duration)
         );
-    }
+    };
 
-    const startRecording = () => {
+    const startRecording = useCallback(() => {
         const stream = microphoneRef.current?.srcObject as MediaStream | null;
 
         if (!stream) {
@@ -73,46 +80,44 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
         });
 
         recorder.current.addEventListener('dataavailable', (event) => {
-            console.log(event.data);
             allChunks.current.push(event.data);
         });
 
         recorder.current.addEventListener('stop', () => {
-            setState('uploading');
             if (allChunks.current.length > 0) {
                 const blob = new Blob(allChunks.current, { type: 'video/webm' });
-                console.log(blob);
                 uploadFiles(new File([blob], 'self-record.webm'));
             }
         });
 
         recorder.current.start();
         setState('recording');
-    };
+    }, [uploadFiles]);
 
-    const onStopClick = () => {
+    const onStopClick = useCallback(() => {
         recorder.current?.stop();
-    };
+        setState('uploading');
+    }, []);
 
-    const onPauseClick = () => {
+    const onPauseClick = useCallback(() => {
         recorder.current?.pause();
         setState('paused');
-    };
+    }, []);
 
-    const onResumeClick = () => {
+    const onResumeClick = useCallback(() => {
         recorder.current?.resume();
         setState('recording');
-    };
+    }, []);
 
-    const onRestartClick = () => {
+    const onRestartClick = useCallback(() => {
         recorder.current?.pause();
         allChunks.current = [];
         setState('idle');
-    };
+    }, []);
 
-    const onDeleteClick = () => {
+    const onDeleteClick = useCallback(() => {
         console.log('delete');
-    };
+    }, []);
 
     useEffect(() => {
         const bindElements = async () => {
