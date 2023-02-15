@@ -10,8 +10,6 @@ type ImageCaptionProps = {
     onNameChange: (value: string) => void;
     onDescriptionChange: (value: string) => void;
 };
-const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"image-title","children":[{"text":""}]}]'; // TODO adapt in Fondue the textstyles, such that image-title can be used here (https://app.clickup.com/t/8677a21bv)
-const DEFAULT_CONTENT_NAME = '[{"type":"imageCaption","children":[{"text":""}]}]'; // TODO adapt in Fondue the textstyles, such that imageCaption can be used here (https://app.clickup.com/t/8677a21bv)
 
 export const ImageCaption = ({
     name,
@@ -31,7 +29,7 @@ export const ImageCaption = ({
                 ])}
             >
                 <RichTextEditor
-                    value={name ?? DEFAULT_CONTENT_NAME}
+                    value={name}
                     border={false}
                     readonly={!isEditing}
                     onBlur={onNameChange}
@@ -47,7 +45,7 @@ export const ImageCaption = ({
                 ])}
             >
                 <RichTextEditor
-                    value={description ?? DEFAULT_CONTENT_DESCRIPTION}
+                    value={description}
                     border={false}
                     readonly={!isEditing}
                     onTextChange={onDescriptionChange}
