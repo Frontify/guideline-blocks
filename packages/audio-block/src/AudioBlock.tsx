@@ -5,11 +5,10 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { RichTextEditor, Text } from '@frontify/fondue';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings } from './types';
 
-export const AudioBlock: FC<BlockProps> = ({ appBridge }) => {
+export const AudioBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
@@ -24,17 +23,16 @@ export const AudioBlock: FC<BlockProps> = ({ appBridge }) => {
         });
 
     return (
-        <div data-test-id="audio-block" className="tw-relative tw-w-full">
+        <div data-test-id="audio-block" className="tw-flex tw-flex-col tw-gap-4">
             {audio ? (
                 <>
-                    <audio key={audio.id} controls>
+                    <audio key={audio.id} controls className="tw-w-full">
                         <source src={audio.genericUrl} type={audio['type']} />
                     </audio>
                     <Text as="p">{audio.fileName}</Text>
                     <RichTextEditor
                         designTokens={designTokens ?? undefined}
                         value={description}
-                        onBlur={saveDescription}
                         onTextChange={saveDescription}
                         placeholder="add a description here"
                         readonly={!isEditing}
