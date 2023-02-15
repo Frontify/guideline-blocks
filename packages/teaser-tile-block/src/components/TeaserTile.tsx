@@ -2,90 +2,139 @@
 
 import { MutableRefObject } from 'react';
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
 import { IconPlus32, merge } from '@frontify/fondue';
+import { AppBridgeBlock } from '@frontify/app-bridge';
 
-import { TileType } from '../types';
 import { useTileAsset } from '../hooks';
+import { TileImagePositioning, TilePadding, TileType } from '../types';
 
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 
-type TeaserTileBaseProps = {
+export type TeaserTileBaseProps = {
     id: string;
+    border?: string;
     variant?: TileType;
+    background?: string;
+    borderRadius?: string;
     appBridge: AppBridgeBlock;
 };
 
-type TeaserTileImageProps = {
+export type TeaserTileImageProps = {
     height?: never;
+    padding?: never;
+    textAlign?: never;
+    objectFit?: 'fill' | 'contain'; // ? TODO: use csstype
     imageHeight: string;
+    positioning?: never;
     variant: TileType.Image;
-} & TeaserTileBaseProps;
+};
 
-type TeaserTileTextProps = {
-    height: string;
+export type TeaserTileTextProps = {
+    height?: string;
+    padding?: string;
+    objectFit?: never;
+    positioning?: never;
     imageHeight?: never;
     variant: TileType.Text;
-} & TeaserTileBaseProps;
+    textAlign?: 'left' | 'right' | 'center'; // ? TODO: use csstype
+};
 
-type TeaserTileImageTextProps = {
+export type TeaserTileImageTextProps = {
     height?: never;
-    imageHeight: string;
+    padding?: string;
+    objectFit?: 'fill' | 'contain'; // ? TODO: use csstype
+    imageHeight?: string;
     variant: TileType.ImageText;
-} & TeaserTileBaseProps;
+    positioning?: TileImagePositioning;
+    textAlign?: 'left' | 'right' | 'center'; // ? TODO: use csstype
+};
 
-type TeaserTileProps = TeaserTileImageProps | TeaserTileTextProps | TeaserTileImageTextProps;
+type TeaserTileProps = TeaserTileBaseProps & (TeaserTileImageProps | TeaserTileTextProps | TeaserTileImageTextProps);
 
-export const TeaserTile = ({ appBridge, id, variant = TileType.ImageText, height, imageHeight }: TeaserTileProps) => {
-    console.log('🚀 ~ TeaserTile ~ imageHeight', imageHeight);
+const twPositioningMap: Record<TileImagePositioning, string> = {
+    [TileImagePositioning.Top]: 'tw-flex-col',
+    [TileImagePositioning.Bottom]: 'tw-flex-col-reverse',
+    [TileImagePositioning.Left]: 'tw-flex-row',
+    [TileImagePositioning.Right]: 'tw-flex-row-reverse',
+    [TileImagePositioning.Behind]: '', // ! TODO: missing positioning inside picture
+};
+
+const twBorderMap: Record<TileImagePositioning, string> = {
+    [TileImagePositioning.Top]: 'tw-border-b',
+    [TileImagePositioning.Bottom]: 'tw-border-t',
+    [TileImagePositioning.Left]: 'tw-border-r',
+    [TileImagePositioning.Right]: 'tw-border-l',
+    [TileImagePositioning.Behind]: '',
+};
+
+export const TeaserTile = ({
+    id,
+    height,
+    border,
+    objectFit,
+    appBridge,
+    background,
+    imageHeight,
+    borderRadius,
+    textAlign = 'left',
+    padding = TilePadding.Small, // ! TODO: check with Simone about padding. As there is mismatch between design and settings.
+    variant = TileType.ImageText,
+    positioning = TileImagePositioning.Top,
+}: TeaserTileProps) => {
     const { tileAsset, isAssetLoading, openFileDialog, onOpenAssetChooser } = useTileAsset(appBridge, id);
 
+    const imageClassName = merge([
+        'tw-w-full tw-bg-base-alt tw-flex tw-justify-center tw-items-center',
+        imageHeight === 'auto' ? 'tw-aspect-square' : undefined,
+        variant === TileType.ImageText ? `${twBorderMap[positioning]} tw-border-line-weak` : undefined,
+    ]);
+
+    const textClassName = merge([
+        'tw-flex tw-flex-col tw-space-y-1 tw-mx-4',
+        variant === TileType.Text ? 'tw-my-4' : 'tw-mb-4 tw-mt-2',
+    ]);
+
     return (
-        <div className="tw-border tw-border-line tw-flex tw-flex-col">
+        <div
+            style={{ background, borderRadius, border }}
+            className={merge(['tw-flex tw-overflow-auto', twPositioningMap[positioning]])}
+        >
             {variant !== TileType.Text && (
                 <TileSettingsFlyout
+                    link={null}
+                    display={null}
                     variant={variant}
-                    onReplaceAssetFromUpload={openFileDialog}
-                    onReplaceAssetFromWorkspace={onOpenAssetChooser}
-                    isAssetLoading={isAssetLoading}
                     asset={tileAsset}
                     backgroundColor={null}
-                    onBackgroundColorChange={console.log}
-                    backgroundVisibility={null}
-                    onBackgroundVisibilityChange={console.log}
-                    display={null}
-                    onDisplayChange={console.log}
-                    link={null}
                     onLinkChange={console.log}
+                    backgroundVisibility={null}
+                    onDisplayChange={console.log}
+                    isAssetLoading={isAssetLoading}
+                    onBackgroundColorChange={console.log}
+                    onReplaceAssetFromUpload={openFileDialog}
+                    onBackgroundVisibilityChange={console.log}
+                    onReplaceAssetFromWorkspace={onOpenAssetChooser}
                 >
                     {(props, triggerRef: MutableRefObject<HTMLDivElement>) => {
-                        return (
-                            <div
+                        return tileAsset?.originUrl ? (
+                            <img
                                 {...props}
-                                className={merge([
-                                    'tw-w-full tw-bg-base-alt tw-flex tw-justify-center tw-items-center',
-                                    variant === TileType.ImageText ? 'tw-border-b tw-border-line-weak' : undefined,
-                                    imageHeight === 'auto' ? 'tw-aspect-square' : undefined,
-                                ])}
-                                style={{ height: imageHeight }}
-                            >
+                                className={imageClassName}
+                                src={tileAsset?.originUrl}
+                                style={{ height: imageHeight, objectFit }}
+                            />
+                        ) : (
+                            <div {...props} className={imageClassName} style={{ height: imageHeight }}>
                                 <div ref={triggerRef}>
                                     <IconPlus32 />
                                 </div>
                             </div>
                         );
                     }}
-                    {/* <img>Image part</img> */}
                 </TileSettingsFlyout>
             )}
             {variant !== TileType.Image && (
-                <div
-                    style={{ height }}
-                    className={merge([
-                        'tw-flex tw-flex-col tw-space-y-1 tw-mx-4',
-                        variant === TileType.Text ? 'tw-my-4' : 'tw-mb-4 tw-mt-2',
-                    ])}
-                >
+                <div style={{ height, padding, textAlign }} className={textClassName}>
                     <h6 className="tw-text-base tw-text-blank-state-weak tw-font-semibold">Teaser Title</h6>
                     <p className="tw-text-sm tw-text-blank-state-weak tw-font-normal">Add a description</p>
                 </div>
