@@ -39,3 +39,5 @@ export type Settings = {
     radiusValue: string;
     radiusChoice: Radius;
 };
+
+export type RecorderState = 'idle' | 'recording' | 'paused' | 'previewing' | 'uploading' | 'permissions-error';

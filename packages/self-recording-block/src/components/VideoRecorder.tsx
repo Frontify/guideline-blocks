@@ -4,7 +4,7 @@ import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
 import { cameraSizeToScaleMap } from '../constants';
-import { CameraSize } from '../types';
+import { CameraSize, RecorderState } from '../types';
 import { bindCameraToVideoElement } from '../utilities';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
 import { bindVideoToCanvas } from '../utilities';
@@ -22,7 +22,7 @@ export const VideoRecorder = ({
     cameraDeviceId,
     microphoneDeviceId,
 }: VideoRecorderProps): ReactElement => {
-    const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'previewing' | 'uploading'>('idle');
+    const [state, setState] = useState<RecorderState>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
     const cameraRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -95,8 +95,12 @@ export const VideoRecorder = ({
     useEffect(() => {
         const bindElements = async () => {
             if (cameraRef.current && canvasRef.current) {
-                await bindCameraToVideoElement(cameraRef.current, cameraDeviceId, microphoneDeviceId);
-                bindVideoToCanvas(cameraRef.current, canvasRef.current, cameraSizeToScaleMap[size]);
+                try {
+                    await bindCameraToVideoElement(cameraRef.current, cameraDeviceId, microphoneDeviceId);
+                    bindVideoToCanvas(cameraRef.current, canvasRef.current, cameraSizeToScaleMap[size]);
+                } catch {
+                    setState('permissions-error');
+                }
             }
         };
 
@@ -105,20 +109,29 @@ export const VideoRecorder = ({
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            <canvas ref={canvasRef}></canvas>
-            <video ref={cameraRef} className="tw-hidden" muted></video>
+            {state !== 'permissions-error' ? (
+                <>
+                    <canvas ref={canvasRef}></canvas>
+                    <video ref={cameraRef} className="tw-hidden" muted></video>
 
-            <div className="tw-mt-6">
-                <VideoRecorderToolbar
-                    state={state}
-                    onDeleteClick={onDeleteClick}
-                    onPauseClick={onPauseClick}
-                    onRestartClick={onRestartClick}
-                    onResumeClick={onResumeClick}
-                    onStartClick={onStartClick}
-                    onStopClick={onStopClick}
-                />
-            </div>
+                    <div className="tw-mt-6">
+                        <VideoRecorderToolbar
+                            state={state}
+                            onDeleteClick={onDeleteClick}
+                            onPauseClick={onPauseClick}
+                            onRestartClick={onRestartClick}
+                            onResumeClick={onResumeClick}
+                            onStartClick={onStartClick}
+                            onStopClick={onStopClick}
+                        />
+                    </div>
+                </>
+            ) : (
+                <div className="tw-h-12 tw-flex tw-items-center tw-justify-center tw-select-none">
+                    <span>No permissions to record you</span>&nbsp;
+                    <span className="tw-animate-spin">🥲</span>
+                </div>
+            )}
         </div>
     );
 };
