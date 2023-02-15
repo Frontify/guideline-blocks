@@ -5,11 +5,11 @@ import { useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-brid
 import { Button } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { IMAGE_SETTING_ID } from './settings';
 
-export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps) => {
+export const ExampleAssetUploadBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
 
     // Manual upload demo

@@ -3,9 +3,10 @@
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { ReactElement } from 'react';
 import 'tailwindcss/tailwind.css';
 
-export const ExampleGuidelineDesignTokensBlock = ({}: BlockProps) => {
+export const ExampleGuidelineDesignTokensBlock = ({}: BlockProps): ReactElement => {
     const { designTokens, error, isLoading } = useGuidelineDesignTokens();
 
     return (
