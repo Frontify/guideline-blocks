@@ -1,8 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DraggableAttributes, DraggableSyntheticListeners } from '@dnd-kit/core';
+import { Asset } from '@frontify/app-bridge';
 
-export type BlockSettings = unknown;
+export type Item = {
+    position: { x: number; y: number };
+    id: string;
+    assetId: number;
+};
+
+export type BlockSettings = {
+    items: Item[];
+};
+
+export const ASSETS_KEY = 'assets';
 
 export enum BrandItemSize {
     S = 's',
@@ -30,6 +41,14 @@ export const cornerRadiusMap: Record<CornerRadius, string> = {
     [CornerRadius.L]: '12px',
 };
 
+export type BoardProps = {
+    items: Item[];
+    assets: Asset[];
+    setItems: (items: Item[]) => void;
+    deleteItem: (item: Item) => void;
+    isEditing: boolean;
+};
+
 export type AxisProps = {
     minLabel: string;
     maxLabel: string;
@@ -39,14 +58,18 @@ export type AxisProps = {
 export type ItemProps = {
     xPosition: number;
     yPosition: number;
-    src: string;
-    id: number;
+    src?: string;
+    id: string;
+    isEditing: boolean;
+
+    deleteItem: () => void;
 };
 
 export type ToolbarProps = {
     draggableAttributes: DraggableAttributes;
     draggableListeners: DraggableSyntheticListeners;
     isDragging: boolean;
+    deleteItem: () => void;
 };
 
 export type BlockInjectButtonProps = {

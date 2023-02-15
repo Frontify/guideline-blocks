@@ -10,28 +10,12 @@ import {
     useSensors,
 } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import { BoardProps } from '../types';
 import { Axis } from './Axis';
 import { Item } from './Item';
 
-export const Board = () => {
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            src: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg',
-            position: { x: 20, y: 30 },
-        },
-        {
-            id: 2,
-            src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Adobe_XD_CC_icon.svg/2101px-Adobe_XD_CC_icon.svg.png',
-            position: { x: 60, y: 60 },
-        },
-        {
-            id: 3,
-            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlU4c9fPbFra-FMGiVFCldOG18IUF6fom24_v_LcC9Vr22HosMUD9aBzmAaarwcSgn42Y&usqp=CAU',
-            position: { x: 70, y: 10 },
-        },
-    ]);
+export const Board = ({ items, assets, setItems, deleteItem, isEditing }: BoardProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const mouseSensor = useSensor(MouseSensor);
     const touchSensor = useSensor(TouchSensor);
@@ -45,20 +29,24 @@ export const Board = () => {
         const { width, height } = containerRef.current.getBoundingClientRect();
         const deltaXInPercentage = (event.delta.x * 100) / width;
         const deltaYInPercentage = (event.delta.y * 100) / height;
-        setItems(
-            items.map((item) =>
-                item.id === event.active.id
-                    ? {
-                          ...item,
-                          position: {
-                              x: item.position.x + deltaXInPercentage,
-                              y: item.position.y + deltaYInPercentage,
-                          },
-                      }
-                    : item
-            )
+        const newItems = items.map((item) =>
+            item.id === event.active.id
+                ? {
+                      ...item,
+                      position: {
+                          x: item.position.x + deltaXInPercentage,
+                          y: item.position.y + deltaYInPercentage,
+                      },
+                  }
+                : item
         );
+        setItems(newItems);
     };
+
+    const itemsWithImages = items.map((item) => ({
+        ...item,
+        src: assets.find((asset) => asset.id === item.assetId)?.genericUrl,
+    }));
 
     return (
         <div className="tw-w-full tw-flex tw-rounded tw-h-[613px] sm:tw-h-[500px] tw-relative tw-border tw-p-2 sm:tw-p-3">
@@ -70,13 +58,15 @@ export const Board = () => {
                     <div className="tw-absolute tw-h-full tw-left-1/2 -tw-translate-x-1/2">
                         <Axis minLabel="Low Quality" maxLabel="High Quality" orientation="vertical" />
                     </div>
-                    {items.map((item, i) => (
+                    {itemsWithImages.map((item, i) => (
                         <Item
                             key={i}
+                            isEditing={isEditing}
                             id={item.id}
                             src={item.src}
                             xPosition={item.position.x}
                             yPosition={item.position.y}
+                            deleteItem={() => deleteItem(item)}
                         />
                     ))}
                 </div>
