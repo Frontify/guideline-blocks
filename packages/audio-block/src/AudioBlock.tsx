@@ -21,9 +21,17 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
-    const { title, description } = blockSettings;
+    const { description } = blockSettings;
+    let { title } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
     const mimeType = 'audio/' + audio?.extension;
+
+    if (audio && title === undefined && description === undefined) {
+        title = audio.fileName;
+        setBlockSettings({
+            title: audio.fileName,
+        });
+    }
 
     const audioDivClassNames = joinClassNames([
         'tw-flex tw-flex-col tw-gap-2',
