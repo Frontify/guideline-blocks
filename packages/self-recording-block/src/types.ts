@@ -2,7 +2,6 @@
 
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
-import { ReactNode } from 'react';
 
 export enum RecordingMode {
     CameraAndAudio = 'camera-and-audio',
