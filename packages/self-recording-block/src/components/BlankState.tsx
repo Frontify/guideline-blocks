@@ -10,7 +10,7 @@ type BlankStateProps = {
 export const BlankState = ({ onClick }: BlankStateProps): ReactElement => {
     return (
         <div
-            className="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-bg-[#FAFAFA] tw-cursor-pointer"
+            className="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-bg-[#FAFAFA] tw-cursor-pointer tw-aspect-video"
             onClick={onClick}
         >
             <div className="tw-flex tw-gap-4">
