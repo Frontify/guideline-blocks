@@ -66,15 +66,21 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const height = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
     const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
     const padding = blockSettings.padding ? blockSettings.paddingCustom : paddingMap[blockSettings.paddingChoice];
-    const textAlign = blockSettings.horizontalAlignment.toLowerCase() as 'left' | 'right' | 'center'; // TODO: should be by default lowercase instead of uppercase
+
+    // TODO: should be by default lowercase instead of uppercase
+    // ! TODO: missing vertical Alignment
+    const textAlign = blockSettings.horizontalAlignment.toLowerCase() as 'left' | 'right' | 'center';
+
+    // TODO: should be by default lowercase instead of uppercase
     const border = blockSettings.hasBorder
         ? `${blockSettings.borderWidth} ${blockSettings.borderStyle.toLowerCase()} ${toRgbaString(
               blockSettings.borderColor
-          )}` // TODO: should be by default lowercase instead of uppercase
+          )}`
         : undefined;
+
+    const objectFit = objectFitMap[blockSettings.display] as 'fill' | 'contain';
     const background = blockSettings.background ? toRgbaString(blockSettings.backgroundColor) : undefined;
     const borderRadius = blockSettings.hasRadius ? blockSettings.radiusValue : radiusMap[blockSettings.radiusChoice];
-    const objectFit = objectFitMap[blockSettings.display] as 'fill' | 'contain';
 
     const props: VariantProps = useMemo(
         () => ({
