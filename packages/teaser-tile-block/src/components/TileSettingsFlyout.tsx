@@ -34,6 +34,8 @@ type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'backgroundVisibil
     onBackgroundColorChange: (color: Color) => void;
     isOpen: boolean;
     setIsOpen: (boolean: boolean) => void;
+    placement: FlyoutPlacement;
+    height: string;
 };
 
 type ImageFlyoutProps = {
@@ -74,13 +76,15 @@ export const TileSettingsFlyout = ({
     onDisplayChange,
     isOpen,
     setIsOpen,
+    placement,
+    height,
 }: TileSettingsFlyoutProps) => (
     <Flyout
         isOpen={isOpen}
         legacyFooter={false}
         trigger={children}
         onOpenChange={(isOpen) => setIsOpen(isOpen)}
-        placement={FlyoutPlacement.BottomRight}
+        placement={placement}
         fixedHeader={
             <div className="tw-flex tw-justify-between tw-w-full tw-bg-base tw-pl-6 tw-pr-3 tw-py-1.5 tw-items-center tw-border-b tw-border-b-line tw-border-b-solid">
                 <h1 className="tw-text-s tw-font-bold">Configure Tile</h1>
@@ -164,7 +168,7 @@ export const TileSettingsFlyout = ({
                         currentColor={backgroundColor}
                     />
                 )}
-                {type !== TileType.Text && (
+                {type !== TileType.Text && height !== 'auto' && (
                     <>
                         <InputLabel htmlFor="display">Display</InputLabel>
                         <div className="tw-flex">

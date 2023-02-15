@@ -15,11 +15,10 @@ import {
     IconDotsVertical,
     IconPlus32,
     IconTrashBin,
+    LoadingCircle,
     MenuItemStyle,
     RichTextEditor,
     merge,
-    PluginComposer,
-    BoldPlugin,
 } from '@frontify/fondue';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 
@@ -73,7 +72,7 @@ const useTileStyles = (blockSettings: Settings, tileSettings: TileSettings) => {
 
     const globalObjectFit = objectFitMap[blockSettings.display];
     const tileObjectFit = tileSettings.display ? objectFitMap[tileSettings.display] : undefined;
-    const objectFit = tileObjectFit ?? globalObjectFit;
+    const objectFit = height === 'auto' ? tileObjectFit ?? globalObjectFit : undefined;
 
     const globalBackground = blockSettings.background ? toRgbaString(blockSettings.backgroundColor) : undefined;
     const tileBackground = tileSettings.backgroundColor ? toRgbaString(tileSettings.backgroundColor) : undefined;
@@ -120,6 +119,7 @@ export const TeaserTile = ({
     const tileFlyoutProps: Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children'> = {
         link: tileSettings.link ?? null,
         display: tileSettings.display ?? blockSettings.display ?? null,
+        height,
         type,
         asset: tileAsset,
         backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
@@ -168,11 +168,16 @@ export const TeaserTile = ({
             >
                 {type !== TileType.Text && (
                     <>
-                        {tileAsset?.originUrl ? (
-                            <img className={imageClassName} src={tileAsset?.originUrl} style={{ height, objectFit }} />
+                        {tileAsset?.genericUrl ? (
+                            <img
+                                className={imageClassName}
+                                src={tileAsset?.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+                                style={{ height, objectFit }}
+                            />
                         ) : (
                             <TileSettingsFlyout
                                 {...tileFlyoutProps}
+                                placement={FlyoutPlacement.Bottom}
                                 type={type}
                                 isOpen={isPlaceholderImageFlyoutOpen}
                                 setIsOpen={setIsPlaceholderImageFlyoutOpen}
@@ -180,7 +185,7 @@ export const TeaserTile = ({
                                 {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
                                     <div {...props} className={imageClassName} style={{ height }}>
                                         <div ref={triggerRef}>
-                                            <IconPlus32 />
+                                            {isAssetLoading ? <LoadingCircle /> : <IconPlus32 />}
                                         </div>
                                     </div>
                                 )}
@@ -211,6 +216,7 @@ export const TeaserTile = ({
             >
                 <TileSettingsFlyout
                     {...tileFlyoutProps}
+                    placement={FlyoutPlacement.BottomRight}
                     isOpen={isTopSettingsFlyoutOpen}
                     setIsOpen={setIsTopSettingsFlyoutOpen}
                 >

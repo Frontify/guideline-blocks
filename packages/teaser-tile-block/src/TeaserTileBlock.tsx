@@ -95,11 +95,10 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
 
     // Used on first render to create tiles array of when number of columns changes
     useEffect(() => {
-        const currentColumnCount = parseInt(blockSettings.columns);
-        const columnDifference = currentColumnCount - (blockTiles?.length ?? 0);
-        if (columnDifference > 0) {
-            const tiles = [...(blockTiles ?? [])];
-            for (let i = 0; i < columnDifference; i++) {
+        if (!blockTiles) {
+            const currentColumnCount = parseInt(blockSettings.columns);
+            const tiles: Tile[] = [];
+            for (let i = 0; i < currentColumnCount; i++) {
                 tiles.push({ id: generateRandomId(), settings: { ...INIT_TILE_SETTINGS } });
             }
             setInternalTiles(tiles);
@@ -117,7 +116,6 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 display: 'grid',
                 gridAutoFlow: 'row',
                 gridTemplateRows: 'auto',
-                gridAutoRows: '1fr',
                 gridTemplateColumns: `repeat(${blockSettings.columns}, 1fr)`,
             }}
         >
