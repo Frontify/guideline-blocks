@@ -135,7 +135,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 <div
                     className={merge([
                         'tw-transition tw-bg-base-alt tw-rounded tw-border tw-h-full tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center tw-cursor-pointer hover:tw-bg-box-neutral-hover',
-                        tileHeight === 'auto' && 'tw-aspect-square',
+                        'tw-min-h-[100px]',
                     ])}
                     style={{
                         height: tileHeight,

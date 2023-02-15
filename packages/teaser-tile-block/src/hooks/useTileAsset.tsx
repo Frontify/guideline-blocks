@@ -44,5 +44,14 @@ export const useTileAsset = (appBridge: AppBridgeBlock, id: string) => {
 
     const tileAsset = blockAssets[id]?.[0];
 
-    return { tileAsset, isAssetLoading, onOpenAssetChooser, openFileDialog };
+    return {
+        tileAsset,
+        isAssetLoading,
+        onOpenAssetChooser,
+        openFileDialog,
+        uploadFile: (file: File) => {
+            setIsAssetLoading(true);
+            uploadFile(file);
+        },
+    };
 };

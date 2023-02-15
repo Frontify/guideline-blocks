@@ -41,6 +41,7 @@ type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'backgroundVisibil
 type ImageFlyoutProps = {
     type: TileType.Image | TileType.ImageText;
     onReplaceAssetFromUpload: () => void;
+    onUploadFile: (file: File) => void;
     onReplaceAssetFromWorkspace: () => void;
     isAssetLoading: boolean;
     asset: Nullable<Asset>;
@@ -51,6 +52,7 @@ type TextFlyoutProps = {
     type: TileType.Text;
     onReplaceAssetFromUpload: never;
     onReplaceAssetFromWorkspace: never;
+    onUploadFile: never;
     isAssetLoading: never;
     asset: never;
     display: never;
@@ -64,6 +66,7 @@ export const TileSettingsFlyout = ({
     children,
     isAssetLoading,
     onReplaceAssetFromUpload,
+    onUploadFile,
     onReplaceAssetFromWorkspace,
     asset,
     link,
@@ -137,7 +140,7 @@ export const TileSettingsFlyout = ({
                             ]}
                             size={AssetInputSize.Small}
                             onLibraryClick={onReplaceAssetFromWorkspace}
-                            onUploadClick={onReplaceAssetFromUpload}
+                            onUploadClick={onUploadFile}
                         />
                     </>
                 )}
@@ -145,6 +148,7 @@ export const TileSettingsFlyout = ({
                 <TextInput
                     placeholder="https://www.example.com"
                     decorator={<IconLink />}
+                    value={link?.href}
                     onChange={(value) => onLinkChange({ ...link, href: value })}
                 />
                 <Checkbox

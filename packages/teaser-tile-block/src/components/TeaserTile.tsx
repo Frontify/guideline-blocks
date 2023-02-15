@@ -23,7 +23,7 @@ import {
 import { AppBridgeBlock } from '@frontify/app-bridge';
 
 import { useTileAsset } from '../hooks';
-import { Settings, TileImagePositioning, TileSettings, TileType } from '../types';
+import { Settings, TileImagePositioning, TileSettings, TileType, TileVerticalAlignment } from '../types';
 
 import { TileSettingsFlyout, TileSettingsFlyoutProps } from './TileSettingsFlyout';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
@@ -44,7 +44,7 @@ const twPositioningMap: Record<TileImagePositioning, string> = {
     [TileImagePositioning.Bottom]: 'tw-flex-col-reverse',
     [TileImagePositioning.Left]: 'tw-flex-row',
     [TileImagePositioning.Right]: 'tw-flex-row-reverse',
-    [TileImagePositioning.Behind]: '', // ! TODO: missing positioning inside picture
+    [TileImagePositioning.Behind]: '',
 };
 
 const twBorderMap: Record<TileImagePositioning, string> = {
@@ -55,12 +55,17 @@ const twBorderMap: Record<TileImagePositioning, string> = {
     [TileImagePositioning.Behind]: '',
 };
 
+const twVerticalAlignmentMap: Record<TileVerticalAlignment, string> = {
+    [TileVerticalAlignment.Top]: 'tw-justify-start',
+    [TileVerticalAlignment.Center]: 'tw-justify-center',
+    [TileVerticalAlignment.Bottom]: 'tw-justify-end',
+};
+
 const useTileStyles = (blockSettings: Settings, tileSettings: TileSettings) => {
     const height = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
     const padding = blockSettings.padding ? blockSettings.paddingCustom : paddingMap[blockSettings.paddingChoice];
 
     // TODO: should be by default lowercase instead of uppercase
-    // ! TODO: missing vertical Alignment
     const textAlign = blockSettings.horizontalAlignment.toLowerCase() as 'left' | 'right' | 'center';
 
     // TODO: should be by default lowercase instead of uppercase
@@ -91,8 +96,7 @@ export const TeaserTile = ({
     onRemoveTile,
     isEditing,
 }: TeaserTileProps) => {
-    console.log(isEditing);
-    const { tileAsset, isAssetLoading, openFileDialog, onOpenAssetChooser } = useTileAsset(appBridge, id);
+    const { tileAsset, isAssetLoading, uploadFile, onOpenAssetChooser, openFileDialog } = useTileAsset(appBridge, id);
     const { positioning, type } = blockSettings;
     const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);
     const [isMenuFlyoutOpen, setIsMenuFlyoutOpen] = useState(false);
@@ -105,15 +109,19 @@ export const TeaserTile = ({
     );
 
     const imageClassName = merge([
-        'tw-w-full tw-bg-base-alt tw-flex tw-justify-center tw-items-center',
+        'tw-z-[1] tw-bg-base-alt tw-min-w-0 tw-flex-initial',
         height === 'auto' && type === TileType.ImageText && 'tw-aspect-square',
         height === 'auto' && type === TileType.Image && 'tw-aspect-[3/4]',
         type === TileType.ImageText ? `${twBorderMap[positioning]} tw-border-line-weak` : undefined,
     ]);
 
     const textClassName = merge([
-        'tw-flex tw-flex-col tw-space-y-1 tw-mx-4',
-        type === TileType.Text ? 'tw-my-4' : 'tw-mb-4 tw-mt-2',
+        'tw-flex tw-flex-col tw-space-y-1 tw-z-[2]',
+        positioning === TileImagePositioning.Behind &&
+            merge([
+                'tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0',
+                twVerticalAlignmentMap[blockSettings.verticalAlignment],
+            ]),
     ]);
 
     const tileFlyoutProps: Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children'> = {
@@ -129,6 +137,7 @@ export const TeaserTile = ({
         isAssetLoading,
         onBackgroundColorChange: (backgroundColor) => onTileSettingsChange({ backgroundColor }),
         onReplaceAssetFromUpload: openFileDialog,
+        onUploadFile: uploadFile,
         onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange({ backgroundVisibility }),
         onReplaceAssetFromWorkspace: onOpenAssetChooser,
     };
@@ -162,18 +171,28 @@ export const TeaserTile = ({
 
     return (
         <div className="tw-relative tw-group">
+            {tileSettings.link?.href && !isEditing && (
+                <a
+                    className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"
+                    aria-label={`Navigate to ${tileSettings.link.href}`}
+                    href={tileSettings.link.href}
+                    target={tileSettings.link.target}
+                />
+            )}
             <div
-                style={{ background, borderRadius, border }}
-                className={merge(['tw-flex tw-overflow-auto tw-h-full', twPositioningMap[positioning]])}
+                style={{ borderRadius, border, background }}
+                className={merge(['tw-flex tw-overflow-auto tw-h-full tw-relative', twPositioningMap[positioning]])}
             >
                 {type !== TileType.Text && (
                     <>
                         {tileAsset?.genericUrl ? (
-                            <img
-                                className={imageClassName}
-                                src={tileAsset?.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                                style={{ height, objectFit }}
-                            />
+                            <div className="tw-min-w-0 tw-flex tw-flex-initial tw-items-center tw-justify-center tw-bg-base-alt">
+                                <img
+                                    className={imageClassName}
+                                    src={tileAsset?.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+                                    style={{ height, objectFit }}
+                                />
+                            </div>
                         ) : (
                             <TileSettingsFlyout
                                 {...tileFlyoutProps}
@@ -183,7 +202,14 @@ export const TeaserTile = ({
                                 setIsOpen={setIsPlaceholderImageFlyoutOpen}
                             >
                                 {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
-                                    <div {...props} className={imageClassName} style={{ height }}>
+                                    <div
+                                        {...props}
+                                        className={merge([
+                                            imageClassName,
+                                            'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center',
+                                        ])}
+                                        style={{ height }}
+                                    >
                                         <div ref={triggerRef}>
                                             {isAssetLoading ? <LoadingCircle /> : <IconPlus32 />}
                                         </div>
@@ -195,15 +221,11 @@ export const TeaserTile = ({
                 )}
                 {type !== TileType.Image && (
                     <div
-                        style={{ height: type === TileType.Text ? height : undefined, padding, textAlign }}
+                        style={{ height: type === TileType.Text ? height : undefined, padding, textAlign, background }}
                         className={textClassName}
                     >
-                        <h6 className="tw-text-base tw-text-blank-state-weak tw-font-semibold">
-                            {titleRichTextEditor}
-                        </h6>
-                        <p className="tw-text-sm tw-text-blank-state-weak tw-font-normal">
-                            {descriptionRichTextEditor}
-                        </p>
+                        <h6 className="tw-text-lg tw-font-semibold">{titleRichTextEditor}</h6>
+                        <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
                     </div>
                 )}
             </div>
