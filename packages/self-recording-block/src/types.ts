@@ -57,12 +57,6 @@ export type RecorderState =
     | 'uploading'
     | 'permissions-error';
 
-export type MaskProps = {
-    shape: VideoShape;
-    children: ReactNode;
-    size: CameraSize;
-};
-
 export type CountdownState = {
     count: number;
 };
