@@ -69,11 +69,15 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const renderSliderItem = (slot: SliderImageSlot) => {
-        if (slot === SliderImageSlot.First && !firstAsset && (isEditing || secondAsset)) {
+        if (!isEditing && (!firstAsset || !secondAsset)) {
+            return;
+        }
+
+        if (slot === SliderImageSlot.First && !firstAsset) {
             return renderFirstSlotBlankSlate();
         }
 
-        if (slot === SliderImageSlot.Second && !secondAsset && (isEditing || firstAsset)) {
+        if (slot === SliderImageSlot.Second && !secondAsset) {
             return renderSecondSlotBlankSlate();
         }
 
