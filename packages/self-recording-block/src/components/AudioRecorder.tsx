@@ -10,7 +10,7 @@ import { COUNTDOWN_IN_SECONDS } from '../constants';
 import { merge } from '@frontify/fondue';
 
 type AudioRecorderProps = {
-    onRecordingEnd: (assetIds: number[]) => Promise<void>;
+    onRecordingEnd: (assetId: number) => Promise<void>;
     microphoneDeviceId?: string;
 };
 
@@ -26,7 +26,8 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
 
     useEffect(() => {
         const associateAssetWithBlock = async () => {
-            await onRecordingEnd(uploadedAssets.map((asset) => asset.id));
+            const assetId = uploadedAssets[0].id;
+            await onRecordingEnd(assetId);
             setState('idle');
         };
 

@@ -15,15 +15,17 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     const isAudioAndCamera = blockSettings.recordingMode === RecordingMode.CameraAndAudio;
 
     const onVideoRecordingEnd = useCallback(
-        async (assetIds: number[]) => {
-            await updateAssetIdsFromKey('video', assetIds);
+        async (assetId: number) => {
+            await updateAssetIdsFromKey('video', []);
+            await updateAssetIdsFromKey('video', [assetId]);
         },
         [updateAssetIdsFromKey]
     );
 
     const onAudioRecordingEnd = useCallback(
-        async (assetIds: number[]) => {
-            await updateAssetIdsFromKey('audio', assetIds);
+        async (assetId: number) => {
+            await updateAssetIdsFromKey('video', []);
+            await updateAssetIdsFromKey('video', [assetId]);
         },
         [updateAssetIdsFromKey]
     );

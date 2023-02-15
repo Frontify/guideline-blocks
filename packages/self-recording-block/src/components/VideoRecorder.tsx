@@ -9,7 +9,7 @@ import { Camera } from './Camera';
 import { Mask, MaskProps } from './Mask';
 
 type VideoRecorderProps = {
-    onRecordingEnd: (assetIds: number[]) => Promise<void>;
+    onRecordingEnd: (assetId: number) => Promise<void>;
     size: CameraSize;
     cameraDeviceId?: string;
     microphoneDeviceId?: string;
@@ -96,7 +96,8 @@ export const VideoRecorder = ({
 
     useEffect(() => {
         const associateAssetWithBlock = async () => {
-            await onRecordingEnd(uploadedAssets.map((asset) => asset.id));
+            const assetId = uploadedAssets[0].id;
+            await onRecordingEnd(assetId);
             setState('idle');
         };
 
