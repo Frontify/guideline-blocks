@@ -4,6 +4,7 @@ import { mount } from 'cypress/react';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { AudioBlock } from './AudioBlock';
 import { TextPosition } from './types';
+import { AUDIO_ID } from './settings';
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioBlockContainerSelector = '[data-test-id="audio-block-container"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
@@ -38,7 +39,7 @@ describe('Audio Block', () => {
         const asset = AssetDummy.with(312);
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             blockAssets: {
-                audio: [asset],
+                AUDIO_ID: [asset],
             },
         });
 
@@ -51,7 +52,7 @@ describe('Audio Block', () => {
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             editorState: true,
             blockAssets: {
-                audio: [asset],
+                AUDIO_ID: [asset],
             },
         });
 
@@ -66,7 +67,7 @@ describe('Audio Block', () => {
                 title: 'Audio Title',
             },
             blockAssets: {
-                audio: [asset],
+                AUDIO_ID: [asset],
             },
         });
 
@@ -81,7 +82,7 @@ describe('Audio Block', () => {
                 description: 'Audio Description',
             },
             blockAssets: {
-                audio: [asset],
+                AUDIO_ID: [asset],
             },
         });
 
@@ -97,7 +98,7 @@ describe('Audio Block', () => {
                 description: 'Audio Description',
             },
             blockAssets: {
-                audio: [asset],
+                AUDIO_ID: [asset],
             },
         });
 
@@ -113,7 +114,7 @@ describe('Audio Block', () => {
                 positioning: TextPosition.Above,
             },
             blockAssets: {
-                audio: [asset],
+                AUDIO_ID: [asset],
             },
         });
         mount(<AudioBlockWithStubs />);
@@ -127,7 +128,7 @@ describe('Audio Block', () => {
                 positioning: TextPosition.Below,
             },
             blockAssets: {
-                audio: [asset],
+                AUDIO_ID: [asset],
             },
         });
         mount(<AudioBlockWithStubs />);

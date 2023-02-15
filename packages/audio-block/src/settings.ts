@@ -11,6 +11,8 @@ import {
 
 import { TextPosition } from './types';
 
+export const AUDIO_ID = 'audio';
+
 export const settings = defineSettings({
     main: [
         {
@@ -30,7 +32,7 @@ export const settings = defineSettings({
     ],
     basics: [
         {
-            id: 'audio',
+            id: AUDIO_ID,
             type: 'assetInput',
             label: 'Audio',
             info: 'Select an audio file to play.',

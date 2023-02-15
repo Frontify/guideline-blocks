@@ -6,7 +6,6 @@ import {
     Button,
     ButtonEmphasis,
     ButtonRounding,
-    ButtonStyle,
     IconArrowCircleDown,
     RichTextEditor,
     Position,
@@ -15,6 +14,7 @@ import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-bl
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
+import { AUDIO_ID } from './settings';
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
@@ -22,8 +22,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
     const { title, description } = blockSettings;
-    const audio = blockAssets?.audio?.[0];
-
+    const audio = blockAssets?.AUDIO_ID?.[0];
     const audioDivClassNames = joinClassNames([
         'tw-flex tw-flex-col tw-gap-2',
         blockSettings.positioning === TextPosition.Above && 'tw-flex-col-reverse',
@@ -92,7 +91,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             />
                         </div>
                         <Button
-                            style={ButtonStyle.Default}
                             onClick={() => downloadAudio(audio.genericUrl, audio.fileName)}
                             emphasis={ButtonEmphasis.Weak}
                             icon={<IconArrowCircleDown />}
