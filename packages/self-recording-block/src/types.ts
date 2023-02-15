@@ -2,7 +2,6 @@
 
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
-import { ReactNode } from 'react';
 
 export enum RecordingMode {
     CameraAndAudio = 'camera-and-audio',
@@ -15,7 +14,7 @@ export enum CameraSize {
     Large = 'large',
 }
 
-export enum VideoShape {
+export enum MaskShape {
     Circle = 'circle',
     Square = 'square',
     FullFrame = 'full-frame',
@@ -34,7 +33,7 @@ export enum VideoMode {
 
 export type Settings = {
     recordingMode: RecordingMode;
-    shape: VideoShape;
+    shape: MaskShape;
     size: CameraSize;
     microphoneDeviceId?: string;
     cameraDeviceId?: string;
@@ -49,9 +48,3 @@ export type Settings = {
 };
 
 export type RecorderState = 'idle' | 'recording' | 'paused' | 'previewing' | 'uploading' | 'permissions-error';
-
-export type MaskProps = {
-    shape: VideoShape;
-    children: ReactNode;
-    size: CameraSize;
-};

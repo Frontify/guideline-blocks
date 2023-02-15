@@ -6,6 +6,7 @@ export const drawFrameCover = (frame: HTMLImageElement | HTMLVideoElement, ctx: 
 
     const canvas = ctx.canvas;
     const containerRatio = canvas.height / canvas.width;
+
     let width = frameWidth;
     let height = frameHeight;
     const imgRatio = height / width;

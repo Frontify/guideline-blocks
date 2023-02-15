@@ -40,5 +40,11 @@ export const borderStyleMap: Record<BorderStyle, string> = {
     [BorderStyle.Dashed]: 'dashed',
 };
 
+export const cameraSizeToMaskSizeMap: Record<CameraSize, { width: number; height: number }> = {
+    [CameraSize.Small]: { width: 400, height: 300 },
+    [CameraSize.Medium]: { width: 560, height: 420 },
+    [CameraSize.Large]: { width: 800, height: 600 },
+};
+
 export const LOCAL_STORAGE_PREFFERED_CAMERA_KEY = 'SelfRecordingBlock_preferredCameraDeviceId';
 export const LOCAL_STORAGE_PREFFERED_MICROPHONE_KEY = 'SelfRecordingBlock_preferredMicrophoneDeviceId';

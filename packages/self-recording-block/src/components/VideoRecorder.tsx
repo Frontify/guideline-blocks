@@ -3,10 +3,10 @@
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
-import { CameraSize, RecorderState, VideoMode, VideoShape } from '../types';
+import { CameraSize, MaskShape, RecorderState, VideoMode } from '../types';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
 import { Camera } from './Camera';
-import { Mask } from './Mask';
+import { Mask, MaskProps } from './Mask';
 
 type VideoRecorderProps = {
     onRecordingEnd: (assetIds: number[]) => void;
@@ -14,7 +14,8 @@ type VideoRecorderProps = {
     cameraDeviceId?: string;
     microphoneDeviceId?: string;
     videoOptions: { videoMode: VideoMode; backgroundAssetUrl?: string };
-    shape: VideoShape;
+    maskShape: MaskShape;
+    maskBorder: MaskProps['border'];
 };
 
 export const VideoRecorder = ({
@@ -23,7 +24,8 @@ export const VideoRecorder = ({
     cameraDeviceId,
     microphoneDeviceId,
     videoOptions,
-    shape,
+    maskShape,
+    maskBorder,
 }: VideoRecorderProps): ReactElement => {
     const [state, setState] = useState<RecorderState>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
@@ -103,7 +105,7 @@ export const VideoRecorder = ({
         <div className="tw-flex tw-flex-col tw-items-center">
             {state !== 'permissions-error' ? (
                 <>
-                    <Mask shape={shape} size={size}>
+                    <Mask shape={maskShape} size={size} border={maskBorder}>
                         <Camera
                             cameraDeviceId={cameraDeviceId}
                             microphoneDeviceId={microphoneDeviceId}

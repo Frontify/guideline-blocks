@@ -2,7 +2,7 @@
 
 import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-import { CameraSize, RecordingMode, VideoMode, VideoShape } from './types';
+import { CameraSize, RecordingMode, VideoMode, MaskShape } from './types';
 
 export const settings = defineSettings({
     main: [
@@ -59,25 +59,7 @@ export const settings = defineSettings({
             id: 'cameraAsset',
             label: 'Camera',
             type: 'assetInput',
-
             show: (bundle) => bundle.getBlock('recordingMode')?.value === RecordingMode.AudioOnly,
-        },
-        {
-            id: 'videoMode',
-            type: 'dropdown',
-            label: 'Video transformation',
-            defaultValue: VideoMode.None,
-            choices: [
-                { label: 'None', value: VideoMode.None },
-                { label: 'Blur', value: VideoMode.Blur },
-                { label: 'Custom', value: VideoMode.Custom },
-            ],
-        },
-        {
-            id: 'customBackgroundAsset',
-            label: 'Custom background asset',
-            type: 'assetInput',
-            show: (bundle) => bundle.getBlock('videoMode')?.value === 'custom',
         },
     ],
     layout: [
@@ -85,18 +67,18 @@ export const settings = defineSettings({
             id: 'shape',
             type: 'slider',
             label: 'Shape',
-            defaultValue: VideoShape.Circle,
+            defaultValue: MaskShape.Circle,
             choices: [
                 {
-                    value: VideoShape.Circle,
+                    value: MaskShape.Circle,
                     icon: IconEnum.Circle16,
                 },
                 {
-                    value: VideoShape.Square,
+                    value: MaskShape.Square,
                     icon: IconEnum.Icon16,
                 },
                 {
-                    value: VideoShape.FullFrame,
+                    value: MaskShape.FullFrame,
                     icon: IconEnum.RectangleLandscape16,
                 },
             ],
@@ -126,13 +108,44 @@ export const settings = defineSettings({
         {
             id: 'borderHeading',
             type: 'sectionHeading',
-            blocks: [getBorderSettings()],
+            label: '',
+            blocks: [
+                {
+                    id: 'borderStyleHeading',
+                    type: 'sectionHeading',
+                    blocks: [getBorderSettings()],
+                },
+                {
+                    id: 'borderRadiusHeading',
+                    type: 'sectionHeading',
+                    blocks: [getBorderRadiusSettings()],
+                    show: (bundle) => bundle.getBlock('shape')?.value !== MaskShape.Circle,
+                },
+            ],
         },
         {
-            id: 'borderRadiusHeading',
+            id: 'record',
             type: 'sectionHeading',
-            blocks: [getBorderRadiusSettings()],
-            show: (bundle) => bundle.getBlock('shape')?.value !== VideoShape.Circle,
+            label: 'Recording background',
+            blocks: [
+                {
+                    id: 'videoMode',
+                    type: 'slider',
+                    label: 'Type',
+                    defaultValue: VideoMode.None,
+                    choices: [
+                        { label: 'None', value: VideoMode.None },
+                        { label: 'Blur', value: VideoMode.Blur },
+                        { label: 'Custom', value: VideoMode.Custom },
+                    ],
+                },
+                {
+                    id: 'customBackgroundAsset',
+                    label: 'Custom background asset',
+                    type: 'assetInput',
+                    show: (bundle) => bundle.getBlock('videoMode')?.value === 'custom',
+                },
+            ],
         },
     ],
 });
