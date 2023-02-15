@@ -29,14 +29,17 @@ export const Camera = ({
     videoOptions,
 }: CameraProps): ReactElement => {
     const tmpCanvasElement = useRef(null);
+
     useEffect(() => {
+        const cameraElement = cameraRef.current;
         const canvasAbortController = new AbortController();
+
         const bindElements = async () => {
-            if (cameraRef.current && canvasRef.current && tmpCanvasElement.current) {
+            if (cameraElement && canvasRef.current && tmpCanvasElement.current) {
                 try {
-                    await bindCameraToVideoElement(cameraRef.current, cameraDeviceId, microphoneDeviceId);
+                    await bindCameraToVideoElement(cameraElement, cameraDeviceId, microphoneDeviceId);
                     await bindVideoToCanvas(
-                        cameraRef.current,
+                        cameraElement,
                         canvasRef.current,
                         tmpCanvasElement.current,
                         cameraSizeToScaleMap[size],
@@ -53,6 +56,9 @@ export const Camera = ({
 
         return () => {
             canvasAbortController.abort();
+            for (const track of (cameraElement?.srcObject as MediaStream).getTracks()) {
+                track.stop();
+            }
         };
     }, [size, cameraDeviceId, microphoneDeviceId, canvasRef, onDevicePermissionDenied, cameraRef, videoOptions]);
 

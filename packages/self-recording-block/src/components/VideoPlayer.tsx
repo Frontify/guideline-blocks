@@ -2,7 +2,11 @@
 
 import { Asset } from '@frontify/app-bridge';
 
-export const VideoPlayer = ({ asset }: { asset?: Asset }) => {
+type VideoPlayerProps = {
+    asset?: Asset;
+};
+
+export const VideoPlayer = ({ asset }: VideoPlayerProps) => {
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
             {asset !== undefined ? (
@@ -14,9 +18,7 @@ export const VideoPlayer = ({ asset }: { asset?: Asset }) => {
                     }
                     controls
                 />
-            ) : (
-                <span>Please record something</span>
-            )}
+            ) : null}
         </div>
     );
 };

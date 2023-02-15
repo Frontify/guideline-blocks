@@ -8,6 +8,7 @@ import { VideoRecorderToolbar } from './VideoRecorderToolbar';
 import { CountdownState, RecorderState } from '../types';
 import { COUNTDOWN_IN_SECONDS } from '../constants';
 import { merge } from '@frontify/fondue';
+import { BlankState } from './BlankState';
 
 type AudioRecorderProps = {
     onRecordingEnd: (assetId: number) => Promise<void>;
@@ -15,7 +16,7 @@ type AudioRecorderProps = {
 };
 
 export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecorderProps) => {
-    const [state, setState] = useState<RecorderState>('idle');
+    const [state, setState] = useState<RecorderState>('initializing');
     const [countdownState, setCountdownState] = useState<CountdownState>({ count: COUNTDOWN_IN_SECONDS });
     const recorder = useRef<MediaRecorder | null>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -39,14 +40,14 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadedAssets]);
 
-    const onStartClick = () => {
+    const onStartRecordingClick = () => {
         const audioContext = new AudioContext();
         const oscillator = audioContext.createOscillator();
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
         oscillator.start();
 
-        countdown.init(startRecording, async (timeLeft: number): Promise<void> => {
+        countdown.init(startRecording, async (timeLeft): Promise<void> => {
             if (timeLeft === COUNTDOWN_IN_SECONDS) {
                 setState('countdown');
             }
@@ -95,7 +96,7 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
         setState('recording');
     }, [uploadFiles]);
 
-    const onStopClick = useCallback(() => {
+    const onStopRecordingClick = useCallback(() => {
         recorder.current?.stop();
         setState('uploading');
     }, []);
@@ -110,14 +111,16 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
         setState('recording');
     }, []);
 
-    const onRestartClick = useCallback(() => {
+    const onDeleteClick = useCallback(() => {
         recorder.current?.pause();
         allChunks.current = [];
         setState('idle');
     }, []);
 
-    const onDeleteClick = useCallback(() => {
-        console.log('delete');
+    const onCancelClick = useCallback(() => {
+        recorder.current?.pause();
+        allChunks.current = [];
+        setState('initializing');
     }, []);
 
     useEffect(() => {
@@ -132,41 +135,52 @@ export const AudioRecorder = ({ onRecordingEnd, microphoneDeviceId }: AudioRecor
             }
         };
 
-        bindElements();
-    }, [microphoneDeviceId]);
+        if (state === 'idle') {
+            bindElements();
+        }
+    }, [microphoneDeviceId, state]);
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            {state !== 'permissions-error' ? (
-                <>
-                    <div
-                        className={merge([
-                            state !== 'countdown' && 'tw-hidden',
-                            'tw-absolute tw-w-full tw-h-full tw-text-center tw-text-white tw-bg-black/[.3] tw-text-7xl',
-                        ])}
-                    >
-                        {countdownState.count}
-                    </div>
-                    <canvas ref={canvasRef}></canvas>
-                    <audio ref={microphoneRef} className="tw-hidden" muted></audio>
-                    <div className="tw-mt-6">
-                        <VideoRecorderToolbar
-                            state={state}
-                            onDeleteClick={onDeleteClick}
-                            onPauseClick={onPauseClick}
-                            onRestartClick={onRestartClick}
-                            onResumeClick={onResumeClick}
-                            onStartClick={onStartClick}
-                            onStopClick={onStopClick}
-                        />
-                    </div>
-                </>
-            ) : (
-                <div className="tw-h-12 tw-flex tw-items-center tw-justify-center tw-select-none">
-                    <span>No permissions to record you</span>&nbsp;
-                    <span className="tw-animate-spin">🥲</span>
-                </div>
-            )}
+            <>
+                {state !== 'initializing' && state !== 'permissions-error' ? (
+                    <>
+                        <div
+                            className={merge([
+                                state !== 'countdown' && 'tw-hidden',
+                                'tw-absolute tw-w-full tw-h-full tw-text-center tw-text-white tw-bg-black/[.3] tw-text-7xl',
+                            ])}
+                        >
+                            {countdownState.count}
+                        </div>
+
+                        <canvas ref={canvasRef}></canvas>
+                        <audio ref={microphoneRef} className="tw-hidden" muted></audio>
+
+                        <div className="tw-mt-6">
+                            <VideoRecorderToolbar
+                                state={state}
+                                onStartRecordingClick={onStartRecordingClick}
+                                onStopRecordingClick={onStopRecordingClick}
+                                onPauseClick={onPauseClick}
+                                onResumeClick={onResumeClick}
+                                onDeleteClick={onDeleteClick}
+                                onCancelClick={onCancelClick}
+                            />
+                        </div>
+                    </>
+                ) : null}
+
+                {state === 'initializing' ? <BlankState onClick={() => setState('idle')} /> : null}
+
+                {state === 'permissions-error' ? (
+                    <span className="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-bg-[#FAFAFA]">
+                        No permissions <br />
+                        to record&nbsp;
+                        <span className="tw-animate-spin">🥲</span>
+                    </span>
+                ) : null}
+            </>
         </div>
     );
 };

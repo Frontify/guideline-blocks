@@ -48,6 +48,7 @@ export type Settings = {
 };
 
 export type RecorderState =
+    | 'initializing'
     | 'idle'
     | 'countdown'
     | 'recording'

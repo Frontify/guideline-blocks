@@ -7,6 +7,7 @@ import { CameraSize, MaskShape, RecorderState, VideoMode } from '../types';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
 import { Camera } from './Camera';
 import { Mask, MaskProps } from './Mask';
+import { BlankState } from './BlankState';
 
 type VideoRecorderProps = {
     onRecordingEnd: (assetId: number) => Promise<void>;
@@ -27,14 +28,14 @@ export const VideoRecorder = ({
     maskShape,
     maskBorder,
 }: VideoRecorderProps): ReactElement => {
-    const [state, setState] = useState<RecorderState>('idle');
+    const [state, setState] = useState<RecorderState>('initializing');
     const recorder = useRef<MediaRecorder | null>(null);
     const cameraRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
     const [uploadFiles, { results: uploadedAssets, doneAll }] = useAssetUpload();
 
-    const onStartClick = useCallback(() => {
+    const onStartRecordingClick = useCallback(() => {
         if (!canvasRef.current) {
             throw new Error('No `canvas` registered');
         }
@@ -65,7 +66,7 @@ export const VideoRecorder = ({
         setState('recording');
     }, [uploadFiles]);
 
-    const onStopClick = useCallback(() => {
+    const onStopRecordingClick = useCallback(() => {
         recorder.current?.stop();
         setState('uploading');
     }, []);
@@ -80,14 +81,16 @@ export const VideoRecorder = ({
         setState('recording');
     }, []);
 
-    const onRestartClick = useCallback(() => {
+    const onDeleteClick = useCallback(() => {
         recorder.current?.pause();
         allChunks.current = [];
         setState('idle');
     }, []);
 
-    const onDeleteClick = useCallback(() => {
-        console.log('delete');
+    const onCancelClick = useCallback(() => {
+        recorder.current?.pause();
+        allChunks.current = [];
+        setState('initializing');
     }, []);
 
     const onDevicePermissionDenied = useCallback(() => {
@@ -111,9 +114,9 @@ export const VideoRecorder = ({
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            {state !== 'permissions-error' ? (
-                <>
-                    <Mask shape={maskShape} size={size} border={maskBorder}>
+            <>
+                <Mask shape={maskShape} size={size} border={maskBorder}>
+                    {state !== 'initializing' && state !== 'permissions-error' ? (
                         <Camera
                             cameraDeviceId={cameraDeviceId}
                             microphoneDeviceId={microphoneDeviceId}
@@ -123,26 +126,33 @@ export const VideoRecorder = ({
                             onDevicePermissionDenied={onDevicePermissionDenied}
                             videoOptions={videoOptions}
                         />
-                    </Mask>
+                    ) : null}
 
+                    {state === 'initializing' ? <BlankState onClick={() => setState('idle')} /> : null}
+
+                    {state === 'permissions-error' ? (
+                        <span className="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-bg-[#FAFAFA]">
+                            No permissions <br />
+                            to record&nbsp;
+                            <span className="tw-animate-spin">🥲</span>
+                        </span>
+                    ) : null}
+                </Mask>
+
+                {state !== 'initializing' && state !== 'permissions-error' ? (
                     <div className="tw-mt-6">
                         <VideoRecorderToolbar
                             state={state}
-                            onDeleteClick={onDeleteClick}
+                            onStartRecordingClick={onStartRecordingClick}
+                            onStopRecordingClick={onStopRecordingClick}
                             onPauseClick={onPauseClick}
-                            onRestartClick={onRestartClick}
                             onResumeClick={onResumeClick}
-                            onStartClick={onStartClick}
-                            onStopClick={onStopClick}
+                            onDeleteClick={onDeleteClick}
+                            onCancelClick={onCancelClick}
                         />
                     </div>
-                </>
-            ) : (
-                <div className="tw-h-12 tw-flex tw-items-center tw-justify-center tw-select-none">
-                    <span>No permissions to record</span>&nbsp;
-                    <span className="tw-animate-spin">🥲</span>
-                </div>
-            )}
+                ) : null}
+            </>
         </div>
     );
 };
