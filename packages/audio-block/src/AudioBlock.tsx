@@ -9,57 +9,12 @@ import {
     IconArrowCircleDown,
     RichTextEditor,
     Position,
-    PluginComposer,
-    InitPlugin,
-    BoldPlugin,
-    ItalicPlugin,
-    UnderlinePlugin,
-    StrikethroughPlugin,
-    AlignCenterPlugin,
-    AlignLeftPlugin,
-    AlignRightPlugin,
-    AlignJustifyPlugin,
-    ResetFormattingPlugin,
-    CodePlugin,
-    LinkPlugin,
-    OrderedListPlugin,
-    UnorderedListPlugin,
-    CheckboxListPlugin,
 } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
 import { AUDIO_ID } from './settings';
-
-const customTitlePlugin = new PluginComposer();
-customTitlePlugin
-    .setPlugin([new InitPlugin()])
-    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
-    .setPlugin([new AlignCenterPlugin(), new AlignLeftPlugin(), new AlignRightPlugin(), new AlignJustifyPlugin()])
-    .setPlugin([new ResetFormattingPlugin()]);
-
-const customDescriptionPlugin = new PluginComposer();
-customDescriptionPlugin
-    .setPlugin([new InitPlugin()])
-    .setPlugin([
-        new BoldPlugin(),
-        new ItalicPlugin(),
-        new UnderlinePlugin(),
-        new StrikethroughPlugin(),
-        new LinkPlugin(),
-        new CodePlugin(),
-    ])
-    .setPlugin([
-        new AlignCenterPlugin(),
-        new AlignLeftPlugin(),
-        new AlignRightPlugin(),
-        new AlignJustifyPlugin(),
-        new UnorderedListPlugin(),
-        new CheckboxListPlugin(),
-        new OrderedListPlugin(),
-    ])
-    .setPlugin([new ResetFormattingPlugin()]);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
@@ -124,7 +79,12 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                         <div className="tw-self-stretch">
                             <RichTextEditor
-                                plugins={customTitlePlugin}
+                                value={title}
+                                border={false}
+                                onTextChange={saveTitle}
+                                onBlur={saveTitle}
+                                placeholder={isEditing ? 'add a title here' : undefined}
+                                readonly={!isEditing}
                                 designTokens={{
                                     p: {
                                         fontFamily: 'Poppins, sans-serif',
@@ -133,15 +93,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                                         lineHeight: '18px',
                                     },
                                 }}
-                                value={title}
-                                border={false}
-                                onTextChange={saveTitle}
-                                onBlur={saveTitle}
-                                placeholder={isEditing ? 'add a title here' : undefined}
-                                readonly={!isEditing}
                             />
                             <RichTextEditor
-                                plugins={customDescriptionPlugin}
                                 designTokens={{
                                     p: {
                                         fontFamily: 'Roboto, sans-serif',
