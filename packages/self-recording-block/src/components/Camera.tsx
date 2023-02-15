@@ -55,10 +55,10 @@ export const Camera = ({
             canvasAbortController.abort();
         };
     }, [size, cameraDeviceId, microphoneDeviceId, canvasRef, onDevicePermissionDenied, cameraRef, videoOptions]);
-    console.log(videoOptions);
+
     return (
         <>
-            <canvas ref={canvasRef}></canvas>
+            <canvas ref={canvasRef} className="tw-transition-all"></canvas>
             <canvas ref={tmpCanvasElement} className="tw-hidden"></canvas>
             <video ref={cameraRef} className="tw-hidden" muted></video>
         </>
