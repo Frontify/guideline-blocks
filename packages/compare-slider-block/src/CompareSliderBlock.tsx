@@ -107,7 +107,11 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
         }
 
         return (
-            <div slot="handle" className="tw-flex" style={{ color: toRgbaString(blockSettings.sliderColor) }}>
+            <div
+                slot="handle"
+                className="tw-flex"
+                style={{ color: toRgbaString(blockSettings.sliderColor), gap: blockSettings.sliderWidth }}
+            >
                 <Icon icon={IconEnum.CaretLeft} size={IconSize.Size32} />
                 <Icon icon={IconEnum.CaretRight} size={IconSize.Size32} />
             </div>
