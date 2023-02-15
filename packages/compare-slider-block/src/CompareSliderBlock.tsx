@@ -82,7 +82,7 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                 slot={slot}
                 src={slot === SliderImageSlot.First ? getFirstAssetPreviewUrl() : getSecondAssetPreviewUrl()}
                 alt={slot === SliderImageSlot.First ? getFirstAssetTitle() : getSecondAssetTitle()}
-                className={'tw-w-full tw-object-cover'}
+                className="tw-w-full tw-object-cover"
                 style={{ height: getImageHeight() }}
             />
         );
