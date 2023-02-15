@@ -58,13 +58,13 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
         return radiusStyleMap[blockSettings.borderRadius];
     };
 
-    const getSliderItem = (slot: SliderImageSlot) => {
+    const renderSliderItem = (slot: SliderImageSlot) => {
         if (slot === SliderImageSlot.First && !firstAsset) {
-            return getFirstSlotBlankSlate();
+            return renderFirstSlotBlankSlate();
         }
 
         if (slot === SliderImageSlot.Second && !secondAsset) {
-            return getSecondSlotBlankSlate();
+            return renderSecondSlotBlankSlate();
         }
 
         return (
@@ -78,12 +78,12 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
         );
     };
 
-    const getFirstSlotBlankSlate = () => {
+    const renderFirstSlotBlankSlate = () => {
         return (
             <div
                 slot={SliderImageSlot.First}
                 className={`${blankSlateWidthStyleMap[blockSettings.height]} tw-bg-black-5`}
-                style={getBlankSlateInlineStyles()}
+                style={renderBlankSlateInlineStyles()}
             >
                 <div
                     className={joinClassNames([
@@ -97,12 +97,12 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
         );
     };
 
-    const getSecondSlotBlankSlate = () => {
+    const renderSecondSlotBlankSlate = () => {
         return (
             <div
                 slot={SliderImageSlot.Second}
                 className={`${blankSlateWidthStyleMap[blockSettings.height]} tw-bg-black-5`}
-                style={getBlankSlateInlineStyles()}
+                style={renderBlankSlateInlineStyles()}
             >
                 <div
                     className={joinClassNames([
@@ -120,7 +120,7 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
         );
     };
 
-    const getBlankSlateInlineStyles = () => {
+    const renderBlankSlateInlineStyles = () => {
         const height = getImageHeight() || heightMap[Height.Auto];
 
         return blockSettings.hasCustomHeight
@@ -128,7 +128,7 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
             : { height: `${height}px` };
     };
 
-    const getHandle = () => {
+    const renderHandle = () => {
         if (blockSettings.handle === Handle.Circles) {
             return (
                 <div
@@ -183,9 +183,9 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     } as React.CSSProperties
                 }
             >
-                {getSliderItem(SliderImageSlot.First)}
-                {getSliderItem(SliderImageSlot.Second)}
-                {blockSettings.handle !== Handle.None ? getHandle() : ''}
+                {renderSliderItem(SliderImageSlot.First)}
+                {renderSliderItem(SliderImageSlot.Second)}
+                {blockSettings.handle !== Handle.None ? renderHandle() : ''}
             </ImgComparisonSlider>
         </div>
     );
