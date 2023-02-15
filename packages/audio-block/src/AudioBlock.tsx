@@ -57,8 +57,15 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     return (
         <div data-test-id="audio-block">
             {audio ? (
-                <div className={audioDivClassNames}>
-                    <audio key={audio.id} controls className="tw-w-full" controlsList="nodownload" preload="metadata">
+                <div data-test-id="audio-block-container" className={audioDivClassNames}>
+                    <audio
+                        data-test-id="audio-block-audio-tag"
+                        key={audio.id}
+                        controls
+                        className="tw-w-full"
+                        controlsList="nodownload"
+                        preload="metadata"
+                    >
                         <source src={audio.genericUrl} type={audio['type']} />
                     </audio>
                     <div className="tw-flex tw-gap-2 tw-justify-between">
