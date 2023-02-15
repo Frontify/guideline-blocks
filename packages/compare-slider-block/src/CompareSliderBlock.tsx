@@ -10,19 +10,14 @@ import { Icon, IconEnum, IconSize } from '@frontify/fondue';
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
+    const { firstAsset, secondAsset } = blockAssets;
+
     const sliderRef = useRef<HTMLDivElement | null>(null);
 
-    const getFirstAssetPreviewUrl = (): string | undefined =>
-        blockAssets?.firstAsset ? blockAssets?.firstAsset[0].previewUrl : undefined;
-
-    const getFirstAssetTitle = (): string | undefined =>
-        blockAssets?.firstAsset ? blockAssets?.firstAsset[0].title : undefined;
-
-    const getSecondAssetPreviewUrl = (): string | undefined =>
-        blockAssets?.secondAsset ? blockAssets?.secondAsset[0].previewUrl : undefined;
-
-    const getSecondAssetTitle = (): string | undefined =>
-        blockAssets?.secondAsset ? blockAssets?.secondAsset[0].title : undefined;
+    const getFirstAssetPreviewUrl = (): string | undefined => (firstAsset ? firstAsset[0].previewUrl : undefined);
+    const getFirstAssetTitle = (): string | undefined => (firstAsset ? firstAsset[0].title : undefined);
+    const getSecondAssetPreviewUrl = (): string | undefined => (secondAsset ? secondAsset[0].previewUrl : undefined);
+    const getSecondAssetTitle = (): string | undefined => (secondAsset ? secondAsset[0].title : undefined);
 
     const getImageHeight = (): number | undefined => {
         if (blockSettings.hasCustomHeight) {
@@ -37,7 +32,7 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const calculateAutoImageHeight = (): number | undefined => {
-        if (!blockAssets.firstAsset || !blockAssets.secondAsset) {
+        if (!firstAsset || !secondAsset) {
             return undefined;
         }
 
@@ -48,10 +43,9 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
         }
 
         const assetWithHigherAspectRatio =
-            blockAssets.firstAsset[0].width / blockAssets.firstAsset[0].height >
-            blockAssets.secondAsset[0].width / blockAssets.firstAsset[0].height
-                ? blockAssets.firstAsset[0]
-                : blockAssets.secondAsset[0];
+            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / firstAsset[0].height
+                ? firstAsset[0]
+                : secondAsset[0];
 
         return Math.round((assetWithHigherAspectRatio.height * currentSliderWidth) / assetWithHigherAspectRatio.width);
     };
