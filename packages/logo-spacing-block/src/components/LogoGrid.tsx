@@ -1,12 +1,13 @@
-import { CLEAR_SPACE_PERCENT_SIZE, CONTAINER_SIZE } from '../constants';
+import { CLEAR_SPACE_PERCENT_SIZE } from '../constants';
 import { GridElementPosition, LogoGridProps, Property } from '../types';
 import { useRef, useState } from 'react';
 
 import { GridElement } from './GridElement';
 
-export const LogoGrid = ({ asset, containerWidth, settings, showLogo }: LogoGridProps) => {
+export const LogoGrid = ({ asset, containerHeight, containerWidth, settings }: LogoGridProps) => {
     const logoContainerRef = useRef<HTMLDivElement>(null);
-    const [height, setHeight] = useState(0);
+    const [logoRef, setLogoRef] = useState<HTMLImageElement | null>(null);
+
     const {
         clearSpaceBottom,
         clearSpaceChoice,
@@ -44,20 +45,18 @@ export const LogoGrid = ({ asset, containerWidth, settings, showLogo }: LogoGrid
         const percent = CLEAR_SPACE_PERCENT_SIZE[clearSpaceChoice];
 
         let offsetValue = 0;
-        if (hasCustomOffset && !showLogo) {
+        if (hasCustomOffset) {
             offsetValue = convertToNumber(offset);
         }
 
         return (containerSize * percent) / 100 - offsetValue;
     };
-    const width = (containerWidth * CONTAINER_SIZE[containerSizeChoice]) / 100;
 
     const getTemplateColumn = () => {
-        console.log('Calculating column');
         const firstColumn = getTempateSize(clearSpaceLeft, offsetLeft);
         const thirdColumn = getTempateSize(clearSpaceRight, offsetRight);
 
-        const secondColumn = width - firstColumn - thirdColumn;
+        const secondColumn = containerWidth - firstColumn - thirdColumn;
 
         return `${firstColumn}px ${secondColumn}px ${thirdColumn}px`;
     };
@@ -66,56 +65,38 @@ export const LogoGrid = ({ asset, containerWidth, settings, showLogo }: LogoGrid
         const firstRow = getTempateSize(clearSpaceTop, offsetTop);
         const thirdRow = getTempateSize(clearSpaceBottom, offsetBottom);
 
-        const secondRow = height - firstRow - thirdRow;
+        const logoHeight = 'auto'; //logoRef?.offsetHeight || 0;
 
-        return `${firstRow}px ${secondRow}px ${thirdRow}px`;
+        return `${firstRow}px ${logoHeight} ${thirdRow}px`;
     };
-
-    const updateHeight = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-        setHeight(e.currentTarget.offsetHeight);
-    };
-
-    const borderStyle = showLogo ? 'tw-border-transparent' : 'tw-border-dashed';
 
     return (
-        <div
-            className={`tw-w-full tw-flex tw-justify-center ${
-                showLogo ? 'tw-relative tw-z-10' : 'tw-absolute tw-z-20'
-            }`}
-        >
-            {height > 0 && (
+        <div className="tw-w-full tw-flex tw-justify-center">
+            {containerHeight > 0 && (
                 <div
-                    className={`tw-grid-cols-3 tw-grid-rows-3 tw-grid tw-border ${borderStyle}`}
+                    className="tw-grid-cols-3 tw-grid-rows-3 tw-grid tw-border tw-border-dashed"
                     ref={logoContainerRef}
                     style={{
                         gridTemplateColumns: getTemplateColumn(),
                         gridTemplateRows: getTemplateRow(),
-                        width: `${width}px`,
+                        width: `${containerWidth}px`,
+                        minHeight: `${containerHeight}px`,
                     }}
                 >
-                    <GridElement position={GridElementPosition.Top} col="2" row="1" showBorder={showLogo} />
-                    <GridElement position={GridElementPosition.Right} col="3" row="2" showBorder={showLogo} />
-                    <GridElement position={GridElementPosition.Bottom} col="2" row="3" showBorder={showLogo} />
-                    <GridElement position={GridElementPosition.Left} col="1" row="2" showBorder={showLogo} />
-                    <div
-                        id="middle"
-                        className={`tw-col-start-2 tw-row-start-2 tw-border ${
-                            showLogo || clearSpaceChoice === 'none' ? 'tw-border-transparent' : 'tw-border-dashed'
-                        }`}
-                    >
-                        {showLogo && (
-                            <img
-                                className="tw-w-full"
-                                src={asset.previewUrl}
-                                data-test-id="example-asset-upload-image"
-                            />
-                        )}
+                    <GridElement position={GridElementPosition.Top} col="2" row="1" />
+                    <GridElement position={GridElementPosition.Right} col="3" row="2" />
+                    <GridElement position={GridElementPosition.Bottom} col="2" row="3" />
+                    <GridElement position={GridElementPosition.Left} col="1" row="2" />
+                    <div id="middle" className="tw-col-start-2 tw-row-start-2 tw-border tw-border-dashed">
+                        <img
+                            ref={setLogoRef}
+                            className="tw-w-full tw-opacity-0"
+                            src={asset.previewUrl}
+                            data-test-id="example-asset-upload-image"
+                        />
                     </div>
                 </div>
             )}
-            <div className="tw-absolute tw-opacity-0" style={{ width: `${width}px` }}>
-                <img className="tw-w-full" onLoad={updateHeight} src={asset.previewUrl} />
-            </div>
         </div>
     );
 };

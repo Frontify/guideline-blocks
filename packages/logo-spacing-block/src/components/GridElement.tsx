@@ -11,12 +11,11 @@ const getElementBorders = (position: GridElementPosition) => {
     }
 };
 
-export const GridElement = ({ position, children, col, row, showBorder }: GridElementProps) => {
-    const borderStyle = showBorder ? 'tw-border-transparent' : 'tw-border-dashed';
+export const GridElement = ({ position, children, col, row }: GridElementProps) => {
     return (
         <span
             id={position}
-            className={`${getElementBorders(position)} ${borderStyle}`}
+            className={`${getElementBorders(position)} tw-border-dashed`}
             style={{ gridColumnStart: col, gridRowStart: row }}
         >
             {children}

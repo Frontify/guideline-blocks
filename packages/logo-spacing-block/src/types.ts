@@ -45,7 +45,7 @@ export type LogoGridProps = {
     asset: Asset;
     containerWidth: number;
     settings: LogoSpacingSettings;
-    showLogo: boolean;
+    containerHeight: number;
 };
 
 export enum GridElementPosition {
@@ -60,5 +60,4 @@ export type GridElementProps = {
     children?: ReactNode;
     col: string;
     row: string;
-    showBorder: boolean;
 };
