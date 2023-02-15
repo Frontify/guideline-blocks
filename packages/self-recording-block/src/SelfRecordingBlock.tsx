@@ -22,12 +22,14 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     const onAudioRecordingEnd = (assetIds: number[]) => {
         updateAssetIdsFromKey('audio', assetIds);
     };
+
     const mediaRecorder = isAudioAndCamera ? (
         <VideoRecorder
             onRecordingEnd={onVideoRecordingEnd}
             size={blockSettings.size}
             cameraDeviceId={blockSettings.cameraDeviceId}
             microphoneDeviceId={blockSettings.microphoneDeviceId}
+            shape={blockSettings.shape}
         />
     ) : (
         <AudioRecorder onRecordingEnd={onAudioRecordingEnd} microphoneDeviceId={blockSettings.microphoneDeviceId} />

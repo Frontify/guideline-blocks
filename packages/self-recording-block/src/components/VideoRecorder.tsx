@@ -4,16 +4,18 @@ import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
 import { cameraSizeToScaleMap } from '../constants';
-import { CameraSize } from '../types';
+import { CameraSize, VideoShape } from '../types';
 import { bindCameraToVideoElement } from '../utilities';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
 import { bindVideoToCanvas } from '../utilities';
+import { Mask } from './Mask';
 
 type VideoRecorderProps = {
     onRecordingEnd: (assetIds: number[]) => void;
     size: CameraSize;
     cameraDeviceId?: string;
     microphoneDeviceId?: string;
+    shape: VideoShape;
 };
 
 export const VideoRecorder = ({
@@ -21,6 +23,7 @@ export const VideoRecorder = ({
     size,
     cameraDeviceId,
     microphoneDeviceId,
+    shape,
 }: VideoRecorderProps): ReactElement => {
     const [state, setState] = useState<'idle' | 'recording' | 'paused' | 'previewing' | 'uploading'>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
@@ -105,7 +108,10 @@ export const VideoRecorder = ({
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
-            <canvas ref={canvasRef}></canvas>
+            <Mask shape={shape} size={size}>
+                <canvas ref={canvasRef}></canvas>
+            </Mask>
+
             <video ref={cameraRef} className="tw-hidden" muted></video>
 
             <div className="tw-mt-6">

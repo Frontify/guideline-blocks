@@ -8,7 +8,8 @@ export const bindVideoToCanvas = (videoElement: HTMLVideoElement, canvasElement:
         throw new Error('Could not get the canvas context.');
     }
 
-    const parentContainerWidth = (canvasElement.parentElement as HTMLDivElement).clientWidth * scale;
+    const parentContainerWidth =
+        (canvasElement.parentElement?.parentElement?.parentElement as HTMLDivElement).clientWidth * scale;
     const videoAspectRatio = videoElement.videoWidth / videoElement.videoHeight;
     canvasElement.width = parentContainerWidth;
     canvasElement.style.width = `${parentContainerWidth}px`;

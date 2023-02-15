@@ -5,3 +5,4 @@ export * from './AudioRecorder';
 export * from './VideoPlayer';
 export * from './VideoRecorder';
 export * from './VideoRecorderToolbar';
+export * from './Mask';
