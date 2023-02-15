@@ -11,6 +11,7 @@ import {
     Color,
     ColorPickerFlyout,
     Flyout,
+    FlyoutPlacement,
     FlyoutProps,
     IconArrowCircleUp,
     IconCross,
@@ -22,34 +23,30 @@ import {
     SwitchSize,
     TextInput,
 } from '@frontify/fondue';
-import { Nullable, TileDisplay, TileType } from '../types';
+import { Nullable, TileDisplay, TileSettings, TileType } from '../types';
 
 export type Link = { href?: string; target?: string };
 
-type BaseFlyoutProps = {
+type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'backgroundVisibility' | 'display' | 'link'> & {
     children: FlyoutProps['trigger'];
-    link: Nullable<Link>;
     onLinkChange: (link: Link) => void;
-    backgroundVisibility: Nullable<boolean>;
     onBackgroundVisibilityChange: (visibility: boolean) => void;
-    backgroundColor: Nullable<Color>;
     onBackgroundColorChange: (color: Color) => void;
     isOpen: boolean;
     setIsOpen: (boolean: boolean) => void;
 };
 
 type ImageFlyoutProps = {
-    variant: TileType.Image | TileType.ImageText;
+    type: TileType.Image | TileType.ImageText;
     onReplaceAssetFromUpload: () => void;
     onReplaceAssetFromWorkspace: () => void;
     isAssetLoading: boolean;
     asset: Nullable<Asset>;
-    display: Nullable<TileDisplay>;
     onDisplayChange: (display: TileDisplay) => void;
 };
 
 type TextFlyoutProps = {
-    variant: TileType.Text;
+    type: TileType.Text;
     onReplaceAssetFromUpload: never;
     onReplaceAssetFromWorkspace: never;
     isAssetLoading: never;
@@ -61,7 +58,7 @@ type TextFlyoutProps = {
 export type TileSettingsFlyoutProps = (BaseFlyoutProps & TextFlyoutProps) | (BaseFlyoutProps & ImageFlyoutProps);
 
 export const TileSettingsFlyout = ({
-    variant,
+    type,
     children,
     isAssetLoading,
     onReplaceAssetFromUpload,
@@ -83,6 +80,7 @@ export const TileSettingsFlyout = ({
         legacyFooter={false}
         trigger={children}
         onOpenChange={(isOpen) => setIsOpen(isOpen)}
+        placement={FlyoutPlacement.BottomRight}
         fixedHeader={
             <div className="tw-flex tw-justify-between tw-w-full tw-bg-base tw-pl-6 tw-pr-3 tw-py-1.5 tw-items-center tw-border-b tw-border-b-line tw-border-b-solid">
                 <h1 className="tw-text-s tw-font-bold">Configure Tile</h1>
@@ -92,7 +90,7 @@ export const TileSettingsFlyout = ({
     >
         <div className="tw-p-6 tw-gap-6 tw-flex tw-flex-col">
             <div className="tw-flex tw-flex-col tw-gap-4">
-                {variant !== TileType.Text && (
+                {type !== TileType.Text && (
                     <>
                         <InputLabel htmlFor="asset-replace">Asset</InputLabel>
                         <AssetInput
@@ -166,7 +164,7 @@ export const TileSettingsFlyout = ({
                         currentColor={backgroundColor}
                     />
                 )}
-                {variant !== TileType.Text && (
+                {type !== TileType.Text && (
                     <>
                         <InputLabel htmlFor="display">Display</InputLabel>
                         <div className="tw-flex">

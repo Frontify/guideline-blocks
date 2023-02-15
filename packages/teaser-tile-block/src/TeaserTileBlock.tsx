@@ -5,52 +5,41 @@ import '@frontify/fondue-tokens/styles';
 
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { generateRandomId } from '@frontify/fondue';
+import { generateRandomId, merge } from '@frontify/fondue';
 import { Settings, Tile, TileDisplay, TileHeight, TilePadding, TileSettings, TileSpacing, TileType } from './types';
-import {
-    TeaserTile,
-    TeaserTileImageProps,
-    TeaserTileImageTextProps,
-    TeaserTileTextProps,
-} from './components/TeaserTile';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Radius, toRgbaString } from '@frontify/guideline-blocks-shared';
-
-type VariantProps = {
-    [TileType.Text]: TeaserTileTextProps;
-    [TileType.Image]: TeaserTileImageProps;
-    [TileType.ImageText]: TeaserTileImageTextProps;
-};
+import { TeaserTile } from './components/TeaserTile';
+import { useCallback, useEffect, useState } from 'react';
+import { Radius } from '@frontify/guideline-blocks-shared';
 
 // ? TODO: If values are set in settings by default then there is no need for mappings.
-const spacingMap: Record<TileSpacing, string> = {
+export const spacingMap: Record<TileSpacing, string> = {
     [TileSpacing.None]: '0px',
     [TileSpacing.Small]: '10px',
     [TileSpacing.Medium]: '30px',
     [TileSpacing.Large]: '50px',
 };
 
-const heightMap: Record<TileHeight, string> = {
+export const heightMap: Record<TileHeight, string> = {
     [TileHeight.Auto]: 'auto',
     [TileHeight.Small]: '150px',
     [TileHeight.Medium]: '200px',
     [TileHeight.Large]: '300px',
 };
 
-const paddingMap: Record<TilePadding, string> = {
+export const paddingMap: Record<TilePadding, string> = {
     [TilePadding.Small]: '12px',
     [TilePadding.Medium]: '30px',
     [TilePadding.Large]: '50px',
 };
 
-const radiusMap: Record<Radius, string> = {
+export const radiusMap: Record<Radius, string> = {
     [Radius.None]: '0px',
     [Radius.Small]: '2px',
     [Radius.Medium]: '4px',
     [Radius.Large]: '12px',
 };
 
-const objectFitMap: Record<TileDisplay, string> = {
+export const objectFitMap: Record<TileDisplay, 'fill' | 'contain'> = {
     [TileDisplay.Fill]: 'fill',
     [TileDisplay.Fit]: 'contain',
 };
@@ -60,6 +49,8 @@ const INIT_TILE_SETTINGS: TileSettings = {
     backgroundVisibility: null,
     backgroundColor: null,
     display: null,
+    description: null,
+    title: null,
 };
 
 export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
@@ -68,58 +59,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [blockTiles, setBlockTiles] = useState(blockSettings.tiles);
     const isEditing = useEditorState(appBridge);
 
-    const height = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
     const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
-    const padding = blockSettings.padding ? blockSettings.paddingCustom : paddingMap[blockSettings.paddingChoice];
-
-    // TODO: should be by default lowercase instead of uppercase
-    // ! TODO: missing vertical Alignment
-    const textAlign = blockSettings.horizontalAlignment.toLowerCase() as 'left' | 'right' | 'center';
-
-    // TODO: should be by default lowercase instead of uppercase
-    const border = blockSettings.hasBorder
-        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle.toLowerCase()} ${toRgbaString(
-              blockSettings.borderColor
-          )}`
-        : undefined;
-
-    const objectFit = objectFitMap[blockSettings.display] as 'fill' | 'contain';
-    const background = blockSettings.background ? toRgbaString(blockSettings.backgroundColor) : undefined;
-    const borderRadius = blockSettings.hasRadius ? blockSettings.radiusValue : radiusMap[blockSettings.radiusChoice];
-
-    const props: VariantProps = useMemo(
-        () => ({
-            [TileType.Text]: {
-                height,
-                border,
-                padding,
-                textAlign,
-                background,
-                borderRadius,
-                variant: TileType.Text,
-            },
-            [TileType.Image]: {
-                border,
-                objectFit,
-                background,
-                borderRadius,
-                imageHeight: height,
-                variant: TileType.Image,
-            },
-            [TileType.ImageText]: {
-                border,
-                padding,
-                objectFit,
-                textAlign,
-                background,
-                borderRadius,
-                imageHeight: height,
-                variant: TileType.ImageText,
-                positioning: blockSettings.positioning,
-            },
-        }),
-        [height, blockSettings.positioning, padding, textAlign, border, background, borderRadius, objectFit]
-    );
 
     const setInternalTiles = useCallback(
         (tiles: Tile[]) => {
@@ -166,6 +106,8 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
         }
     }, [blockTiles, blockSettings.columns, setBlockSettings, setInternalTiles]);
 
+    const tileHeight = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
+
     return (
         <div
             className="tw-relative"
@@ -175,6 +117,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 display: 'grid',
                 gridAutoFlow: 'row',
                 gridTemplateRows: 'auto',
+                gridAutoRows: '1fr',
                 gridTemplateColumns: `repeat(${blockSettings.columns}, 1fr)`,
             }}
         >
@@ -185,16 +128,28 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                     appBridge={appBridge}
                     tileSettings={settings}
                     onTileSettingsChange={(partialSettings) => updateTile(id, partialSettings)}
-                    {...props[blockSettings.type]}
+                    blockSettings={blockSettings}
+                    onRemoveTile={() => removeTile(id)}
+                    isEditing={isEditing}
                 />
             ))}
-            <div
-                className="tw-bg-base-alt tw-rounded tw-border tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center"
-                style={{ height: '200px' }}
-                onClick={addTile}
-            >
-                Add New Tile
-            </div>
+            {isEditing && (
+                <div
+                    className={merge([
+                        'tw-transition tw-bg-base-alt tw-rounded tw-border tw-h-full tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center tw-cursor-pointer hover:tw-bg-box-neutral-hover',
+                        tileHeight === 'auto' && 'tw-aspect-square',
+                    ])}
+                    style={{
+                        height: tileHeight,
+                        borderRadius: blockSettings.hasRadius
+                            ? blockSettings.radiusValue
+                            : radiusMap[blockSettings.radiusChoice],
+                    }}
+                    onClick={addTile}
+                >
+                    Add New Tile
+                </div>
+            )}
         </div>
     );
 };

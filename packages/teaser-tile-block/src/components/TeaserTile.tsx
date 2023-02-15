@@ -1,57 +1,44 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MutableRefObject, useState } from 'react';
+import { MutableRefObject, useMemo, useState } from 'react';
 
-import { Button, ButtonEmphasis, ButtonSize, IconDotsVertical, IconPlus32, merge } from '@frontify/fondue';
+import {
+    ActionMenu,
+    ActionMenuItemType,
+    Button,
+    ButtonEmphasis,
+    ButtonRounding,
+    ButtonSize,
+    Flyout,
+    FlyoutPlacement,
+    IconCog,
+    IconDotsVertical,
+    IconPlus32,
+    IconTrashBin,
+    MenuItemStyle,
+    RichTextEditor,
+    merge,
+    PluginComposer,
+    BoldPlugin,
+} from '@frontify/fondue';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 
 import { useTileAsset } from '../hooks';
-import { TileImagePositioning, TileSettings, TileType } from '../types';
+import { Settings, TileImagePositioning, TileSettings, TileType } from '../types';
 
 import { TileSettingsFlyout, TileSettingsFlyoutProps } from './TileSettingsFlyout';
+import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { heightMap, objectFitMap, paddingMap, radiusMap } from '../TeaserTileBlock';
 
-export type TeaserTileBaseProps = {
+export type TeaserTileProps = {
     id: string;
-    border?: string;
-    variant?: TileType;
-    background?: string;
-    borderRadius?: string;
+    blockSettings: Settings;
     appBridge: AppBridgeBlock;
     tileSettings: TileSettings;
     onTileSettingsChange: (partialSettings: Partial<TileSettings>) => void;
+    onRemoveTile: () => void;
+    isEditing: boolean;
 };
-
-export type TeaserTileImageProps = {
-    height?: never;
-    padding?: never;
-    textAlign?: never;
-    objectFit?: 'fill' | 'contain'; // ? TODO: use csstype
-    imageHeight: string;
-    positioning?: never;
-    variant: TileType.Image;
-};
-
-export type TeaserTileTextProps = {
-    height?: string;
-    padding?: string;
-    objectFit?: never;
-    positioning?: never;
-    imageHeight?: never;
-    variant: TileType.Text;
-    textAlign?: 'left' | 'right' | 'center'; // ? TODO: use csstype
-};
-
-export type TeaserTileImageTextProps = {
-    height?: never;
-    padding?: string;
-    objectFit?: 'fill' | 'contain'; // ? TODO: use csstype
-    imageHeight?: string;
-    variant: TileType.ImageText;
-    positioning?: TileImagePositioning;
-    textAlign?: 'left' | 'right' | 'center'; // ? TODO: use csstype
-};
-
-type TeaserTileProps = TeaserTileBaseProps & (TeaserTileImageProps | TeaserTileTextProps | TeaserTileImageTextProps);
 
 const twPositioningMap: Record<TileImagePositioning, string> = {
     [TileImagePositioning.Top]: 'tw-flex-col',
@@ -69,45 +56,75 @@ const twBorderMap: Record<TileImagePositioning, string> = {
     [TileImagePositioning.Behind]: '',
 };
 
+const useTileStyles = (blockSettings: Settings, tileSettings: TileSettings) => {
+    const height = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
+    const padding = blockSettings.padding ? blockSettings.paddingCustom : paddingMap[blockSettings.paddingChoice];
+
+    // TODO: should be by default lowercase instead of uppercase
+    // ! TODO: missing vertical Alignment
+    const textAlign = blockSettings.horizontalAlignment.toLowerCase() as 'left' | 'right' | 'center';
+
+    // TODO: should be by default lowercase instead of uppercase
+    const border = blockSettings.hasBorder
+        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle.toLowerCase()} ${toRgbaString(
+              blockSettings.borderColor
+          )}`
+        : undefined;
+
+    const globalObjectFit = objectFitMap[blockSettings.display];
+    const tileObjectFit = tileSettings.display ? objectFitMap[tileSettings.display] : undefined;
+    const objectFit = tileObjectFit ?? globalObjectFit;
+
+    const globalBackground = blockSettings.background ? toRgbaString(blockSettings.backgroundColor) : undefined;
+    const tileBackground = tileSettings.backgroundColor ? toRgbaString(tileSettings.backgroundColor) : undefined;
+    const background = tileSettings.backgroundVisibility !== false ? tileBackground ?? globalBackground : undefined;
+    const borderRadius = blockSettings.hasRadius ? blockSettings.radiusValue : radiusMap[blockSettings.radiusChoice];
+
+    return { height, background, objectFit, padding, textAlign, border, borderRadius };
+};
+
 export const TeaserTile = ({
     id,
-    height,
-    border,
-    objectFit,
-    appBridge,
-    background,
-    imageHeight,
-    borderRadius,
-    textAlign = 'left',
-    padding, // ! TODO: check with Simone about padding. As there is mismatch between design and settings.
-    variant = TileType.ImageText,
-    positioning = TileImagePositioning.Top,
+    blockSettings,
     onTileSettingsChange,
     tileSettings,
+    appBridge,
+    onRemoveTile,
+    isEditing,
 }: TeaserTileProps) => {
+    console.log(isEditing);
     const { tileAsset, isAssetLoading, openFileDialog, onOpenAssetChooser } = useTileAsset(appBridge, id);
+    const { positioning, type } = blockSettings;
     const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);
     const [isMenuFlyoutOpen, setIsMenuFlyoutOpen] = useState(false);
+    const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
+    const { designTokens } = useGuidelineDesignTokens();
+
+    const { height, background, objectFit, padding, textAlign, border, borderRadius } = useTileStyles(
+        blockSettings,
+        tileSettings
+    );
 
     const imageClassName = merge([
         'tw-w-full tw-bg-base-alt tw-flex tw-justify-center tw-items-center',
-        imageHeight === 'auto' ? 'tw-aspect-square' : undefined,
-        variant === TileType.ImageText ? `${twBorderMap[positioning]} tw-border-line-weak` : undefined,
+        height === 'auto' && type === TileType.ImageText && 'tw-aspect-square',
+        height === 'auto' && type === TileType.Image && 'tw-aspect-[3/4]',
+        type === TileType.ImageText ? `${twBorderMap[positioning]} tw-border-line-weak` : undefined,
     ]);
 
     const textClassName = merge([
         'tw-flex tw-flex-col tw-space-y-1 tw-mx-4',
-        variant === TileType.Text ? 'tw-my-4' : 'tw-mb-4 tw-mt-2',
+        type === TileType.Text ? 'tw-my-4' : 'tw-mb-4 tw-mt-2',
     ]);
 
     const tileFlyoutProps: Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children'> = {
         link: tileSettings.link ?? null,
-        display: tileSettings.display ?? null,
-        variant,
+        display: tileSettings.display ?? blockSettings.display ?? null,
+        type,
         asset: tileAsset,
-        backgroundColor: tileSettings.backgroundColor ?? null,
+        backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
         onLinkChange: (link) => onTileSettingsChange({ link }),
-        backgroundVisibility: tileSettings.backgroundVisibility ?? Boolean(background),
+        backgroundVisibility: tileSettings.backgroundVisibility ?? blockSettings.background,
         onDisplayChange: (display) => onTileSettingsChange({ display }),
         isAssetLoading,
         onBackgroundColorChange: (backgroundColor) => onTileSettingsChange({ backgroundColor }),
@@ -116,29 +133,52 @@ export const TeaserTile = ({
         onReplaceAssetFromWorkspace: onOpenAssetChooser,
     };
 
+    const titleRichTextEditor = useMemo(
+        () => (
+            <RichTextEditor
+                readonly={!isEditing}
+                border={false}
+                designTokens={designTokens ?? undefined}
+                value={tileSettings.title ?? undefined}
+                placeholder="Teaser Title"
+                onBlur={(title) => onTileSettingsChange({ title })}
+            />
+        ),
+        [designTokens, isEditing, onTileSettingsChange, tileSettings.title]
+    );
+    const descriptionRichTextEditor = useMemo(
+        () => (
+            <RichTextEditor
+                readonly={!isEditing}
+                border={false}
+                designTokens={designTokens ?? undefined}
+                value={tileSettings.description ?? undefined}
+                placeholder="Add a description"
+                onBlur={(description) => onTileSettingsChange({ description })}
+            />
+        ),
+        [designTokens, isEditing, onTileSettingsChange, tileSettings.description]
+    );
+
     return (
         <div className="tw-relative tw-group">
             <div
                 style={{ background, borderRadius, border }}
-                className={merge(['tw-flex tw-overflow-auto ', twPositioningMap[positioning]])}
+                className={merge(['tw-flex tw-overflow-auto tw-h-full', twPositioningMap[positioning]])}
             >
-                {variant !== TileType.Text && (
+                {type !== TileType.Text && (
                     <>
                         {tileAsset?.originUrl ? (
-                            <img
-                                className={imageClassName}
-                                src={tileAsset?.originUrl}
-                                style={{ height: imageHeight, objectFit }}
-                            />
+                            <img className={imageClassName} src={tileAsset?.originUrl} style={{ height, objectFit }} />
                         ) : (
                             <TileSettingsFlyout
                                 {...tileFlyoutProps}
-                                variant={variant}
+                                type={type}
                                 isOpen={isPlaceholderImageFlyoutOpen}
                                 setIsOpen={setIsPlaceholderImageFlyoutOpen}
                             >
                                 {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
-                                    <div {...props} className={imageClassName} style={{ height: imageHeight }}>
+                                    <div {...props} className={imageClassName} style={{ height }}>
                                         <div ref={triggerRef}>
                                             <IconPlus32 />
                                         </div>
@@ -148,33 +188,77 @@ export const TeaserTile = ({
                         )}
                     </>
                 )}
-                {variant !== TileType.Image && (
-                    <div style={{ height, padding, textAlign }} className={textClassName}>
-                        <h6 className="tw-text-base tw-text-blank-state-weak tw-font-semibold">Teaser Title</h6>
-                        <p className="tw-text-sm tw-text-blank-state-weak tw-font-normal">Add a description</p>
+                {type !== TileType.Image && (
+                    <div
+                        style={{ height: type === TileType.Text ? height : undefined, padding, textAlign }}
+                        className={textClassName}
+                    >
+                        <h6 className="tw-text-base tw-text-blank-state-weak tw-font-semibold">
+                            {titleRichTextEditor}
+                        </h6>
+                        <p className="tw-text-sm tw-text-blank-state-weak tw-font-normal">
+                            {descriptionRichTextEditor}
+                        </p>
                     </div>
                 )}
             </div>
-            {(variant === TileType.Text || !!tileAsset?.originUrl) && (
-                <TileSettingsFlyout {...tileFlyoutProps} isOpen={isMenuFlyoutOpen} setIsOpen={setIsMenuFlyoutOpen}>
-                    {(_, triggerRef: MutableRefObject<HTMLButtonElement>) => (
-                        <div
-                            className={merge([
-                                'tw-absolute tw-right-2 tw-top-2 focus-within:tw-z-[200] group-hover:tw-z-[200]',
-                                isMenuFlyoutOpen ? 'tw-z-[200]' : 'tw-z-[-1]',
-                            ])}
-                        >
-                            <Button
-                                emphasis={ButtonEmphasis.Weak}
-                                icon={<IconDotsVertical />}
-                                ref={triggerRef}
-                                size={ButtonSize.Small}
-                                onClick={() => setIsMenuFlyoutOpen((open) => !open)}
-                            ></Button>
-                        </div>
+
+            <div
+                className={merge([
+                    'tw-absolute tw-right-2 tw-top-2 focus-within:tw-z-[200] group-hover:tw-z-[200]',
+                    isMenuFlyoutOpen ? 'tw-z-[200]' : 'tw-z-[-1]',
+                ])}
+            >
+                <TileSettingsFlyout
+                    {...tileFlyoutProps}
+                    isOpen={isTopSettingsFlyoutOpen}
+                    setIsOpen={setIsTopSettingsFlyoutOpen}
+                >
+                    {(_, triggerRef: MutableRefObject<HTMLDivElement>) => (
+                        <div className="tw-absolute tw-right-0" ref={triggerRef} />
                     )}
                 </TileSettingsFlyout>
-            )}
+                <Flyout
+                    isOpen={isMenuFlyoutOpen}
+                    onOpenChange={setIsMenuFlyoutOpen}
+                    fitContent
+                    legacyFooter={false}
+                    placement={FlyoutPlacement.BottomRight}
+                    trigger={(_, triggerRef: MutableRefObject<HTMLButtonElement>) => (
+                        <Button
+                            rounding={ButtonRounding.Full}
+                            emphasis={ButtonEmphasis.Weak}
+                            icon={<IconDotsVertical />}
+                            ref={triggerRef}
+                            size={ButtonSize.Small}
+                            onClick={() => setIsMenuFlyoutOpen((open) => !open)}
+                        />
+                    )}
+                >
+                    <ActionMenu
+                        menuBlocks={[
+                            {
+                                id: 'menu-items',
+                                menuItems: [
+                                    (type === TileType.Text || !!tileAsset?.originUrl) && {
+                                        id: 'opensettings',
+                                        title: 'Open Settings',
+                                        decorator: <IconCog />,
+                                        onClick: () => setIsTopSettingsFlyoutOpen(true),
+                                    },
+                                    {
+                                        id: 'delete',
+                                        title: 'Delete',
+                                        onClick: onRemoveTile,
+                                        decorator: <IconTrashBin />,
+                                        style: MenuItemStyle.Danger,
+                                    },
+                                ].filter(Boolean) as ActionMenuItemType[],
+                            },
+                        ]}
+                    ></ActionMenu>
+                </Flyout>
+            </div>
         </div>
     );
 };

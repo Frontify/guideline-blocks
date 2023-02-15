@@ -37,6 +37,8 @@ export type TileSettings = {
     display: Nullable<TileDisplay>;
     backgroundColor: Nullable<Color>;
     backgroundVisibility: Nullable<boolean>;
+    description: Nullable<string>;
+    title: Nullable<string>;
 };
 
 export type Tile = {
