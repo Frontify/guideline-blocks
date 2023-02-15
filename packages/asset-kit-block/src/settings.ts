@@ -3,6 +3,7 @@
 import { Color, SettingBlock, defineSettings } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
+export const ASSET_SETTINGS_ID = 'images';
 export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
     red: 247,
     green: 247,
@@ -58,8 +59,8 @@ export const settings = defineSettings({
             label: 'Thumbnails',
             blocks: [
                 backgroundColor('thumbnails'),
-                getBorderSettings({ id: 'thumbnailsBorder' }),
-                getBorderRadiusSettings({ dependentSettingId: 'hasBorder_thumbnailsBorder' }),
+                getBorderSettings({ id: 'thumbnails' }),
+                getBorderRadiusSettings({ id: 'thumbnails', dependentSettingId: 'hasBorder_thumbnails' }),
             ],
         },
     ],
