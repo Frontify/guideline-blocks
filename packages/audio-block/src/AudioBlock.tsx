@@ -14,13 +14,18 @@ import {
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
-import { BlockSettings } from './types';
+import { BlockSettings, TextPosition } from './types';
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
+    const colDirection =
+        blockSettings.positioning === TextPosition.Above
+            ? 'tw-flex tw-flex-col tw-gap-4 tw-flex-col-reverse'
+            : 'tw-flex tw-flex-col tw-gap-4 ';
+
     const { title, description } = blockSettings;
     const audio = blockAssets?.audio?.[0];
 
@@ -50,9 +55,9 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <div data-test-id="audio-block" className="tw-flex tw-flex-col tw-gap-4">
+        <div data-test-id="audio-block">
             {audio ? (
-                <>
+                <div className={colDirection}>
                     <audio key={audio.id} controls className="tw-w-full" controlsList="nodownload" preload="metadata">
                         <source src={audio.genericUrl} type={audio['type']} />
                     </audio>
@@ -87,7 +92,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             rounding={ButtonRounding.Full}
                         />
                     </div>
-                </>
+                </div>
             ) : (
                 <p>Add Audio asset</p>
             )}
