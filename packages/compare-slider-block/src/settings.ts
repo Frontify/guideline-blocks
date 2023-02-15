@@ -130,9 +130,9 @@ export const settings = defineSettings({
                     id: 'sliderColor',
                     type: 'colorInput',
                     defaultValue: {
-                        red: 255,
-                        green: 255,
-                        blue: 255,
+                        red: 0,
+                        green: 0,
+                        blue: 0,
                         alpha: 1,
                     },
                 },
