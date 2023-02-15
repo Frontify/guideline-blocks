@@ -15,6 +15,10 @@ const segmenterConfig: bodySegmentation.MediaPipeSelfieSegmentationMediaPipeMode
     solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@${mpSelfieSegmentation.VERSION}`,
 };
 
+// Cache the segmenter and image to avoid re-creating it on every rerender.
+let segmenter: bodySegmentation.BodySegmenter | undefined;
+let image: HTMLImageElement | undefined;
+
 export const bindVideoToCanvas = async (
     videoElement: HTMLVideoElement,
     canvasElement: HTMLCanvasElement,
@@ -39,13 +43,14 @@ export const bindVideoToCanvas = async (
     setCanvasHeight(canvasElement, height);
     setCanvasHeight(tmpCanvasElement, videoElement.videoHeight);
 
-    let segmenter: bodySegmentation.BodySegmenter | undefined;
-    if (options.videoMode === VideoMode.Custom || options.videoMode === VideoMode.Blur) {
+    if ((options.videoMode === VideoMode.Custom || options.videoMode === VideoMode.Blur) && !segmenter) {
         segmenter = await bodySegmentation.createSegmenter(model, segmenterConfig);
     }
 
-    let image: HTMLImageElement | undefined;
-    if (options.videoMode === VideoMode.Custom && options.backgroundAssetUrl) {
+    if (
+        (options.videoMode === VideoMode.Custom && options.backgroundAssetUrl && !image) ||
+        image?.src !== options.backgroundAssetUrl
+    ) {
         image = await new Promise<HTMLImageElement>((resolve) => {
             const img = new Image(canvasElement.width, canvasElement.height);
             img.crossOrigin = 'anonymous';
@@ -89,7 +94,7 @@ export const bindVideoToCanvas = async (
             await bodySegmentation.drawMask(canvasElement, videoElement, bodyMask, 1, 0, true);
         } else if (options.videoMode === VideoMode.Blur && segmenter) {
             const peopleSegmentation = await segmenter.segmentPeople(videoElement);
-            await bodySegmentation.drawBokehEffect(canvasElement, videoElement, peopleSegmentation, 0.5, 9, 3, true);
+            await bodySegmentation.drawBokehEffect(canvasElement, videoElement, peopleSegmentation, 0.7, 9, 4, true);
         } else {
             drawFrameCover(videoElement, ctx);
         }
