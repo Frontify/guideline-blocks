@@ -28,6 +28,10 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
             size={blockSettings.size}
             cameraDeviceId={blockSettings.cameraDeviceId}
             microphoneDeviceId={blockSettings.microphoneDeviceId}
+            videoOptions={{
+                videoMode: blockSettings.videoMode,
+                backgroundAssetUrl: blockAssets.customBackgroundAsset?.[0]?.previewUrl,
+            }}
         />
     ) : (
         <AudioRecorder onRecordingEnd={onAudioRecordingEnd} microphoneDeviceId={blockSettings.microphoneDeviceId} />

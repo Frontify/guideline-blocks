@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, RefObject, useEffect } from 'react';
+import { ReactElement, RefObject, useEffect, useRef } from 'react';
 
 import { cameraSizeToScaleMap } from '../constants';
-import { CameraSize } from '../types';
+import { CameraSize, VideoMode } from '../types';
 import { bindCameraToVideoElement, bindVideoToCanvas } from '../utilities';
 
 type CameraProps = {
@@ -13,6 +13,10 @@ type CameraProps = {
     canvasRef: RefObject<HTMLCanvasElement>;
     cameraRef: RefObject<HTMLVideoElement>;
     onDevicePermissionDenied: () => void;
+    videoOptions: {
+        videoMode: VideoMode;
+        backgroundAssetUrl?: string;
+    };
 };
 
 export const Camera = ({
@@ -22,13 +26,21 @@ export const Camera = ({
     canvasRef,
     cameraRef,
     onDevicePermissionDenied,
+    videoOptions,
 }: CameraProps): ReactElement => {
+    const tmpCanvasElement = useRef(null);
     useEffect(() => {
         const bindElements = async () => {
-            if (cameraRef.current && canvasRef.current) {
+            if (cameraRef.current && canvasRef.current && tmpCanvasElement.current) {
                 try {
                     await bindCameraToVideoElement(cameraRef.current, cameraDeviceId, microphoneDeviceId);
-                    bindVideoToCanvas(cameraRef.current, canvasRef.current, cameraSizeToScaleMap[size]);
+                    await bindVideoToCanvas(
+                        cameraRef.current,
+                        canvasRef.current,
+                        tmpCanvasElement.current,
+                        cameraSizeToScaleMap[size],
+                        videoOptions
+                    );
                 } catch {
                     onDevicePermissionDenied();
                 }
@@ -36,11 +48,12 @@ export const Camera = ({
         };
 
         bindElements();
-    }, [size, cameraDeviceId, microphoneDeviceId, canvasRef, onDevicePermissionDenied, cameraRef]);
+    }, [size, cameraDeviceId, microphoneDeviceId, canvasRef, onDevicePermissionDenied, cameraRef, videoOptions]);
 
     return (
         <>
             <canvas ref={canvasRef}></canvas>
+            <canvas ref={tmpCanvasElement} className="tw-hidden"></canvas>
             <video ref={cameraRef} className="tw-hidden" muted></video>
         </>
     );

@@ -3,7 +3,7 @@
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
-import { CameraSize, RecorderState } from '../types';
+import { CameraSize, RecorderState, VideoMode } from '../types';
 import { VideoRecorderToolbar } from './VideoRecorderToolbar';
 import { Camera } from './Camera';
 
@@ -12,6 +12,7 @@ type VideoRecorderProps = {
     size: CameraSize;
     cameraDeviceId?: string;
     microphoneDeviceId?: string;
+    videoOptions: { videoMode: VideoMode; backgroundAssetUrl?: string };
 };
 
 export const VideoRecorder = ({
@@ -19,6 +20,7 @@ export const VideoRecorder = ({
     size,
     cameraDeviceId,
     microphoneDeviceId,
+    videoOptions,
 }: VideoRecorderProps): ReactElement => {
     const [state, setState] = useState<RecorderState>('idle');
     const recorder = useRef<MediaRecorder | null>(null);
@@ -105,6 +107,7 @@ export const VideoRecorder = ({
                         canvasRef={canvasRef}
                         cameraRef={cameraRef}
                         onDevicePermissionDenied={onDevicePermissionDenied}
+                        videoOptions={videoOptions}
                     />
 
                     <div className="tw-mt-6">

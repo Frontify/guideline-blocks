@@ -2,8 +2,7 @@
 
 import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-import { LOCAL_STORAGE_PREFFERED_CAMERA_KEY, LOCAL_STORAGE_PREFFERED_MICROPHONE_KEY } from './constants';
-import { CameraSize, RecordingMode, VideoShape } from './types';
+import { CameraSize, RecordingMode, VideoMode, VideoShape } from './types';
 
 export const settings = defineSettings({
     main: [
@@ -46,7 +45,7 @@ export const settings = defineSettings({
             label: 'Camera',
             type: 'dropdown',
             show: (bundle) => bundle.getBlock('recordingMode')?.value === RecordingMode.CameraAndAudio,
-            choices: async () => {
+            choices: async (bundle) => {
                 const devices = await navigator.mediaDevices.enumerateDevices();
 
                 const videoDevices = devices.filter((device) => device.kind === 'videoinput');
@@ -61,6 +60,23 @@ export const settings = defineSettings({
             label: 'Camera',
             type: 'assetInput',
             show: (bundle) => bundle.getBlock('recordingMode')?.value === RecordingMode.AudioOnly,
+        },
+        {
+            id: 'videoMode',
+            type: 'dropdown',
+            label: 'Video transformation',
+            defaultValue: VideoMode.None,
+            choices: [
+                { label: 'None', value: VideoMode.None },
+                { label: 'Blur', value: VideoMode.Blur },
+                { label: 'Custom', value: VideoMode.Custom },
+            ],
+        },
+        {
+            id: 'customBackgroundAsset',
+            label: 'Custom background asset',
+            type: 'assetInput',
+            show: (bundle) => bundle.getBlock('videoMode')?.value === 'custom',
         },
     ],
     layout: [
