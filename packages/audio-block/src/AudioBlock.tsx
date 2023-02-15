@@ -9,18 +9,62 @@ import {
     IconArrowCircleDown,
     RichTextEditor,
     Position,
+    PluginComposer,
+    InitPlugin,
+    BoldPlugin,
+    ItalicPlugin,
+    UnderlinePlugin,
+    StrikethroughPlugin,
+    AlignCenterPlugin,
+    AlignLeftPlugin,
+    AlignRightPlugin,
+    AlignJustifyPlugin,
+    ResetFormattingPlugin,
+    CodePlugin,
+    LinkPlugin,
+    OrderedListPlugin,
+    UnorderedListPlugin,
+    CheckboxListPlugin,
 } from '@frontify/fondue';
-import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
 import { AUDIO_ID } from './settings';
 
+const customTitlePlugin = new PluginComposer();
+customTitlePlugin
+    .setPlugin([new InitPlugin()])
+    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
+    .setPlugin([new AlignCenterPlugin(), new AlignLeftPlugin(), new AlignRightPlugin(), new AlignJustifyPlugin()])
+    .setPlugin([new ResetFormattingPlugin()]);
+
+const customDescriptionPlugin = new PluginComposer();
+customDescriptionPlugin
+    .setPlugin([new InitPlugin()])
+    .setPlugin([
+        new BoldPlugin(),
+        new ItalicPlugin(),
+        new UnderlinePlugin(),
+        new StrikethroughPlugin(),
+        new LinkPlugin(),
+        new CodePlugin(),
+    ])
+    .setPlugin([
+        new AlignCenterPlugin(),
+        new AlignLeftPlugin(),
+        new AlignRightPlugin(),
+        new AlignJustifyPlugin(),
+        new UnorderedListPlugin(),
+        new CheckboxListPlugin(),
+        new OrderedListPlugin(),
+    ])
+    .setPlugin([new ResetFormattingPlugin()]);
+
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
     const { description } = blockSettings;
     let { title } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
@@ -80,17 +124,32 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                         <div className="tw-self-stretch">
                             <RichTextEditor
-                                designTokens={designTokens ?? undefined}
+                                plugins={customTitlePlugin}
+                                designTokens={{
+                                    p: {
+                                        fontFamily: 'Poppins, sans-serif',
+                                        fontSize: '12px',
+                                        fontWeight: '500',
+                                        lineHeight: '18px',
+                                    },
+                                }}
                                 value={title}
                                 border={false}
-                                position={Position.FLOATING}
                                 onTextChange={saveTitle}
                                 onBlur={saveTitle}
                                 placeholder={isEditing ? 'add a title here' : undefined}
                                 readonly={!isEditing}
                             />
                             <RichTextEditor
-                                designTokens={designTokens ?? undefined}
+                                plugins={customDescriptionPlugin}
+                                designTokens={{
+                                    p: {
+                                        fontFamily: 'Roboto, sans-serif',
+                                        fontSize: '11px',
+                                        fontWeight: '400',
+                                        lineHeight: '13px',
+                                    },
+                                }}
                                 value={description}
                                 border={false}
                                 position={Position.FLOATING}
