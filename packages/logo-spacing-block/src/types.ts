@@ -35,6 +35,7 @@ export type LogoSpacingSettings = {
     containerSizeChoice: Size;
     hasCustomClearSpace: boolean;
     hasCustomOffset: boolean;
+    logoSpacingType: LogoSpacingType;
     offsetBottom: string;
     offsetLeft: string;
     offsetRight: string;
@@ -43,9 +44,10 @@ export type LogoSpacingSettings = {
 
 export type LogoGridProps = {
     asset: Asset;
-    containerWidth: number;
-    settings: LogoSpacingSettings;
     containerHeight: number;
+    containerWidth: number;
+    gridTemplateColumns: string;
+    gridTemplateRows: string;
 };
 
 export enum GridElementPosition {
@@ -53,6 +55,10 @@ export enum GridElementPosition {
     Right = 'Right',
     Bottom = 'Bottom',
     Left = 'Left',
+    TopLeft = 'TopLeft',
+    TopRight = 'TopRight',
+    BottomLeft = 'BottomLeft',
+    BottomRight = 'BottomRight',
 }
 
 export type GridElementProps = {

@@ -20,7 +20,7 @@ import {
     COLOR_DEFAULT_CLEARSPACE,
     COLOR_DEFAULT_LABEL,
     LOGO_ID,
-    LOGO_SPACING,
+    LOGO_SPACING_ID,
     STYLE_DEFAULT_VALUE,
     leftRightOffsetMap,
     topBottomOffsetMap,
@@ -28,7 +28,7 @@ import {
 import { LineStyle, LogoSpacingType, Property, Size } from './types';
 
 const appendPixelOrPercentage = (bundle: Bundle, property: string) => {
-    if (bundle.getBlock(LOGO_SPACING)?.value === LogoSpacingType.Percentage) {
+    if (bundle.getBlock(LOGO_SPACING_ID)?.value === LogoSpacingType.Percentage) {
         appendUnit(bundle, property, '%');
     } else {
         appendUnit(bundle, property, 'px');
@@ -38,7 +38,7 @@ const appendPixelOrPercentage = (bundle: Bundle, property: string) => {
 export const settings = defineSettings({
     main: [
         {
-            id: LOGO_SPACING,
+            id: LOGO_SPACING_ID,
             type: 'dropdown',
             defaultValue: LogoSpacingType.Percentage,
             size: DropdownSize.Large,
@@ -157,7 +157,7 @@ export const settings = defineSettings({
                     info: 'Select what is the clearspace percentage value based on',
                     label: 'Defined by',
                     type: 'slider',
-                    show: (bundle) => bundle.getBlock(LOGO_SPACING)?.value === LogoSpacingType.Percentage,
+                    show: (bundle) => bundle.getBlock(LOGO_SPACING_ID)?.value === LogoSpacingType.Percentage,
                     choices: [
                         {
                             label: 'Height',

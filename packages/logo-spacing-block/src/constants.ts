@@ -1,6 +1,6 @@
 import { LineStyle, LogoSpacingType, Size } from './types';
 
-export const LOGO_SPACING = 'logo-spacing';
+export const LOGO_SPACING_ID = 'logoSpacingUnit';
 export const BOUNDARIES_THICKNESS_ID = 'thickness';
 export const BOUNDARIES_COLOR_ID = 'boundariesColor';
 export const CLEARSPACE_BG_COLOR_ID = 'clearSpaceBgColor';
