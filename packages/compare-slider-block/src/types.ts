@@ -8,7 +8,7 @@ export type BlockSettings = {
     borderStyle: BorderStyle;
     borderWidth: string;
     customBorderRadius: string;
-    customHeight: number;
+    customHeight: string;
     handle: Handle;
     hasCustomBorderRadius: boolean;
     hasCustomHeight: boolean;
@@ -34,11 +34,18 @@ export enum Height {
     Large = 'l',
 }
 
-export const heightStyleMap: Record<Height, number> = {
-    [Height.Auto]: 0,
+export const heightMap: Record<Height, number> = {
+    [Height.Auto]: 500,
     [Height.Small]: 200,
     [Height.Medium]: 350,
     [Height.Large]: 500,
+};
+
+export const blankSlateWidthStyleMap: Record<Height, string> = {
+    [Height.Auto]: 'tw-w-full',
+    [Height.Small]: 'tw-w-[320px]',
+    [Height.Medium]: 'tw-w-[560px]',
+    [Height.Large]: 'tw-w-[800px]',
 };
 
 export enum Handle {

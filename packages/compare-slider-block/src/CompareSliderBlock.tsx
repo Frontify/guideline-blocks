@@ -2,9 +2,9 @@ import type { FC } from 'react';
 import { useRef } from 'react';
 import { useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
-import { BlockSettings, Handle, Height, SliderImageSlot, heightStyleMap } from './types';
+import { Alignment, BlockSettings, Handle, Height, SliderImageSlot, blankSlateWidthStyleMap, heightMap } from './types';
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
-import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { Icon, IconEnum, IconSize } from '@frontify/fondue';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -21,11 +21,11 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const getImageHeight = (): number | undefined => {
         if (blockSettings.hasCustomHeight) {
-            return blockSettings.customHeight;
+            return parseInt(blockSettings.customHeight);
         }
 
         if (blockSettings.height !== Height.Auto) {
-            return heightStyleMap[blockSettings.height];
+            return heightMap[blockSettings.height];
         }
 
         return calculateAutoImageHeight();
@@ -60,21 +60,11 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const getSliderItem = (slot: SliderImageSlot) => {
         if (slot === SliderImageSlot.First && !firstAsset) {
-            return (
-                <div slot={slot} className="tw-h-[500px] tw-w-full tw-bg-black-5">
-                    <div className="tw-h-full tw-w-[50%] tw-flex tw-justify-center tw-items-center">Empty first</div>
-                </div>
-            );
+            return getFirstSlotBlankSlate();
         }
 
         if (slot === SliderImageSlot.Second && !secondAsset) {
-            return (
-                <div slot={slot} className="tw-h-[500px] tw-w-full tw-bg-black-5">
-                    <div className="tw-h-full tw-w-[50%] tw-ml-[50%] tw-flex tw-justify-center tw-items-center">
-                        Empty second
-                    </div>
-                </div>
-            );
+            return getSecondSlotBlankSlate();
         }
 
         return (
@@ -86,6 +76,56 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                 style={{ height: getImageHeight() }}
             />
         );
+    };
+
+    const getFirstSlotBlankSlate = () => {
+        return (
+            <div
+                slot={SliderImageSlot.First}
+                className={`${blankSlateWidthStyleMap[blockSettings.height]} tw-bg-black-5`}
+                style={getBlankSlateInlineStyles()}
+            >
+                <div
+                    className={joinClassNames([
+                        `${blockSettings?.alignment === Alignment.Horizontal ? 'tw-w-[50%]' : 'tw-h-[50%]'}`,
+                        'tw-h-full tw-flex tw-justify-center tw-items-center',
+                    ])}
+                >
+                    Empty first
+                </div>
+            </div>
+        );
+    };
+
+    const getSecondSlotBlankSlate = () => {
+        return (
+            <div
+                slot={SliderImageSlot.Second}
+                className={`${blankSlateWidthStyleMap[blockSettings.height]} tw-bg-black-5`}
+                style={getBlankSlateInlineStyles()}
+            >
+                <div
+                    className={joinClassNames([
+                        `${
+                            blockSettings?.alignment === Alignment.Horizontal
+                                ? 'tw-w-[50%] tw-absolute tw-left-[50%]'
+                                : 'tw-w-full tw-h-[50%] tw-absolute tw-top-[50%]'
+                        }`,
+                        'tw-h-full tw-flex tw-justify-center tw-items-center',
+                    ])}
+                >
+                    Empty second
+                </div>
+            </div>
+        );
+    };
+
+    const getBlankSlateInlineStyles = () => {
+        const height = getImageHeight() || heightMap[Height.Auto];
+
+        return blockSettings.hasCustomHeight
+            ? { height: `${height}px`, width: `${height * 1.6}px` }
+            : { height: `${height}px` };
     };
 
     const getHandle = () => {
