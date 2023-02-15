@@ -37,7 +37,7 @@ export const settings = defineSettings({
             label: 'Audio',
             info: 'Select an audio file to play.',
             size: AssetInputSize.Small,
-            extensions: [FileExtension.Mp3, FileExtension.Wav],
+            extensions: [FileExtension.Flac, FileExtension.Mp3, FileExtension.Ogg, FileExtension.Wav],
             objectTypes: [AssetChooserObjectType.File],
         },
     ],

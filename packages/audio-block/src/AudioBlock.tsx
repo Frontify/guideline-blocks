@@ -22,7 +22,9 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
     const { title, description } = blockSettings;
-    const audio = blockAssets?.AUDIO_ID?.[0];
+    const audio = blockAssets?.[AUDIO_ID]?.[0];
+    const mimeType = 'audio/' + audio?.extension;
+
     const audioDivClassNames = joinClassNames([
         'tw-flex tw-flex-col tw-gap-2',
         blockSettings.positioning === TextPosition.Above && 'tw-flex-col-reverse',
@@ -63,11 +65,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         controls
                         className="tw-w-full"
                         controlsList="nodownload"
-                        preload="metadata"
+                        preload="auto"
                     >
-                        <source src={audio.genericUrl} type={audio['type']} />
+                        <source src={audio.genericUrl} type={mimeType} />
                     </audio>
-                    <div className="tw-flex tw-gap-2 tw-justify-between">
+                    <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                         <div className="tw-self-stretch">
                             <RichTextEditor
                                 designTokens={designTokens ?? undefined}

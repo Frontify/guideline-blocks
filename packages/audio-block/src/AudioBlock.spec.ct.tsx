@@ -39,7 +39,7 @@ describe('Audio Block', () => {
         const asset = AssetDummy.with(312);
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             blockAssets: {
-                AUDIO_ID: [asset],
+                [AUDIO_ID]: [asset],
             },
         });
 
@@ -52,7 +52,7 @@ describe('Audio Block', () => {
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             editorState: true,
             blockAssets: {
-                AUDIO_ID: [asset],
+                [AUDIO_ID]: [asset],
             },
         });
 
@@ -67,7 +67,7 @@ describe('Audio Block', () => {
                 title: 'Audio Title',
             },
             blockAssets: {
-                AUDIO_ID: [asset],
+                [AUDIO_ID]: [asset],
             },
         });
 
@@ -82,7 +82,7 @@ describe('Audio Block', () => {
                 description: 'Audio Description',
             },
             blockAssets: {
-                AUDIO_ID: [asset],
+                [AUDIO_ID]: [asset],
             },
         });
 
@@ -98,7 +98,7 @@ describe('Audio Block', () => {
                 description: 'Audio Description',
             },
             blockAssets: {
-                AUDIO_ID: [asset],
+                [AUDIO_ID]: [asset],
             },
         });
 
@@ -114,7 +114,7 @@ describe('Audio Block', () => {
                 positioning: TextPosition.Above,
             },
             blockAssets: {
-                AUDIO_ID: [asset],
+                [AUDIO_ID]: [asset],
             },
         });
         mount(<AudioBlockWithStubs />);
@@ -128,7 +128,7 @@ describe('Audio Block', () => {
                 positioning: TextPosition.Below,
             },
             blockAssets: {
-                AUDIO_ID: [asset],
+                [AUDIO_ID]: [asset],
             },
         });
         mount(<AudioBlockWithStubs />);
