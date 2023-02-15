@@ -59,6 +59,24 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const getSliderItem = (slot: SliderImageSlot) => {
+        if (slot === SliderImageSlot.First && !firstAsset) {
+            return (
+                <div slot={slot} className="tw-h-[500px] tw-w-full tw-bg-black-5">
+                    <div className="tw-h-full tw-w-[50%] tw-flex tw-justify-center tw-items-center">Empty first</div>
+                </div>
+            );
+        }
+
+        if (slot === SliderImageSlot.Second && !secondAsset) {
+            return (
+                <div slot={slot} className="tw-h-[500px] tw-w-full tw-bg-black-5">
+                    <div className="tw-h-full tw-w-[50%] tw-ml-[50%] tw-flex tw-justify-center tw-items-center">
+                        Empty second
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <img
                 slot={slot}
