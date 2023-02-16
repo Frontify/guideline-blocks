@@ -58,7 +58,7 @@ export const getImagePlaceholderClassName = (
 ) =>
     merge([
         getImageClassName(type, height, positioning),
-        'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled',
+        'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled tw-transition',
         FOCUS_VISIBLE_STYLE,
         'tw-ring-inset',
         isEditing ? 'hover:tw-text-text-x-weak' : 'tw-cursor-default',

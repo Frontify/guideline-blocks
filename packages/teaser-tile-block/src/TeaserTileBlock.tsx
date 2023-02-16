@@ -64,7 +64,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 {isEditing && (
                     <div
                         className={merge([
-                            'tw-transition tw-min-w-0 tw-bg-base-alt tw-rounded tw-border-2 tw-h-full tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center tw-cursor-pointer hover:tw-bg-box-neutral-hover',
+                            'tw-transition tw-min-w-0 tw-bg-base-alt tw-text-text-disabled tw-rounded tw-border-2 tw-h-full tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center tw-cursor-pointer hover:tw-bg-box-neutral-hover hover:tw-text-text-x-weak hover:tw-border-line-strong',
                             'tw-min-h-[100px]',
                         ])}
                         style={{
