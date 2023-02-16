@@ -19,7 +19,7 @@ export enum BrandItemSize {
     L = 'large',
 }
 
-export const brandItemBrandItemSizeMap: Record<BrandItemSize, string> = {
+export const brandItemSizeMap: Record<BrandItemSize, string> = {
     [BrandItemSize.S]: '40px',
     [BrandItemSize.M]: '48px',
     [BrandItemSize.L]: '56px',

@@ -11,7 +11,7 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
-import { brandItemBrandItemSizeMap } from './types';
+import { brandItemSizeMap } from './types';
 
 const WHITE_COLOR_VALUE: Color = {
     red: 255,
@@ -60,12 +60,7 @@ export const settings = defineSettings({
                     info: 'Placeholder tooltip',
                     defaultValue: false,
                     onChange: (bundle) => {
-                        presetCustomValue(
-                            bundle,
-                            'brandItemSizeSimple',
-                            'brandItemSizeCustom',
-                            brandItemBrandItemSizeMap
-                        );
+                        presetCustomValue(bundle, 'brandItemSizeSimple', 'brandItemSizeCustom', brandItemSizeMap);
                     },
                     on: [
                         {

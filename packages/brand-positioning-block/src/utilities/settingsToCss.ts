@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ItemStyleSettings, StyleSettings, brandItemBrandItemSizeMap } from '../types';
+import { ItemStyleSettings, StyleSettings, brandItemSizeMap } from '../types';
 import { CSSProperties } from 'react';
 import { BorderStyle, borderStyleMap, radiusStyleMap, toHex8String } from '@frontify/guideline-blocks-shared';
 import { Color } from '@frontify/guideline-blocks-settings';
@@ -8,7 +8,7 @@ import { Color } from '@frontify/guideline-blocks-settings';
 export const borderSettingsToCss = (width: string, style: BorderStyle, color: Color): CSSProperties['border'] =>
     `${width} ${borderStyleMap[style]} ${toHex8String(color)}`;
 
-export const styleSettingsToCSS = (styleSettings: StyleSettings): CSSProperties => {
+export const styleSettingsToCss = (styleSettings: StyleSettings): CSSProperties => {
     const {
         backgroundColor,
         borderColor,
@@ -29,8 +29,8 @@ export const styleSettingsToCSS = (styleSettings: StyleSettings): CSSProperties 
 
 export const itemStyleSettingssToCss = (styleSettings: ItemStyleSettings): CSSProperties => {
     const { itemSizeSimple, itemSizeCustom, isBrandItemSizeCustom, ...base } = styleSettings;
-    const baseCss = styleSettingsToCSS(base);
-    const size = isBrandItemSizeCustom ? itemSizeCustom : brandItemBrandItemSizeMap[itemSizeSimple];
+    const baseCss = styleSettingsToCss(base);
+    const size = isBrandItemSizeCustom ? itemSizeCustom : brandItemSizeMap[itemSizeSimple];
 
     return {
         width: size,

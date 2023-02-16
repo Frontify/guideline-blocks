@@ -14,7 +14,7 @@ import { useRef } from 'react';
 import { BoardProps } from '../types';
 import { Axis } from './Axis';
 import { Item } from './Item';
-import { styleSettingsToCSS } from '../utilities/settingsToCss';
+import { styleSettingsToCss } from '../utilities/settingsToCss';
 import { splitBlockSettingsByArea } from '../utilities/splitBlockSettingsByArea';
 
 export const Board = ({ items, assets, setItems, deleteItem, isEditing, blockSettings }: BoardProps) => {
@@ -27,7 +27,7 @@ export const Board = ({ items, assets, setItems, deleteItem, isEditing, blockSet
     const { xAxisLeftLabel, xAxisRightLabel, yAxisTopLabel, yAxisBottomLabel } = blockSettings;
     const { axisStyle, boardStyle, itemStyle } = splitBlockSettingsByArea(blockSettings);
 
-    const boardCss = styleSettingsToCSS(boardStyle);
+    const boardCss = styleSettingsToCss(boardStyle);
 
     const handleDragEnd = (event: DragEndEvent) => {
         if (!containerRef.current) {
