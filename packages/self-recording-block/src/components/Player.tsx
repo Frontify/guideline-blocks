@@ -8,14 +8,14 @@ import { getTimeStringFromTimeStamp } from '../utilities/getTimeStringFromTimeSt
 import { Mask, MaskProps } from './Mask';
 import { VideoPlayerToolbar } from './VideoPlayerToolbar';
 
-type VideoPlayerProps = {
+type PlayerProps = {
     asset?: Asset;
     size: CameraSize;
     maskShape: MaskShape;
     maskBorder: MaskProps['border'];
 };
 
-export const VideoPlayer = ({ asset, size, maskShape, maskBorder }: VideoPlayerProps) => {
+export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const [isPlaying, setIsPlaying] = useState(false);

@@ -5,7 +5,7 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { RecordingMode, Settings } from './types';
-import { MaskProps, Player as Player, Recorder as Recorder } from './components';
+import { MaskProps, Player, Recorder as Recorder } from './components';
 
 export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     const [avatarImageUrl, setAvatarImageUrl] = useState<string>('/img/favicon-nook.png');
