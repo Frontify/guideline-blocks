@@ -57,9 +57,41 @@ const getElementBorders = (position: GridElementPosition, borderWidth: string) =
     }
 };
 
-export const GridElement = ({ bgColor, borderStyle, borderWidth, position, children, col, row }: GridElementProps) => {
+const getTextRotation = (position: GridElementPosition) => {
+    switch (position) {
+        case GridElementPosition.Bottom:
+            return {
+                transform: 'rotate(180deg)',
+            };
+        case GridElementPosition.Right:
+            return {
+                transform: 'rotate(90deg)',
+            };
+        case GridElementPosition.Left:
+            return {
+                transform: 'rotate(-90deg)',
+            };
+        case GridElementPosition.Top:
+        default:
+            return {
+                transform: 'rotate(0deg)',
+            };
+    }
+};
+
+export const GridElement = ({
+    bgColor,
+    borderStyle,
+    borderWidth,
+    labelColor,
+    position,
+    children,
+    col,
+    row,
+}: GridElementProps) => {
     return (
         <span
+            className="tw-justify-center tw-flex tw-items-center"
             id={position}
             style={{
                 ...borderStyle,
@@ -69,7 +101,9 @@ export const GridElement = ({ bgColor, borderStyle, borderWidth, position, child
                 gridRowStart: row,
             }}
         >
-            {children}
+            {children && labelColor && (
+                <div style={{ color: toRgbaString(labelColor), ...getTextRotation(position) }}>{children}</div>
+            )}
         </span>
     );
 };

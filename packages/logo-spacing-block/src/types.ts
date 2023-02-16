@@ -44,6 +44,7 @@ export type LogoSpacingSettings = BorderSettings & {
     containerSizeChoice: Size;
     hasCustomClearSpace: boolean;
     hasCustomOffset: boolean;
+    labelColor: Color;
     logoSpacingType: LogoSpacingType;
     offsetBottom: string;
     offsetLeft: string;
@@ -57,8 +58,15 @@ export type LogoGridProps = {
     borderSettings: BorderSettings;
     containerHeight: number;
     containerWidth: number;
+    content: {
+        bottom: string;
+        left: string;
+        right: string;
+        top: string;
+    };
     gridTemplateColumns: string;
     gridTemplateRows: string;
+    labelColor: Color;
 };
 
 export enum GridElementPosition {
@@ -76,8 +84,9 @@ export type GridElementProps = {
     bgColor: Color;
     borderStyle: CSSProperties;
     borderWidth: string;
-    position: GridElementPosition;
     children?: ReactNode;
     col: string;
+    labelColor?: Color;
+    position: GridElementPosition;
     row: string;
 };

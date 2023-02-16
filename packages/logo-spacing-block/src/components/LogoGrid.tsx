@@ -11,8 +11,10 @@ export const LogoGrid = ({
     borderSettings,
     containerHeight,
     containerWidth,
+    content,
     gridTemplateColumns,
     gridTemplateRows,
+    labelColor,
 }: LogoGridProps) => {
     const { lineColor, lineStyle, lineWidth } = borderSettings;
     const borderStyle = {
@@ -35,42 +37,51 @@ export const LogoGrid = ({
                         bgColor={bgColor}
                         borderStyle={borderStyle}
                         borderWidth={lineWidth}
+                        col="1"
                         position={GridElementPosition.TopLeft}
-                        col="1"
                         row="1"
                     />
                     <GridElement
                         bgColor={bgColor}
                         borderStyle={borderStyle}
                         borderWidth={lineWidth}
-                        position={GridElementPosition.Top}
                         col="2"
+                        labelColor={labelColor}
+                        position={GridElementPosition.Top}
                         row="1"
-                    />
+                    >
+                        {content.top}
+                    </GridElement>
                     <GridElement
                         bgColor={bgColor}
                         borderStyle={borderStyle}
                         borderWidth={lineWidth}
+                        col="3"
                         position={GridElementPosition.TopRight}
-                        col="3"
                         row="1"
                     />
                     <GridElement
                         bgColor={bgColor}
                         borderStyle={borderStyle}
                         borderWidth={lineWidth}
-                        position={GridElementPosition.Right}
                         col="3"
+                        labelColor={labelColor}
+                        position={GridElementPosition.Right}
                         row="2"
-                    />
+                    >
+                        {content.right}
+                    </GridElement>
                     <GridElement
                         bgColor={bgColor}
                         borderStyle={borderStyle}
                         borderWidth={lineWidth}
-                        position={GridElementPosition.Left}
                         col="1"
+                        labelColor={labelColor}
+                        position={GridElementPosition.Left}
                         row="2"
-                    />
+                    >
+                        {content.left}
+                    </GridElement>
                     <div
                         id="middle"
                         className="tw-col-start-2 tw-row-start-2"
@@ -86,24 +97,27 @@ export const LogoGrid = ({
                         bgColor={bgColor}
                         borderStyle={borderStyle}
                         borderWidth={lineWidth}
-                        position={GridElementPosition.BottomLeft}
                         col="1"
+                        position={GridElementPosition.BottomLeft}
                         row="3"
                     />
                     <GridElement
                         bgColor={bgColor}
                         borderStyle={borderStyle}
                         borderWidth={lineWidth}
-                        position={GridElementPosition.Bottom}
                         col="2"
+                        labelColor={labelColor}
+                        position={GridElementPosition.Bottom}
                         row="3"
-                    />
+                    >
+                        {content.bottom}
+                    </GridElement>
                     <GridElement
                         bgColor={bgColor}
                         borderStyle={borderStyle}
                         borderWidth={lineWidth}
-                        position={GridElementPosition.BottomRight}
                         col="3"
+                        position={GridElementPosition.BottomRight}
                         row="3"
                     />
                 </div>

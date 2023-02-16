@@ -1,6 +1,6 @@
 import { Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
 import { CLEAR_SPACE_PERCENT_SIZE, CONTAINER_SIZE, LOGO_ID } from './constants';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { LogoSpacingSettings, LogoSpacingType, Property } from './types';
 
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -20,10 +20,10 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
             clearSpaceTop,
             containerSizeChoice,
             hasCustomClearSpace,
-            // hasCustomOffset,
             lineColor,
             lineStyle,
             lineWidth,
+            labelColor,
             logoSpacingType,
             offsetBottom,
             offsetLeft,
@@ -55,19 +55,23 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
             return;
         }
 
-        setHeight(logoRef.current.offsetHeight + 2);
-    }, [width, isLogoReady]);
+        setHeight(logoRef.current.offsetHeight + convertToNumber(lineWidth) * 2);
+    }, [width, isLogoReady, lineWidth]);
 
     const convertToNumber = (value: string) => {
         return +value.replace(/px|%/, '');
     };
 
-    const getContainerSizeByPercentage = (percent: number) => {
-        const containerSize = clearSpacePropertyChoice === Property.Width ? width : height;
-        return (containerSize * percent) / 100;
-    };
+    const getContainerSizeByPercentage = useCallback(
+        (percent: number) => {
+            const containerSize = clearSpacePropertyChoice === Property.Width ? width : height;
+            return (containerSize * percent) / 100;
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [clearSpacePropertyChoice]
+    );
 
-    const getTempateSize = (custom: string) => {
+    const getTemplateSize = (custom: string) => {
         if (hasCustomClearSpace) {
             const customValue = convertToNumber(custom);
             return logoSpacingType === LogoSpacingType.Pixels ? customValue : getContainerSizeByPercentage(customValue);
@@ -79,15 +83,15 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
     };
 
     const getTemplateColumn = () => {
-        const firstColumn = getTempateSize(clearSpaceLeft) - convertToNumber(offsetLeft);
-        const thirdColumn = getTempateSize(clearSpaceRight) - convertToNumber(offsetRight);
+        const firstColumn = getTemplateSize(clearSpaceLeft) - convertToNumber(offsetLeft);
+        const thirdColumn = getTemplateSize(clearSpaceRight) - convertToNumber(offsetRight);
 
         return `${firstColumn}px auto ${thirdColumn}px`;
     };
 
     const getUsedHeight = () => {
-        const firstRow = getTempateSize(clearSpaceTop);
-        const thirdRow = getTempateSize(clearSpaceBottom);
+        const firstRow = getTemplateSize(clearSpaceTop);
+        const thirdRow = getTemplateSize(clearSpaceBottom);
 
         const usedHeight = firstRow + thirdRow - convertToNumber(offsetTop) - convertToNumber(offsetBottom);
 
@@ -103,6 +107,25 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         const heights = getUsedHeight();
 
         return `${heights.firstRow}px calc(100% - ${heights.usedHeight}px) ${heights.thirdRow}px`;
+    };
+
+    const getClearSpaceContent = () => {
+        if (hasCustomClearSpace) {
+            return {
+                bottom: clearSpaceBottom,
+                left: clearSpaceLeft,
+                right: clearSpaceRight,
+                top: clearSpaceTop,
+            };
+        }
+        const clearSpacePercentage =
+            clearSpaceChoice === 'none' ? '' : `${CLEAR_SPACE_PERCENT_SIZE[clearSpaceChoice]}%`;
+        return {
+            bottom: clearSpacePercentage,
+            left: clearSpacePercentage,
+            right: clearSpacePercentage,
+            top: clearSpacePercentage,
+        };
     };
 
     return (
@@ -131,8 +154,10 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
                                     }}
                                     containerHeight={height}
                                     containerWidth={width}
+                                    content={getClearSpaceContent()}
                                     gridTemplateColumns={getTemplateColumn()}
                                     gridTemplateRows={getTemplateRow()}
+                                    labelColor={labelColor}
                                 />
                             </div>
                         )}
@@ -142,10 +167,10 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
                                 className="tw-absolute tw-left-1/2 tw-top-0 tw--translate-x-1/2"
                                 style={{
                                     width: `${width}px`,
-                                    paddingTop: `${getTempateSize(clearSpaceTop) + 2}px`,
-                                    paddingRight: `${getTempateSize(clearSpaceRight) + 2}px`,
-                                    paddingBottom: `${getTempateSize(clearSpaceBottom) + 2}px`,
-                                    paddingLeft: `${getTempateSize(clearSpaceLeft) + 2}px`,
+                                    paddingTop: `${getTemplateSize(clearSpaceTop) + 2}px`,
+                                    paddingRight: `${getTemplateSize(clearSpaceRight) + 2}px`,
+                                    paddingBottom: `${getTemplateSize(clearSpaceBottom) + 2}px`,
+                                    paddingLeft: `${getTemplateSize(clearSpaceLeft) + 2}px`,
                                 }}
                             >
                                 <img className="tw-w-full" onLoad={updateDimensions} src={asset.previewUrl} />
