@@ -361,7 +361,6 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
             }
         >
             <ImgComparisonSlider
-                handle={true}
                 direction={blockSettings?.alignment}
                 className={!blockSettings.hasCustomHeight && blockSettings.height === Height.Auto ? 'tw-w-full' : ''}
                 style={
