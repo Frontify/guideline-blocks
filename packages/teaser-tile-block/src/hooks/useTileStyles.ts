@@ -22,9 +22,10 @@ export const useTileStyles = (blockSettings: Settings, tileSettings: TileSetting
     const tileObjectFit = tileSettings.display ? objectFitMap[tileSettings.display] : undefined;
     const objectFit = height === 'auto' ? 'cover' : tileObjectFit ?? globalObjectFit;
 
-    const globalBackground = blockSettings.background ? toRgbaString(blockSettings.backgroundColor) : undefined;
+    const globalBackground = blockSettings.backgroundColor ? toRgbaString(blockSettings.backgroundColor) : undefined;
     const tileBackground = tileSettings.backgroundColor ? toRgbaString(tileSettings.backgroundColor) : undefined;
-    const background = tileSettings.backgroundVisibility !== false ? tileBackground ?? globalBackground : undefined;
+    const background =
+        tileSettings.backgroundVisibility ?? blockSettings.background ? tileBackground ?? globalBackground : undefined;
     const borderRadius = blockSettings.hasRadius ? blockSettings.radiusValue : radiusMap[blockSettings.radiusChoice];
 
     return { height, background, objectFit, padding, textAlign, border, borderRadius };

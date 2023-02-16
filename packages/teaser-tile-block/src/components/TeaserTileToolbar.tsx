@@ -47,7 +47,7 @@ export const TeaserTileToolbar = ({
                     <button
                         {...draggableProps}
                         className={merge([
-                            'tw-inline-flex tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',
+                            'tw-inline-flex tw-items-center active:tw-bg-box-selected-pressed tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',
                             isDragging
                                 ? 'tw-cursor-grabbing tw-bg-box-selected-pressed'
                                 : 'tw-cursor-grab hover:tw-bg-box-selected-hover',
@@ -77,9 +77,12 @@ export const TeaserTileToolbar = ({
                                 <div>
                                     <button
                                         {...triggerProps}
+                                        aria-label={
+                                            isTopSettingsFlyoutOpen ? 'Close tile settings' : 'Open tile settings'
+                                        }
                                         ref={triggerRef}
                                         className={merge([
-                                            'tw-relative tw-inline-flex tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm tw-z-[3]',
+                                            'tw-relative active:tw-bg-box-selected-pressed tw-inline-flex tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm tw-z-[3]',
                                             isDragging
                                                 ? ' hover:tw-bg-box-selected-pressed'
                                                 : ' hover:tw-bg-box-selected-hover',
@@ -103,6 +106,7 @@ export const TeaserTileToolbar = ({
                 content={<div>Delete item</div>}
                 triggerElement={
                     <button
+                        aria-label="Delete Tile"
                         onClick={onRemoveSelf}
                         className={merge([
                             'hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',

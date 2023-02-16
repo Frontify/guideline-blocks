@@ -3,6 +3,7 @@
 import { MutableRefObject, forwardRef, useEffect, useMemo, useState } from 'react';
 
 import {
+    Color,
     FOCUS_VISIBLE_STYLE,
     FlyoutPlacement,
     IconHeartCircle32,
@@ -13,7 +14,7 @@ import {
 } from '@frontify/fondue';
 
 import { useTileAsset, useTileStyles } from '../hooks';
-import { TeaserTileProps, TileImagePositioning, TileSettingsFlyoutProps, TileType } from '../types';
+import { Link, TeaserTileProps, TileDisplay, TileImagePositioning, TileType } from '../types';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { twBorderMap, twPositioningMap, twVerticalAlignmentMap } from '../helpers';
 import { TeaserTileToolbar } from './TeaserTileToolbar';
@@ -95,18 +96,19 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             type,
             asset: tileAsset,
             backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
-            onLinkChange: (link) => onTileSettingsChange(id, { link }),
+            onLinkChange: (link: Link) => onTileSettingsChange(id, { link }),
             backgroundVisibility: tileSettings.backgroundVisibility ?? blockSettings.background,
-            onDisplayChange: (display) => onTileSettingsChange(id, { display }),
+            onDisplayChange: (display: TileDisplay) => onTileSettingsChange(id, { display }),
             isAssetLoading,
-            onBackgroundColorChange: (backgroundColor) => onTileSettingsChange(id, { backgroundColor }),
+            onBackgroundColorChange: (backgroundColor: Color) => onTileSettingsChange(id, { backgroundColor }),
             onReplaceAssetFromUpload: openFileDialog,
             onUploadFile: uploadFile,
-            onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange(id, { backgroundVisibility }),
+            onBackgroundVisibilityChange: (backgroundVisibility: boolean) =>
+                onTileSettingsChange(id, { backgroundVisibility }),
             onReplaceAssetFromWorkspace: onOpenAssetChooser,
-            palettes,
+            palettes: palettes ?? [],
             disabled: !isEditing,
-        } as Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children' | 'placement'>;
+        };
 
         const titleRichTextEditor = useMemo(
             () => (
@@ -155,10 +157,14 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                 )}
                 {tileSettings.link?.href && !isEditing && (
                     <a
-                        className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"
+                        className={merge([
+                            'tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]',
+                            FOCUS_VISIBLE_STYLE,
+                        ])}
                         aria-label={`Navigate to ${tileSettings.link.href}`}
                         href={tileSettings.link.href}
                         target={tileSettings.link.target}
+                        style={{ borderRadius }}
                     />
                 )}
                 <div
