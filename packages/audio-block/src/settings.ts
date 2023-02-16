@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    AssetInputSize,
     AssetChooserObjectType,
-    DropdownSize,
+    AssetInputSize,
     FileExtension,
     IconEnum,
     defineSettings,

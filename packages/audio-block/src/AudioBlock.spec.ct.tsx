@@ -8,6 +8,7 @@ import { AUDIO_ID } from './settings';
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
 const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';
+const ItemToolbarSelector = '[data-test-id="item-toolbar"]';
 
 describe('Audio Block', () => {
     it('renders an audio block', () => {
@@ -133,5 +134,19 @@ describe('Audio Block', () => {
         });
         mount(<AudioBlockWithStubs />);
         cy.get(AudioBlockSelector).should('not.have.class', 'tw-flex-col-reverse');
+    });
+
+    it('renders an audio block with an audio asset in editor mode toolbar is shown on hover', () => {
+        const asset = AssetDummy.with(312);
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            editorState: true,
+            blockAssets: {
+                [AUDIO_ID]: [asset],
+            },
+        });
+
+        mount(<AudioBlockWithStubs />);
+        cy.get(AudioTagSelector).trigger('mouseover');
+        cy.get(ItemToolbarSelector).should('be.visible');
     });
 });

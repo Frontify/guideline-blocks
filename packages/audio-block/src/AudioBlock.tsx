@@ -7,25 +7,41 @@ import {
     ButtonEmphasis,
     ButtonRounding,
     IconArrowCircleDown,
-    RichTextEditor,
     Position,
+    RichTextEditor,
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import {
+    Asset,
+    AssetChooserObjectType,
+    useAssetUpload,
+    useBlockAssets,
+    useBlockSettings,
+    useEditorState,
+    useFileInput,
+} from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
-import { AUDIO_ID } from './settings';
-import { UploadPlaceholder } from './UploadPlaceholder';
+import { AUDIO_EXTENSIONS, AUDIO_ID } from './settings';
+import { UploadPlaceholder } from './components/UploadPlaceholder';
+import { ItemToolbar } from './components/ItemToolbar';
+import { useEffect, useState } from 'react';
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
+    const [hoveringAudio, setHoveringAudio] = useState(false);
+    const [loading, setLoading] = useState(false);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
+    const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: false, accept: 'audio/*' });
     const { designTokens } = useGuidelineDesignTokens();
     const { description } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
-
     let { title } = blockSettings;
+
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+        onUploadProgress: () => !loading && setLoading(true),
+    });
 
     if (audio && title === undefined && description === undefined) {
         title = audio.fileName;
@@ -34,9 +50,14 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         });
     }
 
-    const audioDivClassNames = joinClassNames([
+    const audioBlockClassNames = joinClassNames([
         'tw-flex tw-flex-col tw-gap-2',
         blockSettings.positioning === TextPosition.Above && 'tw-flex-col-reverse',
+    ]);
+
+    const audiotTagClassNames = joinClassNames([
+        'tw-w-full',
+        hoveringAudio && isEditing && 'tw-border tw-border-box-selected-inverse tw-rounded-[4px]',
     ]);
 
     const saveTitle = (value: string) =>
@@ -58,22 +79,73 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 const blobURL = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = blobURL;
-                a.download = fileName + '.mp3';
+                a.download = `${fileName}.mp3`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
             });
     };
 
+    const onRemoveAsset = () => {
+        const id = audio?.id;
+        deleteAssetIdsFromKey(AUDIO_ID, [id]);
+    };
+
+    const updateAsset = (id: number) => {
+        updateAssetIdsFromKey(AUDIO_ID, [id]);
+    };
+
+    const openAssetChooser = () => {
+        appBridge.openAssetChooser(
+            (result: Asset[]) => {
+                updateAsset(result[0].id);
+                appBridge.closeAssetChooser();
+            },
+            {
+                multiSelection: false,
+                objectTypes: [AssetChooserObjectType.File],
+                extensions: AUDIO_EXTENSIONS,
+            }
+        );
+    };
+
+    const onUploadClick = () => {
+        openFileDialog();
+    };
+
+    useEffect(() => {
+        if (selectedFiles !== null) {
+            uploadFile(selectedFiles);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedFiles, uploadFile]);
+
+    useEffect(() => {
+        if (doneAll) {
+            setLoading(false);
+            updateAsset(uploadResults[0].id);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [doneAll, uploadResults]);
+
     return (
-        <div data-test-id="audio-block" className={audioDivClassNames}>
+        <div data-test-id="audio-block" className={audioBlockClassNames}>
             {audio ? (
-                <div>
+                <div onMouseEnter={() => setHoveringAudio(true)} onMouseLeave={() => setHoveringAudio(false)}>
+                    {hoveringAudio && isEditing && (
+                        <ItemToolbar
+                            onRemoveAsset={onRemoveAsset}
+                            onUploadClick={onUploadClick}
+                            onAssetChooseClick={openAssetChooser}
+                        />
+                    )}
+
+                    {!hoveringAudio && isEditing && <div className="tw-h-[28px]"></div>}
                     <audio
                         data-test-id="audio-block-audio-tag"
                         key={audio.id}
                         controls
-                        className="tw-w-full"
+                        className={audiotTagClassNames}
                         controlsList="nodownload"
                         preload="auto"
                     >

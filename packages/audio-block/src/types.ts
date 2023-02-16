@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { Asset } from '@frontify/app-bridge';
 
 export enum TextPosition {
@@ -10,4 +12,10 @@ export type BlockSettings = {
     audio: Asset[] | undefined;
     description?: string;
     title?: string;
+};
+
+export type ItemToolbarProps = {
+    onRemoveAsset: () => void;
+    onUploadClick: (() => void) | undefined;
+    onAssetChooseClick: (() => void) | undefined;
 };
