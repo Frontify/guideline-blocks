@@ -272,70 +272,54 @@ export const settings = defineSettings({
             label: 'Clearspace',
             blocks: [
                 {
-                    id: 'boundariesColorSwitch',
+                    id: 'boundariesStyle',
+                    type: 'multiInput',
                     label: 'Custom boundaries',
-                    type: 'switch',
-                    on: [
+                    onChange: (bundle) => {
+                        appendUnit(bundle, BOUNDARIES_THICKNESS_ID);
+                    },
+                    layout: MultiInputLayout.Columns,
+                    lastItemFullWidth: true,
+                    blocks: [
                         {
                             id: 'lineStyle',
-                            type: 'multiInput',
-                            label: '',
-                            onChange: (bundle) => {
-                                appendUnit(bundle, BOUNDARIES_THICKNESS_ID);
-                            },
-                            layout: MultiInputLayout.Columns,
-                            lastItemFullWidth: true,
-                            blocks: [
+                            type: 'dropdown',
+                            defaultValue: STYLE_DEFAULT_VALUE,
+                            choices: [
                                 {
-                                    id: 'style',
-                                    type: 'dropdown',
-                                    defaultValue: STYLE_DEFAULT_VALUE,
-                                    choices: [
-                                        {
-                                            value: LineStyle.Solid,
-                                            label: 'Solid',
-                                        },
-                                        {
-                                            value: LineStyle.Dotted,
-                                            label: 'Dotted',
-                                        },
-                                        {
-                                            value: LineStyle.Dashed,
-                                            label: 'Dashed',
-                                        },
-                                    ],
+                                    value: LineStyle.Solid,
+                                    label: 'Solid',
                                 },
                                 {
-                                    id: BOUNDARIES_THICKNESS_ID,
-                                    type: 'input',
-                                    defaultValue: '1px',
-                                    placeholder: 'e.g. 3px',
-                                    clearable: false,
-                                    rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                                    value: LineStyle.Dotted,
+                                    label: 'Dotted',
                                 },
                                 {
-                                    id: BOUNDARIES_COLOR_ID,
-                                    type: 'colorInput',
-                                    defaultValue: COLOR_DEFAULT_CLEARSPACE,
+                                    value: LineStyle.Dashed,
+                                    label: 'Dashed',
                                 },
                             ],
                         },
-                    ],
-                    off: [],
-                },
-                {
-                    id: 'clearSpaceBackgroundSwitch',
-                    label: 'Clearspace background',
-                    type: 'switch',
-                    on: [
                         {
-                            id: CLEARSPACE_BG_COLOR_ID,
-                            label: '',
+                            id: BOUNDARIES_THICKNESS_ID,
+                            type: 'input',
+                            defaultValue: '1px',
+                            placeholder: 'e.g. 3px',
+                            clearable: false,
+                            rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
+                        },
+                        {
+                            id: BOUNDARIES_COLOR_ID,
                             type: 'colorInput',
                             defaultValue: COLOR_DEFAULT_CLEARSPACE,
                         },
                     ],
-                    off: [],
+                },
+                {
+                    id: CLEARSPACE_BG_COLOR_ID,
+                    label: 'Clearspace background',
+                    type: 'colorInput',
+                    defaultValue: COLOR_DEFAULT_CLEARSPACE,
                 },
             ],
         },

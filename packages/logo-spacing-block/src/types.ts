@@ -1,5 +1,7 @@
+import { CSSProperties, ReactNode } from 'react';
+
 import { Asset } from '@frontify/app-bridge';
-import { ReactNode } from 'react';
+import { Color } from '@frontify/fondue';
 
 export enum LogoSpacingType {
     Percentage = 'percentage_clearspace',
@@ -24,7 +26,14 @@ export enum Property {
     Width = 'width',
 }
 
-export type LogoSpacingSettings = {
+export type BorderSettings = {
+    lineColor: Color;
+    lineStyle: LineStyle;
+    lineWidth: string;
+};
+
+export type LogoSpacingSettings = BorderSettings & {
+    clearSpaceBgColor: Color;
     clearSpaceBottom: string;
     clearSpaceChoice: Size | 'none';
     clearSpaceLeft: string;
@@ -44,6 +53,8 @@ export type LogoSpacingSettings = {
 
 export type LogoGridProps = {
     asset: Asset;
+    bgColor: Color;
+    borderSettings: BorderSettings;
     containerHeight: number;
     containerWidth: number;
     gridTemplateColumns: string;
@@ -62,6 +73,9 @@ export enum GridElementPosition {
 }
 
 export type GridElementProps = {
+    bgColor: Color;
+    borderStyle: CSSProperties;
+    borderWidth: string;
     position: GridElementPosition;
     children?: ReactNode;
     col: string;

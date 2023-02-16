@@ -1,8 +1,8 @@
 import { LineStyle, LogoSpacingType, Size } from './types';
 
 export const LOGO_SPACING_ID = 'logoSpacingUnit';
-export const BOUNDARIES_THICKNESS_ID = 'thickness';
-export const BOUNDARIES_COLOR_ID = 'boundariesColor';
+export const BOUNDARIES_THICKNESS_ID = 'lineWidth';
+export const BOUNDARIES_COLOR_ID = 'lineColor';
 export const CLEARSPACE_BG_COLOR_ID = 'clearSpaceBgColor';
 export const LOGO_ID = 'logo';
 
@@ -46,13 +46,13 @@ export const CLEAR_SPACE_PERCENT_SIZE: Record<Size, number> = {
     [Size.L]: 60,
 };
 
-export const STYLE_DEFAULT_VALUE = LineStyle.Solid;
+export const STYLE_DEFAULT_VALUE = LineStyle.Dashed;
 export const COLOR_DEFAULT_CLEARSPACE = {
-    red: 213,
-    green: 214,
-    blue: 214,
+    red: 255,
+    green: 255,
+    blue: 255,
     alpha: 1,
-    name: 'Light Grey',
+    name: 'White',
 };
 export const COLOR_DEFAULT_LABEL = {
     red: 8,
@@ -60,4 +60,10 @@ export const COLOR_DEFAULT_LABEL = {
     blue: 8,
     alpha: 1,
     name: 'Dark Grey',
+};
+export const LINE_STYLE = {
+    [LineStyle.Dashed]: 'dashed',
+    [LineStyle.Dotted]: 'dotted',
+    [LineStyle.NoLine]: '',
+    [LineStyle.Solid]: 'solid',
 };

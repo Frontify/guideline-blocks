@@ -1,32 +1,73 @@
 import { GridElementPosition, GridElementProps } from '../types';
 
-const getElementBorders = (position: GridElementPosition) => {
+import { toRgbaString } from '@frontify/guideline-blocks-shared';
+
+const getElementBorders = (position: GridElementPosition, borderWidth: string) => {
+    const border = {
+        borderBottomWidth: borderWidth,
+        borderLeftWidth: borderWidth,
+        borderRightWidth: borderWidth,
+        borderTopWidth: borderWidth,
+    };
     switch (position) {
         case GridElementPosition.Top:
-            return 'tw-border-b-0';
+            return {
+                ...border,
+                borderBottomWidth: 0,
+            };
         case GridElementPosition.Bottom:
-            return 'tw-border-t-0';
+            return {
+                ...border,
+                borderTopWidth: 0,
+            };
         case GridElementPosition.Right:
-            return 'tw-border-l-0';
+            return {
+                ...border,
+                borderLeftWidth: 0,
+            };
         case GridElementPosition.Left:
-            return 'tw-border-r-0';
+            return {
+                ...border,
+                borderRightWidth: 0,
+            };
         case GridElementPosition.TopLeft:
-            return 'tw-border-r-0 tw-border-b-0';
+            return {
+                ...border,
+                borderBottomWidth: 0,
+                borderRightWidth: 0,
+            };
         case GridElementPosition.TopRight:
-            return 'tw-border-l-0 tw-border-b-0';
+            return {
+                ...border,
+                borderBottomWidth: 0,
+                borderLeftWidth: 0,
+            };
         case GridElementPosition.BottomLeft:
-            return 'tw-border-r-0 tw-border-t-0';
+            return {
+                ...border,
+                borderRightWidth: 0,
+                borderTopWidth: 0,
+            };
         case GridElementPosition.BottomRight:
-            return 'tw-border-l-0 tw-border-t-0';
+            return {
+                ...border,
+                borderLeftWidth: 0,
+                borderTopWidth: 0,
+            };
     }
 };
 
-export const GridElement = ({ position, children, col, row }: GridElementProps) => {
+export const GridElement = ({ bgColor, borderStyle, borderWidth, position, children, col, row }: GridElementProps) => {
     return (
         <span
             id={position}
-            className={`${getElementBorders(position)} tw-border tw-border-dashed`}
-            style={{ gridColumnStart: col, gridRowStart: row }}
+            style={{
+                ...borderStyle,
+                ...getElementBorders(position, borderWidth),
+                backgroundColor: toRgbaString(bgColor),
+                gridColumnStart: col,
+                gridRowStart: row,
+            }}
         >
             {children}
         </span>

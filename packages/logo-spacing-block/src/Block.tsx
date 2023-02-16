@@ -1,16 +1,17 @@
 import { Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
+import { CLEAR_SPACE_PERCENT_SIZE, CONTAINER_SIZE, LOGO_ID } from './constants';
 import { Fragment, useEffect, useRef, useState } from 'react';
+import { LogoSpacingSettings, LogoSpacingType, Property } from './types';
 
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
-import { CLEAR_SPACE_PERCENT_SIZE, CONTAINER_SIZE, LOGO_ID } from './constants';
 import { LogoGrid } from './components/LogoGrid';
-import { LogoSpacingSettings, LogoSpacingType, Property } from './types';
 
 export const AnExampleBlock = ({ appBridge }: BlockProps) => {
     const blockContainer = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLImageElement>(null);
     const [
         {
+            clearSpaceBgColor,
             clearSpaceBottom,
             clearSpaceChoice,
             clearSpaceLeft,
@@ -19,7 +20,10 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
             clearSpaceTop,
             containerSizeChoice,
             hasCustomClearSpace,
-            hasCustomOffset,
+            // hasCustomOffset,
+            lineColor,
+            lineStyle,
+            lineWidth,
             logoSpacingType,
             offsetBottom,
             offsetLeft,
@@ -119,6 +123,12 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
                             >
                                 <LogoGrid
                                     asset={asset}
+                                    bgColor={clearSpaceBgColor}
+                                    borderSettings={{
+                                        lineColor,
+                                        lineStyle,
+                                        lineWidth,
+                                    }}
                                     containerHeight={height}
                                     containerWidth={width}
                                     gridTemplateColumns={getTemplateColumn()}
