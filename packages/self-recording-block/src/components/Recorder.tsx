@@ -161,11 +161,13 @@ export const Recorder = ({
                     {state === 'initializing' ? <BlankState onClick={() => setState('idle')} /> : null}
 
                     {state === 'permissions-error' ? (
-                        <span className="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-bg-[#FAFAFA]">
-                            No permissions <br />
-                            to record&nbsp;
-                            <span className="tw-animate-spin">🥲</span>
-                        </span>
+                        <div className="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-bg-[#FAFAFA]">
+                            <span className="tw-text-center">
+                                Please give us permission
+                                <br /> to record&nbsp;
+                                <span className="tw-animate-spin">🥲</span>
+                            </span>
+                        </div>
                     ) : null}
                 </Mask>
 

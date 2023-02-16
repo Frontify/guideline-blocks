@@ -46,12 +46,12 @@ export const bindFrameToCanvas = async (
     setCanvasHeight(canvasElement, cameraSizeToMaskSizeMap[size].height);
     setCanvasHeight(tmpCanvasElement, frameHeight);
 
-    if ((options.videoMode === VideoMode.Asset || options.videoMode === VideoMode.Blur) && !segmenter) {
+    if ((options.videoMode === VideoMode.Image || options.videoMode === VideoMode.Blur) && !segmenter) {
         segmenter = await bodySegmentation.createSegmenter(model, segmenterConfig);
     }
 
     if (
-        (options.videoMode === VideoMode.Asset && options.backgroundAssetUrl && !image) ||
+        (options.videoMode === VideoMode.Image && options.backgroundAssetUrl && !image) ||
         image?.src !== options.backgroundAssetUrl
     ) {
         image = await new Promise<HTMLImageElement>((resolve) => {
@@ -67,7 +67,7 @@ export const bindFrameToCanvas = async (
             return;
         }
 
-        if (options.videoMode === VideoMode.Asset && segmenter && image) {
+        if (options.videoMode === VideoMode.Image && segmenter && image) {
             const peopleSegmentation = await segmenter.segmentPeople(frame);
             const bodyMask = await bodySegmentation.toBinaryMask(
                 peopleSegmentation,

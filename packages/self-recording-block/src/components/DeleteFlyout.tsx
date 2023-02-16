@@ -10,6 +10,8 @@ import {
     IconTrashBin16,
     Stack,
     Text,
+    Tooltip,
+    TooltipPosition,
 } from '@frontify/fondue';
 import { ReactElement, useState } from 'react';
 
@@ -23,7 +25,19 @@ export const DeleteFlyout = ({ onConfirm }: DeleteFlyoutProps): ReactElement => 
     return (
         <Flyout
             trigger={
-                <Button emphasis={ButtonEmphasis.Weak} icon={<IconTrashBin16 />} onClick={() => setIsOpen(true)} />
+                <Tooltip
+                    withArrow
+                    content="Delete"
+                    position={TooltipPosition.Bottom}
+                    enterDelay={800}
+                    triggerElement={
+                        <Button
+                            emphasis={ButtonEmphasis.Weak}
+                            icon={<IconTrashBin16 />}
+                            onClick={() => setIsOpen(true)}
+                        />
+                    }
+                />
             }
             isOpen={isOpen}
             onOpenChange={() => setIsOpen(!isOpen)}

@@ -38,9 +38,9 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     const videoOptions = useMemo(
         () => ({
             videoMode: blockSettings.videoMode,
-            backgroundAssetUrl: blockAssets.customBackgroundAsset?.[0]?.previewUrl,
+            backgroundAssetUrl: blockAssets.customBackgroundImage?.[0]?.previewUrl,
         }),
-        [blockAssets.customBackgroundAsset, blockSettings.videoMode]
+        [blockAssets.customBackgroundImage, blockSettings.videoMode]
     );
 
     useEffect(() => {

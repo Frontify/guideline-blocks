@@ -8,11 +8,13 @@ import {
     IconPause16,
     IconPlay16,
     IconTrashBin16,
+    Text,
     Tooltip,
     TooltipPosition,
 } from '@frontify/fondue';
 import { ReactElement } from 'react';
 import { RecorderState } from '../types';
+import { DeleteFlyout } from './DeleteFlyout';
 
 type RecorderToolbarProps = {
     state: RecorderState;
@@ -50,12 +52,12 @@ export const RecorderToolbar = ({
             ) : null}
 
             {state === 'uploading' ? (
-                <Button disabled emphasis={ButtonEmphasis.Weak} aria-label="Uploading..." size={ButtonSize.Medium}>
-                    Uploading...
-                </Button>
+                <div className="tw-px-3 tw-pb-1">
+                    <Text>Saving your recording. This may take a little while.</Text>
+                </div>
             ) : null}
 
-            {['recording', 'paused'].includes(state) ? (
+            {['countdown', 'recording', 'paused'].includes(state) ? (
                 <Button
                     emphasis={ButtonEmphasis.Weak}
                     icon={
@@ -69,7 +71,7 @@ export const RecorderToolbar = ({
                 </Button>
             ) : null}
 
-            <div className="first:tw-pl-2 tw-flex tw-gap-1">
+            <div className="first:tw-pl-2 tw-flex tw-gap-1 tw-pl-1">
                 {state === 'idle' ? (
                     <Tooltip
                         withArrow
@@ -122,20 +124,7 @@ export const RecorderToolbar = ({
                 ) : null}
 
                 {['countdown', 'recording', 'paused', 'previewing'].includes(state) ? (
-                    <Tooltip
-                        withArrow
-                        content="Delete"
-                        position={TooltipPosition.Bottom}
-                        enterDelay={800}
-                        triggerElement={
-                            <Button
-                                emphasis={ButtonEmphasis.Weak}
-                                icon={<IconTrashBin16 />}
-                                onClick={onDeleteClick}
-                                aria-label="Delete"
-                            />
-                        }
-                    />
+                    <DeleteFlyout onConfirm={onDeleteClick} />
                 ) : null}
             </div>
         </div>

@@ -138,14 +138,14 @@ export const settings = defineSettings({
                     choices: [
                         { label: 'None', value: VideoMode.None },
                         { label: 'Blur', value: VideoMode.Blur },
-                        { label: 'Asset', value: VideoMode.Asset },
+                        { label: 'Asset', value: VideoMode.Image },
                     ],
                 },
                 {
-                    id: 'customBackgroundAsset',
-                    label: 'Custom background asset',
+                    id: 'customBackgroundImage',
+                    label: 'Custom background image',
                     type: 'assetInput',
-                    show: (bundle) => bundle.getBlock('videoMode')?.value === VideoMode.Asset,
+                    show: (bundle) => bundle.getBlock('videoMode')?.value === VideoMode.Image,
                 },
             ],
         },

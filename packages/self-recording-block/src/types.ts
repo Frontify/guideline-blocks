@@ -28,7 +28,7 @@ export type AudioSpectrum = {
 export enum VideoMode {
     None = 'none',
     Blur = 'blur',
-    Asset = 'asset',
+    Image = 'image',
 }
 
 export type Settings = {
