@@ -11,6 +11,12 @@ export enum GradientOrientation {
     Horizontal = 'horizontal',
 }
 
+export type GradientColor = {
+    hex: string;
+    name: string;
+    position: number;
+};
+
 export type Settings = {
     isHeightCustom?: boolean;
     heightCustom?: string;
@@ -20,6 +26,9 @@ export type Settings = {
     orientationSimple?: GradientOrientation;
     displayCss?: boolean;
     content?: string;
+    gradientColors?: GradientColor[];
+    contentValue?: string;
+    gradientOrientation: number;
 };
 
 export const gradientHeightValues: Record<GradientHeight, string> = {
