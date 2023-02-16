@@ -8,8 +8,10 @@ import {
     Color,
     Divider,
     DividerStyle,
+    FlyoutPlacement,
     IconPlus,
     IconSize,
+    TextInput,
     Tooltip,
     TooltipAlignment,
     TooltipPosition,
@@ -18,7 +20,7 @@ import 'tailwindcss/tailwind.css';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { IconEnum, debounce, iconsMap, merge } from '@frontify/fondue';
+import { ColorPickerFlyout, Flyout, IconEnum, debounce, iconsMap, merge } from '@frontify/fondue';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
@@ -34,28 +36,13 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>();
     const dividerRef = useRef<HTMLDivElement>(null);
+    const addRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
     const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
-    // const [gradientColors, setGradientColors] = useState([
-    //     {
-    //         hex: '#243c5a',
-    //         name: 'Black',
-    //         position: '0%',
-    //     },
-    //     {
-    //         hex: '#d717cb',
-    //         name: 'Hot pink',
-    //         position: '25.43%',
-    //     },
-    //     {
-    //         hex: '#176cd7',
-    //         name: 'Electric blue',
-    //         position: '80.11%',
-    //     },
-    // ]);
-    const lastIndex = blockSettings && blockSettings.gradientColors ? blockSettings?.gradientColors?.length - 1 : 0;
 
+    const lastIndex = blockSettings && blockSettings.gradientColors ? blockSettings?.gradientColors?.length - 1 : 0;
+    const [showColorModal, setShowColorModal] = useState(false);
     const gradientBlockHeight = blockSettings.isHeightCustom
         ? blockSettings.heightCustom
         : gradientHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE];
@@ -79,34 +66,6 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         }, 2000)();
     };
 
-    const handleMouseMove = (event: MouseEvent) => {
-        if (!dividerRef.current) {
-            return;
-        }
-
-        const rect = dividerRef.current.getBoundingClientRect();
-
-        debounce(() => {
-            const { clientX: mouseX, clientY: mouseY } = event;
-
-            const sliderLeft = rect.x;
-            const sliderRight = rect.x + rect.width;
-
-            const sliderTop = rect.height / 2 + rect.top - BUFFER_PX;
-            const sliderBottom = rect.height / 2 + rect.top + BUFFER_PX;
-
-            const isWithinWidth = mouseX >= sliderLeft && mouseX <= sliderRight;
-            const isWithinHeight = mouseY >= sliderTop && mouseY <= sliderBottom;
-
-            if (isWithinWidth && isWithinHeight) {
-                setAddButtonPosition({ left: mouseX - sliderLeft - ADD_BUTTON_SIZE_PX / 2, top: 9 });
-                setShowAddButton(true);
-            } else {
-                setShowAddButton(false);
-            }
-        }, 50)();
-    };
-
     const parseGradientColorsToString = (colors: GradientColor[]) => {
         // TODO: make this not hardcoded
         const orientation = 90;
@@ -120,6 +79,34 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     useEffect(() => {
+        const handleMouseMove = (event: MouseEvent) => {
+            if (!dividerRef.current || showColorModal) {
+                return;
+            }
+
+            const rect = dividerRef.current.getBoundingClientRect();
+
+            debounce(() => {
+                const { clientX: mouseX, clientY: mouseY } = event;
+
+                const sliderLeft = rect.x;
+                const sliderRight = rect.x + rect.width;
+
+                const sliderTop = rect.height / 2 + rect.top - BUFFER_PX;
+                const sliderBottom = rect.height / 2 + rect.top + BUFFER_PX;
+
+                const isWithinWidth = mouseX >= sliderLeft && mouseX <= sliderRight;
+                const isWithinHeight = mouseY >= sliderTop && mouseY <= sliderBottom;
+
+                if (isWithinWidth && isWithinHeight) {
+                    setAddButtonPosition({ left: mouseX - sliderLeft - ADD_BUTTON_SIZE_PX / 2, top: 9 });
+                    setShowAddButton(true);
+                } else {
+                    setShowAddButton(false);
+                }
+            }, 50)();
+        };
+
         const defaultGradientColors = [
             {
                 hex: '#FFFFFF',
@@ -146,17 +133,16 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         // }
 
         document.addEventListener('mousemove', handleMouseMove);
+
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
         };
-    }, []);
+    }, [showColorModal]);
 
-    const addNewColor = (color: Color, position: number) => {
+    const addNewColor = (color: GradientColor, position: number) => {
         const newColor = {
             ...color,
-            position:
-                (position / (gradientBlockRef.current ? gradientBlockRef?.current?.getBoundingClientRect().width : 0)) *
-                100,
+            position,
         };
 
         const newGradientColors = [...(blockSettings.gradientColors ?? []), newColor].sort((a, b) => {
@@ -273,30 +259,87 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             </div>
         );
     };
-    const AddButton = (
-        <div
-            data-test-id="gradient-add"
-            className={joinClassNames([
-                'tw-absolute',
-                `tw-h-[${ADD_BUTTON_SIZE_PX}px] tw-w-[${ADD_BUTTON_SIZE_PX}px]`,
-                'tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded-sm',
-            ])}
-            style={{ ...addButtonPosition }}
-            onClick={() =>
-                addNewColor(
-                    {
-                        hex: '#cccccc',
-                        name: 'Light grey',
-                    },
-                    600
-                )
-            }
-        >
-            <span className="tw-text-white tw-pt-[1px]">
-                <IconPlus size={IconSize.Size12} />
-            </span>
-        </div>
-    );
+
+    const handleAdd = (position: number) => {
+        console.log('pos:', position);
+        setShowColorModal(true);
+    };
+
+    const ColorPicker = () => {
+        if (!addRef.current) {
+            return null;
+        }
+
+        return (
+            <div className="tw-z-[100]">
+                <Flyout
+                    // placement={FlyoutPlacement.TopRight}
+                    fixedHeader={
+                        <div className="tw-font-bold tw-py-4 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
+                            Configure Color
+                        </div>
+                    }
+                    isOpen={true}
+                    contentMinHeight={300}
+                    onCancel={() => {
+                        setShowColorModal(false);
+                    }}
+                    onConfirm={() => console.log('onConfirm')}
+                    onOpenChange={() => true}
+                    trigger={null}
+                >
+                    <div className="tw-flex">
+                        <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-[40px]">
+                            <ColorPickerFlyout
+                                clearable
+                                currentColor={null}
+                                // onClose={() => setShowColorModal(false)}
+                                onClick={() => console.log('onClick')}
+                                onSelect={() => console.log('onSelect')}
+                                onClear={() => console.log('onClear')}
+                            >
+                                {addRef.current}
+                            </ColorPickerFlyout>
+                            <TextInput
+                                value="asd"
+                                onChange={() => console.log('onChange')}
+                                onEnterPressed={() => console.log('onEnterPressed')}
+                                placeholder="placeholder"
+                            />
+                        </div>
+                    </div>
+                </Flyout>
+            </div>
+        );
+    };
+
+    const AddButton = () => {
+        return (
+            <div
+                ref={addRef}
+                data-test-id="gradient-add"
+                className={joinClassNames([
+                    'tw-absolute',
+                    `tw-h-[${ADD_BUTTON_SIZE_PX}px] tw-w-[${ADD_BUTTON_SIZE_PX}px]`,
+                    'tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded-sm',
+                ])}
+                style={{ ...addButtonPosition }}
+                onClick={() =>
+                    addNewColor(
+                        {
+                            hex: '#cccccc',
+                            name: 'Light grey',
+                        },
+                        600
+                    )
+                }
+            >
+                <span className="tw-text-white tw-pt-[1px]" onClick={() => handleAdd(addButtonPosition.left)}>
+                    <IconPlus size={IconSize.Size12} />
+                </span>
+            </div>
+        );
+    };
 
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
@@ -337,7 +380,8 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 <div>
                     <div className="tw-relative" ref={dividerRef}>
                         <Divider height="36px" style={DividerStyle.Solid} />
-                        {showAddButton && AddButton}
+                        {showAddButton && <AddButton />}
+                        {showColorModal && <ColorPicker />}
                     </div>
                     {blockSettings?.gradientColors?.map((color, index) => (
                         <>
