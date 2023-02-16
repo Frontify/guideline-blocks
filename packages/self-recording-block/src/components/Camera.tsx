@@ -2,7 +2,6 @@
 
 import { ReactElement, RefObject, useEffect, useRef } from 'react';
 
-import { cameraSizeToScaleMap } from '../constants';
 import { CameraSize, VideoMode } from '../types';
 import { bindCameraToVideoElement, bindFrameToCanvas } from '../utilities';
 
@@ -43,7 +42,7 @@ export const Camera = ({
                         cameraElement,
                         canvasRef.current,
                         tmpCanvasElement.current,
-                        cameraSizeToScaleMap[size],
+                        size,
                         videoOptions,
                         canvasAbortController.signal
                     );

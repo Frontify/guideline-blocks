@@ -2,7 +2,6 @@
 
 import { ReactElement, RefObject, useEffect, useRef } from 'react';
 
-import { cameraSizeToScaleMap } from '../constants';
 import { CameraSize, VideoMode } from '../types';
 import { bindFrameToCanvas, bindMicrophoneToAudioElement } from '../utilities';
 
@@ -50,7 +49,7 @@ export const AvatarCamera = ({
                         frame,
                         canvasRef.current,
                         tmpCanvasElement.current,
-                        cameraSizeToScaleMap[size],
+                        size,
                         videoOptions,
                         canvasAbortController.signal
                     );

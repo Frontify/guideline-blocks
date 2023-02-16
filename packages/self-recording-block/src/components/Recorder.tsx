@@ -142,7 +142,7 @@ export const Recorder = ({
                                     canvasRef={canvasRef}
                                     cameraRef={mediaRef}
                                     onDevicePermissionDenied={onDevicePermissionDenied}
-                                    videoOptions={{ ...videoOptions, maxWidth: parentRef.current?.clientWidth }}
+                                    videoOptions={videoOptions}
                                 />
                             ) : (
                                 <AvatarCamera
@@ -151,7 +151,7 @@ export const Recorder = ({
                                     canvasRef={canvasRef}
                                     microphoneRef={mediaRef}
                                     onDevicePermissionDenied={onDevicePermissionDenied}
-                                    videoOptions={{ ...videoOptions, maxWidth: parentRef.current?.clientWidth }}
+                                    videoOptions={videoOptions}
                                     imageUrl={avatarImageUrl}
                                 />
                             )}

@@ -23,12 +23,6 @@ export const audioSpectrumSpecs: AudioSpectrum = {
     barGap: 2,
 };
 
-export const cameraSizeToScaleMap: Record<CameraSize, number> = {
-    [CameraSize.Small]: 0.5,
-    [CameraSize.Medium]: 0.7,
-    [CameraSize.Large]: 1,
-};
-
 export const radiusClassMap: Record<Radius, string> = {
     [Radius.None]: '',
     [Radius.Small]: 'tw-rounded-sm',
