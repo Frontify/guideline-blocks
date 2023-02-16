@@ -10,7 +10,7 @@ import {
     RichTextEditor,
     Position,
 } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
@@ -21,9 +21,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
+    const { designTokens } = useGuidelineDesignTokens();
     const { description } = blockSettings;
-    let { title } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
+
+    let { title } = blockSettings;
 
     if (audio && title === undefined && description === undefined) {
         title = audio.fileName;
@@ -63,8 +65,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             });
     };
 
-    console.log(audio);
-
     return (
         <div data-test-id="audio-block" className={audioDivClassNames}>
             {audio ? (
@@ -86,29 +86,15 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-self-stretch">
                     <RichTextEditor
+                        designTokens={designTokens ?? undefined}
                         value={title}
                         border={false}
                         onBlur={saveTitle}
                         placeholder={isEditing ? 'add a title here' : undefined}
                         readonly={!isEditing}
-                        designTokens={{
-                            p: {
-                                fontFamily: 'Poppins, sans-serif',
-                                fontSize: '12px',
-                                fontWeight: '500',
-                                lineHeight: '18px',
-                            },
-                        }}
                     />
                     <RichTextEditor
-                        designTokens={{
-                            p: {
-                                fontFamily: 'Roboto, sans-serif',
-                                fontSize: '11px',
-                                fontWeight: '400',
-                                lineHeight: '13px',
-                            },
-                        }}
+                        designTokens={designTokens ?? undefined}
                         value={description}
                         border={false}
                         position={Position.FLOATING}
