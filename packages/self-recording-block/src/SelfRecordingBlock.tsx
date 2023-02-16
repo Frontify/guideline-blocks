@@ -21,6 +21,10 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
         [updateAssetIdsFromKey]
     );
 
+    const onDeleteClick = useCallback(async () => {
+        await updateAssetIdsFromKey('video', []);
+    }, [updateAssetIdsFromKey]);
+
     const maskBorder: MaskProps['border'] = {
         hasBorder: blockSettings.hasBorder,
         hasRadius: blockSettings.hasRadius,
@@ -54,24 +58,31 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
         }
     }, [appBridge, blockAssets.cameraAsset, blockSettings.recordingMode]);
 
-    return isEditing ? (
-        <Recorder
-            recordingMode={blockSettings.recordingMode}
-            onRecordingEnd={onRecordingEnd}
-            size={blockSettings.size}
-            cameraDeviceId={blockSettings.cameraDeviceId}
-            microphoneDeviceId={blockSettings.microphoneDeviceId}
-            videoOptions={videoOptions}
-            maskShape={blockSettings.shape}
-            maskBorder={maskBorder}
-            avatarImageUrl={avatarImageUrl}
-        />
-    ) : (
-        <Player
-            asset={blockAssets?.video?.[0]}
-            size={blockSettings.size}
-            maskShape={blockSettings.shape}
-            maskBorder={maskBorder}
-        />
+    return (
+        <>
+            {blockAssets.video?.[0] ? (
+                <Player
+                    asset={blockAssets?.video?.[0]}
+                    size={blockSettings.size}
+                    maskShape={blockSettings.shape}
+                    maskBorder={maskBorder}
+                    onDeleteClick={isEditing ? onDeleteClick : undefined}
+                />
+            ) : null}
+
+            {!blockAssets.video?.[0] && isEditing ? (
+                <Recorder
+                    recordingMode={blockSettings.recordingMode}
+                    onRecordingEnd={onRecordingEnd}
+                    size={blockSettings.size}
+                    cameraDeviceId={blockSettings.cameraDeviceId}
+                    microphoneDeviceId={blockSettings.microphoneDeviceId}
+                    videoOptions={videoOptions}
+                    maskShape={blockSettings.shape}
+                    maskBorder={maskBorder}
+                    avatarImageUrl={avatarImageUrl}
+                />
+            ) : null}
+        </>
     );
 };

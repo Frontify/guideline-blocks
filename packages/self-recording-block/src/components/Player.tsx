@@ -13,9 +13,10 @@ type PlayerProps = {
     size: CameraSize;
     maskShape: MaskShape;
     maskBorder: MaskProps['border'];
+    onDeleteClick?: () => void;
 };
 
-export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
+export const Player = ({ asset, size, maskShape, maskBorder, onDeleteClick }: PlayerProps) => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const [isPlaying, setIsPlaying] = useState(false);
@@ -36,19 +37,15 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
             <Mask shape={maskShape} size={size} border={maskBorder}>
                 {asset !== undefined ? (
                     <video
-                        onPlay={() => {
-                            setIsPlaying(true);
-                        }}
-                        onEnded={() => {
-                            setIsPlaying(false);
-                        }}
+                        ref={videoRef}
+                        onPlay={() => setIsPlaying(true)}
+                        onEnded={() => setIsPlaying(false)}
                         onTimeUpdate={(event) => {
                             setPlayTime(getTimeStringFromTimeStamp((event.target as HTMLVideoElement).currentTime));
                         }}
                         onLoadedMetadata={(event) => {
                             setPlayTime(getTimeStringFromTimeStamp((event.target as HTMLVideoElement).duration));
                         }}
-                        ref={videoRef}
                         style={{
                             width: cameraSizeToMaskSizeMap[size].width,
                             height: cameraSizeToMaskSizeMap[size].height,
@@ -64,7 +61,12 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
             </Mask>
 
             <div className="tw-mt-6">
-                <PlayerToolbar isPlaying={isPlaying} onPlayPauseClicked={toggleVideo} time={playTime} />
+                <PlayerToolbar
+                    isPlaying={isPlaying}
+                    onPlayPauseClicked={toggleVideo}
+                    time={playTime}
+                    onDeleteClick={onDeleteClick}
+                />
             </div>
         </div>
     );

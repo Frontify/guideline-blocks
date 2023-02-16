@@ -87,7 +87,7 @@ export const RecorderToolbar = ({
                     />
                 ) : null}
 
-                {state === 'recording' ? (
+                {['countdown', 'recording'].includes(state) ? (
                     <Tooltip
                         withArrow
                         content="Pause"
