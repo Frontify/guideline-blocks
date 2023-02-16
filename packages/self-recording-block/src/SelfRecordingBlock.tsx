@@ -63,7 +63,12 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
     );
 
     const mediaPlayer = isAudioAndCamera ? (
-        <VideoPlayer asset={blockAssets?.video?.[0]} />
+        <VideoPlayer
+            asset={blockAssets?.video?.[0]}
+            size={blockSettings.size}
+            maskShape={blockSettings.shape}
+            maskBorder={maskBorder}
+        />
     ) : (
         <AudioPlayer asset={blockAssets?.audio?.[0]} />
     );
