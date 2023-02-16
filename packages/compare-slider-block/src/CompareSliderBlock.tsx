@@ -20,12 +20,20 @@ import {
     slotAssetSettingMap,
 } from './types';
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
-import { BlockInjectButton, joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { Icon, IconEnum, IconPlus24, IconSize } from '@frontify/fondue';
+import {
+    BlockInjectButton,
+    joinClassNames,
+    radiusStyleMap,
+    toRgbaString,
+    useGuidelineDesignTokens,
+} from '@frontify/guideline-blocks-shared';
+import { Icon, IconEnum, IconPlus24, IconSize, RichTextEditor } from '@frontify/fondue';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
-    const [blockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { designTokens } = useGuidelineDesignTokens();
+
     const { firstAsset, secondAsset } = blockAssets;
 
     const isEditing = useEditorState(appBridge);
@@ -304,6 +312,25 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                 {renderSliderItem(SliderImageSlot.Second)}
                 {blockSettings.handle !== Handle.None ? renderHandle() : ''}
             </ImgComparisonSlider>
+
+            <div className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center tw-mt-3 tw-gap-1">
+                <RichTextEditor
+                    value={blockSettings.sliderName}
+                    border={false}
+                    readonly={!isEditing}
+                    onBlur={(sliderName) => setBlockSettings({ sliderName })}
+                    designTokens={designTokens ?? undefined}
+                    placeholder={isEditing ? 'Asset name' : undefined}
+                />
+                <RichTextEditor
+                    value={blockSettings.sliderDescription}
+                    border={false}
+                    readonly={!isEditing}
+                    onBlur={(sliderDescription) => setBlockSettings({ sliderDescription })}
+                    designTokens={designTokens ?? undefined}
+                    placeholder={isEditing ? 'Add a description here' : undefined}
+                />
+            </div>
         </div>
     );
 };
