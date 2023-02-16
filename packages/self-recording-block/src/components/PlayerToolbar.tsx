@@ -2,13 +2,13 @@
 
 import { Button, ButtonEmphasis, IconPause16, IconPlay16 } from '@frontify/fondue';
 
-type VideoPlayerToolbarProps = {
+type PlayerToolbarProps = {
     isPlaying: boolean;
     onPlayPauseClicked: () => void;
     time: string;
 };
 
-export const VideoPlayerToolbar = ({ isPlaying, onPlayPauseClicked, time }: VideoPlayerToolbarProps) => {
+export const PlayerToolbar = ({ isPlaying, onPlayPauseClicked, time }: PlayerToolbarProps) => {
     return (
         <div className="tw-flex tw-gap-1 tw-p-1 tw-bg-base tw-rounded-lg tw-items-center tw-shadow tw-divide-x tw-divide-box-selected tw-border tw-border-box-selected">
             <Button

@@ -2,7 +2,8 @@
 
 export * from './bindAudioToCanvas';
 export * from './bindCameraToVideoElement';
-export * from './bindMicrophoneToAudioElement';
 export * from './bindFrameToCanvas';
+export * from './bindMicrophoneToAudioElement';
 export * from './drawAudioSpectrum';
 export * from './drawFrameCover';
+export * from './getTimeStringFromTimeStamp';

@@ -6,7 +6,7 @@ import { cameraSizeToMaskSizeMap } from '../constants';
 import { CameraSize, MaskShape } from '../types';
 import { getTimeStringFromTimeStamp } from '../utilities/getTimeStringFromTimeStamp';
 import { Mask, MaskProps } from './Mask';
-import { VideoPlayerToolbar } from './VideoPlayerToolbar';
+import { PlayerToolbar } from './PlayerToolbar';
 
 type PlayerProps = {
     asset?: Asset;
@@ -61,7 +61,7 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
             </Mask>
 
             <div className="tw-mt-6">
-                <VideoPlayerToolbar isPlaying={isPlaying} onPlayPauseClicked={toggleVideo} time={playTime} />
+                <PlayerToolbar isPlaying={isPlaying} onPlayPauseClicked={toggleVideo} time={playTime} />
             </div>
         </div>
     );
