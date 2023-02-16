@@ -1,28 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useCallback, useMemo } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 
 import { RecordingMode, Settings } from './types';
-import { AudioPlayer, AudioRecorder, MaskProps, VideoPlayer, VideoRecorder } from './components';
+import { MaskProps, Player as Player, Recorder as Recorder } from './components';
 
 export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
+    const [avatarImageUrl, setAvatarImageUrl] = useState<string>('/img/favicon-nook.png');
     const isEditing = useEditorState(appBridge);
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const isAudioAndCamera = blockSettings.recordingMode === RecordingMode.CameraAndAudio;
-
-    const onVideoRecordingEnd = useCallback(
-        async (assetId: number) => {
-            await updateAssetIdsFromKey('video', []);
-            await updateAssetIdsFromKey('video', [assetId]);
-        },
-        [updateAssetIdsFromKey]
-    );
-
-    const onAudioRecordingEnd = useCallback(
+    const onRecordingEnd = useCallback(
         async (assetId: number) => {
             await updateAssetIdsFromKey('video', []);
             await updateAssetIdsFromKey('video', [assetId]);
@@ -48,30 +39,39 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
         [blockAssets.customBackgroundAsset, blockSettings.videoMode]
     );
 
-    const mediaRecorder = isAudioAndCamera ? (
-        <VideoRecorder
-            onRecordingEnd={onVideoRecordingEnd}
+    useEffect(() => {
+        const getAvatarImageUrl = async () => {
+            if (blockAssets.cameraAsset?.[0]?.previewUrl) {
+                setAvatarImageUrl(blockAssets.cameraAsset?.[0]?.previewUrl);
+            } else {
+                const avatar = await appBridge.getCurrentLoggedUser();
+                setAvatarImageUrl(avatar.image.image || '/img/favicon-nook.png');
+            }
+        };
+
+        if (blockSettings.recordingMode === RecordingMode.AudioOnly) {
+            getAvatarImageUrl();
+        }
+    }, [appBridge, blockAssets.cameraAsset, blockSettings.recordingMode]);
+
+    return isEditing ? (
+        <Recorder
+            recordingMode={blockSettings.recordingMode}
+            onRecordingEnd={onRecordingEnd}
             size={blockSettings.size}
             cameraDeviceId={blockSettings.cameraDeviceId}
             microphoneDeviceId={blockSettings.microphoneDeviceId}
             videoOptions={videoOptions}
             maskShape={blockSettings.shape}
             maskBorder={maskBorder}
+            avatarImageUrl={avatarImageUrl}
         />
     ) : (
-        <AudioRecorder onRecordingEnd={onAudioRecordingEnd} microphoneDeviceId={blockSettings.microphoneDeviceId} />
-    );
-
-    const mediaPlayer = isAudioAndCamera ? (
-        <VideoPlayer
+        <Player
             asset={blockAssets?.video?.[0]}
             size={blockSettings.size}
             maskShape={blockSettings.shape}
             maskBorder={maskBorder}
         />
-    ) : (
-        <AudioPlayer asset={blockAssets?.audio?.[0]} />
     );
-
-    return isEditing ? mediaRecorder : mediaPlayer;
 };

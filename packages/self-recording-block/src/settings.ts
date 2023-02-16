@@ -137,7 +137,7 @@ export const settings = defineSettings({
                     choices: [
                         { label: 'None', value: VideoMode.None },
                         { label: 'Blur', value: VideoMode.Blur },
-                        { label: 'Custom', value: VideoMode.Custom },
+                        { label: 'Asset', value: VideoMode.Asset },
                     ],
                 },
                 {

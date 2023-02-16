@@ -792,11 +792,11 @@ importers:
       '@frontify/frontify-cli': 5.3.7
       '@frontify/guideline-blocks-settings': 0.25.11
       '@frontify/guideline-blocks-shared': workspace:*
-      '@mediapipe/selfie_segmentation': ^0.1.1675465747
-      '@tensorflow-models/body-segmentation': ^1.0.1
-      '@tensorflow/tfjs-backend-webgl': ^4.2.0
-      '@tensorflow/tfjs-converter': ^4.2.0
-      '@tensorflow/tfjs-core': ^4.2.0
+      '@mediapipe/selfie_segmentation': 0.1.1675465747
+      '@tensorflow-models/body-segmentation': 1.0.1
+      '@tensorflow/tfjs-backend-webgl': 4.2.0
+      '@tensorflow/tfjs-converter': 4.2.0
+      '@tensorflow/tfjs-core': 4.2.0
       '@types/react': 17.0.50
       '@types/react-dom': 17.0.17
       autoprefixer: 10.4.13
@@ -2464,11 +2464,11 @@ packages:
       '@react-aria/aria-modal-polyfill': 3.6.1_pxzommwrsowkd4kgag6q3sluym
       '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/checkbox': 3.7.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.1_react@17.0.2
       '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
-      '@react-aria/focus': 3.10.0_react@17.0.2
-      '@react-aria/interactions': 3.13.0_react@17.0.2
+      '@react-aria/focus': 3.8.0_react@17.0.2
+      '@react-aria/interactions': 3.11.0_react@17.0.2
       '@react-aria/link': 3.3.5_react@17.0.2
       '@react-aria/listbox': 3.7.1_react@17.0.2
       '@react-aria/menu': 3.7.0_sfoxds7t5ydpegc3knd667wn6m
@@ -2478,7 +2478,7 @@ packages:
       '@react-aria/selection': 3.12.0_react@17.0.2
       '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/tooltip': 3.3.3_react@17.0.2
-      '@react-aria/utils': 3.14.1_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.6.0_react@17.0.2
       '@react-stately/checkbox': 3.3.2_react@17.0.2
       '@react-stately/collections': 3.5.0_react@17.0.2
@@ -2489,7 +2489,7 @@ packages:
       '@react-stately/radio': 3.6.1_react@17.0.2
       '@react-stately/select': 3.3.3_react@17.0.2
       '@react-stately/table': 3.6.0_react@17.0.2
-      '@react-stately/toggle': 3.4.4_react@17.0.2
+      '@react-stately/toggle': 3.4.1_react@17.0.2
       '@react-stately/tooltip': 3.2.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@storybook/addon-a11y': 6.5.15_sfoxds7t5ydpegc3knd667wn6m
@@ -3793,9 +3793,9 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/interactions': 3.13.0_react@17.0.2
+      '@react-aria/interactions': 3.11.0_react@17.0.2
       '@react-aria/selection': 3.12.0_react@17.0.2
-      '@react-aria/utils': 3.14.1_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@react-types/accordion': 3.0.0-alpha.7_react@17.0.2
       '@react-types/button': 3.7.0_react@17.0.2
