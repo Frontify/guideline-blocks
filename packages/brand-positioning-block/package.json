@@ -1,8 +1,8 @@
 {
-    "name": "dos-donts-block",
+    "name": "brand-positioning-block",
+    "version": "1.0.0",
     "private": true,
     "author": "Frontify Developers <developers@frontify.com>",
-    "version": "1.0.0",
     "main": "dist/index.js",
     "scripts": {
         "serve": "frontify-cli block serve --entryPath src/index.ts",
@@ -17,7 +17,6 @@
         "@babel/core": "7.20.2",
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.1",
-        "@types/autosize": "^4.0.1",
         "@types/react": "17.0.50",
         "@types/react-dom": "17.0.17",
         "autoprefixer": "10.4.13",
@@ -30,15 +29,11 @@
         "typescript": "4.8.4"
     },
     "dependencies": {
-        "@dnd-kit/core": "^6.0.5",
-        "@dnd-kit/sortable": "^7.0.1",
-        "@dnd-kit/utilities": "^3.2.1",
         "@frontify/app-bridge": "3.0.0-beta.38",
-        "@frontify/fondue": "12.0.0-beta.101",
+        "@frontify/fondue": "12.0.0-beta.35",
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "0.25.10",
         "@frontify/guideline-blocks-shared": "workspace:*",
-        "autosize": "^5.0.2",
         "react": "17.0.2",
         "react-dom": "17.0.2"
     }

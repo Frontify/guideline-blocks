@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { RichTextEditor, debounce } from '@frontify/fondue';
+import { RichTextEditor } from '@frontify/fondue';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import autosize from 'autosize';
@@ -97,10 +97,12 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     multiSelection: false,
                 }
             );
+            setIsMenuOpen(false);
         };
 
         const onUploadClick = () => {
             openFileDialog();
+            setIsMenuOpen(false);
         };
 
         useEffect(() => {
@@ -142,6 +144,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             return (
                 <RichTextEditor
                     designTokens={designTokens ?? undefined}
+                    border={false}
                     value={body}
                     onBlur={(value) => onChangeItem(id, value, 'body')}
                     placeholder={editing ? 'Add a description' : ''}
@@ -165,7 +168,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     <div className={joinClassNames([replaceWithPlaceholder && 'tw-opacity-0'])}>
                         <div
                             className={joinClassNames([
-                                'tw-absolute tw-z-20 tw-bottom-[calc(100%-4px)] tw-right-[-1px] tw-w-full',
+                                'tw-absolute tw-z-20 tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full',
                                 editing && 'group-hover:tw-opacity-100',
                                 isFlyoutOpen || isDragging ? 'tw-opacity-100' : 'tw-opacity-0',
                             ])}
@@ -205,7 +208,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                 radiusChoice={radiusChoice}
                                 border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
                                 radiusValue={radiusValue}
-                                setIsMenuOpen={setIsMenuOpen}
+                                onClick={() => setIsMenuOpen(true)}
                                 dontColor={dontColor}
                             />
                         )}
@@ -239,9 +242,10 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                         rows={1}
                                         ref={titleRef}
                                         onChange={(event) => {
-                                            const text = event.target.value;
-                                            debounce(() => onChangeItem(id, text, 'title'), 500)();
                                             setInternalTitle(event.target.value);
+                                        }}
+                                        onBlur={() => {
+                                            onChangeItem(id, internalTitle, 'title');
                                         }}
                                         style={
                                             {
