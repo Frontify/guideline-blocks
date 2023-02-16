@@ -24,6 +24,7 @@ import {
     ItalicPlugin,
     UnderlinePlugin,
     Palette,
+    FOCUS_VISIBLE_STYLE,
 } from '@frontify/fondue';
 import { AppBridgeBlock, useColorPalettes } from '@frontify/app-bridge';
 
@@ -200,14 +201,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
         );
 
         return (
-            <div
-                className={merge([
-                    'tw-relative tw-group',
-                    toolbarFocus && 'tw-outline tw-outline-box-selected-inverse tw-outline-2',
-                ])}
-                ref={ref}
-                style={{ ...transformStyle }}
-            >
+            <div className={merge(['tw-relative tw-group'])} ref={ref} style={{ ...transformStyle }}>
                 <TeaserTileToolbar
                     draggableProps={draggableProps}
                     onRemoveSelf={onRemoveTile}
@@ -228,6 +222,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     className={merge([
                         'tw-flex tw-overflow-hidden tw-h-full tw-relative',
                         twPositioningMap[positioning],
+                        toolbarFocus && 'tw-outline tw-outline-box-selected-inverse tw-outline-2',
                     ])}
                 >
                     {type !== TileType.Text && (
@@ -257,6 +252,8 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                                             className={merge([
                                                 imageClassName,
                                                 'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled hover:tw-text-text-x-weak',
+                                                FOCUS_VISIBLE_STYLE,
+                                                'tw-ring-inset',
                                             ])}
                                             style={{ height }}
                                         >
