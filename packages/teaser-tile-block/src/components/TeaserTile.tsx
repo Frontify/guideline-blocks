@@ -128,9 +128,8 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
         );
         const { positioning, type } = blockSettings;
         const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);
-        const [isMenuFlyoutOpen, setIsMenuFlyoutOpen] = useState(false);
-        const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
         const { designTokens } = useGuidelineDesignTokens();
+        const [toolbarFocus, setToolbarFocus] = useState(false);
 
         const { height, background, objectFit, padding, textAlign, border, borderRadius } = useTileStyles(
             blockSettings,
@@ -202,13 +201,20 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
 
         return (
             <div
-                className="tw-relative tw-group tw-cursor-help"
-                tabIndex={0}
+                className={merge([
+                    'tw-relative tw-group',
+                    toolbarFocus && 'tw-outline tw-outline-box-selected-inverse tw-outline-2',
+                ])}
                 ref={ref}
                 style={{ ...transformStyle }}
-                {...draggableProps}
             >
-                <TeaserTileToolbar draggableProps={draggableProps} />
+                <TeaserTileToolbar
+                    draggableProps={draggableProps}
+                    onRemoveSelf={onRemoveTile}
+                    tileSettingsFlyoutProps={tileFlyoutProps}
+                    onToolbarBlur={() => setToolbarFocus(false)}
+                    onToolbarFocus={() => setToolbarFocus(true)}
+                />
                 {tileSettings.link?.href && !isEditing && (
                     <a
                         className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"
@@ -280,64 +286,6 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                             <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
                         </div>
                     )}
-                </div>
-
-                <div
-                    className={merge([
-                        'tw-absolute tw-right-2 tw-top-2 focus-within:tw-z-[200] group-hover:tw-z-[200]',
-                        isMenuFlyoutOpen ? 'tw-z-[200]' : 'tw-z-[-1]',
-                    ])}
-                >
-                    <TileSettingsFlyout
-                        {...tileFlyoutProps}
-                        placement={FlyoutPlacement.BottomRight}
-                        isOpen={isTopSettingsFlyoutOpen}
-                        setIsOpen={setIsTopSettingsFlyoutOpen}
-                    >
-                        {(_, triggerRef: MutableRefObject<HTMLDivElement>) => (
-                            <div className="tw-absolute tw-right-0" ref={triggerRef} />
-                        )}
-                    </TileSettingsFlyout>
-                    <Flyout
-                        isOpen={isMenuFlyoutOpen}
-                        onOpenChange={setIsMenuFlyoutOpen}
-                        fitContent
-                        legacyFooter={false}
-                        placement={FlyoutPlacement.BottomRight}
-                        trigger={(_, triggerRef: MutableRefObject<HTMLButtonElement>) => (
-                            <Button
-                                rounding={ButtonRounding.Full}
-                                emphasis={ButtonEmphasis.Weak}
-                                icon={<IconDotsVertical />}
-                                ref={triggerRef}
-                                size={ButtonSize.Small}
-                                onClick={() => setIsMenuFlyoutOpen((open) => !open)}
-                            />
-                        )}
-                    >
-                        <ActionMenu
-                            menuBlocks={[
-                                {
-                                    id: 'menu-items',
-                                    menuItems: [
-                                        {
-                                            id: 'opensettings',
-                                            title: 'Open Settings',
-                                            decorator: <IconCog />,
-                                            onClick: () => setIsTopSettingsFlyoutOpen(true),
-                                        },
-                                        {
-                                            id: 'delete',
-                                            title: 'Delete',
-                                            onClick: onRemoveTile,
-                                            decorator: <IconTrashBin />,
-                                            style: MenuItemStyle.Danger,
-                                        },
-                                    ],
-                                },
-                            ]}
-                        ></ActionMenu>
-                    </Flyout>
                 </div>
             </div>
         );
