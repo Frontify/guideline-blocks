@@ -1,6 +1,6 @@
 import { Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
 import { CLEAR_SPACE_PERCENT_SIZE, CONTAINER_SIZE, LOGO_ID } from './constants';
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { LogoSpacingSettings, LogoSpacingType, Property } from './types';
 
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -62,14 +62,10 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         return +value.replace(/px|%/, '');
     };
 
-    const getContainerSizeByPercentage = useCallback(
-        (percent: number) => {
-            const containerSize = clearSpacePropertyChoice === Property.Width ? width : height;
-            return (containerSize * percent) / 100;
-        },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [clearSpacePropertyChoice]
-    );
+    const getContainerSizeByPercentage = (percent: number) => {
+        const containerSize = clearSpacePropertyChoice === Property.Width ? width : height;
+        return (containerSize * percent) / 100;
+    };
 
     const getTemplateSize = (custom: string) => {
         if (hasCustomClearSpace) {
