@@ -115,7 +115,7 @@ export const BrandPositioningBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <div className="tw-flex tw-flex-col tw-gap-2" data-test-id="brand-positioning-block">
+        <div className="tw-flex tw-flex-col tw-gap-2" data-test-id="brandpositioning-block">
             <Board
                 items={internalItems}
                 deleteItem={deleteItem}
@@ -125,7 +125,7 @@ export const BrandPositioningBlock = ({ appBridge }: BlockProps) => {
                 blockSettings={blockSettings}
             />
             {isEditing && (
-                <div>
+                <div data-test-id="brandpositioning-addbutton">
                     <BlockInjectButton
                         label="Add images"
                         secondaryLabel="Or drop them here"

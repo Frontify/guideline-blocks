@@ -19,6 +19,7 @@ export const Item = ({ src, xPosition, yPosition, id, deleteItem, isEditing, sty
 
     return (
         <div
+            data-test-id="brandpositioning-item"
             style={{
                 left: `${xPosition}%`,
                 top: `${yPosition}%`,
@@ -33,6 +34,7 @@ export const Item = ({ src, xPosition, yPosition, id, deleteItem, isEditing, sty
             ])}
         >
             <div
+                data-test-id="brandpositioning-toolbar"
                 className={joinClassNames([
                     'tw-absolute tw-z-20 tw-bottom-[calc(100%-4px)] -tw-right-[3px]',
                     isEditing && ' group-hover:tw-visible',

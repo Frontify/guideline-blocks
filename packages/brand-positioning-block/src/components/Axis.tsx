@@ -14,6 +14,7 @@ export const Axis = ({ minLabel, maxLabel, orientation, style }: AxisProps) => {
 
     return (
         <div
+            data-test-id="brandpositioning-axis"
             style={designTokens?.imageCaption}
             className={joinClassNames([
                 'tw-flex tw-h-full tw-gap-2 sm:tw-gap-3 tw-items-center tw-whitespace-nowrap',
