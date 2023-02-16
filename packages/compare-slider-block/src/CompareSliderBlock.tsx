@@ -1,26 +1,106 @@
 import type { FC } from 'react';
-import { useRef } from 'react';
-import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useEffect, useRef, useState } from 'react';
+import {
+    AssetChooserObjectType,
+    FileExtensionSets,
+    useAssetUpload,
+    useBlockAssets,
+    useBlockSettings,
+    useEditorState,
+    useFileInput,
+} from '@frontify/app-bridge';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
-    Alignment,
     BlockSettings,
     Handle,
     Height,
     SliderImageSlot,
-    blankSlateWidthStyleMap,
     captionPlacementStyleMap,
     heightMap,
+    slotAssetSettingMap,
 } from './types';
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
-import { joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { Icon, IconEnum, IconSize } from '@frontify/fondue';
+import { BlockInjectButton, joinClassNames, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { Icon, IconEnum, IconPlus24, IconSize } from '@frontify/fondue';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<BlockSettings>(appBridge);
-    const isEditing = useEditorState(appBridge);
-    const { blockAssets } = useBlockAssets(appBridge);
+    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const { firstAsset, secondAsset } = blockAssets;
+
+    const isEditing = useEditorState(appBridge);
+
+    const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: false });
+
+    const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+        onUploadProgress: () => !isLoading && setIsLoading(true),
+        onUploadDone: () => setIsLoading(false),
+    });
+
+    const [slotWithUploadInProgress, setSlotWithUploadInProgress] = useState<SliderImageSlot>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const startFileDialogUpload = (slot: SliderImageSlot) => {
+        setSlotWithUploadInProgress(slot);
+        openFileDialog();
+    };
+
+    const startDragAndDropUpload = (files: FileList, slot: SliderImageSlot) => {
+        setSlotWithUploadInProgress(slot);
+        setDroppedFiles(files);
+    };
+
+    const openAssetChooser = (slot: SliderImageSlot) => {
+        appBridge.openAssetChooser(
+            async (result) => {
+                setIsLoading(true);
+                await updateAssetIdsFromKey(slot === SliderImageSlot.First ? 'firstAsset' : 'secondAsset', [
+                    result[0].id,
+                ]);
+                setIsLoading(false);
+                appBridge.closeAssetChooser();
+            },
+            {
+                objectTypes: [AssetChooserObjectType.ImageVideo],
+                extensions: FileExtensionSets['Images'],
+            }
+        );
+    };
+
+    useEffect(() => {
+        if (!droppedFiles) {
+            return;
+        }
+
+        if (droppedFiles.length > 1) {
+            return console.error('Please only upload one file per slot.');
+        }
+
+        setIsLoading(true);
+        uploadFile(droppedFiles);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [droppedFiles]);
+
+    useEffect(() => {
+        if (selectedFiles) {
+            setIsLoading(true);
+            uploadFile(selectedFiles);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedFiles]);
+
+    useEffect(() => {
+        if (doneAll && uploadResults && slotWithUploadInProgress) {
+            (async (uploadResults) => {
+                const resultId = uploadResults[0].id;
+                await updateAssetIdsFromKey(slotAssetSettingMap[slotWithUploadInProgress], [resultId]);
+                setIsLoading(false);
+                setSlotWithUploadInProgress(undefined);
+            })(uploadResults);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [doneAll, uploadResults]);
 
     const sliderRef = useRef<HTMLDivElement | null>(null);
 
@@ -69,18 +149,6 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const renderSliderItem = (slot: SliderImageSlot) => {
-        if (!isEditing && (!firstAsset || !secondAsset)) {
-            return;
-        }
-
-        if (slot === SliderImageSlot.First && !firstAsset) {
-            return renderFirstSlotBlankSlate();
-        }
-
-        if (slot === SliderImageSlot.Second && !secondAsset) {
-            return renderSecondSlotBlankSlate();
-        }
-
         return (
             <div slot={slot}>
                 <img
@@ -101,56 +169,6 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     renderSecondSlotCaption()}
             </div>
         );
-    };
-
-    const renderFirstSlotBlankSlate = () => {
-        return (
-            <div
-                slot={SliderImageSlot.First}
-                className={`${blankSlateWidthStyleMap[blockSettings.height]} tw-bg-black-5`}
-                style={renderBlankSlateInlineStyles()}
-            >
-                <div
-                    className={joinClassNames([
-                        `${blockSettings?.alignment === Alignment.Horizontal ? 'tw-h-full tw-w-[50%]' : 'tw-h-[50%]'}`,
-                        'tw-flex tw-justify-center tw-items-center',
-                    ])}
-                >
-                    Empty first
-                </div>
-            </div>
-        );
-    };
-
-    const renderSecondSlotBlankSlate = () => {
-        return (
-            <div
-                slot={SliderImageSlot.Second}
-                className={`${blankSlateWidthStyleMap[blockSettings.height]} tw-bg-black-5`}
-                style={renderBlankSlateInlineStyles()}
-            >
-                <div
-                    className={joinClassNames([
-                        `${
-                            blockSettings?.alignment === Alignment.Horizontal
-                                ? 'tw-h-full tw-w-[50%] tw-absolute tw-left-[50%]'
-                                : 'tw-w-full tw-h-[50%] tw-absolute tw-top-[50%]'
-                        }`,
-                        'tw-flex tw-justify-center tw-items-center',
-                    ])}
-                >
-                    Empty second
-                </div>
-            </div>
-        );
-    };
-
-    const renderBlankSlateInlineStyles = () => {
-        const height = getImageHeight() || heightMap[Height.Auto];
-
-        return blockSettings.hasCustomHeight
-            ? { height: `${height}px`, width: `${height * 1.6}px` }
-            : { height: `${height}px` };
     };
 
     const renderFirstSlotCaption = () => {
@@ -208,6 +226,54 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
             </div>
         );
     };
+
+    if (isEditing && (!firstAsset || !secondAsset)) {
+        return (
+            <div className="tw-h-[500px] tw-flex">
+                <div className="tw-w-[50%]">
+                    {firstAsset ? (
+                        <img
+                            className="tw-w-full tw-h-full tw-object-cover tw-object-left"
+                            src={getFirstAssetPreviewUrl()}
+                            alt={getFirstAssetTitle()}
+                        />
+                    ) : (
+                        <BlockInjectButton
+                            label="Add first image"
+                            icon={<IconPlus24 />}
+                            fillParentContainer={true}
+                            secondaryLabel="Or drop it here"
+                            onUploadClick={() => startFileDialogUpload(SliderImageSlot.First)}
+                            onAssetChooseClick={() => openAssetChooser(SliderImageSlot.First)}
+                            onDrop={(files) => startDragAndDropUpload(files, SliderImageSlot.First)}
+                            isLoading={slotWithUploadInProgress === SliderImageSlot.First && isLoading}
+                        />
+                    )}
+                </div>
+
+                <div className="tw-w-[50%] tw-border-r-0">
+                    {secondAsset ? (
+                        <img
+                            className="tw-w-full tw-h-full tw-object-cover tw-object-right"
+                            src={getSecondAssetPreviewUrl()}
+                            alt={getSecondAssetTitle()}
+                        />
+                    ) : (
+                        <BlockInjectButton
+                            label="Add second image"
+                            icon={<IconPlus24 />}
+                            fillParentContainer={true}
+                            secondaryLabel="Or drop it here"
+                            onUploadClick={() => startFileDialogUpload(SliderImageSlot.Second)}
+                            onAssetChooseClick={() => openAssetChooser(SliderImageSlot.Second)}
+                            onDrop={(files) => startDragAndDropUpload(files, SliderImageSlot.Second)}
+                            isLoading={slotWithUploadInProgress === SliderImageSlot.Second && isLoading}
+                        />
+                    )}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div

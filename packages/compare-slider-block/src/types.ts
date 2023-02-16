@@ -28,6 +28,11 @@ export enum SliderImageSlot {
     Second = 'second',
 }
 
+export const slotAssetSettingMap: Record<SliderImageSlot, string> = {
+    [SliderImageSlot.First]: 'firstAsset',
+    [SliderImageSlot.Second]: 'secondAsset',
+};
+
 export enum CaptionPlacement {
     Top = 'top',
     Center = 'center',
