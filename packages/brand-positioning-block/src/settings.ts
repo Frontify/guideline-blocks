@@ -9,7 +9,7 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
 import { brandItemBrandItemSizeMap } from './types';
 
@@ -53,7 +53,7 @@ export const settings = defineSettings({
             label: 'Brand item',
             blocks: [
                 {
-                    id: 'isBrandItemCustom',
+                    id: 'isBrandItemSizeCustom',
                     type: 'switch',
                     label: 'Size',
                     switchLabel: 'Custom',
@@ -159,20 +159,20 @@ export const settings = defineSettings({
                         {
                             id: 'boardAxisLinesStyle',
                             type: 'dropdown',
-                            defaultValue: 'solid',
+                            defaultValue: BorderStyle.Solid,
                             size: DropdownSize.Small,
                             choices: [
                                 {
-                                    value: 'dotted',
-                                    label: 'Dotted',
+                                    value: BorderStyle.Solid,
+                                    label: BorderStyle.Solid,
                                 },
                                 {
-                                    value: 'dashed',
-                                    label: 'Dashed',
+                                    value: BorderStyle.Dotted,
+                                    label: BorderStyle.Dotted,
                                 },
                                 {
-                                    value: 'solid',
-                                    label: 'Solid',
+                                    value: BorderStyle.Dashed,
+                                    label: BorderStyle.Dashed,
                                 },
                             ],
                         },
@@ -187,7 +187,7 @@ export const settings = defineSettings({
                             },
                         },
                         {
-                            id: 'borderColor',
+                            id: 'axisColor',
                             type: 'colorInput',
                             defaultValue: BOARD_AXIS_LINES_COLOR_DEFAULT_VALUE,
                         },

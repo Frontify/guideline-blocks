@@ -1,12 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { useDraggable } from '@dnd-kit/core';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ItemProps } from '../types';
 import { Toolbar } from './Toolbar';
+import { itemStyleSettingssToCss } from '../utilities/settingsToCss';
 import { LoadingCircle } from '@frontify/fondue';
 
-export const Item = ({ src, xPosition, yPosition, id, deleteItem, isEditing }: ItemProps) => {
+export const Item = ({ src, xPosition, yPosition, id, deleteItem, isEditing, style }: ItemProps) => {
     const { attributes, isDragging, listeners, setNodeRef, transform } = useDraggable({
         id,
     });
@@ -14,6 +15,7 @@ export const Item = ({ src, xPosition, yPosition, id, deleteItem, isEditing }: I
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
         zIndex: isDragging ? 2 : 1,
     };
+    const itemStyle = itemStyleSettingssToCss(style);
 
     return (
         <div
@@ -21,10 +23,11 @@ export const Item = ({ src, xPosition, yPosition, id, deleteItem, isEditing }: I
                 left: `${xPosition}%`,
                 top: `${yPosition}%`,
                 ...transformStyle,
+                ...itemStyle,
             }}
             ref={setNodeRef}
             className={joinClassNames([
-                'tw-h-[50px] tw-w-[50px] tw-bg-white tw-group tw-rounded tw-border tw-border-line tw-p-1 tw-absolute ',
+                'tw-bg-white tw-group tw-rounded tw-border tw-border-line tw-p-1 tw-absolute ',
                 isEditing &&
                     'hover:tw-outline-offset-1 hover:tw-outline hover:tw-outline-1 hover:tw-outline-box-selected-inverse',
             ])}

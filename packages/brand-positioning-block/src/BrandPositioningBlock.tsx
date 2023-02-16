@@ -1,5 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { useEffect, useState } from 'react';
+import 'tailwindcss/tailwind.css';
+import '@frontify/fondue-tokens/styles';
 import {
     Asset,
     useAssetUpload,
@@ -8,17 +11,14 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import 'tailwindcss/tailwind.css';
-import { ASSETS_KEY, BlockSettings, Item } from './types';
-import type { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Board } from './components/Board';
-import { IconPlus20, generateRandomId } from '@frontify/fondue';
-import { useEffect, useState } from 'react';
 import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
+import { IconPlus20, generateRandomId } from '@frontify/fondue';
+import type { BlockProps } from '@frontify/guideline-blocks-settings';
+import { ASSETS_KEY, BrandPositioningBlockSettings, Item } from './types';
+import { Board } from './components/Board';
 
 export const BrandPositioningBlock = ({ appBridge }: BlockProps) => {
-    const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<BrandPositioningBlockSettings>(appBridge);
     const { items = [] } = blockSettings;
     const isEditing = useEditorState(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: true, accept: 'image/*' });
@@ -122,6 +122,7 @@ export const BrandPositioningBlock = ({ appBridge }: BlockProps) => {
                 assets={blockAssets[ASSETS_KEY] || []}
                 setItems={updateItems}
                 isEditing={isEditing}
+                blockSettings={blockSettings}
             />
             {isEditing && (
                 <div>
