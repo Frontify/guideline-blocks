@@ -49,7 +49,10 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
                             setPlayTime(getTimeStringFromTimeStamp((event.target as HTMLVideoElement).duration));
                         }}
                         ref={videoRef}
-                        width={cameraSizeToMaskSizeMap[size].width}
+                        style={{
+                            width: cameraSizeToMaskSizeMap[size].width,
+                            height: cameraSizeToMaskSizeMap[size].height,
+                        }}
                         className="tw-max-w-none"
                         src={
                             asset.previewUrl.indexOf('?') > 0
