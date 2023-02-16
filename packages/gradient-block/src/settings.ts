@@ -8,13 +8,18 @@ import {
     maximumNumericalOrPixelOrAutoRule,
     maximumNumericalRule,
 } from '@frontify/guideline-blocks-settings';
-import { GradientHeight, Orientation } from './types';
+import { GradientHeight, GradientOrientation } from './types';
 
 const IS_CUSTOM_HEIGHT_ID = 'isHeightCustom';
 const HEIGHT_CUSTOM_ID = 'heightCustom';
 const HEIGHT_SIMPLE_ID = 'heightSimple';
 
+const IS_CUSTOM_ORIENTATION_ID = 'isOrientationCustom';
+const ORIENTATION_CUSTOM_ID = 'orientationCustom';
+const ORIENTATION_SIMPLE_ID = 'orientationSimple';
+
 export const HEIGHT_DEFAULT_VALUE = GradientHeight.Small;
+export const ORIENTATION_DEFAULT_VALUE = GradientOrientation.Horizontal;
 
 export const settings = defineSettings({
     basics: [
@@ -79,7 +84,7 @@ export const settings = defineSettings({
                     ],
                 },
                 {
-                    id: 'gradientOrientation',
+                    id: IS_CUSTOM_ORIENTATION_ID,
                     type: 'switch',
                     label: 'Orientation',
                     switchLabel: 'Custom',
@@ -87,7 +92,7 @@ export const settings = defineSettings({
                     defaultValue: false,
                     on: [
                         {
-                            id: 'gradientOrientationCustom',
+                            id: ORIENTATION_CUSTOM_ID,
                             type: 'input',
                             placeholder: 'e.g. 90°',
                             clearable: true,
@@ -96,19 +101,19 @@ export const settings = defineSettings({
                     ],
                     off: [
                         {
-                            id: 'gradientOrientationSimple',
+                            id: ORIENTATION_SIMPLE_ID,
                             type: 'slider',
-                            defaultValue: Orientation.Horizontal,
+                            defaultValue: ORIENTATION_DEFAULT_VALUE,
                             choices: [
                                 {
                                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                     //@ts-ignore
                                     icon: IconEnum.ArrowBidirectionalHorizontal24,
-                                    value: Orientation.Horizontal,
+                                    value: GradientOrientation.Horizontal,
                                 },
                                 {
                                     icon: IconEnum.ArrowBidirectional24,
-                                    value: Orientation.Vertical,
+                                    value: GradientOrientation.Vertical,
                                 },
                             ],
                         },

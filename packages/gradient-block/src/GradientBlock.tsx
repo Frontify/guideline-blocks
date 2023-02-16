@@ -14,8 +14,8 @@ import {
     TooltipPosition,
 } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
-import { Settings, gradientHeightValues } from './types';
-import { HEIGHT_DEFAULT_VALUE } from './settings';
+import { Settings, gradientHeightValues, gradientOrientationValues } from './types';
+import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { IconEnum, debounce, iconsMap, merge } from '@frontify/fondue';
 import CodeMirror from '@uiw/react-codemirror';
@@ -59,9 +59,14 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     ]);
     const lastIndex = gradientColors.length - 1;
 
-    const height = blockSettings.isHeightCustom
+    const gradientBlockHeight = blockSettings.isHeightCustom
         ? blockSettings.heightCustom
         : gradientHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE];
+
+    // TODO - use this for the 'deg' value
+    const gradientOrientation = blockSettings.isOrientationCustom
+        ? blockSettings.orientationCustom
+        : gradientOrientationValues[blockSettings.orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
 
     const getCopyButtonText = () =>
         isCopied ? <>{iconsMap[IconEnum.CheckMark16]} Copied</> : <>{iconsMap[IconEnum.Clipboard16]} Copy</>;
@@ -237,7 +242,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             <div
                 className="tw-bg-gradient-to-r tw-from-[#243c5a] tw-via-[#d717cb_25.43%] tw-to-[#176cd7_80.11%] tw-w-full tw-h-4"
                 style={{
-                    height,
+                    height: gradientBlockHeight,
                 }}
             ></div>
             {!isEditing && (
