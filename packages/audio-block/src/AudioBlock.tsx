@@ -56,11 +56,14 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 const blobURL = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = blobURL;
-                a.download = fileName;
+                a.download = fileName + '.mp3';
                 document.body.appendChild(a);
                 a.click();
+                document.body.removeChild(a);
             });
     };
+
+    console.log(audio);
 
     return (
         <div data-test-id="audio-block" className={audioDivClassNames}>
@@ -115,7 +118,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     />
                 </div>
                 <Button
-                    onClick={() => downloadAudio(audio.genericUrl, audio.fileName)}
+                    onClick={() => downloadAudio(audio.genericUrl, audio.title)}
                     emphasis={ButtonEmphasis.Weak}
                     icon={<IconArrowCircleDown />}
                     rounding={ButtonRounding.Full}
