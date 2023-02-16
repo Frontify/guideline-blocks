@@ -27,9 +27,8 @@ export const Mask: FC<MaskProps> = ({ shape, children, size, border }) => {
     const overlayFullClasses =
         'tw-relative tw-overflow-hidden tw-flex tw-justify-center tw-items-center tw-transition-all';
 
-    const circleClasses = 'tw-rounded-full tw-aspect-square tw-h-full';
+    const circleClasses = 'tw-rounded-full tw-aspect-square';
     const squareClasses = 'tw-aspect-square';
-    const fullFrameClasses = '';
 
     const canHaveBorderRadius = [MaskShape.Square, MaskShape.FullFrame].includes(shape);
 
@@ -56,7 +55,6 @@ export const Mask: FC<MaskProps> = ({ shape, children, size, border }) => {
                 overlayFullClasses,
                 shape === MaskShape.Circle && circleClasses,
                 shape === MaskShape.Square && squareClasses,
-                shape === MaskShape.FullFrame && fullFrameClasses,
                 canHaveBorderRadius && !border.hasRadius && radiusClassMap[border.radiusChoice],
             ]),
         [border.hasRadius, border.radiusChoice, canHaveBorderRadius, shape]
