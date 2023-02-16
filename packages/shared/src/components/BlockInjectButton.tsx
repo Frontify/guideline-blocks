@@ -8,12 +8,24 @@ import {
     LoadingCircle,
     MenuItemContentSize,
 } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import React, { useRef, useState } from 'react';
-import { BlockEditButtonProps } from '../types';
+import React from 'react';
+import { DragEventHandler, MouseEventHandler, useRef, useState } from 'react';
+import { joinClassNames } from '../utilities/react/joinClassNames';
 
-const BlockEditButton = ({
-    onClick,
+export type BlockInjectButtonProps = {
+    isLoading?: boolean;
+    label: string;
+    secondaryLabel?: string;
+    icon?: JSX.Element;
+    onDrop?: (files: FileList) => void;
+    fillParentContainer?: boolean;
+    onUploadClick?: () => void;
+    onAssetChooseClick?: () => void;
+    withMenu?: boolean;
+    onClick?: () => void;
+};
+
+export const BlockInjectButton = ({
     onDrop,
     label,
     icon,
@@ -22,40 +34,35 @@ const BlockEditButton = ({
     fillParentContainer,
     onAssetChooseClick,
     onUploadClick,
-    setIsMenuOpen,
-}: BlockEditButtonProps) => {
+    withMenu = true,
+    onClick,
+}: BlockInjectButtonProps) => {
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
     const buttonRef = useRef<HTMLButtonElement>(null);
 
-    const handleDrop: React.DragEventHandler<HTMLButtonElement> = (e) => {
-        e.preventDefault();
+    const handleDrop: DragEventHandler<HTMLButtonElement> = (event) => {
+        event.preventDefault();
         setIsDraggingOver(false);
-        if (onDrop) {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-            onDrop(files);
-        }
+        onDrop && onDrop(event.dataTransfer.files);
     };
 
-    const openMenu: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    const openMenu: MouseEventHandler<HTMLButtonElement> = (event) => {
         if (!buttonRef.current || isLoading) {
             return;
         }
         const { left, top } = buttonRef.current.getBoundingClientRect();
-        const XInsideComponent = e.clientX - left;
-        const YInsideComponent = e.clientY - top;
+        const XInsideComponent = event.clientX - left;
+        const YInsideComponent = event.clientY - top;
         setMenuPosition([XInsideComponent, YInsideComponent]);
-        if (setIsMenuOpen) {
-            setIsMenuOpen(true);
-        }
     };
 
     return (
         <button
             ref={buttonRef}
+            data-test-id="block-inject-button"
             className={joinClassNames([
-                ' tw-font-body tw-relative tw-text-[14px] tw-text-text-weak tw-border [&:not(:first-child)]:tw-border-l-0 first:tw-rounded-tl-[4px] first:tw-rounded-bl-[4px] last:tw-rounded-tr-[4px] last:tw-rounded-br-[4px] tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
+                ' tw-font-body tw-relative tw-text-[14px] tw-leading-4 tw-text-text-weak tw-border [&:not(:first-child)]:tw-border-l-0 first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
                 !isLoading &&
                     'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover',
                 isDraggingOver && '[&>*]:tw-pointer-events-none',
@@ -63,12 +70,15 @@ const BlockEditButton = ({
                     ? 'tw-text-blank-state-pressed tw-bg-blank-state-pressed-inverse tw-border-blank-state-line-hover hover:tw-text-blank-state-pressed hover:tw-border-blank-state-line-hover hover:tw-bg-blank-state-pressed-inverse'
                     : 'tw-bg-blank-state-shaded-inverse tw-border-blank-state-line tw-text-blank-state-shaded ',
                 fillParentContainer ? 'tw-h-full' : 'tw-h-[72px]',
-                !!onDrop && isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
+                isDraggingOver && !isLoading ? 'tw-border-dashed' : 'tw-border-solid',
             ])}
-            onDragEnter={() => setIsDraggingOver(true)}
-            onDragLeave={() => setIsDraggingOver(false)}
-            onDrop={handleDrop}
-            onClick={onClick || openMenu}
+            onDragEnter={onDrop ? () => setIsDraggingOver(true) : undefined}
+            onDragLeave={onDrop ? () => setIsDraggingOver(false) : undefined}
+            onDrop={onDrop ? handleDrop : undefined}
+            onClick={(event) => {
+                withMenu && openMenu(event);
+                onClick?.();
+            }}
         >
             {isLoading ? (
                 <LoadingCircle />
@@ -90,11 +100,7 @@ const BlockEditButton = ({
                     }}
                 >
                     <Flyout
-                        onOpenChange={(isOpen) => {
-                            if (!isOpen) {
-                                setMenuPosition(undefined);
-                            }
-                        }}
+                        onOpenChange={(isOpen) => !isOpen && setMenuPosition(undefined)}
                         isOpen={true}
                         fitContent
                         hug={false}
@@ -115,9 +121,6 @@ const BlockEditButton = ({
                                                       onClick: () => {
                                                           onUploadClick();
                                                           setMenuPosition(undefined);
-                                                          if (setIsMenuOpen) {
-                                                              setIsMenuOpen(false);
-                                                          }
                                                       },
 
                                                       initialValue: true,
@@ -138,9 +141,6 @@ const BlockEditButton = ({
                                                       onClick: () => {
                                                           onAssetChooseClick();
                                                           setMenuPosition(undefined);
-                                                          if (setIsMenuOpen) {
-                                                              setIsMenuOpen(false);
-                                                          }
                                                       },
                                                       initialValue: true,
                                                       decorator: (
@@ -161,5 +161,3 @@ const BlockEditButton = ({
         </button>
     );
 };
-
-export default BlockEditButton;
