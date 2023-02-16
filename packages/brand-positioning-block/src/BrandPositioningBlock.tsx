@@ -13,9 +13,9 @@ import 'tailwindcss/tailwind.css';
 import { ASSETS_KEY, BlockSettings, Item } from './types';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import { Board } from './components/Board';
-import BlockInjectButton from './components/BlockInjectButton';
 import { IconPlus20, generateRandomId } from '@frontify/fondue';
 import { useEffect, useState } from 'react';
+import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
 
 export const BrandPositioningBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -124,15 +124,17 @@ export const BrandPositioningBlock = ({ appBridge }: BlockProps) => {
                 isEditing={isEditing}
             />
             {isEditing && (
-                <BlockInjectButton
-                    label="Add images"
-                    secondaryLabel="Or drop them here"
-                    icon={<IconPlus20 />}
-                    onUploadClick={openFileDialog}
-                    onAssetChooseClick={openAssetChooser}
-                    onDrop={setDroppedFiles}
-                    isLoading={isUploadLoading}
-                />
+                <div>
+                    <BlockInjectButton
+                        label="Add images"
+                        secondaryLabel="Or drop them here"
+                        icon={<IconPlus20 />}
+                        onUploadClick={openFileDialog}
+                        onAssetChooseClick={openAssetChooser}
+                        onDrop={setDroppedFiles}
+                        isLoading={isUploadLoading}
+                    />
+                </div>
             )}
         </div>
     );
