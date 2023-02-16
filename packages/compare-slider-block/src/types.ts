@@ -20,6 +20,8 @@ export type BlockSettings = {
     secondAssetCaptionPlacement: CaptionPlacement;
     secondAssetHasCaption: boolean;
     sliderColor: Color;
+    sliderDescription: string;
+    sliderName: string;
     sliderWidth: string;
 };
 
