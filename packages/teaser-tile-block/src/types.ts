@@ -4,6 +4,7 @@ import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { FlyoutPlacement, FlyoutProps, Palette } from '@frontify/fondue';
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { ReactNode } from 'react';
 
 export enum SettingsEnum {
     Type = 'type',
@@ -129,6 +130,12 @@ export enum TileVerticalAlignment {
 }
 
 export type Nullable<T> = T | null;
+
+export type TileGridProps = {
+    children: ReactNode;
+    gridGap: string;
+    columns: string;
+};
 
 export type SortableTeaserTileProps = {
     id: string;

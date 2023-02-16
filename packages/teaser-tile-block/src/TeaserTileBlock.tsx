@@ -9,9 +9,9 @@ import { merge } from '@frontify/fondue';
 import { Settings } from './types';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { SortableContext } from '@dnd-kit/sortable';
-import { heightMap, radiusMap, spacingMap } from './helpers';
+import { radiusMap, spacingMap } from './helpers';
 import { useDraggableGrid, useTileArray } from './hooks';
-import { SortableTeaserTile, TeaserTile } from './components';
+import { SortableTeaserTile, TeaserTile, TileGrid } from './components';
 
 export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -25,17 +25,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
 
     return (
         <DndContext {...dragContextProps}>
-            <div
-                className="tw-relative"
-                data-test-id="teaser-tile-block"
-                style={{
-                    gridGap,
-                    display: 'grid',
-                    gridAutoFlow: 'row',
-                    gridAutoRows: '1fr',
-                    gridTemplateColumns: `repeat(${blockSettings.columns}, 1fr)`,
-                }}
-            >
+            <TileGrid gridGap={gridGap} columns={blockSettings.columns}>
                 <SortableContext items={tiles}>
                     {tiles.map(({ id, settings }) => (
                         <SortableTeaserTile
@@ -87,7 +77,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                         Add New Tile
                     </div>
                 )}
-            </div>
+            </TileGrid>
         </DndContext>
     );
 };

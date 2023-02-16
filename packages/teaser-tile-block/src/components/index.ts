@@ -4,3 +4,4 @@ export * from './SortableTeaserTile';
 export * from './TeaserTile';
 export * from './TeaserTileToolbar';
 export * from './TileSettingsFlyout';
+export * from './TileGrid';
