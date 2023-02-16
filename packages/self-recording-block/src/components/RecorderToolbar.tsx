@@ -14,7 +14,7 @@ import {
 import { ReactElement } from 'react';
 import { RecorderState } from '../types';
 
-type VideoRecorderToolbarProps = {
+type RecorderToolbarProps = {
     state: RecorderState;
     onStartRecordingClick: () => void;
     onStopRecordingClick: () => void;
@@ -24,7 +24,7 @@ type VideoRecorderToolbarProps = {
     onCancelClick: () => void;
 };
 
-export const VideoRecorderToolbar = ({
+export const RecorderToolbar = ({
     state,
     onStartRecordingClick,
     onStopRecordingClick,
@@ -32,7 +32,7 @@ export const VideoRecorderToolbar = ({
     onResumeClick,
     onDeleteClick,
     onCancelClick,
-}: VideoRecorderToolbarProps): ReactElement => {
+}: RecorderToolbarProps): ReactElement => {
     return (
         <div className="tw-flex tw-gap-1 tw-p-1 tw-bg-base tw-rounded-lg tw-items-center tw-shadow tw-divide-x tw-divide-box-selected tw-border tw-border-box-selected">
             {state === 'idle' ? (

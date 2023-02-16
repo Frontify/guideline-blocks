@@ -22,8 +22,8 @@ const segmenterConfig: bodySegmentation.MediaPipeSelfieSegmentationMediaPipeMode
 let segmenter: bodySegmentation.BodySegmenter | undefined;
 let image: HTMLImageElement | undefined;
 
-export const bindVideoToCanvas = async (
-    videoElement: HTMLVideoElement,
+export const bindFrameToCanvas = async (
+    frame: HTMLImageElement | HTMLVideoElement,
     canvasElement: HTMLCanvasElement,
     tmpCanvasElement: HTMLCanvasElement,
     scale: number,
@@ -36,29 +36,30 @@ export const bindVideoToCanvas = async (
         throw new Error('Could not get the canvas context.');
     }
 
+    const frameWidth = (frame as HTMLVideoElement).videoWidth ?? (frame as HTMLImageElement).naturalWidth;
+    const frameHeight = (frame as HTMLVideoElement).videoHeight ?? (frame as HTMLImageElement).naturalHeight;
+
     const parentContainerWidth = (options.maxWidth ?? 0) * scale;
     setCanvasWidth(canvasElement, parentContainerWidth);
-    setCanvasWidth(tmpCanvasElement, videoElement.videoWidth);
+    setCanvasWidth(tmpCanvasElement, frameWidth);
 
-    const videoAspectRatio = videoElement.videoWidth / videoElement.videoHeight;
+    const videoAspectRatio = frameWidth / frameHeight;
     setCanvasHeight(canvasElement, parentContainerWidth / videoAspectRatio);
-    setCanvasHeight(tmpCanvasElement, videoElement.videoHeight);
+    setCanvasHeight(tmpCanvasElement, frameHeight);
 
-    if ((options.videoMode === VideoMode.Custom || options.videoMode === VideoMode.Blur) && !segmenter) {
+    if ((options.videoMode === VideoMode.Asset || options.videoMode === VideoMode.Blur) && !segmenter) {
         segmenter = await bodySegmentation.createSegmenter(model, segmenterConfig);
     }
 
     if (
-        (options.videoMode === VideoMode.Custom && options.backgroundAssetUrl && !image) ||
+        (options.videoMode === VideoMode.Asset && options.backgroundAssetUrl && !image) ||
         image?.src !== options.backgroundAssetUrl
     ) {
         image = await new Promise<HTMLImageElement>((resolve) => {
             const img = new Image(canvasElement.width, canvasElement.height);
             img.crossOrigin = 'anonymous';
             img.src = options.backgroundAssetUrl ?? '';
-            img.addEventListener('load', () => {
-                return resolve(img);
-            });
+            img.addEventListener('load', () => resolve(img));
         });
     }
 
@@ -67,8 +68,8 @@ export const bindVideoToCanvas = async (
             return;
         }
 
-        if (options.videoMode === VideoMode.Custom && segmenter && image) {
-            const peopleSegmentation = await segmenter.segmentPeople(videoElement);
+        if (options.videoMode === VideoMode.Asset && segmenter && image) {
+            const peopleSegmentation = await segmenter.segmentPeople(frame);
             const bodyMask = await bodySegmentation.toBinaryMask(
                 peopleSegmentation,
                 { r: 0, g: 0, b: 0, a: 0 },
@@ -92,12 +93,12 @@ export const bindVideoToCanvas = async (
                 bodyMask.data[i + 2] = backgroundAssetData.data[i + 2];
             }
 
-            await bodySegmentation.drawMask(canvasElement, videoElement, bodyMask, 1, 0, true);
+            await bodySegmentation.drawMask(canvasElement, frame, bodyMask, 1, 0, true);
         } else if (options.videoMode === VideoMode.Blur && segmenter) {
-            const peopleSegmentation = await segmenter.segmentPeople(videoElement);
-            await bodySegmentation.drawBokehEffect(canvasElement, videoElement, peopleSegmentation, 0.7, 9, 4, true);
+            const peopleSegmentation = await segmenter.segmentPeople(frame);
+            await bodySegmentation.drawBokehEffect(canvasElement, frame, peopleSegmentation, 0.7, 9, 4, true);
         } else {
-            drawFrameCover(videoElement, ctx);
+            drawFrameCover(frame, ctx);
         }
 
         requestAnimationFrame(step);

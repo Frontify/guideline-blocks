@@ -3,14 +3,16 @@
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { useAssetUpload } from '@frontify/app-bridge';
 
-import { CameraSize, MaskShape, RecorderState, VideoMode } from '../types';
-import { VideoRecorderToolbar } from './VideoRecorderToolbar';
+import { CameraSize, MaskShape, RecorderState, RecordingMode, VideoMode } from '../types';
+import { RecorderToolbar } from './RecorderToolbar';
 import { Camera } from './Camera';
 import { Mask, MaskProps } from './Mask';
 import { BlankState } from './BlankState';
 import { CountdownOverlay } from './CountdownOverlay';
+import { AvatarCamera } from './AvatarCamera';
 
-type VideoRecorderProps = {
+type RecorderProps = {
+    recordingMode: RecordingMode;
     onRecordingEnd: (assetId: number) => Promise<void>;
     size: CameraSize;
     cameraDeviceId?: string;
@@ -18,9 +20,11 @@ type VideoRecorderProps = {
     videoOptions: { videoMode: VideoMode; backgroundAssetUrl?: string };
     maskShape: MaskShape;
     maskBorder: MaskProps['border'];
+    avatarImageUrl: string;
 };
 
-export const VideoRecorder = ({
+export const Recorder = ({
+    recordingMode,
     onRecordingEnd,
     size,
     cameraDeviceId,
@@ -28,10 +32,11 @@ export const VideoRecorder = ({
     videoOptions,
     maskShape,
     maskBorder,
-}: VideoRecorderProps): ReactElement => {
+    avatarImageUrl,
+}: RecorderProps): ReactElement => {
     const [state, setState] = useState<RecorderState>('initializing');
     const recorder = useRef<MediaRecorder | null>(null);
-    const cameraRef = useRef<HTMLVideoElement>(null);
+    const mediaRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const parentRef = useRef<HTMLDivElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
@@ -45,7 +50,7 @@ export const VideoRecorder = ({
         setState('recording');
 
         const stream = canvasRef.current.captureStream();
-        const audio = (cameraRef.current?.srcObject as MediaStream | null)?.getAudioTracks();
+        const audio = (mediaRef.current?.srcObject as MediaStream | null)?.getAudioTracks();
 
         if (audio && audio.length > 0) {
             stream.addTrack(audio[0]);
@@ -129,15 +134,27 @@ export const VideoRecorder = ({
                             onCountdownFinished={startRecording}
                             enabled={state === 'countdown'}
                         >
-                            <Camera
-                                cameraDeviceId={cameraDeviceId}
-                                microphoneDeviceId={microphoneDeviceId}
-                                size={size}
-                                canvasRef={canvasRef}
-                                cameraRef={cameraRef}
-                                onDevicePermissionDenied={onDevicePermissionDenied}
-                                videoOptions={{ ...videoOptions, maxWidth: parentRef.current?.clientWidth }}
-                            />
+                            {recordingMode === RecordingMode.CameraAndAudio ? (
+                                <Camera
+                                    cameraDeviceId={cameraDeviceId}
+                                    microphoneDeviceId={microphoneDeviceId}
+                                    size={size}
+                                    canvasRef={canvasRef}
+                                    cameraRef={mediaRef}
+                                    onDevicePermissionDenied={onDevicePermissionDenied}
+                                    videoOptions={{ ...videoOptions, maxWidth: parentRef.current?.clientWidth }}
+                                />
+                            ) : (
+                                <AvatarCamera
+                                    microphoneDeviceId={microphoneDeviceId}
+                                    size={size}
+                                    canvasRef={canvasRef}
+                                    microphoneRef={mediaRef}
+                                    onDevicePermissionDenied={onDevicePermissionDenied}
+                                    videoOptions={{ ...videoOptions, maxWidth: parentRef.current?.clientWidth }}
+                                    imageUrl={avatarImageUrl}
+                                />
+                            )}
                         </CountdownOverlay>
                     ) : null}
 
@@ -154,7 +171,7 @@ export const VideoRecorder = ({
 
                 {state !== 'initializing' && state !== 'permissions-error' ? (
                     <div className="tw-mt-6">
-                        <VideoRecorderToolbar
+                        <RecorderToolbar
                             state={state}
                             onStartRecordingClick={onStartRecordingClick}
                             onStopRecordingClick={onStopRecordingClick}

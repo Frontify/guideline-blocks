@@ -2,11 +2,11 @@
 
 import { Asset } from '@frontify/app-bridge';
 
-type VideoPlayerProps = {
+type PlayerProps = {
     asset?: Asset;
 };
 
-export const VideoPlayer = ({ asset }: VideoPlayerProps) => {
+export const Player = ({ asset }: PlayerProps) => {
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
             {asset !== undefined ? (
