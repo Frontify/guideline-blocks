@@ -20,6 +20,7 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [playTime, setPlayTime] = useState('');
+    const [playSpeed, setPlaySpeed] = useState(1);
 
     const toggleVideo = useCallback(() => {
         if (isPlaying) {
@@ -30,6 +31,13 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
             setIsPlaying(true);
         }
     }, [isPlaying]);
+
+    const onPaybackSpeedChange = useCallback((newPlaySpeed: number) => {
+        if (videoRef?.current?.playbackRate) {
+            videoRef.current.playbackRate = newPlaySpeed;
+        }
+        setPlaySpeed(newPlaySpeed);
+    }, []);
 
     return (
         <div className="tw-flex tw-flex-col tw-items-center">
@@ -64,7 +72,13 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
             </Mask>
 
             <div className="tw-mt-6">
-                <PlayerToolbar isPlaying={isPlaying} onPlayPauseClicked={toggleVideo} time={playTime} />
+                <PlayerToolbar
+                    isPlaying={isPlaying}
+                    onPlayPauseClicked={toggleVideo}
+                    playSpeed={playSpeed}
+                    onPlaySpeedSelected={onPaybackSpeedChange}
+                    time={playTime}
+                />
             </div>
         </div>
     );

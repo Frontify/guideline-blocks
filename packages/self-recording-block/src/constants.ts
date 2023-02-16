@@ -48,5 +48,4 @@ export const cameraSizeToMaskSizeMap: Record<CameraSize, { width: number; height
     [CameraSize.Large]: { width: 800, height: 600 },
 };
 
-export const LOCAL_STORAGE_PREFFERED_CAMERA_KEY = 'SelfRecordingBlock_preferredCameraDeviceId';
-export const LOCAL_STORAGE_PREFFERED_MICROPHONE_KEY = 'SelfRecordingBlock_preferredMicrophoneDeviceId';
+export const AVAILABLE_PLAYBACK_SPEEDS = [1, 1.2, 1.5, 2];
