@@ -24,7 +24,6 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
 
     const tileHeight = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
-    console.log(draggedBlock);
 
     return (
         <DndContext {...dragContextProps}>

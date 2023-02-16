@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MutableRefObject, forwardRef, useMemo, useState } from 'react';
+import { MutableRefObject, forwardRef, useEffect, useMemo, useState } from 'react';
 
 import {
     FOCUS_VISIBLE_STYLE,
@@ -54,6 +54,11 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             blockSettings,
             tileSettings
         );
+
+        useEffect(() => {
+            // Mouseout event is not called when drag is cancelled so toolbar needs to be manually unfocused
+            setToolbarFocus(false);
+        }, [replaceWithPlaceholder]);
 
         const imageClassName = merge([
             'tw-z-[1] tw-bg-base-alt tw-min-w-0 tw-flex-initial',

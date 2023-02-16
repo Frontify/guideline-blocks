@@ -18,12 +18,12 @@ export const useDraggableGrid = (tiles: Tile[], updateTiles: (tiles: Tile[]) => 
     const [draggingTileId, setDraggingTileId] = useState<Nullable<UniqueIdentifier>>(null);
     const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
 
-    const handleDragStart = (event: DragStartEvent) => {
+    const onDragStart = (event: DragStartEvent) => {
         const { active } = event;
         setDraggingTileId(active.id);
     };
 
-    const handleDragEnd = (event: DragEndEvent) => {
+    const onDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
         if (over && active.id !== over.id) {
             const oldIndex = tiles?.findIndex((tile) => tile.id === active.id);
@@ -41,8 +41,8 @@ export const useDraggableGrid = (tiles: Tile[], updateTiles: (tiles: Tile[]) => 
 
     return {
         dragContextProps: {
-            handleDragEnd,
-            handleDragStart,
+            onDragEnd,
+            onDragStart,
             sensors,
             collisionDetection: closestCenter,
         },
