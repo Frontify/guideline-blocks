@@ -1,32 +1,34 @@
 {
-	"name": "compare-slider-block",
-	"version": "1.0.0",
-	"main": "src/index.ts",
-	"scripts": {
-		"serve": "frontify-cli serve --entryPath src/index.ts",
-		"deploy": "frontify-cli deploy --entryPath src/index.ts",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"typecheck": "tsc --noEmit"
-	},
-	"dependencies": {
-		"@frontify/app-bridge": "3.0.0-beta.45",
-		"@frontify/guideline-blocks-shared": "workspace:^1.0.0",
-		"@img-comparison-slider/react": "^7.8.1",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
-	},
-	"devDependencies": {
-		"@frontify/eslint-config-react": "0.15.5",
-		"@frontify/frontify-cli": "5.3.6",
-		"@frontify/guideline-blocks-settings": "0.25.10",
-		"@types/react": "17.0.53",
-		"@types/react-dom": "17.0.18",
-		"autoprefixer": "10.4.13",
-		"eslint": "8.33.0",
-		"postcss": "8.4.19",
-		"prettier": "2.8.3",
-		"tailwind": "4.0.0",
-		"typescript": "4.9.4"
-	}
+    "name": "compare-slider-block",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "scripts": {
+        "serve": "frontify-cli serve --entryPath src/index.ts",
+        "deploy": "frontify-cli deploy --entryPath src/index.ts",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write .",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@frontify/app-bridge": "3.0.0-beta.45",
+        "@frontify/guideline-blocks-shared": "workspace:^1.0.0",
+        "@img-comparison-slider/react": "^7.8.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "devDependencies": {
+        "@frontify/eslint-config-react": "0.15.5",
+        "@frontify/frontify-cli": "5.3.6",
+        "@frontify/guideline-blocks-settings": "0.25.10",
+        "@types/react": "17.0.53",
+        "@types/react-dom": "17.0.18",
+        "autoprefixer": "10.4.13",
+        "eslint": "8.33.0",
+        "postcss": "8.4.19",
+        "prettier": "2.8.3",
+        "tailwind": "4.0.0",
+        "typescript": "4.9.4"
+    }
 }
