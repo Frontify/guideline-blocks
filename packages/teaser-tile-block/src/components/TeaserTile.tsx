@@ -23,16 +23,18 @@ import {
     BoldPlugin,
     ItalicPlugin,
     UnderlinePlugin,
+    Palette,
 } from '@frontify/fondue';
 import { AppBridgeBlock, useColorPalettes } from '@frontify/app-bridge';
 
 import { useTileAsset } from '../hooks';
-import { Settings, TileImagePositioning, TileSettings, TileType, TileVerticalAlignment } from '../types';
+import { Nullable, Settings, TileImagePositioning, TileSettings, TileType, TileVerticalAlignment } from '../types';
 
 import { TileSettingsFlyout, TileSettingsFlyoutProps } from './TileSettingsFlyout';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { heightMap, objectFitMap, paddingMap, radiusMap } from '../TeaserTileBlock';
 import { useSortable } from '@dnd-kit/sortable';
+import { TeaserTileToolbar } from './TeaserTileToolbar';
 
 export type SortableTeaserTileProps = {
     id: string;
@@ -42,6 +44,7 @@ export type SortableTeaserTileProps = {
     onTileSettingsChange: (partialSettings: Partial<TileSettings>) => void;
     onRemoveTile: () => void;
     isEditing: boolean;
+    palettes: Nullable<Palette[]>;
 };
 
 export type TeaserTileProps = SortableTeaserTileProps & {
@@ -115,6 +118,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             isEditing,
             transformStyle,
             draggableProps,
+            palettes,
         },
         ref
     ) => {
@@ -127,7 +131,6 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
         const [isMenuFlyoutOpen, setIsMenuFlyoutOpen] = useState(false);
         const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
         const { designTokens } = useGuidelineDesignTokens();
-        const { colorPalettes } = useColorPalettes(appBridge);
 
         const { height, background, objectFit, padding, textAlign, border, borderRadius } = useTileStyles(
             blockSettings,
@@ -166,7 +169,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             onUploadFile: uploadFile,
             onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange({ backgroundVisibility }),
             onReplaceAssetFromWorkspace: onOpenAssetChooser,
-            palettes: colorPalettes.map((palette) => ({ ...palette, title: palette.name })),
+            palettes,
         } as Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'>;
 
         const titleRichTextEditor = useMemo(
@@ -181,7 +184,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     onBlur={(title) => onTileSettingsChange({ title })}
                 />
             ),
-            [designTokens, isEditing, onTileSettingsChange, tileSettings.title]
+            [designTokens, isEditing, tileSettings.title]
         );
         const descriptionRichTextEditor = useMemo(
             () => (
@@ -194,7 +197,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     onBlur={(description) => onTileSettingsChange({ description })}
                 />
             ),
-            [designTokens, isEditing, onTileSettingsChange, tileSettings.description]
+            [designTokens, isEditing, tileSettings.description]
         );
 
         return (
@@ -205,6 +208,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                 style={{ ...transformStyle }}
                 {...draggableProps}
             >
+                <TeaserTileToolbar draggableProps={draggableProps} />
                 {tileSettings.link?.href && !isEditing && (
                     <a
                         className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"

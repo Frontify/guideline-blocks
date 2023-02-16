@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import '@frontify/fondue-tokens/styles';
 
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { generateRandomId, merge } from '@frontify/fondue';
 import { Nullable, Settings, Tile, TileDisplay, TileHeight, TilePadding, TileSettings, TileSpacing } from './types';
 import { SortableTeaserTile, TeaserTile } from './components/TeaserTile';
@@ -73,7 +73,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [draggingTileId, setDraggingTileId] = useState<Nullable<UniqueIdentifier>>(null);
     const isEditing = useEditorState(appBridge);
     const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
-
+    const { colorPalettes } = useColorPalettes(appBridge);
     const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
 
     const setInternalTiles = useCallback(
@@ -172,6 +172,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                             blockSettings={blockSettings}
                             onRemoveTile={() => removeTile(id)}
                             isEditing={isEditing}
+                            palettes={colorPalettes.map((palette) => ({ ...palette, title: palette.name }))}
                         />
                     ))}
                 </SortableContext>
@@ -187,6 +188,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                             blockSettings={blockSettings}
                             onRemoveTile={() => ({})}
                             isEditing={isEditing}
+                            palettes={colorPalettes.map((palette) => ({ ...palette, title: palette.name }))}
                         />
                     ) : null}
                 </DragOverlay>
