@@ -32,8 +32,8 @@ export const CountdownOverlay = ({
 
     useEffect(() => {
         if (timeRemaining > 0 && enabled) {
+            beep(oscillator, audioContext.destination, 150);
             const intervalId = setInterval(() => {
-                beep(oscillator, audioContext.destination, 150);
                 setTimeRemaining((previousTime) => previousTime - 1);
             }, 1000);
 
@@ -50,7 +50,7 @@ export const CountdownOverlay = ({
 
     return (
         <div>
-            {enabled && timeRemaining > 0 && (
+            {enabled && timeRemaining >= 0 && (
                 <div className="tw-absolute tw-inset-0 tw-bg-black/[.4] tw-flex tw-items-center tw-justify-center">
                     <span className="tw-text-white tw-text-7xl">{timeRemaining}</span>
                 </div>
