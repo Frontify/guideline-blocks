@@ -1,109 +1,30 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { forwardRef, MutableRefObject, useMemo, useState } from 'react';
+import { MutableRefObject, forwardRef, useMemo, useState } from 'react';
 
 import {
-    ActionMenu,
-    Button,
-    ButtonEmphasis,
-    ButtonRounding,
-    ButtonSize,
-    Flyout,
-    FlyoutPlacement,
-    IconCog,
-    IconDotsVertical,
-    IconPlus32,
-    IconTrashBin,
-    LoadingCircle,
-    MenuItemStyle,
-    RichTextEditor,
-    merge,
-    PluginComposer,
-    InitPlugin,
     BoldPlugin,
-    ItalicPlugin,
-    UnderlinePlugin,
-    Palette,
     FOCUS_VISIBLE_STYLE,
+    FlyoutPlacement,
     IconHeartCircle32,
+    IconPlus32,
+    InitPlugin,
+    ItalicPlugin,
+    LoadingCircle,
+    PluginComposer,
+    RichTextEditor,
+    UnderlinePlugin,
+    merge,
 } from '@frontify/fondue';
-import { AppBridgeBlock, useColorPalettes } from '@frontify/app-bridge';
 
-import { useTileAsset } from '../hooks';
-import { Nullable, Settings, TileImagePositioning, TileSettings, TileType, TileVerticalAlignment } from '../types';
+import { useTileAsset, useTileStyles } from '../hooks';
+import { TeaserTileProps, TileImagePositioning, TileType } from '../types';
 
 import { TileSettingsFlyout, TileSettingsFlyoutProps } from './TileSettingsFlyout';
-import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { heightMap, objectFitMap, paddingMap, radiusMap } from '../TeaserTileBlock';
+import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useSortable } from '@dnd-kit/sortable';
 import { TeaserTileToolbar } from './TeaserTileToolbar';
-
-export type SortableTeaserTileProps = {
-    id: string;
-    blockSettings: Settings;
-    appBridge: AppBridgeBlock;
-    tileSettings: TileSettings;
-    onTileSettingsChange: (partialSettings: Partial<TileSettings>) => void;
-    onRemoveTile: () => void;
-    isEditing: boolean;
-    palettes: Nullable<Palette[]>;
-};
-
-export type TeaserTileProps = SortableTeaserTileProps & {
-    isDragging?: boolean;
-    replaceWithPlaceholder?: boolean;
-    transformStyle?: Record<string, unknown>;
-    draggableProps?: Record<string, unknown>;
-    isDragPreview?: boolean;
-};
-
-const twPositioningMap: Record<TileImagePositioning, string> = {
-    [TileImagePositioning.Top]: 'tw-flex-col',
-    [TileImagePositioning.Bottom]: 'tw-flex-col-reverse',
-    [TileImagePositioning.Left]: 'tw-flex-row',
-    [TileImagePositioning.Right]: 'tw-flex-row-reverse',
-    [TileImagePositioning.Behind]: '',
-};
-
-const twBorderMap: Record<TileImagePositioning, string> = {
-    [TileImagePositioning.Top]: 'tw-border-b',
-    [TileImagePositioning.Bottom]: 'tw-border-t',
-    [TileImagePositioning.Left]: 'tw-border-r',
-    [TileImagePositioning.Right]: 'tw-border-l',
-    [TileImagePositioning.Behind]: '',
-};
-
-const twVerticalAlignmentMap: Record<TileVerticalAlignment, string> = {
-    [TileVerticalAlignment.Top]: 'tw-justify-start',
-    [TileVerticalAlignment.Center]: 'tw-justify-center',
-    [TileVerticalAlignment.Bottom]: 'tw-justify-end',
-};
-
-const useTileStyles = (blockSettings: Settings, tileSettings: TileSettings) => {
-    const height = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
-    const padding = blockSettings.padding ? blockSettings.paddingCustom : paddingMap[blockSettings.paddingChoice];
-
-    // TODO: should be by default lowercase instead of uppercase
-    const textAlign = blockSettings.horizontalAlignment.toLowerCase() as 'left' | 'right' | 'center';
-
-    // TODO: should be by default lowercase instead of uppercase
-    const border = blockSettings.hasBorder
-        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle.toLowerCase()} ${toRgbaString(
-              blockSettings.borderColor
-          )}`
-        : undefined;
-
-    const globalObjectFit = objectFitMap[blockSettings.display];
-    const tileObjectFit = tileSettings.display ? objectFitMap[tileSettings.display] : undefined;
-    const objectFit = height === 'auto' ? 'cover' : tileObjectFit ?? globalObjectFit;
-
-    const globalBackground = blockSettings.background ? toRgbaString(blockSettings.backgroundColor) : undefined;
-    const tileBackground = tileSettings.backgroundColor ? toRgbaString(tileSettings.backgroundColor) : undefined;
-    const background = tileSettings.backgroundVisibility !== false ? tileBackground ?? globalBackground : undefined;
-    const borderRadius = blockSettings.hasRadius ? blockSettings.radiusValue : radiusMap[blockSettings.radiusChoice];
-
-    return { height, background, objectFit, padding, textAlign, border, borderRadius };
-};
+import { twBorderMap, twPositioningMap, twVerticalAlignmentMap } from '../helpers';
 
 const headerPlugins = new PluginComposer()
     .setPlugin(new InitPlugin())
@@ -124,12 +45,16 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             palettes,
             replaceWithPlaceholder,
             isDragPreview,
+            blockAssets,
+            updateAssetIdsFromKey,
         },
         ref
     ) => {
         const { tileAsset, isAssetLoading, uploadFile, onOpenAssetChooser, openFileDialog } = useTileAsset(
             appBridge,
-            id
+            id,
+            blockAssets,
+            updateAssetIdsFromKey
         );
         const { positioning, type } = blockSettings;
         const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);

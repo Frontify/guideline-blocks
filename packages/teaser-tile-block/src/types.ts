@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import { Palette } from '@frontify/fondue';
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 import { Link } from './components/TileSettingsFlyout';
@@ -128,3 +130,24 @@ export enum TileVerticalAlignment {
 }
 
 export type Nullable<T> = T | null;
+
+export type SortableTeaserTileProps = {
+    id: string;
+    blockSettings: Settings;
+    appBridge: AppBridgeBlock;
+    tileSettings: TileSettings;
+    onTileSettingsChange: (partialSettings: Partial<TileSettings>) => void;
+    onRemoveTile: () => void;
+    isEditing: boolean;
+    palettes: Nullable<Palette[]>;
+    blockAssets: Record<string, Asset[]>;
+    updateAssetIdsFromKey: (key: string, newAssetIds: number[]) => Promise<void>;
+};
+
+export type TeaserTileProps = SortableTeaserTileProps & {
+    isDragging?: boolean;
+    replaceWithPlaceholder?: boolean;
+    transformStyle?: Record<string, unknown>;
+    draggableProps?: Record<string, unknown>;
+    isDragPreview?: boolean;
+};
