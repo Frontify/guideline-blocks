@@ -7,7 +7,6 @@ import {
     IconCross16,
     IconPause16,
     IconPlay16,
-    IconTrashBin16,
     Text,
     Tooltip,
     TooltipPosition,
