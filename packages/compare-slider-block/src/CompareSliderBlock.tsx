@@ -28,7 +28,7 @@ import {
     toRgbaString,
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
-import { Icon, IconEnum, IconPlus24, IconSize, RichTextEditor } from '@frontify/fondue';
+import { Icon, IconEnum, IconPlus24, IconSize, RichTextEditor, debounce } from '@frontify/fondue';
 import { Strikethrough } from './Strikethrough';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -114,6 +114,9 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const sliderRef = useRef<HTMLDivElement | null>(null);
 
+    const [firstAssetStrikethroughOffset, setFirstAssetStrikethroughOffset] = useState<number>(0);
+    const [secondAssetStrikethroughOffset, setSecondAssetStrikethroughOffset] = useState<number>(0);
+
     const getFirstAssetPreviewUrl = (): string | undefined => (firstAsset ? firstAsset[0].previewUrl : undefined);
     const getFirstAssetTitle = (): string | undefined => (firstAsset ? firstAsset[0].title : undefined);
     const getSecondAssetPreviewUrl = (): string | undefined => (secondAsset ? secondAsset[0].previewUrl : undefined);
@@ -178,29 +181,13 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     blockSettings.secondAssetCaption &&
                     renderSecondSlotCaption()}
 
-                {slot === SliderImageSlot.First && blockSettings.firstAssetHasStrikethrough && (
-                    <div
-                        className={
-                            blockSettings.alignment === Alignment.Horizontal
-                                ? 'tw-absolute tw-h-full tw-w-[50%] tw-top-0 tw-left-0'
-                                : 'tw-absolute tw-h-[50%] tw-w-full tw-top-0 tw-left-0'
-                        }
-                    >
-                        <Strikethrough />
-                    </div>
-                )}
+                {slot === SliderImageSlot.First &&
+                    blockSettings.firstAssetHasStrikethrough &&
+                    renderFirstSlotStrikethrough()}
 
-                {slot === SliderImageSlot.Second && blockSettings.secondAssetHasStrikethrough && (
-                    <div
-                        className={
-                            blockSettings.alignment === Alignment.Horizontal
-                                ? 'tw-absolute tw-h-full tw-w-[50%] tw-top-0 tw-left-[50%]'
-                                : 'tw-absolute tw-h-[50%] tw-w-full tw-top-[50%] tw-left-0'
-                        }
-                    >
-                        <Strikethrough />
-                    </div>
-                )}
+                {slot === SliderImageSlot.Second &&
+                    blockSettings.secondAssetHasStrikethrough &&
+                    renderSecondSlotStrikethrough()}
             </div>
         );
     };
@@ -227,6 +214,42 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                 ])}
             >
                 {blockSettings.secondAssetCaption}
+            </div>
+        );
+    };
+
+    const renderFirstSlotStrikethrough = () => {
+        return (
+            <div
+                style={{
+                    left: `${blockSettings.alignment === Alignment.Horizontal ? firstAssetStrikethroughOffset : 0}%`,
+                    top: `${blockSettings.alignment === Alignment.Vertical ? firstAssetStrikethroughOffset : 0}%`,
+                }}
+                className={
+                    blockSettings.alignment === Alignment.Horizontal
+                        ? 'tw-absolute tw-h-full tw-w-[50%] tw-top-0'
+                        : 'tw-absolute tw-h-[50%] tw-w-full tw-left-0'
+                }
+            >
+                <Strikethrough />
+            </div>
+        );
+    };
+
+    const renderSecondSlotStrikethrough = () => {
+        return (
+            <div
+                style={{
+                    right: `${blockSettings.alignment === Alignment.Horizontal ? secondAssetStrikethroughOffset : 0}%`,
+                    bottom: `${blockSettings.alignment === Alignment.Vertical ? secondAssetStrikethroughOffset : 0}%`,
+                }}
+                className={
+                    blockSettings.alignment === Alignment.Horizontal
+                        ? 'tw-absolute tw-h-full tw-w-[50%] tw-top-0'
+                        : 'tw-absolute tw-h-[50%] tw-w-full tw-left-0'
+                }
+            >
+                <Strikethrough />
             </div>
         );
     };
@@ -260,6 +283,25 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
             </div>
         );
     };
+
+    const handleSlide = debounce((event: { target: { value: number } }) => {
+        const currentHandlePosition = event.target.value;
+        const currentSliderWidth = sliderRef.current?.clientWidth;
+
+        if (!currentSliderWidth) {
+            return;
+        }
+
+        if (currentHandlePosition > 50) {
+            setFirstAssetStrikethroughOffset((currentHandlePosition - 50) / 2);
+            setSecondAssetStrikethroughOffset(0);
+        }
+
+        if (currentHandlePosition <= 50) {
+            setFirstAssetStrikethroughOffset(0);
+            setSecondAssetStrikethroughOffset((100 - currentHandlePosition - 50) / 2);
+        }
+    }, 0);
 
     if (isEditing && (!firstAsset || !secondAsset)) {
         return (
@@ -333,6 +375,7 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                         '--default-handle-opacity': blockSettings.handle === Handle.None ? 0 : 1,
                     } as React.CSSProperties
                 }
+                onSlide={handleSlide}
             >
                 {renderSliderItem(SliderImageSlot.First)}
                 {renderSliderItem(SliderImageSlot.Second)}
