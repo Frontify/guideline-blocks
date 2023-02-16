@@ -117,19 +117,6 @@ export type DoDontItemProps = SortableDoDontItemProps & {
     draggableProps?: Record<string, unknown>;
 };
 
-export type BlockEditButtonProps = {
-    onClick?: () => void;
-    isLoading?: boolean;
-    label: string;
-    secondaryLabel?: string;
-    icon?: JSX.Element;
-    onDrop?: (files: FileList) => void;
-    fillParentContainer?: boolean;
-    onUploadClick?: () => void;
-    onAssetChooseClick?: () => void;
-    setIsMenuOpen?: (x: boolean) => void;
-};
-
 export type ItemToolbarProps = {
     id: string;
     onRemoveSelf: () => void;
@@ -174,7 +161,7 @@ export type ImageComponentProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
-    setIsMenuOpen: (x: boolean) => void;
+    onClick: () => void;
     dontColor: Color;
 };
 

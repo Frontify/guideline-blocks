@@ -97,10 +97,12 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     multiSelection: false,
                 }
             );
+            setIsMenuOpen(false);
         };
 
         const onUploadClick = () => {
             openFileDialog();
+            setIsMenuOpen(false);
         };
 
         useEffect(() => {
@@ -206,7 +208,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                 radiusChoice={radiusChoice}
                                 border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
                                 radiusValue={radiusValue}
-                                setIsMenuOpen={setIsMenuOpen}
+                                onClick={() => setIsMenuOpen(true)}
                                 dontColor={dontColor}
                             />
                         )}
