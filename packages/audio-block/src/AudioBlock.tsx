@@ -23,7 +23,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { description } = blockSettings;
     let { title } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
-    const mimeType = 'audio/' + audio?.extension;
 
     if (audio && title === undefined && description === undefined) {
         title = audio.fileName;
@@ -74,7 +73,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         controlsList="nodownload"
                         preload="auto"
                     >
-                        <source src={audio.genericUrl} type={mimeType} />
+                        <source src={audio.genericUrl} type="audio/mp3" />
                     </audio>
                     <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                         <div className="tw-self-stretch">
