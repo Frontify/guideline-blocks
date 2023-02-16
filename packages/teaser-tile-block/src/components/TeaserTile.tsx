@@ -72,6 +72,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             height === 'auto' && type === TileType.ImageText && 'tw-aspect-square',
             height === 'auto' && type === TileType.Image && 'tw-aspect-[3/4]',
             type === TileType.ImageText ? `${twBorderMap[positioning]} tw-border-line-weak` : undefined,
+            height !== 'auto' && 'tw-w-full',
         ]);
 
         const textClassName = merge([
