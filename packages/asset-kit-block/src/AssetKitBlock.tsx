@@ -33,9 +33,7 @@ import {
     GenerateBulkDownloadTokenRequest,
 } from './types';
 import {
-    getBulkDownloadStatus,
-    postGenerateBulkDownloadRequest,
-    postGenerateBulkDownloadToken
+    generateBulkDownloadRequest
 } from './repository/BulkDownloadRepository';
 
 const getBorderStyles = (
@@ -93,26 +91,12 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         language: 'en',
     };
 
-    const generateBulkDownload = () => {
+    const generateBulkDownload = (downloadAssets) => {
         (async () => {
-            if (currentAssets?.length > 0) {
+            if (downloadAssets?.length > 0) {
                 setIsLoading(true);
-                data.asset_ids = currentAssets.map((asset) => asset.id);
-                const responseToken: GenerateBulkDownloadTokenData = await postGenerateBulkDownloadToken(
-                    appBridge.getProjectId(),
-                    data
-                );
-
-                token = responseToken.token ?? '';
-
-                const dataRequest: GenerateBulkDownloadRequest = {
-                    token,
-                };
-
-                const downloadResponse: GenerateBulkDownloadData = await postGenerateBulkDownloadRequest(dataRequest);
-
-                const result = await getBulkDownloadStatus(downloadResponse.signature);
-                window.open(result.download_url, '_self');
+                data.asset_ids = downloadAssets.map((asset) => asset.id);
+                generateBulkDownloadRequest(appBridge.getBlockId(), data);
             }
             setIsLoading(false);
         })();
@@ -173,7 +157,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                     />
                 </div>
                 <div className="tw-flex-none">
-                    <Button onClick={generateBulkDownload}>Download package</Button>
+                    <Button onClick={() => generateBulkDownload(currentAssets)}>Download package</Button>
                 </div>
             </div>
 

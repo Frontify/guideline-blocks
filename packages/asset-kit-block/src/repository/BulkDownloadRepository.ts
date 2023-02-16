@@ -8,7 +8,7 @@ import {
     GenerateBulkDownloadTokenData,
 } from '../types';
 
-export const postGenerateBulkDownloadToken = async (
+const postGenerateBulkDownloadToken = async (
     projectId: number,
     data: GenerateBulkDownloadTokenRequest
 ): Promise<GenerateBulkDownloadTokenData> => {
@@ -19,7 +19,7 @@ export const postGenerateBulkDownloadToken = async (
     return result.data;
 };
 
-export const postGenerateBulkDownloadRequest = async (
+const postGenerateBulkDownloadRequest = async (
     data: GenerateBulkDownloadRequest
 ): Promise<GenerateBulkDownloadData> => {
     const { result } = await FrontifyHttpClient.post<GenerateBulkDownloadData>('/api/bulk-download', data);
@@ -27,7 +27,7 @@ export const postGenerateBulkDownloadRequest = async (
 };
 
 
-export const getBulkDownloadStatus = async (
+const getBulkDownloadStatus = async (
     token: string
 ): Promise<GenerateBulkDownloadData> => {
     return await new Promise((resolve, reject) => {
@@ -45,4 +45,27 @@ export const getBulkDownloadStatus = async (
             }
         }, 2500);
     });
+};
+
+
+
+export const generateBulkDownloadRequest = (projectId: number, data: GenerateBulkDownloadTokenRequest) => {
+    (async () => {
+        const responseToken: GenerateBulkDownloadTokenData = await postGenerateBulkDownloadToken(
+            projectId,
+            data
+        );
+
+        let token = responseToken.token ?? '';
+
+        const dataRequest: GenerateBulkDownloadRequest = {
+            token,
+        };
+
+        const downloadResponse: GenerateBulkDownloadData = await postGenerateBulkDownloadRequest(dataRequest);
+
+        const result = await getBulkDownloadStatus(downloadResponse.signature);
+        window.open(result.download_url, '_self');
+
+    })();
 };
