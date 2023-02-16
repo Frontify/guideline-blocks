@@ -1,11 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { describe, expect, test, vi } from 'vitest';
-import { BrandItemSize, BrandPositioningBlockSettings } from '../types';
-import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { BrandPositioningBlockSettings } from '../types';
 import { splitBlockSettingsByArea } from './splitBlockSettingsByArea';
 
-const SETTINGS: BrandPositioningBlockSettings = {
+const SETTINGS = {
     items: [
         {
             id: '1',
@@ -25,7 +24,7 @@ const SETTINGS: BrandPositioningBlockSettings = {
         blue: 0,
         alpha: 1,
     },
-    boardAxisLinesStyle: BorderStyle.Solid,
+    boardAxisLinesStyle: 'Solid',
     boardAxisLinesWidth: '1px',
     boardBackgroundColor: {
         red: 0,
@@ -45,8 +44,8 @@ const SETTINGS: BrandPositioningBlockSettings = {
         blue: 0,
         alpha: 1,
     },
-    borderStyle_boardBorder: BorderStyle.Solid,
-    borderStyle_brandItemBorder: BorderStyle.Solid,
+    borderStyle_boardBorder: 'Solid',
+    borderStyle_brandItemBorder: 'Solid',
     borderWidth_boardBorder: '1px',
     borderWidth_brandItemBorder: '1px',
     brandItemBackground: {
@@ -56,40 +55,21 @@ const SETTINGS: BrandPositioningBlockSettings = {
         alpha: 1,
     },
     brandItemSizeCustom: '1px',
-    brandItemSizeSimple: BrandItemSize.M,
+    brandItemSizeSimple: 'medium',
     hasBorder_boardBorder: true,
     hasBorder_brandItemBorder: true,
     hasRadius_boardCornerRadius: true,
     hasRadius_brandItemCornerRadius: true,
     isBrandItemSizeCustom: true,
-    radiusChoice_boardCornerRadius: Radius.Large,
-    radiusChoice_brandItemCornerRadius: Radius.Medium,
+    radiusChoice_boardCornerRadius: 'Large',
+    radiusChoice_brandItemCornerRadius: 'Medium',
     radiusValue_boardCornerRadius: '1px',
     radiusValue_brandItemCornerRadius: '1px',
     xAxisLeftLabel: 'Left',
     xAxisRightLabel: 'Right',
     yAxisBottomLabel: 'Bottom',
     yAxisTopLabel: 'Top',
-};
-
-vi.mock('@frontify/guideline-blocks-shared', () => ({
-    BorderStyle: {
-        Solid: 'Solid',
-        Dashed: 'Dashed',
-        Dotted: 'Dotted',
-    },
-    Radius: {
-        None: 'None',
-        Small: 'Small',
-        Medium: 'Medium',
-        Large: 'Large',
-    },
-    BrandItemSize: {
-        S: 'Small',
-        M: 'Medium',
-        L: 'Large',
-    },
-}));
+} as  BrandPositioningBlockSettings;
 
 describe('splitBlockSettingsByArea', () => {
     test('correctly splits axis, board and item settings', () => {
