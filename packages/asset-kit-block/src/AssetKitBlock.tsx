@@ -48,6 +48,8 @@ const getBorderStyles = (
     borderColor: toRgbaString(color),
 });
 
+const DEFAULT_CONTENT_VALUE = '[{"type":"heading3","children":[{"text":""}]}]';
+
 const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
     backgroundColor ? { backgroundColor: toRgbaString(backgroundColor) } : {};
 
@@ -57,7 +59,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
 
-    const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? null;
+    const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
 
     const {
         hasBackground_blocks,
@@ -147,16 +149,15 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         >
             <div className="tw-mb-8 tw-flex tw-gap-8">
                 <div className="tw-flex-1">
-                    <h3>
-                        <RichTextEditor
-                            designTokens={designTokens ?? undefined}
-                            value={blockSettings.title}
-                            readonly={!isEditing}
-                            onChange={saveTitle}
-                            onBlur={saveTitle}
-                            placeholder="Add a title here ..."
-                        />
-                    </h3>
+                    <RichTextEditor
+                        designTokens={designTokens ?? undefined}
+                        value={blockSettings.title ?? DEFAULT_CONTENT_VALUE}
+                        readonly={!isEditing}
+                        onChange={saveTitle}
+                        onBlur={saveTitle}
+                        placeholder="Add a title here ..."
+                    />
+
                     <RichTextEditor
                         designTokens={designTokens ?? undefined}
                         readonly={!isEditing}
