@@ -68,7 +68,7 @@ export const AvatarCamera = ({
                 track.stop();
             }
         };
-    }, [size, microphoneDeviceId, canvasRef, onDevicePermissionDenied, microphoneRef, videoOptions]);
+    }, [size, microphoneDeviceId, canvasRef, onDevicePermissionDenied, microphoneRef, videoOptions, imageUrl]);
 
     return (
         <>

@@ -32,7 +32,7 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
     }, [isPlaying]);
 
     return (
-        <div className="tw-flex tw-flex-col tw-items-center">
+        <div className="tw-flex tw-flex-col tw-items-center tw-font-sans">
             <Mask shape={maskShape} size={size} border={maskBorder}>
                 {asset !== undefined ? (
                     <video

@@ -51,8 +51,8 @@ export const CountdownOverlay = ({
     return (
         <div>
             {enabled && timeRemaining > 0 && (
-                <div className="tw-absolute tw-inset-0 tw-text-center tw-text-white tw-bg-black/[.3] tw-text-7xl tw-flex tw-items-center tw-justify-center">
-                    {timeRemaining}
+                <div className="tw-absolute tw-inset-0 tw-bg-black/[.4] tw-flex tw-items-center tw-justify-center">
+                    <span className="tw-text-white tw-text-7xl">{timeRemaining}</span>
                 </div>
             )}
             {children}

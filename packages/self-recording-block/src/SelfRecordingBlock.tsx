@@ -41,7 +41,7 @@ export const SelfRecordingBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         const getAvatarImageUrl = async () => {
-            if (blockAssets.cameraAsset?.[0]?.previewUrl) {
+            if (blockAssets.cameraAsset) {
                 setAvatarImageUrl(blockAssets.cameraAsset?.[0]?.previewUrl);
             } else {
                 const avatar = await appBridge.getCurrentLoggedUser();
