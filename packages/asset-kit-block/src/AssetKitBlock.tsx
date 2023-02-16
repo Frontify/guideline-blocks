@@ -87,13 +87,14 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     appBridge.getProjectId(); // project id
     // to get the asset ids refeer to the documentation
     const data: GenerateBulkDownloadTokenRequest = {
-        asset_ids: [1, 2, 3],
+        asset_ids: [],
         set_ids: [],
         language: 'en',
     };
 
     const generateBulkDownload = () => {
         (async () => {
+            data.asset_ids = currentAssets.map((asset) => asset.id);
             const responseToken: GenerateBulkDownloadTokenData = await postGenerateBulkDownloadToken(
                 appBridge.getProjectId(),
                 data
