@@ -22,7 +22,11 @@ export const PlayerToolbar = ({ isPlaying, onPlayPauseClicked, time, onDeleteCli
                 />
                 <Text>{time}</Text>
             </div>
-            {onDeleteClick ? <DeleteFlyout onConfirm={onDeleteClick} /> : null}
+            {onDeleteClick ? (
+                <div className="tw-pl-1">
+                    <DeleteFlyout onConfirm={onDeleteClick} />
+                </div>
+            ) : null}
         </div>
     );
 };
