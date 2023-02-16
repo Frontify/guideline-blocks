@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MutableRefObject, forwardRef, useEffect, useMemo, useState } from 'react';
+import { CSSProperties, MutableRefObject, forwardRef, useEffect, useMemo, useState } from 'react';
 
 import {
     Color,
-    FOCUS_VISIBLE_STYLE,
     FlyoutPlacement,
     IconHeartCircle32,
     IconPlus32,
@@ -14,16 +13,16 @@ import {
 } from '@frontify/fondue';
 
 import { useTileAsset, useTileStyles } from '../hooks';
-import { Link, TeaserTileProps, TileDisplay, TileImagePositioning, TileType } from '../types';
+import { Link, TeaserTileProps, TileDisplay, TileType } from '../types';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { twBorderMap, twPositioningMap, twVerticalAlignmentMap } from '../helpers';
 import { TeaserTileToolbar } from './TeaserTileToolbar';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
+import { getImageSrc } from '../utils';
 
-const TeaserTilePlaceholder = ({ borderRadius }: { borderRadius: string }) => (
+const TeaserTilePlaceholder = ({ style }: { style: CSSProperties }) => (
     <div
         className="tw-border-2 tw-border-dashed tw-border-box-selected-strong tw-bg-box-selected tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0"
-        style={{ borderRadius }}
+        style={style}
     />
 );
 
@@ -53,41 +52,24 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             blockAssets,
             updateAssetIdsFromKey
         );
-        const { positioning, type } = blockSettings;
+        const { type } = blockSettings;
         const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);
         const { designTokens } = useGuidelineDesignTokens();
         const [toolbarFocus, setToolbarFocus] = useState(false);
 
-        const { height, background, objectFit, padding, textAlign, border, borderRadius } = useTileStyles(
+        const { height, textWrapper, tile, imageWrapper, image, imagePlaceholder, link, dragPreview } = useTileStyles(
             blockSettings,
-            tileSettings
+            tileSettings,
+            isEditing,
+            toolbarFocus,
+            !!isDragPreview,
+            !!replaceWithPlaceholder
         );
 
         useEffect(() => {
             // Mouseout event is not called when drag is cancelled so toolbar needs to be manually unfocused
             setToolbarFocus(false);
         }, [replaceWithPlaceholder]);
-
-        const imageClassName = merge([
-            'tw-z-[1] tw-bg-base-alt tw-min-w-0 tw-flex-initial',
-            height === 'auto' && type === TileType.ImageText && 'tw-aspect-square',
-            height === 'auto' && type === TileType.Image && 'tw-aspect-[3/4]',
-            type === TileType.ImageText ? `${twBorderMap[positioning]} tw-border-line-weak` : undefined,
-            height !== 'auto' && 'tw-w-full',
-        ]);
-
-        const textClassName = merge([
-            'tw-flex tw-flex-col tw-gap-y-1 tw-z-[2] tw-break-all tw-w-full',
-            type === TileType.ImageText &&
-                positioning === TileImagePositioning.Behind &&
-                merge([
-                    'tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0',
-                    twVerticalAlignmentMap[blockSettings.verticalAlignment],
-                ]),
-            type === TileType.ImageText &&
-                (positioning === TileImagePositioning.Left || positioning === TileImagePositioning.Right) &&
-                'tw-basis-2/3',
-        ]);
 
         const tileFlyoutProps = {
             link: tileSettings.link ?? null,
@@ -143,7 +125,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                 ref={ref}
                 style={{ ...transformStyle }}
             >
-                {replaceWithPlaceholder && <TeaserTilePlaceholder borderRadius={borderRadius} />}
+                {replaceWithPlaceholder && <TeaserTilePlaceholder style={dragPreview.style} />}
                 {isEditing && !replaceWithPlaceholder && (
                     <TeaserTileToolbar
                         draggableProps={draggableProps}
@@ -157,45 +139,19 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                 )}
                 {tileSettings.link?.href && !isEditing && (
                     <a
-                        className={merge([
-                            'tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]',
-                            FOCUS_VISIBLE_STYLE,
-                        ])}
+                        className={link.className}
                         aria-label={`Navigate to ${tileSettings.link.href}`}
                         href={tileSettings.link.href}
                         target={tileSettings.link.target}
-                        style={{ borderRadius }}
+                        style={link.style}
                     />
                 )}
-                <div
-                    style={{ borderRadius, border, background }}
-                    className={merge([
-                        'tw-flex tw-overflow-hidden tw-h-full tw-relative tw-bg-base tw-w-full',
-                        type === TileType.ImageText && twPositioningMap[positioning],
-                        replaceWithPlaceholder && 'tw-invisible',
-                        (toolbarFocus || isDragPreview) && 'tw-outline tw-outline-box-selected-inverse tw-outline-2',
-                    ])}
-                >
+                <div style={tile.style} className={tile.className}>
                     {type !== TileType.Text && (
                         <>
                             {tileAsset?.genericUrl ? (
-                                <div
-                                    className={merge([
-                                        'tw-min-w-0 tw-flex tw-flex-initial tw-items-center tw-justify-center tw-bg-base-alt tw-w-full',
-                                        type === TileType.ImageText &&
-                                            (positioning === TileImagePositioning.Left ||
-                                                positioning === TileImagePositioning.Right) &&
-                                            'tw-basis-1/3',
-                                    ])}
-                                >
-                                    <img
-                                        className={imageClassName}
-                                        src={tileAsset?.genericUrl.replace(
-                                            '{width}',
-                                            `${800 * window.devicePixelRatio}`
-                                        )}
-                                        style={{ height, objectFit }}
-                                    />
+                                <div className={imageWrapper.className}>
+                                    <img className={image.className} src={getImageSrc(tileAsset)} style={image.style} />
                                 </div>
                             ) : (
                                 <TileSettingsFlyout
@@ -208,17 +164,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                                     {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
                                         <div
                                             {...props}
-                                            className={merge([
-                                                imageClassName,
-                                                'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled',
-                                                FOCUS_VISIBLE_STYLE,
-                                                'tw-ring-inset',
-                                                isEditing ? 'hover:tw-text-text-x-weak' : 'tw-cursor-default',
-                                                type === TileType.ImageText &&
-                                                    (positioning === TileImagePositioning.Left ||
-                                                        positioning === TileImagePositioning.Right) &&
-                                                    'tw-basis-1/3',
-                                            ])}
+                                            className={imagePlaceholder.className}
                                             style={{ minHeight: height }}
                                         >
                                             <div ref={triggerRef}>
@@ -233,18 +179,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                         </>
                     )}
                     {type !== TileType.Image && (
-                        <div
-                            style={{
-                                height: type === TileType.Text ? height : undefined,
-                                padding,
-                                textAlign,
-                                background:
-                                    type === TileType.ImageText && positioning === TileImagePositioning.Behind
-                                        ? background
-                                        : undefined,
-                            }}
-                            className={textClassName}
-                        >
+                        <div style={textWrapper.style} className={textWrapper.className}>
                             <h6 className="tw-text-lg tw-font-semibold">{titleRichTextEditor}</h6>
                             <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
                         </div>

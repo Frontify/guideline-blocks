@@ -12,7 +12,7 @@ export const TileGrid = ({ children, gridGap, columns }: TileGridProps) => (
             display: 'grid',
             gridAutoFlow: 'row',
             gridAutoRows: '1fr',
-            gridTemplateColumns: calculateGridTemplateCols(+gridGap, +columns),
+            gridTemplateColumns: calculateGridTemplateCols(parseInt(gridGap), parseInt(columns)),
         }}
     >
         {children}
