@@ -178,7 +178,7 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     blockSettings.secondAssetCaption &&
                     renderSecondSlotCaption()}
 
-                {slot === SliderImageSlot.First && blockSettings.firstImageHasStrikethrough && (
+                {slot === SliderImageSlot.First && blockSettings.firstAssetHasStrikethrough && (
                     <div
                         className={
                             blockSettings.alignment === Alignment.Horizontal
@@ -190,7 +190,7 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     </div>
                 )}
 
-                {slot === SliderImageSlot.Second && blockSettings.secondImageHasStrikethrough && (
+                {slot === SliderImageSlot.Second && blockSettings.secondAssetHasStrikethrough && (
                     <div
                         className={
                             blockSettings.alignment === Alignment.Horizontal
