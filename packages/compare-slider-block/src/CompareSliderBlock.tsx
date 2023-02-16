@@ -28,7 +28,15 @@ import {
     toRgbaString,
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
-import { Icon, IconEnum, IconPlus24, IconSize, RichTextEditor, debounce } from '@frontify/fondue';
+import {
+    IconCaretLeft24,
+    IconCaretLeft32,
+    IconCaretRight24,
+    IconCaretRight32,
+    IconPlus24,
+    RichTextEditor,
+    debounce,
+} from '@frontify/fondue';
 import { Strikethrough } from './Strikethrough';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -263,10 +271,10 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     style={{ color: toRgbaString(blockSettings.sliderColor), gap: blockSettings.sliderWidth }}
                 >
                     <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-1 tw-bg-white/[.7] tw-rounded-full tw-mr-2">
-                        <Icon icon={IconEnum.CaretLeft} size={IconSize.Size24} />
+                        <IconCaretLeft24 />
                     </div>
                     <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-1 tw-bg-white/[.7] tw-rounded-full tw-ml-2">
-                        <Icon icon={IconEnum.CaretRight} size={IconSize.Size24} />
+                        <IconCaretRight24 />
                     </div>
                 </div>
             );
@@ -278,8 +286,8 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                 className="tw-flex"
                 style={{ color: toRgbaString(blockSettings.sliderColor), gap: blockSettings.sliderWidth }}
             >
-                <Icon icon={IconEnum.CaretLeft} size={IconSize.Size32} />
-                <Icon icon={IconEnum.CaretRight} size={IconSize.Size32} />
+                <IconCaretLeft32 />
+                <IconCaretRight32 />
             </div>
         );
     };

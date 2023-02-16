@@ -1,5 +1,5 @@
 import { Color } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, Radius } from '../../shared';
+import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 
 export type BlockSettings = {
     alignment: Alignment;
