@@ -1,10 +1,28 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { Color } from '@frontify/fondue';
+
 export type Settings = {
     hasLink?: boolean;
     image?: string;
     name?: string;
     description?: string;
+    alignment: Alignment;
+    backgroundColor: Color;
+    borderColor: Color;
+    borderStyle: BorderStyle;
+    borderWidth: string;
+    downloadable?: boolean;
+    hasBackground?: boolean;
+    hasBorder: boolean;
+    hasCustomPadding: boolean;
+    paddingChoice: Padding;
+    paddingCustom: string;
+    hasRadius_cornerRadius: boolean;
+    radiusChoice_cornerRadius: CornerRadius;
+    radiusValue_cornerRadius: string;
+    positioning: CaptionPosition;
+    ratio: Ratio;
 };
 
 export enum ImageSecurity {
@@ -30,6 +48,11 @@ export enum Ratio {
     Ratio1To1 = '1:1',
     Ratio1To2 = '1:2',
 }
+export const rationValues: Record<Ratio, string> = {
+    [Ratio.Ratio2To1]: '100%',
+    [Ratio.Ratio1To1]: '50%',
+    [Ratio.Ratio1To2]: '33.33%',
+};
 
 export enum Padding {
     None = 'None',
@@ -63,4 +86,17 @@ export const radiusValues: Record<CornerRadius, string> = {
     [CornerRadius.Small]: '2px',
     [CornerRadius.Medium]: '4px',
     [CornerRadius.Large]: '12px',
+};
+
+export const mapAlignmentClasses: Record<Alignment, string> = {
+    [Alignment.Left]: 'tw-justify-start',
+    [Alignment.Center]: 'tw-justify-center',
+    [Alignment.Right]: 'tw-justify-end',
+};
+
+export const mapCaptionPositionClasses: Record<CaptionPosition, string> = {
+    [CaptionPosition.Below]: 'tw-flex-col',
+    [CaptionPosition.Above]: 'tw-flex-col-reverse',
+    [CaptionPosition.Right]: 'tw-flex-row',
+    [CaptionPosition.Left]: 'tw-flex-row-reverse',
 };
