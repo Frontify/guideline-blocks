@@ -160,6 +160,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <div
+            data-test-id="asset-kit-block"
             style={{
                 ...(hasBackground_blocks && getBackgroundStyles(backgroundColor_blocks)),
                 ...(hasBorder_blocks && getBorderStyles(borderStyle_blocks, borderWidth_blocks, borderColor_blocks)),
@@ -212,7 +213,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                     </div>
                     <div className="tw-flex-1">
                         <span>
-                            This may take a little while. Your package will download automatically when it's ready.
+                            This may take a little while. Your package will download automatically when it&apos;s ready.
                         </span>
                     </div>
                 </div>
@@ -266,8 +267,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                         onUploadClick={openFileDialog}
                         onDrop={setDropedFiles}
                         isLoading={isUploadingAssets}
-                        label="Add assets"
-                        secondaryLabel="or drop them here"
+                        label="Add or drop your assets here"
                         icon={<IconPlus24 />}
                         fillParentContainer={true}
                     />
