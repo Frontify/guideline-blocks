@@ -31,7 +31,7 @@ export const TileSettingsFlyout = ({
     asset,
     link,
     onLinkChange,
-    backgroundVisibility,
+    isBackgroundVisible,
     onBackgroundVisibilityChange,
     backgroundColor,
     onBackgroundColorChange,
@@ -133,10 +133,10 @@ export const TileSettingsFlyout = ({
                     id="background-visibility"
                     label="Background"
                     size={SwitchSize.Small}
-                    on={backgroundVisibility ?? false}
-                    onChange={() => onBackgroundVisibilityChange(!backgroundVisibility)}
+                    on={isBackgroundVisible ?? false}
+                    onChange={() => onBackgroundVisibilityChange(!isBackgroundVisible)}
                 />
-                {backgroundVisibility && (
+                {isBackgroundVisible && (
                     <ColorPickerFlyout
                         id="background-color"
                         onSelect={onBackgroundColorChange}

@@ -9,20 +9,20 @@ import { ReactNode } from 'react';
 export enum SettingsEnum {
     Type = 'type',
     Columns = 'columns',
-    Spacing = 'spacing',
+    Spacing = 'isSpacingCustom',
     SpacingChoice = 'spacingChoice',
     SpacingCustom = 'spacingCustom',
-    Height = 'height',
+    Height = 'isHeightCustom',
     HeightChoice = 'heightChoice',
     HeightCustom = 'heightCustom',
-    Padding = 'padding',
+    Padding = 'isPaddingCustom',
     PaddingChoice = 'paddingChoice',
     PaddingCustom = 'paddingCustom',
     Display = 'display',
     Positioning = 'positioning',
     VerticalAlignment = 'verticalAlignment',
     HorizontalAlignment = 'horizontalAlignment',
-    Background = 'background',
+    Background = 'isBackgroundVisible',
     BackgroundColor = 'backgroundColor',
     HasBorder = 'hasBorder',
     BorderColor = 'borderColor',
@@ -38,7 +38,7 @@ export type TileSettings = {
     link: Nullable<Link>;
     display: Nullable<TileDisplay>;
     backgroundColor: Nullable<Color>;
-    backgroundVisibility: Nullable<boolean>;
+    isBackgroundVisible: Nullable<boolean>;
     description: Nullable<string>;
     title: Nullable<string>;
 };
@@ -174,7 +174,7 @@ export type TeaserTileToolbarProps = {
 
 export type Link = { href?: string; target?: string };
 
-type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'backgroundVisibility' | 'display' | 'link'> & {
+type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'isBackgroundVisible' | 'display' | 'link'> & {
     children: FlyoutProps['trigger'];
     onLinkChange: (link: Link) => void;
     onBackgroundVisibilityChange: (visibility: boolean) => void;

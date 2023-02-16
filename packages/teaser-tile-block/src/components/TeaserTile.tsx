@@ -79,14 +79,14 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             asset: tileAsset,
             backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
             onLinkChange: (link: Link) => onTileSettingsChange(id, { link }),
-            backgroundVisibility: tileSettings.backgroundVisibility ?? blockSettings.background,
+            isBackgroundVisible: tileSettings.isBackgroundVisible ?? blockSettings.isBackgroundVisible,
             onDisplayChange: (display: TileDisplay) => onTileSettingsChange(id, { display }),
             isAssetLoading,
             onBackgroundColorChange: (backgroundColor: Color) => onTileSettingsChange(id, { backgroundColor }),
             onReplaceAssetFromUpload: openFileDialog,
             onUploadFile: uploadFile,
-            onBackgroundVisibilityChange: (backgroundVisibility: boolean) =>
-                onTileSettingsChange(id, { backgroundVisibility }),
+            onBackgroundVisibilityChange: (isBackgroundVisible: boolean) =>
+                onTileSettingsChange(id, { isBackgroundVisible }),
             onReplaceAssetFromWorkspace: onOpenAssetChooser,
             palettes: palettes ?? [],
             disabled: !isEditing,

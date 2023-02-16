@@ -24,7 +24,9 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
 
     const { tiles, addTile, removeTile, updateTile, reorderTiles } = useTileArray(blockSettings, setBlockSettings);
     const { dragContextProps, draggedTile } = useDraggableGrid(tiles, reorderTiles);
-    const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
+    const gridGap = blockSettings.isSpacingCustom
+        ? blockSettings.spacingCustom
+        : spacingMap[blockSettings.spacingChoice];
 
     const palettes = useMemo(
         () => colorPalettes.map((palette) => ({ ...palette, title: palette.name })),

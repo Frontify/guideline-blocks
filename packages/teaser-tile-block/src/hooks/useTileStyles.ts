@@ -23,8 +23,10 @@ export const useTileStyles = (
     const { type, positioning, verticalAlignment } = blockSettings;
 
     // Defining which settings to use (custom, choice or tile-specific)
-    const height = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
-    const padding = blockSettings.padding ? blockSettings.paddingCustom : paddingMap[blockSettings.paddingChoice];
+    const height = blockSettings.isHeightCustom ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
+    const padding = blockSettings.isPaddingCustom
+        ? blockSettings.paddingCustom
+        : paddingMap[blockSettings.paddingChoice];
 
     // TODO: should be by default lowercase instead of uppercase
     const textAlign = blockSettings.horizontalAlignment.toLowerCase() as 'left' | 'right' | 'center';
@@ -44,7 +46,9 @@ export const useTileStyles = (
     const globalBackground = blockSettings.backgroundColor ? toRgbaString(blockSettings.backgroundColor) : undefined;
     const tileBackground = tileSettings.backgroundColor ? toRgbaString(tileSettings.backgroundColor) : undefined;
     const background =
-        tileSettings.backgroundVisibility ?? blockSettings.background ? tileBackground ?? globalBackground : undefined;
+        tileSettings.isBackgroundVisible ?? blockSettings.isBackgroundVisible
+            ? tileBackground ?? globalBackground
+            : undefined;
 
     // Applying the defined settings to each component based on the tile type
     const textWrapperClassName = getTextWrapperClassName(type, verticalAlignment, positioning);
