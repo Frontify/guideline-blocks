@@ -77,7 +77,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
         ]);
 
         const textClassName = merge([
-            'tw-flex tw-flex-col tw-space-y-1 tw-z-[2] tw-break-all tw-w-full',
+            'tw-flex tw-flex-col tw-gap-y-1 tw-z-[2] tw-break-all tw-w-full',
             type === TileType.ImageText &&
                 positioning === TileImagePositioning.Behind &&
                 merge([
