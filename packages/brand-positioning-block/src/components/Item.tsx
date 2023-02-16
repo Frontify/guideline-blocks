@@ -49,7 +49,16 @@ export const Item = ({ src, xPosition, yPosition, id, deleteItem, isEditing, sty
                 />
             </div>
             {src ? (
-                <img src={src} className="tw-w-full tw-h-full tw-object-contain" />
+                <img
+                    {...(isEditing ? attributes : {})}
+                    {...(isEditing ? listeners : {})}
+                    src={src}
+                    className={joinClassNames([
+                        'tw-w-full tw-h-full tw-object-contain',
+                        isDragging && isEditing && 'tw-cursor-grabbing',
+                        !isDragging && isEditing && 'tw-cursor-grab',
+                    ])}
+                />
             ) : (
                 <div className="tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center">
                     <LoadingCircle />

@@ -34,7 +34,7 @@ export const Axis = ({ minLabel, maxLabel, orientation, style }: AxisProps) => {
             >
                 <div
                     className={
-                        orientation === 'horizontal' ? 'tw-absolute sm:tw-relative -tw-rotate-90 sm:tw-rotate-0' : ''
+                        orientation === 'horizontal' ? 'tw-absolute sm:!tw-relative -tw-rotate-90 sm:tw-rotate-0' : ''
                     }
                 >
                     {orientation === 'horizontal' ? minLabel : maxLabel}
@@ -62,7 +62,7 @@ export const Axis = ({ minLabel, maxLabel, orientation, style }: AxisProps) => {
             >
                 <div
                     className={
-                        orientation === 'horizontal' ? 'tw-absolute sm:tw-relative tw-rotate-90 sm:tw-rotate-0' : ''
+                        orientation === 'horizontal' ? 'tw-absolute sm:!tw-relative tw-rotate-90 sm:tw-rotate-0' : ''
                     }
                 >
                     {orientation === 'horizontal' ? maxLabel : minLabel}

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { describe, expect, test, vi } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { BrandPositioningBlockSettings } from '../types';
 import { splitBlockSettingsByArea } from './splitBlockSettingsByArea';
 
@@ -69,7 +69,7 @@ const SETTINGS = {
     xAxisRightLabel: 'Right',
     yAxisBottomLabel: 'Bottom',
     yAxisTopLabel: 'Top',
-} as  BrandPositioningBlockSettings;
+} as BrandPositioningBlockSettings;
 
 describe('splitBlockSettingsByArea', () => {
     test('correctly splits axis, board and item settings', () => {
