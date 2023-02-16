@@ -5,6 +5,7 @@ import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    Color,
     Divider,
     DividerStyle,
     IconPlus,
@@ -14,50 +15,46 @@ import {
     TooltipPosition,
 } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
-import { Settings, gradientHeightValues, gradientOrientationValues } from './types';
+import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { IconEnum, debounce, iconsMap, merge } from '@frontify/fondue';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
-type GradientBlockColor = {
-    hex: string;
-    name: string;
-    position: string;
-};
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
 
 export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     // TODO - replace with const [contentValue] = useState(blockSettings.content);
-    const [contentValue] = useState(
-        'background: linear-gradient(0deg, rgb(36, 60, 90), rgb(215, 23, 203), 25.43%, rgb(23, 108, 215) 80.11%);'
-    );
+    // const [contentValue] = useState(
+    //     'background: linear-gradient(0deg, rgb(36, 60, 90), rgb(215, 23, 203), 25.43%, rgb(23, 108, 215) 80.11%);'
+    // );
     const isEditing = useEditorState(appBridge);
+    const gradientBlockRef = useRef<HTMLDivElement>();
     const dividerRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
     const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
-    const [gradientColors, setGradientColors] = useState([
-        {
-            hex: '#243c5a',
-            name: 'Black',
-            position: '0%',
-        },
-        {
-            hex: '#d717cb',
-            name: 'Hot pink',
-            position: '25.43%',
-        },
-        {
-            hex: '#176cd7',
-            name: 'Electric blue',
-            position: '80.11%',
-        },
-    ]);
-    const lastIndex = gradientColors.length - 1;
+    // const [gradientColors, setGradientColors] = useState([
+    //     {
+    //         hex: '#243c5a',
+    //         name: 'Black',
+    //         position: '0%',
+    //     },
+    //     {
+    //         hex: '#d717cb',
+    //         name: 'Hot pink',
+    //         position: '25.43%',
+    //     },
+    //     {
+    //         hex: '#176cd7',
+    //         name: 'Electric blue',
+    //         position: '80.11%',
+    //     },
+    // ]);
+    const lastIndex = blockSettings && blockSettings.gradientColors ? blockSettings?.gradientColors?.length - 1 : 0;
 
     const gradientBlockHeight = blockSettings.isHeightCustom
         ? blockSettings.heightCustom
@@ -110,12 +107,67 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         }, 50)();
     };
 
+    const parseGradientColorsToString = (colors: GradientColor[]) => {
+        // TODO: make this not hardcoded
+        const orientation = 90;
+        let colorsAsString = '';
+
+        for (const color of colors) {
+            colorsAsString += `, ${color.hex} ${color.position}%`;
+        }
+
+        return `linear-gradient(${orientation}deg${colorsAsString})`;
+    };
+
     useEffect(() => {
+        const defaultGradientColors = [
+            {
+                hex: '#FFFFFF',
+                name: 'White',
+                position: 0,
+            },
+            {
+                hex: '#000000',
+                name: 'Black',
+                position: 100,
+            },
+        ];
+
+        // if (!blockSettings.gradientColors || !blockSettings.gradientColors?.length) {
+        setBlockSettings({
+            gradientColors: defaultGradientColors,
+        });
+        // }
+
+        // if (!blockSettings.contentValue) {
+        setBlockSettings({
+            contentValue: parseGradientColorsToString(defaultGradientColors),
+        });
+        // }
+
         document.addEventListener('mousemove', handleMouseMove);
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
+
+    const addNewColor = (color: Color, position: number) => {
+        const newColor = {
+            ...color,
+            position:
+                (position / (gradientBlockRef.current ? gradientBlockRef?.current?.getBoundingClientRect().width : 0)) *
+                100,
+        };
+
+        const newGradientColors = [...(blockSettings.gradientColors ?? []), newColor].sort((a, b) => {
+            return a.position - b.position;
+        });
+
+        setBlockSettings({
+            gradientColors: newGradientColors,
+            contentValue: parseGradientColorsToString(newGradientColors),
+        });
+    };
 
     const CSSBlock = (
         <div
@@ -148,14 +200,14 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 </div>
                 <CodeMirror
                     theme="light"
-                    value={contentValue}
+                    value={blockSettings.contentValue}
                     extensions={[langs['css']()]}
                     readOnly={!isEditing}
                     basicSetup={{
                         highlightActiveLineGutter: false,
                         highlightActiveLine: false,
                     }}
-                    placeholder={contentValue ? '' : '<add colors to generate CSS code>'}
+                    placeholder={blockSettings.contentValue ? '' : '<add colors to generate CSS code>'}
                 />
             </div>
         </div>
@@ -170,7 +222,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         color,
         colorSquarePosition = ColorSquarePositionType.Left,
     }: {
-        color: GradientBlockColor;
+        color: GradientColor;
         colorSquarePosition?: ColorSquarePositionType;
     }) => {
         return (
@@ -230,6 +282,15 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 'tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded-sm',
             ])}
             style={{ ...addButtonPosition }}
+            onClick={() =>
+                addNewColor(
+                    {
+                        hex: '#cccccc',
+                        name: 'Light grey',
+                    },
+                    600
+                )
+            }
         >
             <span className="tw-text-white tw-pt-[1px]">
                 <IconPlus size={IconSize.Size12} />
@@ -238,16 +299,17 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     );
 
     return (
-        <div data-test-id="gradient-block">
+        <div data-test-id="gradient-block" ref={gradientBlockRef}>
             <div
-                className="tw-bg-gradient-to-r tw-from-[#243c5a] tw-via-[#d717cb_25.43%] tw-to-[#176cd7_80.11%] tw-w-full tw-h-4"
+                className="tw-w-full tw-h-4"
                 style={{
                     height: gradientBlockHeight,
+                    background: blockSettings.contentValue,
                 }}
             ></div>
             {!isEditing && (
                 <div className="tw-pt-[9px]">
-                    {gradientColors.map((color, index) => (
+                    {blockSettings?.gradientColors?.map((color, index) => (
                         <>
                             {index === 0 && (
                                 <div key={index} className="tw-absolute" style={{ left: 0 }}>
@@ -255,7 +317,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 </div>
                             )}
                             {index !== 0 && index !== lastIndex && (
-                                <div key={index} className="tw-absolute" style={{ left: color.position }}>
+                                <div key={index} className="tw-absolute" style={{ left: `${color.position}%` }}>
                                     <SquareBadge color={color}></SquareBadge>
                                 </div>
                             )}
@@ -277,7 +339,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                         <Divider height="36px" style={DividerStyle.Solid} />
                         {showAddButton && AddButton}
                     </div>
-                    {gradientColors.map((color, index) => (
+                    {blockSettings?.gradientColors?.map((color, index) => (
                         <>
                             {index === 0 && (
                                 <div key={index} className="tw-absolute" style={{ left: 0 }}>
@@ -309,7 +371,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 </div>
                             )}
                             {index !== 0 && index !== lastIndex && (
-                                <div key={index} className="tw-absolute" style={{ left: color.position }}>
+                                <div key={index} className="tw-absolute" style={{ left: `${color.position}%` }}>
                                     <Tooltip
                                         key={index}
                                         alignment={TooltipAlignment.Middle}
