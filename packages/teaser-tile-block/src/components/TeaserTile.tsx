@@ -25,6 +25,7 @@ import {
     UnderlinePlugin,
     Palette,
     FOCUS_VISIBLE_STYLE,
+    IconHeartCircle32,
 } from '@frontify/fondue';
 import { AppBridgeBlock, useColorPalettes } from '@frontify/app-bridge';
 
@@ -53,6 +54,7 @@ export type TeaserTileProps = SortableTeaserTileProps & {
     replaceWithPlaceholder?: boolean;
     transformStyle?: Record<string, unknown>;
     draggableProps?: Record<string, unknown>;
+    isDragPreview?: boolean;
 };
 
 const twPositioningMap: Record<TileImagePositioning, string> = {
@@ -121,6 +123,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             draggableProps,
             palettes,
             replaceWithPlaceholder,
+            isDragPreview,
         },
         ref
     ) => {
@@ -171,6 +174,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange({ backgroundVisibility }),
             onReplaceAssetFromWorkspace: onOpenAssetChooser,
             palettes,
+            disabled: !isEditing,
         } as Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'>;
 
         const titleRichTextEditor = useMemo(
@@ -202,7 +206,11 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
         );
 
         return (
-            <div className="tw-relative tw-group" ref={ref} style={{ ...transformStyle }}>
+            <div
+                className={merge(['tw-relative tw-group', isDragPreview && 'tw-pointer-events-none'])}
+                ref={ref}
+                style={{ ...transformStyle }}
+            >
                 {replaceWithPlaceholder ? (
                     <div
                         className="tw-border-2 tw-border-dashed tw-border-box-selected-strong tw-bg-box-selected tw-w-full tw-h-full"
@@ -210,13 +218,17 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     ></div>
                 ) : (
                     <>
-                        <TeaserTileToolbar
-                            draggableProps={draggableProps}
-                            onRemoveSelf={onRemoveTile}
-                            tileSettingsFlyoutProps={tileFlyoutProps}
-                            onToolbarBlur={() => setToolbarFocus(false)}
-                            onToolbarFocus={() => setToolbarFocus(true)}
-                        />
+                        {isEditing && (
+                            <TeaserTileToolbar
+                                draggableProps={draggableProps}
+                                onRemoveSelf={onRemoveTile}
+                                tileSettingsFlyoutProps={tileFlyoutProps}
+                                onToolbarBlur={() => setToolbarFocus(false)}
+                                onToolbarFocus={() => setToolbarFocus(true)}
+                                isToolbarFocused={toolbarFocus}
+                                isDragging={isDragPreview}
+                            />
+                        )}
                         {tileSettings.link?.href && !isEditing && (
                             <a
                                 className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"
@@ -228,9 +240,10 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                         <div
                             style={{ borderRadius, border, background }}
                             className={merge([
-                                'tw-flex tw-overflow-hidden tw-h-full tw-relative',
+                                'tw-flex tw-overflow-hidden tw-h-full tw-relative tw-bg-base',
                                 twPositioningMap[positioning],
-                                toolbarFocus && 'tw-outline tw-outline-box-selected-inverse tw-outline-2',
+                                (toolbarFocus || isDragPreview) &&
+                                    'tw-outline tw-outline-box-selected-inverse tw-outline-2',
                             ])}
                         >
                             {type !== TileType.Text && (
@@ -259,14 +272,17 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                                                     {...props}
                                                     className={merge([
                                                         imageClassName,
-                                                        'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled hover:tw-text-text-x-weak',
+                                                        'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled',
                                                         FOCUS_VISIBLE_STYLE,
                                                         'tw-ring-inset',
+                                                        isEditing ? 'hover:tw-text-text-x-weak' : 'tw-cursor-default',
                                                     ])}
                                                     style={{ height }}
                                                 >
                                                     <div ref={triggerRef}>
-                                                        {isAssetLoading ? <LoadingCircle /> : <IconPlus32 />}
+                                                        {isEditing && isAssetLoading && <LoadingCircle />}
+                                                        {isEditing && !isAssetLoading && <IconPlus32 />}
+                                                        {!isEditing && <IconHeartCircle32 />}
                                                     </div>
                                                 </div>
                                             )}
@@ -319,7 +335,6 @@ export const SortableTeaserTile = (props: TeaserTileProps) => {
         <TeaserTile
             ref={setNodeRef}
             {...props}
-            isDragging={isDragging}
             replaceWithPlaceholder={isDragging}
             transformStyle={transformStyle}
             draggableProps={draggableProps}

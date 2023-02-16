@@ -1,14 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
+    FOCUS_VISIBLE_STYLE,
     FlyoutPlacement,
     IconArrowMove16,
-    IconCog,
     IconCog16,
     IconTrashBin16,
-    merge,
     Tooltip,
     TooltipPosition,
+    merge,
 } from '@frontify/fondue';
 import { MutableRefObject, useState } from 'react';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
@@ -20,11 +20,16 @@ export const TeaserTileToolbar = ({
     tileSettingsFlyoutProps,
     onToolbarBlur,
     onToolbarFocus,
+    isToolbarFocused,
 }: any) => {
     const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
+
     return (
         <div
-            className="tw-absolute tw--top-4 tw-bg-base tw-right-0 tw-flex tw-gap-[2px] tw-p-0.5 tw-border tw-z-[200] tw-rounded tw-border-box-selected-inverse tw-text-box-selected-inverse"
+            className={merge([
+                'tw-absolute tw--top-4 tw-bg-base tw-right-0 tw-flex tw-gap-[2px] tw-p-0.5 tw-border tw-z-[200] tw-rounded tw-border-box-selected-inverse tw-text-box-selected-inverse group-hover:tw-opacity-100',
+                isToolbarFocused || isDragging ? 'tw-opacity-100' : 'tw-opacity-0',
+            ])}
             onFocus={onToolbarFocus}
             onMouseEnter={onToolbarFocus}
             onBlur={onToolbarBlur}
@@ -41,10 +46,11 @@ export const TeaserTileToolbar = ({
                     <button
                         {...draggableProps}
                         className={merge([
-                            'tw-bg-base  tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',
+                            'tw-inline-flex tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',
                             isDragging
-                                ? 'tw-cursor-grabbing hover:tw-bg-box-selected-pressed'
+                                ? 'tw-cursor-grabbing tw-bg-box-selected-pressed'
                                 : 'tw-cursor-grab hover:tw-bg-box-selected-hover',
+                            FOCUS_VISIBLE_STYLE,
                         ])}
                     >
                         <IconArrowMove16 />
@@ -72,10 +78,11 @@ export const TeaserTileToolbar = ({
                                         {...triggerProps}
                                         ref={triggerRef}
                                         className={merge([
-                                            'tw-bg-base tw-relative tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm tw-z-[3]',
+                                            'tw-relative tw-inline-flex tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm tw-z-[3]',
                                             isDragging
                                                 ? ' hover:tw-bg-box-selected-pressed'
                                                 : ' hover:tw-bg-box-selected-hover',
+                                            FOCUS_VISIBLE_STYLE,
                                         ])}
                                     >
                                         <IconCog16 />
@@ -97,7 +104,10 @@ export const TeaserTileToolbar = ({
                 triggerElement={
                     <button
                         onClick={onRemoveSelf}
-                        className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm"
+                        className={merge([
+                            'hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',
+                            FOCUS_VISIBLE_STYLE,
+                        ])}
                     >
                         <IconTrashBin16 />
                     </button>

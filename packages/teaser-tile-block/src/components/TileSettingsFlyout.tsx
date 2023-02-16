@@ -38,6 +38,7 @@ type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'backgroundVisibil
     placement: FlyoutPlacement;
     height: string;
     palettes: Palette[];
+    disabled: boolean;
 };
 
 type ImageFlyoutProps = {
@@ -84,6 +85,7 @@ export const TileSettingsFlyout = ({
     placement,
     height,
     palettes,
+    disabled,
 }: TileSettingsFlyoutProps) => (
     <Flyout
         isOpen={isOpen}
@@ -91,6 +93,7 @@ export const TileSettingsFlyout = ({
         trigger={children}
         onOpenChange={(isOpen) => setIsOpen(isOpen)}
         placement={placement}
+        isTriggerDisabled={disabled}
         fixedHeader={
             <div className="tw-flex tw-justify-between tw-w-full tw-bg-base tw-pl-6 tw-pr-3 tw-py-1.5 tw-items-center tw-border-b tw-border-b-line tw-border-b-solid">
                 <h1 className="tw-text-s tw-font-bold">Configure Tile</h1>

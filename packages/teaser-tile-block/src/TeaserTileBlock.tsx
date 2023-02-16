@@ -133,7 +133,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
             const oldIndex = blockTiles?.findIndex((i) => i.id === active.id);
             const newIndex = blockTiles?.findIndex((i) => i.id === over.id);
             let sortedItems = blockTiles;
-            if (oldIndex && newIndex) {
+            if (oldIndex !== undefined && newIndex !== undefined) {
                 sortedItems = arrayMove(blockTiles ?? [], oldIndex, newIndex);
             }
             setInternalTiles(sortedItems ?? []);
@@ -179,7 +179,6 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 <DragOverlay>
                     {draggedBlock ? (
                         <TeaserTile
-                            isDragging={true}
                             id={draggedBlock.id}
                             key={draggingTileId}
                             appBridge={appBridge}
@@ -188,6 +187,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                             blockSettings={blockSettings}
                             onRemoveTile={() => ({})}
                             isEditing={isEditing}
+                            isDragPreview
                             palettes={colorPalettes.map((palette) => ({ ...palette, title: palette.name }))}
                         />
                     ) : null}
