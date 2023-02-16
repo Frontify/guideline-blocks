@@ -23,8 +23,6 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const { colorPalettes } = useColorPalettes(appBridge);
     const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
 
-    const tileHeight = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
-
     return (
         <DndContext {...dragContextProps}>
             <div
@@ -35,7 +33,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                     display: 'grid',
                     gridAutoFlow: 'row',
                     gridAutoRows: '1fr',
-                    gridTemplateColumns: `repeat(${blockSettings.columns}, calc(100% / ${blockSettings.columns}))`,
+                    gridTemplateColumns: `repeat(${blockSettings.columns}, 1fr)`,
                 }}
             >
                 <SortableContext items={tiles}>
@@ -76,11 +74,10 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 {isEditing && (
                     <div
                         className={merge([
-                            'tw-transition tw-bg-base-alt tw-rounded tw-border-2 tw-h-full tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center tw-cursor-pointer hover:tw-bg-box-neutral-hover',
+                            'tw-transition tw-min-w-0 tw-bg-base-alt tw-rounded tw-border-2 tw-h-full tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center tw-cursor-pointer hover:tw-bg-box-neutral-hover',
                             'tw-min-h-[100px]',
                         ])}
                         style={{
-                            height: tileHeight,
                             borderRadius: blockSettings.hasRadius
                                 ? blockSettings.radiusValue
                                 : radiusMap[blockSettings.radiusChoice],

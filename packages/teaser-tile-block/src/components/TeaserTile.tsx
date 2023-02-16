@@ -19,6 +19,13 @@ import { titlePluginComposer, twBorderMap, twPositioningMap, twVerticalAlignment
 import { TeaserTileToolbar } from './TeaserTileToolbar';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 
+const TeaserTilePlaceholder = ({ borderRadius }: { borderRadius: string }) => (
+    <div
+        className="tw-border-2 tw-border-dashed tw-border-box-selected-strong tw-bg-box-selected tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0"
+        style={{ borderRadius }}
+    />
+);
+
 export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
     (
         {
@@ -126,109 +133,101 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
 
         return (
             <div
-                className={merge(['tw-relative tw-group', isDragPreview && 'tw-pointer-events-none'])}
+                className={merge(['tw-relative tw-group tw-min-w-0', isDragPreview && 'tw-pointer-events-none'])}
                 ref={ref}
                 style={{ ...transformStyle }}
             >
-                {replaceWithPlaceholder ? (
-                    <div
-                        className="tw-border-2 tw-border-dashed tw-border-box-selected-strong tw-bg-box-selected tw-w-full tw-h-full"
-                        style={{ borderRadius }}
-                    ></div>
-                ) : (
-                    <>
-                        {isEditing && (
-                            <TeaserTileToolbar
-                                draggableProps={draggableProps}
-                                onRemoveSelf={() => onRemoveTile(id)}
-                                tileSettingsFlyoutProps={tileFlyoutProps}
-                                onToolbarBlur={() => setToolbarFocus(false)}
-                                onToolbarFocus={() => setToolbarFocus(true)}
-                                isToolbarFocused={toolbarFocus}
-                                isDragging={isDragPreview}
-                            />
-                        )}
-                        {tileSettings.link?.href && !isEditing && (
-                            <a
-                                className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"
-                                aria-label={`Navigate to ${tileSettings.link.href}`}
-                                href={tileSettings.link.href}
-                                target={tileSettings.link.target}
-                            />
-                        )}
-                        <div
-                            style={{ borderRadius, border, background }}
-                            className={merge([
-                                'tw-flex tw-overflow-hidden tw-h-full tw-relative tw-bg-base',
-                                twPositioningMap[positioning],
-                                (toolbarFocus || isDragPreview) &&
-                                    'tw-outline tw-outline-box-selected-inverse tw-outline-2',
-                            ])}
-                        >
-                            {type !== TileType.Text && (
-                                <>
-                                    {tileAsset?.genericUrl ? (
-                                        <div className="tw-min-w-0 tw-flex tw-flex-initial tw-items-center tw-justify-center tw-bg-base-alt">
-                                            <img
-                                                className={imageClassName}
-                                                src={tileAsset?.genericUrl.replace(
-                                                    '{width}',
-                                                    `${800 * window.devicePixelRatio}`
-                                                )}
-                                                style={{ height, objectFit }}
-                                            />
-                                        </div>
-                                    ) : (
-                                        <TileSettingsFlyout
-                                            {...tileFlyoutProps}
-                                            placement={FlyoutPlacement.Bottom}
-                                            type={type}
-                                            isOpen={isPlaceholderImageFlyoutOpen}
-                                            setIsOpen={setIsPlaceholderImageFlyoutOpen}
-                                        >
-                                            {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
-                                                <div
-                                                    {...props}
-                                                    className={merge([
-                                                        imageClassName,
-                                                        'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled',
-                                                        FOCUS_VISIBLE_STYLE,
-                                                        'tw-ring-inset',
-                                                        isEditing ? 'hover:tw-text-text-x-weak' : 'tw-cursor-default',
-                                                    ])}
-                                                    style={{ height }}
-                                                >
-                                                    <div ref={triggerRef}>
-                                                        {isEditing && isAssetLoading && <LoadingCircle />}
-                                                        {isEditing && !isAssetLoading && <IconPlus32 />}
-                                                        {!isEditing && <IconHeartCircle32 />}
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </TileSettingsFlyout>
-                                    )}
-                                </>
-                            )}
-                            {type !== TileType.Image && (
-                                <div
-                                    style={{
-                                        height: type === TileType.Text ? height : undefined,
-                                        padding,
-                                        textAlign,
-                                        background:
-                                            type === TileType.ImageText && positioning === TileImagePositioning.Behind
-                                                ? background
-                                                : undefined,
-                                    }}
-                                    className={textClassName}
-                                >
-                                    <h6 className="tw-text-lg tw-font-semibold">{titleRichTextEditor}</h6>
-                                    <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
-                                </div>
-                            )}
-                        </div>
-                    </>
+                {replaceWithPlaceholder && <TeaserTilePlaceholder borderRadius={borderRadius} />}
+                {isEditing && !replaceWithPlaceholder && (
+                    <TeaserTileToolbar
+                        draggableProps={draggableProps}
+                        onRemoveSelf={() => onRemoveTile(id)}
+                        tileSettingsFlyoutProps={tileFlyoutProps}
+                        onToolbarBlur={() => setToolbarFocus(false)}
+                        onToolbarFocus={() => setToolbarFocus(true)}
+                        isToolbarFocused={toolbarFocus}
+                        isDragging={isDragPreview}
+                    />
                 )}
+                {tileSettings.link?.href && !isEditing && (
+                    <a
+                        className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"
+                        aria-label={`Navigate to ${tileSettings.link.href}`}
+                        href={tileSettings.link.href}
+                        target={tileSettings.link.target}
+                    />
+                )}
+                <div
+                    style={{ borderRadius, border, background }}
+                    className={merge([
+                        'tw-flex tw-overflow-hidden tw-h-full tw-relative tw-bg-base',
+                        twPositioningMap[positioning],
+                        replaceWithPlaceholder && 'tw-invisible',
+                        (toolbarFocus || isDragPreview) && 'tw-outline tw-outline-box-selected-inverse tw-outline-2',
+                    ])}
+                >
+                    {type !== TileType.Text && (
+                        <>
+                            {tileAsset?.genericUrl ? (
+                                <div className="tw-min-w-0 tw-flex tw-flex-initial tw-items-center tw-justify-center tw-bg-base-alt">
+                                    <img
+                                        className={imageClassName}
+                                        src={tileAsset?.genericUrl.replace(
+                                            '{width}',
+                                            `${800 * window.devicePixelRatio}`
+                                        )}
+                                        style={{ height, objectFit }}
+                                    />
+                                </div>
+                            ) : (
+                                <TileSettingsFlyout
+                                    {...tileFlyoutProps}
+                                    placement={FlyoutPlacement.Bottom}
+                                    type={type}
+                                    isOpen={isPlaceholderImageFlyoutOpen}
+                                    setIsOpen={setIsPlaceholderImageFlyoutOpen}
+                                >
+                                    {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
+                                        <div
+                                            {...props}
+                                            className={merge([
+                                                imageClassName,
+                                                'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled',
+                                                FOCUS_VISIBLE_STYLE,
+                                                'tw-ring-inset',
+                                                isEditing ? 'hover:tw-text-text-x-weak' : 'tw-cursor-default',
+                                            ])}
+                                            style={{ height }}
+                                        >
+                                            <div ref={triggerRef}>
+                                                {isEditing && isAssetLoading && <LoadingCircle />}
+                                                {isEditing && !isAssetLoading && <IconPlus32 />}
+                                                {!isEditing && <IconHeartCircle32 />}
+                                            </div>
+                                        </div>
+                                    )}
+                                </TileSettingsFlyout>
+                            )}
+                        </>
+                    )}
+                    {type !== TileType.Image && (
+                        <div
+                            style={{
+                                height: type === TileType.Text ? height : undefined,
+                                padding,
+                                textAlign,
+                                background:
+                                    type === TileType.ImageText && positioning === TileImagePositioning.Behind
+                                        ? background
+                                        : undefined,
+                            }}
+                            className={textClassName}
+                        >
+                            <h6 className="tw-text-lg tw-font-semibold">{titleRichTextEditor}</h6>
+                            <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
+                        </div>
+                    )}
+                </div>
             </div>
         );
     }
