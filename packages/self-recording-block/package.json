@@ -34,11 +34,11 @@
         "@frontify/fondue-tokens": "3.2.1",
         "@frontify/guideline-blocks-settings": "0.25.11",
         "@frontify/guideline-blocks-shared": "workspace:*",
-        "@mediapipe/selfie_segmentation": "^0.1.1675465747",
-        "@tensorflow-models/body-segmentation": "^1.0.1",
-        "@tensorflow/tfjs-backend-webgl": "^4.2.0",
-        "@tensorflow/tfjs-converter": "^4.2.0",
-        "@tensorflow/tfjs-core": "^4.2.0",
+        "@mediapipe/selfie_segmentation": "0.1.1675465747",
+        "@tensorflow-models/body-segmentation": "1.0.1",
+        "@tensorflow/tfjs-backend-webgl": "4.2.0",
+        "@tensorflow/tfjs-converter": "4.2.0",
+        "@tensorflow/tfjs-core": "4.2.0",
         "react": "17.0.2",
         "react-dom": "17.0.2"
     }

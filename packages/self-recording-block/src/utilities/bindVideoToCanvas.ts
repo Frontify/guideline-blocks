@@ -3,16 +3,19 @@
 import '@tensorflow/tfjs-core';
 import '@tensorflow/tfjs-backend-webgl';
 import * as bodySegmentation from '@tensorflow-models/body-segmentation';
-import * as mpSelfieSegmentation from '@mediapipe/selfie_segmentation';
+import '@mediapipe/selfie_segmentation';
 
 import { VideoMode } from '../types';
 import { drawFrameCover } from './drawFrameCover';
 
+import { dependencies } from '../../package.json';
+
 const model = bodySegmentation.SupportedModels.MediaPipeSelfieSegmentation;
+const versionSelfieSegmentation = dependencies['@mediapipe/selfie_segmentation'];
 const segmenterConfig: bodySegmentation.MediaPipeSelfieSegmentationMediaPipeModelConfig = {
     runtime: 'mediapipe',
     modelType: 'general',
-    solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@${mpSelfieSegmentation.VERSION}`,
+    solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@${versionSelfieSegmentation}`,
 };
 
 // Cache the segmenter and image to avoid re-creating it on every rerender.
