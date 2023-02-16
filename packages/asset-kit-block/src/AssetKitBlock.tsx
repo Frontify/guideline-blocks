@@ -30,21 +30,12 @@ import {
     Color,
     IconCross16,
     IconPlus24,
+    LoadingCircle,
     RichTextEditor,
 } from '@frontify/fondue';
 import { ASSET_SETTINGS_ID, BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-import {
-    GenerateBulkDownloadData,
-    GenerateBulkDownloadRequest,
-    GenerateBulkDownloadTokenData,
-    GenerateBulkDownloadTokenRequest,
-    Settings,
-} from './types';
-import {
-    getBulkDownloadStatus,
-    postGenerateBulkDownloadRequest,
-    postGenerateBulkDownloadToken,
-} from './repository/BulkDownloadRepository';
+import { GenerateBulkDownloadTokenRequest, Settings } from './types';
+import { generateBulkDownloadRequest } from './repository/BulkDownloadRepository';
 
 const getBorderStyles = (
     style = BorderStyle.Solid,
@@ -68,13 +59,14 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
     const [dropedFiles, setDropedFiles] = useState<FileList | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
+    const [isDownloadingAssets, setIsDownloadingAssets] = useState<boolean>(false);
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !isLoading && setIsLoading(true),
+        onUploadProgress: () => !isUploadingAssets && setIsUploadingAssets(true),
     });
 
-    const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
+    const currentAssets: Asset[] = blockAssets[ASSET_SETTINGS_ID] ?? [];
 
     const {
         hasBackground_blocks,
@@ -97,8 +89,6 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusValue_thumbnails,
     } = blockSettings;
 
-    let token = '';
-
     appBridge.getProjectId(); // project id
     // to get the asset ids refeer to the documentation
     const data: GenerateBulkDownloadTokenRequest = {
@@ -107,26 +97,13 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         language: 'en',
     };
 
-    const generateBulkDownload = () => {
-        (async () => {
-            data.asset_ids = currentAssets.map((asset) => asset.id);
-            const responseToken: GenerateBulkDownloadTokenData = await postGenerateBulkDownloadToken(
-                appBridge.getProjectId(),
-                data
-            );
-            token = responseToken.token ?? '';
-            console.log(responseToken);
-
-            const dataRequest: GenerateBulkDownloadRequest = {
-                token,
-            };
-
-            const downloadResponse: GenerateBulkDownloadData = await postGenerateBulkDownloadRequest(dataRequest);
-            console.log(downloadResponse);
-
-            const pingReponse: GenerateBulkDownloadData = await getBulkDownloadStatus(downloadResponse.signature);
-            console.log(pingReponse);
-        })();
+    const generateBulkDownload = async (downloadAssets: Asset[]) => {
+        if (downloadAssets.length === undefined || downloadAssets.length <= 0) {
+            return;
+        }
+        setIsDownloadingAssets(true);
+        data.asset_ids = downloadAssets.map((asset) => asset.id);
+        generateBulkDownloadRequest(appBridge.getBlockId(), data).then(() => setIsDownloadingAssets(false));
     };
 
     const saveText = (text: string) => {
@@ -139,9 +116,9 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const onOpenAssetChooser = () => {
         appBridge.openAssetChooser(
             (assetsObject) => {
-                setIsLoading(true);
+                setIsUploadingAssets(true);
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
-                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsLoading(false));
+                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
                 appBridge.closeAssetChooser();
             },
             {
@@ -157,7 +134,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         if (dropedFiles) {
-            setIsLoading(true);
+            setIsUploadingAssets(true);
             uploadFile(dropedFiles);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -165,7 +142,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
 
     useEffect(() => {
         if (selectedFiles) {
-            setIsLoading(true);
+            setIsUploadingAssets(true);
             uploadFile(selectedFiles);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -175,7 +152,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         if (doneAll && uploadResults) {
             (async (assetsObject) => {
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
-                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsLoading(false));
+                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
             })(uploadResults);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -215,16 +192,38 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                     />
                 </div>
                 <div className="tw-flex-none">
-                    <Button onClick={generateBulkDownload}>Download package</Button>
+                    <Button onClick={() => generateBulkDownload(currentAssets)}>Download package</Button>
                 </div>
             </div>
+
+            {isDownloadingAssets && (
+                <div
+                    style={{
+                        ...(hasBackground_blocks && getBackgroundStyles(backgroundColor_blocks)),
+                        ...(hasBorder_blocks &&
+                            getBorderStyles(borderStyle_blocks, borderWidth_blocks, borderColor_blocks)),
+                        borderRadius: hasRadius_blocks ? radiusValue_blocks : radiusStyleMap[radiusChoice_blocks],
+                        padding: paddingStyleMap[Padding.Small],
+                    }}
+                    className="tw-flex tw-gap-8 tw-items-center tw-mb-8"
+                >
+                    <div className="tw-flew-0">
+                        <LoadingCircle />
+                    </div>
+                    <div className="tw-flex-1">
+                        <span>
+                            This may take a little while. Your package will download automatically when it's ready.
+                        </span>
+                    </div>
+                </div>
+            )}
 
             {currentAssets?.length > 0 ? (
                 <span>{currentAssets.length} assets</span>
             ) : (
                 <span>Add assets to make them available</span>
             )}
-            <div className="tw-mt-2.5 tw-mb-7 tw-grid tw-grid-cols-6 tw-gap-4">
+            <div className="tw-mt-2.5 tw-grid tw-grid-cols-6 tw-gap-4">
                 {currentAssets
                     ? currentAssets.map((asset: Asset) => (
                           <div key={asset.id} className="tw-aspect-square tw-group tw-relative">
@@ -243,35 +242,37 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                                           ? radiusValue_thumbnails
                                           : radiusStyleMap[radiusChoice_thumbnails],
                                   }}
+                                  alt={asset.title}
                               />
-                              <div className="tw-hidden group-hover:tw-block tw-absolute tw-top-0.5 tw-right-0.5">
-                                  <Button
-                                      size={ButtonSize.Small}
-                                      rounding={ButtonRounding.Medium}
-                                      emphasis={ButtonEmphasis.Default}
-                                      icon={<IconCross16 />}
-                                      onClick={() => onRemoveAsset(asset.id)}
-                                  />
-                              </div>
+                              {isEditing && (
+                                  <div className="tw-hidden group-hover:tw-block tw-absolute tw-top-0.5 tw-right-0.5">
+                                      <Button
+                                          size={ButtonSize.Small}
+                                          rounding={ButtonRounding.Medium}
+                                          emphasis={ButtonEmphasis.Default}
+                                          icon={<IconCross16 />}
+                                          onClick={() => onRemoveAsset(asset.id)}
+                                      />
+                                  </div>
+                              )}
                           </div>
                       ))
                     : undefined}
             </div>
-
-            {/*<Button onClick={onOpenAssetChooser}>Open asset chooser</Button>*/}
-            <div className="tw-h-[4.5rem]">
-                <BlockInjectButton
-                    className="tw-px-4"
-                    onAssetChooseClick={onOpenAssetChooser}
-                    onUploadClick={openFileDialog}
-                    onDrop={setDropedFiles}
-                    isLoading={isLoading}
-                    label="Add assets"
-                    secondaryLabel="or drop them here"
-                    icon={<IconPlus24 />}
-                    fillParentContainer={true}
-                />
-            </div>
+            {isEditing && (
+                <div className="tw-h-[4.5rem] tw-mt-7">
+                    <BlockInjectButton
+                        onAssetChooseClick={onOpenAssetChooser}
+                        onUploadClick={openFileDialog}
+                        onDrop={setDropedFiles}
+                        isLoading={isUploadingAssets}
+                        label="Add assets"
+                        secondaryLabel="or drop them here"
+                        icon={<IconPlus24 />}
+                        fillParentContainer={true}
+                    />
+                </div>
+            )}
         </div>
     );
 };

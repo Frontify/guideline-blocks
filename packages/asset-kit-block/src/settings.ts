@@ -43,16 +43,16 @@ export const settings = defineSettings({
                 getBorderRadiusSettings({ id: 'blocks', dependentSettingId: 'hasBorder_blocks' }),
             ],
         },
-        {
-            id: 'pressKitSectionsSection',
-            type: 'sectionHeading',
-            label: 'Section',
-            blocks: [
-                backgroundColor('sections'),
-                getBorderSettings({ id: 'sectionsBorder' }),
-                getBorderRadiusSettings({ dependentSettingId: 'hasBorder_sectionsBorder' }),
-            ],
-        },
+        // {
+        //     id: 'pressKitSectionsSection',
+        //     type: 'sectionHeading',
+        //     label: 'Section',
+        //     blocks: [
+        //         backgroundColor('sections'),
+        //         getBorderSettings({ id: 'sectionsBorder' }),
+        //         getBorderRadiusSettings({ dependentSettingId: 'hasBorder_sectionsBorder' }),
+        //     ],
+        // },
         {
             id: 'thumbnailsSection',
             type: 'sectionHeading',
