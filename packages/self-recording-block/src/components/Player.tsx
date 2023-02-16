@@ -13,9 +13,10 @@ type PlayerProps = {
     size: CameraSize;
     maskShape: MaskShape;
     maskBorder: MaskProps['border'];
+    onDeleteClick?: () => void;
 };
 
-export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
+export const Player = ({ asset, size, maskShape, maskBorder, onDeleteClick }: PlayerProps) => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const [isPlaying, setIsPlaying] = useState(false);
@@ -40,23 +41,19 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
     }, []);
 
     return (
-        <div className="tw-flex tw-flex-col tw-items-center">
+        <div className="tw-flex tw-flex-col tw-items-center tw-font-sans">
             <Mask shape={maskShape} size={size} border={maskBorder}>
                 {asset !== undefined ? (
                     <video
-                        onPlay={() => {
-                            setIsPlaying(true);
-                        }}
-                        onEnded={() => {
-                            setIsPlaying(false);
-                        }}
+                        ref={videoRef}
+                        onPlay={() => setIsPlaying(true)}
+                        onEnded={() => setIsPlaying(false)}
                         onTimeUpdate={(event) => {
                             setPlayTime(getTimeStringFromTimeStamp((event.target as HTMLVideoElement).currentTime));
                         }}
                         onLoadedMetadata={(event) => {
                             setPlayTime(getTimeStringFromTimeStamp((event.target as HTMLVideoElement).duration));
                         }}
-                        ref={videoRef}
                         style={{
                             width: cameraSizeToMaskSizeMap[size].width,
                             height: cameraSizeToMaskSizeMap[size].height,
@@ -78,6 +75,7 @@ export const Player = ({ asset, size, maskShape, maskBorder }: PlayerProps) => {
                     playSpeed={playSpeed}
                     onPlaySpeedSelected={onPaybackSpeedChange}
                     time={playTime}
+                    onDeleteClick={onDeleteClick}
                 />
             </div>
         </div>

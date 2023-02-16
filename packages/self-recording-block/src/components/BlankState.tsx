@@ -17,7 +17,7 @@ export const BlankState = ({ onClick }: BlankStateProps): ReactElement => {
                 <div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
                     <IconPlayCircle24 />
                 </div>
-                <div className="tw-flex tw-flex-col">
+                <div className="tw-flex tw-flex-col tw-gap-1">
                     <Text weight="strong">Record yourself!</Text>
                     <Text>Starting in 5, 4...</Text>
                 </div>

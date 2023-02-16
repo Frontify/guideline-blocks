@@ -59,7 +59,7 @@ export const RecorderToolbar = ({
                 <Button
                     emphasis={ButtonEmphasis.Weak}
                     icon={
-                        <div className="tw-min-h-[8px] tw-min-w-[8px] tw-h-2 tw-w-2 tw-rounded-[2px] tw-cursor-pointer tw-bg-box-negative-strong group-hover:tw-bg-box-negative-strong-hover group-active:tw-bg-box-negative-strong-pressed" />
+                        <div className="tw-min-h-[8px] tw-min-w-[8px] tw-h-2 tw-w-2 tw-rounded-full tw-cursor-pointer tw-bg-box-negative-strong group-hover:tw-bg-box-negative-strong-hover group-active:tw-bg-box-negative-strong-pressed tw-animate-pulse" />
                     }
                     onClick={onStopRecordingClick}
                     aria-label="Stop recording"
@@ -87,7 +87,7 @@ export const RecorderToolbar = ({
                     />
                 ) : null}
 
-                {state === 'recording' ? (
+                {['countdown', 'recording'].includes(state) ? (
                     <Tooltip
                         withArrow
                         content="Pause"

@@ -125,7 +125,7 @@ export const Recorder = ({
     }, [doneAll, uploadedAssets]);
 
     return (
-        <div className="tw-flex tw-flex-col tw-items-center" ref={parentRef}>
+        <div className="tw-flex tw-flex-col tw-items-center tw-font-sans" ref={parentRef}>
             <>
                 <Mask shape={maskShape} size={size} border={maskBorder}>
                     {state !== 'initializing' && state !== 'permissions-error' ? (
@@ -142,7 +142,7 @@ export const Recorder = ({
                                     canvasRef={canvasRef}
                                     cameraRef={mediaRef}
                                     onDevicePermissionDenied={onDevicePermissionDenied}
-                                    videoOptions={{ ...videoOptions, maxWidth: parentRef.current?.clientWidth }}
+                                    videoOptions={videoOptions}
                                 />
                             ) : (
                                 <AvatarCamera
@@ -151,7 +151,7 @@ export const Recorder = ({
                                     canvasRef={canvasRef}
                                     microphoneRef={mediaRef}
                                     onDevicePermissionDenied={onDevicePermissionDenied}
-                                    videoOptions={{ ...videoOptions, maxWidth: parentRef.current?.clientWidth }}
+                                    videoOptions={videoOptions}
                                     imageUrl={avatarImageUrl}
                                 />
                             )}

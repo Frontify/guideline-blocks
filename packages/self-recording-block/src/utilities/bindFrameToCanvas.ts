@@ -5,10 +5,11 @@ import '@tensorflow/tfjs-backend-webgl';
 import * as bodySegmentation from '@tensorflow-models/body-segmentation';
 import '@mediapipe/selfie_segmentation';
 
-import { VideoMode } from '../types';
+import { CameraSize, VideoMode } from '../types';
 import { drawFrameCover } from './drawFrameCover';
 
 import { dependencies } from '../../package.json';
+import { cameraSizeToMaskSizeMap } from '../constants';
 
 const model = bodySegmentation.SupportedModels.MediaPipeSelfieSegmentation;
 const versionSelfieSegmentation = dependencies['@mediapipe/selfie_segmentation'];
@@ -26,8 +27,8 @@ export const bindFrameToCanvas = async (
     frame: HTMLImageElement | HTMLVideoElement,
     canvasElement: HTMLCanvasElement,
     tmpCanvasElement: HTMLCanvasElement,
-    scale: number,
-    options: { videoMode: VideoMode; backgroundAssetUrl?: string; maxWidth?: number },
+    size: CameraSize,
+    options: { videoMode: VideoMode; backgroundAssetUrl?: string },
     signal: AbortSignal
 ) => {
     const ctx = canvasElement.getContext('2d');
@@ -39,12 +40,10 @@ export const bindFrameToCanvas = async (
     const frameWidth = (frame as HTMLVideoElement).videoWidth ?? (frame as HTMLImageElement).naturalWidth;
     const frameHeight = (frame as HTMLVideoElement).videoHeight ?? (frame as HTMLImageElement).naturalHeight;
 
-    const parentContainerWidth = (options.maxWidth ?? 0) * scale;
-    setCanvasWidth(canvasElement, parentContainerWidth);
+    setCanvasWidth(canvasElement, cameraSizeToMaskSizeMap[size].width);
     setCanvasWidth(tmpCanvasElement, frameWidth);
 
-    const videoAspectRatio = frameWidth / frameHeight;
-    setCanvasHeight(canvasElement, parentContainerWidth / videoAspectRatio);
+    setCanvasHeight(canvasElement, cameraSizeToMaskSizeMap[size].height);
     setCanvasHeight(tmpCanvasElement, frameHeight);
 
     if ((options.videoMode === VideoMode.Asset || options.videoMode === VideoMode.Blur) && !segmenter) {

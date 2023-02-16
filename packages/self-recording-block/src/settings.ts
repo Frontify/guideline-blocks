@@ -128,6 +128,7 @@ export const settings = defineSettings({
             id: 'record',
             type: 'sectionHeading',
             label: 'Recording background',
+            show: (bundle) => bundle.getBlock('recordingMode')?.value === RecordingMode.CameraAndAudio,
             blocks: [
                 {
                     id: 'videoMode',
@@ -144,7 +145,7 @@ export const settings = defineSettings({
                     id: 'customBackgroundAsset',
                     label: 'Custom background asset',
                     type: 'assetInput',
-                    show: (bundle) => bundle.getBlock('videoMode')?.value === 'custom',
+                    show: (bundle) => bundle.getBlock('videoMode')?.value === VideoMode.Asset,
                 },
             ],
         },
