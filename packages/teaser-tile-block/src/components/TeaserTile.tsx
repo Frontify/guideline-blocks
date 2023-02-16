@@ -14,10 +14,10 @@ import {
 
 import { useTileAsset, useTileStyles } from '../hooks';
 import { TeaserTileProps, TileImagePositioning, TileSettingsFlyoutProps, TileType } from '../types';
-import { TileSettingsFlyout } from './TileSettingsFlyout';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { TeaserTileToolbar } from './TeaserTileToolbar';
 import { titlePluginComposer, twBorderMap, twPositioningMap, twVerticalAlignmentMap } from '../helpers';
+import { TeaserTileToolbar } from './TeaserTileToolbar';
+import { TileSettingsFlyout } from './TileSettingsFlyout';
 
 export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
     (
