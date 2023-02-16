@@ -1,11 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { FC } from 'react';
+import { ReactElement } from 'react';
 import 'tailwindcss/tailwind.css';
 
-export const ExampleGuidelineDesignTokensBlock: FC = () => {
+export const ExampleGuidelineDesignTokensBlock = ({}: BlockProps): ReactElement => {
     const { designTokens, error, isLoading } = useGuidelineDesignTokens();
 
     return (
