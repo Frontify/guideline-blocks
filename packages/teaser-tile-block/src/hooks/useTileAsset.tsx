@@ -49,9 +49,9 @@ export const useTileAsset = (appBridge: AppBridgeBlock, id: string) => {
         isAssetLoading,
         onOpenAssetChooser,
         openFileDialog,
-        uploadFile: (file: File) => {
+        uploadFile: (files: FileList) => {
             setIsAssetLoading(true);
-            uploadFile(file);
+            uploadFile(files);
         },
     };
 };

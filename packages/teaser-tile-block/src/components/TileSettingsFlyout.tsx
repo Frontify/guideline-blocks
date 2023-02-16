@@ -18,6 +18,7 @@ import {
     IconImageStack,
     IconLink,
     InputLabel,
+    Palette,
     Slider,
     Switch,
     SwitchSize,
@@ -36,12 +37,13 @@ type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'backgroundVisibil
     setIsOpen: (boolean: boolean) => void;
     placement: FlyoutPlacement;
     height: string;
+    palettes: Palette[];
 };
 
 type ImageFlyoutProps = {
     type: TileType.Image | TileType.ImageText;
     onReplaceAssetFromUpload: () => void;
-    onUploadFile: (file: File) => void;
+    onUploadFile: (files: FileList) => void;
     onReplaceAssetFromWorkspace: () => void;
     isAssetLoading: boolean;
     asset: Nullable<Asset>;
@@ -81,6 +83,7 @@ export const TileSettingsFlyout = ({
     setIsOpen,
     placement,
     height,
+    palettes,
 }: TileSettingsFlyoutProps) => (
     <Flyout
         isOpen={isOpen}
@@ -170,6 +173,7 @@ export const TileSettingsFlyout = ({
                         id="image-background"
                         onSelect={onBackgroundColorChange}
                         currentColor={backgroundColor}
+                        palettes={palettes}
                     />
                 )}
                 {type !== TileType.Text && height !== 'auto' && (

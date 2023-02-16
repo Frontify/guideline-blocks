@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MutableRefObject, useMemo, useState } from 'react';
+import { forwardRef, MutableRefObject, useMemo, useState } from 'react';
 
 import {
     ActionMenu,
-    ActionMenuItemType,
     Button,
     ButtonEmphasis,
     ButtonRounding,
@@ -19,8 +18,13 @@ import {
     MenuItemStyle,
     RichTextEditor,
     merge,
+    PluginComposer,
+    InitPlugin,
+    BoldPlugin,
+    ItalicPlugin,
+    UnderlinePlugin,
 } from '@frontify/fondue';
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { AppBridgeBlock, useColorPalettes } from '@frontify/app-bridge';
 
 import { useTileAsset } from '../hooks';
 import { Settings, TileImagePositioning, TileSettings, TileType, TileVerticalAlignment } from '../types';
@@ -28,8 +32,9 @@ import { Settings, TileImagePositioning, TileSettings, TileType, TileVerticalAli
 import { TileSettingsFlyout, TileSettingsFlyoutProps } from './TileSettingsFlyout';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { heightMap, objectFitMap, paddingMap, radiusMap } from '../TeaserTileBlock';
+import { useSortable } from '@dnd-kit/sortable';
 
-export type TeaserTileProps = {
+export type SortableTeaserTileProps = {
     id: string;
     blockSettings: Settings;
     appBridge: AppBridgeBlock;
@@ -37,6 +42,13 @@ export type TeaserTileProps = {
     onTileSettingsChange: (partialSettings: Partial<TileSettings>) => void;
     onRemoveTile: () => void;
     isEditing: boolean;
+};
+
+export type TeaserTileProps = SortableTeaserTileProps & {
+    isDragging?: boolean;
+    replaceWithPlaceholder?: boolean;
+    transformStyle?: Record<string, unknown>;
+    draggableProps?: Record<string, unknown>;
 };
 
 const twPositioningMap: Record<TileImagePositioning, string> = {
@@ -77,7 +89,7 @@ const useTileStyles = (blockSettings: Settings, tileSettings: TileSettings) => {
 
     const globalObjectFit = objectFitMap[blockSettings.display];
     const tileObjectFit = tileSettings.display ? objectFitMap[tileSettings.display] : undefined;
-    const objectFit = height === 'auto' ? tileObjectFit ?? globalObjectFit : undefined;
+    const objectFit = height === 'auto' ? 'cover' : tileObjectFit ?? globalObjectFit;
 
     const globalBackground = blockSettings.background ? toRgbaString(blockSettings.backgroundColor) : undefined;
     const tileBackground = tileSettings.backgroundColor ? toRgbaString(tileSettings.backgroundColor) : undefined;
@@ -87,206 +99,271 @@ const useTileStyles = (blockSettings: Settings, tileSettings: TileSettings) => {
     return { height, background, objectFit, padding, textAlign, border, borderRadius };
 };
 
-export const TeaserTile = ({
-    id,
-    blockSettings,
-    onTileSettingsChange,
-    tileSettings,
-    appBridge,
-    onRemoveTile,
-    isEditing,
-}: TeaserTileProps) => {
-    const { tileAsset, isAssetLoading, uploadFile, onOpenAssetChooser, openFileDialog } = useTileAsset(appBridge, id);
-    const { positioning, type } = blockSettings;
-    const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);
-    const [isMenuFlyoutOpen, setIsMenuFlyoutOpen] = useState(false);
-    const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
-    const { designTokens } = useGuidelineDesignTokens();
+const headerPlugins = new PluginComposer()
+    .setPlugin(new InitPlugin())
+    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin()]);
 
-    const { height, background, objectFit, padding, textAlign, border, borderRadius } = useTileStyles(
-        blockSettings,
-        tileSettings
-    );
+export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
+    (
+        {
+            id,
+            blockSettings,
+            onTileSettingsChange,
+            tileSettings,
+            appBridge,
+            onRemoveTile,
+            isEditing,
+            transformStyle,
+            draggableProps,
+        },
+        ref
+    ) => {
+        const { tileAsset, isAssetLoading, uploadFile, onOpenAssetChooser, openFileDialog } = useTileAsset(
+            appBridge,
+            id
+        );
+        const { positioning, type } = blockSettings;
+        const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);
+        const [isMenuFlyoutOpen, setIsMenuFlyoutOpen] = useState(false);
+        const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
+        const { designTokens } = useGuidelineDesignTokens();
+        const { colorPalettes } = useColorPalettes(appBridge);
 
-    const imageClassName = merge([
-        'tw-z-[1] tw-bg-base-alt tw-min-w-0 tw-flex-initial',
-        height === 'auto' && type === TileType.ImageText && 'tw-aspect-square',
-        height === 'auto' && type === TileType.Image && 'tw-aspect-[3/4]',
-        type === TileType.ImageText ? `${twBorderMap[positioning]} tw-border-line-weak` : undefined,
-    ]);
+        const { height, background, objectFit, padding, textAlign, border, borderRadius } = useTileStyles(
+            blockSettings,
+            tileSettings
+        );
 
-    const textClassName = merge([
-        'tw-flex tw-flex-col tw-space-y-1 tw-z-[2]',
-        positioning === TileImagePositioning.Behind &&
-            merge([
-                'tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0',
-                twVerticalAlignmentMap[blockSettings.verticalAlignment],
-            ]),
-    ]);
+        const imageClassName = merge([
+            'tw-z-[1] tw-bg-base-alt tw-min-w-0 tw-flex-initial',
+            height === 'auto' && type === TileType.ImageText && 'tw-aspect-square',
+            height === 'auto' && type === TileType.Image && 'tw-aspect-[3/4]',
+            type === TileType.ImageText ? `${twBorderMap[positioning]} tw-border-line-weak` : undefined,
+        ]);
 
-    const tileFlyoutProps: Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children'> = {
-        link: tileSettings.link ?? null,
-        display: tileSettings.display ?? blockSettings.display ?? null,
-        height,
-        type,
-        asset: tileAsset,
-        backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
-        onLinkChange: (link) => onTileSettingsChange({ link }),
-        backgroundVisibility: tileSettings.backgroundVisibility ?? blockSettings.background,
-        onDisplayChange: (display) => onTileSettingsChange({ display }),
-        isAssetLoading,
-        onBackgroundColorChange: (backgroundColor) => onTileSettingsChange({ backgroundColor }),
-        onReplaceAssetFromUpload: openFileDialog,
-        onUploadFile: uploadFile,
-        onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange({ backgroundVisibility }),
-        onReplaceAssetFromWorkspace: onOpenAssetChooser,
+        const textClassName = merge([
+            'tw-flex tw-flex-col tw-space-y-1 tw-z-[2] tw-break-all',
+            positioning === TileImagePositioning.Behind &&
+                merge([
+                    'tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0',
+                    twVerticalAlignmentMap[blockSettings.verticalAlignment],
+                ]),
+        ]);
+
+        const tileFlyoutProps = {
+            link: tileSettings.link ?? null,
+            display: tileSettings.display ?? blockSettings.display ?? null,
+            height,
+            type,
+            asset: tileAsset,
+            backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
+            onLinkChange: (link) => onTileSettingsChange({ link }),
+            backgroundVisibility: tileSettings.backgroundVisibility ?? blockSettings.background,
+            onDisplayChange: (display) => onTileSettingsChange({ display }),
+            isAssetLoading,
+            onBackgroundColorChange: (backgroundColor) => onTileSettingsChange({ backgroundColor }),
+            onReplaceAssetFromUpload: openFileDialog,
+            onUploadFile: uploadFile,
+            onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange({ backgroundVisibility }),
+            onReplaceAssetFromWorkspace: onOpenAssetChooser,
+            palettes: colorPalettes.map((palette) => ({ ...palette, title: palette.name })),
+        } as Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'>;
+
+        const titleRichTextEditor = useMemo(
+            () => (
+                <RichTextEditor
+                    readonly={!isEditing}
+                    border={false}
+                    designTokens={designTokens ?? undefined}
+                    value={tileSettings.title ?? undefined}
+                    placeholder="Teaser Title"
+                    plugins={headerPlugins}
+                    onBlur={(title) => onTileSettingsChange({ title })}
+                />
+            ),
+            [designTokens, isEditing, onTileSettingsChange, tileSettings.title]
+        );
+        const descriptionRichTextEditor = useMemo(
+            () => (
+                <RichTextEditor
+                    readonly={!isEditing}
+                    border={false}
+                    designTokens={designTokens ?? undefined}
+                    value={tileSettings.description ?? undefined}
+                    placeholder="Add a description"
+                    onBlur={(description) => onTileSettingsChange({ description })}
+                />
+            ),
+            [designTokens, isEditing, onTileSettingsChange, tileSettings.description]
+        );
+
+        return (
+            <div
+                className="tw-relative tw-group tw-cursor-help"
+                tabIndex={0}
+                ref={ref}
+                style={{ ...transformStyle }}
+                {...draggableProps}
+            >
+                {tileSettings.link?.href && !isEditing && (
+                    <a
+                        className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"
+                        aria-label={`Navigate to ${tileSettings.link.href}`}
+                        href={tileSettings.link.href}
+                        target={tileSettings.link.target}
+                    />
+                )}
+                <div
+                    style={{ borderRadius, border, background }}
+                    className={merge([
+                        'tw-flex tw-overflow-hidden tw-h-full tw-relative',
+                        twPositioningMap[positioning],
+                    ])}
+                >
+                    {type !== TileType.Text && (
+                        <>
+                            {tileAsset?.genericUrl ? (
+                                <div className="tw-min-w-0 tw-flex tw-flex-initial tw-items-center tw-justify-center tw-bg-base-alt">
+                                    <img
+                                        className={imageClassName}
+                                        src={tileAsset?.genericUrl.replace(
+                                            '{width}',
+                                            `${800 * window.devicePixelRatio}`
+                                        )}
+                                        style={{ height, objectFit }}
+                                    />
+                                </div>
+                            ) : (
+                                <TileSettingsFlyout
+                                    {...tileFlyoutProps}
+                                    placement={FlyoutPlacement.Bottom}
+                                    type={type}
+                                    isOpen={isPlaceholderImageFlyoutOpen}
+                                    setIsOpen={setIsPlaceholderImageFlyoutOpen}
+                                >
+                                    {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
+                                        <div
+                                            {...props}
+                                            className={merge([
+                                                imageClassName,
+                                                'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled hover:tw-text-text-x-weak',
+                                            ])}
+                                            style={{ height }}
+                                        >
+                                            <div ref={triggerRef}>
+                                                {isAssetLoading ? <LoadingCircle /> : <IconPlus32 />}
+                                            </div>
+                                        </div>
+                                    )}
+                                </TileSettingsFlyout>
+                            )}
+                        </>
+                    )}
+                    {type !== TileType.Image && (
+                        <div
+                            style={{
+                                height: type === TileType.Text ? height : undefined,
+                                padding,
+                                textAlign,
+                                background:
+                                    type === TileType.ImageText && positioning === TileImagePositioning.Behind
+                                        ? background
+                                        : undefined,
+                            }}
+                            className={textClassName}
+                        >
+                            <h6 className="tw-text-lg tw-font-semibold">{titleRichTextEditor}</h6>
+                            <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
+                        </div>
+                    )}
+                </div>
+
+                <div
+                    className={merge([
+                        'tw-absolute tw-right-2 tw-top-2 focus-within:tw-z-[200] group-hover:tw-z-[200]',
+                        isMenuFlyoutOpen ? 'tw-z-[200]' : 'tw-z-[-1]',
+                    ])}
+                >
+                    <TileSettingsFlyout
+                        {...tileFlyoutProps}
+                        placement={FlyoutPlacement.BottomRight}
+                        isOpen={isTopSettingsFlyoutOpen}
+                        setIsOpen={setIsTopSettingsFlyoutOpen}
+                    >
+                        {(_, triggerRef: MutableRefObject<HTMLDivElement>) => (
+                            <div className="tw-absolute tw-right-0" ref={triggerRef} />
+                        )}
+                    </TileSettingsFlyout>
+                    <Flyout
+                        isOpen={isMenuFlyoutOpen}
+                        onOpenChange={setIsMenuFlyoutOpen}
+                        fitContent
+                        legacyFooter={false}
+                        placement={FlyoutPlacement.BottomRight}
+                        trigger={(_, triggerRef: MutableRefObject<HTMLButtonElement>) => (
+                            <Button
+                                rounding={ButtonRounding.Full}
+                                emphasis={ButtonEmphasis.Weak}
+                                icon={<IconDotsVertical />}
+                                ref={triggerRef}
+                                size={ButtonSize.Small}
+                                onClick={() => setIsMenuFlyoutOpen((open) => !open)}
+                            />
+                        )}
+                    >
+                        <ActionMenu
+                            menuBlocks={[
+                                {
+                                    id: 'menu-items',
+                                    menuItems: [
+                                        {
+                                            id: 'opensettings',
+                                            title: 'Open Settings',
+                                            decorator: <IconCog />,
+                                            onClick: () => setIsTopSettingsFlyoutOpen(true),
+                                        },
+                                        {
+                                            id: 'delete',
+                                            title: 'Delete',
+                                            onClick: onRemoveTile,
+                                            decorator: <IconTrashBin />,
+                                            style: MenuItemStyle.Danger,
+                                        },
+                                    ],
+                                },
+                            ]}
+                        ></ActionMenu>
+                    </Flyout>
+                </div>
+            </div>
+        );
+    }
+);
+
+TeaserTile.displayName = 'TeaserTile';
+
+export const SortableTeaserTile = (props: TeaserTileProps) => {
+    const { id, isEditing } = props;
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+        id,
+    });
+
+    const transformStyle = {
+        transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
+        transition,
+        zIndex: isDragging ? 2 : 1,
     };
 
-    const titleRichTextEditor = useMemo(
-        () => (
-            <RichTextEditor
-                readonly={!isEditing}
-                border={false}
-                designTokens={designTokens ?? undefined}
-                value={tileSettings.title ?? undefined}
-                placeholder="Teaser Title"
-                onBlur={(title) => onTileSettingsChange({ title })}
-            />
-        ),
-        [designTokens, isEditing, onTileSettingsChange, tileSettings.title]
-    );
-    const descriptionRichTextEditor = useMemo(
-        () => (
-            <RichTextEditor
-                readonly={!isEditing}
-                border={false}
-                designTokens={designTokens ?? undefined}
-                value={tileSettings.description ?? undefined}
-                placeholder="Add a description"
-                onBlur={(description) => onTileSettingsChange({ description })}
-            />
-        ),
-        [designTokens, isEditing, onTileSettingsChange, tileSettings.description]
-    );
+    const draggableProps = isEditing ? { ...attributes, ...listeners } : {};
 
     return (
-        <div className="tw-relative tw-group">
-            {tileSettings.link?.href && !isEditing && (
-                <a
-                    className="tw-h-full tw-block tw-w-full tw-absolute tw-top-0 tw-left-0 tw-z-[3]"
-                    aria-label={`Navigate to ${tileSettings.link.href}`}
-                    href={tileSettings.link.href}
-                    target={tileSettings.link.target}
-                />
-            )}
-            <div
-                style={{ borderRadius, border, background }}
-                className={merge(['tw-flex tw-overflow-auto tw-h-full tw-relative', twPositioningMap[positioning]])}
-            >
-                {type !== TileType.Text && (
-                    <>
-                        {tileAsset?.genericUrl ? (
-                            <div className="tw-min-w-0 tw-flex tw-flex-initial tw-items-center tw-justify-center tw-bg-base-alt">
-                                <img
-                                    className={imageClassName}
-                                    src={tileAsset?.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                                    style={{ height, objectFit }}
-                                />
-                            </div>
-                        ) : (
-                            <TileSettingsFlyout
-                                {...tileFlyoutProps}
-                                placement={FlyoutPlacement.Bottom}
-                                type={type}
-                                isOpen={isPlaceholderImageFlyoutOpen}
-                                setIsOpen={setIsPlaceholderImageFlyoutOpen}
-                            >
-                                {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
-                                    <div
-                                        {...props}
-                                        className={merge([
-                                            imageClassName,
-                                            'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center',
-                                        ])}
-                                        style={{ height }}
-                                    >
-                                        <div ref={triggerRef}>
-                                            {isAssetLoading ? <LoadingCircle /> : <IconPlus32 />}
-                                        </div>
-                                    </div>
-                                )}
-                            </TileSettingsFlyout>
-                        )}
-                    </>
-                )}
-                {type !== TileType.Image && (
-                    <div
-                        style={{ height: type === TileType.Text ? height : undefined, padding, textAlign, background }}
-                        className={textClassName}
-                    >
-                        <h6 className="tw-text-lg tw-font-semibold">{titleRichTextEditor}</h6>
-                        <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
-                    </div>
-                )}
-            </div>
-
-            <div
-                className={merge([
-                    'tw-absolute tw-right-2 tw-top-2 focus-within:tw-z-[200] group-hover:tw-z-[200]',
-                    isMenuFlyoutOpen ? 'tw-z-[200]' : 'tw-z-[-1]',
-                ])}
-            >
-                <TileSettingsFlyout
-                    {...tileFlyoutProps}
-                    placement={FlyoutPlacement.BottomRight}
-                    isOpen={isTopSettingsFlyoutOpen}
-                    setIsOpen={setIsTopSettingsFlyoutOpen}
-                >
-                    {(_, triggerRef: MutableRefObject<HTMLDivElement>) => (
-                        <div className="tw-absolute tw-right-0" ref={triggerRef} />
-                    )}
-                </TileSettingsFlyout>
-                <Flyout
-                    isOpen={isMenuFlyoutOpen}
-                    onOpenChange={setIsMenuFlyoutOpen}
-                    fitContent
-                    legacyFooter={false}
-                    placement={FlyoutPlacement.BottomRight}
-                    trigger={(_, triggerRef: MutableRefObject<HTMLButtonElement>) => (
-                        <Button
-                            rounding={ButtonRounding.Full}
-                            emphasis={ButtonEmphasis.Weak}
-                            icon={<IconDotsVertical />}
-                            ref={triggerRef}
-                            size={ButtonSize.Small}
-                            onClick={() => setIsMenuFlyoutOpen((open) => !open)}
-                        />
-                    )}
-                >
-                    <ActionMenu
-                        menuBlocks={[
-                            {
-                                id: 'menu-items',
-                                menuItems: [
-                                    (type === TileType.Text || !!tileAsset?.originUrl) && {
-                                        id: 'opensettings',
-                                        title: 'Open Settings',
-                                        decorator: <IconCog />,
-                                        onClick: () => setIsTopSettingsFlyoutOpen(true),
-                                    },
-                                    {
-                                        id: 'delete',
-                                        title: 'Delete',
-                                        onClick: onRemoveTile,
-                                        decorator: <IconTrashBin />,
-                                        style: MenuItemStyle.Danger,
-                                    },
-                                ].filter(Boolean) as ActionMenuItemType[],
-                            },
-                        ]}
-                    ></ActionMenu>
-                </Flyout>
-            </div>
-        </div>
+        <TeaserTile
+            ref={setNodeRef}
+            {...props}
+            isDragging={isDragging}
+            replaceWithPlaceholder={isDragging}
+            transformStyle={transformStyle}
+            draggableProps={draggableProps}
+        />
     );
 };
