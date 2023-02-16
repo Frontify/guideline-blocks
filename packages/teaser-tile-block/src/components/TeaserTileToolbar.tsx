@@ -11,6 +11,7 @@ import {
     merge,
 } from '@frontify/fondue';
 import { MutableRefObject, useState } from 'react';
+import { TeaserTileToolbarProps } from '../types';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 
 export const TeaserTileToolbar = ({
@@ -21,7 +22,7 @@ export const TeaserTileToolbar = ({
     onToolbarBlur,
     onToolbarFocus,
     isToolbarFocused,
-}: any) => {
+}: TeaserTileToolbarProps) => {
     const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
 
     return (
@@ -93,7 +94,6 @@ export const TeaserTileToolbar = ({
                     )}
                 </TileSettingsFlyout>
             </div>
-
             <Tooltip
                 withArrow
                 enterDelay={300}

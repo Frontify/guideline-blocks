@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset } from '@frontify/app-bridge';
 import {
     AssetInput,
     AssetInputSize,
@@ -8,61 +7,19 @@ import {
     ButtonEmphasis,
     Checkbox,
     CheckboxState,
-    Color,
     ColorPickerFlyout,
     Flyout,
-    FlyoutPlacement,
-    FlyoutProps,
     IconArrowCircleUp,
     IconCross,
     IconImageStack,
     IconLink,
     InputLabel,
-    Palette,
     Slider,
     Switch,
     SwitchSize,
     TextInput,
 } from '@frontify/fondue';
-import { Nullable, TileDisplay, TileSettings, TileType } from '../types';
-
-export type Link = { href?: string; target?: string };
-
-type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'backgroundVisibility' | 'display' | 'link'> & {
-    children: FlyoutProps['trigger'];
-    onLinkChange: (link: Link) => void;
-    onBackgroundVisibilityChange: (visibility: boolean) => void;
-    onBackgroundColorChange: (color: Color) => void;
-    isOpen: boolean;
-    setIsOpen: (boolean: boolean) => void;
-    placement: FlyoutPlacement;
-    height: string;
-    palettes: Palette[];
-    disabled: boolean;
-};
-
-type ImageFlyoutProps = {
-    type: TileType.Image | TileType.ImageText;
-    onReplaceAssetFromUpload: () => void;
-    onUploadFile: (files: FileList) => void;
-    onReplaceAssetFromWorkspace: () => void;
-    isAssetLoading: boolean;
-    asset: Nullable<Asset>;
-    onDisplayChange: (display: TileDisplay) => void;
-};
-
-type TextFlyoutProps = {
-    type: TileType.Text;
-    onReplaceAssetFromUpload: never;
-    onReplaceAssetFromWorkspace: never;
-    onUploadFile: never;
-    isAssetLoading: never;
-    asset: never;
-    display: never;
-    onDisplayChange: never;
-};
-
-export type TileSettingsFlyoutProps = (BaseFlyoutProps & TextFlyoutProps) | (BaseFlyoutProps & ImageFlyoutProps);
+import { TileDisplay, TileSettingsFlyoutProps, TileType } from '../types';
 
 export const TileSettingsFlyout = ({
     type,

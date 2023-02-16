@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
-import { Palette } from '@frontify/fondue';
+import { FlyoutPlacement, FlyoutProps, Palette } from '@frontify/fondue';
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
-import { Link } from './components/TileSettingsFlyout';
 
 export enum SettingsEnum {
     Type = 'type',
@@ -151,3 +150,54 @@ export type TeaserTileProps = SortableTeaserTileProps & {
     draggableProps?: Record<string, unknown>;
     isDragPreview?: boolean;
 };
+
+export type TeaserTileToolbarProps = {
+    draggableProps?: Record<string, unknown>;
+    isDragging?: boolean;
+    onRemoveSelf: () => void;
+    tileSettingsFlyoutProps: Omit<
+        TileSettingsFlyoutProps,
+        'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'
+    >;
+    onToolbarBlur: () => void;
+    onToolbarFocus: () => void;
+    isToolbarFocused: boolean;
+};
+
+export type Link = { href?: string; target?: string };
+
+type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'backgroundVisibility' | 'display' | 'link'> & {
+    children: FlyoutProps['trigger'];
+    onLinkChange: (link: Link) => void;
+    onBackgroundVisibilityChange: (visibility: boolean) => void;
+    onBackgroundColorChange: (color: Color) => void;
+    isOpen: boolean;
+    setIsOpen: (boolean: boolean) => void;
+    placement: FlyoutPlacement;
+    height: string;
+    palettes: Palette[];
+    disabled: boolean;
+};
+
+type ImageFlyoutProps = {
+    type: TileType.Image | TileType.ImageText;
+    onReplaceAssetFromUpload: () => void;
+    onUploadFile: (files: FileList) => void;
+    onReplaceAssetFromWorkspace: () => void;
+    isAssetLoading: boolean;
+    asset: Nullable<Asset>;
+    onDisplayChange: (display: TileDisplay) => void;
+};
+
+type TextFlyoutProps = {
+    type: TileType.Text;
+    onReplaceAssetFromUpload: never;
+    onReplaceAssetFromWorkspace: never;
+    onUploadFile: never;
+    isAssetLoading: never;
+    asset: never;
+    display: never;
+    onDisplayChange: never;
+};
+
+export type TileSettingsFlyoutProps = (BaseFlyoutProps & TextFlyoutProps) | (BaseFlyoutProps & ImageFlyoutProps);

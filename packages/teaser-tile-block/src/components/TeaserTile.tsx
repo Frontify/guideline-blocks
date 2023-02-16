@@ -3,32 +3,21 @@
 import { MutableRefObject, forwardRef, useMemo, useState } from 'react';
 
 import {
-    BoldPlugin,
     FOCUS_VISIBLE_STYLE,
     FlyoutPlacement,
     IconHeartCircle32,
     IconPlus32,
-    InitPlugin,
-    ItalicPlugin,
     LoadingCircle,
-    PluginComposer,
     RichTextEditor,
-    UnderlinePlugin,
     merge,
 } from '@frontify/fondue';
 
 import { useTileAsset, useTileStyles } from '../hooks';
-import { TeaserTileProps, TileImagePositioning, TileType } from '../types';
-
-import { TileSettingsFlyout, TileSettingsFlyoutProps } from './TileSettingsFlyout';
+import { TeaserTileProps, TileImagePositioning, TileSettingsFlyoutProps, TileType } from '../types';
+import { TileSettingsFlyout } from './TileSettingsFlyout';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { useSortable } from '@dnd-kit/sortable';
 import { TeaserTileToolbar } from './TeaserTileToolbar';
-import { twBorderMap, twPositioningMap, twVerticalAlignmentMap } from '../helpers';
-
-const headerPlugins = new PluginComposer()
-    .setPlugin(new InitPlugin())
-    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin()]);
+import { titlePluginComposer, twBorderMap, twPositioningMap, twVerticalAlignmentMap } from '../helpers';
 
 export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
     (
@@ -100,7 +89,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             onReplaceAssetFromWorkspace: onOpenAssetChooser,
             palettes,
             disabled: !isEditing,
-        } as Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'>;
+        } as Omit<TileSettingsFlyoutProps, 'isOpen' | 'setIsOpen' | 'children' | 'placement'>;
 
         const titleRichTextEditor = useMemo(
             () => (
@@ -110,7 +99,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     designTokens={designTokens ?? undefined}
                     value={tileSettings.title ?? undefined}
                     placeholder="Teaser Title"
-                    plugins={headerPlugins}
+                    plugins={titlePluginComposer}
                     onBlur={(title) => onTileSettingsChange({ title })}
                 />
             ),
@@ -241,28 +230,3 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
 );
 
 TeaserTile.displayName = 'TeaserTile';
-
-export const SortableTeaserTile = (props: TeaserTileProps) => {
-    const { id, isEditing } = props;
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-        id,
-    });
-
-    const transformStyle = {
-        transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
-        transition,
-        zIndex: isDragging ? 2 : 1,
-    };
-
-    const draggableProps = isEditing ? { ...attributes, ...listeners } : {};
-
-    return (
-        <TeaserTile
-            ref={setNodeRef}
-            {...props}
-            replaceWithPlaceholder={isDragging}
-            transformStyle={transformStyle}
-            draggableProps={draggableProps}
-        />
-    );
-};

@@ -7,11 +7,12 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockAssets, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
 import { Settings } from './types';
-import { SortableTeaserTile, TeaserTile } from './components/TeaserTile';
+import { TeaserTile } from './components/TeaserTile';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { SortableContext } from '@dnd-kit/sortable';
 import { heightMap, radiusMap, spacingMap } from './helpers';
 import { useDraggableGrid, useTileArray } from './hooks';
+import { SortableTeaserTile } from './components/SortableTeaserTile';
 
 export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
