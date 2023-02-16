@@ -27,20 +27,29 @@ import { langs } from '@uiw/codemirror-extensions-langs';
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
 
+const rgba2hex = (rgba: string, forceRemoveAlpha = false) => {
+    return `#${rgba
+        .replace(/^rgba?\(|\s+|\)$/g, '') // Get's rgba / rgb string values
+        .split(',') // splits them at ","
+        .filter((string, index) => !forceRemoveAlpha || index !== 3)
+        .map((string) => parseFloat(string)) // Converts them to numbers
+        .map((number, index) => (index === 3 ? Math.round(number * 255) : number)) // Converts alpha to 255 number
+        .map((number) => number.toString(16)) // Converts numbers to hex
+        .map((string) => (string.length === 1 ? `0${string}` : string)) // Adds 0 when length of one number is 1
+        .join('')}`; // Puts the array to togehter to a string
+};
+
 export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    // TODO - replace with const [contentValue] = useState(blockSettings.content);
-    // const [contentValue] = useState(
-    //     'background: linear-gradient(0deg, rgb(36, 60, 90), rgb(215, 23, 203), 25.43%, rgb(23, 108, 215) 80.11%);'
-    // );
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>();
     const dividerRef = useRef<HTMLDivElement>(null);
     const addRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
+    const [currentColor, setCurrentColor] = useState<Color | null>(null);
+    const [currentColorPosition, setCurrentColorPosition] = useState<number>();
     const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
-
     const lastIndex = blockSettings && blockSettings.gradientColors ? blockSettings?.gradientColors?.length - 1 : 0;
     const [showColorModal, setShowColorModal] = useState(false);
     const gradientBlockHeight = blockSettings.isHeightCustom
@@ -120,17 +129,17 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             },
         ];
 
-        // if (!blockSettings.gradientColors || !blockSettings.gradientColors?.length) {
-        setBlockSettings({
-            gradientColors: defaultGradientColors,
-        });
-        // }
+        if (!blockSettings.gradientColors || !blockSettings.gradientColors?.length) {
+            setBlockSettings({
+                gradientColors: defaultGradientColors,
+            });
+        }
 
-        // if (!blockSettings.contentValue) {
-        setBlockSettings({
-            contentValue: parseGradientColorsToString(defaultGradientColors),
-        });
-        // }
+        if (!blockSettings.contentValue) {
+            setBlockSettings({
+                contentValue: parseGradientColorsToString(defaultGradientColors),
+            });
+        }
 
         document.addEventListener('mousemove', handleMouseMove);
 
@@ -139,13 +148,8 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         };
     }, [showColorModal]);
 
-    const addNewColor = (color: GradientColor, position: number) => {
-        const newColor = {
-            ...color,
-            position,
-        };
-
-        const newGradientColors = [...(blockSettings.gradientColors ?? []), newColor].sort((a, b) => {
+    const addNewColor = (color: GradientColor) => {
+        const newGradientColors = [...(blockSettings.gradientColors ?? []), color].sort((a, b) => {
             return a.position - b.position;
         });
 
@@ -261,8 +265,12 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const handleAdd = (position: number) => {
+        if (!gradientBlockRef.current) {
+            return;
+        }
         console.log('pos:', position);
         setShowColorModal(true);
+        setCurrentColorPosition((position / gradientBlockRef?.current?.getBoundingClientRect().width) * 100);
     };
 
     const ColorPicker = () => {
@@ -284,7 +292,20 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     onCancel={() => {
                         setShowColorModal(false);
                     }}
-                    onConfirm={() => console.log('onConfirm')}
+                    onConfirm={() => {
+                        if (!currentColorPosition) {
+                            return;
+                        }
+                        addNewColor({
+                            hex: rgba2hex(
+                                `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
+                            ),
+                            name: currentColor?.name ?? '',
+                            position: currentColorPosition,
+                        });
+                        setShowColorModal(false);
+                        setCurrentColorPosition(undefined);
+                    }}
                     onOpenChange={() => true}
                     trigger={null}
                 >
@@ -292,10 +313,10 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                         <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-[40px]">
                             <ColorPickerFlyout
                                 clearable
-                                currentColor={null}
+                                currentColor={currentColor}
                                 // onClose={() => setShowColorModal(false)}
                                 onClick={() => console.log('onClick')}
-                                onSelect={() => console.log('onSelect')}
+                                onSelect={(color) => setCurrentColor(color)}
                                 onClear={() => console.log('onClear')}
                             >
                                 {addRef.current}
@@ -324,15 +345,6 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     'tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded-sm',
                 ])}
                 style={{ ...addButtonPosition }}
-                onClick={() =>
-                    addNewColor(
-                        {
-                            hex: '#cccccc',
-                            name: 'Light grey',
-                        },
-                        600
-                    )
-                }
             >
                 <span className="tw-text-white tw-pt-[1px]" onClick={() => handleAdd(addButtonPosition.left)}>
                     <IconPlus size={IconSize.Size12} />
