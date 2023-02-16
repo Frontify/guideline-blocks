@@ -17,11 +17,11 @@ export const BORDER_COLOR_DEFAULT_VALUE: Color = {
     alpha: 1,
 };
 
-const backgroundColor = (id: string): SettingBlock => ({
+const backgroundColor = (id: string, defaultValue = true): SettingBlock => ({
     id: `hasBackground_${id}`,
     label: 'Background',
     type: 'switch',
-    defaultValue: true,
+    defaultValue,
     on: [
         {
             id: `backgroundColor_${id}`,
@@ -38,7 +38,7 @@ export const settings = defineSettings({
             type: 'sectionHeading',
             label: 'Block',
             blocks: [
-                backgroundColor('blocks'),
+                backgroundColor('blocks', false),
                 getBorderSettings({ id: 'blocks' }),
                 getBorderRadiusSettings({ id: 'blocks', dependentSettingId: 'hasBorder_blocks' }),
             ],

@@ -2,10 +2,18 @@
 
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import { Asset, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
+    Asset,
+    useAssetUpload,
+    useBlockAssets,
+    useBlockSettings,
+    useEditorState,
+    useFileInput,
+} from '@frontify/app-bridge';
+import {
+    BlockInjectButton,
     BorderStyle,
     Padding,
     borderStyleMap,
@@ -21,8 +29,7 @@ import {
     ButtonSize,
     Color,
     IconCross16,
-    IconSize,
-    IconTrashBin,
+    IconPlus24,
     RichTextEditor,
 } from '@frontify/fondue';
 import { ASSET_SETTINGS_ID, BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
@@ -31,6 +38,7 @@ import {
     GenerateBulkDownloadRequest,
     GenerateBulkDownloadTokenData,
     GenerateBulkDownloadTokenRequest,
+    Settings,
 } from './types';
 import {
     getBulkDownloadStatus,
@@ -55,9 +63,16 @@ const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
 
 export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const { designTokens } = useGuidelineDesignTokens();
-    const [blockSettings, setBlockSettings] = useBlockSettings(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
+    const [openFileDialog, { selectedFiles }] = useFileInput({});
+    const [dropedFiles, setDropedFiles] = useState<FileList | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+        onUploadProgress: () => !isLoading && setIsLoading(true),
+    });
 
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
 
@@ -124,8 +139,9 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const onOpenAssetChooser = () => {
         appBridge.openAssetChooser(
             (assetsObject) => {
+                setIsLoading(true);
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
-                addAssetIdsToKey('images', assetsIds);
+                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsLoading(false));
                 appBridge.closeAssetChooser();
             },
             {
@@ -136,8 +152,34 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const onRemoveAsset = (assetId: number) => {
-        deleteAssetIdsFromKey('images', [assetId]);
+        deleteAssetIdsFromKey(ASSET_SETTINGS_ID, [assetId]);
     };
+
+    useEffect(() => {
+        if (dropedFiles) {
+            setIsLoading(true);
+            uploadFile(dropedFiles);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dropedFiles]);
+
+    useEffect(() => {
+        if (selectedFiles) {
+            setIsLoading(true);
+            uploadFile(selectedFiles);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedFiles]);
+
+    useEffect(() => {
+        if (doneAll && uploadResults) {
+            (async (assetsObject) => {
+                const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
+                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsLoading(false));
+            })(uploadResults);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [doneAll, uploadResults]);
 
     return (
         <div
@@ -150,14 +192,17 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         >
             <div className="tw-mb-8 tw-flex tw-gap-8">
                 <div className="tw-flex-1">
-                    <RichTextEditor
-                        designTokens={designTokens ?? undefined}
-                        value={blockSettings.title ?? DEFAULT_CONTENT_VALUE}
-                        readonly={!isEditing}
-                        onChange={saveTitle}
-                        onBlur={saveTitle}
-                        placeholder="Add a title here ..."
-                    />
+                    <h3 style={{ marginBottom: 8 }}>
+                        <RichTextEditor
+                            designTokens={designTokens ?? undefined}
+                            value={blockSettings.title ?? DEFAULT_CONTENT_VALUE}
+                            readonly={!isEditing}
+                            onTextChange={saveTitle}
+                            onBlur={saveTitle}
+                            placeholder="Add a title here ..."
+                            border={false}
+                        />
+                    </h3>
 
                     <RichTextEditor
                         designTokens={designTokens ?? undefined}
@@ -166,6 +211,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                         onBlur={saveText}
                         placeholder="Add a description here ..."
                         value={blockSettings.text}
+                        border={false}
                     />
                 </div>
                 <div className="tw-flex-none">
@@ -178,7 +224,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
             ) : (
                 <span>Add assets to make them available</span>
             )}
-            <div className="tw-mt-2.5 tw-grid tw-grid-cols-6 tw-gap-4">
+            <div className="tw-mt-2.5 tw-mb-7 tw-grid tw-grid-cols-6 tw-gap-4">
                 {currentAssets
                     ? currentAssets.map((asset: Asset) => (
                           <div key={asset.id} className="tw-aspect-square tw-group tw-relative">
@@ -212,7 +258,20 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                     : undefined}
             </div>
 
-            <Button onClick={onOpenAssetChooser}>Open asset chooser</Button>
+            {/*<Button onClick={onOpenAssetChooser}>Open asset chooser</Button>*/}
+            <div className="tw-h-[4.5rem]">
+                <BlockInjectButton
+                    className="tw-px-4"
+                    onAssetChooseClick={onOpenAssetChooser}
+                    onUploadClick={openFileDialog}
+                    onDrop={setDropedFiles}
+                    isLoading={isLoading}
+                    label="Add assets"
+                    secondaryLabel="or drop them here"
+                    icon={<IconPlus24 />}
+                    fillParentContainer={true}
+                />
+            </div>
         </div>
     );
 };
