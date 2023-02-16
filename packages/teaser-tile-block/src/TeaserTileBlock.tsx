@@ -24,6 +24,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
 
     const tileHeight = blockSettings.height ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
+    console.log(draggedBlock);
 
     return (
         <DndContext {...dragContextProps}>
@@ -38,7 +39,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                     gridTemplateColumns: `repeat(${blockSettings.columns}, 1fr)`,
                 }}
             >
-                <SortableContext items={tiles ?? []}>
+                <SortableContext items={tiles}>
                     {tiles.map(({ id, settings }) => (
                         <SortableTeaserTile
                             id={id}

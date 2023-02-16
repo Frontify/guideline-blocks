@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useSortable } from '@dnd-kit/sortable';
-import { TeaserTileProps } from '../types';
+import { SortableTeaserTileProps } from '../types';
 import { TeaserTile } from './TeaserTile';
 
-export const SortableTeaserTile = (props: TeaserTileProps) => {
+export const SortableTeaserTile = (props: SortableTeaserTileProps) => {
     const { id, isEditing } = props;
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
         id,
