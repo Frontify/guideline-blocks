@@ -391,7 +391,7 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                 {blockSettings.handle !== Handle.None ? renderHandle() : ''}
             </ImgComparisonSlider>
 
-            <div className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center tw-mt-3 tw-gap-1">
+            <div className="tw-flex tw-flex-col tw-mt-3 tw-gap-1">
                 <RichTextEditor
                     value={blockSettings.sliderName}
                     border={false}
