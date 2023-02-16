@@ -5,6 +5,7 @@ import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    Color,
     Divider,
     DividerStyle,
     IconPlus,
@@ -32,7 +33,6 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
     const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
-
     const lastIndex = blockSettings && blockSettings.gradientColors ? blockSettings?.gradientColors?.length - 1 : 0;
 
     const gradientBlockHeight = blockSettings.isHeightCustom
