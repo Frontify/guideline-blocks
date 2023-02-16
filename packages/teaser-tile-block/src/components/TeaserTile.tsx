@@ -15,7 +15,7 @@ import {
 import { useTileAsset, useTileStyles } from '../hooks';
 import { TeaserTileProps, TileImagePositioning, TileSettingsFlyoutProps, TileType } from '../types';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { titlePluginComposer, twBorderMap, twPositioningMap, twVerticalAlignmentMap } from '../helpers';
+import { twBorderMap, twPositioningMap, twVerticalAlignmentMap } from '../helpers';
 import { TeaserTileToolbar } from './TeaserTileToolbar';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 
@@ -75,12 +75,16 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
         ]);
 
         const textClassName = merge([
-            'tw-flex tw-flex-col tw-space-y-1 tw-z-[2] tw-break-all',
-            positioning === TileImagePositioning.Behind &&
+            'tw-flex tw-flex-col tw-space-y-1 tw-z-[2] tw-break-all tw-w-full',
+            type === TileType.ImageText &&
+                positioning === TileImagePositioning.Behind &&
                 merge([
                     'tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0',
                     twVerticalAlignmentMap[blockSettings.verticalAlignment],
                 ]),
+            type === TileType.ImageText &&
+                (positioning === TileImagePositioning.Left || positioning === TileImagePositioning.Right) &&
+                'tw-basis-2/3',
         ]);
 
         const tileFlyoutProps = {
@@ -111,7 +115,6 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     designTokens={designTokens ?? undefined}
                     value={tileSettings.title ?? undefined}
                     placeholder="Teaser Title"
-                    plugins={titlePluginComposer}
                     onBlur={(title) => onTileSettingsChange(id, { title })}
                 />
             ),
@@ -160,8 +163,8 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                 <div
                     style={{ borderRadius, border, background }}
                     className={merge([
-                        'tw-flex tw-overflow-hidden tw-h-full tw-relative tw-bg-base',
-                        twPositioningMap[positioning],
+                        'tw-flex tw-overflow-hidden tw-h-full tw-relative tw-bg-base tw-w-full',
+                        type === TileType.ImageText && twPositioningMap[positioning],
                         replaceWithPlaceholder && 'tw-invisible',
                         (toolbarFocus || isDragPreview) && 'tw-outline tw-outline-box-selected-inverse tw-outline-2',
                     ])}
@@ -169,7 +172,15 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     {type !== TileType.Text && (
                         <>
                             {tileAsset?.genericUrl ? (
-                                <div className="tw-min-w-0 tw-flex tw-flex-initial tw-items-center tw-justify-center tw-bg-base-alt">
+                                <div
+                                    className={merge([
+                                        'tw-min-w-0 tw-flex tw-flex-initial tw-items-center tw-justify-center tw-bg-base-alt tw-w-full',
+                                        type === TileType.ImageText &&
+                                            (positioning === TileImagePositioning.Left ||
+                                                positioning === TileImagePositioning.Right) &&
+                                            'tw-basis-1/3',
+                                    ])}
+                                >
                                     <img
                                         className={imageClassName}
                                         src={tileAsset?.genericUrl.replace(
@@ -196,8 +207,12 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                                                 FOCUS_VISIBLE_STYLE,
                                                 'tw-ring-inset',
                                                 isEditing ? 'hover:tw-text-text-x-weak' : 'tw-cursor-default',
+                                                type === TileType.ImageText &&
+                                                    (positioning === TileImagePositioning.Left ||
+                                                        positioning === TileImagePositioning.Right) &&
+                                                    'tw-basis-1/3',
                                             ])}
-                                            style={{ height }}
+                                            style={{ minHeight: height }}
                                         >
                                             <div ref={triggerRef}>
                                                 {isEditing && isAssetLoading && <LoadingCircle />}

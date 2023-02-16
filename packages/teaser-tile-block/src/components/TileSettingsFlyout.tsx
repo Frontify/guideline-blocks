@@ -147,7 +147,7 @@ export const TileSettingsFlyout = ({
                 {type !== TileType.Text && height !== 'auto' && (
                     <>
                         <InputLabel htmlFor="display">Display</InputLabel>
-                        <div className="tw-flex">
+                        <div className="tw-flex tw-w-full">
                             <Slider
                                 id="display"
                                 onChange={(id) => onDisplayChange(id as TileDisplay)}

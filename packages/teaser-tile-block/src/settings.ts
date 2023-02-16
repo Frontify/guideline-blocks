@@ -46,7 +46,7 @@ export const settings = defineSettings({
                     type: 'slider',
                     label: 'Number',
                     info: 'Sets the maximum amount of columns in this block. On smaller devices, this will be responsive to be fewer',
-                    defaultValue: '2',
+                    defaultValue: '4',
                     choices: [
                         { value: '1', label: '1' },
                         { value: '2', label: '2' },
