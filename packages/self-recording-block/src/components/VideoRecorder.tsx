@@ -8,6 +8,7 @@ import { VideoRecorderToolbar } from './VideoRecorderToolbar';
 import { Camera } from './Camera';
 import { Mask, MaskProps } from './Mask';
 import { BlankState } from './BlankState';
+import { CountdownOverlay } from './CountdownOverlay';
 
 type VideoRecorderProps = {
     onRecordingEnd: (assetId: number) => Promise<void>;
@@ -32,13 +33,16 @@ export const VideoRecorder = ({
     const recorder = useRef<MediaRecorder | null>(null);
     const cameraRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const parentRef = useRef<HTMLDivElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
     const [uploadFiles, { results: uploadedAssets, doneAll }] = useAssetUpload();
 
-    const onStartRecordingClick = useCallback(() => {
+    const startRecording = useCallback(() => {
         if (!canvasRef.current) {
             throw new Error('No `canvas` registered');
         }
+
+        setState('recording');
 
         const stream = canvasRef.current.captureStream();
         const audio = (cameraRef.current?.srcObject as MediaStream | null)?.getAudioTracks();
@@ -63,8 +67,11 @@ export const VideoRecorder = ({
         });
 
         recorder.current.start();
-        setState('recording');
     }, [uploadFiles]);
+
+    const onStartRecordingClick = useCallback(() => {
+        setState('countdown');
+    }, []);
 
     const onStopRecordingClick = useCallback(() => {
         recorder.current?.stop();
@@ -113,19 +120,25 @@ export const VideoRecorder = ({
     }, [doneAll, uploadedAssets]);
 
     return (
-        <div className="tw-flex tw-flex-col tw-items-center">
+        <div className="tw-flex tw-flex-col tw-items-center" ref={parentRef}>
             <>
                 <Mask shape={maskShape} size={size} border={maskBorder}>
                     {state !== 'initializing' && state !== 'permissions-error' ? (
-                        <Camera
-                            cameraDeviceId={cameraDeviceId}
-                            microphoneDeviceId={microphoneDeviceId}
-                            size={size}
-                            canvasRef={canvasRef}
-                            cameraRef={cameraRef}
-                            onDevicePermissionDenied={onDevicePermissionDenied}
-                            videoOptions={videoOptions}
-                        />
+                        <CountdownOverlay
+                            timeLimit={3}
+                            onCountdownFinished={startRecording}
+                            enabled={state === 'countdown'}
+                        >
+                            <Camera
+                                cameraDeviceId={cameraDeviceId}
+                                microphoneDeviceId={microphoneDeviceId}
+                                size={size}
+                                canvasRef={canvasRef}
+                                cameraRef={cameraRef}
+                                onDevicePermissionDenied={onDevicePermissionDenied}
+                                videoOptions={{ ...videoOptions, maxWidth: parentRef.current?.clientWidth }}
+                            />
+                        </CountdownOverlay>
                     ) : null}
 
                     {state === 'initializing' ? <BlankState onClick={() => setState('idle')} /> : null}

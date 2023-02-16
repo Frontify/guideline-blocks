@@ -16,6 +16,7 @@ type CameraProps = {
     videoOptions: {
         videoMode: VideoMode;
         backgroundAssetUrl?: string;
+        maxWidth?: number;
     };
 };
 

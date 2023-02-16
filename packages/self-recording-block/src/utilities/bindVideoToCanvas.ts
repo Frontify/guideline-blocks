@@ -27,7 +27,7 @@ export const bindVideoToCanvas = async (
     canvasElement: HTMLCanvasElement,
     tmpCanvasElement: HTMLCanvasElement,
     scale: number,
-    options: { videoMode: VideoMode; backgroundAssetUrl?: string },
+    options: { videoMode: VideoMode; backgroundAssetUrl?: string; maxWidth?: number },
     signal: AbortSignal
 ) => {
     const ctx = canvasElement.getContext('2d');
@@ -36,8 +36,7 @@ export const bindVideoToCanvas = async (
         throw new Error('Could not get the canvas context.');
     }
 
-    const parentContainerWidth =
-        (canvasElement.parentElement?.parentElement?.parentElement as HTMLDivElement).clientWidth * scale;
+    const parentContainerWidth = (options.maxWidth ?? 0) * scale;
     setCanvasWidth(canvasElement, parentContainerWidth);
     setCanvasWidth(tmpCanvasElement, videoElement.videoWidth);
 
