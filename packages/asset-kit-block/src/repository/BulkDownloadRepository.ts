@@ -26,7 +26,23 @@ export const postGenerateBulkDownloadRequest = async (
     return result.data;
 };
 
-export const getBulkDownloadStatus = async (token: string): Promise<GenerateBulkDownloadData> => {
-    const { result } = await FrontifyHttpClient.get<GenerateBulkDownloadData>(`/api/bulk-download/${token}`);
-    return result.data;
+
+export const getBulkDownloadStatus = async (
+    token: string
+): Promise<GenerateBulkDownloadData> => {
+    return await new Promise((resolve, reject) => {
+        const interval = setInterval(async () => {
+            try {
+                const { result } = await FrontifyHttpClient.get<GenerateBulkDownloadData>(`/api/bulk-download/${token}`);
+
+                if (result?.data?.download_url) {
+                    clearInterval(interval);
+                    resolve(result.data);
+                }
+            } catch (error) {
+                clearInterval(interval);
+                reject(error)
+            }
+        }, 2500);
+    });
 };

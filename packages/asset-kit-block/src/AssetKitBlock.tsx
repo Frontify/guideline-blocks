@@ -2,7 +2,7 @@
 
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { Asset, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
@@ -35,7 +35,7 @@ import {
 import {
     getBulkDownloadStatus,
     postGenerateBulkDownloadRequest,
-    postGenerateBulkDownloadToken,
+    postGenerateBulkDownloadToken
 } from './repository/BulkDownloadRepository';
 
 const getBorderStyles = (
@@ -57,6 +57,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const { designTokens } = useGuidelineDesignTokens();
     const [blockSettings, setBlockSettings] = useBlockSettings(appBridge);
     const isEditing = useEditorState(appBridge);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
 
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
@@ -94,23 +95,26 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const generateBulkDownload = () => {
         (async () => {
-            data.asset_ids = currentAssets.map((asset) => asset.id);
-            const responseToken: GenerateBulkDownloadTokenData = await postGenerateBulkDownloadToken(
-                appBridge.getProjectId(),
-                data
-            );
-            token = responseToken.token ?? '';
-            console.log(responseToken);
+            if (currentAssets?.length > 0) {
+                setIsLoading(true);
+                data.asset_ids = currentAssets.map((asset) => asset.id);
+                const responseToken: GenerateBulkDownloadTokenData = await postGenerateBulkDownloadToken(
+                    appBridge.getProjectId(),
+                    data
+                );
 
-            const dataRequest: GenerateBulkDownloadRequest = {
-                token,
-            };
+                token = responseToken.token ?? '';
 
-            const downloadResponse: GenerateBulkDownloadData = await postGenerateBulkDownloadRequest(dataRequest);
-            console.log(downloadResponse);
+                const dataRequest: GenerateBulkDownloadRequest = {
+                    token,
+                };
 
-            const pingReponse: GenerateBulkDownloadData = await getBulkDownloadStatus(downloadResponse.signature);
-            console.log(pingReponse);
+                const downloadResponse: GenerateBulkDownloadData = await postGenerateBulkDownloadRequest(dataRequest);
+
+                const result = await getBulkDownloadStatus(downloadResponse.signature);
+                window.open(result.download_url, '_self');
+            }
+            setIsLoading(false);
         })();
     };
 
