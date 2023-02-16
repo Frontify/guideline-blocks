@@ -61,7 +61,7 @@ export const settings = defineSettings({
                     ],
                 },
                 {
-                    id: 'firstImageHasStrikethrough',
+                    id: 'firstAssetHasStrikethrough',
                     type: 'switch',
                     label: 'Strikethrough',
                 },
@@ -111,7 +111,7 @@ export const settings = defineSettings({
                     ],
                 },
                 {
-                    id: 'secondImageHasStrikethrough',
+                    id: 'secondAssetHasStrikethrough',
                     type: 'switch',
                     label: 'Strikethrough',
                 },
