@@ -7,8 +7,10 @@ import {
     SwitchSize,
     TextInputType,
     defineSettings,
+    presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import { heightMap, paddingMap } from './helpers';
 import {
     SettingsEnum,
     TileDisplay,
@@ -62,6 +64,8 @@ export const settings = defineSettings({
                     info: 'Another word for ‘gap’. Refers to both column gutter and row gutter.',
                     show: (bundle: Bundle) => bundle.getBlock('columns')?.value !== '1',
                     defaultValue: false,
+                    onChange: (bundle) =>
+                        presetCustomValue(bundle, SettingsEnum.SpacingChoice, SettingsEnum.SpacingCustom, paddingMap),
                     off: [
                         {
                             id: SettingsEnum.SpacingChoice,
@@ -144,6 +148,8 @@ export const settings = defineSettings({
                     info: 'The spacing between the text and the outer parameters of the tile',
                     show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value !== TileType.Image,
                     defaultValue: false,
+                    onChange: (bundle) =>
+                        presetCustomValue(bundle, SettingsEnum.PaddingChoice, SettingsEnum.PaddingCustom, paddingMap),
                     off: [
                         {
                             id: SettingsEnum.PaddingChoice,
@@ -178,6 +184,8 @@ export const settings = defineSettings({
                     label: 'Height',
                     switchLabel: 'Custom',
                     defaultValue: false,
+                    onChange: (bundle) =>
+                        presetCustomValue(bundle, SettingsEnum.HeightChoice, SettingsEnum.HeightCustom, heightMap),
                     off: [
                         {
                             id: SettingsEnum.HeightChoice,
