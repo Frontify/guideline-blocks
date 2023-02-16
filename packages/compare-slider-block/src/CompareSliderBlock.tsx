@@ -1,5 +1,8 @@
-import type { FC } from 'react';
-import { useEffect, useRef, useState } from 'react';
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { FC, useEffect, useRef, useState } from 'react';
+import { ImgComparisonSlider } from '@img-comparison-slider/react';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     AssetChooserObjectType,
     FileExtensionSets,
@@ -9,18 +12,6 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import type { BlockProps } from '@frontify/guideline-blocks-settings';
-import {
-    Alignment,
-    BlockSettings,
-    Handle,
-    Height,
-    SliderImageSlot,
-    captionPlacementStyleMap,
-    heightMap,
-    slotAssetSettingMap,
-} from './types';
-import { ImgComparisonSlider } from '@img-comparison-slider/react';
 import {
     BlockInjectButton,
     joinClassNames,
@@ -37,6 +28,17 @@ import {
     RichTextEditor,
     debounce,
 } from '@frontify/fondue';
+
+import {
+    Alignment,
+    BlockSettings,
+    Handle,
+    Height,
+    SliderImageSlot,
+    captionPlacementStyleMap,
+    heightMap,
+    slotAssetSettingMap,
+} from './types';
 import { Strikethrough } from './Strikethrough';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {

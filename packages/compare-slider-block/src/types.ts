@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 

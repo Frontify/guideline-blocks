@@ -14,22 +14,24 @@
     "dependencies": {
         "@frontify/app-bridge": "3.0.0-beta.45",
         "@frontify/fondue": "12.0.0-beta.100",
-        "@frontify/guideline-blocks-shared": "workspace:^1.0.0",
-        "@img-comparison-slider/react": "^7.8.1",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "@frontify/fondue-tokens": "3.2.1",
+        "@frontify/guideline-blocks-shared": "workspace:*",
+        "@img-comparison-slider/react": "7.8.1",
+        "react": "17.0.2",
+        "react-dom": "17.0.2"
     },
     "devDependencies": {
         "@frontify/eslint-config-react": "0.15.5",
-        "@frontify/frontify-cli": "5.3.6",
-        "@frontify/guideline-blocks-settings": "0.25.10",
+        "@frontify/frontify-cli": "5.3.8",
+        "@frontify/guideline-blocks-settings": "0.25.11",
         "@types/react": "17.0.53",
         "@types/react-dom": "17.0.18",
         "autoprefixer": "10.4.13",
-        "eslint": "8.33.0",
-        "postcss": "8.4.19",
-        "prettier": "2.8.3",
+        "eslint": "8.34.0",
+        "eslint-plugin-notice": "0.9.10",
+        "postcss": "8.4.21",
+        "prettier": "2.8.4",
         "tailwind": "4.0.0",
-        "typescript": "4.9.4"
+        "typescript": "4.9.5"
     }
 }
