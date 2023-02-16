@@ -54,7 +54,12 @@ export const TileSettingsFlyout = ({
         fixedHeader={
             <div className="tw-flex tw-justify-between tw-w-full tw-bg-base tw-pl-6 tw-pr-3 tw-py-1.5 tw-items-center tw-border-b tw-border-b-line tw-border-b-solid">
                 <h1 className="tw-text-s tw-font-bold">Configure Tile</h1>
-                <Button icon={<IconCross />} emphasis={ButtonEmphasis.Weak} onClick={() => setIsOpen(false)} />
+                <Button
+                    icon={<IconCross />}
+                    emphasis={ButtonEmphasis.Weak}
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close tile settings"
+                />
             </div>
         }
     >
@@ -107,8 +112,9 @@ export const TileSettingsFlyout = ({
                         />
                     </>
                 )}
-                <InputLabel htmlFor="asset-replace">Link</InputLabel>
+                <InputLabel htmlFor="link-href">Link</InputLabel>
                 <TextInput
+                    id="link-href"
                     placeholder="https://www.example.com"
                     decorator={<IconLink />}
                     value={link?.href}
@@ -116,6 +122,7 @@ export const TileSettingsFlyout = ({
                 />
                 <Checkbox
                     label="Open link in new tab"
+                    id="link-target"
                     state={link?.target === '_blank' ? CheckboxState.Checked : CheckboxState.Unchecked}
                     onChange={(isChecked) => onLinkChange({ ...link, target: isChecked ? '_blank' : '_self' })}
                 />
@@ -123,6 +130,7 @@ export const TileSettingsFlyout = ({
             <div className="tw-w-full tw-border-b-line tw-border-b tw-border-b-solid" />
             <div className="tw-flex tw-flex-col tw-gap-4">
                 <Switch
+                    id="background-visibility"
                     label="Background"
                     size={SwitchSize.Small}
                     on={backgroundVisibility ?? false}
@@ -130,7 +138,7 @@ export const TileSettingsFlyout = ({
                 />
                 {backgroundVisibility && (
                     <ColorPickerFlyout
-                        id="image-background"
+                        id="background-color"
                         onSelect={onBackgroundColorChange}
                         currentColor={backgroundColor}
                         palettes={palettes}
@@ -141,6 +149,7 @@ export const TileSettingsFlyout = ({
                         <InputLabel htmlFor="display">Display</InputLabel>
                         <div className="tw-flex">
                             <Slider
+                                id="display"
                                 onChange={(id) => onDisplayChange(id as TileDisplay)}
                                 activeItemId={display ?? TileDisplay.Fill}
                                 items={[
