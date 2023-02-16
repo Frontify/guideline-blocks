@@ -60,6 +60,7 @@ export const TeaserTileToolbar = ({
             />
             <div className="tw-relative">
                 <TileSettingsFlyout
+                    //! TODO: Fix typing
                     {...tileSettingsFlyoutProps}
                     placement={FlyoutPlacement.BottomRight}
                     isOpen={isTopSettingsFlyoutOpen}

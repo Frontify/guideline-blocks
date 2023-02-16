@@ -3,7 +3,7 @@
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { FlyoutPlacement, FlyoutProps, Palette } from '@frontify/fondue';
 import { Color } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, DesignTokenName, Radius, TokenValues } from '@frontify/guideline-blocks-shared';
 import { ReactNode } from 'react';
 
 export enum SettingsEnum {
@@ -147,7 +147,8 @@ export type SortableTeaserTileProps = {
     isEditing: boolean;
     palettes: Nullable<Palette[]>;
     blockAssets: Record<string, Asset[]>;
-    updateAssetIdsFromKey: (key: string, newAssetIds: number[]) => Promise<void>;
+    updateAssetIdsFromKey: (key: string, newAssetIds: number[]) => Promise<void> | void;
+    designTokens: Nullable<Partial<Record<DesignTokenName, TokenValues>>>;
 };
 
 export type TeaserTileProps = SortableTeaserTileProps & {

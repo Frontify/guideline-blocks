@@ -14,7 +14,6 @@ import {
 
 import { useTileAsset, useTileStyles } from '../hooks';
 import { Link, TeaserTileProps, TileDisplay, TileType } from '../types';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { TeaserTileToolbar } from './TeaserTileToolbar';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 import { getImageSrc } from '../utils';
@@ -43,6 +42,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             isDragPreview,
             blockAssets,
             updateAssetIdsFromKey,
+            designTokens,
         },
         ref
     ) => {
@@ -53,15 +53,15 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             updateAssetIdsFromKey
         );
         const { type } = blockSettings;
+
         const [isPlaceholderImageFlyoutOpen, setIsPlaceholderImageFlyoutOpen] = useState(false);
-        const { designTokens } = useGuidelineDesignTokens();
-        const [toolbarFocus, setToolbarFocus] = useState(false);
+        const [isToolbarFocused, setToolbarFocus] = useState(false);
 
         const { height, textWrapper, tile, imageWrapper, image, imagePlaceholder, link, dragPreview } = useTileStyles(
             blockSettings,
             tileSettings,
             isEditing,
-            toolbarFocus,
+            isToolbarFocused,
             !!isDragPreview,
             !!replaceWithPlaceholder
         );
@@ -133,7 +133,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                         tileSettingsFlyoutProps={tileFlyoutProps}
                         onToolbarBlur={() => setToolbarFocus(false)}
                         onToolbarFocus={() => setToolbarFocus(true)}
-                        isToolbarFocused={toolbarFocus}
+                        isToolbarFocused={isToolbarFocused}
                         isDragging={isDragPreview}
                     />
                 )}
@@ -164,6 +164,11 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                                     {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
                                         <div
                                             {...props}
+                                            aria-label={
+                                                isPlaceholderImageFlyoutOpen
+                                                    ? 'Close tile settings'
+                                                    : 'Open tile settings'
+                                            }
                                             className={imagePlaceholder.className}
                                             style={{ minHeight: height }}
                                         >

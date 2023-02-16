@@ -7,7 +7,7 @@ export const useTileAsset = (
     appBridge: AppBridgeBlock,
     id: string,
     blockAssets: Record<string, Asset[]>,
-    updateAssetIdsFromKey: (key: string, newAssetIds: number[]) => Promise<void>
+    updateAssetIdsFromKey: (key: string, newAssetIds: number[]) => Promise<void> | void
 ) => {
     const [isAssetLoading, setIsAssetLoading] = useState(false);
     const [openFileDialog, { selectedFiles }] = useFileInput({});

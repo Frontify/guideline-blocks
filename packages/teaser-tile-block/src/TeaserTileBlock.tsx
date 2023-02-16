@@ -12,16 +12,24 @@ import { SortableContext } from '@dnd-kit/sortable';
 import { radiusMap, spacingMap } from './helpers';
 import { useDraggableGrid, useTileArray } from './hooks';
 import { SortableTeaserTile, TeaserTile, TileGrid } from './components';
+import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { useMemo } from 'react';
 
 export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { tiles, addTile, removeTile, updateTile, reorderTiles } = useTileArray(blockSettings, setBlockSettings);
-    const { dragContextProps, draggedTile } = useDraggableGrid(tiles, reorderTiles);
-
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { designTokens } = useGuidelineDesignTokens();
     const isEditing = useEditorState(appBridge);
     const { colorPalettes } = useColorPalettes(appBridge);
+
+    const { tiles, addTile, removeTile, updateTile, reorderTiles } = useTileArray(blockSettings, setBlockSettings);
+    const { dragContextProps, draggedTile } = useDraggableGrid(tiles, reorderTiles);
     const gridGap = blockSettings.spacing ? blockSettings.spacingCustom : spacingMap[blockSettings.spacingChoice];
+
+    const palettes = useMemo(
+        () => colorPalettes.map((palette) => ({ ...palette, title: palette.name })),
+        [colorPalettes]
+    );
 
     return (
         <DndContext {...dragContextProps}>
@@ -37,8 +45,9 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                             blockSettings={blockSettings}
                             onRemoveTile={removeTile}
                             isEditing={isEditing}
-                            palettes={colorPalettes.map((palette) => ({ ...palette, title: palette.name }))}
+                            palettes={palettes}
                             blockAssets={blockAssets}
+                            designTokens={designTokens}
                             updateAssetIdsFromKey={updateAssetIdsFromKey}
                         />
                     ))}
@@ -50,14 +59,21 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                             key={draggedTile.id}
                             appBridge={appBridge}
                             tileSettings={draggedTile.settings}
-                            onTileSettingsChange={() => ({})}
                             blockSettings={blockSettings}
-                            onRemoveTile={() => ({})}
                             isEditing={isEditing}
+                            designTokens={designTokens}
                             isDragPreview
-                            palettes={colorPalettes.map((palette) => ({ ...palette, title: palette.name }))}
+                            palettes={palettes}
                             blockAssets={blockAssets}
-                            updateAssetIdsFromKey={updateAssetIdsFromKey}
+                            updateAssetIdsFromKey={() =>
+                                console.warn('Interacting with drag preview, this change will not be saved.')
+                            }
+                            onTileSettingsChange={() =>
+                                console.warn('Interacting with drag preview, this change will not be saved.')
+                            }
+                            onRemoveTile={() =>
+                                console.warn('Interacting with drag preview, this change will not be saved.')
+                            }
                         />
                     ) : null}
                 </DragOverlay>
