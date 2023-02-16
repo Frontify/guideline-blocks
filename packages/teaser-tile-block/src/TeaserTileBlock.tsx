@@ -34,8 +34,8 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                     gridGap,
                     display: 'grid',
                     gridAutoFlow: 'row',
-                    gridTemplateRows: 'auto',
-                    gridTemplateColumns: `repeat(${blockSettings.columns}, 1fr)`,
+                    gridAutoRows: '1fr',
+                    gridTemplateColumns: `repeat(${blockSettings.columns}, calc(100% / ${blockSettings.columns}))`,
                 }}
             >
                 <SortableContext items={tiles}>
@@ -47,7 +47,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                             tileSettings={settings}
                             onTileSettingsChange={updateTile}
                             blockSettings={blockSettings}
-                            onRemoveTile={() => removeTile(id)}
+                            onRemoveTile={removeTile}
                             isEditing={isEditing}
                             palettes={colorPalettes.map((palette) => ({ ...palette, title: palette.name }))}
                             blockAssets={blockAssets}
