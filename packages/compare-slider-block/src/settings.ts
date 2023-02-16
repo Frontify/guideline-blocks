@@ -13,6 +13,7 @@ import {
 
 import { BorderStyle, Radius, getBorderRadiusSlider, radiusStyleMap } from '../../shared';
 import { Alignment, CaptionPlacement, Handle, Height } from './types';
+import { FileExtensionSets } from '@frontify/app-bridge';
 
 export const settings = defineSettings({
     basics: [
@@ -27,6 +28,7 @@ export const settings = defineSettings({
                     label: '',
                     size: AssetInputSize.Small,
                     objectTypes: [AssetChooserObjectType.ImageVideo],
+                    extensions: FileExtensionSets['Images'],
                 },
                 {
                     id: 'firstAssetHasCaption',
@@ -71,6 +73,7 @@ export const settings = defineSettings({
                     label: 'Second Image',
                     size: AssetInputSize.Small,
                     objectTypes: [AssetChooserObjectType.ImageVideo],
+                    extensions: FileExtensionSets['Images'],
                 },
                 {
                     id: 'secondAssetHasCaption',
