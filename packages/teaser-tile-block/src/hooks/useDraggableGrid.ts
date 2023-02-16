@@ -5,7 +5,6 @@ import {
     DragStartEvent,
     KeyboardSensor,
     PointerSensor,
-    UniqueIdentifier,
     closestCenter,
     useSensor,
     useSensors,
@@ -15,29 +14,24 @@ import { useState } from 'react';
 import { Nullable, Tile } from '../types';
 
 export const useDraggableGrid = (tiles: Tile[], updateTiles: (tiles: Tile[]) => void) => {
-    const [draggingTileId, setDraggingTileId] = useState<Nullable<UniqueIdentifier>>(null);
+    const [draggedTile, setDraggingTile] = useState<Nullable<Tile>>(null);
     const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
 
     const onDragStart = (event: DragStartEvent) => {
         const { active } = event;
-        setDraggingTileId(active.id);
+        setDraggingTile(tiles.find((tile) => tile.id === active.id) ?? null);
     };
 
     const onDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
         if (over && active.id !== over.id) {
-            const oldIndex = tiles?.findIndex((tile) => tile.id === active.id);
-            const newIndex = tiles?.findIndex((tile) => tile.id === over.id);
-            let sortedItems = tiles;
-            if (oldIndex !== undefined && newIndex !== undefined) {
-                sortedItems = arrayMove(tiles ?? [], oldIndex, newIndex);
-            }
-            updateTiles(sortedItems ?? []);
-            setDraggingTileId(null);
+            const oldIndex = tiles.findIndex((tile) => tile.id === active.id);
+            const newIndex = tiles.findIndex((tile) => tile.id === over.id);
+            const sortedItems = arrayMove(tiles, oldIndex, newIndex);
+            updateTiles(sortedItems);
+            setDraggingTile(null);
         }
     };
-
-    const draggedBlock = tiles?.find((block) => block.id === draggingTileId);
 
     return {
         dragContextProps: {
@@ -46,7 +40,6 @@ export const useDraggableGrid = (tiles: Tile[], updateTiles: (tiles: Tile[]) => 
             sensors,
             collisionDetection: closestCenter,
         },
-        draggedBlock,
-        draggingTileId,
+        draggedTile,
     };
 };

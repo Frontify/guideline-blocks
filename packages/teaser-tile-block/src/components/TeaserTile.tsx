@@ -83,14 +83,14 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             type,
             asset: tileAsset,
             backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
-            onLinkChange: (link) => onTileSettingsChange({ link }),
+            onLinkChange: (link) => onTileSettingsChange(id, { link }),
             backgroundVisibility: tileSettings.backgroundVisibility ?? blockSettings.background,
-            onDisplayChange: (display) => onTileSettingsChange({ display }),
+            onDisplayChange: (display) => onTileSettingsChange(id, { display }),
             isAssetLoading,
-            onBackgroundColorChange: (backgroundColor) => onTileSettingsChange({ backgroundColor }),
+            onBackgroundColorChange: (backgroundColor) => onTileSettingsChange(id, { backgroundColor }),
             onReplaceAssetFromUpload: openFileDialog,
             onUploadFile: uploadFile,
-            onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange({ backgroundVisibility }),
+            onBackgroundVisibilityChange: (backgroundVisibility) => onTileSettingsChange(id, { backgroundVisibility }),
             onReplaceAssetFromWorkspace: onOpenAssetChooser,
             palettes,
             disabled: !isEditing,
@@ -105,10 +105,10 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     value={tileSettings.title ?? undefined}
                     placeholder="Teaser Title"
                     plugins={titlePluginComposer}
-                    onBlur={(title) => onTileSettingsChange({ title })}
+                    onBlur={(title) => onTileSettingsChange(id, { title })}
                 />
             ),
-            [designTokens, isEditing, tileSettings.title]
+            [designTokens, isEditing, tileSettings.title, onTileSettingsChange, id]
         );
         const descriptionRichTextEditor = useMemo(
             () => (
@@ -118,10 +118,10 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     designTokens={designTokens ?? undefined}
                     value={tileSettings.description ?? undefined}
                     placeholder="Add a description"
-                    onBlur={(description) => onTileSettingsChange({ description })}
+                    onBlur={(description) => onTileSettingsChange(id, { description })}
                 />
             ),
-            [designTokens, isEditing, tileSettings.description]
+            [designTokens, isEditing, tileSettings.description, onTileSettingsChange, id]
         );
 
         return (
@@ -140,7 +140,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                         {isEditing && (
                             <TeaserTileToolbar
                                 draggableProps={draggableProps}
-                                onRemoveSelf={onRemoveTile}
+                                onRemoveSelf={() => onRemoveTile(id)}
                                 tileSettingsFlyoutProps={tileFlyoutProps}
                                 onToolbarBlur={() => setToolbarFocus(false)}
                                 onToolbarFocus={() => setToolbarFocus(true)}

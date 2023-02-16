@@ -16,7 +16,7 @@ import { SortableTeaserTile, TeaserTile } from './components';
 export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { tiles, addTile, removeTile, updateTile, reorderTiles } = useTileArray(blockSettings, setBlockSettings);
-    const { dragContextProps, draggedBlock, draggingTileId } = useDraggableGrid(tiles, reorderTiles);
+    const { dragContextProps, draggedTile } = useDraggableGrid(tiles, reorderTiles);
 
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -45,7 +45,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                             key={id}
                             appBridge={appBridge}
                             tileSettings={settings}
-                            onTileSettingsChange={(partialSettings) => updateTile(id, partialSettings)}
+                            onTileSettingsChange={updateTile}
                             blockSettings={blockSettings}
                             onRemoveTile={() => removeTile(id)}
                             isEditing={isEditing}
@@ -56,12 +56,12 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                     ))}
                 </SortableContext>
                 <DragOverlay>
-                    {draggedBlock ? (
+                    {draggedTile ? (
                         <TeaserTile
-                            id={draggedBlock.id}
-                            key={draggingTileId}
+                            id={draggedTile.id}
+                            key={draggedTile.id}
                             appBridge={appBridge}
-                            tileSettings={draggedBlock.settings}
+                            tileSettings={draggedTile.settings}
                             onTileSettingsChange={() => ({})}
                             blockSettings={blockSettings}
                             onRemoveTile={() => ({})}

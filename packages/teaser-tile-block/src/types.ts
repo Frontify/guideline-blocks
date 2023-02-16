@@ -135,8 +135,8 @@ export type SortableTeaserTileProps = {
     blockSettings: Settings;
     appBridge: AppBridgeBlock;
     tileSettings: TileSettings;
-    onTileSettingsChange: (partialSettings: Partial<TileSettings>) => void;
-    onRemoveTile: () => void;
+    onTileSettingsChange: (id: string, partialSettings: Partial<TileSettings>) => void;
+    onRemoveTile: (id: string) => void;
     isEditing: boolean;
     palettes: Nullable<Palette[]>;
     blockAssets: Record<string, Asset[]>;

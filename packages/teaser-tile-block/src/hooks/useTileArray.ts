@@ -15,7 +15,7 @@ const INIT_TILE_SETTINGS: TileSettings = {
 
 export const useTileArray = (blockSettings: Settings, setBlockSettings: (settings: Partial<Settings>) => void) => {
     // Required workaround for bug in clarify
-    const [tiles, setTiles] = useState(blockSettings.tiles);
+    const [tiles, setTiles] = useState<Tile[] | undefined>(blockSettings.tiles);
     const setInternalTiles = useCallback(
         (newTiles: Tile[]) => {
             setBlockSettings({ tiles: newTiles });
@@ -24,19 +24,22 @@ export const useTileArray = (blockSettings: Settings, setBlockSettings: (setting
         [setBlockSettings, setTiles]
     );
 
-    const updateTile = (id: string, partialSettings: Partial<TileSettings>) => {
-        if (!tiles) {
-            return;
-        }
-        const newTiles = tiles.map((tile) => {
-            if (tile.id === id) {
-                return { ...tile, settings: { ...tile.settings, ...partialSettings } };
-            } else {
-                return tile;
+    const updateTile = useCallback(
+        (id: string, partialSettings: Partial<TileSettings>) => {
+            if (!tiles) {
+                return;
             }
-        });
-        setInternalTiles(newTiles);
-    };
+            const newTiles = tiles.map((tile) => {
+                if (tile.id === id) {
+                    return { ...tile, settings: { ...tile.settings, ...partialSettings } };
+                } else {
+                    return tile;
+                }
+            });
+            setInternalTiles(newTiles);
+        },
+        [setInternalTiles, tiles]
+    );
 
     const removeTile = (id: string) => {
         const newTiles = (tiles ?? [])?.filter((tile) => tile.id !== id);
