@@ -22,6 +22,8 @@ export const ImageStage = ({
     hasRadius,
     radiusChoice,
     radiusValue,
+    allowFullScreen,
+    allowZooming,
 }: ImageStageProps) => {
     const { stageRef, containerRef, imageRef, isFullScreen, setIsFullScreen, onZoomIn, onZoomOut, setIsImageLoaded } =
         useImageStage({ height, hasLimitedOptions, isMobile });
@@ -52,11 +54,19 @@ export const ImageStage = ({
                 </div>
                 {!hasLimitedOptions && (
                     <>
-                        <DrawFullScreenActionButton
-                            isFullScreen={isFullScreen}
-                            onClick={() => setIsFullScreen(!isFullScreen)}
-                        />
-                        <DrawZoomInOutButtons onClickZoomIn={onZoomIn} onClickZoomOut={onZoomOut} />
+                        {allowFullScreen && (
+                            <DrawFullScreenActionButton
+                                isFullScreen={isFullScreen}
+                                onClick={() => setIsFullScreen(!isFullScreen)}
+                            />
+                        )}
+                        {allowZooming && (
+                            <DrawZoomInOutButtons
+                                isFullScreen={isFullScreen}
+                                onClickZoomIn={onZoomIn}
+                                onClickZoomOut={onZoomOut}
+                            />
+                        )}
                     </>
                 )}
             </div>
