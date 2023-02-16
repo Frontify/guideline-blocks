@@ -13,6 +13,8 @@ import { TextPosition } from './types';
 
 export const AUDIO_ID = 'audio';
 
+export const AUDIO_EXTENSIONS = [FileExtension.Flac, FileExtension.Mp3, FileExtension.Ogg, FileExtension.Wav];
+
 export const settings = defineSettings({
     basics: [
         {
@@ -21,7 +23,7 @@ export const settings = defineSettings({
             label: 'Audio',
             info: 'Select an audio file to play.',
             size: AssetInputSize.Small,
-            extensions: [FileExtension.Flac, FileExtension.Mp3, FileExtension.Ogg, FileExtension.Wav],
+            extensions: AUDIO_EXTENSIONS,
             objectTypes: [AssetChooserObjectType.File],
         },
     ],

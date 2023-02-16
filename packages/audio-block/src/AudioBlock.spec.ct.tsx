@@ -6,8 +6,8 @@ import { AudioBlock } from './AudioBlock';
 import { TextPosition } from './types';
 import { AUDIO_ID } from './settings';
 const AudioBlockSelector = '[data-test-id="audio-block"]';
-const AudioBlockContainerSelector = '[data-test-id="audio-block-container"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
+const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';
 
 describe('Audio Block', () => {
     it('renders an audio block', () => {
@@ -22,7 +22,7 @@ describe('Audio Block', () => {
 
         mount(<AudioBlockWithStubs />);
         cy.get(AudioBlockSelector).should('exist');
-        cy.get(AudioBlockSelector).contains('Add Audio asset').should('exist');
+        cy.get(UploadPlaceholderSelector).should('not.exist');
     });
 
     it('renders an empty audio block in edit mode', () => {
@@ -32,7 +32,7 @@ describe('Audio Block', () => {
 
         mount(<AudioBlockWithStubs />);
         cy.get(AudioBlockSelector).should('exist');
-        cy.get(AudioBlockSelector).contains('Add Audio asset').should('exist');
+        cy.get(UploadPlaceholderSelector).should('exist');
     });
 
     it('renders an audio block with an audio asset in view mode', () => {
@@ -118,7 +118,7 @@ describe('Audio Block', () => {
             },
         });
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockContainerSelector).should('have.class', 'tw-flex-col-reverse');
+        cy.get(AudioBlockSelector).should('have.class', 'tw-flex-col-reverse');
     });
 
     it('renders an audio block with an audio asset in view mode with text position below', () => {
@@ -132,6 +132,6 @@ describe('Audio Block', () => {
             },
         });
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockContainerSelector).should('not.have.class', 'tw-flex-col-reverse');
+        cy.get(AudioBlockSelector).should('not.have.class', 'tw-flex-col-reverse');
     });
 });
