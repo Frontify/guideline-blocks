@@ -12,6 +12,7 @@ export type BlockSettings = {
     firstAssetCaption: string;
     firstAssetCaptionPlacement: CaptionPlacement;
     firstAssetHasCaption: boolean;
+    firstImageHasStrikethrough: boolean;
     handle: Handle;
     hasCustomBorderRadius: boolean;
     hasCustomHeight: boolean;
@@ -19,6 +20,7 @@ export type BlockSettings = {
     secondAssetCaption: string;
     secondAssetCaptionPlacement: CaptionPlacement;
     secondAssetHasCaption: boolean;
+    secondImageHasStrikethrough: boolean;
     sliderColor: Color;
     sliderDescription: string;
     sliderName: string;

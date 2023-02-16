@@ -11,6 +11,7 @@ import {
 } from '@frontify/app-bridge';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    Alignment,
     BlockSettings,
     Handle,
     Height,
@@ -28,6 +29,7 @@ import {
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import { Icon, IconEnum, IconPlus24, IconSize, RichTextEditor } from '@frontify/fondue';
+import { Strikethrough } from './Strikethrough';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -175,6 +177,30 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     blockSettings.secondAssetHasCaption &&
                     blockSettings.secondAssetCaption &&
                     renderSecondSlotCaption()}
+
+                {slot === SliderImageSlot.First && blockSettings.firstImageHasStrikethrough && (
+                    <div
+                        className={
+                            blockSettings.alignment === Alignment.Horizontal
+                                ? 'tw-absolute tw-h-full tw-w-[50%] tw-top-0 tw-left-0'
+                                : 'tw-absolute tw-h-[50%] tw-w-full tw-top-0 tw-left-0'
+                        }
+                    >
+                        <Strikethrough />
+                    </div>
+                )}
+
+                {slot === SliderImageSlot.Second && blockSettings.secondImageHasStrikethrough && (
+                    <div
+                        className={
+                            blockSettings.alignment === Alignment.Horizontal
+                                ? 'tw-absolute tw-h-full tw-w-[50%] tw-top-0 tw-left-[50%]'
+                                : 'tw-absolute tw-h-[50%] tw-w-full tw-top-[50%] tw-left-0'
+                        }
+                    >
+                        <Strikethrough />
+                    </div>
+                )}
             </div>
         );
     };
