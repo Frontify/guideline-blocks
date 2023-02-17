@@ -5,13 +5,10 @@ import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
-    Button,
-    ButtonSize,
     Color,
     Divider,
     DividerStyle,
     FlyoutFooter,
-    FlyoutPlacement,
     IconCross,
     IconPlus,
     IconSize,
@@ -39,7 +36,6 @@ import {
 } from '@frontify/fondue';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
-import { IconSide20 } from '.pnpm/@frontify+fondue@11.3.0_angvksxlvvfhyjj3xhcshgfg2m/node_modules/@frontify/fondue';
 
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
@@ -56,6 +52,19 @@ const rgba2hex = (rgba: string, forceRemoveAlpha = false) => {
         .join('')}`; // Puts the array to togehter to a string
 };
 
+const emptyStateColors = [
+    {
+        hex: '#F1F1F1',
+        name: 'Light gray',
+        position: 0,
+    },
+    {
+        hex: '#FFFFFF',
+        name: 'White',
+        position: 100,
+    },
+];
+
 export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -64,6 +73,14 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const addRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
+    const initialColors =
+        !blockSettings.gradientColors || !blockSettings.gradientColors?.length
+            ? emptyStateColors
+            : blockSettings.gradientColors;
+    const [colors, setColors] = useState<GradientColor[]>(initialColors);
+    const gradientOrientation = blockSettings.isOrientationCustom
+        ? blockSettings.orientationCustom
+        : gradientOrientationValues[blockSettings.orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
     const [currentColor, setCurrentColor] = useState<Color | null>(null);
     const [currentColorPosition, setCurrentColorPosition] = useState<number>();
     const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
@@ -73,16 +90,8 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         ? blockSettings.heightCustom
         : gradientHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE];
 
-    // TODO - use this for the 'deg' value
-    const gradientOrientation = blockSettings.isOrientationCustom
-        ? blockSettings.orientationCustom
-        : gradientOrientationValues[blockSettings.orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
-
     const getCopyButtonText = () =>
         isCopied ? <>{iconsMap[IconEnum.CheckMark16]} Copied</> : <>{iconsMap[IconEnum.Clipboard16]} Copy</>;
-
-    // TODO - use this to update the CSS snippet when gradient changes
-    // const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
 
     const handleCopy = async () => {
         await navigator.clipboard.writeText(blockSettings.contentValue || '');
@@ -90,18 +99,6 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         debounce(() => {
             setIsCopied(false);
         }, 2000)();
-    };
-
-    const parseGradientColorsToString = (colors: GradientColor[]) => {
-        // TODO: make this not hardcoded
-        const orientation = 90;
-        let colorsAsString = '';
-
-        for (const color of colors) {
-            colorsAsString += `, ${color.hex} ${color.position}%`;
-        }
-
-        return `linear-gradient(${orientation}deg${colorsAsString})`;
     };
 
     useEffect(() => {
@@ -159,23 +156,31 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 gradientColors: defaultGradientColors,
             });
         }
-
-        if (!blockSettings.contentValue) {
-            setBlockSettings({
-                contentValue: parseGradientColorsToString(defaultGradientColors),
-            });
-        }
     });
+
+    useEffect(() => {
+        const parseGradientColorsToString = () => {
+            let colorsAsString = '';
+
+            for (const color of colors) {
+                colorsAsString += `, ${color.hex} ${color.position}%`;
+            }
+
+            return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
+        };
+
+        setBlockSettings({
+            gradientColors: colors,
+            contentValue: parseGradientColorsToString(),
+        });
+    }, [gradientOrientation, colors]);
 
     const addNewColor = (color: GradientColor) => {
         const newGradientColors = [...(blockSettings.gradientColors ?? []), color].sort((a, b) => {
             return a.position - b.position;
         });
 
-        setBlockSettings({
-            gradientColors: newGradientColors,
-            contentValue: parseGradientColorsToString(newGradientColors),
-        });
+        setColors(newGradientColors);
     };
 
     const CSSBlock = (

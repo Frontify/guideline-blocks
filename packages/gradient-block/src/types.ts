@@ -21,9 +21,9 @@ export type Settings = {
     isHeightCustom?: boolean;
     heightCustom?: string;
     heightSimple?: GradientHeight;
-    isOrientationCustom?: boolean;
-    orientationCustom?: string;
-    orientationSimple?: GradientOrientation;
+    isOrientationCustom: boolean;
+    orientationCustom: number;
+    orientationSimple: GradientOrientation;
     displayCss?: boolean;
     content?: string;
     gradientColors?: GradientColor[];
@@ -38,6 +38,6 @@ export const gradientHeightValues: Record<GradientHeight, string> = {
 };
 
 export const gradientOrientationValues: Record<GradientOrientation, number> = {
-    [GradientOrientation.Vertical]: 90,
-    [GradientOrientation.Horizontal]: 0,
+    [GradientOrientation.Vertical]: 0,
+    [GradientOrientation.Horizontal]: 90,
 };
