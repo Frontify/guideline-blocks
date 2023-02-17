@@ -15,7 +15,7 @@ export const settings = defineSettings({
                 {
                     value: RecordingMode.CameraAndAudio,
                     icon: IconEnum.PlayCircle16,
-                    label: 'Camera and Audio',
+                    label: 'Video and Audio',
                 },
                 {
                     value: RecordingMode.AudioOnly,
