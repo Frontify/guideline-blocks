@@ -122,14 +122,21 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 const sliderLeft = rect.x;
                 const sliderRight = rect.x + rect.width;
 
+                const relativeMouseX = mouseX - sliderLeft;
+
                 const sliderTop = rect.height / 2 + rect.top - BUFFER_PX;
                 const sliderBottom = rect.height / 2 + rect.top + BUFFER_PX;
 
                 const isWithinWidth = mouseX >= sliderLeft && mouseX <= sliderRight;
                 const isWithinHeight = mouseY >= sliderTop && mouseY <= sliderBottom;
 
-                if (isWithinWidth && isWithinHeight) {
-                    setAddButtonPosition({ left: mouseX - sliderLeft - ADD_BUTTON_SIZE_PX / 2, top: 9 });
+                const percentages = colors.map((color) => color.position);
+
+                const points = percentages.map((p) => (p * rect.width) / 100);
+                const isTouchingABreakpoint = points.find((p) => !!(p - 4 < relativeMouseX && p + 12 > relativeMouseX));
+
+                if (isWithinWidth && isWithinHeight && !isTouchingABreakpoint) {
+                    setAddButtonPosition({ left: relativeMouseX - ADD_BUTTON_SIZE_PX / 2, top: 9 });
                     setShowAddButton(true);
                 } else {
                     setShowAddButton(false);
