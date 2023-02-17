@@ -133,6 +133,14 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             }, 50)();
         };
 
+        document.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, [showColorModal]);
+
+    useEffect(() => {
         const defaultGradientColors = [
             {
                 hex: '#FFFFFF',
@@ -157,13 +165,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 contentValue: parseGradientColorsToString(defaultGradientColors),
             });
         }
-
-        document.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, [showColorModal]);
+    });
 
     const addNewColor = (color: GradientColor) => {
         const newGradientColors = [...(blockSettings.gradientColors ?? []), color].sort((a, b) => {
@@ -407,13 +409,15 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
-            <div
-                className="tw-w-full tw-h-4"
-                style={{
-                    height: gradientBlockHeight,
-                    background: blockSettings.contentValue,
-                }}
-            ></div>
+            <div className="tw-border tw-border-line-strong tw-rounded-[4px] tw-p-[1px]">
+                <div
+                    className="tw-w-full tw-h-4 tw-rounded-[3px]"
+                    style={{
+                        height: gradientBlockHeight,
+                        background: blockSettings.contentValue,
+                    }}
+                ></div>
+            </div>
             {!isEditing && (
                 <div className="tw-pt-[9px]">
                     {blockSettings?.gradientColors?.map((color, index) => (
