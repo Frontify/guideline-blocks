@@ -111,7 +111,6 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         text !== blockSettings.text && setBlockSettings({ text });
     };
     const saveTitle = (title: string) => {
-        console.log(title);
         title !== blockSettings.title && setBlockSettings({ title });
     };
 
@@ -170,7 +169,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                 padding: paddingStyleMap[Padding.Medium],
             }}
         >
-            <div className="tw-mb-8 tw-flex tw-gap-8">
+            <div className="tw-mb-8 sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
                 <div className="tw-flex-1 tw-space-y-2">
                     {(hasRichTextValue(blockSettings.title) || isEditing) && (
                         <RichTextEditor
@@ -235,11 +234,13 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
             )}
 
             {currentAssets?.length > 0 ? (
-                <span>{currentAssets.length} assets</span>
+                <span>
+                    {currentAssets.length} asset{currentAssets.length > 1 && <>s</>}
+                </span>
             ) : (
                 <span>Add assets to make them available</span>
             )}
-            <div className="tw-mt-2.5 tw-grid tw-grid-cols-6 tw-gap-4">
+            <div className="tw-mt-2.5 tw-grid tw-grid-cols-3 xs:tw-grid-cols-4 md:tw-grid-cols-6 tw-gap-4">
                 {currentAssets
                     ? currentAssets.map((asset: Asset) => (
                           <div key={asset.id} className="tw-aspect-square tw-group tw-relative">
