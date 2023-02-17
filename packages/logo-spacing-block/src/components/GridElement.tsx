@@ -101,9 +101,9 @@ export const GridElement = ({
                 width,
             }}
         >
-            {children && labelColor && convertToNumber(width) > 0 && (
+            {/* {children && labelColor && convertToNumber(width) > 0 && (
                 <div style={{ color: toRgbaString(labelColor), ...getTextRotation(position) }}>{children}</div>
-            )}
+            )} */}
         </span>
     );
 };

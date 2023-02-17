@@ -56,7 +56,7 @@ export const LogoGrid = ({
                         <GridElement
                             {...gridProps}
                             labelColor={labelColor}
-                            position={GridElementPosition.Right}
+                            position={GridElementPosition.Left}
                             width={spaceWidthPercentage}
                         >
                             {content.right}
@@ -75,7 +75,7 @@ export const LogoGrid = ({
                         <GridElement
                             {...gridProps}
                             labelColor={labelColor}
-                            position={GridElementPosition.Left}
+                            position={GridElementPosition.Right}
                             width={spaceWidthPercentage}
                         >
                             {content.left}
