@@ -84,6 +84,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             ? emptyStateColors
             : blockSettings.gradientColors;
     const [colors, setColors] = useState<GradientColor[]>(initialColors);
+    // const [colors, setColors] = useState<GradientColor[]>(emptyStateColors);
     const gradientOrientation = blockSettings.isOrientationCustom
         ? blockSettings.orientationCustom
         : gradientOrientationValues[blockSettings.orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
@@ -372,7 +373,8 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <span className="tw-ml-1">
                                     <TooltipIcon
                                         tooltip={{
-                                            content: 'Hammertime',
+                                            content:
+                                                'It determines when the transition from one color to the new color is complete.',
                                         }}
                                         triggerIcon={<IconQuestionMarkCircle16 />}
                                         iconSize={IconSize.Size12}
