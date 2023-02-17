@@ -66,6 +66,9 @@ const getChunksFromString = (st: string, chunkSize: number) => st.match(new RegE
 const convertHexUnitTo256 = (hexStr: string) => parseInt(hexStr.repeat(2 / hexStr.length), 16);
 
 const getAlphafloat = (a: number) => {
+    if (!a || a > 255 || a < 1) {
+        return 255;
+    }
     return a / 255;
 };
 
@@ -229,6 +232,26 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         setColors(newGradientColors);
     };
 
+    const editColor = (color: GradientColor) => {
+        const newGradientColors = colors.map((item) => {
+            if (item.hex === color.hex) {
+                return {
+                    hex: rgba2hex(
+                        `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${
+                            (currentColor?.alpha ? currentColor.alpha : 255) / 255
+                        })`
+                    ),
+                    name: currentColor?.name ?? '',
+                    position: item.position,
+                } as GradientColor;
+            } else {
+                return item;
+            }
+        });
+
+        setColors(newGradientColors);
+    };
+
     const CSSBlock = (
         <div
             data-test-id="gradient-css-snippet-block"
@@ -342,7 +365,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         setCurrentColorPosition((position / gradientBlockRef?.current?.getBoundingClientRect().width) * 100);
     };
 
-    const ColorPicker = () => {
+    const ColorPicker = ({ color, editing }: { color?: GradientColor; editing?: boolean }) => {
         return (
             <div className="tw-z-[100]">
                 <Flyout
@@ -366,16 +389,22 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                     emphasis: ButtonEmphasis.Strong,
                                     children: 'Close',
                                     onClick: () => {
-                                        if (!currentColorPosition) {
-                                            return;
+                                        if (!editing) {
+                                            if (!currentColorPosition) {
+                                                return;
+                                            }
+                                            addNewColor({
+                                                hex: rgba2hex(
+                                                    `rgba(${currentColor?.red}, ${currentColor?.green}, ${
+                                                        currentColor?.blue
+                                                    }, ${(currentColor?.alpha ? currentColor.alpha : 255) / 255})`
+                                                ),
+                                                name: currentColor?.name ?? '',
+                                                position: currentColorPosition,
+                                            });
+                                        } else {
+                                            color && editColor(color);
                                         }
-                                        addNewColor({
-                                            hex: rgba2hex(
-                                                `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
-                                            ),
-                                            name: currentColor?.name ?? '',
-                                            position: currentColorPosition,
-                                        });
                                         setShowColorModal(false);
                                         setCurrentColorPosition(undefined);
                                     },
@@ -488,7 +517,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     <IconTrashBin size={IconSize.Size12} />
                 </Button>
 
-                {showColorModal && currentlyEditingColor === color.hex && <ColorPicker />}
+                {showColorModal && currentlyEditingColor === color.hex && <ColorPicker editing={true} color={color} />}
             </div>
         );
     };
