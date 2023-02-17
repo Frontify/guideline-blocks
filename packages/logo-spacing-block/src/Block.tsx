@@ -2,6 +2,7 @@ import { Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
 import { CLEAR_SPACE_PERCENT_SIZE, CONTAINER_SIZE, LOGO_ID } from './constants';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { LogoSpacingSettings, LogoSpacingType, Property } from './types';
+import { convertToNumber } from './utils/strings';
 
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import { LogoGrid } from './components/LogoGrid';
@@ -58,10 +59,6 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         setHeight(logoRef.current.offsetHeight + convertToNumber(lineWidth) * 2);
     }, [width, isLogoReady, lineWidth]);
 
-    const convertToNumber = (value: string) => {
-        return +value.replace(/px|%/, '');
-    };
-
     const getContainerSizeByPercentage = (percent: number) => {
         const containerSize = clearSpacePropertyChoice === Property.Width ? width : height;
         return (containerSize * percent) / 100;
@@ -115,7 +112,7 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
             };
         }
         const clearSpacePercentage =
-            clearSpaceChoice === 'none' ? '' : `${CLEAR_SPACE_PERCENT_SIZE[clearSpaceChoice]}%`;
+            clearSpaceChoice === 'none' ? '0' : `${CLEAR_SPACE_PERCENT_SIZE[clearSpaceChoice]}%`;
         return {
             bottom: clearSpacePercentage,
             left: clearSpacePercentage,
@@ -129,21 +126,13 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         if (clearSpacePropertyChoice === Property.Height) {
             const percentTop = convertToNumber(percents.top);
             const percentBottom = convertToNumber(percents.bottom);
-            const percent = 100 - percentTop - percentBottom;
-            const ratio = (height * 100) / width;
+            const ratio = height / width;
+            const percent = 100 - (percentTop + percentBottom) * ratio;
 
-            return percent * ratio;
+            return percent;
         }
         const percentLeft = convertToNumber(percents.left);
         const percentRight = convertToNumber(percents.right);
-
-        // 1000 x 500
-
-        // Quantos % a altura é da largura
-        // Quantos % da largura a gente precisa
-        // ratio = h * 100 / w
-        // pH = 100 - pL - pR
-        // h * ratio / 100
 
         return 100 - percentLeft - percentRight;
     };

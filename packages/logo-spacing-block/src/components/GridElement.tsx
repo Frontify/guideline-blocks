@@ -1,4 +1,5 @@
 import { GridElementPosition, GridElementProps } from '../types';
+import { convertToNumber } from '../utils/strings';
 
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
@@ -90,7 +91,7 @@ export const GridElement = ({
 }: GridElementProps) => {
     return (
         <span
-            className="tw-justify-center tw-flex tw-items-center"
+            className="tw-justify-center tw-flex tw-items-center tw-overflow-hidden"
             id={position}
             style={{
                 ...borderStyle,
@@ -100,9 +101,9 @@ export const GridElement = ({
                 width,
             }}
         >
-            {/* {children && labelColor && (
+            {children && labelColor && convertToNumber(width) > 0 && (
                 <div style={{ color: toRgbaString(labelColor), ...getTextRotation(position) }}>{children}</div>
-            )} */}
+            )}
         </span>
     );
 };
