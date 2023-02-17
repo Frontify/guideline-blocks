@@ -17,6 +17,7 @@ import {
     BorderStyle,
     Padding,
     borderStyleMap,
+    hasRichTextValue,
     paddingStyleMap,
     radiusStyleMap,
     toRgbaString,
@@ -57,8 +58,8 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
-    const [openFileDialog, { selectedFiles }] = useFileInput({});
-    const [dropedFiles, setDropedFiles] = useState<FileList | null>(null);
+    const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: true });
+    const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
     const [isDownloadingAssets, setIsDownloadingAssets] = useState<boolean>(false);
 
@@ -97,7 +98,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         language: 'en',
     };
 
-    const generateBulkDownload = async (downloadAssets: Asset[]) => {
+    const generateBulkDownload = (downloadAssets: Asset[]) => {
         if (downloadAssets.length === undefined || downloadAssets.length <= 0) {
             return;
         }
@@ -110,6 +111,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         text !== blockSettings.text && setBlockSettings({ text });
     };
     const saveTitle = (title: string) => {
+        console.log(title);
         title !== blockSettings.title && setBlockSettings({ title });
     };
 
@@ -133,12 +135,12 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     useEffect(() => {
-        if (dropedFiles) {
+        if (droppedFiles) {
             setIsUploadingAssets(true);
-            uploadFile(dropedFiles);
+            uploadFile(droppedFiles);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dropedFiles]);
+    }, [droppedFiles]);
 
     useEffect(() => {
         if (selectedFiles) {
@@ -169,31 +171,44 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
             }}
         >
             <div className="tw-mb-8 tw-flex tw-gap-8">
-                <div className="tw-flex-1">
-                    <h3 style={{ marginBottom: 8 }}>
+                <div className="tw-flex-1 tw-space-y-2">
+                    {(hasRichTextValue(blockSettings.title) || isEditing) && (
                         <RichTextEditor
                             designTokens={designTokens ?? undefined}
                             value={blockSettings.title ?? DEFAULT_CONTENT_VALUE}
                             readonly={!isEditing}
                             onTextChange={saveTitle}
                             onBlur={saveTitle}
-                            placeholder="Add a title here ..."
+                            placeholder={isEditing ? 'Add a title here ...' : ''}
                             border={false}
                         />
-                    </h3>
+                    )}
 
-                    <RichTextEditor
-                        designTokens={designTokens ?? undefined}
-                        readonly={!isEditing}
-                        onTextChange={saveText}
-                        onBlur={saveText}
-                        placeholder="Add a description here ..."
-                        value={blockSettings.text}
-                        border={false}
-                    />
+                    {(hasRichTextValue(blockSettings.text) || isEditing) && (
+                        <RichTextEditor
+                            designTokens={designTokens ?? undefined}
+                            readonly={!isEditing}
+                            onTextChange={saveText}
+                            onBlur={saveText}
+                            placeholder={isEditing ? 'Add a description here ...' : ''}
+                            value={blockSettings.text}
+                            border={false}
+                        />
+                    )}
                 </div>
                 <div className="tw-flex-none">
-                    <Button onClick={() => generateBulkDownload(currentAssets)}>Download package</Button>
+                    <button
+                        disabled={
+                            isDownloadingAssets ||
+                            isUploadingAssets ||
+                            currentAssets.length === undefined ||
+                            currentAssets.length <= 0
+                        }
+                        onClick={() => generateBulkDownload(currentAssets)}
+                        style={designTokens?.buttonPrimary}
+                    >
+                        Download package
+                    </button>
                 </div>
             </div>
 
@@ -265,7 +280,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                     <BlockInjectButton
                         onAssetChooseClick={onOpenAssetChooser}
                         onUploadClick={openFileDialog}
-                        onDrop={setDropedFiles}
+                        onDrop={setDroppedFiles}
                         isLoading={isUploadingAssets}
                         label="Add or drop your assets here"
                         icon={<IconPlus24 />}

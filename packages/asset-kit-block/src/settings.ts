@@ -1,7 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color, SettingBlock, defineSettings } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import {
+    Radius,
+    getBorderRadiusSettings,
+    getBorderRadiusSlider,
+    getBorderSettings,
+} from '@frontify/guideline-blocks-shared';
 
 export const ASSET_SETTINGS_ID = 'images';
 export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
@@ -39,28 +44,33 @@ export const settings = defineSettings({
             label: 'Block',
             blocks: [
                 backgroundColor('blocks', false),
-                getBorderSettings({ id: 'blocks' }),
-                getBorderRadiusSettings({ id: 'blocks', dependentSettingId: 'hasBorder_blocks' }),
+                getBorderSettings({ id: 'blocks', defaultValue: true }),
+                {
+                    ...getBorderRadiusSettings({ id: 'blocks' }),
+                    off: [getBorderRadiusSlider('radiusChoice_blocks', Radius.Medium)],
+                    show: (bundle) =>
+                        !!(
+                            bundle.getBlock('hasBorder_blocks')?.value || bundle.getBlock('hasBackground_blocks')?.value
+                        ),
+                },
             ],
         },
-        // {
-        //     id: 'pressKitSectionsSection',
-        //     type: 'sectionHeading',
-        //     label: 'Section',
-        //     blocks: [
-        //         backgroundColor('sections'),
-        //         getBorderSettings({ id: 'sectionsBorder' }),
-        //         getBorderRadiusSettings({ dependentSettingId: 'hasBorder_sectionsBorder' }),
-        //     ],
-        // },
         {
             id: 'thumbnailsSection',
             type: 'sectionHeading',
             label: 'Thumbnails',
             blocks: [
                 backgroundColor('thumbnails'),
-                getBorderSettings({ id: 'thumbnails' }),
-                getBorderRadiusSettings({ id: 'thumbnails', dependentSettingId: 'hasBorder_thumbnails' }),
+                getBorderSettings({ id: 'thumbnails', defaultValue: true }),
+                {
+                    ...getBorderRadiusSettings({ id: 'thumbnails' }),
+                    off: [getBorderRadiusSlider('radiusChoice_thumbnails', Radius.Small)],
+                    show: (bundle) =>
+                        !!(
+                            bundle.getBlock('hasBorder_thumbnails')?.value ||
+                            bundle.getBlock('hasBackground_thumbnails')?.value
+                        ),
+                },
             ],
         },
     ],
