@@ -21,7 +21,7 @@ export const drawAudioRipple = async (audioElement: HTMLAudioElement, rippleElem
     let direction = 1;
 
     const step = async () => {
-        direction = animateRipple(audioAnalyser, ctx, direction, 5, 25);
+        direction = animateRipple(audioAnalyser, ctx, direction, 5, 20);
         requestAnimationFrame(step);
     };
 

@@ -129,7 +129,7 @@ export const Recorder = ({
     return (
         <div className="tw-flex tw-flex-col tw-items-center tw-font-sans" ref={parentRef}>
             <>
-                <canvas ref={rippleRef} style={{ bottom: '15%' }} className="tw-absolute tw-z-50"></canvas>
+                <canvas ref={rippleRef} style={{ bottom: '12%' }} className="tw-absolute tw-z-50"></canvas>
                 <Mask shape={maskShape} size={size} border={maskBorder}>
                     {state !== 'initializing' && state !== 'permissions-error' ? (
                         <CountdownOverlay
