@@ -41,6 +41,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                 />
                 <div className="tw-flex-none">
                     <button
+                        data-test-id="asset-kit-block-download-button"
                         disabled={
                             isDownloadingAssets ||
                             isUploadingAssets ||

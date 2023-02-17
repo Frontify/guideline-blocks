@@ -11,6 +11,7 @@ type DownloadMessageProps = {
 export const DownloadMessage: FC<DownloadMessageProps> = ({ blockStyle }) => {
     return (
         <div
+            data-test-id="asset-kit-download-message"
             style={{
                 ...blockStyle,
                 padding: paddingStyleMap[Padding.Small],

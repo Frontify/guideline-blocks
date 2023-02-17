@@ -1,82 +1,100 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-// /* (c) Copyright Frontify Ltd., all rights reserved. */
-//
 import { mount } from 'cypress/react';
-// import { BlockProps } from '@frontify/guideline-blocks-settings';
-// import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { AssetKitBlock } from './AssetKitBlock';
-import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-// import { ASSET_ID } from './settings';
-// import { BlockPreview } from './types';
-//
+import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { ASSET_SETTINGS_ID } from './settings';
+
 const MAIN_BLOCK_SELECTOR = '[data-test-id="asset-kit-block"]';
-// const EMPTY_BLOCK_SELECTOR = '[data-test-id="asset-kit-empty-block"]';
-// const IMAGE_PREVIEW_SELECTOR = '[data-test-id="asset-kit-image-preview"]';
-// const LIVE_PREVIEW_SELECTOR = '[data-test-id="asset-kit-live-preview"]';
-// const FULL_SCREEN_SELECTOR = '[data-test-id="asset-kit-full-screen"]';
-//
+const ASSET_KIT_BLOCK_TITLE = '[data-test-id="asset-kit-block-title"]';
+const ASSET_KIT_BLOCK_DESCRIPTION = '[data-test-id="asset-kit-block-description"]';
+const ASSET_KIT_DOWNLOAD_MESSAGE = '[data-test-id="asset-kit-download-message"]';
+const ASSET_KIT_BLOCK_DOWNLOAD_BUTTON = '[data-test-id="asset-kit-block-download-button"]';
+const ASSET_KIT_BLOCK_THUMBNAIL = '[data-test-id="asset-kit-block-thumbnail"]';
+const ASSET_KIT_BLOCK_REMOVE_THUMBNAIL = '[data-test-id="asset-kit-block-remove-thumbnail"]';
+
 describe('AssetKit Block', () => {
     it('renders a AssetKit block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock);
         mount(<AssetKitBlockWithStubs />);
         cy.get(MAIN_BLOCK_SELECTOR).should('exist');
     });
+
+    it('should hide the information section if no information is provided', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                title: '',
+                description: '',
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(ASSET_KIT_BLOCK_TITLE).should('not.exist');
+        cy.get(ASSET_KIT_BLOCK_DESCRIPTION).should('not.exist');
+    });
+
+    it('should show the information section if in edit mode', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            editorState: true,
+            blockSettings: {
+                title: '',
+                description: '',
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(ASSET_KIT_BLOCK_TITLE).should('exist');
+        cy.get(ASSET_KIT_BLOCK_DESCRIPTION).should('exist');
+    });
+
+    it('should display the information message component when downloading and download the file', () => {
+        cy.intercept('POST', '/api/project/*/bulk-download-token', {
+            body: {
+                data: { token: 'TEST_TOKEN' },
+            },
+        });
+        cy.intercept('POST', '/api/bulk-download', {
+            body: {
+                data: { signature: 'TEST_SIGNATURE', download_url: 'http://TEST_URL' },
+            },
+        });
+        cy.intercept('GET', '/api/bulk-download/*', {
+            body: {
+                data: { download_url: 'http://TEST_URL' },
+            },
+        });
+        cy.window().then((win) => {
+            cy.stub(win, 'open').as('Open');
+        });
+
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(ASSET_KIT_BLOCK_DOWNLOAD_BUTTON).click();
+        cy.get(ASSET_KIT_DOWNLOAD_MESSAGE).should('exist');
+        cy.get('@Open').should('have.been.calledOnceWith', 'http://TEST_URL');
+    });
+
+    it('should display assets', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(ASSET_KIT_BLOCK_THUMBNAIL).should('have.length', 2);
+    });
+
+    it('should remove assets correctly in edit mode', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            editorState: true,
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(ASSET_KIT_BLOCK_REMOVE_THUMBNAIL).first().find('[data-test-id="button"]').click({ force: true });
+        cy.get(ASSET_KIT_BLOCK_THUMBNAIL).should('have.length', 1);
+    });
 });
-//
-//     it('renders a AssetKit empty block on edit', () => {
-//         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, { editorState: true });
-//         mount(<AssetKitBlockWithStubs />);
-//         cy.get(EMPTY_BLOCK_SELECTOR).should('exist');
-//     });
-//
-//     it('triggers openAssetChooser mock', () => {
-//         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs<BlockProps>(AssetKitBlock, {
-//             editorState: true,
-//             openAssetChooser: cy.stub().as('onClickOpenAssetChooser'),
-//         });
-//         mount(<AssetKitBlockWithStubs />);
-//         cy.get(EMPTY_BLOCK_SELECTOR).click();
-//         cy.get('@onClickOpenAssetChooser').should('have.been.calledOnce');
-//     });
-//
-//     it('renders a AssetKit image preview', () => {
-//         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-//             blockAssets: {
-//                 [ASSET_ID]: [AssetDummy.with(345)],
-//             },
-//             editorState: true,
-//         });
-//         mount(<AssetKitBlockWithStubs />);
-//         cy.get(IMAGE_PREVIEW_SELECTOR).should('exist');
-//     });
-//
-//     it('renders a AssetKit Live iframe preview', () => {
-//         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-//             blockAssets: {
-//                 [ASSET_ID]: [AssetDummy.with(345)],
-//             },
-//             blockSettings: { assetKitPreviewId: BlockPreview.Live },
-//             editorState: true,
-//         });
-//         mount(<AssetKitBlockWithStubs />);
-//         cy.get(LIVE_PREVIEW_SELECTOR).should('exist');
-//     });
-//
-//     it('toggles AssetKit Live preview Full screen', () => {
-//         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-//             blockAssets: {
-//                 [ASSET_ID]: [AssetDummy.with(345)],
-//             },
-//             blockSettings: { assetKitPreviewId: BlockPreview.Live, allowFullScreen: true },
-//             editorState: true,
-//         });
-//         mount(<AssetKitBlockWithStubs />);
-//         cy.get(LIVE_PREVIEW_SELECTOR).should('exist');
-//         cy.get(LIVE_PREVIEW_SELECTOR).find('button').click();
-//         cy.get(FULL_SCREEN_SELECTOR).should('exist');
-//         cy.get(FULL_SCREEN_SELECTOR).find('button').click({ force: true });
-//         cy.get(FULL_SCREEN_SELECTOR).should('not.exist');
-//         cy.get(LIVE_PREVIEW_SELECTOR).should('exist');
-//     });
-// });

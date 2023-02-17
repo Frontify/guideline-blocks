@@ -13,7 +13,7 @@ type ThumbnailItemProps = {
 
 export const ThumbnailItem: FC<ThumbnailItemProps> = ({ asset, isEditing, onRemoveAsset, thumbnailStyle }) => {
     return (
-        <div className="tw-aspect-square tw-group tw-relative">
+        <div data-test-id="asset-kit-block-thumbnail" className="tw-aspect-square tw-group tw-relative">
             <img
                 className="tw-object-scale-down tw-w-full tw-h-full"
                 src={asset.previewUrl}
@@ -21,7 +21,10 @@ export const ThumbnailItem: FC<ThumbnailItemProps> = ({ asset, isEditing, onRemo
                 alt={asset.title}
             />
             {isEditing && (
-                <div className="tw-hidden group-hover:tw-block tw-absolute tw-top-0.5 tw-right-0.5">
+                <div
+                    className="tw-hidden group-hover:tw-block tw-absolute tw-top-0.5 tw-right-0.5"
+                    data-test-id="asset-kit-block-remove-thumbnail"
+                >
                     <Button
                         size={ButtonSize.Small}
                         rounding={ButtonRounding.Medium}

@@ -32,27 +32,31 @@ export const InformationSection: FC<InformationSectionProps> = ({
     return (
         <div className="tw-flex-1 tw-space-y-2">
             {(hasRichTextValue(title) || isEditing) && (
-                <RichTextEditor
-                    designTokens={designTokens ?? undefined}
-                    value={title ?? DEFAULT_CONTENT_VALUE}
-                    readonly={!isEditing}
-                    onTextChange={saveTitle}
-                    onBlur={saveTitle}
-                    placeholder={isEditing ? 'Add a title here ...' : ''}
-                    border={false}
-                />
+                <div data-test-id="asset-kit-block-title">
+                    <RichTextEditor
+                        designTokens={designTokens ?? undefined}
+                        value={title ?? DEFAULT_CONTENT_VALUE}
+                        readonly={!isEditing}
+                        onTextChange={saveTitle}
+                        onBlur={saveTitle}
+                        placeholder={isEditing ? 'Add a title here ...' : ''}
+                        border={false}
+                    />
+                </div>
             )}
 
             {(hasRichTextValue(description) || isEditing) && (
-                <RichTextEditor
-                    designTokens={designTokens ?? undefined}
-                    readonly={!isEditing}
-                    onTextChange={saveDescription}
-                    onBlur={saveDescription}
-                    placeholder={isEditing ? 'Add a description here ...' : ''}
-                    value={description}
-                    border={false}
-                />
+                <div data-test-id="asset-kit-block-description">
+                    <RichTextEditor
+                        designTokens={designTokens ?? undefined}
+                        readonly={!isEditing}
+                        onTextChange={saveDescription}
+                        onBlur={saveDescription}
+                        placeholder={isEditing ? 'Add a description here ...' : ''}
+                        value={description}
+                        border={false}
+                    />
+                </div>
             )}
         </div>
     );
