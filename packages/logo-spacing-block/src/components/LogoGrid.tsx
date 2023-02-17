@@ -10,7 +10,6 @@ export const LogoGrid = ({
     bgColor,
     borderSettings,
     containerHeight,
-    containerWidth,
     content,
     gridTemplateColumns,
     gridTemplateRows,
@@ -21,6 +20,11 @@ export const LogoGrid = ({
         borderStyle: LINE_STYLE[lineStyle],
         borderColor: toRgbaString(lineColor),
     } as unknown as CSSProperties;
+    const gridProps = {
+        bgColor,
+        borderStyle,
+        borderWidth: lineWidth,
+    };
     return (
         <div className="tw-w-full tw-flex tw-justify-center">
             {containerHeight > 0 && (
@@ -29,22 +33,12 @@ export const LogoGrid = ({
                     style={{
                         gridTemplateColumns,
                         gridTemplateRows,
-                        width: `${containerWidth}px`,
                         minHeight: '100%',
                     }}
                 >
+                    <GridElement {...gridProps} col="1" position={GridElementPosition.TopLeft} row="1" />
                     <GridElement
-                        bgColor={bgColor}
-                        borderStyle={borderStyle}
-                        borderWidth={lineWidth}
-                        col="1"
-                        position={GridElementPosition.TopLeft}
-                        row="1"
-                    />
-                    <GridElement
-                        bgColor={bgColor}
-                        borderStyle={borderStyle}
-                        borderWidth={lineWidth}
+                        {...gridProps}
                         col="2"
                         labelColor={labelColor}
                         position={GridElementPosition.Top}
@@ -52,18 +46,9 @@ export const LogoGrid = ({
                     >
                         {content.top}
                     </GridElement>
+                    <GridElement {...gridProps} col="3" position={GridElementPosition.TopRight} row="1" />
                     <GridElement
-                        bgColor={bgColor}
-                        borderStyle={borderStyle}
-                        borderWidth={lineWidth}
-                        col="3"
-                        position={GridElementPosition.TopRight}
-                        row="1"
-                    />
-                    <GridElement
-                        bgColor={bgColor}
-                        borderStyle={borderStyle}
-                        borderWidth={lineWidth}
+                        {...gridProps}
                         col="3"
                         labelColor={labelColor}
                         position={GridElementPosition.Right}
@@ -72,9 +57,7 @@ export const LogoGrid = ({
                         {content.right}
                     </GridElement>
                     <GridElement
-                        bgColor={bgColor}
-                        borderStyle={borderStyle}
-                        borderWidth={lineWidth}
+                        {...gridProps}
                         col="1"
                         labelColor={labelColor}
                         position={GridElementPosition.Left}
@@ -93,18 +76,9 @@ export const LogoGrid = ({
                             data-test-id="example-asset-upload-image"
                         />
                     </div>
+                    <GridElement {...gridProps} col="1" position={GridElementPosition.BottomLeft} row="3" />
                     <GridElement
-                        bgColor={bgColor}
-                        borderStyle={borderStyle}
-                        borderWidth={lineWidth}
-                        col="1"
-                        position={GridElementPosition.BottomLeft}
-                        row="3"
-                    />
-                    <GridElement
-                        bgColor={bgColor}
-                        borderStyle={borderStyle}
-                        borderWidth={lineWidth}
+                        {...gridProps}
                         col="2"
                         labelColor={labelColor}
                         position={GridElementPosition.Bottom}
@@ -112,14 +86,7 @@ export const LogoGrid = ({
                     >
                         {content.bottom}
                     </GridElement>
-                    <GridElement
-                        bgColor={bgColor}
-                        borderStyle={borderStyle}
-                        borderWidth={lineWidth}
-                        col="3"
-                        position={GridElementPosition.BottomRight}
-                        row="3"
-                    />
+                    <GridElement {...gridProps} col="3" position={GridElementPosition.BottomRight} row="3" />
                 </div>
             )}
         </div>

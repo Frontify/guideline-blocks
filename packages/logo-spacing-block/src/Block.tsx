@@ -82,7 +82,7 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         const firstColumn = getTemplateSize(clearSpaceLeft) - convertToNumber(offsetLeft);
         const thirdColumn = getTemplateSize(clearSpaceRight) - convertToNumber(offsetRight);
 
-        return `${firstColumn}px auto ${thirdColumn}px`;
+        return `${firstColumn}px ${width}px ${thirdColumn}px`;
     };
 
     const getUsedHeight = () => {
@@ -127,7 +127,7 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
     return (
         <div
             ref={blockContainer}
-            className="tw-flex tw-relative tw-justify-center"
+            className="tw-flex tw-relative tw-justify-center tw-border tw-pt-10 tw-pb-10"
             data-test-id="example-asset-upload-block"
             style={{ minHeight: `${getUsedHeight().total}px`, marginTop: `${convertToNumber(offsetTop)}px` }}
         >
@@ -135,47 +135,54 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
                 blockAssets[LOGO_ID].map((asset: Asset) => (
                     <Fragment key={asset.id}>
                         {isContainerReady && (
-                            <div
-                                style={{
-                                    marginTop: `${convertToNumber(offsetTop) * -1}px`,
-                                }}
-                            >
-                                <LogoGrid
-                                    asset={asset}
-                                    bgColor={clearSpaceBgColor}
-                                    borderSettings={{
-                                        lineColor,
-                                        lineStyle,
-                                        lineWidth,
+                            <div className="tw-absolute tw-left-1/2 tw-top-10 tw--translate-x-1/2">
+                                <div
+                                    style={{
+                                        marginTop: `${convertToNumber(offsetTop) * -1}px`,
                                     }}
-                                    containerHeight={height}
-                                    containerWidth={width}
-                                    content={getClearSpaceContent()}
-                                    gridTemplateColumns={getTemplateColumn()}
-                                    gridTemplateRows={getTemplateRow()}
-                                    labelColor={labelColor}
-                                />
+                                >
+                                    <LogoGrid
+                                        asset={asset}
+                                        bgColor={clearSpaceBgColor}
+                                        borderSettings={{
+                                            lineColor,
+                                            lineStyle,
+                                            lineWidth,
+                                        }}
+                                        containerHeight={height}
+                                        // containerWidth={width}
+                                        content={getClearSpaceContent()}
+                                        gridTemplateColumns={getTemplateColumn()}
+                                        gridTemplateRows={getTemplateRow()}
+                                        labelColor={labelColor}
+                                    />
+                                </div>
                             </div>
                         )}
-                        <div className="tw-absolute tw-opacity-1 tw-w-full">
-                            <div
-                                ref={logoRef}
-                                className="tw-absolute tw-left-1/2 tw-top-0 tw--translate-x-1/2"
-                                style={{
-                                    width: `${width}px`,
-                                    paddingTop: `${getTemplateSize(clearSpaceTop) + 2}px`,
-                                    paddingRight: `${getTemplateSize(clearSpaceRight) + 2}px`,
-                                    paddingBottom: `${getTemplateSize(clearSpaceBottom) + 2}px`,
-                                    paddingLeft: `${getTemplateSize(clearSpaceLeft) + 2}px`,
-                                }}
-                            >
-                                <img className="tw-w-full" onLoad={updateDimensions} src={asset.previewUrl} />
-                            </div>
+                        {/* <div ref={logoRef} className="tw-absolute tw-left-1/2 tw-top-0 tw--translate-x-1/2"> */}
+                        <div
+                            ref={logoRef}
+                            style={{
+                                minWidth: `${width}px`,
+                                paddingTop: `${getTemplateSize(clearSpaceTop) + 2}px`,
+                                paddingRight: `${getTemplateSize(clearSpaceRight) + 2}px`,
+                                paddingBottom: `${getTemplateSize(clearSpaceBottom) + 2}px`,
+                                paddingLeft: `${getTemplateSize(clearSpaceLeft) + 2}px`,
+                                width: `${width}px`,
+                            }}
+                        >
+                            <img
+                                className="tw-w-full"
+                                onLoad={updateDimensions}
+                                style={{ width: `${width}px` }}
+                                src={asset.previewUrl}
+                            />
                         </div>
+                        {/* </div> */}
                     </Fragment>
                 ))
             ) : (
-                <div className=" tw-bg-black-5 tw-w-full tw-flex tw-items-center">
+                <div className="tw-bg-black-5 tw-w-full tw-flex tw-items-center">
                     <div className="tw-font-semibold">Add logo asset</div>
                     <div>or drop it here</div>
                 </div>

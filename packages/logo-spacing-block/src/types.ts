@@ -57,7 +57,7 @@ export type LogoGridProps = {
     bgColor: Color;
     borderSettings: BorderSettings;
     containerHeight: number;
-    containerWidth: number;
+    // containerWidth: number;
     content: {
         bottom: string;
         left: string;
