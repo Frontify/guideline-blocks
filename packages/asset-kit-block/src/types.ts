@@ -22,7 +22,7 @@ export type Settings = {
     hasRadius_thumbnails?: boolean;
     radiusChoice_thumbnails: Radius;
     radiusValue_thumbnails?: number;
-    text?: string;
+    description?: string;
     title?: string;
 };
 

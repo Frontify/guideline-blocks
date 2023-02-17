@@ -1,0 +1,84 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
+import { IconPlus24 } from '@frontify/fondue';
+import { FC, useEffect, useState } from 'react';
+import { ASSET_SETTINGS_ID } from '../settings';
+import { AppBridgeBlock, Asset, useAssetUpload, useFileInput } from '@frontify/app-bridge';
+
+type AssetSelectionProps = {
+    appBridge: AppBridgeBlock;
+    isUploadingAssets: boolean;
+    setIsUploadingAssets: (isUploadingAssets: boolean) => void;
+    addAssetIdsToKey: (key: string, assetIds: number[]) => Promise<void>;
+    currentAssets: Asset[];
+};
+
+export const AssetSelection: FC<AssetSelectionProps> = ({
+    appBridge,
+    isUploadingAssets,
+    setIsUploadingAssets,
+    addAssetIdsToKey,
+    currentAssets,
+}) => {
+    const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: true });
+    const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
+        onUploadProgress: () => !isUploadingAssets && setIsUploadingAssets(true),
+    });
+
+    const onOpenAssetChooser = () => {
+        appBridge.openAssetChooser(
+            (assetsObject) => {
+                setIsUploadingAssets(true);
+                const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
+                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
+                appBridge.closeAssetChooser();
+            },
+            {
+                multiSelection: true,
+                selectedValueIds: currentAssets.map((asset) => asset.id),
+            }
+        );
+    };
+
+    useEffect(() => {
+        if (droppedFiles) {
+            setIsUploadingAssets(true);
+            uploadFile(droppedFiles);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [droppedFiles]);
+
+    useEffect(() => {
+        if (selectedFiles) {
+            setIsUploadingAssets(true);
+            uploadFile(selectedFiles);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedFiles]);
+
+    useEffect(() => {
+        if (doneAll && uploadResults) {
+            (async (assetsObject) => {
+                const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
+                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
+            })(uploadResults);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [doneAll, uploadResults]);
+
+    return (
+        <div className="tw-h-[4.5rem] tw-mt-7">
+            <BlockInjectButton
+                onAssetChooseClick={onOpenAssetChooser}
+                onUploadClick={openFileDialog}
+                onDrop={setDroppedFiles}
+                isLoading={isUploadingAssets}
+                label="Add or drop your assets here"
+                icon={<IconPlus24 />}
+                fillParentContainer={true}
+            />
+        </div>
+    );
+};
