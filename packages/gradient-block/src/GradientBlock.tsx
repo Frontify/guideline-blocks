@@ -5,13 +5,19 @@ import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    Button,
+    ButtonRounding,
+    ButtonSize,
+    ButtonType,
     Color,
     Divider,
     DividerStyle,
     FlyoutFooter,
     IconCross,
+    IconPen,
     IconPlus,
     IconSize,
+    IconTrashBin,
     TextInput,
     Tooltip,
     TooltipAlignment,
@@ -325,7 +331,18 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                     emphasis: ButtonEmphasis.Strong,
                                     children: 'Close',
                                     onClick: () => {
+                                        if (!currentColorPosition) {
+                                            return;
+                                        }
+                                        addNewColor({
+                                            hex: rgba2hex(
+                                                `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
+                                            ),
+                                            name: currentColor?.name ?? '',
+                                            position: currentColorPosition,
+                                        });
                                         setShowColorModal(false);
+                                        setCurrentColorPosition(undefined);
                                     },
                                 },
                             ]}
@@ -334,23 +351,6 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     legacyFooter={false}
                     isOpen={true}
                     contentMinHeight={195}
-                    onCancel={() => {
-                        setShowColorModal(false);
-                    }}
-                    onConfirm={() => {
-                        if (!currentColorPosition) {
-                            return;
-                        }
-                        addNewColor({
-                            hex: rgba2hex(
-                                `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
-                            ),
-                            name: currentColor?.name ?? '',
-                            position: currentColorPosition,
-                        });
-                        setShowColorModal(false);
-                        setCurrentColorPosition(undefined);
-                    }}
                     onOpenChange={() => true}
                     trigger={null}
                 >
@@ -415,6 +415,44 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         );
     };
 
+    const EditAndDeleteBox = () => {
+        return (
+            <div className="tw-absolute tw-flex tw-bg-base tw-border tw-border-box-selected-strong tw-rounded tw-w-[63px] tw-h-7 tw-top-[40px] tw-left-[-15px]">
+                <Button
+                    emphasis={ButtonEmphasis.Strong}
+                    hugWidth
+                    inverted
+                    onClick={() => {
+                        setShowColorModal(true);
+                    }}
+                    rounding={ButtonRounding.Medium}
+                    size={ButtonSize.Small}
+                    solid
+                    style={ButtonStyle.Default}
+                    type={ButtonType.Button}
+                >
+                    <IconPen size={IconSize.Size12} />
+                </Button>
+                <Button
+                    emphasis={ButtonEmphasis.Strong}
+                    hugWidth
+                    inverted
+                    onClick={() => {
+                        console.log('on click');
+                    }}
+                    rounding={ButtonRounding.Medium}
+                    size={ButtonSize.Small}
+                    solid
+                    style={ButtonStyle.Default}
+                    type={ButtonType.Button}
+                >
+                    <IconTrashBin size={IconSize.Size12} />
+                </Button>
+                {showColorModal && <ColorPicker />}
+            </div>
+        );
+    };
+
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
             <div className="tw-border tw-border-line-strong tw-rounded-[4px] tw-p-[1px]">
@@ -467,14 +505,17 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                         key={index}
                                         alignment={TooltipAlignment.Middle}
                                         content={
-                                            <div
-                                                className={joinClassNames([
-                                                    'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
-                                                ])}
-                                                style={{
-                                                    backgroundColor: color.hex,
-                                                }}
-                                            ></div>
+                                            <>
+                                                <div
+                                                    className={joinClassNames([
+                                                        'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
+                                                    ])}
+                                                    style={{
+                                                        backgroundColor: color.hex,
+                                                    }}
+                                                ></div>
+                                                <EditAndDeleteBox />
+                                            </>
                                         }
                                         heading=""
                                         open
@@ -496,14 +537,17 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                         key={index}
                                         alignment={TooltipAlignment.Middle}
                                         content={
-                                            <div
-                                                className={joinClassNames([
-                                                    'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
-                                                ])}
-                                                style={{
-                                                    backgroundColor: color.hex,
-                                                }}
-                                            ></div>
+                                            <>
+                                                <div
+                                                    className={joinClassNames([
+                                                        'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
+                                                    ])}
+                                                    style={{
+                                                        backgroundColor: color.hex,
+                                                    }}
+                                                ></div>
+                                                <EditAndDeleteBox />
+                                            </>
                                         }
                                         heading=""
                                         open
@@ -525,14 +569,17 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                         key={index}
                                         alignment={TooltipAlignment.Middle}
                                         content={
-                                            <div
-                                                className={joinClassNames([
-                                                    'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
-                                                ])}
-                                                style={{
-                                                    backgroundColor: color.hex,
-                                                }}
-                                            ></div>
+                                            <>
+                                                <div
+                                                    className={joinClassNames([
+                                                        'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
+                                                    ])}
+                                                    style={{
+                                                        backgroundColor: color.hex,
+                                                    }}
+                                                ></div>
+                                                <EditAndDeleteBox />
+                                            </>
                                         }
                                         heading=""
                                         position={TooltipPosition.Bottom}
