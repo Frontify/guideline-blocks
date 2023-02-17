@@ -143,13 +143,13 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     useEffect(() => {
         const defaultGradientColors = [
             {
-                hex: '#FFFFFF',
-                name: 'White',
+                hex: '#F1F1F1',
+                name: 'Light gray',
                 position: 0,
             },
             {
-                hex: '#000000',
-                name: 'Black',
+                hex: '#FFFFFF',
+                name: 'White',
                 position: 100,
             },
         ];
@@ -364,8 +364,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <span className="tw-ml-1">
                                     <TooltipIcon
                                         tooltip={{
-                                            content:
-                                                'There is no automatic conversion for this color space. Please enter the value manually.',
+                                            content: 'Hammertime',
                                         }}
                                         triggerIcon={<IconQuestionMarkCircle16 />}
                                         iconSize={IconSize.Size12}
