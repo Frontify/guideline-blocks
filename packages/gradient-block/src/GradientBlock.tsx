@@ -58,6 +58,37 @@ const rgba2hex = (rgba: string, forceRemoveAlpha = false) => {
         .join('')}`; // Puts the array to togehter to a string
 };
 
+// eslint-disable-next-line unicorn/no-unsafe-regex, unicorn/better-regex
+const isValidHex = (hex: string) => /^#([A-Fa-f0-9]{3,4}){1,2}$/.test(hex);
+
+const getChunksFromString = (st: string, chunkSize: number) => st.match(new RegExp(`.{${chunkSize}}`, 'g'));
+
+const convertHexUnitTo256 = (hexStr: string) => parseInt(hexStr.repeat(2 / hexStr.length), 16);
+
+const getAlphafloat = (a: number) => {
+    return a / 255;
+};
+
+const hex2rgba = (hex: string) => {
+    if (!isValidHex(hex)) {
+        throw new Error('Invalid HEX');
+    }
+    const chunkSize = Math.floor((hex.length - 1) / 3);
+    const hexArr = getChunksFromString(hex.slice(1), chunkSize);
+
+    if (!hexArr) {
+        return;
+    }
+
+    const [r, g, b, a] = hexArr.map(convertHexUnitTo256);
+    return {
+        red: r,
+        green: g,
+        blue: b,
+        alpha: getAlphafloat(a),
+    };
+};
+
 const emptyStateColors = [
     {
         hex: '#F1F1F1',
@@ -79,6 +110,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const addRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
+    const [currentlyEditingColor, setCurrentlyEditingColor] = useState<string>();
     const initialColors =
         !blockSettings.gradientColors || !blockSettings.gradientColors?.length
             ? emptyStateColors
@@ -298,16 +330,11 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         if (!gradientBlockRef.current) {
             return;
         }
-        console.log('pos:', position);
         setShowColorModal(true);
         setCurrentColorPosition((position / gradientBlockRef?.current?.getBoundingClientRect().width) * 100);
     };
 
     const ColorPicker = () => {
-        if (!addRef.current) {
-            return null;
-        }
-
         return (
             <div className="tw-z-[100]">
                 <Flyout
@@ -415,7 +442,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         );
     };
 
-    const EditAndDeleteBox = () => {
+    const EditAndDeleteBox = ({ color }: { color: GradientColor }) => {
         return (
             <div className="tw-absolute tw-flex tw-bg-base tw-border tw-border-box-selected-strong tw-rounded tw-w-[63px] tw-h-7 tw-top-[40px] tw-left-[-15px]">
                 <Button
@@ -423,7 +450,9 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     hugWidth
                     inverted
                     onClick={() => {
+                        setCurrentlyEditingColor(color.hex);
                         setShowColorModal(true);
+                        setCurrentColor(hex2rgba(color.hex) as Color);
                     }}
                     rounding={ButtonRounding.Medium}
                     size={ButtonSize.Small}
@@ -433,6 +462,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 >
                     <IconPen size={IconSize.Size12} />
                 </Button>
+
                 <Button
                     emphasis={ButtonEmphasis.Strong}
                     hugWidth
@@ -448,7 +478,8 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 >
                     <IconTrashBin size={IconSize.Size12} />
                 </Button>
-                {showColorModal && <ColorPicker />}
+
+                {showColorModal && currentlyEditingColor === color.hex && <ColorPicker />}
             </div>
         );
     };
@@ -495,8 +526,9 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     <div className="tw-relative" ref={dividerRef}>
                         <Divider height="36px" style={DividerStyle.Solid} />
                         {showAddButton && <AddButton />}
-                        {showColorModal && <ColorPicker />}
+                        {showColorModal && addRef.current && <ColorPicker />}
                     </div>
+
                     {blockSettings?.gradientColors?.map((color, index) => (
                         <>
                             {index === 0 && (
@@ -514,7 +546,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                                         backgroundColor: color.hex,
                                                     }}
                                                 ></div>
-                                                <EditAndDeleteBox />
+                                                <EditAndDeleteBox color={color} />
                                             </>
                                         }
                                         heading=""
@@ -546,7 +578,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                                         backgroundColor: color.hex,
                                                     }}
                                                 ></div>
-                                                <EditAndDeleteBox />
+                                                <EditAndDeleteBox color={color} />
                                             </>
                                         }
                                         heading=""
@@ -578,7 +610,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                                         backgroundColor: color.hex,
                                                     }}
                                                 ></div>
-                                                <EditAndDeleteBox />
+                                                <EditAndDeleteBox color={color} />
                                             </>
                                         }
                                         heading=""
