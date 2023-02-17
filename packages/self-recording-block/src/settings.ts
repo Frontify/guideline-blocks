@@ -57,7 +57,7 @@ export const settings = defineSettings({
         },
         {
             id: 'cameraAsset',
-            label: 'Camera',
+            label: 'Avatar',
             type: 'assetInput',
             show: (bundle) => bundle.getBlock('recordingMode')?.value === RecordingMode.AudioOnly,
         },
