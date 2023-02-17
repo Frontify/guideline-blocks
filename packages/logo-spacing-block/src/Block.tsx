@@ -27,8 +27,8 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
             labelColor,
             logoSpacingType,
             offsetBottom,
-            offsetLeft,
-            offsetRight,
+            // offsetLeft,
+            // offsetRight,
             offsetTop,
         },
     ] = useBlockSettings<LogoSpacingSettings>(appBridge);
@@ -75,13 +75,6 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         return getContainerSizeByPercentage(percent);
     };
 
-    // const getTemplateColumn = () => {
-    //     const firstColumn = getTemplateSize(clearSpaceLeft) - convertToNumber(offsetLeft);
-    //     const thirdColumn = getTemplateSize(clearSpaceRight) - convertToNumber(offsetRight);
-
-    //     return `${firstColumn}px ${width}px ${thirdColumn}px`;
-    // };
-
     const getUsedHeight = () => {
         const firstRow = getTemplateSize(clearSpaceTop);
         const thirdRow = getTemplateSize(clearSpaceBottom);
@@ -95,12 +88,6 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
             total: height + firstRow + thirdRow + convertToNumber(offsetTop) + convertToNumber(offsetBottom),
         };
     };
-
-    // const getTemplateRow = () => {
-    //     const heights = getUsedHeight();
-
-    //     return `${heights.firstRow}px calc(100% - ${heights.usedHeight}px) ${heights.thirdRow}px`;
-    // };
 
     const getClearSpaceContent = () => {
         if (hasCustomClearSpace) {
@@ -205,7 +192,7 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
                     </Fragment>
                 ))
             ) : (
-                <div className="tw-bg-black-5 tw-w-full tw-flex tw-items-center">
+                <div className="tw-bg-black-5 tw-w-full tw-flex tw-flex-col tw-items-center">
                     <div className="tw-font-semibold">Add logo asset</div>
                     <div>or drop it here</div>
                 </div>

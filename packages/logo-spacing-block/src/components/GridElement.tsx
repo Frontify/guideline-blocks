@@ -1,5 +1,5 @@
 import { GridElementPosition, GridElementProps } from '../types';
-import { convertToNumber } from '../utils/strings';
+// import { convertToNumber } from '../utils/strings';
 
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
@@ -58,34 +58,34 @@ const getElementBorders = (position: GridElementPosition, borderWidth: string) =
     }
 };
 
-const getTextRotation = (position: GridElementPosition) => {
-    switch (position) {
-        case GridElementPosition.Bottom:
-            return {
-                transform: 'rotate(180deg)',
-            };
-        case GridElementPosition.Right:
-            return {
-                transform: 'rotate(90deg)',
-            };
-        case GridElementPosition.Left:
-            return {
-                transform: 'rotate(-90deg)',
-            };
-        case GridElementPosition.Top:
-        default:
-            return {
-                transform: 'rotate(0deg)',
-            };
-    }
-};
+// const getTextRotation = (position: GridElementPosition) => {
+//     switch (position) {
+//         case GridElementPosition.Bottom:
+//             return {
+//                 transform: 'rotate(180deg)',
+//             };
+//         case GridElementPosition.Right:
+//             return {
+//                 transform: 'rotate(90deg)',
+//             };
+//         case GridElementPosition.Left:
+//             return {
+//                 transform: 'rotate(-90deg)',
+//             };
+//         case GridElementPosition.Top:
+//         default:
+//             return {
+//                 transform: 'rotate(0deg)',
+//             };
+//     }
+// };
 
 export const GridElement = ({
     bgColor,
     borderStyle,
     borderWidth,
     children,
-    labelColor,
+    // labelColor,
     position,
     width,
 }: GridElementProps) => {
