@@ -103,7 +103,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
         }
         setIsDownloadingAssets(true);
         data.asset_ids = downloadAssets.map((asset) => asset.id);
-        generateBulkDownloadRequest(appBridge.getBlockId(), data).then(() => setIsDownloadingAssets(false));
+        generateBulkDownloadRequest(appBridge.getProjectId(), data).then(() => setIsDownloadingAssets(false));
     };
 
     const saveText = (text: string) => {
