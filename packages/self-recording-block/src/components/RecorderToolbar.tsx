@@ -51,7 +51,7 @@ export const RecorderToolbar = ({
                 </Button>
             ) : null}
 
-            {state === 'recording' ? (
+            {state === 'uploading' ? (
                 <div className="tw-px-3 tw-pb-1">
                     <Text>
                         Saving your recording. This may take a little while
