@@ -65,14 +65,17 @@ const getChunksFromString = (st: string, chunkSize: number) => st.match(new RegE
 
 const convertHexUnitTo256 = (hexStr: string) => parseInt(hexStr.repeat(2 / hexStr.length), 16);
 
-const getAlphafloat = (a: number) => {
-    if (!a || a > 255 || a < 1) {
-        return 255;
+const getAlphafloat = (a: number, alpha?: number) => {
+    if (typeof a !== 'undefined') {
+        return a / 255;
     }
-    return a / 255;
+    if (typeof alpha !== 'number' || alpha < 0 || alpha > 1) {
+        return 1;
+    }
+    return alpha;
 };
 
-const hex2rgba = (hex: string) => {
+const hex2rgba = (hex: string, alpha?: number) => {
     if (!isValidHex(hex)) {
         throw new Error('Invalid HEX');
     }
@@ -88,7 +91,7 @@ const hex2rgba = (hex: string) => {
         red: r,
         green: g,
         blue: b,
-        alpha: getAlphafloat(a),
+        alpha: getAlphafloat(a, alpha),
     };
 };
 
@@ -237,9 +240,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             if (item.hex === color.hex) {
                 return {
                     hex: rgba2hex(
-                        `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${
-                            (currentColor?.alpha ? currentColor.alpha : 255) / 255
-                        })`
+                        `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
                     ),
                     name: currentColor?.name ?? '',
                     position: item.position,
@@ -247,6 +248,17 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             } else {
                 return item;
             }
+        });
+
+        setColors(newGradientColors);
+    };
+
+    const deleteColor = (color: GradientColor) => {
+        const newGradientColors = colors.filter((item) => {
+            if (item.hex === color.hex) {
+                return true;
+            }
+            return false;
         });
 
         setColors(newGradientColors);
@@ -395,9 +407,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                             }
                                             addNewColor({
                                                 hex: rgba2hex(
-                                                    `rgba(${currentColor?.red}, ${currentColor?.green}, ${
-                                                        currentColor?.blue
-                                                    }, ${(currentColor?.alpha ? currentColor.alpha : 255) / 255})`
+                                                    `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
                                                 ),
                                                 name: currentColor?.name ?? '',
                                                 position: currentColorPosition,
@@ -407,6 +417,8 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                         }
                                         setShowColorModal(false);
                                         setCurrentColorPosition(undefined);
+                                        setCurrentColor(undefined);
+                                        setCurrentlyEditingColor(undefined);
                                     },
                                 },
                             ]}
@@ -426,7 +438,9 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 currentColor={currentColor}
                                 onClose={() => setShowColorModal(false)}
                                 onClick={() => console.log('onClick')}
-                                onSelect={(color) => setCurrentColor(color)}
+                                onSelect={(color) => {
+                                    setCurrentColor(color);
+                                }}
                                 onClear={() => console.log('onClear')}
                             >
                                 {addRef.current}
@@ -506,7 +520,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     hugWidth
                     inverted
                     onClick={() => {
-                        console.log('on click');
+                        deleteColor(color);
                     }}
                     rounding={ButtonRounding.Medium}
                     size={ButtonSize.Small}
