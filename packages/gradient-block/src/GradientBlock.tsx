@@ -322,15 +322,18 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                             buttons={[
                                 {
                                     style: ButtonStyle.Default,
-                                    emphasis: ButtonEmphasis.Default,
-                                    children: 'Cancel',
-                                    // onClick: onCancel,
+                                    emphasis: ButtonEmphasis.Strong,
+                                    children: 'Close',
+                                    onClick: () => {
+                                        setShowColorModal(false);
+                                    },
                                 },
                             ]}
                         />
                     }
+                    legacyFooter={false}
                     isOpen={true}
-                    contentMinHeight={300}
+                    contentMinHeight={195}
                     onCancel={() => {
                         setShowColorModal(false);
                     }}
