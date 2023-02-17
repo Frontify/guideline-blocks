@@ -177,15 +177,25 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
                             className=" tw-box-border"
                             ref={logoRef}
                             style={{
-                                paddingTop: `${clearSpaceChoice === 'none' ? 0 : getTemplateSize(clearSpaceTop) + 2}px`,
+                                paddingTop: `${
+                                    clearSpaceChoice === 'none'
+                                        ? 0
+                                        : getTemplateSize(clearSpaceTop) + convertToNumber(lineWidth)
+                                }px`,
                                 paddingRight: `${
-                                    clearSpaceChoice === 'none' ? 0 : getTemplateSize(clearSpaceRight) + 2
+                                    clearSpaceChoice === 'none'
+                                        ? 0
+                                        : getTemplateSize(clearSpaceRight) + convertToNumber(lineWidth)
                                 }px`,
                                 paddingBottom: `${
-                                    clearSpaceChoice === 'none' ? 0 : getTemplateSize(clearSpaceBottom) + 2
+                                    clearSpaceChoice === 'none'
+                                        ? 0
+                                        : getTemplateSize(clearSpaceBottom) + convertToNumber(lineWidth)
                                 }px`,
                                 paddingLeft: `${
-                                    clearSpaceChoice === 'none' ? 0 : getTemplateSize(clearSpaceLeft) + 2
+                                    clearSpaceChoice === 'none'
+                                        ? 0
+                                        : getTemplateSize(clearSpaceLeft) + convertToNumber(lineWidth)
                                 }px`,
                                 width: `${width}px`,
                             }}
