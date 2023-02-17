@@ -13,6 +13,7 @@ import {
 } from '@frontify/fondue';
 import { ReactElement } from 'react';
 import { RecorderState } from '../types';
+import { AnimatedDots } from './AnimatedDots';
 import { DeleteFlyout } from './DeleteFlyout';
 
 type RecorderToolbarProps = {
@@ -50,9 +51,12 @@ export const RecorderToolbar = ({
                 </Button>
             ) : null}
 
-            {state === 'uploading' ? (
+            {state === 'recording' ? (
                 <div className="tw-px-3 tw-pb-1">
-                    <Text>Saving your recording. This may take a little while.</Text>
+                    <Text>
+                        Saving your recording. This may take a little while
+                        <AnimatedDots />
+                    </Text>
                 </div>
             ) : null}
 
