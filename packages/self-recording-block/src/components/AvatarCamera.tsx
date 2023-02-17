@@ -3,12 +3,13 @@
 import { ReactElement, RefObject, useEffect, useRef } from 'react';
 
 import { CameraSize, VideoMode } from '../types';
-import { bindFrameToCanvas, bindMicrophoneToAudioElement } from '../utilities';
+import { bindFrameToCanvas, bindMicrophoneToAudioElement, drawAudioRipple } from '../utilities';
 
 type AvatarCameraProps = {
     size: CameraSize;
     microphoneDeviceId?: string;
     canvasRef: RefObject<HTMLCanvasElement>;
+    rippleRef: RefObject<HTMLCanvasElement>;
     microphoneRef: RefObject<HTMLVideoElement>;
     onDevicePermissionDenied: () => void;
     imageUrl: string;
@@ -23,6 +24,7 @@ export const AvatarCamera = ({
     microphoneDeviceId,
     size,
     canvasRef,
+    rippleRef,
     microphoneRef,
     onDevicePermissionDenied,
     videoOptions,
@@ -53,6 +55,10 @@ export const AvatarCamera = ({
                         videoOptions,
                         canvasAbortController.signal
                     );
+
+                    if (rippleRef.current) {
+                        await drawAudioRipple(audioElement, rippleRef.current);
+                    }
                 } catch {
                     onDevicePermissionDenied();
                 }
@@ -67,7 +73,16 @@ export const AvatarCamera = ({
                 track.stop();
             }
         };
-    }, [size, microphoneDeviceId, canvasRef, onDevicePermissionDenied, microphoneRef, videoOptions, imageUrl]);
+    }, [
+        size,
+        microphoneDeviceId,
+        canvasRef,
+        rippleRef,
+        onDevicePermissionDenied,
+        microphoneRef,
+        videoOptions,
+        imageUrl,
+    ]);
 
     return (
         <>

@@ -38,6 +38,7 @@ export const Recorder = ({
     const recorder = useRef<MediaRecorder | null>(null);
     const mediaRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const rippleRef = useRef<HTMLCanvasElement>(null);
     const parentRef = useRef<HTMLDivElement>(null);
     const allChunks = useRef<BlobPart[]>([]);
     const [uploadFiles, { results: uploadedAssets, doneAll }] = useAssetUpload();
@@ -119,6 +120,7 @@ export const Recorder = ({
         if (doneAll) {
             associateAssetWithBlock();
         }
+
         // TODO: This is a workaround for the upload going crazy
         // If we add `onRecordingEnd` to the deps the upload goes crazy
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -127,6 +129,7 @@ export const Recorder = ({
     return (
         <div className="tw-flex tw-flex-col tw-items-center tw-font-sans" ref={parentRef}>
             <>
+                <canvas ref={rippleRef} style={{ bottom: '15%' }} className="tw-absolute tw-z-50"></canvas>
                 <Mask shape={maskShape} size={size} border={maskBorder}>
                     {state !== 'initializing' && state !== 'permissions-error' ? (
                         <CountdownOverlay
@@ -149,6 +152,7 @@ export const Recorder = ({
                                     microphoneDeviceId={microphoneDeviceId}
                                     size={size}
                                     canvasRef={canvasRef}
+                                    rippleRef={rippleRef}
                                     microphoneRef={mediaRef}
                                     onDevicePermissionDenied={onDevicePermissionDenied}
                                     videoOptions={videoOptions}
