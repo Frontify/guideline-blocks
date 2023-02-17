@@ -47,6 +47,8 @@ export const settings = defineSettings({
                 getBorderSettings({ id: 'blocks', defaultValue: true }),
                 {
                     ...getBorderRadiusSettings({ id: 'blocks' }),
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
                     off: [getBorderRadiusSlider('radiusChoice_blocks', Radius.Medium)],
                     show: (bundle) =>
                         !!(
@@ -64,6 +66,8 @@ export const settings = defineSettings({
                 getBorderSettings({ id: 'thumbnails', defaultValue: true }),
                 {
                     ...getBorderRadiusSettings({ id: 'thumbnails' }),
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
                     off: [getBorderRadiusSlider('radiusChoice_thumbnails', Radius.Small)],
                     show: (bundle) =>
                         !!(
