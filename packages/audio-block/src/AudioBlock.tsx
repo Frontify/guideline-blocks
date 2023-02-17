@@ -14,6 +14,7 @@ import {
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     AssetChooserObjectType,
+    FileExtension,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -27,9 +28,12 @@ import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ItemToolbar } from './components/ItemToolbar';
 import { useEffect, useState } from 'react';
 
+const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
+const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"paragraph","children":[{"text":""}]}]';
+
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [hoveringAudio, setHoveringAudio] = useState(false);
-    const [isUploading, setIsUpLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -41,7 +45,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     let { title } = blockSettings;
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !isUploading && setIsUpLoading(true),
+        onUploadProgress: () => !isLoading && setIsLoading(true),
     });
 
     if (audio && title === undefined && description === undefined) {
@@ -96,7 +100,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         appBridge.openAssetChooser(
             async (result) => {
                 await updateAssetIdsFromKey(AUDIO_ID, [result[0].id]);
-                setIsUpLoading(false);
+                setIsLoading(false);
                 appBridge.closeAssetChooser();
             },
             {
@@ -112,17 +116,19 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     };
 
     useEffect(() => {
-        if (selectedFiles !== null) {
-            setIsUpLoading(true);
-            uploadFile(selectedFiles);
+        if (selectedFiles) {
+            setIsLoading(true);
+            uploadFile(selectedFiles[0]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFiles]);
 
     useEffect(() => {
         if (droppedFiles) {
-            setIsUpLoading(true);
-            uploadFile(droppedFiles);
+            if (AUDIO_EXTENSIONS.includes(droppedFiles[0].name.split('.').pop() as FileExtension)) {
+                setIsLoading(true);
+                uploadFile(droppedFiles[0]);
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [droppedFiles]);
@@ -131,7 +137,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         if (doneAll && uploadResults) {
             const resultId = uploadResults[0].id;
             updateAssetIdsFromKey(AUDIO_ID, [resultId]).then(() => {
-                setIsUpLoading(false);
+                setIsLoading(false);
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -150,7 +156,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     )}
 
                     {!hoveringAudio && isEditing && <div className="tw-h-[28px]"></div>}
-                    {isUploading ? (
+                    {isLoading ? (
                         <div className="tw-flex tw-items-center tw-justify-center tw-h-[54px]">
                             <LoadingCircle />
                         </div>
@@ -172,7 +178,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     <UploadPlaceholder
                         onUploadClick={onUploadClick}
                         onAssetChooseClick={openAssetChooser}
-                        loading={isUploading}
+                        loading={isLoading}
                         setDroppedFiles={setDroppedFiles}
                     />
                 )
@@ -181,28 +187,32 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 <div className="tw-self-stretch">
                     <RichTextEditor
                         designTokens={designTokens ?? undefined}
-                        value={title}
                         border={false}
                         onBlur={saveTitle}
                         placeholder={isEditing ? 'add a title here' : undefined}
                         readonly={!isEditing}
+                        value={title ?? DEFAULT_CONTENT_TITLE}
                     />
                     <RichTextEditor
                         designTokens={designTokens ?? undefined}
-                        value={description}
                         border={false}
                         position={Position.FLOATING}
                         onBlur={saveDescription}
                         placeholder={isEditing ? 'add a description here' : undefined}
                         readonly={!isEditing}
+                        value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                     />
                 </div>
-                <Button
-                    onClick={() => downloadAudio(audio.genericUrl, audio.title)}
-                    emphasis={ButtonEmphasis.Weak}
-                    icon={<IconArrowCircleDown />}
-                    rounding={ButtonRounding.Full}
-                />
+                <div className="tw-min-w-[36px]">
+                    {audio && (
+                        <Button
+                            onClick={() => downloadAudio(audio.genericUrl, audio.title)}
+                            emphasis={ButtonEmphasis.Weak}
+                            icon={<IconArrowCircleDown />}
+                            rounding={ButtonRounding.Full}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );
