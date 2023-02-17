@@ -116,6 +116,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             ? emptyStateColors
             : blockSettings.gradientColors;
     const [colors, setColors] = useState<GradientColor[]>(initialColors);
+    // const [colors, setColors] = useState<GradientColor[]>(emptyStateColors);
     const gradientOrientation = blockSettings.isOrientationCustom
         ? blockSettings.orientationCustom
         : gradientOrientationValues[blockSettings.orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
@@ -153,14 +154,21 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 const sliderLeft = rect.x;
                 const sliderRight = rect.x + rect.width;
 
+                const relativeMouseX = mouseX - sliderLeft;
+
                 const sliderTop = rect.height / 2 + rect.top - BUFFER_PX;
                 const sliderBottom = rect.height / 2 + rect.top + BUFFER_PX;
 
                 const isWithinWidth = mouseX >= sliderLeft && mouseX <= sliderRight;
                 const isWithinHeight = mouseY >= sliderTop && mouseY <= sliderBottom;
 
-                if (isWithinWidth && isWithinHeight) {
-                    setAddButtonPosition({ left: mouseX - sliderLeft - ADD_BUTTON_SIZE_PX / 2, top: 9 });
+                const percentages = colors.map((color) => color.position);
+
+                const points = percentages.map((p) => (p * rect.width) / 100);
+                const isTouchingABreakpoint = points.find((p) => !!(p - 4 < relativeMouseX && p + 12 > relativeMouseX));
+
+                if (isWithinWidth && isWithinHeight && !isTouchingABreakpoint) {
+                    setAddButtonPosition({ left: relativeMouseX - ADD_BUTTON_SIZE_PX / 2, top: 9 });
                     setShowAddButton(true);
                 } else {
                     setShowAddButton(false);
@@ -399,7 +407,8 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 <span className="tw-ml-1">
                                     <TooltipIcon
                                         tooltip={{
-                                            content: 'Hammertime',
+                                            content:
+                                                'It determines when the transition from one color to the new color is complete.',
                                         }}
                                         triggerIcon={<IconQuestionMarkCircle16 />}
                                         iconSize={IconSize.Size12}
