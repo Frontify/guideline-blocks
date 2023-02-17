@@ -7,12 +7,12 @@ import {
     ButtonEmphasis,
     ButtonRounding,
     IconArrowCircleDown,
+    LoadingCircle,
     Position,
     RichTextEditor,
 } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
-    Asset,
     AssetChooserObjectType,
     useAssetUpload,
     useBlockAssets,
@@ -29,7 +29,8 @@ import { useEffect, useState } from 'react';
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [hoveringAudio, setHoveringAudio] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [isUploading, setIsUpLoading] = useState(false);
+    const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -40,7 +41,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     let { title } = blockSettings;
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !loading && setLoading(true),
+        onUploadProgress: () => !isUploading && setIsUpLoading(true),
     });
 
     if (audio && title === undefined && description === undefined) {
@@ -91,14 +92,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         deleteAssetIdsFromKey(AUDIO_ID, [id]);
     };
 
-    const updateAsset = (id: number) => {
-        updateAssetIdsFromKey(AUDIO_ID, [id]);
-    };
-
     const openAssetChooser = () => {
         appBridge.openAssetChooser(
-            (result: Asset[]) => {
-                updateAsset(result[0].id);
+            async (result) => {
+                await updateAssetIdsFromKey(AUDIO_ID, [result[0].id]);
+                setIsUpLoading(false);
                 appBridge.closeAssetChooser();
             },
             {
@@ -115,15 +113,26 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (selectedFiles !== null) {
+            setIsUpLoading(true);
             uploadFile(selectedFiles);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedFiles, uploadFile]);
+    }, [selectedFiles]);
 
     useEffect(() => {
-        if (doneAll) {
-            setLoading(false);
-            updateAsset(uploadResults[0].id);
+        if (droppedFiles) {
+            setIsUpLoading(true);
+            uploadFile(droppedFiles);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [droppedFiles]);
+
+    useEffect(() => {
+        if (doneAll && uploadResults) {
+            const resultId = uploadResults[0].id;
+            updateAssetIdsFromKey(AUDIO_ID, [resultId]).then(() => {
+                setIsUpLoading(false);
+            });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
@@ -141,19 +150,32 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     )}
 
                     {!hoveringAudio && isEditing && <div className="tw-h-[28px]"></div>}
-                    <audio
-                        data-test-id="audio-block-audio-tag"
-                        key={audio.id}
-                        controls
-                        className={audiotTagClassNames}
-                        controlsList="nodownload"
-                        preload="auto"
-                    >
-                        <source src={audio.genericUrl} type="audio/mp3" />
-                    </audio>
+                    {isUploading ? (
+                        <div className="tw-flex tw-items-center tw-justify-center tw-h-[54px]">
+                            <LoadingCircle />
+                        </div>
+                    ) : (
+                        <audio
+                            data-test-id="audio-block-audio-tag"
+                            key={audio.fileSize}
+                            controls
+                            className={audiotTagClassNames}
+                            controlsList="nodownload"
+                            preload="auto"
+                        >
+                            <source src={audio.genericUrl} type="audio/mp3" />
+                        </audio>
+                    )}
                 </div>
             ) : (
-                isEditing && <UploadPlaceholder appBridge={appBridge} />
+                isEditing && (
+                    <UploadPlaceholder
+                        onUploadClick={onUploadClick}
+                        onAssetChooseClick={openAssetChooser}
+                        loading={isUploading}
+                        setDroppedFiles={setDroppedFiles}
+                    />
+                )
             )}
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-self-stretch">

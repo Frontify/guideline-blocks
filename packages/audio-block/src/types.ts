@@ -14,6 +14,13 @@ export type BlockSettings = {
     title?: string;
 };
 
+export type UploadPlaceholderProps = {
+    onUploadClick: (() => void) | undefined;
+    onAssetChooseClick: (() => void) | undefined;
+    setDroppedFiles: (files: FileList) => void;
+    loading: boolean;
+};
+
 export type ItemToolbarProps = {
     onRemoveAsset: () => void;
     onUploadClick: (() => void) | undefined;
