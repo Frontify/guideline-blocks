@@ -13,10 +13,25 @@ import {
 } from '@frontify/fondue';
 
 import { useTileAsset, useTileStyles } from '../hooks';
-import { Link, TeaserTileProps, TileDisplay, TileType } from '../types';
+import {
+    BaseFlyoutProps,
+    ImageFlyoutProps,
+    ImageTextFlyoutProps,
+    Link,
+    TeaserTileProps,
+    TextFlyoutProps,
+    TileDisplay,
+    TileType,
+} from '../types';
 import { TeaserTileToolbar } from './TeaserTileToolbar';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 import { getImageSrc } from '../utils';
+
+type TileFlyoutVariantProps = {
+    [TileType.Text]: Omit<TextFlyoutProps, 'children'>;
+    [TileType.Image]: Omit<ImageFlyoutProps, 'children'>;
+    [TileType.ImageText]: Omit<ImageTextFlyoutProps, 'children'>;
+};
 
 const TeaserTilePlaceholder = ({ style }: { style: CSSProperties }) => (
     <div
@@ -71,25 +86,48 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             setToolbarFocus(false);
         }, [replaceWithPlaceholder]);
 
-        const tileFlyoutProps = {
-            link: tileSettings.link ?? null,
-            display: tileSettings.display ?? blockSettings.display ?? null,
+        const tileFlyoutBaseProps: Omit<BaseFlyoutProps, 'children'> = {
             height,
-            type,
-            asset: tileAsset,
-            backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
-            onLinkChange: (link: Link) => onTileSettingsChange(id, { link }),
-            isBackgroundVisible: tileSettings.isBackgroundVisible ?? blockSettings.isBackgroundVisible,
-            onDisplayChange: (display: TileDisplay) => onTileSettingsChange(id, { display }),
-            isAssetLoading,
-            onBackgroundColorChange: (backgroundColor: Color) => onTileSettingsChange(id, { backgroundColor }),
-            onReplaceAssetFromUpload: openFileDialog,
-            onUploadFile: uploadFile,
+            disabled: !isEditing,
+            palettes: palettes ?? [],
+            link: tileSettings.link ?? null,
+            placement: FlyoutPlacement.Bottom,
+            isOpen: isPlaceholderImageFlyoutOpen,
+            setIsOpen: setIsPlaceholderImageFlyoutOpen,
+            display: tileSettings.display ?? blockSettings.display ?? null,
             onBackgroundVisibilityChange: (isBackgroundVisible: boolean) =>
                 onTileSettingsChange(id, { isBackgroundVisible }),
-            onReplaceAssetFromWorkspace: onOpenAssetChooser,
-            palettes: palettes ?? [],
-            disabled: !isEditing,
+            onLinkChange: (link: Link) => onTileSettingsChange(id, { link }),
+            backgroundColor: tileSettings.backgroundColor ?? blockSettings.backgroundColor ?? null,
+            isBackgroundVisible: tileSettings.isBackgroundVisible ?? blockSettings.isBackgroundVisible,
+            onBackgroundColorChange: (backgroundColor: Color) => onTileSettingsChange(id, { backgroundColor }),
+        };
+
+        const tileFlyoutVariantProps: TileFlyoutVariantProps = {
+            [TileType.Image]: {
+                ...tileFlyoutBaseProps,
+                isAssetLoading,
+                asset: tileAsset,
+                type: TileType.Image,
+                onUploadFile: uploadFile,
+                onReplaceAssetFromUpload: openFileDialog,
+                onReplaceAssetFromWorkspace: onOpenAssetChooser,
+                onDisplayChange: (display: TileDisplay) => onTileSettingsChange(id, { display }),
+            },
+            [TileType.Text]: {
+                ...tileFlyoutBaseProps,
+                type: TileType.Text,
+            },
+            [TileType.ImageText]: {
+                ...tileFlyoutBaseProps,
+                isAssetLoading,
+                asset: tileAsset,
+                type: TileType.ImageText,
+                onUploadFile: uploadFile,
+                onReplaceAssetFromUpload: openFileDialog,
+                onReplaceAssetFromWorkspace: onOpenAssetChooser,
+                onDisplayChange: (display: TileDisplay) => onTileSettingsChange(id, { display }),
+            },
         };
 
         const titleRichTextEditor = useMemo(
@@ -108,11 +146,11 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
         const descriptionRichTextEditor = useMemo(
             () => (
                 <RichTextEditor
-                    readonly={!isEditing}
                     border={false}
+                    readonly={!isEditing}
+                    placeholder="Add a description"
                     designTokens={designTokens ?? undefined}
                     value={tileSettings.description ?? undefined}
-                    placeholder="Add a description"
                     onBlur={(description) => onTileSettingsChange(id, { description })}
                 />
             ),
@@ -128,13 +166,14 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                 {replaceWithPlaceholder && <TeaserTilePlaceholder style={dragPreview.style} />}
                 {isEditing && !replaceWithPlaceholder && (
                     <TeaserTileToolbar
+                        type={type}
+                        isDragging={isDragPreview}
                         draggableProps={draggableProps}
+                        isToolbarFocused={isToolbarFocused}
                         onRemoveSelf={() => onRemoveTile(id)}
-                        tileSettingsFlyoutProps={tileFlyoutProps}
                         onToolbarBlur={() => setToolbarFocus(false)}
                         onToolbarFocus={() => setToolbarFocus(true)}
-                        isToolbarFocused={isToolbarFocused}
-                        isDragging={isDragPreview}
+                        tileSettingsFlyoutProps={tileFlyoutVariantProps}
                     />
                 )}
                 {tileSettings.link?.href && !isEditing && (
@@ -154,13 +193,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                                     <img className={image.className} src={getImageSrc(tileAsset)} style={image.style} />
                                 </div>
                             ) : (
-                                <TileSettingsFlyout
-                                    {...tileFlyoutProps}
-                                    placement={FlyoutPlacement.Bottom}
-                                    type={type}
-                                    isOpen={isPlaceholderImageFlyoutOpen}
-                                    setIsOpen={setIsPlaceholderImageFlyoutOpen}
-                                >
+                                <TileSettingsFlyout {...tileFlyoutVariantProps[type]}>
                                     {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
                                         <div
                                             {...props}

@@ -15,13 +15,14 @@ import { TeaserTileToolbarProps } from '../types';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 
 export const TeaserTileToolbar = ({
-    draggableProps,
+    type,
     isDragging,
     onRemoveSelf,
-    tileSettingsFlyoutProps,
     onToolbarBlur,
+    draggableProps,
     onToolbarFocus,
     isToolbarFocused,
+    tileSettingsFlyoutProps,
 }: TeaserTileToolbarProps) => {
     const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
 
@@ -60,11 +61,10 @@ export const TeaserTileToolbar = ({
             />
             <div className="tw-relative">
                 <TileSettingsFlyout
-                    //! TODO: Fix typing
-                    {...tileSettingsFlyoutProps}
-                    placement={FlyoutPlacement.BottomRight}
+                    {...tileSettingsFlyoutProps[type]}
                     isOpen={isTopSettingsFlyoutOpen}
                     setIsOpen={setIsTopSettingsFlyoutOpen}
+                    placement={FlyoutPlacement.BottomRight}
                 >
                     {(triggerProps, triggerRef: MutableRefObject<HTMLButtonElement>) => (
                         <Tooltip

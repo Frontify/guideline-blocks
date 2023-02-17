@@ -160,13 +160,24 @@ export type TeaserTileProps = SortableTeaserTileProps & {
 };
 
 export type TeaserTileToolbarProps = {
+    type: TileType;
     draggableProps?: Record<string, unknown>;
     isDragging?: boolean;
     onRemoveSelf: () => void;
-    tileSettingsFlyoutProps: Omit<
-        TileSettingsFlyoutProps,
-        'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'
-    >;
+    tileSettingsFlyoutProps: {
+        [TileType.Text]: Omit<
+            TextFlyoutProps,
+            'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'
+        >;
+        [TileType.Image]: Omit<
+            ImageFlyoutProps,
+            'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'
+        >;
+        [TileType.ImageText]: Omit<
+            ImageTextFlyoutProps,
+            'isOpen' | 'setIsOpen' | 'children' | 'placement' | 'title' | 'description'
+        >;
+    };
     onToolbarBlur: () => void;
     onToolbarFocus: () => void;
     isToolbarFocused: boolean;
@@ -174,38 +185,47 @@ export type TeaserTileToolbarProps = {
 
 export type Link = { href?: string; target?: string };
 
-type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'isBackgroundVisible' | 'display' | 'link'> & {
+export type BaseFlyoutProps = Pick<TileSettings, 'backgroundColor' | 'isBackgroundVisible' | 'display' | 'link'> & {
+    height: string;
+    isOpen: boolean;
+    disabled: boolean;
+    palettes: Palette[];
+    placement: FlyoutPlacement;
     children: FlyoutProps['trigger'];
     onLinkChange: (link: Link) => void;
-    onBackgroundVisibilityChange: (visibility: boolean) => void;
-    onBackgroundColorChange: (color: Color) => void;
-    isOpen: boolean;
     setIsOpen: (boolean: boolean) => void;
-    placement: FlyoutPlacement;
-    height: string;
-    palettes: Palette[];
-    disabled: boolean;
+    onBackgroundColorChange: (color: Color) => void;
+    onBackgroundVisibilityChange: (visibility: boolean) => void;
 };
 
-type ImageFlyoutProps = {
-    type: TileType.Image | TileType.ImageText;
+export type ImageTextFlyoutProps = BaseFlyoutProps & {
+    asset: Nullable<Asset>;
+    isAssetLoading: boolean;
+    type: TileType.ImageText;
     onReplaceAssetFromUpload: () => void;
     onUploadFile: (files: FileList) => void;
     onReplaceAssetFromWorkspace: () => void;
-    isAssetLoading: boolean;
-    asset: Nullable<Asset>;
     onDisplayChange: (display: TileDisplay) => void;
 };
 
-type TextFlyoutProps = {
-    type: TileType.Text;
-    onReplaceAssetFromUpload: never;
-    onReplaceAssetFromWorkspace: never;
-    onUploadFile: never;
-    isAssetLoading: never;
-    asset: never;
-    display: never;
-    onDisplayChange: never;
+export type ImageFlyoutProps = BaseFlyoutProps & {
+    type: TileType.Image;
+    asset: Nullable<Asset>;
+    isAssetLoading: boolean;
+    onReplaceAssetFromUpload: () => void;
+    onReplaceAssetFromWorkspace: () => void;
+    onUploadFile: (files: FileList) => void;
+    onDisplayChange: (display: TileDisplay) => void;
 };
 
-export type TileSettingsFlyoutProps = (BaseFlyoutProps & TextFlyoutProps) | (BaseFlyoutProps & ImageFlyoutProps);
+export type TextFlyoutProps = BaseFlyoutProps & {
+    asset?: never;
+    type: TileType.Text;
+    onUploadFile?: never;
+    isAssetLoading?: never;
+    onDisplayChange?: never;
+    onReplaceAssetFromUpload?: never;
+    onReplaceAssetFromWorkspace?: never;
+};
+
+export type TileSettingsFlyoutProps = TextFlyoutProps | ImageFlyoutProps | ImageTextFlyoutProps;
