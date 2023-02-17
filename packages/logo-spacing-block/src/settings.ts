@@ -234,15 +234,15 @@ export const settings = defineSettings({
                                     value: 'none',
                                 },
                                 {
-                                    label: '20%',
+                                    label: '10%',
                                     value: Size.S,
                                 },
                                 {
-                                    label: '40%',
+                                    label: '20%',
                                     value: Size.M,
                                 },
                                 {
-                                    label: '60%',
+                                    label: '40%',
                                     value: Size.L,
                                 },
                             ],

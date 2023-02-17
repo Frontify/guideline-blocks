@@ -41,9 +41,9 @@ export const CONTAINER_SIZE: Record<Size, number> = {
 };
 
 export const CLEAR_SPACE_PERCENT_SIZE: Record<Size, number> = {
-    [Size.S]: 20,
-    [Size.M]: 40,
-    [Size.L]: 60,
+    [Size.S]: 10,
+    [Size.M]: 20,
+    [Size.L]: 40,
 };
 
 export const STYLE_DEFAULT_VALUE = LineStyle.Dashed;

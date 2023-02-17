@@ -11,9 +11,8 @@ export const LogoGrid = ({
     borderSettings,
     containerHeight,
     content,
-    gridTemplateColumns,
-    gridTemplateRows,
     labelColor,
+    logoWidth,
 }: LogoGridProps) => {
     const { lineColor, lineStyle, lineWidth } = borderSettings;
     const borderStyle = {
@@ -25,68 +24,83 @@ export const LogoGrid = ({
         borderStyle,
         borderWidth: lineWidth,
     };
+
+    const logoWidthPercentage = `${logoWidth}%`;
+    const middleSpacePercentage = logoWidth === 100 ? '0%' : logoWidthPercentage;
+    const spaceWidthPercentage = `${(100 - logoWidth) / 2}%`;
     return (
         <div className="tw-w-full tw-flex tw-justify-center">
             {containerHeight > 0 && (
-                <div
-                    className="tw-grid-cols-3 tw-grid-rows-3 tw-grid"
-                    style={{
-                        gridTemplateColumns,
-                        gridTemplateRows,
-                        minHeight: '100%',
-                    }}
-                >
-                    <GridElement {...gridProps} col="1" position={GridElementPosition.TopLeft} row="1" />
-                    <GridElement
-                        {...gridProps}
-                        col="2"
-                        labelColor={labelColor}
-                        position={GridElementPosition.Top}
-                        row="1"
-                    >
-                        {content.top}
-                    </GridElement>
-                    <GridElement {...gridProps} col="3" position={GridElementPosition.TopRight} row="1" />
-                    <GridElement
-                        {...gridProps}
-                        col="3"
-                        labelColor={labelColor}
-                        position={GridElementPosition.Right}
-                        row="2"
-                    >
-                        {content.right}
-                    </GridElement>
-                    <GridElement
-                        {...gridProps}
-                        col="1"
-                        labelColor={labelColor}
-                        position={GridElementPosition.Left}
-                        row="2"
-                    >
-                        {content.left}
-                    </GridElement>
-                    <div
-                        id="middle"
-                        className="tw-col-start-2 tw-row-start-2"
-                        style={{ ...borderStyle, borderWidth: lineWidth }}
-                    >
-                        <img
-                            className="tw-w-full tw-opacity-0"
-                            src={asset.previewUrl}
-                            data-test-id="example-asset-upload-image"
+                <div className="tw-flex tw-flex-col tw-flex-1">
+                    <div className="tw-flex">
+                        <GridElement
+                            {...gridProps}
+                            position={GridElementPosition.TopLeft}
+                            width={spaceWidthPercentage}
+                        />
+                        <GridElement
+                            {...gridProps}
+                            labelColor={labelColor}
+                            position={GridElementPosition.Top}
+                            width={middleSpacePercentage}
+                        >
+                            {content.top}
+                        </GridElement>
+                        <GridElement
+                            {...gridProps}
+                            position={GridElementPosition.TopRight}
+                            width={spaceWidthPercentage}
                         />
                     </div>
-                    <GridElement {...gridProps} col="1" position={GridElementPosition.BottomLeft} row="3" />
-                    <GridElement
-                        {...gridProps}
-                        col="2"
-                        labelColor={labelColor}
-                        position={GridElementPosition.Bottom}
-                        row="3"
-                    >
-                        {content.bottom}
-                    </GridElement>
-                    <GridElement {...gridProps} col="3" position={GridElementPosition.BottomRight} row="3" />
+                    <div className="tw-flex tw-flex-1">
+                        <GridElement
+                            {...gridProps}
+                            labelColor={labelColor}
+                            position={GridElementPosition.Right}
+                            width={spaceWidthPercentage}
+                        >
+                            {content.right}
+                        </GridElement>
+                        <div
+                            id="middle"
+                            className="tw-col-start-2 tw-row-start-2"
+                            style={{ ...borderStyle, borderWidth: lineWidth, width: logoWidthPercentage }}
+                        >
+                            <img
+                                className="tw-w-full tw-opacity-0"
+                                src={asset.previewUrl}
+                                data-test-id="example-asset-upload-image"
+                            />
+                        </div>
+                        <GridElement
+                            {...gridProps}
+                            labelColor={labelColor}
+                            position={GridElementPosition.Left}
+                            width={spaceWidthPercentage}
+                        >
+                            {content.left}
+                        </GridElement>
+                    </div>
+                    <div className="tw-flex tw-flex-1">
+                        <GridElement
+                            {...gridProps}
+                            position={GridElementPosition.BottomLeft}
+                            width={spaceWidthPercentage}
+                        />
+                        <GridElement
+                            {...gridProps}
+                            labelColor={labelColor}
+                            position={GridElementPosition.Bottom}
+                            width={middleSpacePercentage}
+                        >
+                            {content.bottom}
+                        </GridElement>
+                        <GridElement
+                            {...gridProps}
+                            position={GridElementPosition.BottomRight}
+                            width={spaceWidthPercentage}
+                        />
+                    </div>
                 </div>
             )}
         </div>

@@ -57,16 +57,14 @@ export type LogoGridProps = {
     bgColor: Color;
     borderSettings: BorderSettings;
     containerHeight: number;
-    // containerWidth: number;
     content: {
         bottom: string;
         left: string;
         right: string;
         top: string;
     };
-    gridTemplateColumns: string;
-    gridTemplateRows: string;
     labelColor: Color;
+    logoWidth: number;
 };
 
 export enum GridElementPosition {
@@ -85,8 +83,7 @@ export type GridElementProps = {
     borderStyle: CSSProperties;
     borderWidth: string;
     children?: ReactNode;
-    col: string;
     labelColor?: Color;
     position: GridElementPosition;
-    row: string;
+    width: string;
 };

@@ -78,12 +78,12 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         return getContainerSizeByPercentage(percent);
     };
 
-    const getTemplateColumn = () => {
-        const firstColumn = getTemplateSize(clearSpaceLeft) - convertToNumber(offsetLeft);
-        const thirdColumn = getTemplateSize(clearSpaceRight) - convertToNumber(offsetRight);
+    // const getTemplateColumn = () => {
+    //     const firstColumn = getTemplateSize(clearSpaceLeft) - convertToNumber(offsetLeft);
+    //     const thirdColumn = getTemplateSize(clearSpaceRight) - convertToNumber(offsetRight);
 
-        return `${firstColumn}px ${width}px ${thirdColumn}px`;
-    };
+    //     return `${firstColumn}px ${width}px ${thirdColumn}px`;
+    // };
 
     const getUsedHeight = () => {
         const firstRow = getTemplateSize(clearSpaceTop);
@@ -99,11 +99,11 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         };
     };
 
-    const getTemplateRow = () => {
-        const heights = getUsedHeight();
+    // const getTemplateRow = () => {
+    //     const heights = getUsedHeight();
 
-        return `${heights.firstRow}px calc(100% - ${heights.usedHeight}px) ${heights.thirdRow}px`;
-    };
+    //     return `${heights.firstRow}px calc(100% - ${heights.usedHeight}px) ${heights.thirdRow}px`;
+    // };
 
     const getClearSpaceContent = () => {
         if (hasCustomClearSpace) {
@@ -124,6 +124,30 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
         };
     };
 
+    const getLogoWidth = () => {
+        const percents = getClearSpaceContent();
+        if (clearSpacePropertyChoice === Property.Height) {
+            const percentTop = convertToNumber(percents.top);
+            const percentBottom = convertToNumber(percents.bottom);
+            const percent = 100 - percentTop - percentBottom;
+            const ratio = (height * 100) / width;
+
+            return percent * ratio;
+        }
+        const percentLeft = convertToNumber(percents.left);
+        const percentRight = convertToNumber(percents.right);
+
+        // 1000 x 500
+
+        // Quantos % a altura é da largura
+        // Quantos % da largura a gente precisa
+        // ratio = h * 100 / w
+        // pH = 100 - pL - pR
+        // h * ratio / 100
+
+        return 100 - percentLeft - percentRight;
+    };
+
     return (
         <div
             ref={blockContainer}
@@ -135,7 +159,10 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
                 blockAssets[LOGO_ID].map((asset: Asset) => (
                     <Fragment key={asset.id}>
                         {isContainerReady && (
-                            <div className="tw-absolute tw-left-1/2 tw-top-10 tw--translate-x-1/2">
+                            <div
+                                className="tw-absolute tw-left-1/2 tw-top-10 tw--translate-x-1/2"
+                                style={{ width: `${width}px` }}
+                            >
                                 <div
                                     style={{
                                         marginTop: `${convertToNumber(offsetTop) * -1}px`,
@@ -150,35 +177,32 @@ export const AnExampleBlock = ({ appBridge }: BlockProps) => {
                                             lineWidth,
                                         }}
                                         containerHeight={height}
-                                        // containerWidth={width}
                                         content={getClearSpaceContent()}
-                                        gridTemplateColumns={getTemplateColumn()}
-                                        gridTemplateRows={getTemplateRow()}
                                         labelColor={labelColor}
+                                        logoWidth={getLogoWidth()}
                                     />
                                 </div>
                             </div>
                         )}
-                        {/* <div ref={logoRef} className="tw-absolute tw-left-1/2 tw-top-0 tw--translate-x-1/2"> */}
                         <div
+                            className=" tw-box-border"
                             ref={logoRef}
                             style={{
-                                minWidth: `${width}px`,
-                                paddingTop: `${getTemplateSize(clearSpaceTop) + 2}px`,
-                                paddingRight: `${getTemplateSize(clearSpaceRight) + 2}px`,
-                                paddingBottom: `${getTemplateSize(clearSpaceBottom) + 2}px`,
-                                paddingLeft: `${getTemplateSize(clearSpaceLeft) + 2}px`,
+                                paddingTop: `${clearSpaceChoice === 'none' ? 0 : getTemplateSize(clearSpaceTop) + 2}px`,
+                                paddingRight: `${
+                                    clearSpaceChoice === 'none' ? 0 : getTemplateSize(clearSpaceRight) + 2
+                                }px`,
+                                paddingBottom: `${
+                                    clearSpaceChoice === 'none' ? 0 : getTemplateSize(clearSpaceBottom) + 2
+                                }px`,
+                                paddingLeft: `${
+                                    clearSpaceChoice === 'none' ? 0 : getTemplateSize(clearSpaceLeft) + 2
+                                }px`,
                                 width: `${width}px`,
                             }}
                         >
-                            <img
-                                className="tw-w-full"
-                                onLoad={updateDimensions}
-                                style={{ width: `${width}px` }}
-                                src={asset.previewUrl}
-                            />
+                            <img className="tw-w-full" onLoad={updateDimensions} src={asset.previewUrl} />
                         </div>
-                        {/* </div> */}
                     </Fragment>
                 ))
             ) : (

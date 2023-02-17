@@ -83,11 +83,10 @@ export const GridElement = ({
     bgColor,
     borderStyle,
     borderWidth,
+    children,
     labelColor,
     position,
-    children,
-    col,
-    row,
+    width,
 }: GridElementProps) => {
     return (
         <span
@@ -97,13 +96,13 @@ export const GridElement = ({
                 ...borderStyle,
                 ...getElementBorders(position, borderWidth),
                 backgroundColor: toRgbaString(bgColor),
-                gridColumnStart: col,
-                gridRowStart: row,
+                ...(children ? {} : { aspectRatio: '1 / 1' }),
+                width,
             }}
         >
-            {children && labelColor && (
+            {/* {children && labelColor && (
                 <div style={{ color: toRgbaString(labelColor), ...getTextRotation(position) }}>{children}</div>
-            )}
+            )} */}
         </span>
     );
 };
