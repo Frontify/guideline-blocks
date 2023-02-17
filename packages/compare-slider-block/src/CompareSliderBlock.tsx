@@ -14,6 +14,7 @@ import {
 } from '@frontify/app-bridge';
 import {
     BlockInjectButton,
+    isDark,
     joinClassNames,
     radiusStyleMap,
     toRgbaString,
@@ -296,10 +297,20 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     className="tw-flex"
                     style={{ color: toRgbaString(blockSettings.sliderColor), gap: blockSettings.sliderWidth }}
                 >
-                    <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-[2px] tw-bg-white/[.7] tw-rounded-full tw-mr-2">
+                    <div
+                        className={joinClassNames([
+                            `${isDark(blockSettings.sliderColor) ? 'tw-bg-white/[.7]' : 'tw-bg-black/[.7]'}`,
+                            'tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-[2px] tw-rounded-full tw-mr-2',
+                        ])}
+                    >
                         <IconCaretLeft16 />
                     </div>
-                    <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-[2px] tw-bg-white/[.7] tw-rounded-full tw-ml-2">
+                    <div
+                        className={joinClassNames([
+                            `${isDark(blockSettings.sliderColor) ? 'tw-bg-white/[.7]' : 'tw-bg-black/[.5]'}`,
+                            'tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-[2px] tw-rounded-full tw-ml-2',
+                        ])}
+                    >
                         <IconCaretRight16 />
                     </div>
                 </div>
