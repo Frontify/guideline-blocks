@@ -5,10 +5,14 @@ import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    Button,
+    ButtonSize,
     Color,
     Divider,
     DividerStyle,
+    FlyoutFooter,
     FlyoutPlacement,
+    IconCross,
     IconPlus,
     IconSize,
     TextInput,
@@ -20,9 +24,22 @@ import 'tailwindcss/tailwind.css';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { ColorPickerFlyout, Flyout, IconEnum, debounce, iconsMap, merge } from '@frontify/fondue';
+import {
+    ButtonEmphasis,
+    ButtonStyle,
+    ColorPickerFlyout,
+    Flyout,
+    IconEnum,
+    IconQuestionMarkCircle16,
+    Text,
+    TooltipIcon,
+    debounce,
+    iconsMap,
+    merge,
+} from '@frontify/fondue';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
+import { IconSide20 } from '.pnpm/@frontify+fondue@11.3.0_angvksxlvvfhyjj3xhcshgfg2m/node_modules/@frontify/fondue';
 
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
@@ -283,9 +300,27 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 <Flyout
                     // placement={FlyoutPlacement.TopRight}
                     fixedHeader={
-                        <div className="tw-font-bold tw-py-4 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
-                            Configure Color
+                        <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
+                            <span>Configure Color</span>
+                            <span
+                                className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-[2px] tw-text-strong"
+                                onClick={() => setShowColorModal(false)}
+                            >
+                                <IconCross size={IconSize.Size20} />
+                            </span>
                         </div>
+                    }
+                    fixedFooter={
+                        <FlyoutFooter
+                            buttons={[
+                                {
+                                    style: ButtonStyle.Default,
+                                    emphasis: ButtonEmphasis.Default,
+                                    children: 'Cancel',
+                                    // onClick: onCancel,
+                                },
+                            ]}
+                        />
                     }
                     isOpen={true}
                     contentMinHeight={300}
@@ -310,17 +345,31 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     trigger={null}
                 >
                     <div className="tw-flex">
-                        <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-[40px]">
+                        <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-[40px] ">
+                            <Text color="weak">Color</Text>
                             <ColorPickerFlyout
                                 clearable
                                 currentColor={currentColor}
-                                // onClose={() => setShowColorModal(false)}
+                                onClose={() => setShowColorModal(false)}
                                 onClick={() => console.log('onClick')}
                                 onSelect={(color) => setCurrentColor(color)}
                                 onClear={() => console.log('onClear')}
                             >
                                 {addRef.current}
                             </ColorPickerFlyout>
+                            <span className="tw-flex tw-mt-6">
+                                <Text color="weak">Stop</Text>
+                                <span className="tw-ml-1">
+                                    <TooltipIcon
+                                        tooltip={{
+                                            content:
+                                                'There is no automatic conversion for this color space. Please enter the value manually.',
+                                        }}
+                                        triggerIcon={<IconQuestionMarkCircle16 />}
+                                        iconSize={IconSize.Size12}
+                                    />
+                                </span>
+                            </span>
                             <TextInput
                                 value="asd"
                                 onChange={() => console.log('onChange')}
