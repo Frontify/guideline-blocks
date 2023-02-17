@@ -342,11 +342,14 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                 className={joinClassNames([
                     'tw-absolute',
                     `tw-h-[${ADD_BUTTON_SIZE_PX}px] tw-w-[${ADD_BUTTON_SIZE_PX}px]`,
-                    'tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded-sm',
+                    'tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded-[3px] tw-cursor-pointer',
                 ])}
                 style={{ ...addButtonPosition }}
             >
-                <span className="tw-text-white tw-pt-[1px]" onClick={() => handleAdd(addButtonPosition.left)}>
+                <span
+                    className="tw-text-white tw-h-[17px] tw-w-[17px] tw-flex tw-justify-center tw-items-center tw-pt-[1px]"
+                    onClick={() => handleAdd(addButtonPosition.left)}
+                >
                     <IconPlus size={IconSize.Size12} />
                 </span>
             </div>
