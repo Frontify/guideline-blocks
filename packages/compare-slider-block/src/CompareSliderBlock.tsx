@@ -20,12 +20,24 @@ import {
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import {
-    IconCaretLeft24,
+    AlignCenterPlugin,
+    AlignJustifyPlugin,
+    AlignLeftPlugin,
+    AlignRightPlugin,
+    BoldPlugin,
+    IconCaretLeft16,
     IconCaretLeft32,
-    IconCaretRight24,
+    IconCaretRight16,
     IconCaretRight32,
     IconPlus24,
+    InitPlugin,
+    ItalicPlugin,
+    PluginComposer,
+    ResetFormattingPlugin,
     RichTextEditor,
+    StrikethroughPlugin,
+    TextStylePlugin,
+    UnderlinePlugin,
     debounce,
 } from '@frontify/fondue';
 
@@ -40,6 +52,18 @@ import {
     slotAssetSettingMap,
 } from './types';
 import { Strikethrough } from './Strikethrough';
+
+const customPlugins = new PluginComposer();
+customPlugins
+    .setPlugin([new InitPlugin(), new TextStylePlugin()])
+    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
+    .setPlugin([
+        new AlignLeftPlugin(),
+        new AlignCenterPlugin(),
+        new AlignRightPlugin(),
+        new AlignJustifyPlugin(),
+        new ResetFormattingPlugin(),
+    ]);
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -272,11 +296,11 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     className="tw-flex"
                     style={{ color: toRgbaString(blockSettings.sliderColor), gap: blockSettings.sliderWidth }}
                 >
-                    <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-1 tw-bg-white/[.7] tw-rounded-full tw-mr-2">
-                        <IconCaretLeft24 />
+                    <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-[2px] tw-bg-white/[.7] tw-rounded-full tw-mr-2">
+                        <IconCaretLeft16 />
                     </div>
-                    <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-1 tw-bg-white/[.7] tw-rounded-full tw-ml-2">
-                        <IconCaretRight24 />
+                    <div className="tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-[2px] tw-bg-white/[.7] tw-rounded-full tw-ml-2">
+                        <IconCaretRight16 />
                     </div>
                 </div>
             );
@@ -393,12 +417,17 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
 
             <div className="tw-flex tw-flex-col tw-mt-3 tw-gap-1">
                 <RichTextEditor
-                    value={blockSettings.sliderName}
+                    value={
+                        blockSettings.sliderName
+                            ? blockSettings.sliderName
+                            : '[{"type":"p","children":[{"text":"","bold":true}]}]'
+                    }
                     border={false}
                     readonly={!isEditing}
                     onBlur={(sliderName) => setBlockSettings({ sliderName })}
                     designTokens={designTokens ?? undefined}
                     placeholder={isEditing ? 'Asset name' : undefined}
+                    plugins={customPlugins}
                 />
                 <RichTextEditor
                     value={blockSettings.sliderDescription}
