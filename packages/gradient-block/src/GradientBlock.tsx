@@ -82,10 +82,10 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         isCopied ? <>{iconsMap[IconEnum.CheckMark16]} Copied</> : <>{iconsMap[IconEnum.Clipboard16]} Copy</>;
 
     // TODO - use this to update the CSS snippet when gradient changes
-    const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
+    // const handleChange = debounce((value: string) => setBlockSettings({ content: value }), 500);
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(blockSettings.content || '');
+        await navigator.clipboard.writeText(blockSettings.contentValue || '');
         setIsCopied(true);
         debounce(() => {
             setIsCopied(false);
@@ -372,7 +372,8 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                 </span>
                             </span>
                             <TextInput
-                                value="asd"
+                                disabled
+                                value={currentColorPosition}
                                 onChange={() => console.log('onChange')}
                                 onEnterPressed={() => console.log('onEnterPressed')}
                                 placeholder="placeholder"
