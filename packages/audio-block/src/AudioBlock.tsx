@@ -2,7 +2,25 @@
 
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { IconArrowCircleDown16, LoadingCircle, Position, RichTextEditor } from '@frontify/fondue';
+import {
+    AlignCenterPlugin,
+    AlignJustifyPlugin,
+    AlignLeftPlugin,
+    AlignRightPlugin,
+    BoldPlugin,
+    IconArrowCircleDown16,
+    InitPlugin,
+    ItalicPlugin,
+    LoadingCircle,
+    PluginComposer,
+    Position,
+    ResetFormattingPlugin,
+    RichTextEditor,
+    StrikethroughPlugin,
+    TextStylePlugin,
+    UnderlinePlugin,
+} from '@frontify/fondue';
+import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     AssetChooserObjectType,
@@ -22,6 +40,13 @@ import { useEffect, useState } from 'react';
 
 const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
 const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"paragraph","children":[{"text":""}]}]';
+
+const customTitlePlugins = new PluginComposer();
+customTitlePlugins
+    .setPlugin([new InitPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
+    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
+    .setPlugin([new AlignLeftPlugin(), new AlignRightPlugin(), new AlignCenterPlugin(), new AlignJustifyPlugin()])
+    .setPlugin([new ResetFormattingPlugin()]);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [hoveringAudio, setHoveringAudio] = useState(false);
@@ -181,6 +206,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         placeholder={isEditing ? 'add a title here' : undefined}
                         readonly={!isEditing}
                         value={title ?? DEFAULT_CONTENT_TITLE}
+                        plugins={customTitlePlugins}
                     />
                     <RichTextEditor
                         designTokens={designTokens ?? undefined}
