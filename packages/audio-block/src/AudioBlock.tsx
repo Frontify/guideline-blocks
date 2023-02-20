@@ -81,13 +81,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         fetch(url)
             .then((response) => response.blob())
             .then((blob) => {
-                const blobURL = URL.createObjectURL(blob);
+                const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
-                a.href = blobURL;
+                a.href = url;
                 a.download = `${fileName}.mp3`;
-                document.body.appendChild(a);
                 a.click();
-                document.body.removeChild(a);
             });
     };
 
