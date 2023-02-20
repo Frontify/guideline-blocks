@@ -397,35 +397,38 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     }
 
     return (
-        <div
-            ref={sliderRef}
-            className={
-                !blockSettings.customHeight && blockSettings.height === Height.Auto
-                    ? 'tw-w-full'
-                    : 'tw-flex tw-justify-center'
-            }
-        >
-            <ImgComparisonSlider
-                direction={blockSettings?.alignment}
-                className={!blockSettings.hasCustomHeight && blockSettings.height === Height.Auto ? 'tw-w-full' : ''}
-                style={
-                    {
-                        borderWidth: blockSettings.borderWidth,
-                        borderColor: toRgbaString(blockSettings.borderColor),
-                        borderStyle: blockSettings.borderStyle,
-                        borderRadius: getBorderRadius(),
-                        '--divider-width': blockSettings.sliderWidth,
-                        '--divider-color': toRgbaString(blockSettings.sliderColor),
-                        '--default-handle-opacity': blockSettings.handle === Handle.None ? 0 : 1,
-                    } as React.CSSProperties
+        <>
+            <div
+                ref={sliderRef}
+                className={
+                    !blockSettings.customHeight && blockSettings.height === Height.Auto
+                        ? 'tw-w-full'
+                        : 'tw-flex tw-justify-center'
                 }
-                onSlide={handleSlide}
             >
-                {renderSliderItem(SliderImageSlot.First)}
-                {renderSliderItem(SliderImageSlot.Second)}
-                {blockSettings.handle !== Handle.None ? renderHandle() : ''}
-            </ImgComparisonSlider>
-
+                <ImgComparisonSlider
+                    direction={blockSettings?.alignment}
+                    className={
+                        !blockSettings.hasCustomHeight && blockSettings.height === Height.Auto ? 'tw-w-full' : ''
+                    }
+                    style={
+                        {
+                            borderWidth: blockSettings.borderWidth,
+                            borderColor: toRgbaString(blockSettings.borderColor),
+                            borderStyle: blockSettings.borderStyle,
+                            borderRadius: getBorderRadius(),
+                            '--divider-width': blockSettings.sliderWidth,
+                            '--divider-color': toRgbaString(blockSettings.sliderColor),
+                            '--default-handle-opacity': blockSettings.handle === Handle.None ? 0 : 1,
+                        } as React.CSSProperties
+                    }
+                    onSlide={handleSlide}
+                >
+                    {renderSliderItem(SliderImageSlot.First)}
+                    {renderSliderItem(SliderImageSlot.Second)}
+                    {blockSettings.handle !== Handle.None ? renderHandle() : ''}
+                </ImgComparisonSlider>
+            </div>
             <div className="tw-flex tw-flex-col tw-mt-3 tw-gap-1">
                 <RichTextEditor
                     value={
@@ -449,6 +452,6 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
                     placeholder={isEditing ? 'Add a description here' : undefined}
                 />
             </div>
-        </div>
+        </>
     );
 };
