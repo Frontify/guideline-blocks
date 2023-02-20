@@ -61,10 +61,9 @@ export const UploadPlaceholder = ({ appBridge }: BlockProps) => {
     return (
         <div className="tw-h-64">
             <BlockInjectButton
-                label="Add image"
+                label="Add or drop your image here"
                 icon={<IconPlus24 />}
                 fillParentContainer={true}
-                secondaryLabel="Or drop it here"
                 onUploadClick={openFileDialog}
                 onAssetChooseClick={openAssetChooser}
                 onDrop={setDropedFiles}

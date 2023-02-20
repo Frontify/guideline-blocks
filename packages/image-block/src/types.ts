@@ -2,8 +2,11 @@
 
 import { Color } from '@frontify/fondue';
 
+type Link = { link: { link: string }; openInNewTab: boolean };
+
 export type Settings = {
     hasLink?: boolean;
+    linkObject?: Link;
     image?: string;
     name?: string;
     description?: string;
@@ -49,7 +52,7 @@ export enum Ratio {
     Ratio1To2 = '1:2',
 }
 export const rationValues: Record<Ratio, string> = {
-    [Ratio.Ratio2To1]: '100%',
+    [Ratio.Ratio2To1]: '66.667%',
     [Ratio.Ratio1To1]: '50%',
     [Ratio.Ratio1To2]: '33.33%',
 };
