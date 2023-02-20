@@ -12,6 +12,7 @@ import {
     UnderlinePlugin,
     merge,
 } from '@frontify/fondue';
+import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
@@ -24,7 +25,7 @@ import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities
 
 const customPlugins = new PluginComposer();
 customPlugins
-    .setPlugin([new InitPlugin(), new TextStylePlugin()])
+    .setPlugin([new InitPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
     .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()]);
 
 const DEFAULT_CONTENT_VALUE = '[{"type":"quote","children":[{"text":""}]}]';
