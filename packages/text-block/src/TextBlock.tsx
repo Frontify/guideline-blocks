@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
+import { RichTextEditor, defaultPlugins, defaultPluginsWithColumns } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
@@ -9,7 +9,6 @@ import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
-import { getPlugins } from './getPlugins';
 
 export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
