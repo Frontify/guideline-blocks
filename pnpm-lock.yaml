@@ -830,6 +830,9 @@ importers:
   packages/shared:
     specifiers:
       '@babel/core': 7.20.2
+      '@dnd-kit/core': 6.0.5
+      '@dnd-kit/modifiers': 6.0.1
+      '@dnd-kit/sortable': 7.0.1
       '@frontify/app-bridge': 3.0.0-beta.38
       '@frontify/eslint-config-typescript': 0.15.5
       '@frontify/fondue': 12.0.0-beta.77
@@ -855,6 +858,9 @@ importers:
       vite-plugin-dts: 1.7.0
       vitest: 0.25.0
     dependencies:
+      '@dnd-kit/core': 6.0.5_sfoxds7t5ydpegc3knd667wn6m
+      '@dnd-kit/modifiers': 6.0.1_hynla2khvukk42jomlue7cq3k4
+      '@dnd-kit/sortable': 7.0.1_hynla2khvukk42jomlue7cq3k4
       '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 12.0.0-beta.77_rv2t7de65xq26o5frb4lun64yi
       '@frontify/guideline-blocks-settings': 0.25.10_rv2t7de65xq26o5frb4lun64yi
@@ -1607,6 +1613,18 @@ packages:
       '@dnd-kit/utilities': 3.2.1_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+      tslib: 2.4.1
+    dev: false
+
+  /@dnd-kit/modifiers/6.0.1_hynla2khvukk42jomlue7cq3k4:
+    resolution: {integrity: sha512-rbxcsg3HhzlcMHVHWDuh9LCjpOVAgqbV78wLGI8tziXY3+qcMQ61qVXIvNKQFuhj75dSfD+o+PYZQ/NUk2A23A==}
+    peerDependencies:
+      '@dnd-kit/core': ^6.0.6
+      react: '>=16.8.0'
+    dependencies:
+      '@dnd-kit/core': 6.0.5_sfoxds7t5ydpegc3knd667wn6m
+      '@dnd-kit/utilities': 3.2.1_react@17.0.2
+      react: 17.0.2
       tslib: 2.4.1
     dev: false
 
