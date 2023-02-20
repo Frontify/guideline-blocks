@@ -27,11 +27,9 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
                 designTokens={designTokens ?? undefined}
                 key={'text-block-editor'}
                 value={blockSettings.content}
+                layout={{ gap, columns: blockSettings.columnNumber }}
                 border={false}
-                plugins={getPlugins(
-                    Number(blockSettings.columnNumber),
-                    Number((gap ?? '').replace('px', '')) || undefined
-                )}
+                plugins={blockSettings.columnNumber > 1 ? defaultPluginsWithColumns : defaultPlugins}
                 placeholder={isEditing ? PLACEHOLDER : undefined}
                 readonly={!isEditing}
                 onTextChange={onTextChange}
