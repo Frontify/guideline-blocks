@@ -2,6 +2,9 @@
 
 export type Settings = {
     hasLink?: boolean;
+    image?: string;
+    name?: string;
+    description?: string;
 };
 
 export enum ImageSecurity {
