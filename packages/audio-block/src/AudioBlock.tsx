@@ -2,15 +2,7 @@
 
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import {
-    Button,
-    ButtonEmphasis,
-    ButtonRounding,
-    IconArrowCircleDown,
-    LoadingCircle,
-    Position,
-    RichTextEditor,
-} from '@frontify/fondue';
+import { IconArrowCircleDown16, LoadingCircle, Position, RichTextEditor } from '@frontify/fondue';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     AssetChooserObjectType,
@@ -61,7 +53,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     ]);
 
     const audiotTagClassNames = joinClassNames([
-        'tw-w-full',
+        'tw-w-full tw-mt-5',
         hoveringAudio && isEditing && 'tw-border tw-border-box-selected-inverse tw-rounded-[4px]',
     ]);
 
@@ -153,7 +145,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         />
                     )}
 
-                    {!hoveringAudio && isEditing && <div className="tw-h-[28px]"></div>}
                     {isLoading ? (
                         <div className="tw-flex tw-items-center tw-justify-center tw-h-[54px]">
                             <LoadingCircle />
@@ -201,16 +192,16 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                     />
                 </div>
-                <div className="tw-min-w-[36px]">
-                    {audio && (
-                        <Button
+                {audio && (
+                    <div>
+                        <button
+                            className="tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed tw-text-box-neutral-strong tw-outline tw-outline-1 tw-p-[6px] tw-outline-line"
                             onClick={() => downloadAudio(audio.genericUrl, audio.title)}
-                            emphasis={ButtonEmphasis.Weak}
-                            icon={<IconArrowCircleDown />}
-                            rounding={ButtonRounding.Full}
-                        />
-                    )}
-                </div>
+                        >
+                            <IconArrowCircleDown16 />
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
