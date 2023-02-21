@@ -94,6 +94,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     onTextChange={onTextChange}
                     onBlur={onTextChange}
                     readonly={!isEditing}
+                    border={false}
                     value={blockSettings.textValue}
                     placeholder="Type your text here"
                     designTokens={useCalloutColors(designTokens, textColor)}
