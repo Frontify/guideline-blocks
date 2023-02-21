@@ -3,8 +3,9 @@
 import { Asset, useBlockAssets } from '@frontify/app-bridge';
 import { Attachments } from '@frontify/guideline-blocks-shared';
 import { BlockAttachmentsProps } from '../types';
+
 export const BlockAttachments = ({ downloadAsset, appBridge }: BlockAttachmentsProps) => {
-    const { blockAssets, deleteAssetIdsFromKey, addAssetIdsToKey } = useBlockAssets(appBridge);
+    const { blockAssets, deleteAssetIdsFromKey, addAssetIdsToKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const attachmentItems = blockAssets?.['attachments'];
 
     const onAttachmentRemove = (attachment: Asset) => {
@@ -21,9 +22,23 @@ export const BlockAttachments = ({ downloadAsset, appBridge }: BlockAttachmentsP
         addAssetIdsToKey('attachments', [newAttachment.id]);
     };
 
-    const onAttachmentsSorted = (attachments: Asset[]) => {
-        const attachmentIds = attachments.map((asset) => asset.id);
-        deleteAssetIdsFromKey('attachments', attachmentIds);
+    const onAttachmentsSorted = async (attachments: Asset[]) => {
+        const attachmentIds = attachments.map((attachment) => attachment.id);
+        deleteAssetIdsFromKey('attachments', attachmentIds).then(() =>
+            updateAssetIdsFromKey('attachments', attachmentIds)
+        );
+    };
+
+    const addToAttachmentsBrowse = (attachments: Asset[]) => {
+        const attachnmentsIds = [];
+        for (const attachment of attachments) {
+            attachnmentsIds.push(attachment.id);
+        }
+        addAssetIdsToKey('attachments', attachnmentsIds);
+    };
+
+    const addToAttachmentsUpload = (attachments: Asset[]) => {
+        const attachmentIds = attachments.map((attachment) => attachment.id);
         addAssetIdsToKey('attachments', attachmentIds);
     };
 
@@ -39,11 +54,6 @@ export const BlockAttachments = ({ downloadAsset, appBridge }: BlockAttachmentsP
             });
     };
 
-    const addToAttachments = (attachments: Asset[]) => {
-        const attachmentIds = attachments.map((asset) => asset.id);
-        addAssetIdsToKey('attachments', attachmentIds);
-    };
-
     return (
         <div>
             <Attachments
@@ -51,8 +61,8 @@ export const BlockAttachments = ({ downloadAsset, appBridge }: BlockAttachmentsP
                 onAttachmentDelete={onAttachmentRemove}
                 onAttachmentReplaceWithBrowse={onAttachmentReplaceWithBrowse}
                 onAttachmentReplaceWithUpload={onAttachmentReplaceWithUpload}
-                onBrowseAttachments={addToAttachments}
-                onUploadAttachments={addToAttachments}
+                onBrowseAttachments={addToAttachmentsBrowse}
+                onUploadAttachments={addToAttachmentsUpload}
                 onAttachmentsSorted={onAttachmentsSorted}
                 onDownload={onDownload}
                 appBridge={appBridge}

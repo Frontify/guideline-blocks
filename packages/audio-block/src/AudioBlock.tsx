@@ -22,6 +22,7 @@ import {
 import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
+    Asset,
     AssetChooserObjectType,
     FileExtension,
     useAssetUpload,
@@ -56,20 +57,12 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: false, accept: 'audio/*' });
     const { designTokens } = useGuidelineDesignTokens();
-    const { description } = blockSettings;
+    const { title, description } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
-    let { title } = blockSettings;
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
-
-    if (audio && title === undefined && description === undefined) {
-        title = audio.fileName;
-        setBlockSettings({
-            title: audio.fileName,
-        });
-    }
 
     const audioBlockClassNames = joinClassNames([
         'tw-flex tw-flex-col tw-gap-3',
@@ -94,15 +87,18 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         });
 
     const onRemoveAsset = () => {
-        const id = audio?.id;
-        deleteAssetIdsFromKey(AUDIO_ID, [id]);
+        deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
+    };
+
+    const updateAudioAsset = async (audio: Asset) => {
+        updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
+        setIsLoading(false);
     };
 
     const openAssetChooser = () => {
         appBridge.openAssetChooser(
             async (result) => {
-                await updateAssetIdsFromKey(AUDIO_ID, [result[0].id]);
-                setIsLoading(false);
+                updateAudioAsset(result[0]);
                 appBridge.closeAssetChooser();
             },
             {
@@ -133,10 +129,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (doneAll && uploadResults) {
-            const resultId = uploadResults[0].id;
-            updateAssetIdsFromKey(AUDIO_ID, [resultId]).then(() => {
-                setIsLoading(false);
-            });
+            updateAudioAsset(uploadResults[0]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
