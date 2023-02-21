@@ -5,11 +5,11 @@ import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import 'tailwindcss/tailwind.css';
 import { Settings, mapCaptionPositionClasses } from './types';
-import { UploadPlaceholder } from './UploadPlaceholder';
-import { ImageCaption } from './ImageCaption';
+import { UploadPlaceholder } from './components/UploadPlaceholder';
+import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_SETTING_ID } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { Image } from './Image';
+import { Image } from './components/Image';
 
 export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -28,12 +28,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             {!image ? (
                 isEditing && <UploadPlaceholder appBridge={appBridge} />
             ) : (
-                <Image
-                    url={image.genericUrl}
-                    blockSettings={blockSettings}
-                    isEditing={isEditing}
-                    imageName={image.fileName}
-                />
+                <Image blockSettings={blockSettings} isEditing={isEditing} image={image} />
             )}
             <ImageCaption
                 name={blockSettings.name}

@@ -8,21 +8,18 @@ import {
     paddingValues,
     radiusValues,
     rationValues,
-} from './types';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+} from '../types';
+import { downloadAsset, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { IconArrowCircleDown16 } from '@frontify/fondue';
+import { Asset } from '@frontify/app-bridge';
 
-export const Image = ({
-    url,
-    blockSettings,
-    isEditing,
-    imageName,
-}: {
-    url: string;
-    imageName: string;
+type ImageProps = {
+    image: Asset;
     blockSettings: Settings;
     isEditing: boolean;
-}) => {
+};
+
+export const Image = ({ image, blockSettings, isEditing }: ImageProps) => {
     const borderRadius = blockSettings.hasRadius_cornerRadius
         ? blockSettings.radiusValue_cornerRadius
         : radiusValues[blockSettings.radiusChoice_cornerRadius];
@@ -31,18 +28,6 @@ export const Image = ({
         : undefined;
 
     const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
-
-    const downloadImage = () => {
-        fetch(url).then((response) => {
-            response.blob().then((blob) => {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = imageName;
-                a.click();
-            });
-        });
-    };
 
     const ImageComponent = () => (
         <div
@@ -63,11 +48,11 @@ export const Image = ({
                 backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
             }}
         >
-            <img src={url} alt={imageName} className="tw-w-full" />
+            <img src={image.genericUrl} alt={image.fileName} className="tw-w-full" />
             {isEditing && (
                 <button
                     aria-label="Download Image"
-                    onClick={downloadImage}
+                    onClick={() => downloadAsset(image)}
                     className="tw-absolute tw-top-2 tw-right-2 tw-flex tw-items-center tw-justify-center tw-h-7 tw-w-7 tw-bg-box-neutral-strong-inverse tw-rounded-full tw-border tw-border-line"
                 >
                     <IconArrowCircleDown16 />

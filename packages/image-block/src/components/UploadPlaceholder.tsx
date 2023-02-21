@@ -5,7 +5,7 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { IconPlus24 } from '@frontify/fondue';
 import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
-import { IMAGE_SETTING_ID } from './settings';
+import { IMAGE_SETTING_ID } from '../settings';
 
 export const UploadPlaceholder = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
