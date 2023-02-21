@@ -20,7 +20,7 @@ export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
 
     return (
-        <div data-test-id="item-toolbar" className="tw-absolute tw-z-10 tw-right-0">
+        <div data-test-id="item-toolbar" className="tw-absolute tw-z-10 tw-right-0 tw-invisible group-hover:tw-visible">
             <div className="tw-bg-white tw-text-box-selected-inverse tw-flex tw-flex-shrink-0 tw-gap-[2px] tw-px-[1px] tw-spacing tw-items-center tw-h-[28px] tw-self-start tw-border tw-border-box-selected-inverse tw-rounded-[4px]">
                 <Tooltip
                     withArrow

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 
 export enum TextPosition {
     Below = 'Below',
@@ -12,6 +12,11 @@ export type BlockSettings = {
     audio: Asset[] | undefined;
     description?: string;
     title?: string;
+};
+
+export type BlockAttachmentsProps = {
+    audio: Asset;
+    appBridge: AppBridgeBlock;
 };
 
 export type UploadPlaceholderProps = {

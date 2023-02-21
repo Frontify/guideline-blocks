@@ -8,7 +8,6 @@ import {
     AlignLeftPlugin,
     AlignRightPlugin,
     BoldPlugin,
-    IconArrowCircleDown16,
     InitPlugin,
     ItalicPlugin,
     LoadingCircle,
@@ -36,6 +35,7 @@ import { BlockSettings, TextPosition } from './types';
 import { AUDIO_EXTENSIONS, AUDIO_ID } from './settings';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ItemToolbar } from './components/ItemToolbar';
+import { BlockAttachments } from './components/BlockAttachments';
 import { useEffect, useState } from 'react';
 
 const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
@@ -49,7 +49,6 @@ customTitlePlugins
     .setPlugin([new ResetFormattingPlugin()]);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
-    const [hoveringAudio, setHoveringAudio] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const isEditing = useEditorState(appBridge);
@@ -79,7 +78,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const audiotTagClassNames = joinClassNames([
         'tw-w-full tw-mt-5',
-        hoveringAudio && isEditing && 'tw-border tw-border-box-selected-inverse tw-rounded-[4px]',
+        isEditing && 'group-hover:tw-border group-hover:tw-border-box-selected-inverse group-hover:tw-rounded-[4px]',
     ]);
 
     const saveTitle = (value: string) =>
@@ -93,18 +92,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         setBlockSettings({
             description: value,
         });
-
-    const downloadAudio = (url: string, fileName: string) => {
-        fetch(url)
-            .then((response) => response.blob())
-            .then((blob) => {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `${fileName}.mp3`;
-                a.click();
-            });
-    };
 
     const onRemoveAsset = () => {
         const id = audio?.id;
@@ -124,10 +111,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 extensions: AUDIO_EXTENSIONS,
             }
         );
-    };
-
-    const onUploadClick = () => {
-        openFileDialog();
     };
 
     useEffect(() => {
@@ -161,11 +144,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     return (
         <div data-test-id="audio-block" className={audioBlockClassNames}>
             {audio ? (
-                <div onMouseEnter={() => setHoveringAudio(true)} onMouseLeave={() => setHoveringAudio(false)}>
-                    {hoveringAudio && isEditing && (
+                <div className="tw-group">
+                    {isEditing && (
                         <ItemToolbar
                             onRemoveAsset={onRemoveAsset}
-                            onUploadClick={onUploadClick}
+                            onUploadClick={openFileDialog}
                             onAssetChooseClick={openAssetChooser}
                         />
                     )}
@@ -177,7 +160,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     ) : (
                         <audio
                             data-test-id="audio-block-audio-tag"
-                            key={audio.fileSize}
+                            key={audio.id}
                             controls
                             className={audiotTagClassNames}
                             controlsList="nodownload"
@@ -190,7 +173,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             ) : (
                 isEditing && (
                     <UploadPlaceholder
-                        onUploadClick={onUploadClick}
+                        onUploadClick={openFileDialog}
                         onAssetChooseClick={openAssetChooser}
                         loading={isLoading}
                         setDroppedFiles={setDroppedFiles}
@@ -218,16 +201,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                     />
                 </div>
-                {audio && (
-                    <div>
-                        <button
-                            className="tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed tw-text-box-neutral-strong tw-outline tw-outline-1 tw-p-[6px] tw-outline-line"
-                            onClick={() => downloadAudio(audio.genericUrl, audio.title)}
-                        >
-                            <IconArrowCircleDown16 />
-                        </button>
-                    </div>
-                )}
+                {audio && <BlockAttachments audio={audio} appBridge={appBridge} />}
             </div>
         </div>
     );
