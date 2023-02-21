@@ -28,7 +28,9 @@ export const Image = ({ image, blockSettings, isEditing }: ImageProps) => {
         : undefined;
 
     const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
-
+    const padding = blockSettings.hasCustomPadding
+        ? blockSettings.paddingCustom
+        : paddingValues[blockSettings.paddingChoice];
     const ImageComponent = () => (
         <div
             className={joinClassNames([
@@ -39,19 +41,28 @@ export const Image = ({ image, blockSettings, isEditing }: ImageProps) => {
                     ? 'tw-w-full'
                     : rationValues[blockSettings.ratio],
             ])}
-            style={{
-                border,
-                padding: blockSettings.hasCustomPadding
-                    ? blockSettings.paddingCustom
-                    : paddingValues[blockSettings.paddingChoice],
-                borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
-                backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
-            }}
         >
-            <img src={image.genericUrl} alt={image.fileName} className="tw-w-full" />
+            <img
+                className="tw-flex"
+                src={image.genericUrl}
+                alt={image.fileName}
+                style={{
+                    width: image.width,
+                    border,
+                    padding,
+                    borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
+                    backgroundColor: blockSettings.hasBackground
+                        ? toRgbaString(blockSettings.backgroundColor)
+                        : undefined,
+                }}
+            />
             {isEditing && (
                 <button
                     aria-label="Download Image"
+                    style={{
+                        marginTop: padding,
+                        marginRight: padding,
+                    }}
                     onClick={() => downloadAsset(image)}
                     className="tw-absolute tw-top-2 tw-right-2 tw-flex tw-items-center tw-justify-center tw-h-7 tw-w-7 tw-bg-box-neutral-strong-inverse tw-rounded-full tw-border tw-border-line"
                 >
