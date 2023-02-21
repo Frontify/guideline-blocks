@@ -72,7 +72,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     }
 
     const audioBlockClassNames = joinClassNames([
-        'tw-flex tw-flex-col tw-gap-2',
+        'tw-flex tw-flex-col tw-gap-3',
         blockSettings.positioning === TextPosition.Above && 'tw-flex-col-reverse',
     ]);
 
