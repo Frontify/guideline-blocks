@@ -30,10 +30,6 @@ export const Image = ({
         ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
         : undefined;
 
-    const width =
-        blockSettings.positioning === CaptionPosition.Above || blockSettings.positioning === CaptionPosition.Below
-            ? '100%'
-            : rationValues[blockSettings.ratio];
     const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
 
     const downloadImage = () => {
@@ -51,11 +47,14 @@ export const Image = ({
     const ImageComponent = () => (
         <div
             className={joinClassNames([
-                'tw-relative tw-flex tw-h-auto tw-w-full',
+                'tw-relative tw-flex tw-h-auto',
                 mapAlignmentClasses[blockSettings.alignment],
+                blockSettings.positioning === CaptionPosition.Above ||
+                blockSettings.positioning === CaptionPosition.Below
+                    ? 'tw-w-full'
+                    : rationValues[blockSettings.ratio],
             ])}
             style={{
-                width,
                 border,
                 padding: blockSettings.hasCustomPadding
                     ? blockSettings.paddingCustom
