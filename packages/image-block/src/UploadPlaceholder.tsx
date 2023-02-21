@@ -9,12 +9,11 @@ import { IMAGE_SETTING_ID } from './settings';
 
 export const UploadPlaceholder = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
-    const { updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { updateAssetIdsFromKey, blockAssets } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
     const [dropedFiles, setDropedFiles] = useState<FileList | null>(null);
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
-        onUploadDone: () => setIsLoading(false),
     });
 
     useEffect(() => {
@@ -36,12 +35,11 @@ export const UploadPlaceholder = ({ appBridge }: BlockProps) => {
     const openAssetChooser = () => {
         appBridge.openAssetChooser(
             async (result) => {
-                setIsLoading(true);
                 await updateAssetIdsFromKey(IMAGE_SETTING_ID, [result[0].id]);
-                setIsLoading(false);
                 appBridge.closeAssetChooser();
             },
             {
+                selectedValueId: blockAssets[IMAGE_SETTING_ID]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
             }
         );
