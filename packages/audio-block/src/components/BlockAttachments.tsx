@@ -3,7 +3,7 @@
 import { Asset, useBlockAssets } from '@frontify/app-bridge';
 import { Attachments } from '@frontify/guideline-blocks-shared';
 import { BlockAttachmentsProps } from '../types';
-export const BlockAttachments = ({ audio, appBridge }: BlockAttachmentsProps) => {
+export const BlockAttachments = ({ downloadAsset, appBridge }: BlockAttachmentsProps) => {
     const { blockAssets, deleteAssetIdsFromKey, addAssetIdsToKey } = useBlockAssets(appBridge);
     const attachmentItems = blockAssets?.['attachments'];
 
@@ -28,13 +28,13 @@ export const BlockAttachments = ({ audio, appBridge }: BlockAttachmentsProps) =>
     };
 
     const onDownload = () => {
-        fetch(audio.originUrl)
+        fetch(downloadAsset.originUrl)
             .then((response) => response.blob())
             .then((blob) => {
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = audio.fileName;
+                a.download = downloadAsset.fileName;
                 a.click();
             });
     };

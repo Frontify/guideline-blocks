@@ -201,7 +201,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                     />
                 </div>
-                {audio && <BlockAttachments audio={audio} appBridge={appBridge} />}
+                {audio && <BlockAttachments downloadAsset={audio} appBridge={appBridge} />}
             </div>
         </div>
     );

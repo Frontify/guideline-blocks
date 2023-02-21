@@ -15,7 +15,7 @@ export type BlockSettings = {
 };
 
 export type BlockAttachmentsProps = {
-    audio: Asset;
+    downloadAsset: Asset;
     appBridge: AppBridgeBlock;
 };
 

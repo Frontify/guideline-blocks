@@ -146,7 +146,6 @@ describe('Audio Block', () => {
         });
 
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioTagSelector).trigger('mouseover');
-        cy.get(ItemToolbarSelector).should('be.visible');
+        cy.get(ItemToolbarSelector).should('have.class', 'group-hover:tw-visible');
     });
 });
