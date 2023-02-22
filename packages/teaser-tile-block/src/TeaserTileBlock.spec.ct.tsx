@@ -38,7 +38,15 @@ const TILE_IMAGE_ID = '[data-test-id="tile-image"]';
 const TILE_TEXT_ID = '[data-test-id="tile-text"]';
 const TILE_LINK_ID = '[data-test-id="tile-link"]';
 const TILE_CONTENT_ID = '[data-test-id="tile-content"]';
+const TILE_TITLE_ID = '[data-test-id="tile-title"]';
+const TOOLBAR_SETTINGS_ID = '[data-test-id="tile-toolbar-settings"]';
+const TOOLBAR_DELETE_ID = '[data-test-id="tile-toolbar-delete"]';
+const TOOLBAR_DRAG_ID = '[data-test-id="tile-toolbar-drag"]';
 const ADD_TILE_BUTTON_ID = '[data-test-id="add-tile"]';
+const TILE_PLACEHOLDER_ID = '[data-test-id="tile-placeholder"]';
+const ASSET_INPUT_ID = '[data-test-id="asset-input-placeholder"]';
+const SLIDER_ID = '[data-test-id="slider"]';
+const SWITCH_ID = '[data-test-id="switch"]';
 const EDITABLE_RICH_TEXT_ID = '[contenteditable=true]';
 const DISABLED_RICH_TEXT_ID = '[contenteditable=false]';
 
@@ -91,7 +99,11 @@ const TeaserTileBlock = ({
         blockAssets,
     });
 
-    return <TeaserTileBlockWithStubs />;
+    return (
+        <div className="tw-pt-10">
+            <TeaserTileBlockWithStubs />
+        </div>
+    );
 };
 
 describe('TeaserTileBlock', () => {
@@ -121,7 +133,6 @@ describe('TeaserTileBlock', () => {
 
             cy.get(TILE_GRID_ID).should(($grid) => {
                 const cols = $grid.css('gridTemplateColumns');
-                console.log(cols);
                 expect(cols?.match(/px/g)?.length).to.equal(column);
             });
         }
@@ -146,7 +157,7 @@ describe('TeaserTileBlock', () => {
     });
 
     it('displays a flyout placeholder if in edit mode', () => {
-        mount(<TeaserTileBlock isEditing blockSettings={{ columns: 1 }} />);
+        mount(<TeaserTileBlock isEditing />);
 
         cy.get(TILE_FLYOUT_ID).should('not.exist');
         cy.get(TILE_IMAGE_TRIGGER_ID).should('be.visible');
@@ -154,8 +165,64 @@ describe('TeaserTileBlock', () => {
         cy.get(TILE_FLYOUT_ID).should('be.visible');
     });
 
+    it('displays limited info in flyout if text type', () => {
+        mount(<TeaserTileBlock isEditing blockSettings={{ type: TileType.Text }} />);
+
+        cy.get(TOOLBAR_SETTINGS_ID).focus();
+        cy.get(TOOLBAR_SETTINGS_ID).click();
+        cy.get(TILE_FLYOUT_ID).should('be.visible');
+        cy.get(ASSET_INPUT_ID).should('not.exist');
+        cy.get(SLIDER_ID).should('not.exist');
+    });
+
+    it('deletes tile', () => {
+        mount(<TeaserTileBlock isEditing blockSettings={{ type: TileType.Text }} />);
+
+        cy.get(TOOLBAR_DELETE_ID).focus();
+        cy.get(TOOLBAR_DELETE_ID).click();
+        cy.get(TEASER_TILE_ID).should('not.exist');
+    });
+
+    it('drags tile with keyboard', () => {
+        mount(
+            <TeaserTileBlock
+                isEditing
+                blockSettings={{
+                    type: TileType.Text,
+                    tiles: [
+                        { id: '1', settings: { ...INIT_TILE_SETTINGS, title: 'Tile 1' } },
+                        { id: '2', settings: { ...INIT_TILE_SETTINGS, title: 'Tile 2' } },
+                    ],
+                    columns: 2,
+                }}
+            />
+        );
+
+        cy.get(TOOLBAR_DRAG_ID).first().focus().type('{enter}');
+        cy.get(TEASER_TILE_ID).first().find(TILE_PLACEHOLDER_ID).should('be.visible');
+        cy.get(TEASER_TILE_ID).should('have.length', 3);
+
+        let dragCount = 0;
+        while (dragCount < 10) {
+            cy.get('body').type('{rightArrow}');
+            dragCount++;
+        }
+        cy.get('body').type('{enter}');
+        cy.get(TEASER_TILE_ID).should('have.length', 2);
+        cy.get(TILE_TITLE_ID).first().should('have.text', 'Tile 2');
+    });
+
+    it('displays full info in flyout if imageText/image type', () => {
+        mount(<TeaserTileBlock isEditing blockSettings={{ heightChoice: TileHeight.Medium }} />);
+
+        cy.get(TILE_IMAGE_TRIGGER_ID).click();
+        cy.get(TILE_FLYOUT_ID).should('be.visible');
+        cy.get(ASSET_INPUT_ID).should('be.visible');
+        cy.get(SLIDER_ID).should('be.visible');
+    });
+
     it('displays a placeholder icon if in view mode', () => {
-        mount(<TeaserTileBlock blockSettings={{ columns: 1 }} />);
+        mount(<TeaserTileBlock />);
 
         cy.get(TILE_FLYOUT_ID).should('not.exist');
         cy.get(TILE_IMAGE_TRIGGER_ID).should('be.visible');

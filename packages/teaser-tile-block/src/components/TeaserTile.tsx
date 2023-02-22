@@ -37,6 +37,7 @@ const TeaserTilePlaceholder = ({ style }: { style: CSSProperties }) => (
     <div
         className="tw-border-2 tw-border-dashed tw-border-box-selected-strong tw-bg-box-selected tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0"
         style={style}
+        data-test-id="tile-placeholder"
     />
 );
 
@@ -228,7 +229,9 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                     )}
                     {type !== TileType.Image && (
                         <div style={textWrapper.style} className={textWrapper.className} data-test-id="tile-text">
-                            <h6 className="tw-text-lg tw-font-semibold">{titleRichTextEditor}</h6>
+                            <h6 className="tw-text-lg tw-font-semibold" data-test-id="tile-title">
+                                {titleRichTextEditor}
+                            </h6>
                             <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
                         </div>
                     )}

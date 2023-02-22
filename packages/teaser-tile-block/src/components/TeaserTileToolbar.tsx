@@ -47,6 +47,7 @@ export const TeaserTileToolbar = ({
                 triggerElement={
                     <button
                         {...draggableProps}
+                        data-test-id="tile-toolbar-drag"
                         className={merge([
                             'tw-inline-flex tw-items-center active:tw-bg-box-selected-pressed tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm',
                             isDragging
@@ -82,6 +83,7 @@ export const TeaserTileToolbar = ({
                                             isTopSettingsFlyoutOpen ? 'Close tile settings' : 'Open tile settings'
                                         }
                                         ref={triggerRef}
+                                        data-test-id="tile-toolbar-settings"
                                         className={merge([
                                             'tw-relative active:tw-bg-box-selected-pressed tw-inline-flex tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm tw-z-[3]',
                                             isDragging
@@ -107,6 +109,7 @@ export const TeaserTileToolbar = ({
                 content={<div>Delete item</div>}
                 triggerElement={
                     <button
+                        data-test-id="tile-toolbar-delete"
                         aria-label="Delete Tile"
                         onClick={onRemoveSelf}
                         className={merge([
