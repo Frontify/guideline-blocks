@@ -69,22 +69,26 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         blockSettings.positioning === TextPosition.Above && 'tw-flex-col-reverse',
     ]);
 
-    const audiotTagClassNames = joinClassNames([
+    const audioTagClassNames = joinClassNames([
         'tw-w-full tw-mt-5',
         isEditing && 'group-hover:tw-border group-hover:tw-border-box-selected-inverse group-hover:tw-rounded-[4px]',
     ]);
 
-    const saveTitle = (value: string) =>
-        value !== blockSettings.title &&
-        setBlockSettings({
-            title: value,
-        });
+    const saveTitle = (value: string) => {
+        if (value !== blockSettings.title) {
+            setBlockSettings({
+                title: value,
+            });
+        }
+    };
 
-    const saveDescription = (value: string) =>
-        value !== blockSettings.description &&
-        setBlockSettings({
-            description: value,
-        });
+    const saveDescription = (value: string) => {
+        if (value !== blockSettings.description) {
+            setBlockSettings({
+                description: value,
+            });
+        }
+    };
 
     const onRemoveAsset = () => {
         deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
@@ -98,6 +102,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const openAssetChooser = () => {
         appBridge.openAssetChooser(
             async (result) => {
+                setIsLoading(true);
                 updateAudioAsset(result[0]);
                 appBridge.closeAssetChooser();
             },
@@ -155,7 +160,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             data-test-id="audio-block-audio-tag"
                             key={audio.id}
                             controls
-                            className={audiotTagClassNames}
+                            className={audioTagClassNames}
                             controlsList="nodownload"
                             preload="auto"
                         >
