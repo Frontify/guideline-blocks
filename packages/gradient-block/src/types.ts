@@ -1,5 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { Color } from '@frontify/fondue';
+import { RefObject } from 'react';
+
 export enum GradientHeight {
     Small = 's',
     Medium = 'm',
@@ -57,4 +60,19 @@ export type SquareBadgeProps = {
     color: GradientColor;
     colorSquarePosition?: ColorSquarePositionType;
     handleCopy: () => void;
+};
+
+export type ColorPickerProps = {
+    editing: boolean;
+    color: GradientColor | null;
+    colors: GradientColor[];
+    currentColor: Color | null;
+    currentColorPosition: number | undefined;
+    gradientColors: GradientColor[] | undefined;
+    setColors: (color: GradientColor[]) => void;
+    setShowColorModal: (show: boolean) => void;
+    setCurrentColorPosition: (position?: number) => void;
+    setCurrentColor: (color: Color | null) => void;
+    setCurrentlyEditingColor: (color?: string | undefined) => void;
+    addRef: RefObject<HTMLDivElement>;
 };
