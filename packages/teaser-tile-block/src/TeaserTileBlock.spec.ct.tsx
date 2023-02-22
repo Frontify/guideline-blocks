@@ -31,7 +31,7 @@ import { BorderStyle, Radius, toRgbaString } from '@frontify/guideline-blocks-sh
 import { INIT_TILE_SETTINGS } from './hooks';
 
 const TILE_GRID_ID = '[data-test-id="tile-grid"]';
-const TEASER_TILE_ID = '[data-test-id="teaser-tile"]';
+const TILE_ID = '[data-test-id="teaser-tile"]';
 const TILE_IMAGE_TRIGGER_ID = '[data-test-id="tile-image-flyout-trigger"]';
 const TILE_FLYOUT_ID = '[data-test-id="tile-settings-flyout"]';
 const TILE_IMAGE_ID = '[data-test-id="tile-image"]';
@@ -46,7 +46,6 @@ const ADD_TILE_BUTTON_ID = '[data-test-id="add-tile"]';
 const TILE_PLACEHOLDER_ID = '[data-test-id="tile-placeholder"]';
 const ASSET_INPUT_ID = '[data-test-id="asset-input-placeholder"]';
 const SLIDER_ID = '[data-test-id="slider"]';
-const SWITCH_ID = '[data-test-id="switch"]';
 const EDITABLE_RICH_TEXT_ID = '[contenteditable=true]';
 const DISABLED_RICH_TEXT_ID = '[contenteditable=false]';
 
@@ -116,7 +115,7 @@ describe('TeaserTileBlock', () => {
     it('populates columns on first render if empty', () => {
         mount(<TeaserTileBlock blockSettings={{ columns: 3, tiles: undefined }} />);
 
-        cy.get(TEASER_TILE_ID).should('have.length', 3);
+        cy.get(TILE_ID).should('have.length', 3);
     });
 
     it('displays correct number of columns', () => {
@@ -180,7 +179,7 @@ describe('TeaserTileBlock', () => {
 
         cy.get(TOOLBAR_DELETE_ID).focus();
         cy.get(TOOLBAR_DELETE_ID).click();
-        cy.get(TEASER_TILE_ID).should('not.exist');
+        cy.get(TILE_ID).should('not.exist');
     });
 
     it('drags tile with keyboard', () => {
@@ -199,8 +198,8 @@ describe('TeaserTileBlock', () => {
         );
 
         cy.get(TOOLBAR_DRAG_ID).first().focus().type('{enter}');
-        cy.get(TEASER_TILE_ID).first().find(TILE_PLACEHOLDER_ID).should('be.visible');
-        cy.get(TEASER_TILE_ID).should('have.length', 3);
+        cy.get(TILE_ID).first().find(TILE_PLACEHOLDER_ID).should('be.visible');
+        cy.get(TILE_ID).should('have.length', 3);
 
         let dragCount = 0;
         while (dragCount < 10) {
@@ -208,7 +207,7 @@ describe('TeaserTileBlock', () => {
             dragCount++;
         }
         cy.get('body').type('{enter}');
-        cy.get(TEASER_TILE_ID).should('have.length', 2);
+        cy.get(TILE_ID).should('have.length', 2);
         cy.get(TILE_TITLE_ID).first().should('have.text', 'Tile 2');
     });
 
@@ -379,6 +378,7 @@ describe('TeaserTileBlock', () => {
                     isEditing
                 />
             );
+
             cy.get(TILE_TEXT_ID).should('have.class', twHorizontalAligmentMap[horizontalAlignment]);
             cy.get(TILE_TEXT_ID).should('have.css', 'justify-content', 'normal');
         }
@@ -397,6 +397,7 @@ describe('TeaserTileBlock', () => {
                     isEditing
                 />
             );
+
             cy.get(TILE_TEXT_ID).should('have.css', 'textAlign', 'start');
             cy.get(TILE_TEXT_ID).should('have.class', twVerticalAlignmentMap[verticalAlignment]);
         }
@@ -414,6 +415,7 @@ describe('TeaserTileBlock', () => {
                     isEditing
                 />
             );
+
             cy.get(TILE_TEXT_ID).should('have.css', 'textAlign', 'start');
         }
         for (const verticalAlignment of Object.values(TileVerticalAlignment)) {
@@ -427,6 +429,7 @@ describe('TeaserTileBlock', () => {
                     isEditing
                 />
             );
+
             cy.get(TILE_TEXT_ID).should('have.css', 'justifyContent', 'normal');
         }
     });
@@ -550,7 +553,7 @@ describe('TeaserTileBlock', () => {
         mount(<TeaserTileBlock isEditing blockSettings={{}} />);
 
         cy.get(ADD_TILE_BUTTON_ID).should('be.visible').click();
-        cy.get(TEASER_TILE_ID).should('have.length', TILES.length + 1);
+        cy.get(TILE_ID).should('have.length', TILES.length + 1);
     });
 
     it('hides "add tile" button in view mode', () => {

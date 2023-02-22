@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export * from './SortableTeaserTile';
-export * from './TeaserTile';
-export * from './TeaserTileToolbar';
+export * from './SortableTileItem';
+export * from './TileItem';
+export * from './TileToolbar';
 export * from './TileSettingsFlyout';
 export * from './TileGrid';

@@ -137,7 +137,7 @@ export type TileGridProps = {
     columns: TileColumns;
 };
 
-export type SortableTeaserTileProps = {
+export type SortableTileItemProps = {
     id: string;
     blockSettings: Settings;
     appBridge: AppBridgeBlock;
@@ -151,7 +151,7 @@ export type SortableTeaserTileProps = {
     designTokens: Nullable<Partial<Record<DesignTokenName, TokenValues>>>;
 };
 
-export type TeaserTileProps = SortableTeaserTileProps & {
+export type TileItemProps = SortableTileItemProps & {
     isDragging?: boolean;
     replaceWithPlaceholder?: boolean;
     transformStyle?: Record<string, unknown>;
@@ -159,7 +159,7 @@ export type TeaserTileProps = SortableTeaserTileProps & {
     isDragPreview?: boolean;
 };
 
-export type TeaserTileToolbarProps = {
+export type TileToolbarProps = {
     type: TileType;
     draggableProps?: Record<string, unknown>;
     isDragging?: boolean;

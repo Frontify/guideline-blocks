@@ -11,10 +11,10 @@ import {
     merge,
 } from '@frontify/fondue';
 import { MutableRefObject, useState } from 'react';
-import { TeaserTileToolbarProps } from '../types';
+import { TileToolbarProps } from '../types';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 
-export const TeaserTileToolbar = ({
+export const TileToolbar = ({
     type,
     isDragging,
     onRemoveSelf,
@@ -23,7 +23,7 @@ export const TeaserTileToolbar = ({
     onToolbarFocus,
     isToolbarFocused,
     tileSettingsFlyoutProps,
-}: TeaserTileToolbarProps) => {
+}: TileToolbarProps) => {
     const [isTopSettingsFlyoutOpen, setIsTopSettingsFlyoutOpen] = useState(false);
 
     return (

@@ -18,14 +18,14 @@ import {
     ImageFlyoutProps,
     ImageTextFlyoutProps,
     Link,
-    TeaserTileProps,
     TextFlyoutProps,
     TileDisplay,
+    TileItemProps,
     TileType,
 } from '../types';
-import { TeaserTileToolbar } from './TeaserTileToolbar';
 import { TileSettingsFlyout } from './TileSettingsFlyout';
 import { getImageSrc } from '../utils';
+import { TileToolbar } from './TileToolbar';
 
 type TileFlyoutVariantProps = {
     [TileType.Text]: Omit<TextFlyoutProps, 'children'>;
@@ -33,7 +33,7 @@ type TileFlyoutVariantProps = {
     [TileType.ImageText]: Omit<ImageTextFlyoutProps, 'children'>;
 };
 
-const TeaserTilePlaceholder = ({ style }: { style: CSSProperties }) => (
+const TilePlaceholder = ({ style }: { style: CSSProperties }) => (
     <div
         className="tw-border-2 tw-border-dashed tw-border-box-selected-strong tw-bg-box-selected tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0"
         style={style}
@@ -41,7 +41,7 @@ const TeaserTilePlaceholder = ({ style }: { style: CSSProperties }) => (
     />
 );
 
-export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
+export const TileItem = forwardRef<HTMLDivElement, TileItemProps>(
     (
         {
             id,
@@ -165,9 +165,9 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                 style={{ ...transformStyle }}
                 data-test-id="teaser-tile"
             >
-                {replaceWithPlaceholder && <TeaserTilePlaceholder style={dragPreview.style} />}
+                {replaceWithPlaceholder && <TilePlaceholder style={dragPreview.style} />}
                 {isEditing && !replaceWithPlaceholder && (
-                    <TeaserTileToolbar
+                    <TileToolbar
                         type={type}
                         isDragging={isDragPreview}
                         draggableProps={draggableProps}
@@ -241,4 +241,4 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
     }
 );
 
-TeaserTile.displayName = 'TeaserTile';
+TileItem.displayName = 'TileItem';

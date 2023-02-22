@@ -2,7 +2,6 @@
 
 import 'tailwindcss/tailwind.css';
 import '@frontify/fondue-tokens/styles';
-
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockAssets, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { FOCUS_VISIBLE_STYLE, merge } from '@frontify/fondue';
@@ -11,7 +10,7 @@ import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { SortableContext } from '@dnd-kit/sortable';
 import { radiusMap, spacingMap } from './helpers';
 import { useDraggableGrid, useTileArray } from './hooks';
-import { SortableTeaserTile, TeaserTile, TileGrid } from './components';
+import { SortableTeaserTile, TileGrid, TileItem } from './components';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useMemo } from 'react';
 
@@ -56,7 +55,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                 </SortableContext>
                 <DragOverlay>
                     {draggedTile ? (
-                        <TeaserTile
+                        <TileItem
                             id={draggedTile.id}
                             key={draggedTile.id}
                             appBridge={appBridge}
