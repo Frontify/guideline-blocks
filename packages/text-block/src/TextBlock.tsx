@@ -9,8 +9,9 @@ import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
 import { getPlugins } from './getPlugins';
+import { ReactElement } from 'react';
 
-export const TextBlock = ({ appBridge }: BlockProps) => {
+export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
