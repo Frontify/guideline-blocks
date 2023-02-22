@@ -107,7 +107,7 @@ export enum TileDisplay {
     Fit = 'Fit',
 }
 
-export type TileColumns = '1' | '2' | '3' | '4';
+export type TileColumns = 1 | 2 | 3 | 4;
 
 export enum TileImagePositioning {
     Top = 'Top',
@@ -134,7 +134,7 @@ export type Nullable<T> = T | null;
 export type TileGridProps = {
     children: ReactNode;
     gridGap: string;
-    columns: string;
+    columns: TileColumns;
 };
 
 export type SortableTeaserTileProps = {

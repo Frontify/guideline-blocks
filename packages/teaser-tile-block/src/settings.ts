@@ -12,6 +12,7 @@ import {
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 import { heightMap, paddingMap } from './helpers';
 import {
+    Settings,
     SettingsEnum,
     TileDisplay,
     TileHeight,
@@ -23,13 +24,29 @@ import {
     TileVerticalAlignment,
 } from './types';
 
+export const defaultValues: Partial<Settings> = {
+    type: TileType.ImageText,
+    columns: 4,
+    isSpacingCustom: false,
+    spacingChoice: TileSpacing.Small,
+    positioning: TileImagePositioning.Top,
+    verticalAlignment: TileVerticalAlignment.Center,
+    horizontalAlignment: TileHorizontalAlignment.Left,
+    isPaddingCustom: false,
+    paddingChoice: TilePadding.Small,
+    isHeightCustom: false,
+    heightChoice: TileHeight.Auto,
+    display: TileDisplay.Fill,
+    isBackgroundVisible: false,
+};
+
 export const settings = defineSettings({
     main: [
         {
             id: SettingsEnum.Type,
             type: 'dropdown',
             size: DropdownSize.Large,
-            defaultValue: TileType.ImageText,
+            defaultValue: defaultValues.type,
             choices: [
                 { value: TileType.Text, icon: IconEnum.TextAlignmentLeft, label: 'Text' },
                 { value: TileType.Image, icon: IconEnum.Image, label: 'Image' },
@@ -48,12 +65,12 @@ export const settings = defineSettings({
                     type: 'slider',
                     label: 'Number',
                     info: 'Sets the maximum amount of columns in this block. On smaller devices, this will be responsive to be fewer',
-                    defaultValue: '4',
+                    defaultValue: defaultValues.columns,
                     choices: [
-                        { value: '1', label: '1' },
-                        { value: '2', label: '2' },
-                        { value: '3', label: '3' },
-                        { value: '4', label: '4' },
+                        { value: 1, label: '1' },
+                        { value: 2, label: '2' },
+                        { value: 3, label: '3' },
+                        { value: 4, label: '4' },
                     ],
                 },
                 {
@@ -63,14 +80,14 @@ export const settings = defineSettings({
                     switchLabel: 'Custom',
                     info: 'Another word for ‘gap’. Refers to both column gutter and row gutter.',
                     show: (bundle: Bundle) => bundle.getBlock('columns')?.value !== '1',
-                    defaultValue: false,
+                    defaultValue: defaultValues.isSpacingCustom,
                     onChange: (bundle) =>
                         presetCustomValue(bundle, SettingsEnum.SpacingChoice, SettingsEnum.SpacingCustom, paddingMap),
                     off: [
                         {
                             id: SettingsEnum.SpacingChoice,
                             type: 'slider',
-                            defaultValue: TileSpacing.Small,
+                            defaultValue: defaultValues.spacingChoice,
                             choices: [
                                 { value: TileSpacing.None, label: 'None' },
                                 { value: TileSpacing.Small, label: 'S' },
@@ -100,7 +117,7 @@ export const settings = defineSettings({
                     type: 'slider',
                     label: 'Positioning',
                     show: (bundle) => bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText,
-                    defaultValue: TileImagePositioning.Top,
+                    defaultValue: defaultValues.positioning,
                     choices: [
                         { value: TileImagePositioning.Top, icon: IconEnum.MediaObjectTextBottom },
                         { value: TileImagePositioning.Bottom, icon: IconEnum.MediaObjectTextTop },
@@ -117,7 +134,7 @@ export const settings = defineSettings({
                     show: (bundle: Bundle) =>
                         bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText &&
                         bundle.getBlock(SettingsEnum.Positioning)?.value === TileImagePositioning.Behind,
-                    defaultValue: TileVerticalAlignment.Center,
+                    defaultValue: defaultValues.verticalAlignment,
                     choices: [
                         { icon: IconEnum.ArrowAlignUp, value: TileVerticalAlignment.Top },
                         { icon: IconEnum.ArrowAlignHorizontalCentre, value: TileVerticalAlignment.Center },
@@ -132,7 +149,7 @@ export const settings = defineSettings({
                     show: (bundle: Bundle) =>
                         bundle.getBlock(SettingsEnum.Type)?.value === TileType.ImageText &&
                         bundle.getBlock(SettingsEnum.Positioning)?.value !== TileImagePositioning.Behind,
-                    defaultValue: TileHorizontalAlignment.Left,
+                    defaultValue: defaultValues.horizontalAlignment,
                     choices: [
                         { icon: IconEnum.ArrowAlignLeft, value: TileHorizontalAlignment.Left },
                         { icon: IconEnum.ArrowAlignVerticalCentre, value: TileHorizontalAlignment.Center },
@@ -147,14 +164,14 @@ export const settings = defineSettings({
                     switchLabel: 'Custom',
                     info: 'The spacing between the text and the outer parameters of the tile',
                     show: (bundle: Bundle) => bundle.getBlock(SettingsEnum.Type)?.value !== TileType.Image,
-                    defaultValue: false,
+                    defaultValue: defaultValues.isPaddingCustom,
                     onChange: (bundle) =>
                         presetCustomValue(bundle, SettingsEnum.PaddingChoice, SettingsEnum.PaddingCustom, paddingMap),
                     off: [
                         {
                             id: SettingsEnum.PaddingChoice,
                             type: 'slider',
-                            defaultValue: TilePadding.Small,
+                            defaultValue: defaultValues.paddingChoice,
                             choices: [
                                 { value: TilePadding.Small, label: 'S' },
                                 { value: TilePadding.Medium, label: 'M' },
@@ -183,14 +200,14 @@ export const settings = defineSettings({
                     type: 'switch',
                     label: 'Height',
                     switchLabel: 'Custom',
-                    defaultValue: false,
+                    defaultValue: defaultValues.isHeightCustom,
                     onChange: (bundle) =>
                         presetCustomValue(bundle, SettingsEnum.HeightChoice, SettingsEnum.HeightCustom, heightMap),
                     off: [
                         {
                             id: SettingsEnum.HeightChoice,
                             type: 'slider',
-                            defaultValue: TileHeight.Auto,
+                            defaultValue: defaultValues.heightChoice,
                             choices: [
                                 { value: TileHeight.Auto, label: 'Auto' },
                                 { value: TileHeight.Small, label: 'S' },
@@ -219,7 +236,7 @@ export const settings = defineSettings({
                                 (bundle.getBlock(SettingsEnum.Height)?.value ||
                                     bundle.getBlock(SettingsEnum.HeightChoice)?.value !== TileHeight.Auto)
                         ),
-                    defaultValue: TileDisplay.Fill,
+                    defaultValue: defaultValues.display,
                     choices: [
                         { value: TileDisplay.Fill, label: TileDisplay.Fill },
                         { value: TileDisplay.Fit, label: TileDisplay.Fit },
@@ -234,7 +251,7 @@ export const settings = defineSettings({
             type: 'switch',
             label: 'Background',
             size: SwitchSize.Small,
-            defaultValue: false,
+            defaultValue: defaultValues.isBackgroundVisible,
             on: [{ id: SettingsEnum.BackgroundColor, type: 'colorInput' }],
         },
         getBorderSettings(),

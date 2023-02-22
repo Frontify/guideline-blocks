@@ -63,7 +63,7 @@ export const TileSettingsFlyout = ({
             </div>
         }
     >
-        <div className="tw-p-6 tw-gap-6 tw-flex tw-flex-col">
+        <div className="tw-p-6 tw-gap-6 tw-flex tw-flex-col" data-test-id="tile-settings-flyout">
             <div className="tw-flex tw-flex-col tw-gap-4">
                 {type !== TileType.Text && (
                     <>

@@ -162,6 +162,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                 className={merge(['tw-relative tw-group tw-min-w-0', isDragPreview && 'tw-pointer-events-none'])}
                 ref={ref}
                 style={{ ...transformStyle }}
+                data-test-id="teaser-tile"
             >
                 {replaceWithPlaceholder && <TeaserTilePlaceholder style={dragPreview.style} />}
                 {isEditing && !replaceWithPlaceholder && (
@@ -196,14 +197,17 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                                 <TileSettingsFlyout {...tileFlyoutVariantProps[type]}>
                                     {(props, triggerRef: MutableRefObject<HTMLDivElement>) => (
                                         <div
-                                            {...props}
-                                            aria-label={
-                                                isPlaceholderImageFlyoutOpen
-                                                    ? 'Close tile settings'
-                                                    : 'Open tile settings'
-                                            }
+                                            {...(isEditing
+                                                ? {
+                                                      ...props,
+                                                      'aria-label': isPlaceholderImageFlyoutOpen
+                                                          ? 'Close tile settings'
+                                                          : 'Open tile settings',
+                                                  }
+                                                : {})}
                                             className={imagePlaceholder.className}
                                             style={{ minHeight: height }}
+                                            data-test-id="tile-image-flyout-trigger"
                                         >
                                             <div ref={triggerRef}>
                                                 {isEditing && isAssetLoading && <LoadingCircle />}
