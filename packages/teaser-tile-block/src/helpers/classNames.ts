@@ -67,14 +67,12 @@ export const getImagePlaceholderClassName = (
     isEditing: boolean
 ) =>
     merge([
+        getImageWrapperClassName(type, positioning),
         getImageClassName(type, height, positioning),
-        'tw-bg-base-alt tw-w-full tw-flex tw-justify-center tw-items-center tw-text-text-disabled tw-transition',
+        'tw-text-text-disabled tw-transition',
         FOCUS_VISIBLE_STYLE,
         'tw-ring-inset',
         isEditing ? 'hover:tw-text-text-x-weak' : 'tw-cursor-default',
-        type === TileType.ImageText &&
-            (positioning === TileImagePositioning.Left || positioning === TileImagePositioning.Right) &&
-            'tw-basis-1/3',
     ]);
 
 export const getLinkClassName = () =>
