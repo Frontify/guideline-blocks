@@ -17,6 +17,11 @@ export type GradientColor = {
     position: number;
 };
 
+export enum ColorSquarePositionType {
+    Left = 'left',
+    Right = 'right',
+}
+
 export type Settings = {
     isHeightCustom?: boolean;
     heightCustom?: string;
@@ -40,4 +45,10 @@ export const gradientHeightValues: Record<GradientHeight, string> = {
 export const gradientOrientationValues: Record<GradientOrientation, number> = {
     [GradientOrientation.Vertical]: 0,
     [GradientOrientation.Horizontal]: 90,
+};
+
+export type CssValueDisplayProps = {
+    cssValue?: string;
+    isCopied: boolean;
+    handleCopy: () => void;
 };

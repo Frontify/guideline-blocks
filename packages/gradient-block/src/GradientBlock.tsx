@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -24,7 +24,13 @@ import {
     TooltipPosition,
 } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
-import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
+import {
+    ColorSquarePositionType,
+    GradientColor,
+    Settings,
+    gradientHeightValues,
+    gradientOrientationValues,
+} from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import {
@@ -38,12 +44,10 @@ import {
     TooltipIcon,
     debounce,
     iconsMap,
-    merge,
 } from '@frontify/fondue';
-import CodeMirror from '@uiw/react-codemirror';
-import { langs } from '@uiw/codemirror-extensions-langs';
 
 import { hex2rgba, rgba2hex } from './helpers';
+import { CssValueDisplay } from './components/CssValueDisplay';
 
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
@@ -61,7 +65,7 @@ const emptyStateColors = [
     },
 ];
 
-export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
+export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>(null);
@@ -87,9 +91,6 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const gradientBlockHeight = blockSettings.isHeightCustom
         ? blockSettings.heightCustom
         : gradientHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE];
-
-    const getCopyButtonText = () =>
-        isCopied ? <>{iconsMap[IconEnum.CheckMark16]} Copied</> : <>{iconsMap[IconEnum.Clipboard16]} Copy</>;
 
     const handleCopy = async () => {
         await navigator.clipboard.writeText(blockSettings.contentValue || '');
@@ -218,55 +219,6 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
 
         setColors(newGradientColors);
     };
-
-    const CSSBlock = (
-        <div
-            data-test-id="gradient-css-snippet-block"
-            className="tw-mt-8 tw-overflow-hidden tw-border tw-border-line tw-rounded-[4px] tw-text-sm"
-            style={{
-                fontFamily: 'Courier, monospace',
-            }}
-        >
-            <div className={merge(['tw-relative tw-group/copy CodeMirror-readonly'])}>
-                <div
-                    data-test-id="gradient-css-snippet-header"
-                    className="tw-py-2.5 tw-pl-5 tw-pr-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center"
-                >
-                    <span
-                        className="tw-text-text-weak"
-                        style={{
-                            fontFamily: 'Space Grotesk Frontify, sans-serif',
-                        }}
-                    >
-                        CSS
-                    </span>
-                    <button
-                        data-test-id="gradient-css-copy-button"
-                        className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
-                        onClick={handleCopy}
-                    >
-                        {getCopyButtonText()}
-                    </button>
-                </div>
-                <CodeMirror
-                    theme="light"
-                    value={blockSettings.contentValue}
-                    extensions={[langs['css']()]}
-                    readOnly={!isEditing}
-                    basicSetup={{
-                        highlightActiveLineGutter: false,
-                        highlightActiveLine: false,
-                    }}
-                    placeholder={blockSettings.contentValue ? '' : '<add colors to generate CSS code>'}
-                />
-            </div>
-        </div>
-    );
-
-    enum ColorSquarePositionType {
-        Left = 'left',
-        Right = 'right',
-    }
 
     const SquareBadge = ({
         color,
@@ -638,7 +590,9 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                     ))}
                 </div>
             )}
-            {blockSettings.displayCss ? CSSBlock : null}
+            {blockSettings.displayCss ? (
+                <CssValueDisplay cssValue={blockSettings.contentValue} handleCopy={handleCopy} isCopied={isCopied} />
+            ) : null}
         </div>
     );
 };
