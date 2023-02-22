@@ -94,9 +94,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     };
 
-    const updateAudioAsset = async (audio: Asset) => {
-        updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
-        setIsLoading(false);
+    const updateAudioAsset = (audio: Asset) => {
+        updateAssetIdsFromKey(AUDIO_ID, [audio.id]).then(() => setIsLoading(false));
     };
 
     const openAssetChooser = () => {
@@ -150,6 +149,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             onAssetChooseClick={openAssetChooser}
                         />
                     )}
+
                     {isLoading ? (
                         <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
                             <LoadingCircle />
