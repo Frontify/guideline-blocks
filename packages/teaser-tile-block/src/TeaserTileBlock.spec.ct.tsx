@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount, unmount } from 'cypress/react';
 import { Asset, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { TeaserTileBlock as TeaserTileBlockComponent } from './TeaserTileBlock';
 import {
@@ -9,13 +9,23 @@ import {
     TileColumns,
     TileDisplay,
     TileHeight,
+    TileHorizontalAlignment,
     TileImagePositioning,
     TilePadding,
     TileSpacing,
     TileType,
+    TileVerticalAlignment,
 } from './types';
 import { defaultValues } from './settings';
-import { heightMap, objectFitMap, paddingMap, spacingMap, twPositioningMap } from './helpers';
+import {
+    heightMap,
+    objectFitMap,
+    paddingMap,
+    spacingMap,
+    twHorizontalAligmentMap,
+    twPositioningMap,
+    twVerticalAlignmentMap,
+} from './helpers';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { INIT_TILE_SETTINGS } from './hooks';
 
@@ -27,6 +37,7 @@ const TILE_IMAGE_ID = '[data-test-id="tile-image"]';
 const TILE_TEXT_ID = '[data-test-id="tile-text"]';
 const TILE_LINK_ID = '[data-test-id="tile-link"]';
 const TILE_CONTENT_ID = '[data-test-id="tile-content"]';
+const ADD_TILE_BUTTON_ID = '[data-test-id="add-tile"]';
 const EDITABLE_RICH_TEXT_ID = '[contenteditable=true]';
 const DISABLED_RICH_TEXT_ID = '[contenteditable=false]';
 
@@ -310,6 +321,78 @@ describe('TeaserTileBlock', () => {
         cy.get(TILE_TEXT_ID).should('have.class', 'tw-absolute');
     });
 
+    it('displays text with correct horizontal alignment when positioned relatively', () => {
+        for (const horizontalAlignment of Object.values(TileHorizontalAlignment)) {
+            mount(
+                <TeaserTileBlock
+                    blockSettings={{
+                        columns: 1,
+                        tiles: TILES,
+                        horizontalAlignment,
+                        verticalAlignment: TileVerticalAlignment.Bottom,
+                    }}
+                    blockAssets={ASSETS}
+                    isEditing
+                />
+            );
+            cy.get(TILE_TEXT_ID).should('have.class', twHorizontalAligmentMap[horizontalAlignment]);
+            cy.get(TILE_TEXT_ID).should('have.css', 'justify-content', 'normal');
+        }
+    });
+
+    it('displays text with correct vertical alignment when positioned absolutely', () => {
+        for (const verticalAlignment of Object.values(TileVerticalAlignment)) {
+            mount(
+                <TeaserTileBlock
+                    blockSettings={{
+                        columns: 1,
+                        tiles: TILES,
+                        verticalAlignment,
+                        horizontalAlignment: TileHorizontalAlignment.Right,
+                        positioning: TileImagePositioning.Behind,
+                    }}
+                    blockAssets={ASSETS}
+                    isEditing
+                />
+            );
+            cy.get(TILE_TEXT_ID).should('have.css', 'textAlign', 'start');
+            cy.get(TILE_TEXT_ID).should('have.class', twVerticalAlignmentMap[verticalAlignment]);
+        }
+    });
+
+    it('displays text with default alignment on text type', () => {
+        for (const horizontalAlignment of Object.values(TileHorizontalAlignment)) {
+            mount(
+                <TeaserTileBlock
+                    blockSettings={{
+                        columns: 1,
+                        tiles: TILES,
+                        horizontalAlignment,
+                        type: TileType.Text,
+                    }}
+                    blockAssets={ASSETS}
+                    isEditing
+                />
+            );
+            cy.get(TILE_TEXT_ID).should('have.css', 'textAlign', 'start');
+        }
+        for (const verticalAlignment of Object.values(TileVerticalAlignment)) {
+            mount(
+                <TeaserTileBlock
+                    blockSettings={{
+                        columns: 1,
+                        tiles: TILES,
+                        verticalAlignment,
+                        type: TileType.Text,
+                    }}
+                    blockAssets={ASSETS}
+                    isEditing
+                />
+            );
+            cy.get(TILE_TEXT_ID).should('have.css', 'justifyContent', 'normal');
+        }
+    });
+
     it('hides background styles if visibility is off', () => {
         mount(
             <TeaserTileBlock
@@ -361,6 +444,32 @@ describe('TeaserTileBlock', () => {
         );
 
         cy.get(TILE_LINK_ID).should('be.visible').and('have.attr', 'href', 'https://www.example.com');
+    });
+
+    it('displays "add tile" button in edit mode', () => {
+        mount(
+            <TeaserTileBlock
+                isEditing
+                blockSettings={{
+                    tiles: TILES,
+                }}
+            />
+        );
+
+        cy.get(ADD_TILE_BUTTON_ID).should('be.visible').click();
+        cy.get(TEASER_TILE_ID).should('have.length', TILES.length + 1);
+    });
+
+    it('hides "add tile" button in view mode', () => {
+        mount(
+            <TeaserTileBlock
+                blockSettings={{
+                    tiles: TILES,
+                }}
+            />
+        );
+
+        cy.get(ADD_TILE_BUTTON_ID).should('not.exist');
     });
 
     it('overwrites global data with tile-specific data', () => {

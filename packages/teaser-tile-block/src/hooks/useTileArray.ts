@@ -54,7 +54,7 @@ export const useTileArray = (blockSettings: Settings, setBlockSettings: (setting
     // Used on first render to create tiles array of when number of columns changes
     useEffect(() => {
         if (!tiles) {
-            const currentColumnCount = parseInt(blockSettings.columns);
+            const currentColumnCount = blockSettings.columns;
             const tiles: Tile[] = [];
             for (let i = 0; i < currentColumnCount; i++) {
                 tiles.push({ id: generateRandomId(), settings: { ...INIT_TILE_SETTINGS } });

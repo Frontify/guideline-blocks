@@ -20,16 +20,13 @@ export const useTileStyles = (
     isDragPreview: boolean,
     replaceWithPlaceholder: boolean
 ) => {
-    const { type, positioning, verticalAlignment } = blockSettings;
+    const { type, positioning, verticalAlignment, horizontalAlignment } = blockSettings;
 
     // Defining which settings to use (custom, choice or tile-specific)
     const height = blockSettings.isHeightCustom ? blockSettings.heightCustom : heightMap[blockSettings.heightChoice];
     const padding = blockSettings.isPaddingCustom
         ? blockSettings.paddingCustom
         : paddingMap[blockSettings.paddingChoice];
-
-    // TODO: should be by default lowercase instead of uppercase
-    const textAlign = blockSettings.horizontalAlignment.toLowerCase() as 'left' | 'right' | 'center';
 
     // TODO: should be by default lowercase instead of uppercase
     const border = blockSettings.hasBorder
@@ -51,11 +48,10 @@ export const useTileStyles = (
             : undefined;
 
     // Applying the defined settings to each component based on the tile type
-    const textWrapperClassName = getTextWrapperClassName(type, verticalAlignment, positioning);
+    const textWrapperClassName = getTextWrapperClassName(type, verticalAlignment, horizontalAlignment, positioning);
     const textWrapperStyle = {
         height: type === TileType.Text ? height : undefined,
         padding,
-        textAlign,
         background: type === TileType.ImageText && positioning === TileImagePositioning.Behind ? background : undefined,
     };
 

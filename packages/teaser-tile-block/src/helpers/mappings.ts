@@ -4,6 +4,7 @@ import { Radius } from '@frontify/guideline-blocks-shared';
 import {
     TileDisplay,
     TileHeight,
+    TileHorizontalAlignment,
     TileImagePositioning,
     TilePadding,
     TileSpacing,
@@ -30,6 +31,12 @@ export const twVerticalAlignmentMap: Record<TileVerticalAlignment, string> = {
     [TileVerticalAlignment.Top]: 'tw-justify-start',
     [TileVerticalAlignment.Center]: 'tw-justify-center',
     [TileVerticalAlignment.Bottom]: 'tw-justify-end',
+};
+
+export const twHorizontalAligmentMap: Record<TileHorizontalAlignment, string> = {
+    [TileHorizontalAlignment.Left]: 'tw-text-left',
+    [TileHorizontalAlignment.Center]: 'tw-text-center',
+    [TileHorizontalAlignment.Right]: 'tw-text-right',
 };
 
 export const spacingMap: Record<TileSpacing, string> = {

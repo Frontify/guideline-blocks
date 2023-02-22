@@ -1,23 +1,33 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FOCUS_VISIBLE_STYLE, merge } from '@frontify/fondue';
-import { TileImagePositioning, TileType, TileVerticalAlignment } from '../types';
-import { twBorderMap, twPositioningMap, twVerticalAlignmentMap } from './mappings';
+import { TileHorizontalAlignment, TileImagePositioning, TileType, TileVerticalAlignment } from '../types';
+import { twBorderMap, twHorizontalAligmentMap, twPositioningMap, twVerticalAlignmentMap } from './mappings';
 
 export const getTextWrapperClassName = (
     type: TileType,
     verticalAlignment: TileVerticalAlignment,
+    horizontalAlignment: TileHorizontalAlignment,
     positioning: TileImagePositioning
-) =>
-    merge([
-        'tw-flex tw-flex-col tw-gap-y-1 tw-z-[2] tw-break-all tw-w-full',
-        type === TileType.ImageText &&
-            positioning === TileImagePositioning.Behind &&
-            merge(['tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0', twVerticalAlignmentMap[verticalAlignment]]),
-        type === TileType.ImageText &&
-            (positioning === TileImagePositioning.Left || positioning === TileImagePositioning.Right) &&
-            'tw-basis-2/3',
-    ]);
+) => {
+    const classes = ['tw-flex tw-flex-col tw-gap-y-1 tw-z-[2] tw-break-all tw-w-full'];
+
+    if (type === TileType.ImageText) {
+        if (positioning === TileImagePositioning.Behind) {
+            classes.push(
+                'tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-right-0',
+                twVerticalAlignmentMap[verticalAlignment]
+            );
+        } else {
+            classes.push(twHorizontalAligmentMap[horizontalAlignment]);
+        }
+        if (positioning === TileImagePositioning.Left || positioning === TileImagePositioning.Right) {
+            classes.push('tw-basis-2/3');
+        }
+    }
+
+    return merge(classes);
+};
 
 export const getTileClassName = (
     type: TileType,

@@ -5,7 +5,7 @@ import '@frontify/fondue-tokens/styles';
 
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockAssets, useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
-import { merge } from '@frontify/fondue';
+import { FOCUS_VISIBLE_STYLE, merge } from '@frontify/fondue';
 import { Settings } from './types';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { SortableContext } from '@dnd-kit/sortable';
@@ -80,11 +80,12 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                     ) : null}
                 </DragOverlay>
                 {isEditing && (
-                    <div
+                    <button
                         className={merge([
+                            FOCUS_VISIBLE_STYLE,
                             'tw-transition tw-min-w-0 tw-bg-base-alt tw-text-text-disabled tw-rounded tw-border-2 tw-h-full tw-border-dashed tw-border-line tw-flex tw-items-center tw-justify-center tw-cursor-pointer hover:tw-bg-box-neutral-hover hover:tw-text-text-x-weak hover:tw-border-line-strong',
-                            'tw-min-h-[100px]',
                         ])}
+                        data-test-id="add-tile"
                         style={{
                             borderRadius: blockSettings.hasRadius
                                 ? blockSettings.radiusValue
@@ -93,7 +94,7 @@ export const TeaserTileBlock = ({ appBridge }: BlockProps) => {
                         onClick={addTile}
                     >
                         Add New Tile
-                    </div>
+                    </button>
                 )}
             </TileGrid>
         </DndContext>
