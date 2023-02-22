@@ -38,16 +38,14 @@ import {
     ButtonStyle,
     ColorPickerFlyout,
     Flyout,
-    IconEnum,
     IconQuestionMarkCircle16,
     Text,
     TooltipIcon,
     debounce,
-    iconsMap,
 } from '@frontify/fondue';
 
 import { hex2rgba, rgba2hex } from './helpers';
-import { CssValueDisplay } from './components/CssValueDisplay';
+import { CssValueDisplay, SquareBadge } from './components';
 
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
@@ -218,62 +216,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         });
 
         setColors(newGradientColors);
-    };
-
-    const SquareBadge = ({
-        color,
-        colorSquarePosition = ColorSquarePositionType.Left,
-    }: {
-        color: GradientColor;
-        colorSquarePosition?: ColorSquarePositionType;
-    }) => {
-        return (
-            <div className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group">
-                {colorSquarePosition === ColorSquarePositionType.Left && (
-                    <>
-                        <div
-                            className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-ml-[1px]"
-                            style={{
-                                backgroundColor: color.hex,
-                            }}
-                        ></div>
-                        <span className="tw-text-weak tw-pl-[5px] tw-pr-[5px] tw-text-xs">
-                            <strong>{color.name}</strong>
-                        </span>
-                        <span className="tw-text-x-weak tw-text-xs tw-pr-[5px]">{color.hex}</span>
-                        <button
-                            data-test-id="gradient-css-copy-button"
-                            className="tw-inline-flex tw-pr-[4px] tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex"
-                            onClick={handleCopy}
-                        >
-                            {iconsMap[IconEnum.Clipboard16]}
-                        </button>
-                    </>
-                )}
-
-                {colorSquarePosition === ColorSquarePositionType.Right && (
-                    <>
-                        <button
-                            data-test-id="gradient-css-copy-button"
-                            className="tw-inline-flex tw-pl-[5px] tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex"
-                            onClick={handleCopy}
-                        >
-                            {iconsMap[IconEnum.Clipboard16]}
-                        </button>
-                        <span className="tw-text-weak tw-pl-[4px] tw-pr-[5px] tw-text-xs">
-                            <strong>{color.name}</strong>
-                        </span>
-                        <span className="tw-text-x-weak tw-text-xs">{color.hex}</span>
-                        <div
-                            className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-ml-[5px] tw-mr-[1px]"
-                            style={{
-                                backgroundColor: color.hex,
-                            }}
-                        ></div>
-                    </>
-                )}
-            </div>
-        );
     };
 
     const handleAdd = (position: number) => {
@@ -460,12 +402,12 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         <>
                             {index === 0 && (
                                 <div key={index} className="tw-absolute" style={{ left: 0 }}>
-                                    <SquareBadge color={color}></SquareBadge>
+                                    <SquareBadge color={color} handleCopy={handleCopy} />
                                 </div>
                             )}
                             {index !== 0 && index !== lastIndex && (
                                 <div key={index} className="tw-absolute" style={{ left: `${color.position}%` }}>
-                                    <SquareBadge color={color}></SquareBadge>
+                                    <SquareBadge color={color} handleCopy={handleCopy} />
                                 </div>
                             )}
                             {index === lastIndex && (
@@ -473,7 +415,8 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                                     <SquareBadge
                                         color={color}
                                         colorSquarePosition={ColorSquarePositionType.Right}
-                                    ></SquareBadge>
+                                        handleCopy={handleCopy}
+                                    />
                                 </div>
                             )}
                         </>

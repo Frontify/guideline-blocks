@@ -52,3 +52,9 @@ export type CssValueDisplayProps = {
     isCopied: boolean;
     handleCopy: () => void;
 };
+
+export type SquareBadgeProps = {
+    color: GradientColor;
+    colorSquarePosition?: ColorSquarePositionType;
+    handleCopy: () => void;
+};
