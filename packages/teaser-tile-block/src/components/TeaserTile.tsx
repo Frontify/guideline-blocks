@@ -53,8 +53,8 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             transformStyle,
             draggableProps,
             palettes,
-            replaceWithPlaceholder,
-            isDragPreview,
+            replaceWithPlaceholder = false,
+            isDragPreview = false,
             blockAssets,
             updateAssetIdsFromKey,
             designTokens,
@@ -77,8 +77,8 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
             tileSettings,
             isEditing,
             isToolbarFocused,
-            !!isDragPreview,
-            !!replaceWithPlaceholder
+            isDragPreview,
+            replaceWithPlaceholder
         );
 
         useEffect(() => {
@@ -184,14 +184,20 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                         href={tileSettings.link.href}
                         target={tileSettings.link.target}
                         style={link.style}
+                        data-test-id="tile-link"
                     />
                 )}
-                <div style={tile.style} className={tile.className}>
+                <div style={tile.style} className={tile.className} data-test-id="tile-content">
                     {type !== TileType.Text && (
                         <>
                             {tileAsset?.genericUrl ? (
                                 <div className={imageWrapper.className}>
-                                    <img className={image.className} src={getImageSrc(tileAsset)} style={image.style} />
+                                    <img
+                                        className={image.className}
+                                        src={getImageSrc(tileAsset)}
+                                        style={image.style}
+                                        data-test-id="tile-image"
+                                    />
                                 </div>
                             ) : (
                                 <TileSettingsFlyout {...tileFlyoutVariantProps[type]}>
@@ -221,7 +227,7 @@ export const TeaserTile = forwardRef<HTMLDivElement, TeaserTileProps>(
                         </>
                     )}
                     {type !== TileType.Image && (
-                        <div style={textWrapper.style} className={textWrapper.className}>
+                        <div style={textWrapper.style} className={textWrapper.className} data-test-id="tile-text">
                             <h6 className="tw-text-lg tw-font-semibold">{titleRichTextEditor}</h6>
                             <p className="tw-text-sm tw-font-normal">{descriptionRichTextEditor}</p>
                         </div>

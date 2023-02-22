@@ -4,9 +4,9 @@ import { generateRandomId } from '@frontify/fondue';
 import { useCallback, useEffect, useState } from 'react';
 import { Settings, Tile, TileSettings } from '../types';
 
-const INIT_TILE_SETTINGS: TileSettings = {
+export const INIT_TILE_SETTINGS: TileSettings = {
     link: null,
-    backgroundVisibility: null,
+    isBackgroundVisible: null,
     backgroundColor: null,
     display: null,
     description: null,
