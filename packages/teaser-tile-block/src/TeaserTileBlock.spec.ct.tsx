@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount, unmount } from 'cypress/react';
+import { mount } from 'cypress/react';
 import { Asset, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { TeaserTileBlock as TeaserTileBlockComponent } from './TeaserTileBlock';
 import {
@@ -21,12 +21,13 @@ import {
     heightMap,
     objectFitMap,
     paddingMap,
+    radiusMap,
     spacingMap,
     twHorizontalAligmentMap,
     twPositioningMap,
     twVerticalAlignmentMap,
 } from './helpers';
-import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, Radius, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { INIT_TILE_SETTINGS } from './hooks';
 
 const TILE_GRID_ID = '[data-test-id="tile-grid"]';
@@ -85,7 +86,7 @@ const TeaserTileBlock = ({
     blockAssets?: Record<string, Asset[]>;
 }) => {
     const [TeaserTileBlockWithStubs] = withAppBridgeBlockStubs(TeaserTileBlockComponent, {
-        blockSettings: { ...defaultValues, ...blockSettings },
+        blockSettings: { ...defaultValues, ...{ columns: 1, tiles: TILES }, ...blockSettings },
         editorState: isEditing,
         blockAssets,
     });
@@ -101,7 +102,7 @@ describe('TeaserTileBlock', () => {
     });
 
     it('populates columns on first render if empty', () => {
-        mount(<TeaserTileBlock blockSettings={{ columns: 3 }} />);
+        mount(<TeaserTileBlock blockSettings={{ columns: 3, tiles: undefined }} />);
 
         cy.get(TEASER_TILE_ID).should('have.length', 3);
     });
@@ -109,7 +110,13 @@ describe('TeaserTileBlock', () => {
     it('displays correct number of columns', () => {
         for (const column of [1, 2, 3, 4]) {
             mount(
-                <TeaserTileBlock blockSettings={{ columns: column as TileColumns, spacingChoice: TileSpacing.None }} />
+                <TeaserTileBlock
+                    blockSettings={{
+                        columns: column as TileColumns,
+                        spacingChoice: TileSpacing.None,
+                        tiles: undefined,
+                    }}
+                />
             );
 
             cy.get(TILE_GRID_ID).should(($grid) => {
@@ -122,7 +129,7 @@ describe('TeaserTileBlock', () => {
 
     it('displays columns with spacing choice', () => {
         for (const spacingChoice of Object.values(TileSpacing)) {
-            mount(<TeaserTileBlock blockSettings={{ spacingChoice }} />);
+            mount(<TeaserTileBlock blockSettings={{ spacingChoice, columns: 2 }} />);
 
             cy.get(TILE_GRID_ID).should(
                 'have.css',
@@ -133,7 +140,7 @@ describe('TeaserTileBlock', () => {
     });
 
     it('displays columns with custom spacing', () => {
-        mount(<TeaserTileBlock blockSettings={{ isSpacingCustom: true, spacingCustom: '150px' }} />);
+        mount(<TeaserTileBlock blockSettings={{ isSpacingCustom: true, spacingCustom: '150px', columns: 2 }} />);
 
         cy.get(TILE_GRID_ID).should('have.css', 'gridGap', '150px 150px');
     });
@@ -157,16 +164,14 @@ describe('TeaserTileBlock', () => {
     });
 
     it('uses 1/1 aspect ratio for imagetext image if height is auto', () => {
-        mount(<TeaserTileBlock blockSettings={{ columns: 1, tiles: TILES }} blockAssets={ASSETS} />);
+        mount(<TeaserTileBlock blockSettings={{ tiles: TILES }} blockAssets={ASSETS} />);
 
         cy.get(TILE_IMAGE_ID).should('be.visible');
         cy.get(TILE_IMAGE_ID).should('have.css', 'aspectRatio', '1 / 1');
     });
 
     it('uses 3/4 aspect ratio for image image if height is auto', () => {
-        mount(
-            <TeaserTileBlock blockSettings={{ columns: 1, tiles: TILES, type: TileType.Image }} blockAssets={ASSETS} />
-        );
+        mount(<TeaserTileBlock blockSettings={{ type: TileType.Image }} blockAssets={ASSETS} />);
 
         cy.get(TILE_IMAGE_ID).should('have.css', 'aspectRatio', '3 / 4');
     });
@@ -174,12 +179,7 @@ describe('TeaserTileBlock', () => {
     it('uses height choice for image in image/imageText types', () => {
         for (const type of [TileType.Image, TileType.ImageText]) {
             for (const heightChoice of [TileHeight.Small, TileHeight.Medium, TileHeight.Large]) {
-                mount(
-                    <TeaserTileBlock
-                        blockSettings={{ columns: 1, tiles: TILES, heightChoice, type }}
-                        blockAssets={ASSETS}
-                    />
-                );
+                mount(<TeaserTileBlock blockSettings={{ heightChoice, type }} blockAssets={ASSETS} />);
 
                 cy.get(TILE_IMAGE_ID).should('have.css', 'height', heightMap[heightChoice]);
             }
@@ -188,12 +188,7 @@ describe('TeaserTileBlock', () => {
 
     it('uses height choice for text in text type', () => {
         for (const heightChoice of [TileHeight.Large, TileHeight.Medium, TileHeight.Small]) {
-            mount(
-                <TeaserTileBlock
-                    blockSettings={{ columns: 1, tiles: TILES, heightChoice, type: TileType.Text }}
-                    blockAssets={ASSETS}
-                />
-            );
+            mount(<TeaserTileBlock blockSettings={{ heightChoice, type: TileType.Text }} blockAssets={ASSETS} />);
 
             cy.get(TILE_TEXT_ID).should('have.css', 'height', heightMap[heightChoice]);
         }
@@ -203,7 +198,7 @@ describe('TeaserTileBlock', () => {
         for (const type of [TileType.Image, TileType.ImageText]) {
             mount(
                 <TeaserTileBlock
-                    blockSettings={{ columns: 1, tiles: TILES, isHeightCustom: true, heightCustom: '150px', type }}
+                    blockSettings={{ isHeightCustom: true, heightCustom: '150px', type }}
                     blockAssets={ASSETS}
                 />
             );
@@ -216,8 +211,6 @@ describe('TeaserTileBlock', () => {
         mount(
             <TeaserTileBlock
                 blockSettings={{
-                    columns: 1,
-                    tiles: TILES,
                     isHeightCustom: true,
                     heightCustom: '150px',
                     type: TileType.Text,
@@ -232,10 +225,7 @@ describe('TeaserTileBlock', () => {
     it('sets image objectFit to user choice when height is not auto', () => {
         for (const display of Object.values(TileDisplay)) {
             mount(
-                <TeaserTileBlock
-                    blockSettings={{ columns: 1, tiles: TILES, display, heightChoice: TileHeight.Medium }}
-                    blockAssets={ASSETS}
-                />
+                <TeaserTileBlock blockSettings={{ display, heightChoice: TileHeight.Medium }} blockAssets={ASSETS} />
             );
 
             cy.get(TILE_IMAGE_ID).should('have.css', 'objectFit', objectFitMap[display]);
@@ -244,7 +234,7 @@ describe('TeaserTileBlock', () => {
 
     it('sets image objectFit to cover when height is auto', () => {
         for (const display of Object.values(TileDisplay)) {
-            mount(<TeaserTileBlock blockSettings={{ columns: 1, tiles: TILES, display }} blockAssets={ASSETS} />);
+            mount(<TeaserTileBlock blockSettings={{ display }} blockAssets={ASSETS} />);
 
             cy.get(TILE_IMAGE_ID).should('have.css', 'objectFit', 'cover');
         }
@@ -253,12 +243,7 @@ describe('TeaserTileBlock', () => {
     it('uses padding choice for text in text/imageText types', () => {
         for (const type of [TileType.Text, TileType.ImageText]) {
             for (const paddingChoice of Object.values(TilePadding)) {
-                mount(
-                    <TeaserTileBlock
-                        blockSettings={{ columns: 1, tiles: TILES, paddingChoice, type }}
-                        blockAssets={ASSETS}
-                    />
-                );
+                mount(<TeaserTileBlock blockSettings={{ paddingChoice, type }} blockAssets={ASSETS} />);
 
                 cy.get(TILE_TEXT_ID).should('have.css', 'padding', paddingMap[paddingChoice]);
             }
@@ -269,7 +254,7 @@ describe('TeaserTileBlock', () => {
         for (const type of [TileType.Text, TileType.ImageText]) {
             mount(
                 <TeaserTileBlock
-                    blockSettings={{ columns: 1, tiles: TILES, paddingCustom: '150px', isPaddingCustom: true, type }}
+                    blockSettings={{ paddingCustom: '150px', isPaddingCustom: true, type }}
                     blockAssets={ASSETS}
                 />
             );
@@ -279,13 +264,13 @@ describe('TeaserTileBlock', () => {
     });
 
     it('has editable title and description in edit mode', () => {
-        mount(<TeaserTileBlock blockSettings={{ columns: 1, tiles: TILES }} blockAssets={ASSETS} isEditing />);
+        mount(<TeaserTileBlock blockSettings={{ tiles: TILES }} blockAssets={ASSETS} isEditing />);
 
         cy.get(EDITABLE_RICH_TEXT_ID).should('have.length', 2);
     });
 
     it('has readonly title and description in edit mode', () => {
-        mount(<TeaserTileBlock blockSettings={{ columns: 1, tiles: TILES }} blockAssets={ASSETS} isEditing />);
+        mount(<TeaserTileBlock blockSettings={{ tiles: TILES }} blockAssets={ASSETS} isEditing />);
 
         cy.get(DISABLED_RICH_TEXT_ID).should('have.length', 2);
     });
@@ -297,13 +282,7 @@ describe('TeaserTileBlock', () => {
             TileImagePositioning.Top,
             TileImagePositioning.Bottom,
         ]) {
-            mount(
-                <TeaserTileBlock
-                    blockSettings={{ columns: 1, tiles: TILES, positioning }}
-                    blockAssets={ASSETS}
-                    isEditing
-                />
-            );
+            mount(<TeaserTileBlock blockSettings={{ positioning }} blockAssets={ASSETS} isEditing />);
 
             cy.get(TILE_CONTENT_ID).should('have.class', twPositioningMap[positioning]);
         }
@@ -312,7 +291,7 @@ describe('TeaserTileBlock', () => {
     it('displays text above image', () => {
         mount(
             <TeaserTileBlock
-                blockSettings={{ columns: 1, tiles: TILES, positioning: TileImagePositioning.Behind }}
+                blockSettings={{ positioning: TileImagePositioning.Behind }}
                 blockAssets={ASSETS}
                 isEditing
             />
@@ -326,8 +305,6 @@ describe('TeaserTileBlock', () => {
             mount(
                 <TeaserTileBlock
                     blockSettings={{
-                        columns: 1,
-                        tiles: TILES,
                         horizontalAlignment,
                         verticalAlignment: TileVerticalAlignment.Bottom,
                     }}
@@ -345,8 +322,6 @@ describe('TeaserTileBlock', () => {
             mount(
                 <TeaserTileBlock
                     blockSettings={{
-                        columns: 1,
-                        tiles: TILES,
                         verticalAlignment,
                         horizontalAlignment: TileHorizontalAlignment.Right,
                         positioning: TileImagePositioning.Behind,
@@ -365,8 +340,6 @@ describe('TeaserTileBlock', () => {
             mount(
                 <TeaserTileBlock
                     blockSettings={{
-                        columns: 1,
-                        tiles: TILES,
                         horizontalAlignment,
                         type: TileType.Text,
                     }}
@@ -380,8 +353,6 @@ describe('TeaserTileBlock', () => {
             mount(
                 <TeaserTileBlock
                     blockSettings={{
-                        columns: 1,
-                        tiles: TILES,
                         verticalAlignment,
                         type: TileType.Text,
                     }}
@@ -397,8 +368,6 @@ describe('TeaserTileBlock', () => {
         mount(
             <TeaserTileBlock
                 blockSettings={{
-                    columns: 1,
-                    tiles: TILES,
                     backgroundColor: BASE_COLOR,
                     isBackgroundVisible: false,
                 }}
@@ -412,8 +381,6 @@ describe('TeaserTileBlock', () => {
         mount(
             <TeaserTileBlock
                 blockSettings={{
-                    columns: 1,
-                    tiles: TILES,
                     backgroundColor: BASE_COLOR,
                     isBackgroundVisible: true,
                 }}
@@ -423,11 +390,77 @@ describe('TeaserTileBlock', () => {
         cy.get(TILE_CONTENT_ID).should('have.css', 'backgroundColor', toRgbaString(BASE_COLOR));
     });
 
+    it('applies border radius choice to tile and "add button"', () => {
+        for (const radiusChoice of Object.values(Radius)) {
+            mount(
+                <TeaserTileBlock
+                    blockSettings={{
+                        backgroundColor: BASE_COLOR,
+                        isBackgroundVisible: true,
+                        radiusChoice,
+                    }}
+                    isEditing
+                />
+            );
+
+            cy.get(TILE_CONTENT_ID).should('have.css', 'borderRadius', radiusMap[radiusChoice]);
+            cy.get(ADD_TILE_BUTTON_ID).should('have.css', 'borderRadius', radiusMap[radiusChoice]);
+        }
+    });
+
+    it('applies custom border radius to tile and "add button"', () => {
+        mount(
+            <TeaserTileBlock
+                blockSettings={{
+                    backgroundColor: BASE_COLOR,
+                    isBackgroundVisible: true,
+                    hasRadius: true,
+                    radiusValue: '150px',
+                }}
+                isEditing
+            />
+        );
+
+        cy.get(TILE_CONTENT_ID).should('have.css', 'borderRadius', '150px');
+        cy.get(ADD_TILE_BUTTON_ID).should('have.css', 'borderRadius', '150px');
+    });
+
+    it('hides border if border is not selected', () => {
+        mount(
+            <TeaserTileBlock
+                blockSettings={{
+                    hasBorder: false,
+                    borderColor: BASE_COLOR,
+                    borderStyle: BorderStyle.Solid,
+                    borderWidth: '1px',
+                }}
+                isEditing
+            />
+        );
+
+        cy.get(TILE_CONTENT_ID).should('have.css', 'border', '0px solid rgb(0, 0, 0)');
+    });
+
+    it('shows border', () => {
+        mount(
+            <TeaserTileBlock
+                blockSettings={{
+                    hasBorder: true,
+                    borderColor: BASE_COLOR,
+                    borderStyle: BorderStyle.Solid,
+                    borderWidth: '1px',
+                }}
+                isEditing
+            />
+        );
+
+        cy.get(TILE_CONTENT_ID).should('have.css', 'border', `1px solid ${toRgbaString(BASE_COLOR)}`);
+    });
+
     it('makes tile clickable if link is defined', () => {
         mount(
             <TeaserTileBlock
                 blockSettings={{
-                    columns: 1,
                     tiles: [
                         {
                             id: '1',
@@ -447,27 +480,14 @@ describe('TeaserTileBlock', () => {
     });
 
     it('displays "add tile" button in edit mode', () => {
-        mount(
-            <TeaserTileBlock
-                isEditing
-                blockSettings={{
-                    tiles: TILES,
-                }}
-            />
-        );
+        mount(<TeaserTileBlock isEditing blockSettings={{}} />);
 
         cy.get(ADD_TILE_BUTTON_ID).should('be.visible').click();
         cy.get(TEASER_TILE_ID).should('have.length', TILES.length + 1);
     });
 
     it('hides "add tile" button in view mode', () => {
-        mount(
-            <TeaserTileBlock
-                blockSettings={{
-                    tiles: TILES,
-                }}
-            />
-        );
+        mount(<TeaserTileBlock blockSettings={{}} />);
 
         cy.get(ADD_TILE_BUTTON_ID).should('not.exist');
     });
@@ -476,7 +496,6 @@ describe('TeaserTileBlock', () => {
         mount(
             <TeaserTileBlock
                 blockSettings={{
-                    columns: 1,
                     tiles: [
                         {
                             id: '1',
