@@ -28,7 +28,6 @@ export const useTileStyles = (
         ? blockSettings.paddingCustom
         : paddingMap[blockSettings.paddingChoice];
 
-    // TODO: should be by default lowercase instead of uppercase
     const border = blockSettings.hasBorder
         ? `${blockSettings.borderWidth} ${blockSettings.borderStyle.toLowerCase()} ${toRgbaString(
               blockSettings.borderColor
@@ -49,45 +48,38 @@ export const useTileStyles = (
 
     // Applying the defined settings to each component based on the tile type
     const textWrapperClassName = getTextWrapperClassName(type, verticalAlignment, horizontalAlignment, positioning);
-    const textWrapperStyle = {
-        height: type === TileType.Text ? height : undefined,
-        padding,
-        background: type === TileType.ImageText && positioning === TileImagePositioning.Behind ? background : undefined,
-    };
-
     const tileClassName = getTileClassName(type, replaceWithPlaceholder, isToolbarFocused, isDragPreview, positioning);
-    const tileStyles = { borderRadius, border, background };
-
     const imageWrapperClassName = getImageWrapperClassName(type, positioning);
-
     const imageClassName = getImageClassName(type, height, positioning);
-    const imageStyle = { height, objectFit };
-
     const imagePlaceholderClassName = getImagePlaceholderClassName(type, height, positioning, isEditing);
-
     const linkClassName = getLinkClassName();
-    const linkStyle = { borderRadius };
-
-    const dragPreviewStyle = { borderRadius };
 
     return {
         height,
         dragPreview: {
-            style: dragPreviewStyle,
+            style: { borderRadius },
         },
         link: {
             className: linkClassName,
-            style: linkStyle,
+            style: { borderRadius },
         },
         imagePlaceholder: {
             className: imagePlaceholderClassName,
         },
         image: {
             className: imageClassName,
-            style: imageStyle,
+            style: { height, objectFit },
         },
         imageWrapper: { className: imageWrapperClassName },
-        textWrapper: { className: textWrapperClassName, style: textWrapperStyle },
-        tile: { className: tileClassName, style: tileStyles },
+        textWrapper: {
+            className: textWrapperClassName,
+            style: {
+                height: type === TileType.Text ? height : undefined,
+                padding,
+                background:
+                    type === TileType.ImageText && positioning === TileImagePositioning.Behind ? background : undefined,
+            },
+        },
+        tile: { className: tileClassName, style: { borderRadius, border, background } },
     };
 };

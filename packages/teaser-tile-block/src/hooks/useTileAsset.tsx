@@ -32,7 +32,6 @@ export const useTileAsset = (
         }
     }, [doneAll, uploadResults]);
 
-    // Asset chooser demo
     const onOpenAssetChooser = () => {
         appBridge.openAssetChooser(
             (result: Asset[]) => {
