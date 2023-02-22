@@ -64,7 +64,7 @@ const emptyStateColors = [
 export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
-    const gradientBlockRef = useRef<HTMLDivElement>();
+    const gradientBlockRef = useRef<HTMLDivElement>(null);
     const dividerRef = useRef<HTMLDivElement>(null);
     const addRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
@@ -372,7 +372,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                                         }
                                         setShowColorModal(false);
                                         setCurrentColorPosition(undefined);
-                                        setCurrentColor(undefined);
+                                        setCurrentColor(null);
                                         setCurrentlyEditingColor(undefined);
                                     },
                                 },
@@ -415,7 +415,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
                             </span>
                             <TextInput
                                 disabled
-                                value={currentColorPosition}
+                                value={currentColorPosition?.toString()}
                                 onChange={() => console.log('onChange')}
                                 onEnterPressed={() => console.log('onEnterPressed')}
                                 placeholder="placeholder"
