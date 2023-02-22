@@ -9,13 +9,14 @@ export enum TextPosition {
 
 export type BlockSettings = {
     positioning: TextPosition;
-    audio: Asset[] | undefined;
+    audio?: Asset;
     description?: string;
     title?: string;
+    attachments: { id: number }[];
 };
 
 export type BlockAttachmentsProps = {
-    downloadAsset: Asset;
+    assetToDownload: Asset;
     appBridge: AppBridgeBlock;
 };
 

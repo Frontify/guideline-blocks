@@ -11,8 +11,8 @@ import {
 import { TextPosition } from './types';
 
 export const AUDIO_ID = 'audio';
-
 export const AUDIO_EXTENSIONS = [FileExtension.Flac, FileExtension.Mp3, FileExtension.Ogg, FileExtension.Wav];
+export const ATTACHMENTS_SETTING_ID = 'attachments';
 
 export const settings = defineSettings({
     basics: [

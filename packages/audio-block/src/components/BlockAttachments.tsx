@@ -1,70 +1,78 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset, useBlockAssets } from '@frontify/app-bridge';
-import { Attachments } from '@frontify/guideline-blocks-shared';
-import { BlockAttachmentsProps } from '../types';
+import { Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
+import { Attachments, downloadAsset } from '@frontify/guideline-blocks-shared';
+import { BlockAttachmentsProps, BlockSettings } from '../types';
+import { ATTACHMENTS_SETTING_ID } from '../settings';
 
-export const BlockAttachments = ({ downloadAsset, appBridge }: BlockAttachmentsProps) => {
-    const { blockAssets, deleteAssetIdsFromKey, addAssetIdsToKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
-    const attachmentItems = blockAssets?.['attachments'];
+export const BlockAttachments = ({ assetToDownload, appBridge }: BlockAttachmentsProps) => {
+    const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
+    const { blockAssets, updateAssetIdsFromKey, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
+    const attachments = blockAssets?.[ATTACHMENTS_SETTING_ID] || [];
+    const attachmentsInBlockSettings = blockSettings.attachments || [];
 
-    const onAttachmentRemove = (attachment: Asset) => {
-        deleteAssetIdsFromKey('attachments', [attachment.id]);
-    };
-
-    const onAttachmentReplaceWithBrowse = (attachmentToReplace: Asset, newAttachment: Asset) => {
-        deleteAssetIdsFromKey('attachments', [attachmentToReplace.id]);
-        addAssetIdsToKey('attachments', [newAttachment.id]);
-    };
-
-    const onAttachmentReplaceWithUpload = (attachmentToReplace: Asset, newAttachment: Asset) => {
-        deleteAssetIdsFromKey('attachments', [attachmentToReplace.id]);
-        addAssetIdsToKey('attachments', [newAttachment.id]);
-    };
-
-    const onAttachmentsSorted = async (attachments: Asset[]) => {
-        const attachmentIds = attachments.map((attachment) => attachment.id);
-        deleteAssetIdsFromKey('attachments', attachmentIds).then(() =>
-            updateAssetIdsFromKey('attachments', attachmentIds)
-        );
-    };
-
-    const addToAttachmentsBrowse = (attachments: Asset[]) => {
-        const attachnmentsIds = [];
-        for (const attachment of attachments) {
-            attachnmentsIds.push(attachment.id);
+    const onAddAttachments = (assets: Asset[]) => {
+        const newAssetIds = [];
+        for (const asset of assets) {
+            newAssetIds.push(asset.id);
         }
-        addAssetIdsToKey('attachments', attachnmentsIds);
+        setBlockSettings({
+            attachments: [...attachmentsInBlockSettings, ...newAssetIds.map((id) => ({ id }))],
+        });
+        addAssetIdsToKey(ATTACHMENTS_SETTING_ID, newAssetIds);
     };
 
-    const addToAttachmentsUpload = (attachments: Asset[]) => {
-        const attachmentIds = attachments.map((attachment) => attachment.id);
-        addAssetIdsToKey('attachments', attachmentIds);
+    const onAttachmentDelete = (assetToDelete: Asset) => {
+        setBlockSettings({
+            attachments: attachmentsInBlockSettings.filter((asset) => asset.id !== assetToDelete.id),
+        });
+        deleteAssetIdsFromKey(ATTACHMENTS_SETTING_ID, [assetToDelete.id]);
     };
 
-    const onDownload = () => {
-        fetch(downloadAsset.originUrl)
-            .then((response) => response.blob())
-            .then((blob) => {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = downloadAsset.fileName;
-                a.click();
-            });
+    const onAttachmentReplace = (attachmentToReplace: Asset, newAsset: Asset) => {
+        const indexOfReplacedAttachment = attachmentsInBlockSettings.findIndex(
+            (attachment) => attachment.id === attachmentToReplace.id
+        );
+        const attachmentsAfterReplace = [...attachmentsInBlockSettings];
+        attachmentsAfterReplace[indexOfReplacedAttachment] = { id: newAsset.id };
+        setBlockSettings({
+            attachments: attachmentsAfterReplace,
+        });
+        const newAssetIds = [];
+        for (const attachment of attachments) {
+            if (attachment.id !== attachmentToReplace.id) {
+                newAssetIds.push(attachment.id);
+            }
+        }
+        newAssetIds.push(newAsset.id);
+        updateAssetIdsFromKey(ATTACHMENTS_SETTING_ID, newAssetIds);
     };
+
+    const onAttachmentsSorted = (assets: Asset[]) => {
+        const newAssetIds = [];
+        for (const asset of assets) {
+            newAssetIds.push(asset.id);
+        }
+        setBlockSettings({
+            attachments: newAssetIds.map((id) => ({ id })),
+        });
+    };
+
+    const sortedAttachments = attachmentsInBlockSettings
+        .map((asset) => attachments.find((attachment) => attachment.id === asset.id))
+        .filter(Boolean) as Asset[];
 
     return (
         <div>
             <Attachments
-                attachmentItems={attachmentItems}
-                onAttachmentDelete={onAttachmentRemove}
-                onAttachmentReplaceWithBrowse={onAttachmentReplaceWithBrowse}
-                onAttachmentReplaceWithUpload={onAttachmentReplaceWithUpload}
-                onBrowseAttachments={addToAttachmentsBrowse}
-                onUploadAttachments={addToAttachmentsUpload}
+                attachmentItems={sortedAttachments}
+                onAttachmentDelete={onAttachmentDelete}
+                onAttachmentReplaceWithBrowse={onAttachmentReplace}
+                onAttachmentReplaceWithUpload={onAttachmentReplace}
+                onBrowseAttachments={onAddAttachments}
+                onUploadAttachments={onAddAttachments}
                 onAttachmentsSorted={onAttachmentsSorted}
-                onDownload={onDownload}
+                onDownload={() => downloadAsset(assetToDownload)}
                 appBridge={appBridge}
             />
         </div>
