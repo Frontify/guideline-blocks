@@ -62,26 +62,36 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
     const [currentlyEditingColor, setCurrentlyEditingColor] = useState<string>();
-    const initialColors =
-        !blockSettings.gradientColors || !blockSettings.gradientColors?.length
-            ? emptyStateColors
-            : blockSettings.gradientColors;
+
+    const {
+        gradientColors,
+        contentValue,
+        isOrientationCustom,
+        orientationCustom,
+        orientationSimple,
+        isHeightCustom,
+        heightCustom,
+        heightSimple,
+        displayCss,
+    } = blockSettings;
+
+    const initialColors = !gradientColors || !gradientColors?.length ? emptyStateColors : gradientColors;
     const [colors, setColors] = useState<GradientColor[]>(initialColors);
     // const [colors, setColors] = useState<GradientColor[]>(emptyStateColors);
-    const gradientOrientation = blockSettings.isOrientationCustom
-        ? blockSettings.orientationCustom
-        : gradientOrientationValues[blockSettings.orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
+    const gradientOrientation = isOrientationCustom
+        ? orientationCustom
+        : gradientOrientationValues[orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
     const [currentColor, setCurrentColor] = useState<Color | null>(null);
     const [currentColorPosition, setCurrentColorPosition] = useState<number>();
     const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
-    const lastIndex = blockSettings && blockSettings.gradientColors ? blockSettings?.gradientColors?.length - 1 : 0;
+    const lastIndex = gradientColors ? gradientColors?.length - 1 : 0;
     const [showColorModal, setShowColorModal] = useState(false);
-    const gradientBlockHeight = blockSettings.isHeightCustom
-        ? blockSettings.heightCustom
-        : gradientHeightValues[blockSettings.heightSimple ?? HEIGHT_DEFAULT_VALUE];
+    const gradientBlockHeight = isHeightCustom
+        ? heightCustom
+        : gradientHeightValues[heightSimple ?? HEIGHT_DEFAULT_VALUE];
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(blockSettings.contentValue || '');
+        await navigator.clipboard.writeText(contentValue || '');
         setIsCopied(true);
         debounce(() => {
             setIsCopied(false);
@@ -146,7 +156,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             },
         ];
 
-        if (!blockSettings.gradientColors || !blockSettings.gradientColors?.length) {
+        if (!gradientColors || !gradientColors?.length) {
             setBlockSettings({
                 gradientColors: defaultGradientColors,
             });
@@ -189,8 +199,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         setShowColorModal(true);
         setCurrentColorPosition((position / gradientBlockRef?.current?.getBoundingClientRect().width) * 100);
     };
-
-    //    const ColorPicker = ({ color, editing }: { color?: GradientColor; editing?: boolean }) => {};
 
     const AddButton = () => {
         return (
@@ -263,7 +271,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         setCurrentColorPosition={setCurrentColorPosition}
                         setShowColorModal={setShowColorModal}
                         addRef={addRef}
-                        gradientColors={blockSettings.gradientColors}
+                        gradientColors={gradientColors}
                         setCurrentlyEditingColor={setCurrentlyEditingColor}
                     />
                 )}
@@ -278,13 +286,13 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     className="tw-w-full tw-h-4 tw-rounded-[3px]"
                     style={{
                         height: gradientBlockHeight,
-                        background: blockSettings.contentValue,
+                        background: contentValue,
                     }}
                 ></div>
             </div>
             {!isEditing && (
                 <div className="tw-pt-[9px]">
-                    {blockSettings?.gradientColors?.map((color, index) => (
+                    {gradientColors?.map((color, index) => (
                         <>
                             {index === 0 && (
                                 <div key={index} className="tw-absolute" style={{ left: 0 }}>
@@ -326,13 +334,13 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                                 setCurrentColorPosition={setCurrentColorPosition}
                                 setShowColorModal={setShowColorModal}
                                 addRef={addRef}
-                                gradientColors={blockSettings.gradientColors}
+                                gradientColors={gradientColors}
                                 setCurrentlyEditingColor={setCurrentlyEditingColor}
                             />
                         )}
                     </div>
 
-                    {blockSettings?.gradientColors?.map((color, index) => (
+                    {gradientColors?.map((color, index) => (
                         <>
                             {index === 0 && (
                                 <div key={index} className="tw-absolute" style={{ left: 0 }}>
@@ -434,8 +442,8 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     ))}
                 </div>
             )}
-            {blockSettings.displayCss ? (
-                <CssValueDisplay cssValue={blockSettings.contentValue} handleCopy={handleCopy} isCopied={isCopied} />
+            {displayCss ? (
+                <CssValueDisplay cssValue={contentValue} handleCopy={handleCopy} isCopied={isCopied} />
             ) : null}
         </div>
     );

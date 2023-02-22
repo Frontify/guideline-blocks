@@ -6,8 +6,11 @@ import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
 export const CssValueDisplay = ({ cssValue, isCopied, handleCopy }: CssValueDisplayProps) => {
-    const getCopyButtonText = () =>
-        isCopied ? <>{iconsMap[IconEnum.CheckMark16]} Copied</> : <>{iconsMap[IconEnum.Clipboard16]} Copy</>;
+    const getCopyButtonText = isCopied ? (
+        <>{iconsMap[IconEnum.CheckMark16]} Copied</>
+    ) : (
+        <>{iconsMap[IconEnum.Clipboard16]} Copy</>
+    );
 
     return (
         <div
@@ -35,7 +38,7 @@ export const CssValueDisplay = ({ cssValue, isCopied, handleCopy }: CssValueDisp
                         className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
                         onClick={handleCopy}
                     >
-                        {getCopyButtonText()}
+                        {getCopyButtonText}
                     </button>
                 </div>
                 <CodeMirror
