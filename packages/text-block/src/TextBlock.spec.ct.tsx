@@ -6,7 +6,7 @@ import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { PLACEHOLDER } from './settings';
 import { TextGutter } from './types';
 
-const TextBlockSelectorHtml = '[data-test-id="text-block-html"]';
+const TextBlockSelectorHtml = '[data-test-id="rte-content-html"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
 
 describe('Text Block', () => {
