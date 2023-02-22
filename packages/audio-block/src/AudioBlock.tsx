@@ -71,7 +71,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const audioTagClassNames = joinClassNames([
         'tw-w-full tw-mt-5',
-        isEditing && 'group-hover:tw-border group-hover:tw-border-box-selected-inverse group-hover:tw-rounded-[4px]',
+        isEditing && 'group-hover:tw-border group-hover:tw-border-box-selected-inverse group-hover:tw-rounded',
     ]);
 
     const saveTitle = (value: string) => {
@@ -150,9 +150,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             onAssetChooseClick={openAssetChooser}
                         />
                     )}
-
                     {isLoading ? (
-                        <div className="tw-flex tw-items-center tw-justify-center tw-h-[54px]">
+                        <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
                             <LoadingCircle />
                         </div>
                     ) : (

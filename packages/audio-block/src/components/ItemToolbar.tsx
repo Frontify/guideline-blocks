@@ -21,7 +21,7 @@ export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }
 
     return (
         <div data-test-id="item-toolbar" className="tw-absolute tw-z-10 tw-right-0 tw-invisible group-hover:tw-visible">
-            <div className="tw-bg-white tw-text-box-selected-inverse tw-flex tw-flex-shrink-0 tw-gap-[2px] tw-px-[1px] tw-spacing tw-items-center tw-h-[28px] tw-self-start tw-border tw-border-box-selected-inverse tw-rounded-[4px]">
+            <div className="tw-bg-white tw-text-box-selected-inverse tw-flex tw-flex-shrink-0 tw-gap-0.5 tw-spacing tw-items-center tw-h-7 tw-self-start tw-border tw-border-box-selected-inverse tw-rounded">
                 <Tooltip
                     withArrow
                     enterDelay={300}
@@ -31,14 +31,14 @@ export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }
                     triggerElement={
                         <div
                             onClick={onRemoveAsset}
-                            className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm"
+                            className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm"
                         >
                             <IconTrashBin16 />
                         </div>
                     }
                 />
 
-                <div className="tw-flex tw-flex-shrink-0 tw-flex-1 tw-h-[24px]">
+                <div className="tw-flex tw-flex-shrink-0 tw-flex-1 tw-h-6">
                     <Flyout
                         isOpen={isFlyoutOpen}
                         fitContent
@@ -53,7 +53,7 @@ export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }
                                 position={TooltipPosition.Top}
                                 content={'Options'}
                                 triggerElement={
-                                    <div className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex  tw-items-center tw-justify-center tw-w-[24px] tw-h-[24px] tw-rounded-sm">
+                                    <div className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm">
                                         <IconDotsHorizontal16 />
                                     </div>
                                 }
