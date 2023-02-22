@@ -2,5 +2,5 @@
 
 export * from './downloadAsset';
 export * from './mapToGuidelineDesignTokens';
-export * from './provideDefaultCalloutColors';
+export * from './provideFallbackTokens';
 export * from './hasRichTextValue';

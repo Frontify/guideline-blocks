@@ -3,7 +3,25 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import { mapToGuidelineDesignTokens } from '../helpers/mapToGuidelineDesignTokens';
 
-export enum DesignTokenPropertiesEnum {
+export type DesignTokenName =
+    | 'heading1'
+    | 'heading2'
+    | 'heading3'
+    | 'heading4'
+    | 'custom1'
+    | 'custom2'
+    | 'custom3'
+    | 'p'
+    | 'link'
+    | 'quote'
+    | 'buttonPrimary'
+    | 'buttonSecondary'
+    | 'buttonTertiary'
+    | 'callout'
+    | 'imageCaption'
+    | 'mainFont';
+
+export enum ApiDesignTokenPropertiesEnum {
     family = 'family',
     weight = 'weight',
     size = 'size',
@@ -30,23 +48,6 @@ export enum DesignTokenPropertiesEnum {
     warning = 'warning',
 }
 
-export type DesignTokenName =
-    | 'heading1'
-    | 'heading2'
-    | 'heading3'
-    | 'heading4'
-    | 'custom1'
-    | 'custom2'
-    | 'custom3'
-    | 'p'
-    | 'link'
-    | 'quote'
-    | 'buttonPrimary'
-    | 'buttonSecondary'
-    | 'buttonTertiary'
-    | 'callout'
-    | 'imageCaption';
-
 export type DirectionalCssProperties = {
     top: string;
     right: string;
@@ -61,21 +62,27 @@ export type AccentColorProperties = {
     warning: string;
 };
 
-export type DesignTokenProperties = Partial<
-    Record<DesignTokenPropertiesEnum, string | DirectionalCssProperties> | AccentColorProperties
->;
-export type DesignTokens = Partial<Record<DesignTokenName, DesignTokenProperties>>;
+type ApiProperties = Partial<Record<ApiDesignTokenPropertiesEnum, string | DirectionalCssProperties>>;
+export type Appearance = Partial<Record<DesignTokenName, ApiProperties>>;
 export type DesignTokenApiResponse = {
     hub: {
-        appearance: DesignTokens;
+        appearance: Appearance;
     };
 };
 
 export type TokenValues = CSSProperties & { hover?: CSSProperties } & Partial<AccentColorProperties>;
 export type TransformedDesignTokens = Partial<Record<DesignTokenName, TokenValues>>;
 
-export const useGuidelineDesignTokens = () => {
-    const [designTokens, setDesignTokens] = useState<TransformedDesignTokens | null>(null);
+type useGuidelineDesignTokensResponse = {
+    designTokens: TransformedDesignTokens | null;
+    error: null | unknown;
+    isLoading: boolean;
+};
+
+export type DesignTokens = Partial<Record<DesignTokenName, CSSProperties>>;
+
+export const useGuidelineDesignTokens = (): useGuidelineDesignTokensResponse => {
+    const [designTokens, setDesignTokens] = useState<DesignTokens | null>(null);
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
