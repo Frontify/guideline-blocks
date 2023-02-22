@@ -7,7 +7,7 @@
         "noUnusedLocals": true,
         "strict": true,
         "target": "ES6",
-        "jsx": "react-jsx",
+        "jsx": "react",
         "skipLibCheck": true,
         "resolveJsonModule": true,
         "types": ["cypress"],
