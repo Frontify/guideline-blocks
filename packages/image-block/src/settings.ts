@@ -42,7 +42,7 @@ export const settings = defineSettings({
                     defaultValue: false,
                     on: [
                         {
-                            id: 'linkUrl',
+                            id: 'linkObject',
                             type: 'linkChooser',
                             placeholder: 'Paste link, or type to search',
                         },
