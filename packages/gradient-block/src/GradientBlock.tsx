@@ -43,57 +43,10 @@ import {
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
+import { hex2rgba, rgba2hex } from './helpers';
+
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
-
-const rgba2hex = (rgba: string, forceRemoveAlpha = false) => {
-    return `#${rgba
-        .replace(/^rgba?\(|\s+|\)$/g, '') // Get's rgba / rgb string values
-        .split(',') // splits them at ","
-        .filter((string, index) => !forceRemoveAlpha || index !== 3)
-        .map((string) => parseFloat(string)) // Converts them to numbers
-        .map((number, index) => (index === 3 ? Math.round(number * 255) : number)) // Converts alpha to 255 number
-        .map((number) => number.toString(16)) // Converts numbers to hex
-        .map((string) => (string.length === 1 ? `0${string}` : string)) // Adds 0 when length of one number is 1
-        .join('')}`; // Puts the array to togehter to a string
-};
-
-// eslint-disable-next-line unicorn/no-unsafe-regex, unicorn/better-regex
-const isValidHex = (hex: string) => /^#([A-Fa-f0-9]{3,4}){1,2}$/.test(hex);
-
-const getChunksFromString = (st: string, chunkSize: number) => st.match(new RegExp(`.{${chunkSize}}`, 'g'));
-
-const convertHexUnitTo256 = (hexStr: string) => parseInt(hexStr.repeat(2 / hexStr.length), 16);
-
-const getAlphafloat = (a: number, alpha?: number) => {
-    if (typeof a !== 'undefined') {
-        return a / 255;
-    }
-    if (typeof alpha !== 'number' || alpha < 0 || alpha > 1) {
-        return 1;
-    }
-    return alpha;
-};
-
-const hex2rgba = (hex: string, alpha?: number) => {
-    if (!isValidHex(hex)) {
-        throw new Error('Invalid HEX');
-    }
-    const chunkSize = Math.floor((hex.length - 1) / 3);
-    const hexArr = getChunksFromString(hex.slice(1), chunkSize);
-
-    if (!hexArr) {
-        return;
-    }
-
-    const [r, g, b, a] = hexArr.map(convertHexUnitTo256);
-    return {
-        red: r,
-        green: g,
-        blue: b,
-        alpha: getAlphafloat(a, alpha),
-    };
-};
 
 const emptyStateColors = [
     {
@@ -187,6 +140,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showColorModal]);
 
     useEffect(() => {
@@ -225,6 +179,7 @@ export const GradientBlock: FC<BlockProps> = ({ appBridge }) => {
             gradientColors: colors,
             contentValue: parseGradientColorsToString(),
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientOrientation, colors]);
 
     const addNewColor = (color: GradientColor) => {
