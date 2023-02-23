@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color } from '@frontify/fondue';
-import { RefObject } from 'react';
 
 export enum GradientHeight {
     Small = 's',
@@ -79,9 +78,7 @@ export type ColorPickerProps = {
 };
 
 export type AddColorButtonProps = {
-    addRef: RefObject<HTMLDivElement>;
     addButtonPosition: { top: number; left: number };
-    gradientBlockRef: RefObject<HTMLDivElement>;
     setShowColorModal: (show: boolean) => void;
     setCurrentColorPosition: (position?: number) => void;
 };

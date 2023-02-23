@@ -26,7 +26,7 @@ export const ColorTooltip = ({
                 content={
                     <>
                         <div
-                            className="tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]"
+                            className="tw-absolute tw-top-1 tw-left-1 tw-right-1 tw-bottom-1 tw-z-[100]"
                             style={{
                                 backgroundColor: color.hex,
                             }}

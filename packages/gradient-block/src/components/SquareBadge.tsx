@@ -3,7 +3,6 @@
 import { SquareBadgeProps } from '../types';
 import { ColorSquarePositionType } from '../types';
 import { IconEnum, iconsMap } from '@frontify/fondue';
-import { CSSProperties } from 'react';
 
 export const SquareBadge = ({
     index,

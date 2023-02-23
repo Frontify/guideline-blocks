@@ -15,7 +15,7 @@ export const CssValueDisplay = ({ cssValue, isCopied, handleCopy }: CssValueDisp
     return (
         <div
             data-test-id="gradient-css-snippet-block"
-            className="tw-mt-8 tw-overflow-hidden tw-border tw-border-line tw-rounded-[4px] tw-text-sm"
+            className="tw-mt-8 tw-overflow-hidden tw-border tw-border-line tw-rounded tw-text-sm"
             style={{
                 fontFamily: 'Courier, monospace',
             }}

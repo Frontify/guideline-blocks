@@ -57,13 +57,13 @@ export const ColorPicker = ({
     };
 
     return (
-        <div className="tw-z-[100]">
+        <div className="tw-z-[10]">
             <Flyout
                 fixedHeader={
                     <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
                         <span>Configure Color</span>
                         <span
-                            className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-[2px] tw-text-strong"
+                            className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-0.5 tw-text-strong"
                             onClick={() => setShowColorModal(false)}
                         >
                             <IconCross size={IconSize.Size20} />

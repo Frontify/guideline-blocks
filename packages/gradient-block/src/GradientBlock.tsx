@@ -4,15 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Color, Divider, DividerStyle, debounce } from '@frontify/fondue';
+import { Color, Divider, DividerHeight, DividerStyle, debounce } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
-import {
-    ColorSquarePositionType,
-    GradientColor,
-    Settings,
-    gradientHeightValues,
-    gradientOrientationValues,
-} from './types';
+import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadge } from './components';
@@ -38,7 +32,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>(null);
     const dividerRef = useRef<HTMLDivElement>(null);
-    const addRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
     const [currentlyEditingColor, setCurrentlyEditingColor] = useState<string>();
@@ -123,22 +116,9 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     }, [showColorModal]);
 
     useEffect(() => {
-        const defaultGradientColors = [
-            {
-                hex: '#F1F1F1',
-                name: 'Light gray',
-                position: 0,
-            },
-            {
-                hex: '#FFFFFF',
-                name: 'White',
-                position: 100,
-            },
-        ];
-
         if (!gradientColors || !gradientColors?.length) {
             setBlockSettings({
-                gradientColors: defaultGradientColors,
+                gradientColors: emptyStateColors,
             });
         }
     });
@@ -161,11 +141,13 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientOrientation, colors]);
 
+    console.log('gradientRef', gradientBlockRef);
+
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
-            <div className="tw-border tw-border-line-strong tw-rounded-[4px] tw-p-[1px]">
+            <div className="tw-border tw-border-line-strong tw-rounded tw-p-0.5">
                 <div
-                    className="tw-w-full tw-h-4 tw-rounded-[3px]"
+                    className="tw-w-full tw-h-4 tw-rounded"
                     style={{
                         height: gradientBlockHeight,
                         background: contentValue,
@@ -173,7 +155,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                 ></div>
             </div>
             {!isEditing && (
-                <div className="tw-pt-[9px]">
+                <div className="tw-pt-2">
                     {gradientColors?.map((color, index) => (
                         <SquareBadge
                             key={index}
@@ -188,17 +170,16 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             {isEditing && (
                 <div>
                     <div className="tw-relative" ref={dividerRef}>
-                        <Divider height="36px" style={DividerStyle.Solid} />
+                        <Divider height={DividerHeight.Small} style={DividerStyle.Solid} />
                         {showAddButton && (
                             <AddColorButton
-                                addRef={addRef}
+                                ref={gradientBlockRef}
                                 addButtonPosition={addButtonPosition}
-                                gradientBlockRef={gradientBlockRef}
                                 setShowColorModal={setShowColorModal}
                                 setCurrentColorPosition={setCurrentColorPosition}
                             />
                         )}
-                        {showColorModal && addRef.current && (
+                        {showColorModal && (
                             <ColorPicker
                                 editing={false}
                                 color={null}
