@@ -14,7 +14,10 @@ import {
     defaultHeading2Tokens,
     defaultHeading3Tokens,
     defaultHeading4Tokens,
+    defaultImageCaptionTokens,
+    defaultImageTitleTokens,
     defaultLinkTokens,
+    defaultQuoteTokens,
 } from './defaultTokens';
 
 const getHeadingTokens = (defaults: CSSProperties, appearanceData?: ApiProperties): CSSProperties => ({
@@ -58,6 +61,44 @@ const getParagraphTokens = (defaults: CSSProperties, appearanceData?: ApiPropert
 });
 
 const getLinkTokens = (defaults: CSSProperties, appearanceData?: ApiProperties): CSSProperties => ({
+    fontFamily: appearanceData?.family || defaults.fontFamily,
+    fontWeight: appearanceData?.weight || defaults.fontWeight,
+    fontSize: appearanceData?.size || defaults.fontSize,
+    letterSpacing: appearanceData?.letterspacing || defaults.letterSpacing,
+    lineHeight: appearanceData?.line_height || defaults.lineHeight,
+    textTransform: appearanceData?.uppercase ? 'uppercase' : defaults.textTransform,
+    fontStyle: appearanceData?.italic ? 'italic' : defaults.fontStyle,
+    textDecoration: appearanceData?.underline ? 'underline' : defaults.textDecoration,
+    color: appearanceData?.color || defaults.color,
+});
+
+const getQuoteTokens = (defaults: CSSProperties, appearanceData?: ApiProperties): CSSProperties => ({
+    fontFamily: appearanceData?.family || defaults.fontFamily,
+    fontWeight: appearanceData?.weight || defaults.fontWeight,
+    fontSize: appearanceData?.size || defaults.fontSize,
+    letterSpacing: appearanceData?.letterspacing || defaults.letterSpacing,
+    lineHeight: appearanceData?.line_height || defaults.lineHeight,
+    textTransform: appearanceData?.uppercase ? 'uppercase' : defaults.textTransform,
+    fontStyle: appearanceData?.italic ? 'italic' : defaults.fontStyle,
+    textDecoration: appearanceData?.underline ? 'underline' : defaults.textDecoration,
+    color: appearanceData?.color || defaults.color,
+});
+
+const getImageTitleTokens = (defaults: CSSProperties, appearanceData?: ApiProperties): CSSProperties => ({
+    fontFamily: appearanceData?.family || defaults.fontFamily,
+    fontWeight: appearanceData?.weight || defaults.fontWeight,
+    fontSize: appearanceData?.size || defaults.fontSize,
+    letterSpacing: appearanceData?.letterspacing || defaults.letterSpacing,
+    lineHeight: appearanceData?.line_height || defaults.lineHeight,
+    marginTop: appearanceData?.margin_top || defaults.marginTop,
+    marginBottom: appearanceData?.margin_bottom || defaults.marginBottom,
+    textTransform: appearanceData?.uppercase ? 'uppercase' : defaults.textTransform,
+    fontStyle: appearanceData?.italic ? 'italic' : defaults.fontStyle,
+    textDecoration: appearanceData?.underline ? 'underline' : defaults.textDecoration,
+    color: appearanceData?.color || defaults.color,
+});
+
+const getImageCaptionTokens = (defaults: CSSProperties, appearanceData?: ApiProperties): CSSProperties => ({
     fontFamily: appearanceData?.family || defaults.fontFamily,
     fontWeight: appearanceData?.weight || defaults.fontWeight,
     fontSize: appearanceData?.size || defaults.fontSize,
@@ -118,6 +159,9 @@ export const provideFallbackTokens = (appearanceData: ApiAppearanceData): Design
     custom3: getCustomTokens(defaultCustomTokens, appearanceData.custom3),
     p: getParagraphTokens(defaultBodyTextTokens, appearanceData.p),
     link: getLinkTokens(defaultLinkTokens, appearanceData.link),
+    quote: getQuoteTokens(defaultQuoteTokens, appearanceData.quote),
+    imageTitle: getImageTitleTokens(defaultImageTitleTokens, appearanceData.imageTitle),
+    imageCaption: getImageCaptionTokens(defaultImageCaptionTokens, appearanceData.imageCaption),
     buttonPrimary: getButtonTokens(defaultButtonPrimaryTokens, appearanceData.buttonPrimary),
     buttonSecondary: getButtonTokens(defaultButtonSecondaryTokens, appearanceData.buttonSecondary),
     buttonTertiary: getButtonTokens(defaultButtonTertiaryTokens, appearanceData.buttonTertiary),

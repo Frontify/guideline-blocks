@@ -3,13 +3,6 @@
 import { CSSProperties } from 'react';
 import { ButtonHoverProperties, CalloutColors } from '../hooks';
 
-export const defaultCalloutColors: CalloutColors = {
-    info: '#5bc0de',
-    note: '#f0ad4e',
-    tip: '#5cb85c',
-    warning: '#d9534f',
-};
-
 const defaultHeadingTokens: CSSProperties = {
     fontFamily: 'inherit',
     fontWeight: 'normal',
@@ -120,6 +113,13 @@ export const defaultImageCaptionTokens: CSSProperties = {
     fontStyle: 'normal',
     textDecoration: 'none',
     color: '#999999',
+};
+
+export const defaultCalloutColors: CalloutColors = {
+    info: '#5bc0de',
+    note: '#f0ad4e',
+    tip: '#5cb85c',
+    warning: '#d9534f',
 };
 
 const defaultButtonTokens: CSSProperties = {

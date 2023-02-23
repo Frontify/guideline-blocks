@@ -21,11 +21,12 @@ export type ApiDesignTokenName =
     | 'p'
     | 'link'
     | 'quote'
+    | 'imageTitle'
+    | 'imageCaption'
+    | 'callout'
     | 'buttonPrimary'
     | 'buttonSecondary'
     | 'buttonTertiary'
-    | 'callout'
-    | 'imageCaption'
     | 'mainFont';
 
 export type CalloutColors = {
@@ -83,10 +84,13 @@ export type DesignTokens = {
     custom3: CSSProperties;
     p: CSSProperties;
     link: CSSProperties;
+    quote: CSSProperties;
+    imageTitle: CSSProperties;
+    imageCaption: CSSProperties;
+    callout: CalloutColors;
     buttonPrimary: CSSProperties & { hover?: CSSProperties };
     buttonSecondary: CSSProperties & { hover?: CSSProperties };
     buttonTertiary: CSSProperties & { hover?: CSSProperties };
-    callout: CalloutColors;
 };
 
 type useGuidelineDesignTokensResponse = {
