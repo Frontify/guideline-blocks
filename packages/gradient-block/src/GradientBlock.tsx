@@ -4,24 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import {
-    Button,
-    ButtonEmphasis,
-    ButtonRounding,
-    ButtonSize,
-    ButtonStyle,
-    ButtonType,
-    Color,
-    Divider,
-    DividerStyle,
-    IconPen,
-    IconSize,
-    IconTrashBin,
-    Tooltip,
-    TooltipAlignment,
-    TooltipPosition,
-    debounce,
-} from '@frontify/fondue';
+import { Color, Divider, DividerStyle, Tooltip, TooltipAlignment, TooltipPosition, debounce } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import {
     ColorSquarePositionType,
@@ -33,8 +16,7 @@ import {
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
-import { hex2rgba } from './helpers';
-import { AddColorButton, ColorPicker, CssValueDisplay, SquareBadge } from './components';
+import { AddColorButton, ColorPicker, CssValueDisplay, EditAndDeleteColorBox, SquareBadge } from './components';
 
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
@@ -180,72 +162,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientOrientation, colors]);
 
-    const deleteColor = (color: GradientColor) => {
-        const newGradientColors = colors.filter((item) => {
-            if (item.hex === color.hex) {
-                return true;
-            }
-            return false;
-        });
-
-        setColors(newGradientColors);
-    };
-
-    const EditAndDeleteBox = ({ color }: { color: GradientColor }) => {
-        return (
-            <div className="tw-absolute tw-flex tw-bg-base tw-border tw-border-box-selected-strong tw-rounded tw-w-[63px] tw-h-7 tw-top-[40px] tw-left-[-15px]">
-                <Button
-                    emphasis={ButtonEmphasis.Strong}
-                    hugWidth
-                    inverted
-                    onClick={() => {
-                        setCurrentlyEditingColor(color.hex);
-                        setShowColorModal(true);
-                        setCurrentColor(hex2rgba(color.hex) as Color);
-                    }}
-                    rounding={ButtonRounding.Medium}
-                    size={ButtonSize.Small}
-                    solid
-                    style={ButtonStyle.Default}
-                    type={ButtonType.Button}
-                >
-                    <IconPen size={IconSize.Size12} />
-                </Button>
-
-                <Button
-                    emphasis={ButtonEmphasis.Strong}
-                    hugWidth
-                    inverted
-                    onClick={() => {
-                        deleteColor(color);
-                    }}
-                    rounding={ButtonRounding.Medium}
-                    size={ButtonSize.Small}
-                    solid
-                    style={ButtonStyle.Default}
-                    type={ButtonType.Button}
-                >
-                    <IconTrashBin size={IconSize.Size12} />
-                </Button>
-
-                {showColorModal && currentlyEditingColor === color.hex && (
-                    <ColorPicker
-                        editing={true}
-                        color={color}
-                        colors={colors}
-                        currentColor={currentColor}
-                        currentColorPosition={currentColorPosition}
-                        setColors={setColors}
-                        setCurrentColor={setCurrentColor}
-                        setCurrentColorPosition={setCurrentColorPosition}
-                        setShowColorModal={setShowColorModal}
-                        gradientColors={gradientColors}
-                        setCurrentlyEditingColor={setCurrentlyEditingColor}
-                    />
-                )}
-            </div>
-        );
-    };
+    //const EditAndDeleteBox = ({ color }: { color: GradientColor }) => {};
 
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
@@ -332,7 +249,20 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                                                         backgroundColor: color.hex,
                                                     }}
                                                 ></div>
-                                                <EditAndDeleteBox color={color} />
+                                                <EditAndDeleteColorBox
+                                                    color={color}
+                                                    colors={colors}
+                                                    currentColor={currentColor}
+                                                    currentColorPosition={currentColorPosition}
+                                                    currentlyEditingColor={currentlyEditingColor}
+                                                    gradientColors={gradientColors}
+                                                    showColorModal={showColorModal}
+                                                    setColors={setColors}
+                                                    setShowColorModal={setShowColorModal}
+                                                    setCurrentColor={setCurrentColor}
+                                                    setCurrentColorPosition={setCurrentColorPosition}
+                                                    setCurrentlyEditingColor={setCurrentlyEditingColor}
+                                                />
                                             </>
                                         }
                                         heading=""
@@ -364,7 +294,20 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                                                         backgroundColor: color.hex,
                                                     }}
                                                 ></div>
-                                                <EditAndDeleteBox color={color} />
+                                                <EditAndDeleteColorBox
+                                                    color={color}
+                                                    colors={colors}
+                                                    currentColor={currentColor}
+                                                    currentColorPosition={currentColorPosition}
+                                                    currentlyEditingColor={currentlyEditingColor}
+                                                    gradientColors={gradientColors}
+                                                    showColorModal={showColorModal}
+                                                    setColors={setColors}
+                                                    setShowColorModal={setShowColorModal}
+                                                    setCurrentColor={setCurrentColor}
+                                                    setCurrentColorPosition={setCurrentColorPosition}
+                                                    setCurrentlyEditingColor={setCurrentlyEditingColor}
+                                                />
                                             </>
                                         }
                                         heading=""
@@ -396,7 +339,20 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                                                         backgroundColor: color.hex,
                                                     }}
                                                 ></div>
-                                                <EditAndDeleteBox color={color} />
+                                                <EditAndDeleteColorBox
+                                                    color={color}
+                                                    colors={colors}
+                                                    currentColor={currentColor}
+                                                    currentColorPosition={currentColorPosition}
+                                                    currentlyEditingColor={currentlyEditingColor}
+                                                    gradientColors={gradientColors}
+                                                    showColorModal={showColorModal}
+                                                    setColors={setColors}
+                                                    setShowColorModal={setShowColorModal}
+                                                    setCurrentColor={setCurrentColor}
+                                                    setCurrentColorPosition={setCurrentColorPosition}
+                                                    setCurrentlyEditingColor={setCurrentlyEditingColor}
+                                                />
                                             </>
                                         }
                                         heading=""

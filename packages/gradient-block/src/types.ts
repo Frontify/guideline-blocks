@@ -83,3 +83,18 @@ export type AddColorButtonProps = {
     setShowColorModal: (show: boolean) => void;
     setCurrentColorPosition: (position?: number) => void;
 };
+
+export type EditAndDeleteColorBoxProps = {
+    color: GradientColor;
+    colors: GradientColor[];
+    currentColor: Color | null;
+    currentColorPosition: number | undefined;
+    currentlyEditingColor: string | undefined;
+    gradientColors: GradientColor[] | undefined;
+    showColorModal: boolean;
+    setColors: (color: GradientColor[]) => void;
+    setShowColorModal: (show: boolean) => void;
+    setCurrentColorPosition: (position?: number) => void;
+    setCurrentColor: (color: Color | null) => void;
+    setCurrentlyEditingColor: (color?: string | undefined) => void;
+};
