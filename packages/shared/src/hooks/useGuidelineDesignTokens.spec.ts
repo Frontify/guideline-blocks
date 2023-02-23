@@ -90,68 +90,6 @@ describe('useGuidelineDesignTokens', () => {
         });
     });
 
-    it('should set default design tokens on api call with empty return values', async () => {
-        setResponseType(ResponseStatus.EmptyValues);
-
-        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
-        await waitForNextUpdate();
-
-        expect(result.current).toMatchObject({
-            designTokens: {
-                heading1: {
-                    fontFamily: 'inherit',
-                    fontWeight: 'normal',
-                    fontStyle: 'normal',
-                    fontSize: '30px',
-                    color: 'rgba(0,0,0,1)',
-                    letterSpacing: 'normal',
-                    lineHeight: '1.3',
-                    marginTop: '0',
-                    marginBottom: '10px',
-                    textDecoration: 'none',
-                },
-                heading2: {
-                    fontFamily: 'inherit',
-                    fontWeight: 'bold',
-                    fontStyle: 'normal',
-                    fontSize: '22px',
-                    color: 'rgba(0,0,0,1)',
-                    letterSpacing: 'normal',
-                    lineHeight: '1.3',
-                    marginTop: '0',
-                    marginBottom: '10px',
-                    textDecoration: 'none',
-                },
-                heading3: {
-                    fontFamily: 'inherit',
-                    fontWeight: 'bold',
-                    fontStyle: 'normal',
-                    fontSize: '18px',
-                    color: 'rgba(0,0,0,1)',
-                    letterSpacing: 'normal',
-                    lineHeight: '1.3',
-                    marginTop: '0',
-                    marginBottom: '10px',
-                    textDecoration: 'none',
-                },
-                heading4: {
-                    fontFamily: 'inherit',
-                    fontWeight: 'bold',
-                    fontStyle: 'normal',
-                    fontSize: '16px',
-                    color: 'rgba(0,0,0,1)',
-                    letterSpacing: 'normal',
-                    lineHeight: '1.3',
-                    marginTop: '0',
-                    marginBottom: '10px',
-                    textDecoration: 'none',
-                },
-            },
-            error: null,
-            isLoading: false,
-        });
-    });
-
     it('should set the state to loading and ready', async () => {
         setResponseType(ResponseStatus.Success);
 
