@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { CSSProperties } from 'react';
-import { ApiAppearance, ApiProperties, CalloutColors, DesignTokens } from '../hooks';
+import { ApiAppearanceData, ApiProperties, CalloutColors, DesignTokens } from '../hooks';
 import { suffixPlainNumberWithPx } from '../utilities/suffixPlainNumberWithPx';
 import {
     defaultButtonPrimaryTokens,
@@ -14,42 +14,44 @@ import {
     defaultHeading4Tokens,
 } from './defaultTokens';
 
-const getHeadingTokens = (defaults: CSSProperties, apiProperties?: ApiProperties): CSSProperties => ({
-    fontFamily: apiProperties?.family || defaults.fontFamily,
-    fontWeight: apiProperties?.weight || defaults.fontWeight,
-    fontSize: apiProperties?.size || defaults.fontSize,
-    color: apiProperties?.color || defaults.color,
-    letterSpacing: apiProperties?.letterspacing || defaults.letterSpacing,
-    lineHeight: apiProperties?.line_height || defaults.lineHeight,
-    marginTop: apiProperties?.margin_top || defaults.marginTop,
-    marginBottom: apiProperties?.margin_bottom || defaults.marginBottom,
-    textDecoration: apiProperties?.underline || defaults.textDecoration,
-});
+const getHeadingTokens = (defaults: CSSProperties, appearanceData?: ApiProperties): CSSProperties => {
+    return {
+        fontFamily: appearanceData?.family || defaults.fontFamily,
+        fontWeight: appearanceData?.weight || defaults.fontWeight,
+        fontSize: appearanceData?.size || defaults.fontSize,
+        color: appearanceData?.color || defaults.color,
+        letterSpacing: appearanceData?.letterspacing || defaults.letterSpacing,
+        lineHeight: appearanceData?.line_height || defaults.lineHeight,
+        marginTop: appearanceData?.margin_top || defaults.marginTop,
+        marginBottom: appearanceData?.margin_bottom || defaults.marginBottom,
+        textDecoration: appearanceData?.underline || defaults.textDecoration,
+    };
+};
 
-const getButtonTokens = (defaults: CSSProperties, apiProperties?: ApiProperties): CSSProperties => ({
-    fontFamily: apiProperties?.family || defaults.fontFamily,
-    fontWeight: apiProperties?.weight || defaults.fontWeight,
-    fontSize: apiProperties?.size || defaults.fontSize,
-    paddingTop: apiProperties?.frame?.top ? suffixPlainNumberWithPx(apiProperties?.frame?.top) : defaults.paddingTop,
-    paddingRight: apiProperties?.frame?.right
-        ? suffixPlainNumberWithPx(apiProperties?.frame?.right)
+const getButtonTokens = (defaults: CSSProperties, appearanceData?: ApiProperties): CSSProperties => ({
+    fontFamily: appearanceData?.family || defaults.fontFamily,
+    fontWeight: appearanceData?.weight || defaults.fontWeight,
+    fontSize: appearanceData?.size || defaults.fontSize,
+    paddingTop: appearanceData?.frame?.top ? suffixPlainNumberWithPx(appearanceData?.frame?.top) : defaults.paddingTop,
+    paddingRight: appearanceData?.frame?.right
+        ? suffixPlainNumberWithPx(appearanceData?.frame?.right)
         : defaults.paddingRight,
-    paddingBottom: apiProperties?.frame?.bottom
-        ? suffixPlainNumberWithPx(apiProperties?.frame?.bottom)
+    paddingBottom: appearanceData?.frame?.bottom
+        ? suffixPlainNumberWithPx(appearanceData?.frame?.bottom)
         : defaults.paddingBottom,
-    paddingLeft: apiProperties?.frame?.left
-        ? suffixPlainNumberWithPx(apiProperties?.frame?.left)
+    paddingLeft: appearanceData?.frame?.left
+        ? suffixPlainNumberWithPx(appearanceData?.frame?.left)
         : defaults.paddingLeft,
 });
 
-const getCalloutTokens = (defaults: CalloutColors, apiProperties?: ApiProperties['callout']): CalloutColors => ({
-    info: apiProperties?.info || defaults.info,
-    note: apiProperties?.note || defaults.note,
-    tip: apiProperties?.tip || defaults.tip,
-    warning: apiProperties?.warning || defaults.warning,
+const getCalloutTokens = (defaults: CalloutColors, appearanceData?: ApiProperties): CalloutColors => ({
+    info: appearanceData?.info || defaults.info,
+    note: appearanceData?.note || defaults.note,
+    tip: appearanceData?.tip || defaults.tip,
+    warning: appearanceData?.warning || defaults.warning,
 });
 
-export const provideFallbackTokens = (appearanceData: ApiAppearance): DesignTokens => {
+export const provideFallbackTokens = (appearanceData: ApiAppearanceData): DesignTokens => {
     console.log({ appearanceData });
     return {
         heading1: getHeadingTokens(defaultHeading1Tokens, appearanceData.heading1),

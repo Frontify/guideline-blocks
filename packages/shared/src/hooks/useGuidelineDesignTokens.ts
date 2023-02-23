@@ -3,10 +3,10 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import { provideFallbackTokens } from '../helpers';
 
-export type ApiAppearance = Partial<Record<ApiDesignTokenName, ApiProperties>>;
+export type ApiAppearanceData = Partial<Record<ApiDesignTokenName, ApiProperties>>;
 export type HubSettingsApiResponse = {
     hub: {
-        appearance: ApiAppearance;
+        appearance: ApiAppearanceData;
     };
 };
 
@@ -60,8 +60,7 @@ export type ApiProperties = {
         bottom?: string;
         left?: string;
     };
-    callout?: Partial<CalloutColors>;
-};
+} & Partial<CalloutColors>;
 
 export type DesignTokens = {
     heading1: CSSProperties;

@@ -251,103 +251,101 @@ describe('provideFallbackTokens', () => {
         expect(result).toEqual(defaultTokens);
     });
 
-    // test('it should keep heading1 tokens where set', () => {
-    //     const result = provideFallbackTokens({
-    //         heading1: {
-    //             family: 'Arial',
-    //             weight: 'bold',
-    //             size: '24px',
-    //         },
-    //     });
-    //     expect(result).toEqual({
-    //         ...defaultTokens,
-    //         heading1: {
-    //             ...defaultHeading1Tokens,
-    //             family: 'Arial',
-    //             weight: 'bold',
-    //             size: '24px',
-    //         },
-    //     });
-    // });
+    test('it should keep heading1 tokens where set', () => {
+        const result = provideFallbackTokens({
+            heading1: {
+                family: 'Arial',
+                weight: 'bold',
+                size: '24px',
+            },
+        });
+        expect(result).toEqual({
+            ...defaultTokens,
+            heading1: {
+                ...defaultHeading1Tokens,
+                fontFamily: 'Arial',
+                fontWeight: 'bold',
+                fontSize: '24px',
+            },
+        });
+    });
 
-    // test('it should keep heading2 tokens where set', () => {
-    //     const result = provideFallbackTokens({
-    //         heading2: {
-    //             family: 'Verdana',
-    //             margin_top: '10px',
-    //             margin_bottom: '20px',
-    //         },
-    //     });
-    //     expect(result).toEqual({
-    //         ...defaultTokens,
-    //         heading2: {
-    //             ...defaultHeading2Tokens,
-    //             family: 'Verdana',
-    //             margin_top: '10px',
-    //             margin_bottom: '20px',
-    //         },
-    //     });
-    // });
+    test('it should keep heading2 tokens where set', () => {
+        const result = provideFallbackTokens({
+            heading2: {
+                family: 'Verdana',
+                margin_top: '10px',
+                margin_bottom: '20px',
+            },
+        });
+        expect(result).toEqual({
+            ...defaultTokens,
+            heading2: {
+                ...defaultHeading2Tokens,
+                fontFamily: 'Verdana',
+                marginTop: '10px',
+                marginBottom: '20px',
+            },
+        });
+    });
 
-    // test('it should keep heading3 tokens where set', () => {
-    //     const result = provideFallbackTokens({
-    //         heading3: {
-    //             family: 'Verdana',
-    //             margin_top: '10px',
-    //             margin_bottom: '20px',
-    //         },
-    //     });
-    //     expect(result).toEqual({
-    //         ...defaultTokens,
-    //         heading3: {
-    //             ...defaultHeading4Tokens,
-    //             family: 'Verdana',
-    //             margin_top: '10px',
-    //             margin_bottom: '20px',
-    //         },
-    //     });
-    // });
+    test('it should keep heading3 tokens where set', () => {
+        const result = provideFallbackTokens({
+            heading3: {
+                family: 'Verdana',
+                margin_top: '10px',
+                margin_bottom: '20px',
+            },
+        });
+        expect(result).toEqual({
+            ...defaultTokens,
+            heading3: {
+                ...defaultHeading3Tokens,
+                fontFamily: 'Verdana',
+                marginTop: '10px',
+                marginBottom: '20px',
+            },
+        });
+    });
 
-    // test('it should keep heading4 tokens where set', () => {
-    //     const result = provideFallbackTokens({
-    //         heading4: {
-    //             family: 'Comic Sans',
-    //         },
-    //     });
-    //     expect(result).toEqual({
-    //         ...defaultTokens,
-    //         heading4: {
-    //             ...defaultHeading4Tokens,
-    //             family: 'Verdana',
-    //             margin_top: '10px',
-    //             margin_bottom: '20px',
-    //         },
-    //     });
-    // });
+    test('it should keep heading4 tokens where set', () => {
+        const result = provideFallbackTokens({
+            heading4: {
+                family: 'Comic Sans',
+            },
+        });
+        expect(result).toEqual({
+            ...defaultTokens,
+            heading4: {
+                ...defaultHeading4Tokens,
+                fontFamily: 'Comic Sans',
+            },
+        });
+    });
 
-    // test('it should keep callout colors where set', () => {
-    //     const result = provideFallbackTokens({
-    //         callout: {
-    //             info: '#000000',
-    //             tip: '#222222',
-    //         },
-    //     });
-    //     expect(result).toEqual({
-    //         ...defaultTokens,
-    //         callout: {
-    //             ...defaultCalloutColors,
-    //             info: '#000000',
-    //             tip: '#222222',
-    //         },
-    //     });
-    // });
+    test('it should keep callout colors where set', () => {
+        const result = provideFallbackTokens({
+            callout: {
+                info: '#000000',
+                tip: '#222222',
+            },
+        });
+        expect(result).toEqual({
+            ...defaultTokens,
+            callout: {
+                ...defaultCalloutColors,
+                info: '#000000',
+                tip: '#222222',
+            },
+        });
+    });
 
     // it('should transform design tokens from API', () => {
     //     expect(provideFallbackTokens(mockedDesignTokens)).toMatchObject(expectedTransformedDesignTokens);
     // });
 
     // it('should transform uppercase to textTransform', () => {
-    //     const result = mapToGuidelineDesignTokens({ body: { uppercase: '1' } });
+    //     const result = provideFallbackTokens({ body: { uppercase: '1' } });
     //     expect(result).toMatchObject({ p: { textTransform: 'uppercase' } });
     // });
 
