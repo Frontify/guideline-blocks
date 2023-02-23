@@ -75,3 +75,11 @@ export type ColorPickerProps = {
     setCurrentColor: (color: Color | null) => void;
     setCurrentlyEditingColor: (color?: string | undefined) => void;
 };
+
+export type AddColorButtonProps = {
+    addRef: RefObject<HTMLDivElement>;
+    addButtonPosition: { top: number; left: number };
+    gradientBlockRef: RefObject<HTMLDivElement>;
+    setShowColorModal: (show: boolean) => void;
+    setCurrentColorPosition: (position?: number) => void;
+};

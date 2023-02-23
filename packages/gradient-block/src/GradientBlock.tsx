@@ -15,7 +15,6 @@ import {
     Divider,
     DividerStyle,
     IconPen,
-    IconPlus,
     IconSize,
     IconTrashBin,
     Tooltip,
@@ -35,7 +34,7 @@ import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 import { hex2rgba } from './helpers';
-import { ColorPicker, CssValueDisplay, SquareBadge } from './components';
+import { AddColorButton, ColorPicker, CssValueDisplay, SquareBadge } from './components';
 
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
@@ -192,36 +191,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         setColors(newGradientColors);
     };
 
-    const handleAdd = (position: number) => {
-        if (!gradientBlockRef.current) {
-            return;
-        }
-        setShowColorModal(true);
-        setCurrentColorPosition((position / gradientBlockRef?.current?.getBoundingClientRect().width) * 100);
-    };
-
-    const AddButton = () => {
-        return (
-            <div
-                ref={addRef}
-                data-test-id="gradient-add"
-                className={joinClassNames([
-                    'tw-absolute',
-                    `tw-h-[${ADD_BUTTON_SIZE_PX}px] tw-w-[${ADD_BUTTON_SIZE_PX}px]`,
-                    'tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded-[3px] tw-cursor-pointer',
-                ])}
-                style={{ ...addButtonPosition }}
-            >
-                <span
-                    className="tw-text-white tw-h-[17px] tw-w-[17px] tw-flex tw-justify-center tw-items-center tw-pt-[1px]"
-                    onClick={() => handleAdd(addButtonPosition.left)}
-                >
-                    <IconPlus size={IconSize.Size12} />
-                </span>
-            </div>
-        );
-    };
-
     const EditAndDeleteBox = ({ color }: { color: GradientColor }) => {
         return (
             <div className="tw-absolute tw-flex tw-bg-base tw-border tw-border-box-selected-strong tw-rounded tw-w-[63px] tw-h-7 tw-top-[40px] tw-left-[-15px]">
@@ -320,7 +289,15 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                 <div>
                     <div className="tw-relative" ref={dividerRef}>
                         <Divider height="36px" style={DividerStyle.Solid} />
-                        {showAddButton && <AddButton />}
+                        {showAddButton && (
+                            <AddColorButton
+                                addRef={addRef}
+                                addButtonPosition={addButtonPosition}
+                                gradientBlockRef={gradientBlockRef}
+                                setShowColorModal={setShowColorModal}
+                                setCurrentColorPosition={setCurrentColorPosition}
+                            />
+                        )}
                         {showColorModal && addRef.current && (
                             <ColorPicker
                                 editing={false}

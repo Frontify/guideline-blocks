@@ -3,3 +3,4 @@
 export * from './CssValueDisplay';
 export * from './SquareBadge';
 export * from './ColorPicker';
+export * from './AddColorButton';
