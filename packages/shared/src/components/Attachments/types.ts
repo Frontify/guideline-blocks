@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
-import { DesignTokenName, TokenValues } from '../../hooks';
+import { DesignTokens } from '../../hooks';
 
 export interface AttachmentsProps {
     attachmentItems: Asset[] | undefined;
@@ -25,7 +25,7 @@ export type AttachmentItemProps = SortableAttachmentItemProps & {
 export type SortableAttachmentItemProps = {
     item: Asset;
     isEditing: boolean;
-    designTokens: Partial<Record<DesignTokenName, TokenValues>> | null;
+    designTokens: DesignTokens | null;
     onAttachmentDelete: () => void;
     onAttachmentReplaceWithBrowse: () => void;
     onAttachmentReplaceWithUpload: (uploadedAsset: Asset) => void;

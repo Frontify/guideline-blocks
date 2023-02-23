@@ -2,14 +2,17 @@
 
 import { describe, expect, test } from 'vitest';
 import {
+    defaultBodyTextTokens,
     defaultButtonPrimaryTokens,
     defaultButtonSecondaryTokens,
     defaultButtonTertiaryTokens,
     defaultCalloutColors,
+    defaultCustomTokens,
     defaultHeading1Tokens,
     defaultHeading2Tokens,
     defaultHeading3Tokens,
     defaultHeading4Tokens,
+    defaultLinkTokens,
 } from './defaultTokens';
 import { provideFallbackTokens } from './provideFallbackTokens';
 
@@ -239,6 +242,11 @@ const defaultTokens = {
     heading2: defaultHeading2Tokens,
     heading3: defaultHeading3Tokens,
     heading4: defaultHeading4Tokens,
+    custom1: defaultCustomTokens,
+    custom2: defaultCustomTokens,
+    custom3: defaultCustomTokens,
+    p: defaultBodyTextTokens,
+    link: defaultLinkTokens,
     buttonPrimary: defaultButtonPrimaryTokens,
     buttonSecondary: defaultButtonSecondaryTokens,
     buttonTertiary: defaultButtonTertiaryTokens,

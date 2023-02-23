@@ -35,6 +35,12 @@ export type CalloutColors = {
     warning: string;
 };
 
+export type ButtonHoverProperties = {
+    backgroundColor?: string;
+    borderColor?: string;
+    color?: string;
+};
+
 export type ApiProperties = {
     family?: string;
     weight?: string;
@@ -60,6 +66,11 @@ export type ApiProperties = {
         bottom?: string;
         left?: string;
     };
+    hover?: {
+        background_color?: string;
+        border_color?: string;
+        color?: string;
+    };
 } & Partial<CalloutColors>;
 
 export type DesignTokens = {
@@ -67,6 +78,11 @@ export type DesignTokens = {
     heading2: CSSProperties;
     heading3: CSSProperties;
     heading4: CSSProperties;
+    custom1: CSSProperties;
+    custom2: CSSProperties;
+    custom3: CSSProperties;
+    p: CSSProperties;
+    link: CSSProperties;
     buttonPrimary: CSSProperties & { hover?: CSSProperties };
     buttonSecondary: CSSProperties & { hover?: CSSProperties };
     buttonTertiary: CSSProperties & { hover?: CSSProperties };
