@@ -1,9 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { CSSProperties, useEffect, useState } from 'react';
-import { mapToGuidelineDesignTokens } from '../helpers/mapToGuidelineDesignTokens';
+import { provideFallbackTokens } from '../helpers';
 
-export type DesignTokenName =
+export type ApiAppearance = Partial<Record<ApiDesignTokenName, ApiProperties>>;
+export type HubSettingsApiResponse = {
+    hub: {
+        appearance: ApiAppearance;
+    };
+};
+
+export type ApiDesignTokenName =
     | 'heading1'
     | 'heading2'
     | 'heading3'
@@ -21,65 +28,57 @@ export type DesignTokenName =
     | 'imageCaption'
     | 'mainFont';
 
-export enum ApiDesignTokenPropertiesEnum {
-    family = 'family',
-    weight = 'weight',
-    size = 'size',
-    letterspacing = 'letterspacing',
-    line_height = 'line_height',
-    margin_top = 'margin_top',
-    margin_bottom = 'margin_bottom',
-    uppercase = 'uppercase',
-    italic = 'italic',
-    underline = 'underline',
-    color = 'color',
-    background_color = 'background_color',
-    background_color_hover = 'background_color_hover',
-    border_color = 'border_color',
-    border_color_hover = 'border_color_hover',
-    border_radius = 'border_radius',
-    border_width = 'border_width',
-    color_hover = 'color_hover',
-    frame = 'frame',
-    callout = 'callout',
-    info = 'info',
-    note = 'note',
-    tip = 'tip',
-    warning = 'warning',
-}
-
-export type DirectionalCssProperties = {
-    top: string;
-    right: string;
-    bottom: string;
-    left: string;
-};
-
-export type AccentColorProperties = {
+export type CalloutColors = {
     info: string;
     note: string;
     tip: string;
     warning: string;
 };
 
-type ApiProperties = Partial<Record<ApiDesignTokenPropertiesEnum, string | DirectionalCssProperties>>;
-export type Appearance = Partial<Record<DesignTokenName, ApiProperties>>;
-export type DesignTokenApiResponse = {
-    hub: {
-        appearance: Appearance;
+export type ApiProperties = {
+    family?: string;
+    weight?: string;
+    size?: string;
+    letterspacing?: string;
+    line_height?: string;
+    margin_top?: string;
+    margin_bottom?: string;
+    uppercase?: string;
+    italic?: string;
+    underline?: string;
+    color?: string;
+    background_color?: string;
+    background_color_hover?: string;
+    border_color?: string;
+    border_color_hover?: string;
+    border_radius?: string;
+    border_width?: string;
+    color_hover?: string;
+    frame?: {
+        top?: string;
+        right?: string;
+        bottom?: string;
+        left?: string;
     };
+    callout?: Partial<CalloutColors>;
 };
 
-export type TokenValues = CSSProperties & { hover?: CSSProperties } & Partial<AccentColorProperties>;
-export type TransformedDesignTokens = Partial<Record<DesignTokenName, TokenValues>>;
+export type DesignTokens = {
+    heading1: CSSProperties;
+    heading2: CSSProperties;
+    heading3: CSSProperties;
+    heading4: CSSProperties;
+    buttonPrimary: CSSProperties & { hover?: CSSProperties };
+    buttonSecondary: CSSProperties & { hover?: CSSProperties };
+    buttonTertiary: CSSProperties & { hover?: CSSProperties };
+    callout: CalloutColors;
+};
 
 type useGuidelineDesignTokensResponse = {
-    designTokens: TransformedDesignTokens | null;
+    designTokens: DesignTokens | null;
     error: null | unknown;
     isLoading: boolean;
 };
-
-export type DesignTokens = Partial<Record<DesignTokenName, CSSProperties>>;
 
 export const useGuidelineDesignTokens = (): useGuidelineDesignTokensResponse => {
     const [designTokens, setDesignTokens] = useState<DesignTokens | null>(null);
@@ -95,7 +94,7 @@ export const useGuidelineDesignTokens = (): useGuidelineDesignTokensResponse => 
 
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
-            const transformedDesignTokens = mapToGuidelineDesignTokens(data.appearance);
+            const transformedDesignTokens = provideFallbackTokens(data.appearance);
             setDesignTokens({ ...designTokens, ...transformedDesignTokens });
         });
 
@@ -108,7 +107,7 @@ export const useGuidelineDesignTokens = (): useGuidelineDesignTokensResponse => 
                 }
 
                 const json = await response.json();
-                const transformedCategories = mapToGuidelineDesignTokens(json.hub.appearance);
+                const transformedCategories = provideFallbackTokens(json.hub.appearance);
                 setDesignTokens(transformedCategories);
             } catch (error_) {
                 setError(error_);

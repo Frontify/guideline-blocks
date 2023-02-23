@@ -5,9 +5,9 @@ import mitt from 'mitt';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
-import { DesignTokenApiResponse, useGuidelineDesignTokens } from './useGuidelineDesignTokens';
+import { HubSettingsApiResponse, useGuidelineDesignTokens } from './useGuidelineDesignTokens';
 
-const emitter = mitt<{ HubAppearanceUpdated: DesignTokenApiResponse['hub'] }>();
+const emitter = mitt<{ HubAppearanceUpdated: HubSettingsApiResponse['hub'] }>();
 
 window.emitter = emitter;
 window.location = { ...window.location, origin: 'http://api.dev' };
@@ -27,7 +27,7 @@ const restHandlers = [
     rest.get(
         `${window.location.origin}/api/hub/settings/${ResponseStatus.Success}/${ResponseStatus.Success}`,
         (req, res, ctx) => {
-            const response: DesignTokenApiResponse = {
+            const response: HubSettingsApiResponse = {
                 hub: {
                     appearance: {
                         heading1: {
@@ -45,7 +45,7 @@ const restHandlers = [
     rest.get(
         `${window.location.origin}/api/hub/settings/${ResponseStatus.EmptyValues}/${ResponseStatus.EmptyValues}`,
         (req, res, ctx) => {
-            const response: DesignTokenApiResponse = {
+            const response: HubSettingsApiResponse = {
                 hub: {
                     appearance: {
                         heading1: {},
