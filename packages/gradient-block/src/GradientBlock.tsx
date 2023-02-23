@@ -261,7 +261,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
 
                 {showColorModal && currentlyEditingColor === color.hex && (
                     <ColorPicker
-                        editing={isEditing}
+                        editing={true}
                         color={color}
                         colors={colors}
                         currentColor={currentColor}
@@ -270,7 +270,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         setCurrentColor={setCurrentColor}
                         setCurrentColorPosition={setCurrentColorPosition}
                         setShowColorModal={setShowColorModal}
-                        addRef={addRef}
                         gradientColors={gradientColors}
                         setCurrentlyEditingColor={setCurrentlyEditingColor}
                     />
@@ -324,7 +323,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         {showAddButton && <AddButton />}
                         {showColorModal && addRef.current && (
                             <ColorPicker
-                                editing={isEditing}
+                                editing={false}
                                 color={null}
                                 colors={colors}
                                 currentColor={currentColor}
@@ -333,7 +332,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                                 setCurrentColor={setCurrentColor}
                                 setCurrentColorPosition={setCurrentColorPosition}
                                 setShowColorModal={setShowColorModal}
-                                addRef={addRef}
                                 gradientColors={gradientColors}
                                 setCurrentlyEditingColor={setCurrentlyEditingColor}
                             />

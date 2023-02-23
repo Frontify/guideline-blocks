@@ -29,7 +29,6 @@ export const ColorPicker = ({
     setCurrentColor,
     setShowColorModal,
     setCurrentlyEditingColor,
-    addRef,
 }: ColorPickerProps) => {
     const editColor = (color: GradientColor) => {
         const newGradientColors = colors.map((item) => {
@@ -60,7 +59,6 @@ export const ColorPicker = ({
     return (
         <div className="tw-z-[100]">
             <Flyout
-                // placement={FlyoutPlacement.TopRight}
                 fixedHeader={
                     <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
                         <span>Configure Color</span>
@@ -121,9 +119,8 @@ export const ColorPicker = ({
                                 setCurrentColor(color);
                             }}
                             onClear={() => console.log('onClear')}
-                        >
-                            {addRef.current}
-                        </ColorPickerFlyout>
+                        />
+
                         <span className="tw-flex tw-mt-6">
                             <Text color="weak">Stop</Text>
                             <span className="tw-ml-1">

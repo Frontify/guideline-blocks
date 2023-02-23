@@ -74,5 +74,4 @@ export type ColorPickerProps = {
     setCurrentColorPosition: (position?: number) => void;
     setCurrentColor: (color: Color | null) => void;
     setCurrentlyEditingColor: (color?: string | undefined) => void;
-    addRef: RefObject<HTMLDivElement>;
 };
