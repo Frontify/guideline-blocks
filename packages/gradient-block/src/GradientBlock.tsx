@@ -175,27 +175,13 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             {!isEditing && (
                 <div className="tw-pt-[9px]">
                     {gradientColors?.map((color, index) => (
-                        <>
-                            {index === 0 && (
-                                <div key={index} className="tw-absolute" style={{ left: 0 }}>
-                                    <SquareBadge color={color} handleCopy={handleCopy} />
-                                </div>
-                            )}
-                            {index !== 0 && index !== lastIndex && (
-                                <div key={index} className="tw-absolute" style={{ left: `${color.position}%` }}>
-                                    <SquareBadge color={color} handleCopy={handleCopy} />
-                                </div>
-                            )}
-                            {index === lastIndex && (
-                                <div key={index} className="tw-absolute" style={{ right: 0 }}>
-                                    <SquareBadge
-                                        color={color}
-                                        colorSquarePosition={ColorSquarePositionType.Right}
-                                        handleCopy={handleCopy}
-                                    />
-                                </div>
-                            )}
-                        </>
+                        <SquareBadge
+                            key={index}
+                            index={index}
+                            lastIndex={lastIndex}
+                            color={color}
+                            handleCopy={handleCopy}
+                        />
                     ))}
                 </div>
             )}
