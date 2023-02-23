@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const rgba2hex = (rgba: string, forceRemoveAlpha = false) => {
+export const rgbaStringToHexString = (rgba: string, forceRemoveAlpha = false) => {
     return `#${rgba
         .replace(/^rgba?\(|\s+|\)$/g, '') // Get's rgba / rgb string values
         .split(',') // splits them at ","
@@ -12,7 +12,7 @@ export const rgba2hex = (rgba: string, forceRemoveAlpha = false) => {
         .join('')}`; // Puts the array to togehter to a string
 };
 
-export const hex2rgba = (hex: string, alpha?: number) => {
+export const hexStringToRgba = (hex: string, alpha?: number) => {
     if (!isValidHex(hex)) {
         throw new Error('Invalid HEX');
     }
@@ -34,6 +34,7 @@ export const hex2rgba = (hex: string, alpha?: number) => {
 
 export const isValidHex = (hex: string) => /^#([\dA-Fa-f]{6}|[\dA-Fa-f]{3})$/.test(hex);
 export const getChunksFromString = (st: string, chunkSize: number) => st.match(new RegExp(`.{${chunkSize}}`, 'g'));
+// to be renamed because this doesnt just convert hex to 256 but also repeats the string if the length is 1
 export const convertHexUnitTo256 = (hexStr: string) => parseInt(hexStr.repeat(2 / hexStr.length), 16);
 export const getAlphafloat = (a: number, alpha?: number) => {
     if (typeof a !== 'undefined') {

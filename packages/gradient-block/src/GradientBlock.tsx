@@ -50,7 +50,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
 
     const initialColors = !gradientColors || !gradientColors?.length ? emptyStateColors : gradientColors;
     const [colors, setColors] = useState<GradientColor[]>(initialColors);
-    // const [colors, setColors] = useState<GradientColor[]>(emptyStateColors);
+    //const [colors, setColors] = useState<GradientColor[]>(emptyStateColors);
     const gradientOrientation = isOrientationCustom
         ? orientationCustom
         : gradientOrientationValues[orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
@@ -140,8 +140,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientOrientation, colors]);
-
-    console.log('gradientRef', gradientBlockRef);
 
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>

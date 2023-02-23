@@ -15,7 +15,7 @@ import {
 } from '@frontify/fondue';
 
 import { ColorPickerProps, GradientColor } from '../types';
-import { rgba2hex } from '../helpers';
+import { rgbaStringToHexString } from '../helpers';
 
 export const ColorPicker = ({
     editing,
@@ -34,7 +34,7 @@ export const ColorPicker = ({
         const newGradientColors = colors.map((item) => {
             if (item.hex === color.hex) {
                 return {
-                    hex: rgba2hex(
+                    hex: rgbaStringToHexString(
                         `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
                     ),
                     name: currentColor?.name ?? '',
@@ -83,7 +83,7 @@ export const ColorPicker = ({
                                             return;
                                         }
                                         addNewColor({
-                                            hex: rgba2hex(
+                                            hex: rgbaStringToHexString(
                                                 `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
                                             ),
                                             name: currentColor?.name ?? '',

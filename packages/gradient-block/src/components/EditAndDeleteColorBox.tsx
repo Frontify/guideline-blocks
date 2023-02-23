@@ -15,8 +15,7 @@ import {
 } from '@frontify/fondue';
 
 import { ColorPicker } from './';
-
-import { hex2rgba } from '../helpers';
+import { hexStringToRgba } from '../helpers';
 
 export const EditAndDeleteColorBox = ({
     color,
@@ -52,7 +51,7 @@ export const EditAndDeleteColorBox = ({
                 onClick={() => {
                     setCurrentlyEditingColor(color.hex);
                     setShowColorModal(true);
-                    setCurrentColor(hex2rgba(color.hex) as Color);
+                    setCurrentColor(hexStringToRgba(color.hex) as Color);
                 }}
                 rounding={ButtonRounding.Medium}
                 size={ButtonSize.Small}
