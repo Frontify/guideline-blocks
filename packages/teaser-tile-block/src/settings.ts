@@ -193,7 +193,8 @@ export const settings = defineSettings({
         {
             id: 'images-section',
             type: 'sectionHeading',
-            label: 'Images',
+            label: (bundle: Bundle) =>
+                bundle.getBlock(SettingsEnum.Type)?.value === TileType.Text ? 'Text Box' : 'Images',
             blocks: [
                 {
                     id: SettingsEnum.Height,
