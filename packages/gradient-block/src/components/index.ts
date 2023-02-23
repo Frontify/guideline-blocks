@@ -5,3 +5,4 @@ export * from './SquareBadge';
 export * from './ColorPicker';
 export * from './AddColorButton';
 export * from './EditAndDeleteColorBox';
+export * from './ColorTooltip';

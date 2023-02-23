@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Color, Divider, DividerStyle, Tooltip, TooltipAlignment, TooltipPosition, debounce } from '@frontify/fondue';
+import { Color, Divider, DividerStyle, debounce } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import {
     ColorSquarePositionType,
@@ -14,9 +14,8 @@ import {
     gradientOrientationValues,
 } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
-import { AddColorButton, ColorPicker, CssValueDisplay, EditAndDeleteColorBox, SquareBadge } from './components';
+import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadge } from './components';
 
 const ADD_BUTTON_SIZE_PX = 17;
 const BUFFER_PX = 10;
@@ -162,8 +161,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientOrientation, colors]);
 
-    //const EditAndDeleteBox = ({ color }: { color: GradientColor }) => {};
-
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
             <div className="tw-border tw-border-line-strong tw-rounded-[4px] tw-p-[1px]">
@@ -233,143 +230,21 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     </div>
 
                     {gradientColors?.map((color, index) => (
-                        <>
-                            {index === 0 && (
-                                <div key={index} className="tw-absolute" style={{ left: 0 }}>
-                                    <Tooltip
-                                        key={index}
-                                        alignment={TooltipAlignment.Middle}
-                                        content={
-                                            <>
-                                                <div
-                                                    className={joinClassNames([
-                                                        'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
-                                                    ])}
-                                                    style={{
-                                                        backgroundColor: color.hex,
-                                                    }}
-                                                ></div>
-                                                <EditAndDeleteColorBox
-                                                    color={color}
-                                                    colors={colors}
-                                                    currentColor={currentColor}
-                                                    currentColorPosition={currentColorPosition}
-                                                    currentlyEditingColor={currentlyEditingColor}
-                                                    gradientColors={gradientColors}
-                                                    showColorModal={showColorModal}
-                                                    setColors={setColors}
-                                                    setShowColorModal={setShowColorModal}
-                                                    setCurrentColor={setCurrentColor}
-                                                    setCurrentColorPosition={setCurrentColorPosition}
-                                                    setCurrentlyEditingColor={setCurrentlyEditingColor}
-                                                />
-                                            </>
-                                        }
-                                        heading=""
-                                        open
-                                        position={TooltipPosition.Bottom}
-                                        triggerElement={
-                                            <div
-                                                className={joinClassNames([
-                                                    'tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong tw-mt-[-22px] tw-bg-[#CCCCCC]',
-                                                ])}
-                                            ></div>
-                                        }
-                                        withArrow
-                                    />
-                                </div>
-                            )}
-                            {index !== 0 && index !== lastIndex && (
-                                <div key={index} className="tw-absolute" style={{ left: `${color.position}%` }}>
-                                    <Tooltip
-                                        key={index}
-                                        alignment={TooltipAlignment.Middle}
-                                        content={
-                                            <>
-                                                <div
-                                                    className={joinClassNames([
-                                                        'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
-                                                    ])}
-                                                    style={{
-                                                        backgroundColor: color.hex,
-                                                    }}
-                                                ></div>
-                                                <EditAndDeleteColorBox
-                                                    color={color}
-                                                    colors={colors}
-                                                    currentColor={currentColor}
-                                                    currentColorPosition={currentColorPosition}
-                                                    currentlyEditingColor={currentlyEditingColor}
-                                                    gradientColors={gradientColors}
-                                                    showColorModal={showColorModal}
-                                                    setColors={setColors}
-                                                    setShowColorModal={setShowColorModal}
-                                                    setCurrentColor={setCurrentColor}
-                                                    setCurrentColorPosition={setCurrentColorPosition}
-                                                    setCurrentlyEditingColor={setCurrentlyEditingColor}
-                                                />
-                                            </>
-                                        }
-                                        heading=""
-                                        open
-                                        position={TooltipPosition.Bottom}
-                                        triggerElement={
-                                            <div
-                                                className={joinClassNames([
-                                                    'tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong tw-mt-[-22px] tw-bg-[#CCCCCC]',
-                                                ])}
-                                            ></div>
-                                        }
-                                        withArrow
-                                    />
-                                </div>
-                            )}
-                            {index === lastIndex && (
-                                <div key={index} className="tw-absolute" style={{ right: 5 }}>
-                                    <Tooltip
-                                        key={index}
-                                        alignment={TooltipAlignment.Middle}
-                                        content={
-                                            <>
-                                                <div
-                                                    className={joinClassNames([
-                                                        'tw-absolute tw-top-[4px] tw-left-[4px] tw-right-[4px] tw-bottom-[4px] tw-z-[100]',
-                                                    ])}
-                                                    style={{
-                                                        backgroundColor: color.hex,
-                                                    }}
-                                                ></div>
-                                                <EditAndDeleteColorBox
-                                                    color={color}
-                                                    colors={colors}
-                                                    currentColor={currentColor}
-                                                    currentColorPosition={currentColorPosition}
-                                                    currentlyEditingColor={currentlyEditingColor}
-                                                    gradientColors={gradientColors}
-                                                    showColorModal={showColorModal}
-                                                    setColors={setColors}
-                                                    setShowColorModal={setShowColorModal}
-                                                    setCurrentColor={setCurrentColor}
-                                                    setCurrentColorPosition={setCurrentColorPosition}
-                                                    setCurrentlyEditingColor={setCurrentlyEditingColor}
-                                                />
-                                            </>
-                                        }
-                                        heading=""
-                                        position={TooltipPosition.Bottom}
-                                        open
-                                        triggerElement={
-                                            <div
-                                                className={joinClassNames([
-                                                    'tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong tw-mt-[-22px] tw-bg-[#CCCCCC]',
-                                                ])}
-                                            ></div>
-                                        }
-                                        withArrow
-                                    />
-                                </div>
-                            )}
-                        </>
+                        <ColorTooltip
+                            key={index}
+                            color={color}
+                            colors={colors}
+                            currentColor={currentColor}
+                            currentColorPosition={currentColorPosition}
+                            currentlyEditingColor={currentlyEditingColor}
+                            gradientColors={gradientColors}
+                            showColorModal={showColorModal}
+                            setColors={setColors}
+                            setShowColorModal={setShowColorModal}
+                            setCurrentColor={setCurrentColor}
+                            setCurrentColorPosition={setCurrentColorPosition}
+                            setCurrentlyEditingColor={setCurrentlyEditingColor}
+                        />
                     ))}
                 </div>
             )}
