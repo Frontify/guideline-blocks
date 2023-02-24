@@ -32,14 +32,7 @@ export const EditAndDeleteColorBox = ({
     setCurrentlyEditingColor,
 }: EditAndDeleteColorBoxProps) => {
     const deleteColor = (color: GradientColor) => {
-        const newGradientColors = colors.filter((item) => {
-            if (item.hex === color.hex) {
-                return true;
-            }
-            return false;
-        });
-
-        setColors(newGradientColors);
+        setColors(colors.filter((colorItem) => colorItem.hex !== color.hex));
     };
 
     return (
