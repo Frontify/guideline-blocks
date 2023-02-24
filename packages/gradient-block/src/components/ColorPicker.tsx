@@ -79,10 +79,8 @@ export const ColorPicker = ({
                                 onClick: () => {
                                     if (!editing) {
                                         if (!currentColorPosition) {
-                                            return;
+                                            currentColorPosition = 0;
                                         }
-                                        console.log('addNewColor');
-                                        console.log(currentColor);
                                         addNewColor({
                                             hex: rgbaStringToHexString(
                                                 `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
@@ -115,11 +113,9 @@ export const ColorPicker = ({
                             clearable
                             currentColor={currentColor}
                             onClose={() => setShowColorModal(false)}
-                            onClick={() => console.log('onClick')}
                             onSelect={(color) => {
                                 setCurrentColor(color);
                             }}
-                            onClear={() => console.log('onClear')}
                         />
 
                         <span className="tw-flex tw-mt-6">
@@ -135,13 +131,7 @@ export const ColorPicker = ({
                                 />
                             </span>
                         </span>
-                        <TextInput
-                            disabled
-                            value={currentColorPosition?.toString()}
-                            onChange={() => console.log('onChange')}
-                            onEnterPressed={() => console.log('onEnterPressed')}
-                            placeholder="placeholder"
-                        />
+                        <TextInput disabled value={currentColorPosition?.toString()} placeholder="placeholder" />
                     </div>
                 </div>
             </Flyout>

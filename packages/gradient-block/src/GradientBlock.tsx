@@ -113,8 +113,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
         };
 
-        console.log('parseGradientColorsToString', parseGradientColorsToString());
-
         setBlockSettings({
             gradientColors: colors,
             contentValue: parseGradientColorsToString(),
