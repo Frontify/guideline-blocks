@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SquareBadgeProps } from '../types';
-import { ColorSquarePositionType } from '../types';
+import { ColorSquarePositionType, SquareBadgeProps } from '../types';
 import { IconEnum, iconsMap } from '@frontify/fondue';
 
 export const SquareBadge = ({

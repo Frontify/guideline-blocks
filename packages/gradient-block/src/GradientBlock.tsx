@@ -156,7 +156,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                 <div className="tw-pt-2">
                     {gradientColors?.map((color, index) => (
                         <SquareBadge
-                            key={index}
+                            key={color.hex + color.position}
                             index={index}
                             lastIndex={lastIndex}
                             color={color}
@@ -194,9 +194,9 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         )}
                     </div>
 
-                    {gradientColors?.map((color, index) => (
+                    {gradientColors?.map((color) => (
                         <ColorTooltip
-                            key={index}
+                            key={color.hex + color.position}
                             color={color}
                             colors={colors}
                             currentColor={currentColor}
