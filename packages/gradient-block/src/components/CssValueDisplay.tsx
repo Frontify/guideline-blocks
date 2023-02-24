@@ -15,24 +15,14 @@ export const CssValueDisplay = ({ cssValue, isCopied, handleCopy }: CssValueDisp
     return (
         <div
             data-test-id="gradient-css-snippet-block"
-            className="tw-mt-8 tw-overflow-hidden tw-border tw-border-line tw-rounded tw-text-sm"
-            style={{
-                fontFamily: 'Courier, monospace',
-            }}
+            className="tw-mt-8 tw-overflow-hidden tw-border tw-border-line tw-rounded tw-text-sm tw-font-mono"
         >
             <div className="tw-relative tw-group/copy CodeMirror-readonly">
                 <div
                     data-test-id="gradient-css-snippet-header"
                     className="tw-py-2.5 tw-pl-5 tw-pr-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center"
                 >
-                    <span
-                        className="tw-text-text-weak"
-                        style={{
-                            fontFamily: 'Space Grotesk Frontify, sans-serif',
-                        }}
-                    >
-                        CSS
-                    </span>
+                    <span className="tw-text-text-weak tw-font-sans">CSS</span>
                     <button
                         data-test-id="gradient-css-copy-button"
                         className="tw-items-center tw-justify-end tw-gap-1 tw-flex"

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPlus, IconSize } from '@frontify/fondue';
+import { IconPlus12 } from '@frontify/fondue';
 import { forwardRef } from 'react';
 import { AddColorButtonProps } from '../types';
 
@@ -24,7 +24,7 @@ export const AddColorButton = forwardRef<HTMLDivElement, AddColorButtonProps>(
                     className="tw-text-white tw-h-4 tw-w-4 tw-flex tw-justify-center tw-items-center tw-pt-0.5"
                     onClick={() => handleAdd(addButtonPosition.left)}
                 >
-                    <IconPlus size={IconSize.Size12} />
+                    <IconPlus12 />
                 </span>
             </div>
         );
