@@ -19,7 +19,6 @@ import { hexStringToRgba } from '../helpers';
 
 export const EditAndDeleteColorBox = ({
     color,
-    colors,
     currentColor,
     currentColorPosition,
     currentlyEditingColor,
@@ -32,7 +31,7 @@ export const EditAndDeleteColorBox = ({
     setCurrentlyEditingColor,
 }: EditAndDeleteColorBoxProps) => {
     const deleteColor = (color: GradientColor) => {
-        setColors(colors.filter((colorItem) => colorItem.hex !== color.hex));
+        setColors(gradientColors.filter((colorItem) => colorItem.position !== color.position));
     };
 
     return (
@@ -75,7 +74,6 @@ export const EditAndDeleteColorBox = ({
                 <ColorPicker
                     editing={true}
                     color={color}
-                    colors={colors}
                     currentColor={currentColor}
                     currentColorPosition={currentColorPosition}
                     setColors={setColors}

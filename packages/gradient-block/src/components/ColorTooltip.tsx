@@ -7,7 +7,6 @@ import { ColorTooltipProps } from '../types';
 
 export const ColorTooltip = ({
     color,
-    colors,
     currentColor,
     currentColorPosition,
     currentlyEditingColor,
@@ -33,7 +32,6 @@ export const ColorTooltip = ({
                         ></div>
                         <EditAndDeleteColorBox
                             color={color}
-                            colors={colors}
                             currentColor={currentColor}
                             currentColorPosition={currentColorPosition}
                             currentlyEditingColor={currentlyEditingColor}

@@ -99,7 +99,8 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                 gradientColors: emptyStateColors,
             });
         }
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [gradientColors]);
 
     useEffect(() => {
         const parseGradientColorsToString = () => {
@@ -111,6 +112,8 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
 
             return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
         };
+
+        console.log('parseGradientColorsToString', parseGradientColorsToString());
 
         setBlockSettings({
             gradientColors: colors,
@@ -157,11 +160,10 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                                 />
                             )}
                         </div>
-                        {showColorModal && (
+                        {showColorModal && gradientColors !== undefined && (
                             <ColorPicker
                                 editing={false}
                                 color={null}
-                                colors={colors}
                                 currentColor={currentColor}
                                 currentColorPosition={currentColorPosition}
                                 setColors={setColors}
@@ -178,7 +180,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         <ColorTooltip
                             key={color.hex + color.position}
                             color={color}
-                            colors={colors}
                             currentColor={currentColor}
                             currentColorPosition={currentColorPosition}
                             currentlyEditingColor={currentlyEditingColor}

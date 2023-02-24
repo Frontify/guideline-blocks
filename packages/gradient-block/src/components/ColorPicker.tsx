@@ -20,7 +20,6 @@ import { rgbaStringToHexString } from '../helpers';
 export const ColorPicker = ({
     editing,
     color = null,
-    colors,
     currentColor,
     currentColorPosition,
     gradientColors,
@@ -31,7 +30,7 @@ export const ColorPicker = ({
     setCurrentlyEditingColor,
 }: ColorPickerProps) => {
     const editColor = (color: GradientColor) => {
-        const newGradientColors = colors.map((item) => {
+        const newGradientColors = gradientColors.map((item) => {
             if (item.hex === color.hex) {
                 return {
                     hex: rgbaStringToHexString(
@@ -82,6 +81,8 @@ export const ColorPicker = ({
                                         if (!currentColorPosition) {
                                             return;
                                         }
+                                        console.log('addNewColor');
+                                        console.log(currentColor);
                                         addNewColor({
                                             hex: rgbaStringToHexString(
                                                 `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`

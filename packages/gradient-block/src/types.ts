@@ -66,10 +66,9 @@ export type SquareBadgeProps = {
 export type ColorPickerProps = {
     editing: boolean;
     color: GradientColor | null;
-    colors: GradientColor[];
     currentColor: Color | null;
     currentColorPosition: number | undefined;
-    gradientColors: GradientColor[] | undefined;
+    gradientColors: GradientColor[];
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
     setCurrentColorPosition: (position?: number) => void;
@@ -85,11 +84,10 @@ export type AddColorButtonProps = {
 
 export type EditAndDeleteColorBoxProps = {
     color: GradientColor;
-    colors: GradientColor[];
     currentColor: Color | null;
     currentColorPosition: number | undefined;
     currentlyEditingColor: string | undefined;
-    gradientColors: GradientColor[] | undefined;
+    gradientColors: GradientColor[];
     showColorModal: boolean;
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
@@ -100,11 +98,10 @@ export type EditAndDeleteColorBoxProps = {
 
 export type ColorTooltipProps = {
     color: GradientColor;
-    colors: GradientColor[];
     currentColor: Color | null;
     currentColorPosition: number | undefined;
     currentlyEditingColor: string | undefined;
-    gradientColors: GradientColor[] | undefined;
+    gradientColors: GradientColor[];
     showColorModal: boolean;
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
