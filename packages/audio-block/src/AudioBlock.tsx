@@ -71,7 +71,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const audioTagClassNames = joinClassNames([
         'tw-w-full tw-mt-5',
-        isEditing && 'group-hover:tw-border group-hover:tw-border-box-selected-inverse group-hover:tw-rounded',
+        isEditing &&
+            'group-hover:tw-outline tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse tw-rounded',
     ]);
 
     const saveTitle = (value: string) => {
@@ -178,12 +179,12 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 )
             )}
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
-                <div className="tw-self-stretch">
+                <div className="tw-flex-1">
                     <RichTextEditor
                         designTokens={designTokens ?? undefined}
                         border={false}
                         onBlur={saveTitle}
-                        placeholder={isEditing ? 'add a title here' : undefined}
+                        placeholder={isEditing ? 'Asset name' : undefined}
                         readonly={!isEditing}
                         value={title ?? DEFAULT_CONTENT_TITLE}
                         plugins={customTitlePlugins}
@@ -193,7 +194,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         border={false}
                         position={Position.FLOATING}
                         onBlur={saveDescription}
-                        placeholder={isEditing ? 'add a description here' : undefined}
+                        placeholder={isEditing ? 'Add a description here' : undefined}
                         readonly={!isEditing}
                         value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                     />
