@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useRef, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -8,11 +8,7 @@ import { Color, Divider, DividerHeight, DividerStyle, debounce } from '@frontify
 import 'tailwindcss/tailwind.css';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
-
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadge } from './components';
-
-const ADD_BUTTON_SIZE_PX = 17;
-const BUFFER_PX = 10;
 
 const emptyStateColors = [
     {
@@ -31,7 +27,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>(null);
-    const dividerRef = useRef<HTMLDivElement>(null);
     const [isCopied, setIsCopied] = useState(false);
     const [showAddButton, setShowAddButton] = useState(false);
     const [currentlyEditingColor, setCurrentlyEditingColor] = useState<string>();
@@ -71,49 +66,32 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         }, 2000)();
     };
 
-    useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            if (!dividerRef.current || showColorModal) {
-                return;
-            }
+    const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+        if (showColorModal) {
+            return;
+        }
 
-            const rect = dividerRef.current.getBoundingClientRect();
+        const rect = event.currentTarget.getBoundingClientRect();
+        const { clientX: mouseX } = event.nativeEvent;
 
-            debounce(() => {
-                const { clientX: mouseX, clientY: mouseY } = event;
+        const sliderLeft = rect.x;
 
-                const sliderLeft = rect.x;
-                const sliderRight = rect.x + rect.width;
+        const relativeMouseX = mouseX - sliderLeft;
 
-                const relativeMouseX = mouseX - sliderLeft;
+        const percentages = colors.map((color) => color.position);
 
-                const sliderTop = rect.height / 2 + rect.top - BUFFER_PX;
-                const sliderBottom = rect.height / 2 + rect.top + BUFFER_PX;
+        const points = percentages.map((p) => (p * rect.width) / 100);
+        const isTouchingABreakpoint = points.find((p) => !!(p - 4 < relativeMouseX && p + 12 > relativeMouseX));
 
-                const isWithinWidth = mouseX >= sliderLeft && mouseX <= sliderRight;
-                const isWithinHeight = mouseY >= sliderTop && mouseY <= sliderBottom;
+        if (!isTouchingABreakpoint) {
+            setAddButtonPosition({ left: relativeMouseX - 16 / 2, top: 9 });
+            setShowAddButton(true);
+        }
+    };
 
-                const percentages = colors.map((color) => color.position);
-
-                const points = percentages.map((p) => (p * rect.width) / 100);
-                const isTouchingABreakpoint = points.find((p) => !!(p - 4 < relativeMouseX && p + 12 > relativeMouseX));
-
-                if (isWithinWidth && isWithinHeight && !isTouchingABreakpoint) {
-                    setAddButtonPosition({ left: relativeMouseX - ADD_BUTTON_SIZE_PX / 2, top: 9 });
-                    setShowAddButton(true);
-                } else {
-                    setShowAddButton(false);
-                }
-            }, 50)();
-        };
-
-        document.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [showColorModal]);
+    const handleMouseLeave = () => {
+        setShowAddButton(false);
+    };
 
     useEffect(() => {
         if (!gradientColors || !gradientColors?.length) {
@@ -167,16 +145,18 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             )}
             {isEditing && (
                 <div>
-                    <div className="tw-relative" ref={dividerRef}>
-                        <Divider height={DividerHeight.Small} style={DividerStyle.Solid} />
-                        {showAddButton && (
-                            <AddColorButton
-                                ref={gradientBlockRef}
-                                addButtonPosition={addButtonPosition}
-                                setShowColorModal={setShowColorModal}
-                                setCurrentColorPosition={setCurrentColorPosition}
-                            />
-                        )}
+                    <div className="tw-relative">
+                        <div onMouseOver={handleMouseMove} onMouseLeave={handleMouseLeave}>
+                            <Divider height={DividerHeight.Small} style={DividerStyle.Solid} />
+                            {showAddButton && (
+                                <AddColorButton
+                                    ref={gradientBlockRef}
+                                    addButtonPosition={addButtonPosition}
+                                    setShowColorModal={setShowColorModal}
+                                    setCurrentColorPosition={setCurrentColorPosition}
+                                />
+                            )}
+                        </div>
                         {showColorModal && (
                             <ColorPicker
                                 editing={false}
