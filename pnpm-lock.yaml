@@ -7,7 +7,7 @@ importers:
       '@4tw/cypress-drag-drop': 2.2.1
       '@babel/core': 7.20.2
       '@cypress/vite-dev-server': 4.0.1
-      '@frontify/fondue': 12.0.0-beta.108
+      '@frontify/fondue': 12.0.0-beta.110
       '@testing-library/react-hooks': 8.0.1
       '@types/node': 18.7.21
       '@types/react': 17.0.50
@@ -27,7 +27,7 @@ importers:
       vite: 3.2.3
       vitest: 0.25.0
     dependencies:
-      '@frontify/fondue': 12.0.0-beta.108_rv2t7de65xq26o5frb4lun64yi
+      '@frontify/fondue': 12.0.0-beta.110_rv2t7de65xq26o5frb4lun64yi
       glob: 8.0.3
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -787,7 +787,7 @@ importers:
       '@babel/core': 7.20.2
       '@frontify/app-bridge': 3.0.0-beta.38
       '@frontify/eslint-config-react': 0.15.5
-      '@frontify/fondue': 12.0.0-beta.108
+      '@frontify/fondue': 12.0.0-beta.110
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.10
@@ -806,7 +806,7 @@ importers:
       typescript: 4.8.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.108_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue': 12.0.0-beta.110_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/guideline-blocks-shared': link:../shared
@@ -835,7 +835,7 @@ importers:
       '@dnd-kit/sortable': 7.0.1
       '@frontify/app-bridge': 3.0.0-beta.38
       '@frontify/eslint-config-typescript': 0.15.5
-      '@frontify/fondue': 12.0.0-beta.108
+      '@frontify/fondue': 12.0.0-beta.110
       '@frontify/guideline-blocks-settings': 0.25.10
       '@testing-library/react-hooks': 8.0.1
       '@types/node': 18.7.21
@@ -862,7 +862,7 @@ importers:
       '@dnd-kit/modifiers': 6.0.1_hynla2khvukk42jomlue7cq3k4
       '@dnd-kit/sortable': 7.0.1_hynla2khvukk42jomlue7cq3k4
       '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.108_rv2t7de65xq26o5frb4lun64yi
+      '@frontify/fondue': 12.0.0-beta.110_rv2t7de65xq26o5frb4lun64yi
       '@frontify/guideline-blocks-settings': 0.25.10_rv2t7de65xq26o5frb4lun64yi
       tinycolor2: 1.4.2
     devDependencies:
@@ -985,7 +985,7 @@ importers:
       '@babel/core': 7.20.2
       '@frontify/app-bridge': 3.0.0-beta.38
       '@frontify/eslint-config-react': 0.15.5
-      '@frontify/fondue': 12.0.0-beta.108
+      '@frontify/fondue': 12.0.0-beta.110
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/frontify-cli': 5.3.1
       '@frontify/guideline-blocks-settings': 0.25.10
@@ -1006,7 +1006,7 @@ importers:
       typescript: 4.8.4
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 12.0.0-beta.108_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/fondue': 12.0.0-beta.110_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/fondue-tokens': 3.1.0
       '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
       '@frontify/guideline-blocks-shared': link:../shared
@@ -2209,7 +2209,7 @@ packages:
       styled-components: 5.3.6_v5ja746gkdtknuc6tj46sve3be
       tinycolor2: 1.4.2
       unified: 10.1.2
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
       xstate: 4.28.1
     transitivePeerDependencies:
       - '@babel/core'
@@ -2298,7 +2298,7 @@ packages:
       styled-components: 5.3.6_v5ja746gkdtknuc6tj46sve3be
       tinycolor2: 1.4.2
       unified: 10.1.2
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
       xstate: 4.28.1
     transitivePeerDependencies:
       - '@babel/core'
@@ -2498,8 +2498,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue/12.0.0-beta.108_angvksxlvvfhyjj3xhcshgfg2m:
-    resolution: {integrity: sha512-zNr/QPOKmJpa2j4YP51lx05Yd4V/2LLKo65+QUw38Iwim1QZ65d7O9NCgjE6ojmWS02emVGA2iLqOysVXH3vSA==}
+  /@frontify/fondue/12.0.0-beta.110_angvksxlvvfhyjj3xhcshgfg2m:
+    resolution: {integrity: sha512-dStdZNXDIYqcErqI2iEaFp3LuLx5spcJQJfPlBTYJSNXAg61DNiYA2YIMpYJoXrSqq+RPt8gwnd2mqaMFy+zaQ==}
     engines: {node: '>=16'}
     requiresBuild: true
     peerDependencies:
@@ -2594,8 +2594,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue/12.0.0-beta.108_rv2t7de65xq26o5frb4lun64yi:
-    resolution: {integrity: sha512-zNr/QPOKmJpa2j4YP51lx05Yd4V/2LLKo65+QUw38Iwim1QZ65d7O9NCgjE6ojmWS02emVGA2iLqOysVXH3vSA==}
+  /@frontify/fondue/12.0.0-beta.110_rv2t7de65xq26o5frb4lun64yi:
+    resolution: {integrity: sha512-dStdZNXDIYqcErqI2iEaFp3LuLx5spcJQJfPlBTYJSNXAg61DNiYA2YIMpYJoXrSqq+RPt8gwnd2mqaMFy+zaQ==}
     engines: {node: '>=16'}
     requiresBuild: true
     peerDependencies:
@@ -2845,7 +2845,7 @@ packages:
       styled-components: 5.3.6_v5ja746gkdtknuc6tj46sve3be
       tinycolor2: 1.4.2
       unified: 10.1.2
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
       xstate: 4.28.1
     transitivePeerDependencies:
       - '@babel/core'
@@ -9137,7 +9137,7 @@ packages:
       slate-react: '>=0.79.0'
     dependencies:
       '@udecode/plate-core': 18.9.0_nwrp2ji3l666i2crfmgr6c52by
-      '@viselect/vanilla': 3.2.2
+      '@viselect/vanilla': 3.2.5
       copy-to-clipboard: 3.3.3
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -13618,8 +13618,8 @@ packages:
       - '@codemirror/language'
     dev: false
 
-  /@viselect/vanilla/3.2.2:
-    resolution: {integrity: sha512-3HRnbDOqkaLTSmfkSMnBImd1TyNVq5esiG8HhfKYpGE3Z8bjH1HeNbMrK87MjK9YX0h1SWJGD5dGn2C4o7tttg==}
+  /@viselect/vanilla/3.2.5:
+    resolution: {integrity: sha512-8Ut9aAbf+BKFr4LZb+Hb+rE1XJzr3yw+CUU7PVK+rD65qveMpD11IB+E5KCp8ReuNE6spwn5qNZbBWVyZWEBlA==}
     dev: false
 
   /@vitejs/plugin-react/2.2.0_vite@3.2.3:
@@ -19876,14 +19876,6 @@ packages:
     dependencies:
       '@types/unist': 2.0.6
       unist-util-is: 5.1.1
-    dev: false
-
-  /unist-util-visit/4.1.1:
-    resolution: {integrity: sha512-n9KN3WV9k4h1DxYR1LoajgN93wpEi/7ZplVe02IoB4gH5ctI1AaF2670BLHQYbwj+pY83gFtyeySFiyMHJklrg==}
-    dependencies:
-      '@types/unist': 2.0.6
-      unist-util-is: 5.1.1
-      unist-util-visit-parents: 5.1.1
     dev: false
 
   /unist-util-visit/4.1.2:
