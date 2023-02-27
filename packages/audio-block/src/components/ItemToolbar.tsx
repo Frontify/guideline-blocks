@@ -19,6 +19,69 @@ import { useState } from 'react';
 export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }: ItemToolbarProps) => {
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
 
+    const menuBlocks = [
+        {
+            id: 'menu',
+            menuItems: [
+                ...(!!onUploadClick
+                    ? [
+                          {
+                              id: 'upload',
+                              size: MenuItemContentSize.XSmall,
+                              title: 'Replace with upload',
+                              onClick: () => {
+                                  setIsFlyoutOpen(false);
+                                  onUploadClick();
+                              },
+                              initialValue: true,
+                              decorator: (
+                                  <div className="tw-mr-2">
+                                      <IconArrowCircleUp20 />
+                                  </div>
+                              ),
+                          },
+                      ]
+                    : []),
+                ...(!!onAssetChooseClick
+                    ? [
+                          {
+                              id: 'asset',
+                              size: MenuItemContentSize.XSmall,
+                              title: 'Replace with asset',
+                              onClick: () => {
+                                  setIsFlyoutOpen(false);
+                                  onAssetChooseClick();
+                              },
+                              initialValue: true,
+                              decorator: (
+                                  <div className="tw-mr-2">
+                                      <IconImageStack20 />
+                                  </div>
+                              ),
+                          },
+                      ]
+                    : []),
+            ],
+        },
+        {
+            id: 'deletemenu',
+            menuItems: [
+                {
+                    id: 'delete',
+                    size: MenuItemContentSize.XSmall,
+                    title: 'Delete',
+                    onClick: onRemoveAsset,
+                    initialValue: true,
+                    decorator: (
+                        <div className="tw-mr-2">
+                            <IconTrashBin20 />
+                        </div>
+                    ),
+                },
+            ],
+        },
+    ];
+
     return (
         <div
             data-test-id="item-toolbar"
@@ -63,70 +126,7 @@ export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }
                             />
                         }
                     >
-                        <ActionMenu
-                            menuBlocks={[
-                                {
-                                    id: 'menu',
-                                    menuItems: [
-                                        ...(!!onUploadClick
-                                            ? [
-                                                  {
-                                                      id: 'upload',
-                                                      size: MenuItemContentSize.XSmall,
-                                                      title: 'Replace with upload',
-                                                      onClick: () => {
-                                                          setIsFlyoutOpen(false);
-                                                          onUploadClick();
-                                                      },
-                                                      initialValue: true,
-                                                      decorator: (
-                                                          <div className="tw-mr-2">
-                                                              <IconArrowCircleUp20 />
-                                                          </div>
-                                                      ),
-                                                  },
-                                              ]
-                                            : []),
-                                        ...(!!onAssetChooseClick
-                                            ? [
-                                                  {
-                                                      id: 'asset',
-                                                      size: MenuItemContentSize.XSmall,
-                                                      title: 'Replace with asset',
-                                                      onClick: () => {
-                                                          setIsFlyoutOpen(false);
-                                                          onAssetChooseClick();
-                                                      },
-                                                      initialValue: true,
-                                                      decorator: (
-                                                          <div className="tw-mr-2">
-                                                              <IconImageStack20 />
-                                                          </div>
-                                                      ),
-                                                  },
-                                              ]
-                                            : []),
-                                    ],
-                                },
-                                {
-                                    id: 'deletemenu',
-                                    menuItems: [
-                                        {
-                                            id: 'delete',
-                                            size: MenuItemContentSize.XSmall,
-                                            title: 'Delete',
-                                            onClick: onRemoveAsset,
-                                            initialValue: true,
-                                            decorator: (
-                                                <div className="tw-mr-2">
-                                                    <IconTrashBin20 />
-                                                </div>
-                                            ),
-                                        },
-                                    ],
-                                },
-                            ]}
-                        />
+                        <ActionMenu menuBlocks={menuBlocks} />
                     </Flyout>
                 </div>
             </div>
