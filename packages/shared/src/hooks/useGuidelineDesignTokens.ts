@@ -3,7 +3,7 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import { defaultGuidelineDesignTokens } from '../helpers/defaultTokens';
 import { mapToGuidelineDesignTokens } from '../helpers/mapToGuidelineDesignTokens';
-import { mergeDeep } from '@frontify/app-bridge';
+import { mergeDeep } from '../helpers/mergeDeep';
 
 export enum DesignTokenPropertiesEnum {
     family = 'family',
