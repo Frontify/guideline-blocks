@@ -9,24 +9,17 @@ import {
     ButtonStyle,
     ButtonType,
     Color,
-    IconPen,
-    IconSize,
-    IconTrashBin,
+    IconPen16,
+    IconTrashBin16,
 } from '@frontify/fondue';
 
-import { ColorPicker } from './';
 import { hexStringToRgba } from '../helpers';
 
 export const EditAndDeleteColorBox = ({
     color,
-    currentColor,
-    currentColorPosition,
-    currentlyEditingColor,
     gradientColors,
-    showColorModal,
     setColors,
     setShowColorModal,
-    setCurrentColorPosition,
     setCurrentColor,
     setCurrentlyEditingColor,
 }: EditAndDeleteColorBoxProps) => {
@@ -35,11 +28,12 @@ export const EditAndDeleteColorBox = ({
     };
 
     return (
-        <div className="tw-absolute tw-flex tw-bg-base tw-border tw-border-box-selected-strong tw-rounded tw-w-16 tw-h-7 tw-top-10 tw-left-[-15px]">
+        <div className="tw-absolute tw-flex tw-bg-base tw-border tw-border-box-selected-strong tw-rounded tw-w-13 tw-h-7 tw-top-9 -tw-left-2">
             <Button
                 emphasis={ButtonEmphasis.Strong}
                 hugWidth
                 inverted
+                solid
                 onClick={() => {
                     setCurrentlyEditingColor(color.hex);
                     setShowColorModal(true);
@@ -47,43 +41,25 @@ export const EditAndDeleteColorBox = ({
                 }}
                 rounding={ButtonRounding.Medium}
                 size={ButtonSize.Small}
-                solid
                 style={ButtonStyle.Default}
                 type={ButtonType.Button}
-            >
-                <IconPen size={IconSize.Size12} />
-            </Button>
+                icon={<IconPen16 />}
+            />
 
             <Button
                 emphasis={ButtonEmphasis.Strong}
                 hugWidth
                 inverted
+                solid
                 onClick={() => {
                     deleteColor(color);
                 }}
                 rounding={ButtonRounding.Medium}
                 size={ButtonSize.Small}
-                solid
                 style={ButtonStyle.Default}
                 type={ButtonType.Button}
-            >
-                <IconTrashBin size={IconSize.Size12} />
-            </Button>
-
-            {showColorModal && currentlyEditingColor === color.hex && (
-                <ColorPicker
-                    editing={true}
-                    color={color}
-                    currentColor={currentColor}
-                    currentColorPosition={currentColorPosition}
-                    setColors={setColors}
-                    setCurrentColor={setCurrentColor}
-                    setCurrentColorPosition={setCurrentColorPosition}
-                    setShowColorModal={setShowColorModal}
-                    gradientColors={gradientColors}
-                    setCurrentlyEditingColor={setCurrentlyEditingColor}
-                />
-            )}
+                icon={<IconTrashBin16 />}
+            />
         </div>
     );
 };

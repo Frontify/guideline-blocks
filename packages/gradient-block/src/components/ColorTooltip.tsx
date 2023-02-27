@@ -2,19 +2,14 @@
 
 import { Tooltip, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
 
-import { EditAndDeleteColorBox } from './EditAndDeleteColorBox';
+import { EditAndDeleteColorBox } from './';
 import { ColorTooltipProps } from '../types';
 
 export const ColorTooltip = ({
     color,
-    currentColor,
-    currentColorPosition,
-    currentlyEditingColor,
     gradientColors,
-    showColorModal,
     setColors,
     setShowColorModal,
-    setCurrentColorPosition,
     setCurrentColor,
     setCurrentlyEditingColor,
 }: ColorTooltipProps) => {
@@ -24,28 +19,22 @@ export const ColorTooltip = ({
                 alignment={TooltipAlignment.Middle}
                 content={
                     <>
-                        <div
-                            className="tw-absolute tw-top-1 tw-left-1 tw-right-1 tw-bottom-1 tw-z-[100]"
+                        <span
+                            className="tw-absolute tw-top-1 tw-left-1 tw-right-1 tw-bottom-1"
                             style={{
                                 backgroundColor: color.hex,
                             }}
-                        ></div>
+                        ></span>
                         <EditAndDeleteColorBox
                             color={color}
-                            currentColor={currentColor}
-                            currentColorPosition={currentColorPosition}
-                            currentlyEditingColor={currentlyEditingColor}
                             gradientColors={gradientColors}
-                            showColorModal={showColorModal}
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}
                             setCurrentColor={setCurrentColor}
-                            setCurrentColorPosition={setCurrentColorPosition}
                             setCurrentlyEditingColor={setCurrentlyEditingColor}
                         />
                     </>
                 }
-                heading=""
                 open
                 position={TooltipPosition.Bottom}
                 triggerElement={

@@ -168,15 +168,10 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         <ColorTooltip
                             key={color.hex + color.position}
                             color={color}
-                            currentColor={currentColor}
-                            currentColorPosition={currentColorPosition}
-                            currentlyEditingColor={currentlyEditingColor}
                             gradientColors={gradientColors}
-                            showColorModal={showColorModal}
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}
                             setCurrentColor={setCurrentColor}
-                            setCurrentColorPosition={setCurrentColorPosition}
                             setCurrentlyEditingColor={setCurrentlyEditingColor}
                         />
                     ))}

@@ -37,7 +37,6 @@ export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
                     </button>
                 </div>
                 <CodeMirror
-                    theme="light"
                     value={cssValue}
                     extensions={[langs['css']()]}
                     readOnly={true}
