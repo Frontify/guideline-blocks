@@ -320,7 +320,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
 
     const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
-    console.log(mode);
 
     return (
         <>
