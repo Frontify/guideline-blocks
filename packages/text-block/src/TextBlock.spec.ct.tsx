@@ -13,14 +13,6 @@ const defaultContent = [
         type: 'p',
         children: [{ text: 'Rich Text Editor Value' }],
     },
-    {
-        type: 'p',
-        children: [
-            {
-                text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione omnis repellendus at recusandae voluptatibus libero, voluptate sed consequatur, voluptates minus labore. Iusto cum consectetur mollitia sapiente alias ipsam iure reiciendis?',
-            },
-        ],
-    },
 ];
 
 describe('Text Block', () => {
