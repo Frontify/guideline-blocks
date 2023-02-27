@@ -109,7 +109,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             )}
 
             <RichTextEditor
-                designTokens={designTokens ?? undefined}
+                designTokens={designTokens}
                 value={note}
                 border={false}
                 onTextChange={saveNote}

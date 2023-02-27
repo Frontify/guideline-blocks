@@ -21,7 +21,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
     const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.content ?? '' }));
-    const html = serializeRawToHtml(rawValue, designTokens ?? undefined, blockSettings.columnNumber, gap);
+    const html = serializeRawToHtml(rawValue, designTokens, blockSettings.columnNumber, gap);
 
     return (
         <>
