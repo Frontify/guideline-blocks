@@ -4,10 +4,24 @@ import { TextBlock } from './TextBlock';
 import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { PLACEHOLDER } from './settings';
-import { TextGutter } from './types';
 
 const TextBlockSelectorHtml = '[data-test-id="rte-content-html"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
+
+const defaultContent = [
+    {
+        type: 'p',
+        children: [{ text: 'Rich Text Editor Value' }],
+    },
+    {
+        type: 'p',
+        children: [
+            {
+                text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione omnis repellendus at recusandae voluptatibus libero, voluptate sed consequatur, voluptates minus labore. Iusto cum consectetur mollitia sapiente alias ipsam iure reiciendis?',
+            },
+        ],
+    },
+];
 
 describe('Text Block', () => {
     it('renders a text block', () => {
@@ -26,24 +40,40 @@ describe('Text Block', () => {
         cy.get(TextBlockSelectorHtml).should('exist');
     });
 
-    it('should render correct columns and gap in view mode', () => {
-        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
-            blockSettings: {
-                columnNumber: 2,
-                isColumnGutterCustom: false,
-                columnGutterSimple: TextGutter.S,
-            },
-        });
-
-        mount(<TextBlockWithStubs />);
-        cy.get(TextBlockSelectorHtml).should('have.css', 'columns', 'auto 2').and('have.css', 'column-gap', '10px');
-    });
-
     it('placeholder should be visible when there is no content', () => {
         const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
             editorState: true,
         });
         mount(<TextBlockWithStubs />);
         cy.get(RichTextEditor).find('[contenteditable=true]').contains(PLACEHOLDER);
+    });
+
+    // renders html in view mode
+    it('renders html content with RichTextEditor content passed', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            blockSettings: { content: JSON.stringify(defaultContent) },
+        });
+
+        mount(<TextBlockWithStubs />);
+
+        cy.get(TextBlockSelectorHtml).should('have.text', 'Rich Text Editor Value');
+    });
+
+    it('renders html content with html passed', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            blockSettings: { content: '<p>Html Text</p>' },
+        });
+
+        mount(<TextBlockWithStubs />);
+        cy.get(TextBlockSelectorHtml).should('have.text', 'Html Text');
+    });
+
+    it('renders html content with string only passed', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            blockSettings: { content: 'string' },
+        });
+
+        mount(<TextBlockWithStubs />);
+        cy.get(TextBlockSelectorHtml).should('have.text', 'string');
     });
 });

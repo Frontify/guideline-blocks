@@ -22,8 +22,9 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
+import { CSSProperties } from 'react';
 
-export const getPlugins = (columns?: number, gap?: number) => {
+export const getPlugins = (columns?: number, gap?: CSSProperties['gap']) => {
     if (!columns || columns === 1) {
         return undefined;
     }

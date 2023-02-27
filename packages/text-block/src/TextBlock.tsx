@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
+import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { RichTextEditorToHtml, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
@@ -20,16 +20,13 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
         : spacingValues[blockSettings.columnGutterSimple];
 
     const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
+    const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.content ?? '' }));
+    const html = serializeRawToHtml(rawValue, designTokens ?? undefined, blockSettings.columnNumber, gap);
 
     return (
         <>
             {!isEditing ? (
-                <RichTextEditorToHtml
-                    columnGap={gap}
-                    columns={blockSettings.columnNumber}
-                    content={blockSettings.content ?? ''}
-                    designTokens={designTokens}
-                />
+                <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
             ) : (
                 <RichTextEditor
                     data-test-id="rich-text-editor"
@@ -37,13 +34,10 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
                     designTokens={designTokens ?? undefined}
                     value={blockSettings.content}
                     border={false}
-                    placeholder={isEditing ? PLACEHOLDER : undefined}
+                    placeholder={PLACEHOLDER}
                     onTextChange={onTextChange}
                     onBlur={onTextChange}
-                    plugins={getPlugins(
-                        Number(blockSettings.columnNumber),
-                        Number((gap ?? '').replace('px', '')) || undefined
-                    )}
+                    plugins={getPlugins(blockSettings.columnNumber, gap)}
                 />
             )}
         </>
