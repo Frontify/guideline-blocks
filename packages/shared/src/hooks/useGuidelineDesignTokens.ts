@@ -3,6 +3,7 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import { defaultGuidelineDesignTokens } from '../helpers/defaultTokens';
 import { mapToGuidelineDesignTokens } from '../helpers/mapToGuidelineDesignTokens';
+import { mergeDeep } from '@frontify/app-bridge';
 
 export enum DesignTokenPropertiesEnum {
     family = 'family',
@@ -90,7 +91,7 @@ export const useGuidelineDesignTokens = () => {
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
             const transformedDesignTokens = mapToGuidelineDesignTokens(data.appearance);
-            setDesignTokens({ ...designTokens, ...transformedDesignTokens });
+            setDesignTokens(mergeDeep(defaultGuidelineDesignTokens, transformedDesignTokens));
         });
 
         (async () => {
@@ -103,7 +104,7 @@ export const useGuidelineDesignTokens = () => {
 
                 const json = await response.json();
                 const transformedDesignTokens = mapToGuidelineDesignTokens(json.hub.appearance);
-                setDesignTokens({ ...designTokens, ...transformedDesignTokens });
+                setDesignTokens(mergeDeep(defaultGuidelineDesignTokens, transformedDesignTokens));
             } catch (error_) {
                 setError(error_);
             } finally {
