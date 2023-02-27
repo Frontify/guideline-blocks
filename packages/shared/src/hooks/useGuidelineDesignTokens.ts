@@ -92,7 +92,7 @@ export const useGuidelineDesignTokens = () => {
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
             const transformedDesignTokens = mapToGuidelineDesignTokens(data.appearance);
-            setDesignTokens(mergeDeep(defaultGuidelineDesignTokens, transformedDesignTokens));
+            setDesignTokens(mergeDeep(designTokens, transformedDesignTokens));
         });
 
         (async () => {
@@ -105,7 +105,7 @@ export const useGuidelineDesignTokens = () => {
 
                 const json = await response.json();
                 const transformedDesignTokens = mapToGuidelineDesignTokens(json.hub.appearance);
-                setDesignTokens(mergeDeep(defaultGuidelineDesignTokens, transformedDesignTokens));
+                setDesignTokens(mergeDeep(designTokens, transformedDesignTokens));
             } catch (error_) {
                 setError(error_);
             } finally {
