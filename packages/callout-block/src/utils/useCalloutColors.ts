@@ -1,11 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DesignTokenName, TokenValues } from '@frontify/guideline-blocks-shared';
+import { DesignTokens } from '@frontify/guideline-blocks-shared';
 
-export const useCalloutColors = (
-    designTokens: Partial<Record<DesignTokenName, TokenValues>> | null,
-    textColor?: string
-) => {
+export const useCalloutColors = (designTokens: DesignTokens, textColor?: string) => {
     if (!designTokens) {
         return;
     }
