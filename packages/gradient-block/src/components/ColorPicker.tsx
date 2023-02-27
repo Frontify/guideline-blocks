@@ -125,7 +125,6 @@ export const ColorPicker = ({
                     <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-[40px] ">
                         <Text color="weak">Color</Text>
                         <ColorPickerFlyout
-                            clearable
                             currentColor={color}
                             onClose={() => setShowColorModal(false)}
                             onSelect={(color) => {
