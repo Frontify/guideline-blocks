@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { CSSProperties, useEffect, useState } from 'react';
+import { defaultGuidelineDesignTokens } from '../helpers/defaultTokens';
 import { mapToGuidelineDesignTokens } from '../helpers/mapToGuidelineDesignTokens';
 
 export enum DesignTokenPropertiesEnum {
@@ -75,7 +76,7 @@ export type TokenValues = CSSProperties & { hover?: CSSProperties } & Partial<Ac
 export type TransformedDesignTokens = Partial<Record<DesignTokenName, TokenValues>>;
 
 export const useGuidelineDesignTokens = () => {
-    const [designTokens, setDesignTokens] = useState<TransformedDesignTokens | null>(null);
+    const [designTokens, setDesignTokens] = useState<TransformedDesignTokens>(defaultGuidelineDesignTokens);
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -101,8 +102,8 @@ export const useGuidelineDesignTokens = () => {
                 }
 
                 const json = await response.json();
-                const transformedCategories = mapToGuidelineDesignTokens(json.hub.appearance);
-                setDesignTokens(transformedCategories);
+                const transformedDesignTokens = mapToGuidelineDesignTokens(json.hub.appearance);
+                setDesignTokens({ ...designTokens, ...transformedDesignTokens });
             } catch (error_) {
                 setError(error_);
             } finally {
