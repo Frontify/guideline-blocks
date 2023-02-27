@@ -90,7 +90,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
                         updatedAt: Date.now(),
                     })
                 }
-                designTokens={designTokens ?? {}}
+                designTokens={designTokens}
                 dragState={componentDragState}
                 onMoveItem={moveByIncrement}
                 onRemoveItem={removeItem}
@@ -191,7 +191,7 @@ export const ChecklistBlock: FC<BlockProps> = ({ appBridge }) => {
                             <hr className="tw-my-2 tw-border-black-40" />
                             <ChecklistItem
                                 mode={ChecklistItemMode.Create}
-                                designTokens={designTokens ?? {}}
+                                designTokens={designTokens}
                                 onTextModified={addNewItem}
                             />
                         </>

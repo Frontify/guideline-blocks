@@ -2,46 +2,19 @@
 
 import { describe, expect, test } from 'vitest';
 import {
-    defaultBodyTextTokens,
-    defaultButtonPrimaryTokens,
-    defaultButtonSecondaryTokens,
-    defaultButtonTertiaryTokens,
     defaultCalloutColors,
-    defaultCustomTokens,
+    defaultGuidelineDesignTokens,
     defaultHeading1Tokens,
     defaultHeading2Tokens,
     defaultHeading3Tokens,
     defaultHeading4Tokens,
-    defaultImageCaptionTokens,
-    defaultImageTitleTokens,
-    defaultLinkTokens,
-    defaultQuoteTokens,
 } from './defaultTokens';
 import { provideFallbackTokens } from './provideFallbackTokens';
-
-const defaultTokens = {
-    heading1: defaultHeading1Tokens,
-    heading2: defaultHeading2Tokens,
-    heading3: defaultHeading3Tokens,
-    heading4: defaultHeading4Tokens,
-    custom1: defaultCustomTokens,
-    custom2: defaultCustomTokens,
-    custom3: defaultCustomTokens,
-    p: defaultBodyTextTokens,
-    link: defaultLinkTokens,
-    quote: defaultQuoteTokens,
-    imageTitle: defaultImageTitleTokens,
-    imageCaption: defaultImageCaptionTokens,
-    buttonPrimary: defaultButtonPrimaryTokens,
-    buttonSecondary: defaultButtonSecondaryTokens,
-    buttonTertiary: defaultButtonTertiaryTokens,
-    callout: defaultCalloutColors,
-};
 
 describe('provideFallbackTokens', () => {
     test('it should return default tokens', () => {
         const result = provideFallbackTokens({});
-        expect(result).toEqual(defaultTokens);
+        expect(result).toEqual(defaultGuidelineDesignTokens);
     });
 
     test('it should keep heading1 tokens where set', () => {
@@ -53,7 +26,7 @@ describe('provideFallbackTokens', () => {
             },
         });
         expect(result).toEqual({
-            ...defaultTokens,
+            ...defaultGuidelineDesignTokens,
             heading1: {
                 ...defaultHeading1Tokens,
                 fontFamily: 'Arial',
@@ -72,7 +45,7 @@ describe('provideFallbackTokens', () => {
             },
         });
         expect(result).toEqual({
-            ...defaultTokens,
+            ...defaultGuidelineDesignTokens,
             heading2: {
                 ...defaultHeading2Tokens,
                 fontFamily: 'Verdana',
@@ -91,7 +64,7 @@ describe('provideFallbackTokens', () => {
             },
         });
         expect(result).toEqual({
-            ...defaultTokens,
+            ...defaultGuidelineDesignTokens,
             heading3: {
                 ...defaultHeading3Tokens,
                 fontFamily: 'Verdana',
@@ -108,7 +81,7 @@ describe('provideFallbackTokens', () => {
             },
         });
         expect(result).toEqual({
-            ...defaultTokens,
+            ...defaultGuidelineDesignTokens,
             heading4: {
                 ...defaultHeading4Tokens,
                 fontFamily: 'Comic Sans',
@@ -124,7 +97,7 @@ describe('provideFallbackTokens', () => {
             },
         });
         expect(result).toEqual({
-            ...defaultTokens,
+            ...defaultGuidelineDesignTokens,
             callout: {
                 ...defaultCalloutColors,
                 info: '#000000',

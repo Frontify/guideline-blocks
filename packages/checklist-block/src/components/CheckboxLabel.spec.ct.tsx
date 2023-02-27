@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { defaultGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { mount } from 'cypress/react';
 import { CheckboxLabelProps } from '../types';
 import { CheckboxLabel } from './CheckboxLabel';
@@ -8,7 +9,13 @@ const CHECKBOX_LABEL = '[data-test-id="checkbox-label"]';
 const CHECKBOX_DATE = '[data-test-id="checkbox-date"]';
 
 const DefaultCheckboxLabel = (props: Partial<CheckboxLabelProps>) => {
-    const defaults = { htmlFor: 'test', disabled: false, dateInMs: 0, children: 'Label', designTokens: {} };
+    const defaults = {
+        htmlFor: 'test',
+        disabled: false,
+        dateInMs: 0,
+        children: 'Label',
+        designTokens: defaultGuidelineDesignTokens,
+    };
     const checkboxLabelProps = { ...defaults, ...props };
 
     return <CheckboxLabel {...checkboxLabelProps} />;

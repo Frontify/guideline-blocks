@@ -2,6 +2,7 @@
 
 import { CSSProperties, useEffect, useState } from 'react';
 import { provideFallbackTokens } from '../helpers';
+import { defaultGuidelineDesignTokens } from '../helpers/defaultTokens';
 
 export type ApiAppearanceData = Partial<Record<ApiDesignTokenName, ApiProperties>>;
 export type HubSettingsApiResponse = {
@@ -94,13 +95,13 @@ export type DesignTokens = {
 };
 
 type useGuidelineDesignTokensResponse = {
-    designTokens: DesignTokens | null;
+    designTokens: DesignTokens;
     error: null | unknown;
     isLoading: boolean;
 };
 
 export const useGuidelineDesignTokens = (): useGuidelineDesignTokensResponse => {
-    const [designTokens, setDesignTokens] = useState<DesignTokens | null>(null);
+    const [designTokens, setDesignTokens] = useState<DesignTokens>(defaultGuidelineDesignTokens);
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 

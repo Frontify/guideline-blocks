@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { defaultGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { mount } from 'cypress/react';
 import { CheckboxProps } from '../types';
 import { Checkbox } from './Checkbox';
@@ -14,7 +15,7 @@ const DefaultCheckbox = (props: Partial<CheckboxProps>) => {
         label: 'label',
         checked: false,
         onChange: cy.stub(),
-        designTokens: {},
+        designTokens: defaultGuidelineDesignTokens,
     };
     const checkboxProps = { ...defaults, ...props };
 
