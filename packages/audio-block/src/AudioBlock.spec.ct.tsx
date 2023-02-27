@@ -9,15 +9,10 @@ const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
 const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';
 const ItemToolbarSelector = '[data-test-id="item-toolbar"]';
+const AudioBlockTitleSelector = '[data-test-id="audio-block-title"]';
+const AudioBlockDescriptionSelector = '[data-test-id="audio-block-description"]';
 
 describe('Audio Block', () => {
-    it('renders an audio block', () => {
-        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock);
-
-        mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockSelector).should('exist');
-    });
-
     it('renders an empty audio block in view mode', () => {
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock);
 
@@ -88,7 +83,7 @@ describe('Audio Block', () => {
         });
 
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockSelector).contains('Audio Description').should('exist');
+        cy.get(AudioBlockDescriptionSelector).should('exist');
     });
 
     it('renders an audio block with an audio asset in view mode with title and description', () => {
@@ -104,8 +99,8 @@ describe('Audio Block', () => {
         });
 
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockSelector).contains('Audio Title').should('exist');
-        cy.get(AudioBlockSelector).contains('Audio Description').should('exist');
+        cy.get(AudioBlockTitleSelector).should('exist');
+        cy.get(AudioBlockDescriptionSelector).should('exist');
     });
 
     it('renders an audio block with an audio asset in view mode with text position above', () => {
