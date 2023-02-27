@@ -71,6 +71,8 @@ describe("Dos & Don'ts Block", () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
             blockSettings: {
                 columns: 2,
+                hasCustomDoColor: true,
+                hasCustomDontColor: true,
                 doColor: DO_COLOR_DEFAULT_VALUE,
                 dontColor: DONT_COLOR_DEFAULT_VALUE,
             },
