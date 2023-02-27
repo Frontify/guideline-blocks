@@ -47,6 +47,7 @@ export type DesignTokenName =
     | 'buttonSecondary'
     | 'buttonTertiary'
     | 'callout'
+    | 'imageTitle'
     | 'imageCaption';
 
 export type DirectionalCssProperties = {

@@ -23,7 +23,7 @@ export const TextBlock: FC<BlockProps> = ({ appBridge }) => {
     return (
         <div data-test-id="text-block">
             <RichTextEditor
-                designTokens={designTokens ?? undefined}
+                designTokens={designTokens}
                 key={'text-block-editor'}
                 value={blockSettings.content}
                 layout={{ gap, columns: blockSettings.columnNumber }}
