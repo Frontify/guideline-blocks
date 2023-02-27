@@ -143,7 +143,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                             key={toHexString(gradientColor.color) + gradientColor.position}
                             index={index}
                             lastIndex={lastIndex}
-                            color={gradientColor}
+                            gradientColor={gradientColor}
                         />
                     ))}
                 </div>
@@ -175,7 +175,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     {gradientColors?.map((gradientColor) => (
                         <ColorTooltip
                             key={toHexString(gradientColor.color) + gradientColor.position}
-                            color={gradientColor}
+                            gradientColor={gradientColor}
                             gradientColors={gradientColors}
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}

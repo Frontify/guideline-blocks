@@ -8,13 +8,13 @@ import {
     Flyout,
     FlyoutFooter,
     IconCheckMark16,
+    IconCross20,
     IconQuestionMarkCircle16,
     IconSize,
     Text,
     TextInput,
-    TooltipIcon,
     TextInputType,
-    IconCross20,
+    TooltipIcon,
 } from '@frontify/fondue';
 import { toHexString } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
@@ -34,7 +34,7 @@ export const ColorPicker = ({
         const newGradientColors = gradientColors.map((item) => {
             if (item === actualColor) {
                 return {
-                    color: color,
+                    color,
                     hex: toHexString(color),
                     name: color?.name ?? '',
                     position: parseInt(colorPosition),
@@ -80,7 +80,7 @@ export const ColorPicker = ({
                                 onClick: () => {
                                     if (!actualColor) {
                                         addNewColor({
-                                            color: color,
+                                            color,
                                             position: parseInt(colorPosition),
                                         });
                                     } else {

@@ -1,19 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Tooltip, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
-
+import { toHexString } from '@frontify/guideline-blocks-shared';
 import { EditAndDeleteColorBox } from './';
 import { ColorTooltipProps } from '../types';
 
 export const ColorTooltip = ({
-    color,
+    gradientColor,
     gradientColors,
     setColors,
     setShowColorModal,
     setCurrentlyEditingPosition,
 }: ColorTooltipProps) => {
     return (
-        <div className="tw-absolute" style={{ left: `${color.position}%` }}>
+        <div className="tw-absolute" style={{ left: `${gradientColor.position}%` }}>
             <Tooltip
                 alignment={TooltipAlignment.Middle}
                 content={
@@ -21,11 +21,11 @@ export const ColorTooltip = ({
                         <span
                             className="tw-absolute tw-top-1 tw-left-1 tw-right-1 tw-bottom-1"
                             style={{
-                                backgroundColor: color.hex,
+                                backgroundColor: toHexString(gradientColor.color),
                             }}
                         ></span>
                         <EditAndDeleteColorBox
-                            color={color}
+                            color={gradientColor}
                             gradientColors={gradientColors}
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}

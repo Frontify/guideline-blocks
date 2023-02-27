@@ -2,8 +2,9 @@
 
 import { SquareBadgeProps } from '../types';
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
+import { toHexString } from '@frontify/guideline-blocks-shared';
 
-export const SquareBadge = ({ index, lastIndex, color }: SquareBadgeProps) => {
+export const SquareBadge = ({ index, lastIndex, gradientColor }: SquareBadgeProps) => {
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
 
@@ -14,7 +15,7 @@ export const SquareBadge = ({ index, lastIndex, color }: SquareBadgeProps) => {
         if (index === lastIndex) {
             return { right: 0 };
         }
-        return { left: `${color.position}%` };
+        return { left: `${gradientColor.position}%` };
     };
 
     return (
@@ -23,17 +24,17 @@ export const SquareBadge = ({ index, lastIndex, color }: SquareBadgeProps) => {
                 <div
                     className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-ml-[1px]"
                     style={{
-                        backgroundColor: color.hex,
+                        backgroundColor: toHexString(gradientColor.color),
                     }}
                 ></div>
                 <span className="tw-text-weak tw-pl-[5px] tw-pr-[5px] tw-text-xs">
-                    <strong>{color.name}</strong>
+                    <strong>{gradientColor.color?.name}</strong>
                 </span>
-                <span className="tw-text-x-weak tw-text-xs tw-pr-[5px]">{color.hex}</span>
+                <span className="tw-text-x-weak tw-text-xs tw-pr-[5px]">{toHexString(gradientColor.color)}</span>
                 <button
                     data-test-id="gradient-css-copy-button"
                     className="tw-inline-flex tw-pr-[4px] tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex"
-                    onClick={() => copy(color.hex)}
+                    onClick={() => copy(toHexString(gradientColor.color))}
                 >
                     {isCopied ? <IconCheckMark16 /> : <IconClipboard16 />}
                 </button>

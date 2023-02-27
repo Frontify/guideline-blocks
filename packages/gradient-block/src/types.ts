@@ -48,7 +48,7 @@ export type CssValueDisplayProps = {
 };
 
 export type SquareBadgeProps = {
-    color: GradientColor;
+    gradientColor: GradientColor;
     index: number;
     lastIndex: number;
 };
@@ -75,7 +75,7 @@ export type EditAndDeleteColorBoxProps = {
 };
 
 export type ColorTooltipProps = {
-    color: GradientColor;
+    gradientColor: GradientColor;
     gradientColors: GradientColor[];
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
