@@ -164,9 +164,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             className={audioTagClassNames}
                             controlsList="nodownload"
                             preload="auto"
-                        >
-                            <source src={audio.genericUrl} type="audio/mp3" />
-                        </audio>
+                            src={audio.genericUrl}
+                        />
                     )}
                 </div>
             ) : (
