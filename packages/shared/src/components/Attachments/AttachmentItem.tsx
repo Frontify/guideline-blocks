@@ -23,6 +23,7 @@ import {
 } from '@frontify/fondue';
 import { forwardRef, useEffect, useState } from 'react';
 import { AttachmentItemProps, SortableAttachmentItemProps } from './types';
+import { joinClassNames } from '../../utilities';
 
 const getDecorator = (type: string) => {
     if (type === 'IMAGE') {
@@ -45,6 +46,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
             draggableProps,
             transformStyle,
             isDragging,
+            isOverlay,
             onAttachmentDelete,
             onAttachmentReplaceWithBrowse,
             onAttachmentReplaceWithUpload,
@@ -86,7 +88,11 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
                 data-test-id="attachments-item"
                 onClick={() => downloadAttachment(item.genericUrl, item.fileName)}
                 ref={ref}
-                style={{ ...transformStyle, opacity: isDragging ? 0.3 : 1, fontFamily: designTokens?.p?.fontFamily }}
+                style={{
+                    ...transformStyle,
+                    opacity: isDragging && !isOverlay ? 0.3 : 1,
+                    fontFamily: designTokens?.p?.fontFamily,
+                }}
                 className="tw-cursor-pointer tw-relative tw-flex tw-gap-3 tw-px-5 tw-py-3 tw-items-center tw-group hover:tw-bg-box-neutral-hover"
             >
                 <div className="tw-text-text-weak group-hover:tw-text-box-neutral-inverse-hover">
@@ -104,7 +110,12 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
                         className="tw-flex tw-gap-[2px] tw-invisible group-hover:tw-visible"
                     >
                         <div {...draggableProps}>
-                            <button className="tw-bg-button-background tw-border-button-border hover:tw-bg-button-background-hover active:tw-bg-button-background-pressed tw-group tw-border tw-box-box tw-relative tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-outline-none tw-font-medium tw-rounded tw-h-9 tw-w-9 ">
+                            <button
+                                className={joinClassNames([
+                                    'tw-bg-button-background tw-border-button-border hover:tw-bg-button-background-hover active:tw-bg-button-background-pressed tw-group tw-border tw-box-box tw-relative tw-flex tw-items-center tw-justify-center tw-outline-none tw-font-medium tw-rounded tw-h-9 tw-w-9 ',
+                                    isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab',
+                                ])}
+                            >
                                 <IconGrabHandle20 />
                             </button>
                         </div>
