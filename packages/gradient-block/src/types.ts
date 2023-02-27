@@ -19,11 +19,6 @@ export type GradientColor = {
     position: number;
 };
 
-export enum ColorSquarePositionType {
-    Left = 'left',
-    Right = 'right',
-}
-
 export type Settings = {
     isHeightCustom?: boolean;
     heightCustom?: string;
@@ -55,7 +50,6 @@ export type CssValueDisplayProps = {
 
 export type SquareBadgeProps = {
     color: GradientColor;
-    colorSquarePosition?: ColorSquarePositionType;
     index: number;
     lastIndex: number;
 };
