@@ -30,7 +30,7 @@ export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }
                     enterDelay={300}
                     hoverDelay={0}
                     position={TooltipPosition.Top}
-                    content={'Delete item'}
+                    content="Delete item"
                     triggerElement={
                         <div
                             onClick={onRemoveAsset}
@@ -54,7 +54,7 @@ export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }
                                 hoverDelay={0}
                                 enterDelay={300}
                                 position={TooltipPosition.Top}
-                                content={'Options'}
+                                content="Options"
                                 triggerElement={
                                     <div className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm">
                                         <IconDotsHorizontal16 />

@@ -27,6 +27,6 @@ export type UploadPlaceholderProps = {
 
 export type ItemToolbarProps = {
     onRemoveAsset: () => void;
-    onUploadClick: (() => void) | undefined;
-    onAssetChooseClick: (() => void) | undefined;
+    onUploadClick: () => void;
+    onAssetChooseClick: () => void;
 };
