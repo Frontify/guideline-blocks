@@ -1,7 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { CSSProperties, useEffect, useState } from 'react';
+import { defaultGuidelineDesignTokens } from '../helpers/defaultTokens';
 import { mapToGuidelineDesignTokens } from '../helpers/mapToGuidelineDesignTokens';
+import { mergeDeep } from '../helpers/mergeDeep';
 
 export enum DesignTokenPropertiesEnum {
     family = 'family',
@@ -45,6 +47,7 @@ export type DesignTokenName =
     | 'buttonSecondary'
     | 'buttonTertiary'
     | 'callout'
+    | 'imageTitle'
     | 'imageCaption';
 
 export type DirectionalCssProperties = {
@@ -75,7 +78,7 @@ export type TokenValues = CSSProperties & { hover?: CSSProperties } & Partial<Ac
 export type TransformedDesignTokens = Partial<Record<DesignTokenName, TokenValues>>;
 
 export const useGuidelineDesignTokens = () => {
-    const [designTokens, setDesignTokens] = useState<TransformedDesignTokens | null>(null);
+    const [designTokens, setDesignTokens] = useState<TransformedDesignTokens>(defaultGuidelineDesignTokens);
     const [error, setError] = useState<null | unknown>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -89,7 +92,7 @@ export const useGuidelineDesignTokens = () => {
     useEffect(() => {
         window.emitter.on('HubAppearanceUpdated', (data) => {
             const transformedDesignTokens = mapToGuidelineDesignTokens(data.appearance);
-            setDesignTokens({ ...designTokens, ...transformedDesignTokens });
+            setDesignTokens(mergeDeep(designTokens, transformedDesignTokens));
         });
 
         (async () => {
@@ -101,8 +104,8 @@ export const useGuidelineDesignTokens = () => {
                 }
 
                 const json = await response.json();
-                const transformedCategories = mapToGuidelineDesignTokens(json.hub.appearance);
-                setDesignTokens(transformedCategories);
+                const transformedDesignTokens = mapToGuidelineDesignTokens(json.hub.appearance);
+                setDesignTokens(mergeDeep(designTokens, transformedDesignTokens));
             } catch (error_) {
                 setError(error_);
             } finally {

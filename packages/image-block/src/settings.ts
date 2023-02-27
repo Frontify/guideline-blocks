@@ -20,6 +20,7 @@ const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
 const SECURITY_ID = 'security';
 export const IMAGE_SETTING_ID = 'image';
+export const ATTACHMENTS_SETTING_ID = 'attachments';
 
 export const settings = defineSettings({
     basics: [

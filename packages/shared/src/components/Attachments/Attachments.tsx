@@ -176,10 +176,12 @@ export const Attachments = ({
                                     <DragOverlay>
                                         {draggedAttachment ? (
                                             <AttachmentItem
+                                                isOverlay={true}
                                                 isEditing={isEditing}
                                                 key={draggedAssetId}
                                                 designTokens={designTokens}
                                                 item={draggedAttachment}
+                                                isDragging={true}
                                                 onAttachmentDelete={() => onAttachmentDelete(draggedAttachment)}
                                                 onAttachmentReplaceWithBrowse={() =>
                                                     onReplaceAttachmentWithBrowse(draggedAttachment)
