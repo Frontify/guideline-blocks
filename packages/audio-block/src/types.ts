@@ -9,10 +9,8 @@ export enum TextPosition {
 
 export type BlockSettings = {
     positioning: TextPosition;
-    audio?: Asset;
     description?: string;
     title?: string;
-    attachments: { id: number }[];
 };
 
 export type BlockAttachmentsProps = {
@@ -21,8 +19,8 @@ export type BlockAttachmentsProps = {
 };
 
 export type UploadPlaceholderProps = {
-    onUploadClick: (() => void) | undefined;
-    onAssetChooseClick: (() => void) | undefined;
+    onUploadClick: () => void;
+    onAssetChooseClick: () => void;
     setDroppedFiles: (files: FileList) => void;
     loading: boolean;
 };
