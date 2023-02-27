@@ -8,17 +8,16 @@ import {
     Flyout,
     FlyoutFooter,
     IconCheckMark16,
-    IconCross,
     IconQuestionMarkCircle16,
     IconSize,
     Text,
     TextInput,
     TooltipIcon,
     TextInputType,
+    IconCross20,
 } from '@frontify/fondue';
 
 import { useState } from 'react';
-
 import { ColorPickerProps, GradientColor } from '../types';
 import { hexStringToRgba, rgbaStringToHexString } from '../helpers';
 
@@ -85,7 +84,7 @@ export const ColorPicker = ({
                             className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-0.5 tw-text-strong"
                             onClick={() => setShowColorModal(false)}
                         >
-                            <IconCross size={IconSize.Size20} />
+                            <IconCross20 />
                         </span>
                     </div>
                 }

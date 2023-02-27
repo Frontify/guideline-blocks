@@ -33,10 +33,9 @@ export const ColorTooltip = ({
                         />
                     </>
                 }
-                open
                 position={TooltipPosition.Bottom}
                 triggerElement={
-                    <div className="tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong tw-mt-[-22px] tw-bg-[#CCCCCC]"></div>
+                    <div className="tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong -tw-mt-[22px] tw-bg-black-20"></div>
                 }
                 withArrow
             />
