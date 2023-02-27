@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { describe, expect, test } from 'vitest';
-import { defaultCalloutColors, provideDefaultCalloutColors } from './provideDefaultCalloutColors';
+import { defaultCalloutColors } from './defaultTokens';
+import { provideDefaultCalloutColors } from './provideDefaultCalloutColors';
 
 describe('provideDefaultCalloutColors', () => {
     test('it should return default colors', () => {

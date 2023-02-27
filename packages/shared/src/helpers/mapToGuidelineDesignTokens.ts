@@ -17,6 +17,7 @@ const TokenNameMapper: Record<string, DesignTokenName> = {
     button_secondary: 'buttonSecondary',
     button_tertiary: 'buttonTertiary',
     'image-caption': 'imageCaption',
+    'image-title': 'imageTitle',
     body: 'p',
 };
 
