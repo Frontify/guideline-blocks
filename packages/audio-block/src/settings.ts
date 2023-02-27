@@ -1,17 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    AssetChooserObjectType,
-    AssetInputSize,
-    FileExtension,
-    IconEnum,
-    defineSettings,
-} from '@frontify/guideline-blocks-settings';
+import { FileExtensionSets } from '@frontify/app-bridge';
+import { AssetChooserObjectType, AssetInputSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
 import { TextPosition } from './types';
 
 export const AUDIO_ID = 'audio';
-export const AUDIO_EXTENSIONS = [FileExtension.Flac, FileExtension.Mp3, FileExtension.Ogg, FileExtension.Wav];
 export const ATTACHMENTS_SETTING_ID = 'attachments';
 
 export const settings = defineSettings({
@@ -22,7 +16,7 @@ export const settings = defineSettings({
             label: 'Audio',
             info: 'Select an audio file to play.',
             size: AssetInputSize.Small,
-            extensions: AUDIO_EXTENSIONS,
+            extensions: FileExtensionSets.Audio,
             objectTypes: [AssetChooserObjectType.File],
         },
     ],

@@ -25,6 +25,7 @@ import {
     Asset,
     AssetChooserObjectType,
     FileExtension,
+    FileExtensionSets,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -33,7 +34,7 @@ import {
 } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
-import { AUDIO_EXTENSIONS, AUDIO_ID } from './settings';
+import { AUDIO_ID } from './settings';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ItemToolbar } from './components/ItemToolbar';
 import { BlockAttachments } from './components/BlockAttachments';
@@ -109,7 +110,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             {
                 multiSelection: false,
                 objectTypes: [AssetChooserObjectType.File],
-                extensions: AUDIO_EXTENSIONS,
+                extensions: FileExtensionSets.Audio,
             }
         );
     };
@@ -124,7 +125,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     useEffect(() => {
         if (droppedFiles) {
-            if (AUDIO_EXTENSIONS.includes(droppedFiles[0].name.split('.').pop() as FileExtension)) {
+            if (FileExtensionSets.Audio.includes(droppedFiles[0].name.split('.').pop() as FileExtension)) {
                 setIsLoading(true);
                 uploadFile(droppedFiles[0]);
             }
