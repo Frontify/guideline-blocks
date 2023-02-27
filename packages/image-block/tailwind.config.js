@@ -2,7 +2,7 @@
 
 module.exports = {
     presets: [require('@frontify/fondue/tailwind')],
-    content: ['src/**/*.{ts,tsx}'],
+    content: ['src/**/*.{ts,tsx}', '../shared/src/**/*.{ts,tsx}'],
     corePlugins: {
         preflight: false,
     },

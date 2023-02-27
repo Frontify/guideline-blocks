@@ -9,68 +9,25 @@ import {
     radiusValues,
     rationValues,
 } from '../types';
-import { downloadAsset, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { IconArrowCircleDown16 } from '@frontify/fondue';
-import { Asset } from '@frontify/app-bridge';
+import {
+    Attachments,
+    downloadAsset,
+    joinClassNames,
+    toRgbaString,
+    useAttachments,
+} from '@frontify/guideline-blocks-shared';
+import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import { ATTACHMENTS_SETTING_ID } from '../settings';
 
 type ImageProps = {
     image: Asset;
     blockSettings: Settings;
     isEditing: boolean;
+    appBridge: AppBridgeBlock;
 };
 
-export const Image = ({ image, blockSettings, isEditing }: ImageProps) => {
-    const borderRadius = blockSettings.hasRadius_cornerRadius
-        ? blockSettings.radiusValue_cornerRadius
-        : radiusValues[blockSettings.radiusChoice_cornerRadius];
-    const border = blockSettings.hasBorder
-        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
-        : undefined;
-
+export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
     const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
-    const padding = blockSettings.hasCustomPadding
-        ? blockSettings.paddingCustom
-        : paddingValues[blockSettings.paddingChoice];
-    const ImageComponent = () => (
-        <div
-            className={joinClassNames([
-                'tw-relative tw-flex tw-h-auto',
-                mapAlignmentClasses[blockSettings.alignment],
-                blockSettings.positioning === CaptionPosition.Above ||
-                blockSettings.positioning === CaptionPosition.Below
-                    ? 'tw-w-full'
-                    : rationValues[blockSettings.ratio],
-            ])}
-        >
-            <img
-                className="tw-flex"
-                src={image.genericUrl}
-                alt={image.fileName}
-                style={{
-                    width: image.width,
-                    border,
-                    padding,
-                    borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
-                    backgroundColor: blockSettings.hasBackground
-                        ? toRgbaString(blockSettings.backgroundColor)
-                        : undefined,
-                }}
-            />
-            {isEditing && (
-                <button
-                    aria-label="Download Image"
-                    style={{
-                        marginTop: padding,
-                        marginRight: padding,
-                    }}
-                    onClick={() => downloadAsset(image)}
-                    className="tw-absolute tw-top-2 tw-right-2 tw-flex tw-items-center tw-justify-center tw-h-7 tw-w-7 tw-bg-box-neutral-strong-inverse tw-rounded-full tw-border tw-border-line"
-                >
-                    <IconArrowCircleDown16 />
-                </button>
-            )}
-        </div>
-    );
 
     return (
         <>
@@ -81,11 +38,84 @@ export const Image = ({ image, blockSettings, isEditing }: ImageProps) => {
                     target={link.openInNewTab ? '_blank' : undefined}
                     rel="noreferrer"
                 >
-                    <ImageComponent />
+                    <ImageComponent
+                        appBridge={appBridge}
+                        blockSettings={blockSettings}
+                        isEditing={isEditing}
+                        image={image}
+                    />
                 </a>
             ) : (
-                <ImageComponent />
+                <ImageComponent
+                    appBridge={appBridge}
+                    blockSettings={blockSettings}
+                    isEditing={isEditing}
+                    image={image}
+                />
             )}
         </>
+    );
+};
+
+export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) => {
+    const {
+        sortedAttachments: attachments,
+        onAddAttachments,
+        onAttachmentDelete,
+        onAttachmentReplace,
+        onAttachmentsSorted,
+    } = useAttachments(appBridge, ATTACHMENTS_SETTING_ID, ATTACHMENTS_SETTING_ID);
+
+    const borderRadius = blockSettings.hasRadius_cornerRadius
+        ? blockSettings.radiusValue_cornerRadius
+        : radiusValues[blockSettings.radiusChoice_cornerRadius];
+    const border = blockSettings.hasBorder
+        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
+        : undefined;
+
+    const padding = blockSettings.hasCustomPadding
+        ? blockSettings.paddingCustom
+        : paddingValues[blockSettings.paddingChoice];
+    return (
+        <div
+            style={{
+                padding,
+                border,
+                borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
+                backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
+            }}
+            className={joinClassNames([
+                'tw-relative tw-flex tw-h-auto tw-overflow-hidden',
+                mapAlignmentClasses[blockSettings.alignment],
+                blockSettings.positioning === CaptionPosition.Above ||
+                blockSettings.positioning === CaptionPosition.Below
+                    ? 'tw-w-full'
+                    : rationValues[blockSettings.ratio],
+            ])}
+        >
+            <div className="tw-relative">
+                <div className="tw-absolute tw-top-2 tw-right-2">
+                    <Attachments
+                        onUploadAttachments={onAddAttachments}
+                        onAttachmentDelete={onAttachmentDelete}
+                        onAttachmentReplaceWithBrowse={onAttachmentReplace}
+                        onAttachmentReplaceWithUpload={onAttachmentReplace}
+                        onAttachmentsSorted={onAttachmentsSorted}
+                        onBrowseAttachments={onAddAttachments}
+                        attachmentItems={attachments}
+                        appBridge={appBridge}
+                        onDownload={() => downloadAsset(image)}
+                    />
+                </div>
+                <img
+                    className="tw-flex"
+                    src={image.genericUrl}
+                    alt={image.fileName}
+                    style={{
+                        width: image.width,
+                    }}
+                />
+            </div>
+        </div>
     );
 };
