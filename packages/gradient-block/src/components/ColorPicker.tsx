@@ -3,6 +3,7 @@
 import {
     ButtonEmphasis,
     ButtonStyle,
+    Color,
     ColorPickerFlyout,
     Flyout,
     FlyoutFooter,
@@ -14,29 +15,45 @@ import {
     TooltipIcon,
 } from '@frontify/fondue';
 
+import { useState } from 'react';
+
 import { ColorPickerProps, GradientColor } from '../types';
-import { rgbaStringToHexString } from '../helpers';
+import { hexStringToRgba, rgbaStringToHexString } from '../helpers';
+
+const transformGradientColorToColor = (color: GradientColor | undefined) => {
+    if (color !== undefined) {
+        const rgba = hexStringToRgba(color.hex);
+        return {
+            red: rgba?.red,
+            green: rgba?.green,
+            blue: rgba?.blue,
+            alpha: rgba?.alpha,
+        } as Color;
+    } else {
+        return {
+            red: 0,
+            green: 0,
+            blue: 0,
+            alpha: 1,
+        } as Color;
+    }
+};
 
 export const ColorPicker = ({
-    editing,
-    color = null,
-    currentColor,
-    currentColorPosition,
+    currentlyEditingPosition,
     gradientColors,
     setColors,
-    setCurrentColorPosition,
-    setCurrentColor,
     setShowColorModal,
-    setCurrentlyEditingColor,
 }: ColorPickerProps) => {
-    const editColor = (color: GradientColor) => {
+    const actualColor = gradientColors.find((item) => item.position === currentlyEditingPosition);
+    const [color, setColor] = useState<Color>(transformGradientColorToColor(actualColor));
+
+    const editColor = () => {
         const newGradientColors = gradientColors.map((item) => {
-            if (item.hex === color.hex) {
+            if (item === actualColor) {
                 return {
-                    hex: rgbaStringToHexString(
-                        `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
-                    ),
-                    name: currentColor?.name ?? '',
+                    hex: rgbaStringToHexString(`rgba(${color?.red}, ${color?.green}, ${color?.blue}, ${color?.alpha})`),
+                    name: color?.name ?? '',
                     position: item.position,
                 } as GradientColor;
             } else {
@@ -54,6 +71,8 @@ export const ColorPicker = ({
 
         setColors(newGradientColors);
     };
+
+    console.log(actualColor);
 
     return (
         <div className="tw-z-[10]">
@@ -77,24 +96,18 @@ export const ColorPicker = ({
                                 emphasis: ButtonEmphasis.Strong,
                                 children: 'Close',
                                 onClick: () => {
-                                    if (!editing) {
-                                        if (!currentColorPosition) {
-                                            currentColorPosition = 0;
-                                        }
+                                    if (!actualColor) {
                                         addNewColor({
                                             hex: rgbaStringToHexString(
-                                                `rgba(${currentColor?.red}, ${currentColor?.green}, ${currentColor?.blue}, ${currentColor?.alpha})`
+                                                `rgba(${color?.red}, ${color?.green}, ${color?.blue}, ${color?.alpha})`
                                             ),
-                                            name: currentColor?.name ?? '',
-                                            position: currentColorPosition,
+                                            name: color?.name ?? '',
+                                            position: currentlyEditingPosition,
                                         });
                                     } else {
-                                        color && editColor(color);
+                                        color && editColor();
                                     }
                                     setShowColorModal(false);
-                                    setCurrentColorPosition(undefined);
-                                    setCurrentColor(null);
-                                    setCurrentlyEditingColor(undefined);
                                 },
                             },
                         ]}
@@ -111,10 +124,10 @@ export const ColorPicker = ({
                         <Text color="weak">Color</Text>
                         <ColorPickerFlyout
                             clearable
-                            currentColor={currentColor}
+                            currentColor={color}
                             onClose={() => setShowColorModal(false)}
                             onSelect={(color) => {
-                                setCurrentColor(color);
+                                setColor(color);
                             }}
                         />
 
@@ -131,7 +144,7 @@ export const ColorPicker = ({
                                 />
                             </span>
                         </span>
-                        <TextInput disabled value={currentColorPosition?.toString()} placeholder="placeholder" />
+                        <TextInput disabled value={currentlyEditingPosition.toString()} placeholder="placeholder" />
                     </div>
                 </div>
             </Flyout>

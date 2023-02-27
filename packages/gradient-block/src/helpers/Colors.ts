@@ -32,7 +32,7 @@ export const hexStringToRgba = (hex: string, alpha?: number) => {
     };
 };
 
-export const isValidHex = (hex: string) => /^#([\dA-Fa-f]{6}|[\dA-Fa-f]{3})$/.test(hex);
+export const isValidHex = (hex: string) => /^#([\dA-Fa-f]{8}|[\dA-Fa-f]{6}|[\dA-Fa-f]{3})$/.test(hex);
 export const getChunksFromString = (st: string, chunkSize: number) => st.match(new RegExp(`.{${chunkSize}}`, 'g'));
 // to be renamed because this doesnt just convert hex to 256 but also repeats the string if the length is 1
 export const convertHexUnitTo256 = (hexStr: string) => parseInt(hexStr.repeat(2 / hexStr.length), 16);

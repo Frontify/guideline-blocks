@@ -10,8 +10,7 @@ export const ColorTooltip = ({
     gradientColors,
     setColors,
     setShowColorModal,
-    setCurrentColor,
-    setCurrentlyEditingColor,
+    setCurrentlyEditingPosition,
 }: ColorTooltipProps) => {
     return (
         <div className="tw-absolute" style={{ left: `${color.position}%` }}>
@@ -30,8 +29,7 @@ export const ColorTooltip = ({
                             gradientColors={gradientColors}
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}
-                            setCurrentColor={setCurrentColor}
-                            setCurrentlyEditingColor={setCurrentlyEditingColor}
+                            setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                         />
                     </>
                 }

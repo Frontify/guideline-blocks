@@ -4,7 +4,7 @@ import { MouseEvent, useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Color, Divider, DividerHeight, DividerStyle } from '@frontify/fondue';
+import { Divider, DividerHeight, DividerStyle } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
@@ -28,7 +28,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>(null);
     const [showAddButton, setShowAddButton] = useState(false);
-    const [currentlyEditingColor, setCurrentlyEditingColor] = useState<string>();
+    const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
 
     const {
         gradientColors,
@@ -48,8 +48,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const gradientOrientation = isOrientationCustom
         ? orientationCustom
         : gradientOrientationValues[orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
-    const [currentColor, setCurrentColor] = useState<Color | null>(null);
-    const [currentColorPosition, setCurrentColorPosition] = useState<number>();
+
     const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
     const lastIndex = gradientColors ? gradientColors?.length - 1 : 0;
     const [showColorModal, setShowColorModal] = useState(false);
@@ -144,22 +143,16 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                                     ref={gradientBlockRef}
                                     addButtonPosition={addButtonPosition}
                                     setShowColorModal={setShowColorModal}
-                                    setCurrentColorPosition={setCurrentColorPosition}
+                                    setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                                 />
                             )}
                         </div>
                         {showColorModal && gradientColors !== undefined && (
                             <ColorPicker
-                                editing={false}
-                                color={null}
-                                currentColor={currentColor}
-                                currentColorPosition={currentColorPosition}
-                                setColors={setColors}
-                                setCurrentColor={setCurrentColor}
-                                setCurrentColorPosition={setCurrentColorPosition}
-                                setShowColorModal={setShowColorModal}
+                                currentlyEditingPosition={currentlyEditingPosition}
                                 gradientColors={gradientColors}
-                                setCurrentlyEditingColor={setCurrentlyEditingColor}
+                                setColors={setColors}
+                                setShowColorModal={setShowColorModal}
                             />
                         )}
                     </div>
@@ -171,8 +164,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                             gradientColors={gradientColors}
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}
-                            setCurrentColor={setCurrentColor}
-                            setCurrentlyEditingColor={setCurrentlyEditingColor}
+                            setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                         />
                     ))}
                 </div>

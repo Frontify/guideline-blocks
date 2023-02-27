@@ -5,13 +5,13 @@ import { forwardRef } from 'react';
 import { AddColorButtonProps } from '../types';
 
 export const AddColorButton = forwardRef<HTMLDivElement, AddColorButtonProps>(
-    ({ setShowColorModal, addButtonPosition, setCurrentColorPosition }, ref) => {
+    ({ setShowColorModal, addButtonPosition, setCurrentlyEditingPosition }, ref) => {
         const handleAdd = (position: number) => {
             if (ref instanceof Function || ref === null || !ref.current) {
                 return;
             }
+            setCurrentlyEditingPosition((position / ref.current.getBoundingClientRect().width) * 100);
             setShowColorModal(true);
-            setCurrentColorPosition((position / ref.current.getBoundingClientRect().width) * 100);
         };
 
         return (

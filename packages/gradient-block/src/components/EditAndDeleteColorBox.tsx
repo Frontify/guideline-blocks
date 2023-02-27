@@ -8,20 +8,16 @@ import {
     ButtonSize,
     ButtonStyle,
     ButtonType,
-    Color,
     IconPen16,
     IconTrashBin16,
 } from '@frontify/fondue';
-
-import { hexStringToRgba } from '../helpers';
 
 export const EditAndDeleteColorBox = ({
     color,
     gradientColors,
     setColors,
     setShowColorModal,
-    setCurrentColor,
-    setCurrentlyEditingColor,
+    setCurrentlyEditingPosition,
 }: EditAndDeleteColorBoxProps) => {
     const deleteColor = (color: GradientColor) => {
         setColors(gradientColors.filter((colorItem) => colorItem.position !== color.position));
@@ -35,9 +31,8 @@ export const EditAndDeleteColorBox = ({
                 inverted
                 solid
                 onClick={() => {
-                    setCurrentlyEditingColor(color.hex);
+                    setCurrentlyEditingPosition(color.position);
                     setShowColorModal(true);
-                    setCurrentColor(hexStringToRgba(color.hex) as Color);
                 }}
                 rounding={ButtonRounding.Medium}
                 size={ButtonSize.Small}

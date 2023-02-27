@@ -1,7 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/fondue';
-
 export enum GradientHeight {
     Small = 's',
     Medium = 'm',
@@ -55,22 +53,16 @@ export type SquareBadgeProps = {
 };
 
 export type ColorPickerProps = {
-    editing: boolean;
-    color: GradientColor | null;
-    currentColor: Color | null;
-    currentColorPosition: number | undefined;
     gradientColors: GradientColor[];
+    currentlyEditingPosition: number;
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
-    setCurrentColorPosition: (position?: number) => void;
-    setCurrentColor: (color: Color | null) => void;
-    setCurrentlyEditingColor: (color?: string | undefined) => void;
 };
 
 export type AddColorButtonProps = {
     addButtonPosition: { top: number; left: number };
     setShowColorModal: (show: boolean) => void;
-    setCurrentColorPosition: (position?: number) => void;
+    setCurrentlyEditingPosition: (value: number) => void;
 };
 
 export type EditAndDeleteColorBoxProps = {
@@ -78,8 +70,7 @@ export type EditAndDeleteColorBoxProps = {
     gradientColors: GradientColor[];
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
-    setCurrentColor: (color: Color | null) => void;
-    setCurrentlyEditingColor: (color: string | undefined) => void;
+    setCurrentlyEditingPosition: (value: number) => void;
 };
 
 export type ColorTooltipProps = {
@@ -87,6 +78,5 @@ export type ColorTooltipProps = {
     gradientColors: GradientColor[];
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
-    setCurrentColor: (color: Color | null) => void;
-    setCurrentlyEditingColor: (color: string | undefined) => void;
+    setCurrentlyEditingPosition: (value: number) => void;
 };
