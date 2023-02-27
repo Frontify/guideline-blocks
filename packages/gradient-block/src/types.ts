@@ -50,9 +50,7 @@ export const gradientOrientationValues: Record<GradientOrientation, number> = {
 };
 
 export type CssValueDisplayProps = {
-    cssValue?: string;
-    isCopied: boolean;
-    handleCopy: () => void;
+    cssValue: string;
 };
 
 export type SquareBadgeProps = {
@@ -60,7 +58,6 @@ export type SquareBadgeProps = {
     colorSquarePosition?: ColorSquarePositionType;
     index: number;
     lastIndex: number;
-    handleCopy: () => void;
 };
 
 export type ColorPickerProps = {
@@ -93,7 +90,7 @@ export type EditAndDeleteColorBoxProps = {
     setShowColorModal: (show: boolean) => void;
     setCurrentColorPosition: (position?: number) => void;
     setCurrentColor: (color: Color | null) => void;
-    setCurrentlyEditingColor: (color?: string | undefined) => void;
+    setCurrentlyEditingColor: (color: string | undefined) => void;
 };
 
 export type ColorTooltipProps = {

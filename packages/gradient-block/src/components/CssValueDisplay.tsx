@@ -1,16 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconEnum, iconsMap } from '@frontify/fondue';
+import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
 import { CssValueDisplayProps } from '../types';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
-export const CssValueDisplay = ({ cssValue, isCopied, handleCopy }: CssValueDisplayProps) => {
-    const getCopyButtonText = isCopied ? (
-        <>{iconsMap[IconEnum.CheckMark16]} Copied</>
-    ) : (
-        <>{iconsMap[IconEnum.Clipboard16]} Copy</>
-    );
+export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
+    const { copy, status } = useCopy();
+    const isCopied = status === 'success';
 
     return (
         <div
@@ -26,9 +23,17 @@ export const CssValueDisplay = ({ cssValue, isCopied, handleCopy }: CssValueDisp
                     <button
                         data-test-id="gradient-css-copy-button"
                         className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
-                        onClick={handleCopy}
+                        onClick={() => copy(cssValue)}
                     >
-                        {getCopyButtonText}
+                        {isCopied ? (
+                            <>
+                                <IconCheckMark16 /> Copied
+                            </>
+                        ) : (
+                            <>
+                                <IconClipboard16 /> Copy
+                            </>
+                        )}
                     </button>
                 </div>
                 <CodeMirror
