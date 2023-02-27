@@ -2,4 +2,3 @@
 
 export * from './BlockInjectButton';
 export * from './Attachments';
-export * from './RichTextEditorToHtml';
