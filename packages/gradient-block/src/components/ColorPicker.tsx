@@ -16,29 +16,9 @@ import {
     TextInputType,
     IconCross20,
 } from '@frontify/fondue';
-
+import { toHexString } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 import { ColorPickerProps, GradientColor } from '../types';
-import { hexStringToRgba, rgbaStringToHexString } from '../helpers';
-
-const transformGradientColorToColor = (color: GradientColor | undefined) => {
-    if (color !== undefined) {
-        const rgba = hexStringToRgba(color.hex);
-        return {
-            red: rgba?.red,
-            green: rgba?.green,
-            blue: rgba?.blue,
-            alpha: rgba?.alpha,
-        } as Color;
-    } else {
-        return {
-            red: 0,
-            green: 0,
-            blue: 0,
-            alpha: 1,
-        } as Color;
-    }
-};
 
 export const ColorPicker = ({
     currentlyEditingPosition,
@@ -48,13 +28,14 @@ export const ColorPicker = ({
 }: ColorPickerProps) => {
     const actualColor = gradientColors.find((item) => item.position === currentlyEditingPosition);
     const [colorPosition, setColorPosition] = useState(currentlyEditingPosition.toString());
-    const [color, setColor] = useState<Color>(transformGradientColorToColor(actualColor));
+    const [color, setColor] = useState<Color>(actualColor?.color ?? { red: 0, green: 0, blue: 0, alpha: 1 });
 
     const editColor = () => {
         const newGradientColors = gradientColors.map((item) => {
             if (item === actualColor) {
                 return {
-                    hex: rgbaStringToHexString(`rgba(${color?.red}, ${color?.green}, ${color?.blue}, ${color?.alpha})`),
+                    color: color,
+                    hex: toHexString(color),
                     name: color?.name ?? '',
                     position: parseInt(colorPosition),
                 };
@@ -99,10 +80,7 @@ export const ColorPicker = ({
                                 onClick: () => {
                                     if (!actualColor) {
                                         addNewColor({
-                                            hex: rgbaStringToHexString(
-                                                `rgba(${color?.red}, ${color?.green}, ${color?.blue}, ${color?.alpha})`
-                                            ),
-                                            name: color?.name ?? '',
+                                            color: color,
                                             position: parseInt(colorPosition),
                                         });
                                     } else {

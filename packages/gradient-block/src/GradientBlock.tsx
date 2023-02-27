@@ -4,19 +4,34 @@ import { MouseEvent, useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Divider, DividerHeight, DividerStyle } from '@frontify/fondue';
+import { Color, Divider, DividerHeight, DividerStyle } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadge } from './components';
+import { toHexString } from '@frontify/guideline-blocks-shared';
 
 const emptyStateColors = [
     {
+        color: {
+            red: 0,
+            green: 0,
+            blue: 0,
+            alpha: 1,
+            name: 'Light gray',
+        } as Color,
         hex: '#F1F1F1',
         name: 'Light gray',
         position: 0,
     },
     {
+        color: {
+            red: 0,
+            green: 0,
+            blue: 0,
+            alpha: 1,
+            name: 'White',
+        } as Color,
         hex: '#FFFFFF',
         name: 'White',
         position: 100,
@@ -97,7 +112,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             let colorsAsString = '';
 
             for (const color of colors) {
-                colorsAsString += `, ${color.hex} ${color.position}%`;
+                colorsAsString += `, ${toHexString(color.color)} ${color.position}%`;
             }
 
             return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
@@ -123,12 +138,12 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             </div>
             {!isEditing && (
                 <div className="tw-pt-2">
-                    {gradientColors?.map((color, index) => (
+                    {gradientColors?.map((gradientColor, index) => (
                         <SquareBadge
-                            key={color.hex + color.position}
+                            key={toHexString(gradientColor.color) + gradientColor.position}
                             index={index}
                             lastIndex={lastIndex}
-                            color={color}
+                            color={gradientColor}
                         />
                     ))}
                 </div>
@@ -157,10 +172,10 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         )}
                     </div>
 
-                    {gradientColors?.map((color) => (
+                    {gradientColors?.map((gradientColor) => (
                         <ColorTooltip
-                            key={color.hex + color.position}
-                            color={color}
+                            key={toHexString(gradientColor.color) + gradientColor.position}
+                            color={gradientColor}
                             gradientColors={gradientColors}
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}

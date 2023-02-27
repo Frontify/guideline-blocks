@@ -1,5 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { Color } from '@frontify/fondue';
+
 export enum GradientHeight {
     Small = 's',
     Medium = 'm',
@@ -12,8 +14,7 @@ export enum GradientOrientation {
 }
 
 export type GradientColor = {
-    hex: string;
-    name: string;
+    color: Color;
     position: number;
 };
 
