@@ -16,7 +16,6 @@ import {
     TextInputType,
     TooltipIcon,
 } from '@frontify/fondue';
-import { toHexString } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 import { ColorPickerProps, GradientColor } from '../types';
 
@@ -41,7 +40,6 @@ export const ColorPicker = ({
                 return item;
             }
         });
-
         setColors(newGradientColors);
     };
 
@@ -49,85 +47,82 @@ export const ColorPicker = ({
         const newGradientColors = [...(gradientColors ?? []), newColor].sort((a, b) => {
             return a.position - b.position;
         });
-
         setColors(newGradientColors);
     };
 
     return (
-        <div>
-            <Flyout
-                fixedHeader={
-                    <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
-                        <span>Configure Color</span>
-                        <span
-                            className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-0.5 tw-text-strong"
-                            onClick={() => setShowColorModal(false)}
-                        >
-                            <IconCross20 />
-                        </span>
-                    </div>
-                }
-                fixedFooter={
-                    <FlyoutFooter
-                        buttons={[
-                            {
-                                style: ButtonStyle.Default,
-                                emphasis: ButtonEmphasis.Strong,
-                                icon: <IconCheckMark16 />,
-                                children: 'Close',
-                                onClick: () => {
-                                    if (!actualColor) {
-                                        addNewColor({
-                                            color,
-                                            position: parseInt(colorPosition),
-                                        });
-                                    } else {
-                                        color && editColor();
-                                    }
-                                    setShowColorModal(false);
-                                },
-                            },
-                        ]}
-                    />
-                }
-                legacyFooter={false}
-                isOpen={true}
-                contentMinHeight={195}
-                onOpenChange={() => true}
-                trigger={null}
-            >
-                <div className="tw-flex">
-                    <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-[40px] ">
-                        <Text color="weak">Color</Text>
-                        <ColorPickerFlyout
-                            currentColor={color}
-                            onClose={() => setShowColorModal(false)}
-                            onSelect={(color) => {
-                                setColor(color);
-                            }}
-                        />
-
-                        <span className="tw-flex tw-mt-6">
-                            <Text color="weak">Stop</Text>
-                            <span className="tw-ml-1">
-                                <TooltipIcon
-                                    tooltip={{
-                                        content:
-                                            'It determines when the transition from one color to the new color is complete.',
-                                    }}
-                                    triggerIcon={<IconQuestionMarkCircle16 />}
-                                    iconSize={IconSize.Size12}
-                                />
-                            </span>
-                        </span>
-                        <TextInput
-                            value={colorPosition}
-                            onChange={(input) => setColorPosition(input)}
-                            type={TextInputType.Number}
-                        />
-                    </div>
+        <Flyout
+            fixedHeader={
+                <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
+                    <span>Configure Color</span>
+                    <span
+                        className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-0.5 tw-text-strong"
+                        onClick={() => setShowColorModal(false)}
+                    >
+                        <IconCross20 />
+                    </span>
                 </div>
-            </Flyout>
-        </div>
+            }
+            fixedFooter={
+                <FlyoutFooter
+                    buttons={[
+                        {
+                            style: ButtonStyle.Default,
+                            emphasis: ButtonEmphasis.Strong,
+                            icon: <IconCheckMark16 />,
+                            children: 'Close',
+                            onClick: () => {
+                                if (!actualColor) {
+                                    addNewColor({
+                                        color,
+                                        position: parseInt(colorPosition),
+                                    });
+                                } else {
+                                    color && editColor();
+                                }
+                                setShowColorModal(false);
+                            },
+                        },
+                    ]}
+                />
+            }
+            legacyFooter={false}
+            isOpen={true}
+            contentMinHeight={195}
+            onOpenChange={() => true}
+            trigger={null}
+        >
+            <div className="tw-flex">
+                <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-[40px] ">
+                    <Text color="weak">Color</Text>
+                    <ColorPickerFlyout
+                        currentColor={color}
+                        onClose={() => setShowColorModal(false)}
+                        onSelect={(color) => {
+                            setColor(color);
+                        }}
+                    />
+
+                    <span className="tw-flex tw-mt-6">
+                        <Text color="weak">Stop</Text>
+                        <span className="tw-ml-1">
+                            <TooltipIcon
+                                tooltip={{
+                                    content:
+                                        'It determines when the transition from one color to the new color is complete.',
+                                }}
+                                triggerIcon={<IconQuestionMarkCircle16 />}
+                                iconSize={IconSize.Size12}
+                            />
+                        </span>
+                    </span>
+                    <TextInput
+                        value={colorPosition}
+                        onChange={(input) => setColorPosition(input)}
+                        type={TextInputType.Number}
+                    />
+                </div>
+            </div>
+        </Flyout>
     );
 };

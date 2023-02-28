@@ -13,13 +13,13 @@ export const ColorTooltip = ({
     setCurrentlyEditingPosition,
 }: ColorTooltipProps) => {
     return (
-        <div className="tw-absolute" style={{ left: `${gradientColor.position}%` }}>
+        <div className="tw-absolute tw-z-10" style={{ left: `${gradientColor.position}%` }}>
             <Tooltip
                 alignment={TooltipAlignment.Middle}
                 content={
                     <>
                         <span
-                            className="tw-absolute tw-top-1 tw-left-1 tw-right-1 tw-bottom-1"
+                            className="tw-absolute tw-top-1 tw-left-1 tw-right-1 tw-bottom-1 tw-rounded"
                             style={{
                                 backgroundColor: toHexString(gradientColor.color),
                             }}
