@@ -50,7 +50,8 @@ export type CssValueDisplayProps = {
 export type SquareBadgeProps = {
     gradientColor: GradientColor;
     index: number;
-    lastIndex: number;
+    gradientColors: GradientColor[];
+    gradientOrientation: number;
 };
 
 export type ColorPickerProps = {

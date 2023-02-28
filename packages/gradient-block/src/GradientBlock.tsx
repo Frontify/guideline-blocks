@@ -11,6 +11,8 @@ import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadge } from './components';
 import { toHexString } from '@frontify/guideline-blocks-shared';
 
+const HEIGHT_OF_SQUARE_BADGE = 28;
+
 const emptyStateColors = [
     {
         color: {
@@ -38,6 +40,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>(null);
+    const squareBadgesContainerRef = useRef<HTMLDivElement>(null);
     const [showAddButton, setShowAddButton] = useState(false);
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
 
@@ -61,11 +64,17 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         : gradientOrientationValues[orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
 
     const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
-    const lastIndex = gradientColors ? gradientColors?.length - 1 : 0;
     const [showColorModal, setShowColorModal] = useState(false);
     const gradientBlockHeight = isHeightCustom
         ? heightCustom
         : gradientHeightValues[heightSimple ?? HEIGHT_DEFAULT_VALUE];
+
+    const getHeight = () => {
+        if (gradientOrientation === 90) {
+            return HEIGHT_OF_SQUARE_BADGE;
+        }
+        return HEIGHT_OF_SQUARE_BADGE * (gradientColors?.length || 0);
+    };
 
     const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
         if (showColorModal) {
@@ -137,24 +146,24 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     <div className="tw-relative">
                         <div onMouseOver={handleMouseMove} onMouseLeave={handleMouseLeave}>
                             <Divider height={DividerHeight.Small} style={DividerStyle.Solid} />
-                            {showAddButton && (
+                            {showAddButton ? (
                                 <AddColorButton
                                     ref={gradientBlockRef}
                                     addButtonPosition={addButtonPosition}
                                     setShowColorModal={setShowColorModal}
                                     setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                                 />
-                            )}
+                            ) : null}
                         </div>
-                        {showColorModal && gradientColors !== undefined && (
-                            <ColorPicker
-                                currentlyEditingPosition={currentlyEditingPosition}
-                                gradientColors={gradientColors}
-                                setColors={setColors}
-                                setShowColorModal={setShowColorModal}
-                            />
-                        )}
                     </div>
+                    {showColorModal && gradientColors !== undefined ? (
+                        <ColorPicker
+                            currentlyEditingPosition={currentlyEditingPosition}
+                            gradientColors={gradientColors}
+                            setColors={setColors}
+                            setShowColorModal={setShowColorModal}
+                        />
+                    ) : null}
 
                     {gradientColors?.map((gradientColor) => (
                         <ColorTooltip
@@ -168,17 +177,26 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     ))}
                 </div>
             ) : (
-                <div className="tw-pt-2">
+                <div
+                    ref={squareBadgesContainerRef}
+                    className="tw-relative tw-w-full"
+                    style={{
+                        height: getHeight(),
+                    }}
+                >
                     {gradientColors?.map((gradientColor, index) => (
                         <SquareBadge
                             key={toHexString(gradientColor.color) + gradientColor.position}
-                            index={index}
-                            lastIndex={lastIndex}
+                            ref={squareBadgesContainerRef}
                             gradientColor={gradientColor}
+                            index={index}
+                            gradientColors={gradientColors}
+                            gradientOrientation={gradientOrientation}
                         />
                     ))}
                 </div>
             )}
+
             {displayCss && contentValue ? <CssValueDisplay cssValue={contentValue} /> : null}
         </div>
     );
