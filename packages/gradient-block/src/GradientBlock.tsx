@@ -14,9 +14,9 @@ import { toHexString } from '@frontify/guideline-blocks-shared';
 const emptyStateColors = [
     {
         color: {
-            red: 0,
-            green: 0,
-            blue: 0,
+            red: 217,
+            green: 217,
+            blue: 213,
             alpha: 1,
             name: 'Light gray',
         } as Color,
@@ -24,9 +24,9 @@ const emptyStateColors = [
     },
     {
         color: {
-            red: 0,
-            green: 0,
-            blue: 0,
+            red: 255,
+            green: 255,
+            blue: 255,
             alpha: 1,
             name: 'White',
         } as Color,

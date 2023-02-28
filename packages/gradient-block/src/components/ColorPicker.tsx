@@ -35,8 +35,6 @@ export const ColorPicker = ({
             if (item === actualColor) {
                 return {
                     color,
-                    hex: toHexString(color),
-                    name: color?.name ?? '',
                     position: parseInt(colorPosition),
                 };
             } else {
@@ -56,7 +54,7 @@ export const ColorPicker = ({
     };
 
     return (
-        <div className="tw-z-[10]">
+        <div>
             <Flyout
                 fixedHeader={
                     <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
