@@ -20,8 +20,6 @@ const emptyStateColors = [
             alpha: 1,
             name: 'Light gray',
         } as Color,
-        hex: '#F1F1F1',
-        name: 'Light gray',
         position: 0,
     },
     {
@@ -32,8 +30,6 @@ const emptyStateColors = [
             alpha: 1,
             name: 'White',
         } as Color,
-        hex: '#FFFFFF',
-        name: 'White',
         position: 100,
     },
 ];
@@ -136,19 +132,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     }}
                 ></div>
             </div>
-            {!isEditing && (
-                <div className="tw-pt-2">
-                    {gradientColors?.map((gradientColor, index) => (
-                        <SquareBadge
-                            key={toHexString(gradientColor.color) + gradientColor.position}
-                            index={index}
-                            lastIndex={lastIndex}
-                            gradientColor={gradientColor}
-                        />
-                    ))}
-                </div>
-            )}
-            {isEditing && (
+            {isEditing ? (
                 <div>
                     <div className="tw-relative">
                         <div onMouseOver={handleMouseMove} onMouseLeave={handleMouseLeave}>
@@ -180,6 +164,17 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}
                             setCurrentlyEditingPosition={setCurrentlyEditingPosition}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="tw-pt-2">
+                    {gradientColors?.map((gradientColor, index) => (
+                        <SquareBadge
+                            key={toHexString(gradientColor.color) + gradientColor.position}
+                            index={index}
+                            lastIndex={lastIndex}
+                            gradientColor={gradientColor}
                         />
                     ))}
                 </div>
