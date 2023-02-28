@@ -122,13 +122,15 @@ export const Attachments = ({
 
     return (
         <div className="tw-flex tw-gap-2" data-test-id="attachments">
-            <button
-                data-test-id="attachments-download"
-                onClick={onDownload}
-                className="tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed  tw-text-box-neutral-strong tw-outline tw-outline-1 tw-outline-offset-[1px] tw-p-[6px] tw-outline-line"
-            >
-                <IconArrowCircleDown16 />
-            </button>
+            {isEditing && (
+                <button
+                    data-test-id="attachments-download"
+                    onClick={onDownload}
+                    className="tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed  tw-text-box-neutral-strong tw-outline tw-outline-1 tw-outline-offset-[1px] tw-p-[6px] tw-outline-line"
+                >
+                    <IconArrowCircleDown16 />
+                </button>
+            )}
 
             {(isEditing || (internalItems?.length ?? 0) > 0) && (
                 <div className="-tw-mx-3" data-test-id="attachments-flyout-button">

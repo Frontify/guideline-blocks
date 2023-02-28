@@ -8,7 +8,7 @@ import { Settings, mapCaptionPositionClasses } from './types';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_SETTING_ID } from './settings';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { hasRichTextValue, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { Image } from './components/Image';
 
 export const ImageBlock = ({ appBridge }: BlockProps) => {
@@ -16,6 +16,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_SETTING_ID]?.[0];
     const isEditing = useEditorState(appBridge);
+    console.log('blockSettings', blockSettings.name, hasRichTextValue(blockSettings.name));
 
     return (
         <div
@@ -31,7 +32,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 <Image appBridge={appBridge} blockSettings={blockSettings} isEditing={isEditing} image={image} />
             )}
             <ImageCaption
-                name={blockSettings.name}
+                name={blockSettings.name ?? image?.fileName}
                 description={blockSettings.description}
                 onNameChange={(value) => setBlockSettings({ ...blockSettings, name: value })}
                 onDescriptionChange={(value) => setBlockSettings({ ...blockSettings, description: value })}
