@@ -2,7 +2,7 @@
 
 import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { DEFAULT_CONTENT_DESCRIPTION, DEFAULT_CONTENT_NAME, captionPlugins, titlePlugins } from './helpers';
+import { DEFAULT_CONTENT_DESCRIPTION, DEFAULT_CONTENT_NAME, titlePlugins } from './helpers';
 
 type ImageCaptionProps = {
     name?: string;
@@ -26,8 +26,6 @@ export const ImageCaption = ({
     const rawDescription = JSON.stringify(parseRawValue({ raw: description ?? '' }));
     const descriptionHtml = serializeRawToHtml(rawDescription, designTokens);
 
-    console.log('descriptionHtml', description);
-
     return (
         <div className="tw-mt-3 tw-gap-1 tw-flex-1 tw-w-full">
             {isEditing ? (
@@ -35,22 +33,19 @@ export const ImageCaption = ({
                     <RichTextEditor
                         value={name ?? DEFAULT_CONTENT_NAME}
                         border={false}
-                        readonly={!isEditing}
                         onBlur={onNameChange}
                         onTextChange={onNameChange}
                         plugins={titlePlugins}
-                        designTokens={designTokens ?? undefined}
-                        placeholder={isEditing ? 'Asset name' : undefined}
+                        designTokens={designTokens}
+                        placeholder="Asset name"
                     />
                     <RichTextEditor
                         value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                         border={false}
-                        readonly={!isEditing}
                         onTextChange={onDescriptionChange}
                         onBlur={onDescriptionChange}
-                        plugins={captionPlugins}
                         designTokens={designTokens}
-                        placeholder={isEditing ? 'Add a description here' : undefined}
+                        placeholder="Add a description here"
                     />
                 </>
             ) : (

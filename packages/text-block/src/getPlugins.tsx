@@ -29,7 +29,7 @@ export const getPlugins = (columns?: number, gap?: CSSProperties['gap']) => {
         return undefined;
     }
     const plugins = new PluginComposer();
-    plugins.setPlugin([new ParagraphPlugin()]);
+    plugins.setPlugin([new InitPlugin(), new ParagraphPlugin()]);
     plugins.setPlugin(new TextStylePlugin());
     plugins.setPlugin([
         new BoldPlugin(),
