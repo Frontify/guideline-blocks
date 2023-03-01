@@ -8,9 +8,8 @@ import { Color, Divider, DividerHeight, DividerStyle } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
-import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadge } from './components';
+import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadges } from './components';
 import { toHexString } from '@frontify/guideline-blocks-shared';
-import { HEIGHT_OF_SQUARE_BADGE } from './constants';
 
 const emptyStateColors = [
     {
@@ -66,13 +65,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const gradientBlockHeight = isHeightCustom
         ? heightCustom
         : gradientHeightValues[heightSimple ?? HEIGHT_DEFAULT_VALUE];
-
-    const getHeight = () => {
-        if (gradientOrientation === 90) {
-            return HEIGHT_OF_SQUARE_BADGE;
-        }
-        return HEIGHT_OF_SQUARE_BADGE * (gradientColors?.length || 0);
-    };
 
     const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
         if (showColorModal) {
@@ -175,27 +167,15 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     ))}
                 </div>
             ) : (
-                <div
-                    className="tw-relative tw-w-full"
-                    style={{
-                        height: getHeight(),
-                    }}
-                >
-                    {gradientColors?.map((gradientColor, index) => (
-                        <>
-                            {gradientBlockRef.current ? (
-                                <SquareBadge
-                                    key={toHexString(gradientColor.color) + gradientColor.position}
-                                    blockWidth={gradientBlockRef.current.clientWidth}
-                                    gradientColor={gradientColor}
-                                    index={index}
-                                    gradientColors={gradientColors}
-                                    gradientOrientation={gradientOrientation}
-                                />
-                            ) : null}
-                        </>
-                    ))}
-                </div>
+                <>
+                    {gradientBlockRef.current && gradientColors ? (
+                        <SquareBadges
+                            blockWidth={gradientBlockRef.current.clientWidth}
+                            gradientColors={gradientColors}
+                            gradientOrientation={gradientOrientation}
+                        />
+                    ) : null}
+                </>
             )}
 
             {displayCss && contentValue ? <CssValueDisplay cssValue={contentValue} /> : null}

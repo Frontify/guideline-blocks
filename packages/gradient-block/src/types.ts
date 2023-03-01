@@ -18,6 +18,12 @@ export type GradientColor = {
     position: number;
 };
 
+export type GradientColorLevel = {
+    color: Color;
+    position: number;
+    level: number;
+};
+
 export type Settings = {
     isHeightCustom?: boolean;
     heightCustom?: string;
@@ -47,9 +53,7 @@ export type CssValueDisplayProps = {
     cssValue: string;
 };
 
-export type SquareBadgeProps = {
-    gradientColor: GradientColor;
-    index: number;
+export type SquareBadgesProps = {
     blockWidth: number;
     gradientColors: GradientColor[];
     gradientOrientation: number;
