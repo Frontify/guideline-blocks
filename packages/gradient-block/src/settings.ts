@@ -1,13 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    IconEnum,
+    Choice,
     SwitchSize,
     appendUnit,
     defineSettings,
     maximumNumericalOrPixelOrAutoRule,
     maximumNumericalRule,
 } from '@frontify/guideline-blocks-settings';
+import { IconEnum } from '@frontify/fondue';
 import { GradientHeight, GradientOrientation } from './types';
 
 const IS_CUSTOM_HEIGHT_ID = 'isHeightCustom';
@@ -106,16 +107,14 @@ export const settings = defineSettings({
                             defaultValue: ORIENTATION_DEFAULT_VALUE,
                             choices: [
                                 {
-                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                    //@ts-ignore
-                                    icon: IconEnum.ArrowBidirectionalHorizontal24,
+                                    icon: IconEnum.ArrowBidirectionalHorizontal16,
                                     value: GradientOrientation.Horizontal,
                                 },
                                 {
-                                    icon: IconEnum.ArrowBidirectional24,
+                                    icon: IconEnum.ArrowBidirectional16,
                                     value: GradientOrientation.Vertical,
                                 },
-                            ],
+                            ] as Choice[],
                         },
                     ],
                 },
