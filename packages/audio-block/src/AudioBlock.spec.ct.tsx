@@ -5,6 +5,7 @@ import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { AudioBlock } from './AudioBlock';
 import { TextPosition } from './types';
 import { AUDIO_ID } from './settings';
+
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
 const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';
@@ -141,6 +142,8 @@ describe('Audio Block', () => {
         });
 
         mount(<AudioBlockWithStubs />);
-        cy.get(ItemToolbarSelector).should('have.class', 'group-hover:tw-visible');
+
+        cy.get(AudioTagSelector).realHover();
+        cy.get(ItemToolbarSelector).should('be.visible');
     });
 });
