@@ -3,7 +3,7 @@
 import { mount } from 'cypress/react';
 import { UploadPlaceholder } from './UploadPlaceholder';
 
-const UploadPlaceholderSelector = '[data-test-id="block-inject-button"]';
+const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';
 const LoadingCircle = '[data-test-id="loading-circle"]';
 
 describe('Upload Placeholder', () => {
