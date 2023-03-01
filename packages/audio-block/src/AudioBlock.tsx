@@ -52,7 +52,6 @@ customTitlePlugins
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -110,6 +109,17 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         );
     };
 
+    const onFilesDrop = (files: FileList) => {
+        console.log(files);
+        if (files) {
+            const droppedFileExtension = files[0].name.split('.').pop() as FileExtension;
+            if (FileExtensionSets.Audio.includes(droppedFileExtension)) {
+                setIsLoading(true);
+                uploadFile(files[0]);
+            }
+        }
+    };
+
     useEffect(() => {
         if (selectedFiles) {
             setIsLoading(true);
@@ -117,16 +127,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFiles]);
-
-    useEffect(() => {
-        if (droppedFiles) {
-            if (FileExtensionSets.Audio.includes(droppedFiles[0].name.split('.').pop() as FileExtension)) {
-                setIsLoading(true);
-                uploadFile(droppedFiles[0]);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [droppedFiles]);
 
     useEffect(() => {
         if (doneAll && uploadResults) {
@@ -168,8 +168,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     <UploadPlaceholder
                         onUploadClick={openFileDialog}
                         onAssetChooseClick={openAssetChooser}
+                        onFilesDrop={onFilesDrop}
                         loading={isLoading}
-                        setDroppedFiles={setDroppedFiles}
                     />
                 )
             )}

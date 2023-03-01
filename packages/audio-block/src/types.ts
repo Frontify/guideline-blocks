@@ -21,7 +21,7 @@ export type BlockAttachmentsProps = {
 export type UploadPlaceholderProps = {
     onUploadClick: () => void;
     onAssetChooseClick: () => void;
-    setDroppedFiles: (files: FileList) => void;
+    onFilesDrop: (files: FileList) => void;
     loading: boolean;
 };
 

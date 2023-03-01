@@ -6,9 +6,9 @@ import { UploadPlaceholderProps } from '../types';
 
 export const UploadPlaceholder = ({
     onUploadClick,
+    onFilesDrop,
     onAssetChooseClick,
     loading,
-    setDroppedFiles,
 }: UploadPlaceholderProps) => {
     return (
         <div data-test-id="upload-placeholder">
@@ -18,7 +18,7 @@ export const UploadPlaceholder = ({
                 secondaryLabel="Or drop it here"
                 onUploadClick={onUploadClick}
                 onAssetChooseClick={onAssetChooseClick}
-                onDrop={setDroppedFiles}
+                onDrop={onFilesDrop}
                 isLoading={loading}
             />
         </div>
