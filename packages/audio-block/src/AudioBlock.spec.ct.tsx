@@ -8,7 +8,7 @@ import { AUDIO_ID } from './settings';
 
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
-const UploadPlaceholderSelector = '[data-test-id="upload-placeholder"]';
+const UploadPlaceholderSelector = '[data-test-id="block-inject-button"]';
 const ItemToolbarSelector = '[data-test-id="item-toolbar"]';
 const AudioBlockTitleSelector = '[data-test-id="audio-block-title"]';
 const AudioBlockDescriptionSelector = '[data-test-id="audio-block-description"]';

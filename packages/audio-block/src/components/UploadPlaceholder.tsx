@@ -11,16 +11,14 @@ export const UploadPlaceholder = ({
     loading,
 }: UploadPlaceholderProps) => {
     return (
-        <div data-test-id="upload-placeholder">
-            <BlockInjectButton
-                label="Add audio asset"
-                icon={<IconPlus24 />}
-                secondaryLabel="Or drop it here"
-                onUploadClick={onUploadClick}
-                onAssetChooseClick={onAssetChooseClick}
-                onDrop={onFilesDrop}
-                isLoading={loading}
-            />
-        </div>
+        <BlockInjectButton
+            label="Add audio asset"
+            icon={<IconPlus24 />}
+            secondaryLabel="Or drop it here"
+            onUploadClick={onUploadClick}
+            onAssetChooseClick={onAssetChooseClick}
+            onDrop={onFilesDrop}
+            isLoading={loading}
+        />
     );
 };
