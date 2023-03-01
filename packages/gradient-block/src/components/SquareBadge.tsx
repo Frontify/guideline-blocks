@@ -4,6 +4,7 @@ import { SquareBadgeProps } from '../types';
 import { Color, IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
 import { toHexString } from '@frontify/guideline-blocks-shared';
 import { forwardRef, useEffect, useState } from 'react';
+import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 
 export type GradientColorLevel = {
     color: Color;
@@ -82,9 +83,9 @@ export const SquareBadge = forwardRef<HTMLDivElement, SquareBadgeProps>(
 
         const getTop = (level: number) => {
             if (gradientOrientation === 90) {
-                return level * 28;
+                return level * HEIGHT_OF_SQUARE_BADGE;
             } else {
-                return 28 * index;
+                return HEIGHT_OF_SQUARE_BADGE * index;
             }
         };
 

@@ -10,8 +10,7 @@ import { GradientColor, Settings, gradientHeightValues, gradientOrientationValue
 import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadge } from './components';
 import { toHexString } from '@frontify/guideline-blocks-shared';
-
-const HEIGHT_OF_SQUARE_BADGE = 28;
+import { HEIGHT_OF_SQUARE_BADGE } from './constants';
 
 const emptyStateColors = [
     {
