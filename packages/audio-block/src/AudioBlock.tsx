@@ -158,7 +158,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             controls
                             className={audioTagClassNames}
                             controlsList="nodownload"
-                            preload="auto"
+                            preload="metadata"
                             src={audio.genericUrl}
                         />
                     )}
@@ -177,7 +177,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 <div className="tw-flex-1">
                     <div data-test-id="audio-block-title">
                         <RichTextEditor
-                            designTokens={designTokens ?? undefined}
+                            designTokens={designTokens}
                             border={false}
                             onBlur={saveTitle}
                             placeholder={isEditing ? 'Asset name' : undefined}
@@ -188,7 +188,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     </div>
                     <div data-test-id="audio-block-description">
                         <RichTextEditor
-                            designTokens={designTokens ?? undefined}
+                            designTokens={designTokens}
                             border={false}
                             position={Position.FLOATING}
                             onBlur={saveDescription}
