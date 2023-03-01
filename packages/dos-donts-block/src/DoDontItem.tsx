@@ -1,16 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { RichTextEditor } from '@frontify/fondue';
+import { useSortable } from '@dnd-kit/sortable';
+import { Asset, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
+import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import autosize from 'autosize';
+import React, { CSSProperties, useEffect, useRef, useState } from 'react';
 import IconComponent from './components/IconComponent';
+import ImageComponent from './components/ImageComponent';
 import ItemToolbar from './components/ItemToolbar';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
-import { useSortable } from '@dnd-kit/sortable';
-import React from 'react';
-import ImageComponent from './components/ImageComponent';
-import { Asset, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 
 export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
     (
@@ -72,6 +71,10 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
             onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
         });
+
+        const onBodyTextChange = (value: string) => value !== body && onChangeItem(id, value, 'body');
+        const rawValue = JSON.stringify(parseRawValue({ raw: body ?? '' }));
+        const html = serializeRawToHtml(rawValue, designTokens);
 
         const headingColor = type === DoDontType.Do ? doColorString : dontColorString;
 
@@ -139,19 +142,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             }
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [doneAll, uploadResults]);
-
-        const descriptionRichTextEditor = useMemo(() => {
-            return (
-                <RichTextEditor
-                    designTokens={designTokens}
-                    border={false}
-                    value={body}
-                    onBlur={(value) => onChangeItem(id, value, 'body')}
-                    placeholder={editing ? 'Add a description' : ''}
-                    readonly={!editing}
-                />
-            );
-        }, [designTokens, body, id, editing, onChangeItem]);
 
         return (
             <div
@@ -277,7 +267,20 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                             data-test-id="dos-donts-content"
                             className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}
                         >
-                            {descriptionRichTextEditor}
+                            {!editing ? (
+                                <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+                            ) : (
+                                <RichTextEditor
+                                    data-test-id="rich-text-editor"
+                                    id={appBridge.getBlockId().toString()}
+                                    designTokens={designTokens}
+                                    border={false}
+                                    value={body}
+                                    onBlur={onBodyTextChange}
+                                    onTextChange={onBodyTextChange}
+                                    placeholder={editing ? 'Add a description' : ''}
+                                />
+                            )}
                         </div>
                     </div>
                     <div
