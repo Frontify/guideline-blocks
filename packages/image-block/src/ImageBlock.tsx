@@ -28,7 +28,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             {!image ? (
                 isEditing && <UploadPlaceholder appBridge={appBridge} />
             ) : (
-                <Image blockSettings={blockSettings} isEditing={isEditing} image={image} />
+                <Image appBridge={appBridge} blockSettings={blockSettings} isEditing={isEditing} image={image} />
             )}
             <ImageCaption
                 name={blockSettings.name}

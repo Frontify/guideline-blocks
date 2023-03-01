@@ -19,6 +19,7 @@ export type AttachmentItemProps = SortableAttachmentItemProps & {
     isDragging?: boolean;
     transformStyle?: Record<string, unknown>;
     draggableProps?: Record<string, unknown>;
+    isOverlay?: boolean;
 };
 
 export type SortableAttachmentItemProps = {
