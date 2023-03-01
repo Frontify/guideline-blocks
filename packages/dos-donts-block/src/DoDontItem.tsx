@@ -278,7 +278,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                     value={body}
                                     onBlur={onBodyTextChange}
                                     onTextChange={onBodyTextChange}
-                                    placeholder={editing ? 'Add a description' : ''}
+                                    placeholder="Add a description"
                                 />
                             )}
                         </div>
