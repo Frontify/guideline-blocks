@@ -22,8 +22,8 @@ describe("Dos & Don'ts Block", () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get(DosDontsBlockSelector).find('textarea').should('be.disabled').should('be.empty');
-        cy.get(DosDontsIcon).should('not.exist');
+        cy.get('[data-test-id="rte-content-html"]').should('exist');
+        cy.get('[data-test-id="rich-text-editor"]').should('not.exist');
     });
 
     it('renders an empty dos donts block in edit mode', () => {
