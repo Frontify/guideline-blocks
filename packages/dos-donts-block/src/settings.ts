@@ -1,9 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetInputSize } from '@frontify/fondue';
 import {
-    AssetChooserObjectType,
-    FileExtension,
     IconEnum,
     appendUnit,
     defineSettings,
@@ -93,70 +90,34 @@ export const settings = defineSettings({
             show: (bundle) => bundle.getBlock('style')?.value === DoDontStyle.Icons,
             blocks: [
                 {
-                    id: 'hasCustomDoIcon',
-                    type: 'switch',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
+                    id: 'doIconChoice',
+                    type: 'slider',
                     label: 'Do icon',
-                    info: 'Custom icons will always display the same way, they were created. To tweak icon colors, apply the changes in the icon, then upload it again.',
-                    off: [
+                    defaultValue: ItemIconChoice.CHECKMARK_CIRCLE,
+                    choices: [
                         {
-                            id: 'doIconChoice',
-                            type: 'slider',
-                            defaultValue: ItemIconChoice.CHECKMARK_CIRCLE,
-                            choices: [
-                                {
-                                    value: ItemIconChoice.CHECKMARK_CIRCLE,
-                                    icon: IconEnum.CheckMarkCircle20,
-                                },
-                                {
-                                    value: ItemIconChoice.CHECKMARK,
-                                    icon: IconEnum.CheckMark20,
-                                },
-                            ],
+                            value: ItemIconChoice.CHECKMARK_CIRCLE,
+                            icon: IconEnum.CheckMarkCircle20,
                         },
-                    ],
-                    on: [
                         {
-                            id: 'doIconAsset',
-                            type: 'assetInput',
-                            size: AssetInputSize.Small,
-                            extensions: [FileExtension.Svg],
-                            objectTypes: [AssetChooserObjectType.ImageVideo],
+                            value: ItemIconChoice.CHECKMARK,
+                            icon: IconEnum.CheckMark20,
                         },
                     ],
                 },
                 {
-                    id: 'hasCustomDontIcon',
-                    type: 'switch',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
+                    id: 'dontIconChoice',
+                    type: 'slider',
                     label: "Don't icon",
-                    info: 'Custom icons will always display the same way, they were created. To tweak icon colors, apply the changes in the icon, then upload it again.',
-                    off: [
+                    defaultValue: ItemIconChoice.CROSS_CIRCLE,
+                    choices: [
                         {
-                            id: 'dontIconChoice',
-                            type: 'slider',
-                            defaultValue: ItemIconChoice.CROSS_CIRCLE,
-                            choices: [
-                                {
-                                    value: ItemIconChoice.CROSS_CIRCLE,
-                                    icon: IconEnum.CrossCircle20,
-                                },
-                                {
-                                    value: ItemIconChoice.CROSS,
-                                    icon: IconEnum.Cross20,
-                                },
-                            ],
+                            value: ItemIconChoice.CROSS_CIRCLE,
+                            icon: IconEnum.CrossCircle20,
                         },
-                    ],
-                    on: [
                         {
-                            id: 'dontIconAsset',
-                            type: 'assetInput',
-                            size: AssetInputSize.Small,
-                            extensions: [FileExtension.Svg],
-                            objectTypes: [AssetChooserObjectType.ImageVideo],
+                            value: ItemIconChoice.CROSS,
+                            icon: IconEnum.Cross20,
                         },
                     ],
                 },
