@@ -38,17 +38,10 @@ import { AUDIO_ID } from './settings';
 import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ItemToolbar } from './components/ItemToolbar';
 import { BlockAttachments } from './components/BlockAttachments';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
 const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"paragraph","children":[{"text":""}]}]';
-
-const customTitlePlugins = new PluginComposer();
-customTitlePlugins
-    .setPlugin([new InitPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
-    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
-    .setPlugin([new AlignLeftPlugin(), new AlignRightPlugin(), new AlignCenterPlugin(), new AlignJustifyPlugin()])
-    .setPlugin([new ResetFormattingPlugin()]);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -63,6 +56,19 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
+
+    const customTitlePlugins = useMemo(() => {
+        return new PluginComposer()
+            .setPlugin([new InitPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
+            .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
+            .setPlugin([
+                new AlignLeftPlugin(),
+                new AlignRightPlugin(),
+                new AlignCenterPlugin(),
+                new AlignJustifyPlugin(),
+            ])
+            .setPlugin([new ResetFormattingPlugin()]);
+    }, []);
 
     const audioBlockClassNames = joinClassNames([
         'tw-flex tw-flex-col tw-gap-3',
