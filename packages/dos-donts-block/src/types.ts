@@ -107,7 +107,7 @@ export type SortableDoDontItemProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
-    designTokens: Record<string, React.CSSProperties> | null;
+    designTokens: Record<string, React.CSSProperties>;
 };
 
 export type DoDontItemProps = SortableDoDontItemProps & {
