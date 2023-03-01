@@ -8,6 +8,7 @@ import {
     maximumNumericalOrPixelOrAutoRule,
     maximumNumericalRule,
 } from '@frontify/guideline-blocks-settings';
+
 import { IconEnum } from '@frontify/fondue';
 import { GradientHeight, GradientOrientation } from './types';
 

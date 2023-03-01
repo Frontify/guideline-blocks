@@ -39,7 +39,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>(null);
-    const squareBadgesContainerRef = useRef<HTMLDivElement>(null);
     const [showAddButton, setShowAddButton] = useState(false);
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
 
@@ -145,9 +144,9 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     <div className="tw-relative">
                         <div onMouseOver={handleMouseMove} onMouseLeave={handleMouseLeave}>
                             <Divider height={DividerHeight.Small} style={DividerStyle.Solid} />
-                            {showAddButton ? (
+                            {showAddButton && gradientBlockRef.current ? (
                                 <AddColorButton
-                                    ref={gradientBlockRef}
+                                    blockWidth={gradientBlockRef.current.clientWidth}
                                     addButtonPosition={addButtonPosition}
                                     setShowColorModal={setShowColorModal}
                                     setCurrentlyEditingPosition={setCurrentlyEditingPosition}
@@ -177,21 +176,24 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                 </div>
             ) : (
                 <div
-                    ref={squareBadgesContainerRef}
                     className="tw-relative tw-w-full"
                     style={{
                         height: getHeight(),
                     }}
                 >
                     {gradientColors?.map((gradientColor, index) => (
-                        <SquareBadge
-                            key={toHexString(gradientColor.color) + gradientColor.position}
-                            ref={squareBadgesContainerRef}
-                            gradientColor={gradientColor}
-                            index={index}
-                            gradientColors={gradientColors}
-                            gradientOrientation={gradientOrientation}
-                        />
+                        <>
+                            {gradientBlockRef.current ? (
+                                <SquareBadge
+                                    key={toHexString(gradientColor.color) + gradientColor.position}
+                                    blockWidth={gradientBlockRef.current.clientWidth}
+                                    gradientColor={gradientColor}
+                                    index={index}
+                                    gradientColors={gradientColors}
+                                    gradientOrientation={gradientOrientation}
+                                />
+                            ) : null}
+                        </>
                     ))}
                 </div>
             )}
