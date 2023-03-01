@@ -56,7 +56,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
-    const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: false, accept: 'audio/*' });
+    const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { designTokens } = useGuidelineDesignTokens();
     const { title, description } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
@@ -76,19 +76,15 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             'group-hover:tw-outline tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse tw-rounded',
     ]);
 
-    const saveTitle = (value: string) => {
-        if (value !== blockSettings.title) {
-            setBlockSettings({
-                title: value,
-            });
+    const saveTitle = (title: string) => {
+        if (title !== blockSettings.title) {
+            setBlockSettings({ title });
         }
     };
 
-    const saveDescription = (value: string) => {
-        if (value !== blockSettings.description) {
-            setBlockSettings({
-                description: value,
-            });
+    const saveDescription = (description: string) => {
+        if (description !== blockSettings.description) {
+            setBlockSettings({ description });
         }
     };
 
@@ -108,7 +104,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 appBridge.closeAssetChooser();
             },
             {
-                multiSelection: false,
                 objectTypes: [AssetChooserObjectType.File],
                 extensions: FileExtensionSets.Audio,
             }
