@@ -34,7 +34,7 @@ export const ImageCaption = ({
                     readonly={!isEditing}
                     onBlur={onNameChange}
                     onTextChange={onNameChange}
-                    designTokens={designTokens ?? undefined}
+                    designTokens={designTokens}
                     placeholder={isEditing ? 'Asset name' : undefined}
                 />
             </div>
@@ -50,7 +50,7 @@ export const ImageCaption = ({
                     readonly={!isEditing}
                     onTextChange={onDescriptionChange}
                     onBlur={onDescriptionChange}
-                    designTokens={designTokens ?? undefined}
+                    designTokens={designTokens}
                     placeholder={isEditing ? 'Add a description here' : undefined}
                 />
             </div>

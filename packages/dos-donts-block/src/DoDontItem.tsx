@@ -143,7 +143,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const descriptionRichTextEditor = useMemo(() => {
             return (
                 <RichTextEditor
-                    designTokens={designTokens ?? undefined}
+                    designTokens={designTokens}
                     border={false}
                     value={body}
                     onBlur={(value) => onChangeItem(id, value, 'body')}

@@ -20,7 +20,7 @@ export const settings = defineSettings({
             id: COLUMN_NR_ID,
             type: 'slider',
             label: 'Columns',
-            defaultValue: '1',
+            defaultValue: 1,
             choices: [
                 {
                     value: 1,

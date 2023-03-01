@@ -5,16 +5,15 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { IconPlus24 } from '@frontify/fondue';
 import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
-import { IMAGE_SETTING_ID } from './settings';
+import { IMAGE_SETTING_ID } from '../settings';
 
 export const UploadPlaceholder = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
-    const { updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { updateAssetIdsFromKey, blockAssets } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({});
     const [dropedFiles, setDropedFiles] = useState<FileList | null>(null);
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
-        onUploadDone: () => setIsLoading(false),
     });
 
     useEffect(() => {
@@ -36,12 +35,11 @@ export const UploadPlaceholder = ({ appBridge }: BlockProps) => {
     const openAssetChooser = () => {
         appBridge.openAssetChooser(
             async (result) => {
-                setIsLoading(true);
                 await updateAssetIdsFromKey(IMAGE_SETTING_ID, [result[0].id]);
-                setIsLoading(false);
                 appBridge.closeAssetChooser();
             },
             {
+                selectedValueId: blockAssets[IMAGE_SETTING_ID]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.ImageVideo],
             }
         );
@@ -61,10 +59,9 @@ export const UploadPlaceholder = ({ appBridge }: BlockProps) => {
     return (
         <div className="tw-h-64">
             <BlockInjectButton
-                label="Add image"
+                label="Add or drop your image here"
                 icon={<IconPlus24 />}
                 fillParentContainer={true}
-                secondaryLabel="Or drop it here"
                 onUploadClick={openFileDialog}
                 onAssetChooseClick={openAssetChooser}
                 onDrop={setDropedFiles}
