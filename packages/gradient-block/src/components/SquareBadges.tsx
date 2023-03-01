@@ -2,7 +2,7 @@
 
 import { GradientColorLevel, SquareBadgesProps } from '../types';
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
-import { toHexString } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 
@@ -15,15 +15,17 @@ const getTopLevel = (gradientColors: GradientColorLevel[], index: number, width:
     const allColorsOnLevel = gradientColors.filter(
         (color) => color.level === level && color.position < currentColor.position
     );
+
     if (allColorsOnLevel.length <= 0) {
         return level;
     }
+
     const lastLevelColors = allColorsOnLevel[allColorsOnLevel.length - 1];
     if (lastLevelColors === undefined) {
         return level;
     }
 
-    const lastBadgeWidth = (lastLevelColors.color?.name?.length || 0) * 6 + 90;
+    const lastBadgeWidth = getBadgeWidth(lastLevelColors);
     const previousWithPercent = (lastBadgeWidth / width) * 100;
     const previousEndPosition = lastLevelColors.position + previousWithPercent;
 
@@ -34,11 +36,24 @@ const getTopLevel = (gradientColors: GradientColorLevel[], index: number, width:
     return currentLevel;
 };
 
+const getBadgeWidth = (color: GradientColorLevel) => {
+    return (color.color.name?.length || 0) * 6 + 90;
+};
+
+const isBadgeLeft = (color: GradientColorLevel, width: number) => {
+    const badgeWidth = getBadgeWidth(color);
+    const badgeWidthPercent = (badgeWidth / width) * 100;
+    if (color.position + badgeWidthPercent > 100 - badgeWidthPercent) {
+        return true;
+    }
+    return false;
+};
+
 export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }: SquareBadgesProps) => {
     const { copy, status } = useCopy();
     const [highestLevel, setHighestLevel] = useState(0);
-    const isCopied = status === 'success';
     const gradientColorLevel = gradientColors as GradientColorLevel[];
+    const isCopied = status === 'success';
 
     const setLevel = () => {
         for (let i = 0; i < gradientColorLevel.length; i++) {
@@ -66,23 +81,36 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientColorLevel]);
 
-    const getLeft = (position: number, index: number) => {
+    const getLeft = (gradientColor: GradientColorLevel) => {
         if (gradientOrientation === 90) {
-            if (index === 0) {
-                return `${0}%`;
+            if (!isBadgeLeft(gradientColor, blockWidth)) {
+                return `${gradientColor.position}%`;
+            } else {
+                return 'auto';
             }
-            return `${position}%`;
         } else {
-            return `${0}%`;
+            return '0%';
         }
     };
 
-    const getTop = (level: number, index: number) => {
+    const getTop = (gradientColor: GradientColorLevel, index: number) => {
         if (gradientOrientation === 90) {
-            return level * HEIGHT_OF_SQUARE_BADGE;
+            return gradientColor.level * HEIGHT_OF_SQUARE_BADGE;
         } else {
             return HEIGHT_OF_SQUARE_BADGE * index;
         }
+    };
+
+    const getRight = (index: number) => {
+        if (gradientOrientation !== 90 || isBadgeLeft(gradientColorLevel[index], blockWidth)) {
+            return 0;
+        } else {
+            return 'auto';
+        }
+    };
+
+    const getBadgeClasses = (isLeft: boolean) => {
+        return joinClassNames(['tw-flex', isLeft ? 'tw-row-reverse tw-pl-1' : 'tw-pr-1']);
     };
 
     return (
@@ -97,27 +125,32 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
                     key={toHexString(gradientColor.color) + gradientColor.position}
                     className="tw-absolute tw-mt-2"
                     style={{
-                        left: getLeft(gradientColor.position, index),
-                        top: getTop(gradientColor.level, index),
+                        left: getLeft(gradientColor),
+                        top: getTop(gradientColor, index),
+                        right: getRight(index),
                     }}
                 >
-                    <div className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group">
-                        <div
-                            className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-ml-[1px]"
-                            style={{
-                                backgroundColor: toHexString(gradientColor.color),
-                            }}
-                        ></div>
-                        <span className="tw-text-weak tw-pl-[5px] tw-pr-[5px] tw-text-xs">
-                            <strong>{gradientColor.color?.name}</strong>
-                        </span>
-                        <span className="tw-text-x-weak tw-text-xs tw-pr-[5px]">
-                            {toHexString(gradientColor.color)}
-                        </span>
+                    <div
+                        className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
+                        onClick={() => copy(toHexString(gradientColor.color))}
+                    >
+                        <div className={getBadgeClasses(isBadgeLeft(gradientColor, blockWidth))}>
+                            <div
+                                className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-mx-[1px]"
+                                style={{
+                                    backgroundColor: toHexString(gradientColor.color),
+                                }}
+                            ></div>
+                            <span className="tw-text-weak tw-px-1 tw-text-xs">
+                                <strong>{gradientColor.color?.name}</strong>
+                            </span>
+                            <span className="tw-text-x-weak tw-text-xs tw-pl-[5px]">
+                                {toHexString(gradientColor.color)}
+                            </span>
+                        </div>
                         <button
                             data-test-id="gradient-css-copy-button"
                             className="tw-inline-flex tw-pr-[4px] tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex"
-                            onClick={() => copy(toHexString(gradientColor.color))}
                         >
                             {isCopied ? <IconCheckMark16 /> : <IconClipboard16 />}
                         </button>
