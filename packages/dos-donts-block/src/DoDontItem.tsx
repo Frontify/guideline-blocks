@@ -272,7 +272,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                             ) : (
                                 <RichTextEditor
                                     data-test-id="rich-text-editor"
-                                    id={appBridge.getBlockId().toString()}
+                                    id={id}
                                     designTokens={designTokens}
                                     border={false}
                                     value={body}
