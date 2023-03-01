@@ -16,7 +16,7 @@ type ButtonHoverProperties = {
 };
 
 const defaultHeadingTokens: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: 'system-ui',
     fontWeight: 'normal',
     letterSpacing: 'normal',
     lineHeight: '1.3',
@@ -52,7 +52,7 @@ export const defaultHeading4Tokens: CSSProperties = {
 };
 
 export const defaultCustomTokens: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: 'system-ui',
     fontWeight: 'bold',
     fontSize: '16px',
     letterSpacing: 'normal',
@@ -66,7 +66,7 @@ export const defaultCustomTokens: CSSProperties = {
 };
 
 export const defaultBodyTextTokens: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: 'system-ui',
     fontWeight: 'normal',
     fontSize: '15px',
     letterSpacing: 'normal',
@@ -78,7 +78,7 @@ export const defaultBodyTextTokens: CSSProperties = {
 };
 
 export const defaultLinkTokens: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: 'system-ui',
     fontWeight: 'normal',
     fontSize: '15px',
     letterSpacing: 'normal',
@@ -90,7 +90,7 @@ export const defaultLinkTokens: CSSProperties = {
 };
 
 export const defaultQuoteTokens: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: 'system-ui',
     fontWeight: 'normal',
     fontSize: '24px',
     letterSpacing: 'normal',
@@ -102,7 +102,7 @@ export const defaultQuoteTokens: CSSProperties = {
 };
 
 export const defaultImageTitleTokens: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: 'system-ui',
     fontWeight: 'normal',
     fontSize: '15px',
     letterSpacing: 'normal',
@@ -116,7 +116,7 @@ export const defaultImageTitleTokens: CSSProperties = {
 };
 
 export const defaultImageCaptionTokens: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: 'system-ui',
     fontWeight: 'normal',
     fontSize: '13.5px',
     letterSpacing: 'normal',
@@ -135,7 +135,7 @@ export const defaultCalloutColors: CalloutColors = {
 };
 
 const defaultButtonTokens: CSSProperties = {
-    fontFamily: 'inherit',
+    fontFamily: 'system-ui',
     fontWeight: 'normal',
     fontSize: '13px',
     lineHeight: '1.3',
