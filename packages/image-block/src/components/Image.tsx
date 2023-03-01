@@ -84,6 +84,7 @@ export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) 
                 borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
                 backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
             }}
+            data-test-id="image-block-img-wrapper"
             className={joinClassNames([
                 'tw-relative tw-flex tw-h-auto tw-overflow-hidden',
                 mapAlignmentClasses[blockSettings.alignment],
@@ -108,8 +109,10 @@ export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) 
                     />
                 </div>
                 <img
+                    data-test-id="image-block-img"
                     className="tw-flex"
-                    src={image.genericUrl}
+                    loading="lazy"
+                    src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
                     alt={image.fileName}
                     style={{
                         width: image.width,
