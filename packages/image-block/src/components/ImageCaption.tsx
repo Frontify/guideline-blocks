@@ -2,7 +2,7 @@
 
 import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { DEFAULT_CONTENT_DESCRIPTION, DEFAULT_CONTENT_NAME, titlePlugins } from './helpers';
+import { DEFAULT_CONTENT_DESCRIPTION, DEFAULT_CONTENT_NAME, captionPlugins, titlePlugins } from './helpers';
 
 type ImageCaptionProps = {
     name?: string;
@@ -31,6 +31,7 @@ export const ImageCaption = ({
             {isEditing ? (
                 <>
                     <RichTextEditor
+                        id="image-title"
                         value={name ?? DEFAULT_CONTENT_NAME}
                         border={false}
                         onBlur={onNameChange}
@@ -40,10 +41,12 @@ export const ImageCaption = ({
                         placeholder="Asset name"
                     />
                     <RichTextEditor
+                        id="image-caption"
                         value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                         border={false}
                         onTextChange={onDescriptionChange}
                         onBlur={onDescriptionChange}
+                        plugins={captionPlugins}
                         designTokens={designTokens}
                         placeholder="Add a description here"
                     />
