@@ -43,7 +43,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
 
     const {
         gradientColors,
-        contentValue,
         isOrientationCustom,
         orientationCustom,
         orientationSimple,
@@ -66,31 +65,35 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         ? heightCustom
         : gradientHeightValues[heightSimple ?? HEIGHT_DEFAULT_VALUE];
 
+    const parseGradientColorsToCss = () => {
+        let colorsAsString = '';
+        const sortedColors = colors.sort((a, b) => a.position - b.position);
+        for (const color of sortedColors) {
+            colorsAsString += `, ${toHexString(color.color)} ${color.position}%`;
+        }
+
+        return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
+    };
+
     const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
         if (showColorModal) {
             return;
         }
 
         const rect = event.currentTarget.getBoundingClientRect();
-        const { clientX: mouseX } = event.nativeEvent;
+        const { clientX } = event.nativeEvent;
 
         const sliderLeft = rect.x;
 
-        const relativeMouseX = mouseX - sliderLeft;
+        const relativeMouseX = clientX - sliderLeft;
 
-        const percentages = colors.map((color) => color.position);
-
-        const points = percentages.map((p) => (p * rect.width) / 100);
+        const points = colors.map(({ position }) => (position * rect.width) / 100);
         const isTouchingABreakpoint = points.find((p) => !!(p - 4 < relativeMouseX && p + 12 > relativeMouseX));
 
         if (!isTouchingABreakpoint) {
             setAddButtonPosition({ left: relativeMouseX - 16 / 2, top: 9 });
             setShowAddButton(true);
         }
-    };
-
-    const handleMouseLeave = () => {
-        setShowAddButton(false);
     };
 
     useEffect(() => {
@@ -103,19 +106,8 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     }, [gradientColors]);
 
     useEffect(() => {
-        const parseGradientColorsToString = () => {
-            let colorsAsString = '';
-            const sortedColors = colors.sort((a, b) => a.position - b.position);
-            for (const color of sortedColors) {
-                colorsAsString += `, ${toHexString(color.color)} ${color.position}%`;
-            }
-
-            return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
-        };
-
         setBlockSettings({
             gradientColors: colors,
-            contentValue: parseGradientColorsToString(),
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientOrientation, colors]);
@@ -127,14 +119,14 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     className="tw-w-full tw-h-4 tw-rounded"
                     style={{
                         height: gradientBlockHeight,
-                        background: contentValue,
+                        background: parseGradientColorsToCss(),
                     }}
-                ></div>
+                />
             </div>
             {isEditing ? (
                 <div>
                     <div className="tw-relative">
-                        <div onMouseOver={handleMouseMove} onMouseLeave={handleMouseLeave}>
+                        <div onMouseOver={handleMouseMove} onMouseLeave={() => setShowAddButton(false)}>
                             <Divider height={DividerHeight.Small} style={DividerStyle.Solid} />
                             {showAddButton && gradientBlockRef.current ? (
                                 <AddColorButton
@@ -178,7 +170,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                 </>
             )}
 
-            {displayCss && contentValue ? <CssValueDisplay cssValue={contentValue} /> : null}
+            {displayCss ? <CssValueDisplay cssValue={parseGradientColorsToCss()} /> : null}
         </div>
     );
 };

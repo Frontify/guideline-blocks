@@ -93,14 +93,12 @@ export const ColorPicker = ({
             trigger={null}
         >
             <div className="tw-flex">
-                <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-[40px] ">
+                <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-10">
                     <Text color="weak">Color</Text>
                     <ColorPickerFlyout
                         currentColor={color}
                         onClose={() => setShowColorModal(false)}
-                        onSelect={(color) => {
-                            setColor(color);
-                        }}
+                        onSelect={setColor}
                     />
 
                     <span className="tw-flex tw-mt-6">
@@ -116,11 +114,7 @@ export const ColorPicker = ({
                             />
                         </span>
                     </span>
-                    <TextInput
-                        value={colorPosition}
-                        onChange={(input) => setColorPosition(input)}
-                        type={TextInputType.Number}
-                    />
+                    <TextInput value={colorPosition} onChange={setColorPosition} type={TextInputType.Number} />
                 </div>
             </div>
         </Flyout>

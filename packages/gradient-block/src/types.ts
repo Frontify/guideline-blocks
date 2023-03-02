@@ -16,13 +16,8 @@ export enum GradientOrientation {
 export type GradientColor = {
     color: Color;
     position: number;
-};
-
-export type GradientColorLevel = {
-    color: Color;
-    position: number;
-    level: number;
-    isLeft: boolean;
+    level?: number;
+    isLeft?: boolean;
 };
 
 export type Settings = {
@@ -33,9 +28,7 @@ export type Settings = {
     orientationCustom: number;
     orientationSimple: GradientOrientation;
     displayCss?: boolean;
-    content?: string;
     gradientColors?: GradientColor[];
-    contentValue?: string;
     gradientOrientation: number;
 };
 
