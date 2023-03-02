@@ -12,8 +12,16 @@ export const ColorTooltip = ({
     setShowColorModal,
     setCurrentlyEditingPosition,
 }: ColorTooltipProps) => {
+    const getLeft = () => {
+        if (gradientColor.position > 95) {
+            return `calc(${gradientColor.position}% - 8px)`;
+        } else {
+            return gradientColor.position + '%';
+        }
+    };
+
     return (
-        <div className="tw-absolute tw-z-10" style={{ left: `${gradientColor.position}%` }}>
+        <div className="tw-absolute tw-z-10" style={{ left: getLeft() }}>
             <Tooltip
                 alignment={TooltipAlignment.Middle}
                 content={
