@@ -22,6 +22,7 @@ export type GradientColorLevel = {
     color: Color;
     position: number;
     level: number;
+    isLeft: boolean;
 };
 
 export type Settings = {

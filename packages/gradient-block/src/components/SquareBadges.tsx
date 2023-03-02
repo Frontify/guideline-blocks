@@ -37,7 +37,7 @@ const getTopLevel = (gradientColors: GradientColorLevel[], index: number, width:
 };
 
 const getBadgeWidth = (color: GradientColorLevel) => {
-    return (color.color.name?.length || 0) * 6 + 90;
+    return (color.color.name?.length || 0) * 6 + 100;
 };
 
 const isBadgeLeft = (color: GradientColorLevel, width: number) => {
@@ -55,13 +55,16 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
     const gradientColorLevel = gradientColors as GradientColorLevel[];
     const isCopied = status === 'success';
 
-    const setLevel = () => {
+    const prepareGradientLevel = () => {
         for (let i = 0; i < gradientColorLevel.length; i++) {
+            gradientColorLevel[i].isLeft = isBadgeLeft(gradientColorLevel[i], blockWidth);
             gradientColorLevel[i].level = getTopLevel(gradientColorLevel, i, blockWidth, 0);
         }
-        setHighestLevel(
-            gradientColorLevel.reduce((prev, current) => (prev.level > current.level ? prev : current)).level
-        );
+        const allLeft = gradientColorLevel.filter((color) => color.isLeft);
+        const rightHighestLevel = gradientColorLevel.reduce((prev, current) =>
+            prev.level > current.level ? prev : current
+        ).level;
+        setHighestLevel(Math.max(allLeft.length - 1, rightHighestLevel));
     };
 
     const getHeight = () => {
@@ -72,21 +75,21 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
     };
 
     useEffect(() => {
-        setLevel();
+        prepareGradientLevel();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        setLevel();
+        prepareGradientLevel();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientColorLevel]);
 
     const getLeft = (gradientColor: GradientColorLevel) => {
         if (gradientOrientation === 90) {
-            if (!isBadgeLeft(gradientColor, blockWidth)) {
-                return `${gradientColor.position}%`;
-            } else {
+            if (gradientColor.isLeft) {
                 return 'auto';
+            } else {
+                return `${gradientColor.position}%`;
             }
         } else {
             return '0%';
@@ -101,8 +104,8 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
         }
     };
 
-    const getRight = (index: number) => {
-        if (gradientOrientation !== 90 || isBadgeLeft(gradientColorLevel[index], blockWidth)) {
+    const getRight = (gradientColor: GradientColorLevel) => {
+        if (gradientColor.isLeft && gradientOrientation === 90) {
             return 0;
         } else {
             return 'auto';
@@ -110,7 +113,10 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
     };
 
     const getBadgeClasses = (isLeft: boolean) => {
-        return joinClassNames(['tw-flex', isLeft ? 'tw-row-reverse tw-pl-1' : 'tw-pr-1']);
+        return joinClassNames([
+            'tw-flex',
+            isLeft && gradientOrientation === 90 ? 'tw-flex-row-reverse tw-pl-1' : 'tw-pr-1',
+        ]);
     };
 
     return (
@@ -127,16 +133,16 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
                     style={{
                         left: getLeft(gradientColor),
                         top: getTop(gradientColor, index),
-                        right: getRight(index),
+                        right: getRight(gradientColor),
                     }}
                 >
                     <div
                         className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
                         onClick={() => copy(toHexString(gradientColor.color))}
                     >
-                        <div className={getBadgeClasses(isBadgeLeft(gradientColor, blockWidth))}>
+                        <div className={getBadgeClasses(gradientColor.isLeft)}>
                             <div
-                                className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-mx-[1px]"
+                                className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-mx-0."
                                 style={{
                                     backgroundColor: toHexString(gradientColor.color),
                                 }}
@@ -144,7 +150,7 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
                             <span className="tw-text-weak tw-px-1 tw-text-xs">
                                 <strong>{gradientColor.color?.name}</strong>
                             </span>
-                            <span className="tw-text-x-weak tw-text-xs tw-pl-[5px]">
+                            <span className="tw-text-x-weak tw-text-xs tw-pl-1">
                                 {toHexString(gradientColor.color)}
                             </span>
                         </div>
