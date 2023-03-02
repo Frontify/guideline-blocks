@@ -122,7 +122,7 @@ export const Attachments = ({
 
     return (
         <div className="tw-flex tw-gap-2" data-test-id="attachments">
-            {isEditing && (
+            {onDownload && (
                 <button
                     data-test-id="attachments-download"
                     onClick={onDownload}
