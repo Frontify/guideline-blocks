@@ -115,7 +115,7 @@ describe('Audio Block', () => {
             },
         });
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockSelector).should('have.class', 'tw-flex-col-reverse');
+        cy.get(AudioBlockSelector).should('have.css', 'flex-direction', 'column-reverse');
     });
 
     it('renders an audio block with an audio asset in view mode with text position below', () => {
@@ -129,7 +129,7 @@ describe('Audio Block', () => {
             },
         });
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockSelector).should('not.have.class', 'tw-flex-col-reverse');
+        cy.get(AudioBlockSelector).should('have.css', 'flex-direction', 'column');
     });
 
     it('renders an audio block with an audio asset in editor mode toolbar is shown on hover', () => {
