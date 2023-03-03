@@ -11,14 +11,11 @@ export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
 
     return (
         <div
-            data-test-id="gradient-css-snippet-block"
+            data-test-id="gradient-css-snippet"
             className="tw-mt-8 tw-overflow-hidden tw-border tw-border-line tw-rounded tw-text-sm tw-font-mono"
         >
             <div className="tw-relative tw-group/copy CodeMirror-readonly">
-                <div
-                    data-test-id="gradient-css-snippet-header"
-                    className="tw-py-2.5 tw-pl-5 tw-pr-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center"
-                >
+                <div className="tw-py-2.5 tw-pl-5 tw-pr-3 tw-bg-black-5 tw-border-b tw-border-black-10 tw-text-s tw-flex tw-justify-between tw-items-center">
                     <span className="tw-text-text-weak tw-font-sans">CSS</span>
                     <button
                         data-test-id="gradient-css-copy-button"
