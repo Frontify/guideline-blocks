@@ -85,7 +85,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         const relativeMouseX = clientX - sliderLeft;
 
         const points = colors.map(({ position }) => (position * rect.width) / 100);
-        const isTouchingABreakpoint = points.find((p) => !!(p - 4 < relativeMouseX && p + 12 > relativeMouseX));
+        const isTouchingABreakpoint = points.find((p) => p - 4 < relativeMouseX && p + 12 > relativeMouseX);
 
         if (!isTouchingABreakpoint) {
             setAddButtonPosition({ left: relativeMouseX - 16 / 2, top: 9 });

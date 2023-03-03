@@ -13,7 +13,7 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
 
     const prepareGradients = () => {
         for (const [index, color] of gradientColors.entries()) {
-            color.isReverse = isBadgeLeft(gradientColors[index], blockWidth);
+            color.isReverse = isBadgeLeft(color, blockWidth);
             color.level = getTopLevel(gradientColors, index, blockWidth, 0);
         }
 
@@ -51,7 +51,7 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
     };
 
     const getTop = (gradientColor: GradientColor, index: number) => {
-        if (gradientColor.level !== undefined) {
+        if (gradientColor.level) {
             if (gradientOrientation === 90) {
                 return gradientColor.level * HEIGHT_OF_SQUARE_BADGE;
             } else {
@@ -66,7 +66,8 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
         if (gradientOrientation === 90) {
             if (gradientColor.isReverse) {
                 const badgeWidthInPercent = getBadgeWidthInPercent(gradientColor, blockWidth);
-                return `${gradientColor.position - badgeWidthInPercent}%`;
+                const copyButtonInPercent = getCopyButtonWidthInPercent(blockWidth);
+                return `${gradientColor.position - (badgeWidthInPercent - copyButtonInPercent)}%`;
             } else {
                 return `${gradientColor.position}%`;
             }
@@ -140,7 +141,7 @@ const getTopLevel = (gradientColors: GradientColor[], index: number, width: numb
     );
 
     const lastLevelColors = allColorsOnLevel[allColorsOnLevel.length - 1];
-    if (lastLevelColors === undefined) {
+    if (!lastLevelColors) {
         return level;
     }
 
@@ -158,6 +159,10 @@ const getTopLevel = (gradientColors: GradientColor[], index: number, width: numb
 const getBadgeWidthInPercent = (color: GradientColor, width: number) => {
     const badgeWidth = (color.color?.name?.length || 0) * 6 + 100;
     return (badgeWidth / width) * 100;
+};
+
+const getCopyButtonWidthInPercent = (width: number) => {
+    return (16 / width) * 100;
 };
 
 const isBadgeLeft = (color: GradientColor, width: number) => {
