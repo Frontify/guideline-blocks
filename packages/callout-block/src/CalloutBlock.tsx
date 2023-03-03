@@ -74,8 +74,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.textValue ?? '' }));
     const html = serializeRawToHtml(rawValue, calloutDesignTokens);
 
-    console.log({ html });
-
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
             <div
