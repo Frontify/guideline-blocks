@@ -8,6 +8,7 @@ import { ColorTooltipProps } from '../types';
 export const ColorTooltip = ({
     gradientColor,
     gradientColors,
+    showColorModal,
     setColors,
     setShowColorModal,
     setCurrentlyEditingPosition,
@@ -31,14 +32,16 @@ export const ColorTooltip = ({
                             style={{
                                 backgroundColor: toHexString(gradientColor.color),
                             }}
-                        ></span>
-                        <EditAndDeleteColorBox
-                            color={gradientColor}
-                            gradientColors={gradientColors}
-                            setColors={setColors}
-                            setShowColorModal={setShowColorModal}
-                            setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                         />
+                        {!showColorModal ? (
+                            <EditAndDeleteColorBox
+                                color={gradientColor}
+                                gradientColors={gradientColors}
+                                setColors={setColors}
+                                setShowColorModal={setShowColorModal}
+                                setCurrentlyEditingPosition={setCurrentlyEditingPosition}
+                            />
+                        ) : null}
                     </>
                 }
                 position={TooltipPosition.Bottom}

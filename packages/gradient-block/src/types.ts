@@ -78,6 +78,7 @@ export type EditAndDeleteColorBoxProps = {
 export type ColorTooltipProps = {
     gradientColor: GradientColor;
     gradientColors: GradientColor[];
+    showColorModal: boolean;
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
     setCurrentlyEditingPosition: (value: number) => void;

@@ -139,6 +139,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                             key={toHexString(gradientColor.color) + gradientColor.position}
                             gradientColor={gradientColor}
                             gradientColors={gradientColors}
+                            showColorModal={showColorModal}
                             setColors={setColors}
                             setShowColorModal={setShowColorModal}
                             setCurrentlyEditingPosition={setCurrentlyEditingPosition}
