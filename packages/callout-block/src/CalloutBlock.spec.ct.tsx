@@ -7,17 +7,27 @@ import { ICON_ASSET_ID } from './settings';
 import { Alignment, Icon, Padding, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
+const RichTextEditor = '[data-test-id="rich-text-editor"]';
 const CalloutWrapper = '[data-test-id="callout-wrapper"]';
 const CalloutIcon = '[data-test-id="callout-icon"]';
 const CalloutIconCustom = '[data-test-id="callout-icon-custom"]';
 const CalloutIconInfo = '[data-test-id="callout-icon-info"]';
 
 describe('Callout Block', () => {
-    it('renders a callout block', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock);
+    it('renders a callout block in edit mode', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, { editorState: true });
 
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutBlockSelector).should('exist');
+        cy.get(RichTextEditor).should('exist');
+    });
+
+    it('should not be able to input to a callout block when in view mode', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {});
+
+        mount(<TextBlockWithStubs />);
+        cy.get('[data-test-id="rte-content-html"]').should('exist');
+        cy.get(RichTextEditor).should('not.exist');
     });
 
     it('renders a callout block with the correct layout settings', () => {
