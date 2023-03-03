@@ -90,6 +90,7 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
         >
             {gradientColors.map((gradientColor, index) => (
                 <div
+                    data-test-id="square-badge"
                     key={toHexString(gradientColor.color) + gradientColor.position}
                     className="tw-absolute tw-mt-2"
                     style={{

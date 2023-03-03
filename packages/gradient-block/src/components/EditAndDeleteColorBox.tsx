@@ -24,7 +24,10 @@ export const EditAndDeleteColorBox = ({
     };
 
     return (
-        <div className="tw-absolute tw-flex tw-bg-base tw-border tw-border-box-selected-strong tw-rounded tw-w-13 tw-h-7 tw-top-9 -tw-left-2">
+        <div
+            data-test-id="edit-and-delete-color-box"
+            className="tw-absolute tw-flex tw-bg-base tw-border tw-border-box-selected-strong tw-rounded tw-w-13 tw-h-7 tw-top-9 -tw-left-2"
+        >
             <Button
                 emphasis={ButtonEmphasis.Strong}
                 hugWidth
