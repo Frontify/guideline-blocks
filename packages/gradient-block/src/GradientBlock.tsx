@@ -38,9 +38,10 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>(null);
-    const [showAddButton, setShowAddButton] = useState(false);
+    const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
-
+    const [showAddButton, setShowAddButton] = useState(false);
+    const [showColorModal, setShowColorModal] = useState(false);
     const {
         gradientColors,
         isOrientationCustom,
@@ -51,16 +52,12 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         heightSimple,
         displayCss,
     } = blockSettings;
-
     const initialColors = !gradientColors || !gradientColors?.length ? emptyStateColors : gradientColors;
     const [colors, setColors] = useState<GradientColor[]>(initialColors);
     //const [colors, setColors] = useState<GradientColor[]>(emptyStateColors);
     const gradientOrientation = isOrientationCustom
         ? orientationCustom
         : gradientOrientationValues[orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
-
-    const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
-    const [showColorModal, setShowColorModal] = useState(false);
     const gradientBlockHeight = isHeightCustom
         ? heightCustom
         : gradientHeightValues[heightSimple ?? HEIGHT_DEFAULT_VALUE];

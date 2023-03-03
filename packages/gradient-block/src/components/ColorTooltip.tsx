@@ -16,7 +16,7 @@ export const ColorTooltip = ({
         if (gradientColor.position > 95) {
             return `calc(${gradientColor.position}% - 8px)`;
         } else {
-            return gradientColor.position + '%';
+            return `${gradientColor.position}%`;
         }
     };
 
