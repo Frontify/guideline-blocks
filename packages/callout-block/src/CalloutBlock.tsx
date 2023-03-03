@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
+import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     hasRichTextValue,
     isDark,
@@ -17,7 +18,6 @@ import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 import { useCalloutColors } from './utils/useCalloutColors';
-import type { BlockProps } from '@frontify/guideline-blocks-settings';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -54,6 +54,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const defaultTextColor = isDark(color) ? 'white' : 'black';
     const textColor = blockSettings.appearance === Appearance.Light ? color : defaultTextColor;
+    const calloutDesignTokens = useCalloutColors(designTokens, textColor);
 
     const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center',
@@ -70,6 +71,8 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
+    const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.textValue ?? '' }));
+    const html = serializeRawToHtml(rawValue, calloutDesignTokens);
 
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
@@ -90,15 +93,19 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                         color={textColor}
                     />
                 )}
-                <RichTextEditor
-                    onTextChange={onTextChange}
-                    onBlur={onTextChange}
-                    readonly={!isEditing}
-                    border={false}
-                    value={blockSettings.textValue}
-                    placeholder="Type your text here"
-                    designTokens={useCalloutColors(designTokens, textColor)}
-                />
+                {!isEditing ? (
+                    <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+                ) : (
+                    <RichTextEditor
+                        id={appBridge.getBlockId().toString()}
+                        designTokens={calloutDesignTokens}
+                        value={blockSettings.textValue}
+                        border={false}
+                        placeholder="Type your text here"
+                        onTextChange={onTextChange}
+                        onBlur={onTextChange}
+                    />
+                )}
             </div>
         </div>
     );

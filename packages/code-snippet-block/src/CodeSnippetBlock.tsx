@@ -5,12 +5,14 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     Dropdown,
     DropdownSize,
-    IconEnum,
+    IconCheckMark16,
+    IconCheckMark24,
+    IconClipboard16,
+    IconClipboard24,
     Tooltip,
     TooltipAlignment,
     TooltipPosition,
     debounce,
-    iconsMap,
     merge,
 } from '@frontify/fondue';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -57,7 +59,15 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
     const getStyle = () => headerThemes[blockSettings.theme ?? 'default'];
 
     const getCopyButtonText = () =>
-        isCopied ? <>{iconsMap[IconEnum.CheckMark16]} Copied</> : <>{iconsMap[IconEnum.Clipboard16]} Copy</>;
+        isCopied ? (
+            <>
+                <IconCheckMark16 /> Copied
+            </>
+        ) : (
+            <>
+                <IconClipboard16 /> Copy
+            </>
+        );
 
     const getCurrentLanguageFromLangs = () => {
         if (selectedLanguage !== 'plain' && Object.keys(langs).includes(selectedLanguage)) {
@@ -180,7 +190,7 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                                         style={getStyle()}
                                         onClick={handleCopy}
                                     >
-                                        {isCopied ? iconsMap[IconEnum.CheckMark24] : iconsMap[IconEnum.Clipboard24]}
+                                        {isCopied ? <IconCheckMark24 /> : <IconClipboard24 />}
                                     </button>
                                 }
                                 withArrow
