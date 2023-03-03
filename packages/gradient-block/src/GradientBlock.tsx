@@ -76,21 +76,11 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         if (showColorModal) {
             return;
         }
-
         const rect = event.currentTarget.getBoundingClientRect();
         const { clientX } = event.nativeEvent;
-
-        const sliderLeft = rect.x;
-
-        const relativeMouseX = clientX - sliderLeft;
-
-        const points = colors.map(({ position }) => (position * rect.width) / 100);
-        const isTouchingABreakpoint = points.find((p) => p - 4 < relativeMouseX && p + 12 > relativeMouseX);
-
-        if (!isTouchingABreakpoint) {
-            setAddButtonPosition({ left: relativeMouseX - 16 / 2, top: 9 });
-            setShowAddButton(true);
-        }
+        const relativeMouseX = clientX - rect.x;
+        setAddButtonPosition({ left: relativeMouseX - 16 / 2, top: 9 });
+        setShowAddButton(true);
     };
 
     useEffect(() => {
