@@ -8,6 +8,7 @@ import { Alignment, Icon, Padding, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
+const HtmlContent = '[data-test-id="rte-content-html"]';
 const CalloutWrapper = '[data-test-id="callout-wrapper"]';
 const CalloutIcon = '[data-test-id="callout-icon"]';
 const CalloutIconCustom = '[data-test-id="callout-icon-custom"]';
@@ -26,7 +27,7 @@ describe('Callout Block', () => {
         const [TextBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {});
 
         mount(<TextBlockWithStubs />);
-        cy.get('[data-test-id="rte-content-html"]').should('exist');
+        cy.get(HtmlContent).should('exist');
         cy.get(RichTextEditor).should('not.exist');
     });
 
