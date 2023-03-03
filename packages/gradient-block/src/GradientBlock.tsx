@@ -38,7 +38,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const gradientBlockRef = useRef<HTMLDivElement>(null);
-    const [addButtonPosition, setAddButtonPosition] = useState({ left: 0, top: 0 });
+    const [addButtonPositionLeft, setAddButtonPositionLeft] = useState(0);
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
     const [showAddButton, setShowAddButton] = useState(false);
     const [showColorModal, setShowColorModal] = useState(false);
@@ -79,7 +79,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const { clientX } = event.nativeEvent;
         const relativeMouseX = clientX - rect.x;
-        setAddButtonPosition({ left: relativeMouseX - 16 / 2, top: 9 });
+        setAddButtonPositionLeft(relativeMouseX - 16 / 2);
         setShowAddButton(true);
     };
 
@@ -118,7 +118,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                             {showAddButton && gradientBlockRef.current ? (
                                 <AddColorButton
                                     blockWidth={gradientBlockRef.current.clientWidth}
-                                    addButtonPosition={addButtonPosition}
+                                    addButtonPositionLeft={addButtonPositionLeft}
                                     setShowColorModal={setShowColorModal}
                                     setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                                 />

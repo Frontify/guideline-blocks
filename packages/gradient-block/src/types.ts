@@ -61,7 +61,7 @@ export type ColorPickerProps = {
 };
 
 export type AddColorButtonProps = {
-    addButtonPosition: { top: number; left: number };
+    addButtonPositionLeft: number;
     blockWidth: number;
     setShowColorModal: (show: boolean) => void;
     setCurrentlyEditingPosition: (value: number) => void;

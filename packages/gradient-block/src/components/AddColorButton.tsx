@@ -4,10 +4,10 @@ import { IconPlus12 } from '@frontify/fondue';
 import { AddColorButtonProps } from '../types';
 
 export const AddColorButton = ({
+    addButtonPositionLeft,
     blockWidth,
-    setShowColorModal,
-    addButtonPosition,
     setCurrentlyEditingPosition,
+    setShowColorModal,
 }: AddColorButtonProps) => {
     const handleAdd = (position: number) => {
         setCurrentlyEditingPosition((position / blockWidth) * 100);
@@ -17,12 +17,14 @@ export const AddColorButton = ({
     return (
         <div
             data-test-id="gradient-add"
-            className="tw-absolute tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded tw-cursor-pointer tw-h-4 tw-w-4"
-            style={{ ...addButtonPosition }}
+            className="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-bg-box-selected-strong tw-flex tw-items-center tw-justify-center tw-rounded tw-cursor-pointer tw-h-4 tw-w-4"
+            style={{
+                left: addButtonPositionLeft,
+            }}
         >
             <span
                 className="tw-text-white tw-h-4 tw-w-4 tw-flex tw-justify-center tw-items-center tw-pt-0.5"
-                onClick={() => handleAdd(addButtonPosition.left)}
+                onClick={() => handleAdd(addButtonPositionLeft)}
             >
                 <IconPlus12 />
             </span>
