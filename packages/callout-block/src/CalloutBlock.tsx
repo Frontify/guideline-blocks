@@ -97,7 +97,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
                 ) : (
                     <RichTextEditor
-                        data-test-id="rich-text-editor"
                         id={appBridge.getBlockId().toString()}
                         designTokens={calloutDesignTokens}
                         value={blockSettings.textValue}
