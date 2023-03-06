@@ -53,7 +53,10 @@ export const ColorPicker = ({
     return (
         <Flyout
             fixedHeader={
-                <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
+                <div
+                    data-test-id="color-picker-flyout"
+                    className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10"
+                >
                     <span>Configure Color</span>
                     <span
                         className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-0.5 tw-text-strong"
@@ -64,27 +67,29 @@ export const ColorPicker = ({
                 </div>
             }
             fixedFooter={
-                <FlyoutFooter
-                    buttons={[
-                        {
-                            style: ButtonStyle.Default,
-                            emphasis: ButtonEmphasis.Strong,
-                            icon: <IconCheckMark16 />,
-                            children: 'Close',
-                            onClick: () => {
-                                if (!actualColor) {
-                                    addNewColor({
-                                        color,
-                                        position: parseInt(colorPosition),
-                                    });
-                                } else {
-                                    color && editColor();
-                                }
-                                setShowColorModal(false);
+                <div data-test-id="color-picker-flyout-footer">
+                    <FlyoutFooter
+                        buttons={[
+                            {
+                                style: ButtonStyle.Default,
+                                emphasis: ButtonEmphasis.Strong,
+                                icon: <IconCheckMark16 />,
+                                children: 'Close',
+                                onClick: () => {
+                                    if (!actualColor) {
+                                        addNewColor({
+                                            color,
+                                            position: parseInt(colorPosition),
+                                        });
+                                    } else {
+                                        color && editColor();
+                                    }
+                                    setShowColorModal(false);
+                                },
                             },
-                        },
-                    ]}
-                />
+                        ]}
+                    />
+                </div>
             }
             legacyFooter={false}
             isOpen={true}
@@ -92,7 +97,7 @@ export const ColorPicker = ({
             onOpenChange={() => true}
             trigger={null}
         >
-            <div className="tw-flex">
+            <div className="tw-flex" data-test-id="color-picker-form">
                 <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-10">
                     <Text color="weak">Color</Text>
                     <ColorPickerFlyout
@@ -100,7 +105,6 @@ export const ColorPicker = ({
                         onClose={() => setShowColorModal(false)}
                         onSelect={setColor}
                     />
-
                     <span className="tw-flex tw-mt-6">
                         <Text color="weak">Stop</Text>
                         <span className="tw-ml-1">
@@ -114,7 +118,12 @@ export const ColorPicker = ({
                             />
                         </span>
                     </span>
-                    <TextInput value={colorPosition} onChange={setColorPosition} type={TextInputType.Number} />
+                    <TextInput
+                        data-test-id="test"
+                        value={colorPosition}
+                        onChange={setColorPosition}
+                        type={TextInputType.Number}
+                    />
                 </div>
             </div>
         </Flyout>

@@ -116,11 +116,16 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
                                 {toHexString(gradientColor.color)}
                             </span>
                         </div>
-                        <button
-                            data-test-id="gradient-css-copy-button"
-                            className={getCopyButtonClasses(gradientColor.isReverse || false)}
-                        >
-                            {isCopied ? <IconCheckMark16 /> : <IconClipboard16 />}
+                        <button className={getCopyButtonClasses(gradientColor.isReverse || false)}>
+                            {isCopied ? (
+                                <span data-test-id="square-badge-checkmark">
+                                    <IconCheckMark16 />
+                                </span>
+                            ) : (
+                                <span data-test-id="square-badge-clipboard">
+                                    <IconClipboard16 />
+                                </span>
+                            )}
                         </button>
                     </div>
                 </div>

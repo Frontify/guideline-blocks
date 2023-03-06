@@ -4,8 +4,25 @@ import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { GradientBlock } from './GradientBlock';
 
-const GradientBlockSelector = '[data-test-id="gradient-block"]';
+const AddColorButtonSelector = '[data-test-id="add-color-button"]';
+const ColorPickerFlyoutSelector = '[data-test-id="color-picker-flyout"]';
+const ColorPickerFlyoutFooterSelector = '[data-test-id="color-picker-flyout-footer"]';
+const ColorTooltipSelector = '[data-test-id="color-tooltip"]';
+const ColorPointsSelector = '[data-test-id="color-points"]';
+const ColorPickerForm = '[data-test-id="color-picker-form"]';
+const CssValueSelector = '[data-test-id="css-value-display"]';
+const CssCopyButtonSelector = '[data-test-id="css-value-display-copy-button"]';
+const EditAndDeleteColorBoxSelector = '[data-test-id="edit-and-delete-color-box"]';
+const GradientBlockDisplaySelector = '[data-test-id="gradient-block-display"]';
+const GradientBlockDividerSelector = '[data-test-id="gradient-block-divider"]';
 const SquareBadgesSelector = '[data-test-id="square-badge"]';
+const SquareBadgeCheckmark = '[data-test-id="square-badge-checkmark"]';
+const SquareBadgeClipboard = '[data-test-id="square-badge-clipboard"]';
+const ButtonSelector = '[data-test-id="button"]';
+const ColorInputSelector = '[data-test-id="color-input"]';
+const ColorPreviewSelector = '[data-test-id="color-preview"]';
+const PositionInputSelector = '[data-test-id="text-input"]';
+const TriggerSelector = '[data-test-id="trigger"]';
 
 const GradientColor = [
     {
@@ -24,7 +41,7 @@ const GradientColor = [
             blue: 0,
             alpha: 1,
         },
-        position: 50,
+        position: 25,
     },
     {
         color: {
@@ -39,20 +56,173 @@ const GradientColor = [
 
 describe('Gradient Block', () => {
     it('renders a gradient block', () => {
-        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock);
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
 
         mount(<GradientBlockWithStubs />);
-        cy.get(GradientBlockSelector).should('exist');
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+        );
     });
 
     it('renders three SquareBadges', () => {
         const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
             blockSettings: {
-                colors: GradientColor,
+                gradientColors: GradientColor,
             },
         });
 
         mount(<GradientBlockWithStubs />);
-        cy.get(SquareBadgesSelector).should('have.length', 2);
+        cy.get(SquareBadgesSelector).should('have.length', 3);
+    });
+
+    it('renders a CSSValue display', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                displayCss: true,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+
+        cy.get(CssValueSelector).should('exist');
+    });
+
+    it('renders a CSSValue display in view mode click on copy button', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                displayCss: true,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+
+        cy.get(CssCopyButtonSelector).click();
+        cy.get(CssCopyButtonSelector).should('contain', 'Copied');
+    });
+
+    it('renders three color points in edit mode', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(ColorPointsSelector).should('have.length', 3);
+    });
+
+    it('click on square badge icon changes', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(SquareBadgesSelector).first().get(SquareBadgeClipboard).should('exist');
+        cy.get(SquareBadgesSelector).first().realClick();
+        cy.get(SquareBadgesSelector).first().get(SquareBadgeCheckmark).should('exist');
+    });
+
+    it('add new color button shows on hover', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDividerSelector).realHover();
+        cy.get(AddColorButtonSelector).should('exist');
+    });
+
+    it('add new color adds point on divider', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDividerSelector).realHover();
+        cy.get(AddColorButtonSelector).realClick();
+        cy.get(ColorPickerFlyoutSelector).should('exist');
+        cy.get(PositionInputSelector).clear().type('75');
+        cy.get(ColorPickerFlyoutFooterSelector).find(ButtonSelector).realClick();
+        cy.get(ColorPointsSelector).should('have.length', 4);
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(0, 0, 0) 75%, rgb(255, 255, 255) 100%)'
+        );
+    });
+
+    it('color point on hover shows tooltip', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(ColorPointsSelector).first().realHover();
+        cy.get(ColorTooltipSelector).should('exist');
+        cy.get(EditAndDeleteColorBoxSelector).should('exist');
+    });
+
+    it('edit an existing color change to blue', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(ColorPointsSelector).first().realHover();
+        cy.get(EditAndDeleteColorBoxSelector).find('button').first().realClick();
+        cy.get(ColorPickerFlyoutSelector).should('exist');
+        cy.get(ColorPickerForm).find(TriggerSelector).realClick();
+        cy.get(ColorInputSelector).first().find('input').clear().type('#0000ff');
+        cy.get(ColorPreviewSelector).parent().find(ButtonSelector).last().realClick();
+        cy.get(ColorPickerFlyoutFooterSelector).find(ButtonSelector).realClick();
+
+        cy.get(ColorPointsSelector).should('have.length', 3);
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(90deg, rgb(0, 0, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+        );
+    });
+
+    it('delete an existing color', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(ColorPointsSelector).eq(1).realHover();
+        cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').last().realClick();
+        cy.get(ColorPointsSelector).should('have.length', 2);
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)'
+        );
     });
 });

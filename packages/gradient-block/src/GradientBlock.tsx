@@ -103,6 +103,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
             <div className="tw-border tw-border-line-strong tw-rounded tw-p-0.5">
                 <div
+                    data-test-id="gradient-block-display"
                     className="tw-w-full tw-h-4 tw-rounded"
                     style={{
                         height: gradientBlockHeight,
@@ -113,7 +114,11 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             {isEditing ? (
                 <div>
                     <div className="tw-relative">
-                        <div onMouseOver={handleMouseMove} onMouseLeave={() => setShowAddButton(false)}>
+                        <div
+                            data-test-id="gradient-block-divider"
+                            onMouseOver={handleMouseMove}
+                            onMouseLeave={() => setShowAddButton(false)}
+                        >
                             <Divider height={DividerHeight.Small} style={DividerStyle.Solid} />
                             {showAddButton && gradientBlockRef.current ? (
                                 <AddColorButton

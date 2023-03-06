@@ -28,6 +28,7 @@ export const ColorTooltip = ({
                 content={
                     <>
                         <span
+                            data-test-id="color-tooltip"
                             className="tw-absolute tw-top-1 tw-left-1 tw-right-1 tw-bottom-1 tw-rounded"
                             style={{
                                 backgroundColor: toHexString(gradientColor.color),
@@ -46,7 +47,10 @@ export const ColorTooltip = ({
                 }
                 position={TooltipPosition.Bottom}
                 triggerElement={
-                    <div className="tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong -tw-mt-[22px] tw-bg-black-20"></div>
+                    <div
+                        data-test-id="color-points"
+                        className="tw-absolute tw-w-2 tw-h-2 tw-rounded-full tw-bg-line-x-strong -tw-mt-[22px] tw-bg-black-20"
+                    ></div>
                 }
                 withArrow
             />
