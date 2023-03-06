@@ -55,8 +55,8 @@ export type SquareBadgesRowProps = {
 export type SquareBadgeProps = {
     gradientColor: GradientColor;
     gradientOrientation: number;
-    left: string;
-    top: number;
+    index: number;
+    blockWidth: number;
 };
 
 export type ColorPickerProps = {

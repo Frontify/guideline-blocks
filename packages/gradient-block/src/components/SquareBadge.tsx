@@ -1,10 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SquareBadgeProps } from '../types';
+import { GradientColor, SquareBadgeProps } from '../types';
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
 import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
+import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
+import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent } from '../helpers';
 
-export const SquareBadge = ({ gradientColor, gradientOrientation, top, left }: SquareBadgeProps) => {
+export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWidth }: SquareBadgeProps) => {
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
 
@@ -22,14 +24,40 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, top, left }: S
         ]);
     };
 
+    const getTop = (gradientColor: GradientColor, index: number) => {
+        if (gradientColor.level !== undefined) {
+            if (gradientOrientation === 90) {
+                return gradientColor.level * HEIGHT_OF_SQUARE_BADGE;
+            } else {
+                return HEIGHT_OF_SQUARE_BADGE * index;
+            }
+        } else {
+            return 0;
+        }
+    };
+
+    const getLeft = (gradientColor: GradientColor) => {
+        if (gradientOrientation === 90) {
+            if (gradientColor.isReverse) {
+                const badgeWidthInPercent = calculateBadgeWidthInPercent(gradientColor, blockWidth);
+                const copyButtonInPercent = calculateCopyButtonWidthInPercent(blockWidth);
+                return `${gradientColor.position - (badgeWidthInPercent - copyButtonInPercent) + 2}%`;
+            } else {
+                return `${gradientColor.position}%`;
+            }
+        } else {
+            return '0%';
+        }
+    };
+
     return (
         <div
             data-test-id="square-badge"
             key={toHexString(gradientColor.color) + gradientColor.position}
             className="tw-absolute tw-mt-2"
             style={{
-                left,
-                top,
+                left: getLeft(gradientColor),
+                top: getTop(gradientColor, index),
             }}
         >
             <div

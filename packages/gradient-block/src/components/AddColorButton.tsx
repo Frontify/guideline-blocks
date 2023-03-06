@@ -30,5 +30,3 @@ export const AddColorButton = ({
         </div>
     );
 };
-
-AddColorButton.displayName = 'AddColorButton';
