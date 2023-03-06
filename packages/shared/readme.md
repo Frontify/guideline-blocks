@@ -6,7 +6,7 @@
 -   `utilities` (Shared functionality without business logic)
 -   `helpers` (Shared functionality with business logic)
 
-You can get more informations in our [best practices guide](https://www.notion.so/Best-Practises-e0627785ffad4b9fa94bb7b20f91a673).
+You can get more informations in our [best practices guide](https://weare.frontify.com/auth/?referer=%2Fdocument%2F1405%23/getting-started/best-pratices).
 
 ## Development
 
