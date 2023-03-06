@@ -29,7 +29,6 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
             ) : (
                 <RichTextEditor
-                    data-test-id="rich-text-editor"
                     id={appBridge.getBlockId().toString()}
                     designTokens={designTokens}
                     value={blockSettings.content}
