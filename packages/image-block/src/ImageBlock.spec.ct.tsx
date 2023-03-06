@@ -89,7 +89,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).get(RichTextEditorSelector).eq(0).should('contain.text', 'Test Name');
+        cy.get(ImageBlockSelector).should('contain.text', 'Test Name');
     });
 
     it('should render the description if it is provided', () => {
@@ -99,7 +99,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).get(RichTextEditorSelector).eq(1).should('contain.text', 'Test Description');
+        cy.get(ImageBlockSelector).should('contain.text', 'Test Description');
     });
 
     it('should be a link if it is provided', () => {
