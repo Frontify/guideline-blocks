@@ -91,6 +91,16 @@ describe('Image Block', () => {
         cy.get(ImageBlockSelector).should('contain.text', 'Test Name');
     });
 
+    it('should render the file name if no title is provided', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockAssets: {
+                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockSelector).should('contain.text', 'fileName.png');
+    });
+
     it('should render the description if it is provided', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockSettings: {
