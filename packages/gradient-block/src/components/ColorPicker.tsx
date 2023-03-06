@@ -1,15 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    ButtonEmphasis,
-    ButtonStyle,
     Color,
     ColorPickerFlyout,
     Flyout,
     FlyoutFooter,
     IconCheckMark16,
     IconCross20,
-    IconQuestionMarkCircle16,
+    IconQuestionMarkCircle,
     IconSize,
     Text,
     TextInput,
@@ -71,8 +69,6 @@ export const ColorPicker = ({
                     <FlyoutFooter
                         buttons={[
                             {
-                                style: ButtonStyle.Default,
-                                emphasis: ButtonEmphasis.Strong,
                                 icon: <IconCheckMark16 />,
                                 children: 'Close',
                                 onClick: () => {
@@ -113,7 +109,7 @@ export const ColorPicker = ({
                                     content:
                                         'It determines when the transition from one color to the new color is complete.',
                                 }}
-                                triggerIcon={<IconQuestionMarkCircle16 />}
+                                triggerIcon={<IconQuestionMarkCircle />}
                                 iconSize={IconSize.Size12}
                             />
                         </span>

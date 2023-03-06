@@ -9,8 +9,8 @@ export enum GradientHeight {
 }
 
 export enum GradientOrientation {
-    Vertical = 'vertical',
-    Horizontal = 'horizontal',
+    Vertical = '0',
+    Horizontal = '90',
 }
 
 export type GradientColor = {
@@ -29,7 +29,6 @@ export type Settings = {
     orientationSimple: GradientOrientation;
     displayCss?: boolean;
     gradientColors?: GradientColor[];
-    gradientOrientation: number;
 };
 
 export const gradientHeightValues: Record<GradientHeight, string> = {

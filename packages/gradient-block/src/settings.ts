@@ -11,6 +11,7 @@ import {
 
 import { IconEnum } from '@frontify/fondue';
 import { GradientHeight, GradientOrientation } from './types';
+import { DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 
 export const IS_CUSTOM_HEIGHT_ID = 'isHeightCustom';
 export const HEIGHT_CUSTOM_ID = 'heightCustom';
@@ -19,9 +20,6 @@ export const HEIGHT_SIMPLE_ID = 'heightSimple';
 export const IS_CUSTOM_ORIENTATION_ID = 'isOrientationCustom';
 export const ORIENTATION_CUSTOM_ID = 'orientationCustom';
 export const ORIENTATION_SIMPLE_ID = 'orientationSimple';
-
-export const HEIGHT_DEFAULT_VALUE = GradientHeight.Small;
-export const ORIENTATION_DEFAULT_VALUE = GradientOrientation.Horizontal;
 
 export const settings = defineSettings({
     basics: [
@@ -67,7 +65,7 @@ export const settings = defineSettings({
                         {
                             id: HEIGHT_SIMPLE_ID,
                             type: 'slider',
-                            defaultValue: HEIGHT_DEFAULT_VALUE,
+                            defaultValue: DEFAULT_HEIGHT_VALUE,
                             choices: [
                                 {
                                     label: 'S',
@@ -98,14 +96,14 @@ export const settings = defineSettings({
                             type: 'input',
                             placeholder: 'e.g. 90°',
                             clearable: true,
-                            rules: [maximumNumericalRule(180)],
+                            rules: [maximumNumericalRule(90)],
                         },
                     ],
                     off: [
                         {
                             id: ORIENTATION_SIMPLE_ID,
                             type: 'slider',
-                            defaultValue: ORIENTATION_DEFAULT_VALUE,
+                            defaultValue: DEFAULT_ORIENTATION_VALUE,
                             choices: [
                                 {
                                     icon: IconEnum.ArrowBidirectionalHorizontal16,

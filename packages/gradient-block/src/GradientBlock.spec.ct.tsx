@@ -4,6 +4,7 @@ import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { GradientBlock } from './GradientBlock';
 import { GradientHeight, GradientOrientation } from './types';
+import { HEIGHT_OF_SQUARE_BADGE } from './constants';
 import {
     HEIGHT_CUSTOM_ID,
     HEIGHT_SIMPLE_ID,
@@ -317,7 +318,7 @@ describe('Gradient Block', () => {
 
         cy.get(SquareBadgesSelector).each((badge, index) => {
             cy.wrap(badge).should('have.css', 'left', '0px');
-            cy.wrap(badge).should('have.css', 'top', `${index * 28}px`);
+            cy.wrap(badge).should('have.css', 'top', `${index * HEIGHT_OF_SQUARE_BADGE}px`);
         });
     });
 
@@ -338,7 +339,7 @@ describe('Gradient Block', () => {
         );
         cy.get(SquareBadgesSelector).each((badge, index) => {
             cy.wrap(badge).should('have.css', 'left', '0px');
-            cy.wrap(badge).should('have.css', 'top', `${index * 28}px`);
+            cy.wrap(badge).should('have.css', 'top', `${index * HEIGHT_OF_SQUARE_BADGE}px`);
         });
     });
 });

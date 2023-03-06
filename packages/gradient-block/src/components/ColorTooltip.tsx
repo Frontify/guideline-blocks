@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Tooltip, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
+import { Tooltip } from '@frontify/fondue';
 import { toHexString } from '@frontify/guideline-blocks-shared';
 import { EditAndDeleteColorBox } from './';
 import { ColorTooltipProps } from '../types';
@@ -24,7 +24,6 @@ export const ColorTooltip = ({
     return (
         <div className="tw-absolute tw-z-10" style={{ left: getLeft() }}>
             <Tooltip
-                alignment={TooltipAlignment.Middle}
                 content={
                     <>
                         <span
@@ -45,7 +44,6 @@ export const ColorTooltip = ({
                         ) : null}
                     </>
                 }
-                position={TooltipPosition.Bottom}
                 triggerElement={
                     <div
                         data-test-id="color-points"

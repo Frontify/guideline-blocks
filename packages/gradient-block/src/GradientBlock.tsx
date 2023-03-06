@@ -4,44 +4,16 @@ import { MouseEvent, useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Color, Divider, DividerHeight, DividerStyle } from '@frontify/fondue';
+import { Divider } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
-import { HEIGHT_DEFAULT_VALUE, ORIENTATION_DEFAULT_VALUE } from './settings';
+import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadges } from './components';
 import { toHexString } from '@frontify/guideline-blocks-shared';
-
-const emptyStateColors = [
-    {
-        color: {
-            red: 217,
-            green: 217,
-            blue: 213,
-            alpha: 1,
-            name: 'Light gray',
-        } as Color,
-        position: 0,
-    },
-    {
-        color: {
-            red: 255,
-            green: 255,
-            blue: 255,
-            alpha: 1,
-            name: 'White',
-        } as Color,
-        position: 100,
-    },
-];
 
 export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
-    const gradientBlockRef = useRef<HTMLDivElement>(null);
-    const [addButtonPositionLeft, setAddButtonPositionLeft] = useState(0);
-    const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
-    const [showAddButton, setShowAddButton] = useState(false);
-    const [showColorModal, setShowColorModal] = useState(false);
     const {
         gradientColors,
         isOrientationCustom,
@@ -52,15 +24,21 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         heightSimple,
         displayCss,
     } = blockSettings;
-    const initialColors = !gradientColors || !gradientColors?.length ? emptyStateColors : gradientColors;
+    const gradientBlockRef = useRef<HTMLDivElement>(null);
+    const [addButtonPositionLeft, setAddButtonPositionLeft] = useState(0);
+    const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
+    const [showAddButton, setShowAddButton] = useState(false);
+    const [showColorModal, setShowColorModal] = useState(false);
+    const initialColors = !gradientColors || !gradientColors?.length ? DEFAULT_GRADIENT_COLORS : gradientColors;
     const [colors, setColors] = useState<GradientColor[]>(initialColors);
-    //const [colors, setColors] = useState<GradientColor[]>(emptyStateColors);
+
     const gradientOrientation = isOrientationCustom
         ? orientationCustom
-        : gradientOrientationValues[orientationSimple ?? ORIENTATION_DEFAULT_VALUE];
+        : gradientOrientationValues[orientationSimple ?? DEFAULT_ORIENTATION_VALUE];
+
     const gradientBlockHeight = isHeightCustom
         ? heightCustom
-        : gradientHeightValues[heightSimple ?? HEIGHT_DEFAULT_VALUE];
+        : gradientHeightValues[heightSimple ?? DEFAULT_HEIGHT_VALUE];
 
     const parseGradientColorsToCss = () => {
         let colorsAsString = '';
@@ -86,7 +64,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     useEffect(() => {
         if (!gradientColors || !gradientColors?.length) {
             setBlockSettings({
-                gradientColors: emptyStateColors,
+                gradientColors: DEFAULT_GRADIENT_COLORS,
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -99,6 +77,8 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gradientOrientation, colors]);
 
+    const cssValue = parseGradientColorsToCss();
+
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
             <div className="tw-border tw-border-line-strong tw-rounded tw-p-0.5">
@@ -107,7 +87,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     className="tw-w-full tw-h-4 tw-rounded"
                     style={{
                         height: gradientBlockHeight,
-                        background: parseGradientColorsToCss(),
+                        background: cssValue,
                     }}
                 />
             </div>
@@ -119,7 +99,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                             onMouseOver={handleMouseMove}
                             onMouseLeave={() => setShowAddButton(false)}
                         >
-                            <Divider height={DividerHeight.Small} style={DividerStyle.Solid} />
+                            <Divider />
                             {showAddButton && gradientBlockRef.current ? (
                                 <AddColorButton
                                     blockWidth={gradientBlockRef.current.clientWidth}
@@ -162,8 +142,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     ) : null}
                 </>
             )}
-
-            {displayCss ? <CssValueDisplay cssValue={parseGradientColorsToCss()} /> : null}
+            {displayCss ? <CssValueDisplay cssValue={cssValue} /> : null}
         </div>
     );
 };
