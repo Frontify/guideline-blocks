@@ -271,7 +271,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                 <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
                             ) : (
                                 <RichTextEditor
-                                    data-test-id="rich-text-editor"
                                     id={id}
                                     designTokens={designTokens}
                                     border={false}
