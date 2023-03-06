@@ -60,7 +60,6 @@ captionPlugins
         new ResetFormattingPlugin(),
     ]);
 
-// TODO: fix RTE toolbar width
 export const titlePlugins = new PluginComposer();
 titlePlugins
     .setPlugin(textStylePlugins)
