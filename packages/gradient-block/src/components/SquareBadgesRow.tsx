@@ -28,23 +28,21 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
         setHighestLevel(Math.max(allLeft.length + leftStartLevel, rightHighestLevel));
     };
 
-    const getHeight = () => {
-        if (gradientOrientation === 90) {
-            return HEIGHT_OF_SQUARE_BADGE * highestLevel + 1;
-        }
-        return HEIGHT_OF_SQUARE_BADGE * (gradientColors?.length || 0);
-    };
-
     useEffect(() => {
         prepareGradients();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const height =
+        gradientOrientation === 90
+            ? HEIGHT_OF_SQUARE_BADGE * highestLevel + 1
+            : HEIGHT_OF_SQUARE_BADGE * (gradientColors?.length || 0);
+
     return (
         <div
             className="tw-relative tw-w-full"
             style={{
-                height: getHeight(),
+                height,
             }}
         >
             {gradientColors.map((gradientColor, index) => (

@@ -13,16 +13,10 @@ export const ColorTooltip = ({
     setShowColorModal,
     setCurrentlyEditingPosition,
 }: ColorTooltipProps) => {
-    const getLeft = () => {
-        if (gradientColor.position > 95) {
-            return `calc(${gradientColor.position}% - 8px)`;
-        } else {
-            return `${gradientColor.position}%`;
-        }
-    };
+    const left = gradientColor.position > 95 ? `calc(${gradientColor.position}% - 8px)` : `${gradientColor.position}%`;
 
     return (
-        <div className="tw-absolute tw-z-10" style={{ left: getLeft() }}>
+        <div className="tw-absolute tw-dark tw-z-10" style={{ left }}>
             <Tooltip
                 content={
                     <>
