@@ -5,12 +5,12 @@ import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { GradientBlock } from './GradientBlock';
 import { GradientHeight, GradientOrientation } from './types';
 import {
+    HEIGHT_CUSTOM_ID,
     HEIGHT_SIMPLE_ID,
     IS_CUSTOM_HEIGHT_ID,
-    HEIGHT_CUSTOM_ID,
-    ORIENTATION_SIMPLE_ID,
-    ORIENTATION_CUSTOM_ID,
     IS_CUSTOM_ORIENTATION_ID,
+    ORIENTATION_CUSTOM_ID,
+    ORIENTATION_SIMPLE_ID,
 } from './settings';
 
 const AddColorButtonSelector = '[data-test-id="add-color-button"]';
@@ -316,7 +316,7 @@ describe('Gradient Block', () => {
         );
 
         cy.get(SquareBadgesSelector).each((badge, index) => {
-            cy.wrap(badge).should('have.css', 'left', `0px`);
+            cy.wrap(badge).should('have.css', 'left', '0px');
             cy.wrap(badge).should('have.css', 'top', `${index * 28}px`);
         });
     });
@@ -337,7 +337,7 @@ describe('Gradient Block', () => {
             'linear-gradient(45deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
         );
         cy.get(SquareBadgesSelector).each((badge, index) => {
-            cy.wrap(badge).should('have.css', 'left', `0px`);
+            cy.wrap(badge).should('have.css', 'left', '0px');
             cy.wrap(badge).should('have.css', 'top', `${index * 28}px`);
         });
     });
