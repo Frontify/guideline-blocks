@@ -42,8 +42,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
 
     const parseGradientColorsToCss = () => {
         let colorsAsString = '';
-        const sortedColors = colors.sort((a, b) => a.position - b.position);
-        for (const color of sortedColors) {
+        for (const color of colors.sort((a, b) => a.position - b.position)) {
             colorsAsString += `, ${toHexString(color.color)} ${color.position}%`;
         }
 
