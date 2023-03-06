@@ -19,7 +19,6 @@ const ImageBlockImageSelector = '[data-test-id="image-block-img"]';
 const PlaceholderSelector = '[data-test-id="block-inject-button"]';
 const DownloadSelector = '[data-test-id="attachments-download"]';
 const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
-const RichTextEditorSelector = '[data-test-id="rich-text-editor"]';
 
 describe('Image Block', () => {
     it('renders an image block', () => {
