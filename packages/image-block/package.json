@@ -21,7 +21,7 @@
         "@types/react": "17.0.50",
         "@types/react-dom": "17.0.17",
         "autoprefixer": "10.4.13",
-        "cypress": "12.7.0",
+        "cypress": "11.0.1",
         "eslint": "8.27.0",
         "eslint-plugin-notice": "0.9.10",
         "postcss": "8.4.19",

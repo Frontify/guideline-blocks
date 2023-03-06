@@ -14,6 +14,7 @@ import {
     OrderedListPlugin,
     PluginComposer,
     ResetFormattingPlugin,
+    SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     TextStyles,
@@ -26,6 +27,7 @@ export const DEFAULT_CONTENT_NAME = '[{"type":"imageCaption","children":[{"text"
 
 export const captionPlugins = new PluginComposer();
 const textStylePlugins = [
+    new SoftBreakPlugin(),
     new TextStylePlugin({
         textStyles: [
             TextStyles.ELEMENT_IMAGE_TITLE,

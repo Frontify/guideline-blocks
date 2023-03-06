@@ -6,6 +6,7 @@ import { DEFAULT_CONTENT_DESCRIPTION, DEFAULT_CONTENT_NAME, captionPlugins, titl
 
 type ImageCaptionProps = {
     name?: string;
+    blockId: string;
     isEditing: boolean;
     description?: string;
     onNameChange: (value: string) => void;
@@ -17,6 +18,7 @@ export const ImageCaption = ({
     description,
     isEditing,
     onNameChange,
+    blockId,
     onDescriptionChange,
 }: ImageCaptionProps) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -31,7 +33,7 @@ export const ImageCaption = ({
             {isEditing ? (
                 <>
                     <RichTextEditor
-                        id="image-title"
+                        id={`${blockId}_title`}
                         value={name ?? DEFAULT_CONTENT_NAME}
                         border={false}
                         onBlur={onNameChange}
@@ -41,7 +43,7 @@ export const ImageCaption = ({
                         placeholder="Asset name"
                     />
                     <RichTextEditor
-                        id="image-caption"
+                        id={`${blockId}_description`}
                         value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                         border={false}
                         onTextChange={onDescriptionChange}
