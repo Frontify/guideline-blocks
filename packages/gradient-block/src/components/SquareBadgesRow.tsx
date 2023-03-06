@@ -1,15 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { GradientColor, SquareBadgesProps } from '../types';
-import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
-import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
+import { GradientColor, SquareBadgesRowProps } from '../types';
 import { useEffect, useState } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
+import { SquareBadge } from './SquareBadge';
+import { toHexString } from '@frontify/guideline-blocks-shared';
 
-export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }: SquareBadgesProps) => {
-    const { copy, status } = useCopy();
+export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientation }: SquareBadgesRowProps) => {
     const [highestLevel, setHighestLevel] = useState(0);
-    const isCopied = status === 'success';
 
     const prepareGradients = () => {
         for (const [index, color] of gradientColors.entries()) {
@@ -27,20 +25,6 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
 
         gradientColors[gradientColors.length - 1].level = leftStartLevel + allLeft.length - 1;
         setHighestLevel(Math.max(allLeft.length + leftStartLevel, rightHighestLevel));
-    };
-
-    const getBadgeClasses = (isLeft: boolean) => {
-        return joinClassNames([
-            'tw-flex',
-            isLeft && gradientOrientation === 90 ? 'tw-flex-row-reverse tw-pl-1' : 'tw-pr-1',
-        ]);
-    };
-
-    const getCopyButtonClasses = (isLeft: boolean) => {
-        return joinClassNames([
-            'tw-inline-flex tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex',
-            isLeft && gradientOrientation === 90 ? 'tw-pl-1' : 'tw-pr-1',
-        ]);
     };
 
     const getHeight = () => {
@@ -65,7 +49,7 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
     const getLeft = (gradientColor: GradientColor) => {
         if (gradientOrientation === 90) {
             if (gradientColor.isReverse) {
-                const badgeWidthInPercent = getBadgeWidthInPercent(gradientColor, blockWidth);
+                const badgeWidthInPercent = calculateBadgeWidthInPercent(gradientColor, blockWidth);
                 const copyButtonInPercent = getCopyButtonWidthInPercent(blockWidth);
                 return `${gradientColor.position - (badgeWidthInPercent - copyButtonInPercent)}%`;
             } else {
@@ -89,52 +73,17 @@ export const SquareBadges = ({ blockWidth, gradientColors, gradientOrientation }
             }}
         >
             {gradientColors.map((gradientColor, index) => (
-                <div
-                    data-test-id="square-badge"
+                <SquareBadge
                     key={toHexString(gradientColor.color) + gradientColor.position}
-                    className="tw-absolute tw-mt-2"
-                    style={{
-                        left: getLeft(gradientColor),
-                        top: getTop(gradientColor, index),
-                    }}
-                >
-                    <div
-                        className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
-                        onClick={() => copy(toHexString(gradientColor.color))}
-                    >
-                        <div className={getBadgeClasses(gradientColor.isReverse || false)}>
-                            <div
-                                className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-mx-0."
-                                style={{
-                                    backgroundColor: toHexString(gradientColor.color),
-                                }}
-                            ></div>
-                            <span className="tw-text-weak tw-px-1 tw-text-xs">
-                                <strong>{gradientColor.color?.name}</strong>
-                            </span>
-                            <span className="tw-text-x-weak tw-text-xs tw-pl-1">
-                                {toHexString(gradientColor.color)}
-                            </span>
-                        </div>
-                        <button className={getCopyButtonClasses(gradientColor.isReverse || false)}>
-                            {isCopied ? (
-                                <span data-test-id="square-badge-checkmark">
-                                    <IconCheckMark16 />
-                                </span>
-                            ) : (
-                                <span data-test-id="square-badge-clipboard">
-                                    <IconClipboard16 />
-                                </span>
-                            )}
-                        </button>
-                    </div>
-                </div>
+                    gradientColor={gradientColor}
+                    left={getLeft(gradientColor)}
+                    top={getTop(gradientColor, index)}
+                    gradientOrientation={gradientOrientation}
+                />
             ))}
         </div>
     );
 };
-
-SquareBadges.displayName = 'SquareBadges';
 
 const getTopLevel = (gradientColors: GradientColor[], index: number, width: number, level: number): number => {
     if (!index) {
@@ -151,7 +100,7 @@ const getTopLevel = (gradientColors: GradientColor[], index: number, width: numb
         return level;
     }
 
-    const previousWithPercent = getBadgeWidthInPercent(lastLevelColors, width);
+    const previousWithPercent = calculateBadgeWidthInPercent(lastLevelColors, width);
     const previousEndPosition = lastLevelColors.position + previousWithPercent;
 
     let currentLevel = level;
@@ -162,7 +111,7 @@ const getTopLevel = (gradientColors: GradientColor[], index: number, width: numb
     return currentLevel;
 };
 
-const getBadgeWidthInPercent = (color: GradientColor, width: number) => {
+export const calculateBadgeWidthInPercent = (color: GradientColor, width: number) => {
     const badgeWidth = (color.color?.name?.length || 0) * 6 + 100;
     return (badgeWidth / width) * 100;
 };
@@ -172,6 +121,6 @@ const getCopyButtonWidthInPercent = (width: number) => {
 };
 
 const isBadgeLeft = (color: GradientColor, width: number) => {
-    const badgeWidthPercent = getBadgeWidthInPercent(color, width);
+    const badgeWidthPercent = calculateBadgeWidthInPercent(color, width);
     return color.position + badgeWidthPercent > 100;
 };

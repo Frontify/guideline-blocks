@@ -8,7 +8,7 @@ import { Divider } from '@frontify/fondue';
 import 'tailwindcss/tailwind.css';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
-import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadges } from './components';
+import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadgesRow } from './components';
 import { toHexString } from '@frontify/guideline-blocks-shared';
 
 export const GradientBlock = ({ appBridge }: BlockProps) => {
@@ -134,7 +134,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
             ) : (
                 <>
                     {gradientBlockRef.current && gradientColors ? (
-                        <SquareBadges
+                        <SquareBadgesRow
                             blockWidth={gradientBlockRef.current.clientWidth}
                             gradientColors={gradientColors}
                             gradientOrientation={gradientOrientation}

@@ -46,10 +46,17 @@ export type CssValueDisplayProps = {
     cssValue: string;
 };
 
-export type SquareBadgesProps = {
+export type SquareBadgesRowProps = {
     blockWidth: number;
     gradientColors: GradientColor[];
     gradientOrientation: number;
+};
+
+export type SquareBadgeProps = {
+    gradientColor: GradientColor;
+    gradientOrientation: number;
+    left: string;
+    top: number;
 };
 
 export type ColorPickerProps = {
