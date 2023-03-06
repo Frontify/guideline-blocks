@@ -64,6 +64,92 @@ const GradientColor = [
     },
 ];
 
+const MultiLevelGradientColors = [
+    {
+        color: {
+            red: 255,
+            green: 255,
+            blue: 255,
+            alpha: 1,
+        },
+        position: 0,
+    },
+    {
+        color: {
+            red: 0,
+            green: 0,
+            blue: 0,
+            alpha: 1,
+        },
+        position: 1,
+    },
+    {
+        color: {
+            red: 255,
+            green: 255,
+            blue: 255,
+            alpha: 1,
+        },
+        position: 2,
+    },
+    {
+        color: {
+            red: 0,
+            green: 0,
+            blue: 0,
+            alpha: 1,
+        },
+        position: 3,
+    },
+    {
+        color: {
+            red: 255,
+            green: 255,
+            blue: 255,
+            alpha: 1,
+        },
+        position: 4,
+    },
+    {
+        color: {
+            red: 255,
+            green: 255,
+            blue: 255,
+            alpha: 1,
+        },
+        position: 20,
+    },
+    {
+        color: {
+            red: 255,
+            green: 255,
+            blue: 255,
+            alpha: 1,
+        },
+        position: 21,
+    },
+    {
+        color: {
+            red: 255,
+            green: 255,
+            blue: 255,
+            alpha: 1,
+        },
+        position: 95,
+    },
+    {
+        color: {
+            red: 0,
+            green: 0,
+            blue: 0,
+            alpha: 1,
+        },
+        position: 100,
+    },
+];
+
+const TargetForMultiLevelGradient = [0, 1, 2, 3, 4, 0, 1, 0, 1];
+
 describe('Gradient Block', () => {
     it('renders a gradient block', () => {
         const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
@@ -340,6 +426,24 @@ describe('Gradient Block', () => {
         cy.get(SquareBadgesSelector).each((badge, index) => {
             cy.wrap(badge).should('have.css', 'left', '0px');
             cy.wrap(badge).should('have.css', 'top', `${index * HEIGHT_OF_SQUARE_BADGE}px`);
+        });
+    });
+
+    it('square badges levels with special colors', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: MultiLevelGradientColors,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+
+        cy.get(SquareBadgesSelector).each((badge, index) => {
+            cy.wrap(badge).should(
+                'have.css',
+                'top',
+                `${TargetForMultiLevelGradient[index] * HEIGHT_OF_SQUARE_BADGE}px`
+            );
         });
     });
 });

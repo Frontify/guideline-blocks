@@ -49,9 +49,9 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
     const getLeft = (gradientColor: GradientColor) => {
         if (gradientOrientation === 90) {
             if (gradientColor.isReverse) {
-                const badgeWidthInPercent = calculateBadgeWidthInPercent(gradientColor, blockWidth);
+                const badgeWidthInPercent = getBadgeWidthInPercent(gradientColor, blockWidth);
                 const copyButtonInPercent = getCopyButtonWidthInPercent(blockWidth);
-                return `${gradientColor.position - (badgeWidthInPercent - copyButtonInPercent)}%`;
+                return `${gradientColor.position - (badgeWidthInPercent - copyButtonInPercent) + 2}%`;
             } else {
                 return `${gradientColor.position}%`;
             }
@@ -100,7 +100,7 @@ const getTopLevel = (gradientColors: GradientColor[], index: number, width: numb
         return level;
     }
 
-    const previousWithPercent = calculateBadgeWidthInPercent(lastLevelColors, width);
+    const previousWithPercent = getBadgeWidthInPercent(lastLevelColors, width);
     const previousEndPosition = lastLevelColors.position + previousWithPercent;
 
     let currentLevel = level;
@@ -111,7 +111,7 @@ const getTopLevel = (gradientColors: GradientColor[], index: number, width: numb
     return currentLevel;
 };
 
-export const calculateBadgeWidthInPercent = (color: GradientColor, width: number) => {
+const getBadgeWidthInPercent = (color: GradientColor, width: number) => {
     const badgeWidth = (color.color?.name?.length || 0) * 6 + 100;
     return (badgeWidth / width) * 100;
 };
@@ -121,6 +121,6 @@ const getCopyButtonWidthInPercent = (width: number) => {
 };
 
 const isBadgeLeft = (color: GradientColor, width: number) => {
-    const badgeWidthPercent = calculateBadgeWidthInPercent(color, width);
+    const badgeWidthPercent = getBadgeWidthInPercent(color, width);
     return color.position + badgeWidthPercent > 100;
 };
