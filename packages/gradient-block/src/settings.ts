@@ -12,13 +12,13 @@ import {
 import { IconEnum } from '@frontify/fondue';
 import { GradientHeight, GradientOrientation } from './types';
 
-const IS_CUSTOM_HEIGHT_ID = 'isHeightCustom';
-const HEIGHT_CUSTOM_ID = 'heightCustom';
-const HEIGHT_SIMPLE_ID = 'heightSimple';
+export const IS_CUSTOM_HEIGHT_ID = 'isHeightCustom';
+export const HEIGHT_CUSTOM_ID = 'heightCustom';
+export const HEIGHT_SIMPLE_ID = 'heightSimple';
 
-const IS_CUSTOM_ORIENTATION_ID = 'isOrientationCustom';
-const ORIENTATION_CUSTOM_ID = 'orientationCustom';
-const ORIENTATION_SIMPLE_ID = 'orientationSimple';
+export const IS_CUSTOM_ORIENTATION_ID = 'isOrientationCustom';
+export const ORIENTATION_CUSTOM_ID = 'orientationCustom';
+export const ORIENTATION_SIMPLE_ID = 'orientationSimple';
 
 export const HEIGHT_DEFAULT_VALUE = GradientHeight.Small;
 export const ORIENTATION_DEFAULT_VALUE = GradientOrientation.Horizontal;
@@ -98,7 +98,7 @@ export const settings = defineSettings({
                             type: 'input',
                             placeholder: 'e.g. 90°',
                             clearable: true,
-                            rules: [maximumNumericalRule(360)],
+                            rules: [maximumNumericalRule(180)],
                         },
                     ],
                     off: [

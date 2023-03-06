@@ -3,6 +3,15 @@
 import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { GradientBlock } from './GradientBlock';
+import { GradientHeight, GradientOrientation } from './types';
+import {
+    HEIGHT_SIMPLE_ID,
+    IS_CUSTOM_HEIGHT_ID,
+    HEIGHT_CUSTOM_ID,
+    ORIENTATION_SIMPLE_ID,
+    ORIENTATION_CUSTOM_ID,
+    IS_CUSTOM_ORIENTATION_ID,
+} from './settings';
 
 const AddColorButtonSelector = '[data-test-id="add-color-button"]';
 const ColorPickerFlyoutSelector = '[data-test-id="color-picker-flyout"]';
@@ -224,5 +233,112 @@ describe('Gradient Block', () => {
             'background-image',
             'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)'
         );
+    });
+
+    it('gradient layout size small', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                [HEIGHT_SIMPLE_ID]: GradientHeight.Small,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '48px');
+    });
+
+    it('gradient layout size medium', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                [HEIGHT_SIMPLE_ID]: GradientHeight.Medium,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '72px');
+    });
+
+    it('gradient layout size large', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                [HEIGHT_SIMPLE_ID]: GradientHeight.Large,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '96px');
+    });
+
+    it('gradient layout size custom', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                [IS_CUSTOM_HEIGHT_ID]: true,
+                [HEIGHT_CUSTOM_ID]: 300,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '300px');
+    });
+
+    it('gradient orientation horizontal', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                [ORIENTATION_SIMPLE_ID]: GradientOrientation.Horizontal,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+        );
+    });
+
+    it('gradient orientation vertical', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                [ORIENTATION_SIMPLE_ID]: GradientOrientation.Vertical,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+        );
+
+        cy.get(SquareBadgesSelector).each((badge, index) => {
+            cy.wrap(badge).should('have.css', 'left', `0px`);
+            cy.wrap(badge).should('have.css', 'top', `${index * 28}px`);
+        });
+    });
+
+    it('gradient orientation custom', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: GradientColor,
+                [IS_CUSTOM_ORIENTATION_ID]: true,
+                [ORIENTATION_CUSTOM_ID]: 45,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(45deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+        );
+        cy.get(SquareBadgesSelector).each((badge, index) => {
+            cy.wrap(badge).should('have.css', 'left', `0px`);
+            cy.wrap(badge).should('have.css', 'top', `${index * 28}px`);
+        });
     });
 });
