@@ -102,7 +102,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                             {showAddButton && gradientBlockRef.current ? (
                                 <AddColorButton
                                     blockWidth={gradientBlockRef.current.clientWidth}
-                                    addButtonPositionLeft={addButtonPositionLeft}
+                                    positionLeft={addButtonPositionLeft}
                                     setShowColorModal={setShowColorModal}
                                     setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                                 />
