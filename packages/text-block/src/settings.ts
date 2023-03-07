@@ -9,7 +9,6 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { TextGutter, spacingValues } from './types';
 
-// Does values are only used for the presetCustomValue method in the settings switch
 const presetSpacingValues: Record<TextGutter, string> = {
     ...spacingValues,
     [TextGutter.Auto]: '',
