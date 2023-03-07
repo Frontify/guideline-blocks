@@ -305,8 +305,8 @@ describe('Gradient Block', () => {
         });
 
         mount(<GradientBlockWithStubs />);
-        cy.get(ColorPointsSelector).first().realHover();
-        cy.get(EditAndDeleteColorBoxSelector).find('button').first().realClick();
+        cy.get(ColorPointsSelector).eq(1).realHover();
+        cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').first().realClick();
         cy.get(ColorPickerFlyoutSelector).should('exist');
         cy.get(ColorPickerForm).find(TriggerSelector).realClick();
         cy.get(ColorInputSelector).first().find('input').clear().type('#0000ff');
@@ -317,7 +317,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(90deg, rgb(0, 0, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 255) 25%, rgb(255, 255, 255) 100%)'
         );
     });
 
