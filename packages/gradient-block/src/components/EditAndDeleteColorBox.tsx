@@ -17,9 +17,10 @@ export const EditAndDeleteColorBox = ({
     return (
         <div
             data-test-id="edit-and-delete-color-box"
-            className="tw-absolute tw-flex tw-border tw-border-box-selected-strong tw-rounded tw-w-13 tw-h-7 tw-top-9 -tw-left-2 tw-text-white"
+            className="tw-flex tw-mt-2.5 -tw-ml-4 tw-border tw-border-box-selected-strong tw-rounded tw-w-13 tw-h-7 tw-text-white"
         >
             <Button
+                aria-label="Edit color"
                 hugWidth
                 inverted
                 solid
@@ -36,6 +37,7 @@ export const EditAndDeleteColorBox = ({
             />
 
             <Button
+                aria-label="Delete color"
                 hugWidth
                 inverted
                 solid
