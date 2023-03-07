@@ -19,7 +19,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
 
     const getCopyButtonClasses = (isLeft: boolean) => {
         return joinClassNames([
-            'tw-inline-flex tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex',
+            'tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex',
             isLeft && gradientOrientation === 90 ? 'tw-pl-1' : 'tw-pr-1',
         ]);
     };

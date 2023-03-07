@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SquareBadgesRowProps } from '../types';
 import { useEffect, useState } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
-import { SquareBadge } from './SquareBadge';
-import { toHexString } from '@frontify/guideline-blocks-shared';
 import { getTopLevel, isBadgeLeft } from '../helpers';
+import { SquareBadgesRowProps } from '../types';
+import { SquareBadge } from './';
+import { toHexString } from '@frontify/guideline-blocks-shared';
 
 export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientation }: SquareBadgesRowProps) => {
     const [highestLevel, setHighestLevel] = useState(0);
