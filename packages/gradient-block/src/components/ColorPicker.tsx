@@ -24,8 +24,9 @@ export const ColorPicker = ({
     setShowColorModal,
 }: ColorPickerProps) => {
     const actualColor = gradientColors.find((item) => item.position === currentlyEditingPosition);
+    const defaultColor = { red: 0, green: 0, blue: 0, alpha: 1 };
     const [colorPosition, setColorPosition] = useState(currentlyEditingPosition.toString());
-    const [color, setColor] = useState<Color>(actualColor?.color ?? { red: 0, green: 0, blue: 0, alpha: 1 });
+    const [color, setColor] = useState<Color>(actualColor?.color ?? defaultColor);
 
     const editColor = () => {
         const newGradientColors = gradientColors.map((item) => {
