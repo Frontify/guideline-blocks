@@ -19,7 +19,6 @@ const ImageBlockImageSelector = '[data-test-id="image-block-img"]';
 const PlaceholderSelector = '[data-test-id="block-inject-button"]';
 const DownloadSelector = '[data-test-id="attachments-download"]';
 const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
-const RichTextEditorSelector = '[data-test-id="rich-text-editor"]';
 
 describe('Image Block', () => {
     it('renders an image block', () => {
@@ -89,7 +88,17 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).get(RichTextEditorSelector).eq(0).should('contain.text', 'Test Name');
+        cy.get(ImageBlockSelector).should('contain.text', 'Test Name');
+    });
+
+    it('should render the file name if no title is provided', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockAssets: {
+                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ImageBlockSelector).should('contain.text', 'fileName.png');
     });
 
     it('should render the description if it is provided', () => {
@@ -99,7 +108,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).get(RichTextEditorSelector).eq(1).should('contain.text', 'Test Description');
+        cy.get(ImageBlockSelector).should('contain.text', 'Test Description');
     });
 
     it('should be a link if it is provided', () => {
