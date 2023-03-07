@@ -16,6 +16,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_SETTING_ID]?.[0];
     const isEditing = useEditorState(appBridge);
+    const blockId = appBridge.getBlockId().toString();
 
     return (
         <div
@@ -31,7 +32,8 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 <Image appBridge={appBridge} blockSettings={blockSettings} isEditing={isEditing} image={image} />
             )}
             <ImageCaption
-                name={blockSettings.name}
+                blockId={blockId}
+                name={blockSettings.name ?? image?.fileName}
                 description={blockSettings.description}
                 onNameChange={(value) => setBlockSettings({ ...blockSettings, name: value })}
                 onDescriptionChange={(value) => setBlockSettings({ ...blockSettings, description: value })}

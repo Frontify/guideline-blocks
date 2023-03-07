@@ -11,13 +11,13 @@ import {
     CheckboxListPlugin,
     CodePlugin,
     EmojiPlugin,
-    InitPlugin,
     ItalicPlugin,
     LinkPlugin,
     OrderedListPlugin,
     ParagraphPlugin,
     PluginComposer,
     ResetFormattingPlugin,
+    SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
@@ -30,7 +30,7 @@ export const getPlugins = (columns?: number, gap?: CSSProperties['gap']) => {
         return undefined;
     }
     const plugins = new PluginComposer();
-    plugins.setPlugin([new InitPlugin(), new ParagraphPlugin(), new TextStylePlugin()]);
+    plugins.setPlugin([new SoftBreakPlugin(), new ParagraphPlugin(), new TextStylePlugin()]);
     plugins.setPlugin([
         new BoldPlugin(),
         new ItalicPlugin(),
