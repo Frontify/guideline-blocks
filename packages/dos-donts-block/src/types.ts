@@ -161,7 +161,6 @@ export type ImageComponentProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
-    onClick: () => void;
     dontColor: Color;
 };
 
