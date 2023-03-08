@@ -54,7 +54,7 @@ const transformStringValues = (
     cssStyles.hover = cssStyles.hover || {};
     switch (key) {
         case DesignTokenPropertiesEnum.family:
-            cssStyles.fontFamily = fontFamilyCss ?? getFont(value, mainFontFamily);
+            cssStyles.fontFamily = getFont(fontFamilyCss ?? value, mainFontFamily);
             break;
         case DesignTokenPropertiesEnum.weight:
             cssStyles.fontWeight = value;
