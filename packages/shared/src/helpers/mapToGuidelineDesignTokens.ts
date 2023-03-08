@@ -126,8 +126,6 @@ const transformStringValues = (
 };
 
 export const mapToGuidelineDesignTokens = (dataToTransform: Partial<Record<string, DesignTokenProperties>>) => {
-    console.log('mapToGuidelineDesignTokens', { dataToTransform });
-
     const transformedDesignTokens: TransformedDesignTokens = {};
     const enrichedDataToTransform = provideDefaultCalloutColors(dataToTransform);
     const mainFontFamily = getSystemFont(
