@@ -34,7 +34,7 @@ export const InformationSection: FC<InformationSectionProps> = ({
             {(hasRichTextValue(title) || isEditing) && (
                 <div data-test-id="asset-kit-block-title">
                     <RichTextEditor
-                        designTokens={designTokens ?? undefined}
+                        designTokens={designTokens}
                         value={title ?? DEFAULT_CONTENT_VALUE}
                         readonly={!isEditing}
                         onTextChange={saveTitle}
@@ -48,7 +48,7 @@ export const InformationSection: FC<InformationSectionProps> = ({
             {(hasRichTextValue(description) || isEditing) && (
                 <div data-test-id="asset-kit-block-description">
                     <RichTextEditor
-                        designTokens={designTokens ?? undefined}
+                        designTokens={designTokens}
                         readonly={!isEditing}
                         onTextChange={saveDescription}
                         onBlur={saveDescription}

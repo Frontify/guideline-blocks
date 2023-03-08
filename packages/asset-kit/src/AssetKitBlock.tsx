@@ -8,10 +8,7 @@ import 'tailwindcss/tailwind.css';
 import { Asset, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
-import { AssetSelection } from './components';
-import { AssetGrid } from './components';
-import { DownloadMessage } from './components';
-import { InformationSection } from './components';
+import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle, generateBulkDownload, thumbnailStyle } from './utility';
 
 export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -51,7 +48,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
                         onClick={() =>
                             generateBulkDownload(appBridge.getProjectId(), currentAssets, setIsDownloadingAssets)
                         }
-                        style={designTokens?.buttonPrimary}
+                        style={designTokens.buttonPrimary}
                     >
                         Download package
                     </button>
