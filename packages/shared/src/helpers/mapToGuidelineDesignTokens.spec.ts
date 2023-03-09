@@ -271,4 +271,19 @@ describe('mapToGuidelineDesignTokens', () => {
         const result = mapToGuidelineDesignTokens({ body: { family: 'inherit' }, main_font: { family: 'default' } });
         expect(result).toMatchObject({ p: { fontFamily: 'system-ui' } });
     });
+
+    it('should use css definition for font family', () => {
+        const result = mapToGuidelineDesignTokens({
+            quote: { family: 'Museo Sans', family_css: 'museo-sans' },
+        });
+        expect(result).toMatchObject({ quote: { fontFamily: 'museo-sans' } });
+    });
+
+    it('should use css definition for font family, even if there is a main fontfamily', () => {
+        const result = mapToGuidelineDesignTokens({
+            body: { family: 'inherit', family_css: 'really-awesome-font' },
+            main_font: { family: 'Arial' },
+        });
+        expect(result).toMatchObject({ p: { fontFamily: 'really-awesome-font' } });
+    });
 });
