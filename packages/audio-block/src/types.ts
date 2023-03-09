@@ -30,3 +30,8 @@ export type ItemToolbarProps = {
     onUploadClick: () => void;
     onAssetChooseClick: () => void;
 };
+
+export enum AudioSecurity {
+    Global = 'Global',
+    Custom = 'Custom',
+}
