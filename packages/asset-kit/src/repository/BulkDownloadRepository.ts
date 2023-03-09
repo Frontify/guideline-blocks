@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FrontifyHttpClient } from '../utility';
+import { HttpClient } from '@frontify/app-bridge';
 import {
     GenerateBulkDownloadData,
     GenerateBulkDownloadRequest,
@@ -12,7 +12,7 @@ const postGenerateBulkDownloadToken = async (
     projectId: number,
     data: GenerateBulkDownloadTokenRequest
 ): Promise<GenerateBulkDownloadTokenData> => {
-    const { result } = await FrontifyHttpClient.post<GenerateBulkDownloadTokenData>(
+    const { result } = await HttpClient.post<GenerateBulkDownloadTokenData>(
         `/api/project/${projectId}/bulk-download-token`,
         data
     );
@@ -22,7 +22,7 @@ const postGenerateBulkDownloadToken = async (
 const postGenerateBulkDownloadRequest = async (
     data: GenerateBulkDownloadRequest
 ): Promise<GenerateBulkDownloadData> => {
-    const { result } = await FrontifyHttpClient.post<GenerateBulkDownloadData>('/api/bulk-download', data);
+    const { result } = await HttpClient.post<GenerateBulkDownloadData>('/api/bulk-download', data);
     return result.data;
 };
 
@@ -30,9 +30,7 @@ const getBulkDownloadStatus = async (token: string): Promise<GenerateBulkDownloa
     return await new Promise((resolve, reject) => {
         const interval = setInterval(async () => {
             try {
-                const { result } = await FrontifyHttpClient.get<GenerateBulkDownloadData>(
-                    `/api/bulk-download/${token}`
-                );
+                const { result } = await HttpClient.get<GenerateBulkDownloadData>(`/api/bulk-download/${token}`);
 
                 if (result?.data?.download_url) {
                     clearInterval(interval);
