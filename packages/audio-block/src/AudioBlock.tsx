@@ -8,13 +8,13 @@ import {
     AlignLeftPlugin,
     AlignRightPlugin,
     BoldPlugin,
-    InitPlugin,
     ItalicPlugin,
     LoadingCircle,
     PluginComposer,
     Position,
     ResetFormattingPlugin,
     RichTextEditor,
+    SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
@@ -59,15 +59,15 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
-            .setPlugin([new InitPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
+            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
             .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
             .setPlugin([
                 new AlignLeftPlugin(),
                 new AlignRightPlugin(),
                 new AlignCenterPlugin(),
                 new AlignJustifyPlugin(),
-            ])
-            .setPlugin([new ResetFormattingPlugin()]);
+                new ResetFormattingPlugin(),
+            ]);
     }, []);
 
     const audioBlockClassNames = joinClassNames([

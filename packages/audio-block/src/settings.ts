@@ -3,7 +3,7 @@
 import { FileExtensionSets } from '@frontify/app-bridge';
 import { AssetChooserObjectType, AssetInputSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
-import { TextPosition, AudioSecurity } from './types';
+import { AudioSecurity, TextPosition } from './types';
 
 export const AUDIO_ID = 'audio';
 export const ATTACHMENTS_SETTING_ID = 'attachments';
