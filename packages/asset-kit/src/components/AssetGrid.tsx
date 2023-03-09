@@ -16,9 +16,9 @@ export const AssetGrid = ({ currentAssets, deleteAssetIdsFromKey, isEditing, thu
                     {currentAssets.length} asset{currentAssets.length > 1 ? <>s</> : null}
                 </span>
             ) : (
-                <span>Add assets to make them available</span>
+                <span className="tw-text-black-50">Add assets to make them available</span>
             )}
-            <div className="tw-mt-2.5 tw-grid tw-grid-cols-3 xs:tw-grid-cols-4 md:tw-grid-cols-6 tw-gap-4">
+            <div className="tw-mt-2.5 tw-grid tw-grid-cols-3 sm:tw-grid-cols-4 md:tw-grid-cols-6 tw-gap-4">
                 {currentAssets
                     ? currentAssets.map((asset) => (
                           <ThumbnailItem

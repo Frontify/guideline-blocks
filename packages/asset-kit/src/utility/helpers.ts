@@ -6,7 +6,7 @@ import { CSSProperties } from 'react';
 import { Color } from '@frontify/fondue';
 import { GenerateBulkDownloadTokenRequest, Settings } from '../types';
 import { Asset } from '@frontify/app-bridge';
-import { generateBulkDownloadRequest } from '../repository/BulkDownloadRepository';
+import { generateBulkDownloadRequest } from '../repository';
 
 export const getBorderStyles = (
     style = BorderStyle.Solid,

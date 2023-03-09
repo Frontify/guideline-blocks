@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Padding, paddingStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useState } from 'react';
@@ -20,13 +20,19 @@ export const AssetKitBlock = ({ appBridge }: BlockProps) => {
     const [isDownloadingAssets, setIsDownloadingAssets] = useState<boolean>(false);
     const { title, description } = blockSettings;
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
+    const { hasBorder_blocks, hasBackground_blocks } = blockSettings;
+
+    const assetKitClasses = joinClassNames([
+        'tw-w-full',
+        (hasBorder_blocks || hasBackground_blocks) && 'tw-p-5 sm:tw-p-8',
+    ]);
 
     return (
         <div
             data-test-id="asset-kit-block"
+            className={assetKitClasses}
             style={{
                 ...blockStyle(blockSettings),
-                padding: paddingStyleMap[Padding.Medium],
             }}
         >
             <div className="tw-mb-8 sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
