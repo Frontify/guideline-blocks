@@ -55,7 +55,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps) => {
                 </div>
             </div>
 
-            {isDownloadingAssets && <DownloadMessage blockStyle={blockStyle(blockSettings)} />}
+            {isDownloadingAssets ? <DownloadMessage blockStyle={blockStyle(blockSettings)} /> : null}
 
             <AssetGrid
                 currentAssets={currentAssets}
@@ -64,7 +64,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps) => {
                 thumbnailStyle={thumbnailStyle(blockSettings)}
             />
 
-            {isEditing && (
+            {isEditing ? (
                 <AssetSelection
                     appBridge={appBridge}
                     isUploadingAssets={isUploadingAssets}
@@ -72,7 +72,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps) => {
                     addAssetIdsToKey={addAssetIdsToKey}
                     currentAssets={currentAssets}
                 />
-            )}
+            ) : null}
         </div>
     );
 };

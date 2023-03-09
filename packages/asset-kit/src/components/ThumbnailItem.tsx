@@ -12,7 +12,7 @@ export const ThumbnailItem = ({ asset, isEditing, onRemoveAsset, thumbnailStyle 
                 style={thumbnailStyle}
                 alt={asset.title}
             />
-            {isEditing && (
+            {isEditing ? (
                 <div
                     className="tw-hidden group-hover:tw-block tw-absolute tw-top-0.5 tw-right-0.5"
                     data-test-id="asset-kit-block-remove-thumbnail"
@@ -25,7 +25,7 @@ export const ThumbnailItem = ({ asset, isEditing, onRemoveAsset, thumbnailStyle 
                         onClick={() => onRemoveAsset(asset.id)}
                     />
                 </div>
-            )}
+            ) : null}
         </div>
     );
 };

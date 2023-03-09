@@ -2,7 +2,7 @@
 
 import { BorderStyle, borderStyleMap, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from '../settings';
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 import { Color } from '@frontify/fondue';
 import { GenerateBulkDownloadTokenRequest, Settings } from '../types';
 import { Asset } from '@frontify/app-bridge';
@@ -21,7 +21,7 @@ export const getBorderStyles = (
 export const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
     backgroundColor ? { backgroundColor: toRgbaString(backgroundColor) } : {};
 
-export const thumbnailStyle = (blockSetting: Settings): React.CSSProperties => {
+export const thumbnailStyle = (blockSetting: Settings): CSSProperties => {
     const {
         hasBackground_thumbnails,
         backgroundColor_thumbnails = BACKGROUND_COLOR_DEFAULT_VALUE,
@@ -42,7 +42,7 @@ export const thumbnailStyle = (blockSetting: Settings): React.CSSProperties => {
     };
 };
 
-export const blockStyle = (blockSetting: Settings): React.CSSProperties => {
+export const blockStyle = (blockSetting: Settings): CSSProperties => {
     const {
         hasBackground_blocks,
         backgroundColor_blocks = BACKGROUND_COLOR_DEFAULT_VALUE,

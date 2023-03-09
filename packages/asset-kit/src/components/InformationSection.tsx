@@ -23,7 +23,7 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
 
     return (
         <div className="tw-flex-1 tw-space-y-2">
-            {(hasRichTextValue(title) || isEditing) && (
+            {hasRichTextValue(title) || isEditing ? (
                 <div data-test-id="asset-kit-block-title">
                     <RichTextEditor
                         designTokens={designTokens}
@@ -34,9 +34,9 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
                         border={false}
                     />
                 </div>
-            )}
+            ) : null}
 
-            {(hasRichTextValue(description) || isEditing) && (
+            {hasRichTextValue(description) || isEditing ? (
                 <div data-test-id="asset-kit-block-description">
                     <RichTextEditor
                         designTokens={designTokens}
@@ -47,7 +47,7 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
                         border={false}
                     />
                 </div>
-            )}
+            ) : null}
         </div>
     );
 };

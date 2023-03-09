@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ThumbnailItem } from './ThumbnailItem';
+import { ThumbnailItem } from './';
 import { ASSET_SETTINGS_ID } from '../settings';
 import { AssetGridProps } from '../types';
 
@@ -13,7 +13,7 @@ export const AssetGrid = ({ currentAssets, deleteAssetIdsFromKey, isEditing, thu
         <>
             {currentAssets?.length > 0 ? (
                 <span>
-                    {currentAssets.length} asset{currentAssets.length > 1 && <>s</>}
+                    {currentAssets.length} asset{currentAssets.length > 1 ? <>s</> : null}
                 </span>
             ) : (
                 <span>Add assets to make them available</span>
@@ -29,7 +29,7 @@ export const AssetGrid = ({ currentAssets, deleteAssetIdsFromKey, isEditing, thu
                               thumbnailStyle={thumbnailStyle}
                           />
                       ))
-                    : undefined}
+                    : null}
             </div>
         </>
     );
