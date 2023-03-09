@@ -10,11 +10,15 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
     const { designTokens } = useGuidelineDesignTokens();
 
     const saveDescription = (newDescription: string) => {
-        description !== newDescription && setBlockSettings({ description: newDescription });
+        if (description !== newDescription) {
+            setBlockSettings({ description: newDescription });
+        }
     };
 
     const saveTitle = (newTitle: string) => {
-        title !== newTitle && setBlockSettings({ title: newTitle });
+        if (title !== newTitle) {
+            setBlockSettings({ title: newTitle });
+        }
     };
 
     return (
@@ -25,7 +29,6 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
                         designTokens={designTokens}
                         value={title ?? DEFAULT_CONTENT_VALUE}
                         readonly={!isEditing}
-                        onTextChange={saveTitle}
                         onBlur={saveTitle}
                         placeholder={isEditing ? 'Add a title here ...' : ''}
                         border={false}
@@ -38,7 +41,6 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
                     <RichTextEditor
                         designTokens={designTokens}
                         readonly={!isEditing}
-                        onTextChange={saveDescription}
                         onBlur={saveDescription}
                         placeholder={isEditing ? 'Add a description here ...' : ''}
                         value={description}

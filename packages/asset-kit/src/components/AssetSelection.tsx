@@ -62,7 +62,7 @@ export const AssetSelection = ({
     }, [doneAll, uploadResults]);
 
     return (
-        <div className="tw-h-[4.5rem] tw-mt-7">
+        <div className="tw-mt-7">
             <BlockInjectButton
                 onAssetChooseClick={onOpenAssetChooser}
                 onUploadClick={openFileDialog}
@@ -70,7 +70,6 @@ export const AssetSelection = ({
                 isLoading={isUploadingAssets}
                 label="Add or drop your assets here"
                 icon={<IconPlus24 />}
-                fillParentContainer={true}
             />
         </div>
     );
