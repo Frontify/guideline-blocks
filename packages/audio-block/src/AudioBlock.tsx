@@ -97,8 +97,9 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     };
 
-    const updateAudioAsset = (audio: Asset) => {
-        updateAssetIdsFromKey(AUDIO_ID, [audio.id]).then(() => setIsLoading(false));
+    const updateAudioAsset = async (audio: Asset) => {
+        await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
+        setIsLoading(false);
     };
 
     const openAssetChooser = () => {
@@ -116,7 +117,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     };
 
     const onFilesDrop = (files: FileList) => {
-        console.log(files);
         if (files) {
             const droppedFileExtension = files[0].name.split('.').pop() as FileExtension;
             if (FileExtensionSets.Audio.includes(droppedFileExtension)) {
