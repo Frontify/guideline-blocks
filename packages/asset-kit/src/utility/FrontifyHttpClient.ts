@@ -8,7 +8,7 @@ type RequestOptions = {
     headers: RequestHeaders;
     body?: string;
 };
-export type RequestHeaders = {
+type RequestHeaders = {
     'X-CSRF-TOKEN'?: string;
     'Content-Type'?: string;
     Authorization?: string;

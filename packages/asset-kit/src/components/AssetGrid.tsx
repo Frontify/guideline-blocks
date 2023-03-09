@@ -1,17 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { FC } from 'react';
-import { Asset } from '@frontify/app-bridge';
 import { ThumbnailItem } from './ThumbnailItem';
 import { ASSET_SETTINGS_ID } from '../settings';
+import { AssetGridProps } from '../types';
 
-type AssetGridProps = {
-    currentAssets: Asset[];
-    deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
-    isEditing: boolean;
-    thumbnailStyle: React.CSSProperties;
-};
-export const AssetGrid: FC<AssetGridProps> = ({ currentAssets, deleteAssetIdsFromKey, isEditing, thumbnailStyle }) => {
+export const AssetGrid = ({ currentAssets, deleteAssetIdsFromKey, isEditing, thumbnailStyle }: AssetGridProps) => {
     const onRemoveAsset = async (assetId: number) => {
         await deleteAssetIdsFromKey(ASSET_SETTINGS_ID, [assetId]);
     };
@@ -27,7 +20,7 @@ export const AssetGrid: FC<AssetGridProps> = ({ currentAssets, deleteAssetIdsFro
             )}
             <div className="tw-mt-2.5 tw-grid tw-grid-cols-3 xs:tw-grid-cols-4 md:tw-grid-cols-6 tw-gap-4">
                 {currentAssets
-                    ? currentAssets.map((asset: Asset) => (
+                    ? currentAssets.map((asset) => (
                           <ThumbnailItem
                               key={asset.id}
                               asset={asset}

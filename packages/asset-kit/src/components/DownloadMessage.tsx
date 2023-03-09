@@ -2,13 +2,9 @@
 
 import { Padding, paddingStyleMap } from '@frontify/guideline-blocks-shared';
 import { LoadingCircle } from '@frontify/fondue';
-import React, { FC } from 'react';
+import { DownloadMessageProps } from '../types';
 
-type DownloadMessageProps = {
-    blockStyle: React.CSSProperties;
-};
-
-export const DownloadMessage: FC<DownloadMessageProps> = ({ blockStyle }) => {
+export const DownloadMessage = ({ blockStyle }: DownloadMessageProps) => {
     return (
         <div
             data-test-id="asset-kit-download-message"

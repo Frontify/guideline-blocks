@@ -2,29 +2,17 @@
 
 import { hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { RichTextEditor } from '@frontify/fondue';
-import React, { FC } from 'react';
-import { Settings } from '../types';
-
-type InformationSectionProps = {
-    description?: string;
-    isEditing: boolean;
-    setBlockSettings: (newSettings: Partial<Settings>) => void;
-    title?: string;
-};
+import { InformationSectionProps } from '../types';
 
 const DEFAULT_CONTENT_VALUE = '[{"type":"heading3","children":[{"text":""}]}]';
 
-export const InformationSection: FC<InformationSectionProps> = ({
-    description,
-    isEditing,
-    setBlockSettings,
-    title,
-}) => {
+export const InformationSection = ({ description, isEditing, setBlockSettings, title }: InformationSectionProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
     const saveDescription = (newDescription: string) => {
         description !== newDescription && setBlockSettings({ description: newDescription });
     };
+
     const saveTitle = (newTitle: string) => {
         title !== newTitle && setBlockSettings({ title: newTitle });
     };

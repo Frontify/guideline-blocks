@@ -1,7 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { CSSProperties } from 'react';
 
 export type Settings = {
     hasBackground_blocks?: boolean;
@@ -35,6 +37,39 @@ export type DrawZoomInOutButtonsProps = {
     onClickZoomIn: () => void;
     onClickZoomOut: () => void;
     isFullScreen?: boolean;
+};
+
+export type AssetGridProps = {
+    currentAssets: Asset[];
+    deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
+    isEditing: boolean;
+    thumbnailStyle: CSSProperties;
+};
+
+export type AssetSelectionProps = {
+    appBridge: AppBridgeBlock;
+    isUploadingAssets: boolean;
+    setIsUploadingAssets: (isUploadingAssets: boolean) => void;
+    addAssetIdsToKey: (key: string, assetIds: number[]) => Promise<void>;
+    currentAssets: Asset[];
+};
+
+export type DownloadMessageProps = {
+    blockStyle: CSSProperties;
+};
+
+export type InformationSectionProps = {
+    description?: string;
+    isEditing: boolean;
+    setBlockSettings: (newSettings: Partial<Settings>) => void;
+    title?: string;
+};
+
+export type ThumbnailItemProps = {
+    asset: Asset;
+    isEditing: boolean;
+    onRemoveAsset: (assetId: number) => void;
+    thumbnailStyle: CSSProperties;
 };
 
 export type GenerateBulkDownloadTokenRequest = {

@@ -3,15 +3,15 @@
 import { Padding, paddingStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import { Asset, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle, generateBulkDownload, thumbnailStyle } from './utility';
 
-export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
+export const AssetKitBlock = ({ appBridge }: BlockProps) => {
     const { designTokens } = useGuidelineDesignTokens();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -19,7 +19,7 @@ export const AssetKitBlock: FC<BlockProps> = ({ appBridge }) => {
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
     const [isDownloadingAssets, setIsDownloadingAssets] = useState<boolean>(false);
     const { title, description } = blockSettings;
-    const currentAssets: Asset[] = blockAssets[ASSET_SETTINGS_ID] ?? [];
+    const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
 
     return (
         <div

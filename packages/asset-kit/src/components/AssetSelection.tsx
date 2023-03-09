@@ -2,25 +2,18 @@
 
 import { BlockInjectButton } from '@frontify/guideline-blocks-shared';
 import { IconPlus24 } from '@frontify/fondue';
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ASSET_SETTINGS_ID } from '../settings';
-import { AppBridgeBlock, Asset, useAssetUpload, useFileInput } from '@frontify/app-bridge';
+import { useAssetUpload, useFileInput } from '@frontify/app-bridge';
+import { AssetSelectionProps } from '../types';
 
-type AssetSelectionProps = {
-    appBridge: AppBridgeBlock;
-    isUploadingAssets: boolean;
-    setIsUploadingAssets: (isUploadingAssets: boolean) => void;
-    addAssetIdsToKey: (key: string, assetIds: number[]) => Promise<void>;
-    currentAssets: Asset[];
-};
-
-export const AssetSelection: FC<AssetSelectionProps> = ({
+export const AssetSelection = ({
     appBridge,
     isUploadingAssets,
     setIsUploadingAssets,
     addAssetIdsToKey,
     currentAssets,
-}) => {
+}: AssetSelectionProps) => {
     const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: true });
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({

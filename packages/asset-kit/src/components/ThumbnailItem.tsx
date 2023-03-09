@@ -1,17 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { FC } from 'react';
 import { Button, ButtonEmphasis, ButtonRounding, ButtonSize, IconCross16 } from '@frontify/fondue';
-import { Asset } from '@frontify/app-bridge';
+import { ThumbnailItemProps } from '../types';
 
-type ThumbnailItemProps = {
-    asset: Asset;
-    isEditing: boolean;
-    onRemoveAsset: (assetId: number) => void;
-    thumbnailStyle: React.CSSProperties;
-};
-
-export const ThumbnailItem: FC<ThumbnailItemProps> = ({ asset, isEditing, onRemoveAsset, thumbnailStyle }) => {
+export const ThumbnailItem = ({ asset, isEditing, onRemoveAsset, thumbnailStyle }: ThumbnailItemProps) => {
     return (
         <div data-test-id="asset-kit-block-thumbnail" className="tw-aspect-square tw-group tw-relative">
             <img
