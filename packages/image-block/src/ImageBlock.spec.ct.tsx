@@ -17,7 +17,7 @@ const ImageBlockSelector = '[data-test-id="image-block"]';
 const ImageBlockImageWrapperSelector = '[data-test-id="image-block-img-wrapper"]';
 const ImageBlockImageSelector = '[data-test-id="image-block-img"]';
 const PlaceholderSelector = '[data-test-id="block-inject-button"]';
-const DownloadSelector = '[data-test-id="attachments-download"]';
+const DownloadSelector = '[data-test-id="download-button"]';
 const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
 
 describe('Image Block', () => {

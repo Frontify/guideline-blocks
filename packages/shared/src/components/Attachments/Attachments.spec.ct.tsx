@@ -6,8 +6,6 @@ import { mount } from 'cypress/react';
 import { Attachments as AttachmentsComponent } from './Attachments';
 import { AttachmentsProps } from './types';
 
-const AttachmentsSelector = '[data-test-id="attachments"]';
-const DownloadButtonSelector = '[data-test-id="attachments-download"]';
 const FlyoutButtonSelector = '[data-test-id="attachments-flyout-button"]';
 const AssetInputSelector = '[data-test-id="asset-input-placeholder"]';
 const ActionBarSelector = '[data-test-id="attachments-actionbar"]';
@@ -21,7 +19,6 @@ const Attachments = ({
     onAttachmentReplaceWithUpload = cy.stub(),
     onAttachmentsSorted = cy.stub(),
     onBrowseAttachments = cy.stub(),
-    onDownload = cy.stub(),
     onUploadAttachments = cy.stub(),
 }: Partial<AttachmentsProps>) => {
     return (
@@ -33,25 +30,12 @@ const Attachments = ({
             onAttachmentReplaceWithUpload={onAttachmentReplaceWithUpload}
             onAttachmentsSorted={onAttachmentsSorted}
             onBrowseAttachments={onBrowseAttachments}
-            onDownload={onDownload}
             onUploadAttachments={onUploadAttachments}
         />
     );
 };
 
 describe('Attachments', () => {
-    it('renders component', () => {
-        mount(<Attachments />);
-        cy.get(AttachmentsSelector).should('exist');
-    });
-
-    it('renders download button and calls onDownload on click', () => {
-        const onDownloadStub = cy.stub().as('downloadStub');
-        mount(<Attachments onDownload={onDownloadStub} />);
-        cy.get(DownloadButtonSelector).should('exist').click();
-        cy.get('@downloadStub').should('have.been.called');
-    });
-
     it('renders attachments flyout if it is in edit mode', () => {
         mount(<Attachments appBridge={getAppBridgeBlockStub({ editorState: true })} />);
         cy.get(FlyoutButtonSelector).should('exist');

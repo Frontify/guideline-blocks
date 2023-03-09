@@ -20,7 +20,12 @@ import {
     UnderlinePlugin,
 } from '@frontify/fondue';
 import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
-import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import {
+    DownloadButton,
+    downloadAsset,
+    joinClassNames,
+    useGuidelineDesignTokens,
+} from '@frontify/guideline-blocks-shared';
 import {
     Asset,
     AssetChooserObjectType,
@@ -204,7 +209,12 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         />
                     </div>
                 </div>
-                {audio ? <BlockAttachments assetToDownload={audio} appBridge={appBridge} /> : null}
+                {audio ? (
+                    <div className="tw-flex tw-gap-2">
+                        <DownloadButton onDownload={() => downloadAsset(audio)} />
+                        <BlockAttachments appBridge={appBridge} />
+                    </div>
+                ) : null}
             </div>
         </div>
     );

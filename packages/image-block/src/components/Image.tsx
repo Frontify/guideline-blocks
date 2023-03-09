@@ -11,6 +11,7 @@ import {
 } from '../types';
 import {
     Attachments,
+    DownloadButton,
     downloadAsset,
     joinClassNames,
     toRgbaString,
@@ -96,17 +97,19 @@ export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) 
         >
             <div className="tw-relative">
                 <div className="tw-absolute tw-top-2 tw-right-2">
-                    <Attachments
-                        onUploadAttachments={onAddAttachments}
-                        onAttachmentDelete={onAttachmentDelete}
-                        onAttachmentReplaceWithBrowse={onAttachmentReplace}
-                        onAttachmentReplaceWithUpload={onAttachmentReplace}
-                        onAttachmentsSorted={onAttachmentsSorted}
-                        onBrowseAttachments={onAddAttachments}
-                        attachmentItems={attachments}
-                        appBridge={appBridge}
-                        onDownload={() => downloadAsset(image)}
-                    />
+                    <div className="tw-flex tw-gap-2">
+                        <DownloadButton onDownload={() => downloadAsset(image)} />
+                        <Attachments
+                            onUploadAttachments={onAddAttachments}
+                            onAttachmentDelete={onAttachmentDelete}
+                            onAttachmentReplaceWithBrowse={onAttachmentReplace}
+                            onAttachmentReplaceWithUpload={onAttachmentReplace}
+                            onAttachmentsSorted={onAttachmentsSorted}
+                            onBrowseAttachments={onAddAttachments}
+                            attachmentItems={attachments}
+                            appBridge={appBridge}
+                        />
+                    </div>
                 </div>
                 <img
                     data-test-id="image-block-img"
