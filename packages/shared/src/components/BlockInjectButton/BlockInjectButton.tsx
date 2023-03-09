@@ -10,20 +10,8 @@ import {
 } from '@frontify/fondue';
 import React from 'react';
 import { DragEventHandler, MouseEventHandler, useRef, useState } from 'react';
-import { joinClassNames } from '../utilities/react/joinClassNames';
-
-export type BlockInjectButtonProps = {
-    isLoading?: boolean;
-    label: string;
-    secondaryLabel?: string;
-    icon?: JSX.Element;
-    onDrop?: (files: FileList) => void;
-    fillParentContainer?: boolean;
-    onUploadClick?: () => void;
-    onAssetChooseClick?: () => void;
-    withMenu?: boolean;
-    onClick?: () => void;
-};
+import { joinClassNames } from '../../utilities/react/joinClassNames';
+import { BlockInjectButtonProps } from './types';
 
 export const BlockInjectButton = ({
     onDrop,
