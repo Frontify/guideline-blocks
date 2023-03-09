@@ -37,10 +37,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps) => {
         >
             <div className="tw-mb-8 sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
                 <InformationSection
-                    description={description}
+                    description={description ?? ''}
                     isEditing={isEditing}
                     setBlockSettings={setBlockSettings}
-                    title={title}
+                    title={title ?? ''}
                 />
                 <div className="tw-flex-none">
                     <button

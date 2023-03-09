@@ -28,17 +28,6 @@ export type Settings = {
     title?: string;
 };
 
-export enum BlockPreview {
-    Image = 'image',
-    Live = 'live',
-}
-
-export type DrawZoomInOutButtonsProps = {
-    onClickZoomIn: () => void;
-    onClickZoomOut: () => void;
-    isFullScreen?: boolean;
-};
-
 export type AssetGridProps = {
     currentAssets: Asset[];
     deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
@@ -59,10 +48,10 @@ export type DownloadMessageProps = {
 };
 
 export type InformationSectionProps = {
-    description?: string;
+    description: string;
     isEditing: boolean;
     setBlockSettings: (newSettings: Partial<Settings>) => void;
-    title?: string;
+    title: string;
 };
 
 export type ThumbnailItemProps = {

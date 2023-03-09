@@ -11,7 +11,7 @@ export const AssetGrid = ({ currentAssets, deleteAssetIdsFromKey, isEditing, thu
 
     return (
         <>
-            {currentAssets?.length > 0 ? (
+            {currentAssets.length > 0 ? (
                 <span>
                     {currentAssets.length} asset{currentAssets.length > 1 ? <>s</> : null}
                 </span>
