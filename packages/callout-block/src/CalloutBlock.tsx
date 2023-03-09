@@ -94,7 +94,11 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     />
                 )}
                 {!isEditing ? (
-                    <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+                    <div
+                        data-test-id="rte-content-html"
+                        className="tw-w-full"
+                        dangerouslySetInnerHTML={{ __html: html }}
+                    />
                 ) : (
                     <RichTextEditor
                         id={appBridge.getBlockId().toString()}
