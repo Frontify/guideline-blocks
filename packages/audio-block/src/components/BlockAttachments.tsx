@@ -15,13 +15,13 @@ export const BlockAttachments = ({ appBridge }: BlockAttachmentsProps) => {
 
     return (
         <Attachments
-            onUploadAttachments={onAddAttachments}
-            onAttachmentDelete={onAttachmentDelete}
-            onAttachmentReplaceWithBrowse={onAttachmentReplace}
-            onAttachmentReplaceWithUpload={onAttachmentReplace}
-            onAttachmentsSorted={onAttachmentsSorted}
-            onBrowseAttachments={onAddAttachments}
-            attachmentItems={attachments}
+            onUpload={onAddAttachments}
+            onDelete={onAttachmentDelete}
+            onReplaceWithBrowse={onAttachmentReplace}
+            onReplaceWithUpload={onAttachmentReplace}
+            onSorted={onAttachmentsSorted}
+            onBrowse={onAddAttachments}
+            items={attachments}
             appBridge={appBridge}
         />
     );
