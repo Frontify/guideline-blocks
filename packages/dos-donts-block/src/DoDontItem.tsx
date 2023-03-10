@@ -72,7 +72,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const { itemImages } = blockAssets;
         const [internalTitle, setInternalTitle] = useState(title);
         const titleRef = useRef<HTMLTextAreaElement>(null);
-        const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
         const [isUploadLoading, setIsUploadLoading] = useState(false);
         const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: false });
@@ -112,12 +111,10 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     multiSelection: false,
                 }
             );
-            setIsMenuOpen(false);
         };
 
         const onUploadClick = () => {
             openFileDialog();
-            setIsMenuOpen(false);
         };
 
         useEffect(() => {
@@ -173,8 +170,8 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         return (
             <div
                 ref={ref}
-                className="hover:!tw-z-[2] tw-bg-base"
-                style={{ ...transformStyle, ...(isMenuOpen ? { zIndex: 2 } : {}) }}
+                className="tw-bg-base"
+                style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
             >
                 <BlockItemWrapper
                     isDragging={isDragging}
@@ -238,7 +235,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                             radiusChoice={radiusChoice}
                             border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
                             radiusValue={radiusValue}
-                            onClick={() => setIsMenuOpen(true)}
                             dontColor={dontColor}
                         />
                     )}
@@ -264,7 +260,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                             </div>
                         )}
                         <div className="tw-w-full tw-flex tw-items-center">
-                            <h3 style={{ marginBottom: 0, width: '100%' }}>
+                            <h3 style={{ marginBottom: 0, width: '100%', lineHeight: 1, display: 'inline-flex' }}>
                                 <textarea
                                     rows={1}
                                     ref={titleRef}
@@ -288,7 +284,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     </div>
                     {style === DoDontStyle.Underline && (
                         <hr
-                            style={dividerStyles[type as DoDontType]}
+                            style={dividerStyles[type]}
                             className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded tw-bg-black-40"
                         />
                     )}
@@ -333,6 +329,7 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
 
     return (
         <DoDontItem
+            key={id}
             ref={setNodeRef}
             {...props}
             isDragging={isDragging}
