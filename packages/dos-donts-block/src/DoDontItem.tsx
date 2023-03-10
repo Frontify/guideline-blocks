@@ -284,7 +284,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     </div>
                     {style === DoDontStyle.Underline && (
                         <hr
-                            style={dividerStyles[type as DoDontType]}
+                            style={dividerStyles[type]}
                             className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded tw-bg-black-40"
                         />
                     )}
