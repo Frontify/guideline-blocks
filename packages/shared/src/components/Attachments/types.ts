@@ -3,7 +3,7 @@
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { DesignTokenName, TokenValues } from '../../hooks';
 
-export interface AttachmentsProps {
+export type AttachmentsProps = {
     attachmentItems: Asset[] | undefined;
     appBridge: AppBridgeBlock;
     onAttachmentReplaceWithUpload: (attachmentToReplace: Asset, newAsset: Asset) => void;
@@ -12,8 +12,7 @@ export interface AttachmentsProps {
     onUploadAttachments: (uploadedAttachments: Asset[]) => void;
     onBrowseAttachments: (browserAttachments: Asset[]) => void;
     onAttachmentsSorted: (sortedAttachments: Asset[]) => void;
-    onDownload: () => void;
-}
+};
 
 export type AttachmentItemProps = SortableAttachmentItemProps & {
     isDragging?: boolean;
