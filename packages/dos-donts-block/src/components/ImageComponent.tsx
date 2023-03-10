@@ -23,7 +23,6 @@ const ImageComponent = ({
     hasRadius,
     radiusChoice,
     radiusValue,
-    onClick,
     dontColor,
     border,
 }: ImageComponentProps) => {
@@ -83,7 +82,6 @@ const ImageComponent = ({
                         icon={<IconPlus32 />}
                         label=""
                         isLoading={isUploadLoading}
-                        onClick={onClick}
                     />
                 </div>
             ) : (
