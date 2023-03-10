@@ -83,11 +83,11 @@ export const Attachments = ({
         );
     };
 
-    const onReplaceAttachmentWithBrowse = (attachmentToReplace: Asset) => {
+    const onReplaceItemWithBrowse = (toReplace: Asset) => {
         setIsFlyoutOpen(false);
         appBridge.openAssetChooser(
             (result: Asset[]) => {
-                onReplaceWithBrowse(attachmentToReplace, result[0]);
+                onReplaceWithBrowse(toReplace, result[0]);
                 appBridge.closeAssetChooser();
             },
             {
@@ -96,8 +96,8 @@ export const Attachments = ({
         );
     };
 
-    const onReplaceAttachmentWithUpload = (attachmentToReplace: Asset, uploadedAsset: Asset) => {
-        onReplaceWithUpload(attachmentToReplace, uploadedAsset);
+    const onReplaceItemWithUpload = (toReplace: Asset, uploadedAsset: Asset) => {
+        onReplaceWithUpload(toReplace, uploadedAsset);
     };
 
     const handleDragStart = (event: DragStartEvent) => {
@@ -145,18 +145,16 @@ export const Attachments = ({
                                 >
                                     <SortableContext items={internalItems || []} strategy={rectSortingStrategy}>
                                         <div className="tw-border-b tw-border-b-line">
-                                            {(internalItems || []).map((attachmentItem) => (
+                                            {(internalItems || []).map((item) => (
                                                 <SortableAttachmentItem
                                                     isEditing={isEditing}
                                                     designTokens={designTokens}
-                                                    key={attachmentItem.id}
-                                                    item={attachmentItem}
-                                                    onDelete={() => onDelete(attachmentItem)}
-                                                    onReplaceWithBrowse={() =>
-                                                        onReplaceAttachmentWithBrowse(attachmentItem)
-                                                    }
+                                                    key={item.id}
+                                                    item={item}
+                                                    onDelete={() => onDelete(item)}
+                                                    onReplaceWithBrowse={() => onReplaceItemWithBrowse(item)}
                                                     onReplaceWithUpload={(uploadedAsset: Asset) =>
-                                                        onReplaceAttachmentWithUpload(attachmentItem, uploadedAsset)
+                                                        onReplaceItemWithUpload(item, uploadedAsset)
                                                     }
                                                 />
                                             ))}
@@ -172,9 +170,9 @@ export const Attachments = ({
                                                 item={draggedItem}
                                                 isDragging={true}
                                                 onDelete={() => onDelete(draggedItem)}
-                                                onReplaceWithBrowse={() => onReplaceAttachmentWithBrowse(draggedItem)}
+                                                onReplaceWithBrowse={() => onReplaceItemWithBrowse(draggedItem)}
                                                 onReplaceWithUpload={(uploadedAsset: Asset) =>
-                                                    onReplaceAttachmentWithUpload(draggedItem, uploadedAsset)
+                                                    onReplaceItemWithUpload(draggedItem, uploadedAsset)
                                                 }
                                             />
                                         ) : null}

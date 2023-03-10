@@ -70,8 +70,8 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [doneAll, uploadResults]);
 
-        const downloadAttachment = (attachmentUrl: string, filename: string) => {
-            fetch(attachmentUrl).then((response) => {
+        const download = (url: string, filename: string) => {
+            fetch(url).then((response) => {
                 response.blob().then((blob) => {
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
@@ -85,7 +85,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
         return (
             <div
                 data-test-id="attachments-item"
-                onClick={() => downloadAttachment(item.genericUrl, item.fileName)}
+                onClick={() => download(item.genericUrl, item.fileName)}
                 ref={ref}
                 style={{
                     ...transformStyle,
