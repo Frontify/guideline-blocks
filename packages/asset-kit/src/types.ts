@@ -30,17 +30,18 @@ export type Settings = {
 
 export type AssetGridProps = {
     currentAssets: Asset[];
-    deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
+
     isEditing: boolean;
     thumbnailStyle: CSSProperties;
+    deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
 };
 
 export type AssetSelectionProps = {
     appBridge: AppBridgeBlock;
     isUploadingAssets: boolean;
-    setIsUploadingAssets: (isUploadingAssets: boolean) => void;
-    addAssetIdsToKey: (key: string, assetIds: number[]) => Promise<void>;
     currentAssets: Asset[];
+    addAssetIdsToKey: (key: string, assetIds: number[]) => Promise<void>;
+    setIsUploadingAssets: (isUploadingAssets: boolean) => void;
 };
 
 export type DownloadMessageProps = {
@@ -50,15 +51,15 @@ export type DownloadMessageProps = {
 export type InformationSectionProps = {
     description: string;
     isEditing: boolean;
-    setBlockSettings: (newSettings: Partial<Settings>) => void;
     title: string;
+    setBlockSettings: (newSettings: Partial<Settings>) => void;
 };
 
 export type ThumbnailItemProps = {
     asset: Asset;
     isEditing: boolean;
-    onRemoveAsset: (assetId: number) => void;
     thumbnailStyle: CSSProperties;
+    onRemoveAsset: (assetId: number) => void;
 };
 
 export type GenerateBulkDownloadTokenRequest = {

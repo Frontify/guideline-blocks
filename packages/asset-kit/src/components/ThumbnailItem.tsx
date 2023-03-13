@@ -14,7 +14,7 @@ export const ThumbnailItem = ({ asset, isEditing, onRemoveAsset, thumbnailStyle 
             />
             {isEditing ? (
                 <div
-                    className="tw-hidden group-hover:tw-block tw-absolute tw-top-0.5 tw-right-0.5"
+                    className="tw-invisible	group-hover:tw-visible tw-absolute tw-top-0.5 tw-right-0.5"
                     data-test-id="asset-kit-block-remove-thumbnail"
                 >
                     <Button
