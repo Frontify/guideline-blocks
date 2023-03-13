@@ -10,6 +10,7 @@ import { GradientColor, Settings, gradientHeightValues, gradientOrientationValue
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadgesRow } from './components';
 import { toHexString } from '@frontify/guideline-blocks-shared';
+import { parseGradientColorsToCss } from './helpers';
 
 export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -51,19 +52,6 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
         ? heightCustom
         : gradientHeightValues[heightSimple ?? DEFAULT_HEIGHT_VALUE];
 
-    const parseGradientColorsToCss = () => {
-        if (!gradientColors) {
-            return '';
-        } else {
-            let colorsAsString = '';
-            for (const color of gradientColors.sort((a, b) => a.position - b.position)) {
-                colorsAsString += `, ${toHexString(color.color)} ${color.position}%`;
-            }
-
-            return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
-        }
-    };
-
     const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
         if (showColorModal) {
             return;
@@ -79,7 +67,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
         setMounted(true);
     }, []);
 
-    const cssValue = parseGradientColorsToCss();
+    const cssValue = parseGradientColorsToCss(gradientColors, gradientOrientation);
 
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
