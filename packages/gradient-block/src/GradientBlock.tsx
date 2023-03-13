@@ -93,7 +93,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                     <div className="tw-relative">
                         <div
                             data-test-id="gradient-block-divider"
-                            onMouseOver={handleMouseMove}
+                            onMouseMove={handleMouseMove}
                             onMouseLeave={() => setShowAddButton(false)}
                         >
                             <Divider />
