@@ -66,7 +66,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
             >
                 <div className={getBadgeClasses(gradientColor.isReverse || false)}>
                     <div
-                        className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-mx-0."
+                        className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-mx-0"
                         style={{
                             backgroundColor: toHexString(gradientColor.color),
                         }}

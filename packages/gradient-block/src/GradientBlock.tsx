@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MouseEvent, useRef, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -29,6 +29,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
     const [showAddButton, setShowAddButton] = useState(false);
     const [showColorModal, setShowColorModal] = useState(false);
+    const [isRefReady, setRefReady] = useState(false);
 
     if (!gradientColors) {
         setBlockSettings({
@@ -73,6 +74,14 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         setAddButtonPositionLeft(relativeMouseX - 16 / 2);
         setShowAddButton(true);
     };
+
+    useEffect(() => {
+        if (gradientBlockRef.current) {
+            setRefReady(true);
+        } else {
+            setRefReady(false);
+        }
+    }, [gradientBlockRef]);
 
     const cssValue = parseGradientColorsToCss();
 
@@ -130,7 +139,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                 </div>
             ) : (
                 <>
-                    {gradientBlockRef.current && gradientColors ? (
+                    {gradientBlockRef.current && gradientColors && isRefReady ? (
                         <SquareBadgesRow
                             blockWidth={gradientBlockRef.current.clientWidth}
                             gradientColors={gradientColors}
