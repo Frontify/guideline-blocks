@@ -100,13 +100,13 @@ export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) 
                     <div className="tw-flex tw-gap-2">
                         <DownloadButton onDownload={() => downloadAsset(image)} />
                         <Attachments
-                            onUploadAttachments={onAddAttachments}
-                            onAttachmentDelete={onAttachmentDelete}
-                            onAttachmentReplaceWithBrowse={onAttachmentReplace}
-                            onAttachmentReplaceWithUpload={onAttachmentReplace}
-                            onAttachmentsSorted={onAttachmentsSorted}
-                            onBrowseAttachments={onAddAttachments}
-                            attachmentItems={attachments}
+                            onUpload={onAddAttachments}
+                            onDelete={onAttachmentDelete}
+                            onReplaceWithBrowse={onAttachmentReplace}
+                            onReplaceWithUpload={onAttachmentReplace}
+                            onSorted={onAttachmentsSorted}
+                            onBrowse={onAddAttachments}
+                            items={attachments}
                             appBridge={appBridge}
                         />
                     </div>

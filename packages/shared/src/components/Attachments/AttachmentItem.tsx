@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { Asset, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { useSortable } from '@dnd-kit/sortable';
 import {
@@ -21,7 +21,6 @@ import {
     MenuItemContentSize,
     MenuItemStyle,
 } from '@frontify/fondue';
-import { forwardRef, useEffect, useState } from 'react';
 import { AttachmentItemProps, SortableAttachmentItemProps } from './types';
 import { joinClassNames } from '../../utilities';
 
@@ -47,9 +46,9 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
             transformStyle,
             isDragging,
             isOverlay,
-            onAttachmentDelete,
-            onAttachmentReplaceWithBrowse,
-            onAttachmentReplaceWithUpload,
+            onDelete,
+            onReplaceWithBrowse,
+            onReplaceWithUpload,
         },
         ref
     ) => {
@@ -66,13 +65,13 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
 
         useEffect(() => {
             if (doneAll) {
-                onAttachmentReplaceWithUpload(uploadResults[0]);
+                onReplaceWithUpload(uploadResults[0]);
             }
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [doneAll, uploadResults]);
 
-        const downloadAttachment = (attachmentUrl: string, filename: string) => {
-            fetch(attachmentUrl).then((response) => {
+        const download = (url: string, filename: string) => {
+            fetch(url).then((response) => {
                 response.blob().then((blob) => {
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
@@ -86,7 +85,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
         return (
             <div
                 data-test-id="attachments-item"
-                onClick={() => downloadAttachment(item.genericUrl, item.fileName)}
+                onClick={() => download(item.genericUrl, item.fileName)}
                 ref={ref}
                 style={{
                     ...transformStyle,
@@ -161,7 +160,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
                                                     size: MenuItemContentSize.XSmall,
                                                     title: 'Replace with asset',
                                                     onClick: () => {
-                                                        onAttachmentReplaceWithBrowse();
+                                                        onReplaceWithBrowse();
                                                         setSelectedAsset(undefined);
                                                     },
                                                     initialValue: true,
@@ -182,7 +181,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
                                                     title: 'Delete',
                                                     style: MenuItemStyle.Danger,
                                                     onClick: () => {
-                                                        onAttachmentDelete();
+                                                        onDelete();
                                                         setSelectedAsset(undefined);
                                                     },
 
