@@ -7,10 +7,11 @@ import {
     defineSettings,
     maximumNumericalOrPixelOrAutoRule,
     maximumNumericalRule,
+    presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 
 import { IconEnum } from '@frontify/fondue';
-import { GradientHeight, GradientOrientation } from './types';
+import { GradientHeight, GradientOrientation, gradientHeightValues } from './types';
 import { DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 
 export const IS_CUSTOM_HEIGHT_ID = 'isHeightCustom';
@@ -51,6 +52,8 @@ export const settings = defineSettings({
                     switchLabel: 'Custom',
                     info: 'Determines the block height.',
                     defaultValue: false,
+                    onChange: (bundle) =>
+                        presetCustomValue(bundle, HEIGHT_SIMPLE_ID, HEIGHT_CUSTOM_ID, gradientHeightValues),
                     on: [
                         {
                             id: HEIGHT_CUSTOM_ID,
