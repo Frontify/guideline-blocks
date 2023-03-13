@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -11,7 +11,7 @@ import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALU
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadgesRow } from './components';
 import { toHexString } from '@frontify/guideline-blocks-shared';
 
-export const GradientBlock = ({ appBridge }: BlockProps) => {
+export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const {
