@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { MouseEvent, useRef, useState } from 'react';
 import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -29,8 +29,18 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
     const [showAddButton, setShowAddButton] = useState(false);
     const [showColorModal, setShowColorModal] = useState(false);
-    const initialColors = !gradientColors || !gradientColors?.length ? DEFAULT_GRADIENT_COLORS : gradientColors;
-    const [colors, setColors] = useState<GradientColor[]>(initialColors);
+
+    if (!gradientColors) {
+        setBlockSettings({
+            gradientColors: DEFAULT_GRADIENT_COLORS,
+        });
+    }
+
+    const setGradientColors = (colors: GradientColor[]) => {
+        setBlockSettings({
+            gradientColors: colors,
+        });
+    };
 
     const gradientOrientation = isOrientationCustom
         ? orientationCustom
@@ -41,12 +51,16 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         : gradientHeightValues[heightSimple ?? DEFAULT_HEIGHT_VALUE];
 
     const parseGradientColorsToCss = () => {
-        let colorsAsString = '';
-        for (const color of colors.sort((a, b) => a.position - b.position)) {
-            colorsAsString += `, ${toHexString(color.color)} ${color.position}%`;
-        }
+        if (!gradientColors) {
+            return '';
+        } else {
+            let colorsAsString = '';
+            for (const color of gradientColors.sort((a, b) => a.position - b.position)) {
+                colorsAsString += `, ${toHexString(color.color)} ${color.position}%`;
+            }
 
-        return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
+            return `linear-gradient(${gradientOrientation}deg${colorsAsString})`;
+        }
     };
 
     const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
@@ -59,22 +73,6 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
         setAddButtonPositionLeft(relativeMouseX - 16 / 2);
         setShowAddButton(true);
     };
-
-    useEffect(() => {
-        if (!gradientColors || !gradientColors?.length) {
-            setBlockSettings({
-                gradientColors: DEFAULT_GRADIENT_COLORS,
-            });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [gradientColors]);
-
-    useEffect(() => {
-        setBlockSettings({
-            gradientColors: colors,
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [gradientOrientation, colors]);
 
     const cssValue = parseGradientColorsToCss();
 
@@ -113,7 +111,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                         <ColorPicker
                             currentlyEditingPosition={currentlyEditingPosition}
                             gradientColors={gradientColors}
-                            setColors={setColors}
+                            setColors={setGradientColors}
                             setShowColorModal={setShowColorModal}
                         />
                     ) : null}
@@ -124,7 +122,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                             gradientColor={gradientColor}
                             gradientColors={gradientColors}
                             showColorModal={showColorModal}
-                            setColors={setColors}
+                            setColors={setGradientColors}
                             setShowColorModal={setShowColorModal}
                             setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                         />
