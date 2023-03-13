@@ -10,15 +10,15 @@ import {
 
 export const ASSET_SETTINGS_ID = 'images';
 export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
-    red: 247,
-    green: 247,
-    blue: 247,
+    red: 241,
+    green: 241,
+    blue: 241,
     alpha: 1,
 };
 export const BORDER_COLOR_DEFAULT_VALUE: Color = {
-    red: 234,
-    green: 235,
-    blue: 235,
+    red: 230,
+    green: 230,
+    blue: 230,
     alpha: 1,
 };
 
@@ -30,6 +30,7 @@ const backgroundColor = (id: string, defaultValue = true): SettingBlock => ({
     on: [
         {
             id: `backgroundColor_${id}`,
+            defaultValue: defaultValue ? BACKGROUND_COLOR_DEFAULT_VALUE : undefined,
             type: 'colorInput',
         },
     ],
@@ -44,7 +45,7 @@ export const settings = defineSettings({
             label: 'Block',
             blocks: [
                 backgroundColor('blocks', false),
-                getBorderSettings({ id: 'blocks', defaultValue: true }),
+                getBorderSettings({ id: 'blocks', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
                 {
                     ...getBorderRadiusSettings({ id: 'blocks' }),
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -63,7 +64,7 @@ export const settings = defineSettings({
             label: 'Thumbnails',
             blocks: [
                 backgroundColor('thumbnails'),
-                getBorderSettings({ id: 'thumbnails', defaultValue: true }),
+                getBorderSettings({ id: 'thumbnails', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
                 {
                     ...getBorderRadiusSettings({ id: 'thumbnails' }),
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
