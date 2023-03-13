@@ -306,7 +306,7 @@ describe('Gradient Block', () => {
 
         mount(<GradientBlockWithStubs />);
         cy.get(ColorPointsSelector).eq(1).realHover();
-        cy.get(EditAndDeleteColorBoxSelector).find('button').first().realClick();
+        cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').first().realClick();
         cy.get(ColorPickerFlyoutSelector).should('exist');
         cy.get(ColorPickerForm).find(TriggerSelector).realClick();
         cy.get(ColorInputSelector).first().find('input').clear().type('#0000ff');
@@ -331,7 +331,7 @@ describe('Gradient Block', () => {
 
         mount(<GradientBlockWithStubs />);
         cy.get(ColorPointsSelector).eq(1).realHover();
-        cy.get(EditAndDeleteColorBoxSelector).find('button').last().realClick();
+        cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').last().realClick();
         cy.get(ColorPointsSelector).should('have.length', 2);
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',

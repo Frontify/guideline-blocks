@@ -73,6 +73,14 @@ export const ColorPicker = ({
                                 icon: <IconCheckMark16 />,
                                 children: 'Close',
                                 onClick: () => {
+                                    if (!actualColor) {
+                                        addNewColor({
+                                            color,
+                                            position: parseInt(colorPosition),
+                                        });
+                                    } else {
+                                        color && editColor();
+                                    }
                                     setShowColorModal(false);
                                 },
                             },
@@ -94,14 +102,7 @@ export const ColorPicker = ({
                         onClose={() => setShowColorModal(false)}
                         onSelect={setColor}
                         onClick={() => {
-                            if (!actualColor) {
-                                addNewColor({
-                                    color,
-                                    position: parseInt(colorPosition),
-                                });
-                            } else {
-                                color && editColor();
-                            }
+                            color && editColor();
                         }}
                     />
                     <span className="tw-flex tw-mt-6">
