@@ -29,7 +29,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
     const [showAddButton, setShowAddButton] = useState(false);
     const [showColorModal, setShowColorModal] = useState(false);
-    const [isRefReady, setRefReady] = useState(false);
+    const [isMounted, setMounted] = useState(false);
 
     if (!gradientColors) {
         setBlockSettings({
@@ -76,12 +76,8 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
     };
 
     useEffect(() => {
-        if (gradientBlockRef.current) {
-            setRefReady(true);
-        } else {
-            setRefReady(false);
-        }
-    }, [gradientBlockRef]);
+        setMounted(true);
+    }, []);
 
     const cssValue = parseGradientColorsToCss();
 
@@ -139,7 +135,7 @@ export const GradientBlock = ({ appBridge }: BlockProps) => {
                 </div>
             ) : (
                 <>
-                    {gradientBlockRef.current && gradientColors && isRefReady ? (
+                    {gradientBlockRef.current && gradientColors && isMounted ? (
                         <SquareBadgesRow
                             blockWidth={gradientBlockRef.current.clientWidth}
                             gradientColors={gradientColors}
