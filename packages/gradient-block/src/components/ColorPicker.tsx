@@ -118,12 +118,7 @@ export const ColorPicker = ({
                             />
                         </span>
                     </span>
-                    <TextInput
-                        data-test-id="test"
-                        value={colorPosition}
-                        onChange={setColorPosition}
-                        type={TextInputType.Number}
-                    />
+                    <TextInput value={colorPosition} onChange={setColorPosition} type={TextInputType.Number} />
                 </div>
             </div>
         </Flyout>

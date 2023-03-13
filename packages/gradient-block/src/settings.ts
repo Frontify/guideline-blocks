@@ -33,7 +33,7 @@ export const settings = defineSettings({
                     label: 'Display CSS Code',
                     type: 'switch',
                     size: SwitchSize.Small,
-                    defaultValue: true,
+                    defaultValue: false,
                 },
             ],
         },
