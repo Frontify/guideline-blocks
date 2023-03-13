@@ -24,6 +24,7 @@ export const BlockItemWrapper = ({
             ])}
         >
             <div className={joinClassNames([shouldHideComponent && 'tw-opacity-0'])}>
+                {children}
                 <div
                     className={joinClassNames([
                         'tw-absolute tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full',
@@ -39,7 +40,6 @@ export const BlockItemWrapper = ({
                         isDragging={isDragging}
                     />
                 </div>
-                {children}
             </div>
         </div>
     );

@@ -100,7 +100,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     } = blockSettings;
     const sensors = useSensors(useSensor(PointerSensor));
     const { dontIconAsset, doIconAsset, itemImages } = blockAssets;
-    const [localItems, setLocalItems] = useState<Item[]>(items);
+    const [localItems, setLocalItems] = useState<Item[]>(items.map((item) => ({ ...item, id: item.id.toString() })));
     const defaultDoColor = designTokens?.callout?.tip
         ? toColorObject(designTokens.callout.tip)
         : DO_COLOR_DEFAULT_VALUE;
@@ -224,7 +224,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     };
     const handleDragStart = (event: DragEndEvent) => {
         const { active } = event;
-        setActiveId(active.id as string);
+        setActiveId(active.id.toString());
         if (wrapperRef.current) {
             setMinRowHeight(
                 Math.min(
@@ -258,7 +258,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const getDoDontItemProps = (item: Item) => ({
-        id: item.id,
+        id: item.id.toString(),
         onChangeItem,
         onRemoveSelf: () => removeItemById(item.id),
         title: item.title,
@@ -319,7 +319,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                   'lg:tw-grid-cols-4 md:tw-grid-cols-2 sm:tw-grid-cols-1',
               ][columns - 1];
 
-    const activeItem = localItems.find((x) => x.id === activeId);
+    const activeItem = localItems.find((x) => x.id.toString() === activeId);
 
     const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
 
