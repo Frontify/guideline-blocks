@@ -6,8 +6,10 @@ import { GradientColor } from '../types';
 import {
     calculateBadgeWidthInPercent,
     calculateCopyButtonWidthInPercent,
+    calculateLevelOfLast,
     getTopLevel,
     isBadgeLeft,
+    prepareGradientColors,
 } from './SquareBadgeHelper';
 
 const Color = {
@@ -33,7 +35,79 @@ const GradientColorWhite = {
     position: 0,
 } as GradientColor;
 
+const simpleSamleGradientColors = [
+    {
+        color: Color,
+        position: 0,
+    },
+    {
+        color: Color,
+        position: 100,
+    },
+];
+
+const preparedSimpleSamleGradientColors = [
+    {
+        color: Color,
+        position: 0,
+        level: 0,
+        isReverse: false,
+    },
+    {
+        color: Color,
+        position: 100,
+        level: 0,
+        isReverse: true,
+    },
+];
+
+const preparedSixColorsAtEnd = [
+    {
+        color: Color,
+        position: 0,
+        level: 0,
+        isReverse: false,
+    },
+    {
+        color: Color,
+        position: 96,
+        level: 0,
+        isReverse: true,
+    },
+    {
+        color: Color,
+        position: 97,
+        level: 1,
+        isReverse: true,
+    },
+    {
+        color: Color,
+        position: 98,
+        level: 2,
+        isReverse: true,
+    },
+    {
+        color: Color,
+        position: 99,
+        level: 3,
+        isReverse: true,
+    },
+    {
+        color: Color,
+        position: 100,
+        isReverse: true,
+    },
+];
+
 describe('SquareBadgeHelper', () => {
+    it('calculateLevelOfLast with 2 colors level is 0', () => {
+        expect(calculateLevelOfLast(preparedSimpleSamleGradientColors)).toEqual(0);
+    });
+
+    it('calculateLevelOfLast with 6 colors level is 4', () => {
+        expect(calculateLevelOfLast(preparedSixColorsAtEnd)).toEqual(4);
+    });
+
     it('calculateBadgeWidthInPercent width is 12.5 at 800', () => {
         expect(calculateBadgeWidthInPercent(GradientColorDefault, 800)).toEqual(12.5);
     });
@@ -107,12 +181,10 @@ describe('SquareBadgeHelper', () => {
             {
                 color: Color,
                 position: 7,
-                level: 2,
             },
             {
                 color: Color,
                 position: 100,
-                level: 0,
             },
         ];
         expect(getTopLevel(gradientColorsSecondLevelMissing, 2, 800, 0)).toEqual(2);
@@ -158,7 +230,6 @@ describe('SquareBadgeHelper', () => {
             {
                 color: Color,
                 position: 43,
-                level: 3,
             },
             {
                 color: Color,
@@ -167,9 +238,121 @@ describe('SquareBadgeHelper', () => {
             {
                 color: Color,
                 position: 100,
-                level: 0,
             },
         ];
         expect(getTopLevel(gradientColorsSeventhLevelMissing, 7, 800, 0)).toEqual(3);
+    });
+
+    it('prepareGradientColors is called with 2 colors', () => {
+        expect(prepareGradientColors(simpleSamleGradientColors, 800)).toEqual(preparedSimpleSamleGradientColors);
+    });
+
+    it('prepareGradientColors is called with multiple colors, multiple levels, multiple reverse', () => {
+        const gradientColors = [
+            {
+                color: Color,
+                position: 0,
+            },
+            {
+                color: Color,
+                position: 2,
+            },
+            {
+                color: Color,
+                position: 7,
+            },
+            {
+                color: Color,
+                position: 25,
+            },
+            {
+                color: Color,
+                position: 40,
+            },
+            {
+                color: Color,
+                position: 92,
+            },
+            {
+                color: Color,
+                position: 93,
+            },
+            {
+                color: Color,
+                position: 94,
+            },
+            {
+                color: Color,
+                position: 95,
+            },
+            {
+                color: Color,
+                position: 100,
+            },
+        ];
+
+        const gradientColorsPrepared = [
+            {
+                color: Color,
+                position: 0,
+                level: 0,
+                isReverse: false,
+            },
+            {
+                color: Color,
+                position: 2,
+                level: 1,
+                isReverse: false,
+            },
+            {
+                color: Color,
+                position: 7,
+                level: 2,
+                isReverse: false,
+            },
+            {
+                color: Color,
+                position: 25,
+                level: 0,
+                isReverse: false,
+            },
+            {
+                color: Color,
+                position: 40,
+                level: 0,
+                isReverse: false,
+            },
+            {
+                color: Color,
+                position: 92,
+                level: 0,
+                isReverse: true,
+            },
+            {
+                color: Color,
+                position: 93,
+                level: 1,
+                isReverse: true,
+            },
+            {
+                color: Color,
+                position: 94,
+                level: 2,
+                isReverse: true,
+            },
+            {
+                color: Color,
+                position: 95,
+                level: 3,
+                isReverse: true,
+            },
+            {
+                color: Color,
+                position: 100,
+                level: 4,
+                isReverse: true,
+            },
+        ];
+        expect(prepareGradientColors(gradientColors, 800)).toEqual(gradientColorsPrepared);
     });
 });

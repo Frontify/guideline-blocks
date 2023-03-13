@@ -2,6 +2,29 @@
 
 import { GradientColor } from '../types';
 
+export const prepareGradientColors = (gradientColors: GradientColor[], width: number): GradientColor[] => {
+    for (const [index, color] of gradientColors.entries()) {
+        color.isReverse = isBadgeLeft(color, width);
+        color.level = getTopLevel(gradientColors, index, width, 0);
+    }
+    return gradientColors;
+};
+
+export const calculateLevelOfLast = (gradientColors: GradientColor[]) => {
+    const allLeft = gradientColors.filter((color) => color.isReverse);
+    const leftStartLevel = allLeft[0].level || 0;
+    return leftStartLevel + allLeft.length - 1;
+};
+
+export const calculateBadgeWidthInPercent = (color: GradientColor, width: number) => {
+    const badgeWidth = (color.color?.name?.length || 0) * 6 + 100;
+    return (badgeWidth / width) * 100;
+};
+
+export const calculateCopyButtonWidthInPercent = (width: number) => {
+    return (16 / width) * 100;
+};
+
 export const getTopLevel = (gradientColors: GradientColor[], index: number, width: number, level: number): number => {
     if (!index) {
         return 0;
@@ -26,15 +49,6 @@ export const getTopLevel = (gradientColors: GradientColor[], index: number, widt
     }
 
     return currentLevel;
-};
-
-export const calculateBadgeWidthInPercent = (color: GradientColor, width: number) => {
-    const badgeWidth = (color.color?.name?.length || 0) * 6 + 100;
-    return (badgeWidth / width) * 100;
-};
-
-export const calculateCopyButtonWidthInPercent = (width: number) => {
-    return (16 / width) * 100;
 };
 
 export const isBadgeLeft = (color: GradientColor, width: number) => {

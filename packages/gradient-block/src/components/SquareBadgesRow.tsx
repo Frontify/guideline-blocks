@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
-import { getTopLevel, isBadgeLeft } from '../helpers';
+import { calculateLevelOfLast, prepareGradientColors } from '../helpers';
 import { SquareBadgesRowProps } from '../types';
 import { SquareBadge } from './';
 import { toHexString } from '@frontify/guideline-blocks-shared';
@@ -11,21 +11,15 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
     const [highestLevel, setHighestLevel] = useState(0);
 
     const prepareGradients = () => {
-        for (const [index, color] of gradientColors.entries()) {
-            color.isReverse = isBadgeLeft(color, blockWidth);
-            color.level = getTopLevel(gradientColors, index, blockWidth, 0);
-        }
+        gradientColors = prepareGradientColors(gradientColors, blockWidth);
+        gradientColors[gradientColors.length - 1].level = calculateLevelOfLast(gradientColors);
 
-        const allLeft = gradientColors.filter((color) => color.isReverse);
-        const rightHighestLevel =
-            gradientColors.reduce((prev, current) => {
+        const highestLevel =
+            (gradientColors.reduce((prev, current) => {
                 return (prev.level || 0) > (current.level || 0) ? prev : current;
-            }).level || 0;
+            }).level || 0) + 1;
 
-        const leftStartLevel = allLeft[0].level || 0;
-
-        gradientColors[gradientColors.length - 1].level = leftStartLevel + allLeft.length - 1;
-        setHighestLevel(Math.max(allLeft.length + leftStartLevel, rightHighestLevel));
+        setHighestLevel(highestLevel);
     };
 
     useEffect(() => {
