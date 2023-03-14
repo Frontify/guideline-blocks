@@ -4,20 +4,22 @@ import { Button, ButtonEmphasis, ButtonRounding, ButtonSize, IconCross16 } from 
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
 import { useKeyboard } from '@react-aria/interactions';
+import { mergeProps } from '@react-aria/utils';
 import { ThumbnailItemProps } from '../types';
 
 export const ThumbnailItem = ({ asset, isEditing, onRemoveAsset, thumbnailStyle }: ThumbnailItemProps) => {
     const { isFocused, focusProps } = useFocusRing();
+
     const { keyboardProps } = useKeyboard({
         onKeyUp: (event) => {
-            if (event.key === 'Backspace' || event.key === 'Delete') {
+            if ((event.key === 'Backspace' || event.key === 'Delete') && isEditing) {
                 onRemoveAsset(asset.id);
             }
         },
     });
     return (
         <div
-            {...focusProps}
+            {...mergeProps(focusProps, keyboardProps)}
             tabIndex={0}
             data-test-id="asset-kit-block-thumbnail"
             className="tw-aspect-square tw-group tw-relative"
