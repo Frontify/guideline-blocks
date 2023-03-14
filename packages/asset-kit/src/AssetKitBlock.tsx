@@ -15,7 +15,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { designTokens } = useGuidelineDesignTokens();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
-    const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
     const [isDownloadingAssets, setIsDownloadingAssets] = useState<boolean>(false);
     const { title, description } = blockSettings;
@@ -59,8 +59,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
             {isDownloadingAssets ? <DownloadMessage blockStyle={blockStyle(blockSettings)} /> : null}
 
             <AssetGrid
+                appBridge={appBridge}
                 currentAssets={currentAssets}
                 deleteAssetIdsFromKey={deleteAssetIdsFromKey}
+                updateAssetIdsFromKey={updateAssetIdsFromKey}
                 isEditing={isEditing}
                 thumbnailStyle={thumbnailStyle(blockSettings)}
             />

@@ -1,52 +1,66 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Button, ButtonEmphasis, ButtonRounding, ButtonSize, IconCross16 } from '@frontify/fondue';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { useState } from 'react';
 import { useFocusRing } from '@react-aria/focus';
 import { useKeyboard } from '@react-aria/interactions';
 import { mergeProps } from '@react-aria/utils';
 import { ThumbnailItemProps } from '../types';
-
-export const ThumbnailItem = ({ asset, isEditing, onRemoveAsset, thumbnailStyle }: ThumbnailItemProps) => {
+import { ThumbnailToolbar } from './';
+import { LoadingCircle } from '@frontify/fondue';
+export const ThumbnailItem = ({
+    asset,
+    isEditing,
+    appBridge,
+    onRemoveAsset,
+    onReplaceAsset,
+    thumbnailStyle,
+}: ThumbnailItemProps) => {
     const { isFocused, focusProps } = useFocusRing();
+    const [isUploading, setIsUploading] = useState(false);
 
     const { keyboardProps } = useKeyboard({
         onKeyUp: (event) => {
-            if ((event.key === 'Backspace' || event.key === 'Delete') && isEditing) {
+            if ((event.key === 'Backspace' || event.key === 'Delete') && isEditing && isFocused) {
                 onRemoveAsset(asset.id);
             }
         },
     });
+
     return (
         <div
             {...mergeProps(focusProps, keyboardProps)}
             tabIndex={0}
             data-test-id="asset-kit-block-thumbnail"
-            className="tw-aspect-square tw-group tw-relative"
+            className="tw-aspect-square tw-group tw-relative tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse focus:tw-outline hover:tw-outline"
         >
-            <img
-                className="tw-object-scale-down tw-w-full tw-h-full"
-                src={asset.previewUrl}
-                style={thumbnailStyle}
-                alt={asset.title}
-            />
-            {isEditing ? (
-                <div
-                    className={joinClassNames([
-                        'group-hover:tw-visible tw-absolute tw-top-0.5 tw-right-0.5',
-                        (isFocused && 'tw-visible') || 'tw-invisible',
-                    ])}
-                    data-test-id="asset-kit-block-remove-thumbnail"
-                >
-                    <Button
-                        size={ButtonSize.Small}
-                        rounding={ButtonRounding.Medium}
-                        emphasis={ButtonEmphasis.Default}
-                        icon={<IconCross16 />}
-                        onClick={() => onRemoveAsset(asset.id)}
+            <>
+                {isUploading ? (
+                    <div className="tw-relative tw-w-full tw-h-full" style={thumbnailStyle}>
+                        <div className="tw-absolute tw-top-1/2 tw-left-1/2 -tw-translate-y-1/2 -tw-translate-x-1/2">
+                            <LoadingCircle />
+                        </div>
+                    </div>
+                ) : (
+                    <img
+                        className="tw-object-scale-down tw-w-full tw-h-full"
+                        src={asset.previewUrl}
+                        style={thumbnailStyle}
+                        alt={asset.title}
                     />
-                </div>
-            ) : null}
+                )}
+
+                {isEditing ? (
+                    <ThumbnailToolbar
+                        appBridge={appBridge}
+                        asset={asset}
+                        isFocused={isFocused}
+                        onRemoveAsset={onRemoveAsset}
+                        onReplaceAsset={onReplaceAsset}
+                        setIsUploading={setIsUploading}
+                        isUploading={isUploading}
+                    />
+                ) : null}
+            </>
         </div>
     );
 };

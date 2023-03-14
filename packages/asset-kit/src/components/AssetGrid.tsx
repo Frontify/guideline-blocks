@@ -4,9 +4,22 @@ import { ThumbnailItem } from './';
 import { ASSET_SETTINGS_ID } from '../settings';
 import { AssetGridProps } from '../types';
 
-export const AssetGrid = ({ currentAssets, deleteAssetIdsFromKey, isEditing, thumbnailStyle }: AssetGridProps) => {
+export const AssetGrid = ({
+    currentAssets,
+    deleteAssetIdsFromKey,
+    updateAssetIdsFromKey,
+    isEditing,
+    thumbnailStyle,
+    appBridge,
+}: AssetGridProps) => {
     const onRemoveAsset = async (assetId: number) => {
         await deleteAssetIdsFromKey(ASSET_SETTINGS_ID, [assetId]);
+    };
+
+    const onReplaceAsset = async (toReplaceAssetId: number, newAssetId: number) => {
+        const assetIds = currentAssets.map((asset) => asset.id);
+        assetIds.splice(assetIds.indexOf(toReplaceAssetId), 1, newAssetId);
+        await updateAssetIdsFromKey(ASSET_SETTINGS_ID, assetIds);
     };
 
     return (
@@ -26,6 +39,8 @@ export const AssetGrid = ({ currentAssets, deleteAssetIdsFromKey, isEditing, thu
                               asset={asset}
                               isEditing={isEditing}
                               onRemoveAsset={onRemoveAsset}
+                              onReplaceAsset={onReplaceAsset}
+                              appBridge={appBridge}
                               thumbnailStyle={thumbnailStyle}
                           />
                       ))

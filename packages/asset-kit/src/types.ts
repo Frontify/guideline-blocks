@@ -30,10 +30,11 @@ export type Settings = {
 
 export type AssetGridProps = {
     currentAssets: Asset[];
-
+    appBridge: AppBridgeBlock;
     isEditing: boolean;
     thumbnailStyle: CSSProperties;
     deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
+    updateAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
 };
 
 export type AssetSelectionProps = {
@@ -59,7 +60,19 @@ export type ThumbnailItemProps = {
     asset: Asset;
     isEditing: boolean;
     thumbnailStyle: CSSProperties;
+    appBridge: AppBridgeBlock;
     onRemoveAsset: (assetId: number) => void;
+    onReplaceAsset: (toReplaceId: number, newId: number) => void;
+};
+
+export type ThumbnailToolbarProps = {
+    asset: Asset;
+    isFocused: boolean;
+    appBridge: AppBridgeBlock;
+    onRemoveAsset: (assetId: number) => void;
+    onReplaceAsset: (toReplaceId: number, newId: number) => void;
+    setIsUploading: (isLoading: boolean) => void;
+    isUploading: boolean;
 };
 
 export type GenerateBulkDownloadTokenRequest = {
