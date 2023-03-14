@@ -3,6 +3,7 @@
 import {
     AssetChooserObjectType,
     AssetInputSize,
+    DropdownSize,
     IconEnum,
     MultiInputLayout,
     appendUnit,
@@ -13,11 +14,29 @@ import {
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 
-import { BorderStyle, Radius, getBorderRadiusSlider, radiusStyleMap } from '../../shared';
-import { Alignment, CaptionPlacement, Handle, Height } from './types';
+import { BorderStyle, getBorderRadiusSettings, getBorderSettings } from '../../shared';
+import { Alignment, Handle, Height, InheritSettings, LabelPlacement, heightMapWithPixel } from './types';
 import { FileExtensionSets } from '@frontify/app-bridge';
 
 export const settings = defineSettings({
+    main: [
+        {
+            id: 'alignment',
+            type: 'dropdown',
+            size: DropdownSize.Large,
+            defaultValue: Alignment.Horizontal,
+            choices: [
+                {
+                    value: Alignment.Horizontal,
+                    label: 'Left / Right',
+                },
+                {
+                    value: Alignment.Vertical,
+                    label: 'Top / Bottom',
+                },
+            ],
+        },
+    ],
     basics: [
         {
             id: 'firstAssetSection',
@@ -33,39 +52,11 @@ export const settings = defineSettings({
                     extensions: FileExtensionSets['Images'],
                 },
                 {
-                    id: 'firstAssetHasCaption',
-                    type: 'switch',
-                    label: 'Caption',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'firstAssetCaption',
-                            type: 'textarea',
-                        },
-                        {
-                            id: 'firstAssetCaptionPlacement',
-                            type: 'slider',
-                            choices: [
-                                {
-                                    value: CaptionPlacement.Top,
-                                    icon: IconEnum.ArrowAlignUp,
-                                },
-                                {
-                                    value: CaptionPlacement.Center,
-                                    icon: IconEnum.ArrowAlignHorizontalCentre,
-                                },
-                                {
-                                    value: CaptionPlacement.Bottom,
-                                    icon: IconEnum.ArrowAlignDown,
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
                     id: 'firstAssetHasStrikethrough',
                     type: 'switch',
-                    label: 'Strikethrough',
+                    label: 'Strikethrough line',
+
+                    defaultValue: false,
                 },
             ],
         },
@@ -83,99 +74,173 @@ export const settings = defineSettings({
                     extensions: FileExtensionSets['Images'],
                 },
                 {
-                    id: 'secondAssetHasCaption',
-                    type: 'switch',
-                    label: 'Caption',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'secondAssetCaption',
-                            type: 'textarea',
-                        },
-                        {
-                            id: 'secondAssetCaptionPlacement',
-                            type: 'slider',
-                            choices: [
-                                {
-                                    value: CaptionPlacement.Top,
-                                    icon: IconEnum.ArrowAlignUp,
-                                },
-                                {
-                                    value: CaptionPlacement.Center,
-                                    icon: IconEnum.ArrowAlignHorizontalCentre,
-                                },
-                                {
-                                    value: CaptionPlacement.Bottom,
-                                    icon: IconEnum.ArrowAlignDown,
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
                     id: 'secondAssetHasStrikethrough',
                     type: 'switch',
-                    label: 'Strikethrough',
+                    label: 'Strikethrough line',
+                    defaultValue: false,
                 },
             ],
         },
     ],
     layout: [
         {
-            id: 'alignment',
-            type: 'slider',
-            label: 'Alignment',
-            defaultValue: Alignment.Horizontal,
-            info: 'This tooltip needs copy!',
-            choices: [
+            id: 'contentBlockSection',
+            type: 'sectionHeading',
+            label: 'Content block',
+            blocks: [
                 {
-                    value: Alignment.Horizontal,
-                    label: 'Left/Right',
-                },
-                {
-                    value: Alignment.Vertical,
-                    label: 'Top/Bottom',
+                    id: 'hasCustomHeight',
+                    label: 'Height',
+                    type: 'switch',
+                    switchLabel: 'Custom',
+                    defaultValue: false,
+                    onChange: (bundle) => presetCustomValue(bundle, 'height', 'customHeight', heightMapWithPixel),
+                    on: [
+                        {
+                            id: 'customHeight',
+                            type: 'input',
+                            placeholder: 'e.g. 500px',
+                            rules: [numericalOrPixelRule, minimumNumericRule(100)],
+                            onChange: (bundle) => appendUnit(bundle, 'customHeight'),
+                        },
+                    ],
+                    off: [
+                        {
+                            id: 'height',
+                            type: 'slider',
+                            defaultValue: 'auto',
+                            choices: [
+                                {
+                                    value: Height.Auto,
+                                    label: 'Auto',
+                                },
+                                {
+                                    value: Height.Small,
+                                    label: 'S',
+                                },
+                                {
+                                    value: Height.Medium,
+                                    label: 'M',
+                                },
+                                {
+                                    value: Height.Large,
+                                    label: 'L',
+                                },
+                            ],
+                        },
+                    ],
                 },
             ],
         },
         {
-            id: 'hasCustomHeight',
-            label: 'Height',
-            type: 'switch',
-            info: 'This tooltip needs copy!',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            show: () => true,
-            on: [
+            id: 'leftImageSectionHorizontal',
+            type: 'sectionHeading',
+            label: 'First image',
+            show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Horizontal,
+            blocks: [
                 {
-                    id: 'customHeight',
-                    type: 'input',
-                    placeholder: 'e.g. 500px',
-                    rules: [numericalOrPixelRule, minimumNumericRule(100)],
-                    onChange: (bundle) => appendUnit(bundle, 'customHeight'),
-                },
-            ],
-            off: [
-                {
-                    id: 'height',
+                    id: 'firstAssetLabelPlacement_horizontal',
                     type: 'slider',
-                    defaultValue: 'auto',
+                    label: 'Label position',
+                    defaultValue: LabelPlacement.Top,
                     choices: [
                         {
-                            value: Height.Auto,
-                            label: 'Auto',
+                            value: LabelPlacement.Top,
+                            icon: IconEnum.ArrowAlignUp,
                         },
                         {
-                            value: Height.Small,
-                            label: 'S',
+                            value: LabelPlacement.Center,
+                            icon: IconEnum.ArrowAlignHorizontalCentre,
                         },
                         {
-                            value: Height.Medium,
-                            label: 'M',
+                            value: LabelPlacement.Bottom,
+                            icon: IconEnum.ArrowAlignDown,
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: 'leftImageSectionVertical',
+            type: 'sectionHeading',
+            label: 'First image',
+            show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Vertical,
+            blocks: [
+                {
+                    id: 'firstAssetLabelPlacement_vertical',
+                    type: 'slider',
+                    label: 'Label position',
+                    defaultValue: LabelPlacement.Left,
+                    choices: [
+                        {
+                            value: LabelPlacement.Left,
+                            icon: IconEnum.ArrowAlignLeft,
                         },
                         {
-                            value: Height.Large,
-                            label: 'L',
+                            value: LabelPlacement.Center,
+                            icon: IconEnum.ArrowAlignVerticalCentre,
+                        },
+                        {
+                            value: LabelPlacement.Right,
+                            icon: IconEnum.ArrowAlignRight,
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: 'rightImageSectionHorizontal',
+            type: 'sectionHeading',
+            label: 'Second image',
+            show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Horizontal,
+            blocks: [
+                {
+                    id: 'secondAssetLabelPlacement_horizontal',
+                    type: 'slider',
+                    show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Horizontal,
+                    defaultValue: LabelPlacement.Top,
+                    label: 'Label position',
+                    choices: [
+                        {
+                            value: LabelPlacement.Top,
+                            icon: IconEnum.ArrowAlignUp,
+                        },
+                        {
+                            value: LabelPlacement.Center,
+                            icon: IconEnum.ArrowAlignHorizontalCentre,
+                        },
+                        {
+                            value: LabelPlacement.Bottom,
+                            icon: IconEnum.ArrowAlignDown,
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: 'rightImageSectionVertical',
+            type: 'sectionHeading',
+            label: 'Second image',
+            show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Vertical,
+            blocks: [
+                {
+                    id: 'secondAssetLabelPlacement_vertical',
+                    type: 'slider',
+                    defaultValue: LabelPlacement.Left,
+                    label: 'Label position',
+                    show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Vertical,
+                    choices: [
+                        {
+                            value: LabelPlacement.Left,
+                            icon: IconEnum.ArrowAlignLeft,
+                        },
+                        {
+                            value: LabelPlacement.Center,
+                            icon: IconEnum.ArrowAlignVerticalCentre,
+                        },
+                        {
+                            value: LabelPlacement.Right,
+                            icon: IconEnum.ArrowAlignRight,
                         },
                     ],
                 },
@@ -184,115 +249,141 @@ export const settings = defineSettings({
     ],
     style: [
         {
-            id: 'sliderStyleSection',
-            type: 'multiInput',
-            label: 'Slider',
-            onChange: (bundle) => appendUnit(bundle, 'sliderWidth'),
-            layout: MultiInputLayout.Columns,
+            id: 'controlsSection',
+            type: 'sectionHeading',
+            label: 'Controls',
             blocks: [
                 {
-                    id: 'sliderWidth',
-                    type: 'input',
-                    defaultValue: '1px',
-                    rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                    placeholder: 'e.g. 1px',
-                },
-                {
-                    id: 'sliderColor',
-                    type: 'colorInput',
-                    defaultValue: {
-                        red: 0,
-                        green: 0,
-                        blue: 0,
-                        alpha: 1,
-                    },
-                },
-            ],
-        },
-        {
-            id: 'handle',
-            type: 'slider',
-            label: 'Handles',
-            defaultValue: Handle.Arrows,
-            choices: [
-                {
-                    value: Handle.Arrows,
-                    label: 'Arrows',
-                },
-                {
-                    value: Handle.Circles,
-                    label: 'Circles',
-                },
-                {
-                    value: Handle.None,
-                    label: 'None',
-                },
-            ],
-        },
-        {
-            id: 'borderSection',
-            type: 'multiInput',
-            label: 'Border',
-            onChange: (bundle) => appendUnit(bundle, 'borderWidth'),
-            layout: MultiInputLayout.Columns,
-            lastItemFullWidth: true,
-            blocks: [
-                {
-                    id: 'borderStyle',
-                    type: 'dropdown',
-                    defaultValue: BorderStyle.Solid,
+                    id: 'handle',
+                    type: 'slider',
+                    label: 'Handles',
+                    defaultValue: Handle.Arrows,
                     choices: [
                         {
-                            value: BorderStyle.Solid,
-                            label: BorderStyle.Solid,
+                            value: Handle.Arrows,
+                            label: 'Arrows',
                         },
                         {
-                            value: BorderStyle.Dotted,
-                            label: BorderStyle.Dotted,
+                            value: Handle.Circles,
+                            label: 'Circles',
                         },
                         {
-                            value: BorderStyle.Dashed,
-                            label: BorderStyle.Dashed,
+                            value: Handle.None,
+                            label: 'None',
                         },
                     ],
                 },
                 {
-                    id: 'borderWidth',
-                    type: 'input',
-                    defaultValue: '0px',
-                    rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
-                    placeholder: 'e.g. 1px',
-                },
-                {
-                    id: 'borderColor',
-                    type: 'colorInput',
-                    defaultValue: {
-                        red: 255,
-                        green: 255,
-                        blue: 255,
-                        alpha: 1,
-                    },
+                    id: 'sliderStyleSection',
+                    type: 'multiInput',
+                    lastItemFullWidth: true,
+                    label: 'Line',
+                    onChange: (bundle) => appendUnit(bundle, 'sliderWidth'),
+                    layout: MultiInputLayout.Columns,
+                    blocks: [
+                        {
+                            id: 'sliderStyle',
+                            type: 'dropdown',
+                            defaultValue: BorderStyle.Solid,
+                            choices: [
+                                {
+                                    value: BorderStyle.Solid,
+                                    label: BorderStyle.Solid,
+                                },
+                                {
+                                    value: BorderStyle.Dotted,
+                                    label: BorderStyle.Dotted,
+                                },
+                                {
+                                    value: BorderStyle.Dashed,
+                                    label: BorderStyle.Dashed,
+                                },
+                            ],
+                        },
+                        {
+                            id: 'sliderWidth',
+                            type: 'input',
+                            defaultValue: '1px',
+                            rules: [numericalOrPixelRule, maximumNumericalOrPixelOrAutoRule(500)],
+                            placeholder: 'e.g. 1px',
+                        },
+                        {
+                            id: 'sliderColor',
+                            type: 'colorInput',
+                            defaultValue: {
+                                red: 0,
+                                green: 0,
+                                blue: 0,
+                                alpha: 1,
+                            },
+                        },
+                    ],
                 },
             ],
         },
         {
-            id: 'hasCustomBorderRadius',
-            label: 'Border Radius',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            show: () => true,
-            onChange: (bundle) => presetCustomValue(bundle, Radius.None, 'customBorderRadius', radiusStyleMap),
-            on: [
+            id: 'blockSection',
+            type: 'sectionHeading',
+            label: 'Block',
+            blocks: [
                 {
-                    id: 'customBorderRadius',
-                    type: 'input',
-                    placeholder: 'e.g. 10px',
-                    rules: [numericalOrPixelRule],
-                    onChange: (bundle) => appendUnit(bundle, 'customBorderRadius'),
+                    id: 'hasBackground',
+                    type: 'switch',
+                    label: 'Background',
+                    on: [
+                        {
+                            id: 'backgroundColor',
+                            type: 'colorInput',
+                            defaultValue: {
+                                red: 0,
+                                green: 0,
+                                blue: 0,
+                                alpha: 1,
+                            },
+                        },
+                    ],
+                },
+                getBorderSettings(),
+                getBorderRadiusSettings(),
+            ],
+        },
+        {
+            id: 'strikethroughSection',
+            type: 'sectionHeading',
+            label: 'Strikethrough line',
+            show: (bundle) =>
+                !!bundle.getBlock('firstAssetHasStrikethrough')?.value ||
+                !!bundle.getBlock('secondAssetHasStrikethrough')?.value,
+            blocks: [
+                {
+                    id: 'strikethroughColorSource',
+                    type: 'slider',
+                    label: 'Color',
+                    info: 'The color is defined in the global settings (Accent colors) and you can override it here.',
+                    defaultValue: InheritSettings.INHERIT,
+                    choices: [
+                        {
+                            value: InheritSettings.INHERIT,
+                            label: 'Inherit settings',
+                        },
+                        {
+                            value: InheritSettings.OVERRIDE,
+                            label: 'Override',
+                        },
+                    ],
+                },
+                {
+                    id: 'customStrikeThroughColor',
+                    type: 'colorInput',
+                    defaultValue: {
+                        red: 255,
+                        green: 0,
+                        blue: 0,
+                        alpha: 1,
+                    },
+                    show: (bundle) => bundle.getBlock('strikethroughColorSource')?.value === InheritSettings.OVERRIDE,
                 },
             ],
-            off: [getBorderRadiusSlider('borderRadius', Radius.None)],
         },
     ],
 });
