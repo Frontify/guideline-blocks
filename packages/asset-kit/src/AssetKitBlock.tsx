@@ -1,18 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
-import { blockStyle, generateBulkDownload, thumbnailStyle } from './utility';
+import { blockStyle, generateBulkDownload, thumbnailStyle } from './helpers';
+import { Button, ButtonEmphasis, ButtonStyle } from '@frontify/fondue';
 
-export const AssetKitBlock = ({ appBridge }: BlockProps) => {
-    const { designTokens } = useGuidelineDesignTokens();
+export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -22,15 +22,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps) => {
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { hasBorder_blocks, hasBackground_blocks } = blockSettings;
 
-    const assetKitClasses = joinClassNames([
-        'tw-w-full',
-        (hasBorder_blocks || hasBackground_blocks) && 'tw-p-5 sm:tw-p-8',
-    ]);
-
     return (
         <div
             data-test-id="asset-kit-block"
-            className={assetKitClasses}
+            className={joinClassNames(['tw-w-full', (hasBorder_blocks || hasBackground_blocks) && 'tw-p-5 sm:tw-p-8'])}
             style={{
                 ...blockStyle(blockSettings),
             }}
@@ -43,8 +38,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps) => {
                     title={title ?? ''}
                 />
                 <div className="tw-flex-none">
-                    <button
-                        data-test-id="asset-kit-block-download-button"
+                    <Button
+                        emphasis={ButtonEmphasis.Strong}
+                        style={ButtonStyle.Default}
                         disabled={
                             isDownloadingAssets ||
                             isUploadingAssets ||
@@ -54,10 +50,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps) => {
                         onClick={() =>
                             generateBulkDownload(appBridge.getProjectId(), currentAssets, setIsDownloadingAssets)
                         }
-                        style={designTokens.buttonPrimary}
                     >
                         Download package
-                    </button>
+                    </Button>
                 </div>
             </div>
 
