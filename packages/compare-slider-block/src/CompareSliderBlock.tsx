@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FC, useEffect, useRef, useState } from 'react';
-import { ImgComparisonSlider } from '@img-comparison-slider/react';
+import { ReactCompareSlider } from 'react-compare-slider';
+
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     AssetChooserObjectType,
@@ -14,104 +15,110 @@ import {
 } from '@frontify/app-bridge';
 import {
     BlockInjectButton,
-    isDark,
+    BlockItemWrapper,
     joinClassNames,
     radiusStyleMap,
     toRgbaString,
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
-import {
-    AlignCenterPlugin,
-    AlignJustifyPlugin,
-    AlignLeftPlugin,
-    AlignRightPlugin,
-    BoldPlugin,
-    IconCaretLeft16,
-    IconCaretLeft32,
-    IconCaretRight16,
-    IconCaretRight32,
-    IconPlus24,
-    InitPlugin,
-    ItalicPlugin,
-    PluginComposer,
-    ResetFormattingPlugin,
-    RichTextEditor,
-    StrikethroughPlugin,
-    TextStylePlugin,
-    UnderlinePlugin,
-    debounce,
-} from '@frontify/fondue';
+import { IconArrowCircleUp20, IconImageStack20, IconPlus24, IconTrashBin16 } from '@frontify/fondue';
 
 import {
     Alignment,
     BlockSettings,
-    Handle,
     Height,
+    InheritSettings,
     SliderImageSlot,
-    captionPlacementStyleMap,
     heightMap,
+    horizontalLabelPlacementStyleMap,
     slotAssetSettingMap,
+    verticalLabelPlacementStyleMap,
 } from './types';
-import { Strikethrough } from './Strikethrough';
-
-const customPlugins = new PluginComposer();
-customPlugins
-    .setPlugin([new InitPlugin(), new TextStylePlugin()])
-    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
-    .setPlugin([
-        new AlignLeftPlugin(),
-        new AlignCenterPlugin(),
-        new AlignRightPlugin(),
-        new AlignJustifyPlugin(),
-        new ResetFormattingPlugin(),
-    ]);
+import { Label } from './components/Label/Label';
+import { Strikethrough } from './components/StrikeThrough/Strikethrough';
+import { StrikethroughWrapper } from './components/StrikeThrough/StrikethroughWrapper';
+import { DEFAULT_STRIKETHROUGH_COLOR } from './const';
+import { LabelWrapper } from './components/Label/LabelWrapper';
+import { SliderLine } from './components/SliderLine/SliderLine';
 
 export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
-    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
-
-    const { firstAsset, secondAsset } = blockAssets;
-
     const isEditing = useEditorState(appBridge);
-
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: false });
+    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
+
+    const sliderRef = useRef<HTMLDivElement | null>(null);
 
     const [droppedFiles, setDroppedFiles] = useState<FileList | null>(null);
-    const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
-        onUploadProgress: () => !isLoading && setIsLoading(true),
-        onUploadDone: () => setIsLoading(false),
-    });
-
+    const [isFirstAssetLoading, setIsFirstAssetLoading] = useState<boolean>(false);
+    const [isSecondAssetLoading, setIsSecondAssetLoading] = useState<boolean>(false);
     const [slotWithUploadInProgress, setSlotWithUploadInProgress] = useState<SliderImageSlot>();
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isFirstAssetLoaded, setIsFirstAssetLoaded] = useState(false);
+    const [isSecondAssetLoaded, setIsSecondAssetLoaded] = useState(false);
+    const [currentSliderPosition, setCurrentSliderPosition] = useState(50);
 
-    const startFileDialogUpload = (slot: SliderImageSlot) => {
-        setSlotWithUploadInProgress(slot);
-        openFileDialog();
-    };
+    const { firstAsset, secondAsset } = blockAssets;
+    const {
+        alignment,
+        firstAssetHasStrikethrough,
+        firstAssetLabel,
+        firstAssetLabelPlacement_horizontal,
+        firstAssetLabelPlacement_vertical,
+        secondAssetHasStrikethrough,
+        secondAssetLabel,
+        secondAssetLabelPlacement_horizontal,
+        secondAssetLabelPlacement_vertical,
+        borderColor,
+        borderStyle,
+        borderWidth,
+        customHeight,
+        customStrikeThroughColor,
+        handle,
+        hasBorder,
+        hasCustomHeight,
+        strikethroughColorSource,
+        hasRadius,
+        height,
+        radiusChoice,
+        radiusValue,
+        sliderColor,
+        sliderStyle,
+        sliderWidth,
+        hasBackground,
+        backgroundColor,
+    } = blockSettings;
 
-    const startDragAndDropUpload = (files: FileList, slot: SliderImageSlot) => {
-        setSlotWithUploadInProgress(slot);
-        setDroppedFiles(files);
-    };
+    const firstAssetTitle = firstAsset ? firstAsset[0].title : '';
+    const firstAssetPreviewUrl = firstAsset ? firstAsset[0].previewUrl : '';
+    const secondAssetTitle = secondAsset ? secondAsset[0].title : '';
+    const secondAssetPreviewUrl = secondAsset ? secondAsset[0].previewUrl : '';
 
-    const openAssetChooser = (slot: SliderImageSlot) => {
-        appBridge.openAssetChooser(
-            async (result) => {
-                setIsLoading(true);
-                await updateAssetIdsFromKey(slot === SliderImageSlot.First ? 'firstAsset' : 'secondAsset', [
-                    result[0].id,
-                ]);
-                setIsLoading(false);
-                appBridge.closeAssetChooser();
-            },
-            {
-                objectTypes: [AssetChooserObjectType.ImageVideo],
-                extensions: FileExtensionSets['Images'],
-            }
-        );
-    };
+    useEffect(() => {
+        if (firstAssetPreviewUrl) {
+            const firstImage = new Image();
+            firstImage.onload = () => {
+                setIsFirstAssetLoaded(true);
+                setIsFirstAssetLoading(false);
+            };
+            firstImage.src = firstAssetPreviewUrl;
+        }
+        if (secondAssetPreviewUrl) {
+            const secondImage = new Image();
+            secondImage.onload = () => {
+                setIsSecondAssetLoaded(true);
+                setIsSecondAssetLoading(false);
+            };
+            secondImage.src = secondAssetPreviewUrl;
+        }
+    }, [firstAssetPreviewUrl, secondAssetPreviewUrl]);
+
+    useEffect(() => {
+        if (isEditing) {
+            setCurrentSliderPosition(50);
+        }
+    }, [isEditing]);
 
     useEffect(() => {
         if (!droppedFiles) {
@@ -121,15 +128,22 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
         if (droppedFiles.length > 1) {
             return console.error('Please only upload one file per slot.');
         }
-
-        setIsLoading(true);
+        if (slotWithUploadInProgress === SliderImageSlot.First) {
+            setIsFirstAssetLoading(true);
+        } else {
+            setIsSecondAssetLoading(true);
+        }
         uploadFile(droppedFiles);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [droppedFiles]);
 
     useEffect(() => {
         if (selectedFiles) {
-            setIsLoading(true);
+            if (slotWithUploadInProgress === SliderImageSlot.First) {
+                setIsFirstAssetLoading(true);
+            } else {
+                setIsSecondAssetLoading(true);
+            }
             uploadFile(selectedFiles);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -140,317 +154,356 @@ export const CompareSliderBlock: FC<BlockProps> = ({ appBridge }) => {
             (async (uploadResults) => {
                 const resultId = uploadResults[0].id;
                 await updateAssetIdsFromKey(slotAssetSettingMap[slotWithUploadInProgress], [resultId]);
-                setIsLoading(false);
-                setSlotWithUploadInProgress(undefined);
             })(uploadResults);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
-    const sliderRef = useRef<HTMLDivElement | null>(null);
+    const startFileDialogUpload = (slot: SliderImageSlot) => {
+        setSlotWithUploadInProgress(slot);
+        openFileDialog();
+    };
 
-    const [firstAssetStrikethroughOffset, setFirstAssetStrikethroughOffset] = useState<number>(0);
-    const [secondAssetStrikethroughOffset, setSecondAssetStrikethroughOffset] = useState<number>(0);
+    const startDragAndDropUpload = (files: FileList, slot: SliderImageSlot) => {
+        setSlotWithUploadInProgress(slot);
 
-    const getFirstAssetPreviewUrl = (): string | undefined => (firstAsset ? firstAsset[0].previewUrl : undefined);
-    const getFirstAssetTitle = (): string | undefined => (firstAsset ? firstAsset[0].title : undefined);
-    const getSecondAssetPreviewUrl = (): string | undefined => (secondAsset ? secondAsset[0].previewUrl : undefined);
-    const getSecondAssetTitle = (): string | undefined => (secondAsset ? secondAsset[0].title : undefined);
+        setDroppedFiles(files);
+    };
 
-    const getImageHeight = (): number | undefined => {
-        if (blockSettings.hasCustomHeight) {
-            return parseInt(blockSettings.customHeight);
+    const handleAssetDelete = (key: string, id: number) => {
+        deleteAssetIdsFromKey(key, [id]);
+    };
+
+    const openAssetChooser = (slot: SliderImageSlot) => {
+        appBridge.openAssetChooser(
+            async (result) => {
+                if (slot === SliderImageSlot.First) {
+                    setIsFirstAssetLoading(true);
+                } else {
+                    setIsSecondAssetLoading(true);
+                }
+                updateAssetIdsFromKey(slot === SliderImageSlot.First ? 'firstAsset' : 'secondAsset', [result[0].id]);
+                appBridge.closeAssetChooser();
+            },
+            {
+                objectTypes: [AssetChooserObjectType.ImageVideo],
+                extensions: FileExtensionSets['Images'],
+            }
+        );
+    };
+
+    const calculateAutoImageHeight = (): number | undefined => {
+        if (!firstAsset || !secondAsset) {
+            return 0;
         }
 
-        if (blockSettings.height !== Height.Auto) {
-            return heightMap[blockSettings.height];
+        const currentSliderWidth = sliderRef.current?.clientWidth;
+
+        if (!currentSliderWidth) {
+            return undefined;
+        }
+
+        const assetWithSmallerAspectRatio =
+            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / firstAsset[0].height
+                ? secondAsset[0]
+                : firstAsset[0];
+
+        return Math.round(
+            (assetWithSmallerAspectRatio.height * currentSliderWidth) / assetWithSmallerAspectRatio.width
+        );
+    };
+
+    const getImageHeight = (): number | undefined => {
+        if (hasCustomHeight) {
+            return parseInt(customHeight);
+        }
+
+        if (height !== Height.Auto) {
+            return heightMap[height];
         }
 
         return calculateAutoImageHeight();
     };
 
-    const calculateAutoImageHeight = (): number | undefined => {
-        if (!firstAsset || !secondAsset) {
-            return undefined;
-        }
-
-        const currentSliderWidth = sliderRef.current?.clientWidth;
-
-        if (!currentSliderWidth) {
-            return undefined;
-        }
-
-        const assetWithHigherAspectRatio =
-            firstAsset[0].width / firstAsset[0].height > secondAsset[0].width / firstAsset[0].height
-                ? firstAsset[0]
-                : secondAsset[0];
-
-        return Math.round((assetWithHigherAspectRatio.height * currentSliderWidth) / assetWithHigherAspectRatio.width);
+    const getBorderStyle = () => {
+        return hasBorder ? { borderWidth, borderColor: toRgbaString(borderColor), borderStyle } : {};
     };
 
     const getBorderRadius = () => {
-        if (blockSettings.hasCustomBorderRadius) {
-            return blockSettings.customBorderRadius;
+        if (hasRadius) {
+            return radiusValue;
         }
 
-        return radiusStyleMap[blockSettings.borderRadius];
+        return radiusStyleMap[radiusChoice];
     };
 
     const renderSliderItem = (slot: SliderImageSlot) => {
         return (
-            <div slot={slot}>
-                <img
-                    src={slot === SliderImageSlot.First ? getFirstAssetPreviewUrl() : getSecondAssetPreviewUrl()}
-                    alt={slot === SliderImageSlot.First ? getFirstAssetTitle() : getSecondAssetTitle()}
-                    className="tw-w-full tw-object-cover"
-                    style={{ height: getImageHeight() }}
-                />
-
-                {slot === SliderImageSlot.First &&
-                    blockSettings.firstAssetHasCaption &&
-                    blockSettings.firstAssetCaption &&
-                    renderFirstSlotCaption()}
-
-                {slot === SliderImageSlot.Second &&
-                    blockSettings.secondAssetHasCaption &&
-                    blockSettings.secondAssetCaption &&
-                    renderSecondSlotCaption()}
-
-                {slot === SliderImageSlot.First &&
-                    blockSettings.firstAssetHasStrikethrough &&
-                    renderFirstSlotStrikethrough()}
-
-                {slot === SliderImageSlot.Second &&
-                    blockSettings.secondAssetHasStrikethrough &&
-                    renderSecondSlotStrikethrough()}
-            </div>
-        );
-    };
-
-    const renderFirstSlotCaption = () => {
-        return (
-            <div
-                className={joinClassNames([
-                    captionPlacementStyleMap[blockSettings.firstAssetCaptionPlacement],
-                    'tw-absolute tw-flex tw-max-w-[40%] tw-ml-3 tw-px-2 tw-py-1 tw-bg-white/60 tw-rounded-sm tw-text-black tw-text-sm',
-                ])}
-            >
-                {blockSettings.firstAssetCaption}
-            </div>
-        );
-    };
-
-    const renderSecondSlotCaption = () => {
-        return (
-            <div
-                className={joinClassNames([
-                    captionPlacementStyleMap[blockSettings.secondAssetCaptionPlacement],
-                    'tw-absolute tw-flex tw-max-w-[40%] tw-right-0 tw-mr-3 tw-px-2 tw-py-1 tw-bg-white/60 tw-rounded-sm tw-text-black tw-text-sm',
-                ])}
-            >
-                {blockSettings.secondAssetCaption}
-            </div>
-        );
-    };
-
-    const renderFirstSlotStrikethrough = () => {
-        return (
-            <div
-                style={{
-                    left: `${blockSettings.alignment === Alignment.Horizontal ? firstAssetStrikethroughOffset : 0}%`,
-                    top: `${blockSettings.alignment === Alignment.Vertical ? firstAssetStrikethroughOffset : 0}%`,
-                }}
-                className={
-                    blockSettings.alignment === Alignment.Horizontal
-                        ? 'tw-absolute tw-h-full tw-w-[50%] tw-top-0'
-                        : 'tw-absolute tw-h-[50%] tw-w-full tw-left-0'
-                }
-            >
-                <Strikethrough />
-            </div>
-        );
-    };
-
-    const renderSecondSlotStrikethrough = () => {
-        return (
-            <div
-                style={{
-                    right: `${blockSettings.alignment === Alignment.Horizontal ? secondAssetStrikethroughOffset : 0}%`,
-                    bottom: `${blockSettings.alignment === Alignment.Vertical ? secondAssetStrikethroughOffset : 0}%`,
-                }}
-                className={
-                    blockSettings.alignment === Alignment.Horizontal
-                        ? 'tw-absolute tw-h-full tw-w-[50%] tw-top-0'
-                        : 'tw-absolute tw-h-[50%] tw-w-full tw-left-0'
-                }
-            >
-                <Strikethrough />
-            </div>
-        );
-    };
-
-    const renderHandle = () => {
-        if (blockSettings.handle === Handle.Circles) {
-            return (
-                <div
-                    slot="handle"
-                    className="tw-flex"
-                    style={{ color: toRgbaString(blockSettings.sliderColor), gap: blockSettings.sliderWidth }}
-                >
-                    <div
-                        className={joinClassNames([
-                            `${isDark(blockSettings.sliderColor) ? 'tw-bg-white/[.7]' : 'tw-bg-black/[.7]'}`,
-                            'tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pr-[2px] tw-rounded-full tw-mr-2',
-                        ])}
-                    >
-                        <IconCaretLeft16 />
-                    </div>
-                    <div
-                        className={joinClassNames([
-                            `${isDark(blockSettings.sliderColor) ? 'tw-bg-white/[.7]' : 'tw-bg-black/[.5]'}`,
-                            'tw-h-[22px] tw-w-[22px] tw-flex tw-justify-center tw-items-center tw-pl-[2px] tw-rounded-full tw-ml-2',
-                        ])}
-                    >
-                        <IconCaretRight16 />
-                    </div>
+            <div>
+                <div style={{ background: hasBackground ? toRgbaString(backgroundColor) : undefined }}>
+                    <img
+                        src={slot === SliderImageSlot.First ? firstAssetPreviewUrl : secondAssetPreviewUrl}
+                        alt={slot === SliderImageSlot.First ? firstAssetTitle : secondAssetTitle}
+                        className="tw-w-full tw-object-cover"
+                        style={{ height: getImageHeight() }}
+                    />
                 </div>
-            );
-        }
 
-        return (
-            <div
-                slot="handle"
-                className="tw-flex"
-                style={{ color: toRgbaString(blockSettings.sliderColor), gap: blockSettings.sliderWidth }}
-            >
-                <IconCaretLeft32 />
-                <IconCaretRight32 />
+                {renderStrikethrough(slot)}
+                {!isEditing && renderLabel(slot)}
             </div>
         );
     };
 
-    const handleSlide = debounce((event: { target: { value: number } }) => {
-        const currentHandlePosition = event.target.value;
-        const currentSliderWidth = sliderRef.current?.clientWidth;
+    const renderStrikethrough = (slot: SliderImageSlot) => {
+        let top = 0;
+        let left = 0;
+        let height = alignment === Alignment.Horizontal ? 100 : currentSliderPosition;
+        let width = alignment === Alignment.Horizontal ? currentSliderPosition : 100;
 
-        if (!currentSliderWidth) {
-            return;
+        if (slot === SliderImageSlot.Second) {
+            top = alignment === Alignment.Horizontal ? 0 : currentSliderPosition;
+            left = alignment === Alignment.Horizontal ? currentSliderPosition : 0;
+            height = alignment === Alignment.Horizontal ? 100 : 100 - currentSliderPosition;
+            width = alignment === Alignment.Horizontal ? 100 - currentSliderPosition : 100;
+            if (!secondAssetHasStrikethrough) {
+                return null;
+            }
+        }
+        if (slot === SliderImageSlot.First && !firstAssetHasStrikethrough) {
+            return null;
+        }
+        return (
+            <StrikethroughWrapper top={top} height={height} width={width} left={left} borderRadius={getBorderRadius()}>
+                <Strikethrough
+                    color={
+                        strikethroughColorSource === InheritSettings.OVERRIDE
+                            ? toRgbaString(customStrikeThroughColor)
+                            : designTokens.callout?.warning ?? toRgbaString(DEFAULT_STRIKETHROUGH_COLOR)
+                    }
+                />
+            </StrikethroughWrapper>
+        );
+    };
+
+    const renderLabel = (slot: SliderImageSlot) => {
+        const verticalPlacement =
+            slot === SliderImageSlot.First ? firstAssetLabelPlacement_vertical : secondAssetLabelPlacement_vertical;
+        const horizontalPlacement =
+            slot === SliderImageSlot.First ? firstAssetLabelPlacement_horizontal : secondAssetLabelPlacement_horizontal;
+        const label = slot === SliderImageSlot.First ? firstAssetLabel : secondAssetLabel;
+        const key = slot === SliderImageSlot.First ? 'firstAssetLabel' : 'secondAssetLabel';
+
+        let left = alignment === Alignment.Vertical ? verticalLabelPlacementStyleMap[verticalPlacement]?.left : 0;
+        let right =
+            alignment === Alignment.Vertical ? verticalLabelPlacementStyleMap[verticalPlacement]?.right : undefined;
+        let top = alignment === Alignment.Vertical ? 0 : horizontalLabelPlacementStyleMap[horizontalPlacement]?.top;
+        let bottom =
+            alignment === Alignment.Vertical
+                ? undefined
+                : horizontalLabelPlacementStyleMap[horizontalPlacement]?.bottom;
+
+        if (slot === SliderImageSlot.Second) {
+            left =
+                alignment === Alignment.Vertical ? verticalLabelPlacementStyleMap[verticalPlacement]?.left : undefined;
+            right = alignment === Alignment.Vertical ? verticalLabelPlacementStyleMap[verticalPlacement]?.right : 0;
+            top =
+                alignment === Alignment.Vertical
+                    ? undefined
+                    : horizontalLabelPlacementStyleMap[horizontalPlacement]?.top;
+            bottom =
+                alignment === Alignment.Vertical ? 0 : horizontalLabelPlacementStyleMap[horizontalPlacement]?.bottom;
         }
 
-        if (currentHandlePosition > 50) {
-            setFirstAssetStrikethroughOffset((currentHandlePosition - 50) / 2);
-            setSecondAssetStrikethroughOffset(0);
-        }
-
-        if (currentHandlePosition <= 50) {
-            setFirstAssetStrikethroughOffset(0);
-            setSecondAssetStrikethroughOffset((100 - currentHandlePosition - 50) / 2);
-        }
-    }, 0);
+        return (
+            <LabelWrapper
+                alignment={alignment}
+                left={left}
+                right={right}
+                top={top}
+                bottom={bottom}
+                borderRadius={getBorderRadius()}
+            >
+                <Label
+                    isEditing={isEditing}
+                    designTokens={designTokens}
+                    value={label}
+                    onBlur={(newValue: string) => setBlockSettings({ [key]: newValue })}
+                />
+            </LabelWrapper>
+        );
+    };
 
     if (isEditing && (!firstAsset || !secondAsset)) {
         return (
             <div className="tw-h-[500px] tw-flex">
-                <div className="tw-w-[50%]">
+                <div
+                    className={joinClassNames([
+                        'tw-grid tw-w-full',
+                        alignment === Alignment.Vertical ? 'tw-grid-cols-1 tw-grid-rows-2' : 'tw-grid-cols-2',
+                    ])}
+                >
                     {firstAsset ? (
                         <img
                             className="tw-w-full tw-h-full tw-object-cover tw-object-left"
-                            src={getFirstAssetPreviewUrl()}
-                            alt={getFirstAssetTitle()}
+                            src={firstAssetPreviewUrl}
+                            alt={firstAssetTitle}
                         />
                     ) : (
                         <BlockInjectButton
-                            label="Add first image"
+                            verticalLayout={alignment === Alignment.Vertical}
+                            label="Add or drop image here"
                             icon={<IconPlus24 />}
                             fillParentContainer={true}
-                            secondaryLabel="Or drop it here"
                             onUploadClick={() => startFileDialogUpload(SliderImageSlot.First)}
                             onAssetChooseClick={() => openAssetChooser(SliderImageSlot.First)}
                             onDrop={(files) => startDragAndDropUpload(files, SliderImageSlot.First)}
-                            isLoading={slotWithUploadInProgress === SliderImageSlot.First && isLoading}
+                            isLoading={isFirstAssetLoading}
                         />
                     )}
-                </div>
 
-                <div className="tw-w-[50%] tw-border-r-0">
                     {secondAsset ? (
                         <img
                             className="tw-w-full tw-h-full tw-object-cover tw-object-right"
-                            src={getSecondAssetPreviewUrl()}
-                            alt={getSecondAssetTitle()}
+                            src={secondAssetPreviewUrl}
+                            alt={secondAssetTitle}
                         />
                     ) : (
                         <BlockInjectButton
-                            label="Add second image"
+                            verticalLayout={alignment === Alignment.Vertical}
+                            label="Add or drop image here"
                             icon={<IconPlus24 />}
                             fillParentContainer={true}
-                            secondaryLabel="Or drop it here"
                             onUploadClick={() => startFileDialogUpload(SliderImageSlot.Second)}
                             onAssetChooseClick={() => openAssetChooser(SliderImageSlot.Second)}
                             onDrop={(files) => startDragAndDropUpload(files, SliderImageSlot.Second)}
-                            isLoading={slotWithUploadInProgress === SliderImageSlot.Second && isLoading}
+                            isLoading={isSecondAssetLoading}
                         />
                     )}
                 </div>
             </div>
         );
     }
-
     return (
         <>
-            <div
-                ref={sliderRef}
-                className={
-                    !blockSettings.customHeight && blockSettings.height === Height.Auto
-                        ? 'tw-w-full'
-                        : 'tw-flex tw-justify-center'
-                }
-            >
-                <ImgComparisonSlider
-                    direction={blockSettings?.alignment}
-                    className={
-                        !blockSettings.hasCustomHeight && blockSettings.height === Height.Auto ? 'tw-w-full' : ''
-                    }
-                    style={
-                        {
-                            borderWidth: blockSettings.borderWidth,
-                            borderColor: toRgbaString(blockSettings.borderColor),
-                            borderStyle: blockSettings.borderStyle,
-                            borderRadius: getBorderRadius(),
-                            '--divider-width': blockSettings.sliderWidth,
-                            '--divider-color': toRgbaString(blockSettings.sliderColor),
-                            '--default-handle-opacity': blockSettings.handle === Handle.None ? 0 : 1,
-                        } as React.CSSProperties
-                    }
-                    onSlide={handleSlide}
-                >
-                    {renderSliderItem(SliderImageSlot.First)}
-                    {renderSliderItem(SliderImageSlot.Second)}
-                    {blockSettings.handle !== Handle.None ? renderHandle() : ''}
-                </ImgComparisonSlider>
-            </div>
-            <div className="tw-flex tw-flex-col tw-mt-3 tw-gap-1">
-                <RichTextEditor
-                    value={
-                        blockSettings.sliderName
-                            ? blockSettings.sliderName
-                            : '[{"type":"p","children":[{"text":"","bold":true}]}]'
-                    }
-                    border={false}
-                    readonly={!isEditing}
-                    onBlur={(sliderName) => setBlockSettings({ sliderName })}
-                    designTokens={designTokens ?? undefined}
-                    placeholder={isEditing ? 'Asset name' : undefined}
-                    plugins={customPlugins}
-                />
-                <RichTextEditor
-                    value={blockSettings.sliderDescription}
-                    border={false}
-                    readonly={!isEditing}
-                    onBlur={(sliderDescription) => setBlockSettings({ sliderDescription })}
-                    designTokens={designTokens ?? undefined}
-                    placeholder={isEditing ? 'Add a description here' : undefined}
-                />
+            <div data-test-id="compare-slider-block" ref={sliderRef} className="tw-w-full tw-flex tw-relative">
+                {isFirstAssetLoaded && isSecondAssetLoaded && (
+                    <>
+                        <div
+                            data-test-id="compare-slider-block-slider"
+                            className="tw-w-full tw-overflow-hidden tw-relative"
+                            style={{
+                                ...getBorderStyle(),
+                                borderRadius: getBorderRadius(),
+                            }}
+                        >
+                            <ReactCompareSlider
+                                position={currentSliderPosition}
+                                onPositionChange={setCurrentSliderPosition}
+                                itemOne={renderSliderItem(SliderImageSlot.First)}
+                                itemTwo={renderSliderItem(SliderImageSlot.Second)}
+                                handle={
+                                    <SliderLine
+                                        alignment={alignment}
+                                        handle={handle}
+                                        sliderColor={sliderColor}
+                                        sliderStyle={sliderStyle}
+                                        sliderWidth={sliderWidth}
+                                    />
+                                }
+                                portrait={alignment === Alignment.Vertical}
+                                onlyHandleDraggable
+                            />
+                        </div>
+                        {isEditing && (
+                            <>
+                                <div
+                                    style={{
+                                        left: 0,
+                                        top: 0,
+                                        width: alignment === Alignment.Vertical ? '100%' : '50%',
+                                        height: alignment === Alignment.Vertical ? '50%' : '100%',
+                                    }}
+                                    className="tw-absolute tw-flex tw-top-0"
+                                >
+                                    <BlockItemWrapper
+                                        shouldFillContainer
+                                        outlineOffset={1}
+                                        toolbarItems={[
+                                            {
+                                                icon: <IconTrashBin16 />,
+                                                onClick: () => handleAssetDelete('firstAsset', firstAsset[0].id),
+                                                tooltip: 'Remove asset',
+                                            },
+                                        ]}
+                                        toolbarFlyoutItems={[
+                                            [
+                                                {
+                                                    title: 'Replace with upload',
+                                                    icon: <IconArrowCircleUp20 />,
+                                                    onClick: () => startFileDialogUpload(SliderImageSlot.First),
+                                                },
+                                                {
+                                                    title: 'Replace with asset',
+                                                    icon: <IconImageStack20 />,
+                                                    onClick: () => openAssetChooser(SliderImageSlot.First),
+                                                },
+                                            ],
+                                        ]}
+                                    >
+                                        <div className="tw-w-full tw-h-full tw-pointer-events-none" />
+                                    </BlockItemWrapper>
+                                </div>
+                                <div
+                                    style={{
+                                        left: alignment === Alignment.Vertical ? 0 : '50%',
+                                        top: alignment === Alignment.Vertical ? '50%' : 0,
+                                        width: alignment === Alignment.Vertical ? '100%' : '50%',
+                                        height: alignment === Alignment.Vertical ? '50%' : '100%',
+                                    }}
+                                    className="tw-absolute tw-flex tw-top-0"
+                                >
+                                    <BlockItemWrapper
+                                        shouldFillContainer
+                                        outlineOffset={1}
+                                        toolbarItems={[
+                                            {
+                                                icon: <IconTrashBin16 />,
+                                                onClick: () => handleAssetDelete('secondAsset', secondAsset[0].id),
+                                                tooltip: 'Remove asset',
+                                            },
+                                        ]}
+                                        toolbarFlyoutItems={[
+                                            [
+                                                {
+                                                    title: 'Replace with upload',
+                                                    icon: <IconArrowCircleUp20 />,
+                                                    onClick: () => startFileDialogUpload(SliderImageSlot.Second),
+                                                },
+                                                {
+                                                    title: 'Replace with asset',
+                                                    icon: <IconImageStack20 />,
+                                                    onClick: () => openAssetChooser(SliderImageSlot.Second),
+                                                },
+                                            ],
+                                        ]}
+                                    >
+                                        <div className="tw-w-full tw-h-full" />
+                                    </BlockItemWrapper>
+                                </div>
+                                <div
+                                    className="tw-w-full tw-h-full tw-absolute tw-pointer-events-none"
+                                    style={{ ...getBorderStyle(), borderColor: 'transparent' }}
+                                >
+                                    <div className="tw-pointer-events-auto">
+                                        {renderLabel(SliderImageSlot.First)}
+                                        {renderLabel(SliderImageSlot.Second)}
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                    </>
+                )}
             </div>
         </>
     );
