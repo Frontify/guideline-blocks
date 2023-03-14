@@ -18,7 +18,7 @@ import {
     useAttachments,
 } from '@frontify/guideline-blocks-shared';
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
-import { ATTACHMENTS_SETTING_ID } from '../settings';
+import { ATTACHMENTS_ASSET_ID } from '../settings';
 
 type ImageProps = {
     image: Asset;
@@ -59,13 +59,8 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
 };
 
 export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) => {
-    const {
-        sortedAttachments: attachments,
-        onAddAttachments,
-        onAttachmentDelete,
-        onAttachmentReplace,
-        onAttachmentsSorted,
-    } = useAttachments(appBridge, ATTACHMENTS_SETTING_ID, ATTACHMENTS_SETTING_ID);
+    const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
+        useAttachments(appBridge, ATTACHMENTS_ASSET_ID);
 
     const borderRadius = blockSettings.hasRadius_cornerRadius
         ? blockSettings.radiusValue_cornerRadius
