@@ -227,7 +227,11 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         setActiveId(active.id as string);
         if (wrapperRef.current) {
             setMinRowHeight(
-                Math.min(...Array.from(wrapperRef.current.children).map((x) => x.getBoundingClientRect().height))
+                Math.min(
+                    ...Array.from(wrapperRef.current.children).map((x) =>
+                        x.firstChild ? (x.firstChild as HTMLElement).getBoundingClientRect().height : 0
+                    )
+                )
             );
         }
     };

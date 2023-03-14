@@ -7,6 +7,7 @@ import { mergeDeep } from '../helpers/mergeDeep';
 
 export enum DesignTokenPropertiesEnum {
     family = 'family',
+    family_css = 'family_css',
     weight = 'weight',
     size = 'size',
     letterspacing = 'letterspacing',
@@ -65,7 +66,7 @@ export type AccentColorProperties = {
 };
 
 export type DesignTokenProperties = Partial<
-    Record<DesignTokenPropertiesEnum, string | DirectionalCssProperties> | AccentColorProperties
+    Record<DesignTokenPropertiesEnum, string | DirectionalCssProperties> & Partial<AccentColorProperties>
 >;
 export type DesignTokens = Partial<Record<DesignTokenName, DesignTokenProperties>>;
 export type DesignTokenApiResponse = {

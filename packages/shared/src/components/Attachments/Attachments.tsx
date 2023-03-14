@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     DndContext,
     DragEndEvent,
@@ -18,27 +18,24 @@ import {
     AssetInputSize,
     Flyout,
     FlyoutPlacement,
-    IconArrowCircleDown16,
     IconCaretDown12,
     IconPaperclip16,
 } from '@frontify/fondue';
-import { useEffect, useState } from 'react';
 import { useGuidelineDesignTokens } from '../../hooks';
 import { AttachmentItem, SortableAttachmentItem } from './AttachmentItem';
 import { AttachmentsProps } from './types';
 
 export const Attachments = ({
-    attachmentItems,
-    onAttachmentDelete,
-    onAttachmentReplaceWithBrowse,
-    onAttachmentReplaceWithUpload,
-    onBrowseAttachments,
-    onUploadAttachments,
-    onAttachmentsSorted,
-    onDownload,
+    items,
+    onDelete,
+    onReplaceWithBrowse,
+    onReplaceWithUpload,
+    onBrowse,
+    onUpload,
+    onSorted,
     appBridge,
 }: AttachmentsProps) => {
-    const [internalItems, setInternalItems] = useState<Asset[] | undefined>(attachmentItems || []);
+    const [internalItems, setInternalItems] = useState<Asset[] | undefined>(items || []);
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
     const sensors = useSensors(useSensor(PointerSensor));
     const [draggedAssetId, setDraggedAssetId] = useState<number | undefined>(undefined);
@@ -47,15 +44,15 @@ export const Attachments = ({
     const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
     const isEditing = useEditorState(appBridge);
 
-    const draggedAttachment = internalItems?.find((item) => item.id === draggedAssetId);
+    const draggedItem = internalItems?.find((item) => item.id === draggedAssetId);
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
     });
 
     useEffect(() => {
-        setInternalItems(attachmentItems);
-    }, [attachmentItems]);
+        setInternalItems(items);
+    }, [items]);
 
     useEffect(() => {
         if (selectedFiles) {
@@ -67,7 +64,7 @@ export const Attachments = ({
 
     useEffect(() => {
         if (doneAll) {
-            onUploadAttachments(uploadResults);
+            onUpload(uploadResults);
             setIsUploadLoading(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,7 +74,7 @@ export const Attachments = ({
         setIsFlyoutOpen(false);
         appBridge.openAssetChooser(
             (result: Asset[]) => {
-                onBrowseAttachments(result);
+                onBrowse(result);
                 appBridge.closeAssetChooser();
             },
             {
@@ -86,11 +83,11 @@ export const Attachments = ({
         );
     };
 
-    const onReplaceAttachmentWithBrowse = (attachmentToReplace: Asset) => {
+    const onReplaceItemWithBrowse = (toReplace: Asset) => {
         setIsFlyoutOpen(false);
         appBridge.openAssetChooser(
             (result: Asset[]) => {
-                onAttachmentReplaceWithBrowse(attachmentToReplace, result[0]);
+                onReplaceWithBrowse(toReplace, result[0]);
                 appBridge.closeAssetChooser();
             },
             {
@@ -99,8 +96,8 @@ export const Attachments = ({
         );
     };
 
-    const onReplaceAttachmentWithUpload = (attachmentToReplace: Asset, uploadedAsset: Asset) => {
-        onAttachmentReplaceWithUpload(attachmentToReplace, uploadedAsset);
+    const onReplaceItemWithUpload = (toReplace: Asset, uploadedAsset: Asset) => {
+        onReplaceWithUpload(toReplace, uploadedAsset);
     };
 
     const handleDragStart = (event: DragStartEvent) => {
@@ -116,22 +113,12 @@ export const Attachments = ({
             const sortedItems = arrayMove(internalItems, oldIndex, newIndex);
             setInternalItems(sortedItems);
             setDraggedAssetId(undefined);
-            onAttachmentsSorted(sortedItems);
+            onSorted(sortedItems);
         }
     };
 
     return (
-        <div className="tw-flex tw-gap-2" data-test-id="attachments">
-            {onDownload && (
-                <button
-                    data-test-id="attachments-download"
-                    onClick={onDownload}
-                    className="tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed  tw-text-box-neutral-strong tw-outline tw-outline-1 tw-outline-offset-[1px] tw-p-[6px] tw-outline-line"
-                >
-                    <IconArrowCircleDown16 />
-                </button>
-            )}
-
+        <>
             {(isEditing || (internalItems?.length ?? 0) > 0) && (
                 <div className="-tw-mx-3" data-test-id="attachments-flyout-button">
                     <Flyout
@@ -143,7 +130,7 @@ export const Attachments = ({
                         trigger={
                             <button className="tw-flex tw-text-[13px] tw-font-body tw-items-center tw-gap-1 tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed  tw-text-box-neutral-strong tw-outline tw-outline-1 tw-outline-offset-[1px] tw-p-[6px] tw-outline-line">
                                 <IconPaperclip16 />
-                                <div>{(attachmentItems?.length || 0) > 0 ? attachmentItems?.length : 'Add'}</div>
+                                <div>{(items?.length || 0) > 0 ? items?.length : 'Add'}</div>
                                 <IconCaretDown12 />
                             </button>
                         }
@@ -158,38 +145,34 @@ export const Attachments = ({
                                 >
                                     <SortableContext items={internalItems || []} strategy={rectSortingStrategy}>
                                         <div className="tw-border-b tw-border-b-line">
-                                            {(internalItems || []).map((attachmentItem) => (
+                                            {(internalItems || []).map((item) => (
                                                 <SortableAttachmentItem
                                                     isEditing={isEditing}
                                                     designTokens={designTokens}
-                                                    key={attachmentItem.id}
-                                                    item={attachmentItem}
-                                                    onAttachmentDelete={() => onAttachmentDelete(attachmentItem)}
-                                                    onAttachmentReplaceWithBrowse={() =>
-                                                        onReplaceAttachmentWithBrowse(attachmentItem)
-                                                    }
-                                                    onAttachmentReplaceWithUpload={(uploadedAsset: Asset) =>
-                                                        onReplaceAttachmentWithUpload(attachmentItem, uploadedAsset)
+                                                    key={item.id}
+                                                    item={item}
+                                                    onDelete={() => onDelete(item)}
+                                                    onReplaceWithBrowse={() => onReplaceItemWithBrowse(item)}
+                                                    onReplaceWithUpload={(uploadedAsset: Asset) =>
+                                                        onReplaceItemWithUpload(item, uploadedAsset)
                                                     }
                                                 />
                                             ))}
                                         </div>
                                     </SortableContext>
                                     <DragOverlay>
-                                        {draggedAttachment ? (
+                                        {draggedItem ? (
                                             <AttachmentItem
                                                 isOverlay={true}
                                                 isEditing={isEditing}
                                                 key={draggedAssetId}
                                                 designTokens={designTokens}
-                                                item={draggedAttachment}
+                                                item={draggedItem}
                                                 isDragging={true}
-                                                onAttachmentDelete={() => onAttachmentDelete(draggedAttachment)}
-                                                onAttachmentReplaceWithBrowse={() =>
-                                                    onReplaceAttachmentWithBrowse(draggedAttachment)
-                                                }
-                                                onAttachmentReplaceWithUpload={(uploadedAsset: Asset) =>
-                                                    onReplaceAttachmentWithUpload(draggedAttachment, uploadedAsset)
+                                                onDelete={() => onDelete(draggedItem)}
+                                                onReplaceWithBrowse={() => onReplaceItemWithBrowse(draggedItem)}
+                                                onReplaceWithUpload={(uploadedAsset: Asset) =>
+                                                    onReplaceItemWithUpload(draggedItem, uploadedAsset)
                                                 }
                                             />
                                         ) : null}
@@ -216,6 +199,6 @@ export const Attachments = ({
                     </Flyout>
                 </div>
             )}
-        </div>
+        </>
     );
 };

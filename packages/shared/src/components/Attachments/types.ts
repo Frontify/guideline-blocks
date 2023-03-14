@@ -3,17 +3,16 @@
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { DesignTokenName, TokenValues } from '../../hooks';
 
-export interface AttachmentsProps {
-    attachmentItems: Asset[] | undefined;
+export type AttachmentsProps = {
+    items: Asset[] | undefined;
     appBridge: AppBridgeBlock;
-    onAttachmentReplaceWithUpload: (attachmentToReplace: Asset, newAsset: Asset) => void;
-    onAttachmentReplaceWithBrowse: (attachmentToReplace: Asset, newAsset: Asset) => void;
-    onAttachmentDelete: (attachmentToDelete: Asset) => void;
-    onUploadAttachments: (uploadedAttachments: Asset[]) => void;
-    onBrowseAttachments: (browserAttachments: Asset[]) => void;
-    onAttachmentsSorted: (sortedAttachments: Asset[]) => void;
-    onDownload: () => void;
-}
+    onReplaceWithUpload: (attachmentToReplace: Asset, newAsset: Asset) => void;
+    onReplaceWithBrowse: (attachmentToReplace: Asset, newAsset: Asset) => void;
+    onDelete: (attachmentToDelete: Asset) => void;
+    onUpload: (uploadedAttachments: Asset[]) => void;
+    onBrowse: (browserAttachments: Asset[]) => void;
+    onSorted: (sortedAttachments: Asset[]) => void;
+};
 
 export type AttachmentItemProps = SortableAttachmentItemProps & {
     isDragging?: boolean;
@@ -26,7 +25,7 @@ export type SortableAttachmentItemProps = {
     item: Asset;
     isEditing: boolean;
     designTokens: Partial<Record<DesignTokenName, TokenValues>> | null;
-    onAttachmentDelete: () => void;
-    onAttachmentReplaceWithBrowse: () => void;
-    onAttachmentReplaceWithUpload: (uploadedAsset: Asset) => void;
+    onDelete: () => void;
+    onReplaceWithBrowse: () => void;
+    onReplaceWithUpload: (uploadedAsset: Asset) => void;
 };
