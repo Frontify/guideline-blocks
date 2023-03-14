@@ -3,10 +3,18 @@
 import { Button, ButtonEmphasis, ButtonRounding, ButtonSize, IconCross16 } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
+import { useKeyboard } from '@react-aria/interactions';
 import { ThumbnailItemProps } from '../types';
 
 export const ThumbnailItem = ({ asset, isEditing, onRemoveAsset, thumbnailStyle }: ThumbnailItemProps) => {
     const { isFocused, focusProps } = useFocusRing();
+    const { keyboardProps } = useKeyboard({
+        onKeyUp: (event) => {
+            if (event.key === 'Backspace' || event.key === 'Delete') {
+                onRemoveAsset(asset.id);
+            }
+        },
+    });
     return (
         <div
             {...focusProps}

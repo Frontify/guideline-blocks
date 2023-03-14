@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useState } from 'react';
@@ -10,9 +10,9 @@ import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle, generateBulkDownload, thumbnailStyle } from './helpers';
-import { Button, ButtonEmphasis, ButtonStyle } from '@frontify/fondue';
 
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
+    const { designTokens } = useGuidelineDesignTokens();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -38,9 +38,8 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                     title={title ?? ''}
                 />
                 <div className="tw-flex-none">
-                    <Button
-                        emphasis={ButtonEmphasis.Strong}
-                        style={ButtonStyle.Default}
+                    <button
+                        data-test-id="asset-kit-block-download-button"
                         disabled={
                             isDownloadingAssets ||
                             isUploadingAssets ||
@@ -50,9 +49,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                         onClick={() =>
                             generateBulkDownload(appBridge.getProjectId(), currentAssets, setIsDownloadingAssets)
                         }
+                        style={designTokens.buttonPrimary}
                     >
                         Download package
-                    </Button>
+                    </button>
                 </div>
             </div>
 
