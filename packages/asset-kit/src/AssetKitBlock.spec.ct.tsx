@@ -9,7 +9,7 @@ const MAIN_BLOCK_SELECTOR = '[data-test-id="asset-kit-block"]';
 const ASSET_KIT_BLOCK_TITLE = '[data-test-id="asset-kit-block-title"]';
 const ASSET_KIT_BLOCK_DESCRIPTION = '[data-test-id="asset-kit-block-description"]';
 const ASSET_KIT_BLOCK_THUMBNAIL = '[data-test-id="asset-kit-block-thumbnail"]';
-const ASSET_KIT_BLOCK_REMOVE_THUMBNAIL = '[data-test-id="asset-kit-block-remove-thumbnail"]';
+const ASSET_KIT_BLOCK_REMOVE_THUMBNAIL = '[data-test-id="remove-thumbnail"]';
 
 describe('AssetKit Block', () => {
     it('renders a AssetKit block', () => {
@@ -61,7 +61,8 @@ describe('AssetKit Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(ASSET_KIT_BLOCK_REMOVE_THUMBNAIL).first().find('[data-test-id="button"]').click({ force: true });
+        cy.get(ASSET_KIT_BLOCK_THUMBNAIL).first().realHover();
+        cy.get(ASSET_KIT_BLOCK_REMOVE_THUMBNAIL).first().click({ force: true });
         cy.get(ASSET_KIT_BLOCK_THUMBNAIL).should('have.length', 1);
     });
 });

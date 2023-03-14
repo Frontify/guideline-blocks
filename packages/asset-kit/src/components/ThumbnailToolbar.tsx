@@ -139,6 +139,7 @@ export const ThumbnailToolbar = ({
                     content="Delete item"
                     triggerElement={
                         <div
+                            data-test-id="remove-thumbnail"
                             onClick={() => onRemoveAsset(asset.id)}
                             className="tw-bg-base hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm"
                         >
