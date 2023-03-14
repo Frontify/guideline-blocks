@@ -30,7 +30,7 @@ export const ThumbnailItem = ({
         <div
             {...mergeProps(focusProps, keyboardProps)}
             tabIndex={0}
-            data-test-id="asset-kit-block-thumbnail"
+            data-test-id="block-thumbnail"
             className="tw-aspect-square tw-group tw-relative tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse focus:tw-outline hover:tw-outline"
         >
             <>

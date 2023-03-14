@@ -24,7 +24,7 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
     return (
         <div className="tw-flex-1 tw-space-y-2">
             {hasRichTextValue(title) || isEditing ? (
-                <div data-test-id="asset-kit-block-title">
+                <div data-test-id="block-title">
                     <RichTextEditor
                         designTokens={designTokens}
                         value={title ?? DEFAULT_CONTENT_VALUE}
@@ -37,7 +37,7 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
             ) : null}
 
             {hasRichTextValue(description) || isEditing ? (
-                <div data-test-id="asset-kit-block-description">
+                <div data-test-id="block-description">
                     <RichTextEditor
                         designTokens={designTokens}
                         readonly={!isEditing}
