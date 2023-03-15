@@ -198,13 +198,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             )}
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-flex-1">
-                    {!isEditing ? (
-                        <>
-                            {hasRichTextValue(title) && (
-                                <div data-test-id="block-title-html" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
-                            )}
-                        </>
-                    ) : (
+                    {isEditing ? (
                         <RichTextEditor
                             designTokens={designTokens}
                             border={false}
@@ -214,17 +208,14 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             plugins={customTitlePlugins}
                             updateValueOnChange
                         />
-                    )}
-                    {!isEditing ? (
+                    ) : (
                         <>
-                            {hasRichTextValue(description) && (
-                                <div
-                                    data-test-id="block-description-html"
-                                    dangerouslySetInnerHTML={{ __html: htmlDescription }}
-                                />
+                            {hasRichTextValue(title) && (
+                                <div data-test-id="block-title-html" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
                             )}
                         </>
-                    ) : (
+                    )}
+                    {isEditing ? (
                         <RichTextEditor
                             designTokens={designTokens}
                             border={false}
@@ -233,6 +224,15 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             placeholder="Add a description here"
                             value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                         />
+                    ) : (
+                        <>
+                            {hasRichTextValue(description) && (
+                                <div
+                                    data-test-id="block-description-html"
+                                    dangerouslySetInnerHTML={{ __html: htmlDescription }}
+                                />
+                            )}
+                        </>
                     )}
                 </div>
                 {audio ? (
