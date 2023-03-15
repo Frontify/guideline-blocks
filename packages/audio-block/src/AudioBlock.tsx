@@ -152,9 +152,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     return (
         <div data-test-id="audio-block" className={audioBlockClassNames}>
             {audio ? (
-                <>
+                <div className="tw-relative">
                     {isEditing && (
                         <ItemToolbar
+                            textPosition={positioning}
                             onRemoveAsset={onRemoveAsset}
                             onUploadClick={openFileDialog}
                             onAssetChooseClick={openAssetChooser}
@@ -176,7 +177,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             src={audio.genericUrl}
                         />
                     )}
-                </>
+                </div>
             ) : (
                 isEditing && (
                     <UploadPlaceholder
