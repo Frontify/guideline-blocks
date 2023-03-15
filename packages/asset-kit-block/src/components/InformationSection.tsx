@@ -52,8 +52,8 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
             <div data-test-id="block-title">
                 {!isEditing ? (
                     <>
-                        {title !== DEFAULT_CONTENT_VALUE && (
-                            <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
+                        {hasRichTextValue(title) && (
+                            <div data-test-id="block-title-rte" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
                         )}
                     </>
                 ) : (
@@ -71,9 +71,9 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
             <div data-test-id="block-description">
                 {!isEditing ? (
                     <>
-                        {description !== '' && (
+                        {hasRichTextValue(description) && (
                             <div
-                                data-test-id="rte-content-html"
+                                data-test-id="block-description-rte"
                                 dangerouslySetInnerHTML={{ __html: htmlDescription }}
                             />
                         )}

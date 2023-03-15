@@ -9,7 +9,9 @@ import { BorderStyle } from '@frontify/guideline-blocks-shared';
 
 const BLOCK_SELECTOR = '[data-test-id="asset-kit-block"]';
 const BLOCK_TITLE = '[data-test-id="block-title"]';
+const BLOCK_TITLE_HTML = '[data-test-id="block-title-rte"]';
 const BLOCK_DESCRIPTION = '[data-test-id="block-description"]';
+const BLOCK_DESCRIPTION_HTML = '[data-test-id="block-description-rte"]';
 const BLOCK_THUMBNAIL = '[data-test-id="block-thumbnail"]';
 const BLOCK_THUMBNAIL_IMAGE = '[data-test-id="block-thumbnail-image"]';
 const BLOCK_REMOVE_THUMBNAIL = '[data-test-id="remove-thumbnail"]';
@@ -32,8 +34,8 @@ describe('AssetKit Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_TITLE).should('not.exist');
-        cy.get(BLOCK_DESCRIPTION).should('not.exist');
+        cy.get(BLOCK_TITLE_HTML).should('not.exist');
+        cy.get(BLOCK_DESCRIPTION_HTML).should('not.exist');
     });
 
     it('should show the information section if in edit mode', () => {
