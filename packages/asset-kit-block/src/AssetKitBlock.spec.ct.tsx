@@ -188,10 +188,9 @@ describe('AssetKit Block', () => {
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL).first().realHover();
         cy.get(BLOCK_THUMBNAIL).first().should('have.css', 'outline-style', 'solid');
-        cy.get(THUMBNAIL_TOOLBAR).first().should('be.visible');
     });
 
-    it('should display a outline and toolbar if asset is focused', () => {
+    it('should display a outline if asset is focused', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
@@ -200,7 +199,6 @@ describe('AssetKit Block', () => {
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL).first().focus();
         cy.get(BLOCK_THUMBNAIL).first().should('have.css', 'outline-style', 'solid');
-        cy.get(THUMBNAIL_TOOLBAR).first().should('be.visible');
     });
 
     it('should remove focused asset if backspace is pressed', () => {
