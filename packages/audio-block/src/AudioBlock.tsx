@@ -18,11 +18,14 @@ import {
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
+    parseRawValue,
+    serializeRawToHtml,
 } from '@frontify/fondue';
 import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import {
     DownloadButton,
     downloadAsset,
+    hasRichTextValue,
     joinClassNames,
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
@@ -57,6 +60,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { designTokens } = useGuidelineDesignTokens();
     const { title, description, downloadable, positioning } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
+
+    const rawTitleValue = JSON.stringify(parseRawValue({ raw: title }));
+    const htmlTitle = serializeRawToHtml(rawTitleValue, designTokens);
+    const rawDescriptionValue = JSON.stringify(parseRawValue({ raw: description }));
+    const htmlDescription = serializeRawToHtml(rawDescriptionValue, designTokens);
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
@@ -191,37 +199,57 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-flex-1">
                     {title !== DEFAULT_CONTENT_TITLE || isEditing ? (
-                        <div data-test-id="audio-block-title">
-                            <RichTextEditor
-                                designTokens={designTokens}
-                                border={false}
-                                onBlur={saveTitle}
-                                placeholder={isEditing ? 'Asset name' : undefined}
-                                readonly={!isEditing}
-                                value={title ?? DEFAULT_CONTENT_TITLE}
-                                plugins={customTitlePlugins}
-                                updateValueOnChange={true}
-                            />
+                        <div>
+                            {!isEditing ? (
+                                <>
+                                    {hasRichTextValue(title) && (
+                                        <div
+                                            data-test-id="block-title-html"
+                                            dangerouslySetInnerHTML={{ __html: htmlTitle }}
+                                        />
+                                    )}
+                                </>
+                            ) : (
+                                <RichTextEditor
+                                    designTokens={designTokens}
+                                    border={false}
+                                    onBlur={saveTitle}
+                                    placeholder="Asset name"
+                                    value={title ?? DEFAULT_CONTENT_TITLE}
+                                    plugins={customTitlePlugins}
+                                    updateValueOnChange={true}
+                                />
+                            )}
                         </div>
                     ) : null}
 
                     {description !== DEFAULT_CONTENT_DESCRIPTION || isEditing ? (
-                        <div data-test-id="audio-block-description">
-                            <RichTextEditor
-                                designTokens={designTokens}
-                                border={false}
-                                position={Position.FLOATING}
-                                onBlur={saveDescription}
-                                placeholder={isEditing ? 'Add a description here' : undefined}
-                                readonly={!isEditing}
-                                value={description ?? DEFAULT_CONTENT_DESCRIPTION}
-                            />
+                        <div>
+                            {!isEditing ? (
+                                <>
+                                    {hasRichTextValue(description) && (
+                                        <div
+                                            data-test-id="block-description-html"
+                                            dangerouslySetInnerHTML={{ __html: htmlDescription }}
+                                        />
+                                    )}
+                                </>
+                            ) : (
+                                <RichTextEditor
+                                    designTokens={designTokens}
+                                    border={false}
+                                    position={Position.FLOATING}
+                                    onBlur={saveDescription}
+                                    placeholder="Add a description here"
+                                    value={description ?? DEFAULT_CONTENT_DESCRIPTION}
+                                />
+                            )}
                         </div>
                     ) : null}
                 </div>
                 {audio ? (
                     <div className="tw-flex tw-gap-2">
-                        {downloadable ? <DownloadButton onDownload={() => downloadAsset(audio)} /> : null}
+                        {downloadable && <DownloadButton onDownload={() => downloadAsset(audio)} />}
                         <BlockAttachments appBridge={appBridge} />
                     </div>
                 ) : null}
