@@ -11,6 +11,8 @@ import {
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
+    parseRawValue,
+    serializeRawToHtml,
 } from '@frontify/fondue';
 import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import { InformationSectionProps } from '../types';
@@ -20,6 +22,11 @@ const DEFAULT_CONTENT_VALUE = '[{"type":"heading3","children":[{"text":""}]}]';
 
 export const InformationSection = ({ description, isEditing, setBlockSettings, title }: InformationSectionProps) => {
     const { designTokens } = useGuidelineDesignTokens();
+
+    const rawTitleValue = JSON.stringify(parseRawValue({ raw: title }));
+    const htmlTitle = serializeRawToHtml(rawTitleValue, designTokens);
+    const rawDescriptionValue = JSON.stringify(parseRawValue({ raw: description }));
+    const htmlDescription = serializeRawToHtml(rawDescriptionValue, designTokens);
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
@@ -42,32 +49,45 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
 
     return (
         <div className="tw-flex-1 tw-space-y-2">
-            {hasRichTextValue(title) || isEditing ? (
-                <div data-test-id="block-title">
+            <div data-test-id="block-title">
+                {!isEditing ? (
+                    <>
+                        {title !== DEFAULT_CONTENT_VALUE && (
+                            <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
+                        )}
+                    </>
+                ) : (
                     <RichTextEditor
                         designTokens={designTokens}
                         value={title ?? DEFAULT_CONTENT_VALUE}
-                        readonly={!isEditing}
                         onBlur={saveTitle}
-                        placeholder={isEditing ? 'Add a title here ...' : ''}
+                        placeholder="Add a title here ..."
                         border={false}
                         plugins={customTitlePlugins}
                     />
-                </div>
-            ) : null}
+                )}
+            </div>
 
-            {hasRichTextValue(description) || isEditing ? (
-                <div data-test-id="block-description">
+            <div data-test-id="block-description">
+                {!isEditing ? (
+                    <>
+                        {description !== '' && (
+                            <div
+                                data-test-id="rte-content-html"
+                                dangerouslySetInnerHTML={{ __html: htmlDescription }}
+                            />
+                        )}
+                    </>
+                ) : (
                     <RichTextEditor
                         designTokens={designTokens}
-                        readonly={!isEditing}
                         onBlur={saveDescription}
-                        placeholder={isEditing ? 'Add a description here ...' : ''}
+                        placeholder="Add a description here ..."
                         value={description}
                         border={false}
                     />
-                </div>
-            ) : null}
+                )}
+            </div>
         </div>
     );
 };
