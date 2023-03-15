@@ -5,7 +5,7 @@ import { AssetKitBlock } from './AssetKitBlock';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { ASSET_SETTINGS_ID } from './settings';
-import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
+import { BorderStyle } from '@frontify/guideline-blocks-shared';
 
 const BLOCK_SELECTOR = '[data-test-id="asset-kit-block"]';
 const BLOCK_TITLE = '[data-test-id="block-title"]';
