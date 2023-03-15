@@ -185,28 +185,33 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             )}
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-flex-1">
-                    <div data-test-id="audio-block-title">
-                        <RichTextEditor
-                            designTokens={designTokens}
-                            border={false}
-                            onBlur={saveTitle}
-                            placeholder={isEditing ? 'Asset name' : undefined}
-                            readonly={!isEditing}
-                            value={title ?? DEFAULT_CONTENT_TITLE}
-                            plugins={customTitlePlugins}
-                        />
-                    </div>
-                    <div data-test-id="audio-block-description">
-                        <RichTextEditor
-                            designTokens={designTokens}
-                            border={false}
-                            position={Position.FLOATING}
-                            onBlur={saveDescription}
-                            placeholder={isEditing ? 'Add a description here' : undefined}
-                            readonly={!isEditing}
-                            value={description ?? DEFAULT_CONTENT_DESCRIPTION}
-                        />
-                    </div>
+                    {title !== DEFAULT_CONTENT_TITLE || isEditing ? (
+                        <div data-test-id="audio-block-title">
+                            <RichTextEditor
+                                designTokens={designTokens}
+                                border={false}
+                                onBlur={saveTitle}
+                                placeholder={isEditing ? 'Asset name' : undefined}
+                                readonly={!isEditing}
+                                value={title ?? DEFAULT_CONTENT_TITLE}
+                                plugins={customTitlePlugins}
+                            />
+                        </div>
+                    ) : null}
+
+                    {description !== DEFAULT_CONTENT_DESCRIPTION || isEditing ? (
+                        <div data-test-id="audio-block-description">
+                            <RichTextEditor
+                                designTokens={designTokens}
+                                border={false}
+                                position={Position.FLOATING}
+                                onBlur={saveDescription}
+                                placeholder={isEditing ? 'Add a description here' : undefined}
+                                readonly={!isEditing}
+                                value={description ?? DEFAULT_CONTENT_DESCRIPTION}
+                            />
+                        </div>
+                    ) : null}
                 </div>
                 {audio ? (
                     <div className="tw-flex tw-gap-2">
