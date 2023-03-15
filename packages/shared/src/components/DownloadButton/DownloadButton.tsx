@@ -3,7 +3,7 @@
 import React from 'react';
 import { DownloadButtonProps } from './types';
 import { useFocusRing } from '@react-aria/focus';
-import { IconArrowCircleDown16, Tooltip, TooltipPosition, FOCUS_VISIBLE_STYLE } from '@frontify/fondue';
+import { FOCUS_STYLE, IconArrowCircleDown16, Tooltip, TooltipPosition } from '@frontify/fondue';
 import { joinClassNames } from '../../utilities';
 
 export const DownloadButton = ({ onDownload }: DownloadButtonProps) => {
@@ -18,7 +18,7 @@ export const DownloadButton = ({ onDownload }: DownloadButtonProps) => {
                 <button
                     tabIndex={0}
                     {...focusProps}
-                    className={joinClassNames(['tw-outline-none tw-rounded', isFocused && FOCUS_VISIBLE_STYLE])}
+                    className={joinClassNames(['tw-outline-none tw-rounded', isFocused && FOCUS_STYLE])}
                     onClick={onDownload}
                 >
                     <span
