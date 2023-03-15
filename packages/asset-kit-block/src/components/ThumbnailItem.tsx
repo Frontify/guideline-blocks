@@ -7,6 +7,7 @@ import { mergeProps } from '@react-aria/utils';
 import { ThumbnailItemProps } from '../types';
 import { ThumbnailToolbar } from '.';
 import { LoadingCircle } from '@frontify/fondue';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 export const ThumbnailItem = ({
     asset,
     isEditing,
@@ -31,7 +32,10 @@ export const ThumbnailItem = ({
             {...mergeProps(focusProps, keyboardProps)}
             tabIndex={0}
             data-test-id="block-thumbnail"
-            className="tw-aspect-square tw-group tw-relative tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse focus:tw-outline hover:tw-outline"
+            className={joinClassNames([
+                'tw-aspect-square tw-group tw-relative tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse focus:tw-outline ',
+                isEditing && 'hover:tw-outline',
+            ])}
         >
             <>
                 {isUploading ? (
