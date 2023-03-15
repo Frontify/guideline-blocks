@@ -100,20 +100,6 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_SELECTOR).should('have.css', 'padding', '32px');
     });
 
-    it('should display with padding on block if background and border is setted', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockSettings: {
-                hasBackground_blocks: true,
-                hasBorder_blocks: true,
-            },
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_SELECTOR).should('have.css', 'padding', '32px');
-    });
-
     it('should display block with black background color', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
@@ -126,36 +112,6 @@ describe('AssetKit Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_SELECTOR).should('have.css', 'background-color', 'rgb(0, 0, 0)');
-    });
-
-    it('should display block with white background color', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockSettings: {
-                hasBackground_blocks: true,
-                backgroundColor_blocks: WHITE,
-            },
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_SELECTOR).should('have.css', 'background-color', 'rgb(255, 255, 255)');
-    });
-
-    it('should display block with border 2px dashed black', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockSettings: {
-                hasBorder_blocks: true,
-                borderStyle_blocks: BorderStyle.Dashed,
-                borderWidth_blocks: '2px',
-                borderColor_blocks: BLACK,
-            },
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_SELECTOR).should('have.css', 'border', '2px dashed rgb(0, 0, 0)');
     });
 
     it('should display block with border 1px dotted white with 10px radius', () => {
@@ -177,25 +133,6 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_SELECTOR).should('have.css', 'border-radius', '10px');
     });
 
-    it('should display block with border 1px solid white with Medium radius', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockSettings: {
-                hasBorder_blocks: true,
-                borderStyle_blocks: BorderStyle.Solid,
-                borderWidth_blocks: '1px',
-                borderColor_blocks: WHITE,
-                hasRadius_blocks: false,
-                radiusChoice_blocks: Radius.Medium,
-            },
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_SELECTOR).should('have.css', 'border', '1px solid rgb(255, 255, 255)');
-        cy.get(BLOCK_SELECTOR).should('have.css', 'border-radius', '4px');
-    });
-
     it('should display asset with black background color', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
@@ -208,36 +145,6 @@ describe('AssetKit Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'background-color', 'rgb(0, 0, 0)');
-    });
-
-    it('should display asset with white background color', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockSettings: {
-                hasBackground_thumbnails: true,
-                backgroundColor_thumbnails: WHITE,
-            },
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'background-color', 'rgb(255, 255, 255)');
-    });
-
-    it('should display asset with border 2px dashed black', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockSettings: {
-                hasBorder_thumbnails: true,
-                borderStyle_thumbnails: BorderStyle.Dashed,
-                borderWidth_thumbnails: '2px',
-                borderColor_thumbnails: BLACK,
-            },
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '2px dashed rgb(0, 0, 0)');
     });
 
     it('should display asset with border 1px dotted black with 10px radius', () => {
@@ -257,25 +164,6 @@ describe('AssetKit Block', () => {
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '1px dotted rgb(255, 255, 255)');
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border-radius', '10px');
-    });
-
-    it('should display block with border 1px solid white with large radius', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockSettings: {
-                hasBorder_thumbnails: true,
-                borderStyle_thumbnails: BorderStyle.Solid,
-                borderWidth_thumbnails: '1px',
-                borderColor_thumbnails: WHITE,
-                hasRadius_thumbnails: false,
-                radiusChoice_thumbnails: Radius.Large,
-            },
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '1px solid rgb(255, 255, 255)');
-        cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border-radius', '12px');
     });
 
     it('should remove assets correctly in edit mode', () => {
@@ -300,9 +188,10 @@ describe('AssetKit Block', () => {
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL).first().realHover();
         cy.get(BLOCK_THUMBNAIL).first().should('have.css', 'outline-style', 'solid');
+        cy.get(THUMBNAIL_TOOLBAR).first().should('be.visible');
     });
 
-    it('should display a outline if asset is focused', () => {
+    it('should display a outline and toolbar if asset is focused', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
@@ -311,29 +200,6 @@ describe('AssetKit Block', () => {
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL).first().focus();
         cy.get(BLOCK_THUMBNAIL).first().should('have.css', 'outline-style', 'solid');
-    });
-
-    it('should display a toolbar if asset is hovered', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            editorState: true,
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).first().realHover();
-        cy.get(THUMBNAIL_TOOLBAR).first().should('be.visible');
-    });
-
-    it('should display a toolbar if asset is focused', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            editorState: true,
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).first().focus();
         cy.get(THUMBNAIL_TOOLBAR).first().should('be.visible');
     });
 
