@@ -5,7 +5,7 @@ import { useFocusRing } from '@react-aria/focus';
 import { useKeyboard } from '@react-aria/interactions';
 import { mergeProps } from '@react-aria/utils';
 import { ThumbnailItemProps } from '../types';
-import { ThumbnailToolbar } from './';
+import { ThumbnailToolbar } from '.';
 import { LoadingCircle } from '@frontify/fondue';
 export const ThumbnailItem = ({
     asset,
