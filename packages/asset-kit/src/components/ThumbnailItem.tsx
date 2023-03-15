@@ -42,6 +42,7 @@ export const ThumbnailItem = ({
                     </div>
                 ) : (
                     <img
+                        data-test-id="block-thumbnail-image"
                         className="tw-object-scale-down tw-w-full tw-h-full"
                         src={asset.previewUrl}
                         style={thumbnailStyle}
