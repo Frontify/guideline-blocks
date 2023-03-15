@@ -156,7 +156,7 @@ export const Attachments = ({
                                             onDragStart={handleDragStart}
                                             onDragEnd={handleDragEnd}
                                         >
-                                            <SortableContext items={internalItems || []} strategy={rectSortingStrategy}>
+                                            <SortableContext items={internalItems} strategy={rectSortingStrategy}>
                                                 <div className="tw-border-b tw-border-b-line">
                                                     {internalItems.map((item) => (
                                                         <SortableAttachmentItem
