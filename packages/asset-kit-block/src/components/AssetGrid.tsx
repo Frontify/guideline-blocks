@@ -25,9 +25,7 @@ export const AssetGrid = ({
     return (
         <>
             {currentAssets.length > 0 ? (
-                <span>
-                    {currentAssets.length} asset{currentAssets.length > 1 ? <>s</> : null}
-                </span>
+                <span>{`${currentAssets.length} asset${currentAssets.length > 1 ? 's' : ''}`}</span>
             ) : (
                 <span className="tw-text-black-50">Add assets to make them available</span>
             )}

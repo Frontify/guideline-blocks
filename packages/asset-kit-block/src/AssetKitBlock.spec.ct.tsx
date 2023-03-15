@@ -13,7 +13,6 @@ const BLOCK_DESCRIPTION = '[data-test-id="block-description"]';
 const BLOCK_THUMBNAIL = '[data-test-id="block-thumbnail"]';
 const BLOCK_THUMBNAIL_IMAGE = '[data-test-id="block-thumbnail-image"]';
 const BLOCK_REMOVE_THUMBNAIL = '[data-test-id="remove-thumbnail"]';
-const THUMBNAIL_TOOLBAR = '[data-test-id="item-toolbar"]';
 
 const BLACK: Color = { red: 0, green: 0, blue: 0, alpha: 1 };
 const WHITE: Color = { red: 255, green: 255, blue: 255, alpha: 1 };
