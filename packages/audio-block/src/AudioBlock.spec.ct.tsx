@@ -14,7 +14,7 @@ const AudioBlockTitleHtmlSelector = '[data-test-id="block-title-html"]';
 const AudioBlockDescriptionHtmlSelector = '[data-test-id="block-description-html"]';
 
 const Title = '[{"type":"heading3","children":[{"text":"Audio Title"}]}]';
-const Description = '[{"type":"paragraph","children":[{"text":"Audio Description"}]}]';
+const Description = '[{"type":"p","children":[{"text":"Audio Description"}]}]';
 
 describe('Audio Block', () => {
     it('renders an empty audio block in view mode', () => {
