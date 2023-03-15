@@ -39,12 +39,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <div className="tw-flex-none">
                     <button
                         data-test-id="asset-kit-block-download-button"
-                        disabled={
-                            isDownloadingAssets ||
-                            isUploadingAssets ||
-                            currentAssets.length === undefined ||
-                            currentAssets.length <= 0
-                        }
+                        disabled={isDownloadingAssets || isUploadingAssets || currentAssets.length <= 0}
                         onClick={() =>
                             generateBulkDownload(appBridge.getProjectId(), currentAssets, setIsDownloadingAssets)
                         }
@@ -55,7 +50,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </div>
             </div>
 
-            {isDownloadingAssets ? <DownloadMessage blockStyle={blockStyle(blockSettings)} /> : null}
+            {isDownloadingAssets && <DownloadMessage blockStyle={blockStyle(blockSettings)} />}
 
             <AssetGrid
                 appBridge={appBridge}
@@ -66,7 +61,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 thumbnailStyle={thumbnailStyle(blockSettings)}
             />
 
-            {isEditing ? (
+            {isEditing && (
                 <AssetSelection
                     appBridge={appBridge}
                     isUploadingAssets={isUploadingAssets}
@@ -74,7 +69,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                     addAssetIdsToKey={addAssetIdsToKey}
                     currentAssets={currentAssets}
                 />
-            ) : null}
+            )}
         </div>
     );
 };
