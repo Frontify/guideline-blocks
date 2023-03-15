@@ -103,6 +103,9 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     };
 
     const updateAudioAsset = async (audio: Asset) => {
+        if (title === undefined) {
+            saveTitle(`[{"type":"heading3","children":[{"text":"${audio.title}"}]}]`);
+        }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
     };
@@ -196,6 +199,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                                 readonly={!isEditing}
                                 value={title ?? DEFAULT_CONTENT_TITLE}
                                 plugins={customTitlePlugins}
+                                updateValueOnChange={true}
                             />
                         </div>
                     ) : null}
