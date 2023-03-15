@@ -49,7 +49,7 @@ import { BlockAttachments } from './components/BlockAttachments';
 import { useEffect, useMemo, useState } from 'react';
 
 const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
-const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"paragraph","children":[{"text":""}]}]';
+const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"p","children":[{"text":""}]}]';
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -76,8 +76,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
             .setPlugin([
                 new AlignLeftPlugin(),
-                new AlignRightPlugin(),
                 new AlignCenterPlugin(),
+                new AlignRightPlugin(),
                 new AlignJustifyPlugin(),
                 new ResetFormattingPlugin(),
             ]);
@@ -111,7 +111,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     };
 
     const updateAudioAsset = async (audio: Asset) => {
-        if (title === undefined) {
+        if (!title) {
             saveTitle(`[{"type":"heading3","children":[{"text":"${audio.title}"}]}]`);
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
@@ -198,54 +198,42 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             )}
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-flex-1">
-                    {title !== DEFAULT_CONTENT_TITLE || isEditing ? (
-                        <div>
-                            {!isEditing ? (
-                                <>
-                                    {hasRichTextValue(title) && (
-                                        <div
-                                            data-test-id="block-title-html"
-                                            dangerouslySetInnerHTML={{ __html: htmlTitle }}
-                                        />
-                                    )}
-                                </>
-                            ) : (
-                                <RichTextEditor
-                                    designTokens={designTokens}
-                                    border={false}
-                                    onBlur={saveTitle}
-                                    placeholder="Asset name"
-                                    value={title ?? DEFAULT_CONTENT_TITLE}
-                                    plugins={customTitlePlugins}
-                                    updateValueOnChange
+                    {!isEditing ? (
+                        <>
+                            {hasRichTextValue(title) && (
+                                <div data-test-id="block-title-html" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
+                            )}
+                        </>
+                    ) : (
+                        <RichTextEditor
+                            designTokens={designTokens}
+                            border={false}
+                            onBlur={saveTitle}
+                            placeholder="Asset name"
+                            value={title ?? DEFAULT_CONTENT_TITLE}
+                            plugins={customTitlePlugins}
+                            updateValueOnChange
+                        />
+                    )}
+                    {!isEditing ? (
+                        <>
+                            {hasRichTextValue(description) && (
+                                <div
+                                    data-test-id="block-description-html"
+                                    dangerouslySetInnerHTML={{ __html: htmlDescription }}
                                 />
                             )}
-                        </div>
-                    ) : null}
-
-                    {description !== DEFAULT_CONTENT_DESCRIPTION || isEditing ? (
-                        <div>
-                            {!isEditing ? (
-                                <>
-                                    {hasRichTextValue(description) && (
-                                        <div
-                                            data-test-id="block-description-html"
-                                            dangerouslySetInnerHTML={{ __html: htmlDescription }}
-                                        />
-                                    )}
-                                </>
-                            ) : (
-                                <RichTextEditor
-                                    designTokens={designTokens}
-                                    border={false}
-                                    position={Position.FLOATING}
-                                    onBlur={saveDescription}
-                                    placeholder="Add a description here"
-                                    value={description ?? DEFAULT_CONTENT_DESCRIPTION}
-                                />
-                            )}
-                        </div>
-                    ) : null}
+                        </>
+                    ) : (
+                        <RichTextEditor
+                            designTokens={designTokens}
+                            border={false}
+                            position={Position.FLOATING}
+                            onBlur={saveDescription}
+                            placeholder="Add a description here"
+                            value={description ?? DEFAULT_CONTENT_DESCRIPTION}
+                        />
+                    )}
                 </div>
                 {audio ? (
                     <div className="tw-flex tw-gap-2">
