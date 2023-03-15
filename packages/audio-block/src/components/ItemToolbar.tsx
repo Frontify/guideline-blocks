@@ -83,7 +83,7 @@ export const ItemToolbar = ({ onRemoveAsset, onUploadClick, onAssetChooseClick }
     ];
 
     return (
-        <div data-test-id="item-toolbar" className="tw-absolute tw-z-10 -tw-right-0.5 tw-visible">
+        <div data-test-id="item-toolbar" className="tw-absolute tw-z-10 -tw-right-0.5 tw-top-1.5 tw-visible">
             <div className="tw-bg-white tw-text-box-selected-inverse tw-flex tw-flex-shrink-0 tw-gap-0.5 tw-spacing tw-items-center tw-h-7 tw-self-start tw-border tw-border-box-selected-inverse tw-rounded">
                 <Tooltip
                     withArrow
