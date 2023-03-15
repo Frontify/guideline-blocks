@@ -85,6 +85,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
         return (
             <div
                 data-test-id="attachments-item"
+                tabIndex={0}
                 onClick={() => download(item.genericUrl, item.fileName)}
                 ref={ref}
                 style={{
