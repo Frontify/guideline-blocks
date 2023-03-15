@@ -9,7 +9,7 @@ export type AttachmentsProps = {
     onReplaceWithUpload: (attachmentToReplace: Asset, newAsset: Asset) => void;
     onReplaceWithBrowse: (attachmentToReplace: Asset, newAsset: Asset) => void;
     onDelete: (attachmentToDelete: Asset) => void;
-    onUpload: (uploadedAttachments: Asset[]) => void;
+    onUpload: (uploadedAttachments: Asset[]) => Promise<void>;
     onBrowse: (browserAttachments: Asset[]) => void;
     onSorted: (sortedAttachments: Asset[]) => void;
 };

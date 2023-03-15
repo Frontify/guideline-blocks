@@ -63,10 +63,13 @@ export const Attachments = ({
     }, [selectedFiles]);
 
     useEffect(() => {
-        if (doneAll) {
-            onUpload(uploadResults);
-            setIsUploadLoading(false);
-        }
+        const uploadDone = async () => {
+            if (doneAll) {
+                await onUpload(uploadResults);
+                setIsUploadLoading(false);
+            }
+        };
+        uploadDone();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
