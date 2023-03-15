@@ -55,7 +55,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { designTokens } = useGuidelineDesignTokens();
-    const { title, description, downloadable } = blockSettings;
+    const { title, description, downloadable, positioning } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -77,12 +77,13 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const audioBlockClassNames = joinClassNames([
         'tw-flex tw-flex-col tw-gap-3',
-        blockSettings.positioning === TextPosition.Above && 'tw-flex-col-reverse',
+        positioning === TextPosition.Above && 'tw-flex-col-reverse',
     ]);
 
     const audioTagClassNames = joinClassNames([
-        'tw-w-full tw-mt-5',
+        'tw-w-full',
         isEditing && 'tw-outline tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse tw-rounded',
+        positioning === TextPosition.Below && 'tw-mt-5',
     ]);
 
     const saveTitle = (title: string) => {
