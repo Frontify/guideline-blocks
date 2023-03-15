@@ -55,7 +55,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { designTokens } = useGuidelineDesignTokens();
-    const { title, description } = blockSettings;
+    const { title, description, downloadable } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -215,7 +215,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 </div>
                 {audio ? (
                     <div className="tw-flex tw-gap-2">
-                        <DownloadButton onDownload={() => downloadAsset(audio)} />
+                        {downloadable ? <DownloadButton onDownload={() => downloadAsset(audio)} /> : null}
                         <BlockAttachments appBridge={appBridge} />
                     </div>
                 ) : null}
