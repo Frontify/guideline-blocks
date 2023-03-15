@@ -26,7 +26,7 @@ export type UploadPlaceholderProps = {
 };
 
 export type ItemToolbarProps = {
-    positioning: TextPosition;
+    textPosition: TextPosition;
     onRemoveAsset: () => void;
     onUploadClick: () => void;
     onAssetChooseClick: () => void;
