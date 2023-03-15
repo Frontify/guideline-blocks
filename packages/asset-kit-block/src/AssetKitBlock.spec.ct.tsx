@@ -182,6 +182,7 @@ describe('AssetKit Block', () => {
 
     it('should display a outline if asset is hover', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            editorState: true,
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
             },
