@@ -79,6 +79,7 @@ export const Attachments = ({
             (result: Asset[]) => {
                 onBrowse(result);
                 appBridge.closeAssetChooser();
+                setIsFlyoutOpen(true);
             },
             {
                 multiSelection: true,
@@ -92,6 +93,7 @@ export const Attachments = ({
             (result: Asset[]) => {
                 onReplaceWithBrowse(toReplace, result[0]);
                 appBridge.closeAssetChooser();
+                setIsFlyoutOpen(true);
             },
             {
                 multiSelection: false,
