@@ -82,8 +82,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const audioTagClassNames = joinClassNames([
         'tw-w-full tw-mt-5',
-        isEditing &&
-            'group-hover:tw-outline tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse tw-rounded',
+        isEditing && 'tw-outline tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse tw-rounded',
     ]);
 
     const saveTitle = (title: string) => {
@@ -149,7 +148,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     return (
         <div data-test-id="audio-block" className={audioBlockClassNames}>
             {audio ? (
-                <div className="tw-group">
+                <>
                     {isEditing && (
                         <ItemToolbar
                             onRemoveAsset={onRemoveAsset}
@@ -173,7 +172,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             src={audio.genericUrl}
                         />
                     )}
-                </div>
+                </>
             ) : (
                 isEditing && (
                     <UploadPlaceholder
