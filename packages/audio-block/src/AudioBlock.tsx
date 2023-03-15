@@ -217,7 +217,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                                     placeholder="Asset name"
                                     value={title ?? DEFAULT_CONTENT_TITLE}
                                     plugins={customTitlePlugins}
-                                    updateValueOnChange={true}
+                                    updateValueOnChange
                                 />
                             )}
                         </div>
