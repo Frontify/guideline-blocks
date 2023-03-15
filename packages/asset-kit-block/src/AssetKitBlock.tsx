@@ -18,9 +18,8 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
     const [isDownloadingAssets, setIsDownloadingAssets] = useState<boolean>(false);
-    const { title, description } = blockSettings;
+    const { title, description, hasBorder_blocks, hasBackground_blocks } = blockSettings;
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
-    const { hasBorder_blocks, hasBackground_blocks } = blockSettings;
 
     return (
         <div
