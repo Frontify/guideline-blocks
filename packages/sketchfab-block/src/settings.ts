@@ -298,7 +298,7 @@ export const settings: BlockSettingsStructureExport & {
                     type: 'switch',
                     label: 'Navigation Constraints',
                     info: 'You can configure the Navigation Constraints here. For a better overview, use the 3D settings of your model within Sketchfab.',
-                    size: SwitchSize.Large,
+                    size: SwitchSize.Medium,
                 },
 
                 {
@@ -446,7 +446,7 @@ export const settings: BlockSettingsStructureExport & {
                     type: 'switch',
                     defaultValue: true,
                     label: 'Show Annotations',
-                    size: SwitchSize.Large,
+                    size: SwitchSize.Medium,
                     info: 'Disabling this feature will hide annotations by default',
                 },
                 {
@@ -541,7 +541,7 @@ export const settings: BlockSettingsStructureExport & {
                     label: 'Show UI',
                     type: 'switch',
                     defaultValue: true,
-                    size: SwitchSize.Large,
+                    size: SwitchSize.Medium,
                     show: isPremiumAccount,
                 },
                 {
@@ -620,7 +620,7 @@ export const settings: BlockSettingsStructureExport & {
                     label: 'Buttons',
                     defaultValue: true,
                     type: 'switch',
-                    size: SwitchSize.Large,
+                    size: SwitchSize.Medium,
                     show: isPremiumAccount,
                 },
                 {
