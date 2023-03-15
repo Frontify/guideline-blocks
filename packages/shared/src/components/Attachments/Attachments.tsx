@@ -20,14 +20,15 @@ import {
     FlyoutPlacement,
     IconCaretDown12,
     IconPaperclip16,
+    Tooltip,
+    TooltipPosition,
 } from '@frontify/fondue';
 import { useGuidelineDesignTokens } from '../../hooks';
 import { AttachmentItem, SortableAttachmentItem } from './AttachmentItem';
 import { AttachmentsProps } from './types';
-import { Tooltip, TooltipPosition } from '@frontify/fondue';
 
 export const Attachments = ({
-    items,
+    items = [],
     onDelete,
     onReplaceWithBrowse,
     onReplaceWithUpload,
@@ -36,7 +37,7 @@ export const Attachments = ({
     onSorted,
     appBridge,
 }: AttachmentsProps) => {
-    const [internalItems, setInternalItems] = useState<Asset[] | undefined>(items || []);
+    const [internalItems, setInternalItems] = useState<Asset[]>(items);
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
     const sensors = useSensors(useSensor(PointerSensor));
     const [draggedAssetId, setDraggedAssetId] = useState<number | undefined>(undefined);
@@ -142,13 +143,13 @@ export const Attachments = ({
                                 trigger={
                                     <button className="tw-flex tw-text-[13px] tw-font-body tw-items-center tw-gap-1 tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed  tw-text-box-neutral-strong tw-outline tw-outline-1 tw-outline-offset-[1px] tw-p-[6px] tw-outline-line">
                                         <IconPaperclip16 />
-                                        <div>{(items?.length || 0) > 0 ? items?.length : 'Add'}</div>
+                                        <div>{items.length > 0 ? items.length : 'Add'}</div>
                                         <IconCaretDown12 />
                                     </button>
                                 }
                             >
                                 <div className="tw-w-[300px]">
-                                    {(internalItems?.length || 0) > 0 && (
+                                    {internalItems.length > 0 && (
                                         <DndContext
                                             sensors={sensors}
                                             collisionDetection={closestCenter}
@@ -157,7 +158,7 @@ export const Attachments = ({
                                         >
                                             <SortableContext items={internalItems || []} strategy={rectSortingStrategy}>
                                                 <div className="tw-border-b tw-border-b-line">
-                                                    {(internalItems || []).map((item) => (
+                                                    {internalItems.map((item) => (
                                                         <SortableAttachmentItem
                                                             isEditing={isEditing}
                                                             designTokens={designTokens}
@@ -173,7 +174,7 @@ export const Attachments = ({
                                                 </div>
                                             </SortableContext>
                                             <DragOverlay>
-                                                {draggedItem ? (
+                                                {draggedItem && (
                                                     <AttachmentItem
                                                         isOverlay={true}
                                                         isEditing={isEditing}
@@ -187,7 +188,7 @@ export const Attachments = ({
                                                             onReplaceItemWithUpload(draggedItem, uploadedAsset)
                                                         }
                                                     />
-                                                ) : null}
+                                                )}
                                             </DragOverlay>
                                         </DndContext>
                                     )}
@@ -198,9 +199,6 @@ export const Attachments = ({
                                             </div>
                                             <AssetInput
                                                 isLoading={isUploadLoading}
-                                                onMultiAssetClick={() => {
-                                                    /* This enables multiple file inputs */
-                                                }}
                                                 size={AssetInputSize.Small}
                                                 onUploadClick={(fileList) => setSelectedFiles(fileList)}
                                                 onLibraryClick={onOpenAssetChooser}
