@@ -90,7 +90,7 @@ export const ItemToolbar = ({
     ];
 
     const toolbarClassNames = joinClassNames([
-        'tw-absolute tw-z-10 -tw-right-0.5 group-hover:tw-visible focus-within:tw-visible',
+        'tw-absolute tw-z-10 -tw-right-0.5 group-hover:tw-visible',
         isFocused ? 'tw-visible' : 'tw-invisible',
         textPosition === TextPosition.Below ? '-tw-top-1' : '-tw-top-6',
     ]);
