@@ -144,7 +144,7 @@ importers:
   packages/asset-kit-block:
     specifiers:
       '@babel/core': 7.21.0
-      '@frontify/app-bridge': 3.0.0-beta.38
+      '@frontify/app-bridge': 3.0.0-beta.52
       '@frontify/eslint-config-react': 0.15.6
       '@frontify/fondue': 12.0.0-beta.138
       '@frontify/fondue-tokens': 3.2.1
@@ -168,7 +168,7 @@ importers:
       tailwindcss: 3.2.7
       typescript: 4.9.5
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 12.0.0-beta.138_7cuvvhbhqlqberalrkjvj4dbzq
       '@frontify/fondue-tokens': 3.2.1
       '@frontify/guideline-blocks-settings': 0.25.10_7cuvvhbhqlqberalrkjvj4dbzq
@@ -2544,6 +2544,21 @@ packages:
       type-fest: 3.5.4
     dev: false
 
+  /@frontify/app-bridge/3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-GF2UTql6MmNBFYWS5cV5AEDLD1FyD87ldgChmI2WynHNwqrbPRTOmS0unoLao6S0weKUKVoULqprUC6o/SG8Ig==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: ^17 || ^18
+      react-dom: ^17 || ^18
+      sinon: ^15
+    dependencies:
+      lodash-es: 4.17.21
+      mitt: 3.0.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      type-fest: 3.6.0
+    dev: false
+
   /@frontify/eslint-config-basic/0.17.0_mbd4zptqpjbepwpyh2zbtslqey:
     resolution: {integrity: sha512-ItI+e0+WXZgHGnhNPjlfQKAeeHn70V9gBvYLQrzq8uQ3pjwf+GkAyexHZjRblSlkdsG5kmJHeP6ymkxpRswzBQ==}
     peerDependencies:
@@ -3330,9 +3345,9 @@ packages:
       react: '>=17 || >=18'
       react-dom: '>=17 || >=18'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 11.3.0_7cuvvhbhqlqberalrkjvj4dbzq
-      '@frontify/sidebar-settings': 0.0.6_ukwljm35lqf2xwjynriytz67g4
+      '@frontify/sidebar-settings': 0.0.6_cj7kwql4lwfldlhgxniix54hfi
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     transitivePeerDependencies:
@@ -3354,6 +3369,7 @@ packages:
       - jotai-zustand
       - optics-ts
       - react-query
+      - sinon
       - supports-color
       - ts-node
       - valtio
@@ -3366,9 +3382,9 @@ packages:
       react: '>=17 || >=18'
       react-dom: '>=17 || >=18'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
-      '@frontify/sidebar-settings': 0.0.6_lr6ekrp7b6xyh6zugoaougvuee
+      '@frontify/sidebar-settings': 0.0.6_yp6a37uil6ihjko4y442jc27kq
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     transitivePeerDependencies:
@@ -3390,6 +3406,7 @@ packages:
       - jotai-zustand
       - optics-ts
       - react-query
+      - sinon
       - supports-color
       - ts-node
       - valtio
@@ -3402,9 +3419,9 @@ packages:
       react: '>=17 || >=18'
       react-dom: '>=17 || >=18'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 11.3.0_rv2t7de65xq26o5frb4lun64yi
-      '@frontify/sidebar-settings': 0.0.6_z2igethdhvn4grovhywhlumcym
+      '@frontify/sidebar-settings': 0.0.6_k5cqqyi2aucrtetxd75qvfg7um
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     transitivePeerDependencies:
@@ -3426,6 +3443,7 @@ packages:
       - jotai-zustand
       - optics-ts
       - react-query
+      - sinon
       - supports-color
       - ts-node
       - valtio
@@ -3468,13 +3486,47 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/sidebar-settings/0.0.6_lr6ekrp7b6xyh6zugoaougvuee:
+  /@frontify/sidebar-settings/0.0.6_cj7kwql4lwfldlhgxniix54hfi:
     resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
     peerDependencies:
       '@frontify/app-bridge': '*'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 11.3.0_7cuvvhbhqlqberalrkjvj4dbzq
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - jotai-immer
+      - jotai-optics
+      - jotai-redux
+      - jotai-tanstack-query
+      - jotai-urql
+      - jotai-valtio
+      - jotai-xstate
+      - jotai-zustand
+      - optics-ts
+      - react
+      - react-dom
+      - react-query
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/sidebar-settings/0.0.6_k5cqqyi2aucrtetxd75qvfg7um:
+    resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
+    peerDependencies:
+      '@frontify/app-bridge': '*'
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 11.3.0_rv2t7de65xq26o5frb4lun64yi
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -3536,47 +3588,13 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/sidebar-settings/0.0.6_ukwljm35lqf2xwjynriytz67g4:
+  /@frontify/sidebar-settings/0.0.6_yp6a37uil6ihjko4y442jc27kq:
     resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
     peerDependencies:
       '@frontify/app-bridge': '*'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.3.0_7cuvvhbhqlqberalrkjvj4dbzq
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - jotai-immer
-      - jotai-optics
-      - jotai-redux
-      - jotai-tanstack-query
-      - jotai-urql
-      - jotai-valtio
-      - jotai-xstate
-      - jotai-zustand
-      - optics-ts
-      - react
-      - react-dom
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/sidebar-settings/0.0.6_z2igethdhvn4grovhywhlumcym:
-    resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
-    peerDependencies:
-      '@frontify/app-bridge': '*'
-    dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.3.0_rv2t7de65xq26o5frb4lun64yi
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -21159,6 +21177,11 @@ packages:
 
   /type-fest/3.5.4:
     resolution: {integrity: sha512-/Je22Er4LPoln256pcLzj73MUmPrTWg8u4WB1RlxaDl0idJOfD1r259VtKOinp4xLJqJ9zYVMuWOun6Ssp7boA==}
+    engines: {node: '>=14.16'}
+    dev: false
+
+  /type-fest/3.6.0:
+    resolution: {integrity: sha512-RqTRtKTzvPpNdDUp1dVkKQRunlPITk4mXeqFlAZoJsS+fLRn8AdPK0TcQDumGayhU7fjlBfiBjsq3pe3rIfXZQ==}
     engines: {node: '>=14.16'}
     dev: false
 
