@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset, AssetDummy, getAppBridgeBlockStub } from '@frontify/app-bridge';
-import { renderHook } from '@testing-library/react-hooks';
+import { AssetDummy, getAppBridgeBlockStub } from '@frontify/app-bridge';
+import { cleanup, renderHook } from '@testing-library/react-hooks';
 
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { useAttachments } from './useAttachments';
 
 const MOCK_SETTINGS_ID = 'attachments';
@@ -17,76 +17,62 @@ describe('useAttachments', () => {
         global.structuredClone = (val: unknown) => val;
     });
 
-    it('if attachment is added, sortedAttachments should have a length of 1', async () => {
-        const { result, rerender, unmount } = renderHook(() =>
-            useAttachments(
-                getAppBridgeBlockStub({
-                    blockAssets: { [MOCK_SETTINGS_ID]: [{ id: 1 } as Asset] },
-                }),
-                MOCK_SETTINGS_ID,
-                MOCK_SETTINGS_ID
-            )
-        );
-
-        await result.current.onAddAttachments([AssetDummy.with(1)]);
-        rerender();
-        expect(result.current.sortedAttachments).toHaveLength(1);
-        unmount();
+    afterEach(() => {
+        cleanup();
     });
 
-    it('if attachment is removed, sortedAttachments should change length from 3 to 2', async () => {
-        const { result, rerender, unmount } = renderHook(() =>
-            useAttachments(
-                getAppBridgeBlockStub({
-                    blockAssets: { [MOCK_SETTINGS_ID]: [{ id: 1 }, { id: 2 }, { id: 3 }] as Asset[] },
-                    blockSettings: { [MOCK_SETTINGS_ID]: [{ id: 1 }, { id: 2 }, { id: 3 }] as Asset[] },
-                }),
-                MOCK_SETTINGS_ID,
-                MOCK_SETTINGS_ID
-            )
+    it('if attachment is added, attachments should have a length of 1', async () => {
+        const STUB_WITH_NO_ASSETS = getAppBridgeBlockStub({
+            blockId: 1,
+            blockAssets: { [MOCK_SETTINGS_ID]: [] },
+        });
+        const { result, waitForNextUpdate } = renderHook(() => useAttachments(STUB_WITH_NO_ASSETS, MOCK_SETTINGS_ID));
+
+        await waitForNextUpdate();
+        await result.current.onAddAttachments([AssetDummy.with(1)]);
+        expect(result.current.attachments).toHaveLength(1);
+    });
+
+    it('if attachment is removed, attachments should change length from 3 to 2', async () => {
+        const STUB_WITH_THREE_ASSETS = getAppBridgeBlockStub({
+            blockId: 2,
+            blockAssets: { [MOCK_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2), AssetDummy.with(3)] },
+        });
+        const { result, waitForNextUpdate } = renderHook(() =>
+            useAttachments(STUB_WITH_THREE_ASSETS, MOCK_SETTINGS_ID)
         );
 
+        await waitForNextUpdate();
         await result.current.onAttachmentDelete(AssetDummy.with(1));
-        rerender();
-        expect(result.current.sortedAttachments).toHaveLength(2);
-        unmount();
+        expect(result.current.attachments).toHaveLength(2);
     });
 
     it('if attachment is replaced, the new attachment should be in the same position', async () => {
-        const { result, rerender, unmount } = renderHook(() =>
-            useAttachments(
-                getAppBridgeBlockStub({
-                    blockAssets: { [MOCK_SETTINGS_ID]: [{ id: 1 }, { id: 10 }, { id: 3 }] as Asset[] },
-                    blockSettings: { [MOCK_SETTINGS_ID]: [{ id: 1 }, { id: 2 }, { id: 3 }] as Asset[] },
-                }),
-                MOCK_SETTINGS_ID,
-                MOCK_SETTINGS_ID
-            )
+        const STUB_WITH_THREE_ASSETS = getAppBridgeBlockStub({
+            blockId: 2,
+            blockAssets: { [MOCK_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2), AssetDummy.with(3)] },
+        });
+        const { result, waitForNextUpdate } = renderHook(() =>
+            useAttachments(STUB_WITH_THREE_ASSETS, MOCK_SETTINGS_ID)
         );
 
+        await waitForNextUpdate();
         await result.current.onAttachmentReplace(AssetDummy.with(2), AssetDummy.with(10));
-        rerender();
-        expect(result.current.sortedAttachments[1]).toEqual({ id: 10 });
-        unmount();
+        expect(result.current.attachments[1].id).toBe(10);
     });
 
-    it('if attachments are reordered, thew sortedAttachments should also be in the new order', async () => {
-        const { result, rerender, unmount } = renderHook(() =>
-            useAttachments(
-                getAppBridgeBlockStub({
-                    blockAssets: { [MOCK_SETTINGS_ID]: [{ id: 1 }, { id: 2 }, { id: 3 }] as Asset[] },
-                    blockSettings: { [MOCK_SETTINGS_ID]: [{ id: 1 }, { id: 2 }, { id: 3 }] as Asset[] },
-                }),
-                MOCK_SETTINGS_ID,
-                MOCK_SETTINGS_ID
-            )
+    it('if attachments are reordered, thew attachments should also be in the new order', async () => {
+        const STUB_WITH_THREE_ASSETS = getAppBridgeBlockStub({
+            blockId: 2,
+            blockAssets: { [MOCK_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2), AssetDummy.with(3)] },
+        });
+        const { result, waitForNextUpdate } = renderHook(() =>
+            useAttachments(STUB_WITH_THREE_ASSETS, MOCK_SETTINGS_ID)
         );
-
+        await waitForNextUpdate();
         await result.current.onAttachmentsSorted([AssetDummy.with(3), AssetDummy.with(2), AssetDummy.with(1)]);
-        rerender();
-        expect(result.current.sortedAttachments[0]).toEqual({ id: 3 });
-        expect(result.current.sortedAttachments[1]).toEqual({ id: 2 });
-        expect(result.current.sortedAttachments[2]).toEqual({ id: 1 });
-        unmount();
+        expect(result.current.attachments[0].id).toBe(3);
+        expect(result.current.attachments[1].id).toBe(2);
+        expect(result.current.attachments[2].id).toBe(1);
     });
 });

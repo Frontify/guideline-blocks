@@ -3,7 +3,7 @@
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
 import { ImageBlock } from './ImageBlock';
-import { ATTACHMENTS_SETTING_ID, IMAGE_SETTING_ID } from './settings';
+import { ATTACHMENTS_ASSET_ID, IMAGE_SETTING_ID } from './settings';
 import {
     Alignment,
     CaptionPosition,
@@ -71,10 +71,10 @@ describe('Image Block', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockAssets: {
                 [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
-                [ATTACHMENTS_SETTING_ID]: [AssetDummy.with(2)],
+                [ATTACHMENTS_ASSET_ID]: [AssetDummy.with(2)],
             },
             blockSettings: {
-                [ATTACHMENTS_SETTING_ID]: [{ id: 2 }],
+                [ATTACHMENTS_ASSET_ID]: [{ id: 2 }],
             },
         });
         mount(<ImageBlockWithStubs />);
