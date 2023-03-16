@@ -235,12 +235,12 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         </>
                     )}
                 </div>
-                {audio ? (
+                {audio && (
                     <div className="tw-flex tw-gap-2">
                         {downloadable && <DownloadButton onDownload={() => downloadAsset(audio)} />}
                         <BlockAttachments appBridge={appBridge} />
                     </div>
-                ) : null}
+                )}
             </div>
         </div>
     );
