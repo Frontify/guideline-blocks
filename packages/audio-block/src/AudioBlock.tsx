@@ -18,11 +18,14 @@ import {
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
+    parseRawValue,
+    serializeRawToHtml,
 } from '@frontify/fondue';
 import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import {
     DownloadButton,
     downloadAsset,
+    hasRichTextValue,
     joinClassNames,
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
@@ -46,7 +49,7 @@ import { BlockAttachments } from './components/BlockAttachments';
 import { useEffect, useMemo, useState } from 'react';
 
 const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
-const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"paragraph","children":[{"text":""}]}]';
+const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"p","children":[{"text":""}]}]';
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -55,8 +58,13 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { designTokens } = useGuidelineDesignTokens();
-    const { title, description } = blockSettings;
+    const { title, description, downloadable, positioning } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
+
+    const rawTitleValue = JSON.stringify(parseRawValue({ raw: title }));
+    const htmlTitle = serializeRawToHtml(rawTitleValue, designTokens);
+    const rawDescriptionValue = JSON.stringify(parseRawValue({ raw: description }));
+    const htmlDescription = serializeRawToHtml(rawDescriptionValue, designTokens);
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
@@ -68,8 +76,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
             .setPlugin([
                 new AlignLeftPlugin(),
-                new AlignRightPlugin(),
                 new AlignCenterPlugin(),
+                new AlignRightPlugin(),
                 new AlignJustifyPlugin(),
                 new ResetFormattingPlugin(),
             ]);
@@ -77,13 +85,13 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const audioBlockClassNames = joinClassNames([
         'tw-flex tw-flex-col tw-gap-3',
-        blockSettings.positioning === TextPosition.Above && 'tw-flex-col-reverse',
+        positioning === TextPosition.Above && 'tw-flex-col-reverse',
     ]);
 
     const audioTagClassNames = joinClassNames([
-        'tw-w-full tw-mt-5',
-        isEditing &&
-            'group-hover:tw-outline tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse tw-rounded',
+        'tw-w-full',
+        isEditing && 'tw-outline tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse tw-rounded',
+        positioning === TextPosition.Below && 'tw-mt-5',
     ]);
 
     const saveTitle = (title: string) => {
@@ -103,6 +111,9 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     };
 
     const updateAudioAsset = async (audio: Asset) => {
+        if (!title) {
+            saveTitle(`[{"type":"heading3","children":[{"text":"${audio.title}"}]}]`);
+        }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
     };
@@ -149,9 +160,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     return (
         <div data-test-id="audio-block" className={audioBlockClassNames}>
             {audio ? (
-                <div className="tw-group">
+                <div className="tw-relative">
                     {isEditing && (
                         <ItemToolbar
+                            textPosition={positioning}
                             onRemoveAsset={onRemoveAsset}
                             onUploadClick={openFileDialog}
                             onAssetChooseClick={openAssetChooser}
@@ -186,35 +198,49 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             )}
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-flex-1">
-                    <div data-test-id="audio-block-title">
+                    {isEditing ? (
                         <RichTextEditor
                             designTokens={designTokens}
                             border={false}
                             onBlur={saveTitle}
-                            placeholder={isEditing ? 'Asset name' : undefined}
-                            readonly={!isEditing}
+                            placeholder="Asset name"
                             value={title ?? DEFAULT_CONTENT_TITLE}
                             plugins={customTitlePlugins}
+                            updateValueOnChange
                         />
-                    </div>
-                    <div data-test-id="audio-block-description">
+                    ) : (
+                        <>
+                            {hasRichTextValue(title) && (
+                                <div data-test-id="block-title-html" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
+                            )}
+                        </>
+                    )}
+                    {isEditing ? (
                         <RichTextEditor
                             designTokens={designTokens}
                             border={false}
                             position={Position.FLOATING}
                             onBlur={saveDescription}
-                            placeholder={isEditing ? 'Add a description here' : undefined}
-                            readonly={!isEditing}
+                            placeholder="Add a description here"
                             value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                         />
-                    </div>
+                    ) : (
+                        <>
+                            {hasRichTextValue(description) && (
+                                <div
+                                    data-test-id="block-description-html"
+                                    dangerouslySetInnerHTML={{ __html: htmlDescription }}
+                                />
+                            )}
+                        </>
+                    )}
                 </div>
-                {audio ? (
+                {audio && (
                     <div className="tw-flex tw-gap-2">
-                        <DownloadButton onDownload={() => downloadAsset(audio)} />
+                        {downloadable && <DownloadButton onDownload={() => downloadAsset(audio)} />}
                         <BlockAttachments appBridge={appBridge} />
                     </div>
-                ) : null}
+                )}
             </div>
         </div>
     );
