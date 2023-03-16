@@ -59,16 +59,16 @@ export type ThumbnailItemProps = {
     asset: Asset;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
-    onRemoveAsset: (assetId: number) => void;
-    onReplaceAsset: (toReplaceId: number, newId: number) => void;
+    onRemoveAsset: (assetId: number) => Promise<void>;
+    onReplaceAsset: (toReplaceId: number, newId: number) => Promise<void>;
 };
 
 export type ThumbnailToolbarProps = {
     asset: Asset;
     isFocused: boolean;
     appBridge: AppBridgeBlock;
-    onRemoveAsset: (assetId: number) => void;
-    onReplaceAsset: (toReplaceId: number, newId: number) => void;
+    onRemoveAsset: (assetId: number) => Promise<void>;
+    onReplaceAsset: (toReplaceId: number, newId: number) => Promise<void>;
     setIsUploading: (isLoading: boolean) => void;
     isUploading: boolean;
 };
