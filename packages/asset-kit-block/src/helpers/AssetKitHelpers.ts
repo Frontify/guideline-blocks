@@ -23,8 +23,8 @@ export const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
 
 export const thumbnailStyle = (blockSetting: Settings): CSSProperties => {
     const {
-        hasBackground_thumbnails,
-        backgroundColor_thumbnails = BACKGROUND_COLOR_DEFAULT_VALUE,
+        hasBackgroundThumbnails,
+        backgroundColorThumbnails = BACKGROUND_COLOR_DEFAULT_VALUE,
         hasBorder_thumbnails,
         borderStyle_thumbnails,
         borderWidth_thumbnails,
@@ -35,7 +35,7 @@ export const thumbnailStyle = (blockSetting: Settings): CSSProperties => {
     } = blockSetting;
 
     return {
-        ...(hasBackground_thumbnails && getBackgroundStyles(backgroundColor_thumbnails)),
+        ...(hasBackgroundThumbnails && getBackgroundStyles(backgroundColorThumbnails)),
         ...(hasBorder_thumbnails &&
             getBorderStyles(borderStyle_thumbnails, borderWidth_thumbnails, borderColor_thumbnails)),
         borderRadius: hasRadius_thumbnails ? radiusValue_thumbnails : radiusStyleMap[radiusChoice_thumbnails],

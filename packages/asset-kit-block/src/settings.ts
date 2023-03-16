@@ -23,13 +23,13 @@ export const BORDER_COLOR_DEFAULT_VALUE: Color = {
 };
 
 const backgroundColor = (id: string, defaultValue = true): SettingBlock => ({
-    id: `hasBackground_${id}`,
+    id: `hasBackground${id}`,
     label: 'Background',
     type: 'switch',
     defaultValue,
     on: [
         {
-            id: `backgroundColor_${id}`,
+            id: `backgroundColor${id}`,
             defaultValue: defaultValue ? BACKGROUND_COLOR_DEFAULT_VALUE : undefined,
             type: 'colorInput',
         },
@@ -44,7 +44,7 @@ export const settings = defineSettings({
             type: 'sectionHeading',
             label: 'Block',
             blocks: [
-                backgroundColor('blocks', false),
+                backgroundColor('Blocks', false),
                 getBorderSettings({ id: 'blocks', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
                 {
                     ...getBorderRadiusSettings({ id: 'blocks' }),
@@ -63,7 +63,7 @@ export const settings = defineSettings({
             type: 'sectionHeading',
             label: 'Thumbnails',
             blocks: [
-                backgroundColor('thumbnails'),
+                backgroundColor('Thumbnails'),
                 getBorderSettings({ id: 'thumbnails', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
                 {
                     ...getBorderRadiusSettings({ id: 'thumbnails' }),

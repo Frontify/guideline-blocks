@@ -18,13 +18,13 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
     const [isDownloadingAssets, setIsDownloadingAssets] = useState<boolean>(false);
-    const { title, description, hasBorder_blocks, hasBackground_blocks } = blockSettings;
+    const { title, description, hasBorder_blocks, hasBackgroundBlocks } = blockSettings;
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
 
     return (
         <div
             data-test-id="asset-kit-block"
-            className={joinClassNames(['tw-w-full', (hasBorder_blocks || hasBackground_blocks) && 'tw-p-5 sm:tw-p-8'])}
+            className={joinClassNames(['tw-w-full', (hasBorder_blocks || hasBackgroundBlocks) && 'tw-p-5 sm:tw-p-8'])}
             style={{
                 ...blockStyle(blockSettings),
             }}

@@ -6,8 +6,8 @@ import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 
 export type Settings = {
-    hasBackground_blocks?: boolean;
-    backgroundColor_blocks?: Color;
+    hasBackgroundBlocks?: boolean;
+    backgroundColorBlocks?: Color;
     hasBorder_blocks?: boolean;
     borderStyle_blocks?: BorderStyle;
     borderWidth_blocks?: string;
@@ -15,8 +15,8 @@ export type Settings = {
     hasRadius_blocks?: boolean;
     radiusChoice_blocks: Radius;
     radiusValue_blocks?: number;
-    hasBackground_thumbnails?: boolean;
-    backgroundColor_thumbnails?: Color;
+    hasBackgroundThumbnails?: boolean;
+    backgroundColorThumbnails?: Color;
     hasBorder_thumbnails?: boolean;
     borderStyle_thumbnails?: BorderStyle;
     borderWidth_thumbnails?: string;
