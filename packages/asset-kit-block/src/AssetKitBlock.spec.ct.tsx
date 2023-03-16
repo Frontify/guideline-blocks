@@ -65,7 +65,7 @@ describe('AssetKit Block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
                 hasBorder_blocks: false,
-                hasBackground_blocks: false,
+                hasBackgroundBlocks: false,
             },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
@@ -91,7 +91,7 @@ describe('AssetKit Block', () => {
     it('should display with padding on block if background is setted', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
-                hasBackground_blocks: true,
+                hasBackgroundBlocks: true,
             },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
@@ -104,8 +104,8 @@ describe('AssetKit Block', () => {
     it('should display block with black background color', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
-                hasBackground_blocks: true,
-                backgroundColor_blocks: BLACK,
+                hasBackgroundBlocks: true,
+                backgroundColorBlocks: BLACK,
             },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
@@ -137,8 +137,8 @@ describe('AssetKit Block', () => {
     it('should display asset with black background color', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
-                hasBackground_thumbnails: true,
-                backgroundColor_thumbnails: BLACK,
+                hasBackgroundThumbnails: true,
+                backgroundColorThumbnails: BLACK,
             },
             blockAssets: {
                 [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
