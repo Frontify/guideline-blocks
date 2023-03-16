@@ -32,7 +32,6 @@ export type AssetGridProps = {
     currentAssets: Asset[];
     appBridge: AppBridgeBlock;
     isEditing: boolean;
-    thumbnailStyle: CSSProperties;
     deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     updateAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
 };
@@ -59,7 +58,6 @@ export type InformationSectionProps = {
 export type ThumbnailItemProps = {
     asset: Asset;
     isEditing: boolean;
-    thumbnailStyle: CSSProperties;
     appBridge: AppBridgeBlock;
     onRemoveAsset: (assetId: number) => void;
     onReplaceAsset: (toReplaceId: number, newId: number) => void;

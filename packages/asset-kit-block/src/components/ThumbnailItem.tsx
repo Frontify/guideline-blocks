@@ -4,20 +4,17 @@ import { useState } from 'react';
 import { useFocusRing } from '@react-aria/focus';
 import { useKeyboard } from '@react-aria/interactions';
 import { mergeProps } from '@react-aria/utils';
-import { ThumbnailItemProps } from '../types';
+import { Settings, ThumbnailItemProps } from '../types';
 import { ThumbnailToolbar } from '.';
 import { LoadingCircle } from '@frontify/fondue';
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-export const ThumbnailItem = ({
-    asset,
-    isEditing,
-    appBridge,
-    onRemoveAsset,
-    onReplaceAsset,
-    thumbnailStyle,
-}: ThumbnailItemProps) => {
+import { useBlockSettings } from '@frontify/app-bridge';
+import { thumbnailStyle } from '../helpers';
+
+export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onReplaceAsset }: ThumbnailItemProps) => {
     const { isFocused, focusProps } = useFocusRing();
     const [isUploading, setIsUploading] = useState(false);
+    const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { keyboardProps } = useKeyboard({
         onKeyUp: (event) => {
@@ -39,7 +36,7 @@ export const ThumbnailItem = ({
         >
             <>
                 {isUploading ? (
-                    <div className="tw-relative tw-w-full tw-h-full" style={thumbnailStyle}>
+                    <div className="tw-relative tw-w-full tw-h-full" style={thumbnailStyle(blockSettings)}>
                         <div className="tw-absolute tw-top-1/2 tw-left-1/2 -tw-translate-y-1/2 -tw-translate-x-1/2">
                             <LoadingCircle />
                         </div>
@@ -49,7 +46,7 @@ export const ThumbnailItem = ({
                         data-test-id="block-thumbnail-image"
                         className="tw-object-scale-down tw-w-full tw-h-full"
                         src={asset.previewUrl}
-                        style={thumbnailStyle}
+                        style={thumbnailStyle(blockSettings)}
                         alt={asset.title}
                     />
                 )}

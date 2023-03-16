@@ -9,7 +9,6 @@ export const AssetGrid = ({
     deleteAssetIdsFromKey,
     updateAssetIdsFromKey,
     isEditing,
-    thumbnailStyle,
     appBridge,
 }: AssetGridProps) => {
     const onRemoveAsset = async (assetId: number) => {
@@ -39,7 +38,6 @@ export const AssetGrid = ({
                               onRemoveAsset={onRemoveAsset}
                               onReplaceAsset={onReplaceAsset}
                               appBridge={appBridge}
-                              thumbnailStyle={thumbnailStyle}
                           />
                       ))
                     : null}

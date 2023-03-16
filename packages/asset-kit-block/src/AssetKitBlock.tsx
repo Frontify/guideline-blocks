@@ -9,7 +9,7 @@ import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
-import { blockStyle, generateBulkDownload, thumbnailStyle } from './helpers';
+import { blockStyle, generateBulkDownload } from './helpers';
 
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -58,7 +58,6 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 deleteAssetIdsFromKey={deleteAssetIdsFromKey}
                 updateAssetIdsFromKey={updateAssetIdsFromKey}
                 isEditing={isEditing}
-                thumbnailStyle={thumbnailStyle(blockSettings)}
             />
 
             {isEditing && (
