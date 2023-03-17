@@ -141,6 +141,59 @@ importers:
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
+  packages/asset-kit-block:
+    specifiers:
+      '@babel/core': 7.21.0
+      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/eslint-config-react': 0.15.6
+      '@frontify/fondue': 12.0.0-beta.138
+      '@frontify/fondue-tokens': 3.2.1
+      '@frontify/frontify-cli': 5.3.9
+      '@frontify/guideline-blocks-settings': 0.25.10
+      '@frontify/guideline-blocks-shared': workspace:*
+      '@react-aria/focus': 3.11.0
+      '@react-aria/interactions': 3.14.0
+      '@react-aria/utils': 3.15.0
+      '@types/react': 17.0.53
+      '@types/react-dom': 17.0.19
+      autoprefixer: 10.4.13
+      cypress: 11.0.1
+      cypress-real-events: 1.7.4
+      eslint: 8.35.0
+      eslint-plugin-notice: 0.9.10
+      postcss: 8.4.21
+      prettier: 2.8.4
+      react: 17.0.2
+      react-dom: 17.0.2
+      tailwindcss: 3.2.7
+      typescript: 4.9.5
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/fondue': 12.0.0-beta.138_7cuvvhbhqlqberalrkjvj4dbzq
+      '@frontify/fondue-tokens': 3.2.1
+      '@frontify/guideline-blocks-settings': 0.25.10_7cuvvhbhqlqberalrkjvj4dbzq
+      '@frontify/guideline-blocks-shared': link:../shared
+      '@react-aria/focus': 3.11.0_react@17.0.2
+      '@react-aria/interactions': 3.14.0_react@17.0.2
+      '@react-aria/utils': 3.15.0_react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    devDependencies:
+      '@babel/core': 7.21.0
+      '@frontify/eslint-config-react': 0.15.6_yp47p3n63aorrq4wai55yg4wjy
+      '@frontify/frontify-cli': 5.3.9
+      '@types/react': 17.0.53
+      '@types/react-dom': 17.0.19
+      autoprefixer: 10.4.13_postcss@8.4.21
+      cypress: 11.0.1
+      cypress-real-events: 1.7.4_cypress@11.0.1
+      eslint: 8.35.0
+      eslint-plugin-notice: 0.9.10_eslint@8.35.0
+      postcss: 8.4.21
+      prettier: 2.8.4
+      tailwindcss: 3.2.7_postcss@8.4.21
+      typescript: 4.9.5
+
   packages/audio-block:
     specifiers:
       '@babel/core': 7.21.0
