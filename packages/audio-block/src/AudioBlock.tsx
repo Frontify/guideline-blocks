@@ -164,8 +164,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
-    console.log(isFocused);
-
     return (
         <div data-test-id="audio-block" className={audioBlockClassNames}>
             {audio ? (
