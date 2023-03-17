@@ -26,7 +26,6 @@ export type Settings = {
     radiusValue_cornerRadius: string;
     positioning: CaptionPosition;
     ratio: Ratio;
-    attachments: { id: number }[];
 };
 
 export enum ImageSecurity {
