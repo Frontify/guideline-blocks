@@ -47,6 +47,7 @@ import { UploadPlaceholder } from './components/UploadPlaceholder';
 import { ItemToolbar } from './components/ItemToolbar';
 import { BlockAttachments } from './components/BlockAttachments';
 import { useEffect, useMemo, useState } from 'react';
+import { useFocusWithin } from '@react-aria/interactions';
 
 const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
 const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"p","children":[{"text":""}]}]';
@@ -60,6 +61,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { designTokens } = useGuidelineDesignTokens();
     const { title, description, downloadable, positioning } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
+    const [isFocused, setIsFocused] = useState(false);
+    const { focusWithinProps } = useFocusWithin({
+        onFocusWithin: () => setIsFocused(true),
+        onBlurWithin: () => setIsFocused(false),
+    });
 
     const rawTitleValue = JSON.stringify(parseRawValue({ raw: title }));
     const htmlTitle = serializeRawToHtml(rawTitleValue, designTokens);
@@ -89,8 +95,9 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     ]);
 
     const audioTagClassNames = joinClassNames([
-        'tw-w-full',
-        isEditing && 'tw-outline tw-outline-1 tw-outline-offset-1 tw-outline-box-selected-inverse tw-rounded',
+        'tw-w-full tw-outline-offset-1',
+        isEditing && 'group-hover:tw-outline tw-outline-1 tw-outline-box-selected-inverse',
+        isEditing && isFocused && 'tw-outline',
         positioning === TextPosition.Below && 'tw-mt-5',
     ]);
 
@@ -160,16 +167,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     return (
         <div data-test-id="audio-block" className={audioBlockClassNames}>
             {audio ? (
-                <div className="tw-relative">
-                    {isEditing && (
-                        <ItemToolbar
-                            textPosition={positioning}
-                            onRemoveAsset={onRemoveAsset}
-                            onUploadClick={openFileDialog}
-                            onAssetChooseClick={openAssetChooser}
-                        />
-                    )}
-
+                <div {...focusWithinProps} className="tw-relative tw-group">
                     {isLoading ? (
                         <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
                             <LoadingCircle />
@@ -183,6 +181,15 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             controlsList="nodownload"
                             preload="metadata"
                             src={audio.genericUrl}
+                        />
+                    )}
+                    {isEditing && (
+                        <ItemToolbar
+                            textPosition={positioning}
+                            onRemoveAsset={onRemoveAsset}
+                            onUploadClick={openFileDialog}
+                            onAssetChooseClick={openAssetChooser}
+                            isFocused={isFocused}
                         />
                     )}
                 </div>
