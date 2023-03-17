@@ -144,7 +144,7 @@ importers:
   packages/asset-kit-block:
     specifiers:
       '@babel/core': 7.21.0
-      '@frontify/app-bridge': 3.0.0-beta.38
+      '@frontify/app-bridge': 3.0.0-beta.52
       '@frontify/eslint-config-react': 0.15.6
       '@frontify/fondue': 12.0.0-beta.138
       '@frontify/fondue-tokens': 3.2.1
@@ -168,7 +168,7 @@ importers:
       tailwindcss: 3.2.7
       typescript: 4.9.5
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.38_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
       '@frontify/fondue': 12.0.0-beta.138_7cuvvhbhqlqberalrkjvj4dbzq
       '@frontify/fondue-tokens': 3.2.1
       '@frontify/guideline-blocks-settings': 0.25.10_7cuvvhbhqlqberalrkjvj4dbzq
@@ -2749,7 +2749,7 @@ packages:
       '@react-aria/aria-modal-polyfill': 3.6.1_h7fc2el62uaa77gho3xhys6ola
       '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/checkbox': 3.7.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.1_react@17.0.2
       '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/focus': 3.11.0_react@17.0.2
@@ -2774,7 +2774,7 @@ packages:
       '@react-stately/radio': 3.6.1_react@17.0.2
       '@react-stately/select': 3.3.3_react@17.0.2
       '@react-stately/table': 3.6.0_react@17.0.2
-      '@react-stately/toggle': 3.4.4_react@17.0.2
+      '@react-stately/toggle': 3.4.1_react@17.0.2
       '@react-stately/tooltip': 3.2.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@storybook/addon-a11y': 6.5.15_sfoxds7t5ydpegc3knd667wn6m
@@ -2838,7 +2838,7 @@ packages:
       '@react-aria/aria-modal-polyfill': 3.6.1_pxzommwrsowkd4kgag6q3sluym
       '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/checkbox': 3.7.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.1_react@17.0.2
       '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/focus': 3.11.0_react@17.0.2
@@ -2863,7 +2863,7 @@ packages:
       '@react-stately/radio': 3.6.1_react@17.0.2
       '@react-stately/select': 3.3.3_react@17.0.2
       '@react-stately/table': 3.6.0_react@17.0.2
-      '@react-stately/toggle': 3.4.4_react@17.0.2
+      '@react-stately/toggle': 3.4.1_react@17.0.2
       '@react-stately/tooltip': 3.2.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@storybook/addon-a11y': 6.5.15_sfoxds7t5ydpegc3knd667wn6m
@@ -2927,7 +2927,7 @@ packages:
       '@react-aria/aria-modal-polyfill': 3.6.1_pxzommwrsowkd4kgag6q3sluym
       '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/checkbox': 3.7.0_react@17.0.2
+      '@react-aria/checkbox': 3.5.1_react@17.0.2
       '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/focus': 3.11.0_react@17.0.2
@@ -2952,7 +2952,7 @@ packages:
       '@react-stately/radio': 3.6.1_react@17.0.2
       '@react-stately/select': 3.3.3_react@17.0.2
       '@react-stately/table': 3.6.0_react@17.0.2
-      '@react-stately/toggle': 3.4.4_react@17.0.2
+      '@react-stately/toggle': 3.4.1_react@17.0.2
       '@react-stately/tooltip': 3.2.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@storybook/addon-a11y': 6.5.15_sfoxds7t5ydpegc3knd667wn6m
