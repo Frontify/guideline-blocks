@@ -50,6 +50,7 @@
         "@frontify/fondue": "12.0.0-beta.138",
         "@frontify/guideline-blocks-settings": "0.25.10",
         "@react-aria/focus": "3.11.0",
+        "@react-aria/interactions": "3.14.0",
         "tinycolor2": "1.4.2"
     },
     "peerDependencies": {
