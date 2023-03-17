@@ -16,8 +16,7 @@ export const AssetGrid = ({
     };
 
     const onReplaceAsset = async (toReplaceAssetId: number, newAssetId: number) => {
-        const assetIds = currentAssets.map((asset) => asset.id);
-        assetIds.splice(assetIds.indexOf(toReplaceAssetId), 1, newAssetId);
+        const assetIds = currentAssets.map((asset) => (asset.id === toReplaceAssetId ? newAssetId : asset.id));
         await updateAssetIdsFromKey(ASSET_SETTINGS_ID, assetIds);
     };
 

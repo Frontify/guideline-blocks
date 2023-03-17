@@ -56,7 +56,8 @@ export const AssetSelection = ({
         if (doneAll && uploadResults) {
             (async (assetsObject) => {
                 const assetsIds = Array.from(assetsObject).map((asset) => asset.id);
-                addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds).then(() => setIsUploadingAssets(false));
+                await addAssetIdsToKey(ASSET_SETTINGS_ID, assetsIds);
+                setIsUploadingAssets(false);
             })(uploadResults);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

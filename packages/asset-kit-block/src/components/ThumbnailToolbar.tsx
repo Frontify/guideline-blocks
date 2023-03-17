@@ -36,7 +36,7 @@ export const ThumbnailToolbar = ({
     const openAssetChooser = () => {
         appBridge.openAssetChooser(
             async (result) => {
-                await onReplaceAsset(asset.id, result[0].id);
+                onReplaceAsset(asset.id, result[0].id);
                 appBridge.closeAssetChooser();
             },
             {

@@ -1,12 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color, SettingBlock, defineSettings } from '@frontify/guideline-blocks-settings';
-import {
-    Radius,
-    getBorderRadiusSettings,
-    getBorderRadiusSlider,
-    getBorderSettings,
-} from '@frontify/guideline-blocks-shared';
+import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
 export const ASSET_SETTINGS_ID = 'images';
 export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
@@ -46,16 +41,7 @@ export const settings = defineSettings({
             blocks: [
                 backgroundColor('Blocks', false),
                 getBorderSettings({ id: 'blocks', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
-                {
-                    ...getBorderRadiusSettings({ id: 'blocks' }),
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    off: [getBorderRadiusSlider('radiusChoice_blocks', Radius.Medium)],
-                    show: (bundle) =>
-                        !!(
-                            bundle.getBlock('hasBorder_blocks')?.value || bundle.getBlock('hasBackground_blocks')?.value
-                        ),
-                },
+                getBorderRadiusSettings({ id: 'blocks', dependentSettingId: 'hasBorder_blocks' }),
             ],
         },
         {
@@ -65,17 +51,7 @@ export const settings = defineSettings({
             blocks: [
                 backgroundColor('Thumbnails'),
                 getBorderSettings({ id: 'thumbnails', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
-                {
-                    ...getBorderRadiusSettings({ id: 'thumbnails' }),
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    off: [getBorderRadiusSlider('radiusChoice_thumbnails', Radius.Small)],
-                    show: (bundle) =>
-                        !!(
-                            bundle.getBlock('hasBorder_thumbnails')?.value ||
-                            bundle.getBlock('hasBackground_thumbnails')?.value
-                        ),
-                },
+                getBorderRadiusSettings({ id: 'thumbnails', dependentSettingId: 'hasBorder_thumbnails' }),
             ],
         },
     ],
