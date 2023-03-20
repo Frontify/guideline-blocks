@@ -89,4 +89,30 @@ describe('Block Item Wrapper', () => {
         cy.get(FlyoutSelector).click({ force: true });
         cy.get(MenuItemSelector).should('have.length', 3);
     });
+
+    it('should render the outline if the wrapper is focused', () => {
+        mount(
+            <BlockItemWrapper toolbarFlyoutItems={[]} toolbarItems={[]}>
+                <div data-test-id="block-item-wrapper-child" className="tw-w-8 tw-h-8 tw-bg-red-50" />
+            </BlockItemWrapper>
+        );
+        cy.get(BlockItemWrapperSelector).focus();
+        cy.get(BlockItemWrapperSelector).should('have.css', 'outline-style', 'solid');
+    });
+
+    it('should render the toolbar if the wrapper is focused', () => {
+        mount(
+            <BlockItemWrapper
+                toolbarFlyoutItems={[]}
+                toolbarItems={[
+                    { icon: <IconMagnifier16 />, onClick: cy.stub(), tooltip: 'Test tooltip' },
+                    { icon: <IconMagnifier16 />, onClick: cy.stub(), tooltip: 'Test tooltip' },
+                ]}
+            >
+                <div data-test-id="block-item-wrapper-child" className="tw-w-8 tw-h-8 tw-bg-red-50" />
+            </BlockItemWrapper>
+        );
+        cy.get(BlockItemWrapperSelector).focus();
+        cy.get(ToolbarSelector).should('be.visible');
+    });
 });
