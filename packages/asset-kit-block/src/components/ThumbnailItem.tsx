@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Settings, ThumbnailItemProps } from '../types';
-import { IconImageStack20, LoadingCircle, IconTrashBin16, IconTrashBin20, IconArrowCircleUp20 } from '@frontify/fondue';
+import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16, IconTrashBin20, LoadingCircle } from '@frontify/fondue';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-shared';
-import { AssetChooserObjectType, useBlockSettings, useFileInput, useAssetUpload } from '@frontify/app-bridge';
+import { AssetChooserObjectType, useAssetUpload, useBlockSettings, useFileInput } from '@frontify/app-bridge';
 import { thumbnailStyle } from '../helpers';
 
 export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onReplaceAsset }: ThumbnailItemProps) => {

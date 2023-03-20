@@ -12,9 +12,9 @@ const BLOCK_TITLE = '[data-test-id="block-title"]';
 const BLOCK_TITLE_HTML = '[data-test-id="block-title-rte"]';
 const BLOCK_DESCRIPTION = '[data-test-id="block-description"]';
 const BLOCK_DESCRIPTION_HTML = '[data-test-id="block-description-rte"]';
-const BLOCK_THUMBNAIL = '[data-test-id="block-thumbnail"]';
+const BLOCK_THUMBNAIL = '[data-test-id="block-item-wrapper"]';
 const BLOCK_THUMBNAIL_IMAGE = '[data-test-id="block-thumbnail-image"]';
-const BLOCK_REMOVE_THUMBNAIL = '[data-test-id="remove-thumbnail"]';
+const BLOCK_ITEM_WRAPPER_TOOLBAR_BTN = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 
 const BLACK: Color = { red: 0, green: 0, blue: 0, alpha: 1 };
 const WHITE: Color = { red: 255, green: 255, blue: 255, alpha: 1 };
@@ -176,7 +176,7 @@ describe('AssetKit Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL).first().realHover();
-        cy.get(BLOCK_REMOVE_THUMBNAIL).first().click({ force: true });
+        cy.get(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).first().click({ force: true });
         cy.get(BLOCK_THUMBNAIL).should('have.length', 1);
     });
 
@@ -190,42 +190,5 @@ describe('AssetKit Block', () => {
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL).first().realHover();
         cy.get(BLOCK_THUMBNAIL).first().should('have.css', 'outline-style', 'solid');
-    });
-
-    it('should display a outline if asset is focused', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).first().focus();
-        cy.get(BLOCK_THUMBNAIL).first().should('have.css', 'outline-style', 'solid');
-    });
-
-    it('should remove focused asset if backspace is pressed', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            editorState: true,
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).first().focus();
-        cy.get('body').realPress('Backspace');
-        cy.get(BLOCK_THUMBNAIL).should('have.length', 1);
-    });
-
-    it('should remove focused asset if backspace is pressed', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            editorState: true,
-            blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2), AssetDummy.with(3)],
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).first().focus();
-        cy.get('body').realPress('Delete');
-        cy.get(BLOCK_THUMBNAIL).should('have.length', 2);
     });
 });

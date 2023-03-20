@@ -24,6 +24,7 @@ export const BlockItemWrapper = ({
     return (
         <div
             {...focusWithinProps}
+            tabIndex={0}
             data-test-id="block-item-wrapper"
             className={joinClassNames([
                 'tw-relative tw-group tw-outline-offset-2 tw-outline-1 tw-outline-box-selected-inverse',
