@@ -987,7 +987,6 @@ importers:
       '@frontify/fondue': 12.0.0-beta.138
       '@frontify/guideline-blocks-settings': 0.25.10
       '@react-aria/focus': 3.11.0
-      '@react-aria/interactions': 3.14.0
       '@testing-library/react-hooks': 8.0.1
       '@types/node': 18.7.21
       '@types/react': 17.0.50
@@ -1017,7 +1016,6 @@ importers:
       '@frontify/fondue': 12.0.0-beta.138_rv2t7de65xq26o5frb4lun64yi
       '@frontify/guideline-blocks-settings': 0.25.10_uimvnbmcdwk3qh7erefawwxwdq
       '@react-aria/focus': 3.11.0_react@17.0.2
-      '@react-aria/interactions': 3.14.0_react@17.0.2
       tinycolor2: 1.4.2
     devDependencies:
       '@babel/core': 7.20.2
