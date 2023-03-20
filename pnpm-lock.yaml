@@ -151,9 +151,6 @@ importers:
       '@frontify/frontify-cli': 5.3.9
       '@frontify/guideline-blocks-settings': 0.25.10
       '@frontify/guideline-blocks-shared': workspace:*
-      '@react-aria/focus': 3.11.0
-      '@react-aria/interactions': 3.14.0
-      '@react-aria/utils': 3.15.0
       '@types/react': 17.0.53
       '@types/react-dom': 17.0.19
       autoprefixer: 10.4.13
@@ -173,9 +170,6 @@ importers:
       '@frontify/fondue-tokens': 3.2.1
       '@frontify/guideline-blocks-settings': 0.25.10_7cuvvhbhqlqberalrkjvj4dbzq
       '@frontify/guideline-blocks-shared': link:../shared
-      '@react-aria/focus': 3.11.0_react@17.0.2
-      '@react-aria/interactions': 3.14.0_react@17.0.2
-      '@react-aria/utils': 3.15.0_react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -2767,7 +2761,7 @@ packages:
       '@react-aria/selection': 3.12.0_react@17.0.2
       '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/tooltip': 3.3.3_react@17.0.2
-      '@react-aria/utils': 3.15.0_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.6.0_react@17.0.2
       '@react-stately/checkbox': 3.3.2_react@17.0.2
       '@react-stately/collections': 3.5.0_react@17.0.2
@@ -2856,7 +2850,7 @@ packages:
       '@react-aria/selection': 3.12.0_react@17.0.2
       '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/tooltip': 3.3.3_react@17.0.2
-      '@react-aria/utils': 3.15.0_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.6.0_react@17.0.2
       '@react-stately/checkbox': 3.3.2_react@17.0.2
       '@react-stately/collections': 3.5.0_react@17.0.2
@@ -2945,7 +2939,7 @@ packages:
       '@react-aria/selection': 3.12.0_react@17.0.2
       '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/tooltip': 3.3.3_react@17.0.2
-      '@react-aria/utils': 3.15.0_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-aria/visually-hidden': 3.6.0_react@17.0.2
       '@react-stately/checkbox': 3.3.2_react@17.0.2
       '@react-stately/collections': 3.5.0_react@17.0.2
@@ -4022,7 +4016,7 @@ packages:
       '@react-aria/button': 3.6.3_react@17.0.2
       '@react-aria/interactions': 3.14.0_react@17.0.2
       '@react-aria/selection': 3.12.0_react@17.0.2
-      '@react-aria/utils': 3.15.0_react@17.0.2
+      '@react-aria/utils': 3.13.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@react-types/accordion': 3.0.0-alpha.7_react@17.0.2
       '@react-types/button': 3.7.0_react@17.0.2
