@@ -21,8 +21,8 @@ export const BlockItemWrapper = ({
             data-test-id="block-item-wrapper"
             className={joinClassNames([
                 'tw-relative tw-group tw-outline-offset-2 tw-outline-1 tw-outline-box-selected-inverse',
-                !shouldHideWrapper && ' hover:tw-outline focus:tw-outline focus-within:tw-outline',
-                isFlyoutOpen && ' tw-outline',
+                !shouldHideWrapper && 'hover:tw-outline focus:tw-outline focus-within:tw-outline',
+                isFlyoutOpen && 'tw-outline',
             ])}
         >
             <div className={joinClassNames([shouldHideComponent && 'tw-opacity-0'])}>
@@ -30,8 +30,8 @@ export const BlockItemWrapper = ({
                     className={joinClassNames([
                         'tw-absolute tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full tw-opacity-0',
                         !shouldHideWrapper &&
-                            ' group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
-                        isFlyoutOpen && ' tw-opacity-100',
+                            'group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
+                        isFlyoutOpen && 'tw-opacity-100',
                     ])}
                 >
                     <Toolbar
