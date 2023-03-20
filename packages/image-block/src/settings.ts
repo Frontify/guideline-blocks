@@ -186,7 +186,6 @@ export const settings = defineSettings({
             id: SECURITY_ID,
             type: 'segmentedControls',
             defaultValue: ImageSecurity.Global,
-            helperText: 'Change global settings here.',
             choices: [
                 {
                     value: ImageSecurity.Global,
@@ -197,6 +196,16 @@ export const settings = defineSettings({
                     label: 'Custom',
                 },
             ],
+        },
+        {
+            id: 'globalSettingsInfo',
+            type: 'notification',
+            link: {
+                label: 'Change global settings [here].',
+                replace: '[here]',
+                type: 'internal',
+                event: 'sidebar.open',
+            },
         },
         {
             id: 'downloadable',

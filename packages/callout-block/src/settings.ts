@@ -241,15 +241,15 @@ export const settings = defineSettings({
             id: 'colorInGlobalSettingsInfo',
             type: 'notification',
             title: 'Color',
-            text: 'This has been defined in the Global Settings.',
+            link: {
+                label: 'This has been defined in the Global Settings. View or change it [here].',
+                replace: '[here]',
+                type: 'internal',
+                event: 'sidebar.open',
+            },
             styles: {
                 type: NotificationStyleType.Info,
                 icon: true,
-            },
-            link: {
-                href: 'https://help.frontify.com/en/articles/1346386-how-to-customize-your-style-guide',
-                label: 'Read more here.',
-                target: '_blank',
             },
         },
     ],
