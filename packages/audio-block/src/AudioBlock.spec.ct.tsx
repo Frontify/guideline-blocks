@@ -9,7 +9,6 @@ import { AUDIO_ID } from './settings';
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
 const UploadPlaceholderSelector = '[data-test-id="block-inject-button"]';
-const ItemToolbarSelector = '[data-test-id="item-toolbar"]';
 const AudioBlockTitleHtmlSelector = '[data-test-id="block-title-html"]';
 const AudioBlockDescriptionHtmlSelector = '[data-test-id="block-description-html"]';
 
@@ -133,20 +132,5 @@ describe('Audio Block', () => {
         });
         mount(<AudioBlockWithStubs />);
         cy.get(AudioBlockSelector).should('have.css', 'flex-direction', 'column');
-    });
-
-    it('renders an audio block with an audio asset in editor mode toolbar is shown on hover', () => {
-        const asset = AssetDummy.with(312);
-        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
-            editorState: true,
-            blockAssets: {
-                [AUDIO_ID]: [asset],
-            },
-        });
-
-        mount(<AudioBlockWithStubs />);
-
-        cy.get(AudioTagSelector).realHover();
-        cy.get(ItemToolbarSelector).should('be.visible');
     });
 });

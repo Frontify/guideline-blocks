@@ -25,14 +25,6 @@ export type UploadPlaceholderProps = {
     loading: boolean;
 };
 
-export type ItemToolbarProps = {
-    textPosition: TextPosition;
-    isFocused: boolean;
-    onRemoveAsset: () => void;
-    onUploadClick: () => void;
-    onAssetChooseClick: () => void;
-};
-
 export enum AudioSecurity {
     Global = 'Global',
     Custom = 'Custom',
