@@ -8,6 +8,7 @@ export enum TextPosition {
 }
 
 export type BlockSettings = {
+    downloadable: boolean;
     positioning: TextPosition;
     description?: string;
     title?: string;
@@ -25,6 +26,8 @@ export type UploadPlaceholderProps = {
 };
 
 export type ItemToolbarProps = {
+    textPosition: TextPosition;
+    isFocused: boolean;
     onRemoveAsset: () => void;
     onUploadClick: () => void;
     onAssetChooseClick: () => void;

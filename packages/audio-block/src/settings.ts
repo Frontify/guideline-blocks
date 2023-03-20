@@ -6,7 +6,7 @@ import { AssetChooserObjectType, AssetInputSize, IconEnum, defineSettings } from
 import { AudioSecurity, TextPosition } from './types';
 
 export const AUDIO_ID = 'audio';
-export const ATTACHMENTS_SETTING_ID = 'attachments';
+export const ATTACHMENTS_ASSET_ID = 'attachments';
 const SECURITY_ID = 'security';
 
 export const settings = defineSettings({

@@ -1,69 +1,46 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset, useBlockAssets, useBlockSettings } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, useBlockAssets } from '@frontify/app-bridge';
 
-export const useAttachments = (appBridge: AppBridgeBlock, blockSettingsKey: string, assetSettingsKey: string) => {
-    const [blockSettings, setBlockSettings] = useBlockSettings(appBridge);
-    const { blockAssets, updateAssetIdsFromKey, addAssetIdsToKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
-    const attachments = blockAssets?.[assetSettingsKey] || [];
-    const attachmentsInBlockSettings = (blockSettings[blockSettingsKey] || []) as { id: number }[];
+export const useAttachments = (appBridge: AppBridgeBlock, assetId: string) => {
+    const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
+    const attachments = blockAssets?.[assetId] || [];
 
-    const onAddAttachments = async (assets: Asset[]) => {
-        const newAssetIds = [];
-        for (const asset of assets) {
+    const onAddAttachments = async (newAssets: Asset[]) => {
+        const newAssetIds = attachments.map((attachment) => attachment.id);
+        for (const asset of newAssets) {
             newAssetIds.push(asset.id);
         }
-        await setBlockSettings({
-            [blockSettingsKey]: [...attachmentsInBlockSettings, ...newAssetIds.map((id) => ({ id }))],
-        });
-        await addAssetIdsToKey(assetSettingsKey, newAssetIds);
+        await updateAssetIdsFromKey(assetId, newAssetIds);
     };
 
     const onAttachmentDelete = async (assetToDelete: Asset) => {
-        await setBlockSettings({
-            [blockSettingsKey]: attachmentsInBlockSettings.filter(({ id }) => id !== assetToDelete.id),
-        });
-        await deleteAssetIdsFromKey(assetSettingsKey, [assetToDelete.id]);
+        const newAssetIds = attachments
+            .filter((attachment) => attachment.id !== assetToDelete.id)
+            .map((attachment) => attachment.id);
+
+        await updateAssetIdsFromKey(assetId, newAssetIds);
     };
 
     const onAttachmentReplace = async (attachmentToReplace: Asset, newAsset: Asset) => {
-        const indexOfReplacedAttachment = attachmentsInBlockSettings.findIndex(
-            (attachment) => attachment.id === attachmentToReplace.id
+        const newAssetIds = attachments.map((attachment) =>
+            attachment.id === attachmentToReplace.id ? newAsset.id : attachment.id
         );
-        const attachmentsAfterReplace = [...attachmentsInBlockSettings];
-        attachmentsAfterReplace[indexOfReplacedAttachment] = { id: newAsset.id };
-        await setBlockSettings({
-            [blockSettingsKey]: attachmentsAfterReplace,
-        });
-        const newAssetIds = [];
-        for (const attachment of attachments) {
-            if (attachment.id !== attachmentToReplace.id) {
-                newAssetIds.push(attachment.id);
-            }
-        }
-        newAssetIds.push(newAsset.id);
-        await updateAssetIdsFromKey(assetSettingsKey, newAssetIds);
+
+        await updateAssetIdsFromKey(assetId, newAssetIds);
     };
 
     const onAttachmentsSorted = async (assets: Asset[]) => {
-        const newAssetIds = [];
-        for (const asset of assets) {
-            newAssetIds.push(asset.id);
-        }
-        await setBlockSettings({
-            [blockSettingsKey]: newAssetIds.map((id) => ({ id })),
-        });
-    };
+        const newAssetIds = assets.map((asset) => asset.id);
 
-    const sortedAttachments = attachmentsInBlockSettings
-        .map((asset) => attachments.find((attachment) => attachment.id === asset.id))
-        .filter(Boolean) as Asset[];
+        await updateAssetIdsFromKey(assetId, newAssetIds);
+    };
 
     return {
         onAddAttachments,
         onAttachmentDelete,
         onAttachmentReplace,
         onAttachmentsSorted,
-        sortedAttachments,
+        attachments,
     };
 };
