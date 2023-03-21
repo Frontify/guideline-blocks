@@ -28,7 +28,7 @@ export const BlockItemWrapper = ({
             <div className={joinClassNames([shouldHideComponent && 'tw-opacity-0'])}>
                 <div
                     className={joinClassNames([
-                        'tw-absolute tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full tw-opacity-0',
+                        'tw-absolute tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full tw-opacity-0 tw-z-10',
                         !shouldHideWrapper &&
                             'group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
                         isFlyoutOpen && 'tw-opacity-100',

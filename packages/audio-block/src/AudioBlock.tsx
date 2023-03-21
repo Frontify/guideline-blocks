@@ -8,6 +8,10 @@ import {
     AlignLeftPlugin,
     AlignRightPlugin,
     BoldPlugin,
+    IconArrowCircleUp20,
+    IconImageStack20,
+    IconTrashBin16,
+    IconTrashBin20,
     ItalicPlugin,
     LoadingCircle,
     PluginComposer,
@@ -23,6 +27,7 @@ import {
 } from '@frontify/fondue';
 import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import {
+    BlockItemWrapper,
     DownloadButton,
     downloadAsset,
     hasRichTextValue,
@@ -43,11 +48,8 @@ import {
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
 import { AUDIO_ID } from './settings';
-import { UploadPlaceholder } from './components/UploadPlaceholder';
-import { ItemToolbar } from './components/ItemToolbar';
-import { BlockAttachments } from './components/BlockAttachments';
+import { BlockAttachments, UploadPlaceholder } from './components';
 import { useEffect, useMemo, useState } from 'react';
-import { useFocusWithin } from '@react-aria/interactions';
 
 const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
 const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"p","children":[{"text":""}]}]';
@@ -61,11 +63,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { designTokens } = useGuidelineDesignTokens();
     const { title, description, downloadable, positioning } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
-    const [isFocused, setIsFocused] = useState(false);
-    const { focusWithinProps } = useFocusWithin({
-        onFocusWithin: () => setIsFocused(true),
-        onBlurWithin: () => setIsFocused(false),
-    });
 
     const rawTitleValue = JSON.stringify(parseRawValue({ raw: title }));
     const htmlTitle = serializeRawToHtml(rawTitleValue, designTokens);
@@ -88,18 +85,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 new ResetFormattingPlugin(),
             ]);
     }, []);
-
-    const audioBlockClassNames = joinClassNames([
-        'tw-flex tw-flex-col tw-gap-3',
-        positioning === TextPosition.Above && 'tw-flex-col-reverse',
-    ]);
-
-    const audioTagClassNames = joinClassNames([
-        'tw-w-full tw-outline-offset-1',
-        isEditing && 'group-hover:tw-outline tw-outline-1 tw-outline-box-selected-inverse',
-        isEditing && isFocused && 'tw-outline',
-        positioning === TextPosition.Below && 'tw-mt-5',
-    ]);
 
     const saveTitle = (title: string) => {
         if (title !== blockSettings.title) {
@@ -165,9 +150,41 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     }, [doneAll, uploadResults]);
 
     return (
-        <div data-test-id="audio-block" className={audioBlockClassNames}>
+        <div
+            data-test-id="audio-block"
+            className={joinClassNames([
+                'tw-flex tw-flex-col tw-gap-3',
+                positioning === TextPosition.Below ? 'tw-mt-5' : 'tw-flex-col-reverse',
+            ])}
+        >
             {audio ? (
-                <div {...focusWithinProps} className="tw-relative tw-group">
+                <BlockItemWrapper
+                    shouldHideWrapper={!isEditing}
+                    toolbarFlyoutItems={[
+                        [
+                            {
+                                title: 'Replace with upload',
+                                icon: <IconArrowCircleUp20 />,
+                                onClick: openFileDialog,
+                            },
+                            {
+                                title: 'Replace with asset',
+                                icon: <IconImageStack20 />,
+                                onClick: openAssetChooser,
+                            },
+                        ],
+                        [
+                            {
+                                title: 'Delete',
+                                icon: <IconTrashBin20 />,
+                                onClick: () => onRemoveAsset(),
+                            },
+                        ],
+                    ]}
+                    toolbarItems={[
+                        { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: () => onRemoveAsset() },
+                    ]}
+                >
                     {isLoading ? (
                         <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
                             <LoadingCircle />
@@ -177,22 +194,13 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             data-test-id="audio-block-audio-tag"
                             key={audio.id}
                             controls
-                            className={audioTagClassNames}
+                            className="tw-w-full tw-outline-none"
                             controlsList="nodownload"
                             preload="metadata"
                             src={audio.genericUrl}
                         />
                     )}
-                    {isEditing && (
-                        <ItemToolbar
-                            textPosition={positioning}
-                            onRemoveAsset={onRemoveAsset}
-                            onUploadClick={openFileDialog}
-                            onAssetChooseClick={openAssetChooser}
-                            isFocused={isFocused}
-                        />
-                    )}
-                </div>
+                </BlockItemWrapper>
             ) : (
                 isEditing && (
                     <UploadPlaceholder
