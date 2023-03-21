@@ -26,6 +26,7 @@
         "eslint-plugin-notice": "0.9.10",
         "postcss": "8.4.19",
         "prettier": "2.7.1",
+        "sinon": "15.0.2",
         "tailwindcss": "3.2.3",
         "typescript": "4.8.4"
     },
@@ -33,7 +34,7 @@
         "@codemirror/language": "^6.3.1",
         "@codemirror/state": "^6.1.4",
         "@codemirror/view": "^6.5.1",
-        "@frontify/app-bridge": "3.0.0-beta.52",
+        "@frontify/app-bridge": "3.0.0-beta.56",
         "@frontify/fondue": "12.0.0-beta.147",
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "0.25.10",
