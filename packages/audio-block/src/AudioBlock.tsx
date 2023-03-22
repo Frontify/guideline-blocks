@@ -21,14 +21,15 @@ import {
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
+    TextStyles,
     UnderlinePlugin,
     parseRawValue,
     serializeRawToHtml,
 } from '@frontify/fondue';
-import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import {
     BlockItemWrapper,
     DownloadButton,
+    convertToRTEValue,
     downloadAsset,
     hasRichTextValue,
     joinClassNames,
@@ -51,8 +52,8 @@ import { AUDIO_ID } from './settings';
 import { BlockAttachments, UploadPlaceholder } from './components';
 import { useEffect, useMemo, useState } from 'react';
 
-const DEFAULT_CONTENT_TITLE = '[{"type":"heading3","children":[{"text":""}]}]';
-const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"p","children":[{"text":""}]}]';
+const DEFAULT_CONTENT_TITLE = convertToRTEValue('', TextStyles.ELEMENT_HEADING3);
+const DEFAULT_CONTENT_DESCRIPTION = convertToRTEValue('', TextStyles.ELEMENT_PARAGRAPH);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +76,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
-            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
+            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin()])
             .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
             .setPlugin([
                 new AlignLeftPlugin(),
@@ -103,8 +104,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     };
 
     const updateAudioAsset = async (audio: Asset) => {
-        if (!title) {
-            saveTitle(`[{"type":"heading3","children":[{"text":"${audio.title}"}]}]`);
+        if (!hasRichTextValue(title)) {
+            saveTitle(convertToRTEValue(audio?.title, TextStyles.ELEMENT_HEADING3));
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
