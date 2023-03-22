@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
+import { RichTextEditor, parseRawValue, serializeRawToHtml, PluginComposer } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
@@ -73,6 +73,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
     const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.textValue ?? '' }));
     const html = serializeRawToHtml(rawValue, calloutDesignTokens);
+    
 
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>

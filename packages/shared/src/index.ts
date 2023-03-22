@@ -6,3 +6,4 @@ export * from './settings';
 export * from './components';
 export * from './utilities';
 export * from './components';
+export * from './rich-text-editor';
