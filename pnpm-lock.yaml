@@ -54,7 +54,7 @@ importers:
   examples/asset-upload:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.45
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.2.1
@@ -71,13 +71,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.45_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.2.1
-      '@frontify/guideline-blocks-settings': 0.25.11_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.11_b2zwbggzzl5untntw4qog4hw64
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -93,13 +94,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   examples/guideline-design-tokens:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.45
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue-tokens': 3.2.1
       '@frontify/frontify-cli': 5.3.1
@@ -116,12 +118,13 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.45_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue-tokens': 3.2.1
-      '@frontify/guideline-blocks-settings': 0.25.11_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.11_b2zwbggzzl5untntw4qog4hw64
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -138,13 +141,14 @@ importers:
       mitt: 3.0.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/asset-kit-block:
     specifiers:
       '@babel/core': 7.21.0
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.6
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.2.1
@@ -162,13 +166,14 @@ importers:
       prettier: 2.8.4
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.7
       typescript: 4.9.5
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_n2dy7xps5m43hleg7dbzarxwly
       '@frontify/fondue-tokens': 3.2.1
-      '@frontify/guideline-blocks-settings': 0.25.10_7cuvvhbhqlqberalrkjvj4dbzq
+      '@frontify/guideline-blocks-settings': 0.25.10_i6q5odcwtqhcijphzyzbyajdiu
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -185,13 +190,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.35.0
       postcss: 8.4.21
       prettier: 2.8.4
+      sinon: 15.0.2
       tailwindcss: 3.2.7_postcss@8.4.21
       typescript: 4.9.5
 
   packages/audio-block:
     specifiers:
       '@babel/core': 7.21.0
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.6
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.2.1
@@ -209,13 +215,14 @@ importers:
       prettier: 2.8.4
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.7
       typescript: 4.9.5
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_n2dy7xps5m43hleg7dbzarxwly
       '@frontify/fondue-tokens': 3.2.1
-      '@frontify/guideline-blocks-settings': 0.25.10_7cuvvhbhqlqberalrkjvj4dbzq
+      '@frontify/guideline-blocks-settings': 0.25.10_i6q5odcwtqhcijphzyzbyajdiu
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -232,13 +239,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.35.0
       postcss: 8.4.21
       prettier: 2.8.4
+      sinon: 15.0.2
       tailwindcss: 3.2.7_postcss@8.4.21
       typescript: 4.9.5
 
   packages/brand-positioning-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -255,13 +263,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -277,13 +286,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/callout-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -300,13 +310,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -322,13 +333,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/checklist-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -353,13 +365,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       '@react-aria/checkbox': 3.5.1_react@17.0.2
       '@react-aria/focus': 3.8.0_react@17.0.2
@@ -383,6 +396,7 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
@@ -392,7 +406,7 @@ importers:
       '@codemirror/language': ^6.3.1
       '@codemirror/state': ^6.1.4
       '@codemirror/view': ^6.5.1
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -413,16 +427,17 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
       '@codemirror/view': 6.6.0
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       '@uiw/codemirror-extensions-langs': 4.15.1_@codemirror+view@6.6.0
       '@uiw/codemirror-themes-all': 4.15.1_4npvozs3agsv66jx2b7pfvr53q
@@ -442,13 +457,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/color-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.2.0
@@ -468,13 +484,14 @@ importers:
       react-dnd: 16.0.1
       react-dnd-html5-backend: 16.0.1
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.1
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_5bplmf5qco7aqw37ooee7lz3be
       '@frontify/fondue-tokens': 3.2.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dnd: 16.0.1_pxzommwrsowkd4kgag6q3sluym
@@ -493,13 +510,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.1_postcss@8.4.19
       typescript: 4.8.4
 
   packages/color-kit-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -516,13 +534,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -538,6 +557,7 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
@@ -545,7 +565,7 @@ importers:
     specifiers:
       '@4tw/cypress-drag-drop': 2.2.1
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -564,13 +584,14 @@ importers:
       react-dnd: 16.0.1
       react-dnd-html5-backend: 16.0.1
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dnd: 16.0.1_pxzommwrsowkd4kgag6q3sluym
@@ -589,13 +610,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/divider-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -612,13 +634,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -634,6 +657,7 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
@@ -643,7 +667,7 @@ importers:
       '@dnd-kit/core': ^6.0.5
       '@dnd-kit/sortable': ^7.0.1
       '@dnd-kit/utilities': ^3.2.1
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -662,16 +686,17 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
       '@dnd-kit/core': 6.0.5_sfoxds7t5ydpegc3knd667wn6m
       '@dnd-kit/sortable': 7.0.1_hynla2khvukk42jomlue7cq3k4
       '@dnd-kit/utilities': 3.2.1_react@17.0.2
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       autosize: 5.0.2
       react: 17.0.2
@@ -689,13 +714,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/example:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.45
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.2.1
@@ -712,13 +738,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.45_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.2.1
-      '@frontify/guideline-blocks-settings': 0.25.11_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.11_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -734,13 +761,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/figma-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -757,13 +785,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -779,13 +808,16 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/gradient-block:
     specifiers:
       '@babel/core': 7.21.0
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@codemirror/state': 6.1.4
+      '@codemirror/view': 6.5.1
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.6
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.2.1
@@ -806,16 +838,19 @@ importers:
       prettier: 2.8.4
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.7
       typescript: 4.9.5
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@codemirror/state': 6.1.4
+      '@codemirror/view': 6.5.1
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_n2dy7xps5m43hleg7dbzarxwly
       '@frontify/fondue-tokens': 3.2.1
-      '@frontify/guideline-blocks-settings': 0.25.10_7cuvvhbhqlqberalrkjvj4dbzq
+      '@frontify/guideline-blocks-settings': 0.25.10_i6q5odcwtqhcijphzyzbyajdiu
       '@frontify/guideline-blocks-shared': link:../shared
-      '@uiw/codemirror-extensions-langs': 4.19.9
-      '@uiw/react-codemirror': 4.19.9_sfoxds7t5ydpegc3knd667wn6m
+      '@uiw/codemirror-extensions-langs': 4.19.9_5psqfvchy7s3oksn643wexgde4
+      '@uiw/react-codemirror': 4.19.9_thg4lxcg6zcumnif3hlcd7m5vq
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -832,13 +867,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.35.0
       postcss: 8.4.21
       prettier: 2.8.4
+      sinon: 15.0.2
       tailwindcss: 3.2.7_postcss@8.4.21
       typescript: 4.9.5
 
   packages/image-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -856,13 +892,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -879,13 +916,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/personal-note-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -903,13 +941,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       dayjs: 1.11.6
       react: 17.0.2
@@ -926,13 +965,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/quote-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -949,13 +989,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -971,6 +1012,7 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
@@ -980,7 +1022,7 @@ importers:
       '@dnd-kit/core': 6.0.5
       '@dnd-kit/modifiers': 6.0.1
       '@dnd-kit/sortable': 7.0.1
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-typescript': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/guideline-blocks-settings': 0.25.10
@@ -996,10 +1038,12 @@ importers:
       happy-dom: 7.6.7
       mitt: 3.0.0
       msw: 0.48.1
+      postcss: ^8.4.21
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
-      sinon: ^15
+      sinon: 15.0.2
+      tailwindcss: ^3.2.7
       tinycolor2: 1.4.2
       ts-node: 10.9.1
       typescript: 4.8.4
@@ -1010,9 +1054,9 @@ importers:
       '@dnd-kit/core': 6.0.5_sfoxds7t5ydpegc3knd667wn6m
       '@dnd-kit/modifiers': 6.0.1_hynla2khvukk42jomlue7cq3k4
       '@dnd-kit/sortable': 7.0.1_hynla2khvukk42jomlue7cq3k4
-      '@frontify/app-bridge': 3.0.0-beta.52_2xdewnf2gp4scuyjgvzxiabloi
-      '@frontify/fondue': 12.0.0-beta.147_rv2t7de65xq26o5frb4lun64yi
-      '@frontify/guideline-blocks-settings': 0.25.10_uimvnbmcdwk3qh7erefawwxwdq
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
+      '@frontify/fondue': 12.0.0-beta.147_vpxxn3yz3cjuesxvufduq23kya
+      '@frontify/guideline-blocks-settings': 0.25.10_osqigzlwlat2k465cgz53rkfie
       '@react-aria/focus': 3.11.0_react@17.0.2
       tinycolor2: 1.4.2
     devDependencies:
@@ -1029,10 +1073,12 @@ importers:
       happy-dom: 7.6.7
       mitt: 3.0.0
       msw: 0.48.1_typescript@4.8.4
+      postcss: 8.4.21
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      sinon: 15.0.1
+      sinon: 15.0.2
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
       ts-node: 10.9.1_27ec3h7d2bmjwz3w2efi2jw4se
       typescript: 4.8.4
       vite: 3.2.3_@types+node@18.7.21
@@ -1042,7 +1088,7 @@ importers:
   packages/sketchfab-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -1059,13 +1105,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -1081,13 +1128,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/storybook-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -1105,13 +1153,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       '@react-aria/interactions': 3.7.0_react@17.0.2
       react: 17.0.2
@@ -1128,13 +1177,14 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
   packages/text-block:
     specifiers:
       '@babel/core': 7.20.2
-      '@frontify/app-bridge': 3.0.0-beta.52
+      '@frontify/app-bridge': 3.0.0-beta.56
       '@frontify/eslint-config-react': 0.15.5
       '@frontify/fondue': 12.0.0-beta.147
       '@frontify/fondue-tokens': 3.1.0
@@ -1153,13 +1203,14 @@ importers:
       prettier: 2.7.1
       react: 17.0.2
       react-dom: 17.0.2
+      sinon: 15.0.2
       tailwindcss: 3.2.3
       typescript: 4.8.4
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 12.0.0-beta.147_gq3zgwh64rthrqljqz6hw6hv5u
       '@frontify/fondue-tokens': 3.1.0
-      '@frontify/guideline-blocks-settings': 0.25.10_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/guideline-blocks-settings': 0.25.10_b2zwbggzzl5untntw4qog4hw64
       '@frontify/guideline-blocks-shared': link:../shared
       lodash-es: 4.17.21
       react: 17.0.2
@@ -1177,6 +1228,7 @@ importers:
       eslint-plugin-notice: 0.9.10_eslint@8.27.0
       postcss: 8.4.19
       prettier: 2.7.1
+      sinon: 15.0.2
       tailwindcss: 3.2.3_postcss@8.4.19
       typescript: 4.8.4
 
@@ -1607,18 +1659,7 @@ packages:
       '@lezer/common': 1.0.2
     dev: false
 
-  /@codemirror/autocomplete/6.3.4_@codemirror+language@6.3.1:
-    resolution: {integrity: sha512-irxKsTSjS0OkfMWWt9YxtNK97++/E+XIHfKnRpSVfZyHzda/amYF0BR+T8mMkrGQWidx2zApxHx08GT13egyQA==}
-    peerDependencies:
-      '@codemirror/language': ^6.0.0
-      '@codemirror/state': ^6.0.0
-      '@codemirror/view': ^6.0.0
-    dependencies:
-      '@codemirror/language': 6.3.1
-      '@lezer/common': 1.0.2
-    dev: false
-
-  /@codemirror/autocomplete/6.3.4_exdtd5r72rqia7uwdlbqldazii:
+  /@codemirror/autocomplete/6.3.4_atigln55utsx74gzktdyj4jfwu:
     resolution: {integrity: sha512-irxKsTSjS0OkfMWWt9YxtNK97++/E+XIHfKnRpSVfZyHzda/amYF0BR+T8mMkrGQWidx2zApxHx08GT13egyQA==}
     peerDependencies:
       '@codemirror/language': ^6.0.0
@@ -1627,11 +1668,11 @@ packages:
     dependencies:
       '@codemirror/language': 6.6.0
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       '@lezer/common': 1.0.2
     dev: false
 
-  /@codemirror/autocomplete/6.3.4_frhxytuks4knrujlrxxwqlwaaq:
+  /@codemirror/autocomplete/6.3.4_v3kbhmj4stolys7brydlafx57e:
     resolution: {integrity: sha512-irxKsTSjS0OkfMWWt9YxtNK97++/E+XIHfKnRpSVfZyHzda/amYF0BR+T8mMkrGQWidx2zApxHx08GT13egyQA==}
     peerDependencies:
       '@codemirror/language': ^6.0.0
@@ -1640,6 +1681,7 @@ packages:
     dependencies:
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
+      '@codemirror/view': 6.5.1
       '@lezer/common': 1.0.2
     dev: false
 
@@ -1648,7 +1690,7 @@ packages:
     dependencies:
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       '@lezer/common': 1.0.2
     dev: false
 
@@ -1659,10 +1701,10 @@ packages:
       '@lezer/cpp': 1.0.0
     dev: false
 
-  /@codemirror/lang-css/6.0.1:
+  /@codemirror/lang-css/6.0.1_@codemirror+view@6.5.1:
     resolution: {integrity: sha512-rlLq1Dt0WJl+2epLQeAsfqIsx3lGu4HStHCJu95nGGuz2P2fNugbU3dQYafr2VRjM4eMC9HviI6jvS98CNtG5w==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_frhxytuks4knrujlrxxwqlwaaq
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
       '@lezer/css': 1.1.0
@@ -1684,12 +1726,12 @@ packages:
   /@codemirror/lang-html/6.2.0:
     resolution: {integrity: sha512-0Kr+gWPu1J4mhpLbqHPqoD5+xLCwAntfzRv9L61cqRSFNpDpDbGbONSN5xzWupo6AJ9qtDOlJNBFBuL72tXPwg==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_4npvozs3agsv66jx2b7pfvr53q
-      '@codemirror/lang-css': 6.0.1_@codemirror+view@6.6.0
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
+      '@codemirror/lang-css': 6.0.1_@codemirror+view@6.5.1
       '@codemirror/lang-javascript': 6.1.1
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       '@lezer/common': 1.0.2
       '@lezer/html': 1.2.0
     dev: false
@@ -1697,12 +1739,12 @@ packages:
   /@codemirror/lang-html/6.4.2:
     resolution: {integrity: sha512-bqCBASkteKySwtIbiV/WCtGnn/khLRbbiV5TE+d9S9eQJD7BA4c5dTRm2b3bVmSpilff5EYxvB4PQaZzM/7cNw==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_exdtd5r72rqia7uwdlbqldazii
-      '@codemirror/lang-css': 6.0.1_@codemirror+view@6.6.0
+      '@codemirror/autocomplete': 6.3.4_atigln55utsx74gzktdyj4jfwu
+      '@codemirror/lang-css': 6.0.1_@codemirror+view@6.5.1
       '@codemirror/lang-javascript': 6.1.1
       '@codemirror/language': 6.6.0
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       '@lezer/common': 1.0.2
       '@lezer/css': 1.1.0
       '@lezer/html': 1.3.3
@@ -1718,11 +1760,11 @@ packages:
   /@codemirror/lang-javascript/6.1.1:
     resolution: {integrity: sha512-F4+kiuC5d5dUSJmff96tJQwpEXs/tX/4bapMRnZWW6bHKK1Fx6MunTzopkCUWRa9bF87GPmb9m7Qtg7Yv8f3uQ==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_4npvozs3agsv66jx2b7pfvr53q
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
       '@codemirror/language': 6.3.1
       '@codemirror/lint': 6.1.0
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       '@lezer/common': 1.0.2
       '@lezer/javascript': 1.3.1
     dev: false
@@ -1749,7 +1791,7 @@ packages:
       '@codemirror/lang-html': 6.2.0
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       '@lezer/common': 1.0.2
       '@lezer/markdown': 1.0.2
     dev: false
@@ -1771,10 +1813,10 @@ packages:
       '@lezer/python': 1.1.1
     dev: false
 
-  /@codemirror/lang-python/6.1.2:
+  /@codemirror/lang-python/6.1.2_5psqfvchy7s3oksn643wexgde4:
     resolution: {integrity: sha512-nbQfifLBZstpt6Oo4XxA2LOzlSp4b/7Bc5cmodG1R+Cs5PLLCTUvsMNWDnziiCfTOG/SW1rVzXq/GbIr6WXlcw==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_@codemirror+language@6.3.1
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
       '@codemirror/language': 6.3.1
       '@lezer/python': 1.1.1
     transitivePeerDependencies:
@@ -1789,10 +1831,10 @@ packages:
       '@lezer/rust': 1.0.0
     dev: false
 
-  /@codemirror/lang-sql/6.3.3:
+  /@codemirror/lang-sql/6.3.3_@codemirror+view@6.5.1:
     resolution: {integrity: sha512-VNsHju8500fkiDyDU8jZyGQ8M0iXU0SmfeCoCeAYkACcEFlX63BOT8311pICXyw43VYRbS23w54RgSEQmixGjQ==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_frhxytuks4knrujlrxxwqlwaaq
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
       '@lezer/highlight': 1.1.3
@@ -1813,10 +1855,10 @@ packages:
       - '@codemirror/view'
     dev: false
 
-  /@codemirror/lang-sql/6.4.0:
+  /@codemirror/lang-sql/6.4.0_@codemirror+view@6.5.1:
     resolution: {integrity: sha512-UWGK1+zc9+JtkiT+XxHByp4N6VLgLvC2x0tIudrJG26gyNtn0hWOVoB0A8kh/NABPWkKl3tLWDYf2qOBJS9Zdw==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_frhxytuks4knrujlrxxwqlwaaq
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
       '@lezer/highlight': 1.1.3
@@ -1833,10 +1875,10 @@ packages:
       '@lezer/lr': 1.2.5
     dev: false
 
-  /@codemirror/lang-xml/6.0.1:
+  /@codemirror/lang-xml/6.0.1_@codemirror+view@6.5.1:
     resolution: {integrity: sha512-0tvycUTElajCcRKgsszhKjWX+uuOogdu5+enpfqYA+j0gnP8ek7LRxujh2/XMPRdXt/hwOML4slJLE7r2eX3yQ==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_frhxytuks4knrujlrxxwqlwaaq
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
       '@lezer/common': 1.0.2
@@ -1857,11 +1899,11 @@ packages:
       - '@codemirror/view'
     dev: false
 
-  /@codemirror/language-data/6.1.0:
+  /@codemirror/language-data/6.1.0_@codemirror+view@6.5.1:
     resolution: {integrity: sha512-g9V23fuLRI9AEbpM6bDy1oquqgpFlIDHTihUhL21NPmxp+x67ZJbsKk+V71W7/Bj8SCqEO1PtqQA/tDGgt1nfw==}
     dependencies:
       '@codemirror/lang-cpp': 6.0.2
-      '@codemirror/lang-css': 6.0.1
+      '@codemirror/lang-css': 6.0.1_@codemirror+view@6.5.1
       '@codemirror/lang-html': 6.2.0
       '@codemirror/lang-java': 6.0.1
       '@codemirror/lang-javascript': 6.1.1
@@ -1870,9 +1912,9 @@ packages:
       '@codemirror/lang-php': 6.0.1
       '@codemirror/lang-python': 6.0.4
       '@codemirror/lang-rust': 6.0.1
-      '@codemirror/lang-sql': 6.3.3
+      '@codemirror/lang-sql': 6.3.3_@codemirror+view@6.5.1
       '@codemirror/lang-wast': 6.0.1
-      '@codemirror/lang-xml': 6.0.1
+      '@codemirror/lang-xml': 6.0.1_@codemirror+view@6.5.1
       '@codemirror/language': 6.3.1
       '@codemirror/legacy-modes': 6.3.1
     transitivePeerDependencies:
@@ -1916,7 +1958,7 @@ packages:
     resolution: {integrity: sha512-cwUd6lzt3MfNYOobdjf14ZkLbJcnv4WtndYaoBkbor/vF+rCNguMPK0IRtvZJG4dsWiaWPcK8x1VijhvSxnstg==}
     dependencies:
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       '@lezer/common': 1.0.2
       '@lezer/highlight': 1.1.3
       '@lezer/lr': 1.2.5
@@ -1933,7 +1975,7 @@ packages:
     resolution: {integrity: sha512-mdvDQrjRmYPvQ3WrzF6Ewaao+NWERYtpthJvoQ3tK3t/44Ynhk8ZGjTSL9jMEv8CgSMogmt75X8ceOZRDSXHtQ==}
     dependencies:
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       crelt: 1.0.5
     dev: false
 
@@ -1941,7 +1983,7 @@ packages:
     resolution: {integrity: sha512-V9n9233lopQhB1dyjsBK2Wc1i+8hcCqxl1wQ46c5HWWLePoe4FluV3TGHoZ04rBRlGjNyz9DTmpJErig8UE4jw==}
     dependencies:
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       crelt: 1.0.5
     dev: false
 
@@ -1954,8 +1996,16 @@ packages:
     dependencies:
       '@codemirror/language': 6.3.1
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
       '@lezer/highlight': 1.1.3
+    dev: false
+
+  /@codemirror/view/6.5.1:
+    resolution: {integrity: sha512-xBKP8N3AXOs06VcKvIuvIQoUlGs7Hb78ftJWahLaRX909jKPMgGxR5XjvrawzTTZMSTU3DzdjDNPwG6fPM/ypQ==}
+    dependencies:
+      '@codemirror/state': 6.1.4
+      style-mod: 4.0.0
+      w3c-keyname: 2.2.6
     dev: false
 
   /@codemirror/view/6.6.0:
@@ -2515,23 +2565,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@frontify/app-bridge/3.0.0-beta.45_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-USzFZAzpn96ulgtEseYywX68aJEOMW9i8JnYPSG2FWghCEC0YHKn/Aec+Iup2iXkv/dcRV3F0aaGXauX0Z0/Dw==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      react: '>=17 || >=18'
-      react-dom: '>=17 || >=18'
-    dependencies:
-      lodash-es: 4.17.21
-      mitt: 3.0.0
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      sinon: 15.0.1
-      type-fest: 3.5.4
-    dev: false
-
-  /@frontify/app-bridge/3.0.0-beta.52_2xdewnf2gp4scuyjgvzxiabloi:
-    resolution: {integrity: sha512-GF2UTql6MmNBFYWS5cV5AEDLD1FyD87ldgChmI2WynHNwqrbPRTOmS0unoLao6S0weKUKVoULqprUC6o/SG8Ig==}
+  /@frontify/app-bridge/3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y:
+    resolution: {integrity: sha512-o5k3/KmhSxuOvgAjgStmRDRZXYPkG8SNzfIMVcfxOu4HOszjkkFz0tFaStuxiOHgOVrQIAtmt+sscdUVXZ0VVQ==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17 || ^18
@@ -2542,22 +2577,7 @@ packages:
       mitt: 3.0.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      sinon: 15.0.1
-      type-fest: 3.6.0
-    dev: false
-
-  /@frontify/app-bridge/3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-GF2UTql6MmNBFYWS5cV5AEDLD1FyD87ldgChmI2WynHNwqrbPRTOmS0unoLao6S0weKUKVoULqprUC6o/SG8Ig==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      react: ^17 || ^18
-      react-dom: ^17 || ^18
-      sinon: ^15
-    dependencies:
-      lodash-es: 4.17.21
-      mitt: 3.0.0
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
+      sinon: 15.0.2
       type-fest: 3.6.0
     dev: false
 
@@ -2826,13 +2846,13 @@ packages:
       react: ^17.0.2
       react-dom: ^17.0.2
     dependencies:
-      '@frontify/fondue-tokens': 3.2.1
+      '@frontify/fondue-tokens': 3.1.0
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.9_react@17.0.2
       '@react-aria/aria-modal-polyfill': 3.6.1_pxzommwrsowkd4kgag6q3sluym
       '@react-aria/breadcrumbs': 3.4.0_react@17.0.2
       '@react-aria/button': 3.6.3_react@17.0.2
-      '@react-aria/checkbox': 3.5.1_react@17.0.2
+      '@react-aria/checkbox': 3.7.0_react@17.0.2
       '@react-aria/combobox': 3.4.3_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/dialog': 3.4.1_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/focus': 3.11.0_react@17.0.2
@@ -2846,7 +2866,7 @@ packages:
       '@react-aria/selection': 3.12.0_react@17.0.2
       '@react-aria/table': 3.6.0_sfoxds7t5ydpegc3knd667wn6m
       '@react-aria/tooltip': 3.3.3_react@17.0.2
-      '@react-aria/utils': 3.13.3_react@17.0.2
+      '@react-aria/utils': 3.15.0_react@17.0.2
       '@react-aria/visually-hidden': 3.6.0_react@17.0.2
       '@react-stately/checkbox': 3.3.2_react@17.0.2
       '@react-stately/collections': 3.5.0_react@17.0.2
@@ -2857,7 +2877,7 @@ packages:
       '@react-stately/radio': 3.6.1_react@17.0.2
       '@react-stately/select': 3.3.3_react@17.0.2
       '@react-stately/table': 3.6.0_react@17.0.2
-      '@react-stately/toggle': 3.4.1_react@17.0.2
+      '@react-stately/toggle': 3.4.4_react@17.0.2
       '@react-stately/tooltip': 3.2.3_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@storybook/addon-a11y': 6.5.15_sfoxds7t5ydpegc3knd667wn6m
@@ -3386,7 +3406,7 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue/12.0.0-beta.147_rv2t7de65xq26o5frb4lun64yi:
+  /@frontify/fondue/12.0.0-beta.147_vpxxn3yz3cjuesxvufduq23kya:
     resolution: {integrity: sha512-B9Fa3RNobONyNL33Yazq6b7KdXln32n/B+Tj8R2+37UaFJMhVpahBfHiY2d/KEOajS9lyfln5WRAdViL4HvqnA==}
     engines: {node: '>=16'}
     requiresBuild: true
@@ -3430,7 +3450,7 @@ packages:
       '@react-stately/tree': 3.3.4_react@17.0.2
       '@react-types/dialog': 3.4.5_react@17.0.2
       '@react-types/shared': 3.16.0_react@17.0.2
-      '@tailwindcss/forms': 0.5.3
+      '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.7
       '@udecode/plate': 19.6.0_46lb47almn5glegy4zpoj25ooe
       '@udecode/zustood': 1.1.3_r7p2xqdvrmr4kyt2ey7qylzuau
       '@xstate/immer': 0.3.1_immer@9.0.12+xstate@4.28.1
@@ -3541,52 +3561,15 @@ packages:
       - terser
     dev: true
 
-  /@frontify/guideline-blocks-settings/0.25.10_7cuvvhbhqlqberalrkjvj4dbzq:
+  /@frontify/guideline-blocks-settings/0.25.10_b2zwbggzzl5untntw4qog4hw64:
     resolution: {integrity: sha512-ZBbsCo8XGrUQltv01Y2XqbTDHhjPsG3IfGmjv7VYGprTWT18Lm5c+cjbFssFMjGKeKu2XY5TTPdDDsbgMzEGAQ==}
     peerDependencies:
       react: '>=17 || >=18'
       react-dom: '>=17 || >=18'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.3.0_7cuvvhbhqlqberalrkjvj4dbzq
-      '@frontify/sidebar-settings': 0.0.6_cj7kwql4lwfldlhgxniix54hfi
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - jotai-immer
-      - jotai-optics
-      - jotai-redux
-      - jotai-tanstack-query
-      - jotai-urql
-      - jotai-valtio
-      - jotai-xstate
-      - jotai-zustand
-      - optics-ts
-      - react-query
-      - sinon
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/guideline-blocks-settings/0.25.10_angvksxlvvfhyjj3xhcshgfg2m:
-    resolution: {integrity: sha512-ZBbsCo8XGrUQltv01Y2XqbTDHhjPsG3IfGmjv7VYGprTWT18Lm5c+cjbFssFMjGKeKu2XY5TTPdDDsbgMzEGAQ==}
-    peerDependencies:
-      react: '>=17 || >=18'
-      react-dom: '>=17 || >=18'
-    dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
-      '@frontify/sidebar-settings': 0.0.6_yp6a37uil6ihjko4y442jc27kq
+      '@frontify/sidebar-settings': 0.0.6_y6gw7fiuijnaaeoccf63r4nyi4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     transitivePeerDependencies:
@@ -3615,15 +3598,15 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/guideline-blocks-settings/0.25.10_uimvnbmcdwk3qh7erefawwxwdq:
+  /@frontify/guideline-blocks-settings/0.25.10_i6q5odcwtqhcijphzyzbyajdiu:
     resolution: {integrity: sha512-ZBbsCo8XGrUQltv01Y2XqbTDHhjPsG3IfGmjv7VYGprTWT18Lm5c+cjbFssFMjGKeKu2XY5TTPdDDsbgMzEGAQ==}
     peerDependencies:
       react: '>=17 || >=18'
       react-dom: '>=17 || >=18'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_2xdewnf2gp4scuyjgvzxiabloi
-      '@frontify/fondue': 11.3.0_rv2t7de65xq26o5frb4lun64yi
-      '@frontify/sidebar-settings': 0.0.6_k5cqqyi2aucrtetxd75qvfg7um
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
+      '@frontify/fondue': 11.3.0_7cuvvhbhqlqberalrkjvj4dbzq
+      '@frontify/sidebar-settings': 0.0.6_klue4qr7yxrwtdtvbppyykta6y
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     transitivePeerDependencies:
@@ -3652,15 +3635,52 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/guideline-blocks-settings/0.25.11_angvksxlvvfhyjj3xhcshgfg2m:
+  /@frontify/guideline-blocks-settings/0.25.10_osqigzlwlat2k465cgz53rkfie:
+    resolution: {integrity: sha512-ZBbsCo8XGrUQltv01Y2XqbTDHhjPsG3IfGmjv7VYGprTWT18Lm5c+cjbFssFMjGKeKu2XY5TTPdDDsbgMzEGAQ==}
+    peerDependencies:
+      react: '>=17 || >=18'
+      react-dom: '>=17 || >=18'
+    dependencies:
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
+      '@frontify/fondue': 11.3.0_rv2t7de65xq26o5frb4lun64yi
+      '@frontify/sidebar-settings': 0.0.6_4toe4ef767i5e3fg2gd5qntcny
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@babel/template'
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@urql/core'
+      - '@xstate/fsm'
+      - encoding
+      - jotai-immer
+      - jotai-optics
+      - jotai-redux
+      - jotai-tanstack-query
+      - jotai-urql
+      - jotai-valtio
+      - jotai-xstate
+      - jotai-zustand
+      - optics-ts
+      - react-query
+      - sinon
+      - supports-color
+      - ts-node
+      - valtio
+      - wonka
+    dev: false
+
+  /@frontify/guideline-blocks-settings/0.25.11_b2zwbggzzl5untntw4qog4hw64:
     resolution: {integrity: sha512-Lhj3mjSFYyW3q4x0yxx8xbW8zvOS6Lcx/EvDoah7PDCxGPo2WfG82/F2gwleyNFGxKWoMIlNENq7qpmZPkRbPQ==}
     peerDependencies:
       react: '>=17 || >=18'
       react-dom: '>=17 || >=18'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.45_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
-      '@frontify/sidebar-settings': 0.0.6_qlglkwf2uwsge5ugofau3tdg7i
+      '@frontify/sidebar-settings': 0.0.6_y6gw7fiuijnaaeoccf63r4nyi4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     transitivePeerDependencies:
@@ -3682,52 +3702,19 @@ packages:
       - jotai-zustand
       - optics-ts
       - react-query
+      - sinon
       - supports-color
       - ts-node
       - valtio
       - wonka
     dev: false
 
-  /@frontify/sidebar-settings/0.0.6_cj7kwql4lwfldlhgxniix54hfi:
+  /@frontify/sidebar-settings/0.0.6_4toe4ef767i5e3fg2gd5qntcny:
     resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
     peerDependencies:
       '@frontify/app-bridge': '*'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.3.0_7cuvvhbhqlqberalrkjvj4dbzq
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/template'
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@urql/core'
-      - '@xstate/fsm'
-      - encoding
-      - jotai-immer
-      - jotai-optics
-      - jotai-redux
-      - jotai-tanstack-query
-      - jotai-urql
-      - jotai-valtio
-      - jotai-xstate
-      - jotai-zustand
-      - optics-ts
-      - react
-      - react-dom
-      - react-query
-      - supports-color
-      - ts-node
-      - valtio
-      - wonka
-    dev: false
-
-  /@frontify/sidebar-settings/0.0.6_k5cqqyi2aucrtetxd75qvfg7um:
-    resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
-    peerDependencies:
-      '@frontify/app-bridge': '*'
-    dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_2xdewnf2gp4scuyjgvzxiabloi
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 11.3.0_rv2t7de65xq26o5frb4lun64yi
     transitivePeerDependencies:
       - '@babel/core'
@@ -3756,13 +3743,13 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/sidebar-settings/0.0.6_qlglkwf2uwsge5ugofau3tdg7i:
+  /@frontify/sidebar-settings/0.0.6_klue4qr7yxrwtdtvbppyykta6y:
     resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
     peerDependencies:
       '@frontify/app-bridge': '*'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.45_sfoxds7t5ydpegc3knd667wn6m
-      '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
+      '@frontify/fondue': 11.3.0_7cuvvhbhqlqberalrkjvj4dbzq
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -3790,12 +3777,12 @@ packages:
       - wonka
     dev: false
 
-  /@frontify/sidebar-settings/0.0.6_yp6a37uil6ihjko4y442jc27kq:
+  /@frontify/sidebar-settings/0.0.6_y6gw7fiuijnaaeoccf63r4nyi4:
     resolution: {integrity: sha512-PD1hDFpqyz3+HXDhE1G4pnsCgd+yi2gJaaibEzBqSnmBPd0z4r9fJ6xC/nFGT6obsSK/6KDYm524M/ln90ZGfA==}
     peerDependencies:
       '@frontify/app-bridge': '*'
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.52_sfoxds7t5ydpegc3knd667wn6m
+      '@frontify/app-bridge': 3.0.0-beta.56_my2q32ssyn7gjwxtpkphyyxc6y
       '@frontify/fondue': 11.3.0_angvksxlvvfhyjj3xhcshgfg2m
     transitivePeerDependencies:
       - '@babel/core'
@@ -4212,7 +4199,7 @@ packages:
       '@react-aria/button': 3.6.3_react@17.0.2
       '@react-aria/interactions': 3.14.0_react@17.0.2
       '@react-aria/selection': 3.12.0_react@17.0.2
-      '@react-aria/utils': 3.13.3_react@17.0.2
+      '@react-aria/utils': 3.15.0_react@17.0.2
       '@react-stately/tree': 3.4.0_react@17.0.2
       '@react-types/accordion': 3.0.0-alpha.7_react@17.0.2
       '@react-types/button': 3.7.0_react@17.0.2
@@ -5410,13 +5397,13 @@ packages:
       string-argv: 0.3.1
     dev: true
 
-  /@sinonjs/commons/1.8.6:
-    resolution: {integrity: sha512-Ky+XkAkqPZSm3NLBeUng77EBQl3cmeJhITaGHdYH8kjVB+aun3S4XBRti2zt17mtt0mIUDiNxYeoJm6drVvBJQ==}
+  /@sinonjs/commons/2.0.0:
+    resolution: {integrity: sha512-uLa0j859mMrg2slwQYdO/AkrOfmH+X6LTVmNTS9CqexuE2IvVORIkSpJLqePAbEnKJ77aMmCwr1NUZ57120Xcg==}
     dependencies:
       type-detect: 4.0.8
 
-  /@sinonjs/commons/2.0.0:
-    resolution: {integrity: sha512-uLa0j859mMrg2slwQYdO/AkrOfmH+X6LTVmNTS9CqexuE2IvVORIkSpJLqePAbEnKJ77aMmCwr1NUZ57120Xcg==}
+  /@sinonjs/commons/3.0.0:
+    resolution: {integrity: sha512-jXBtWAF4vmdNmZgD5FoKsVLv3rPgDnLgPbU84LIJ3otV44vJlDRokVng5v8NFJdCf/da9legHcKaRuZs4L7faA==}
     dependencies:
       type-detect: 4.0.8
 
@@ -5424,11 +5411,6 @@ packages:
     resolution: {integrity: sha512-SwUDyjWnah1AaNl7kxsa7cfLhlTYoiyhDAIgyh+El30YvXs/o7OLXpYH88Zdhyx9JExKrmHDJ+10bwIcY80Jmw==}
     dependencies:
       '@sinonjs/commons': 2.0.0
-
-  /@sinonjs/fake-timers/7.1.2:
-    resolution: {integrity: sha512-iQADsW4LBMISqZ6Ci1dupJL9pprqwcVFTcOsEmQOEhW+KLCVn/Y4Jrvg2k19fIHCp+iFprriYPTdRcQR8NbUPg==}
-    dependencies:
-      '@sinonjs/commons': 1.8.6
 
   /@sinonjs/samsam/7.0.1:
     resolution: {integrity: sha512-zsAk2Jkiq89mhZovB2LLOdTCxJF4hqqTToGP0ASWlhp4I1hqOjcfmZGafXntCN7MDC6yySH0mFHrYtHceOeLmw==}
@@ -5607,14 +5589,6 @@ packages:
     dependencies:
       tslib: 2.4.1
 
-  /@tailwindcss/forms/0.5.3:
-    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
-    peerDependencies:
-      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
-    dependencies:
-      mini-svg-data-uri: 1.4.4
-    dev: false
-
   /@tailwindcss/forms/0.5.3_tailwindcss@3.2.1:
     resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
     peerDependencies:
@@ -5630,7 +5604,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.3_v776zzvn44o7tpgzieipaairwm
+      tailwindcss: 3.2.3_postcss@8.4.19
     dev: false
 
   /@tailwindcss/forms/0.5.3_tailwindcss@3.2.7:
@@ -13770,7 +13744,7 @@ packages:
       '@udecode/plate-ui-table': 19.6.0_blb3pyyzd7t2vcqgz4ctfappdu
       '@udecode/plate-ui-toolbar': 19.6.0_blb3pyyzd7t2vcqgz4ctfappdu
       react: 17.0.2
-      react-dnd: 16.0.1_smc5esni47gpbltvxzeziduyte
+      react-dnd: 16.0.1_pxzommwrsowkd4kgag6q3sluym
       react-dnd-html5-backend: 15.1.2
       react-dom: 17.0.2_react@17.0.2
       slate: 0.87.0
@@ -14134,16 +14108,19 @@ packages:
       '@codemirror/view': 6.6.0
     dev: false
 
-  /@uiw/codemirror-extensions-basic-setup/4.19.9:
+  /@uiw/codemirror-extensions-basic-setup/4.19.9_5psqfvchy7s3oksn643wexgde4:
     resolution: {integrity: sha512-O4yAgVpD3Pon4t4+lwZ2MTGg2TeU/Jv8YzKS9ap4fP/WMTVrKmpdq+DOafbhZSlhmU0XGfQPPJ4WX6rtZgx3Rw==}
+    peerDependencies:
+      '@codemirror/state': '>=6.0.0'
+      '@codemirror/view': '>=6.0.0'
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_4npvozs3agsv66jx2b7pfvr53q
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
       '@codemirror/commands': 6.1.2
       '@codemirror/language': 6.3.1
       '@codemirror/lint': 6.1.0
       '@codemirror/search': 6.2.3
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
     dev: false
 
   /@uiw/codemirror-extensions-langs/4.15.1_@codemirror+view@6.6.0:
@@ -14168,7 +14145,7 @@ packages:
       - '@codemirror/view'
     dev: false
 
-  /@uiw/codemirror-extensions-langs/4.19.9:
+  /@uiw/codemirror-extensions-langs/4.19.9_5psqfvchy7s3oksn643wexgde4:
     resolution: {integrity: sha512-K3tJQa8GUAOT6Gma97PZKAsPhUc+2jdGovDfq9VgAivDxVkv9gOmTw46Z6Vgt+vyYMjJxTnag9/qNMdXoiRFvA==}
     dependencies:
       '@codemirror/lang-cpp': 6.0.2
@@ -14179,12 +14156,12 @@ packages:
       '@codemirror/lang-lezer': 6.0.1
       '@codemirror/lang-markdown': 6.0.5
       '@codemirror/lang-php': 6.0.1
-      '@codemirror/lang-python': 6.1.2
+      '@codemirror/lang-python': 6.1.2_5psqfvchy7s3oksn643wexgde4
       '@codemirror/lang-rust': 6.0.1
-      '@codemirror/lang-sql': 6.4.0
+      '@codemirror/lang-sql': 6.4.0_@codemirror+view@6.5.1
       '@codemirror/lang-wast': 6.0.1
-      '@codemirror/lang-xml': 6.0.1
-      '@codemirror/language-data': 6.1.0
+      '@codemirror/lang-xml': 6.0.1_@codemirror+view@6.5.1
+      '@codemirror/language-data': 6.1.0_@codemirror+view@6.5.1
       '@codemirror/legacy-modes': 6.3.1
     transitivePeerDependencies:
       - '@codemirror/state'
@@ -14399,9 +14376,10 @@ packages:
       - '@codemirror/language'
     dev: false
 
-  /@uiw/react-codemirror/4.19.9_sfoxds7t5ydpegc3knd667wn6m:
+  /@uiw/react-codemirror/4.19.9_thg4lxcg6zcumnif3hlcd7m5vq:
     resolution: {integrity: sha512-U+A1fSfELMFFs5a+ZOPwCJKZMYaMy6QHOfNOOV7WhSveM7GYHT970GjTfs2dn1LlvhebwyK9ei0rCXZdsI9n9Q==}
     peerDependencies:
+      '@codemirror/state': '>=6.0.0'
       '@codemirror/view': '>=6.0.0'
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -14410,7 +14388,8 @@ packages:
       '@codemirror/commands': 6.1.2
       '@codemirror/state': 6.1.4
       '@codemirror/theme-one-dark': 6.1.0
-      '@uiw/codemirror-extensions-basic-setup': 4.19.9
+      '@codemirror/view': 6.5.1
+      '@uiw/codemirror-extensions-basic-setup': 4.19.9_5psqfvchy7s3oksn643wexgde4
       codemirror: 6.0.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -15250,13 +15229,13 @@ packages:
   /codemirror/6.0.1:
     resolution: {integrity: sha512-J8j+nZ+CdWmIeFIGXEFbFPtpiYacFMDR8GlHK3IyHQJMCaVRfGx9NT+Hxivv1ckLWPvNdZqndbr/7lVhrf/Svg==}
     dependencies:
-      '@codemirror/autocomplete': 6.3.4_4npvozs3agsv66jx2b7pfvr53q
+      '@codemirror/autocomplete': 6.3.4_v3kbhmj4stolys7brydlafx57e
       '@codemirror/commands': 6.1.2
       '@codemirror/language': 6.3.1
       '@codemirror/lint': 6.1.0
       '@codemirror/search': 6.2.3
       '@codemirror/state': 6.1.4
-      '@codemirror/view': 6.6.0
+      '@codemirror/view': 6.5.1
     dev: false
 
   /color-convert/1.9.3:
@@ -18992,11 +18971,11 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /nise/5.1.2:
-    resolution: {integrity: sha512-+gQjFi8v+tkfCuSCxfURHLhRhniE/+IaYbIphxAN2JRR9SHKhY8hgXpaXiYfHdw+gcGe4buxgbprBQFab9FkhA==}
+  /nise/5.1.4:
+    resolution: {integrity: sha512-8+Ib8rRJ4L0o3kfmyVCL7gzrohyDe0cMFTBa2d364yIrEGMEoetznKJx899YxjybU6bL9SQkYPSBBs1gyYs8Xg==}
     dependencies:
       '@sinonjs/commons': 2.0.0
-      '@sinonjs/fake-timers': 7.1.2
+      '@sinonjs/fake-timers': 10.0.2
       '@sinonjs/text-encoding': 0.7.2
       just-extend: 4.2.1
       path-to-regexp: 1.8.0
@@ -19483,7 +19462,6 @@ packages:
       postcss: 8.4.21
       ts-node: 10.9.1_27ec3h7d2bmjwz3w2efi2jw4se
       yaml: 1.10.2
-    dev: false
 
   /postcss-load-config/3.1.4_postcss@8.4.19:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
@@ -19533,6 +19511,7 @@ packages:
       postcss: 8.4.19
       ts-node: 10.9.1_27ec3h7d2bmjwz3w2efi2jw4se
       yaml: 1.10.2
+    dev: true
 
   /postcss-nested/6.0.0_postcss@8.4.19:
     resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
@@ -20549,14 +20528,14 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
 
-  /sinon/15.0.1:
-    resolution: {integrity: sha512-PZXKc08f/wcA/BMRGBze2Wmw50CWPiAH3E21EOi4B49vJ616vW4DQh4fQrqsYox2aNR/N3kCqLuB0PwwOucQrg==}
+  /sinon/15.0.2:
+    resolution: {integrity: sha512-PCVP63XZkg0/LOqQH5rEU4LILuvTFMb5tNxTHfs6VUMNnZz2XrnGSTZbAGITjzwQWbl/Bl/8hi4G3zZWjyBwHg==}
     dependencies:
-      '@sinonjs/commons': 2.0.0
+      '@sinonjs/commons': 3.0.0
       '@sinonjs/fake-timers': 10.0.2
       '@sinonjs/samsam': 7.0.1
       diff: 5.1.0
-      nise: 5.1.2
+      nise: 5.1.4
       supports-color: 7.2.0
 
   /sisteransi/1.0.5:
@@ -21060,6 +21039,7 @@ packages:
       resolve: 1.22.1
     transitivePeerDependencies:
       - ts-node
+    dev: true
 
   /tailwindcss/3.2.7_aesdjsunmf4wiehhujt67my7tu:
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
@@ -21093,7 +21073,6 @@ packages:
       resolve: 1.22.1
     transitivePeerDependencies:
       - ts-node
-    dev: false
 
   /tailwindcss/3.2.7_postcss@8.4.21:
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
@@ -21398,11 +21377,6 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
     dev: true
-
-  /type-fest/3.5.4:
-    resolution: {integrity: sha512-/Je22Er4LPoln256pcLzj73MUmPrTWg8u4WB1RlxaDl0idJOfD1r259VtKOinp4xLJqJ9zYVMuWOun6Ssp7boA==}
-    engines: {node: '>=14.16'}
-    dev: false
 
   /type-fest/3.6.0:
     resolution: {integrity: sha512-RqTRtKTzvPpNdDUp1dVkKQRunlPITk4mXeqFlAZoJsS+fLRn8AdPK0TcQDumGayhU7fjlBfiBjsq3pe3rIfXZQ==}
