@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
+import { Plugin, PluginProps } from '@frontify/fondue';
 import { createLinkPlugin as createPlateLinkPlugin, createPluginFactory } from '@udecode/plate';
 import { CustomFloatingLink } from './FloatingLink/CustomFloatingLink';
 import { LINK_PLUGIN } from './id';

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MarkupElement } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/MarkupElement';
+import { MarkupElement } from '@frontify/fondue';
 import { ELEMENT_LINK } from '@udecode/plate';
 import { LinkMarkupElementNode } from './LinkMarkupElementNode';
 

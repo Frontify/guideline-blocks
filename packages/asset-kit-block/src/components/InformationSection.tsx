@@ -1,22 +1,23 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     BoldPlugin,
     ItalicPlugin,
+    parseRawValue,
+    Plugin,
     PluginComposer,
+    PluginProps,
     ResetFormattingPlugin,
     RichTextEditor,
+    serializeRawToHtml,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     UnderlinePlugin,
-    parseRawValue,
-    serializeRawToHtml,
 } from '@frontify/fondue';
-import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
-import { InformationSectionProps } from '../types';
+import { hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useMemo } from 'react';
+import { InformationSectionProps } from '../types';
 
 const DEFAULT_CONTENT_VALUE = '[{"type":"heading3","children":[{"text":""}]}]';
 
