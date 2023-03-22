@@ -23,8 +23,8 @@ import {
 } from '@frontify/fondue';
 import { LinkPlugin } from '@frontify/guideline-blocks-shared';
 
-export const getRichTextEditorPlugins = () => {
-    const composer = new PluginComposer()
+export const getRichTextEditorPlugins = () =>
+    new PluginComposer()
         .setPlugin(new SoftBreakPlugin(), new ParagraphPlugin())
         .setPlugin(new TextStylePlugin())
         .setPlugin(
@@ -49,4 +49,3 @@ export const getRichTextEditorPlugins = () => {
                 new EmojiPlugin(),
             ]
         );
-};

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor, parseRawValue, serializeRawToHtml, PluginComposer } from '@frontify/fondue';
+import { PluginComposer, RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
@@ -17,6 +17,7 @@ import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
+import { getRichTextEditorPlugins } from './utils/getRichTextEditorPlugins';
 import { useCalloutColors } from './utils/useCalloutColors';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -73,7 +74,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
     const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.textValue ?? '' }));
     const html = serializeRawToHtml(rawValue, calloutDesignTokens);
-    
 
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
@@ -109,6 +109,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                         placeholder="Type your text here"
                         onTextChange={onTextChange}
                         onBlur={onTextChange}
+                        plugins={getRichTextEditorPlugins()}
                     />
                 )}
             </div>
