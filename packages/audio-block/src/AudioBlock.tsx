@@ -104,7 +104,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(title)) {
-            saveTitle(convertToRteValue(audio?.title, TextStyles.ELEMENT_HEADING3));
+            saveTitle(convertToRteValue(audio.title, TextStyles.ELEMENT_HEADING3));
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
