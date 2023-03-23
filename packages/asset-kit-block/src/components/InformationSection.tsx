@@ -58,7 +58,7 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
                 ) : (
                     <RichTextEditor
                         designTokens={designTokens}
-                        value={title ?? convertToRteValue('', TextStyles.ELEMENT_HEADING3)}
+                        value={title ?? convertToRteValue(TextStyles.ELEMENT_HEADING3)}
                         onBlur={saveTitle}
                         placeholder="Add a title here ..."
                         border={false}
