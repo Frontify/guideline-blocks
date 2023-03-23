@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { convertToRTEValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { convertToRteValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     BoldPlugin,
     ItalicPlugin,
@@ -58,7 +58,7 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
                 ) : (
                     <RichTextEditor
                         designTokens={designTokens}
-                        value={title ?? convertToRTEValue('', TextStyles.ELEMENT_HEADING3)}
+                        value={title ?? convertToRteValue('', TextStyles.ELEMENT_HEADING3)}
                         onBlur={saveTitle}
                         placeholder="Add a title here ..."
                         border={false}

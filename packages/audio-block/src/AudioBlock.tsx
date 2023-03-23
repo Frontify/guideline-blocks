@@ -28,7 +28,7 @@ import {
 import {
     BlockItemWrapper,
     DownloadButton,
-    convertToRTEValue,
+    convertToRteValue,
     downloadAsset,
     hasRichTextValue,
     joinClassNames,
@@ -51,8 +51,8 @@ import { AUDIO_ID } from './settings';
 import { BlockAttachments, UploadPlaceholder } from './components';
 import { useEffect, useMemo, useState } from 'react';
 
-const DEFAULT_CONTENT_TITLE = convertToRTEValue('', TextStyles.ELEMENT_HEADING3);
-const DEFAULT_CONTENT_DESCRIPTION = convertToRTEValue('', TextStyles.ELEMENT_PARAGRAPH);
+const DEFAULT_CONTENT_TITLE = convertToRteValue('', TextStyles.ELEMENT_HEADING3);
+const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue('', TextStyles.ELEMENT_PARAGRAPH);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -104,7 +104,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(title)) {
-            saveTitle(convertToRTEValue(audio?.title, TextStyles.ELEMENT_HEADING3));
+            saveTitle(convertToRteValue(audio?.title, TextStyles.ELEMENT_HEADING3));
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);

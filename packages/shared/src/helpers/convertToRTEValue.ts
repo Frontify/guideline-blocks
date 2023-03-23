@@ -3,7 +3,7 @@
 import { TextStyles } from '@frontify/fondue';
 import { hasRichTextValue } from './hasRichTextValue';
 
-export const convertToRTEValue = (
+export const convertToRteValue = (
     text: string,
     textStyle: TextStyles,
     align?: 'center' | 'right' | 'left' | 'justify'
