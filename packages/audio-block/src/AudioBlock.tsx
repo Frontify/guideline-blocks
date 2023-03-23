@@ -11,7 +11,6 @@ import {
     IconArrowCircleUp20,
     IconImageStack20,
     IconTrashBin16,
-    IconTrashBin20,
     ItalicPlugin,
     LoadingCircle,
     PluginComposer,
@@ -171,13 +170,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                                 title: 'Replace with asset',
                                 icon: <IconImageStack20 />,
                                 onClick: openAssetChooser,
-                            },
-                        ],
-                        [
-                            {
-                                title: 'Delete',
-                                icon: <IconTrashBin20 />,
-                                onClick: () => onRemoveAsset(),
                             },
                         ],
                     ]}
