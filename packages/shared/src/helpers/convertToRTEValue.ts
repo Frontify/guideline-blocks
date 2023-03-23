@@ -7,8 +7,4 @@ export const convertToRteValue = (
     text: string,
     textStyle: TextStyles,
     align?: 'center' | 'right' | 'left' | 'justify'
-) => {
-    return hasRichTextValue(text)
-        ? text
-        : JSON.stringify([{ type: textStyle, children: [{ text: text ?? '' }], align }]);
-};
+) => (hasRichTextValue(text) ? text : JSON.stringify([{ type: textStyle, children: [{ text: text ?? '' }], align }]));

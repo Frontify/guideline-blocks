@@ -5,6 +5,7 @@ import { describe, expect, test } from 'vitest';
 import { convertToRteValue } from './convertToRteValue';
 
 describe('String converted to Richtext value', () => {
+    //
     test('It should return RTE value with corret textStyle', () => {
         const text = 'with text';
         const result = convertToRteValue(text, 'p' as TextStyles);
