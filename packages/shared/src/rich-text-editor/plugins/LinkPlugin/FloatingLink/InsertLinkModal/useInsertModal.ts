@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CheckboxState } from '@frontify/fondue';
 import {
     ELEMENT_LINK,
@@ -112,6 +113,8 @@ export const useInsertModal = () => {
         return !state.url || (isUrl && isUrl(state.url));
     };
 
+    const { appBridge } = getPluginOptions<{ appBridge: AppBridgeBlock }>(editor, ELEMENT_LINK);
+
     useHotkeys(
         'enter',
         onSave,
@@ -130,5 +133,6 @@ export const useInsertModal = () => {
         onSave,
         hasValues,
         isValidUrlOrEmpty,
+        appBridge,
     };
 };

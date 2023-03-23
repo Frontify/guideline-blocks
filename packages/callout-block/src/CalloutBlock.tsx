@@ -109,7 +109,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                         placeholder="Type your text here"
                         onTextChange={onTextChange}
                         onBlur={onTextChange}
-                        plugins={getRichTextEditorPlugins()}
+                        plugins={getRichTextEditorPlugins(appBridge)}
                     />
                 )}
             </div>

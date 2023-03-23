@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import {
     AlignCenterPlugin,
     AlignJustifyPlugin,
@@ -23,7 +24,7 @@ import {
 } from '@frontify/fondue';
 import { LinkPlugin } from '@frontify/guideline-blocks-shared';
 
-export const getRichTextEditorPlugins = () =>
+export const getRichTextEditorPlugins = (appBridge: AppBridgeBlock) =>
     new PluginComposer()
         .setPlugin(new SoftBreakPlugin(), new ParagraphPlugin())
         .setPlugin(new TextStylePlugin())
@@ -33,7 +34,7 @@ export const getRichTextEditorPlugins = () =>
                 new ItalicPlugin(),
                 new UnderlinePlugin(),
                 new StrikethroughPlugin(),
-                new LinkPlugin(),
+                new LinkPlugin({ appBridge }),
                 new ButtonPlugin(),
                 new CodePlugin(),
             ],

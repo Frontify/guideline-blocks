@@ -1,8 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Button, ButtonEmphasis, ButtonSize, ButtonStyle, ButtonType, IconLink, Modal, Tree } from '@frontify/fondue';
 import { useOverlayTriggerState } from '@react-stately/overlays';
 import React, { ReactElement } from 'react';
+import { DocumentLinks } from './DocumentLinks';
 
 // const TreeLinkItem = ({ node: { id, title, icon } }: TreeLinkItemProps): ReactElement => {
 //     const { treeState } = useTreeContext();
@@ -26,12 +28,13 @@ import React, { ReactElement } from 'react';
 // };
 
 type LinkSelectorProps = {
+    appBridge: AppBridgeBlock;
     url: string;
     onUrlChange: (value: string) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const LinkSelector = ({ url, onUrlChange }: LinkSelectorProps): ReactElement => {
+export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps): ReactElement => {
     const { open: openLinkTree, isOpen: isLinkTreeOpen, close: closeLinkTree } = useOverlayTriggerState({});
     const [selectedId, setSelectedId] = React.useState<string | null>(null);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -71,7 +74,7 @@ export const LinkSelector = ({ url, onUrlChange }: LinkSelectorProps): ReactElem
                             expandedIds={expandedIds}
                             // onExpand={(id, isExpanded) => {}}
                         >
-                            <div>foo</div>
+                            <DocumentLinks appBridge={appBridge} />
                         </Tree>
                     </div>
                 </Modal.Body>

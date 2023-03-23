@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import {
     Button,
     ButtonEmphasis,
@@ -26,6 +27,7 @@ type Props = {
     isValidUrlOrEmpty: () => boolean | undefined;
     testId?: string;
     children?: React.ReactNode;
+    appBridge: AppBridgeBlock;
 };
 
 export const InsertModal: FC<Props> = ({
@@ -38,6 +40,7 @@ export const InsertModal: FC<Props> = ({
     isValidUrlOrEmpty,
     hasValues,
     testId,
+    appBridge,
     children,
 }) => (
     <div data-test-id={testId} className="tw-bg-white tw-rounded tw-shadow tw-p-7 tw-min-w-[400px] tw-overflow-y-auto">
@@ -74,7 +77,7 @@ export const InsertModal: FC<Props> = ({
         </div>
 
         <div className="tw-mt-3">
-            <LinkSelector url={state.url} onUrlChange={onUrlChange} />
+            <LinkSelector url={state.url} appBridge={appBridge} onUrlChange={onUrlChange} />
         </div>
 
         <div className="tw-mt-3">
