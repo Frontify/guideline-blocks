@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export * from './convertToRteValue';
+export * from './convertToRichTextValue';
 export * from './defaultTokens';
 export * from './downloadAsset';
 export * from './hasRichTextValue';

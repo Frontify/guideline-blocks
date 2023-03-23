@@ -2,7 +2,7 @@
 
 import type { TextStyles } from '@frontify/fondue';
 import { describe, expect, test } from 'vitest';
-import { convertToRteValue } from './convertToRteValue';
+import { convertToRteValue } from './convertToRichTextValue';
 
 describe('String converted to Richtext value', () => {
     //
