@@ -1,4 +1,4 @@
-/* (c) Copyright Frontify Ltd., all rights reserved. */
+/* (c) Copyright Frontify Ltd., all right reserved. */
 
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
