@@ -49,7 +49,7 @@
         "@dnd-kit/modifiers": "6.0.1",
         "@dnd-kit/sortable": "7.0.1",
         "@frontify/app-bridge": "3.0.0-beta.56",
-        "@frontify/fondue": "12.0.0-beta.147",
+        "@frontify/fondue": "12.0.0-beta.159",
         "@frontify/guideline-blocks-settings": "0.25.10",
         "@react-aria/focus": "3.11.0",
         "tinycolor2": "1.4.2"
