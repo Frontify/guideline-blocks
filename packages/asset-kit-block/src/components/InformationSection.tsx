@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { convertToRteValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     BoldPlugin,
     ItalicPlugin,
@@ -10,6 +10,7 @@ import {
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
+    TextStyles,
     UnderlinePlugin,
     parseRawValue,
     serializeRawToHtml,
@@ -17,8 +18,6 @@ import {
 import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import { InformationSectionProps } from '../types';
 import { useMemo } from 'react';
-
-const DEFAULT_CONTENT_VALUE = '[{"type":"heading3","children":[{"text":""}]}]';
 
 export const InformationSection = ({ description, isEditing, setBlockSettings, title }: InformationSectionProps) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -59,7 +58,7 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
                 ) : (
                     <RichTextEditor
                         designTokens={designTokens}
-                        value={title ?? DEFAULT_CONTENT_VALUE}
+                        value={title ?? convertToRteValue(TextStyles.ELEMENT_HEADING3)}
                         onBlur={saveTitle}
                         placeholder="Add a title here ..."
                         border={false}

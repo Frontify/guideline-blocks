@@ -3,7 +3,6 @@
 import { describe, expect, test } from 'vitest';
 import { hasRichTextValue } from './hasRichTextValue';
 
-//test more cases
 describe('Richtext has value', () => {
     // Check if richtext has value
     test('It should return true if Richtext has value', () => {
