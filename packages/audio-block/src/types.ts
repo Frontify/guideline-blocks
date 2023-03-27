@@ -8,6 +8,7 @@ export enum TextPosition {
 }
 
 export type BlockSettings = {
+    downloadable: boolean;
     positioning: TextPosition;
     description?: string;
     title?: string;
@@ -22,12 +23,6 @@ export type UploadPlaceholderProps = {
     onAssetChooseClick: () => void;
     onFilesDrop: (files: FileList) => void;
     loading: boolean;
-};
-
-export type ItemToolbarProps = {
-    onRemoveAsset: () => void;
-    onUploadClick: () => void;
-    onAssetChooseClick: () => void;
 };
 
 export enum AudioSecurity {

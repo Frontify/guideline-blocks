@@ -9,9 +9,11 @@ import { AUDIO_ID } from './settings';
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
 const UploadPlaceholderSelector = '[data-test-id="block-inject-button"]';
-const ItemToolbarSelector = '[data-test-id="item-toolbar"]';
-const AudioBlockTitleSelector = '[data-test-id="audio-block-title"]';
-const AudioBlockDescriptionSelector = '[data-test-id="audio-block-description"]';
+const AudioBlockTitleHtmlSelector = '[data-test-id="block-title-html"]';
+const AudioBlockDescriptionHtmlSelector = '[data-test-id="block-description-html"]';
+
+const Title = '[{"type":"heading3","children":[{"text":"Audio Title"}]}]';
+const Description = '[{"type":"p","children":[{"text":"Audio Description"}]}]';
 
 describe('Audio Block', () => {
     it('renders an empty audio block in view mode', () => {
@@ -61,7 +63,7 @@ describe('Audio Block', () => {
         const asset = AssetDummy.with(312);
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             blockSettings: {
-                title: 'Audio Title',
+                title: Title,
             },
             blockAssets: {
                 [AUDIO_ID]: [asset],
@@ -69,14 +71,14 @@ describe('Audio Block', () => {
         });
 
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockSelector).contains('Audio Title').should('exist');
+        cy.get(AudioBlockTitleHtmlSelector).contains('Audio Title').should('exist');
     });
 
     it('renders an audio block with an audio asset in view mode with description', () => {
         const asset = AssetDummy.with(312);
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             blockSettings: {
-                description: 'Audio Description',
+                description: Description,
             },
             blockAssets: {
                 [AUDIO_ID]: [asset],
@@ -84,15 +86,15 @@ describe('Audio Block', () => {
         });
 
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockDescriptionSelector).should('exist');
+        cy.get(AudioBlockDescriptionHtmlSelector).should('exist');
     });
 
     it('renders an audio block with an audio asset in view mode with title and description', () => {
         const asset = AssetDummy.with(312);
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             blockSettings: {
-                title: 'Audio Title',
-                description: 'Audio Description',
+                title: Title,
+                description: Description,
             },
             blockAssets: {
                 [AUDIO_ID]: [asset],
@@ -100,8 +102,8 @@ describe('Audio Block', () => {
         });
 
         mount(<AudioBlockWithStubs />);
-        cy.get(AudioBlockTitleSelector).should('exist');
-        cy.get(AudioBlockDescriptionSelector).should('exist');
+        cy.get(AudioBlockTitleHtmlSelector).should('exist');
+        cy.get(AudioBlockDescriptionHtmlSelector).should('exist');
     });
 
     it('renders an audio block with an audio asset in view mode with text position above', () => {
@@ -130,20 +132,5 @@ describe('Audio Block', () => {
         });
         mount(<AudioBlockWithStubs />);
         cy.get(AudioBlockSelector).should('have.css', 'flex-direction', 'column');
-    });
-
-    it('renders an audio block with an audio asset in editor mode toolbar is shown on hover', () => {
-        const asset = AssetDummy.with(312);
-        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
-            editorState: true,
-            blockAssets: {
-                [AUDIO_ID]: [asset],
-            },
-        });
-
-        mount(<AudioBlockWithStubs />);
-
-        cy.get(AudioTagSelector).realHover();
-        cy.get(ItemToolbarSelector).should('be.visible');
     });
 });
