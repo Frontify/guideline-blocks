@@ -16,6 +16,7 @@ import {
 const ImageBlockSelector = '[data-test-id="image-block"]';
 const ImageBlockImageWrapperSelector = '[data-test-id="image-block-img-wrapper"]';
 const ImageBlockImageSelector = '[data-test-id="image-block-img"]';
+const ImageBlockCaption = '[data-test-id="image-caption"]';
 const PlaceholderSelector = '[data-test-id="block-inject-button"]';
 const DownloadSelector = '[data-test-id="download-button"]';
 const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
@@ -84,31 +85,21 @@ describe('Image Block', () => {
     it('should render the title if it is provided', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockSettings: {
-                name: 'Test Name',
+                name: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Name' }] }]),
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).should('contain.text', 'Test Name');
-    });
-
-    it('should render the file name if no title is provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
-            blockAssets: {
-                [IMAGE_ID]: [AssetDummy.with(1)],
-            },
-        });
-        mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).should('contain.text', 'fileName.png');
+        cy.get(ImageBlockCaption).should('contain.text', 'Test Name');
     });
 
     it('should render the description if it is provided', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockSettings: {
-                description: 'Test Description',
+                description: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Description' }] }]),
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).should('contain.text', 'Test Description');
+        cy.get(ImageBlockCaption).should('contain.text', 'Test Description');
     });
 
     it('should be a link if it is provided', () => {

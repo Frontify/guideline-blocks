@@ -29,7 +29,7 @@ export const ImageCaption = ({
     const descriptionHtml = serializeRawToHtml(rawDescription, designTokens);
 
     return (
-        <div className="tw-mt-3 tw-gap-1 tw-flex-1 tw-w-full">
+        <div className="tw-mt-3 tw-gap-1 tw-flex-1 tw-w-full" data-test-id="image-caption">
             {isEditing ? (
                 <>
                     <RichTextEditor
