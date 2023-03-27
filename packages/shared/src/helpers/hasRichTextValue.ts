@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export const hasRichTextValue = (string?: string) => {
+export const hasRichTextValue = (string?: string): boolean => {
     if (!string) {
         return false;
     }
