@@ -150,7 +150,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                     toolbarItems={[]}
                 >
                     {isLoading ? (
-                        <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
+                        <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
                             <LoadingCircle />
                         </div>
                     ) : (
