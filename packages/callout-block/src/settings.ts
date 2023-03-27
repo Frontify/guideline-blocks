@@ -244,7 +244,6 @@ export const settings = defineSettings({
             link: {
                 label: 'This has been defined in the Global Settings. View or change it [here].',
                 replace: '[here]',
-                type: 'internal',
                 event: 'sidebar.open',
             },
             styles: {

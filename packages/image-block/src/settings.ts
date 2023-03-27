@@ -203,7 +203,6 @@ export const settings = defineSettings({
             link: {
                 label: 'Change global settings [here].',
                 replace: '[here]',
-                type: 'internal',
                 event: 'sidebar.open',
             },
         },
