@@ -53,14 +53,12 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const saveTitle = (name: string) => {
         if (name !== blockSettings.name) {
             setBlockSettings({ name });
-            console.log('saved name', name);
         }
     };
 
     const updateImage = async (image: Asset) => {
         setErrorMsg(undefined);
         if (!hasRichTextValue(name)) {
-            console.log('saved Title');
             saveTitle(convertToRteValue(TextStyles.ELEMENT_IMAGE_TITLE, image?.title, 'center'));
         }
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
