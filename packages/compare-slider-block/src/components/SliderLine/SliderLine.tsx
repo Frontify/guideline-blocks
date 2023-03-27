@@ -13,13 +13,26 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
                   borderLeftWidth: sliderWidth,
                   borderLeftColor: toRgbaString(sliderColor),
                   borderLeftStyle: sliderStyle as unknown,
-                  outline: `1px solid ${isDark(sliderColor) ? 'white' : 'black'}`,
               }
             : {
                   borderTopWidth: sliderWidth,
                   borderTopColor: toRgbaString(sliderColor),
                   borderTopStyle: sliderStyle as unknown,
-                  outline: `1px solid ${isDark(sliderColor) ? 'white' : 'black'}`,
+              };
+    };
+
+    const getContrastStyle = () => {
+        const sliderWidthValue = +sliderWidth?.split('px')[0] || 0;
+        return alignment === Alignment.Horizontal
+            ? {
+                  display: !sliderWidthValue ? 'none' : 'block',
+                  width: sliderWidthValue + 2,
+                  background: isDark(sliderColor) ? 'white' : 'black',
+              }
+            : {
+                  display: !sliderWidthValue ? 'none' : 'block',
+                  height: sliderWidthValue + 2,
+                  background: isDark(sliderColor) ? 'white' : 'black',
               };
     };
 
@@ -82,16 +95,26 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
             className={joinClassNames([
                 ' tw-flex tw-justify-center tw-items-center tw-absolute',
                 alignment === Alignment.Horizontal
-                    ? ' tw-h-full tw-w-[12px] -tw-translate-x-1/2 tw-cursor-ew-resize'
-                    : ' tw-w-full tw-h-[12px] -tw-translate-y-1/2 tw-cursor-ns-resize',
+                    ? ' tw-h-full tw-w-3 -tw-translate-x-1/2 tw-cursor-ew-resize'
+                    : ' tw-w-full tw-h-3 -tw-translate-y-1/2 tw-cursor-ns-resize',
             ])}
         >
+            <div
+                style={getContrastStyle()}
+                className={joinClassNames([
+                    alignment === Alignment.Horizontal ? 'tw-h-full' : 'tw-w-full',
+                    'tw-absolute',
+                ])}
+            />
             <div
                 style={{
                     ...(getSliderStyle() as CSSProperties),
                 }}
-                className={joinClassNames([alignment === Alignment.Horizontal ? 'tw-h-full' : 'tw-w-full'])}
-            />
+                className={joinClassNames([
+                    alignment === Alignment.Horizontal ? 'tw-h-full' : 'tw-w-full',
+                    'tw-relative',
+                ])}
+            ></div>
             <div
                 className="tw-absolute"
                 style={{ transform: `rotate(${alignment === Alignment.Horizontal ? 0 : 90}deg)` }}

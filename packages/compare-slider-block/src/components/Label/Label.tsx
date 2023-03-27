@@ -28,7 +28,7 @@ export const Label = ({ designTokens, onBlur, value, isEditing }: LabelProps) =>
         <div
             data-test-id="compare-slider-block-label-wrapper"
             className={joinClassNames([
-                'tw-max-w-full tw-px-2 tw-py-1 tw-bg-white/80 tw-rounded-sm tw-text-black tw-text-sm tw-select-text',
+                'tw-max-w-full tw-p-2 tw-bg-white/80 tw-rounded-sm tw-text-black tw-text-sm tw-select-text',
             ])}
         >
             {isEditing ? richTextEditor : <div dangerouslySetInnerHTML={{ __html: valueHtml }} />}

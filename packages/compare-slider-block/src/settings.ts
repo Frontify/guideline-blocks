@@ -15,7 +15,16 @@ import {
 } from '@frontify/guideline-blocks-settings';
 
 import { BorderStyle, getBorderRadiusSettings, getBorderSettings } from '../../shared';
-import { Alignment, Handle, Height, InheritSettings, LabelPlacement, heightMapWithPixel } from './types';
+import {
+    Alignment,
+    FIRST_ASSET_ID,
+    Handle,
+    Height,
+    InheritSettings,
+    LabelPlacement,
+    SECOND_ASSET_ID,
+    heightMapWithPixel,
+} from './types';
 import { FileExtensionSets } from '@frontify/app-bridge';
 
 export const settings = defineSettings({
@@ -41,10 +50,10 @@ export const settings = defineSettings({
         {
             id: 'firstAssetSection',
             type: 'sectionHeading',
-            label: 'First Image',
+            label: 'First image',
             blocks: [
                 {
-                    id: 'firstAsset',
+                    id: FIRST_ASSET_ID,
                     type: 'assetInput',
                     label: '',
                     size: AssetInputSize.Small,
@@ -63,12 +72,11 @@ export const settings = defineSettings({
         {
             id: 'secondAssetSection',
             type: 'sectionHeading',
-            label: 'Second Image',
+            label: 'Second image',
             blocks: [
                 {
-                    id: 'secondAsset',
+                    id: SECOND_ASSET_ID,
                     type: 'assetInput',
-                    label: 'Second Image',
                     size: AssetInputSize.Small,
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets['Images'],
@@ -86,7 +94,7 @@ export const settings = defineSettings({
         {
             id: 'contentBlockSection',
             type: 'sectionHeading',
-            label: 'Content block',
+            label: 'Block',
             blocks: [
                 {
                     id: 'hasCustomHeight',
@@ -139,7 +147,7 @@ export const settings = defineSettings({
             show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Horizontal,
             blocks: [
                 {
-                    id: 'firstAssetLabelPlacement_horizontal',
+                    id: 'firstAssetLabelPlacementHorizontal',
                     type: 'slider',
                     label: 'Label position',
                     defaultValue: LabelPlacement.Top,
@@ -167,7 +175,7 @@ export const settings = defineSettings({
             show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Vertical,
             blocks: [
                 {
-                    id: 'firstAssetLabelPlacement_vertical',
+                    id: 'firstAssetLabelPlacementVertical',
                     type: 'slider',
                     label: 'Label position',
                     defaultValue: LabelPlacement.Left,
@@ -195,7 +203,7 @@ export const settings = defineSettings({
             show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Horizontal,
             blocks: [
                 {
-                    id: 'secondAssetLabelPlacement_horizontal',
+                    id: 'secondAssetLabelPlacementHorizontal',
                     type: 'slider',
                     show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Horizontal,
                     defaultValue: LabelPlacement.Top,
@@ -224,7 +232,7 @@ export const settings = defineSettings({
             show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Vertical,
             blocks: [
                 {
-                    id: 'secondAssetLabelPlacement_vertical',
+                    id: 'secondAssetLabelPlacementVertical',
                     type: 'slider',
                     defaultValue: LabelPlacement.Left,
                     label: 'Label position',

@@ -2,25 +2,51 @@
 
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ReactNode } from 'react';
-import { Alignment } from '../../types';
+import {
+    Alignment,
+    LabelPlacement,
+    SliderImageSlot,
+    horizontalLabelPlacementStyleMap,
+    verticalLabelPlacementStyleMap,
+} from '../../types';
 
 export const LabelWrapper = ({
     children,
-    top,
-    bottom,
-    left,
-    right,
+    slot,
+    firstAssetLabelPlacementHorizontal,
+    firstAssetLabelPlacementVertical,
+    secondAssetLabelPlacementHorizontal,
+    secondAssetLabelPlacementVertical,
     borderRadius,
     alignment,
 }: {
     children: ReactNode;
-    right?: number;
-    left?: number;
-    top?: number;
-    bottom?: number;
+    slot: SliderImageSlot;
     borderRadius: string;
     alignment: Alignment;
+    firstAssetLabelPlacementVertical: LabelPlacement;
+    secondAssetLabelPlacementVertical: LabelPlacement;
+    secondAssetLabelPlacementHorizontal: LabelPlacement;
+    firstAssetLabelPlacementHorizontal: LabelPlacement;
 }) => {
+    const verticalPlacement =
+        slot === SliderImageSlot.First ? firstAssetLabelPlacementVertical : secondAssetLabelPlacementVertical;
+    const horizontalPlacement =
+        slot === SliderImageSlot.First ? firstAssetLabelPlacementHorizontal : secondAssetLabelPlacementHorizontal;
+
+    let left = alignment === Alignment.Vertical ? verticalLabelPlacementStyleMap[verticalPlacement]?.left : 0;
+    let right = alignment === Alignment.Vertical ? verticalLabelPlacementStyleMap[verticalPlacement]?.right : undefined;
+    let top = alignment === Alignment.Vertical ? 0 : horizontalLabelPlacementStyleMap[horizontalPlacement]?.top;
+    let bottom =
+        alignment === Alignment.Vertical ? undefined : horizontalLabelPlacementStyleMap[horizontalPlacement]?.bottom;
+
+    if (slot === SliderImageSlot.Second) {
+        left = alignment === Alignment.Vertical ? verticalLabelPlacementStyleMap[verticalPlacement]?.left : undefined;
+        right = alignment === Alignment.Vertical ? verticalLabelPlacementStyleMap[verticalPlacement]?.right : 0;
+        top = alignment === Alignment.Vertical ? undefined : horizontalLabelPlacementStyleMap[horizontalPlacement]?.top;
+        bottom = alignment === Alignment.Vertical ? 0 : horizontalLabelPlacementStyleMap[horizontalPlacement]?.bottom;
+    }
+
     const minPadding = 8;
     const borderRadiusValue = left === 50 || top === 50 ? 0 : +borderRadius?.split('px')[0] || 0;
     const paddingBecauseOfBorderRadius = borderRadiusValue - borderRadiusValue / Math.sqrt(2);

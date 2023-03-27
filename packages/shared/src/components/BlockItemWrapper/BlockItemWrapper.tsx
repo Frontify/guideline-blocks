@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { joinClassNames } from '../../utilities';
 import Toolbar from './Toolbar';
 import { BlockItemWrapperProps } from './types';
@@ -17,6 +17,7 @@ export const BlockItemWrapper = ({
 }: PropsWithChildren<BlockItemWrapperProps>) => {
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
     const [isFlyoutDisabled, setIsFlyoutDisabled] = useState(false);
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!isFlyoutOpen) {
@@ -25,12 +26,19 @@ export const BlockItemWrapper = ({
         }
     }, [isFlyoutOpen]);
 
+    const handlePointerLeave = () => {
+        if (wrapperRef.current?.contains(document.activeElement)) {
+            (document.activeElement as HTMLElement).blur();
+        }
+    };
+
     return (
         <div
             tabIndex={0}
+            ref={wrapperRef}
             onFocus={() => setIsFlyoutDisabled(false)}
             onPointerEnter={() => setIsFlyoutDisabled(false)}
-            onPointerLeave={() => (document.activeElement as HTMLElement).blur()}
+            onPointerLeave={handlePointerLeave}
             data-test-id="block-item-wrapper"
             style={{
                 outlineOffset,

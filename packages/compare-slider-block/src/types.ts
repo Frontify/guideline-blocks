@@ -1,7 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { Asset } from '@frontify/app-bridge';
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, DesignTokenName, Radius, TokenValues } from '@frontify/guideline-blocks-shared';
+import { CSSProperties } from 'react';
+
+export const FIRST_ASSET_ID = 'firstAsset';
+export const SECOND_ASSET_ID = 'secondAsset';
 
 export type BlockSettings = {
     alignment: Alignment;
@@ -20,12 +25,12 @@ export type BlockSettings = {
     radiusChoice: Radius;
 
     firstAssetLabel: string;
-    firstAssetLabelPlacement_horizontal: LabelPlacement;
-    firstAssetLabelPlacement_vertical: LabelPlacement;
+    firstAssetLabelPlacementHorizontal: LabelPlacement;
+    firstAssetLabelPlacementVertical: LabelPlacement;
 
     secondAssetLabel: string;
-    secondAssetLabelPlacement_horizontal: LabelPlacement;
-    secondAssetLabelPlacement_vertical: LabelPlacement;
+    secondAssetLabelPlacementHorizontal: LabelPlacement;
+    secondAssetLabelPlacementVertical: LabelPlacement;
 
     handle: Handle;
 
@@ -135,4 +140,26 @@ export type HandleProps = {
     sliderWidth: string;
     sliderStyle: BorderStyle;
     alignment: Alignment;
+};
+
+export type UploadViewProps = {
+    alignment: Alignment;
+    firstAssetPreviewUrl?: string;
+    secondAssetPreviewUrl?: string;
+    openAssetChooser: (slot: SliderImageSlot) => void;
+    startFileDialogUpload: (slot: SliderImageSlot) => void;
+    startDragAndDropUpload: (files: FileList, slot: SliderImageSlot) => void;
+    isFirstAssetLoading: boolean;
+    isSecondAssetLoading: boolean;
+};
+
+export type EditorOverlayProps = {
+    alignment: Alignment;
+    firstAsset: Asset[];
+    secondAsset: Asset[];
+    openAssetChooser: (slot: SliderImageSlot) => void;
+    startFileDialogUpload: (slot: SliderImageSlot) => void;
+    handleAssetDelete: (key: string, id: number) => void;
+    borderStyle: CSSProperties;
+    renderLabel: (slot: SliderImageSlot) => JSX.Element;
 };
