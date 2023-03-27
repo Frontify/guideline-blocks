@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { DEFAULT_CONTENT_DESCRIPTION, DEFAULT_CONTENT_NAME, captionPlugins, titlePlugins } from './helpers';
+import { RichTextEditor, TextStyles, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
+import { convertToRteValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { captionPlugins, titlePlugins } from './helpers';
 
 type ImageCaptionProps = {
     name?: string;
@@ -34,17 +34,17 @@ export const ImageCaption = ({
                 <>
                     <RichTextEditor
                         id={`${blockId}_title`}
-                        value={name ?? DEFAULT_CONTENT_NAME}
+                        value={name ?? convertToRteValue(TextStyles.ELEMENT_IMAGE_TITLE, '', 'center')}
                         border={false}
                         onBlur={onNameChange}
-                        onTextChange={onNameChange}
                         plugins={titlePlugins}
                         designTokens={designTokens}
                         placeholder="Asset name"
+                        updateValueOnChange
                     />
                     <RichTextEditor
                         id={`${blockId}_description`}
-                        value={description ?? DEFAULT_CONTENT_DESCRIPTION}
+                        value={description ?? convertToRteValue(TextStyles.ELEMENT_IMAGE_CAPTION, '', 'center')}
                         border={false}
                         onTextChange={onDescriptionChange}
                         onBlur={onDescriptionChange}
@@ -55,8 +55,8 @@ export const ImageCaption = ({
                 </>
             ) : (
                 <>
-                    <div dangerouslySetInnerHTML={{ __html: nameHtml }} />
-                    <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+                    {hasRichTextValue(name) && <div dangerouslySetInnerHTML={{ __html: nameHtml }} />}
+                    {hasRichTextValue(description) && <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />}
                 </>
             )}
         </div>
