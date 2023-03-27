@@ -63,7 +63,7 @@ export const settings = defineSettings({
             },
             link: {
                 label: 'Follow our guide for image resolution',
-                href: 'https://help.frontify.com/en/articles/4889509-what-is-the-correct-pixel-density-for-my-image',
+                href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
                 target: '_blank',
             },
         },
