@@ -118,6 +118,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 appBridge.closeAssetChooser();
             },
             {
+                selectedValueId: blockAssets[AUDIO_ID]?.[0]?.id,
                 objectTypes: [AssetChooserObjectType.File],
                 extensions: FileExtensionSets.Audio,
             }
@@ -126,7 +127,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const onFilesDrop = (files: FileList) => {
         if (files) {
-            const droppedFileExtension = files[0].name.split('.').pop() as FileExtension;
+            const droppedFileExtension = files[0].name.split('.').pop()?.toLocaleLowerCase() as FileExtension;
             if (FileExtensionSets.Audio.includes(droppedFileExtension)) {
                 setIsLoading(true);
                 uploadFile(files[0]);
