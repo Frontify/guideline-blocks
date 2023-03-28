@@ -218,7 +218,7 @@ describe('Gradient Block', () => {
 
         mount(<GradientBlockWithStubs />);
 
-        cy.get(CssCopyButtonSelector).click();
+        cy.get(CssCopyButtonSelector).click({ force: true });
         cy.get(CssCopyButtonSelector).should('contain', 'Copied');
     });
 

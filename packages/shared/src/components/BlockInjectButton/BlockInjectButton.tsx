@@ -24,6 +24,7 @@ export const BlockInjectButton = ({
     onUploadClick,
     withMenu = true,
     onClick,
+    verticalLayout,
 }: BlockInjectButtonProps) => {
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [menuPosition, setMenuPosition] = useState<[number, number] | undefined>();
@@ -45,12 +46,18 @@ export const BlockInjectButton = ({
         setMenuPosition([XInsideComponent, YInsideComponent]);
     };
 
+    const horizontalGroupStyles =
+        '[&:not(:first-child)]:tw-border-l-0  first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br';
+    const verticalGroupStyles =
+        '[&:not(:first-child)]:tw-border-t-0  first:tw-rounded-tl first:tw-rounded-tr last:tw-rounded-br last:tw-rounded-bl';
+
     return (
         <button
             ref={buttonRef}
             data-test-id="block-inject-button"
             className={joinClassNames([
-                ' tw-font-body tw-relative tw-text-[14px] tw-leading-4 tw-text-text-weak tw-border [&:not(:first-child)]:tw-border-l-0 first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
+                ' tw-font-body tw-relative tw-text-[14px] tw-leading-4 tw-text-text-weak tw-border tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-gap-3 tw-w-full',
+                verticalLayout ? verticalGroupStyles : horizontalGroupStyles,
                 !isLoading &&
                     'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover',
                 isDraggingOver && '[&>*]:tw-pointer-events-none',

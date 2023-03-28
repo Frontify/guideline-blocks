@@ -8,6 +8,8 @@ export type BlockItemWrapperProps = {
     toolbarItems: ToolbarItem[];
     toolbarFlyoutItems: FlyoutToolbarItem[][];
     isDragging?: boolean;
+    shouldFillContainer?: boolean;
+    outlineOffset?: number;
 };
 
 export type ToolbarProps = {
@@ -16,6 +18,7 @@ export type ToolbarProps = {
     isFlyoutOpen: boolean;
     setIsFlyoutOpen: (isOpen: boolean) => void;
     isDragging?: boolean;
+    isFlyoutDisabled?: boolean;
 };
 
 type BaseToolbarItem = {
