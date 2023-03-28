@@ -3,7 +3,7 @@
 import { Asset } from '@frontify/app-bridge';
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, DesignTokenName, Radius, TokenValues } from '@frontify/guideline-blocks-shared';
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 export const FIRST_ASSET_ID = 'firstAsset';
 export const SECOND_ASSET_ID = 'secondAsset';
@@ -162,4 +162,24 @@ export type EditorOverlayProps = {
     handleAssetDelete: (key: string, id: number) => void;
     borderStyle: CSSProperties;
     renderLabel: (slot: SliderImageSlot) => JSX.Element;
+};
+
+export type StrikethroughWrapperProps = {
+    children: ReactNode;
+    alignment: Alignment;
+    slot: SliderImageSlot;
+    borderRadius: string;
+    hasStrikeThrough: boolean;
+    currentSliderPosition: number;
+};
+
+export type LabelWrapperProps = {
+    children: ReactNode;
+    slot: SliderImageSlot;
+    borderRadius: string;
+    alignment: Alignment;
+    firstAssetLabelPlacementVertical: LabelPlacement;
+    secondAssetLabelPlacementVertical: LabelPlacement;
+    secondAssetLabelPlacementHorizontal: LabelPlacement;
+    firstAssetLabelPlacementHorizontal: LabelPlacement;
 };

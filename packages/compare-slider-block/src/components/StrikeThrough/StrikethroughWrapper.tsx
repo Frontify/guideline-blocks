@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactNode } from 'react';
-import { Alignment, SliderImageSlot } from '../../types';
+import { Alignment, SliderImageSlot, StrikethroughWrapperProps } from '../../types';
 
 export const StrikethroughWrapper = ({
     children,
@@ -10,14 +9,7 @@ export const StrikethroughWrapper = ({
     slot,
     hasStrikeThrough,
     currentSliderPosition,
-}: {
-    children: ReactNode;
-    alignment: Alignment;
-    slot: SliderImageSlot;
-    borderRadius: string;
-    hasStrikeThrough: boolean;
-    currentSliderPosition: number;
-}) => {
+}: StrikethroughWrapperProps) => {
     let top = 0;
     let left = 0;
     let height = alignment === Alignment.Horizontal ? 100 : currentSliderPosition;

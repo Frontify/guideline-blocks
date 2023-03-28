@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
-import { ReactNode } from 'react';
 import {
     Alignment,
-    LabelPlacement,
+    LabelWrapperProps,
     SliderImageSlot,
     horizontalLabelPlacementStyleMap,
     verticalLabelPlacementStyleMap,
@@ -19,16 +18,7 @@ export const LabelWrapper = ({
     secondAssetLabelPlacementVertical,
     borderRadius,
     alignment,
-}: {
-    children: ReactNode;
-    slot: SliderImageSlot;
-    borderRadius: string;
-    alignment: Alignment;
-    firstAssetLabelPlacementVertical: LabelPlacement;
-    secondAssetLabelPlacementVertical: LabelPlacement;
-    secondAssetLabelPlacementHorizontal: LabelPlacement;
-    firstAssetLabelPlacementHorizontal: LabelPlacement;
-}) => {
+}: LabelWrapperProps) => {
     const verticalPlacement =
         slot === SliderImageSlot.First ? firstAssetLabelPlacementVertical : secondAssetLabelPlacementVertical;
     const horizontalPlacement =

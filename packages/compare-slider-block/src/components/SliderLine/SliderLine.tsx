@@ -107,9 +107,7 @@ export const SliderLine = ({ handle, alignment, sliderColor, sliderStyle, slider
                 ])}
             />
             <div
-                style={{
-                    ...(getSliderStyle() as CSSProperties),
-                }}
+                style={getSliderStyle() as CSSProperties}
                 className={joinClassNames([
                     alignment === Alignment.Horizontal ? 'tw-h-full' : 'tw-w-full',
                     'tw-relative',

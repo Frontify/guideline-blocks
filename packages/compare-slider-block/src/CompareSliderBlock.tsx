@@ -186,7 +186,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         );
     };
 
-    const calculateAutoImageHeight = (): number | undefined => {
+    const calculateAutoImageHeight = (): number => {
         if (!firstAsset || !secondAsset) {
             return 0;
         }
@@ -194,7 +194,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         const currentSliderWidth = sliderRef.current?.clientWidth;
 
         if (!currentSliderWidth) {
-            return undefined;
+            return 0;
         }
 
         const assetWithSmallerAspectRatio =
@@ -207,7 +207,19 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
         );
     };
 
-    const getImageHeight = (): number | undefined => {
+    const getUploadViewHeight = (): number => {
+        if (hasCustomHeight) {
+            return parseInt(customHeight);
+        }
+
+        if (height !== Height.Auto) {
+            return heightMap[height];
+        }
+
+        return heightMap.m;
+    };
+
+    const getImageHeight = (): number => {
         if (hasCustomHeight) {
             return parseInt(customHeight);
         }
@@ -297,7 +309,12 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
 
     if (isEditing && (!firstAsset || !secondAsset)) {
         return (
-            <div className="tw-h-[500px] tw-flex">
+            <div
+                style={{
+                    height: getUploadViewHeight(),
+                }}
+                className="tw-flex"
+            >
                 <UploadView
                     alignment={alignment}
                     isFirstAssetLoading={isFirstAssetLoading}

@@ -18,12 +18,10 @@ export const EditorOverlay = ({
         <>
             <div
                 style={{
-                    left: 0,
-                    top: 0,
                     width: alignment === Alignment.Vertical ? '100%' : '50%',
                     height: alignment === Alignment.Vertical ? '50%' : '100%',
                 }}
-                className="tw-absolute tw-flex tw-top-0"
+                className="tw-absolute tw-flex tw-top-0 tw-left-0"
             >
                 <BlockItemWrapper
                     shouldFillContainer
