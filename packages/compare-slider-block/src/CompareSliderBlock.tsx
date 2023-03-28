@@ -187,13 +187,8 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     };
 
     const calculateAutoImageHeight = (): number => {
-        if (!firstAsset || !secondAsset) {
-            return 0;
-        }
-
         const currentSliderWidth = sliderRef.current?.clientWidth;
-
-        if (!currentSliderWidth) {
+        if (!firstAsset || !secondAsset || !currentSliderWidth) {
             return 0;
         }
 
