@@ -3,7 +3,7 @@ import { joinClassNames } from "@frontify/guideline-blocks-shared";
 import {
     AssetDropzoneStyling,
     BackgroundActive,
-    BackgroundIdle,
+    BackgroundBase,
     contentCenter,
 } from "./styling";
 
@@ -56,7 +56,7 @@ export const AssetDropzone: FC<AssetDropzoneProps> = ({
         <button
             className={joinClassNames([
                 AssetDropzoneStyling,
-                !highlight ? BackgroundIdle : BackgroundActive,
+                !highlight ? BackgroundBase : BackgroundActive,
             ])}
             onDragOver={handleDropOver}
             onDragLeave={handleDragLeave}

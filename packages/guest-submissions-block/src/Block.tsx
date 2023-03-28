@@ -40,7 +40,7 @@ export const AnExampleBlock: FC<BlockProps> = ({ appBridge }) => {
                 </Stack>
             </AssetDropzone>
             <UploadFileList entries={adaptFilesToUploadList(fileList)} />
-            {/*uploading files - name / Email - Metadata - Submit Discard*/}
+            {/* uploading files - name / Email - Metadata - Submit Discard*/}
         </Stack>
     );
 };
