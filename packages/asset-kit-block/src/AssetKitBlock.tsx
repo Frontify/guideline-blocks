@@ -3,7 +3,7 @@
 import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import {
     BulkDownloadState,
@@ -18,6 +18,7 @@ import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from '
 import { blockStyle } from './helpers';
 
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
+    const screenReaderRef = useRef<HTMLDivElement>(null);
     const { designTokens } = useGuidelineDesignTokens();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -27,12 +28,17 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
 
-    const downloadAssets = async () => {
+    const startDownload = () => {
         if (downloadUrlBlock) {
-            window.open(downloadUrlBlock, '_blank');
+            downloadAssets(downloadUrlBlock);
         } else {
             generateBulkDownload(currentAssets.map((asset) => asset.id));
         }
+    };
+
+    const downloadAssets = (downloadUrl: string) => {
+        window.open(downloadUrl, '_blank');
+        announceToScreenReader();
     };
 
     const saveDownloadUrl = (newDownloadUrlBlock: string) => {
@@ -41,14 +47,19 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     };
 
+    const announceToScreenReader = () => {
+        if (screenReaderRef.current) {
+            screenReaderRef.current.innerText = 'Your package has been downloaded.';
+        }
+    };
+
     useEffect(() => {
         if (status === BulkDownloadState.Ready && downloadUrl) {
-            window.open(downloadUrl, '_blank');
+            downloadAssets(downloadUrl);
             saveDownloadUrl(downloadUrl);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [downloadUrl]);
-
     return (
         <div
             data-test-id="asset-kit-block"
@@ -72,16 +83,21 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 status
                             ) || currentAssets.length <= 0
                         }
-                        onClick={() => downloadAssets()}
+                        onClick={() => startDownload()}
                         style={designTokens.buttonPrimary}
                     >
                         Download package
+                        <span
+                            ref={screenReaderRef}
+                            role="status"
+                            className="tw-absolute -tw-left-[10000px] tw-top-auto tw-w-1 tw-h-1 overflow-hidden"
+                        ></span>
                     </button>
                 </div>
             </div>
 
             {![BulkDownloadState.Init, BulkDownloadState.Ready].includes(status) && (
-                <DownloadMessage blockStyle={blockStyle(blockSettings)} status={BulkDownloadState.Error} />
+                <DownloadMessage blockStyle={blockStyle(blockSettings)} status={status} />
             )}
 
             <AssetGrid

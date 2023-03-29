@@ -15,20 +15,20 @@ export const DownloadMessage = ({ blockStyle, status }: DownloadMessageProps) =>
             }}
             className="tw-flex tw-gap-8 tw-items-center tw-mb-8"
         >
-            {status === BulkDownloadState.Pending && (
+            {[BulkDownloadState.Started, BulkDownloadState.Pending].includes(status) && (
                 <div className="tw-flew-0">
                     <LoadingCircle />
                 </div>
             )}
             <div className="tw-flex-1">
-                {status === BulkDownloadState.Pending && (
-                    <span>
+                {[BulkDownloadState.Started, BulkDownloadState.Pending].includes(status) && (
+                    <span role="status">
                         This may take a little while. Your package will download automatically when it&apos;s ready.
                     </span>
                 )}
 
                 {status === BulkDownloadState.Error && (
-                    <span className="tw-text-red-60">
+                    <span role="status" className="tw-text-red-60">
                         Sorry, we&apos;re experiencing some technical difficulties. Please try again in a few minutes.
                     </span>
                 )}
