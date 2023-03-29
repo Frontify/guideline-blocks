@@ -6,15 +6,13 @@ export const adaptFilesToUploadList = (
     const uploadList: UploadFileProps[] = [];
 
     if (files) {
-        for (const filesKey in files) {
-            if (filesKey) {
-                uploadList.push({
-                    type: files[filesKey].type,
-                    name: files[filesKey].name,
-                    identifier: toString(files[filesKey]),
-                    completed: true,
-                });
-            }
+        for (let i = 0; i < files?.length; i++) {
+            uploadList.push({
+                type: files[i].type,
+                name: files[i].name,
+                identifier: toString(files[i]),
+                completed: true,
+            });
         }
     }
 
