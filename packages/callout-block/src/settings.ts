@@ -6,6 +6,7 @@ import {
     IconEnum,
     NotificationStyleType,
     appendUnit,
+    createLink,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
@@ -241,11 +242,10 @@ export const settings = defineSettings({
             id: 'colorInGlobalSettingsInfo',
             type: 'notification',
             title: 'Color',
-            link: {
+            link: createLink({
                 label: 'This has been defined in the Global Settings. View or change it [here].',
-                replace: '[here]',
-                event: 'sidebar.open',
-            },
+                replace: { here: { event: 'design-settings.open' } },
+            }),
             styles: {
                 type: NotificationStyleType.Info,
                 icon: true,
