@@ -6,11 +6,11 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import {
+    BulkDownloadState,
     useBlockAssets,
     useBlockSettings,
-    useEditorState,
     useBulkDownload,
-    BulkDownloadState,
+    useEditorState,
 } from '@frontify/app-bridge';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
@@ -46,6 +46,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
             window.open(downloadUrl, '_blank');
             saveDownloadUrl(downloadUrl);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [downloadUrl]);
 
     return (
