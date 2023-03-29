@@ -61,7 +61,7 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_THUMBNAIL).should('have.length', 2);
     });
 
-    it('should display no padding on block if no border and no background is setted', () => {
+    it('should display no padding on block if no border and no background is set', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
                 hasBorder_blocks: false,
@@ -75,7 +75,7 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_SELECTOR).should('have.css', 'padding', '0px');
     });
 
-    it('should display with padding on block if border is setted', () => {
+    it('should display with padding on block if border is set', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
                 hasBorder_blocks: true,
@@ -88,7 +88,7 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_SELECTOR).should('have.css', 'padding', '32px');
     });
 
-    it('should display with padding on block if background is setted', () => {
+    it('should display with padding on block if background is set', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
                 hasBackgroundBlocks: true,
