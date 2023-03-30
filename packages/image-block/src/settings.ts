@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     AssetChooserObjectType,
     AssetInputSize,
@@ -11,7 +12,6 @@ import {
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-
 import { Alignment, CaptionPosition, ImageSecurity, Padding, Ratio, paddingValues, radiusValues } from './types';
 
 const POSITIONING_ID = 'positioning';
@@ -19,7 +19,7 @@ const HAS_BACKGROUND_ID = 'hasBackground';
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
 const SECURITY_ID = 'security';
-export const IMAGE_SETTING_ID = 'image';
+export const IMAGE_ID = 'image';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
 
 export const settings = defineSettings({
@@ -30,11 +30,12 @@ export const settings = defineSettings({
             label: '',
             blocks: [
                 {
-                    id: IMAGE_SETTING_ID,
+                    id: IMAGE_ID,
                     type: 'assetInput',
                     label: 'Image',
                     size: AssetInputSize.Small,
                     objectTypes: [AssetChooserObjectType.ImageVideo],
+                    extensions: FileExtensionSets.Images,
                 },
                 {
                     id: 'hasLink',
@@ -48,7 +49,6 @@ export const settings = defineSettings({
                             placeholder: 'Paste link, or type to search',
                         },
                     ],
-                    off: [],
                 },
             ],
         },
@@ -63,7 +63,7 @@ export const settings = defineSettings({
             },
             link: {
                 label: 'Follow our guide for image resolution',
-                href: 'https://help.frontify.com/en/articles/4889509-what-is-the-correct-pixel-density-for-my-image',
+                href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
                 target: '_blank',
             },
         },

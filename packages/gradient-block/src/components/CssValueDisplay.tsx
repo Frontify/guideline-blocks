@@ -5,6 +5,8 @@ import { CssValueDisplayProps } from '../types';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
+const CSS_EXTENSION = langs.css();
+
 export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
@@ -35,7 +37,7 @@ export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
                 </div>
                 <CodeMirror
                     value={cssValue}
-                    extensions={[langs['css']()]}
+                    extensions={[CSS_EXTENSION]}
                     readOnly={true}
                     basicSetup={{
                         highlightActiveLineGutter: false,
