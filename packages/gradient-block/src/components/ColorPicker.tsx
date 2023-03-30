@@ -107,6 +107,7 @@ export const ColorPicker = ({
                     />
                 </div>
             }
+            legacyFooter={false}
             isOpen={true}
             contentMinHeight={195}
             onOpenChange={() => true}
