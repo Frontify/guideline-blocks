@@ -21,7 +21,7 @@ const BLOCK_DOWNLOAD_MESSAGE_PENDING = '[data-test-id="asset-kit-pending-message
 const BLOCK_DOWNLOAD_MESSAGE_ERROR = '[data-test-id="asset-kit-error-message"]';
 const BLOCK_DOWNLOAD_MESSAGE_LOADING_CIRCLE =
     '[data-test-id="asset-kit-download-message"] [data-test-id="loading-circle"]';
-//const BLOCK_DOWNLOAD_ANNOUNCEMENT = '[data-test-id="asset-kit-block-screen-reader"]';
+const BLOCK_DOWNLOAD_ANNOUNCEMENT = '[data-test-id="asset-kit-block-screen-reader"]';
 
 const BLACK: Color = { red: 0, green: 0, blue: 0, alpha: 1 };
 const WHITE: Color = { red: 255, green: 255, blue: 255, alpha: 1 };
@@ -288,20 +288,17 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_DOWNLOAD_MESSAGE).should('have.css', 'border-radius', '10px');
     });
 
-    /*it('should announce the download to screen readers if download happened', () => {
+    it('should announce the download to screen readers if download happened', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
-            editorState: true,
             blockSettings: {
-                downloadUrlBlock: 'dummy-url',
+                downloadUrlBlock: 'https://frontify.com/',
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_DOWNLOAD_BTN).realClick();
-
+        cy.get(BLOCK_DOWNLOAD_BTN).click();
         cy.get(BLOCK_DOWNLOAD_ANNOUNCEMENT).should('be.visible');
-        cy.get(BLOCK_DOWNLOAD_ANNOUNCEMENT).should('contain.text', 'Your package has been downloaded.');
-    });*/
+    });
 });
