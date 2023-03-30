@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Button, ButtonSize, IconPen16, IconTrashBin16 } from '@frontify/fondue';
+import { Button, ButtonEmphasis, ButtonSize, IconPen16, IconTrashBin16 } from '@frontify/fondue';
 import { EditAndDeleteColorBoxProps, GradientColor } from '../types';
 
 export const EditAndDeleteColorBox = ({
@@ -17,13 +17,12 @@ export const EditAndDeleteColorBox = ({
     return (
         <div
             data-test-id="edit-and-delete-color-box"
-            className="tw-flex tw-mt-2.5 -tw-ml-4 tw-border tw-border-box-selected-strong tw-rounded tw-w-13 tw-h-7 tw-bg-white"
+            className="tw-flex tw-mt-2.5 -tw-ml-4 tw-border tw-border-box-selected-strong tw-rounded tw-bg-white"
         >
             <Button
                 aria-label="Edit color"
                 hugWidth
-                inverted
-                solid
+                emphasis={ButtonEmphasis.Weak}
                 onClick={() => {
                     setCurrentlyEditingPosition(color.position);
                     setShowColorModal(true);
@@ -39,8 +38,7 @@ export const EditAndDeleteColorBox = ({
             <Button
                 aria-label="Delete color"
                 hugWidth
-                inverted
-                solid
+                emphasis={ButtonEmphasis.Weak}
                 onClick={() => {
                     deleteColor(color);
                 }}
