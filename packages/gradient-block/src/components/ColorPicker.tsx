@@ -19,6 +19,7 @@ import { useState } from 'react';
 import { ColorPickerProps, GradientColor } from '../types';
 
 export const ColorPicker = ({
+    colorPalettes,
     currentlyEditingPosition,
     gradientColors,
     setColors,
@@ -106,7 +107,6 @@ export const ColorPicker = ({
                     />
                 </div>
             }
-            legacyFooter={false}
             isOpen={true}
             contentMinHeight={195}
             onOpenChange={() => true}
@@ -117,6 +117,7 @@ export const ColorPicker = ({
                     <Text color="weak">Color</Text>
                     <ColorPickerFlyout
                         currentColor={color}
+                        palettes={colorPalettes}
                         onClose={() => setShowColorModal(false)}
                         onSelect={setColor}
                         onClick={() => color && editColor()}

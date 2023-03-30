@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Divider } from '@frontify/fondue';
+import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
+import { Divider, Palette } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { toHexString } from '@frontify/guideline-blocks-shared';
@@ -14,6 +14,8 @@ import { GradientColor, Settings, gradientHeightValues, gradientOrientationValue
 export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
+    const { colorPalettes: appBridgePalettes } = useColorPalettes(appBridge);
+    const [colorPickerPalettes, setColorPickerPalettes] = useState<Palette[]>([]);
     const {
         gradientColors,
         isOrientationCustom,
@@ -30,6 +32,28 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showAddButton, setShowAddButton] = useState(false);
     const [showColorModal, setShowColorModal] = useState(false);
     const [isMounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setColorPickerPalettes(
+            appBridgePalettes.map((palette) => {
+                const colors = palette.colors.map((color) => {
+                    return {
+                        alpha: color.alpha ? color.alpha / 255 : 1,
+                        red: color.red ?? 0,
+                        green: color.green ?? 0,
+                        blue: color.blue ?? 0,
+                        name: color.name ?? '',
+                    };
+                });
+
+                return {
+                    id: palette.id,
+                    title: palette.name,
+                    colors,
+                };
+            })
+        );
+    }, [appBridgePalettes, appBridge]);
 
     if (!gradientColors) {
         setBlockSettings({
@@ -101,6 +125,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                     </div>
                     {showColorModal && gradientColors !== undefined ? (
                         <ColorPicker
+                            colorPalettes={colorPickerPalettes}
                             currentlyEditingPosition={currentlyEditingPosition}
                             gradientColors={gradientColors}
                             setColors={setGradientColors}
