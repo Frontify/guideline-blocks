@@ -31,7 +31,6 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
     const [showAddButton, setShowAddButton] = useState(false);
     const [showColorModal, setShowColorModal] = useState(false);
-    const [isMounted, setMounted] = useState(false);
 
     useEffect(() => {
         setColorPickerPalettes(
@@ -86,10 +85,6 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
         setShowAddButton(true);
     };
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
     const cssValue = parseGradientColorsToCss(gradientColors, gradientOrientation);
 
     return (
@@ -113,17 +108,17 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                             onMouseLeave={() => setShowAddButton(false)}
                         >
                             <Divider />
-                            {showAddButton && gradientBlockRef.current ? (
+                            {showAddButton && gradientBlockRef.current && (
                                 <AddColorButton
                                     blockWidth={gradientBlockRef.current.clientWidth}
                                     positionLeft={addButtonPositionLeft}
                                     setShowColorModal={setShowColorModal}
                                     setCurrentlyEditingPosition={setCurrentlyEditingPosition}
                                 />
-                            ) : null}
+                            )}
                         </div>
                     </div>
-                    {showColorModal && gradientColors !== undefined ? (
+                    {showColorModal && gradientColors !== undefined && (
                         <ColorPicker
                             colorPalettes={colorPickerPalettes}
                             currentlyEditingPosition={currentlyEditingPosition}
@@ -131,7 +126,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                             setColors={setGradientColors}
                             setShowColorModal={setShowColorModal}
                         />
-                    ) : null}
+                    )}
 
                     {gradientColors?.map((gradientColor) => (
                         <ColorTooltip
@@ -146,17 +141,16 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                     ))}
                 </div>
             ) : (
-                <>
-                    {gradientBlockRef.current && gradientColors && isMounted ? (
-                        <SquareBadgesRow
-                            blockWidth={gradientBlockRef.current.clientWidth}
-                            gradientColors={gradientColors}
-                            gradientOrientation={gradientOrientation}
-                        />
-                    ) : null}
-                </>
+                gradientBlockRef.current &&
+                gradientColors && (
+                    <SquareBadgesRow
+                        blockWidth={gradientBlockRef.current.clientWidth}
+                        gradientColors={gradientColors}
+                        gradientOrientation={gradientOrientation}
+                    />
+                )
             )}
-            {displayCss ? <CssValueDisplay cssValue={cssValue} /> : null}
+            {displayCss && <CssValueDisplay cssValue={cssValue} />}
         </div>
     );
 };
