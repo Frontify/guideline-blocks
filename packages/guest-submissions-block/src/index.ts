@@ -1,11 +1,11 @@
-import 'tailwindcss/tailwind.css';
+import "tailwindcss/tailwind.css";
 
-import { defineBlock } from '@frontify/guideline-blocks-settings';
+import { defineBlock } from "@frontify/guideline-blocks-settings";
 
-import { AnExampleBlock } from './Block';
-import { settings } from './settings';
+import { settings } from "./settings";
+import { GuestSubmission } from "./view/GuestSubmission";
 
 export default defineBlock({
-    block: AnExampleBlock,
+    block: GuestSubmission,
     settings,
 });

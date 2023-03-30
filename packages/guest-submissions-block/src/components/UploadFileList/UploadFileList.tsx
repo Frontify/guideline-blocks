@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UploadFile, UploadFileProps } from "./UploadFile";
+import { UploadFile } from "./UploadFile";
 import {
     IconCaretUp16,
     LoadingCircle,
@@ -9,9 +9,10 @@ import {
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
 import { BackgroundBase } from "../AssetDropzone";
 import { BorderShape } from "../styling";
+import { QueryFile, Status } from "../../model/QueryFileList";
 
 type FileUploadListProps = {
-    entries: UploadFileProps[];
+    entries: QueryFile[];
 };
 
 const CenterWithGap =
@@ -21,12 +22,27 @@ export const UploadFileList = ({ entries }: FileUploadListProps) => {
     const [open, setOpen] = useState<boolean>(false);
 
     const loadingBar = () =>
-        entries.every((item) => item.completed) && (
+        entries.every((item) => item.status === Status.PENDING) && (
             <LoadingCircle
                 size={LoadingCircleSize.Small}
                 style={LoadingCircleStyle.Progress}
             />
         );
+
+    const getFileList = () => (
+        <>
+            {entries.map((entry, index) => (
+                <UploadFile
+                    status={entry.status}
+                    identifier={entry.identifier}
+                    type={entry.type}
+                    name={entry.name}
+                    key={entry.identifier}
+                    last={index === entries.length - 1}
+                />
+            ))}
+        </>
+    );
 
     return entries.length > 0 ? (
         <div
@@ -37,27 +53,25 @@ export const UploadFileList = ({ entries }: FileUploadListProps) => {
             ])}
         >
             <div onClick={() => setOpen(!open)}>
-                {entries.length > 0 && (
+                <div
+                    className={joinClassNames([
+                        CenterWithGap,
+                        open && "tw-border-b tw-border-[#08080826] tw-mx-2",
+                    ])}
+                >
+                    {loadingBar()}
+                    <h5>{entries.length} files uploading</h5>
+
                     <div
                         className={joinClassNames([
-                            CenterWithGap,
-                            open && "tw-border-b tw-border-[#08080826] tw-mx-2",
+                            !open
+                                ? "tw-rotate-180 tw-transition-all"
+                                : "tw-rotate-0 tw-transition-all",
                         ])}
                     >
-                        {loadingBar()}
-                        <h5>{entries.length} files uploading</h5>
-
-                        <div
-                            className={joinClassNames([
-                                !open
-                                    ? "tw-rotate-180 tw-transition-all"
-                                    : "tw-rotate-0 tw-transition-all",
-                            ])}
-                        >
-                            <IconCaretUp16 />
-                        </div>
+                        <IconCaretUp16 />
                     </div>
-                )}
+                </div>
             </div>
             {
                 <ul
@@ -66,13 +80,7 @@ export const UploadFileList = ({ entries }: FileUploadListProps) => {
                         open ? "tw-max-h-[350px]" : "tw-max-h-[0px]",
                     ])}
                 >
-                    {entries.map((entry, index) => (
-                        <UploadFile
-                            {...entry}
-                            key={entry.identifier}
-                            last={index === entries.length - 1}
-                        />
-                    ))}
+                    {getFileList()}
                 </ul>
             }
         </div>

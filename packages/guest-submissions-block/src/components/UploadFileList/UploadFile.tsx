@@ -8,23 +8,23 @@ import {
 import React from "react";
 import { getMimeTypeIcon } from "./helper";
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
+import { Status } from "../../model/QueryFileList";
 
 export type UploadFileProps = {
-    // Mimie type to set the icon
     type: string;
     name: string;
-    // Identifier
     identifier: string;
-    completed: boolean;
+    status: Status;
+    last: boolean;
 };
 
 export const UploadFile = ({
     type,
     name,
     identifier,
-    completed,
+    status,
     last,
-}: UploadFileProps & { last: boolean }) => {
+}: UploadFileProps) => {
     return (
         <li
             className={joinClassNames([
@@ -33,7 +33,7 @@ export const UploadFile = ({
             ])}
         >
             <Stack padding="none" spacing="s" align="center">
-                {!completed ? (
+                {status === Status.PENDING ? (
                     <LoadingCircle
                         size={LoadingCircleSize.Small}
                         style={LoadingCircleStyle.Progress}
