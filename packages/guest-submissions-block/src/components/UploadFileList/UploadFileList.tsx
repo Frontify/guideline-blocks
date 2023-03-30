@@ -9,16 +9,20 @@ import {
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
 import { BackgroundBase } from "../AssetDropzone";
 import { BorderShape } from "../styling";
-import { QueryFile, Status } from "../../model/QueryFileList";
+import { QueryFile, Status } from "../../model/QueryFile";
 
 type FileUploadListProps = {
     entries: QueryFile[];
+    onEntryDeletion: (identifier: string) => void;
 };
 
 const CenterWithGap =
     "tw-flex tw-justify-center tw-items-end tw-p-[18px] tw-gap-2 tw-cursor-pointer";
 
-export const UploadFileList = ({ entries }: FileUploadListProps) => {
+export const UploadFileList = ({
+    entries,
+    onEntryDeletion,
+}: FileUploadListProps) => {
     const [open, setOpen] = useState<boolean>(false);
 
     const loadingBar = () =>
@@ -31,16 +35,19 @@ export const UploadFileList = ({ entries }: FileUploadListProps) => {
 
     const getFileList = () => (
         <>
-            {entries.map((entry, index) => (
-                <UploadFile
-                    status={entry.status}
-                    identifier={entry.identifier}
-                    type={entry.type}
-                    name={entry.name}
-                    key={entry.identifier}
-                    last={index === entries.length - 1}
-                />
-            ))}
+            {entries.map((entry, index) => {
+                return (
+                    <UploadFile
+                        status={entry.status}
+                        identifier={entry.identifier}
+                        type={entry.type}
+                        name={entry.name}
+                        key={entry.identifier}
+                        last={index === entries.length - 1}
+                        onDelete={onEntryDeletion}
+                    />
+                );
+            })}
         </>
     );
 

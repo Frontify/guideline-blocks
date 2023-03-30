@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { getMimeTypeIcon } from "./helper";
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
-import { Status } from "../../model/QueryFileList";
+import { Status } from "../../model/QueryFile";
 
 export type UploadFileProps = {
     type: string;
@@ -16,6 +16,7 @@ export type UploadFileProps = {
     identifier: string;
     status: Status;
     last: boolean;
+    onDelete: (identifier: string) => void;
 };
 
 export const UploadFile = ({
@@ -24,6 +25,7 @@ export const UploadFile = ({
     identifier,
     status,
     last,
+    onDelete,
 }: UploadFileProps) => {
     return (
         <li
@@ -43,7 +45,12 @@ export const UploadFile = ({
                 )}
                 <p>{name}</p>
             </Stack>
-            <IconCross20 />
+            <div
+                className="tw-cursor-pointer"
+                onClick={() => onDelete(identifier)}
+            >
+                <IconCross20 />
+            </div>
         </li>
     );
 };

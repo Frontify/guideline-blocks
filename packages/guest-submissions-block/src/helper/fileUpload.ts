@@ -1,14 +1,6 @@
-import { QueryFile, Status } from "../model/QueryFileList";
-import { parseString } from "./parseString";
+import { QueryFile } from "../model/QueryFile";
+import { uploadFileFrontify } from "../query/mutation";
 
-export const uploadFileFrontify = `
-    mutation UploadFile($input: UploadFileInput!) {
-      uploadFile(input: $input) {
-        id
-        urls
-      }
-    }
-`;
 export const fileUpload = async (queryFile: QueryFile) => {
     const CHUNK_SIZE = 100 * 1024 * 1024;
 
@@ -34,15 +26,3 @@ export const fileUpload = async (queryFile: QueryFile) => {
         body: JSON.stringify(uploadBody),
     });
 };
-
-export function queryFilesDTO(files: FileList) {
-    const queryFiles: QueryFile[] = [];
-
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i] as QueryFile;
-        file.status = Status.SUCCESS;
-        file.identifier = parseString(files[i]);
-        queryFiles.push(file);
-    }
-    return queryFiles;
-}
