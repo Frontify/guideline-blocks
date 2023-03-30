@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { GradientColor, SquareBadgeProps } from '../types';
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
 import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent } from '../helpers';
+import { GradientColor, SquareBadgeProps } from '../types';
 
 export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWidth }: SquareBadgeProps) => {
     const { copy, status } = useCopy();

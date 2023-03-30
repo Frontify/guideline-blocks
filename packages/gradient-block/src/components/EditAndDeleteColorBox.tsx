@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { EditAndDeleteColorBoxProps, GradientColor } from '../types';
 import { Button, ButtonSize, IconPen16, IconTrashBin16 } from '@frontify/fondue';
+import { EditAndDeleteColorBoxProps, GradientColor } from '../types';
 
 export const EditAndDeleteColorBox = ({
     color,

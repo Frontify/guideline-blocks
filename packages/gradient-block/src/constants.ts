@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { GradientHeight, GradientOrientation } from './types';
 import { Color } from '@frontify/fondue';
+import { GradientHeight, GradientOrientation } from './types';
 
 export const HEIGHT_OF_SQUARE_BADGE = 28;
 export const DEFAULT_HEIGHT_VALUE = GradientHeight.Small;

@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
-import { CssValueDisplayProps } from '../types';
-import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
+import CodeMirror from '@uiw/react-codemirror';
+import { CssValueDisplayProps } from '../types';
 
 const CSS_EXTENSION = langs.css();
 

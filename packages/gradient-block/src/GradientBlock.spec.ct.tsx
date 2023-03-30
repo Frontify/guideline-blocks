@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { GradientBlock } from './GradientBlock';
-import { GradientHeight, GradientOrientation } from './types';
+import { mount } from 'cypress/react';
 import { HEIGHT_OF_SQUARE_BADGE } from './constants';
+import { GradientBlock } from './GradientBlock';
 import {
     HEIGHT_CUSTOM_ID,
     HEIGHT_SIMPLE_ID,
@@ -13,6 +12,7 @@ import {
     ORIENTATION_CUSTOM_ID,
     ORIENTATION_SIMPLE_ID,
 } from './settings';
+import { GradientHeight, GradientOrientation } from './types';
 
 const AddColorButtonSelector = '[data-test-id="add-color-button"]';
 const ColorPickerFlyoutSelector = '[data-test-id="color-picker-flyout"]';
