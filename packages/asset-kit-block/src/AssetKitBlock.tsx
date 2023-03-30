@@ -60,6 +60,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [downloadUrl]);
+
     return (
         <div
             data-test-id="asset-kit-block"

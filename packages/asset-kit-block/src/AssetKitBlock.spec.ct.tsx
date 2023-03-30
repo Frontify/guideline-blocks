@@ -2,7 +2,7 @@
 
 import { mount } from 'cypress/react';
 import { AssetKitBlock } from './AssetKitBlock';
-import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { ASSET_SETTINGS_ID } from './settings';
 import { BorderStyle } from '@frontify/guideline-blocks-shared';
@@ -15,6 +15,12 @@ const BLOCK_DESCRIPTION_HTML = '[data-test-id="block-description-rte"]';
 const BLOCK_THUMBNAIL = '[data-test-id="block-item-wrapper"]';
 const BLOCK_THUMBNAIL_IMAGE = '[data-test-id="block-thumbnail-image"]';
 const BLOCK_ITEM_WRAPPER_TOOLBAR_BTN = '[data-test-id="block-item-wrapper-toolbar-btn"]';
+const BLOCK_DOWNLOAD_BTN = '[data-test-id="asset-kit-block-download-button"]';
+const BLOCK_DOWNLOAD_MESSAGE = '[data-test-id="asset-kit-download-message"]';
+const BLOCK_DOWNLOAD_MESSAGE_PENDING = '[data-test-id="asset-kit-pending-message"]';
+const BLOCK_DOWNLOAD_MESSAGE_ERROR = '[data-test-id="asset-kit-error-message"]';
+const BLOCK_DOWNLOAD_MESSAGE_LOADING_CIRCLE =
+    '[data-test-id="asset-kit-download-message"] [data-test-id="loading-circle"]';
 
 const BLACK: Color = { red: 0, green: 0, blue: 0, alpha: 1 };
 const WHITE: Color = { red: 255, green: 255, blue: 255, alpha: 1 };
@@ -222,5 +228,62 @@ describe('AssetKit Block', () => {
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL).first().realHover();
         cy.get(BLOCK_THUMBNAIL).first().should('have.css', 'outline-style', 'solid');
+    });
+
+    it('should disable the button if no assets are set', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_DOWNLOAD_BTN).should('be.disabled');
+    });
+
+    it('should show the pending download message and the loading circle with block style border', () => {
+        const appBridgeStub = getAppBridgeBlockStub({
+            blockSettings: {
+                hasBorder_blocks: true,
+                borderStyle_blocks: BorderStyle.Dotted,
+                borderWidth_blocks: '1px',
+                borderColor_blocks: WHITE,
+                hasRadius_blocks: true,
+                radiusValue_blocks: '10px',
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        appBridgeStub.getBulkDownloadByToken.onCall(0).resolves({ downloadUrl: '', signature: '' });
+        mount(<AssetKitBlock appBridge={appBridgeStub} />);
+        cy.get(BLOCK_DOWNLOAD_BTN).realClick();
+        cy.get(BLOCK_DOWNLOAD_MESSAGE).should('be.visible');
+        cy.get(BLOCK_DOWNLOAD_MESSAGE_PENDING).should('be.visible');
+        cy.get(BLOCK_DOWNLOAD_MESSAGE).should('have.css', 'border', '1px dotted rgb(255, 255, 255)');
+        cy.get(BLOCK_DOWNLOAD_MESSAGE).should('have.css', 'border-radius', '10px');
+        cy.get(BLOCK_DOWNLOAD_MESSAGE_LOADING_CIRCLE).should('be.visible');
+    });
+
+    it('should show the error download with block style border', () => {
+        const appBridgeStub = getAppBridgeBlockStub({
+            blockSettings: {
+                hasBorder_blocks: true,
+                borderStyle_blocks: BorderStyle.Dotted,
+                borderWidth_blocks: '1px',
+                borderColor_blocks: WHITE,
+                hasRadius_blocks: true,
+                radiusValue_blocks: '10px',
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        appBridgeStub.getBulkDownloadByToken.rejects(new Error('Something went wrong'));
+        mount(<AssetKitBlock appBridge={appBridgeStub} />);
+        cy.get(BLOCK_DOWNLOAD_BTN).realClick();
+        cy.get(BLOCK_DOWNLOAD_MESSAGE).should('be.visible');
+        cy.get(BLOCK_DOWNLOAD_MESSAGE_ERROR).should('be.visible');
+        cy.get(BLOCK_DOWNLOAD_MESSAGE).should('have.css', 'border', '1px dotted rgb(255, 255, 255)');
+        cy.get(BLOCK_DOWNLOAD_MESSAGE).should('have.css', 'border-radius', '10px');
     });
 });

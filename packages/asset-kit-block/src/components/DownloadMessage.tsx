@@ -22,13 +22,13 @@ export const DownloadMessage = ({ blockStyle, status }: DownloadMessageProps) =>
             )}
             <div className="tw-flex-1">
                 {[BulkDownloadState.Started, BulkDownloadState.Pending].includes(status) && (
-                    <span role="status">
+                    <span data-test-id="asset-kit-pending-message" role="status">
                         This may take a little while. Your package will download automatically when it&apos;s ready.
                     </span>
                 )}
 
                 {status === BulkDownloadState.Error && (
-                    <span role="status" className="tw-text-red-60">
+                    <span data-test-id="asset-kit-error-message" role="status" className="tw-text-red-60">
                         Sorry, we&apos;re experiencing some technical difficulties. Please try again in a few minutes.
                     </span>
                 )}
