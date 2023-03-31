@@ -6,6 +6,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { DesignTokenApiResponse, useGuidelineDesignTokens } from './useGuidelineDesignTokens';
+import { defaultGuidelineDesignTokens } from '../helpers';
 
 const emitter = mitt<{ HubAppearanceUpdated: DesignTokenApiResponse['hub'] }>();
 
@@ -64,9 +65,7 @@ describe('useGuidelineDesignTokens', () => {
         await waitForNextUpdate();
 
         expect(result.current).toMatchObject({
-            designTokens: {
-                heading1: { fontFamily: 'Arial', fontWeight: 'bold', fontSize: '24px' },
-            },
+            designTokens: defaultGuidelineDesignTokens,
             error: null,
             isLoading: false,
         });
@@ -99,7 +98,10 @@ describe('useGuidelineDesignTokens', () => {
         });
 
         expect(result.current).toMatchObject({
-            designTokens: { heading1: { fontFamily: 'family' } },
+            designTokens: {
+                ...defaultGuidelineDesignTokens,
+                heading1: { ...defaultGuidelineDesignTokens.heading1, fontFamily: 'family' },
+            },
             error: null,
             isLoading: false,
         });
