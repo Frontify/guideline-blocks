@@ -20,7 +20,7 @@ import {
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { joinClassNames, mapColorPalettes } from '@frontify/guideline-blocks-shared';
 
 import { ColorSquare } from './components/ColorSquare';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
@@ -39,7 +39,7 @@ const COLOR_SQUARE_FIRST_ELEMENT_CLASSES = 'tw-pl-[1px] tw-pr-[1px] tw-rounded-t
 const COLOR_SQUARE_LAST_ELEMENT_CLASSES = 'tw-rounded-tr tw-rounded-br';
 
 export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
-    const { colorPalettes: appBridgePalettes } = useColorPalettes(appBridge);
+    const { colorPalettes } = useColorPalettes(appBridge);
     const [colorPickerPalettes, setColorPickerPalettes] = useState<Palette[]>([]);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -58,26 +58,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
     useEffect(() => {
-        setColorPickerPalettes(
-            appBridgePalettes.map((palette) => {
-                const colors = palette.colors.map((color) => {
-                    return {
-                        alpha: color.alpha ? color.alpha / 255 : 1,
-                        red: color.red ?? 0,
-                        green: color.green ?? 0,
-                        blue: color.blue ?? 0,
-                        name: color.name ?? '',
-                    };
-                });
-
-                return {
-                    id: palette.id,
-                    title: palette.name,
-                    colors,
-                };
-            })
-        );
-    }, [appBridgePalettes, appBridge]);
+        setColorPickerPalettes(mapColorPalettes(colorPalettes));
+    }, [colorPalettes, appBridge]);
 
     const { customHeight, heightInput, heightSlider } = blockSettings;
 

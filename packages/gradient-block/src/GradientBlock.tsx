@@ -4,7 +4,7 @@ import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/ap
 import { Divider, Palette } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { toHexString } from '@frontify/guideline-blocks-shared';
+import { mapColorPalettes, toHexString } from '@frontify/guideline-blocks-shared';
 import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
@@ -14,7 +14,7 @@ import { GradientColor, Settings, gradientHeightValues, gradientOrientationValue
 export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
-    const { colorPalettes: appBridgePalettes } = useColorPalettes(appBridge);
+    const { colorPalettes } = useColorPalettes(appBridge);
     const [colorPickerPalettes, setColorPickerPalettes] = useState<Palette[]>([]);
     const {
         gradientColors,
@@ -33,26 +33,8 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [showColorModal, setShowColorModal] = useState(false);
 
     useEffect(() => {
-        setColorPickerPalettes(
-            appBridgePalettes.map((palette) => {
-                const colors = palette.colors.map((color) => {
-                    return {
-                        alpha: color.alpha ? color.alpha / 255 : 1,
-                        red: color.red ?? 0,
-                        green: color.green ?? 0,
-                        blue: color.blue ?? 0,
-                        name: color.name ?? '',
-                    };
-                });
-
-                return {
-                    id: palette.id,
-                    title: palette.name,
-                    colors,
-                };
-            })
-        );
-    }, [appBridgePalettes, appBridge]);
+        setColorPickerPalettes(mapColorPalettes(colorPalettes));
+    }, [colorPalettes, appBridge]);
 
     if (!gradientColors) {
         setBlockSettings({
