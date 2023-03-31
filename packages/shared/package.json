@@ -29,7 +29,7 @@
         "cypress": "11.0.1",
         "eslint": "8.27.0",
         "eslint-plugin-notice": "0.9.10",
-        "happy-dom": "8.9.0",
+        "happy-dom": "7.6.7",
         "mitt": "3.0.0",
         "msw": "1.2.1",
         "postcss": "^8.4.21",
