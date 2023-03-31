@@ -2,13 +2,7 @@ import Worker from "../ValueObject/worker";
 import WorkerFactory from "../aggregate/WorkerFactory";
 import { QueryFile } from "../Entity/QueryFile";
 import { FileUploadResponse } from "../Contract/FileUploadResponse";
-
-interface WebWorkerProperties {
-    createWorker(
-        files: QueryFile[],
-        listener: (e: MessageEvent<FileUploadResponse>) => void
-    ): void;
-}
+import { WebWorkerProperties } from "../Contract/WebWorkerProperties";
 
 export class WorkerService implements WebWorkerProperties {
     public createWorker(
@@ -27,5 +21,7 @@ export class WorkerService implements WebWorkerProperties {
         instance.onmessage = (e: MessageEvent<FileUploadResponse>) => {
             listener(e);
         };
+
+        // Todo: how to handle terminatin and to free the memory
     }
 }
