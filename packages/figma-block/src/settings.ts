@@ -4,16 +4,14 @@ import {
     AssetChooserObjectType,
     AssetChooserProjectType,
     AssetInputMode,
-    DropdownSize,
+    Bundle,
     IconEnum,
-    MultiInputLayout,
     appendUnit,
     defineSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
 } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
-import { Bundle } from '@frontify/guideline-blocks-settings';
 
 import { BlockPreview, HeightChoices } from './types';
 
@@ -39,7 +37,7 @@ export const settings = defineSettings({
         {
             id: PREVIEW_MODE,
             type: 'dropdown',
-            size: DropdownSize.Large,
+            size: 'large',
             defaultValue: BlockPreview.Image,
             choices: [
                 {
@@ -173,7 +171,7 @@ export const settings = defineSettings({
                             id: 'borderStyle',
                             type: 'dropdown',
                             defaultValue: 'solid',
-                            size: DropdownSize.Small,
+                            size: 'small',
                             choices: [
                                 {
                                     value: 'dotted',
@@ -203,7 +201,7 @@ export const settings = defineSettings({
                             defaultValue: { r: 0, g: 0, b: 0 },
                         },
                     ],
-                    layout: MultiInputLayout.Columns,
+                    layout: 'columns',
                 },
             ],
         },

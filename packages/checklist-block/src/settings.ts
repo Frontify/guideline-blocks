@@ -2,10 +2,7 @@
 
 import {
     Bundle,
-    DropdownSize,
     IconEnum,
-    MultiInputLayout,
-    SwitchSize,
     appendUnit,
     defineSettings,
     minimumNumericalOrPixelOrAutoRule,
@@ -27,7 +24,7 @@ export const settings = defineSettings({
             id: COMPLETED_DECORATION,
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
-            size: DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,
@@ -52,7 +49,7 @@ export const settings = defineSettings({
             id: PROGRESS_BAR_VISIBLE,
             label: 'Progress Indicator',
             type: 'switch',
-            size: SwitchSize.Small,
+            size: 'small',
             defaultValue: DefaultValues.progressBarVisible,
             info: 'Change the type of progress indicator for your checklist',
             on: [
@@ -82,7 +79,7 @@ export const settings = defineSettings({
             id: 'dateVisible',
             label: 'Date completed',
             type: 'switch',
-            size: SwitchSize.Small,
+            size: 'small',
             info: 'Show the completion date for each checklist item',
             defaultValue: DefaultValues.dateVisible,
         },
@@ -149,7 +146,7 @@ export const settings = defineSettings({
                     id: 'strikethroughMultiInput',
                     type: 'multiInput',
                     label: 'Completed',
-                    layout: MultiInputLayout.Columns,
+                    layout: 'columns',
                     lastItemFullWidth: true,
                     show: (bundle) =>
                         bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,

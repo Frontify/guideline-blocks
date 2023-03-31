@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
+import { Color, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings, getPaddingSettings } from '@frontify/guideline-blocks-shared';
 import { NoteStyle, NoteVisibility, paddingStyleMap } from './types';
 
@@ -25,7 +25,7 @@ export const settings = defineSettings({
             id: 'style',
             type: 'dropdown',
             defaultValue: NoteStyle.Card,
-            size: DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: NoteStyle.Card,

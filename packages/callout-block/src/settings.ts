@@ -2,11 +2,8 @@
 
 import {
     AssetChooserObjectType,
-    AssetInputSize,
-    DropdownSize,
     FileExtension,
     IconEnum,
-    MultiInputLayout,
     NotificationStyleType,
     appendUnit,
     defineSettings,
@@ -29,7 +26,7 @@ export const settings = defineSettings({
             id: 'type',
             type: 'dropdown',
             defaultValue: Type.Info,
-            size: DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: Type.Info,
@@ -84,7 +81,7 @@ export const settings = defineSettings({
                 {
                     id: ICON_ASSET_ID,
                     type: 'assetInput',
-                    size: AssetInputSize.Small,
+                    size: 'small',
                     extensions: [FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                 },
@@ -180,7 +177,7 @@ export const settings = defineSettings({
                         {
                             id: 'customPadding',
                             type: 'multiInput',
-                            layout: MultiInputLayout.Spider,
+                            layout: 'spider',
                             blocks: [
                                 {
                                     id: PADDING_TOP_ID,

@@ -2,7 +2,6 @@
 
 import {
     Choice,
-    SwitchSize,
     appendUnit,
     defineSettings,
     maximumNumericalOrPixelOrAutoRule,
@@ -11,8 +10,8 @@ import {
 } from '@frontify/guideline-blocks-settings';
 
 import { IconEnum } from '@frontify/fondue';
-import { GradientHeight, GradientOrientation, gradientHeightValues } from './types';
 import { DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
+import { GradientHeight, GradientOrientation, gradientHeightValues } from './types';
 
 export const IS_CUSTOM_HEIGHT_ID = 'isHeightCustom';
 export const HEIGHT_CUSTOM_ID = 'heightCustom';
@@ -33,7 +32,7 @@ export const settings = defineSettings({
                     id: 'displayCss',
                     label: 'Display CSS Code',
                     type: 'switch',
-                    size: SwitchSize.Small,
+                    size: 'small',
                     defaultValue: false,
                 },
             ],

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FileExtensionSets } from '@frontify/app-bridge';
-import { AssetChooserObjectType, AssetInputSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
+import { AssetChooserObjectType, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
 import { AudioSecurity, TextPosition } from './types';
 
@@ -16,7 +16,7 @@ export const settings = defineSettings({
             type: 'assetInput',
             label: 'Audio',
             info: 'Select an audio file to play.',
-            size: AssetInputSize.Small,
+            size: 'small',
             extensions: FileExtensionSets.Audio,
             objectTypes: [AssetChooserObjectType.File],
         },

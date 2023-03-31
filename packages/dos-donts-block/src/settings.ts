@@ -24,7 +24,7 @@ export const settings = defineSettings({
         // {
         //     id: 'mode',
         //     type: 'dropdown',
-        //     size: DropdownSize.Large,
+        //     size: 'large',
         //     defaultValue: BlockMode.TEXT,
         //     choices: [
         //         {

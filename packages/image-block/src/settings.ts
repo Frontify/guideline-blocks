@@ -3,7 +3,6 @@
 import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     AssetChooserObjectType,
-    AssetInputSize,
     IconEnum,
     NotificationStyleType,
     appendUnit,
@@ -33,7 +32,7 @@ export const settings = defineSettings({
                     id: IMAGE_ID,
                     type: 'assetInput',
                     label: 'Image',
-                    size: AssetInputSize.Small,
+                    size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets.Images,
                 },

@@ -2,9 +2,7 @@
 
 import {
     Bundle,
-    DropdownSize,
     IconEnum,
-    MultiInputLayout,
     appendUnit,
     betweenPercentRule,
     defineSettings,
@@ -45,7 +43,7 @@ export const settings = defineSettings({
         {
             id: IS_LINE_ID,
             type: 'dropdown',
-            size: DropdownSize.Large,
+            size: 'large',
             defaultValue: DividerStyle.Solid,
             choices: [
                 {
@@ -197,7 +195,7 @@ export const settings = defineSettings({
             onChange: (bundle) => {
                 appendUnit(bundle, THICKNESS_ID);
             },
-            layout: MultiInputLayout.Columns,
+            layout: 'columns',
             lastItemFullWidth: true,
             blocks: [
                 {

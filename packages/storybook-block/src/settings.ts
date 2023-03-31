@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    DropdownSize,
     IconEnum,
     appendUnit,
     defineSettings,
@@ -35,7 +34,7 @@ export const settings = defineSettings({
             id: STYLE_ID,
             type: 'dropdown',
             defaultValue: StorybookStyle.Default,
-            size: DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: StorybookStyle.Default,

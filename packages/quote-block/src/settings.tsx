@@ -2,14 +2,10 @@
 
 import {
     AssetChooserObjectType,
-    AssetInputSize,
     Bundle,
     Choice,
-    DropdownSize,
     FileExtension,
     IconEnum,
-    MultiInputLayout,
-    SwitchSize,
     appendUnit,
     defineSettings,
     numericalOrPixelRule,
@@ -100,7 +96,7 @@ export const settings = defineSettings({
             id: QUOTE_TYPE_ID,
             type: 'dropdown',
             defaultValue: QuoteType.QuotationMarks,
-            size: DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: QuoteType.QuotationMarks,
@@ -132,7 +128,7 @@ export const settings = defineSettings({
                         {
                             id: CUSTOM_QUOTE_STYLE_LEFT_ID,
                             type: 'assetInput',
-                            size: AssetInputSize.Small,
+                            size: 'small',
                             extensions: [FileExtension.Svg],
                             objectTypes: [AssetChooserObjectType.ImageVideo],
                             hideSize: true,
@@ -158,7 +154,7 @@ export const settings = defineSettings({
                         {
                             id: CUSTOM_QUOTE_STYLE_RIGHT_ID,
                             type: 'assetInput',
-                            size: AssetInputSize.Small,
+                            size: 'small',
                             extensions: [FileExtension.Svg],
                             objectTypes: [AssetChooserObjectType.ImageVideo],
                             hideSize: true,
@@ -279,7 +275,7 @@ export const settings = defineSettings({
                     id: 'isCustomQuotesColor',
                     label: 'Custom color',
                     type: 'switch',
-                    size: SwitchSize.Small,
+                    size: 'small',
                     info: 'The default color is derived from the “Quote” heading style, which can be defined in the design settings.',
                     defaultValue: false,
                     on: [
@@ -304,7 +300,7 @@ export const settings = defineSettings({
                     id: 'accentLineStyle',
                     type: 'multiInput',
                     onChange: (bundle) => appendUnit(bundle, LINE_WIDTH_VALUE_ID),
-                    layout: MultiInputLayout.Columns,
+                    layout: 'columns',
                     lastItemFullWidth: false,
                     blocks: [
                         {
@@ -339,7 +335,7 @@ export const settings = defineSettings({
                     id: 'isCustomLineColor',
                     label: 'Custom color',
                     type: 'switch',
-                    size: SwitchSize.Small,
+                    size: 'small',
                     info: 'The default color is derived from the “Quote” heading style, which can be defined in the design settings.',
                     defaultValue: false,
                     on: [

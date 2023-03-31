@@ -10,7 +10,7 @@ export const settings = defineSettings({
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'custom_block',
-            size: DropdownSize.Large,
+            size: 'large',
             disabled: true,
             choices: [
                 {

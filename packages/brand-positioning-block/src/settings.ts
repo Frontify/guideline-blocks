@@ -2,8 +2,6 @@
 
 import {
     Color,
-    DropdownSize,
-    MultiInputLayout,
     appendUnit,
     defineSettings,
     numericalOrPixelRule,
@@ -112,7 +110,7 @@ export const settings = defineSettings({
                     type: 'multiInput',
                     label: 'Labels',
                     info: 'Placeholder tooltip',
-                    layout: MultiInputLayout.Spider,
+                    layout: 'spider',
                     blocks: [
                         {
                             id: 'yAxisTopLabel',
@@ -154,13 +152,13 @@ export const settings = defineSettings({
                     type: 'multiInput',
                     label: 'Axis lines',
                     lastItemFullWidth: true,
-                    layout: MultiInputLayout.Columns,
+                    layout: 'columns',
                     blocks: [
                         {
                             id: 'boardAxisLinesStyle',
                             type: 'dropdown',
                             defaultValue: 'solid',
-                            size: DropdownSize.Small,
+                            size: 'small',
                             choices: [
                                 {
                                     value: 'dotted',
