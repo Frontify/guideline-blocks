@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FileExtensionSets } from '@frontify/app-bridge';
-import { AssetChooserObjectType, AssetInputSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
+import { AssetChooserObjectType, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
 import { AudioSecurity, TextPosition } from './types';
 
@@ -16,7 +16,7 @@ export const settings = defineSettings({
             type: 'assetInput',
             label: 'Audio',
             info: 'Select an audio file to play.',
-            size: AssetInputSize.Small,
+            size: 'small',
             extensions: FileExtensionSets.Audio,
             objectTypes: [AssetChooserObjectType.File],
         },
@@ -25,7 +25,7 @@ export const settings = defineSettings({
         {
             id: 'positioning',
             label: 'Positioning',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: TextPosition.Below,
             choices: [
                 { value: TextPosition.Below, icon: IconEnum.MediaObjectTextBottom },
@@ -36,7 +36,7 @@ export const settings = defineSettings({
     security: [
         {
             id: SECURITY_ID,
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: AudioSecurity.Global,
             helperText: 'Change global settings here.',
             choices: [
