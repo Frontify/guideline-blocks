@@ -63,6 +63,7 @@ export type ColorPickerProps = {
     colorPalettes: Palette[];
     gradientColors: GradientColor[];
     currentlyEditingPosition: number;
+    showColorModal: boolean;
     setColors: (color: GradientColor[]) => void;
     setShowColorModal: (show: boolean) => void;
 };

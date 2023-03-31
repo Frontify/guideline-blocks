@@ -9,7 +9,7 @@ describe('mapColorPalettes', () => {
             {
                 id: 19,
                 name: 'Awesome color palette',
-                description: 'This is an awesome color palette, which can be selected on the "Color Kit" block above ^',
+                description: 'This is an awesome color palette',
                 colors: [
                     {
                         id: 6,

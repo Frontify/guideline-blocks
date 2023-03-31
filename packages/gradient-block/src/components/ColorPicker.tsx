@@ -22,6 +22,7 @@ export const ColorPicker = ({
     colorPalettes,
     currentlyEditingPosition,
     gradientColors,
+    showColorModal,
     setColors,
     setShowColorModal,
 }: ColorPickerProps) => {
@@ -85,32 +86,39 @@ export const ColorPicker = ({
                 </div>
             }
             fixedFooter={
-                <div data-test-id="color-picker-flyout-footer">
-                    <FlyoutFooter
-                        buttons={[
-                            {
-                                icon: <IconCheckMark16 />,
-                                children: 'Close',
-                                onClick: () => {
-                                    if (!actualColor) {
-                                        addNewColor({
-                                            color,
-                                            position: parseInt(colorPosition),
-                                        });
-                                    } else {
-                                        color && editColor();
-                                    }
-                                    setShowColorModal(false);
-                                },
+                <FlyoutFooter
+                    buttons={[
+                        {
+                            icon: <IconCheckMark16 />,
+                            children: 'Close',
+                            onClick: () => {
+                                if (!actualColor) {
+                                    addNewColor({
+                                        color,
+                                        position: parseInt(colorPosition),
+                                    });
+                                } else {
+                                    color && editColor();
+                                }
+                                setShowColorModal(false);
                             },
-                        ]}
-                    />
-                </div>
+                        },
+                    ]}
+                />
             }
-            legacyFooter={false}
-            isOpen={true}
+            isOpen={showColorModal}
             contentMinHeight={195}
-            onOpenChange={() => true}
+            onOpenChange={(isOpen) => {
+                if (!actualColor) {
+                    addNewColor({
+                        color,
+                        position: parseInt(colorPosition),
+                    });
+                } else {
+                    color && editColor();
+                }
+                setShowColorModal(isOpen);
+            }}
             trigger={null}
         >
             <div className="tw-flex" data-test-id="color-picker-form">

@@ -27,10 +27,10 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
         displayCss,
     } = blockSettings;
     const gradientBlockRef = useRef<HTMLDivElement>(null);
-    const [addButtonPositionLeft, setAddButtonPositionLeft] = useState(0);
-    const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState(0);
-    const [showAddButton, setShowAddButton] = useState(false);
-    const [showColorModal, setShowColorModal] = useState(false);
+    const [addButtonPositionLeft, setAddButtonPositionLeft] = useState<number>(0);
+    const [currentlyEditingPosition, setCurrentlyEditingPosition] = useState<number>(0);
+    const [showAddButton, setShowAddButton] = useState<boolean>(false);
+    const [showColorModal, setShowColorModal] = useState<boolean>(false);
 
     useEffect(() => {
         setColorPickerPalettes(mapColorPalettes(colorPalettes));
@@ -105,6 +105,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                             colorPalettes={colorPickerPalettes}
                             currentlyEditingPosition={currentlyEditingPosition}
                             gradientColors={gradientColors}
+                            showColorModal={showColorModal}
                             setColors={setGradientColors}
                             setShowColorModal={setShowColorModal}
                         />
