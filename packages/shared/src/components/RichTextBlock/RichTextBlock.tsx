@@ -16,13 +16,8 @@ export const RichTextBlock = ({
     rtePlugins,
     setBlockSettings,
 }: RichTextBlockProps) => {
-    if (!isEditing) {
-        const rawValue = JSON.stringify(parseRawValue({ raw: value ?? '' }));
-        const html = serializeRawToHtml(rawValue, designTokens, columns, gap);
-        return <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />;
-    } else {
+    if (isEditing) {
         const saveText = (newValue: string) => newValue !== value && setBlockSettings({ [settingsId]: newValue });
-
         return (
             <RichTextEditor
                 designTokens={designTokens}
@@ -33,5 +28,9 @@ export const RichTextBlock = ({
                 plugins={rtePlugins}
             />
         );
+    } else {
+        const rawValue = JSON.stringify(parseRawValue({ raw: value ?? '' }));
+        const html = serializeRawToHtml(rawValue, designTokens, columns, gap);
+        return <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />;
     }
 };
