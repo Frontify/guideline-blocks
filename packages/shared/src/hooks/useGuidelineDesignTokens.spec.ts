@@ -65,7 +65,15 @@ describe('useGuidelineDesignTokens', () => {
         await waitForNextUpdate();
 
         expect(result.current).toMatchObject({
-            designTokens: defaultGuidelineDesignTokens,
+            designTokens: {
+                ...defaultGuidelineDesignTokens,
+                heading1: {
+                    ...defaultGuidelineDesignTokens.heading1,
+                    fontFamily: 'Arial',
+                    fontWeight: 'bold',
+                    fontSize: '24px',
+                },
+            },
             error: null,
             isLoading: false,
         });
