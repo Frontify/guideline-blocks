@@ -97,7 +97,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: HEIGHT_CHOICE_ID,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: HeightChoices.Medium,
                     choices: [
                         {

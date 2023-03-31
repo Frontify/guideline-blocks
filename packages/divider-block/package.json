@@ -33,7 +33,7 @@
         "@frontify/app-bridge": "3.0.0-beta.59",
         "@frontify/fondue": "12.0.0-beta.162",
         "@frontify/fondue-tokens": "3.1.0",
-        "@frontify/guideline-blocks-settings": "0.25.10",
+        "@frontify/guideline-blocks-settings": "0.26.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "17.0.2",
         "react-dom": "17.0.2"

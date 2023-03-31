@@ -58,7 +58,7 @@ export const settings = defineSettings({
             on: [
                 {
                     id: PROGRESS_BAR_TYPE,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: DefaultValues.progressBarType,
                     choices: [
                         {

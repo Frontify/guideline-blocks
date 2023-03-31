@@ -193,7 +193,7 @@ export const settings = defineSettings({
         },
         {
             id: 'textAlignment',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Text alignment',
             defaultValue: TextAlignment.Left,
             choices: [
@@ -214,7 +214,7 @@ export const settings = defineSettings({
         },
         {
             id: 'quotationMarksAnchoring',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Quotation marks anchoring',
             defaultValue: QuotationMarksAnchoring.FullWidth,
             choices: [
@@ -256,7 +256,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: SIZE_CHOICE_ID,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: QuoteSize.LargeSize,
                             choices: [
                                 {

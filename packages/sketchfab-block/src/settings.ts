@@ -133,7 +133,7 @@ export const settings: BlockSettingsStructureExport & {
                     off: [
                         {
                             id: SketchfabSettings.HEIGHT,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: SketchfabHeight.Medium,
                             choices: [
                                 { label: 'S', value: SketchfabHeight.Small },
@@ -262,7 +262,7 @@ export const settings: BlockSettingsStructureExport & {
                 {
                     id: SketchfabSettings.NAVIGATION_MODE,
                     label: 'Default Navigation Mode',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     info: 'Setting to First Person will start the model in First Person mode by default.',
                     choices: [
                         { value: SketchfabNavigation.Orbit, label: 'Orbit' },
@@ -506,7 +506,7 @@ export const settings: BlockSettingsStructureExport & {
             blocks: [
                 {
                     id: SketchfabSettings.UI_THEME,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'UI Theme',
                     defaultValue: SketchfabTheme.Default,
                     info: 'Setting to Dark will apply a darker appearance to the user interface.',

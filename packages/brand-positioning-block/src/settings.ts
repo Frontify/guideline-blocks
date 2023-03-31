@@ -81,7 +81,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'brandItemSizeSimple',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: 'small',
                             choices: [
                                 {

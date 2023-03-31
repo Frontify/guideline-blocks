@@ -82,7 +82,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: HEIGHT_CHOICE_ID,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: StorybookHeight.Medium,
                     choices: [
                         {
@@ -104,7 +104,7 @@ export const settings = defineSettings({
         {
             id: 'positioning',
             label: 'Positioning',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: StorybookPosition.Vertical,
             info: 'Where the UI elements are in relation to one another',
             show: (bundle) => bundle.getBlock('style')?.value === StorybookStyle.WithAddons,

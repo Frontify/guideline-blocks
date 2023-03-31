@@ -25,7 +25,7 @@ export const settings = defineSettings({
         {
             id: 'positioning',
             label: 'Positioning',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: TextPosition.Below,
             choices: [
                 { value: TextPosition.Below, icon: IconEnum.MediaObjectTextBottom },
@@ -36,7 +36,7 @@ export const settings = defineSettings({
     security: [
         {
             id: SECURITY_ID,
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: AudioSecurity.Global,
             helperText: 'Change global settings here.',
             choices: [

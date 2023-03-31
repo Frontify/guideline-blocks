@@ -115,7 +115,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'height',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: 'auto',
                             choices: [
                                 {
@@ -148,7 +148,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'firstAssetLabelPlacementHorizontal',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Label position',
                     defaultValue: LabelPlacement.Top,
                     choices: [
@@ -176,7 +176,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'firstAssetLabelPlacementVertical',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Label position',
                     defaultValue: LabelPlacement.Left,
                     choices: [
@@ -204,7 +204,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'secondAssetLabelPlacementHorizontal',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Horizontal,
                     defaultValue: LabelPlacement.Top,
                     label: 'Label position',
@@ -233,7 +233,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'secondAssetLabelPlacementVertical',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: LabelPlacement.Left,
                     label: 'Label position',
                     show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Vertical,
@@ -263,7 +263,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'handle',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Handles',
                     defaultValue: Handle.Arrows,
                     choices: [
@@ -365,7 +365,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'strikethroughColorSource',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Color',
                     info: 'The color is defined in the global settings (Accent colors) and you can override it here.',
                     defaultValue: InheritSettings.INHERIT,

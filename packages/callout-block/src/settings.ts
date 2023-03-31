@@ -57,7 +57,7 @@ export const settings = defineSettings({
     basics: [
         {
             id: 'appearance',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Appearance',
             defaultValue: Appearance.Light,
             info: 'Defines how the accent color is shown on this block. Select between a subtle and more prominent style.',
@@ -92,7 +92,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: 'iconType',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: Icon.None,
                     choices: [
                         {
@@ -124,7 +124,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'width',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Width',
                     defaultValue: Width.FullWidth,
                     info: 'Determines the width of the content',
@@ -141,7 +141,7 @@ export const settings = defineSettings({
                 },
                 {
                     id: 'alignment',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Alignment',
                     defaultValue: Alignment.Left,
                     show: (bundle) => bundle.getBlock('width')?.value === Width.HugContents,
@@ -216,7 +216,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: PADDING_CHOICE_ID,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: Padding.M,
                             choices: [
                                 {

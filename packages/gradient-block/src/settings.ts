@@ -67,7 +67,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: HEIGHT_SIMPLE_ID,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DEFAULT_HEIGHT_VALUE,
                             choices: [
                                 {
@@ -105,7 +105,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: ORIENTATION_SIMPLE_ID,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DEFAULT_ORIENTATION_VALUE,
                             choices: [
                                 {

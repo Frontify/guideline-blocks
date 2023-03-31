@@ -72,7 +72,7 @@ export const settings = defineSettings({
     security: [
         {
             id: 'visibility',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Visible to',
             defaultValue: NoteVisibility.Everyone,
             info: 'Switch between Block visibility permissions',

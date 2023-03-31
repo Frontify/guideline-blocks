@@ -88,7 +88,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: WIDTH_SIMPLE_ID,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DividerWidth['100%'],
                             choices: [
                                 {
@@ -113,7 +113,7 @@ export const settings = defineSettings({
                 },
                 {
                     id: 'alignment',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Alignment',
                     info: 'Anchors the dividing line to the left, centre, or right of the page.',
                     defaultValue: ALIGNMENT_DEFAULT_VALUE,
@@ -166,7 +166,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: HEIGHT_SIMPLE_ID,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: HEIGHT_DEFAULT_VALUE,
                             choices: [
                                 {
