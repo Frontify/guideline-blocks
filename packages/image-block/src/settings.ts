@@ -3,7 +3,6 @@
 import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     AssetChooserObjectType,
-    AssetInputSize,
     IconEnum,
     NotificationStyleType,
     appendUnit,
@@ -33,7 +32,7 @@ export const settings = defineSettings({
                     id: IMAGE_ID,
                     type: 'assetInput',
                     label: 'Image',
-                    size: AssetInputSize.Small,
+                    size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets.Images,
                 },
@@ -72,7 +71,7 @@ export const settings = defineSettings({
         {
             id: POSITIONING_ID,
             label: 'Positioning',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: CaptionPosition.Below,
             choices: [
                 { value: CaptionPosition.Below, icon: IconEnum.MediaObjectTextBottom },
@@ -84,7 +83,7 @@ export const settings = defineSettings({
         {
             id: 'ratio',
             label: 'Ratio',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: Ratio.Ratio2To1,
             show: (bundle) =>
                 bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
@@ -97,7 +96,7 @@ export const settings = defineSettings({
         },
         {
             id: 'alignment',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Alignment',
             info: 'For images that are smaller than the width of the Content Block.',
             defaultValue: Alignment.Left,
@@ -138,7 +137,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: PADDING_CHOICE_ID,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: Padding.None,
                     choices: [
                         {
@@ -185,7 +184,7 @@ export const settings = defineSettings({
     security: [
         {
             id: SECURITY_ID,
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: ImageSecurity.Global,
             helperText: 'Change global settings here.',
             choices: [
