@@ -13,7 +13,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: 'heightSlider',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: '96px',
                     choices: [
                         {

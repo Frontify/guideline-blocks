@@ -24,7 +24,7 @@ export const settings = defineSettings({
         // {
         //     id: 'mode',
         //     type: 'dropdown',
-        //     size: DropdownSize.Large,
+        //     size: 'large',
         //     defaultValue: BlockMode.TEXT,
         //     choices: [
         //         {
@@ -49,7 +49,7 @@ export const settings = defineSettings({
                 {
                     id: 'style',
                     label: 'Indicator',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: DoDontStyle.Icons,
                     choices: [
                         {
@@ -91,7 +91,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'doIconChoice',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Do icon',
                     defaultValue: ItemIconChoice.CHECKMARK_CIRCLE,
                     choices: [
@@ -107,7 +107,7 @@ export const settings = defineSettings({
                 },
                 {
                     id: 'dontIconChoice',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: "Don't icon",
                     defaultValue: ItemIconChoice.CROSS_CIRCLE,
                     choices: [
@@ -133,7 +133,7 @@ export const settings = defineSettings({
                 {
                     id: 'columns',
                     label: 'Columns',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: 2,
                     info: "The number of columns for Dos and Don'ts",
                     choices: [
@@ -185,7 +185,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'columnGutterChoice',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DoDontSpacing.Medium,
                             choices: [
                                 {
@@ -235,7 +235,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'rowGutterChoice',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DoDontSpacing.Medium,
                             choices: [
                                 {
@@ -290,7 +290,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'imageHeightChoice',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DoDontImageHeight.Medium,
                             choices: [
                                 {
@@ -322,7 +322,7 @@ export const settings = defineSettings({
                 },
                 {
                     id: 'imageDisplay',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: ImageFitChoice.FILL,
                     choices: [
                         {

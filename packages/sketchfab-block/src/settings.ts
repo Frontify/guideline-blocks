@@ -3,14 +3,10 @@
 import {
     BlockSettingsStructureExport,
     Bundle,
-    DropdownSize,
-    MultiInputLayout,
     NotificationBlock,
     NotificationBlockDividerPosition,
     NotificationStyleType,
     SettingBlock,
-    SwitchSize,
-    TextInputType,
     maximumNumericalRule,
     minimumNumericalOrPixelOrAutoRule,
     minimumNumericalRule,
@@ -85,7 +81,7 @@ export const settings: BlockSettingsStructureExport & {
         {
             id: SketchfabSettings.ACCOUNT_TYPE,
             type: 'dropdown',
-            size: DropdownSize.Large,
+            size: 'large',
             defaultValue: SketchfabAccount.Basic,
             choices: [
                 { value: SketchfabAccount.Basic, label: SketchfabAccount.Basic },
@@ -133,7 +129,7 @@ export const settings: BlockSettingsStructureExport & {
                     off: [
                         {
                             id: SketchfabSettings.HEIGHT,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: SketchfabHeight.Medium,
                             choices: [
                                 { label: 'S', value: SketchfabHeight.Small },
@@ -248,7 +244,7 @@ export const settings: BlockSettingsStructureExport & {
                             placeholder: '1',
                             defaultValue: '1',
                             type: 'input',
-                            inputType: TextInputType.Number,
+                            inputType: 'number',
                         },
                     ],
                 },
@@ -262,7 +258,7 @@ export const settings: BlockSettingsStructureExport & {
                 {
                     id: SketchfabSettings.NAVIGATION_MODE,
                     label: 'Default Navigation Mode',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     info: 'Setting to First Person will start the model in First Person mode by default.',
                     choices: [
                         { value: SketchfabNavigation.Orbit, label: 'Orbit' },
@@ -280,7 +276,7 @@ export const settings: BlockSettingsStructureExport & {
                             type: 'input',
                             defaultValue: '25',
                             placeholder: '25',
-                            inputType: TextInputType.Number,
+                            inputType: 'number',
                             rules: [minimumNumericalRule(0), maximumNumericalRule(100)],
                         },
                     ],
@@ -298,7 +294,7 @@ export const settings: BlockSettingsStructureExport & {
                     type: 'switch',
                     label: 'Navigation Constraints',
                     info: 'You can configure the Navigation Constraints here. For a better overview, use the 3D settings of your model within Sketchfab.',
-                    size: SwitchSize.Medium,
+                    size: 'medium',
                 },
 
                 {
@@ -318,12 +314,12 @@ export const settings: BlockSettingsStructureExport & {
                             id: 'orbitConstraintPitchLimits',
                             type: 'multiInput',
                             show: isAvailableNavigationConstraint,
-                            layout: MultiInputLayout.Columns,
+                            layout: 'columns',
                             blocks: [
                                 {
                                     id: SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_UP,
                                     type: 'input',
-                                    inputType: TextInputType.Number,
+                                    inputType: 'number',
                                     rules: [pitchRule],
                                     placeholder: '1',
                                     label: 'Up',
@@ -333,7 +329,7 @@ export const settings: BlockSettingsStructureExport & {
                                 {
                                     id: SketchfabSettings.ORBIT_CONTRAINT_PITCH_LIMITS_DOWN,
                                     type: 'input',
-                                    inputType: TextInputType.Number,
+                                    inputType: 'number',
                                     rules: [pitchRule],
                                     label: 'Down',
                                     info: "Setting to [-π/2 – π/2] will define the camera's pitch down rotation limit.",
@@ -353,13 +349,13 @@ export const settings: BlockSettingsStructureExport & {
                         {
                             id: 'orbitConstraintYawLimits',
                             type: 'multiInput',
-                            layout: MultiInputLayout.Columns,
+                            layout: 'columns',
                             show: isAvailableNavigationConstraint,
                             blocks: [
                                 {
                                     id: SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_LEFT,
                                     type: 'input',
-                                    inputType: TextInputType.Number,
+                                    inputType: 'number',
                                     rules: [yawRule],
                                     info: "Setting to [-π – π] will define the camera's yaw left rotation limit.",
                                     show: isAvailableNavigationConstraint,
@@ -369,7 +365,7 @@ export const settings: BlockSettingsStructureExport & {
                                 {
                                     id: SketchfabSettings.ORBIT_CONTRAINT_YAW_LIMITS_RIGHT,
                                     type: 'input',
-                                    inputType: TextInputType.Number,
+                                    inputType: 'number',
                                     rules: [yawRule],
                                     info: "Setting to [-π – π] will define the camera's yaw right rotation limit.",
                                     show: isAvailableNavigationConstraint,
@@ -392,7 +388,7 @@ export const settings: BlockSettingsStructureExport & {
                             type: 'input',
                             show: isAvailableNavigationConstraint,
                             placeholder: '3',
-                            inputType: TextInputType.Number,
+                            inputType: 'number',
                             rules: [minimumNumericalRule(0)],
                         },
                     ],
@@ -407,7 +403,7 @@ export const settings: BlockSettingsStructureExport & {
                         {
                             id: SketchfabSettings.ORBIT_CONTRAINT_ZOOM_OUT_COUNT,
                             type: 'input',
-                            inputType: TextInputType.Number,
+                            inputType: 'number',
                             rules: [minimumNumericalRule(0)],
                             show: isAvailableNavigationConstraint,
                             placeholder: '3',
@@ -446,7 +442,7 @@ export const settings: BlockSettingsStructureExport & {
                     type: 'switch',
                     defaultValue: true,
                     label: 'Show Annotations',
-                    size: SwitchSize.Medium,
+                    size: 'medium',
                     info: 'Disabling this feature will hide annotations by default',
                 },
                 {
@@ -468,7 +464,7 @@ export const settings: BlockSettingsStructureExport & {
                         {
                             id: SketchfabSettings.STARTING_ANNOTATION_VALUE,
                             defaultValue: '1',
-                            inputType: TextInputType.Number,
+                            inputType: 'number',
                             rules: [minimumNumericalRule(1), maximumNumericalRule(100)],
                             type: 'input',
                             placeholder: '1',
@@ -488,7 +484,7 @@ export const settings: BlockSettingsStructureExport & {
                             label: 'Annotation Cycle Speed',
                             placeholder: '3',
                             defaultValue: '3',
-                            inputType: TextInputType.Number,
+                            inputType: 'number',
                             rules: [minimumNumericalRule(0)],
                             type: 'input',
                             show: isAvailableAnnotationControl,
@@ -506,7 +502,7 @@ export const settings: BlockSettingsStructureExport & {
             blocks: [
                 {
                     id: SketchfabSettings.UI_THEME,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'UI Theme',
                     defaultValue: SketchfabTheme.Default,
                     info: 'Setting to Dark will apply a darker appearance to the user interface.',
@@ -541,7 +537,7 @@ export const settings: BlockSettingsStructureExport & {
                     label: 'Show UI',
                     type: 'switch',
                     defaultValue: true,
-                    size: SwitchSize.Medium,
+                    size: 'medium',
                     show: isPremiumAccount,
                 },
                 {
@@ -620,7 +616,7 @@ export const settings: BlockSettingsStructureExport & {
                     label: 'Buttons',
                     defaultValue: true,
                     type: 'switch',
-                    size: SwitchSize.Medium,
+                    size: 'medium',
                     show: isPremiumAccount,
                 },
                 {

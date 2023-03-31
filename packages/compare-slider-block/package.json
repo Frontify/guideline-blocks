@@ -23,7 +23,7 @@
     "devDependencies": {
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.8",
-        "@frontify/guideline-blocks-settings": "0.25.11",
+        "@frontify/guideline-blocks-settings": "0.26.1",
         "@types/react": "17.0.53",
         "@types/react-dom": "17.0.18",
         "autoprefixer": "10.4.13",
