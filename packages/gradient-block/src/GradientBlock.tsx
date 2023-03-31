@@ -6,7 +6,7 @@ import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { mapColorPalettes, toHexString } from '@frontify/guideline-blocks-shared';
 import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';
-import { AddColorButton, ColorPicker, ColorTooltip, CssValueDisplay, SquareBadgesRow } from './components';
+import { AddColorButton, ColorFlyout, ColorTooltip, CssValueDisplay, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { parseGradientColorsToCss } from './helpers';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
@@ -101,7 +101,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                         </div>
                     </div>
                     {showColorModal && gradientColors !== undefined && (
-                        <ColorPicker
+                        <ColorFlyout
                             colorPalettes={colorPickerPalettes}
                             currentlyEditingPosition={currentlyEditingPosition}
                             gradientColors={gradientColors}

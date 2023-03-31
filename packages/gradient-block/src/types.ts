@@ -59,7 +59,7 @@ export type SquareBadgeProps = {
     blockWidth: number;
 };
 
-export type ColorPickerProps = {
+export type ColorFlyoutProps = {
     colorPalettes: Palette[];
     gradientColors: GradientColor[];
     currentlyEditingPosition: number;

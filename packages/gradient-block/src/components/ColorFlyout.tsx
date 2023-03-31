@@ -1,6 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
+    ButtonEmphasis,
+    ButtonStyle,
     Color,
     ColorPickerFlyout,
     Flyout,
@@ -16,16 +18,16 @@ import {
     Validation,
 } from '@frontify/fondue';
 import { useState } from 'react';
-import { ColorPickerProps, GradientColor } from '../types';
+import { ColorFlyoutProps, GradientColor } from '../types';
 
-export const ColorPicker = ({
+export const ColorFlyout = ({
     colorPalettes,
     currentlyEditingPosition,
     gradientColors,
     showColorModal,
     setColors,
     setShowColorModal,
-}: ColorPickerProps) => {
+}: ColorFlyoutProps) => {
     const actualColor = gradientColors.find((item) => item.position === currentlyEditingPosition);
     const defaultColor = { red: 0, green: 0, blue: 0, alpha: 1 };
     const [colorPosition, setColorPosition] = useState(currentlyEditingPosition.toFixed(0));
@@ -85,27 +87,6 @@ export const ColorPicker = ({
                     </span>
                 </div>
             }
-            fixedFooter={
-                <FlyoutFooter
-                    buttons={[
-                        {
-                            icon: <IconCheckMark16 />,
-                            children: 'Close',
-                            onClick: () => {
-                                if (!actualColor) {
-                                    addNewColor({
-                                        color,
-                                        position: parseInt(colorPosition),
-                                    });
-                                } else {
-                                    color && editColor();
-                                }
-                                setShowColorModal(false);
-                            },
-                        },
-                    ]}
-                />
-            }
             isOpen={showColorModal}
             contentMinHeight={195}
             onOpenChange={(isOpen) => {
@@ -120,6 +101,20 @@ export const ColorPicker = ({
                 setShowColorModal(isOpen);
             }}
             trigger={null}
+            legacyFooter={false}
+            fixedFooter={
+                <FlyoutFooter
+                    buttons={[
+                        {
+                            style: ButtonStyle.Default,
+                            emphasis: ButtonEmphasis.Strong,
+                            icon: <IconCheckMark16 />,
+                            children: 'Close',
+                            onClick: () => setShowColorModal(false),
+                        },
+                    ]}
+                />
+            }
         >
             <div className="tw-flex" data-test-id="color-picker-form">
                 <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-10">
@@ -127,7 +122,6 @@ export const ColorPicker = ({
                     <ColorPickerFlyout
                         currentColor={color}
                         palettes={colorPalettes}
-                        onClose={() => setShowColorModal(false)}
                         onSelect={setColor}
                         onClick={() => color && editColor()}
                     />
