@@ -9,7 +9,8 @@ import {
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
 import { BackgroundBase } from "../AssetDropzone";
 import { BorderShape } from "../styling";
-import { QueryFile, Status } from "../../model/QueryFile";
+import { Status } from "../../module/FileUpload/Contract/Status";
+import { QueryFile } from "../../module/FileUpload/Entity/QueryFile";
 
 type FileUploadListProps = {
     entries: QueryFile[];

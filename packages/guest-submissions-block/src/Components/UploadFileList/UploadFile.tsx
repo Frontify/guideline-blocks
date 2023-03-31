@@ -8,16 +8,8 @@ import {
 import React from "react";
 import { getMimeTypeIcon } from "./helper";
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
-import { Status } from "../../model/QueryFile";
-
-export type UploadFileProps = {
-    type: string;
-    name: string;
-    identifier: string;
-    status: Status;
-    last: boolean;
-    onDelete: (identifier: string) => void;
-};
+import { Status } from "../../module/FileUpload/Contract/Status";
+import { UploadFileProps } from "./type";
 
 export const UploadFile = ({
     type,
