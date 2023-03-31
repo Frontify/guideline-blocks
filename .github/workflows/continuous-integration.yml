@@ -12,7 +12,7 @@ on:
             - main
 
 env:
-    NODE_VERSION: 16
+    NODE_VERSION: 18
     CI: true
     NUMBER_OF_RUNNERS: 7
 
