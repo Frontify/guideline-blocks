@@ -39,7 +39,7 @@ const COLOR_SQUARE_FIRST_ELEMENT_CLASSES = 'tw-pl-[1px] tw-pr-[1px] tw-rounded-t
 const COLOR_SQUARE_LAST_ELEMENT_CLASSES = 'tw-rounded-tr tw-rounded-br';
 
 export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
-    const { colorPalettes } = useColorPalettes(appBridge);
+    const { colorPalettes: appBridgePalettes } = useColorPalettes(appBridge);
     const [colorPickerPalettes, setColorPickerPalettes] = useState<Palette[]>([]);
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -58,8 +58,8 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
     useEffect(() => {
-        setColorPickerPalettes(mapColorPalettes(colorPalettes));
-    }, [colorPalettes, appBridge]);
+        setColorPickerPalettes(mapColorPalettes(appBridgePalettes));
+    }, [appBridgePalettes, appBridge]);
 
     const { customHeight, heightInput, heightSlider } = blockSettings;
 
