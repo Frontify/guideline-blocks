@@ -74,10 +74,7 @@ export const ColorFlyout = ({
     return (
         <Flyout
             fixedHeader={
-                <div
-                    data-test-id="color-picker-flyout"
-                    className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10"
-                >
+                <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
                     <span>Configure Color</span>
                     <span
                         className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-0.5 tw-text-strong"
@@ -110,7 +107,17 @@ export const ColorFlyout = ({
                             emphasis: ButtonEmphasis.Strong,
                             icon: <IconCheckMark16 />,
                             children: 'Close',
-                            onClick: () => setShowColorModal(false),
+                            onClick: () => {
+                                if (!actualColor) {
+                                    addNewColor({
+                                        color,
+                                        position: parseInt(colorPosition),
+                                    });
+                                } else {
+                                    color && editColor();
+                                }
+                                setShowColorModal(false);
+                            },
                         },
                     ]}
                 />
