@@ -11,6 +11,13 @@ export type RichTextBlockProps = {
     placeholder?: string;
     designTokens?: DesignTokens;
     columns?: number;
-    gap?: number;
-    rtePlugins?: PluginComposer;
+    gap?: string;
+    plugins?: PluginComposer;
+};
+
+export type SerializedTextProps = {
+    value?: string;
+    designTokens?: DesignTokens;
+    columns?: number;
+    gap?: string;
 };

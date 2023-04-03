@@ -2,8 +2,9 @@
 
 import React from 'react';
 
-import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
+import { RichTextEditor } from '@frontify/fondue';
 import { RichTextBlockProps } from './types';
+import { SerializedText } from './SerializedText';
 
 export const RichTextBlock = ({
     settingsId,
@@ -13,7 +14,7 @@ export const RichTextBlock = ({
     columns,
     gap,
     placeholder,
-    rtePlugins,
+    plugins,
     setBlockSettings,
 }: RichTextBlockProps) => {
     if (isEditing) {
@@ -25,12 +26,10 @@ export const RichTextBlock = ({
                 border={false}
                 placeholder={placeholder}
                 onBlur={saveText}
-                plugins={rtePlugins}
+                plugins={plugins}
             />
         );
     } else {
-        const rawValue = JSON.stringify(parseRawValue({ raw: value ?? '' }));
-        const html = serializeRawToHtml(rawValue, designTokens, columns, gap);
-        return <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />;
+        return <SerializedText value={value} designTokens={designTokens} columns={columns} gap={gap} />;
     }
 };

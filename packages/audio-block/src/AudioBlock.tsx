@@ -14,20 +14,17 @@ import {
     ItalicPlugin,
     LoadingCircle,
     PluginComposer,
-    Position,
     ResetFormattingPlugin,
-    RichTextEditor,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     TextStyles,
     UnderlinePlugin,
-    parseRawValue,
-    serializeRawToHtml,
 } from '@frontify/fondue';
 import {
     BlockItemWrapper,
     DownloadButton,
+    RichTextBlock,
     convertToRteValue,
     downloadAsset,
     hasRichTextValue,
@@ -64,11 +61,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { title, description, downloadable, positioning } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
-    const rawTitleValue = JSON.stringify(parseRawValue({ raw: title }));
-    const htmlTitle = serializeRawToHtml(rawTitleValue, designTokens);
-    const rawDescriptionValue = JSON.stringify(parseRawValue({ raw: description }));
-    const htmlDescription = serializeRawToHtml(rawDescriptionValue, designTokens);
-
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
@@ -89,12 +81,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const saveTitle = (title: string) => {
         if (title !== blockSettings.title) {
             setBlockSettings({ title });
-        }
-    };
-
-    const saveDescription = (description: string) => {
-        if (description !== blockSettings.description) {
-            setBlockSettings({ description });
         }
     };
 
@@ -207,42 +193,28 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             )}
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-flex-1">
-                    {isEditing ? (
-                        <RichTextEditor
+                    <div data-test-id="block-title">
+                        <RichTextBlock
+                            settingsId="title"
                             designTokens={designTokens}
-                            border={false}
-                            onBlur={saveTitle}
-                            placeholder="Asset name"
+                            isEditing={isEditing}
+                            setBlockSettings={setBlockSettings}
                             value={title ?? DEFAULT_CONTENT_TITLE}
+                            placeholder="Asset name"
                             plugins={customTitlePlugins}
-                            updateValueOnChange
                         />
-                    ) : (
-                        <>
-                            {hasRichTextValue(title) && (
-                                <div data-test-id="block-title-html" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
-                            )}
-                        </>
-                    )}
-                    {isEditing ? (
-                        <RichTextEditor
+                    </div>
+
+                    <div data-test-id="block-description">
+                        <RichTextBlock
+                            settingsId="description"
                             designTokens={designTokens}
-                            border={false}
-                            position={Position.FLOATING}
-                            onBlur={saveDescription}
-                            placeholder="Add a description here"
+                            isEditing={isEditing}
+                            setBlockSettings={setBlockSettings}
                             value={description ?? DEFAULT_CONTENT_DESCRIPTION}
+                            placeholder="Add a description here"
                         />
-                    ) : (
-                        <>
-                            {hasRichTextValue(description) && (
-                                <div
-                                    data-test-id="block-description-html"
-                                    dangerouslySetInnerHTML={{ __html: htmlDescription }}
-                                />
-                            )}
-                        </>
-                    )}
+                    </div>
                 </div>
                 {audio && (
                     <div className="tw-flex tw-gap-2">
