@@ -294,7 +294,7 @@ describe('AssetKit Block', () => {
                 downloadUrlBlock: 'dummy-download-url',
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<AssetKitBlockWithStubs />);
