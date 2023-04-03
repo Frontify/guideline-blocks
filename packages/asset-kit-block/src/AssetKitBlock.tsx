@@ -82,7 +82,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                         disabled={
                             [BulkDownloadState.Error, BulkDownloadState.Pending, BulkDownloadState.Started].includes(
                                 status
-                            ) || currentAssets.length <= 0
+                            ) || currentAssets.length === 0
                         }
                         onClick={() => startDownload()}
                         style={designTokens.buttonPrimary}
