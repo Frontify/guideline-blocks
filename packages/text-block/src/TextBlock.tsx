@@ -36,7 +36,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
                     placeholder={PLACEHOLDER}
                     onTextChange={onTextChange}
                     onBlur={onTextChange}
-                    plugins={getPlugins(blockSettings.columnNumber, gap)}
+                    plugins={getPlugins(appBridge, blockSettings.columnNumber, gap)}
                 />
             )}
         </>

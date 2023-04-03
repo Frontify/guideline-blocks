@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { PluginComposer, RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
+import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
@@ -17,7 +17,6 @@ import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
-import { getRichTextEditorPlugins } from './utils/getRichTextEditorPlugins';
 import { useCalloutColors } from './utils/useCalloutColors';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
@@ -109,7 +108,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                         placeholder="Type your text here"
                         onTextChange={onTextChange}
                         onBlur={onTextChange}
-                        plugins={getRichTextEditorPlugins(appBridge)}
                     />
                 )}
             </div>
