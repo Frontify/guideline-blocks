@@ -16,6 +16,7 @@ export const RichTextBlock = ({
     placeholder,
     plugins,
     setBlockSettings,
+    updateValueOnChange,
 }: RichTextBlockProps) => {
     if (isEditing) {
         const saveText = (newValue: string) => newValue !== value && setBlockSettings({ [settingsId]: newValue });
@@ -27,6 +28,7 @@ export const RichTextBlock = ({
                 placeholder={placeholder}
                 onBlur={saveText}
                 plugins={plugins}
+                updateValueOnChange={updateValueOnChange}
             />
         );
     } else {

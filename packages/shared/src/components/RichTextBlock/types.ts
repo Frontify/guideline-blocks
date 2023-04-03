@@ -13,6 +13,7 @@ export type RichTextBlockProps = {
     columns?: number;
     gap?: string;
     plugins?: PluginComposer;
+    updateValueOnChange?: boolean;
 };
 
 export type SerializedTextProps = {
