@@ -134,6 +134,22 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_SELECTOR).should('have.css', 'border-radius', '10px');
     });
 
+    it('should display block with borderRadius and 0px border', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                hasBorder_blocks: false,
+                hasRadius_blocks: true,
+                radiusValue_blocks: '10px',
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_SELECTOR).first().should('have.css', 'border-radius', '10px');
+        cy.get(BLOCK_SELECTOR).first().should('have.css', 'border', '0px solid rgb(0, 0, 0)');
+    });
+
     it('should display asset with black background color', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
@@ -165,6 +181,22 @@ describe('AssetKit Block', () => {
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '1px dotted rgb(255, 255, 255)');
         cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border-radius', '10px');
+    });
+
+    it('should display asset with borderRadius and 0px border', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                hasBorder_thumbnails: false,
+                hasRadius_thumbnails: true,
+                radiusValue_thumbnails: '10px',
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border-radius', '10px');
+        cy.get(BLOCK_THUMBNAIL_IMAGE).first().should('have.css', 'border', '0px solid rgb(0, 0, 0)');
     });
 
     it('should remove assets correctly in edit mode', () => {

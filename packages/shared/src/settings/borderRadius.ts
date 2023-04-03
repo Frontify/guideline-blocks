@@ -21,7 +21,7 @@ type BorderRadiusSettingsType = {
 
 export const getBorderRadiusSlider = (id: string, defaultValue: Radius = Radius.None): SettingBlock => ({
     id,
-    type: 'slider',
+    type: 'segmentedControls',
     defaultValue,
     choices: [
         {

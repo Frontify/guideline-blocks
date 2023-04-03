@@ -3,7 +3,7 @@
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react';
 import { ImageBlock } from './ImageBlock';
-import { ATTACHMENTS_ASSET_ID, IMAGE_SETTING_ID } from './settings';
+import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import {
     Alignment,
     CaptionPosition,
@@ -16,6 +16,7 @@ import {
 const ImageBlockSelector = '[data-test-id="image-block"]';
 const ImageBlockImageWrapperSelector = '[data-test-id="image-block-img-wrapper"]';
 const ImageBlockImageSelector = '[data-test-id="image-block-img"]';
+const ImageBlockCaption = '[data-test-id="image-caption"]';
 const PlaceholderSelector = '[data-test-id="block-inject-button"]';
 const DownloadSelector = '[data-test-id="download-button"]';
 const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
@@ -42,7 +43,7 @@ describe('Image Block', () => {
     it('should render the image if it is uploaded', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
@@ -52,7 +53,7 @@ describe('Image Block', () => {
     it('should render the download button if the image is uploaded', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
@@ -70,7 +71,7 @@ describe('Image Block', () => {
     it('should render the attachments dropdown there are attachments uploaded', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
                 [ATTACHMENTS_ASSET_ID]: [AssetDummy.with(2)],
             },
             blockSettings: {
@@ -84,31 +85,21 @@ describe('Image Block', () => {
     it('should render the title if it is provided', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockSettings: {
-                name: 'Test Name',
+                name: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Name' }] }]),
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).should('contain.text', 'Test Name');
-    });
-
-    it('should render the file name if no title is provided', () => {
-        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
-            blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
-            },
-        });
-        mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).should('contain.text', 'fileName.png');
+        cy.get(ImageBlockCaption).should('contain.text', 'Test Name');
     });
 
     it('should render the description if it is provided', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
             blockSettings: {
-                description: 'Test Description',
+                description: JSON.stringify([{ type: 'imageTitle', children: [{ text: 'Test Description' }] }]),
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockSelector).should('contain.text', 'Test Description');
+        cy.get(ImageBlockCaption).should('contain.text', 'Test Description');
     });
 
     it('should be a link if it is provided', () => {
@@ -120,7 +111,7 @@ describe('Image Block', () => {
                 },
             },
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
@@ -136,7 +127,7 @@ describe('Image Block', () => {
                 borderStyle: 'solid',
             },
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
@@ -149,7 +140,7 @@ describe('Image Block', () => {
                 positioning: CaptionPosition.Right,
             },
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
@@ -162,7 +153,7 @@ describe('Image Block', () => {
                 ratio: Ratio.Ratio1To2,
             },
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
@@ -176,7 +167,7 @@ describe('Image Block', () => {
                 backgroundColor: { r: 0, g: 0, b: 255 },
             },
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
@@ -190,7 +181,7 @@ describe('Image Block', () => {
                 paddingCustom: '16px',
             },
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);
@@ -203,7 +194,7 @@ describe('Image Block', () => {
                 alignment: Alignment.Right,
             },
             blockAssets: {
-                [IMAGE_SETTING_ID]: [AssetDummy.with(1)],
+                [IMAGE_ID]: [AssetDummy.with(1)],
             },
         });
         mount(<ImageBlockWithStubs />);

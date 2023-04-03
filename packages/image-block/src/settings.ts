@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     AssetChooserObjectType,
-    AssetInputSize,
     IconEnum,
     NotificationStyleType,
     appendUnit,
@@ -11,7 +11,6 @@ import {
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-
 import { Alignment, CaptionPosition, ImageSecurity, Padding, Ratio, paddingValues, radiusValues } from './types';
 
 const POSITIONING_ID = 'positioning';
@@ -19,7 +18,7 @@ const HAS_BACKGROUND_ID = 'hasBackground';
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
 const SECURITY_ID = 'security';
-export const IMAGE_SETTING_ID = 'image';
+export const IMAGE_ID = 'image';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
 
 export const settings = defineSettings({
@@ -30,11 +29,12 @@ export const settings = defineSettings({
             label: '',
             blocks: [
                 {
-                    id: IMAGE_SETTING_ID,
+                    id: IMAGE_ID,
                     type: 'assetInput',
                     label: 'Image',
-                    size: AssetInputSize.Small,
+                    size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
+                    extensions: FileExtensionSets.Images,
                 },
                 {
                     id: 'hasLink',
@@ -48,7 +48,6 @@ export const settings = defineSettings({
                             placeholder: 'Paste link, or type to search',
                         },
                     ],
-                    off: [],
                 },
             ],
         },
@@ -63,7 +62,7 @@ export const settings = defineSettings({
             },
             link: {
                 label: 'Follow our guide for image resolution',
-                href: 'https://help.frontify.com/en/articles/4889509-what-is-the-correct-pixel-density-for-my-image',
+                href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
                 target: '_blank',
             },
         },
@@ -72,7 +71,7 @@ export const settings = defineSettings({
         {
             id: POSITIONING_ID,
             label: 'Positioning',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: CaptionPosition.Below,
             choices: [
                 { value: CaptionPosition.Below, icon: IconEnum.MediaObjectTextBottom },
@@ -84,7 +83,7 @@ export const settings = defineSettings({
         {
             id: 'ratio',
             label: 'Ratio',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: Ratio.Ratio2To1,
             show: (bundle) =>
                 bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
@@ -97,7 +96,7 @@ export const settings = defineSettings({
         },
         {
             id: 'alignment',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Alignment',
             info: 'For images that are smaller than the width of the Content Block.',
             defaultValue: Alignment.Left,
@@ -138,7 +137,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: PADDING_CHOICE_ID,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: Padding.None,
                     choices: [
                         {
@@ -185,7 +184,7 @@ export const settings = defineSettings({
     security: [
         {
             id: SECURITY_ID,
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: ImageSecurity.Global,
             helperText: 'Change global settings here.',
             choices: [

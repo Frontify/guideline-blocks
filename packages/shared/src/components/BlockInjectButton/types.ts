@@ -11,4 +11,5 @@ export type BlockInjectButtonProps = {
     onAssetChooseClick?: () => void;
     withMenu?: boolean;
     onClick?: () => void;
+    verticalLayout?: boolean;
 };

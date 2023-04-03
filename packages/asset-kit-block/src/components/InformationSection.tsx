@@ -1,25 +1,23 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { convertToRteValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     BoldPlugin,
     ItalicPlugin,
-    parseRawValue,
-    Plugin,
     PluginComposer,
-    PluginProps,
     ResetFormattingPlugin,
     RichTextEditor,
-    serializeRawToHtml,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
+    TextStyles,
     UnderlinePlugin,
+    parseRawValue,
+    serializeRawToHtml,
 } from '@frontify/fondue';
-import { hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { useMemo } from 'react';
+import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
 import { InformationSectionProps } from '../types';
-
-const DEFAULT_CONTENT_VALUE = '[{"type":"heading3","children":[{"text":""}]}]';
+import { useMemo } from 'react';
 
 export const InformationSection = ({ description, isEditing, setBlockSettings, title }: InformationSectionProps) => {
     const { designTokens } = useGuidelineDesignTokens();
@@ -60,7 +58,7 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
                 ) : (
                     <RichTextEditor
                         designTokens={designTokens}
-                        value={title ?? DEFAULT_CONTENT_VALUE}
+                        value={title ?? convertToRteValue(TextStyles.ELEMENT_HEADING3)}
                         onBlur={saveTitle}
                         placeholder="Add a title here ..."
                         border={false}

@@ -22,9 +22,6 @@ import {
     UnorderedListPlugin,
 } from '@frontify/fondue';
 
-export const DEFAULT_CONTENT_DESCRIPTION = '[{"type":"image-title","children":[{"text":""}], "align":"center"}]';
-export const DEFAULT_CONTENT_NAME = '[{"type":"imageCaption","children":[{"text":""}], "align":"center"}]';
-
 export const captionPlugins = new PluginComposer();
 const textStylePlugins = [
     new SoftBreakPlugin(),

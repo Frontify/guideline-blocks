@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Settings, ThumbnailItemProps } from '../types';
-import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16, IconTrashBin20, LoadingCircle } from '@frontify/fondue';
+import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16, LoadingCircle } from '@frontify/fondue';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-shared';
 import { AssetChooserObjectType, useAssetUpload, useBlockSettings, useFileInput } from '@frontify/app-bridge';
 import { thumbnailStyle } from '../helpers';
@@ -55,13 +55,6 @@ export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onRe
                         title: 'Replace with asset',
                         icon: <IconImageStack20 />,
                         onClick: openAssetChooser,
-                    },
-                ],
-                [
-                    {
-                        title: 'Delete',
-                        icon: <IconTrashBin20 />,
-                        onClick: () => onRemoveAsset(asset.id),
                     },
                 ],
             ]}

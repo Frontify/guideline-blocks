@@ -41,7 +41,7 @@ export const settings = defineSettings({
             blocks: [
                 backgroundColor('Blocks', false),
                 getBorderSettings({ id: 'blocks', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
-                getBorderRadiusSettings({ id: 'blocks', dependentSettingId: 'hasBorder_blocks' }),
+                getBorderRadiusSettings({ id: 'blocks' }),
             ],
         },
         {
@@ -51,7 +51,7 @@ export const settings = defineSettings({
             blocks: [
                 backgroundColor('Thumbnails'),
                 getBorderSettings({ id: 'thumbnails', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
-                getBorderRadiusSettings({ id: 'thumbnails', dependentSettingId: 'hasBorder_thumbnails' }),
+                getBorderRadiusSettings({ id: 'thumbnails' }),
             ],
         },
     ],

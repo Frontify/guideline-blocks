@@ -23,7 +23,7 @@ type MarginSettingsType = {
  */
 export const getMarginSlider = (id: string): SettingBlock => ({
     id,
-    type: 'slider',
+    type: 'segmentedControls',
     defaultValue: Margin.None,
     choices: [
         {
