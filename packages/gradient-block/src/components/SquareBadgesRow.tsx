@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { toHexString } from '@frontify/guideline-blocks-shared';
 import { useEffect, useState } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 import { calculateLevelOfLast, prepareGradientColors } from '../helpers';
 import { SquareBadgesRowProps } from '../types';
 import { SquareBadge } from './';
-import { toHexString } from '@frontify/guideline-blocks-shared';
 
 export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientation }: SquareBadgesRowProps) => {
     const [highestLevel, setHighestLevel] = useState(0);
@@ -32,6 +32,8 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
             ? HEIGHT_OF_SQUARE_BADGE * highestLevel + 1
             : HEIGHT_OF_SQUARE_BADGE * (gradientColors?.length || 0);
 
+    const colors = gradientOrientation === 0 ? [...gradientColors].reverse() : gradientColors;
+
     return (
         <div
             className="tw-relative tw-w-full"
@@ -39,7 +41,7 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
                 height,
             }}
         >
-            {gradientColors.map((gradientColor, index) => (
+            {colors.map((gradientColor, index) => (
                 <SquareBadge
                     key={toHexString(gradientColor.color) + gradientColor.position}
                     gradientColor={gradientColor}

@@ -1,12 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { GradientColor, SquareBadgeProps } from '../types';
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
 import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
+import { useRef } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent } from '../helpers';
+import { GradientColor, SquareBadgeProps } from '../types';
 
 export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWidth }: SquareBadgeProps) => {
+    const badgeRef = useRef<HTMLDivElement>(null);
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
 
@@ -50,14 +52,18 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
         }
     };
 
+    const isOutOfBounds = !!badgeRef.current && badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth;
+
     return (
         <div
+            ref={badgeRef}
             data-test-id="square-badge"
             key={toHexString(gradientColor.color) + gradientColor.position}
             className="tw-absolute tw-mt-2"
             style={{
-                left: getLeft(gradientColor),
                 top: getTop(gradientColor, index),
+                left: isOutOfBounds ? 'auto' : getLeft(gradientColor),
+                right: isOutOfBounds ? '0%' : 'auto',
             }}
         >
             <div
@@ -71,7 +77,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
                             backgroundColor: toHexString(gradientColor.color),
                         }}
                     ></div>
-                    <span className="tw-text-weak tw-px-1 tw-text-xs">
+                    <span className="tw-text-weak tw-px-1 tw-text-xs tw-whitespace-nowrap">
                         <strong>{gradientColor.color?.name}</strong>
                     </span>
                     <span className="tw-text-x-weak tw-text-xs tw-pl-1">{toHexString(gradientColor.color)}</span>

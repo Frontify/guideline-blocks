@@ -1,6 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
+    ButtonEmphasis,
+    ButtonStyle,
     Color,
     ColorPickerFlyout,
     Flyout,
@@ -16,14 +18,16 @@ import {
     Validation,
 } from '@frontify/fondue';
 import { useState } from 'react';
-import { ColorPickerProps, GradientColor } from '../types';
+import { ColorFlyoutProps, GradientColor } from '../types';
 
-export const ColorPicker = ({
+export const ColorFlyout = ({
+    colorPalettes,
     currentlyEditingPosition,
     gradientColors,
+    showColorModal,
     setColors,
     setShowColorModal,
-}: ColorPickerProps) => {
+}: ColorFlyoutProps) => {
     const actualColor = gradientColors.find((item) => item.position === currentlyEditingPosition);
     const defaultColor = { red: 0, green: 0, blue: 0, alpha: 1 };
     const [colorPosition, setColorPosition] = useState(currentlyEditingPosition.toFixed(0));
@@ -70,10 +74,7 @@ export const ColorPicker = ({
     return (
         <Flyout
             fixedHeader={
-                <div
-                    data-test-id="color-picker-flyout"
-                    className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10"
-                >
+                <div className="tw-flex tw-justify-between tw-items-center tw-font-bold tw-text-s tw-py-3 tw-px-6 tw-bg-white dark:tw-bg-black-95 tw-border-b tw-border-b-black-10">
                     <span>Configure Color</span>
                     <span
                         className="hover:tw-bg-box-neutral-hover hover:tw-cursor-pointer tw-rounded-sm tw-p-0.5 tw-text-strong"
@@ -83,41 +84,51 @@ export const ColorPicker = ({
                     </span>
                 </div>
             }
-            fixedFooter={
-                <div data-test-id="color-picker-flyout-footer">
-                    <FlyoutFooter
-                        buttons={[
-                            {
-                                icon: <IconCheckMark16 />,
-                                children: 'Close',
-                                onClick: () => {
-                                    if (!actualColor) {
-                                        addNewColor({
-                                            color,
-                                            position: parseInt(colorPosition),
-                                        });
-                                    } else {
-                                        color && editColor();
-                                    }
-                                    setShowColorModal(false);
-                                },
-                            },
-                        ]}
-                    />
-                </div>
-            }
-            legacyFooter={false}
-            isOpen={true}
+            isOpen={showColorModal}
             contentMinHeight={195}
-            onOpenChange={() => true}
+            onOpenChange={(isOpen) => {
+                if (!actualColor) {
+                    addNewColor({
+                        color,
+                        position: parseInt(colorPosition),
+                    });
+                } else {
+                    color && editColor();
+                }
+                setShowColorModal(isOpen);
+            }}
             trigger={null}
+            legacyFooter={false}
+            fixedFooter={
+                <FlyoutFooter
+                    buttons={[
+                        {
+                            style: ButtonStyle.Default,
+                            emphasis: ButtonEmphasis.Strong,
+                            icon: <IconCheckMark16 />,
+                            children: 'Close',
+                            onClick: () => {
+                                if (!actualColor) {
+                                    addNewColor({
+                                        color,
+                                        position: parseInt(colorPosition),
+                                    });
+                                } else {
+                                    color && editColor();
+                                }
+                                setShowColorModal(false);
+                            },
+                        },
+                    ]}
+                />
+            }
         >
             <div className="tw-flex" data-test-id="color-picker-form">
                 <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-10">
                     <Text color="weak">Color</Text>
                     <ColorPickerFlyout
                         currentColor={color}
-                        onClose={() => setShowColorModal(false)}
+                        palettes={colorPalettes}
                         onSelect={setColor}
                         onClick={() => color && editColor()}
                     />
