@@ -54,10 +54,8 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
     };
 
     useEffect(() => {
-        if (badgeRef.current) {
-            if (badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth) {
-                setOutOfBounds(true);
-            }
+        if (badgeRef.current && badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth) {
+            setOutOfBounds(true);
         }
     }, [badgeRef, blockWidth]);
 
