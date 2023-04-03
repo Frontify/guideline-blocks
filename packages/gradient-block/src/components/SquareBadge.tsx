@@ -2,14 +2,13 @@
 
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
 import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
+import { useRef } from 'react';
 import { HEIGHT_OF_SQUARE_BADGE } from '../constants';
 import { calculateBadgeWidthInPercent, calculateCopyButtonWidthInPercent } from '../helpers';
 import { GradientColor, SquareBadgeProps } from '../types';
-import { useEffect, useRef, useState } from 'react';
 
 export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWidth }: SquareBadgeProps) => {
     const badgeRef = useRef<HTMLDivElement>(null);
-    const [outOfBounds, setOutOfBounds] = useState(false);
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
 
@@ -53,11 +52,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
         }
     };
 
-    useEffect(() => {
-        if (badgeRef.current && badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth) {
-            setOutOfBounds(true);
-        }
-    }, [badgeRef, blockWidth]);
+    const isOutOfBounds = !!badgeRef.current && badgeRef.current.clientWidth + badgeRef.current.offsetLeft > blockWidth;
 
     return (
         <div
@@ -67,8 +62,8 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
             className="tw-absolute tw-mt-2"
             style={{
                 top: getTop(gradientColor, index),
-                left: outOfBounds ? 'auto' : getLeft(gradientColor),
-                right: outOfBounds ? '0%' : 'auto',
+                left: isOutOfBounds ? 'auto' : getLeft(gradientColor),
+                right: isOutOfBounds ? '0%' : 'auto',
             }}
         >
             <div
