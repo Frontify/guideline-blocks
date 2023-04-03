@@ -291,14 +291,14 @@ describe('AssetKit Block', () => {
     it('should announce the download to screen readers if download happened', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
-                downloadUrlBlock: 'https://frontify.com/',
+                downloadUrlBlock: 'dummy-download-url',
             },
             blockAssets: {
-                [ASSET_SETTINGS_ID]: [AssetDummy.with(1)],
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
             },
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_DOWNLOAD_BTN).click();
-        cy.get(BLOCK_DOWNLOAD_ANNOUNCEMENT).should('be.visible');
+        cy.get(BLOCK_DOWNLOAD_ANNOUNCEMENT).contains('downloaded').should('exist');
     });
 });
