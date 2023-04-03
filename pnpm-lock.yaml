@@ -1531,6 +1531,18 @@ importers:
       '@react-aria/focus':
         specifier: 3.11.0
         version: 3.11.0(react@17.0.2)
+      '@react-stately/overlays':
+        specifier: 3.4.2
+        version: 3.4.2(react@17.0.2)
+      '@udecode/plate':
+        specifier: 19.6.0
+        version: 19.6.0(@babel/core@7.20.2)(@types/react@17.0.50)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)(scheduler@0.23.0)(slate-history@0.86.0)(slate-hyperscript@0.77.0)(slate-react@0.88.0)(slate@0.87.0)(styled-components@5.3.6)
+      slate:
+        specifier: 0.87.0
+        version: 0.87.0
+      slate-react:
+        specifier: 0.88.0
+        version: 0.88.0(react-dom@17.0.2)(react@17.0.2)(slate@0.87.0)
       tinycolor2:
         specifier: 1.4.2
         version: 1.4.2
@@ -5105,7 +5117,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/overlays': 3.4.4(react@17.0.2)
+      '@react-stately/overlays': 3.4.2(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/tooltip': 3.2.5(react@17.0.2)
       react: 17.0.2
