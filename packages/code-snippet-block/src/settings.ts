@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
+import { IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 import { Radius, getBorderSettings, getExtendedBorderRadiusSettings } from '@frontify/guideline-blocks-shared';
 import { languageNameMap, themeNameMap } from './types';
 
@@ -10,7 +10,7 @@ export const settings = defineSettings({
             id: 'language',
             type: 'dropdown',
             defaultValue: 'html',
-            size: DropdownSize.Large,
+            size: 'large',
             choices: Object.entries(languageNameMap).map(([value, label]) => ({ value, icon: IconEnum.Code, label })),
         },
     ],
@@ -35,7 +35,7 @@ export const settings = defineSettings({
             type: 'dropdown',
             defaultValue: 'default',
             label: 'Color scheme',
-            size: DropdownSize.Small,
+            size: 'small',
             choices: Object.entries(themeNameMap).map(([value, label]) => ({ value, label })),
         },
         getBorderSettings({ defaultValue: true }),

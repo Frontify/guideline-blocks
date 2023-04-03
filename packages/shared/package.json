@@ -31,7 +31,7 @@
         "eslint-plugin-notice": "0.9.10",
         "happy-dom": "7.6.7",
         "mitt": "3.0.0",
-        "msw": "0.48.1",
+        "msw": "1.2.1",
         "postcss": "^8.4.21",
         "prettier": "2.7.1",
         "react": "17.0.2",
@@ -50,7 +50,7 @@
         "@dnd-kit/sortable": "7.0.1",
         "@frontify/app-bridge": "3.0.0-beta.59",
         "@frontify/fondue": "12.0.0-beta.162",
-        "@frontify/guideline-blocks-settings": "0.25.10",
+        "@frontify/guideline-blocks-settings": "0.26.1",
         "@react-aria/focus": "3.11.0",
         "tinycolor2": "1.4.2"
     },
