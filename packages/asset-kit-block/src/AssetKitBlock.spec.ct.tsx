@@ -299,6 +299,6 @@ describe('AssetKit Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_DOWNLOAD_BTN).click();
-        cy.get(BLOCK_DOWNLOAD_ANNOUNCEMENT).contains('downloaded').should('exist');
+        cy.get(BLOCK_DOWNLOAD_ANNOUNCEMENT).contains('downloaded');
     });
 });
