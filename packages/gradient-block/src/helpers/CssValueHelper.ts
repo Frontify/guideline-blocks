@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { GradientColor } from '../types';
 import { toHexString } from '@frontify/guideline-blocks-shared';
+import { GradientColor } from '../types';
 
 export const parseGradientColorsToCss = (gradientColors: GradientColor[] | undefined, gradientOrientation: number) => {
     if (!gradientColors) {
