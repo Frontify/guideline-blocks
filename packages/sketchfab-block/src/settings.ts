@@ -56,7 +56,7 @@ const isAvailableAnnotationControl = (bundle: Bundle) =>
 
 /* Navigation constraint settings lose all functionality if some other settings are switched on.
 These edge-cases are documented in the link.href of this block */
-const INCOMPATIBLE_SETTINGS_NOTIFICATION: Pick<NotificationBlock, 'type' | 'title' | 'styles' | 'link'> = {
+const INCOMPATIBLE_SETTINGS_NOTIFICATION: Pick<NotificationBlock, 'type' | 'title' | 'styles' | 'footer'> = {
     type: 'notification',
     title: 'Incompatible settings',
     styles: {
@@ -64,7 +64,7 @@ const INCOMPATIBLE_SETTINGS_NOTIFICATION: Pick<NotificationBlock, 'type' | 'titl
         icon: true,
         divider: NotificationBlockDividerPosition.Top,
     },
-    link: {
+    footer: {
         href: 'https://help.sketchfab.com/hc/en-us/articles/115003399103-Camera-Limits##preview',
         label: 'More information',
     },
