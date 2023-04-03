@@ -12,5 +12,8 @@ export const SerializedText = ({ value, designTokens, gap, columns }: Serialized
         () => serializeRawToHtml(rawValue, designTokens, columns, gap),
         [rawValue, designTokens, columns, gap]
     );
-    return value ? <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} /> : <></>;
+
+    return html !== '<br />' ? (
+        <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+    ) : null;
 };
