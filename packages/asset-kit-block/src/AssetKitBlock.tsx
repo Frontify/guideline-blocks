@@ -92,7 +92,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                             data-test-id="asset-kit-block-screen-reader"
                             ref={screenReaderRef}
                             role="status"
-                            className="tw-absolute -tw-left-[10000px] tw-top-auto tw-w-1 tw-h-1 overflow-hidden"
+                            className="tw-absolute -tw-left-[10000px] tw-top-auto tw-w-1 tw-h-1 tw-overflow-hidden"
                         />
                     </button>
                 </div>
