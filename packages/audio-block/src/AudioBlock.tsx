@@ -24,7 +24,7 @@ import {
 import {
     BlockItemWrapper,
     DownloadButton,
-    RichTextBlock,
+    RichTextEditor,
     convertToRteValue,
     downloadAsset,
     hasRichTextValue,
@@ -194,7 +194,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-flex-1">
                     <div data-test-id="block-title">
-                        <RichTextBlock
+                        <RichTextEditor
                             settingsId="title"
                             designTokens={designTokens}
                             isEditing={isEditing}
@@ -207,7 +207,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     </div>
 
                     <div data-test-id="block-description">
-                        <RichTextBlock
+                        <RichTextEditor
                             settingsId="description"
                             designTokens={designTokens}
                             isEditing={isEditing}

@@ -4,4 +4,4 @@ export * from './BlockInjectButton';
 export * from './BlockItemWrapper';
 export * from './Attachments';
 export * from './DownloadButton';
-export * from './RichTextBlock';
+export * from './RichTextEditor';

@@ -3,7 +3,7 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { RichTextBlock, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { RichTextEditor, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
@@ -18,7 +18,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
 
     return (
-        <RichTextBlock
+        <RichTextEditor
             settingsId="content"
             isEditing={isEditing}
             value={content}

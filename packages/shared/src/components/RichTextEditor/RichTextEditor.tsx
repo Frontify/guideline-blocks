@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import { RichTextEditor } from '@frontify/fondue';
-import { RichTextBlockProps } from './types';
+import { RichTextEditor as FondueRichTextEditor } from '@frontify/fondue';
+import { RichTextEditorProps } from './types';
 import { SerializedText } from './SerializedText';
 
-export const RichTextBlock = ({
+export const RichTextEditor = ({
     settingsId,
     designTokens,
     isEditing,
@@ -17,11 +17,11 @@ export const RichTextBlock = ({
     plugins,
     setBlockSettings,
     updateValueOnChange,
-}: RichTextBlockProps) => {
+}: RichTextEditorProps) => {
     if (isEditing) {
         const saveText = (newValue: string) => newValue !== value && setBlockSettings({ [settingsId]: newValue });
         return (
-            <RichTextEditor
+            <FondueRichTextEditor
                 designTokens={designTokens}
                 value={value}
                 border={false}

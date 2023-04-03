@@ -3,7 +3,7 @@
 import { PluginComposer } from '@frontify/fondue';
 import { DesignTokens } from '@frontify/fondue/dist/components/RichTextEditor/types';
 
-export type RichTextBlockProps = {
+export type RichTextEditorProps = {
     settingsId: string;
     isEditing: boolean;
     setBlockSettings: (settings: Record<string, unknown>) => void;
