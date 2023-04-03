@@ -12,7 +12,7 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.59",
+        "@frontify/app-bridge": "3.0.0-beta.60",
         "@frontify/fondue": "12.0.0-beta.162",
         "@frontify/fondue-tokens": "3.2.1",
         "@frontify/guideline-blocks-shared": "workspace:*",

@@ -23,6 +23,8 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.content ?? '' }));
     const html = serializeRawToHtml(rawValue, designTokens, blockSettings.columnNumber, gap);
 
+    console.log('im a text block');
+
     return (
         <>
             {!isEditing ? (

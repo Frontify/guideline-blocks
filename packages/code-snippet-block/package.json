@@ -34,7 +34,7 @@
         "@codemirror/language": "^6.3.1",
         "@codemirror/state": "^6.1.4",
         "@codemirror/view": "^6.5.1",
-        "@frontify/app-bridge": "3.0.0-beta.59",
+        "@frontify/app-bridge": "3.0.0-beta.60",
         "@frontify/fondue": "12.0.0-beta.162",
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "0.26.1",

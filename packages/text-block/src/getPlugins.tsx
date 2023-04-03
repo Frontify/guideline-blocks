@@ -27,15 +27,11 @@ import { LinkPlugin } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
-    if (!columns || columns === 1) {
-        return undefined;
-    }
     const plugins = new PluginComposer();
     plugins.setPlugin([new SoftBreakPlugin(), new ParagraphPlugin(), new TextStylePlugin()]);
     plugins.setPlugin([
         new BoldPlugin(),
         new ItalicPlugin(),
-
         new UnderlinePlugin(),
         new StrikethroughPlugin(),
         new LinkPlugin({ appBridge }),
