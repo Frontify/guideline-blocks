@@ -6,10 +6,11 @@ import { DocumentLink } from './DocumentLink';
 
 type DocumentLinksProps = {
     appBridge: AppBridgeBlock;
+    selectedUrl: string;
     onSelectUrl: (url: string) => void;
 };
 
-export const DocumentLinks = ({ appBridge, onSelectUrl }: DocumentLinksProps): ReactElement => {
+export const DocumentLinks = ({ appBridge, selectedUrl, onSelectUrl }: DocumentLinksProps): ReactElement => {
     const { documents } = useDocuments(appBridge);
     const documentArray = [...documents.values()];
 
@@ -21,6 +22,7 @@ export const DocumentLinks = ({ appBridge, onSelectUrl }: DocumentLinksProps): R
                         key={document.id}
                         document={document}
                         appBridge={appBridge}
+                        selectedUrl={selectedUrl}
                         onSelectUrl={onSelectUrl}
                     />
                 );

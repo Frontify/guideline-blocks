@@ -12,19 +12,23 @@ type DocumentLinkProps = {
         permanentLink: string;
     };
     appBridge: AppBridgeBlock;
+    selectedUrl: string;
     onSelectUrl: (url: string) => void;
 };
 
-export const itemClassNames =
-    'tw-text-text hover:tw-bg-box-neutral-hover hover:tw-text-box-neutral-inverse-hover focus-visible:tw-ring-4 focus-visible:tw-ring-blue focus-visible:tw-ring-offset-2 focus-visible:dark:tw-ring-offset-black focus-visible:tw-outline-none tw-leading-5 tw-no-underline';
-
-export const DocumentLink = ({ document, appBridge, onSelectUrl }: DocumentLinkProps) => {
+export const DocumentLink = ({ document, appBridge, selectedUrl, onSelectUrl }: DocumentLinkProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const isActive = document.permanentLink === selectedUrl;
 
     return (
         <>
             <div
-                className={merge(['tw-py-2 tw-px-2.5', itemClassNames])}
+                className={merge([
+                    'tw-py-2 tw-px-2.5 tw-leading-5',
+                    isActive
+                        ? 'tw-bg-box-selected-strong tw-text-box-selected-strong-inverse hover:tw-bg-box-selected-strong-hover:hover hover:tw-text-box-selected-strong-inverse-hover:hover'
+                        : 'hover:tw-bg-box-neutral-hover hover:tw-text-box-neutral-inverse-hover',
+                ])}
                 onClick={() => onSelectUrl(document.permanentLink)}
             >
                 <div key={document.id} className="tw-flex tw-flex-1 tw-space-x-1 tw-items-center tw-h-6">
@@ -36,21 +40,24 @@ export const DocumentLink = ({ document, appBridge, onSelectUrl }: DocumentLinkP
                     >
                         <div
                             className={merge([
-                                'tw-transition-transform tw-w-0 tw-h-0 tw-text-text-weak tw-font-normal tw-border-t-4 tw-border-t-transparent tw-border-b-4 tw-border-b-transparent tw-border-l-4 tw-border-l-x-strong',
+                                'tw-transition-transform tw-w-0 tw-h-0 tw-font-normal tw-border-t-4 tw-border-t-transparent tw-border-b-4 tw-border-b-transparent tw-border-l-4 tw-border-l-x-strong',
                                 isExpanded ? 'tw-rotate-90' : '',
                             ])}
                         ></div>
                     </button>
-                    <span className="tw-text-text-weak">
-                        <IconColorFan16 />
-                    </span>
+                    <IconColorFan16 />
                     <span className="tw-text-s">{document.title}</span>
-                    <span className="tw-flex-auto tw-font-sans tw-text-xs tw-text-right tw-text-text-weak">
-                        Document
-                    </span>
+                    <span className="tw-flex-auto tw-font-sans tw-text-xs tw-text-right">Document</span>
                 </div>
             </div>
-            {isExpanded && <PageLinks appBridge={appBridge} documentId={document.id} />}
+            {isExpanded && (
+                <PageLinks
+                    appBridge={appBridge}
+                    documentId={document.id}
+                    selectedUrl={selectedUrl}
+                    onSelectUrl={onSelectUrl}
+                />
+            )}
         </>
     );
 };

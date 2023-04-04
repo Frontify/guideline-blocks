@@ -12,9 +12,9 @@ type LinkSelectorProps = {
     onUrlChange: (value: string) => void;
 };
 
-export const LinkSelector = ({ appBridge, onUrlChange }: LinkSelectorProps): ReactElement => {
+export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps): ReactElement => {
     const { open: openLinkTree, isOpen: isLinkTreeOpen, close: closeLinkTree } = useOverlayTriggerState({});
-    const [selectedUrl, setSelectedUrl] = useState<string | null>(null);
+    const [selectedUrl, setSelectedUrl] = useState<string>(url);
 
     const onSelectUrl = (url: string) => {
         setSelectedUrl(url);
@@ -36,7 +36,7 @@ export const LinkSelector = ({ appBridge, onUrlChange }: LinkSelectorProps): Rea
                 <Modal.Header title="Select internal link" />
                 <Modal.Body>
                     <div className="link-tree-container">
-                        <DocumentLinks appBridge={appBridge} onSelectUrl={onSelectUrl} />
+                        <DocumentLinks appBridge={appBridge} selectedUrl={selectedUrl} onSelectUrl={onSelectUrl} />
                     </div>
                 </Modal.Body>
                 <Modal.Footer
@@ -51,7 +51,7 @@ export const LinkSelector = ({ appBridge, onUrlChange }: LinkSelectorProps): Rea
                             children: 'Choose',
                             onClick: (event) => {
                                 event?.preventDefault();
-                                selectedUrl && onUrlChange(selectedUrl);
+                                onUrlChange(selectedUrl);
                                 closeLinkTree();
                             },
                             style: ButtonStyle.Default,
