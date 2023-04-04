@@ -4,9 +4,7 @@ import { BorderStyle, borderStyleMap, radiusStyleMap, toRgbaString } from '@fron
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from '../settings';
 import { CSSProperties } from 'react';
 import { Color } from '@frontify/fondue';
-import { GenerateBulkDownloadTokenRequest, Settings } from '../types';
-import { Asset } from '@frontify/app-bridge';
-import { generateBulkDownloadRequest } from '../repository';
+import { Settings } from '../types';
 
 export const getBorderStyles = (
     style = BorderStyle.Solid,
@@ -59,23 +57,4 @@ export const blockStyle = (blockSetting: Settings): CSSProperties => {
         ...(hasBorder_blocks && getBorderStyles(borderStyle_blocks, borderWidth_blocks, borderColor_blocks)),
         borderRadius: hasRadius_blocks ? radiusValue_blocks : radiusStyleMap[radiusChoice_blocks],
     };
-};
-
-const data: GenerateBulkDownloadTokenRequest = {
-    asset_ids: [],
-    set_ids: [],
-    language: 'en',
-};
-
-export const generateBulkDownload = (
-    projectId: number,
-    downloadAssets: Asset[],
-    setIsDownloadingAssets: (isDownloadAssets: boolean) => void
-): void => {
-    if (downloadAssets.length === undefined || downloadAssets.length <= 0) {
-        return;
-    }
-    setIsDownloadingAssets(true);
-    data.asset_ids = downloadAssets.map((asset) => asset.id);
-    generateBulkDownloadRequest(projectId, data).then(() => setIsDownloadingAssets(false));
 };
