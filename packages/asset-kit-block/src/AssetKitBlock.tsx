@@ -30,10 +30,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const startDownload = () => {
         if (downloadUrlBlock) {
-            downloadAssets(downloadUrlBlock);
-        } else {
-            generateBulkDownload(currentAssets.map((asset) => asset.id));
+            return downloadAssets(downloadUrlBlock);
         }
+        generateBulkDownload(currentAssets.map((asset) => asset.id));
     };
 
     const downloadAssets = (downloadUrl: string) => {
@@ -86,7 +85,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 status
                             ) || currentAssets.length === 0
                         }
-                        onClick={() => startDownload()}
+                        onClick={startDownload}
                         style={designTokens.buttonPrimary}
                     >
                         Download package
