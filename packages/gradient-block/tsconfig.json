@@ -16,6 +16,6 @@
         "types": ["cypress", "cypress-real-events"],
         "skipLibCheck": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "../shared/src/**/*"],
     "exclude": ["node_modules", "dist"]
 }

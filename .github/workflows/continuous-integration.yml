@@ -90,9 +90,6 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Build packages
-              run: pnpm build
-
             - name: Typecheck files
               run: pnpm typecheck
 
@@ -173,9 +170,6 @@ jobs:
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
-
-            - name: Build packages
-              run: pnpm build
 
             - name: Component Tests
               run: pnpm test:components --spec $(node ./.github/lib/cypress-matrix.js ${{ env.NUMBER_OF_RUNNERS }} ${{ matrix.containers }})

@@ -7,13 +7,11 @@
         "npm": "<=0"
     },
     "scripts": {
-        "build": "npm run build:shared",
-        "build:shared": "npm -C packages/shared run build",
         "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint",
         "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint:fix",
         "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier",
         "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier:fix",
-        "test": "npm run test:unit && npm run test:components",
+        "test": "pnpm test:unit && pnpm test:components",
         "test:components": "cypress run --component",
         "test:components:browser": "cypress open --component",
         "test:unit": "vitest run",
