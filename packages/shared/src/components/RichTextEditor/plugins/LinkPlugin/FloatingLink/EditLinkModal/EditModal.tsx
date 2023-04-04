@@ -3,7 +3,7 @@
 import { IconPen, IconTrashBin } from '@frontify/fondue';
 import { useFloatingLinkUrlInput } from '@udecode/plate';
 import React from 'react';
-import { useGuidelineDesignTokens } from '../../../../../hooks';
+import { useGuidelineDesignTokens } from '../../../../../../hooks';
 import { FloatingLink } from '../FloatingLink';
 
 export const EditModal = () => {

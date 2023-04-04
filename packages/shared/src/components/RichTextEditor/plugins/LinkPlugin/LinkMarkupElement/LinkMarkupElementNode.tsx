@@ -3,7 +3,7 @@
 import React, { MouseEvent } from 'react';
 import { HTMLPropsAs, LinkRootProps, useElementProps } from '@udecode/plate';
 import { TLinkElement } from '../types';
-import { useGuidelineDesignTokens } from '../../../../hooks';
+import { useGuidelineDesignTokens } from '../../../../../hooks';
 
 const useLink = (props: LinkRootProps): HTMLPropsAs<'a'> => {
     const _props = useElementProps<TLinkElement, 'a'>({
