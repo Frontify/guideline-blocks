@@ -8,15 +8,18 @@ export const AssetGrid = ({
     currentAssets,
     deleteAssetIdsFromKey,
     updateAssetIdsFromKey,
+    saveDownloadUrl,
     isEditing,
     appBridge,
 }: AssetGridProps) => {
     const onRemoveAsset = async (assetId: number) => {
+        saveDownloadUrl('');
         await deleteAssetIdsFromKey(ASSET_SETTINGS_ID, [assetId]);
     };
 
     const onReplaceAsset = async (toReplaceAssetId: number, newAssetId: number) => {
         const assetIds = currentAssets.map((asset) => (asset.id === toReplaceAssetId ? newAssetId : asset.id));
+        saveDownloadUrl('');
         await updateAssetIdsFromKey(ASSET_SETTINGS_ID, assetIds);
     };
 

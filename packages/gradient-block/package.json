@@ -5,8 +5,8 @@
     "version": "1.0.0",
     "main": "dist/index.js",
     "scripts": {
-        "serve": "frontify-cli block serve --entryPath src/index.ts",
-        "deploy": "frontify-cli block deploy --entryPath src/index.ts",
+        "serve": "frontify-cli serve --entryPath src/index.ts",
+        "deploy": "frontify-cli deploy --entryPath src/index.ts",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "prettier": "prettier --check .",
@@ -16,7 +16,7 @@
     "devDependencies": {
         "@babel/core": "7.21.0",
         "@frontify/eslint-config-react": "0.15.6",
-        "@frontify/frontify-cli": "5.3.9",
+        "@frontify/frontify-cli": "5.3.10",
         "@react-aria/interactions": "3.14.0",
         "@types/react": "17.0.53",
         "@types/react-dom": "17.0.19",
