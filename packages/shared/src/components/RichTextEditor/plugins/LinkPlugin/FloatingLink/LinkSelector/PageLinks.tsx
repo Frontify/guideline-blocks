@@ -2,6 +2,7 @@
 
 import { AppBridgeBlock, useDocumentPages } from '@frontify/app-bridge';
 import React, { ReactElement } from 'react';
+import { PageLink } from './PageLink';
 
 type PageLinksProps = {
     appBridge: AppBridgeBlock;
@@ -15,7 +16,7 @@ export const PageLinks = ({ appBridge, documentId }: PageLinksProps): ReactEleme
     return (
         <>
             {pagesArray.map((page) => {
-                return <div key={page.id}>{page.title}</div>;
+                return <PageLink key={page.id} page={page} appBridge={appBridge} />;
             })}
         </>
     );

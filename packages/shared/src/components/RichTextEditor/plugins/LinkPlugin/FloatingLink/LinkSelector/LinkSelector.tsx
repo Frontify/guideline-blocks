@@ -3,7 +3,7 @@
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Button, ButtonEmphasis, ButtonSize, ButtonStyle, ButtonType, IconLink, Modal } from '@frontify/fondue';
 import { useOverlayTriggerState } from '@react-stately/overlays';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { DocumentLinks } from './DocumentLinks';
 
 type LinkSelectorProps = {
@@ -12,9 +12,13 @@ type LinkSelectorProps = {
     onUrlChange: (value: string) => void;
 };
 
-export const LinkSelector = ({ appBridge }: LinkSelectorProps): ReactElement => {
+export const LinkSelector = ({ appBridge, onUrlChange }: LinkSelectorProps): ReactElement => {
     const { open: openLinkTree, isOpen: isLinkTreeOpen, close: closeLinkTree } = useOverlayTriggerState({});
-    const [selectedId] = React.useState<string | null>(null);
+    const [selectedUrl, setSelectedUrl] = useState<string | null>(null);
+
+    const onSelectUrl = (url: string) => {
+        setSelectedUrl(url);
+    };
 
     return (
         <>
@@ -32,7 +36,7 @@ export const LinkSelector = ({ appBridge }: LinkSelectorProps): ReactElement => 
                 <Modal.Header title="Select internal link" />
                 <Modal.Body>
                     <div className="link-tree-container">
-                        <DocumentLinks appBridge={appBridge} />
+                        <DocumentLinks appBridge={appBridge} onSelectUrl={onSelectUrl} />
                     </div>
                 </Modal.Body>
                 <Modal.Footer
@@ -47,12 +51,12 @@ export const LinkSelector = ({ appBridge }: LinkSelectorProps): ReactElement => 
                             children: 'Choose',
                             onClick: (event) => {
                                 event?.preventDefault();
-                                //onUrlChange();
+                                selectedUrl && onUrlChange(selectedUrl);
                                 closeLinkTree();
                             },
                             style: ButtonStyle.Default,
                             emphasis: ButtonEmphasis.Strong,
-                            disabled: !selectedId,
+                            disabled: !selectedUrl,
                         },
                     ]}
                 />
