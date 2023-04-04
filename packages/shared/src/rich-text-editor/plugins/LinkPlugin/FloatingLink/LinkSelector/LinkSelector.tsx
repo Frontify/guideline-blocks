@@ -1,31 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import { Button, ButtonEmphasis, ButtonSize, ButtonStyle, ButtonType, IconLink, Modal, Tree } from '@frontify/fondue';
+import { Button, ButtonEmphasis, ButtonSize, ButtonStyle, ButtonType, IconLink, Modal } from '@frontify/fondue';
 import { useOverlayTriggerState } from '@react-stately/overlays';
 import React, { ReactElement } from 'react';
 import { DocumentLinks } from './DocumentLinks';
-
-// const TreeLinkItem = ({ node: { id, title, icon } }: TreeLinkItemProps): ReactElement => {
-//     const { treeState } = useTreeContext();
-//     const isActive = treeState.selectedIds.has(id);
-
-//     return (
-//         <div className="tw-flex tw-flex-auto tw-space-x-2">
-//             <span className="tw-ml-1">{icon}</span>
-//             <span className="tw-text-s">{title}</span>
-//             <span
-//                 className={merge([
-//                     'tw-flex-auto tw-font-sans tw-text-xs tw-text-right',
-//                     !isActive && 'tw-text-text-weak',
-//                     isActive && 'tw-text-text-white',
-//                 ])}
-//             >
-//                 {title}
-//             </span>
-//         </div>
-//     );
-// };
 
 type LinkSelectorProps = {
     appBridge: AppBridgeBlock;
@@ -33,23 +12,9 @@ type LinkSelectorProps = {
     onUrlChange: (value: string) => void;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps): ReactElement => {
+export const LinkSelector = ({ appBridge }: LinkSelectorProps): ReactElement => {
     const { open: openLinkTree, isOpen: isLinkTreeOpen, close: closeLinkTree } = useOverlayTriggerState({});
-    const [selectedId, setSelectedId] = React.useState<string | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [expandedIds] = React.useState<string[]>([]);
-
-    // useEffect(() => {
-    //     if (!linkTree) {
-    //         loadLinkTree().then((linkTree) => {
-    //             setLinkTree(linkTree);
-    //             const linkNode = getLinkNodeByProp('url', url, linkTree.nodes ?? []);
-    //             setSelectedId(linkNode?.id ?? '');
-    //             setExpandedIds(linkNode ? getExpandedIds(linkNode, linkTree) : []);
-    //         });
-    //     }
-    // }, [linkTree, loadLinkTree, url]);
+    const [selectedId] = React.useState<string | null>(null);
 
     return (
         <>
@@ -63,19 +28,11 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
             >
                 Internal link
             </Button>
-            <Modal onClose={() => closeLinkTree()} isOpen={isLinkTreeOpen}>
+            <Modal onClose={() => closeLinkTree()} isOpen={isLinkTreeOpen} isDismissable>
                 <Modal.Header title="Select internal link" />
                 <Modal.Body>
                     <div className="link-tree-container">
-                        <Tree
-                            id="link-tree"
-                            selectedIds={selectedId ? [selectedId] : []}
-                            onSelect={(id) => (id === selectedId ? setSelectedId(null) : setSelectedId(id))}
-                            expandedIds={expandedIds}
-                            // onExpand={(id, isExpanded) => {}}
-                        >
-                            <DocumentLinks appBridge={appBridge} />
-                        </Tree>
+                        <DocumentLinks appBridge={appBridge} />
                     </div>
                 </Modal.Body>
                 <Modal.Footer
@@ -87,10 +44,9 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
                             emphasis: ButtonEmphasis.Default,
                         },
                         {
-                            children: 'Confirm',
+                            children: 'Choose',
                             onClick: (event) => {
                                 event?.preventDefault();
-
                                 //onUrlChange();
                                 closeLinkTree();
                             },
