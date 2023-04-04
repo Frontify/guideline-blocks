@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { merge } from '@frontify/fondue';
+import { IconDocumentText16, merge } from '@frontify/fondue';
 import React from 'react';
 
 type SectionLinkProps = {
@@ -27,7 +27,8 @@ export const SectionLink = ({ section, selectedUrl, onSelectUrl }: SectionLinkPr
                 ])}
                 onClick={() => onSelectUrl(section.permanentLink)}
             >
-                <div className="tw-flex tw-flex-1 tw-space-x-1 tw-items-center tw-h-6">
+                <div className="tw-flex tw-flex-1 tw-space-x-2 tw-items-center tw-h-6">
+                    <IconDocumentText16 />
                     <span className="tw-text-s">{section.title}</span>
                     <span className="tw-flex-auto tw-font-sans tw-text-xs tw-text-right">Section</span>
                 </div>

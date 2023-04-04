@@ -31,7 +31,7 @@ export const DocumentLink = ({ document, appBridge, selectedUrl, onSelectUrl }: 
                 ])}
                 onClick={() => onSelectUrl(document.permanentLink)}
             >
-                <div key={document.id} className="tw-flex tw-flex-1 tw-space-x-1 tw-items-center tw-h-6">
+                <div key={document.id} className="tw-flex tw-flex-1 tw-space-x-2 tw-items-center tw-h-6">
                     <button
                         data-test-id="tree-item-toggle"
                         className="tw-flex tw-items-center tw-justify-center tw-p-1.5 tw-cursor-pointer"
