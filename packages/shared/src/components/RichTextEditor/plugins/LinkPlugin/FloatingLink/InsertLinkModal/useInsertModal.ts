@@ -13,7 +13,7 @@ import {
     useHotkeys,
 } from '@udecode/plate';
 import React, { Dispatch, Reducer, useEffect, useReducer } from 'react';
-import { getLinkNode } from '../../utils/getLinkNode';
+import { getLegacyUrl, getUrl } from '../../utils';
 import { InsertModalDispatchType, InsertModalStateProps } from './types';
 
 const initialState: InsertModalStateProps = {
@@ -57,8 +57,8 @@ export const useInsertModal = () => {
     const [state, dispatch] = InsertModalState();
 
     useEffect(() => {
-        const legacyUrl = getLinkNode(editor, (link) => link.chosenLink?.searchResult?.link || '');
-        const url = getLinkNode(editor, (link) => link.url || '');
+        const legacyUrl = getLegacyUrl(editor);
+        const url = getUrl(editor);
 
         dispatch({
             type: 'INIT',
@@ -124,15 +124,5 @@ export const useInsertModal = () => {
         []
     );
 
-    return {
-        state,
-        onTextChange,
-        onUrlChange,
-        onToggleTab,
-        onCancel,
-        onSave,
-        hasValues,
-        isValidUrlOrEmpty,
-        appBridge,
-    };
+    return { state, onTextChange, onUrlChange, onToggleTab, onCancel, onSave, hasValues, isValidUrlOrEmpty, appBridge };
 };

@@ -8,12 +8,12 @@ import {
     ButtonStyle,
     Checkbox,
     FormControl,
-    IconCheckMark,
+    IconCheckMark20,
     TextInput,
 } from '@frontify/fondue';
-import React, { EventHandler, FC } from 'react';
-import { LinkSelector } from '../LinkSelector/LinkSelector';
+import React, { FC } from 'react';
 import { InsertModalStateProps } from './types';
+import { LinkSelector } from '../LinkSelector';
 
 type Props = {
     state: InsertModalStateProps;
@@ -21,8 +21,7 @@ type Props = {
     onUrlChange: (value: string) => void;
     onToggleTab: (checked: boolean) => void;
     onCancel: () => void;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onSave: EventHandler<any>;
+    onSave: (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | KeyboardEvent | undefined) => void;
     hasValues: boolean;
     isValidUrlOrEmpty: () => boolean | undefined;
     testId?: string;
@@ -70,7 +69,6 @@ export const InsertModal: FC<Props> = ({
                     placeholder="https://example.com"
                     focusOnMount
                     onChange={onUrlChange}
-                    onEnterPressed={onSave}
                 />
             </FormControl>
             {!isValidUrlOrEmpty() && <div className="tw-text-red-65 tw-mt-3">Please enter a valid URL.</div>}
@@ -96,7 +94,7 @@ export const InsertModal: FC<Props> = ({
                 <Button
                     onClick={onSave}
                     size={ButtonSize.Medium}
-                    icon={<IconCheckMark />}
+                    icon={<IconCheckMark20 />}
                     disabled={!isValidUrlOrEmpty() || !hasValues}
                 >
                     Save

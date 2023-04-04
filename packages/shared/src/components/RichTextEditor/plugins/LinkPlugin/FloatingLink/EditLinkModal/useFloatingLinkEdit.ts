@@ -26,7 +26,7 @@ import {
     useVirtualFloatingLink,
 } from '@udecode/plate';
 import { useCallback, useEffect } from 'react';
-import { getLinkNode } from '../../utils/getLinkNode';
+import { getUrlFromEditor } from '../../utils';
 
 export const useFloatingLinkEdit = ({ floatingOptions, ...props }: FloatingLinkProps): HTMLPropsAs<'div'> => {
     const editor = useEditorRef();
@@ -62,7 +62,7 @@ export const useFloatingLinkEdit = ({ floatingOptions, ...props }: FloatingLinkP
     });
 
     useEffect(() => {
-        const url = getLinkNode(editor, (link) => link.url ?? '');
+        const url = getUrlFromEditor(editor);
         if (url) {
             floatingLinkActions.url(url);
         }

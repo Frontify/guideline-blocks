@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPen, IconTrashBin } from '@frontify/fondue';
+import { IconPen16, IconTrashBin16 } from '@frontify/fondue';
 import { useFloatingLinkUrlInput } from '@udecode/plate';
 import React from 'react';
 import { useGuidelineDesignTokens } from '../../../../../../hooks';
@@ -24,7 +24,7 @@ export const EditModal = () => {
                         className="tw-transition tw-cursor-pointer tw-rounded hover:tw-bg-black-10 tw-p-1"
                     >
                         <FloatingLink.EditButton>
-                            <IconPen />
+                            <IconPen16 />
                         </FloatingLink.EditButton>
                     </span>
 
@@ -35,7 +35,7 @@ export const EditModal = () => {
                         className="tw-transition tw-cursor-pointer tw-rounded hover:tw-bg-black-10 tw-p-1"
                     >
                         <FloatingLink.UnlinkButton>
-                            <IconTrashBin />
+                            <IconTrashBin16 />
                         </FloatingLink.UnlinkButton>
                     </span>
                 </span>
