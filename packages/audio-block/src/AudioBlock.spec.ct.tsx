@@ -9,8 +9,8 @@ import { AUDIO_ID } from './settings';
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
 const UploadPlaceholderSelector = '[data-test-id="block-inject-button"]';
-const AudioBlockTitleHtmlSelector = '[data-test-id="block-title-html"]';
-const AudioBlockDescriptionHtmlSelector = '[data-test-id="block-description-html"]';
+const AudioBlockTitleHtmlSelector = '[data-test-id="block-title"] [data-test-id="rte-content-html"]';
+const AudioBlockDescriptionHtmlSelector = '[data-test-id="block-description"] [data-test-id="rte-content-html"]';
 
 const Title = '[{"type":"heading3","children":[{"text":"Audio Title"}]}]';
 const Description = '[{"type":"p","children":[{"text":"Audio Description"}]}]';
