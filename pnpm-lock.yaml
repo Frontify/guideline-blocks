@@ -583,8 +583,8 @@ importers:
         specifier: 6.5.1
         version: 6.5.1
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.59
+        version: 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1228,8 +1228,8 @@ importers:
         specifier: 6.1.1
         version: 6.1.1(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.59
+        version: 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
@@ -3093,6 +3093,22 @@ packages:
     resolution: {integrity: sha512-9QTjdSBpQ7wHShZgsNzNig5qT3rCPvmZogS/wXZzKotns5skbXgs0I7J8cuN0PPqXyynvNVuN+iOKhNS2eb+ZA==}
     dependencies:
       tslib: 2.4.0
+
+  /@frontify/app-bridge@3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2):
+    resolution: {integrity: sha512-wGwKi3NmHdulchZRqT9XqDbVxD90Lvny3xkJ5IRwVmkGF2O6D41bbkEzcPBleQFNdkR7yu2AEUk+nXFKpAFIMQ==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: ^17 || ^18
+      react-dom: ^17 || ^18
+      sinon: ^15
+    dependencies:
+      lodash-es: 4.17.21
+      mitt: 3.0.0
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      sinon: 15.0.2
+      type-fest: 3.6.0
+    dev: false
 
   /@frontify/app-bridge@3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2):
     resolution: {integrity: sha512-DDaifrPsk2KUpdRvLRWKOPK60JqJ5N+B0j7cUF5Yc/XU73FeP+Y3LPmneLdIrBrRbIbw3+CXuUcAjb77EFctIg==}
