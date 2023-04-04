@@ -24,7 +24,7 @@ export const DocumentLink = ({ document, appBridge, selectedUrl, onSelectUrl }: 
         <>
             <div
                 className={merge([
-                    'tw-py-2 tw-px-2.5 tw-leading-5',
+                    'tw-py-2 tw-px-2.5 tw-leading-5 tw-cursor-pointer',
                     isActive
                         ? 'tw-bg-box-selected-strong tw-text-box-selected-strong-inverse hover:tw-bg-box-selected-strong-hover:hover hover:tw-text-box-selected-strong-inverse-hover:hover'
                         : 'hover:tw-bg-box-neutral-hover hover:tw-text-box-neutral-inverse-hover',
