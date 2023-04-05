@@ -6,6 +6,7 @@ import {
     IconEnum,
     NotificationStyleType,
     appendUnit,
+    createFooter,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
@@ -60,7 +61,7 @@ export const settings = defineSettings({
                 type: NotificationStyleType.Info,
                 icon: true,
             },
-            link: {
+            footer: {
                 label: 'Follow our guide for image resolution',
                 href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
                 target: '_blank',
@@ -186,7 +187,6 @@ export const settings = defineSettings({
             id: SECURITY_ID,
             type: 'segmentedControls',
             defaultValue: ImageSecurity.Global,
-            helperText: 'Change global settings here.',
             choices: [
                 {
                     value: ImageSecurity.Global,
@@ -197,6 +197,14 @@ export const settings = defineSettings({
                     label: 'Custom',
                 },
             ],
+        },
+        {
+            id: 'globalSettingsInfo',
+            type: 'notification',
+            footer: createFooter({
+                label: 'Change global settings [here].',
+                replace: { here: { event: 'design-settings.open' } },
+            }),
         },
         {
             id: 'downloadable',

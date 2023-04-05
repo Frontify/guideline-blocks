@@ -84,8 +84,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -148,8 +148,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -218,8 +218,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -288,8 +288,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -358,8 +358,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -425,8 +425,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -492,8 +492,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -592,8 +592,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -671,8 +671,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -747,8 +747,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -814,8 +814,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -909,8 +909,8 @@ importers:
         specifier: 5.3.8
         version: 5.3.8(@types/node@18.7.21)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@types/react':
         specifier: 17.0.53
         version: 17.0.53
@@ -951,8 +951,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1027,8 +1027,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1100,8 +1100,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1167,8 +1167,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1237,8 +1237,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1313,8 +1313,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1383,8 +1383,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1453,8 +1453,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1526,8 +1526,8 @@ importers:
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@react-aria/focus':
         specifier: 3.11.0
         version: 3.11.0(react@17.0.2)
@@ -1623,8 +1623,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1690,8 +1690,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1760,8 +1760,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.1
-        version: 0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+        specifier: 0.26.2
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -3917,15 +3917,15 @@ packages:
       - terser
     dev: true
 
-  /@frontify/guideline-blocks-settings@0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1):
-    resolution: {integrity: sha512-svTfW5nEvjNSLeTy896Jkip1G8X0RV8eXaOKhFkk+ONb7z4vcHuquMszihJkp5mbnIUoB1ZEr2c3oj7XY1j2Ug==}
+  /@frontify/guideline-blocks-settings@0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1):
+    resolution: {integrity: sha512-tRuq7F2I8ayps4SBRiVL3HrasJzMi5zlonRFlhXninorT2tCWe3l2m8h6DJV+pzzi7IcGyfkpZlLdG2bmBCttw==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
-      '@frontify/sidebar-settings': 0.1.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
+      '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
     transitivePeerDependencies:
@@ -3941,15 +3941,15 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/guideline-blocks-settings@0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1):
-    resolution: {integrity: sha512-svTfW5nEvjNSLeTy896Jkip1G8X0RV8eXaOKhFkk+ONb7z4vcHuquMszihJkp5mbnIUoB1ZEr2c3oj7XY1j2Ug==}
+  /@frontify/guideline-blocks-settings@0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1):
+    resolution: {integrity: sha512-tRuq7F2I8ayps4SBRiVL3HrasJzMi5zlonRFlhXninorT2tCWe3l2m8h6DJV+pzzi7IcGyfkpZlLdG2bmBCttw==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
-      '@frontify/sidebar-settings': 0.1.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
+      '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
     transitivePeerDependencies:
@@ -3965,15 +3965,15 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/guideline-blocks-settings@0.26.1(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-svTfW5nEvjNSLeTy896Jkip1G8X0RV8eXaOKhFkk+ONb7z4vcHuquMszihJkp5mbnIUoB1ZEr2c3oj7XY1j2Ug==}
+  /@frontify/guideline-blocks-settings@0.26.2(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-tRuq7F2I8ayps4SBRiVL3HrasJzMi5zlonRFlhXninorT2tCWe3l2m8h6DJV+pzzi7IcGyfkpZlLdG2bmBCttw==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
-      '@frontify/sidebar-settings': 0.1.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
     transitivePeerDependencies:
@@ -3989,15 +3989,15 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/guideline-blocks-settings@0.26.1(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-svTfW5nEvjNSLeTy896Jkip1G8X0RV8eXaOKhFkk+ONb7z4vcHuquMszihJkp5mbnIUoB1ZEr2c3oj7XY1j2Ug==}
+  /@frontify/guideline-blocks-settings@0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-tRuq7F2I8ayps4SBRiVL3HrasJzMi5zlonRFlhXninorT2tCWe3l2m8h6DJV+pzzi7IcGyfkpZlLdG2bmBCttw==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
-      '@frontify/sidebar-settings': 0.1.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
     transitivePeerDependencies:
@@ -4012,8 +4012,8 @@ packages:
       - tailwindcss
       - ts-node
 
-  /@frontify/sidebar-settings@0.1.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1):
-    resolution: {integrity: sha512-Q8NJxohxDoe3gOnDNV0Dnrzl01DwxkQKGqn6bb0EjOh77mtuhFbNczrjZwWVvqPaW2BCxsH403wfqkZ5Pd5jig==}
+  /@frontify/sidebar-settings@0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1):
+    resolution: {integrity: sha512-PZsARsoJS4CSkD0u7YAPtWUWwtqE7j4tW3Dp0pMUblWfM1Zzbm2mSTdKKO5MZfzhajHhovCYlUErwiWB4sCTyA==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
@@ -4035,8 +4035,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/sidebar-settings@0.1.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1):
-    resolution: {integrity: sha512-Q8NJxohxDoe3gOnDNV0Dnrzl01DwxkQKGqn6bb0EjOh77mtuhFbNczrjZwWVvqPaW2BCxsH403wfqkZ5Pd5jig==}
+  /@frontify/sidebar-settings@0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1):
+    resolution: {integrity: sha512-PZsARsoJS4CSkD0u7YAPtWUWwtqE7j4tW3Dp0pMUblWfM1Zzbm2mSTdKKO5MZfzhajHhovCYlUErwiWB4sCTyA==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
@@ -4058,8 +4058,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/sidebar-settings@0.1.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-Q8NJxohxDoe3gOnDNV0Dnrzl01DwxkQKGqn6bb0EjOh77mtuhFbNczrjZwWVvqPaW2BCxsH403wfqkZ5Pd5jig==}
+  /@frontify/sidebar-settings@0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-PZsARsoJS4CSkD0u7YAPtWUWwtqE7j4tW3Dp0pMUblWfM1Zzbm2mSTdKKO5MZfzhajHhovCYlUErwiWB4sCTyA==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
@@ -4081,8 +4081,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/sidebar-settings@0.1.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-Q8NJxohxDoe3gOnDNV0Dnrzl01DwxkQKGqn6bb0EjOh77mtuhFbNczrjZwWVvqPaW2BCxsH403wfqkZ5Pd5jig==}
+  /@frontify/sidebar-settings@0.2.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-PZsARsoJS4CSkD0u7YAPtWUWwtqE7j4tW3Dp0pMUblWfM1Zzbm2mSTdKKO5MZfzhajHhovCYlUErwiWB4sCTyA==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
