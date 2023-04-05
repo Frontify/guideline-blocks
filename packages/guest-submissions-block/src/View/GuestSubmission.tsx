@@ -11,6 +11,7 @@ import {
 } from "../module/FileUpload/Entity/QueryFile";
 import { FileUploadModule } from "../module/FileUpload/FileUploadModule";
 import { FileUploadResponse } from "../module/FileUpload/Contract/FileUploadResponse";
+import { Metadata } from "../Components/MetaData";
 
 export const GuestSubmission: FC<BlockProps> = ({ appBridge }) => {
     // const [blockSettings, setBlockSettings] =
@@ -79,7 +80,11 @@ export const GuestSubmission: FC<BlockProps> = ({ appBridge }) => {
                 entries={fileList}
                 onEntryDeletion={onFileDeletion}
             />
-            {/* name / Email - Metadata - Submit Discard*/}
+
+            <Metadata onSubmit={(formData) => console.log(formData)}>
+                <button type="submit">submit</button>
+            </Metadata>
+            {/* name / Email - , bit weird - Submit Discard*/}
         </Stack>
     );
 };
