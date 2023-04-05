@@ -24,8 +24,8 @@ export const CalloutIcon = ({ iconType, isActive, iconUrl, color }: CalloutIconP
     </div>
 );
 
-export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactElement> => ({
-    none: <></>,
+export const calloutIconMap = (iconUrl?: string): Record<Icon, ReactElement | null> => ({
+    none: null,
     info: <IconInfo20 data-test-id="callout-icon-info" />,
     lightbulb: <IconLightbulb20 />,
     megaphone: <IconMegaphone20 />,

@@ -30,31 +30,17 @@ type ImageProps = {
 export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
     const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
 
-    return (
-        <>
-            {link && !isEditing ? (
-                <a
-                    className="tw-w-full"
-                    href={link.link.link}
-                    target={link.openInNewTab ? '_blank' : undefined}
-                    rel="noreferrer"
-                >
-                    <ImageComponent
-                        appBridge={appBridge}
-                        blockSettings={blockSettings}
-                        isEditing={isEditing}
-                        image={image}
-                    />
-                </a>
-            ) : (
-                <ImageComponent
-                    appBridge={appBridge}
-                    blockSettings={blockSettings}
-                    isEditing={isEditing}
-                    image={image}
-                />
-            )}
-        </>
+    return link && !isEditing ? (
+        <a
+            className="tw-w-full"
+            href={link.link.link}
+            target={link.openInNewTab ? '_blank' : undefined}
+            rel="noreferrer"
+        >
+            <ImageComponent appBridge={appBridge} blockSettings={blockSettings} isEditing={isEditing} image={image} />
+        </a>
+    ) : (
+        <ImageComponent appBridge={appBridge} blockSettings={blockSettings} isEditing={isEditing} image={image} />
     );
 };
 

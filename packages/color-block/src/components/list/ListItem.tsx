@@ -21,8 +21,16 @@ import { ColorSpaceValue } from '../ColorSpaceValue';
 import { TooltipContent } from '../TooltipContent';
 import { mapColorSpaces } from '../../helpers/mapColorSpaces';
 import { ColorBlockType, ItemProps } from '../../types';
+import { ReactElement } from 'react';
 
-export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDelete }: ItemProps) => {
+export const ListItem = ({
+    color,
+    colorSpaces,
+    isEditing,
+    onBlur,
+    onUpdate,
+    onDelete,
+}: ItemProps): ReactElement | null => {
     const { copy, status } = useCopy();
 
     const mappedFirstColorSpace = mapColorSpaces(colorSpaces[0], color);
@@ -104,7 +112,7 @@ export const ListItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onDe
                     const mappedColorSpace = mapColorSpaces(colorSpaceId, color);
 
                     if (!isEditing && !mappedColorSpace.value) {
-                        return <></>;
+                        return null;
                     }
 
                     return (

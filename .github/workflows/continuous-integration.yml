@@ -13,7 +13,6 @@ on:
 
 env:
     NODE_VERSION: 18
-    CI: true
     NUMBER_OF_RUNNERS: 7
 
 jobs:
@@ -37,17 +36,17 @@ jobs:
                   run_install: false
 
             - name: Get pnpm store directory
-              id: pnpm-cache
-              run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+              id: pnpm_cache
+              run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
             - name: Setup pnpm cache
               uses: actions/cache@v3
               with:
                   path: |
-                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+                      ${{ steps.pnpm_cache.outputs.pnpm_cache_dir }}
                       ~/.cache/Cypress
                   key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
+                  restore-keys: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
@@ -75,17 +74,17 @@ jobs:
                   run_install: false
 
             - name: Get pnpm store directory
-              id: pnpm-cache
-              run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+              id: pnpm_cache
+              run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
             - name: Setup pnpm cache
               uses: actions/cache@v3
               with:
                   path: |
-                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+                      ${{ steps.pnpm_cache.outputs.pnpm_cache_dir }}
                       ~/.cache/Cypress
                   key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
+                  restore-keys: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
@@ -113,17 +112,17 @@ jobs:
                   run_install: false
 
             - name: Get pnpm store directory
-              id: pnpm-cache
-              run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+              id: pnpm_cache
+              run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
             - name: Setup pnpm cache
               uses: actions/cache@v3
               with:
                   path: |
-                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+                      ${{ steps.pnpm_cache.outputs.pnpm_cache_dir }}
                       ~/.cache/Cypress
                   key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
+                  restore-keys: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
@@ -156,17 +155,17 @@ jobs:
                   run_install: false
 
             - name: Get pnpm store directory
-              id: pnpm-cache
-              run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+              id: pnpm_cache
+              run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
 
             - name: Setup pnpm cache
               uses: actions/cache@v3
               with:
                   path: |
-                      ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+                      ${{ steps.pnpm_cache.outputs.pnpm_cache_dir }}
                       ~/.cache/Cypress
                   key: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-                  restore-keys: pnpm-with-cypress-${{ runner.os }}-
+                  restore-keys: pnpm-with-cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile

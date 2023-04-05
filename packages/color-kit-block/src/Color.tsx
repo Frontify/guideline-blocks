@@ -13,7 +13,7 @@ type ColorProps = {
     colorsLength: number;
 };
 
-export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElement => {
+export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElement | null => {
     const { copy, status } = useCopy();
 
     const colorWithDecimalAlpha: ColorType = {
@@ -22,7 +22,7 @@ export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElem
     };
 
     if (!color.hex) {
-        return <></>;
+        return null;
     }
 
     const ColorBox = () => (

@@ -6,7 +6,7 @@ import { useBlockSettings, useEditorState, useReadyForPrint } from '@frontify/ap
 import { Button, FormControl, FormControlStyle, IconSize, IconStorybook, TextInput } from '@frontify/fondue';
 import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { useHover } from '@react-aria/interactions';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, ReactElement, useCallback, useEffect, useState } from 'react';
 import { RemoveButton } from './components/RemoveButton';
 import { Resizeable } from './components/Resizable';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
@@ -26,6 +26,12 @@ import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 
 const DEFAULT_BORDER_WIDTH = '1px';
+
+const EmptyState = ({ height }: { height: string }): ReactElement => (
+    <div className="tw-flex tw-items-center tw-justify-center tw-bg-black-5" style={{ height }}>
+        No Storybook-URL defined.
+    </div>
+);
 
 export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -103,6 +109,33 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
         />
     );
 
+    const formWithStorybookUrl = isEditing ? (
+        <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
+            <div
+                className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
+                data-test-id="storybook-empty-wrapper"
+            >
+                <IconStorybook size={IconSize.Size32} />
+                <div className={`tw-w-full tw-max-w-sm ${!isValidStorybookUrl(submittedUrl) && 'tw-pt-6'}`}>
+                    <FormControl
+                        helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
+                        style={!isValidStorybookUrl(submittedUrl) ? FormControlStyle.Danger : FormControlStyle.Primary}
+                    >
+                        <TextInput
+                            value={input}
+                            onChange={setInput}
+                            onEnterPressed={saveInputLink}
+                            placeholder={URL_INPUT_PLACEHOLDER}
+                        />
+                    </FormControl>
+                </div>
+                <Button onClick={saveInputLink}>Confirm</Button>
+            </div>
+        </Resizeable>
+    ) : (
+        <EmptyState height={activeHeight} />
+    );
+
     return (
         <div data-test-id="storybook-block" className="tw-relative">
             {iframe ? (
@@ -123,47 +156,7 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                     <div style={{ height: activeHeight }}>{iframe}</div>
                 )
             ) : (
-                <>
-                    {isEditing ? (
-                        <Resizeable saveHeight={saveHeight} initialHeight={activeHeight}>
-                            <div
-                                className="tw-flex tw-justify-center tw-items-center tw-bg-black-5 tw-p-20 tw-text-black-40 tw-space-x-2 tw-resize-y"
-                                data-test-id="storybook-empty-wrapper"
-                            >
-                                <IconStorybook size={IconSize.Size32} />
-                                <div
-                                    className={`tw-w-full tw-max-w-sm ${
-                                        !isValidStorybookUrl(submittedUrl) && 'tw-pt-6'
-                                    }`}
-                                >
-                                    <FormControl
-                                        helper={!isValidStorybookUrl(submittedUrl) ? { text: ERROR_MSG } : undefined}
-                                        style={
-                                            !isValidStorybookUrl(submittedUrl)
-                                                ? FormControlStyle.Danger
-                                                : FormControlStyle.Primary
-                                        }
-                                    >
-                                        <TextInput
-                                            value={input}
-                                            onChange={setInput}
-                                            onEnterPressed={saveInputLink}
-                                            placeholder={URL_INPUT_PLACEHOLDER}
-                                        />
-                                    </FormControl>
-                                </div>
-                                <Button onClick={saveInputLink}>Confirm</Button>
-                            </div>
-                        </Resizeable>
-                    ) : (
-                        <div
-                            className="tw-flex tw-items-center tw-justify-center tw-bg-black-5"
-                            style={{ height: activeHeight }}
-                        >
-                            No Storybook-URL defined.
-                        </div>
-                    )}
-                </>
+                formWithStorybookUrl
             )}
         </div>
     );

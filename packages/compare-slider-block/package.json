@@ -11,27 +11,27 @@
         "prettier:fix": "prettier --write .",
         "typecheck": "tsc --noEmit"
     },
+    "devDependencies": {
+        "@frontify/eslint-config-react": "0.15.7",
+        "@frontify/frontify-cli": "5.3.10",
+        "@frontify/guideline-blocks-settings": "0.26.2",
+        "@types/react": "17.0.53",
+        "@types/react-dom": "17.0.18",
+        "autoprefixer": "10.4.14",
+        "eslint": "8.37.0",
+        "eslint-plugin-notice": "0.9.10",
+        "postcss": "8.4.21",
+        "prettier": "2.8.7",
+        "tailwind": "4.0.0",
+        "typescript": "5.0.3"
+    },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.59",
+        "@frontify/app-bridge": "3.0.0-beta.60",
         "@frontify/fondue": "12.0.0-beta.162",
         "@frontify/fondue-tokens": "3.2.1",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "17.0.2",
         "react-compare-slider": "^2.2.0",
         "react-dom": "17.0.2"
-    },
-    "devDependencies": {
-        "@frontify/eslint-config-react": "0.15.5",
-        "@frontify/frontify-cli": "5.3.8",
-        "@frontify/guideline-blocks-settings": "0.26.2",
-        "@types/react": "17.0.53",
-        "@types/react-dom": "17.0.18",
-        "autoprefixer": "10.4.13",
-        "eslint": "8.34.0",
-        "eslint-plugin-notice": "0.9.10",
-        "postcss": "8.4.21",
-        "prettier": "2.8.4",
-        "tailwind": "4.0.0",
-        "typescript": "4.9.5"
     }
 }

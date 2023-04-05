@@ -50,11 +50,9 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
         <div className="tw-flex-1 tw-space-y-2">
             <div data-test-id="block-title">
                 {!isEditing ? (
-                    <>
-                        {hasRichTextValue(title) && (
-                            <div data-test-id="block-title-rte" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
-                        )}
-                    </>
+                    hasRichTextValue(title) ? (
+                        <div data-test-id="block-title-rte" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
+                    ) : null
                 ) : (
                     <RichTextEditor
                         designTokens={designTokens}
@@ -69,14 +67,12 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
 
             <div data-test-id="block-description">
                 {!isEditing ? (
-                    <>
-                        {hasRichTextValue(description) && (
-                            <div
-                                data-test-id="block-description-rte"
-                                dangerouslySetInnerHTML={{ __html: htmlDescription }}
-                            />
-                        )}
-                    </>
+                    hasRichTextValue(description) ? (
+                        <div
+                            data-test-id="block-description-rte"
+                            dangerouslySetInnerHTML={{ __html: htmlDescription }}
+                        />
+                    ) : null
                 ) : (
                     <RichTextEditor
                         designTokens={designTokens}
