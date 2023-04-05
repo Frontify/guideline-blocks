@@ -2,7 +2,8 @@
 
 import { AppBridgeBlock, useDocumentSection } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { InitiallyExpandedItems } from '../InsertLinkModal/types';
 import { SectionLink } from './SectionLink';
 
 type DocumentLinkProps = {
@@ -14,15 +15,21 @@ type DocumentLinkProps = {
     selectedUrl: string;
     onSelectUrl: (url: string) => void;
     appBridge: AppBridgeBlock;
+    itemsToExpandInitially: InitiallyExpandedItems;
 };
 
-export const PageLink = ({ page, selectedUrl, onSelectUrl, appBridge }: DocumentLinkProps) => {
+export const PageLink = ({ page, selectedUrl, onSelectUrl, itemsToExpandInitially, appBridge }: DocumentLinkProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const isActive = page.permanentLink === selectedUrl;
-
     const { documentSections } = useDocumentSection(appBridge, page.id);
     const sectionsArray = [...documentSections.values()];
     const hasSections = sectionsArray.length > 0;
+
+    useEffect(() => {
+        if (page.id === itemsToExpandInitially.pageId) {
+            setIsExpanded(true);
+        }
+    }, [itemsToExpandInitially, page.id]);
 
     return (
         <>
@@ -67,6 +74,7 @@ export const PageLink = ({ page, selectedUrl, onSelectUrl, appBridge }: Document
                             section={section}
                             selectedUrl={selectedUrl}
                             onSelectUrl={onSelectUrl}
+                            expandParent={() => setIsExpanded(true)}
                         />
                     );
                 })}

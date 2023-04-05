@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconDocumentText16, merge } from '@frontify/fondue';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 type SectionLinkProps = {
     section: {
@@ -11,10 +11,18 @@ type SectionLinkProps = {
     };
     selectedUrl: string;
     onSelectUrl: (url: string) => void;
+    expandParent: () => void;
 };
 
-export const SectionLink = ({ section, selectedUrl, onSelectUrl }: SectionLinkProps) => {
+export const SectionLink = ({ section, selectedUrl, onSelectUrl, expandParent }: SectionLinkProps) => {
     const isActive = section.permanentLink === selectedUrl;
+
+    useEffect(() => {
+        if (section.permanentLink === selectedUrl) {
+            expandParent();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>

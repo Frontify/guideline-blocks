@@ -3,7 +3,7 @@
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Button, ButtonEmphasis, ButtonSize, ButtonStyle, ButtonType, IconLink, Modal } from '@frontify/fondue';
 import { useOverlayTriggerState } from '@react-stately/overlays';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { DocumentLinks } from './DocumentLinks';
 
 type LinkSelectorProps = {
@@ -20,6 +20,12 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
         setSelectedUrl(url);
     };
 
+    useEffect(() => {
+        if (url && !selectedUrl) {
+            setSelectedUrl(url);
+        }
+    }, [url, selectedUrl]);
+
     return (
         <>
             <Button
@@ -32,7 +38,7 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
             >
                 Internal link
             </Button>
-            <Modal onClose={() => closeLinkTree()} isOpen={isLinkTreeOpen} isDismissable>
+            <Modal zIndex={200} onClose={() => closeLinkTree()} isOpen={isLinkTreeOpen} isDismissable>
                 <Modal.Header title="Select internal link" />
                 <Modal.Body>
                     <div className="link-tree-container">

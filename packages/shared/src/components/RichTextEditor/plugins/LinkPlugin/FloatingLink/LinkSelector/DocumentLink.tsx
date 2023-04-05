@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PageLinks } from './PageLinks';
 import { IconColorFan16, merge } from '@frontify/fondue';
+import { InitiallyExpandedItems } from '../InsertLinkModal/types';
 
 type DocumentLinkProps = {
     document: {
@@ -14,11 +15,24 @@ type DocumentLinkProps = {
     appBridge: AppBridgeBlock;
     selectedUrl: string;
     onSelectUrl: (url: string) => void;
+    itemsToExpandInitially: InitiallyExpandedItems;
 };
 
-export const DocumentLink = ({ document, appBridge, selectedUrl, onSelectUrl }: DocumentLinkProps) => {
+export const DocumentLink = ({
+    document,
+    appBridge,
+    selectedUrl,
+    onSelectUrl,
+    itemsToExpandInitially,
+}: DocumentLinkProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const isActive = document.permanentLink === selectedUrl;
+
+    useEffect(() => {
+        if (document.id === itemsToExpandInitially.documentId) {
+            setIsExpanded(true);
+        }
+    }, [itemsToExpandInitially, document.id]);
 
     return (
         <>
@@ -56,6 +70,7 @@ export const DocumentLink = ({ document, appBridge, selectedUrl, onSelectUrl }: 
                     documentId={document.id}
                     selectedUrl={selectedUrl}
                     onSelectUrl={onSelectUrl}
+                    itemsToExpandInitially={itemsToExpandInitially}
                 />
             )}
         </>

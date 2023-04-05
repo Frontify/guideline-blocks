@@ -2,6 +2,7 @@
 
 import { AppBridgeBlock, useDocumentPages } from '@frontify/app-bridge';
 import React, { ReactElement } from 'react';
+import { InitiallyExpandedItems } from '../InsertLinkModal/types';
 import { PageLink } from './PageLink';
 
 type PageLinksProps = {
@@ -9,9 +10,16 @@ type PageLinksProps = {
     documentId: number;
     selectedUrl: string;
     onSelectUrl: (url: string) => void;
+    itemsToExpandInitially: InitiallyExpandedItems;
 };
 
-export const PageLinks = ({ appBridge, documentId, selectedUrl, onSelectUrl }: PageLinksProps): ReactElement => {
+export const PageLinks = ({
+    appBridge,
+    documentId,
+    selectedUrl,
+    onSelectUrl,
+    itemsToExpandInitially,
+}: PageLinksProps): ReactElement => {
     const { pages, isLoading } = useDocumentPages(appBridge, documentId);
     const pagesArray = [...pages.values()];
     const hasPages = !isLoading && pagesArray.length > 0;
@@ -31,6 +39,7 @@ export const PageLinks = ({ appBridge, documentId, selectedUrl, onSelectUrl }: P
                             appBridge={appBridge}
                             selectedUrl={selectedUrl}
                             onSelectUrl={onSelectUrl}
+                            itemsToExpandInitially={itemsToExpandInitially}
                         />
                     );
                 })
