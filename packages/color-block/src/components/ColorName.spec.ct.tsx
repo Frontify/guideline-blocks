@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 
 import { ColorName } from './ColorName';
 import { ColorBlockType, ColorNameProps } from '../types';
