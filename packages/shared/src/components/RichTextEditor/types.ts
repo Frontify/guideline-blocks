@@ -12,7 +12,7 @@ export type RichTextEditorProps = {
     gap?: string;
     plugins?: PluginComposer;
     updateValueOnChange?: boolean;
-    onStore: (value: string) => void;
+    onBlur: (value: string) => void;
 };
 
 export type SerializedTextProps = {

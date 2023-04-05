@@ -14,11 +14,11 @@ export const RichTextEditor = ({
     gap,
     placeholder,
     plugins,
-    onStore,
+    onBlur,
     updateValueOnChange,
 }: RichTextEditorProps) => {
     if (isEditing) {
-        const saveText = (newValue: string) => newValue !== value && onStore(newValue);
+        const saveText = (newValue: string) => newValue !== value && onBlur(newValue);
         return (
             <FondueRichTextEditor
                 designTokens={designTokens}

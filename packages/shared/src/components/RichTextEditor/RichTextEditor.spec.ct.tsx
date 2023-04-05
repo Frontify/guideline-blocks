@@ -13,12 +13,12 @@ const RichTextSelector = '[data-test-id="rich-text-editor"]';
 
 describe('RichTextEditor', () => {
     it('should renders rich text editor as editor', () => {
-        mount(<RichTextEditor isEditing onStore={cy.stub} />);
+        mount(<RichTextEditor isEditing onBlur={cy.stub} />);
         cy.get(RichTextSelector).should('exist');
     });
 
     it('should renders rich text html as viewer', () => {
-        mount(<RichTextEditor isEditing={false} onStore={cy.stub} value="test" />);
+        mount(<RichTextEditor isEditing={false} onBlur={cy.stub} value="test" />);
         cy.get(RteHtmlSelector).should('exist');
     });
 
@@ -26,7 +26,7 @@ describe('RichTextEditor', () => {
         mount(
             <RichTextEditor
                 isEditing={false}
-                onStore={cy.stub}
+                onBlur={cy.stub}
                 value={convertToRteValue(TextStyles.ELEMENT_HEADING1, 'Test Heading')}
             />
         );
@@ -34,17 +34,17 @@ describe('RichTextEditor', () => {
     });
 
     it('should render rich text html as viewer if value is html', () => {
-        mount(<RichTextEditor isEditing={false} onStore={cy.stub} value="<p>Test Paragraph</p>" />);
+        mount(<RichTextEditor isEditing={false} onBlur={cy.stub} value="<p>Test Paragraph</p>" />);
         cy.get(RteHtmlSelector).should('exist');
     });
 
     it('should not render rich text html as viewer if value is empty string', () => {
-        mount(<RichTextEditor isEditing={false} onStore={cy.stub} value="" />);
+        mount(<RichTextEditor isEditing={false} onBlur={cy.stub} value="" />);
         cy.get(RteHtmlSelector).should('not.exist');
     });
 
     it('should not render rich text html as viewer if value is undefined', () => {
-        mount(<RichTextEditor isEditing={false} onStore={cy.stub} />);
+        mount(<RichTextEditor isEditing={false} onBlur={cy.stub} />);
         cy.get(RteHtmlSelector).should('not.exist');
     });
 });

@@ -195,7 +195,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             placeholder="Asset name"
                             plugins={customTitlePlugins}
                             updateValueOnChange
-                            onStore={saveTitle}
+                            onBlur={saveTitle}
                         />
                     </div>
 
@@ -205,7 +205,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             isEditing={isEditing}
                             value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                             placeholder="Add a description here"
-                            onStore={saveDescription}
+                            onBlur={saveDescription}
                         />
                     </div>
                 </div>
