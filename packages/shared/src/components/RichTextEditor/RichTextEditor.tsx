@@ -7,7 +7,6 @@ import { RichTextEditorProps } from './types';
 import { SerializedText } from './SerializedText';
 
 export const RichTextEditor = ({
-    settingsId,
     designTokens,
     isEditing,
     value,
@@ -15,11 +14,11 @@ export const RichTextEditor = ({
     gap,
     placeholder,
     plugins,
-    setBlockSettings,
+    onStore,
     updateValueOnChange,
 }: RichTextEditorProps) => {
     if (isEditing) {
-        const saveText = (newValue: string) => newValue !== value && setBlockSettings({ [settingsId]: newValue });
+        const saveText = (newValue: string) => newValue !== value && onStore(newValue);
         return (
             <FondueRichTextEditor
                 designTokens={designTokens}
