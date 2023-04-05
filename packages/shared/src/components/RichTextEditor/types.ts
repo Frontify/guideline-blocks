@@ -4,9 +4,7 @@ import { PluginComposer } from '@frontify/fondue';
 import { DesignTokens } from '@frontify/fondue/dist/components/RichTextEditor/types';
 
 export type RichTextEditorProps = {
-    settingsId: string;
     isEditing: boolean;
-    setBlockSettings: (settings: Record<string, unknown>) => void;
     value?: string;
     placeholder?: string;
     designTokens?: DesignTokens;
@@ -14,6 +12,7 @@ export type RichTextEditorProps = {
     gap?: string;
     plugins?: PluginComposer;
     updateValueOnChange?: boolean;
+    onBlur: (value: string) => void;
 };
 
 export type SerializedTextProps = {

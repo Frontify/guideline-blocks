@@ -78,16 +78,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             ]);
     }, []);
 
-    const saveTitle = (title: string) => {
-        if (title !== blockSettings.title) {
-            setBlockSettings({ title });
-        }
-    };
+    const saveTitle = (title: string) => setBlockSettings({ title });
+    const saveDescription = (description: string) => setBlockSettings({ description });
 
-    const onRemoveAsset = () => {
-        deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
-    };
-
+    const onRemoveAsset = () => deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(title)) {
             saveTitle(convertToRteValue(TextStyles.ELEMENT_HEADING3, audio.title));
@@ -195,25 +189,23 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 <div className="tw-flex-1">
                     <div data-test-id="block-title">
                         <RichTextEditor
-                            settingsId="title"
                             designTokens={designTokens}
                             isEditing={isEditing}
-                            setBlockSettings={setBlockSettings}
                             value={title ?? DEFAULT_CONTENT_TITLE}
                             placeholder="Asset name"
                             plugins={customTitlePlugins}
                             updateValueOnChange
+                            onBlur={saveTitle}
                         />
                     </div>
 
                     <div data-test-id="block-description">
                         <RichTextEditor
-                            settingsId="description"
                             designTokens={designTokens}
                             isEditing={isEditing}
-                            setBlockSettings={setBlockSettings}
                             value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                             placeholder="Add a description here"
+                            onBlur={saveDescription}
                         />
                     </div>
                 </div>
