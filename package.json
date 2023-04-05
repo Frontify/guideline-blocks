@@ -24,12 +24,12 @@
         "@cypress/vite-dev-server": "5.0.5",
         "@testing-library/react-hooks": "8.0.1",
         "@types/node": "18.15.11",
-        "@types/react": "17.0.50",
-        "@types/react-dom": "17.0.17",
+        "@types/react": "18.0.33",
+        "@types/react-dom": "18.0.11",
         "@vitejs/plugin-react": "3.1.0",
         "cypress": "12.9.0",
         "cypress-real-events": "1.7.6",
-        "happy-dom": "9.1.0",
+        "happy-dom": "9.1.7",
         "msw": "1.2.1",
         "postcss": "8.4.21",
         "tailwindcss": "3.3.1",
@@ -42,7 +42,7 @@
     "dependencies": {
         "@frontify/fondue": "12.0.0-beta.162",
         "glob": "9.3.4",
-        "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
     }
 }

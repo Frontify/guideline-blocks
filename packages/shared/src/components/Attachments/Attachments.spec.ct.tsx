@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { AssetDummy, getAppBridgeBlockStub } from '@frontify/app-bridge';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { Attachments as AttachmentsComponent } from './Attachments';
 import { AttachmentsProps } from './types';
 
