@@ -10,7 +10,7 @@ export enum MetadataType {
 export type MetadataProps = {
     id: string;
     isRequired: boolean;
-    defaultValue?: string | null;
+    defaultValue?: any;
     name: string;
     valueType: {
         propertyType: string;

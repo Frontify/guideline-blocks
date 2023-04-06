@@ -4,7 +4,7 @@ export const testMetadata: MetadataProps[] = [
     {
         id: "eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
         isRequired: false,
-        defaultValue: null,
+        defaultValue: "Default Value",
         name: "test",
         valueType: {
             propertyType: "TEXT",
@@ -35,12 +35,25 @@ export const testMetadata: MetadataProps[] = [
         name: "Single Select",
         valueType: {
             propertyType: "SELECT",
+            options: [
+                {
+                    id: "eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
+                    value: "one",
+                },
+                {
+                    id: "eyJpZGVudGlmaWVyIjoyLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
+                    value: "two",
+                },
+            ],
         },
     },
     {
         id: "eyJpZGVudGlmaWVyIjoxNiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
         isRequired: false,
-        defaultValue: null,
+        defaultValue: {
+            id: "eyJpZGVudGlmaWVyIjozLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
+            value: "one",
+        },
         name: "Multi-select",
         valueType: {
             propertyType: "MULTISELECT",

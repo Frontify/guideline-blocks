@@ -1,7 +1,8 @@
-import { Text, TextInput } from "@frontify/fondue";
+import { TextInput } from "@frontify/fondue";
 import React, { useState } from "react";
 import { MetadataProps } from "../type";
 import { FormUtilities } from "./type";
+import { FormLabel } from "./FormLabel";
 
 export const InputText = ({
     id,
@@ -21,10 +22,10 @@ export const InputText = ({
     };
 
     return (
-        <>
-            <Text as="label">
-                {name} {isRequired && "*"}
-            </Text>
+        <div>
+            <FormLabel id={id}>
+                {name} {isRequired && "*"}{" "}
+            </FormLabel>
             <TextInput
                 id={id}
                 onFocus={onFocus}
@@ -34,6 +35,6 @@ export const InputText = ({
                 validation={validation}
                 value={textInput}
             />
-        </>
+        </div>
     );
 };

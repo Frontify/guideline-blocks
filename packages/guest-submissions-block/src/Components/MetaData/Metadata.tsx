@@ -3,6 +3,7 @@ import { testMetadata } from "./constant";
 import { MetadataFactory } from "./MetadataFactory";
 import { MetadataProps } from "./type";
 import { OnChangeProps } from "./Form/type";
+import { Stack } from "@frontify/fondue";
 
 type MetaDataSubmitProps = {
     onSubmit: (formData: FormValues) => void;
@@ -13,7 +14,20 @@ type FormValues = {
     [key: string]: string;
 };
 export const Metadata: FC<MetaDataSubmitProps> = ({ onSubmit, children }) => {
-    const [formValues, setFormValues] = useState<FormValues>({});
+    // This one we can set with the default values
+    const initialValues = testMetadata
+        .filter((item) => !!item.defaultValue)
+        .map((item) => ({
+            [item.id]:
+                item.defaultValue && item.defaultValue.value
+                    ? item.defaultValue.value
+                    : item.defaultValue,
+        }));
+    console.log(initialValues);
+
+    // Figure out how to set the initial values
+    // @ts-ignore
+    const [formValues, setFormValues] = useState<FormValues>([]);
     const handleInputChange = ({ id, value }: OnChangeProps) => {
         setFormValues((prevState) => ({
             ...prevState,
@@ -32,7 +46,9 @@ export const Metadata: FC<MetaDataSubmitProps> = ({ onSubmit, children }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            {renderMetadataFields()}
+            <Stack padding={"none"} spacing={"s"} direction={"column"}>
+                {renderMetadataFields()}
+            </Stack>
             {children}
         </form>
     );

@@ -1,7 +1,8 @@
-import { DatePicker, Text } from "@frontify/fondue";
+import { DatePicker } from "@frontify/fondue";
 import React, { useState } from "react";
 import { MetadataProps } from "../type";
 import { FormUtilities } from "./type";
+import { FormLabel } from "./FormLabel";
 
 export const InputDate = ({
     id,
@@ -12,7 +13,9 @@ export const InputDate = ({
     validation,
     valueType: { propertyType, options },
 }: MetadataProps & FormUtilities) => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>();
+    const [selectedDate, setSelectedDate] = useState<Date | null>(
+        defaultValue as Date | null
+    );
     const onFocus = () => {};
 
     const onInput = (date: Date | null) => {
@@ -21,10 +24,11 @@ export const InputDate = ({
     };
 
     return (
-        <>
-            <Text as="label">
-                {name} {isRequired && "*"}
-            </Text>
+        <div>
+            <FormLabel id={id}>
+                {name} {isRequired && "*"}{" "}
+            </FormLabel>
+
             <DatePicker
                 dateFormat="dd MMM yyyy"
                 onChange={(date) => onInput(date)}
@@ -36,6 +40,6 @@ export const InputDate = ({
                 variant="single"
                 value={selectedDate as Date}
             />
-        </>
+        </div>
     );
 };

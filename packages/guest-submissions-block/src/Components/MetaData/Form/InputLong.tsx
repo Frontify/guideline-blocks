@@ -1,7 +1,8 @@
-import { Text, Textarea } from "@frontify/fondue";
+import { Textarea } from "@frontify/fondue";
 import React, { useState } from "react";
 import { MetadataProps } from "../type";
 import { FormUtilities } from "./type";
+import { FormLabel } from "./FormLabel";
 
 export const InputLong = ({
     id,
@@ -20,10 +21,10 @@ export const InputLong = ({
     };
 
     return (
-        <>
-            <Text as="label">
-                {name} {isRequired && "*"}
-            </Text>
+        <div>
+            <FormLabel id={id}>
+                {name} {isRequired && "*"}{" "}
+            </FormLabel>
             <Textarea
                 id={id}
                 onFocus={onFocus}
@@ -34,6 +35,6 @@ export const InputLong = ({
                 value={textInput}
                 minRows={5}
             />
-        </>
+        </div>
     );
 };

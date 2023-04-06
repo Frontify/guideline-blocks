@@ -1,7 +1,16 @@
 import type { FC } from "react";
 import React, { useEffect, useState } from "react";
 import type { BlockProps } from "@frontify/guideline-blocks-settings";
-import { Divider, IconPlus24, IconSize, Stack } from "@frontify/fondue";
+import {
+    Button,
+    ButtonEmphasis,
+    ButtonStyle,
+    ButtonType,
+    Divider,
+    IconPlus24,
+    IconSize,
+    Stack,
+} from "@frontify/fondue";
 import { AssetDropzone } from "../Components/AssetDropzone";
 import { Headline } from "../Components/Headline";
 import { UploadFileList } from "../Components/UploadFileList";
@@ -82,7 +91,15 @@ export const GuestSubmission: FC<BlockProps> = ({ appBridge }) => {
             />
 
             <Metadata onSubmit={(formData) => console.log(formData)}>
-                <button type="submit">submit</button>
+                <div className="tw-mt-2 tw-flex tw-justify-end">
+                    <Button
+                        style={ButtonStyle.Default}
+                        emphasis={ButtonEmphasis.Weak}
+                    >
+                        Discard
+                    </Button>
+                    <Button type={ButtonType.Submit}>submit</Button>
+                </div>
             </Metadata>
             {/* name / Email - , bit weird - Submit Discard*/}
         </Stack>
