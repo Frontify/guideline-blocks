@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock, useDocumentPages } from '@frontify/app-bridge';
 import React, { ReactElement } from 'react';
-import { InitiallyExpandedItems } from '../InsertLinkModal/types';
+import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
 import { PageLink } from './PageLink';
 
 type PageLinksProps = {

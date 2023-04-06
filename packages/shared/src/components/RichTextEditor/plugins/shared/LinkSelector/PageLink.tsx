@@ -3,7 +3,7 @@
 import { AppBridgeBlock, useDocumentSection } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
 import React, { useEffect, useState } from 'react';
-import { InitiallyExpandedItems } from '../InsertLinkModal/types';
+import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
 import { SectionLink } from './SectionLink';
 
 type DocumentLinkProps = {
@@ -34,6 +34,7 @@ export const PageLink = ({ page, selectedUrl, onSelectUrl, itemsToExpandInitiall
     return (
         <>
             <div
+                data-test-id="internal-link-selector-page-link"
                 className={merge([
                     'tw-py-2 tw-px-2.5 tw-leading-5 tw-cursor-pointer',
                     hasSections ? 'tw-pl-7' : 'tw-pl-12',
@@ -74,7 +75,6 @@ export const PageLink = ({ page, selectedUrl, onSelectUrl, itemsToExpandInitiall
                             section={section}
                             selectedUrl={selectedUrl}
                             onSelectUrl={onSelectUrl}
-                            expandParent={() => setIsExpanded(true)}
                         />
                     );
                 })}

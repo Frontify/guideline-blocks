@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock, useDocuments } from '@frontify/app-bridge';
 import React, { ReactElement, useEffect, useState } from 'react';
-import { InitiallyExpandedItems } from '../InsertLinkModal/types';
+import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
 import { DocumentLink } from './DocumentLink';
 
 type DocumentLinksProps = {
@@ -17,6 +17,7 @@ export const DocumentLinks = ({ appBridge, selectedUrl, onSelectUrl }: DocumentL
         documentId: undefined,
         pageId: undefined,
     });
+
     const documentArray = [...documents.values()];
 
     useEffect(() => {

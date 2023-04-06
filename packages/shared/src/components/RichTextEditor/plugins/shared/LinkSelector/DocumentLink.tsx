@@ -4,7 +4,7 @@ import { AppBridgeBlock } from '@frontify/app-bridge';
 import React, { useEffect, useState } from 'react';
 import { PageLinks } from './PageLinks';
 import { IconColorFan16, merge } from '@frontify/fondue';
-import { InitiallyExpandedItems } from '../InsertLinkModal/types';
+import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
 
 type DocumentLinkProps = {
     document: {
@@ -37,6 +37,7 @@ export const DocumentLink = ({
     return (
         <>
             <div
+                data-test-id="internal-link-selector-document-link"
                 className={merge([
                     'tw-py-2 tw-px-2.5 tw-leading-5 tw-cursor-pointer',
                     isActive

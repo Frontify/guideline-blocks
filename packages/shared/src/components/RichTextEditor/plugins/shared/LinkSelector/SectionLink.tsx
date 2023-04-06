@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { IconDocumentText16, merge } from '@frontify/fondue';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 type SectionLinkProps = {
     section: {
@@ -11,22 +11,15 @@ type SectionLinkProps = {
     };
     selectedUrl: string;
     onSelectUrl: (url: string) => void;
-    expandParent: () => void;
 };
 
-export const SectionLink = ({ section, selectedUrl, onSelectUrl, expandParent }: SectionLinkProps) => {
+export const SectionLink = ({ section, selectedUrl, onSelectUrl }: SectionLinkProps) => {
     const isActive = section.permanentLink === selectedUrl;
-
-    useEffect(() => {
-        if (section.permanentLink === selectedUrl) {
-            expandParent();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return (
         <>
             <div
+                data-test-id="internal-link-selector-section-link"
                 className={merge([
                     'tw-py-2 tw-px-2.5 tw-pl-14 tw-leading-5 tw-cursor-pointer',
                     isActive

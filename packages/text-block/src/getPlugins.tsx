@@ -8,7 +8,6 @@ import {
     AlignRightPlugin,
     BoldPlugin,
     BreakAfterPlugin,
-    ButtonPlugin,
     CheckboxListPlugin,
     CodePlugin,
     EmojiPlugin,
@@ -23,7 +22,7 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { LinkPlugin } from '@frontify/guideline-blocks-shared';
+import { ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
@@ -35,7 +34,7 @@ export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CS
         new UnderlinePlugin(),
         new StrikethroughPlugin(),
         new LinkPlugin({ appBridge }),
-        new ButtonPlugin(),
+        new ButtonPlugin({ appBridge }),
         new CodePlugin(),
         new BreakAfterPlugin({ columns, gap }),
     ]);

@@ -13,7 +13,7 @@ import {
 } from '@frontify/fondue';
 import React, { FC } from 'react';
 import { InsertModalStateProps } from './types';
-import { LinkSelector } from '../LinkSelector';
+import { LinkSelector } from '../../../shared/LinkSelector';
 
 type Props = {
     state: InsertModalStateProps;
