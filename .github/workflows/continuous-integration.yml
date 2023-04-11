@@ -14,7 +14,7 @@ on:
 env:
     NODE_VERSION: 18
     CI: true
-    NUMBER_OF_RUNNERS: 7
+    NUMBER_OF_RUNNERS: 8
 
 jobs:
     linting:
