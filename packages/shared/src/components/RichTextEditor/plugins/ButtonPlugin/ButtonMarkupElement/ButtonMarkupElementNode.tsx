@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { useRichTextEditorContext } from '@frontify/fondue';
 import { ButtonStyles } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/TextStylePlugin/TextStyles';
 import { DesignTokens } from '@frontify/fondue/dist/components/RichTextEditor/types';
 import { HTMLPropsAs, PlateRenderElementProps, Value, useElementProps } from '@udecode/plate';
 import React, { CSSProperties, HTMLAttributeAnchorTarget, ReactElement, ReactNode, useState } from 'react';
-import { useGuidelineDesignTokens } from '../../../../../hooks';
 import { RichTextButtonStyle, TButtonElement } from '../types';
 
 export type ButtonRootProps = PlateRenderElementProps<Value, TButtonElement> & HTMLPropsAs<'a'>;
@@ -29,8 +29,7 @@ const useButton = (props: ButtonRootProps): HTMLPropsAs<'a'> & { buttonStyle: Ri
 };
 
 export const ButtonMarkupElementNode = (props: ButtonRootProps) => {
-    const { designTokens } = useGuidelineDesignTokens();
-
+    const context = useRichTextEditorContext();
     const { href, target, buttonStyle } = useButton(props);
     const { attributes, children } = props;
 
@@ -39,7 +38,7 @@ export const ButtonMarkupElementNode = (props: ButtonRootProps) => {
             attributes={attributes}
             href={href}
             target={target}
-            styles={designTokens ? getButtonStyle(designTokens, buttonStyle) : undefined}
+            styles={context ? getButtonStyle(context.designTokens, buttonStyle) : undefined}
         >
             {children}
         </HoverableButtonLink>

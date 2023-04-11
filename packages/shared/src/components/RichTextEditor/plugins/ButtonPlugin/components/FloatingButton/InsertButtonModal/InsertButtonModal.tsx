@@ -2,17 +2,20 @@
 
 import React, { CSSProperties, ReactElement, ReactNode, useState } from 'react';
 
-import { FormControl } from '@frontify/fondue';
+import { FormControl, useRichTextEditorContext } from '@frontify/fondue';
 
-import { useInsertModal } from './useInsertModal';
 import { InsertModal } from '../../../../LinkPlugin/FloatingLink/InsertLinkModal/InsertModal';
-import { useGuidelineDesignTokens } from '../../../../../../../hooks';
+import { useInsertModal } from './useInsertModal';
+import { ButtonStyles } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/TextStylePlugin/TextStyles';
 
 export const InsertButtonModal = () => {
     const modalProps = useInsertModal();
     const { state, onButtonStyleChange } = modalProps;
+    const context = useRichTextEditorContext();
 
-    const { designTokens } = useGuidelineDesignTokens();
+    const designTokens = context.designTokens as Partial<
+        Record<ButtonStyles, CSSProperties & { hover: CSSProperties }>
+    >;
 
     return (
         <InsertModal {...modalProps} testId="floating-button-insert">

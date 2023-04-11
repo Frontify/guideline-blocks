@@ -1,14 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { IconPen16, IconTrashBin16, useRichTextEditorContext } from '@frontify/fondue';
 import React from 'react';
 import { FloatingButton } from '../FloatingButton';
 import { useFloatingButtonUrlInput } from '../FloatingButtonUrlInput';
-import { useGuidelineDesignTokens } from '../../../../../../../hooks';
-import { IconPen16, IconTrashBin16 } from '@frontify/fondue';
 
 export const EditModal = () => {
     const urlHtmlProps = useFloatingButtonUrlInput({});
-    const { designTokens } = useGuidelineDesignTokens();
+    const { designTokens } = useRichTextEditorContext();
 
     return (
         <div data-test-id="floating-button-edit" className="tw-bg-white tw-rounded tw-shadow tw-p-4 tw-min-w-[400px]">

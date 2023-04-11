@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { MouseEvent } from 'react';
+import { useRichTextEditorContext } from '@frontify/fondue';
 import { HTMLPropsAs, LinkRootProps, useElementProps } from '@udecode/plate';
+import React, { MouseEvent } from 'react';
 import { TLinkElement } from '../types';
-import { useGuidelineDesignTokens } from '../../../../../hooks';
 
 const useLink = (props: LinkRootProps): HTMLPropsAs<'a'> => {
     const _props = useElementProps<TLinkElement, 'a'>({
@@ -25,11 +25,11 @@ const useLink = (props: LinkRootProps): HTMLPropsAs<'a'> => {
 
 export const LinkMarkupElementNode = (props: LinkRootProps) => {
     const htmlProps = useLink(props);
-    const { designTokens } = useGuidelineDesignTokens();
+    const context = useRichTextEditorContext();
     const { attributes, children } = props;
 
     return (
-        <a {...attributes} href={htmlProps.href} target={htmlProps.target} style={designTokens.link}>
+        <a {...attributes} href={htmlProps.href} target={htmlProps.target} style={context?.designTokens.link}>
             {children}
         </a>
     );

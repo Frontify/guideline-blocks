@@ -1,14 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPen16, IconTrashBin16 } from '@frontify/fondue';
+import { IconPen16, IconTrashBin16, useRichTextEditorContext } from '@frontify/fondue';
 import { useFloatingLinkUrlInput } from '@udecode/plate';
 import React from 'react';
-import { useGuidelineDesignTokens } from '../../../../../../hooks';
 import { FloatingLink } from '../FloatingLink';
 
 export const EditModal = () => {
     const urlHtmlProps = useFloatingLinkUrlInput({});
-    const { designTokens } = useGuidelineDesignTokens();
+    const { designTokens } = useRichTextEditorContext();
 
     return (
         <div data-test-id="floating-link-edit" className="tw-bg-white tw-rounded tw-shadow tw-p-4 tw-min-w-[400px]">
