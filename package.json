@@ -7,16 +7,16 @@
         "npm": "<=0"
     },
     "scripts": {
-        "lint": "pnpm --stream --workspace-concurrency=8 --filter {packages/**} --filter {examples/**} lint",
-        "lint:fix": "pnpm --stream --workspace-concurrency=8 --filter {packages/**} --filter {examples/**} lint:fix",
-        "prettier": "pnpm --stream --workspace-concurrency=8 --filter {packages/**} --filter {examples/**} prettier",
-        "prettier:fix": "pnpm --stream --workspace-concurrency=8 --filter {packages/**} --filter {examples/**} prettier:fix",
+        "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} lint",
+        "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} lint:fix",
+        "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} prettier",
+        "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} prettier:fix",
         "test": "pnpm test:unit && pnpm test:components",
         "test:components": "cypress run --component",
         "test:components:browser": "cypress open --component",
         "test:unit": "vitest run",
         "test:unit:watch": "vitest",
-        "typecheck": "pnpm --stream --workspace-concurrency=8 --filter {packages/**} --filter {examples/**} typecheck"
+        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} typecheck"
     },
     "devDependencies": {
         "@babel/core": "7.20.2",
