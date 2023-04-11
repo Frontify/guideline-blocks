@@ -57,7 +57,7 @@ jobs:
 
     typecheck:
         runs-on: ubuntu-latest
-        timeout-minutes: 12
+        timeout-minutes: 15
 
         steps:
             - name: Checkout current commit
