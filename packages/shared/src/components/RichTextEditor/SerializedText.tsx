@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { serializeRawToHtml } from '@frontify/fondue';
 import { SerializedTextProps } from './types';
 
-export const SerializedText = ({ value = '', designTokens, gap, columns }: SerializedTextProps) => {
+export const SerializedText = ({ value = '', designTokens, gap, columns, show = true }: SerializedTextProps) => {
     const [html, setHtml] = useState<string | null>(null);
 
     const serializedText = useMemo(async () => {
@@ -19,8 +19,14 @@ export const SerializedText = ({ value = '', designTokens, gap, columns }: Seria
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [serializedText]);
 
+    if (!show) {
+        return null;
+    }
+
     return html ? (
-        html !== '<br />' && <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+        html !== '<br />' ? (
+            <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+        ) : null
     ) : (
         <div className="tw-rounded-sm tw-bg-base-alt tw-animate-pulse tw-h-full tw-min-h-[10px] tw-w-full" />
     );

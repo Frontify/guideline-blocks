@@ -10,10 +10,9 @@ import {
     IconTrashBin16,
     IconTrashBin20,
     RichTextEditor,
-    parseRawValue,
-    serializeRawToHtml,
 } from '@frontify/fondue';
 import { BlockItemWrapper, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { SerializedText } from '@frontify/guideline-blocks-shared/src/components/RichTextEditor/SerializedText';
 import autosize from 'autosize';
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import IconComponent from './components/IconComponent';
@@ -83,9 +82,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             (value: string) => value !== body && onChangeItem(id, value, 'body'),
             [onChangeItem, body, id]
         );
-
-        const rawValue = useMemo(() => JSON.stringify(parseRawValue({ raw: body ?? '' })), [body]);
-        const html = useMemo(() => serializeRawToHtml(rawValue, designTokens), [designTokens, rawValue]);
 
         const headingColor = type === DoDontType.Do ? doColorString : dontColorString;
 
@@ -293,7 +289,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                         className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}
                     >
                         {!editing ? (
-                            <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+                            <SerializedText value={body} designTokens={designTokens} />
                         ) : (
                             memoizedRichTextEditor
                         )}
@@ -318,6 +314,7 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
+    const draggableProps = editing ? { ...attributes, ...listeners } : {};
 
     const transformStyle = {
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
@@ -325,13 +322,11 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
         zIndex: isDragging ? 2 : 1,
     };
 
-    const draggableProps = editing ? { ...attributes, ...listeners } : {};
-
     return (
         <DoDontItem
             key={id}
-            ref={setNodeRef}
             {...props}
+            ref={setNodeRef}
             isDragging={isDragging}
             replaceWithPlaceholder={isDragging}
             transformStyle={transformStyle}

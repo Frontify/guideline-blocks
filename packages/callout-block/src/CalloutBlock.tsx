@@ -1,10 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    RichTextEditor,
     hasRichTextValue,
     isDark,
     joinClassNames,
@@ -71,8 +71,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
-    const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.textValue ?? '' }));
-    const html = serializeRawToHtml(rawValue, calloutDesignTokens);
 
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
@@ -93,23 +91,14 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                         color={textColor}
                     />
                 )}
-                {!isEditing ? (
-                    <div
-                        data-test-id="rte-content-html"
-                        className="tw-w-full"
-                        dangerouslySetInnerHTML={{ __html: html }}
-                    />
-                ) : (
-                    <RichTextEditor
-                        id={appBridge.getBlockId().toString()}
-                        designTokens={calloutDesignTokens}
-                        value={blockSettings.textValue}
-                        border={false}
-                        placeholder="Type your text here"
-                        onTextChange={onTextChange}
-                        onBlur={onTextChange}
-                    />
-                )}
+                <RichTextEditor
+                    id={appBridge.getBlockId().toString()}
+                    designTokens={calloutDesignTokens}
+                    isEditing={isEditing}
+                    onBlur={onTextChange}
+                    placeholder="Type your text here"
+                    value={blockSettings.textValue}
+                />
             </div>
         </div>
     );
