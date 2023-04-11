@@ -3,7 +3,7 @@
 import { ButtonStyles } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/TextStylePlugin/TextStyles';
 import { DesignTokens } from '@frontify/fondue/dist/components/RichTextEditor/types';
 import { HTMLPropsAs, PlateRenderElementProps, Value, useElementProps } from '@udecode/plate';
-import React, { CSSProperties, ReactElement, ReactNode, useState } from 'react';
+import React, { CSSProperties, HTMLAttributeAnchorTarget, ReactElement, ReactNode, useState } from 'react';
 import { useGuidelineDesignTokens } from '../../../../../hooks';
 import { RichTextButtonStyle, TButtonElement } from '../types';
 
@@ -66,9 +66,9 @@ export const getButtonStyle = (designTokens: DesignTokens, buttonStyle: RichText
 type Props = {
     attributes: ButtonRootProps['attributes'];
     children: ReactNode;
-    styles?: React.CSSProperties & { hover?: React.CSSProperties };
+    styles?: CSSProperties & { hover?: CSSProperties };
     href?: string;
-    target?: React.HTMLAttributeAnchorTarget;
+    target?: HTMLAttributeAnchorTarget;
 };
 
 const HoverableButtonLink = ({

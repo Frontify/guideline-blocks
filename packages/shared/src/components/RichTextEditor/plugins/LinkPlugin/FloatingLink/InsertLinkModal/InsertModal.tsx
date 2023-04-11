@@ -11,9 +11,9 @@ import {
     IconCheckMark20,
     TextInput,
 } from '@frontify/fondue';
-import React, { FC } from 'react';
-import { InsertModalStateProps } from './types';
+import React, { FC, ReactNode } from 'react';
 import { LinkSelector } from '../../../shared/LinkSelector';
+import { InsertModalStateProps } from './types';
 
 type Props = {
     state: InsertModalStateProps;
@@ -25,7 +25,7 @@ type Props = {
     hasValues: boolean;
     isValidUrlOrEmpty: () => boolean | undefined;
     testId?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     appBridge: AppBridgeBlock;
 };
 
