@@ -6,6 +6,7 @@ import {
     IconEnum,
     NotificationStyleType,
     appendUnit,
+    createFooter,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
@@ -241,15 +242,13 @@ export const settings = defineSettings({
             id: 'colorInGlobalSettingsInfo',
             type: 'notification',
             title: 'Color',
-            text: 'This has been defined in the Global Settings.',
+            footer: createFooter({
+                label: 'This has been defined in the Global Settings. View or change it [here].',
+                replace: { here: { event: 'design-settings.open' } },
+            }),
             styles: {
                 type: NotificationStyleType.Info,
                 icon: true,
-            },
-            link: {
-                href: 'https://help.frontify.com/en/articles/1346386-how-to-customize-your-style-guide',
-                label: 'Read more here.',
-                target: '_blank',
             },
         },
     ],
