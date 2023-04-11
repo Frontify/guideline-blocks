@@ -30,7 +30,7 @@
         "typescript": "4.8.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.60",
+        "@frontify/app-bridge": "3.0.0-beta.61",
         "@frontify/fondue": "12.0.0-beta.162",
         "@frontify/fondue-tokens": "3.2.1",
         "@frontify/guideline-blocks-settings": "0.26.2",

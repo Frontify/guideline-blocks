@@ -62,5 +62,7 @@ export const unwrapButton = <V extends Value>(
             match: { type: getPluginType(editor, ELEMENT_BUTTON) },
             ...options,
         });
+
+        return;
     });
 };

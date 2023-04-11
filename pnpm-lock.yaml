@@ -75,8 +75,8 @@ importers:
   examples/asset-upload:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -142,8 +142,8 @@ importers:
   examples/guideline-design-tokens:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -209,8 +209,8 @@ importers:
   packages/asset-kit-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
@@ -279,8 +279,8 @@ importers:
   packages/audio-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
@@ -349,8 +349,8 @@ importers:
   packages/brand-positioning-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -416,8 +416,8 @@ importers:
   packages/callout-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -483,8 +483,8 @@ importers:
   packages/checklist-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -662,8 +662,8 @@ importers:
   packages/color-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
@@ -738,8 +738,8 @@ importers:
   packages/color-kit-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -805,8 +805,8 @@ importers:
   packages/color-scale-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -881,8 +881,8 @@ importers:
   packages/compare-slider-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
@@ -942,8 +942,8 @@ importers:
   packages/divider-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1018,8 +1018,8 @@ importers:
         specifier: ^3.2.1
         version: 3.2.1(react@17.0.2)
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1091,8 +1091,8 @@ importers:
   packages/example:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1158,8 +1158,8 @@ importers:
   packages/figma-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1304,8 +1304,8 @@ importers:
   packages/image-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1374,8 +1374,8 @@ importers:
   packages/personal-note-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1444,8 +1444,8 @@ importers:
   packages/quote-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1520,8 +1520,8 @@ importers:
         specifier: 7.0.1
         version: 7.0.1(@dnd-kit/core@6.0.5)(react@17.0.2)
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
@@ -1626,8 +1626,8 @@ importers:
   packages/sketchfab-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1693,8 +1693,8 @@ importers:
   packages/storybook-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -1763,8 +1763,8 @@ importers:
   packages/text-block:
     dependencies:
       '@frontify/app-bridge':
-        specifier: 3.0.0-beta.60
-        version: 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+        specifier: 3.0.0-beta.61
+        version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
         specifier: 12.0.0-beta.162
         version: 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
@@ -3332,8 +3332,8 @@ packages:
       type-fest: 3.6.0
     dev: false
 
-  /@frontify/app-bridge@3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2):
-    resolution: {integrity: sha512-DDaifrPsk2KUpdRvLRWKOPK60JqJ5N+B0j7cUF5Yc/XU73FeP+Y3LPmneLdIrBrRbIbw3+CXuUcAjb77EFctIg==}
+  /@frontify/app-bridge@3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2):
+    resolution: {integrity: sha512-yG9VezRYeqEBkTJH93eniwPo19FwJGnuTWjlPTBomKgpeJgFjdmp7pqw3a0lZAh/tl2dREeUBI990hksAlk6dA==}
     engines: {node: '>=16'}
     peerDependencies:
       react: ^17 || ^18
@@ -3951,7 +3951,7 @@ packages:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+      '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
       '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
       react: 17.0.2
@@ -3975,7 +3975,7 @@ packages:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+      '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       react: 17.0.2
@@ -3999,7 +3999,7 @@ packages:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+      '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 17.0.2
@@ -4023,7 +4023,7 @@ packages:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+      '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 17.0.2
@@ -4046,7 +4046,7 @@ packages:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+      '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.1)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
@@ -4069,7 +4069,7 @@ packages:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+      '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.3)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
@@ -4092,7 +4092,7 @@ packages:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+      '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.50)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
@@ -4115,7 +4115,7 @@ packages:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.60(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
+      '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue': 12.0.0-beta.162(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
