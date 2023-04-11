@@ -46,21 +46,19 @@ export const PageLink = ({ page, selectedUrl, onSelectUrl, itemsToExpandInitiall
             >
                 <div key={page.id} className="tw-flex tw-flex-1 tw-space-x-1 tw-items-center tw-h-6">
                     {hasSections && (
-                        <>
-                            <button
-                                data-test-id="tree-item-toggle"
-                                className="tw-flex tw-items-center tw-justify-center tw-p-1.5 tw-cursor-pointer"
-                                tabIndex={0}
-                                onClick={() => setIsExpanded(!isExpanded)}
-                            >
-                                <div
-                                    className={merge([
-                                        'tw-transition-transform tw-w-0 tw-h-0 tw-font-normal tw-border-t-4 tw-border-t-transparent tw-border-b-4 tw-border-b-transparent tw-border-l-4 tw-border-l-x-strong',
-                                        isExpanded ? 'tw-rotate-90' : '',
-                                    ])}
-                                ></div>
-                            </button>
-                        </>
+                        <button
+                            data-test-id="tree-item-toggle"
+                            className="tw-flex tw-items-center tw-justify-center tw-p-1.5 tw-cursor-pointer"
+                            tabIndex={0}
+                            onClick={() => setIsExpanded(!isExpanded)}
+                        >
+                            <div
+                                className={merge([
+                                    'tw-transition-transform tw-w-0 tw-h-0 tw-font-normal tw-border-t-4 tw-border-t-transparent tw-border-b-4 tw-border-b-transparent tw-border-l-4 tw-border-l-x-strong',
+                                    isExpanded ? 'tw-rotate-90' : '',
+                                ])}
+                            ></div>
+                        </button>
                     )}
                     <span className="tw-text-s">{page.title}</span>
                     <span className="tw-flex-auto tw-font-sans tw-text-xs tw-text-right">Page</span>

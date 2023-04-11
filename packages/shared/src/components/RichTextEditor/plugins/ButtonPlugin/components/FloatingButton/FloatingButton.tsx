@@ -1,7 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { HTMLPropsAs, UseVirtualFloatingOptions, createComponentAs, createElementAs } from '@udecode/plate';
-import { FloatingButtonEditButton, UnlinkButton, useFloatingButtonEdit, useFloatingButtonInsert } from './';
+import { useFloatingButtonEdit } from './useFloatingButtonEdit';
+import { useFloatingButtonInsert } from './useFloatingButtonInsert';
+import { FloatingButtonEditButton } from './FloatingButtonEditButton';
+import { UnlinkButton } from './UnlinkButton';
 
 export type FloatingButtonProps = HTMLPropsAs<'div'> & {
     floatingOptions?: UseVirtualFloatingOptions;
