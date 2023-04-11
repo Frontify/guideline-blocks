@@ -14,7 +14,7 @@ import { SinonStub } from 'cypress/types/sinon';
 
 const LinkSelectorSelector = '[data-test-id="internal-link-selector"]';
 const LinkSelectorButtonSelector = '[data-test-id="internal-link-selector"] > button';
-const LinkSelectorModalSelector = '[data-test-id="internal-link-selector-modal"]';
+const LinkSelectorModalSelector = '[data-test-id="modal-body"]';
 const DocumentLinkSelector = '[data-test-id="internal-link-selector-document-link"]';
 const PageLinkSelector = '[data-test-id="internal-link-selector-page-link"]';
 const SectionLinkSelector = '[data-test-id="internal-link-selector-section-link"]';

@@ -39,35 +39,33 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
                 Internal link
             </Button>
             <Modal zIndex={200} onClose={() => closeLinkTree()} isOpen={isLinkTreeOpen} isDismissable>
-                <div data-test-id="internal-link-selector-modal" className="link-tree-container tw-space-y-6">
-                    <Modal.Header title="Select internal link" />
-                    <Modal.Body>
-                        <div>
-                            <DocumentLinks appBridge={appBridge} selectedUrl={selectedUrl} onSelectUrl={onSelectUrl} />
-                        </div>
-                    </Modal.Body>
-                    <Modal.Footer
-                        buttons={[
-                            {
-                                children: 'Cancel',
-                                onClick: () => closeLinkTree(),
-                                style: ButtonStyle.Default,
-                                emphasis: ButtonEmphasis.Default,
+                <Modal.Header title="Select internal link" />
+                <Modal.Body>
+                    <div className="link-tree-container">
+                        <DocumentLinks appBridge={appBridge} selectedUrl={selectedUrl} onSelectUrl={onSelectUrl} />
+                    </div>
+                </Modal.Body>
+                <Modal.Footer
+                    buttons={[
+                        {
+                            children: 'Cancel',
+                            onClick: () => closeLinkTree(),
+                            style: ButtonStyle.Default,
+                            emphasis: ButtonEmphasis.Default,
+                        },
+                        {
+                            children: 'Choose',
+                            onClick: (event) => {
+                                event?.preventDefault();
+                                onUrlChange(selectedUrl);
+                                closeLinkTree();
                             },
-                            {
-                                children: 'Choose',
-                                onClick: (event) => {
-                                    event?.preventDefault();
-                                    onUrlChange(selectedUrl);
-                                    closeLinkTree();
-                                },
-                                style: ButtonStyle.Default,
-                                emphasis: ButtonEmphasis.Strong,
-                                disabled: !selectedUrl,
-                            },
-                        ]}
-                    />
-                </div>
+                            style: ButtonStyle.Default,
+                            emphasis: ButtonEmphasis.Strong,
+                            disabled: !selectedUrl,
+                        },
+                    ]}
+                />
             </Modal>
         </div>
     );
