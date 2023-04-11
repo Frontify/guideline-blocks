@@ -1,7 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
+import { getHotkeyByPlatform, getTooltip } from '@frontify/fondue';
 import {
+    BlockToolbarButtonProps,
     ToolbarButton,
     focusEditor,
     isRangeInSameBlock,
@@ -9,9 +10,8 @@ import {
     useEventPlateId,
     usePlateEditorState,
 } from '@udecode/plate';
+import React from 'react';
 import { triggerFloatingButton } from '../utils';
-import { BlockToolbarButtonProps } from '@udecode/plate';
-import { getHotkeyByPlatform, getTooltip } from '@frontify/fondue';
 
 const buttonRootClassNames =
     'tw-ml-0.5 !tw-text-text-weak hover:!tw-bg-box-selected hover:!tw-text-box-selected-inverse hover:tw-rounded';

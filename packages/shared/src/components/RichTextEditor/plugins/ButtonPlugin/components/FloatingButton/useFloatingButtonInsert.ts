@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect } from 'react';
 import {
     HTMLPropsAs,
     focusEditor,
@@ -11,13 +10,18 @@ import {
     useHotkeys,
     useOnClickOutside,
 } from '@udecode/plate';
+import { useEffect } from 'react';
 import { useFocused } from 'slate-react';
 import { ButtonPlugin, ELEMENT_BUTTON } from '../../createButtonPlugin';
 import { triggerFloatingButtonInsert } from '../../utils/triggerFloatingButtonInsert';
-import { FloatingButtonProps } from './FloatingButton';
-import { floatingButtonActions, floatingButtonSelectors, useFloatingButtonSelectors } from './floatingButtonStore';
-import { useFloatingButtonEscape } from './useFloatingButtonEscape';
-import { useVirtualFloatingButton } from './useVirtualFloatingButton';
+import {
+    FloatingButtonProps,
+    floatingButtonActions,
+    floatingButtonSelectors,
+    useFloatingButtonEscape,
+    useFloatingButtonSelectors,
+    useVirtualFloatingButton,
+} from './';
 
 export const useFloatingButtonInsert = ({ floatingOptions, ...props }: FloatingButtonProps): HTMLPropsAs<'div'> => {
     const editor = useEditorRef();

@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { TNode, TNodeEntry } from '@udecode/plate';
 import {
     InsertNodesOptions,
     PlateEditor,
+    TNode,
+    TNodeEntry,
     UnwrapNodesOptions,
     Value,
     WrapNodesOptions,
@@ -23,10 +24,7 @@ import { Path } from 'slate';
 import { ButtonPlugin, ELEMENT_BUTTON } from '../createButtonPlugin';
 import { RichTextButtonStyle, TButtonElement } from '../types';
 import { CreateButtonNodeOptions } from '../utils/index';
-import { insertButton } from './insertButton';
-import { unwrapButton } from './unwrapButton';
-import { upsertButtonText } from './upsertButtonText';
-import { wrapButton } from './wrapButton';
+import { insertButton, unwrapButton, upsertButtonText, wrapButton } from './';
 
 export type UpsertButtonOptions<V extends Value = Value> = CreateButtonNodeOptions & {
     /**

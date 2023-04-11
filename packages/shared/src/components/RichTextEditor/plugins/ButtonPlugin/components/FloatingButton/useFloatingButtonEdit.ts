@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useCallback, useEffect } from 'react';
 import {
     HTMLPropsAs,
     getAboveNode,
@@ -16,14 +15,19 @@ import {
     useHotkeys,
     usePlateSelectors,
 } from '@udecode/plate';
+import { useCallback, useEffect } from 'react';
 import { ButtonPlugin, ELEMENT_BUTTON } from '../../createButtonPlugin';
-import { triggerFloatingButtonEdit } from '../../utils/triggerFloatingButtonEdit';
-import { FloatingButtonProps } from './FloatingButton';
-import { floatingButtonActions, floatingButtonSelectors, useFloatingButtonSelectors } from './floatingButtonStore';
-import { useFloatingButtonEnter } from './useFloatingButtonEnter';
-import { useFloatingButtonEscape } from './useFloatingButtonEscape';
-import { useVirtualFloatingButton } from './useVirtualFloatingButton';
 import { getUrlFromEditor } from '../../utils';
+import { triggerFloatingButtonEdit } from '../../utils/triggerFloatingButtonEdit';
+import {
+    FloatingButtonProps,
+    floatingButtonActions,
+    floatingButtonSelectors,
+    useFloatingButtonEnter,
+    useFloatingButtonEscape,
+    useFloatingButtonSelectors,
+    useVirtualFloatingButton,
+} from './';
 
 export const useFloatingButtonEdit = ({ floatingOptions, ...props }: FloatingButtonProps): HTMLPropsAs<'div'> => {
     const editor = useEditorRef();

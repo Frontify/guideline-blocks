@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PlateEditor, Value, findNode, getEditorString, getPluginType } from '@udecode/plate';
+import { ELEMENT_BUTTON, TButtonElement } from '../';
 import { floatingButtonActions } from '../components/FloatingButton/floatingButtonStore';
-import { ELEMENT_BUTTON } from '../createButtonPlugin';
-import { TButtonElement } from '../types';
 
 export const triggerFloatingButtonEdit = <V extends Value>(editor: PlateEditor<V>) => {
     const entry = findNode<TButtonElement>(editor, {

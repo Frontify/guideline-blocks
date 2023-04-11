@@ -2,8 +2,7 @@
 
 import { IconPen16, IconTrashBin16, useRichTextEditorContext } from '@frontify/fondue';
 import React from 'react';
-import { FloatingButton } from '../FloatingButton';
-import { useFloatingButtonUrlInput } from '../FloatingButtonUrlInput';
+import { FloatingButton, useFloatingButtonUrlInput } from '../';
 
 export const EditModal = () => {
     const urlHtmlProps = useFloatingButtonUrlInput({});
@@ -11,7 +10,7 @@ export const EditModal = () => {
 
     return (
         <div data-test-id="floating-button-edit" className="tw-bg-white tw-rounded tw-shadow tw-p-4 tw-min-w-[400px]">
-            <span data-test-id={'preview-button-flyout'} className="tw-flex tw-justify-between">
+            <span data-test-id="preview-button-flyout" className="tw-flex tw-justify-between">
                 <span className="tw-pointer-events-none" style={designTokens.link}>
                     {urlHtmlProps.defaultValue}
                 </span>

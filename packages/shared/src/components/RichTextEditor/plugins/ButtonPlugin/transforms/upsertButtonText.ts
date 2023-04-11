@@ -9,8 +9,7 @@ import {
     getPluginType,
     replaceNodeChildren,
 } from '@udecode/plate';
-import { ELEMENT_BUTTON } from '../createButtonPlugin';
-import { TButtonElement } from '../types';
+import { ELEMENT_BUTTON, TButtonElement } from '../';
 import { UpsertButtonOptions } from './upsertButton';
 
 /**

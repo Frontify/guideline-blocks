@@ -3,7 +3,7 @@
 import { PlateEditor, Value, focusEditor, getPluginOptions } from '@udecode/plate';
 import { floatingButtonActions, floatingButtonSelectors } from '../components/FloatingButton/floatingButtonStore';
 import { ButtonPlugin, ELEMENT_BUTTON } from '../createButtonPlugin';
-import { upsertButton } from './index';
+import { upsertButton } from './';
 
 export const submitFloatingButton = <V extends Value>(editor: PlateEditor<V>) => {
     if (!editor.selection) {

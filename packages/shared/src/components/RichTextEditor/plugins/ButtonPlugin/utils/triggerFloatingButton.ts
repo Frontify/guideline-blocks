@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PlateEditor, Value } from '@udecode/plate';
-import { floatingButtonSelectors } from '../components/index';
-import { triggerFloatingButtonEdit } from './triggerFloatingButtonEdit';
-import { triggerFloatingButtonInsert } from './triggerFloatingButtonInsert';
+import { floatingButtonSelectors } from '../components';
+import { triggerFloatingButtonEdit, triggerFloatingButtonInsert } from './';
 
 export const triggerFloatingButton = <V extends Value>(
     editor: PlateEditor<V>,
