@@ -20,6 +20,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <RichTextEditor
+            id={appBridge.getBlockId().toString()}
             isEditing={isEditing}
             value={content}
             designTokens={designTokens}

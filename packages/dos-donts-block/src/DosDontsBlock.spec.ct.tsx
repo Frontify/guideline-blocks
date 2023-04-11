@@ -18,11 +18,15 @@ describe("Dos & Don'ts Block", () => {
         cy.get(DosDontsBlockSelector).should('exist');
     });
 
-    it('renders an empty dos donts block in view mode', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
+    it('renders an dos donts block in view mode', () => {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+            blockSettings: {
+                items: [{ body: 'Description' }],
+            },
+        });
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get('[data-test-id="rte-content-html"]').should('exist');
+        cy.get('[data-test-id="rte-content-html"]').should('have.text', 'Description');
         cy.get('[data-test-id="rich-text-editor"]').should('not.exist');
     });
 

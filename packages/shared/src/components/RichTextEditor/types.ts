@@ -4,7 +4,7 @@ import { PluginComposer } from '@frontify/fondue';
 import { DesignTokens } from '@frontify/fondue/dist/components/RichTextEditor/types';
 
 export type RichTextEditorProps = {
-    id: string;
+    id?: string;
     isEditing: boolean;
     value?: string;
     placeholder?: string;

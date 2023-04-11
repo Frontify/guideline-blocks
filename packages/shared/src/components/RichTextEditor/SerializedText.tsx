@@ -19,14 +19,12 @@ export const SerializedText = ({ value = '', designTokens, gap, columns, show = 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [serializedText]);
 
-    if (!show) {
+    if (!show || html === '<br />') {
         return null;
     }
 
-    return html ? (
-        html !== '<br />' ? (
-            <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
-        ) : null
+    return html !== null ? (
+        <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
     ) : (
         <div className="tw-rounded-sm tw-bg-base-alt tw-animate-pulse tw-h-full tw-min-h-[10px] tw-w-full" />
     );

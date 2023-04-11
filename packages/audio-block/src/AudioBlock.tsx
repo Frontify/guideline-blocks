@@ -189,6 +189,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 <div className="tw-flex-1">
                     <div data-test-id="block-title">
                         <RichTextEditor
+                            id={`${appBridge.getBlockId().toString()}-title`}
                             designTokens={designTokens}
                             isEditing={isEditing}
                             value={title ?? DEFAULT_CONTENT_TITLE}
@@ -201,6 +202,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
                     <div data-test-id="block-description">
                         <RichTextEditor
+                            id={`${appBridge.getBlockId().toString()}-description`}
                             designTokens={designTokens}
                             isEditing={isEditing}
                             value={description ?? DEFAULT_CONTENT_DESCRIPTION}

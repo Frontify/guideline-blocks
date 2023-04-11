@@ -109,6 +109,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             )}
 
             <RichTextEditor
+                id={`${appBridge.getBlockId().toString()}-title`}
                 designTokens={designTokens}
                 value={note}
                 border={false}

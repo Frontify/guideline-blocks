@@ -24,10 +24,12 @@ describe('Callout Block', () => {
     });
 
     it('should not be able to input to a callout block when in view mode', () => {
-        const [TextBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {});
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: { textValue: 'Text value' },
+        });
 
         mount(<TextBlockWithStubs />);
-        cy.get(HtmlContent).should('exist');
+        cy.get(HtmlContent).should('have.text', 'Text value');
         cy.get(RichTextEditor).should('not.exist');
     });
 
