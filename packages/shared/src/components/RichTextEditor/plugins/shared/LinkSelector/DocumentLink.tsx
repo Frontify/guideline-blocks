@@ -39,7 +39,7 @@ export const DocumentLink = ({
             <div
                 data-test-id="internal-link-selector-document-link"
                 className={merge([
-                    'tw-flex tw-flex-1 tw-space-x-2 tw-items-center tw-h-6 tw-py-2 tw-px-2.5 tw-leading-5 tw-cursor-pointer',
+                    'tw-flex tw-flex-1 tw-space-x-2 tw-items-center tw-py-2 tw-px-2.5 tw-leading-5 tw-cursor-pointer',
                     isActive
                         ? 'tw-bg-box-selected-strong tw-text-box-selected-strong-inverse hover:tw-bg-box-selected-strong-hover:hover hover:tw-text-box-selected-strong-inverse-hover:hover'
                         : 'hover:tw-bg-box-neutral-hover hover:tw-text-box-neutral-inverse-hover',
