@@ -9,11 +9,7 @@ export const useFloatingButtonEnter = () => {
     useHotkeys(
         '*',
         (e) => {
-            if (e.key !== 'Enter') {
-                return;
-            }
-
-            if (submitFloatingButton(editor)) {
+            if (e.key === 'Enter' && submitFloatingButton(editor)) {
                 e.preventDefault();
             }
         },

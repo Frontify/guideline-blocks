@@ -25,7 +25,7 @@ export const DocumentLink = ({
     onSelectUrl,
     itemsToExpandInitially,
 }: DocumentLinkProps) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(document.id === itemsToExpandInitially.documentId);
     const isActive = document.permanentLink === selectedUrl;
 
     useEffect(() => {

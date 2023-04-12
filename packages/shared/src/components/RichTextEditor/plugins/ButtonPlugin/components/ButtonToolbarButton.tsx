@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { getHotkeyByPlatform, getTooltip } from '@frontify/fondue';
+import { getButtonClassNames, getHotkeyByPlatform, getTooltip } from '@frontify/fondue';
 import {
     BlockToolbarButtonProps,
     ToolbarButton,
@@ -12,14 +12,6 @@ import {
 } from '@udecode/plate';
 import React from 'react';
 import { triggerFloatingButton } from '../utils';
-
-const buttonRootClassNames =
-    'tw-ml-0.5 !tw-text-text-weak hover:!tw-bg-box-selected hover:!tw-text-box-selected-inverse hover:tw-rounded';
-
-const getButtonClassNames = (isEnabled = true) => ({
-    root: isEnabled ? buttonRootClassNames : '!tw-text-text-weak !tw-cursor-not-allowed !tw-opacity-50',
-    active: '!tw-bg-box-selected tw-rounded !tw-text-box-selected-inverse',
-});
 
 export interface LinkToolbarButtonProps extends BlockToolbarButtonProps {
     /**

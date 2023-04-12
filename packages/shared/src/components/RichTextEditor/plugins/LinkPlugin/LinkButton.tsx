@@ -1,25 +1,34 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconLink, IconSize, getHotkeyByPlatform, getTooltip } from '@frontify/fondue';
+import { IconLink, IconSize, getButtonClassNames, getHotkeyByPlatform, getTooltip } from '@frontify/fondue';
 import { PluginButtonProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/types';
-import { LinkToolbarButton } from '@udecode/plate';
+import { LinkToolbarButton, isRangeInSameBlock, useEventPlateId, usePlateEditorState } from '@udecode/plate';
 import React from 'react';
 
-export const LinkButton = ({ id }: PluginButtonProps) => (
-    <div data-plugin-id={id}>
-        <LinkToolbarButton
-            tooltip={getTooltip(`Link\n${getHotkeyByPlatform('Ctrl+K')}`)}
-            icon={
-                <span className="tw-p-2 tw-h-8 tw-justify-center tw-items-center tw-flex">
-                    <IconLink size={IconSize.Size16} />
-                </span>
-            }
-            classNames={{
-                root: 'tw-ml-0.5 !tw-text-text-weak hover:!tw-bg-box-selected hover:!tw-text-box-selected-inverse hover:tw-rounded',
-                active: '!tw-bg-box-selected tw-rounded !tw-text-box-selected-inverse',
-            }}
-            styles={{ root: { width: '24px', height: '24px' } }}
-            actionHandler="onMouseDown"
-        />
-    </div>
-);
+export const LinkButton = ({ id, editorId }: PluginButtonProps) => {
+    const editor = usePlateEditorState(useEventPlateId(editorId));
+    const isEnabled = !!isRangeInSameBlock(editor, {
+        at: editor.selection,
+    });
+    const buttonClassNames = getButtonClassNames(isEnabled);
+
+    return (
+        <div data-plugin-id={id}>
+            <LinkToolbarButton
+                tooltip={getTooltip(
+                    isEnabled
+                        ? `Link\n${getHotkeyByPlatform('Ctrl+K')}`
+                        : 'Links can only be set for a single text block.'
+                )}
+                icon={
+                    <span className="tw-p-2 tw-h-8 tw-justify-center tw-items-center tw-flex">
+                        <IconLink size={IconSize.Size16} />
+                    </span>
+                }
+                classNames={buttonClassNames}
+                styles={{ root: { width: '24px', height: '24px' } }}
+                actionHandler="onMouseDown"
+            />
+        </div>
+    );
+};

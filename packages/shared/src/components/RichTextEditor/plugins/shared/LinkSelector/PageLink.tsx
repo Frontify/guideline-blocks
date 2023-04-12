@@ -19,7 +19,7 @@ type DocumentLinkProps = {
 };
 
 export const PageLink = ({ page, selectedUrl, onSelectUrl, itemsToExpandInitially, appBridge }: DocumentLinkProps) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(page.id === itemsToExpandInitially.documentId);
     const isActive = page.permanentLink === selectedUrl;
     const { documentSections } = useDocumentSection(appBridge, page.id);
     const sectionsArray = [...documentSections.values()];
