@@ -2,13 +2,11 @@
 
 import {
     HTMLPropsAs,
-    focusEditor,
     getPluginOptions,
     getSelectionBoundingClientRect,
     useComposedRef,
     useEditorRef,
     useHotkeys,
-    useOnClickOutside,
 } from '@udecode/plate';
 import { useEffect } from 'react';
 import { useFocused } from 'slate-react';
@@ -17,7 +15,6 @@ import { triggerFloatingButtonInsert } from '../../utils/triggerFloatingButtonIn
 import {
     FloatingButtonProps,
     floatingButtonActions,
-    floatingButtonSelectors,
     useFloatingButtonEscape,
     useFloatingButtonSelectors,
     useVirtualFloatingButton,
@@ -46,19 +43,6 @@ export const useFloatingButtonInsert = ({ floatingOptions, ...props }: FloatingB
         [focused]
     );
 
-    const ref = useOnClickOutside(
-        (event) => {
-            const isClickedWithinModal = (event.target as HTMLElement).closest('.link-tree-container');
-            if (floatingButtonSelectors.mode() === 'insert' && !isClickedWithinModal) {
-                floatingButtonActions.hide();
-                focusEditor(editor, editor.selection ?? undefined);
-            }
-        },
-        {
-            disabled: !open,
-        }
-    );
-
     const { update, style, floating } = useVirtualFloatingButton({
         open: open && mode === 'insert',
         getBoundingClientRect: getSelectionBoundingClientRect,
@@ -82,6 +66,6 @@ export const useFloatingButtonInsert = ({ floatingOptions, ...props }: FloatingB
             zIndex: 1,
         },
         ...props,
-        ref: useComposedRef<HTMLElement | null>(props.ref, floating, ref),
+        ref: useComposedRef<HTMLElement | null>(props.ref, floating),
     };
 };

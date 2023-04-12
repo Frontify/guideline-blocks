@@ -41,9 +41,7 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
             <Modal zIndex={200} onClose={() => closeLinkTree()} isOpen={isLinkTreeOpen} isDismissable>
                 <Modal.Header title="Select internal link" />
                 <Modal.Body>
-                    <div className="link-tree-container">
-                        <DocumentLinks appBridge={appBridge} selectedUrl={selectedUrl} onSelectUrl={onSelectUrl} />
-                    </div>
+                    <DocumentLinks appBridge={appBridge} selectedUrl={selectedUrl} onSelectUrl={onSelectUrl} />
                 </Modal.Body>
                 <Modal.Footer
                     buttons={[

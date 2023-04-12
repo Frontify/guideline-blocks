@@ -6,8 +6,6 @@ import {
     HTMLPropsAs,
     LinkPlugin,
     floatingLinkActions,
-    floatingLinkSelectors,
-    focusEditor,
     getPluginOptions,
     getSelectionBoundingClientRect,
     triggerFloatingLinkInsert,
@@ -16,7 +14,6 @@ import {
     useFloatingLinkEscape,
     useFloatingLinkSelectors,
     useHotkeys,
-    useOnClickOutside,
     useVirtualFloatingLink,
 } from '@udecode/plate';
 import { useEffect } from 'react';
@@ -42,20 +39,6 @@ export const useFloatingLinkInsert = ({ floatingOptions, ...props }: FloatingLin
             enableOnContentEditable: true,
         },
         [focused]
-    );
-
-    const ref = useOnClickOutside(
-        (event) => {
-            const isClickedWithinModal = (event.target as HTMLElement).closest('.link-tree-container');
-            if (floatingLinkSelectors.mode() === 'insert' && !isClickedWithinModal) {
-                floatingLinkActions.hide();
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                focusEditor(editor, editor.selection!);
-            }
-        },
-        {
-            disabled: !open,
-        }
     );
 
     const { update, style, floating } = useVirtualFloatingLink({
@@ -85,6 +68,6 @@ export const useFloatingLinkInsert = ({ floatingOptions, ...props }: FloatingLin
             zIndex: 1,
         },
         ...props,
-        ref: useComposedRef<HTMLElement | null>(props.ref, floating, ref),
+        ref: useComposedRef<HTMLElement | null>(props.ref, floating),
     };
 };
