@@ -63,8 +63,13 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
         const rect = event.currentTarget.getBoundingClientRect();
         const { clientX } = event.nativeEvent;
         const relativeMouseX = clientX - rect.x;
-        setAddButtonPositionLeft(relativeMouseX - 16 / 2);
-        setShowAddButton(true);
+
+        if (relativeMouseX >= 0 && relativeMouseX <= rect.width) {
+            setAddButtonPositionLeft(relativeMouseX - 16 / 2);
+            setShowAddButton(true);
+        } else {
+            setShowAddButton(false);
+        }
     };
 
     const cssValue = parseGradientColorsToCss(gradientColors, gradientOrientation);

@@ -1224,9 +1224,6 @@ importers:
 
   packages/gradient-block:
     dependencies:
-      '@codemirror/lang-css':
-        specifier: 6.1.1
-        version: 6.1.1(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
       '@frontify/app-bridge':
         specifier: 3.0.0-beta.59
         version: 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
@@ -1242,6 +1239,9 @@ importers:
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
+      '@uiw/codemirror-extensions-langs':
+        specifier: 4.19.9
+        version: 4.19.9(@codemirror/language-data@6.1.0)(@codemirror/legacy-modes@6.3.1)(@codemirror/state@6.1.4)(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
       '@uiw/react-codemirror':
         specifier: 4.19.9
         version: 4.19.9(@babel/runtime@7.20.6)(@codemirror/autocomplete@6.3.4)(@codemirror/language@6.3.1)(@codemirror/lint@6.1.0)(@codemirror/search@6.2.3)(@codemirror/state@6.1.4)(@codemirror/theme-one-dark@6.1.0)(@codemirror/view@6.5.1)(codemirror@6.0.1)(react-dom@17.0.2)(react@17.0.2)
@@ -10333,6 +10333,33 @@ packages:
       '@codemirror/language-data': 6.1.0(@codemirror/state@6.1.4)(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
       '@codemirror/legacy-modes': 6.3.1
     transitivePeerDependencies:
+      - '@codemirror/view'
+      - '@lezer/common'
+    dev: false
+
+  /@uiw/codemirror-extensions-langs@4.19.9(@codemirror/language-data@6.1.0)(@codemirror/legacy-modes@6.3.1)(@codemirror/state@6.1.4)(@codemirror/view@6.5.1)(@lezer/common@1.0.2):
+    resolution: {integrity: sha512-K3tJQa8GUAOT6Gma97PZKAsPhUc+2jdGovDfq9VgAivDxVkv9gOmTw46Z6Vgt+vyYMjJxTnag9/qNMdXoiRFvA==}
+    peerDependencies:
+      '@codemirror/language-data': '>=6.0.0'
+      '@codemirror/legacy-modes': '>=6.0.0'
+    dependencies:
+      '@codemirror/lang-cpp': 6.0.2
+      '@codemirror/lang-html': 6.4.2
+      '@codemirror/lang-java': 6.0.1
+      '@codemirror/lang-javascript': 6.1.1
+      '@codemirror/lang-json': 6.0.1
+      '@codemirror/lang-lezer': 6.0.1
+      '@codemirror/lang-markdown': 6.0.5
+      '@codemirror/lang-php': 6.0.1
+      '@codemirror/lang-python': 6.1.2(@codemirror/state@6.1.4)(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
+      '@codemirror/lang-rust': 6.0.1
+      '@codemirror/lang-sql': 6.4.0(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
+      '@codemirror/lang-wast': 6.0.1
+      '@codemirror/lang-xml': 6.0.1(@codemirror/view@6.5.1)
+      '@codemirror/language-data': 6.1.0(@codemirror/state@6.1.4)(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
+      '@codemirror/legacy-modes': 6.3.1
+    transitivePeerDependencies:
+      - '@codemirror/state'
       - '@codemirror/view'
       - '@lezer/common'
     dev: false
