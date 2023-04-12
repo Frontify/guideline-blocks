@@ -1,13 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconButton16 } from '@frontify/fondue';
+import { IconButton16, buttonStyles } from '@frontify/fondue';
 import { PluginButtonProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/types';
 import { getPluginType } from '@udecode/plate';
 import React from 'react';
 import { ELEMENT_BUTTON } from '../createButtonPlugin';
 import { ButtonToolbarButton } from './ButtonToolbarButton';
-
-export const buttonStyles = { root: { width: '24px', height: '24px' } };
 
 export const ButtonButton = ({ editor, id }: PluginButtonProps) => (
     <div data-plugin-id={id}>

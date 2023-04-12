@@ -10,7 +10,6 @@ export const LinkButton = ({ id, editorId }: PluginButtonProps) => {
     const isEnabled = !!isRangeInSameBlock(editor, {
         at: editor.selection,
     });
-    const buttonClassNames = getButtonClassNames(isEnabled);
 
     return (
         <div data-plugin-id={id}>
@@ -25,7 +24,7 @@ export const LinkButton = ({ id, editorId }: PluginButtonProps) => {
                         <IconLink size={IconSize.Size16} />
                     </span>
                 }
-                classNames={buttonClassNames}
+                classNames={getButtonClassNames(isEnabled)}
                 styles={{ root: { width: '24px', height: '24px' } }}
                 actionHandler="onMouseDown"
             />
