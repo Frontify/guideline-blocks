@@ -1,23 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { useEffect, useMemo, useState } from 'react';
-
-import { serializeRawToHtml } from '@frontify/fondue';
+import React, { useEffect, useState } from 'react';
+import { serializeRawToHtmlAsync } from '@frontify/fondue';
 import { SerializedTextProps } from './types';
 
 export const SerializedText = ({ value = '', designTokens, gap, columns, show = true }: SerializedTextProps) => {
     const [html, setHtml] = useState<string | null>(null);
 
-    const serializedText = useMemo(async () => {
-        return await serializeRawToHtml(value, designTokens, columns, gap);
-    }, [value, designTokens, columns, gap]);
-
     useEffect(() => {
         (async () => {
-            setHtml(await serializedText);
+            setHtml(await serializeRawToHtmlAsync(value, designTokens, columns, gap));
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [serializedText]);
+    }, [value, designTokens, columns, gap]);
 
     if (!show || html === '<br />') {
         return null;

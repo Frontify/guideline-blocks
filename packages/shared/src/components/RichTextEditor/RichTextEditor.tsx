@@ -33,15 +33,14 @@ export const RichTextEditor = ({
                 updateValueOnChange={updateValueOnChange}
             />
         );
-    } else {
-        return (
-            <SerializedText
-                value={value}
-                designTokens={designTokens}
-                columns={columns}
-                gap={gap}
-                show={showSerializedText}
-            />
-        );
     }
+    return (
+        <SerializedText
+            value={value}
+            designTokens={designTokens}
+            columns={columns}
+            gap={gap}
+            show={showSerializedText}
+        />
+    );
 };
