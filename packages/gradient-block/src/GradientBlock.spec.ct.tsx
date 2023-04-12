@@ -278,7 +278,7 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 0, 0) 49%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 0, 0) 50%, rgb(255, 255, 255) 100%)'
         );
     });
 
