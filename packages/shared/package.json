@@ -45,11 +45,15 @@
         "@dnd-kit/core": "6.0.5",
         "@dnd-kit/modifiers": "6.0.1",
         "@dnd-kit/sortable": "7.0.1",
-        "@frontify/app-bridge": "3.0.0-beta.59",
-        "@frontify/fondue": "12.0.0-beta.162",
+        "@frontify/app-bridge": "3.0.0-beta.61",
+        "@frontify/fondue": "12.0.0-beta.176",
         "@frontify/guideline-blocks-settings": "0.26.2",
         "@react-aria/focus": "3.11.0",
-        "tinycolor2": "1.4.2"
+        "@react-stately/overlays": "3.4.2",
+        "tinycolor2": "1.4.2",
+        "@udecode/plate": "19.6.0",
+        "slate": "0.87.0",
+        "slate-react": "0.88.0"
     },
     "peerDependencies": {
         "react": "17.0.2",

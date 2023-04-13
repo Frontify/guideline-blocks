@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import {
     AlignCenterPlugin,
     AlignJustifyPlugin,
@@ -7,12 +8,10 @@ import {
     AlignRightPlugin,
     BoldPlugin,
     BreakAfterPlugin,
-    ButtonPlugin,
     CheckboxListPlugin,
     CodePlugin,
     EmojiPlugin,
     ItalicPlugin,
-    LinkPlugin,
     OrderedListPlugin,
     ParagraphPlugin,
     PluginComposer,
@@ -23,22 +22,19 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
+import { ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 
-export const getPlugins = (columns?: number, gap?: CSSProperties['gap']) => {
-    if (!columns || columns === 1) {
-        return undefined;
-    }
+export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
     const plugins = new PluginComposer();
     plugins.setPlugin([new SoftBreakPlugin(), new ParagraphPlugin(), new TextStylePlugin()]);
     plugins.setPlugin([
         new BoldPlugin(),
         new ItalicPlugin(),
-
         new UnderlinePlugin(),
         new StrikethroughPlugin(),
-        new LinkPlugin(),
-        new ButtonPlugin(),
+        new LinkPlugin({ appBridge }),
+        new ButtonPlugin({ appBridge }),
         new CodePlugin(),
         new BreakAfterPlugin({ columns, gap }),
     ]);
