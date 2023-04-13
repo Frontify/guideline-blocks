@@ -1,9 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { DesignTokens, FormControl, useRichTextEditorContext } from '@frontify/fondue';
 import React, { CSSProperties, ReactElement, ReactNode, useState } from 'react';
-
-import { FormControl, useRichTextEditorContext } from '@frontify/fondue';
-
 import { InsertModal } from '../../../../LinkPlugin/FloatingLink/InsertLinkModal/InsertModal';
 import { useInsertModal } from './useInsertModal';
 
