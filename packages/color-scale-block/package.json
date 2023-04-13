@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "3.0.0-beta.61",
-        "@frontify/fondue": "12.0.0-beta.173",
+        "@frontify/fondue": "12.0.0-beta.176",
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "0.26.2",
         "@frontify/guideline-blocks-shared": "workspace:*",
