@@ -1,8 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useRichTextEditorContext } from '@frontify/fondue';
-import { ButtonStyles } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/TextStylePlugin/TextStyles';
-import { DesignTokens } from '@frontify/fondue/dist/components/RichTextEditor/types';
+import { DesignTokens, useRichTextEditorContext } from '@frontify/fondue';
 import { HTMLPropsAs, PlateRenderElementProps, Value, useElementProps } from '@udecode/plate';
 import React, { CSSProperties, HTMLAttributeAnchorTarget, ReactElement, ReactNode, useState } from 'react';
 import { RichTextButtonStyle, TButtonElement } from '../types';
@@ -47,7 +45,7 @@ export const ButtonMarkupElementNode = (props: ButtonRootProps) => {
 
 export const getButtonStyle = (designTokens: DesignTokens, buttonStyle: RichTextButtonStyle) => {
     let styles;
-    const design = designTokens as Partial<Record<ButtonStyles, CSSProperties & { hover: CSSProperties }>>;
+    const design = designTokens as DesignTokens;
     switch (buttonStyle) {
         case 'primary':
             styles = design.buttonPrimary;

@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconButton16, buttonStyles } from '@frontify/fondue';
-import { PluginButtonProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/types';
+import { IconButton16, PluginButtonProps, buttonStyles } from '@frontify/fondue';
 import { getPluginType } from '@udecode/plate';
 import React from 'react';
 import { ELEMENT_BUTTON } from '../createButtonPlugin';

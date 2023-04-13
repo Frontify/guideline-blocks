@@ -6,16 +6,13 @@ import { FormControl, useRichTextEditorContext } from '@frontify/fondue';
 
 import { InsertModal } from '../../../../LinkPlugin/FloatingLink/InsertLinkModal/InsertModal';
 import { useInsertModal } from './useInsertModal';
-import { ButtonStyles } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/TextStylePlugin/TextStyles';
 
 export const InsertButtonModal = () => {
     const modalProps = useInsertModal();
     const { state, onButtonStyleChange } = modalProps;
     const context = useRichTextEditorContext();
 
-    const designTokens = context.designTokens as Partial<
-        Record<ButtonStyles, CSSProperties & { hover: CSSProperties }>
-    >;
+    const designTokens = context.designTokens as DesignTokens;
 
     return (
         <InsertModal {...modalProps} testId="floating-button-insert">

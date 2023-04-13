@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { PluginComposer } from '@frontify/fondue';
-import { DesignTokens } from '@frontify/fondue/dist/components/RichTextEditor/types';
+import { DesignTokens, PluginComposer } from '@frontify/fondue';
 
 export type RichTextEditorProps = {
     isEditing: boolean;

@@ -1,7 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconLink, IconSize, getButtonClassNames, getHotkeyByPlatform, getTooltip } from '@frontify/fondue';
-import { PluginButtonProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/types';
+import {
+    IconLink,
+    IconSize,
+    PluginButtonProps,
+    getButtonClassNames,
+    getHotkeyByPlatform,
+    getTooltip,
+} from '@frontify/fondue';
 import { LinkToolbarButton, isRangeInSameBlock, useEventPlateId, usePlateEditorState } from '@udecode/plate';
 import React from 'react';
 
