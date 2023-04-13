@@ -24,12 +24,13 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
-    const { title, description, hasBorder_blocks, hasBackgroundBlocks, downloadUrlBlock } = blockSettings;
+    const { title, description, hasBorder_blocks, hasBackgroundBlocks, downloadUrlBlock, downloadExpiration } =
+        blockSettings;
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
 
     const startDownload = () => {
-        if (downloadUrlBlock) {
+        if (downloadUrlBlock && downloadExpiration && downloadExpiration > Math.floor(Date.now() / 1000)) {
             return downloadAssets(downloadUrlBlock);
         }
         generateBulkDownload(currentAssets.map((asset) => asset.id));
@@ -42,9 +43,15 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         announceToScreenReader();
     };
 
+    const getExpirationTimestamp = (downloadUrl: string) => {
+        const expirationTimestamp = downloadUrl.split('X-Amz-Expires=')[1]?.split('&')[0] ?? 0;
+        return parseInt(expirationTimestamp, 10) + Math.floor(Date.now() / 1000);
+    };
+
     const saveDownloadUrl = (newDownloadUrlBlock: string) => {
         if (downloadUrlBlock !== newDownloadUrlBlock) {
             setBlockSettings({ downloadUrlBlock: newDownloadUrlBlock });
+            setBlockSettings({ downloadExpiration: getExpirationTimestamp(newDownloadUrlBlock) });
         }
     };
 
