@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock, useDocuments } from '@frontify/app-bridge';
+import { LoadingCircle } from '@frontify/fondue';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
 import { DocumentLink } from './DocumentLink';
@@ -12,7 +13,7 @@ type DocumentLinksProps = {
 };
 
 export const DocumentLinks = ({ appBridge, selectedUrl, onSelectUrl }: DocumentLinksProps): ReactElement => {
-    const { documents } = useDocuments(appBridge);
+    const { documents, isLoading } = useDocuments(appBridge);
     const [itemsToExpandInitially, setItemsToExpandInitially] = useState<InitiallyExpandedItems>({
         documentId: undefined,
         pageId: undefined,
@@ -22,8 +23,8 @@ export const DocumentLinks = ({ appBridge, selectedUrl, onSelectUrl }: DocumentL
 
     useEffect(() => {
         if (selectedUrl && documentArray.length > 0) {
-            findLocationOfSelectedUrl().then((it) => {
-                setItemsToExpandInitially(it);
+            findLocationOfSelectedUrl().then((items) => {
+                setItemsToExpandInitially(items);
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,7 +61,11 @@ export const DocumentLinks = ({ appBridge, selectedUrl, onSelectUrl }: DocumentL
         return itemsToExpand;
     };
 
-    return (
+    return isLoading ? (
+        <div className="tw-flex tw-justify-center tw-p-4">
+            <LoadingCircle />
+        </div>
+    ) : (
         <>
             {documentArray.map((document) => {
                 return (

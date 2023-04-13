@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock, useDocumentPages } from '@frontify/app-bridge';
+import { LoadingCircle } from '@frontify/fondue';
 import React, { ReactElement } from 'react';
 import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
 import { PageLink } from './PageLink';
@@ -25,7 +26,11 @@ export const PageLinks = ({
     const hasPages = !isLoading && pagesArray.length > 0;
 
     if (isLoading) {
-        return <></>;
+        return (
+            <div className="tw-flex tw-justify-center tw-p-4">
+                <LoadingCircle />
+            </div>
+        );
     }
 
     return hasPages ? (
