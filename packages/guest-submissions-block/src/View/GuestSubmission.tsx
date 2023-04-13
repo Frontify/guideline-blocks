@@ -7,6 +7,7 @@ import {
     ButtonStyle,
     ButtonType,
     Divider,
+    IconArrowRight24,
     IconPlus24,
     IconSize,
     Stack,
@@ -68,40 +69,55 @@ export const GuestSubmission: FC<BlockProps> = ({ appBridge }) => {
     };
 
     return (
-        <Stack spacing="s" padding="none" direction="column">
-            <Headline appBridge={appBridge} />
-            <Divider color="rgb(234, 235, 235)" />
-            <AssetDropzone onFileUpload={onFileUploadHandler}>
-                <Stack padding="none" spacing="s" align="center">
-                    <IconPlus24 size={IconSize.Size24} />
-                    <Stack
-                        padding="none"
-                        spacing="xxs"
-                        direction="column"
-                        align="start"
-                    >
-                        <p className="tw-font-bold">Upload from your disk</p>
-                        <p>Drop your files here</p>
+        <div className="tw-border tw-p-6 tw-rounded tw-border-[#eaebeb]">
+            <Stack spacing="s" padding="none" direction="column">
+                <Headline appBridge={appBridge} />
+                <Divider color="rgb(234, 235, 235)" />
+                <AssetDropzone onFileUpload={onFileUploadHandler}>
+                    <Stack padding="none" spacing="s" align="center">
+                        <IconPlus24 size={IconSize.Size24} />
+                        <Stack
+                            padding="none"
+                            spacing="xxs"
+                            direction="column"
+                            align="start"
+                        >
+                            <p className="tw-font-bold">
+                                Upload from your disk
+                            </p>
+                            <p>Drop your files here</p>
+                        </Stack>
                     </Stack>
-                </Stack>
-            </AssetDropzone>
-            <UploadFileList
-                entries={fileList}
-                onEntryDeletion={onFileDeletion}
-            />
+                </AssetDropzone>
+                <UploadFileList
+                    entries={fileList}
+                    onEntryDeletion={onFileDeletion}
+                />
 
-            <Metadata onSubmit={(formData) => console.log(formData)}>
-                <div className="tw-mt-2 tw-flex tw-justify-end">
-                    <Button
-                        style={ButtonStyle.Default}
-                        emphasis={ButtonEmphasis.Weak}
-                    >
-                        Discard
-                    </Button>
-                    <Button type={ButtonType.Submit}>submit</Button>
-                </div>
-            </Metadata>
-            {/* name / Email - , bit weird - Submit Discard*/}
-        </Stack>
+                <Divider color="rgb(234, 235, 235)" />
+
+                <Metadata onSubmit={(formData) => console.log(formData)}>
+                    <Divider color="rgb(234, 235, 235)" />
+
+                    <div className="tw-mt-2 tw-flex tw-justify-end">
+                        <div className="tw-pr-3">
+                            <Button
+                                style={ButtonStyle.Default}
+                                emphasis={ButtonEmphasis.Default}
+                            >
+                                Discard
+                            </Button>
+                        </div>
+                        <Button
+                            icon={<IconArrowRight24 />}
+                            type={ButtonType.Submit}
+                        >
+                            Submit
+                        </Button>
+                    </div>
+                </Metadata>
+                {/* name / Email - , bit weird - Submit Discard*/}
+            </Stack>
+        </div>
     );
 };
