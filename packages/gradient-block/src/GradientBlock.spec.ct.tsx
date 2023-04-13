@@ -29,7 +29,7 @@ const SquareBadgeCheckmark = '[data-test-id="square-badge-checkmark"]';
 const SquareBadgeClipboard = '[data-test-id="square-badge-clipboard"]';
 const ButtonSelector = '[data-test-id="button"]';
 const ColorInputSelector = '[data-test-id="color-input"]';
-const ColorPreviewSelector = '[data-test-id="color-preview"]';
+const ColorPreviewSelector = '[role="dialog"]';
 const TriggerSelector = '[data-test-id="trigger"]';
 
 const GradientColor = [

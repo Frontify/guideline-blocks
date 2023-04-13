@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { convertToRteValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     BoldPlugin,
     ItalicPlugin,
+    Plugin,
     PluginComposer,
+    PluginProps,
     ResetFormattingPlugin,
     RichTextEditor,
     SoftBreakPlugin,
@@ -15,9 +16,9 @@ import {
     parseRawValue,
     serializeRawToHtml,
 } from '@frontify/fondue';
-import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
-import { InformationSectionProps } from '../types';
+import { convertToRteValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { useMemo } from 'react';
+import { InformationSectionProps } from '../types';
 
 export const InformationSection = ({ description, isEditing, setBlockSettings, title }: InformationSectionProps) => {
     const { designTokens } = useGuidelineDesignTokens();
