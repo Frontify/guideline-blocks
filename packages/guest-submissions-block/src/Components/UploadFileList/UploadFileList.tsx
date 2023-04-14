@@ -27,7 +27,7 @@ export const UploadFileList = ({
     const [open, setOpen] = useState<boolean>(false);
 
     const loadingBar = () =>
-        entries.every((item) => item.status === Status.PENDING) && (
+        entries.some((item) => item.status === Status.PENDING) && (
             <LoadingCircle
                 size={LoadingCircleSize.Small}
                 style={LoadingCircleStyle.Progress}

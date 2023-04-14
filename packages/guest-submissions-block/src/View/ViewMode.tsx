@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { BlockProps } from "@frontify/guideline-blocks-settings";
 import {
     Button,
@@ -23,38 +23,33 @@ import { FileUploadModule } from "../module/FileUpload/FileUploadModule";
 import { FileUploadResponse } from "../module/FileUpload/Contract/FileUploadResponse";
 import { Metadata } from "../Components/MetaData";
 
-export const GuestSubmission: FC<BlockProps> = ({ appBridge }) => {
+export const ViewMode: FC<BlockProps> = ({ appBridge }) => {
     // const [blockSettings, setBlockSettings] =
     //     useBlockSettings<Settings>(appBridge);
 
-    const [fileList, setFileList] = useState<QueryFile[]>([]);
-    const [updatedItem, setUpdatedItem] = useState<FileUploadResponse | null>();
-
-    useEffect(() => {
-        if (!!updatedItem) {
-            setUpdatedItem(null);
-
-            const intermediateFileList = fileList.map((item) => {
-                if (item.identifier === updatedItem.identifier) {
-                    // Todo: use this updatedItem.id to create the asset
-                    console.log(updatedItem);
-                    item.status = updatedItem.status;
-                    return item;
-                }
-                return item;
-            });
-
-            setFileList(intermediateFileList);
-        }
-    }, [updatedItem]);
+    const [fileList, setFileList] = useState<
+        QueryFile[] | (QueryFile & File)[]
+    >([]);
 
     const onFileUpdate = (e: MessageEvent<FileUploadResponse>) => {
-        setUpdatedItem(e.data);
+        setFileList((prevList) =>
+            prevList.map((item) =>
+                item.identifier === e.data.identifier
+                    ? {
+                          identifier: item.identifier,
+                          name: item.name,
+                          size: item.size,
+                          type: item.type,
+                          uploadUrlId: e.data.id,
+                          status: e.data.status,
+                      }
+                    : item
+            )
+        );
     };
 
     const onFileUploadHandler = async (files: FileList) => {
         const queryFiles = queryFilesDTO(files);
-
         setFileList([...fileList, ...queryFiles]);
 
         const fileUpload = new FileUploadModule();
@@ -96,7 +91,9 @@ export const GuestSubmission: FC<BlockProps> = ({ appBridge }) => {
 
                 <Divider color="rgb(234, 235, 235)" />
 
-                <Metadata onSubmit={(formData) => console.log(formData)}>
+                <Metadata
+                    onSubmit={(formData) => console.log("onsubmit", formData)}
+                >
                     <Divider color="rgb(234, 235, 235)" />
 
                     <div className="tw-mt-2 tw-flex tw-justify-end">
