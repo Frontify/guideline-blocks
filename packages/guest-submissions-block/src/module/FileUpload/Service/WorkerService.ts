@@ -23,11 +23,8 @@ export class WorkerService implements WebWorkerProperties {
             listener(e);
             uploadCount++;
             if (uploadCount === files.length) {
-                console.debug("terminating Worker");
                 instance.terminate();
             }
         };
-
-        // Todo: how to handle terminatin and to free the memory
     }
 }

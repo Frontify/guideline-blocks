@@ -9,6 +9,17 @@ export class FileUploadModule implements FileUploadProperties {
         onChange: (e: MessageEvent<FileUploadResponse>) => void
     ) {
         const service = new WorkerService();
-        service.createWorker(files, onChange);
+        const chunks = this.chunkify(files, 10);
+        chunks.forEach((chunk) => {
+            service.createWorker(chunk, onChange);
+        });
+    }
+
+    private chunkify<T>(arr: T[], chunkSize: number): T[][] {
+        const chunks: T[][] = [];
+        for (let i = 0; i < arr.length; i += chunkSize) {
+            chunks.push(arr.slice(i, i + chunkSize));
+        }
+        return chunks;
     }
 }
