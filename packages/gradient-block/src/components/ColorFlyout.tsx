@@ -58,7 +58,6 @@ export const ColorFlyout = ({
 
     const setValidColorPosition = (value: string) => {
         const valueAsNumber = parseInt(value);
-        console.log(gradientColors.every((item) => item.position !== valueAsNumber));
         if (
             valueAsNumber >= 0 &&
             valueAsNumber <= 100 &&
