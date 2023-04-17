@@ -22,15 +22,19 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
     UnorderedListPlugin,
-} from '@frontify/fondue';
-import { CSSProperties } from 'react';
+} from "@frontify/fondue";
+import { CSSProperties } from "react";
 
-export const getPlugins = (columns?: number, gap?: CSSProperties['gap']) => {
+export const getPlugins = (columns?: number, gap?: CSSProperties["gap"]) => {
     if (!columns || columns === 1) {
         return undefined;
     }
-    const plugins = new PluginComposer();
-    plugins.setPlugin([new SoftBreakPlugin(), new ParagraphPlugin(), new TextStylePlugin()]);
+    const plugins = new PluginComposer({ noToolbar: true });
+    plugins.setPlugin([
+        new SoftBreakPlugin(),
+        new ParagraphPlugin(),
+        new TextStylePlugin(),
+    ]);
     plugins.setPlugin([
         new BoldPlugin(),
         new ItalicPlugin(),

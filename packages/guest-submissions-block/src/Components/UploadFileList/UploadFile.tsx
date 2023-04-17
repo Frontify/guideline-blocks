@@ -4,6 +4,7 @@ import {
     LoadingCircleSize,
     LoadingCircleStyle,
     Stack,
+    Text,
 } from "@frontify/fondue";
 import React from "react";
 import { getMimeTypeIcon } from "./helper";
@@ -35,7 +36,15 @@ export const UploadFile = ({
                 ) : (
                     getMimeTypeIcon(type)
                 )}
-                <p>{name}</p>
+                <Text
+                    as="p"
+                    color="weak"
+                    overflow="visible"
+                    size="medium"
+                    weight="strong"
+                >
+                    {name}
+                </Text>
             </Stack>
             <div
                 className="tw-cursor-pointer"

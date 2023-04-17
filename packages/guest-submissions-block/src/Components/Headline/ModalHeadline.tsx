@@ -5,31 +5,25 @@ import type { FC } from "react";
 import { useBlockSettings, useEditorState } from "@frontify/app-bridge";
 import { useGuidelineDesignTokens } from "@frontify/guideline-blocks-shared";
 import {
-    ParagraphPlugin,
     parseRawValue,
-    PluginComposer,
+    Position,
     RichTextEditor,
     serializeRawToHtml,
-    SoftBreakPlugin,
-    TextStylePlugin,
 } from "@frontify/fondue";
-import { PLACEHOLDER } from "./constant";
+import { getPlugins } from "./getPlugins";
 import { Settings } from "../../types";
 
-const DEFAULT_VALUE =
-    '[{"type":"heading1","children":[{"text":"Headline","textStyle":"heading1"}]},{"type":"p","children":[{"text":"Subheadline for the Submission.","textStyle":"p"}]}]';
-
-export const Headline: FC<BlockProps> = ({ appBridge }) => {
+export const ModalHeadline: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] =
         useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { designTokens } = useGuidelineDesignTokens();
 
     const onTextChange = (value: string) =>
-        value !== blockSettings.content && setBlockSettings({ content: value });
-
+        value !== blockSettings.modalcontent &&
+        setBlockSettings({ modalcontent: value });
     const rawValue = JSON.stringify(
-        parseRawValue({ raw: blockSettings.content ?? DEFAULT_VALUE })
+        parseRawValue({ raw: blockSettings.modalcontent ?? "" })
     );
     const html = serializeRawToHtml(
         rawValue,
@@ -37,15 +31,6 @@ export const Headline: FC<BlockProps> = ({ appBridge }) => {
         blockSettings.columnNumber,
         "normal"
     );
-
-    const plugins = new PluginComposer({ noToolbar: true });
-    plugins.setPlugin([
-        new SoftBreakPlugin(),
-        new ParagraphPlugin(),
-        new TextStylePlugin(),
-    ]);
-
-    console.log(rawValue);
 
     return (
         <>
@@ -58,12 +43,13 @@ export const Headline: FC<BlockProps> = ({ appBridge }) => {
                 <RichTextEditor
                     id={appBridge.getBlockId().toString()}
                     designTokens={designTokens}
-                    value={blockSettings.content ?? DEFAULT_VALUE}
+                    value={blockSettings.modalcontent}
                     border={false}
-                    placeholder={PLACEHOLDER}
+                    placeholder={"note / description"}
                     onTextChange={onTextChange}
                     onBlur={onTextChange}
-                    plugins={plugins}
+                    plugins={getPlugins(blockSettings.columnNumber, "normal")}
+                    position={Position.BOTTOM}
                 />
             )}
         </>

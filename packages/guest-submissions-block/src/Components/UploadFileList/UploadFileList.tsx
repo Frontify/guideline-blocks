@@ -5,6 +5,7 @@ import {
     LoadingCircle,
     LoadingCircleSize,
     LoadingCircleStyle,
+    Text,
 } from "@frontify/fondue";
 import { joinClassNames } from "@frontify/guideline-blocks-shared";
 import { BackgroundBase } from "../AssetDropzone";
@@ -36,19 +37,17 @@ export const UploadFileList = ({
 
     const getFileList = () => (
         <>
-            {entries.map((entry, index) => {
-                return (
-                    <UploadFile
-                        status={entry.status}
-                        identifier={entry.identifier}
-                        type={entry.type}
-                        name={entry.name}
-                        key={entry.identifier}
-                        last={index === entries.length - 1}
-                        onDelete={onEntryDeletion}
-                    />
-                );
-            })}
+            {entries.map((entry, index) => (
+                <UploadFile
+                    status={entry.status}
+                    identifier={entry.identifier}
+                    type={entry.type}
+                    name={entry.name}
+                    key={entry.identifier}
+                    last={index === entries.length - 1}
+                    onDelete={onEntryDeletion}
+                />
+            ))}
         </>
     );
 
@@ -68,7 +67,15 @@ export const UploadFileList = ({
                     ])}
                 >
                     {loadingBar()}
-                    <h5>{entries.length} files uploading</h5>
+                    <Text
+                        as="p"
+                        color="weak"
+                        overflow="visible"
+                        size="medium"
+                        weight="strong"
+                    >
+                        {entries.length} files uploading
+                    </Text>
 
                     <div
                         className={joinClassNames([
