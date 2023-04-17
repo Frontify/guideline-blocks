@@ -23,7 +23,9 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
     };
 
     useEffect(() => {
-        prepareGradients();
+        if (gradientColors.length > 0) {
+            prepareGradients();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
