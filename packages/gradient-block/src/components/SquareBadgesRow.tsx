@@ -40,6 +40,7 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
         <div
             className="tw-relative tw-w-full"
             style={{
+                minHeight: HEIGHT_OF_SQUARE_BADGE,
                 height,
             }}
         >
