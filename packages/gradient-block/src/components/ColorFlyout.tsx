@@ -141,7 +141,7 @@ export const ColorFlyout = ({
                     <FormControl
                         helper={
                             colorPositionValidation === Validation.Error
-                                ? { text: 'Add color stops from 0-100 and it needs to be unique.' }
+                                ? { text: 'Add unique color stops from 0-100.' }
                                 : undefined
                         }
                         style={
