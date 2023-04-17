@@ -1,3 +1,3 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-export * from './BulkDownloadRepository';
+export const LINK_PLUGIN = 'link-plugin';

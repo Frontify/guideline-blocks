@@ -24,7 +24,7 @@ type PaddingSettingsType = {
  */
 export const getPaddingSlider = (id: string): SettingBlock => ({
     id,
-    type: 'slider',
+    type: 'segmentedControls',
     defaultValue: Padding.Small,
     choices: [
         {

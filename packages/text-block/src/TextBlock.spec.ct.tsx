@@ -26,9 +26,12 @@ describe('Text Block', () => {
     });
 
     it('should not be able to input to a text block when in view mode', () => {
-        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {});
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            blockSettings: { content: JSON.stringify(defaultContent) },
+        });
 
         mount(<TextBlockWithStubs />);
+        cy.get(RichTextEditor).should('not.exist');
         cy.get(TextBlockSelectorHtml).should('exist');
     });
 

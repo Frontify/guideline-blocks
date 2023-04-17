@@ -2,10 +2,7 @@
 
 import {
     AssetChooserObjectType,
-    AssetInputSize,
-    DropdownSize,
     IconEnum,
-    MultiInputLayout,
     appendUnit,
     defineSettings,
     maximumNumericalOrPixelOrAutoRule,
@@ -14,6 +11,7 @@ import {
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
 
+import { FileExtensionSets } from '@frontify/app-bridge';
 import { BorderStyle, getBorderRadiusSettings, getBorderSettings } from '../../shared';
 import {
     Alignment,
@@ -25,14 +23,13 @@ import {
     SECOND_ASSET_ID,
     heightMapWithPixel,
 } from './types';
-import { FileExtensionSets } from '@frontify/app-bridge';
 
 export const settings = defineSettings({
     main: [
         {
             id: 'alignment',
             type: 'dropdown',
-            size: DropdownSize.Large,
+            size: 'large',
             defaultValue: Alignment.Horizontal,
             choices: [
                 {
@@ -56,7 +53,7 @@ export const settings = defineSettings({
                     id: FIRST_ASSET_ID,
                     type: 'assetInput',
                     label: '',
-                    size: AssetInputSize.Small,
+                    size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets['Images'],
                 },
@@ -77,7 +74,7 @@ export const settings = defineSettings({
                 {
                     id: SECOND_ASSET_ID,
                     type: 'assetInput',
-                    size: AssetInputSize.Small,
+                    size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets['Images'],
                 },
@@ -115,7 +112,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'height',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: 'auto',
                             choices: [
                                 {
@@ -148,7 +145,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'firstAssetLabelPlacementHorizontal',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Label position',
                     defaultValue: LabelPlacement.Top,
                     choices: [
@@ -176,7 +173,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'firstAssetLabelPlacementVertical',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Label position',
                     defaultValue: LabelPlacement.Left,
                     choices: [
@@ -204,7 +201,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'secondAssetLabelPlacementHorizontal',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Horizontal,
                     defaultValue: LabelPlacement.Top,
                     label: 'Label position',
@@ -233,7 +230,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'secondAssetLabelPlacementVertical',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: LabelPlacement.Left,
                     label: 'Label position',
                     show: (bundle) => bundle.getBlock('alignment')?.value === Alignment.Vertical,
@@ -263,7 +260,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'handle',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Handles',
                     defaultValue: Handle.Arrows,
                     choices: [
@@ -287,7 +284,7 @@ export const settings = defineSettings({
                     lastItemFullWidth: true,
                     label: 'Line',
                     onChange: (bundle) => appendUnit(bundle, 'sliderWidth'),
-                    layout: MultiInputLayout.Columns,
+                    layout: 'columns',
                     blocks: [
                         {
                             id: 'sliderStyle',
@@ -365,7 +362,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'strikethroughColorSource',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Color',
                     info: 'The color is defined in the global settings (Accent colors) and you can override it here.',
                     defaultValue: InheritSettings.INHERIT,

@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { RichTextEditor, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
@@ -14,31 +13,21 @@ import { ReactElement } from 'react';
 export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
     const { designTokens } = useGuidelineDesignTokens();
-    const gap = blockSettings.isColumnGutterCustom
-        ? blockSettings.columnGutterCustom
-        : spacingValues[blockSettings.columnGutterSimple];
-
-    const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
-    const rawValue = JSON.stringify(parseRawValue({ raw: blockSettings.content ?? '' }));
-    const html = serializeRawToHtml(rawValue, designTokens, blockSettings.columnNumber, gap);
+    const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
+    const onTextChange = (content: string) => setBlockSettings({ content });
 
     return (
-        <>
-            {!isEditing ? (
-                <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
-            ) : (
-                <RichTextEditor
-                    id={appBridge.getBlockId().toString()}
-                    designTokens={designTokens}
-                    value={blockSettings.content}
-                    border={false}
-                    placeholder={PLACEHOLDER}
-                    onTextChange={onTextChange}
-                    onBlur={onTextChange}
-                    plugins={getPlugins(blockSettings.columnNumber, gap)}
-                />
-            )}
-        </>
+        <RichTextEditor
+            isEditing={isEditing}
+            value={content}
+            designTokens={designTokens}
+            columns={columnNumber}
+            gap={gap}
+            plugins={getPlugins(appBridge, columnNumber, gap)}
+            placeholder={PLACEHOLDER}
+            onBlur={onTextChange}
+        />
     );
 };

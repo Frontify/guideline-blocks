@@ -5,8 +5,8 @@
     "version": "1.0.0",
     "main": "dist/index.js",
     "scripts": {
-        "serve": "frontify-cli block serve --entryPath src/index.ts",
-        "deploy": "frontify-cli block deploy --entryPath src/index.ts",
+        "serve": "frontify-cli serve --entryPath src/index.ts",
+        "deploy": "frontify-cli deploy --entryPath src/index.ts",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "prettier": "prettier --check .",
@@ -16,7 +16,7 @@
     "devDependencies": {
         "@babel/core": "7.20.2",
         "@frontify/eslint-config-react": "0.15.5",
-        "@frontify/frontify-cli": "5.3.1",
+        "@frontify/frontify-cli": "5.3.10",
         "@types/react": "17.0.50",
         "@types/react-dom": "17.0.17",
         "autoprefixer": "10.4.13",
@@ -30,10 +30,10 @@
         "typescript": "4.8.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.59",
-        "@frontify/fondue": "12.0.0-beta.162",
+        "@frontify/app-bridge": "3.0.0-beta.61",
+        "@frontify/fondue": "12.0.0-beta.176",
         "@frontify/fondue-tokens": "3.2.1",
-        "@frontify/guideline-blocks-settings": "0.25.11",
+        "@frontify/guideline-blocks-settings": "0.26.2",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "17.0.2",
         "react-dom": "17.0.2"

@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
+import { IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
 export const IMAGE_SETTING_ID = 'image';
 
@@ -10,7 +10,7 @@ export const settings = defineSettings({
             id: 'main-dropdown',
             type: 'dropdown',
             defaultValue: 'custom_block',
-            size: DropdownSize.Large,
+            size: 'large',
             disabled: true,
             choices: [
                 {

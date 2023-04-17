@@ -23,7 +23,7 @@ export const settings = defineSettings({
     layout: [
         {
             id: COLUMN_NR_ID,
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Columns',
             defaultValue: 1,
             choices: [
@@ -66,7 +66,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: SIMPLE_GUTTER_ID,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: TextGutter.Auto,
                     choices: [
                         {
