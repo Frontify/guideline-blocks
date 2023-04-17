@@ -1,8 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { FileType } from '@frontify/app-bridge';
+
 export type BlockInjectButtonProps = {
     isLoading?: boolean;
-    label: string;
+    label?: string;
+    validFileType?: keyof typeof FileType;
     secondaryLabel?: string;
     icon?: JSX.Element;
     onDrop?: (files: FileList) => void;
