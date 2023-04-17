@@ -61,8 +61,8 @@ export const BlockInjectButton = ({
         if (!validFileType) {
             return true;
         }
-        for (const file of files) {
-            const droppedFileExtension = (file.name.split('.').pop() ?? '') as FileExtension;
+        for (let i = 0; i < files.length; i++) {
+            const droppedFileExtension = (files[i].name.split('.').pop() ?? '') as FileExtension;
             if (!FileExtensionSets[validFileType].includes(droppedFileExtension)) {
                 return false;
             }
