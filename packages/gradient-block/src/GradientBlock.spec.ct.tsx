@@ -451,7 +451,7 @@ describe('Gradient Block', () => {
         });
     });
 
-    it('should not be possible to add a color when the position is already taken', () => {
+    it('should display the helper text and input form with exclamation mark if the position is already taken', () => {
         const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
             editorState: true,
             blockSettings: {
