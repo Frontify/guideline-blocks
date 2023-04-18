@@ -5,12 +5,15 @@ import type { FC } from "react";
 import { useBlockSettings, useEditorState } from "@frontify/app-bridge";
 import { useGuidelineDesignTokens } from "@frontify/guideline-blocks-shared";
 import {
+    ParagraphPlugin,
     parseRawValue,
+    PluginComposer,
     Position,
     RichTextEditor,
     serializeRawToHtml,
+    SoftBreakPlugin,
+    TextStylePlugin,
 } from "@frontify/fondue";
-import { getPlugins } from "./getPlugins";
 import { Settings } from "../../types";
 
 export const ModalHeadline: FC<BlockProps> = ({ appBridge }) => {
@@ -32,6 +35,13 @@ export const ModalHeadline: FC<BlockProps> = ({ appBridge }) => {
         "normal"
     );
 
+    const plugins = new PluginComposer({ noToolbar: true });
+    plugins.setPlugin([
+        new SoftBreakPlugin(),
+        new ParagraphPlugin(),
+        new TextStylePlugin(),
+    ]);
+
     return (
         <>
             {!isEditing ? (
@@ -48,7 +58,7 @@ export const ModalHeadline: FC<BlockProps> = ({ appBridge }) => {
                     placeholder={"note / description"}
                     onTextChange={onTextChange}
                     onBlur={onTextChange}
-                    plugins={getPlugins(blockSettings.columnNumber, "normal")}
+                    plugins={plugins}
                     position={Position.BOTTOM}
                 />
             )}

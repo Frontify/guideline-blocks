@@ -5,16 +5,13 @@ import type { FC } from "react";
 import { useBlockSettings, useEditorState } from "@frontify/app-bridge";
 import { useGuidelineDesignTokens } from "@frontify/guideline-blocks-shared";
 import {
-    ParagraphPlugin,
     parseRawValue,
-    PluginComposer,
     RichTextEditor,
     serializeRawToHtml,
-    SoftBreakPlugin,
-    TextStylePlugin,
 } from "@frontify/fondue";
 import { PLACEHOLDER } from "./constant";
 import { Settings } from "../../types";
+import { getPlugins } from "./getPlugins";
 
 const DEFAULT_VALUE =
     '[{"type":"heading1","children":[{"text":"Headline","textStyle":"heading1"}]},{"type":"p","children":[{"text":"Subheadline for the Submission.","textStyle":"p"}]}]';
@@ -38,15 +35,6 @@ export const Headline: FC<BlockProps> = ({ appBridge }) => {
         "normal"
     );
 
-    const plugins = new PluginComposer({ noToolbar: true });
-    plugins.setPlugin([
-        new SoftBreakPlugin(),
-        new ParagraphPlugin(),
-        new TextStylePlugin(),
-    ]);
-
-    console.log(rawValue);
-
     return (
         <>
             {!isEditing ? (
@@ -63,7 +51,7 @@ export const Headline: FC<BlockProps> = ({ appBridge }) => {
                     placeholder={PLACEHOLDER}
                     onTextChange={onTextChange}
                     onBlur={onTextChange}
-                    plugins={plugins}
+                    plugins={getPlugins(blockSettings.columnNumber, "normal")}
                 />
             )}
         </>

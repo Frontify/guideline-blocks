@@ -1,3 +1,3 @@
-export * from "./ViewMode";
+export * from "./UserMode";
 export * from "./EditorMode";
-export * from "./BlockRouter";
+export * from "./Router";

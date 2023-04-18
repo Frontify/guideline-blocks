@@ -4,28 +4,10 @@ export const testMetadata: MetadataProps[] = [
     {
         id: "eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
         isRequired: false,
-        defaultValue: "Default Value",
-        name: "test",
+        defaultValue: null,
+        name: "Campaign Name",
         valueType: {
             propertyType: "TEXT",
-        },
-    },
-    {
-        id: "eyJpZGVudGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
-        isRequired: false,
-        defaultValue: null,
-        name: "Long Text",
-        valueType: {
-            propertyType: "LONGTEXT",
-        },
-    },
-    {
-        id: "eyJpZGVudGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
-        isRequired: false,
-        defaultValue: null,
-        name: "Number",
-        valueType: {
-            propertyType: "NUMBER",
         },
     },
     {
@@ -38,46 +20,38 @@ export const testMetadata: MetadataProps[] = [
             options: [
                 {
                     id: "eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
-                    value: "one",
+                    value: "My Birthday Party",
                 },
                 {
                     id: "eyJpZGVudGlmaWVyIjoyLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
-                    value: "two",
+                    value: "This is something else",
                 },
             ],
         },
     },
     {
-        id: "eyJpZGVudGlmaWVyIjoxNiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
+        id: "eyJpZGVudGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
         isRequired: false,
-        defaultValue: {
-            id: "eyJpZGVudGlmaWVyIjozLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
-            value: "one",
-        },
-        name: "Multi-select",
+        defaultValue: null,
+        name: "Campaign Description",
         valueType: {
-            propertyType: "MULTISELECT",
-            options: [
-                {
-                    id: "eyJpZGVudGlmaWVyIjozLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
-                    value: "one",
-                },
-                {
-                    id: "eyJpZGVudGlmaWVyIjo0LCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
-                    value: "two",
-                },
-                {
-                    id: "eyJpZGVudGlmaWVyIjo1LCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
-                    value: "three",
-                },
-            ],
+            propertyType: "LONGTEXT",
+        },
+    },
+    {
+        id: "eyJpZGVudGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
+        isRequired: false,
+        defaultValue: null,
+        name: "Event Number",
+        valueType: {
+            propertyType: "NUMBER",
         },
     },
     {
         id: "eyJpZGVudGlmaWVyIjoxNywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
         isRequired: false,
         defaultValue: null,
-        name: "Date",
+        name: "Campaign Date",
         valueType: {
             propertyType: "DATE",
         },

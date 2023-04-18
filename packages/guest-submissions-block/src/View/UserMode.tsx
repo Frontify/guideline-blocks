@@ -25,10 +25,13 @@ import {
 import { FileUploadModule } from "../module/FileUpload/FileUploadModule";
 import { FileUploadResponse } from "../module/FileUpload/Contract/FileUploadResponse";
 import { Metadata } from "../Components/MetaData";
+import { useBlockSettings } from "@frontify/app-bridge";
+import { Settings } from "../types";
+import { AssetSubmission } from "../module/AssetSubmission/AssetSubmission";
 
-export const ViewMode: FC<BlockProps> = ({ appBridge }) => {
-    // const [blockSettings, setBlockSettings] =
-    //     useBlockSettings<Settings>(appBridge);
+export const UserMode: FC<BlockProps> = ({ appBridge }) => {
+    const [blockSettings, setBlockSettings] =
+        useBlockSettings<Settings>(appBridge);
 
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -74,7 +77,7 @@ export const ViewMode: FC<BlockProps> = ({ appBridge }) => {
                 <Headline appBridge={appBridge} />
                 <div>
                     <Button onClick={() => setModalOpen(!modalOpen)}>
-                        New Submission
+                        {blockSettings.buttonText}
                     </Button>
                 </div>
             </div>
@@ -132,12 +135,33 @@ export const ViewMode: FC<BlockProps> = ({ appBridge }) => {
                             {fileList.length > 0 && (
                                 <Metadata
                                     onSubmit={(formData) => {
-                                        setModalOpen(false);
-                                        console.log(
-                                            "onsubmit",
-                                            formData,
-                                            fileList
-                                        );
+                                        // setModalOpen(false);
+                                        // console.log(
+                                        //     "onsubmit",
+                                        //     formData,
+                                        //     fileList
+                                        // );
+
+                                        const output = [];
+                                        for (const formDataKey in formData) {
+                                            output.push({
+                                                id: formDataKey,
+                                                value: formData[formDataKey],
+                                            });
+                                        }
+
+                                        AssetSubmission.createAssetSubmissions({
+                                            requestId: "1", // {"identifier":1,"type":"assetSubmissionRequest"}
+                                            token: "Nas2YR66rKBSXfoo",
+                                            fileIds: fileList.map(
+                                                (item) => item.uploadUrlId!
+                                            ),
+                                            submitter: {
+                                                name: "hans",
+                                                email: "peter@hans.ch",
+                                            },
+                                            metadata: "[]",
+                                        });
                                     }}
                                 >
                                     <Divider color="rgb(234, 235, 235)" />

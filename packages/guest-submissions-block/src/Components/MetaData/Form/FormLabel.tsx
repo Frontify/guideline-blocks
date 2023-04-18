@@ -4,6 +4,8 @@ interface FormLabelProps {
     id: string;
 }
 
+// we can just use the FormLabel and make a new Component around it
+
 export const FormLabel: FC<FormLabelProps> = ({ id, children }) => (
     <div className="tw-pb-2">
         <label

@@ -16,18 +16,18 @@ type FormValues = {
 export const Metadata: FC<MetaDataSubmitProps> = ({ onSubmit, children }) => {
     // This one we can set with the default values
 
-    // const initialValues = testMetadata
-    //     .filter((item) => !!item.defaultValue)
-    //     .map((item) => ({
-    //         [item.id]:
-    //             item.defaultValue && item.defaultValue.value
-    //                 ? item.defaultValue.value
-    //                 : item.defaultValue,
-    //     }));
+    const initialValues = testMetadata
+        .filter((item) => !!item.defaultValue)
+        .map((item) => ({
+            [item.id]:
+                item.defaultValue && item.defaultValue.value
+                    ? item.defaultValue.value
+                    : item.defaultValue,
+        }));
 
     // Figure out how to set the initial values
     // @ts-ignore
-    const [formValues, setFormValues] = useState<FormValues>([]);
+    const [formValues, setFormValues] = useState<FormValues>(initialValues);
     const handleInputChange = ({ id, value }: OnChangeProps) => {
         setFormValues((prevState) => ({
             ...prevState,

@@ -3,9 +3,9 @@ import "tailwindcss/tailwind.css";
 import { defineBlock } from "@frontify/guideline-blocks-settings";
 
 import { settings } from "./settings";
-import { BlockRouter } from "./View";
+import { Router } from "./View";
 
 export default defineBlock({
-    block: BlockRouter,
+    block: Router,
     settings,
 });
