@@ -466,4 +466,25 @@ describe('Gradient Block', () => {
         cy.get(FormControlHelperTextSelector).should('exist');
         cy.get(TextInputErrorSelector).should('exist');
     });
+
+    it('square badge should not overlay the gradient block if just one color is present', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: [
+                    {
+                        color: {
+                            red: 255,
+                            green: 255,
+                            blue: 255,
+                            alpha: 1,
+                        },
+                        position: 0,
+                    },
+                ],
+            },
+        });
+        mount(<GradientBlockWithStubs />);
+        cy.get(SquareBadgesSelector).should('have.length', 1);
+        cy.get(SquareBadgesSelector).first().should('have.css', 'top', '0px');
+    });
 });
