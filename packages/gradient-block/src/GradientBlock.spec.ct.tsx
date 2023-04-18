@@ -31,6 +31,9 @@ const ButtonSelector = '[data-test-id="button"]';
 const ColorInputSelector = '[data-test-id="color-input"]';
 const ColorPreviewSelector = '[role="dialog"]';
 const TriggerSelector = '[data-test-id="trigger"]';
+const TextInputSelector = '[data-test-id="text-input"]';
+const TextInputErrorSelector = '[data-test-id="error-state-exclamation-mark-icon"]';
+const FormControlHelperTextSelector = '[data-test-id="form-control-helper-text"]';
 
 const GradientColor = [
     {
@@ -446,5 +449,21 @@ describe('Gradient Block', () => {
             cy.wrap(badge).should('have.css', 'left', '0px');
             cy.wrap(badge).should('have.css', 'top', `${index * HEIGHT_OF_SQUARE_BADGE}px`);
         });
+    });
+
+    it('should not be possible to add a color when the position is already taken', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDividerSelector).realHover();
+        cy.get(AddColorButtonSelector).realClick();
+        cy.get(ColorPickerForm).find(TextInputSelector).clear().type('0');
+        cy.get(FormControlHelperTextSelector).should('exist');
+        cy.get(TextInputErrorSelector).should('exist');
     });
 });
