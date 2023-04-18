@@ -5,7 +5,7 @@ import { MenuItemStyle } from '@frontify/fondue';
 export type BlockItemWrapperProps = {
     shouldHideWrapper?: boolean;
     shouldHideComponent?: boolean;
-    toolbarItems: ToolbarItem[];
+    toolbarItems: (ToolbarItem | undefined)[];
     toolbarFlyoutItems: FlyoutToolbarItem[][];
     isDragging?: boolean;
     shouldFillContainer?: boolean;
@@ -34,7 +34,7 @@ type ButtonToolbarItem = BaseToolbarItem & {
     onClick: () => void;
 };
 
-type ToolbarItem = DraghandleToolbarItem | ButtonToolbarItem;
+export type ToolbarItem = DraghandleToolbarItem | ButtonToolbarItem;
 
 type FlyoutToolbarItem = {
     title: string;
