@@ -10,7 +10,7 @@ export const AddColorButton = ({
     setShowColorModal,
 }: AddColorButtonProps) => {
     const handleAdd = (position: number) => {
-        setCurrentlyEditingPosition((position / blockWidth) * 100);
+        setCurrentlyEditingPosition(((position + 8) / blockWidth) * 100);
         setShowColorModal(true);
     };
 

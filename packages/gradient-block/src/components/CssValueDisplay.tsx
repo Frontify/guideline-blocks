@@ -1,9 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
-import { css } from '@codemirror/lang-css';
 import CodeMirror from '@uiw/react-codemirror';
+import { langs } from '@uiw/codemirror-extensions-langs';
+
+import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
+
 import { CssValueDisplayProps } from '../types';
+
+const CSS_LANG = langs.css();
 
 export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
     const { copy, status } = useCopy();
@@ -39,7 +43,7 @@ export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
                 </div>
                 <CodeMirror
                     value={cssValue}
-                    extensions={[css()]}
+                    extensions={[CSS_LANG]}
                     readOnly={true}
                     basicSetup={{
                         highlightActiveLineGutter: false,

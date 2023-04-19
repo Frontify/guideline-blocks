@@ -7,14 +7,12 @@ import {
     ColorPickerFlyout,
     Flyout,
     FlyoutFooter,
+    FormControl,
+    FormControlStyle,
     IconCheckMark16,
     IconCross20,
-    IconQuestionMarkCircle,
-    IconSize,
-    Text,
     TextInput,
     TextInputType,
-    TooltipIcon,
     Validation,
 } from '@frontify/fondue';
 import { useState } from 'react';
@@ -30,7 +28,7 @@ export const ColorFlyout = ({
 }: ColorFlyoutProps) => {
     const actualColor = gradientColors.find((item) => item.position === currentlyEditingPosition);
     const defaultColor = { red: 0, green: 0, blue: 0, alpha: 1 };
-    const [colorPosition, setColorPosition] = useState(currentlyEditingPosition.toFixed(0));
+    const [colorPosition, setColorPosition] = useState(Math.round(currentlyEditingPosition).toString());
     const [color, setColor] = useState<Color>(actualColor?.color ?? defaultColor);
     const [colorPositionValidation, setColorPositionValidation] = useState<Validation>(Validation.Default);
 
@@ -66,8 +64,6 @@ export const ColorFlyout = ({
         } else if (value === '') {
             setColorPositionValidation(Validation.Error);
             setColorPosition(value);
-        } else {
-            setColorPositionValidation(Validation.Error);
         }
     };
 
@@ -124,33 +120,46 @@ export const ColorFlyout = ({
             }
         >
             <div className="tw-flex" data-test-id="color-picker-form">
-                <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-10">
-                    <Text color="weak">Color</Text>
-                    <ColorPickerFlyout
-                        currentColor={color}
-                        palettes={colorPalettes}
-                        onSelect={setColor}
-                        onClick={() => color && editColor()}
-                    />
-                    <span className="tw-flex tw-mt-6">
-                        <Text color="weak">Stop</Text>
-                        <span className="tw-ml-1">
-                            <TooltipIcon
-                                tooltip={{
-                                    content:
-                                        'It determines when the transition from one color to the new color is complete.',
-                                }}
-                                triggerIcon={<IconQuestionMarkCircle />}
-                                iconSize={IconSize.Size12}
-                            />
-                        </span>
-                    </span>
-                    <TextInput
-                        value={colorPosition}
-                        onChange={setValidColorPosition}
-                        type={TextInputType.Number}
-                        validation={colorPositionValidation}
-                    />
+                <div className="tw-w-full tw-pt-5 tw-pl-6 tw-pr-10 tw-flex tw-flex-col tw-gap-6">
+                    <FormControl
+                        label={{
+                            htmlFor: 'GRADIENT_COLOR_COLOR',
+                            children: 'Color',
+                        }}
+                    >
+                        <ColorPickerFlyout
+                            currentColor={color}
+                            palettes={colorPalettes}
+                            onSelect={setColor}
+                            onClick={() => color && editColor()}
+                        />
+                    </FormControl>
+                    <FormControl
+                        helper={
+                            colorPositionValidation === Validation.Error
+                                ? { text: 'Add color stops from 0-100.' }
+                                : undefined
+                        }
+                        style={
+                            colorPositionValidation === Validation.Error
+                                ? FormControlStyle.Danger
+                                : FormControlStyle.Primary
+                        }
+                        label={{
+                            tooltip: {
+                                content: 'To customize the gradient, color-stop points from 0-100 can be added.',
+                            },
+                            htmlFor: 'GRADIENT_COLOR_POSITION',
+                            children: 'Stop',
+                        }}
+                    >
+                        <TextInput
+                            value={colorPosition}
+                            type={TextInputType.Number}
+                            onChange={setValidColorPosition}
+                            validation={colorPositionValidation}
+                        />
+                    </FormControl>
                 </div>
             </div>
         </Flyout>
