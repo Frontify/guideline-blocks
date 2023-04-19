@@ -5,8 +5,8 @@ importers:
   .:
     dependencies:
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       glob:
         specifier: 8.0.3
         version: 8.0.3
@@ -78,14 +78,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -149,7 +149,7 @@ importers:
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -212,14 +212,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -282,14 +282,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -352,14 +352,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -419,14 +419,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -486,14 +486,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -586,14 +586,14 @@ importers:
         specifier: 3.0.0-beta.59
         version: 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -665,14 +665,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.0
         version: 3.2.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -741,14 +741,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -808,14 +808,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -884,8 +884,8 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -910,7 +910,7 @@ importers:
         version: 5.3.8(@types/node@18.7.21)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@types/react':
         specifier: 17.0.53
         version: 17.0.53
@@ -945,14 +945,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1021,14 +1021,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1094,14 +1094,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1161,14 +1161,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1228,14 +1228,14 @@ importers:
         specifier: 3.0.0-beta.59
         version: 3.0.0-beta.59(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1307,14 +1307,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1377,14 +1377,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1447,14 +1447,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1523,11 +1523,11 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@react-aria/focus':
         specifier: 3.11.0
         version: 3.11.0(react@17.0.2)
@@ -1629,14 +1629,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1696,14 +1696,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1766,14 +1766,14 @@ importers:
         specifier: 3.0.0-beta.61
         version: 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.176
-        version: 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.183
+        version: 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -2614,7 +2614,6 @@ packages:
     dependencies:
       react: 17.0.2
       tslib: 2.4.1
-    dev: false
 
   /@dnd-kit/core@6.0.5(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-3nL+Zy5cT+1XwsWdlXIvGIFvbuocMyB4NBxTN74DeBaBqeWdH9JsnKwQv7buZQgAHmAH+eIENfS1ginkvW6bCw==}
@@ -2629,6 +2628,18 @@ packages:
       tslib: 2.4.1
     dev: false
 
+  /@dnd-kit/core@6.0.8(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-lYaoP8yHTQSLlZe6Rr9qogouGUz9oRUj4AHhDQGQzq/hqaJRpFo65X+JKsdHf8oUFBzx5A+SJPUvxAwTF2OabA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@dnd-kit/accessibility': 3.0.1(react@17.0.2)
+      '@dnd-kit/utilities': 3.2.1(react@17.0.2)
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      tslib: 2.4.1
+
   /@dnd-kit/modifiers@6.0.1(@dnd-kit/core@6.0.5)(react@17.0.2):
     resolution: {integrity: sha512-rbxcsg3HhzlcMHVHWDuh9LCjpOVAgqbV78wLGI8tziXY3+qcMQ61qVXIvNKQFuhj75dSfD+o+PYZQ/NUk2A23A==}
     peerDependencies:
@@ -2640,6 +2651,17 @@ packages:
       react: 17.0.2
       tslib: 2.4.1
     dev: false
+
+  /@dnd-kit/modifiers@6.0.1(@dnd-kit/core@6.0.8)(react@17.0.2):
+    resolution: {integrity: sha512-rbxcsg3HhzlcMHVHWDuh9LCjpOVAgqbV78wLGI8tziXY3+qcMQ61qVXIvNKQFuhj75dSfD+o+PYZQ/NUk2A23A==}
+    peerDependencies:
+      '@dnd-kit/core': ^6.0.6
+      react: '>=16.8.0'
+    dependencies:
+      '@dnd-kit/core': 6.0.8(react-dom@17.0.2)(react@17.0.2)
+      '@dnd-kit/utilities': 3.2.1(react@17.0.2)
+      react: 17.0.2
+      tslib: 2.4.1
 
   /@dnd-kit/sortable@7.0.1(@dnd-kit/core@6.0.5)(react@17.0.2):
     resolution: {integrity: sha512-n77qAzJQtMMywu25sJzhz3gsHnDOUlEjTtnRl8A87rWIhnu32zuP+7zmFjwGgvqfXmRufqiHOSlH7JPC/tnJ8Q==}
@@ -2653,6 +2675,17 @@ packages:
       tslib: 2.4.1
     dev: false
 
+  /@dnd-kit/sortable@7.0.2(@dnd-kit/core@6.0.8)(react@17.0.2):
+    resolution: {integrity: sha512-wDkBHHf9iCi1veM834Gbk1429bd4lHX4RpAwT0y2cHLf246GAvU2sVw/oxWNpPKQNQRQaeGXhAVgrOl1IT+iyA==}
+    peerDependencies:
+      '@dnd-kit/core': ^6.0.7
+      react: '>=16.8.0'
+    dependencies:
+      '@dnd-kit/core': 6.0.8(react-dom@17.0.2)(react@17.0.2)
+      '@dnd-kit/utilities': 3.2.1(react@17.0.2)
+      react: 17.0.2
+      tslib: 2.4.1
+
   /@dnd-kit/utilities@3.2.1(react@17.0.2):
     resolution: {integrity: sha512-OOXqISfvBw/1REtkSK2N3Fi2EQiLMlWUlqnOK/UpOISqBZPWpE6TqL+jcPtMOkE8TqYGiURvRdPSI9hltNUjEA==}
     peerDependencies:
@@ -2660,7 +2693,6 @@ packages:
     dependencies:
       react: 17.0.2
       tslib: 2.4.1
-    dev: false
 
   /@emoji-mart/data@1.0.8:
     resolution: {integrity: sha512-AMpqLrR80dHfj8ZA6xaf8/t9reBy88vz07fBdwKVVoUX6X2Wi+R2p2uhIZFqNZe8zRd6kga3hKheqK+deElEZw==}
@@ -3530,15 +3562,19 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue@12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-KcahSFnCh1UPNNx43FMSwYRnL2k9tFid7sc8yxIEOiu+Vwsfqu49WUVsc5Cs9801fHGpgUa7mDhQPNltWKoUNQ==}
+  /@frontify/fondue@12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-7bgIB7/FDutiv/e4CtYDFvrs4K9U6VnWfdMNHAnL4fGaoNiSfECSbac2BDXqo4YEHMC1hES2gbvYTC5zp631Bg==}
     engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
     peerDependencies:
-      '@udecode/plate': ^19.0.0
-      framer-motion: ^6.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
+      '@udecode/plate': ^19
+      framer-motion: ^10
+      react: ^17 || ^18
+      react-dom: ^17 || ^18
     dependencies:
+      '@dnd-kit/core': 6.0.8(react-dom@17.0.2)(react@17.0.2)
+      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@17.0.2)
+      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@17.0.2)
+      '@dnd-kit/utilities': 3.2.1(react@17.0.2)
       '@frontify/fondue-tokens': 3.1.0-next.5(ts-node@10.9.1)
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.13(react@17.0.2)
@@ -3548,7 +3584,7 @@ packages:
       '@react-aria/checkbox': 3.7.0(react@17.0.2)
       '@react-aria/combobox': 3.4.3(react-dom@17.0.2)(react@17.0.2)
       '@react-aria/dialog': 3.4.1(react-dom@17.0.2)(react@17.0.2)
-      '@react-aria/focus': 3.10.0(react@17.0.2)
+      '@react-aria/focus': 3.12.0(react@17.0.2)
       '@react-aria/interactions': 3.13.0(react@17.0.2)
       '@react-aria/link': 3.3.5(react@17.0.2)
       '@react-aria/listbox': 3.7.1(react@17.0.2)
@@ -3581,7 +3617,7 @@ packages:
       '@xstate/react': 1.6.3(@types/react@17.0.53)(react@17.0.2)(xstate@4.28.1)
       date-fns: 2.29.3
       escape-html: 1.0.3
-      framer-motion: 6.4.3(react-dom@17.0.2)(react@17.0.2)
+      framer-motion: 10.12.4(react-dom@17.0.2)(react@17.0.2)
       immer: 9.0.12
       is-hotkey: 0.2.0
       react: 17.0.2
@@ -3670,15 +3706,15 @@ packages:
       - terser
     dev: true
 
-  /@frontify/guideline-blocks-settings@0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+  /@frontify/guideline-blocks-settings@0.26.2(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
     resolution: {integrity: sha512-tRuq7F2I8ayps4SBRiVL3HrasJzMi5zlonRFlhXninorT2tCWe3l2m8h6DJV+pzzi7IcGyfkpZlLdG2bmBCttw==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
-      '@frontify/fondue': 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
-      '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/fondue': 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
     transitivePeerDependencies:
@@ -3693,14 +3729,14 @@ packages:
       - tailwindcss
       - ts-node
 
-  /@frontify/sidebar-settings@0.2.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+  /@frontify/sidebar-settings@0.2.0(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
     resolution: {integrity: sha512-PZsARsoJS4CSkD0u7YAPtWUWwtqE7j4tW3Dp0pMUblWfM1Zzbm2mSTdKKO5MZfzhajHhovCYlUErwiWB4sCTyA==}
     peerDependencies:
       react: ^17 || ^18
       react-dom: ^17 || ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.61(react-dom@17.0.2)(react@17.0.2)(sinon@15.0.2)
-      '@frontify/fondue': 12.0.0-beta.176(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@6.4.3)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/fondue': 12.0.0-beta.183(@types/node@18.7.21)(@types/react@17.0.53)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@17.0.2)(react@17.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
     transitivePeerDependencies:
@@ -3945,47 +3981,6 @@ packages:
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
     dev: true
 
-  /@motionone/animation@10.14.0:
-    resolution: {integrity: sha512-h+1sdyBP8vbxEBW5gPFDnj+m2DCqdlAuf2g6Iafb1lcMnqjsRXWlPw1AXgvUMXmreyhqmPbJqoNfIKdytampRQ==}
-    dependencies:
-      '@motionone/easing': 10.14.0
-      '@motionone/types': 10.14.0
-      '@motionone/utils': 10.14.0
-      tslib: 2.4.1
-
-  /@motionone/dom@10.14.3:
-    resolution: {integrity: sha512-tese0zSBsWwxCcs9qGNyynhnQ3/n43F6XI588AUKBIfE9D5ZelzQXOzr/T0+ErsVppXJtyGHviYEnv7KHc9x7Q==}
-    dependencies:
-      '@motionone/animation': 10.14.0
-      '@motionone/generators': 10.14.0
-      '@motionone/types': 10.14.0
-      '@motionone/utils': 10.14.0
-      hey-listen: 1.0.8
-      tslib: 2.4.1
-
-  /@motionone/easing@10.14.0:
-    resolution: {integrity: sha512-2vUBdH9uWTlRbuErhcsMmt1jvMTTqvGmn9fHq8FleFDXBlHFs5jZzHJT9iw+4kR1h6a4SZQuCf72b9ji92qNYA==}
-    dependencies:
-      '@motionone/utils': 10.14.0
-      tslib: 2.4.1
-
-  /@motionone/generators@10.14.0:
-    resolution: {integrity: sha512-6kRHezoFfIjFN7pPpaxmkdZXD36tQNcyJe3nwVqwJ+ZfC0e3rFmszR8kp9DEVFs9QL/akWjuGPSLBI1tvz+Vjg==}
-    dependencies:
-      '@motionone/types': 10.14.0
-      '@motionone/utils': 10.14.0
-      tslib: 2.4.1
-
-  /@motionone/types@10.14.0:
-    resolution: {integrity: sha512-3bNWyYBHtVd27KncnJLhksMFQ5o2MSdk1cA/IZqsHtA9DnRM1SYgN01CTcJ8Iw8pCXF5Ocp34tyAjY7WRpOJJQ==}
-
-  /@motionone/utils@10.14.0:
-    resolution: {integrity: sha512-sLWBLPzRqkxmOTRzSaD3LFQXCPHvDzyHJ1a3VP9PRzBxyVd2pv51/gMOsdAcxQ9n+MIeGJnxzXBYplUHKj4jkw==}
-    dependencies:
-      '@motionone/types': 10.14.0
-      hey-listen: 1.0.8
-      tslib: 2.4.1
-
   /@mswjs/cookies@0.2.2:
     resolution: {integrity: sha512-mlN83YSrcFgk7Dm1Mys40DLssI1KdJji2CMKN8eOlBqsTADYzj2+jWzsANsUTFbxDMWPD5e9bfA1RGqBpS3O1g==}
     engines: {node: '>=14'}
@@ -4102,10 +4097,10 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@17.0.2)
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/toggle': 3.4.4(react@17.0.2)
       '@react-types/button': 3.7.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-aria/checkbox@3.5.1(react@17.0.2):
@@ -4180,26 +4175,26 @@ packages:
     transitivePeerDependencies:
       - react-dom
 
-  /@react-aria/focus@3.10.0(react@17.0.2):
-    resolution: {integrity: sha512-idI7Etgh6y2BYi3X4d+EuUpzR7gPZ94Lf/0UNnVyMkDM9fzcdz/8DCBt0qKOff24HlaLE1rmREt0+iTR/qRgbA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.20.6
-      '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
-      clsx: 1.2.1
-      react: 17.0.2
-
   /@react-aria/focus@3.11.0(react@17.0.2):
     resolution: {integrity: sha512-yPuWs9bAR9CMfIwyOPm2oXLPF19gNkUqW+ozSPhWbLMTEa8Ma09eHW1br4xbN+4ONOm/dCJsIkxTNPUkiLdQoA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
+      '@swc/helpers': 0.4.14
+      clsx: 1.2.1
+      react: 17.0.2
+
+  /@react-aria/focus@3.12.0(react@17.0.2):
+    resolution: {integrity: sha512-nY6/2lpXzLep6dzQEESoowiSqNcy7DFWuRD/qHj9uKcQwWpYH/rqBrHVS/RNvL6Cz/fBA7L/4AzByJ6pTBtoeA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/interactions': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@swc/helpers': 0.4.14
       clsx: 1.2.1
       react: 17.0.2
@@ -4229,13 +4224,13 @@ packages:
       '@react-aria/interactions': 3.14.0(react@17.0.2)
       '@react-aria/live-announcer': 3.1.1
       '@react-aria/selection': 3.12.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/grid': 3.4.1(react@17.0.2)
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-stately/virtualizer': 3.4.0(react@17.0.2)
       '@react-types/checkbox': 3.4.1(react@17.0.2)
       '@react-types/grid': 3.1.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
 
@@ -4249,9 +4244,9 @@ packages:
       '@internationalized/message': 3.0.9
       '@internationalized/number': 3.1.1
       '@internationalized/string': 3.0.0
-      '@react-aria/ssr': 3.5.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-aria/ssr': 3.6.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-aria/interactions@3.11.0(react@17.0.2):
@@ -4285,6 +4280,17 @@ packages:
       '@swc/helpers': 0.4.14
       react: 17.0.2
 
+  /@react-aria/interactions@3.15.0(react@17.0.2):
+    resolution: {integrity: sha512-8br5uatPDISEWMINKGs7RhNPtqLhRsgwQsooaH7Jgxjs0LBlylODa8l7D3NA1uzVzlvfnZm/t2YN/y8ieRSDcQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/ssr': 3.6.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
+      '@swc/helpers': 0.4.14
+      react: 17.0.2
+
   /@react-aria/interactions@3.7.0(react@17.0.2):
     resolution: {integrity: sha512-Xomchjb9bqvh3ocil+QCEYFSxsTy8PHEz43mNP6z2yuu3UqTpl2FsWfyKgF/Yy0WKVkyV2dO2uz758KJTCLZhw==}
     peerDependencies:
@@ -4302,9 +4308,9 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-types/label': 3.7.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-aria/link@3.3.5(react@17.0.2):
@@ -4315,9 +4321,9 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@17.0.2)
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-types/link': 3.3.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-aria/listbox@3.7.1(react@17.0.2):
@@ -4330,11 +4336,11 @@ packages:
       '@react-aria/interactions': 3.14.0(react@17.0.2)
       '@react-aria/label': 3.4.3(react@17.0.2)
       '@react-aria/selection': 3.12.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/collections': 3.5.0(react@17.0.2)
       '@react-stately/list': 3.6.0(react@17.0.2)
       '@react-types/listbox': 3.3.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-aria/live-announcer@3.1.1:
@@ -4353,13 +4359,13 @@ packages:
       '@react-aria/interactions': 3.14.0(react@17.0.2)
       '@react-aria/overlays': 3.12.0(react-dom@17.0.2)(react@17.0.2)
       '@react-aria/selection': 3.12.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/collections': 3.5.0(react@17.0.2)
       '@react-stately/menu': 3.4.4(react@17.0.2)
       '@react-stately/tree': 3.4.0(react@17.0.2)
       '@react-types/button': 3.7.0(react@17.0.2)
       '@react-types/menu': 3.7.3(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
 
@@ -4373,13 +4379,13 @@ packages:
       '@react-aria/focus': 3.11.0(react@17.0.2)
       '@react-aria/i18n': 3.6.2(react@17.0.2)
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/ssr': 3.5.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/ssr': 3.6.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-aria/visually-hidden': 3.6.0(react@17.0.2)
       '@react-stately/overlays': 3.4.4(react@17.0.2)
       '@react-types/button': 3.7.0(react@17.0.2)
       '@react-types/overlays': 3.6.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
 
@@ -4393,10 +4399,10 @@ packages:
       '@react-aria/i18n': 3.6.2(react@17.0.2)
       '@react-aria/interactions': 3.14.0(react@17.0.2)
       '@react-aria/label': 3.4.3(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/radio': 3.6.1(react@17.0.2)
       '@react-types/radio': 3.3.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-aria/select@3.8.3(react-dom@17.0.2)(react@17.0.2):
@@ -4412,12 +4418,12 @@ packages:
       '@react-aria/listbox': 3.7.1(react@17.0.2)
       '@react-aria/menu': 3.7.0(react-dom@17.0.2)(react@17.0.2)
       '@react-aria/selection': 3.12.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-aria/visually-hidden': 3.6.0(react@17.0.2)
       '@react-stately/select': 3.3.3(react@17.0.2)
       '@react-types/button': 3.7.0(react@17.0.2)
       '@react-types/select': 3.6.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
 
@@ -4430,14 +4436,22 @@ packages:
       '@react-aria/focus': 3.11.0(react@17.0.2)
       '@react-aria/i18n': 3.6.2(react@17.0.2)
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/collections': 3.5.0(react@17.0.2)
       '@react-stately/selection': 3.11.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-aria/ssr@3.5.0(react@17.0.2):
     resolution: {integrity: sha512-h0MJdSWOd1qObLnJ8mprU31wI8tmKFJMuwT22MpWq6psisOOZaga6Ml4u6Ee6M6duWWISjXvqO4Sb/J0PBA+nQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@swc/helpers': 0.4.14
+      react: 17.0.2
+
+  /@react-aria/ssr@3.6.0(react@17.0.2):
+    resolution: {integrity: sha512-OFiYQdv+Yk7AO7IsQu/fAEPijbeTwrrEYvdNoJ3sblBBedD5j5fBTNWrUPNVlwC4XWWnWTCMaRIVsJujsFiWXg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
@@ -4457,12 +4471,12 @@ packages:
       '@react-aria/interactions': 3.14.0(react@17.0.2)
       '@react-aria/live-announcer': 3.1.1
       '@react-aria/selection': 3.12.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/table': 3.6.0(react@17.0.2)
       '@react-stately/virtualizer': 3.4.0(react@17.0.2)
       '@react-types/checkbox': 3.4.1(react@17.0.2)
       '@react-types/grid': 3.1.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@react-types/table': 3.3.3(react@17.0.2)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
@@ -4475,8 +4489,8 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@17.0.2)
       '@react-aria/label': 3.4.3(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@react-types/textfield': 3.6.1(react@17.0.2)
       react: 17.0.2
 
@@ -4488,10 +4502,10 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@17.0.2)
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/toggle': 3.4.4(react@17.0.2)
       '@react-types/checkbox': 3.4.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@react-types/switch': 3.2.5(react@17.0.2)
       react: 17.0.2
 
@@ -4503,9 +4517,9 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@17.0.2)
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
       '@react-stately/tooltip': 3.2.3(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@react-types/tooltip': 3.2.5(react@17.0.2)
       react: 17.0.2
 
@@ -4530,7 +4544,7 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-aria/ssr': 3.5.0(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       clsx: 1.2.1
       react: 17.0.2
 
@@ -4541,7 +4555,19 @@ packages:
     dependencies:
       '@react-aria/ssr': 3.5.0(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
+      '@swc/helpers': 0.4.14
+      clsx: 1.2.1
+      react: 17.0.2
+
+  /@react-aria/utils@3.16.0(react@17.0.2):
+    resolution: {integrity: sha512-BumpgENDlXuoRPQm1OfVUYRcxY9vwuXw1AmUpwF61v55gAZT3LvJWsfF8jgfQNzLJr5jtr7xvUx7pXuEyFpJMA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/ssr': 3.6.0(react@17.0.2)
+      '@react-stately/utils': 3.6.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@swc/helpers': 0.4.14
       clsx: 1.2.1
       react: 17.0.2
@@ -4553,8 +4579,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-aria/utils': 3.15.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       clsx: 1.2.1
       react: 17.0.2
 
@@ -4581,7 +4607,7 @@ packages:
       '@react-stately/toggle': 3.4.4(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/checkbox': 3.4.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@swc/helpers': 0.4.14
       react: 17.0.2
 
@@ -4591,7 +4617,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/collections@3.5.0(react@17.0.2):
@@ -4600,7 +4626,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/combobox@3.2.2(react@17.0.2):
@@ -4614,7 +4640,7 @@ packages:
       '@react-stately/select': 3.3.3(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/combobox': 3.5.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/combobox@3.3.0(react@17.0.2):
@@ -4628,7 +4654,7 @@ packages:
       '@react-stately/select': 3.3.3(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/combobox': 3.5.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/grid@3.4.1(react@17.0.2):
@@ -4639,7 +4665,7 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-types/grid': 3.1.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/layout@3.9.0(react@17.0.2):
@@ -4650,7 +4676,7 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-stately/virtualizer': 3.4.0(react@17.0.2)
       '@react-types/grid': 3.1.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@react-types/table': 3.3.3(react@17.0.2)
       react: 17.0.2
 
@@ -4663,7 +4689,7 @@ packages:
       '@react-stately/collections': 3.5.0(react@17.0.2)
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/list@3.6.0(react@17.0.2):
@@ -4675,7 +4701,7 @@ packages:
       '@react-stately/collections': 3.5.0(react@17.0.2)
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/menu@3.4.4(react@17.0.2):
@@ -4686,7 +4712,7 @@ packages:
       '@react-stately/overlays': 3.4.4(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/menu': 3.7.3(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@swc/helpers': 0.4.14
       react: 17.0.2
 
@@ -4718,7 +4744,7 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/radio': 3.3.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/radio@3.6.1(react@17.0.2):
@@ -4729,7 +4755,7 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/radio': 3.3.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/select@3.3.2(react@17.0.2):
@@ -4744,7 +4770,7 @@ packages:
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/select': 3.6.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/select@3.3.3(react@17.0.2):
@@ -4759,7 +4785,7 @@ packages:
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/select': 3.6.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/selection@3.11.1(react@17.0.2):
@@ -4770,7 +4796,7 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-stately/collections': 3.5.0(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/table@3.5.0(react@17.0.2):
@@ -4783,7 +4809,7 @@ packages:
       '@react-stately/grid': 3.4.1(react@17.0.2)
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-types/grid': 3.1.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@react-types/table': 3.3.3(react@17.0.2)
       react: 17.0.2
 
@@ -4797,7 +4823,7 @@ packages:
       '@react-stately/grid': 3.4.1(react@17.0.2)
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-types/grid': 3.1.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@react-types/table': 3.3.3(react@17.0.2)
       react: 17.0.2
 
@@ -4821,7 +4847,7 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/checkbox': 3.4.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/toggle@3.4.4(react@17.0.2):
@@ -4831,7 +4857,7 @@ packages:
     dependencies:
       '@react-stately/utils': 3.6.0(react@17.0.2)
       '@react-types/checkbox': 3.4.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       '@swc/helpers': 0.4.14
       react: 17.0.2
 
@@ -4866,7 +4892,7 @@ packages:
       '@react-stately/collections': 3.5.0(react@17.0.2)
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/tree@3.4.0(react@17.0.2):
@@ -4878,7 +4904,7 @@ packages:
       '@react-stately/collections': 3.5.0(react@17.0.2)
       '@react-stately/selection': 3.11.1(react@17.0.2)
       '@react-stately/utils': 3.6.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-stately/utils@3.6.0(react@17.0.2):
@@ -4895,8 +4921,8 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-aria/utils': 3.15.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-aria/utils': 3.16.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/accordion@3.0.0-alpha.11(react@17.0.2):
@@ -4904,7 +4930,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/breadcrumbs@3.4.5(react@17.0.2):
@@ -4913,7 +4939,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/link': 3.3.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/button@3.7.0(react@17.0.2):
@@ -4921,7 +4947,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/checkbox@3.4.1(react@17.0.2):
@@ -4929,7 +4955,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/combobox@3.5.5(react@17.0.2):
@@ -4937,7 +4963,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/dialog@3.4.5(react@17.0.2):
@@ -4946,7 +4972,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/overlays': 3.6.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/grid@3.1.5(react@17.0.2):
@@ -4954,7 +4980,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/label@3.7.1(react@17.0.2):
@@ -4962,7 +4988,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/link@3.3.5(react@17.0.2):
@@ -4971,7 +4997,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-aria/interactions': 3.14.0(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/listbox@3.3.5(react@17.0.2):
@@ -4979,7 +5005,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/menu@3.7.3(react@17.0.2):
@@ -4988,7 +5014,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/overlays': 3.6.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/overlays@3.6.5(react@17.0.2):
@@ -4996,7 +5022,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/radio@3.3.1(react@17.0.2):
@@ -5004,7 +5030,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/select@3.6.5(react@17.0.2):
@@ -5012,7 +5038,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/shared@3.11.2(react@17.0.2):
@@ -5037,13 +5063,20 @@ packages:
     dependencies:
       react: 17.0.2
 
+  /@react-types/shared@3.18.0(react@17.0.2):
+    resolution: {integrity: sha512-WJj7RAPj7NLdR/VzFObgvCju9NMDktWSruSPJ3DrL5qyrrvJoyMW67L4YjNoVp2b7Y+k10E0q4fSMV0PlJoL0w==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      react: 17.0.2
+
   /@react-types/switch@3.2.5(react@17.0.2):
     resolution: {integrity: sha512-DlUL0Bz79SUTRje/i8m6qn4Ipn+q8QnyIkyJhkoHeH1R0YNude8xZrBPWbj3zfdddAGDFSF1NzP69q0xmNAcTQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/checkbox': 3.4.1(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/table@3.3.3(react@17.0.2):
@@ -5052,7 +5085,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/grid': 3.1.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/textfield@3.6.1(react@17.0.2):
@@ -5060,7 +5093,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@react-types/tooltip@3.2.5(react@17.0.2):
@@ -5069,7 +5102,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-types/overlays': 3.6.5(react@17.0.2)
-      '@react-types/shared': 3.17.0(react@17.0.2)
+      '@react-types/shared': 3.18.0(react@17.0.2)
       react: 17.0.2
 
   /@rushstack/node-core-library@3.53.2:
@@ -11187,27 +11220,22 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
-  /framer-motion@6.4.3(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-prcyOGFkGjwGEgbxObIWteVz1ihuWaDLdR03626cbA1GxTaPRpLb8ioJfWPmP5mwcWC7TlhMOjS5kBYnuiktFA==}
+  /framer-motion@10.12.4(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-9gLtv8T6dui0tujHROR+VM3kdJyKiFCFiD94IQE+0OuX6LaIyXtdVpviokVdrHSb1giWhmmX4yzoucALMx6mtw==}
     peerDependencies:
-      react: '>=16.8 || ^17.0.0 || ^18.0.0'
-      react-dom: '>=16.8 || ^17.0.0 || ^18.0.0'
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
     dependencies:
-      '@motionone/dom': 10.14.3
-      framesync: 6.0.1
-      hey-listen: 1.0.8
-      popmotion: 11.0.3
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      style-value-types: 5.0.0
       tslib: 2.4.1
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
-
-  /framesync@6.0.1:
-    resolution: {integrity: sha512-fUY88kXvGiIItgNC7wcTOl0SNRCVXMKSWW2Yzfmn7EKNc+MpCzcz9DhdHcdjbrtN3c6R4H5dTY2jiCpPdysEjA==}
-    dependencies:
-      tslib: 2.4.1
 
   /fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
@@ -11494,9 +11522,6 @@ packages:
   /headers-polyfill@3.1.2:
     resolution: {integrity: sha512-tWCK4biJ6hcLqTviLXVR9DTRfYGQMXEIUj3gwJ2rZ5wO/at3XtkI4g8mCvFdUF9l1KMBNCfmNAdnahm1cgavQA==}
     dev: true
-
-  /hey-listen@1.0.8:
-    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
 
   /hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
@@ -13492,14 +13517,6 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /popmotion@11.0.3:
-    resolution: {integrity: sha512-Y55FLdj3UxkR7Vl3s7Qr4e9m0onSnP8W7d/xQLsoJM40vs6UKHFdygs6SWryasTZYqugMjm3BepCF4CWXDiHgA==}
-    dependencies:
-      framesync: 6.0.1
-      hey-listen: 1.0.8
-      style-value-types: 5.0.0
-      tslib: 2.4.1
-
   /postcss-import@14.1.0(postcss@8.4.19):
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
     engines: {node: '>=10.0.0'}
@@ -14744,12 +14761,6 @@ packages:
   /style-mod@4.0.0:
     resolution: {integrity: sha512-OPhtyEjyyN9x3nhPsu76f52yUGXiZcgvsrFVtvTkyGRQJ0XK+GPc6ov1z+lRpbeabka+MYEQxOYRnt5nF30aMw==}
     dev: false
-
-  /style-value-types@5.0.0:
-    resolution: {integrity: sha512-08yq36Ikn4kx4YU6RD7jWEv27v4V+PUsOGa4n/as8Et3CuODMJQ00ENeAVXAeydX4Z2j1XHZF1K2sX4mGl18fA==}
-    dependencies:
-      hey-listen: 1.0.8
-      tslib: 2.4.1
 
   /styled-components@5.3.6(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2):
     resolution: {integrity: sha512-hGTZquGAaTqhGWldX7hhfzjnIYBZ0IXQXkCYdvF1Sq3DsUaLx6+NTHC5Jj1ooM2F68sBiVz3lvhfwQs/S3l6qg==}
