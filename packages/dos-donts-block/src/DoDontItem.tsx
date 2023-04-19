@@ -260,7 +260,15 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                             </div>
                         )}
                         <div className="tw-w-full tw-flex tw-items-center">
-                            <h3 style={{ marginBottom: 0, width: '100%', lineHeight: 1, display: 'inline-flex' }}>
+                            <h3
+                                style={{
+                                    marginBottom: 0,
+                                    marginTop: 0,
+                                    width: '100%',
+                                    lineHeight: 1,
+                                    display: 'inline-flex',
+                                }}
+                            >
                                 <textarea
                                     rows={1}
                                     ref={titleRef}
