@@ -270,6 +270,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                         {
                                             ...designTokens?.heading3,
                                             marginBottom: 0,
+                                            marginTop: 0,
                                             color: headingColor,
                                             '--placeholder-color': headingColor,
                                         } as CSSProperties
