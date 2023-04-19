@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Radius } from '../settings/types';
+import { Radius } from '../../settings/types';
 import { getRadiusStyles } from './getRadiusStyles';
 import { describe, expect, it } from 'vitest';
 

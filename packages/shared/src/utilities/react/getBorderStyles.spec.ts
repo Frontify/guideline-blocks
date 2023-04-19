@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BorderStyle } from '../settings/types';
+import { BorderStyle } from '../../settings/types';
 import { getBorderStyles } from './getBorderStyles';
 import { describe, expect, it } from 'vitest';
 

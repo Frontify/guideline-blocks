@@ -4,9 +4,9 @@ import { CSSProperties } from 'react';
 
 import { Color } from '@frontify/fondue';
 
-import { BorderStyle, borderStyleMap } from '../settings/types';
-import { BORDER_COLOR_DEFAULT_VALUE } from '../settings/defaultValues';
-import { toRgbaString } from './color';
+import { BorderStyle, borderStyleMap } from '../../settings/types';
+import { BORDER_COLOR_DEFAULT_VALUE } from '../../settings/defaultValues';
+import { toRgbaString } from '../color';
 
 export const getBorderStyles = (
     style = BorderStyle.Solid,
