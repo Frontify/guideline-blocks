@@ -22,7 +22,6 @@ describe('getBackgroundSettings', () => {
                     type: 'colorInput',
                 },
             ],
-            off: [],
         });
     });
 
@@ -44,7 +43,6 @@ describe('getBackgroundSettings', () => {
                     type: 'colorInput',
                 },
             ],
-            off: [],
         });
     });
 
@@ -66,7 +64,6 @@ describe('getBackgroundSettings', () => {
                     type: 'colorInput',
                 },
             ],
-            off: [],
         });
     });
 
@@ -88,7 +85,6 @@ describe('getBackgroundSettings', () => {
                     type: 'colorInput',
                 },
             ],
-            off: [],
         });
     });
 
@@ -116,7 +112,6 @@ describe('getBackgroundSettings', () => {
                     type: 'colorInput',
                 },
             ],
-            off: [],
         });
     });
 });

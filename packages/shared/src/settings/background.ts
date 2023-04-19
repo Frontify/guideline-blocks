@@ -36,6 +36,5 @@ export const getBackgroundSettings = (options?: BackgroundSettingsType): Setting
                 type: 'colorInput',
             },
         ],
-        off: [],
     };
 };
