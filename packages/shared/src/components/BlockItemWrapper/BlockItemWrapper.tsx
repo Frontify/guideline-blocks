@@ -3,7 +3,7 @@
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { joinClassNames } from '../../utilities';
 import Toolbar from './Toolbar';
-import { BlockItemWrapperProps } from './types';
+import { BlockItemWrapperProps, ToolbarItem } from './types';
 
 export const BlockItemWrapper = ({
     children,
@@ -31,6 +31,7 @@ export const BlockItemWrapper = ({
             (document.activeElement as HTMLElement).blur();
         }
     };
+    const items = toolbarItems?.filter((item): item is ToolbarItem => item !== undefined);
 
     return (
         <div
@@ -45,35 +46,34 @@ export const BlockItemWrapper = ({
             }}
             className={joinClassNames([
                 'tw-relative tw-group tw-outline-1 tw-outline-box-selected-inverse',
-                shouldFillContainer && 'tw-flex-1',
+                shouldFillContainer && 'tw-flex-1 tw-h-full tw-w-full',
                 !shouldHideWrapper && 'hover:tw-outline focus:tw-outline focus-within:tw-outline',
                 isFlyoutOpen && 'tw-outline',
+                shouldHideComponent && 'tw-opacity-0',
             ])}
         >
-            <div className={joinClassNames([shouldHideComponent && 'tw-opacity-0'])}>
-                <div
-                    style={{
-                        right: -1 - outlineOffset,
-                        bottom: `calc(100% - ${2 + outlineOffset}px)`,
-                    }}
-                    className={joinClassNames([
-                        'tw-absolute tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full tw-opacity-0 tw-z-10',
-                        !shouldHideWrapper &&
-                            'group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
-                        isFlyoutOpen && 'tw-opacity-100',
-                    ])}
-                >
-                    <Toolbar
-                        isFlyoutOpen={isFlyoutOpen}
-                        isFlyoutDisabled={isFlyoutDisabled}
-                        setIsFlyoutOpen={setIsFlyoutOpen}
-                        flyoutItems={toolbarFlyoutItems}
-                        items={toolbarItems}
-                        isDragging={isDragging}
-                    />
-                </div>
-                {children}
+            <div
+                style={{
+                    right: -1 - outlineOffset,
+                    bottom: `calc(100% - ${2 + outlineOffset}px)`,
+                }}
+                className={joinClassNames([
+                    'tw-absolute tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full tw-opacity-0 tw-z-10',
+                    !shouldHideWrapper &&
+                        'group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
+                    isFlyoutOpen && 'tw-opacity-100',
+                ])}
+            >
+                <Toolbar
+                    isFlyoutOpen={isFlyoutOpen}
+                    isFlyoutDisabled={isFlyoutDisabled}
+                    setIsFlyoutOpen={setIsFlyoutOpen}
+                    flyoutItems={toolbarFlyoutItems}
+                    items={items}
+                    isDragging={isDragging}
+                />
             </div>
+            {children}
         </div>
     );
 };
