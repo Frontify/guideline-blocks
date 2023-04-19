@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, SettingBlock, defineSettings } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import { Color, defineSettings } from '@frontify/guideline-blocks-settings';
+import { getBackgroundSettings, getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
 export const ASSET_SETTINGS_ID = 'images';
 export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {
@@ -17,21 +17,6 @@ export const BORDER_COLOR_DEFAULT_VALUE: Color = {
     alpha: 1,
 };
 
-const backgroundColor = (id: string, defaultValue = true): SettingBlock => ({
-    id: `hasBackground${id}`,
-    label: 'Background',
-    type: 'switch',
-    defaultValue,
-    on: [
-        {
-            id: `backgroundColor${id}`,
-            defaultValue: defaultValue ? BACKGROUND_COLOR_DEFAULT_VALUE : undefined,
-            type: 'colorInput',
-        },
-    ],
-    off: [],
-});
-
 export const settings = defineSettings({
     style: [
         {
@@ -39,7 +24,7 @@ export const settings = defineSettings({
             type: 'sectionHeading',
             label: 'Block',
             blocks: [
-                backgroundColor('Blocks', false),
+                getBackgroundSettings({ id: 'Blocks' }),
                 getBorderSettings({ id: 'blocks', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
                 getBorderRadiusSettings({ id: 'blocks' }),
             ],
@@ -49,7 +34,7 @@ export const settings = defineSettings({
             type: 'sectionHeading',
             label: 'Thumbnails',
             blocks: [
-                backgroundColor('Thumbnails'),
+                getBackgroundSettings({ id: 'Thumbnails', defaultValue: true }),
                 getBorderSettings({ id: 'thumbnails', defaultValue: true, defaultColor: BORDER_COLOR_DEFAULT_VALUE }),
                 getBorderRadiusSettings({ id: 'thumbnails' }),
             ],
