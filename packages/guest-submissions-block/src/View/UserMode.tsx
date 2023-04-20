@@ -28,6 +28,7 @@ import { Metadata } from "../Components/MetaData";
 import { useBlockSettings } from "@frontify/app-bridge";
 import { Settings } from "../types";
 import { AssetSubmission } from "../module/AssetSubmission/AssetSubmission";
+import { Disclaimer } from "../Components/Disclaimer";
 
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] =
@@ -134,13 +135,10 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
 
                             {fileList.length > 0 && (
                                 <Metadata
+                                    appBridge={appBridge}
                                     onSubmit={(formData) => {
                                         // setModalOpen(false);
-                                        // console.log(
-                                        //     "onsubmit",
-                                        //     formData,
-                                        //     fileList
-                                        // );
+                                        console.log("onsubmit", formData);
 
                                         const output = [];
                                         for (const formDataKey in formData) {
@@ -164,6 +162,11 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                         });
                                     }}
                                 >
+                                    <Divider color="rgb(234, 235, 235)" />
+
+                                    {blockSettings.disclaimer && (
+                                        <Disclaimer appBridge={appBridge} />
+                                    )}
                                     <Divider color="rgb(234, 235, 235)" />
 
                                     <div className="tw-mt-2 tw-flex tw-justify-end">

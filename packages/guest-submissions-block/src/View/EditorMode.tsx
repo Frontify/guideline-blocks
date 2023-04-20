@@ -5,6 +5,7 @@ import { Metadata } from "../Components/MetaData";
 import { Headline, ModalHeadline } from "../Components/Headline";
 import { Settings } from "../types";
 import { useBlockSettings } from "@frontify/app-bridge";
+import { Disclaimer } from "../Components/Disclaimer";
 
 export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] =
@@ -26,7 +27,12 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                         onSubmit={(formData) => {
                             console.log(false);
                         }}
-                    ></Metadata>
+                        appBridge={appBridge}
+                    >
+                        {blockSettings.disclaimer && (
+                            <Disclaimer appBridge={appBridge} />
+                        )}
+                    </Metadata>
                 </Stack>
             </div>
         </Stack>

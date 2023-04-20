@@ -1,9 +1,13 @@
 import React, { FC, useState } from "react";
 import { testMetadata } from "./constant";
-import { MetadataFactory } from "./MetadataFactory";
+import { CustomMetadataFactory } from "./CustomMetadataFactory";
 import { MetadataProps } from "./type";
 import { OnChangeProps } from "./Form/type";
 import { Stack } from "@frontify/fondue";
+import { BlockProps } from "@frontify/guideline-blocks-settings";
+import { StandardMetadataFactory } from "./StandardMetadataFactory";
+import { useBlockSettings } from "@frontify/app-bridge";
+import { Settings } from "../../types";
 
 type MetaDataSubmitProps = {
     onSubmit: (formData: FormValues) => void;
@@ -13,7 +17,14 @@ type MetaDataSubmitProps = {
 type FormValues = {
     [key: string]: string;
 };
-export const Metadata: FC<MetaDataSubmitProps> = ({ onSubmit, children }) => {
+export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
+    onSubmit,
+    children,
+    appBridge,
+}) => {
+    const [blockSettings, setBlockSettings] =
+        useBlockSettings<Settings>(appBridge);
+
     // This one we can set with the default values
 
     const initialValues = testMetadata
@@ -34,22 +45,28 @@ export const Metadata: FC<MetaDataSubmitProps> = ({ onSubmit, children }) => {
             [id]: value,
         }));
     };
-    const renderMetadataFields = () =>
-        testMetadata.map((item: MetadataProps) =>
-            MetadataFactory.getMetadataFormElement(item, handleInputChange)
-        );
+    const renderCustomMetadataFields = () =>
+        CustomMetadataFactory.getFormElements(testMetadata, handleInputChange);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         onSubmit(formValues);
     };
 
+    const renderStandardMetadataFields = () => {
+        return StandardMetadataFactory.getFormElements(
+            blockSettings,
+            handleInputChange
+        );
+    };
+
     return (
         <form onSubmit={handleSubmit}>
             <Stack padding={"none"} spacing={"s"} direction={"column"}>
-                {renderMetadataFields()}
+                {renderStandardMetadataFields()}
+                {renderCustomMetadataFields()}
+                {children}
             </Stack>
-            {children}
         </form>
     );
 };

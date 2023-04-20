@@ -27,6 +27,8 @@ export const settings = defineSettings({
             id: "assetSubmission",
             type: "dropdown",
             defaultValue: "cards",
+            label: "Destination library",
+            info: "You can choose from only libraries which allow an external asset upload. You can allow this in library settings.",
             size: DropdownSize.Large,
             choices: async () => {
                 const assetSubmissionRequests =
@@ -48,6 +50,51 @@ export const settings = defineSettings({
             placeholder: "Button Label",
         },
     ],
-    Form: [],
-    Metadata: [],
+    Form: [
+        {
+            id: "disclaimer",
+            type: "switch",
+            defaultValue: true,
+            info: "Show or Hide the disclaimer Notice",
+            label: "Disclaimer",
+        },
+    ],
+    Metadata: [
+        {
+            id: "name",
+            type: "switch",
+            defaultValue: true,
+            label: "Name",
+        },
+        {
+            id: "email",
+            type: "switch",
+            defaultValue: true,
+            label: "Email",
+        },
+        {
+            id: "description",
+            type: "switch",
+            defaultValue: true,
+            label: "Description",
+        },
+        {
+            id: "creator",
+            type: "switch",
+            defaultValue: true,
+            label: "Creator",
+        },
+        {
+            id: "copyrightStatus",
+            type: "switch",
+            defaultValue: true,
+            label: "CopyrightStatus",
+        },
+        {
+            id: "copyrightNotice",
+            type: "switch",
+            defaultValue: true,
+            label: "CopyrightNotice",
+        },
+    ],
 });

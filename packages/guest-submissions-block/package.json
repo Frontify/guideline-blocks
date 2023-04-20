@@ -23,16 +23,12 @@
         "@frontify/guideline-blocks-settings": "0.25.10",
         "@types/react": "17.0.53",
         "@types/react-dom": "17.0.18",
-        "@types/react-test-renderer": "^17.0.2",
-        "@vitest/ui": "latest",
         "autoprefixer": "10.4.13",
         "eslint": "8.33.0",
-        "happy-dom": "latest",
-        "jsdom": "latest",
         "prettier": "2.8.3",
-        "react-test-renderer": "17.0.2",
         "tailwind": "4.0.0",
         "typescript": "4.9.4",
+        "vite": "3.2.3",
         "vitest": "0.25.0"
     }
 }
