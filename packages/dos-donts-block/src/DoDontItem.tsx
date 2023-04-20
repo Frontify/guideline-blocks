@@ -9,16 +9,14 @@ import {
     IconImageStack20,
     IconTrashBin16,
     IconTrashBin20,
-    RichTextEditor,
-    parseRawValue,
-    serializeRawToHtml,
 } from '@frontify/fondue';
-import { BlockItemWrapper, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { BlockItemWrapper, RichTextEditor, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
 import autosize from 'autosize';
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
+import { getPlugins } from './helpers';
 
 export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
     (
@@ -83,9 +81,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             (value: string) => value !== body && onChangeItem(id, value, 'body'),
             [onChangeItem, body, id]
         );
-
-        const rawValue = useMemo(() => JSON.stringify(parseRawValue({ raw: body ?? '' })), [body]);
-        const html = useMemo(() => serializeRawToHtml(rawValue, designTokens), [designTokens, rawValue]);
 
         const headingColor = type === DoDontType.Do ? doColorString : dontColorString;
 
@@ -155,16 +150,15 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const memoizedRichTextEditor = useMemo(
             () => (
                 <RichTextEditor
-                    id={id}
+                    isEditing={editing}
                     designTokens={designTokens}
-                    border={false}
                     value={body}
                     onBlur={onBodyTextChange}
-                    onTextChange={onBodyTextChange}
+                    plugins={getPlugins(appBridge)}
                     placeholder="Add a description"
                 />
             ),
-            [body, designTokens, onBodyTextChange, id]
+            [body, designTokens, onBodyTextChange, editing, appBridge]
         );
 
         return (
@@ -301,11 +295,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                         data-test-id="dos-donts-content"
                         className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}
                     >
-                        {!editing ? (
-                            <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
-                        ) : (
-                            memoizedRichTextEditor
-                        )}
+                        {memoizedRichTextEditor}
                     </div>
                 </BlockItemWrapper>
                 <div
