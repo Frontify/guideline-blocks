@@ -15,7 +15,6 @@ export const InputDate = ({
     const [selectedDate, setSelectedDate] = useState<Date | null>(
         defaultValue as Date | null
     );
-    const onFocus = () => {};
 
     const onInput = (date: Date | null) => {
         setSelectedDate(date);
