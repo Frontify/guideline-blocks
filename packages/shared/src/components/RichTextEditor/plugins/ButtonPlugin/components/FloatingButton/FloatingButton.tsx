@@ -16,6 +16,7 @@ export const FloatingButtonEditRoot = createComponentAs<FloatingButtonProps>((pr
     if (htmlProps.style?.display === 'none') {
         return null;
     }
+
     return createElementAs('div', htmlProps);
 });
 
