@@ -10,7 +10,7 @@
         "jsx": "react",
         "skipLibCheck": true,
         "resolveJsonModule": true,
-        "types": ["cypress", "cypress-real-events"],
+        "types": ["cypress"],
         "outDir": "dist"
     },
     "include": ["src/**/*"],
