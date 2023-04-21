@@ -1574,9 +1574,6 @@ importers:
       cypress:
         specifier: 11.0.1
         version: 11.0.1
-      cypress-real-events:
-        specifier: 1.7.4
-        version: 1.7.4(cypress@11.0.1)
       eslint:
         specifier: 8.27.0
         version: 8.27.0
