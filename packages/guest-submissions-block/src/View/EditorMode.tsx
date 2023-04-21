@@ -5,11 +5,9 @@ import { Metadata } from "../Components/MetaData";
 import { Headline, ModalHeadline } from "../Components/Headline";
 import { Settings } from "../types";
 import { useBlockSettings } from "@frontify/app-bridge";
-import { Disclaimer } from "../Components/Disclaimer";
 
 export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
-    const [blockSettings, setBlockSettings] =
-        useBlockSettings<Settings>(appBridge);
+    const [blockSettings] = useBlockSettings<Settings>(appBridge);
     return (
         <Stack padding="s" spacing="s" direction={"column"}>
             <div className="tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4">
@@ -24,15 +22,11 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                 <Stack padding="l" spacing="s" direction={"column"}>
                     <ModalHeadline appBridge={appBridge} />
                     <Metadata
-                        onSubmit={(formData) => {
+                        onSubmit={() => {
                             console.log(false);
                         }}
                         appBridge={appBridge}
-                    >
-                        {blockSettings.disclaimer && (
-                            <Disclaimer appBridge={appBridge} />
-                        )}
-                    </Metadata>
+                    />
                 </Stack>
             </div>
         </Stack>

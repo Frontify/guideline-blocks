@@ -8,12 +8,9 @@ import {
     ButtonType,
     Divider,
     IconArrowRight24,
-    IconPlus24,
-    IconSize,
     Modal,
     ModalWidth,
     Stack,
-    Text,
 } from "@frontify/fondue";
 import { AssetDropzone } from "../Components/AssetDropzone";
 import { Headline, ModalHeadline } from "../Components/Headline";
@@ -27,12 +24,9 @@ import { FileUploadResponse } from "../module/FileUpload/Contract/FileUploadResp
 import { Metadata } from "../Components/MetaData";
 import { useBlockSettings } from "@frontify/app-bridge";
 import { Settings } from "../types";
-import { AssetSubmission } from "../module/AssetSubmission/AssetSubmission";
-import { Disclaimer } from "../Components/Disclaimer";
 
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
-    const [blockSettings, setBlockSettings] =
-        useBlockSettings<Settings>(appBridge);
+    const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -72,9 +66,11 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
         setFileList(updatedUploadList);
     };
 
+    const CARD_CONTAINER =
+        "tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4";
     return (
         <>
-            <div className="tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4">
+            <div className={CARD_CONTAINER}>
                 <Headline appBridge={appBridge} />
                 <div>
                     <Button onClick={() => setModalOpen(!modalOpen)}>
@@ -92,40 +88,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                     <div className="tw-p-6">
                         <Stack spacing="s" padding="none" direction="column">
                             <ModalHeadline appBridge={appBridge} />
-                            <AssetDropzone onFileUpload={onFileUploadHandler}>
-                                <Stack
-                                    padding="none"
-                                    spacing="s"
-                                    align="center"
-                                >
-                                    <IconPlus24 size={IconSize.Size24} />
-                                    <Stack
-                                        padding="none"
-                                        spacing="xxs"
-                                        direction="column"
-                                        align="start"
-                                    >
-                                        <Text
-                                            as="p"
-                                            color="weak"
-                                            overflow="visible"
-                                            size="medium"
-                                            weight="strong"
-                                        >
-                                            Upload from your disk
-                                        </Text>
-                                        <Text
-                                            as="p"
-                                            color="weak"
-                                            overflow="visible"
-                                            size="medium"
-                                            weight="default"
-                                        >
-                                            Drop your files here
-                                        </Text>
-                                    </Stack>
-                                </Stack>
-                            </AssetDropzone>
+                            <AssetDropzone onFileUpload={onFileUploadHandler} />
                             <UploadFileList
                                 entries={fileList}
                                 onEntryDeletion={onFileDeletion}
@@ -137,36 +100,34 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                 <Metadata
                                     appBridge={appBridge}
                                     onSubmit={(formData) => {
+                                        console.log(formData);
+
                                         // setModalOpen(false);
-                                        console.log("onsubmit", formData);
 
-                                        const output = [];
-                                        for (const formDataKey in formData) {
-                                            output.push({
-                                                id: formDataKey,
-                                                value: formData[formDataKey],
-                                            });
-                                        }
-
-                                        AssetSubmission.createAssetSubmissions({
-                                            requestId: "1", // {"identifier":1,"type":"assetSubmissionRequest"}
-                                            token: "Nas2YR66rKBSXfoo",
-                                            fileIds: fileList.map(
-                                                (item) => item.uploadUrlId!
-                                            ),
-                                            submitter: {
-                                                name: "hans",
-                                                email: "peter@hans.ch",
-                                            },
-                                            metadata: "[]",
-                                        });
+                                        // console.log("onsubmit", formData);
+                                        //
+                                        // const output = [];
+                                        // for (const formDataKey in formData) {
+                                        //     output.push({
+                                        //         id: formDataKey,
+                                        //         value: formData[formDataKey],
+                                        //     });
+                                        // }
+                                        //
+                                        // AssetSubmission.createAssetSubmissions({
+                                        //     requestId: "1", // {"identifier":1,"type":"assetSubmissionRequest"}
+                                        //     token: "Nas2YR66rKBSXfoo",
+                                        //     fileIds: fileList.map(
+                                        //         (item) => item.uploadUrlId!
+                                        //     ),
+                                        //     submitter: {
+                                        //         name: "hans",
+                                        //         email: "peter@hans.ch",
+                                        //     },
+                                        //     metadata: "[]",
+                                        // });
                                     }}
                                 >
-                                    <Divider color="rgb(234, 235, 235)" />
-
-                                    {blockSettings.disclaimer && (
-                                        <Disclaimer appBridge={appBridge} />
-                                    )}
                                     <Divider color="rgb(234, 235, 235)" />
 
                                     <div className="tw-mt-2 tw-flex tw-justify-end">
@@ -192,7 +153,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                     </div>
                                 </Metadata>
                             )}
-                            {fileList.length <= 0 && (
+                            {fileList.length === 0 && (
                                 <Button
                                     style={ButtonStyle.Default}
                                     emphasis={ButtonEmphasis.Default}

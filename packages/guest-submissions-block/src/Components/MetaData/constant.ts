@@ -1,22 +1,22 @@
-import { MetadataProps } from "./type";
+import { MetadataProps, MetadataType } from "./type";
 
 export const testMetadata: MetadataProps[] = [
     {
         id: "eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
-        isRequired: false,
-        defaultValue: null,
+        isRequired: true,
+        defaultValue: "text",
         name: "Campaign Name",
         valueType: {
-            propertyType: "TEXT",
+            propertyType: MetadataType.TEXT,
         },
     },
     {
         id: "eyJpZGVudGlmaWVyIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
-        isRequired: false,
-        defaultValue: null,
+        isRequired: true,
+        defaultValue: "",
         name: "Single Select",
         valueType: {
-            propertyType: "SELECT",
+            propertyType: MetadataType.SELECT,
             options: [
                 {
                     id: "eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9",
@@ -32,10 +32,10 @@ export const testMetadata: MetadataProps[] = [
     {
         id: "eyJpZGVudGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==",
         isRequired: false,
-        defaultValue: null,
+        defaultValue: "Campaign Description",
         name: "Campaign Description",
         valueType: {
-            propertyType: "LONGTEXT",
+            propertyType: MetadataType.LONGTEXT,
         },
     },
     {
@@ -44,7 +44,7 @@ export const testMetadata: MetadataProps[] = [
         defaultValue: null,
         name: "Event Number",
         valueType: {
-            propertyType: "NUMBER",
+            propertyType: MetadataType.NUMBER,
         },
     },
     {
@@ -53,7 +53,7 @@ export const testMetadata: MetadataProps[] = [
         defaultValue: null,
         name: "Campaign Date",
         valueType: {
-            propertyType: "DATE",
+            propertyType: MetadataType.DATE,
         },
     },
 ];

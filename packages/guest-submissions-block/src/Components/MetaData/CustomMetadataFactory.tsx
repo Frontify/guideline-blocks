@@ -1,6 +1,6 @@
 import React from "react";
 import { MetadataProps, MetadataType } from "./type";
-import { OnChangeProps } from "./Form/type";
+import { FormUtilities, OnChangeProps } from "./Form/type";
 import {
     InputDate,
     InputLong,
@@ -9,68 +9,48 @@ import {
     MultiSelectDropdown,
     SelectDropdown,
 } from "./Form";
+import { Validation } from "@frontify/fondue";
+
+type TypeMapObject = Record<
+    MetadataType,
+    React.FC<MetadataProps & FormUtilities>
+>;
 
 export class CustomMetadataFactory {
+    static MetadataTypeMap: TypeMapObject = {
+        [MetadataType.TEXT]: InputText,
+        [MetadataType.LONGTEXT]: InputLong,
+        [MetadataType.NUMBER]: InputNumber,
+        [MetadataType.DATE]: InputDate,
+        [MetadataType.MULTISELECT]: MultiSelectDropdown,
+        [MetadataType.SELECT]: SelectDropdown,
+    };
+
     static getFormElements(
         metadataList: MetadataProps[],
-        onChange: (val: OnChangeProps) => void
+        onChange: (val: OnChangeProps) => void,
+        errorFields: string[]
     ) {
-        const { TEXT, LONGTEXT, NUMBER, DATE, MULTISELECT, SELECT } =
-            MetadataType;
-
         return metadataList.map((metadata) => {
             const { propertyType } = metadata.valueType;
 
-            if (propertyType === TEXT) {
-                return (
-                    <InputText
-                        key={metadata.id}
-                        onChange={onChange}
-                        {...metadata}
-                    />
-                );
-            } else if (propertyType === LONGTEXT) {
-                return (
-                    <InputLong
-                        key={metadata.id}
-                        {...metadata}
-                        onChange={onChange}
-                    />
-                );
-            } else if (propertyType === NUMBER) {
-                return (
-                    <InputNumber
-                        key={metadata.id}
-                        {...metadata}
-                        onChange={onChange}
-                    />
-                );
-            } else if (propertyType === DATE) {
-                return (
-                    <InputDate
-                        key={metadata.id}
-                        {...metadata}
-                        onChange={onChange}
-                    />
-                );
-            } else if (propertyType === MULTISELECT) {
-                return (
-                    <MultiSelectDropdown
-                        key={metadata.id}
-                        {...metadata}
-                        onChange={onChange}
-                    />
-                );
-            } else if (propertyType === SELECT) {
-                return (
-                    <SelectDropdown
-                        key={metadata.id}
-                        {...metadata}
-                        onChange={onChange}
-                    />
-                );
-            }
-            return <div key={"nothing matched"}>nothing matches</div>;
+            const Template =
+                CustomMetadataFactory.MetadataTypeMap[propertyType];
+
+            return !!Template ? (
+                <Template
+                    {...metadata}
+                    key={metadata.id}
+                    onChange={onChange}
+                    validation={
+                        errorFields.includes(metadata.id)
+                            ? Validation.Error
+                            : Validation.Default
+                    }
+                />
+            ) : (
+                <></>
+            );
         });
     }
 }

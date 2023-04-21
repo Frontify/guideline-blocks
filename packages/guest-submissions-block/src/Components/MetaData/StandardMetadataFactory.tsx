@@ -2,6 +2,8 @@ import React from "react";
 import { OnChangeProps } from "./Form/type";
 import { Settings } from "../../types";
 import { InputText } from "./Form";
+import { Validation } from "@frontify/fondue";
+import { MetadataType } from "./type";
 
 type PartialSettingstype = Partial<
     Pick<
@@ -15,7 +17,7 @@ type PartialSettingstype = Partial<
     >
 >;
 
-const STANDARD_METADATA: (keyof PartialSettingstype)[] = [
+export const STANDARD_METADATA: (keyof PartialSettingstype)[] = [
     "name",
     "email",
     "description",
@@ -24,7 +26,10 @@ const STANDARD_METADATA: (keyof PartialSettingstype)[] = [
     "copyrightNotice",
 ];
 
-const STANDARD_METADATA_LABEL: Record<keyof PartialSettingstype, string> = {
+export const STANDARD_METADATA_LABEL: Record<
+    keyof PartialSettingstype,
+    string
+> = {
     name: "Name",
     email: "Email",
     description: "Description",
@@ -36,7 +41,8 @@ const STANDARD_METADATA_LABEL: Record<keyof PartialSettingstype, string> = {
 export class StandardMetadataFactory {
     static getFormElements(
         blockSettings: Settings,
-        onChange: (val: OnChangeProps) => void
+        onChange: (val: OnChangeProps) => void,
+        errorFields: string[]
     ) {
         const activeMetadataList = STANDARD_METADATA.filter(
             (item) => blockSettings[item]
@@ -50,7 +56,12 @@ export class StandardMetadataFactory {
                     onChange={onChange}
                     isRequired={true}
                     name={STANDARD_METADATA_LABEL[metadata]}
-                    valueType={{ propertyType: metadata }}
+                    valueType={{ propertyType: MetadataType.TEXT }}
+                    validation={
+                        errorFields.includes(metadata)
+                            ? Validation.Error
+                            : Validation.Default
+                    }
                 />
             );
         });

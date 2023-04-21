@@ -11,7 +11,7 @@ export const MultiSelectDropdown = ({
     name,
     onChange,
     validation,
-    valueType: { propertyType, options },
+    valueType: { options },
 }: MetadataProps & FormUtilities) => {
     const initialValue =
         defaultValue && defaultValue.value ? [defaultValue.value] : [];
@@ -25,8 +25,8 @@ export const MultiSelectDropdown = ({
 
     return (
         <div>
-            <FormLabel id={id}>
-                {name} {isRequired && "*"}{" "}
+            <FormLabel id={id} isRequired={isRequired}>
+                {name}
             </FormLabel>
 
             <MultiSelect

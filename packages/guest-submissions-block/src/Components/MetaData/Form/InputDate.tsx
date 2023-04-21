@@ -11,7 +11,6 @@ export const InputDate = ({
     name,
     onChange,
     validation,
-    valueType: { propertyType, options },
 }: MetadataProps & FormUtilities) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(
         defaultValue as Date | null
@@ -25,8 +24,8 @@ export const InputDate = ({
 
     return (
         <div>
-            <FormLabel id={id}>
-                {name} {isRequired && "*"}{" "}
+            <FormLabel id={id} isRequired={isRequired}>
+                {name}
             </FormLabel>
 
             <DatePicker
@@ -37,6 +36,7 @@ export const InputDate = ({
                 isClearable={true}
                 placeHolder="Select a date"
                 shouldCloseOnSelect={true}
+                validation={validation}
                 variant="single"
                 value={selectedDate as Date}
             />

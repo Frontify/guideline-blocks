@@ -11,7 +11,6 @@ export const InputNumber = ({
     name,
     onChange,
     validation,
-    valueType: { propertyType, options },
 }: MetadataProps & FormUtilities) => {
     const [textInput, setTextInput] = useState<string>(defaultValue ?? "");
     const onFocus = () => {};
@@ -23,8 +22,8 @@ export const InputNumber = ({
 
     return (
         <div>
-            <FormLabel id={id}>
-                {name} {isRequired && "*"}{" "}
+            <FormLabel id={id} isRequired={isRequired}>
+                {name}
             </FormLabel>
             <TextInput
                 type={TextInputType.Number}

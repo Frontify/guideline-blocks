@@ -22,8 +22,8 @@ export const InputLong = ({
 
     return (
         <div>
-            <FormLabel id={id}>
-                {name} {isRequired && "*"}{" "}
+            <FormLabel id={id} isRequired={isRequired}>
+                {name}
             </FormLabel>
             <Textarea
                 id={id}

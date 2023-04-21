@@ -13,7 +13,7 @@ export type MetadataProps = {
     defaultValue?: any;
     name: string;
     valueType: {
-        propertyType: string;
+        propertyType: MetadataType;
         options?: {
             id: string;
             value: string;

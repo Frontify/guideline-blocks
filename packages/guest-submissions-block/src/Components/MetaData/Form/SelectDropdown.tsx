@@ -28,8 +28,8 @@ export const SelectDropdown = ({
 
     return (
         <div>
-            <FormLabel id={id}>
-                {name} {isRequired && "*"}{" "}
+            <FormLabel id={id} isRequired={isRequired}>
+                {name}
             </FormLabel>
 
             <Dropdown
@@ -49,6 +49,7 @@ export const SelectDropdown = ({
                 onChange={onInput}
                 placeholder="select item"
                 size={DropdownSize.Small}
+                validation={validation}
             />
         </div>
     );
