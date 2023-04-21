@@ -112,4 +112,24 @@ describe('Link Selector', () => {
         cy.get(LinkSelectorButtonSelector).click();
         cy.get(SectionLinkSelector).should('have.length', 4);
     });
+
+    it('renders the all section and they are shown on focus and stores if you press enter', () => {
+        const appBridge = getAppBridgeBlockStub({
+            blockId: 1,
+        });
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+        (appBridge.getDocumentPagesByDocumentId as SinonStub) = cy.stub().returns(apiPages);
+        (appBridge.getDocumentSectionsByDocumentPageId as SinonStub) = cy.stub().returns(apiSections);
+
+        mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub().as('urlChange')} />);
+        cy.get(LinkSelectorButtonSelector).click();
+        cy.get(DocumentLinkSelector).should('have.length', 2);
+        cy.realPress('Tab').realPress('Tab');
+        cy.get(PageLinkSelector).should('have.length', 3);
+        cy.realPress('Tab').realPress('Tab');
+        cy.get(SectionLinkSelector).should('have.length', 4);
+        cy.realPress('Tab').realPress('Enter');
+        cy.get('@urlChange').should('be.calledWith', '/6');
+    });
 });

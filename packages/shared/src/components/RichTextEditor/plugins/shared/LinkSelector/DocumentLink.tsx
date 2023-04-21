@@ -37,6 +37,7 @@ export const DocumentLink = ({
     return (
         <>
             <div
+                tabIndex={0}
                 data-test-id="internal-link-selector-document-link"
                 className={merge([
                     'tw-flex tw-flex-1 tw-space-x-2 tw-items-center tw-py-2 tw-px-2.5 tw-leading-5 tw-cursor-pointer',
@@ -45,12 +46,14 @@ export const DocumentLink = ({
                         : 'hover:tw-bg-box-neutral-hover hover:tw-text-box-neutral-inverse-hover',
                 ])}
                 onClick={() => onSelectUrl(document.permanentLink)}
+                onFocus={() => onSelectUrl(document.permanentLink)}
             >
                 <button
                     data-test-id="tree-item-toggle"
                     className="tw-flex tw-items-center tw-justify-center tw-p-1.5 tw-cursor-pointer"
                     tabIndex={0}
                     onClick={() => setIsExpanded(!isExpanded)}
+                    onFocus={() => setIsExpanded(!isExpanded)}
                 >
                     <div
                         className={merge([
