@@ -10,13 +10,18 @@ import {
     IconTrashBin16,
     IconTrashBin20,
 } from '@frontify/fondue';
-import { BlockItemWrapper, RichTextEditor, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+import {
+    BlockItemWrapper,
+    RichTextEditor,
+    getDefaultPluginsWithLinkChooser,
+    joinClassNames,
+    toRgbaString,
+} from '@frontify/guideline-blocks-shared';
 import autosize from 'autosize';
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
-import { getPlugins } from './helpers';
 
 export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
     (
@@ -154,7 +159,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     designTokens={designTokens}
                     value={body}
                     onBlur={onBodyTextChange}
-                    plugins={getPlugins(appBridge)}
+                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                     placeholder="Add a description"
                 />
             ),

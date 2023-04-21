@@ -21,11 +21,10 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
+import { ButtonPlugin, LinkPlugin } from '../plugins';
 
-export const getPlugins = (appBridge: AppBridgeBlock) => {
-    const plugins = new PluginComposer();
-    plugins
+export const getDefaultPluginsWithLinkChooser = (appBridge: AppBridgeBlock) => {
+    return new PluginComposer()
         .setPlugin(new SoftBreakPlugin(), new ParagraphPlugin())
         .setPlugin(new TextStylePlugin())
         .setPlugin(
@@ -50,5 +49,4 @@ export const getPlugins = (appBridge: AppBridgeBlock) => {
                 new EmojiPlugin(),
             ]
         );
-    return plugins;
 };
