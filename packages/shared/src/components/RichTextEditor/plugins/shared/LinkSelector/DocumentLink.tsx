@@ -36,11 +36,10 @@ export const DocumentLink = ({
 
     return (
         <>
-            <div
-                tabIndex={0}
+            <button
                 data-test-id="internal-link-selector-document-link"
                 className={merge([
-                    'tw-flex tw-flex-1 tw-space-x-2 tw-items-center tw-py-2 tw-px-2.5 tw-leading-5 tw-cursor-pointer',
+                    'tw-flex tw-flex-1 tw-space-x-2 tw-items-center tw-py-2 tw-px-2.5 tw-leading-5 tw-cursor-pointer tw-w-full',
                     isActive
                         ? 'tw-bg-box-selected-strong tw-text-box-selected-strong-inverse hover:tw-bg-box-selected-strong-hover:hover hover:tw-text-box-selected-strong-inverse-hover:hover'
                         : 'hover:tw-bg-box-neutral-hover hover:tw-text-box-neutral-inverse-hover',
@@ -48,10 +47,11 @@ export const DocumentLink = ({
                 onClick={() => onSelectUrl(document.permanentLink)}
                 onFocus={() => onSelectUrl(document.permanentLink)}
             >
-                <button
+                <div
+                    role="button"
+                    tabIndex={0}
                     data-test-id="tree-item-toggle"
                     className="tw-flex tw-items-center tw-justify-center tw-p-1.5 tw-cursor-pointer"
-                    tabIndex={0}
                     onClick={() => setIsExpanded(!isExpanded)}
                     onFocus={() => setIsExpanded(!isExpanded)}
                 >
@@ -61,11 +61,11 @@ export const DocumentLink = ({
                             isExpanded ? 'tw-rotate-90' : '',
                         ])}
                     ></div>
-                </button>
+                </div>
                 <IconColorFan16 />
                 <span className="tw-text-s">{document.title}</span>
                 <span className="tw-flex-auto tw-font-sans tw-text-xs tw-text-right">Document</span>
-            </div>
+            </button>
             {isExpanded && (
                 <PageLinks
                     appBridge={appBridge}

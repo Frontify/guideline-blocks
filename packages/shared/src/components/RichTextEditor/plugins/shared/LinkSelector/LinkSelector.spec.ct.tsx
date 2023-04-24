@@ -17,6 +17,7 @@ const LinkSelectorSelector = '[data-test-id="internal-link-selector"]';
 const LinkSelectorButtonSelector = '[data-test-id="internal-link-selector"] > button';
 const LinkSelectorModalSelector = '[data-test-id="modal-body"]';
 const DocumentLinkSelector = '[data-test-id="internal-link-selector-document-link"]';
+const DocumentTreeItemToggleSelector = '[data-test-id="tree-item-toggle"]';
 const PageLinkSelector = '[data-test-id="internal-link-selector-page-link"]';
 const SectionLinkSelector = '[data-test-id="internal-link-selector-section-link"]';
 
@@ -80,7 +81,7 @@ describe('Link Selector', () => {
 
         mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub()} />);
         cy.get(LinkSelectorButtonSelector).click();
-        cy.get(DocumentLinkSelector).eq(0).find('button').click();
+        cy.get(DocumentLinkSelector).eq(0).find(DocumentTreeItemToggleSelector).click();
         cy.get(PageLinkSelector).should('have.length', 3);
     });
 
@@ -95,7 +96,7 @@ describe('Link Selector', () => {
 
         mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub()} />);
         cy.get(LinkSelectorButtonSelector).click();
-        cy.get(DocumentLinkSelector).eq(0).find('button').click();
+        cy.get(DocumentLinkSelector).eq(0).find(DocumentTreeItemToggleSelector).click();
         cy.get(PageLinkSelector).eq(0).find('button').click();
         cy.get(SectionLinkSelector).should('have.length', 4);
     });

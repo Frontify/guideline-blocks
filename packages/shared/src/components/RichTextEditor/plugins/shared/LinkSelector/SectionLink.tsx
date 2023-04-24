@@ -17,11 +17,10 @@ export const SectionLink = ({ section, selectedUrl, onSelectUrl }: SectionLinkPr
     const isActive = section.permanentLink === selectedUrl;
 
     return (
-        <div
-            tabIndex={0}
+        <button
             data-test-id="internal-link-selector-section-link"
             className={merge([
-                'tw-py-2 tw-px-2.5 tw-pl-14 tw-leading-5 tw-cursor-pointer',
+                'tw-py-2 tw-px-2.5 tw-pl-14 tw-leading-5 tw-cursor-pointer tw-w-full',
                 isActive
                     ? 'tw-bg-box-selected-strong tw-text-box-selected-strong-inverse hover:tw-bg-box-selected-strong-hover:hover hover:tw-text-box-selected-strong-inverse-hover:hover'
                     : 'hover:tw-bg-box-neutral-hover hover:tw-text-box-neutral-inverse-hover',
@@ -34,6 +33,6 @@ export const SectionLink = ({ section, selectedUrl, onSelectUrl }: SectionLinkPr
                 <span className="tw-text-s">{section.title}</span>
                 <span className="tw-flex-auto tw-font-sans tw-text-xs tw-text-right">Section</span>
             </div>
-        </div>
+        </button>
     );
 };
