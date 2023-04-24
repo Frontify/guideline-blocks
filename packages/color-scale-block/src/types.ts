@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MouseEvent, ReactChild } from 'react';
-import { Color, DraggableItem, DropZonePosition, Palette } from '@frontify/fondue';
+import { CollisionPosition, Color, DraggableItem, Palette } from '@frontify/fondue';
 
 export type Settings = {
     customHeight: boolean;
@@ -27,7 +27,7 @@ export type ColorSquareProps = {
     color: ColorProps;
     isEditing: boolean;
     onDelete: (color: number) => void;
-    onDrop: (targetItem: ColorProps, sourceItem: ColorProps, position: DropZonePosition) => void;
+    onDrop: (targetItem: ColorProps, sourceItem: ColorProps, position: CollisionPosition) => void;
     onResizeStart: (event: MouseEvent, id: number, currentColor?: ColorProps) => void;
     currentlyDraggedColorId: Nullable<number> | undefined;
     setCurrentlyDraggedColorId: (value: Nullable<number>) => void;
@@ -36,16 +36,16 @@ export type ColorSquareProps = {
 export type OnDropCallback<T> = (
     targetItem: DraggableItem<T>,
     sourceItem: DraggableItem<T>,
-    position: DropZonePosition
+    position: CollisionPosition
 ) => void;
 
 export type DropZoneData<T> = {
     targetItem: DraggableItem<T> | ColorProps;
-    position: DropZonePosition;
+    position: CollisionPosition;
 };
 
 export type DropZoneProps = {
-    onDrop?: (targetItem: ColorProps, movedItem: ColorProps, position: DropZonePosition) => void;
+    onDrop?: (targetItem: ColorProps, movedItem: ColorProps, position: CollisionPosition) => void;
     width: number;
     before?: boolean;
     after?: boolean;
@@ -53,7 +53,7 @@ export type DropZoneProps = {
     isDraggingActive: boolean;
     data: {
         targetItem: ColorProps;
-        position: DropZonePosition;
+        position: CollisionPosition;
     };
 };
 

@@ -1,16 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrag } from 'react-dnd';
-import {
-    Button,
-    ButtonSize,
-    ButtonStyle,
-    DropZonePosition,
-    IconSize,
-    IconTrashBin,
-    Tooltip,
-    useCopy,
-} from '@frontify/fondue';
+import { Button, ButtonSize, ButtonStyle, IconSize, IconTrashBin, Tooltip, useCopy } from '@frontify/fondue';
 import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 
@@ -76,7 +67,7 @@ export const ColorSquare = ({
                 isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                 data={{
                     targetItem: color,
-                    position: DropZonePosition.Before,
+                    position: 'before',
                 }}
                 onDrop={onDrop}
             />
@@ -154,7 +145,7 @@ export const ColorSquare = ({
                 isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                 data={{
                     targetItem: color,
-                    position: DropZonePosition.After,
+                    position: 'after',
                 }}
                 onDrop={onDrop}
             />

@@ -14,10 +14,10 @@ import {
     UnderlinePlugin,
 } from '@frontify/fondue';
 import {
+    RichTextEditor,
     convertToRteValue,
     hasRichTextValue,
     useGuidelineDesignTokens,
-    RichTextEditor,
 } from '@frontify/guideline-blocks-shared';
 import { useMemo } from 'react';
 import { InformationSectionProps } from '../types';
