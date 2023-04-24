@@ -17,17 +17,22 @@ type BackgroundSettingsType = {
     id?: string;
     defaultValue?: boolean;
     defaultColor?: Color;
+    hasDefaultColor?: boolean;
+    switchLabel?: string;
 };
 
 export const getBackgroundSettings = (options?: BackgroundSettingsType): SettingBlock => {
+    const showDefaultColor = options?.hasDefaultColor !== undefined ? options?.hasDefaultColor : true;
     const hasId = options?.id ? `hasBackground${options.id}` : 'hasBackground';
     const colorId = options?.id ? `backgroundColor${options.id}` : 'backgroundColor';
-    const defaultColor = options?.defaultColor || BACKGROUND_COLOR_DEFAULT_VALUE;
+    const defaultColor = showDefaultColor ? options?.defaultColor || BACKGROUND_COLOR_DEFAULT_VALUE : undefined;
+    const switchLabel = options?.switchLabel ? options.switchLabel : undefined;
 
     return {
         id: hasId,
         label: 'Background',
         type: 'switch',
+        switchLabel,
         defaultValue: !!options?.defaultValue,
         on: [
             {

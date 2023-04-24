@@ -24,6 +24,7 @@ type BorderSettingsType = {
     id?: string;
     defaultValue?: boolean;
     defaultColor?: Color;
+    switchLabel?: string;
 };
 
 export const getBorderSettings = (options?: BorderSettingsType): SettingBlock => {
@@ -33,11 +34,13 @@ export const getBorderSettings = (options?: BorderSettingsType): SettingBlock =>
     const widthId = options?.id ? `borderWidth_${options.id}` : 'borderWidth';
     const colorId = options?.id ? `borderColor_${options.id}` : 'borderColor';
     const defaultColor = options?.defaultColor || BORDER_COLOR_DEFAULT_VALUE;
+    const switchLabel = options?.switchLabel ? options.switchLabel : undefined;
 
     return {
         id: hasId,
         label: 'Border',
         type: 'switch',
+        switchLabel,
         defaultValue: !!options?.defaultValue,
         on: [
             {
