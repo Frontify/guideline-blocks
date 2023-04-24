@@ -20,6 +20,7 @@ export const DownloadButton = ({ onDownload }: DownloadButtonProps) => {
                     {...focusProps}
                     className={joinClassNames(['tw-outline-none tw-rounded', isFocused && FOCUS_STYLE])}
                     onClick={onDownload}
+                    onPointerDown={(e) => e.preventDefault()}
                 >
                     <span
                         data-test-id="download-button"
