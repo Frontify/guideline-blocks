@@ -16,6 +16,7 @@ import { BorderStyle } from './types';
  *
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
+ * @param options.switchLabel Label for the border switch
  * @param options.defaultValue Default value for the border switch
  * @returns {SettingBlock} Returns border settings
  */

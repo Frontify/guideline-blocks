@@ -10,6 +10,8 @@ import { BACKGROUND_COLOR_DEFAULT_VALUE } from './defaultValues';
  * @param options.id Custom suffix for the setting ids
  * @param options.defaultValue Default value for the background switch
  * @param options.defaultColor Default value for the background color
+ * @param options.hasDefaultColor Whether the background color should have a default value
+ * @param options.switchLabel Label for the background switch
  * @returns {SettingBlock} Returns border settings
  */
 
