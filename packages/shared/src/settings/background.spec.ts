@@ -137,7 +137,7 @@ describe('getBackgroundSettings', () => {
         });
     });
     it('should not return default color if hasDefaultColor is false', () => {
-        expect(getBackgroundSettings({ hasDefaultColor: false })).toEqual({
+        expect(getBackgroundSettings({ preventDefaultColor: true })).toEqual({
             id: 'hasBackground',
             label: 'Background',
             type: 'switch',
@@ -151,7 +151,7 @@ describe('getBackgroundSettings', () => {
         });
     });
     it('should return default color if hasDefaultColor is true', () => {
-        expect(getBackgroundSettings({ hasDefaultColor: true })).toEqual({
+        expect(getBackgroundSettings({ preventDefaultColor: false })).toEqual({
             id: 'hasBackground',
             label: 'Background',
             type: 'switch',
