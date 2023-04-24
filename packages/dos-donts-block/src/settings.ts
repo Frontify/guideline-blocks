@@ -159,7 +159,7 @@ export const settings = defineSettings({
                     id: 'keepSideBySide',
                     label: 'Always show side by side',
                     type: 'switch',
-                    show: (bundle) => bundle.getBlock('columns')?.value === '2',
+                    show: (bundle) => bundle.getBlock('columns')?.value?.toString() === '2',
                     defaultValue: true,
                 },
                 {
