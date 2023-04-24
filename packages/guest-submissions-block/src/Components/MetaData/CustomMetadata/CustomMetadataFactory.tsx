@@ -1,6 +1,6 @@
 import React from "react";
-import { MetadataProps, MetadataType } from "./type";
-import { FormUtilities, OnChangeProps } from "./Form/type";
+import { MetadataProps, MetadataType } from "../type";
+import { FormUtilities, OnChangeProps } from "../Form/type";
 import {
     InputDate,
     InputLong,
@@ -8,7 +8,7 @@ import {
     InputText,
     MultiSelectDropdown,
     SelectDropdown,
-} from "./Form";
+} from "../Form";
 import { Validation } from "@frontify/fondue";
 
 type TypeMapObject = Record<

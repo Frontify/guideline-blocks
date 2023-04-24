@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { testMetadata } from "./constant";
-import { CustomMetadataFactory } from "./CustomMetadataFactory";
+import { CustomMetadataFactory } from "./CustomMetadata";
 import { MetadataProps } from "./type";
 import { OnChangeProps } from "./Form/type";
 import { Divider, Stack, Validation } from "@frontify/fondue";
@@ -65,6 +65,7 @@ export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
         }
     };
 
+    // This one to extract and add some test
     const validateFormOrTriggerError = (
         requiredStandardMetadata: (keyof RequiredSettingsType)[],
         metaConfigurationData: MetadataProps[],
