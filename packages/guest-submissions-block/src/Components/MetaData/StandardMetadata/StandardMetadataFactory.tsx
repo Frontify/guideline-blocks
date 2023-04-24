@@ -1,9 +1,9 @@
 import React from "react";
-import { OnChangeProps } from "./Form/type";
-import { Settings } from "../../types";
-import { InputText } from "./Form";
+import { OnChangeProps } from "../Form/type";
+import { Settings } from "../../../types";
+import { InputText } from "../Form";
 import { Validation } from "@frontify/fondue";
-import { MetadataType } from "./type";
+import { MetadataType } from "../type";
 
 type PartialSettingstype = Partial<
     Pick<
