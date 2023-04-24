@@ -2,14 +2,18 @@
 
 import { UseVirtualFloatingOptions, flip, offset, useVirtualFloating } from '@udecode/plate';
 
-const OFFSET = 12;
+const OFFSET_Y = 12;
+const OFFSET_X = -22;
 const PADDING = 96;
 
 export const useVirtualFloatingButton = (floatingOptions?: UseVirtualFloatingOptions) =>
     useVirtualFloating({
         placement: 'bottom-start',
         middleware: [
-            offset(OFFSET),
+            offset({
+                mainAxis: OFFSET_Y,
+                alignmentAxis: OFFSET_X,
+            }),
             flip({
                 padding: PADDING,
             }),
