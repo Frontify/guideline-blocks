@@ -52,15 +52,6 @@ export const settings = defineSettings({
     ],
     Form: [
         {
-            id: "disclaimer",
-            type: "switch",
-            defaultValue: true,
-            info: "Show or Hide the disclaimer Notice",
-            label: "Disclaimer",
-        },
-    ],
-    Metadata: [
-        {
             id: "name",
             type: "switch",
             defaultValue: true,
@@ -73,27 +64,36 @@ export const settings = defineSettings({
             label: "Email",
         },
         {
-            id: "description",
+            id: "disclaimer",
             type: "switch",
             defaultValue: true,
+            info: "Show or Hide the disclaimer Notice",
+            label: "Disclaimer",
+        },
+    ],
+    Metadata: [
+        {
+            id: "description",
+            type: "switch",
+            defaultValue: false,
             label: "Description",
         },
         {
             id: "creator",
             type: "switch",
-            defaultValue: true,
+            defaultValue: false,
             label: "Creator",
         },
         {
             id: "copyrightStatus",
             type: "switch",
-            defaultValue: true,
+            defaultValue: false,
             label: "CopyrightStatus",
         },
         {
             id: "copyrightNotice",
             type: "switch",
-            defaultValue: true,
+            defaultValue: false,
             label: "CopyrightNotice",
         },
     ],

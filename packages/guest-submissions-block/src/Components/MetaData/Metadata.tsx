@@ -8,11 +8,12 @@ import { BlockProps } from "@frontify/guideline-blocks-settings";
 import {
     Disclaimer,
     DISCLAIMER_NAME,
-    STANDARD_METADATA,
     StandardMetadataFactory,
 } from "./StandardMetadata";
 import { useBlockSettings } from "@frontify/app-bridge";
 import { Settings } from "../../types";
+import { RequiredSettingsType } from "./StandardMetadata/type";
+import { REQUIRED_FORM_DATA } from "./StandardMetadata/constant";
 
 type MetaDataSubmitProps = {
     onSubmit: (formData: FormValues) => void;
@@ -30,7 +31,7 @@ export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
 }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    let initialValues = [] as unknown as FormValues;
+    let initialValues: FormValues;
 
     initialValues = metadataConfiguration
         .filter((item) => !!item.defaultValue)
@@ -52,41 +53,49 @@ export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-
-        console.log(formValues);
-        if (validateFormOrTriggerError()) {
+        if (
+            validateFormOrTriggerError(
+                REQUIRED_FORM_DATA,
+                metadataConfiguration,
+                setErrorFields,
+                blockSettings
+            )
+        ) {
             onSubmit(formValues);
         }
     };
 
-    const validateFormOrTriggerError = (): boolean => {
+    const validateFormOrTriggerError = (
+        requiredStandardMetadata: (keyof RequiredSettingsType)[],
+        metaConfigurationData: MetadataProps[],
+        setMissingFields: (
+            value: ((prevState: string[]) => string[]) | string[]
+        ) => void,
+        fromBlockSettings: Settings
+    ): boolean => {
         // All the Standard Metadata is required
-        const requiredStandartMetadata = STANDARD_METADATA.filter(
-            (item) => blockSettings[item]
+        const requiredStandartMetadata = requiredStandardMetadata.filter(
+            (item) => fromBlockSettings[item]
         );
-        const requiredCustomMetadataId = metadataConfiguration
+        const requiredCustomMetadataId = metaConfigurationData
             .filter((item) => item.isRequired)
             .map((item) => item.id);
-
-        const disclaimer = blockSettings["disclaimer"];
 
         const requiredFields = [
             ...requiredCustomMetadataId,
             ...requiredStandartMetadata,
-            disclaimer ? DISCLAIMER_NAME : "",
         ];
 
-        setErrorFields(
-            requiredFields.filter(
-                (item) => !Object.keys(formValues).includes(item)
-            )
+        const missingRequiredFields = requiredFields.filter(
+            (item) =>
+                !Object.keys(formValues).includes(item) ||
+                (Object.keys(formValues).includes(item) &&
+                    formValues[item] === "")
         );
 
-        return (
-            requiredFields.filter(
-                (item) => !Object.keys(formValues).includes(item)
-            ).length === 0
-        );
+        setMissingFields(missingRequiredFields);
+
+        return missingRequiredFields.length === 0;
     };
 
     return (

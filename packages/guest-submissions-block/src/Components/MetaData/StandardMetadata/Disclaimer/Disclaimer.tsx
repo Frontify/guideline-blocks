@@ -68,8 +68,11 @@ export const Disclaimer: FC<
                             ? setChecked(CheckboxState.Unchecked)
                             : setChecked(CheckboxState.Checked);
                         checked === CheckboxState.Checked
-                            ? onChange({ id: "disclaimer", value: "false" })
-                            : onChange({ id: "disclaimer", value: "" });
+                            ? onChange({ id: "disclaimer", value: "" })
+                            : onChange({
+                                  id: "disclaimer",
+                                  value: CheckboxState.Checked,
+                              });
                     }}
                     id="disclaimer"
                     state={checked}
