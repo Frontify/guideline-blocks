@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, MouseEvent as ReactMouseEvent, ReactNode, useEffect, useState } from 'react';
+import { MouseEvent as ReactMouseEvent, ReactNode, useEffect, useState } from 'react';
 import { MIN_HEIGHT_VALUE } from '../settings';
 
 type Props = {
