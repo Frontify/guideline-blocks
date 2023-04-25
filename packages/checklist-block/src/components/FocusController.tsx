@@ -2,7 +2,7 @@
 
 import { FOCUS_STYLE, merge } from '@frontify/fondue';
 import { useFocusRing } from '@react-aria/focus';
-import { FC, KeyboardEvent, MouseEvent, ReactElement, useRef } from 'react';
+import { FC, KeyboardEvent, MouseEvent, MutableRefObject, ReactElement, RefObject, useRef } from 'react';
 
 type FocusControllerProps = {
     children: ReactElement;
@@ -23,7 +23,6 @@ export const FocusController: FC<FocusControllerProps> = ({ children, width = Fo
     const { isFocused, focusProps } = useFocusRing();
 
     const focusControllerRef = useRef<HTMLDivElement | null>(null);
-    const childRef = useRef<HTMLElement | null>(null);
     if (typeof children !== 'object') {
         return children;
     }
@@ -35,14 +34,12 @@ export const FocusController: FC<FocusControllerProps> = ({ children, width = Fo
                 event.stopPropagation();
                 if (!isChildsEvent) {
                     event.preventDefault();
-                    childRef?.current?.focus();
                 }
                 break;
             case 'Enter':
                 event.stopPropagation();
                 if (!isChildsEvent) {
                     event.preventDefault();
-                    childRef?.current?.focus();
                 } else {
                     focusControllerRef?.current?.focus();
                 }
@@ -67,7 +64,6 @@ export const FocusController: FC<FocusControllerProps> = ({ children, width = Fo
     const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
             event.preventDefault();
-            childRef?.current?.focus();
         }
     };
 
@@ -82,7 +78,7 @@ export const FocusController: FC<FocusControllerProps> = ({ children, width = Fo
             {...focusProps}
         >
             <div hidden={true} className={merge(['tw-flex', FocusControllerWidthClass[width]])}>
-                {{ ...children, ref: childRef }}
+                {children}
             </div>
         </div>
     );
