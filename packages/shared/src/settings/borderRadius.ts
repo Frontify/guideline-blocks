@@ -56,7 +56,7 @@ export const getBorderRadiusSettings = (options?: BorderRadiusSettingsType): Set
         type: 'switch',
         switchLabel: 'Custom',
         defaultValue: false,
-        info: 'Determining how rounded the corners are',
+        info: 'Determining how rounded the corners are.',
         show: (bundle) => (options?.dependentSettingId ? !!bundle.getBlock(options.dependentSettingId)?.value : true),
         onChange: (bundle) => presetCustomValue(bundle, choiceId, valueId, options?.radiusStyleMap || radiusStyleMap),
         on: [

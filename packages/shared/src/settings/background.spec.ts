@@ -114,4 +114,60 @@ describe('getBackgroundSettings', () => {
             ],
         });
     });
+
+    it('should return background settings with switch label', () => {
+        expect(getBackgroundSettings({ switchLabel: 'Test' })).toEqual({
+            id: 'hasBackground',
+            label: 'Background',
+            type: 'switch',
+            switchLabel: 'Test',
+            defaultValue: false,
+            on: [
+                {
+                    id: 'backgroundColor',
+                    defaultValue: {
+                        red: 241,
+                        green: 241,
+                        blue: 241,
+                        alpha: 1,
+                    },
+                    type: 'colorInput',
+                },
+            ],
+        });
+    });
+    it('should not return default color if hasDefaultColor is false', () => {
+        expect(getBackgroundSettings({ preventDefaultColor: true })).toEqual({
+            id: 'hasBackground',
+            label: 'Background',
+            type: 'switch',
+            defaultValue: false,
+            on: [
+                {
+                    id: 'backgroundColor',
+                    type: 'colorInput',
+                },
+            ],
+        });
+    });
+    it('should return default color if hasDefaultColor is true', () => {
+        expect(getBackgroundSettings({ preventDefaultColor: false })).toEqual({
+            id: 'hasBackground',
+            label: 'Background',
+            type: 'switch',
+            defaultValue: false,
+            on: [
+                {
+                    id: 'backgroundColor',
+                    defaultValue: {
+                        red: 241,
+                        green: 241,
+                        blue: 241,
+                        alpha: 1,
+                    },
+                    type: 'colorInput',
+                },
+            ],
+        });
+    });
 });
