@@ -1,4 +1,7 @@
 export type Settings = {
+    assetSubmission: {
+        id: string;
+    };
     columnNumber: number;
     content?: string;
     modalcontent?: string;

@@ -24,6 +24,7 @@ import { FileUploadResponse } from "../module/FileUpload/Contract/FileUploadResp
 import { Metadata } from "../Components/MetaData";
 import { useBlockSettings } from "@frontify/app-bridge";
 import { Settings } from "../types";
+import { AssetSubmission } from "../module/AssetSubmission/AssetSubmission";
 
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -98,32 +99,22 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                 <Metadata
                                     appBridge={appBridge}
                                     onSubmit={(formData) => {
-                                        console.log(formData);
-
-                                        // setModalOpen(false);
-
-                                        // console.log("onsubmit", formData);
-                                        //
-                                        // const output = [];
-                                        // for (const formDataKey in formData) {
-                                        //     output.push({
-                                        //         id: formDataKey,
-                                        //         value: formData[formDataKey],
-                                        //     });
-                                        // }
-                                        //
-                                        // AssetSubmission.createAssetSubmissions({
-                                        //     requestId: "1", // {"identifier":1,"type":"assetSubmissionRequest"}
-                                        //     token: "Nas2YR66rKBSXfoo",
-                                        //     fileIds: fileList.map(
-                                        //         (item) => item.uploadUrlId!
-                                        //     ),
-                                        //     submitter: {
-                                        //         name: "hans",
-                                        //         email: "peter@hans.ch",
-                                        //     },
-                                        //     metadata: "[]",
-                                        // });
+                                        setModalOpen(false);
+                                        // Todo: Adjust Datastructure when Endpoint is set
+                                        AssetSubmission.createAssetSubmissions({
+                                            requestId:
+                                                blockSettings.assetSubmission
+                                                    .id,
+                                            token: "Nas2YR66rKBSXfoo",
+                                            fileIds: fileList.map(
+                                                (item) => item.uploadUrlId!
+                                            ),
+                                            submitter: {
+                                                name: "hans",
+                                                email: "peter@hans.ch",
+                                            },
+                                            metadata: JSON.stringify(formData),
+                                        });
                                     }}
                                 >
                                     <Divider color="rgb(234, 235, 235)" />

@@ -34,6 +34,7 @@ export const settings = defineSettings({
                 const assetSubmissionRequests =
                     await AssetSubmission.getAssetSubmissionRequests();
 
+                console.log(assetSubmissionRequests);
                 return assetSubmissionRequests.map((submission: any) => ({
                     value: submission.id,
                     label: submission.title,
