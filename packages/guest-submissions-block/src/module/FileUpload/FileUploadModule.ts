@@ -11,7 +11,7 @@ export class FileUploadModule implements FileUploadProperties {
         const service = new WorkerService();
         const chunks = this.chunkify(files, 10);
         chunks.forEach((chunk) => {
-            service.createWorker(chunk, onChange);
+            service.processFileChunks(chunk, onChange);
         });
     }
 

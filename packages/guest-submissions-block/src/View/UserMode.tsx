@@ -27,9 +27,7 @@ import { Settings } from "../types";
 
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
-
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-
     const [fileList, setFileList] = useState<
         QueryFile[] | (QueryFile & File)[]
     >([]);

@@ -5,7 +5,7 @@ import { FileUploadResponse } from "../Contract/FileUploadResponse";
 import { WebWorkerProperties } from "../Contract/WebWorkerProperties";
 
 export class WorkerService implements WebWorkerProperties {
-    public createWorker(
+    public processFileChunks(
         files: QueryFile[],
         listener: (e: MessageEvent<FileUploadResponse>) => void
     ) {
