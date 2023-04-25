@@ -1,14 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FC, MouseEvent as ReactMouseEvent, useEffect, useState } from 'react';
+import { FC, MouseEvent as ReactMouseEvent, ReactNode, useEffect, useState } from 'react';
 import { MIN_HEIGHT_VALUE } from '../settings';
 
 type Props = {
     saveHeight: (height: number) => void;
     initialHeight: string;
+    children: ReactNode;
 };
 
-export const Resizeable: FC<Props> = ({ children, saveHeight, initialHeight }) => {
+export const Resizeable = ({ children, saveHeight, initialHeight }: Props) => {
     const activeHeight: number = parseFloat(initialHeight.slice(0, -2));
     const [height, setHeight] = useState(activeHeight);
     const [active, setActive] = useState(false);
