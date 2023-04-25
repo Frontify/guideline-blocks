@@ -3,7 +3,7 @@
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Button, ButtonEmphasis, ButtonSize, ButtonStyle, ButtonType, IconLink, Modal } from '@frontify/fondue';
 import { useOverlayTriggerState } from '@react-stately/overlays';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { KeyboardEvent, ReactElement, useEffect, useState } from 'react';
 import { DocumentLinks } from './DocumentLinks';
 
 type LinkSelectorProps = {
@@ -20,14 +20,25 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
         setSelectedUrl(url);
     };
 
+    const onPressEnter = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            saveLink();
+        }
+    };
+
     useEffect(() => {
         if (url && !selectedUrl) {
             setSelectedUrl(url);
         }
     }, [url, selectedUrl]);
 
+    const saveLink = () => {
+        onUrlChange(selectedUrl);
+        closeLinkTree();
+    };
+
     return (
-        <div data-test-id="internal-link-selector">
+        <div data-test-id="internal-link-selector" onKeyDown={onPressEnter}>
             <Button
                 icon={<IconLink />}
                 size={ButtonSize.Medium}
@@ -55,8 +66,7 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
                             children: 'Choose',
                             onClick: (event) => {
                                 event?.preventDefault();
-                                onUrlChange(selectedUrl);
-                                closeLinkTree();
+                                saveLink();
                             },
                             style: ButtonStyle.Default,
                             emphasis: ButtonEmphasis.Strong,

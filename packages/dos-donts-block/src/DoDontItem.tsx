@@ -9,10 +9,14 @@ import {
     IconImageStack20,
     IconTrashBin16,
     IconTrashBin20,
-    RichTextEditor,
 } from '@frontify/fondue';
-import { BlockItemWrapper, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { SerializedText } from '@frontify/guideline-blocks-shared/src/components/RichTextEditor/SerializedText';
+import {
+    BlockItemWrapper,
+    RichTextEditor,
+    getDefaultPluginsWithLinkChooser,
+    joinClassNames,
+    toRgbaString,
+} from '@frontify/guideline-blocks-shared';
 import autosize from 'autosize';
 import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import IconComponent from './components/IconComponent';
@@ -151,16 +155,15 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const memoizedRichTextEditor = useMemo(
             () => (
                 <RichTextEditor
-                    id={id}
+                    isEditing={editing}
                     designTokens={designTokens}
-                    border={false}
                     value={body}
                     onBlur={onBodyTextChange}
-                    onTextChange={onBodyTextChange}
+                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                     placeholder="Add a description"
                 />
             ),
-            [body, designTokens, onBodyTextChange, id]
+            [body, designTokens, onBodyTextChange, editing, appBridge]
         );
 
         return (
@@ -297,11 +300,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                         data-test-id="dos-donts-content"
                         className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}
                     >
-                        {!editing ? (
-                            <SerializedText value={body} designTokens={designTokens} />
-                        ) : (
-                            memoizedRichTextEditor
-                        )}
+                        {memoizedRichTextEditor}
                     </div>
                 </BlockItemWrapper>
                 <div
