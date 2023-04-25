@@ -322,7 +322,6 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
-    const draggableProps = editing ? { ...attributes, ...listeners } : {};
 
     const transformStyle = {
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
@@ -330,11 +329,13 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
         zIndex: isDragging ? 2 : 1,
     };
 
+    const draggableProps = editing ? { ...attributes, ...listeners } : {};
+
     return (
         <DoDontItem
             key={id}
-            {...props}
             ref={setNodeRef}
+            {...props}
             isDragging={isDragging}
             replaceWithPlaceholder={isDragging}
             transformStyle={transformStyle}

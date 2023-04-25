@@ -22,11 +22,7 @@ describe("Dos & Don'ts Block", () => {
     });
 
     it('renders an dos donts block in view mode', () => {
-        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
-            blockSettings: {
-                items: [{ body: 'Description' }],
-            },
-        });
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
         mount(<DosDontsBlockWithStubs />);
         cy.get('[data-test-id="rte-content-html"]').should('not.exist');
