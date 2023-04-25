@@ -100,7 +100,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                     appBridge={appBridge}
                                     onSubmit={(formData) => {
                                         setModalOpen(false);
-                                        // Todo: Adjust Datastructure when Endpoint is set
+                                        // Todo: Adjust data structure when Endpoint is set
                                         AssetSubmission.createAssetSubmissions({
                                             requestId:
                                                 blockSettings.assetSubmission

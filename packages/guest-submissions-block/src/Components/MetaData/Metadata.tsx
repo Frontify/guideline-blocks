@@ -33,6 +33,7 @@ export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
 
     let initialValues: FormValues;
 
+    //Todo: This one forces to many rerenders
     initialValues = metadataConfiguration
         .filter((item) => !!item.defaultValue)
         .reduce((prev, cur) => {
