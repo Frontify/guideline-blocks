@@ -11,14 +11,17 @@ describe('VectorContainerOperator', () => {
         mount(<BlockContainerStub height="400px" />);
 
         cy.get(IMAGE_STAGE_SELECTOR).then((stageElement) => {
-            cy.get(IMAGE_CONTAINER_SELECTOR).then((containerElement) => {
-                const stageClientRect = stageElement[0].getBoundingClientRect();
-                const containerClientRect = containerElement[0].getBoundingClientRect();
+            cy.get(IMAGE_CONTAINER_SELECTOR)
+                .wait(10)
+                .then((containerElement) => {
+                    const stageClientRect = stageElement[0].getBoundingClientRect();
+                    const containerClientRect = containerElement[0].getBoundingClientRect();
 
-                const isInTheMiddle =
-                    `${(stageClientRect.width - containerClientRect.width) / 2}px` === containerElement[0].style.left;
-                expect(isInTheMiddle).to.be.true;
-            });
+                    const isInTheMiddle =
+                        `${(stageClientRect.width - containerClientRect.width) / 2}px` ===
+                        containerElement[0].style.left;
+                    expect(isInTheMiddle).to.be.true;
+                });
         });
     });
 

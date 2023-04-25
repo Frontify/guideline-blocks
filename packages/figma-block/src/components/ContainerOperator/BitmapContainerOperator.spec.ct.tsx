@@ -5,20 +5,24 @@ import { BlockContainerStub } from '../../tests/BlockContainerStub';
 
 const IMAGE_CONTAINER_SELECTOR = '[id="image-container"]';
 const IMAGE_STAGE_SELECTOR = '[id="image-stage"]';
+const IMAGE_ELEMENT = '[id="image-element"]';
 
 describe('BitmapContainerOperator', () => {
-    it('fits element with 400px height in the center', () => {
+    it('fits element / image with 400px height in the center', () => {
         mount(<BlockContainerStub height="400px" />);
 
         cy.get(IMAGE_STAGE_SELECTOR).then((stageElement) => {
-            cy.get(IMAGE_CONTAINER_SELECTOR).then((containerElement) => {
-                const stageClientRect = stageElement[0].getBoundingClientRect();
-                const containerClientRect = containerElement[0].getBoundingClientRect();
+            cy.get(IMAGE_ELEMENT)
+                .wait(10)
+                .then((imageElement) => {
+                    const stageClientRect = stageElement[0].getBoundingClientRect();
+                    const imageClientRect = imageElement[0].getBoundingClientRect();
 
-                const isInTheMiddle =
-                    `${(stageClientRect.width - containerClientRect.width) / 2}px` === containerElement[0].style.left;
-                expect(isInTheMiddle).to.be.true;
-            });
+                    const isInTheMiddle =
+                        (stageClientRect.width - imageClientRect.width) / 2 === imageElement?.offset()?.left;
+
+                    expect(isInTheMiddle).to.be.true;
+                });
         });
     });
 
@@ -26,14 +30,17 @@ describe('BitmapContainerOperator', () => {
         mount(<BlockContainerStub height="700px" />);
 
         cy.get(IMAGE_STAGE_SELECTOR).then((stageElement) => {
-            cy.get(IMAGE_CONTAINER_SELECTOR).then((containerElement) => {
-                const stageClientRect = stageElement[0].getBoundingClientRect();
-                const containerClientRect = containerElement[0].getBoundingClientRect();
+            cy.get(IMAGE_CONTAINER_SELECTOR)
+                .wait(10)
+                .then((containerElement) => {
+                    const stageClientRect = stageElement[0].getBoundingClientRect();
+                    const containerClientRect = containerElement[0].getBoundingClientRect();
 
-                const isInTheMiddle =
-                    `${(stageClientRect.width - containerClientRect.width) / 2}px` === containerElement[0].style.left;
-                expect(isInTheMiddle).to.be.true;
-            });
+                    const isInTheMiddle =
+                        `${(stageClientRect.width - containerClientRect.width) / 2}px` ===
+                        containerElement[0].style.left;
+                    expect(isInTheMiddle).to.be.true;
+                });
         });
     });
 
@@ -41,14 +48,17 @@ describe('BitmapContainerOperator', () => {
         mount(<BlockContainerStub height="500px" padding={0.2} />);
 
         cy.get(IMAGE_STAGE_SELECTOR).then((stageElement) => {
-            cy.get(IMAGE_CONTAINER_SELECTOR).then((containerElement) => {
-                const stageClientRect = stageElement[0].getBoundingClientRect();
-                const containerClientRect = containerElement[0].getBoundingClientRect();
+            cy.get(IMAGE_CONTAINER_SELECTOR)
+                .wait(10)
+                .then((containerElement) => {
+                    const stageClientRect = stageElement[0].getBoundingClientRect();
+                    const containerClientRect = containerElement[0].getBoundingClientRect();
 
-                const isInTheMiddle =
-                    `${(stageClientRect.width - containerClientRect.width) / 2}px` === containerElement[0].style.left;
-                expect(isInTheMiddle).to.be.true;
-            });
+                    const isInTheMiddle =
+                        `${(stageClientRect.width - containerClientRect.width) / 2}px` ===
+                        containerElement[0].style.left;
+                    expect(isInTheMiddle).to.be.true;
+                });
         });
     });
 });
