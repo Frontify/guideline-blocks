@@ -2,7 +2,7 @@
 
 import { FOCUS_STYLE, merge } from '@frontify/fondue';
 import { useFocusRing } from '@react-aria/focus';
-import { FC, KeyboardEvent, MouseEvent, MutableRefObject, ReactElement, RefObject, useRef } from 'react';
+import { FC, KeyboardEvent, MouseEvent, ReactElement, useRef } from 'react';
 
 type FocusControllerProps = {
     children: ReactElement;
