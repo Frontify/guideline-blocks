@@ -37,7 +37,7 @@ export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) 
                     className="tw-w-full"
                     href={link.link.link}
                     target={link.openInNewTab ? '_blank' : undefined}
-                    rel="noreferrer"
+                    rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
                 >
                     <img
                         data-test-id="image-block-img"
