@@ -29,7 +29,11 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
     const getTop = (gradientColor: GradientColor, index: number) => {
         if (gradientColor.level !== undefined) {
             if (gradientOrientation === 90) {
-                return gradientColor.level * HEIGHT_OF_SQUARE_BADGE;
+                if (gradientColor.level < 0) {
+                    return 0;
+                } else {
+                    return gradientColor.level * HEIGHT_OF_SQUARE_BADGE;
+                }
             } else {
                 return HEIGHT_OF_SQUARE_BADGE * index;
             }

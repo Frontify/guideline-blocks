@@ -31,6 +31,9 @@ const ButtonSelector = '[data-test-id="button"]';
 const ColorInputSelector = '[data-test-id="color-input"]';
 const ColorPreviewSelector = '[role="dialog"]';
 const TriggerSelector = '[data-test-id="trigger"]';
+const TextInputSelector = '[data-test-id="text-input"]';
+const TextInputErrorSelector = '[data-test-id="error-state-exclamation-mark-icon"]';
+const FormControlHelperTextSelector = '[data-test-id="form-control-helper-text"]';
 
 const GradientColor = [
     {
@@ -446,5 +449,42 @@ describe('Gradient Block', () => {
             cy.wrap(badge).should('have.css', 'left', '0px');
             cy.wrap(badge).should('have.css', 'top', `${index * HEIGHT_OF_SQUARE_BADGE}px`);
         });
+    });
+
+    it('should display the helper text and input form with exclamation mark if the position is already taken', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDividerSelector).realHover();
+        cy.get(AddColorButtonSelector).realClick();
+        cy.get(ColorPickerForm).find(TextInputSelector).clear().type('0');
+        cy.get(FormControlHelperTextSelector).should('exist');
+        cy.get(TextInputErrorSelector).should('exist');
+    });
+
+    it('square badge should not overlay the gradient block if just one color is present', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: [
+                    {
+                        color: {
+                            red: 255,
+                            green: 255,
+                            blue: 255,
+                            alpha: 1,
+                        },
+                        position: 0,
+                    },
+                ],
+            },
+        });
+        mount(<GradientBlockWithStubs />);
+        cy.get(SquareBadgesSelector).should('have.length', 1);
+        cy.get(SquareBadgesSelector).first().should('have.css', 'top', '0px');
     });
 });

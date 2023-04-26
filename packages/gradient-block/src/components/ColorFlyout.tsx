@@ -58,7 +58,11 @@ export const ColorFlyout = ({
 
     const setValidColorPosition = (value: string) => {
         const valueAsNumber = parseInt(value);
-        if (valueAsNumber >= 0 && valueAsNumber <= 100) {
+        if (
+            valueAsNumber >= 0 &&
+            valueAsNumber <= 100 &&
+            gradientColors.every((item) => item.position !== valueAsNumber)
+        ) {
             setColorPositionValidation(Validation.Default);
             setColorPosition(valueAsNumber.toString());
         } else if (value === '') {
@@ -137,7 +141,7 @@ export const ColorFlyout = ({
                     <FormControl
                         helper={
                             colorPositionValidation === Validation.Error
-                                ? { text: 'Add color stops from 0-100.' }
+                                ? { text: 'Add unique color stops from 0-100.' }
                                 : undefined
                         }
                         style={
