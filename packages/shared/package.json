@@ -17,7 +17,7 @@
     "devDependencies": {
         "@babel/core": "7.20.2",
         "@frontify/eslint-config-typescript": "0.15.5",
-        "@testing-library/react-hooks": "8.0.1",
+        "@testing-library/react": "14.0.0",
         "@types/node": "18.7.21",
         "@types/react": "18.0.35",
         "@types/react-dom": "18.2.1",

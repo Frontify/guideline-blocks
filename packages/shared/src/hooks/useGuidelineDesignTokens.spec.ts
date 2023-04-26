@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import mitt from 'mitt';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
@@ -58,60 +58,63 @@ const server = setupServer(...restHandlers);
 describe('useGuidelineDesignTokens', () => {
     beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 
-    it('should set design tokens on successfull api call', async () => {
+    it('should set design tokens on successful api call', async () => {
         setResponseType(ResponseStatus.Success);
 
-        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
-        await waitForNextUpdate();
-
-        expect(result.current).toMatchObject({
-            designTokens: {
-                ...defaultGuidelineDesignTokens,
-                heading1: {
-                    ...defaultGuidelineDesignTokens.heading1,
-                    fontFamily: 'Arial',
-                    fontWeight: 'bold',
-                    fontSize: '24px',
+        const { result } = renderHook(() => useGuidelineDesignTokens());
+        await waitFor(() => {
+            expect(result.current).toMatchObject({
+                designTokens: {
+                    ...defaultGuidelineDesignTokens,
+                    heading1: {
+                        ...defaultGuidelineDesignTokens.heading1,
+                        fontFamily: 'Arial',
+                        fontWeight: 'bold',
+                        fontSize: '24px',
+                    },
                 },
-            },
-            error: null,
-            isLoading: false,
+                error: null,
+                isLoading: false,
+            });
         });
     });
 
     it('should set the state to loading and ready', async () => {
         setResponseType(ResponseStatus.Success);
 
-        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
+        const { result } = renderHook(() => useGuidelineDesignTokens());
         expect(result.current.isLoading).toBe(true);
-        await waitForNextUpdate();
-        expect(result.current.isLoading).toBe(false);
+        await waitFor(() => {
+            expect(result.current.isLoading).toBe(false);
+        });
     });
 
     it('should set error on bad api request', async () => {
         setResponseType(ResponseStatus.Error);
 
-        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
-        await waitForNextUpdate();
-        expect(result.current.error).toMatch(/Bad Request/);
+        const { result } = renderHook(() => useGuidelineDesignTokens());
+        await waitFor(() => {
+            expect(result.current.error).toMatch(/Bad Request/);
+        });
     });
 
     it('should update on HubAppearanceUpdated', async () => {
         setResponseType(ResponseStatus.Success);
 
-        const { result, waitForNextUpdate } = renderHook(() => useGuidelineDesignTokens());
-        await waitForNextUpdate();
-        window.emitter.emit('HubAppearanceUpdated', {
-            appearance: { heading1: { family: 'family' } },
-        });
+        const { result } = renderHook(() => useGuidelineDesignTokens());
+        await waitFor(() => {
+            window.emitter.emit('HubAppearanceUpdated', {
+                appearance: { heading1: { family: 'family' } },
+            });
 
-        expect(result.current).toMatchObject({
-            designTokens: {
-                ...defaultGuidelineDesignTokens,
-                heading1: { ...defaultGuidelineDesignTokens.heading1, fontFamily: 'family' },
-            },
-            error: null,
-            isLoading: false,
+            expect(result.current).toMatchObject({
+                designTokens: {
+                    ...defaultGuidelineDesignTokens,
+                    heading1: { ...defaultGuidelineDesignTokens.heading1, fontFamily: 'family' },
+                },
+                error: null,
+                isLoading: false,
+            });
         });
     });
 
