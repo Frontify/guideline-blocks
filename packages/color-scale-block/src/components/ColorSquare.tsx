@@ -1,8 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useDrag } from 'react-dnd';
-import { Button, ButtonSize, ButtonStyle, IconSize, IconTrashBin, Tooltip, useCopy } from '@frontify/fondue';
-import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
+import {
+    Button,
+    ButtonSize,
+    ButtonStyle,
+    IconSize,
+    IconTrashBin,
+    ItemDragState,
+    Tooltip,
+    TooltipAlignment,
+    TooltipPosition,
+    useCopy,
+} from '@frontify/fondue';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 
 import { DragHandle } from './DragHandle';
