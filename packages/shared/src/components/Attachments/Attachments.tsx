@@ -6,6 +6,7 @@ import {
     DragEndEvent,
     DragOverlay,
     DragStartEvent,
+    KeyboardSensor,
     PointerSensor,
     closestCenter,
     useSensor,
@@ -23,7 +24,6 @@ import {
     Tooltip,
     TooltipPosition,
 } from '@frontify/fondue';
-import { useGuidelineDesignTokens } from '../../hooks';
 import { AttachmentItem, SortableAttachmentItem } from './AttachmentItem';
 import { AttachmentsProps } from './types';
 
@@ -36,13 +36,14 @@ export const Attachments = ({
     onUpload,
     onSorted,
     appBridge,
+    designTokens,
 }: AttachmentsProps) => {
     const [internalItems, setInternalItems] = useState<Asset[]>(items);
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
-    const sensors = useSensors(useSensor(PointerSensor));
+    const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
     const [draggedAssetId, setDraggedAssetId] = useState<number | undefined>(undefined);
-    const { designTokens } = useGuidelineDesignTokens();
     const [isUploadLoading, setIsUploadLoading] = useState(false);
+    const [assetIdsLoading, setAssetIdsLoading] = useState<number[]>([]);
     const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
     const isEditing = useEditorState(appBridge);
 
@@ -92,10 +93,12 @@ export const Attachments = ({
     const onReplaceItemWithBrowse = (toReplace: Asset) => {
         setIsFlyoutOpen(false);
         appBridge.openAssetChooser(
-            (result: Asset[]) => {
-                onReplaceWithBrowse(toReplace, result[0]);
-                appBridge.closeAssetChooser();
+            async (result: Asset[]) => {
                 setIsFlyoutOpen(true);
+                appBridge.closeAssetChooser();
+                setAssetIdsLoading([...assetIdsLoading, toReplace.id]);
+                await onReplaceWithBrowse(toReplace, result[0]);
+                setAssetIdsLoading(assetIdsLoading.filter((id) => id !== toReplace.id));
             },
             {
                 multiSelection: false,
@@ -103,8 +106,10 @@ export const Attachments = ({
         );
     };
 
-    const onReplaceItemWithUpload = (toReplace: Asset, uploadedAsset: Asset) => {
-        onReplaceWithUpload(toReplace, uploadedAsset);
+    const onReplaceItemWithUpload = async (toReplace: Asset, uploadedAsset: Asset) => {
+        setAssetIdsLoading([...assetIdsLoading, toReplace.id]);
+        await onReplaceWithUpload(toReplace, uploadedAsset);
+        setAssetIdsLoading(assetIdsLoading.filter((id) => id !== toReplace.id));
     };
 
     const handleDragStart = (event: DragStartEvent) => {
@@ -123,7 +128,6 @@ export const Attachments = ({
             onSorted(sortedItems);
         }
     };
-
     return (
         <>
             {(isEditing || (internalItems?.length ?? 0) > 0) && (
@@ -162,6 +166,7 @@ export const Attachments = ({
                                                     {internalItems.map((item) => (
                                                         <SortableAttachmentItem
                                                             isEditing={isEditing}
+                                                            isLoading={assetIdsLoading.includes(item.id)}
                                                             designTokens={designTokens}
                                                             key={item.id}
                                                             item={item}

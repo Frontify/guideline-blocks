@@ -3,10 +3,13 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import { Asset, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { useSortable } from '@dnd-kit/sortable';
+import { useFocusRing } from '@react-aria/focus';
+
 import {
     ActionMenu,
     Button,
     ButtonEmphasis,
+    FOCUS_STYLE,
     Flyout,
     FlyoutPlacement,
     IconArrowCircleUp20,
@@ -18,6 +21,8 @@ import {
     IconPen20,
     IconPlayFrame24,
     IconTrashBin20,
+    LoadingCircle,
+    LoadingCircleSize,
     MenuItemContentSize,
     MenuItemStyle,
 } from '@frontify/fondue';
@@ -36,7 +41,7 @@ const getDecorator = (type: string) => {
     }
 };
 
-export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
+export const AttachmentItem = forwardRef<HTMLButtonElement, AttachmentItemProps>(
     (
         {
             item,
@@ -46,6 +51,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
             transformStyle,
             isDragging,
             isOverlay,
+            isLoading,
             onDelete,
             onReplaceWithBrowse,
             onReplaceWithUpload,
@@ -55,6 +61,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
         const [selectedAsset, setSelectedAsset] = useState<Asset | undefined>();
         const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: true, accept: 'image/*' });
         const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
+        const { isFocused, focusProps } = useFocusRing();
 
         useEffect(() => {
             if (selectedFiles) {
@@ -82,10 +89,11 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
             });
         };
 
+        const showLoadingCircle = isLoading || (selectedFiles && !doneAll);
+
         return (
-            <div
+            <button
                 data-test-id="attachments-item"
-                tabIndex={0}
                 onClick={() => download(item.genericUrl, item.fileName)}
                 ref={ref}
                 style={{
@@ -93,10 +101,14 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
                     opacity: isDragging && !isOverlay ? 0.3 : 1,
                     fontFamily: designTokens?.p?.fontFamily,
                 }}
-                className="tw-cursor-pointer tw-relative tw-flex tw-gap-3 tw-px-5 tw-py-3 tw-items-center tw-group hover:tw-bg-box-neutral-hover"
+                className="tw-cursor-pointer tw-text-left tw-w-full tw-relative tw-flex tw-gap-3 tw-px-5 tw-py-3 tw-items-center tw-group hover:tw-bg-box-neutral-hover"
             >
                 <div className="tw-text-text-weak group-hover:tw-text-box-neutral-inverse-hover">
-                    {getDecorator(item.objectType)}
+                    {showLoadingCircle ? (
+                        <LoadingCircle size={LoadingCircleSize.Small} />
+                    ) : (
+                        getDecorator(item.objectType)
+                    )}
                 </div>
                 <div className="tw-text-s tw-flex-1 tw-min-w-0">
                     <div className="tw-whitespace-nowrap tw-overflow-hidden tw-text-ellipsis tw-font-bold tw-text-text-weak group-hover:tw-text-box-neutral-inverse-hover">
@@ -107,18 +119,19 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
                 {isEditing && (
                     <div
                         data-test-id="attachments-actionbar"
-                        className="tw-flex tw-gap-[2px] tw-invisible group-hover:tw-visible"
+                        className="tw-flex tw-gap-[2px] tw-invisible group-focus:tw-visible group-focus-within:tw-visible group-hover:tw-visible"
                     >
-                        <div {...draggableProps}>
-                            <button
-                                className={joinClassNames([
-                                    'tw-bg-button-background tw-border-button-border hover:tw-bg-button-background-hover active:tw-bg-button-background-pressed tw-group tw-border tw-box-box tw-relative tw-flex tw-items-center tw-justify-center tw-outline-none tw-font-medium tw-rounded tw-h-9 tw-w-9 ',
-                                    isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab',
-                                ])}
-                            >
-                                <IconGrabHandle20 />
-                            </button>
-                        </div>
+                        <button
+                            {...focusProps}
+                            {...draggableProps}
+                            className={joinClassNames([
+                                'tw-bg-button-background tw-border-button-border hover:tw-bg-button-background-hover active:tw-bg-button-background-pressed tw-group tw-border tw-box-box tw-relative tw-flex tw-items-center tw-justify-center tw-outline-none tw-font-medium tw-rounded tw-h-9 tw-w-9 ',
+                                isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab',
+                                isFocused && FOCUS_STYLE,
+                            ])}
+                        >
+                            <IconGrabHandle20 />
+                        </button>
                         <div className="-tw-mx-3">
                             <Flyout
                                 placement={FlyoutPlacement.Right}
@@ -201,7 +214,7 @@ export const AttachmentItem = forwardRef<HTMLDivElement, AttachmentItemProps>(
                         </div>
                     </div>
                 )}
-            </div>
+            </button>
         );
     }
 );

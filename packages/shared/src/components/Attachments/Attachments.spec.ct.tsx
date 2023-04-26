@@ -5,11 +5,16 @@ import { AssetDummy, getAppBridgeBlockStub } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { Attachments as AttachmentsComponent } from './Attachments';
 import { AttachmentsProps } from './types';
+import { defaultDesignTokens } from '@frontify/fondue';
+import { SinonStub } from 'cypress/types/sinon';
 
 const FlyoutButtonSelector = '[data-test-id="attachments-flyout-button"]';
 const AssetInputSelector = '[data-test-id="asset-input-placeholder"]';
 const ActionBarSelector = '[data-test-id="attachments-actionbar"]';
 const AttachmentItemSelector = '[data-test-id="attachments-item"]';
+const FlyoutTriggerSelector = '[data-test-id="flyout-trigger"]';
+const MenuItemSelector = '[data-test-id="menu-item"]';
+const LoadingCircleSelector = '[data-test-id="loading-circle"]';
 
 const Attachments = ({
     appBridge = getAppBridgeBlockStub(),
@@ -31,6 +36,7 @@ const Attachments = ({
             onSorted={onSorted}
             onBrowse={onBrowse}
             onUpload={onUpload}
+            designTokens={defaultDesignTokens}
         />
     );
 };
@@ -79,5 +85,36 @@ describe('Attachments', () => {
         mount(<Attachments items={[AssetDummy.with(1), AssetDummy.with(2), AssetDummy.with(3)]} />);
         cy.get(FlyoutButtonSelector).click();
         cy.get(AttachmentItemSelector).should('have.length', 3);
+    });
+
+    it('renders loading circle for attachment item', () => {
+        const appBridge = getAppBridgeBlockStub({
+            editorState: true,
+        });
+        (appBridge.openAssetChooser as SinonStub) = cy.stub().callsArgWith(0, AssetDummy.with(4));
+
+        cy.clock();
+        const replaceStub = () =>
+            new Promise<void>((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, 2000)
+            );
+
+        mount(
+            <Attachments
+                onReplaceWithBrowse={replaceStub}
+                items={[AssetDummy.with(1), AssetDummy.with(2), AssetDummy.with(3)]}
+                appBridge={appBridge}
+            />
+        );
+
+        cy.get(FlyoutButtonSelector).click();
+        cy.get(AttachmentItemSelector).eq(0).focus();
+        cy.get(FlyoutTriggerSelector).eq(1).click();
+        cy.get(MenuItemSelector).eq(1).click();
+        cy.get(LoadingCircleSelector).should('exist');
+        cy.tick(2000);
+        cy.get(LoadingCircleSelector).should('not.exist');
     });
 });

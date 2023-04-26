@@ -1,12 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { TextStyles } from '@frontify/fondue';
-import {
-    RichTextEditor,
-    convertToRteValue,
-    hasRichTextValue,
-    useGuidelineDesignTokens,
-} from '@frontify/guideline-blocks-shared';
+import { DesignTokens, TextStyles } from '@frontify/fondue';
+import { RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-shared';
 import { captionPlugins, titlePlugins } from './helpers';
 
 type ImageCaptionProps = {
@@ -16,6 +11,7 @@ type ImageCaptionProps = {
     description?: string;
     onNameChange: (value: string) => void;
     onDescriptionChange: (value: string) => void;
+    designTokens: DesignTokens;
 };
 
 export const ImageCaption = ({
@@ -25,9 +21,8 @@ export const ImageCaption = ({
     onNameChange,
     blockId,
     onDescriptionChange,
+    designTokens,
 }: ImageCaptionProps) => {
-    const { designTokens } = useGuidelineDesignTokens();
-
     return (
         <div className="tw-mt-3 tw-gap-1 tw-flex-1 tw-w-full" data-test-id="image-caption">
             <RichTextEditor

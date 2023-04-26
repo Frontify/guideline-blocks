@@ -220,7 +220,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         {isDownloadable(security, downloadable, assetDownloadEnabled) && (
                             <DownloadButton onDownload={() => downloadAsset(audio)} />
                         )}
-                        <BlockAttachments appBridge={appBridge} />
+                        <BlockAttachments appBridge={appBridge} designTokens={designTokens} />
                     </div>
                 )}
             </div>
