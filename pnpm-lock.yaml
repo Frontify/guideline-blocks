@@ -109,8 +109,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -173,8 +173,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -243,8 +243,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.19
-        version: 17.0.19
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.21)
@@ -313,8 +313,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.19
-        version: 17.0.19
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.21)
@@ -383,8 +383,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -450,8 +450,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -538,8 +538,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -626,8 +626,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -702,8 +702,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -772,8 +772,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -848,8 +848,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -915,8 +915,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.18
-        version: 17.0.18
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.21)
@@ -976,8 +976,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1058,8 +1058,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1125,8 +1125,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1192,8 +1192,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1268,8 +1268,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.19
-        version: 17.0.19
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.21)
@@ -1341,8 +1341,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1411,8 +1411,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1478,8 +1478,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1563,8 +1563,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       '@types/sinon':
         specifier: ^10.0.13
         version: 10.0.13
@@ -1660,8 +1660,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1730,8 +1730,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -1803,8 +1803,8 @@ importers:
         specifier: 18.0.35
         version: 18.0.35
       '@types/react-dom':
-        specifier: 17.0.17
-        version: 17.0.17
+        specifier: 18.2.1
+        version: 18.2.1
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.19)
@@ -5340,16 +5340,10 @@ packages:
       '@types/react': 17.0.53
     dev: true
 
-  /@types/react-dom@17.0.18:
-    resolution: {integrity: sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==}
+  /@types/react-dom@18.2.1:
+    resolution: {integrity: sha512-8QZEV9+Kwy7tXFmjJrp3XUKQSs9LTnE0KnoUb0YCguWBiNW0Yfb2iBMYZ08WPg35IR6P3Z0s00B15SwZnO26+w==}
     dependencies:
-      '@types/react': 17.0.53
-    dev: true
-
-  /@types/react-dom@17.0.19:
-    resolution: {integrity: sha512-PiYG40pnQRdPHnlf7tZnp0aQ6q9tspYr72vD61saO6zFCybLfMqwUCN0va1/P+86DXn18ZWeW30Bk7xlC5eEAQ==}
-    dependencies:
-      '@types/react': 17.0.53
+      '@types/react': 18.0.35
     dev: true
 
   /@types/react@17.0.53:
