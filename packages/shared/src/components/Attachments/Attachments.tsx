@@ -132,6 +132,7 @@ export const Attachments = ({
                     position={TooltipPosition.Top}
                     content="Attachments"
                     disabled={isFlyoutOpen}
+                    enterDelay={500}
                     triggerElement={
                         <div className="-tw-mx-3" data-test-id="attachments-flyout-button">
                             <Flyout

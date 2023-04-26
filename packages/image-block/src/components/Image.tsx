@@ -27,7 +27,7 @@ type ImageProps = {
     appBridge: AppBridgeBlock;
 };
 
-export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
+export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) => {
     const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
 
     return (
@@ -37,28 +37,36 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                     className="tw-w-full"
                     href={link.link.link}
                     target={link.openInNewTab ? '_blank' : undefined}
-                    rel="noreferrer"
+                    rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
                 >
-                    <ImageComponent
-                        appBridge={appBridge}
-                        blockSettings={blockSettings}
-                        isEditing={isEditing}
-                        image={image}
+                    <img
+                        data-test-id="image-block-img"
+                        className="tw-flex"
+                        loading="lazy"
+                        src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+                        alt={image.fileName}
+                        style={{
+                            width: image.width,
+                        }}
                     />
                 </a>
             ) : (
-                <ImageComponent
-                    appBridge={appBridge}
-                    blockSettings={blockSettings}
-                    isEditing={isEditing}
-                    image={image}
+                <img
+                    data-test-id="image-block-img"
+                    className="tw-flex"
+                    loading="lazy"
+                    src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+                    alt={image.fileName}
+                    style={{
+                        width: image.width,
+                    }}
                 />
             )}
         </>
     );
 };
 
-export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) => {
+export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
     const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachments(appBridge, ATTACHMENTS_ASSET_ID);
 
@@ -106,15 +114,11 @@ export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) 
                         />
                     </div>
                 </div>
-                <img
-                    data-test-id="image-block-img"
-                    className="tw-flex"
-                    loading="lazy"
-                    src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                    alt={image.fileName}
-                    style={{
-                        width: image.width,
-                    }}
+                <ImageComponent
+                    appBridge={appBridge}
+                    blockSettings={blockSettings}
+                    image={image}
+                    isEditing={isEditing}
                 />
             </div>
         </div>
