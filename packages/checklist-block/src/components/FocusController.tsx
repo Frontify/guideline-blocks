@@ -67,6 +67,7 @@ export const FocusController: FC<FocusControllerProps> = ({ children, width = Fo
     const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
             event.preventDefault();
+            childRef?.current?.focus();
         }
     };
 
