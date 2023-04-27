@@ -12,7 +12,7 @@ export const prepareGradientColors = (gradientColors: GradientColor[], width: nu
 
 export const calculateLevelOfLast = (gradientColors: GradientColor[]) => {
     const allLeft = gradientColors.filter((color) => color.isReverse);
-    const leftStartLevel = allLeft[0].level || 0;
+    const leftStartLevel = allLeft[0]?.level || 0;
     return leftStartLevel + allLeft.length - 1;
 };
 

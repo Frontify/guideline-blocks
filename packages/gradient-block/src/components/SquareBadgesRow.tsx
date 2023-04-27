@@ -23,7 +23,9 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
     };
 
     useEffect(() => {
-        prepareGradients();
+        if (gradientColors.length > 0) {
+            prepareGradients();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -38,6 +40,7 @@ export const SquareBadgesRow = ({ blockWidth, gradientColors, gradientOrientatio
         <div
             className="tw-relative tw-w-full"
             style={{
+                minHeight: HEIGHT_OF_SQUARE_BADGE,
                 height,
             }}
         >
