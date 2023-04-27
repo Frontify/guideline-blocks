@@ -293,6 +293,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 borderRadius={getBorderRadius()}
             >
                 <Label
+                    blockId={appBridge.getBlockId().toString()}
                     isEditing={isEditing}
                     designTokens={designTokens}
                     value={label}

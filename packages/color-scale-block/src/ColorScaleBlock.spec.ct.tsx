@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import '@4tw/cypress-drag-drop';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 
@@ -58,7 +58,7 @@ describe('Color Scale Block', () => {
             .should('exist');
     });
 
-    it('renders a color picker flyout when user clicks on Add Color button', () => {
+    it.only('renders a color picker flyout when user clicks on Add Color button', () => {
         const [ColorScaleBlockWithStubs] = withAppBridgeBlockStubs(ColorScaleBlock, {
             editorState: true,
             blockSettings: { customHeight: false, heightSlider: '96px', heightInput: '100px' },

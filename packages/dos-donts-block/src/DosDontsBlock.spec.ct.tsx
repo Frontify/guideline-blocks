@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE, DosDontsBlock } from './DosDontsBlock';
 import { DoDontSpacing, DoDontStyle, ItemIconChoice } from './types';
@@ -21,7 +21,7 @@ describe("Dos & Don'ts Block", () => {
         cy.get(DosDontsBlockSelector).should('exist');
     });
 
-    it('renders an empty dos donts block in view mode', () => {
+    it('renders an dos donts block in view mode', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
         mount(<DosDontsBlockWithStubs />);

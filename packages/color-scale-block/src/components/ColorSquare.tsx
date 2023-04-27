@@ -5,13 +5,14 @@ import {
     Button,
     ButtonSize,
     ButtonStyle,
-    DropZonePosition,
     IconSize,
     IconTrashBin,
+    ItemDragState,
     Tooltip,
+    TooltipAlignment,
+    TooltipPosition,
     useCopy,
 } from '@frontify/fondue';
-import { ItemDragState, TooltipAlignment, TooltipPosition } from '@frontify/fondue';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 
 import { DragHandle } from './DragHandle';
@@ -76,7 +77,7 @@ export const ColorSquare = ({
                 isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                 data={{
                     targetItem: color,
-                    position: DropZonePosition.Before,
+                    position: 'before',
                 }}
                 onDrop={onDrop}
             />
@@ -154,7 +155,7 @@ export const ColorSquare = ({
                 isDraggingActive={Number.isInteger(currentlyDraggedColorId)}
                 data={{
                     targetItem: color,
-                    position: DropZonePosition.After,
+                    position: 'after',
                 }}
                 onDrop={onDrop}
             />

@@ -8,7 +8,7 @@ import {
     getAppBridgeBlockStub,
     withAppBridgeBlockStubs,
 } from '@frontify/app-bridge';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { LinkSelector } from './LinkSelector';
 import { SinonStub } from 'cypress/types/sinon';
 

@@ -12,8 +12,8 @@ import {
     ButtonSize,
     ButtonStyle,
     ButtonType,
+    CollisionPosition,
     Color,
-    DropZonePosition,
     IconArrowStretchBox12,
     IconPlus12,
     Palette,
@@ -386,7 +386,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
         setDisplayableItems(updatedColors);
     };
 
-    const handleDrop = (targetItem: ColorProps, movedItem: ColorProps, position: DropZonePosition) => {
+    const handleDrop = (targetItem: ColorProps, movedItem: ColorProps, position: CollisionPosition) => {
         const movedItemIndex = displayableItems.findIndex(({ id }) => id === movedItem.id);
 
         const updatedColors = displayableItems.filter((_, index) => index !== movedItemIndex);

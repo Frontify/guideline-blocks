@@ -7,6 +7,7 @@ import { RichTextEditorProps } from './types';
 import { SerializedText } from './SerializedText';
 
 export const RichTextEditor = ({
+    id = 'rte',
     designTokens,
     isEditing,
     value,
@@ -16,11 +17,13 @@ export const RichTextEditor = ({
     plugins,
     onBlur,
     updateValueOnChange,
+    showSerializedText,
 }: RichTextEditorProps) => {
     if (isEditing) {
         const saveText = (newValue: string) => newValue !== value && onBlur(newValue);
         return (
             <FondueRichTextEditor
+                id={id}
                 designTokens={designTokens}
                 value={value}
                 border={false}
@@ -30,7 +33,14 @@ export const RichTextEditor = ({
                 updateValueOnChange={updateValueOnChange}
             />
         );
-    } else {
-        return <SerializedText value={value} designTokens={designTokens} columns={columns} gap={gap} />;
     }
+    return (
+        <SerializedText
+            value={value}
+            designTokens={designTokens}
+            columns={columns}
+            gap={gap}
+            show={showSerializedText}
+        />
+    );
 };

@@ -129,6 +129,7 @@ export enum Handle {
 
 export type LabelProps = {
     isEditing: boolean;
+    blockId: string;
     designTokens: Partial<Record<DesignTokenName, TokenValues>>;
     value: string;
     onBlur: (newValue: string) => void;

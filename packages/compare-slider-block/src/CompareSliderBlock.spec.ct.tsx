@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { CompareSliderBlock } from './CompareSliderBlock';
+import { convertToRteValue } from '@frontify/guideline-blocks-shared';
 
 const CompareSliderBlockSelector = '[data-test-id="compare-slider-block"]';
 const CompareSliderSelector = '[data-test-id="compare-slider-block-slider"]';
@@ -54,12 +55,12 @@ describe('Compare Slider Block', () => {
                 secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
             },
             blockSettings: {
-                firstAssetLabel: 'Test',
+                firstAssetLabel: convertToRteValue(undefined, 'first Asset Label'),
             },
             editorState: false,
         });
         mount(<CompareSliderBlockWithStubs />);
-        cy.get(LabelWrapperSelector).should('have.length', 1);
+        cy.get('[data-test-id="rte-content-html"').should('have.text', 'first Asset Label');
     });
 
     it('renders 2 labels in view mode if content exists', () => {
@@ -69,13 +70,13 @@ describe('Compare Slider Block', () => {
                 secondAsset: [{ ...AssetDummy.with(2), previewUrl: 'https://picsum.photos/200/200' }],
             },
             blockSettings: {
-                firstAssetLabel: 'Test',
-                secondAssetLabel: 'Test2',
+                firstAssetLabel: convertToRteValue(undefined, 'Test'),
+                secondAssetLabel: convertToRteValue(undefined, 'Test2'),
             },
             editorState: false,
         });
         mount(<CompareSliderBlockWithStubs />);
-        cy.get(LabelWrapperSelector).should('have.length', 2);
+        cy.get('[data-test-id="rte-content-html"').should('contain', 'Test', 'Test2');
     });
 
     it('renders 2 labels in edit mode', () => {

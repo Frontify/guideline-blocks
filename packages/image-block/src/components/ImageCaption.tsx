@@ -1,7 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { RichTextEditor, TextStyles, parseRawValue, serializeRawToHtml } from '@frontify/fondue';
-import { convertToRteValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { TextStyles } from '@frontify/fondue';
+import {
+    RichTextEditor,
+    convertToRteValue,
+    hasRichTextValue,
+    useGuidelineDesignTokens,
+} from '@frontify/guideline-blocks-shared';
 import { captionPlugins, titlePlugins } from './helpers';
 
 type ImageCaptionProps = {
@@ -23,42 +28,29 @@ export const ImageCaption = ({
 }: ImageCaptionProps) => {
     const { designTokens } = useGuidelineDesignTokens();
 
-    const rawName = JSON.stringify(parseRawValue({ raw: name ?? '' }));
-    const nameHtml = serializeRawToHtml(rawName, designTokens);
-    const rawDescription = JSON.stringify(parseRawValue({ raw: description ?? '' }));
-    const descriptionHtml = serializeRawToHtml(rawDescription, designTokens);
-
     return (
         <div className="tw-mt-3 tw-gap-1 tw-flex-1 tw-w-full" data-test-id="image-caption">
-            {isEditing ? (
-                <>
-                    <RichTextEditor
-                        id={`${blockId}_title`}
-                        value={name ?? convertToRteValue(TextStyles.ELEMENT_IMAGE_TITLE, '', 'center')}
-                        border={false}
-                        onBlur={onNameChange}
-                        plugins={titlePlugins}
-                        designTokens={designTokens}
-                        placeholder="Asset name"
-                        updateValueOnChange
-                    />
-                    <RichTextEditor
-                        id={`${blockId}_description`}
-                        value={description ?? convertToRteValue(TextStyles.ELEMENT_IMAGE_CAPTION, '', 'center')}
-                        border={false}
-                        onTextChange={onDescriptionChange}
-                        onBlur={onDescriptionChange}
-                        plugins={captionPlugins}
-                        designTokens={designTokens}
-                        placeholder="Add a description here"
-                    />
-                </>
-            ) : (
-                <>
-                    {hasRichTextValue(name) && <div dangerouslySetInnerHTML={{ __html: nameHtml }} />}
-                    {hasRichTextValue(description) && <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />}
-                </>
-            )}
+            <RichTextEditor
+                id={`${blockId}_title`}
+                isEditing={isEditing}
+                designTokens={designTokens}
+                plugins={titlePlugins}
+                onBlur={onNameChange}
+                placeholder="Asset name"
+                showSerializedText={hasRichTextValue(name)}
+                value={name ?? convertToRteValue(TextStyles.ELEMENT_IMAGE_TITLE, '', 'center')}
+                updateValueOnChange
+            />
+            <RichTextEditor
+                id={`${blockId}_description`}
+                isEditing={isEditing}
+                designTokens={designTokens}
+                plugins={captionPlugins}
+                onBlur={onDescriptionChange}
+                placeholder="Add a description here"
+                showSerializedText={hasRichTextValue(description)}
+                value={description ?? convertToRteValue(TextStyles.ELEMENT_IMAGE_CAPTION, '', 'center')}
+            />
         </div>
     );
 };
