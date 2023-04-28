@@ -101,7 +101,10 @@ export const AttachmentItem = forwardRef<HTMLButtonElement, AttachmentItemProps>
                     opacity: isDragging && !isOverlay ? 0.3 : 1,
                     fontFamily: designTokens?.p?.fontFamily,
                 }}
-                className="tw-cursor-pointer tw-text-left tw-w-full tw-relative tw-flex tw-gap-3 tw-px-5 tw-py-3 tw-items-center tw-group hover:tw-bg-box-neutral-hover"
+                className={joinClassNames([
+                    'tw-cursor-pointer tw-text-left tw-w-full tw-relative tw-flex tw-gap-3 tw-px-5 tw-py-3 tw-items-center tw-group hover:tw-bg-box-neutral-hover',
+                    isDragging ? 'tw-bg-box-neutral-hover' : '',
+                ])}
             >
                 <div className="tw-text-text-weak group-hover:tw-text-box-neutral-inverse-hover">
                     {showLoadingCircle ? (

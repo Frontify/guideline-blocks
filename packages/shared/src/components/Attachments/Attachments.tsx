@@ -26,6 +26,7 @@ import {
 } from '@frontify/fondue';
 import { AttachmentItem, SortableAttachmentItem } from './AttachmentItem';
 import { AttachmentsProps } from './types';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 
 export const Attachments = ({
     items = [],
@@ -141,7 +142,7 @@ export const Attachments = ({
                         <div className="-tw-mx-3" data-test-id="attachments-flyout-button">
                             <Flyout
                                 placement={FlyoutPlacement.BottomRight}
-                                onOpenChange={setIsFlyoutOpen}
+                                onOpenChange={(isOpen) => setIsFlyoutOpen(!!draggedItem ? true : isOpen)}
                                 isOpen={isFlyoutOpen}
                                 fitContent
                                 legacyFooter={false}
@@ -160,6 +161,7 @@ export const Attachments = ({
                                             collisionDetection={closestCenter}
                                             onDragStart={handleDragStart}
                                             onDragEnd={handleDragEnd}
+                                            modifiers={[restrictToWindowEdges]}
                                         >
                                             <SortableContext items={internalItems} strategy={rectSortingStrategy}>
                                                 <div className="tw-border-b tw-border-b-line">

@@ -11,6 +11,7 @@ import { SinonStub } from 'cypress/types/sinon';
 const FlyoutButtonSelector = '[data-test-id="attachments-flyout-button"]';
 const AssetInputSelector = '[data-test-id="asset-input-placeholder"]';
 const ActionBarSelector = '[data-test-id="attachments-actionbar"]';
+const DragHandleSelector = '[data-test-id="attachments-actionbar"] > button';
 const AttachmentItemSelector = '[data-test-id="attachments-item"]';
 const FlyoutTriggerSelector = '[data-test-id="flyout-trigger"]';
 const MenuItemSelector = '[data-test-id="menu-item"]';
@@ -116,5 +117,38 @@ describe('Attachments', () => {
         cy.get(LoadingCircleSelector).should('exist');
         cy.tick(2000);
         cy.get(LoadingCircleSelector).should('not.exist');
+    });
+
+    it('renders focus ring on flyout button while tabbing and open it', () => {
+        mount(
+            <Attachments
+                appBridge={getAppBridgeBlockStub({ editorState: true })}
+                items={[AssetDummy.with(1), AssetDummy.with(2), AssetDummy.with(3)]}
+            />
+        );
+        cy.get(FlyoutButtonSelector).click();
+        cy.get(AttachmentItemSelector)
+            .eq(0)
+            .trigger('keydown', { key: 'Tab' })
+            .trigger('keydown', { key: 'Tab' })
+            .trigger('keydown', { key: 'Tab' });
+        cy.get(FlyoutTriggerSelector).eq(1).should('have.class', 'tw-ring-blue');
+        cy.get(FlyoutTriggerSelector).eq(1).type('{enter}');
+        cy.get(MenuItemSelector).should('exist');
+    });
+
+    it('reorders items using only keyboard events', () => {
+        const onSortStub = cy.stub();
+        mount(
+            <Attachments
+                appBridge={getAppBridgeBlockStub({ editorState: true })}
+                items={[{ ...AssetDummy.with(1), title: 'Moved item' }, AssetDummy.with(2), AssetDummy.with(3)]}
+                onSorted={onSortStub}
+            />
+        );
+        cy.get(FlyoutButtonSelector).click();
+        cy.get(AttachmentItemSelector).eq(0).trigger('keydown', { key: 'Tab' }).trigger('keydown', { key: 'Tab' });
+        cy.get(DragHandleSelector).eq(0).type(' {downarrow}{downarrow} ');
+        cy.get(AttachmentItemSelector).eq(1).should('contain.text', 'Moved item');
     });
 });
