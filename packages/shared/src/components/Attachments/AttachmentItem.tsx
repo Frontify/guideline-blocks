@@ -122,7 +122,7 @@ export const AttachmentItem = forwardRef<HTMLButtonElement, AttachmentItemProps>
                 {isEditing && (
                     <div
                         data-test-id="attachments-actionbar"
-                        className="tw-flex tw-gap-[2px] tw-invisible group-focus:tw-visible group-focus-within:tw-visible group-hover:tw-visible"
+                        className="tw-flex tw-gap-0.5 tw-invisible group-focus:tw-visible group-focus-within:tw-visible group-hover:tw-visible"
                     >
                         <button
                             {...focusProps}

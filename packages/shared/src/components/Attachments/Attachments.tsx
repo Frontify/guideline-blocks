@@ -87,6 +87,7 @@ export const Attachments = ({
             },
             {
                 multiSelection: true,
+                selectedValueIds: internalItems.map((internalItem) => internalItem.id),
             }
         );
     };
