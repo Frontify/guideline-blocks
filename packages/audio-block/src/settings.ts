@@ -7,7 +7,7 @@ import { TextPosition } from './types';
 import {
     getSecurityDownloadableSetting,
     getSecurityGlobalControlSetting,
-} from '@frontify/guideline-blocks-shared/src/settings/security';
+} from '@frontify/guideline-blocks-shared'
 
 export const AUDIO_ID = 'audio';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
