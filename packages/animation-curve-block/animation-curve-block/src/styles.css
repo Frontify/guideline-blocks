@@ -1,0 +1,5 @@
+@keyframes animateDash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
