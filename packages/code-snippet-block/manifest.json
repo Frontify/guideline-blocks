@@ -1,5 +1,5 @@
 {
     "appId": "cl7gar8ts00013muqwzjp8j9c",
-    "searchFields": ["content"],
+    "searchFields": [{ "type": "string", "settingId": "content" }],
     "i18nFields": ["content"]
 }
