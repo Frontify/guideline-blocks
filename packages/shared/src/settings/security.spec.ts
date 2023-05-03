@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { describe, expect, it } from 'vitest';
-import { getSecurityGlobalControlSetting, getSecurityDownloadableSetting } from './security';
+import { getSecurityDownloadableSetting, getSecurityGlobalControlSetting } from './security';
 import { Security } from './types';
 
 describe('getSecurityGlobalControlSetting', () => {

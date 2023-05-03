@@ -12,6 +12,7 @@ import {
     mapCaptionPositionClasses,
     rationValues,
 } from './types';
+import { Security } from '@frontify/guideline-blocks-shared';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
 const ImageBlockImageWrapperSelector = '[data-test-id="image-block-img-wrapper"]';
@@ -50,8 +51,12 @@ describe('Image Block', () => {
         cy.get(ImageBlockImageSelector).should('exist');
     });
 
-    it('should render the download button if the image is uploaded', () => {
+    it('should render the download button if the image is uploaded and security settings allows it', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockSettings: {
+                security: Security.Custom,
+                downloadable: true,
+            },
             blockAssets: {
                 [IMAGE_ID]: [AssetDummy.with(1)],
             },
