@@ -1,16 +1,27 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { RichTextEditor, debounce } from '@frontify/fondue';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
-import autosize from 'autosize';
-import IconComponent from './components/IconComponent';
-import ItemToolbar from './components/ItemToolbar';
-import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
 import { useSortable } from '@dnd-kit/sortable';
-import React from 'react';
-import ImageComponent from './components/ImageComponent';
 import { Asset, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
+import {
+    IconArrowCircleUp20,
+    IconArrowMove16,
+    IconArrowSwap20,
+    IconImageStack20,
+    IconTrashBin16,
+    IconTrashBin20,
+} from '@frontify/fondue';
+import {
+    BlockItemWrapper,
+    RichTextEditor,
+    getDefaultPluginsWithLinkChooser,
+    joinClassNames,
+    toRgbaString,
+} from '@frontify/guideline-blocks-shared';
+import autosize from 'autosize';
+import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import IconComponent from './components/IconComponent';
+import ImageComponent from './components/ImageComponent';
+import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
 
 export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
     (
@@ -60,18 +71,21 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
     ) => {
         const doColorString = toRgbaString(doColor);
         const dontColorString = toRgbaString(dontColor);
-        const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
         const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
         const { itemImages } = blockAssets;
         const [internalTitle, setInternalTitle] = useState(title);
         const titleRef = useRef<HTMLTextAreaElement>(null);
-        const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
         const [isUploadLoading, setIsUploadLoading] = useState(false);
         const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: false });
         const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
             onUploadProgress: () => !isUploadLoading && setIsUploadLoading(true),
         });
+
+        const onBodyTextChange = useCallback(
+            (value: string) => value !== body && onChangeItem(id, value, 'body'),
+            [onChangeItem, body, id]
+        );
 
         const headingColor = type === DoDontType.Do ? doColorString : dontColorString;
 
@@ -138,148 +152,164 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [doneAll, uploadResults]);
 
-        const descriptionRichTextEditor = useMemo(() => {
-            return (
+        const memoizedRichTextEditor = useMemo(
+            () => (
                 <RichTextEditor
-                    designTokens={designTokens ?? undefined}
+                    isEditing={editing}
+                    designTokens={designTokens}
                     value={body}
-                    onBlur={(value) => onChangeItem(id, value, 'body')}
-                    placeholder={editing ? 'Add a description' : ''}
-                    readonly={!editing}
+                    onBlur={onBodyTextChange}
+                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                    placeholder="Add a description"
                 />
-            );
-        }, [designTokens, body, id, editing, onChangeItem]);
+            ),
+            [body, designTokens, onBodyTextChange, editing, appBridge]
+        );
 
         return (
-            <div ref={ref} style={{ ...transformStyle, ...(isMenuOpen ? { zIndex: 2 } : {}) }}>
-                <div
-                    className={joinClassNames([
-                        'tw-relative tw-group tw-border-[transparent] tw-border',
-                        editing &&
-                            !replaceWithPlaceholder &&
-                            'hover:tw-outline-offset-[1px] hover:tw-outline hover:tw-outline-[1px] hover:tw-outline-box-selected-inverse',
-                        isDragging && !replaceWithPlaceholder && 'tw-bg-base',
-                        (isFlyoutOpen || isDragging) && !replaceWithPlaceholder && 'tw-border-line-x-strong',
-                    ])}
+            <div
+                ref={ref}
+                className="tw-bg-base"
+                style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
+            >
+                <BlockItemWrapper
+                    isDragging={isDragging}
+                    shouldHideWrapper={replaceWithPlaceholder || !editing}
+                    shouldHideComponent={replaceWithPlaceholder}
+                    toolbarItems={[
+                        { icon: <IconArrowMove16 />, tooltip: 'Drag to move', draggableProps },
+                        { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
+                    ]}
+                    toolbarFlyoutItems={[
+                        [
+                            ...(!!linkedImage
+                                ? [
+                                      {
+                                          title: 'Replace with upload',
+                                          icon: <IconArrowCircleUp20 />,
+                                          onClick: onUploadClick,
+                                      },
+                                      {
+                                          title: 'Replace with asset',
+                                          icon: <IconImageStack20 />,
+                                          onClick: onOpenAssetChooser,
+                                      },
+                                  ]
+                                : []),
+                            {
+                                title: type === DoDontType.Do ? 'Change to "don\'t"' : 'Change to "do"',
+                                icon: <IconArrowSwap20 />,
+                                onClick: () =>
+                                    onChangeItem(id, type === DoDontType.Do ? DoDontType.Dont : DoDontType.Do, 'type'),
+                            },
+                        ],
+                        [
+                            {
+                                title: 'Delete',
+                                icon: <IconTrashBin20 />,
+                                onClick: onRemoveSelf,
+                            },
+                        ],
+                    ]}
                 >
-                    <div className={joinClassNames([replaceWithPlaceholder && 'tw-opacity-0'])}>
-                        <div
-                            className={joinClassNames([
-                                'tw-absolute tw-z-20 tw-bottom-[calc(100%-4px)] tw-right-[-1px] tw-w-full',
-                                editing && 'group-hover:tw-opacity-100',
-                                isFlyoutOpen || isDragging ? 'tw-opacity-100' : 'tw-opacity-0',
-                            ])}
-                        >
-                            <ItemToolbar
-                                id={id}
-                                onRemoveSelf={onRemoveSelf}
-                                type={type}
-                                onChangeItem={onChangeItem}
-                                isFlyoutOpen={isFlyoutOpen}
-                                setIsFlyoutOpen={setIsFlyoutOpen}
-                                draggableProps={draggableProps}
-                                isDragging={isDragging}
-                                onAssetChooseClick={linkedImage ? onOpenAssetChooser : undefined}
-                                onUploadClick={linkedImage ? onUploadClick : undefined}
-                            />
-                        </div>
-                        {mode === BlockMode.TEXT_AND_IMAGE && (
-                            <ImageComponent
-                                isEditing={editing}
-                                id={id}
-                                src={linkedImage}
-                                columns={columns}
-                                onAssetChooseClick={onOpenAssetChooser}
-                                onUploadClick={onUploadClick}
-                                isUploadLoading={isUploadLoading}
-                                isCustomImageHeight={isCustomImageHeight}
-                                customImageHeightValue={customImageHeightValue}
-                                imageDisplay={imageDisplay}
-                                draggableProps={draggableProps}
-                                imageHeightChoice={imageHeightChoice}
-                                isDragging={isDragging}
-                                hasStrikethrough={type === DoDontType.Dont && hasStrikethrough}
-                                backgroundColor={backgroundColor}
-                                hasBackground={hasBackground}
-                                hasRadius={hasRadius}
-                                radiusChoice={radiusChoice}
-                                border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
-                                radiusValue={radiusValue}
-                                setIsMenuOpen={setIsMenuOpen}
-                                dontColor={dontColor}
-                            />
-                        )}
-                        <div
-                            data-test-id="dos-donts-heading"
-                            className="tw-flex tw-items-start tw-font-semibold tw-text-l"
-                            style={{ color: headingColor }}
-                        >
-                            {style === DoDontStyle.Icons && (title || body || editing) && (
-                                <div
-                                    data-test-id="dos-donts-icon"
-                                    className={joinClassNames([
-                                        'tw-mr-2 tw-w-auto',
-                                        !internalTitle ? 'tw-opacity-30' : '',
-                                    ])}
-                                >
-                                    <IconComponent
-                                        type={type}
-                                        hasCustomDoIcon={hasCustomDoIcon}
-                                        doIconChoice={doIconChoice}
-                                        doIconAsset={doIconAsset}
-                                        hasCustomDontIcon={hasCustomDontIcon}
-                                        dontIconChoice={dontIconChoice}
-                                        dontIconAsset={dontIconAsset}
-                                    />
-                                </div>
-                            )}
-                            <div className="tw-w-full tw-flex tw-items-center">
-                                <h3 style={{ marginBottom: 0 }}>
-                                    <textarea
-                                        rows={1}
-                                        ref={titleRef}
-                                        onChange={(event) => {
-                                            const text = event.target.value;
-                                            debounce(() => onChangeItem(id, text, 'title'), 500)();
-                                            setInternalTitle(event.target.value);
-                                        }}
-                                        style={
-                                            {
-                                                ...designTokens?.heading3,
-                                                marginBottom: 0,
-                                                color: headingColor,
-                                                '--placeholder-color': headingColor,
-                                            } as CSSProperties
-                                        }
-                                        value={internalTitle}
-                                        disabled={!editing}
-                                        placeholder={editing ? 'Add a title' : ''}
-                                        className="tw-text-s tw-pointer-ev tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-30 tw-placeholder-opacity-30 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
-                                    />
-                                </h3>
+                    {mode === BlockMode.TEXT_AND_IMAGE && (
+                        <ImageComponent
+                            isEditing={editing}
+                            id={id}
+                            src={linkedImage}
+                            columns={columns}
+                            onAssetChooseClick={onOpenAssetChooser}
+                            onUploadClick={onUploadClick}
+                            isUploadLoading={isUploadLoading}
+                            isCustomImageHeight={isCustomImageHeight}
+                            customImageHeightValue={customImageHeightValue}
+                            imageDisplay={imageDisplay}
+                            draggableProps={draggableProps}
+                            imageHeightChoice={imageHeightChoice}
+                            isDragging={isDragging}
+                            hasStrikethrough={type === DoDontType.Dont && hasStrikethrough}
+                            backgroundColor={backgroundColor}
+                            hasBackground={hasBackground}
+                            hasRadius={hasRadius}
+                            radiusChoice={radiusChoice}
+                            border={hasBorder ? `${borderWidth} ${borderStyle} ${toRgbaString(borderColor)}` : ''}
+                            radiusValue={radiusValue}
+                            dontColor={dontColor}
+                        />
+                    )}
+                    <div
+                        data-test-id="dos-donts-heading"
+                        className="tw-flex tw-items-start tw-font-semibold tw-text-l"
+                        style={{ color: headingColor }}
+                    >
+                        {style === DoDontStyle.Icons && (title || body || editing) && (
+                            <div
+                                data-test-id="dos-donts-icon"
+                                className={joinClassNames(['tw-mr-2 tw-w-auto', !internalTitle ? 'tw-opacity-30' : ''])}
+                            >
+                                <IconComponent
+                                    type={type}
+                                    hasCustomDoIcon={hasCustomDoIcon}
+                                    doIconChoice={doIconChoice}
+                                    doIconAsset={doIconAsset}
+                                    hasCustomDontIcon={hasCustomDontIcon}
+                                    dontIconChoice={dontIconChoice}
+                                    dontIconAsset={dontIconAsset}
+                                />
                             </div>
-                        </div>
-                        {style === DoDontStyle.Underline && (
-                            <hr
-                                style={dividerStyles[type as DoDontType]}
-                                className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded tw-bg-black-40"
-                            />
                         )}
-                        <div
-                            data-test-id="dos-donts-content"
-                            className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}
-                        >
-                            {descriptionRichTextEditor}
+                        <div className="tw-w-full tw-flex tw-items-center">
+                            <h3
+                                style={{
+                                    marginBottom: 0,
+                                    marginTop: 0,
+                                    width: '100%',
+                                    lineHeight: 1,
+                                    display: 'inline-flex',
+                                }}
+                            >
+                                <textarea
+                                    rows={1}
+                                    ref={titleRef}
+                                    onChange={(event) => setInternalTitle(event.target.value)}
+                                    onBlur={() => onChangeItem(id, internalTitle, 'title')}
+                                    style={
+                                        {
+                                            ...designTokens?.heading3,
+                                            marginBottom: 0,
+                                            marginTop: 0,
+                                            color: headingColor,
+                                            '--placeholder-color': headingColor,
+                                        } as CSSProperties
+                                    }
+                                    value={internalTitle}
+                                    disabled={!editing}
+                                    placeholder={editing ? 'Add a title' : ''}
+                                    className="tw-text-s tw-pointer-ev tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-30 tw-placeholder-opacity-30 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
+                                />
+                            </h3>
                         </div>
                     </div>
+                    {style === DoDontStyle.Underline && (
+                        <hr
+                            style={dividerStyles[type]}
+                            className="tw-w-full tw-my-3 tw-h-[3px] tw-border-none tw-rounded tw-bg-black-40"
+                        />
+                    )}
                     <div
-                        style={{ height: minRowHeight }}
-                        className={joinClassNames([
-                            !replaceWithPlaceholder && 'tw-hidden',
-                            'tw-absolute tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
-                        ])}
-                    ></div>
-                </div>
+                        data-test-id="dos-donts-content"
+                        className={style === DoDontStyle.Icons ? 'tw-mt-3' : 'tw-mt-2'}
+                    >
+                        {memoizedRichTextEditor}
+                    </div>
+                </BlockItemWrapper>
+                <div
+                    style={{ height: minRowHeight }}
+                    className={joinClassNames([
+                        !replaceWithPlaceholder && 'tw-hidden',
+                        'tw-absolute tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
+                    ])}
+                />
             </div>
         );
     }
@@ -303,6 +333,7 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
 
     return (
         <DoDontItem
+            key={id}
             ref={setNodeRef}
             {...props}
             isDragging={isDragging}

@@ -3,7 +3,7 @@
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { OrderableListItem } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { ChecklistBlock } from './ChecklistBlock';
 import { createItem } from './helpers';
 import {

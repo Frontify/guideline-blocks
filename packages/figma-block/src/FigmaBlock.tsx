@@ -117,7 +117,7 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     );
 
     const ShowFigmaLink = useCallback(
-        ({ title, assetExternalUrl }) => (
+        ({ title, assetExternalUrl }: { title: string; assetExternalUrl: string }) => (
             <div className="tw-p-2 tw-text-sm">
                 <a href={assetExternalUrl} target="_blank" rel="noreferrer" className="tw-text-[#4a90e2]">
                     {title}
@@ -128,7 +128,17 @@ export const FigmaBlock = ({ appBridge }: BlockProps): ReactElement => {
     );
 
     const ShowImagePreview = useCallback(
-        ({ hasBorder, height, showFigmaLink, hasBackground }) => (
+        ({
+            hasBorder,
+            height,
+            showFigmaLink,
+            hasBackground,
+        }: {
+            hasBorder: boolean;
+            height: string;
+            showFigmaLink: boolean;
+            hasBackground: boolean;
+        }) => (
             <div data-test-id="figma-image-preview" className="tw-flex tw-flex-col tw-justify-center">
                 <ImageStage
                     title={asset.title}

@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
+    Color,
     MultiInputLayout,
     SettingBlock,
     appendUnit,
@@ -15,6 +16,7 @@ import { BorderStyle } from './types';
  *
  * @param options Options for the settings
  * @param options.id Custom suffix for the setting ids
+ * @param options.switchLabel Label for the border switch
  * @param options.defaultValue Default value for the border switch
  * @returns {SettingBlock} Returns border settings
  */
@@ -22,6 +24,8 @@ import { BorderStyle } from './types';
 type BorderSettingsType = {
     id?: string;
     defaultValue?: boolean;
+    defaultColor?: Color;
+    switchLabel?: string;
 };
 
 export const getBorderSettings = (options?: BorderSettingsType): SettingBlock => {
@@ -30,11 +34,14 @@ export const getBorderSettings = (options?: BorderSettingsType): SettingBlock =>
     const styleId = options?.id ? `borderStyle_${options.id}` : 'borderStyle';
     const widthId = options?.id ? `borderWidth_${options.id}` : 'borderWidth';
     const colorId = options?.id ? `borderColor_${options.id}` : 'borderColor';
+    const defaultColor = options?.defaultColor || BORDER_COLOR_DEFAULT_VALUE;
+    const switchLabel = options?.switchLabel ? options.switchLabel : undefined;
 
     return {
         id: hasId,
         label: 'Border',
         type: 'switch',
+        switchLabel,
         defaultValue: !!options?.defaultValue,
         on: [
             {
@@ -73,7 +80,7 @@ export const getBorderSettings = (options?: BorderSettingsType): SettingBlock =>
                     {
                         id: colorId,
                         type: 'colorInput',
-                        defaultValue: BORDER_COLOR_DEFAULT_VALUE,
+                        defaultValue: defaultColor,
                     },
                 ],
             },

@@ -1,5 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+export const BACKGROUND_COLOR_DEFAULT_VALUE = {
+    red: 241,
+    green: 241,
+    blue: 241,
+    alpha: 1,
+};
+
 export const BORDER_COLOR_DEFAULT_VALUE = {
     red: 234,
     green: 235,

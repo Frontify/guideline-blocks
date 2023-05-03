@@ -2,6 +2,7 @@
 
 import {
     Asset,
+    AssetChooserObjectType,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -20,7 +21,12 @@ import {
 } from '@dnd-kit/core';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, toColorObject, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import {
+    BlockInjectButton,
+    joinClassNames,
+    toColorObject,
+    useGuidelineDesignTokens,
+} from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
@@ -37,7 +43,6 @@ import {
     PatternTheme,
     generateRandomId,
 } from '@frontify/fondue';
-import BlockEditButton from './components/BlockEditButton';
 
 export const DO_COLOR_DEFAULT_VALUE = { red: 0, green: 200, blue: 165, alpha: 1 };
 export const DONT_COLOR_DEFAULT_VALUE = { red: 255, green: 55, blue: 90, alpha: 1 };
@@ -222,7 +227,11 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         setActiveId(active.id as string);
         if (wrapperRef.current) {
             setMinRowHeight(
-                Math.min(...Array.from(wrapperRef.current.children).map((x) => x.getBoundingClientRect().height))
+                Math.min(
+                    ...Array.from(wrapperRef.current.children).map((x) =>
+                        x.firstChild ? (x.firstChild as HTMLElement).getBoundingClientRect().height : 0
+                    )
+                )
             );
         }
     };
@@ -295,6 +304,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
             },
             {
                 multiSelection: true,
+                objectTypes: [AssetChooserObjectType.ImageVideo],
             }
         );
     };
@@ -348,7 +358,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 <div className="tw-w-full tw-flex tw-gap-3 tw-mt-9">
                     {mode === BlockMode.TEXT_AND_IMAGE && (
                         <div className="tw-flex tw-flex-wrap tw-w-full tw-gap-3 tw-justify-center">
-                            <BlockEditButton
+                            <BlockInjectButton
                                 label="Add images"
                                 secondaryLabel="Or drop them here"
                                 icon={<IconPlus20 />}
@@ -360,13 +370,15 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                         </div>
                     )}
                     <div className="tw-flex tw-w-full">
-                        <BlockEditButton
+                        <BlockInjectButton
                             label="Add do"
+                            withMenu={false}
                             icon={<IconCheckMarkCircle20 />}
                             onClick={() => addItem(DoDontType.Do)}
                         />
-                        <BlockEditButton
+                        <BlockInjectButton
                             label="Add don't"
+                            withMenu={false}
                             icon={<IconCrossCircle20 />}
                             onClick={() => addItem(DoDontType.Dont)}
                         />

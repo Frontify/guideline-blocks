@@ -2,7 +2,7 @@
     "compilerOptions": {
         "esModuleInterop": true,
         "isolatedModules": true,
-        "module": "esnext",
+        "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noImplicitReturns": true,
@@ -16,6 +16,6 @@
         "types": ["cypress"],
         "skipLibCheck": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "../shared/src/**/*"],
     "exclude": ["node_modules", "dist"]
 }

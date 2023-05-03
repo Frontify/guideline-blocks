@@ -9,6 +9,11 @@ import {
 } from '@frontify/guideline-blocks-settings';
 import { TextGutter, spacingValues } from './types';
 
+const presetSpacingValues: Record<TextGutter, string> = {
+    ...spacingValues,
+    [TextGutter.Auto]: '',
+};
+
 export const PLACEHOLDER = 'Your text here';
 const CUSTOM_GUTTER_ID = 'columnGutterCustom';
 const SIMPLE_GUTTER_ID = 'columnGutterSimple';
@@ -18,9 +23,9 @@ export const settings = defineSettings({
     layout: [
         {
             id: COLUMN_NR_ID,
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Columns',
-            defaultValue: '1',
+            defaultValue: 1,
             choices: [
                 {
                     value: 1,
@@ -47,13 +52,13 @@ export const settings = defineSettings({
             switchLabel: 'Custom',
             defaultValue: false,
             info: "An official nerd's term for 'column gap'",
-            onChange: (bundle) => presetCustomValue(bundle, SIMPLE_GUTTER_ID, CUSTOM_GUTTER_ID, spacingValues),
+            onChange: (bundle) => presetCustomValue(bundle, SIMPLE_GUTTER_ID, CUSTOM_GUTTER_ID, presetSpacingValues),
             show: (bundle) => Number(bundle.getBlock(COLUMN_NR_ID)?.value) > 1,
             on: [
                 {
                     id: CUSTOM_GUTTER_ID,
                     type: 'input',
-                    defaultValue: spacingValues[TextGutter.Auto],
+                    defaultValue: presetSpacingValues[TextGutter.Auto],
                     rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
                     onChange: (bundle) => appendUnit(bundle, CUSTOM_GUTTER_ID),
                 },
@@ -61,7 +66,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: SIMPLE_GUTTER_ID,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: TextGutter.Auto,
                     choices: [
                         {

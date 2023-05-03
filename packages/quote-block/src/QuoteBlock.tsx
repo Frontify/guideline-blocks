@@ -3,18 +3,18 @@
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     BoldPlugin,
-    InitPlugin,
     ItalicPlugin,
     PluginComposer,
     RichTextEditor,
     StrikethroughPlugin,
     TextStylePlugin,
+    TextStyles,
     UnderlinePlugin,
     merge,
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { convertToRteValue, toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';
@@ -24,10 +24,8 @@ import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities
 
 const customPlugins = new PluginComposer();
 customPlugins
-    .setPlugin([new InitPlugin(), new TextStylePlugin()])
+    .setPlugin([new TextStylePlugin()])
     .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()]);
-
-const DEFAULT_CONTENT_VALUE = '[{"type":"quote","children":[{"text":""}]}]';
 
 export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -105,9 +103,10 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     >
                         <RichTextEditor
                             id={appBridge.getBlockId().toString()}
-                            designTokens={designTokens ?? undefined}
+                            designTokens={designTokens}
+                            border={false}
                             placeholder={isEditing ? 'Add your quote text here' : undefined}
-                            value={blockSettings.content ?? DEFAULT_CONTENT_VALUE}
+                            value={blockSettings.content ?? convertToRteValue(TextStyles.ELEMENT_QUOTE)}
                             onTextChange={onChangeContent}
                             onBlur={onChangeContent}
                             plugins={customPlugins}

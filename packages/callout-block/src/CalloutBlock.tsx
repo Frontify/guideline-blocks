@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    RichTextEditor,
     hasRichTextValue,
     isDark,
     joinClassNames,
@@ -17,7 +18,6 @@ import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 import { useCalloutColors } from './utils/useCalloutColors';
-import type { BlockProps } from '@frontify/guideline-blocks-settings';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -54,6 +54,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const defaultTextColor = isDark(color) ? 'white' : 'black';
     const textColor = blockSettings.appearance === Appearance.Light ? color : defaultTextColor;
+    const calloutDesignTokens = useCalloutColors(designTokens, textColor);
 
     const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center',
@@ -91,12 +92,12 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     />
                 )}
                 <RichTextEditor
-                    onTextChange={onTextChange}
+                    id={appBridge.getBlockId().toString()}
+                    designTokens={calloutDesignTokens}
+                    isEditing={isEditing}
                     onBlur={onTextChange}
-                    readonly={!isEditing}
-                    value={blockSettings.textValue}
                     placeholder="Type your text here"
-                    designTokens={useCalloutColors(designTokens, textColor)}
+                    value={blockSettings.textValue}
                 />
             </div>
         </div>

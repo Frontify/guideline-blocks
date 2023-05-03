@@ -1,23 +1,36 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { CalloutBlock } from './CalloutBlock';
 import { ICON_ASSET_ID } from './settings';
 import { Alignment, Icon, Padding, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
+const RichTextEditor = '[data-test-id="rich-text-editor"]';
+const HtmlContent = '[data-test-id="rte-content-html"]';
 const CalloutWrapper = '[data-test-id="callout-wrapper"]';
 const CalloutIcon = '[data-test-id="callout-icon"]';
 const CalloutIconCustom = '[data-test-id="callout-icon-custom"]';
 const CalloutIconInfo = '[data-test-id="callout-icon-info"]';
 
 describe('Callout Block', () => {
-    it('renders a callout block', () => {
-        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock);
+    it('renders a callout block in edit mode', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, { editorState: true });
 
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutBlockSelector).should('exist');
+        cy.get(RichTextEditor).should('exist');
+    });
+
+    it('should not be able to input to a callout block when in view mode', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: { textValue: 'Text value' },
+        });
+
+        mount(<TextBlockWithStubs />);
+        cy.get(HtmlContent).should('have.text', 'Text value');
+        cy.get(RichTextEditor).should('not.exist');
     });
 
     it('renders a callout block with the correct layout settings', () => {

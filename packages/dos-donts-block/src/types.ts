@@ -107,7 +107,7 @@ export type SortableDoDontItemProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
-    designTokens: Record<string, React.CSSProperties> | null;
+    designTokens: Record<string, React.CSSProperties>;
 };
 
 export type DoDontItemProps = SortableDoDontItemProps & {
@@ -115,19 +115,6 @@ export type DoDontItemProps = SortableDoDontItemProps & {
     replaceWithPlaceholder?: boolean;
     transformStyle?: Record<string, unknown>;
     draggableProps?: Record<string, unknown>;
-};
-
-export type BlockEditButtonProps = {
-    onClick?: () => void;
-    isLoading?: boolean;
-    label: string;
-    secondaryLabel?: string;
-    icon?: JSX.Element;
-    onDrop?: (files: FileList) => void;
-    fillParentContainer?: boolean;
-    onUploadClick?: () => void;
-    onAssetChooseClick?: () => void;
-    setIsMenuOpen?: (x: boolean) => void;
 };
 
 export type ItemToolbarProps = {
@@ -174,7 +161,6 @@ export type ImageComponentProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
-    setIsMenuOpen: (x: boolean) => void;
     dontColor: Color;
 };
 

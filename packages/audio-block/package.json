@@ -1,0 +1,42 @@
+{
+    "name": "audio-block",
+    "private": true,
+    "author": "Frontify Developers <developers@frontify.com>",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "serve": "frontify-cli serve --entryPath src/index.ts",
+        "deploy": "frontify-cli deploy --entryPath src/index.ts",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write .",
+        "typecheck": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "@babel/core": "7.21.0",
+        "@frontify/eslint-config-react": "0.15.6",
+        "@frontify/frontify-cli": "5.3.10",
+        "@types/react": "18.0.35",
+        "@types/react-dom": "18.2.1",
+        "autoprefixer": "10.4.13",
+        "cypress": "11.0.1",
+        "cypress-real-events": "1.7.4",
+        "eslint": "8.35.0",
+        "eslint-plugin-notice": "^0.9.10",
+        "postcss": "8.4.21",
+        "prettier": "2.8.4",
+        "sinon": "15.0.2",
+        "tailwindcss": "3.2.7",
+        "typescript": "4.9.5"
+    },
+    "dependencies": {
+        "@frontify/app-bridge": "3.0.0-beta.61",
+        "@frontify/fondue": "12.0.0-beta.186",
+        "@frontify/fondue-tokens": "3.2.1",
+        "@frontify/guideline-blocks-settings": "0.26.2",
+        "@frontify/guideline-blocks-shared": "workspace:*",
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
+    }
+}

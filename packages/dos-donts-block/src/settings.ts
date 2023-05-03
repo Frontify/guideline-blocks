@@ -1,9 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetInputSize } from '@frontify/fondue';
 import {
-    AssetChooserObjectType,
-    FileExtension,
     IconEnum,
     appendUnit,
     defineSettings,
@@ -27,7 +24,7 @@ export const settings = defineSettings({
         // {
         //     id: 'mode',
         //     type: 'dropdown',
-        //     size: DropdownSize.Large,
+        //     size: 'large',
         //     defaultValue: BlockMode.TEXT,
         //     choices: [
         //         {
@@ -52,7 +49,7 @@ export const settings = defineSettings({
                 {
                     id: 'style',
                     label: 'Indicator',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: DoDontStyle.Icons,
                     choices: [
                         {
@@ -93,70 +90,34 @@ export const settings = defineSettings({
             show: (bundle) => bundle.getBlock('style')?.value === DoDontStyle.Icons,
             blocks: [
                 {
-                    id: 'hasCustomDoIcon',
-                    type: 'switch',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
+                    id: 'doIconChoice',
+                    type: 'segmentedControls',
                     label: 'Do icon',
-                    info: 'Custom icons will always display the same way, they were created. To tweak icon colors, apply the changes in the icon, then upload it again.',
-                    off: [
+                    defaultValue: ItemIconChoice.CHECKMARK_CIRCLE,
+                    choices: [
                         {
-                            id: 'doIconChoice',
-                            type: 'slider',
-                            defaultValue: ItemIconChoice.CHECKMARK_CIRCLE,
-                            choices: [
-                                {
-                                    value: ItemIconChoice.CHECKMARK_CIRCLE,
-                                    icon: IconEnum.CheckMarkCircle20,
-                                },
-                                {
-                                    value: ItemIconChoice.CHECKMARK,
-                                    icon: IconEnum.CheckMark20,
-                                },
-                            ],
+                            value: ItemIconChoice.CHECKMARK_CIRCLE,
+                            icon: IconEnum.CheckMarkCircle20,
                         },
-                    ],
-                    on: [
                         {
-                            id: 'doIconAsset',
-                            type: 'assetInput',
-                            size: AssetInputSize.Small,
-                            extensions: [FileExtension.Svg],
-                            objectTypes: [AssetChooserObjectType.ImageVideo],
+                            value: ItemIconChoice.CHECKMARK,
+                            icon: IconEnum.CheckMark20,
                         },
                     ],
                 },
                 {
-                    id: 'hasCustomDontIcon',
-                    type: 'switch',
-                    switchLabel: 'Custom',
-                    defaultValue: false,
+                    id: 'dontIconChoice',
+                    type: 'segmentedControls',
                     label: "Don't icon",
-                    info: 'Custom icons will always display the same way, they were created. To tweak icon colors, apply the changes in the icon, then upload it again.',
-                    off: [
+                    defaultValue: ItemIconChoice.CROSS_CIRCLE,
+                    choices: [
                         {
-                            id: 'dontIconChoice',
-                            type: 'slider',
-                            defaultValue: ItemIconChoice.CROSS_CIRCLE,
-                            choices: [
-                                {
-                                    value: ItemIconChoice.CROSS_CIRCLE,
-                                    icon: IconEnum.CrossCircle20,
-                                },
-                                {
-                                    value: ItemIconChoice.CROSS,
-                                    icon: IconEnum.Cross20,
-                                },
-                            ],
+                            value: ItemIconChoice.CROSS_CIRCLE,
+                            icon: IconEnum.CrossCircle20,
                         },
-                    ],
-                    on: [
                         {
-                            id: 'dontIconAsset',
-                            type: 'assetInput',
-                            size: AssetInputSize.Small,
-                            extensions: [FileExtension.Svg],
-                            objectTypes: [AssetChooserObjectType.ImageVideo],
+                            value: ItemIconChoice.CROSS,
+                            icon: IconEnum.Cross20,
                         },
                     ],
                 },
@@ -172,7 +133,7 @@ export const settings = defineSettings({
                 {
                     id: 'columns',
                     label: 'Columns',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: 2,
                     info: "The number of columns for Dos and Don'ts",
                     choices: [
@@ -198,7 +159,7 @@ export const settings = defineSettings({
                     id: 'keepSideBySide',
                     label: 'Always show side by side',
                     type: 'switch',
-                    show: (bundle) => bundle.getBlock('columns')?.value === '2',
+                    show: (bundle) => bundle.getBlock('columns')?.value?.toString() === '2',
                     defaultValue: true,
                 },
                 {
@@ -224,7 +185,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'columnGutterChoice',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DoDontSpacing.Medium,
                             choices: [
                                 {
@@ -274,7 +235,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'rowGutterChoice',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DoDontSpacing.Medium,
                             choices: [
                                 {
@@ -329,7 +290,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: 'imageHeightChoice',
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: DoDontImageHeight.Medium,
                             choices: [
                                 {
@@ -361,7 +322,7 @@ export const settings = defineSettings({
                 },
                 {
                     id: 'imageDisplay',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: ImageFitChoice.FILL,
                     choices: [
                         {

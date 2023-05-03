@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum, NotificationStyleType, defineSettings } from '@frontify/guideline-blocks-settings';
+import { IconEnum, NotificationStyleType, defineSettings } from '@frontify/guideline-blocks-settings';
 import { ColorSpaceLabels } from './types';
 
 const COLORSPACES_ID = 'colorspaces';
@@ -96,7 +96,7 @@ export const settings = defineSettings({
             id: 'view',
             type: 'dropdown',
             defaultValue: 'cards',
-            size: DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: 'list',

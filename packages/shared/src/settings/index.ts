@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+export * from './background';
 export * from './border';
 export * from './borderRadius';
 export * from './borderRadiusExtended';

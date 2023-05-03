@@ -17,17 +17,19 @@ const TokenNameMapper: Record<string, DesignTokenName> = {
     button_secondary: 'buttonSecondary',
     button_tertiary: 'buttonTertiary',
     'image-caption': 'imageCaption',
+    'image-title': 'imageTitle',
     body: 'p',
 };
 
 const transformDesignTokens = (dataToTransform: DesignTokenProperties, mainFontFamily: string) => {
     const cssStyles: TokenValues = {};
+    const fontFamilyCss = dataToTransform?.family_css as string;
 
     for (const [key, value] of Object.entries(dataToTransform)) {
         if (typeof value === 'object') {
             transformObjectValues(key, cssStyles, value);
         } else {
-            transformStringValues(key, cssStyles, value, mainFontFamily);
+            transformStringValues(key, cssStyles, value, mainFontFamily, fontFamilyCss);
         }
     }
     return cssStyles;
@@ -42,11 +44,17 @@ const transformObjectValues = (key: string, cssStyles: TokenValues, value: Direc
     }
 };
 
-const transformStringValues = (key: string, cssStyles: TokenValues, value: string, mainFontFamily: string) => {
+const transformStringValues = (
+    key: string,
+    cssStyles: TokenValues,
+    value: string,
+    mainFontFamily: string,
+    fontFamilyCss?: string
+) => {
     cssStyles.hover = cssStyles.hover || {};
     switch (key) {
         case DesignTokenPropertiesEnum.family:
-            cssStyles.fontFamily = getFont(value, mainFontFamily);
+            cssStyles.fontFamily = getFont(fontFamilyCss ?? value, mainFontFamily);
             break;
         case DesignTokenPropertiesEnum.weight:
             cssStyles.fontWeight = value;
