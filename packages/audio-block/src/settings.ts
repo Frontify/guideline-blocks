@@ -3,11 +3,11 @@
 import { FileExtensionSets } from '@frontify/app-bridge';
 import { AssetChooserObjectType, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
-import { AudioSecurity, TextPosition } from './types';
+import { TextPosition } from './types';
+import { getSecuritySettings } from '@frontify/guideline-blocks-shared/src/settings/security';
 
 export const AUDIO_ID = 'audio';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
-const SECURITY_ID = 'security';
 
 export const settings = defineSettings({
     basics: [
@@ -33,29 +33,5 @@ export const settings = defineSettings({
             ],
         },
     ],
-    security: [
-        {
-            id: SECURITY_ID,
-            type: 'segmentedControls',
-            defaultValue: AudioSecurity.Global,
-            helperText: 'Change global settings here.',
-            choices: [
-                {
-                    value: AudioSecurity.Global,
-                    label: 'Global Settings',
-                },
-                {
-                    value: AudioSecurity.Custom,
-                    label: 'Custom',
-                },
-            ],
-        },
-        {
-            id: 'downloadable',
-            type: 'switch',
-            defaultValue: false,
-            label: 'Downloadable',
-            show: (bundle) => bundle.getBlock(SECURITY_ID)?.value === AudioSecurity.Custom,
-        },
-    ],
+    security: getSecuritySettings(),
 });

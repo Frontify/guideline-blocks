@@ -25,6 +25,7 @@ import {
     BlockItemWrapper,
     DownloadButton,
     RichTextEditor,
+    Security,
     convertToRteValue,
     downloadAsset,
     hasRichTextValue,
@@ -41,6 +42,7 @@ import {
     useBlockSettings,
     useEditorState,
     useFileInput,
+    usePrivacySettings,
 } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
@@ -51,6 +53,10 @@ import { useEffect, useMemo, useState } from 'react';
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.ELEMENT_HEADING3);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.ELEMENT_PARAGRAPH);
 
+const isDownloadable = (security: Security, downloadable: boolean, globalAssetDownloadEnabled: boolean) => {
+    return security === Security.Custom ? downloadable : globalAssetDownloadEnabled;
+};
+
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const isEditing = useEditorState(appBridge);
@@ -58,7 +64,9 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { designTokens } = useGuidelineDesignTokens();
-    const { title, description, downloadable, positioning } = blockSettings;
+    const { assetDownloadEnabled } = usePrivacySettings(appBridge);
+
+    const { title, description, downloadable, positioning, security } = blockSettings;
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -213,7 +221,9 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                 </div>
                 {audio && (
                     <div className="tw-flex tw-gap-2">
-                        {downloadable && <DownloadButton onDownload={() => downloadAsset(audio)} />}
+                        {isDownloadable(security, downloadable, assetDownloadEnabled) && (
+                            <DownloadButton onDownload={() => downloadAsset(audio)} />
+                        )}
                         <BlockAttachments appBridge={appBridge} />
                     </div>
                 )}
