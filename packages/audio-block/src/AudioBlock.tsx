@@ -25,10 +25,10 @@ import {
     BlockItemWrapper,
     DownloadButton,
     RichTextEditor,
-    Security,
     convertToRteValue,
     downloadAsset,
     hasRichTextValue,
+    isDownloadable,
     joinClassNames,
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
@@ -52,10 +52,6 @@ import { useEffect, useMemo, useState } from 'react';
 
 const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.ELEMENT_HEADING3);
 const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.ELEMENT_PARAGRAPH);
-
-const isDownloadable = (security: Security, downloadable: boolean, globalAssetDownloadEnabled: boolean) => {
-    return security === Security.Custom ? downloadable : globalAssetDownloadEnabled;
-};
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
