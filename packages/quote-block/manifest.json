@@ -1,4 +1,5 @@
 {
     "appId": "cl5wcp42a00010jw8t6x51t6n",
-    "searchFields": ["authorName", { "type": "fondueRte", "settingId": "content" }]
+    "searchFields": ["authorName", { "type": "fondueRte", "settingId": "content" }],
+    "i18nFields": ["content"]
 }

@@ -1,3 +1,5 @@
 {
-    "appId": "cl5w9oto800010tw8ecq1lgth"
+    "appId": "cl5w9oto800010tw8ecq1lgth",
+    "searchFields": ["content"],
+    "i18nFields": ["content"]
 }

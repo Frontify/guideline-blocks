@@ -1,3 +1,5 @@
 {
-    "appId": "cl5wa92p800010kw8fhpwvbjh"
+    "appId": "cl5wa92p800010kw8fhpwvbjh",
+    "searchFields": ["items"],
+    "i18nFields": ["items"]
 }
