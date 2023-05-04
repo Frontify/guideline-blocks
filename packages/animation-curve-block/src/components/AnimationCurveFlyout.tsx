@@ -119,7 +119,6 @@ export const AnimationCurveFlyout = ({
                     ]}
                 />
             }
-            offset={20}
             placement={FlyoutPlacement.BottomLeft}
         >
             <div className="tw-p-6 tw-w-[498px]">
