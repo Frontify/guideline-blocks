@@ -136,7 +136,7 @@ describe('Audio Block', () => {
         cy.get(AudioBlockSelector).should('have.css', 'flex-direction', 'column');
     });
 
-    it('renders an audio block without download button as its set in the security settings', () => {
+    it('renders an audio block with download button as its set in the security settings', () => {
         const asset = AssetDummy.with(312);
         const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
             blockSettings: {
