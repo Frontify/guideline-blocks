@@ -28,17 +28,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const { designTokens } = useGuidelineDesignTokens();
     const [activeItem, setActiveItem] = useState<AnimationCurve | null>(null);
     const [canvasHeight, setCanvasHeight] = useState(0);
-    const {
-        content,
-        hasCustomSpacing,
-        spacingCustom,
-        spacingChoice,
-        columns,
-        hasBorder,
-        lineColor,
-        endpointsColor,
-        gridColor,
-    } = blockSettings;
+    const { content, hasCustomSpacing, spacingCustom, spacingChoice, columns, hasBorder } = blockSettings;
     const [localItems, setLocalItems] = useState<AnimationCurve[]>(content ?? []);
     const isEditing = useEditorState(appBridge);
     const sensors = useSensors(useSensor(PointerSensor));
@@ -125,9 +115,6 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                         setLocalItems={setLocalItems}
                         setBlockSettings={setBlockSettings}
                         designTokens={designTokens}
-                        lineColor={lineColor}
-                        endpointColor={endpointsColor}
-                        gridColor={gridColor}
                         canvasHeight={canvasHeight}
                     />
                 )}

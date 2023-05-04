@@ -14,9 +14,6 @@ export const BlankSlate = ({
     content,
     designTokens,
     hasBorder,
-    lineColor,
-    endpointColor,
-    gridColor,
     canvasHeight,
     setLocalItems,
     setBlockSettings,
@@ -60,9 +57,6 @@ export const BlankSlate = ({
                 onOpenChange={(isOpen) => setIsFlyoutOpen(isOpen)}
                 onAnimationCurveChange={setAnimationCurve}
                 isFlyoutOpen={isFlyoutOpen}
-                lineColor={lineColor}
-                endpointColor={endpointColor}
-                gridColor={gridColor}
             />
             <div
                 style={{

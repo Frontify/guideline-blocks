@@ -36,8 +36,6 @@ export const validateXValue = (value: number): Validation => {
 export const AnimationCurveFlyout = ({
     animationCurve,
     isFlyoutOpen,
-    endpointColor,
-    gridColor,
     onSave,
     onCancel,
     onOpenChange,
@@ -142,8 +140,6 @@ export const AnimationCurveFlyout = ({
                         showGrid={false}
                         showEndPoints={false}
                         showHandles
-                        endpointColor={endpointColor}
-                        gridColor={gridColor}
                         viewBox={{
                             width: 450,
                             height: 200,

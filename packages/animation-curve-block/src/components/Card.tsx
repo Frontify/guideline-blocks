@@ -99,7 +99,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     <div
                         data-test-id="animation-curve-card"
                         onMouseEnter={!isEditFlyoutOpen ? () => setIsHovered(true) : undefined}
-                        onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
+                        // onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
                         className={joinClassNames([
                             (hasBackground || hasBorder) && 'tw-overflow-hidden',
                             'tw-flex tw-flex-col tw-relative tw-bg-base',
@@ -112,8 +112,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         <AnimationCurveFlyout
                             animationCurve={localAnimationCurve}
                             isFlyoutOpen={isEditFlyoutOpen}
-                            endpointColor={endpointsColor}
-                            gridColor={gridColor}
                             onSave={(id) => {
                                 onUpdate(id, localAnimationCurve);
                                 setIsEditFlyoutOpen(false);

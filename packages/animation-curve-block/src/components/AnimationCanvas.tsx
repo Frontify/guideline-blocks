@@ -174,7 +174,7 @@ export const AnimationCanvas = ({
             role="img"
         >
             <title>{title ? title : 'Animation Curve'}</title>
-            {showGrid && <AnimationCurveCanvasGrid viewBox={viewBox} lineColor={gridColor} />}
+            {showGrid && gridColor && <AnimationCurveCanvasGrid viewBox={viewBox} lineColor={gridColor} />}
 
             <path
                 data-test-id="animation-curves-canvas-path"
@@ -218,7 +218,7 @@ export const AnimationCanvas = ({
                 </>
             )}
 
-            {showEndPoints && (
+            {showEndPoints && endpointColor && (
                 <>
                     <Circle
                         testId="animation-canvas-endpoint"

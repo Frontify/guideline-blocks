@@ -149,9 +149,6 @@ export type BlankSlateProps = {
     content: AnimationCurve[];
     hasBorder: boolean;
     designTokens: Partial<Record<DesignTokenName, TokenValues>>;
-    lineColor: Color;
-    endpointColor: Color;
-    gridColor: Color;
     canvasHeight: number;
     setBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     setLocalItems: (items: AnimationCurve[]) => void;
@@ -190,8 +187,8 @@ export type CardTextProps = {
 export type AnimationCanvasProps = {
     animationFunction: AnimationFunction;
     lineColor?: Color;
-    endpointColor: Color;
-    gridColor: Color;
+    endpointColor?: Color;
+    gridColor?: Color;
     showGrid: boolean;
     showEndPoints: boolean;
     showHandles?: boolean;
@@ -205,8 +202,6 @@ export type AnimationCanvasProps = {
 export type AnimationCurveFlyoutProps = {
     animationCurve: AnimationCurve;
     isFlyoutOpen: boolean;
-    endpointColor: Color;
-    gridColor: Color;
     onSave: (id: string, animationCurvePatch: AnimationCurvePatch) => void;
     onCancel: () => void;
     onOpenChange: (isOpen: boolean) => void;
