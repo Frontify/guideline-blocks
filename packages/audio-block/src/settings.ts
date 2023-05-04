@@ -4,10 +4,7 @@ import { FileExtensionSets } from '@frontify/app-bridge';
 import { AssetChooserObjectType, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
 import { TextPosition } from './types';
-import {
-    getSecurityDownloadableSetting,
-    getSecurityGlobalControlSetting,
-} from '@frontify/guideline-blocks-shared'
+import { getSecurityDownloadableSetting, getSecurityGlobalControlSetting } from '@frontify/guideline-blocks-shared';
 
 export const AUDIO_ID = 'audio';
 export const ATTACHMENTS_ASSET_ID = 'attachments';

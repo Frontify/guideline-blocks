@@ -65,8 +65,12 @@ describe('Image Block', () => {
         cy.get(DownloadSelector).should('exist');
     });
 
-    it('should render the download button if the image is uploaded', () => {
+    it('should not render the download button if the security settings disallow it', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockSettings: {
+                security: Security.Custom,
+                downloadable: false,
+            },
             blockAssets: {},
         });
         mount(<ImageBlockWithStubs />);

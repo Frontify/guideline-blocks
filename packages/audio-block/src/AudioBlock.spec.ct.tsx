@@ -150,4 +150,19 @@ describe('Audio Block', () => {
         mount(<AudioBlockWithStubs />);
         cy.get(DownloadButtonSelector).should('exist');
     });
+
+    it('renders an audio block without download button as its not allowed by the security settings', () => {
+        const asset = AssetDummy.with(312);
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            blockSettings: {
+                security: Security.Custom,
+                downloadable: false,
+            },
+            blockAssets: {
+                [AUDIO_ID]: [asset],
+            },
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(DownloadButtonSelector).should('not.exist');
+    });
 });
