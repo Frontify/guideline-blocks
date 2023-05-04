@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MenuBlock } from '@frontify/fondue';
+import { Color, MenuBlock } from '@frontify/fondue';
 import { AnimationCurveType, AnimationFunction, Size, defaultAnimationCurveTypeValues } from './types';
 
 export const BLANK_SLATE_INITIAL_HEIGHT = '82px';
@@ -14,6 +14,12 @@ export const DEFAULT_ANIMATION_FUNCTION: AnimationFunction = {
 export const DEFAULT_ANIMATION_CANVAS_VIEWBOX: Size = {
     width: 350,
     height: 200,
+};
+
+export const DEFAULT_LINE_COLOR: Color = {
+    red: 45,
+    green: 50,
+    blue: 50,
 };
 
 export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [

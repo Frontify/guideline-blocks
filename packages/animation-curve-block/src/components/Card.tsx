@@ -112,7 +112,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         <AnimationCurveFlyout
                             animationCurve={localAnimationCurve}
                             isFlyoutOpen={isEditFlyoutOpen}
-                            lineColor={lineColor}
                             endpointColor={endpointsColor}
                             gridColor={gridColor}
                             onSave={(id) => {

@@ -7,6 +7,7 @@ import { toHexString } from '@frontify/guideline-blocks-shared';
 import { AnimationCurveCanvasGrid, Circle, Line } from './';
 import { AnimationCanvasProps, AnimationCurveType, AnimationFunction, ControlPoint, Point, Size } from '../types';
 import '../styles.css';
+import { DEFAULT_LINE_COLOR } from '../constants';
 
 export const getPositionWithinViewBoxFromAnimationPoint = (viewBox: Size, animationPoint: Point): Point => {
     return {
@@ -17,7 +18,7 @@ export const getPositionWithinViewBoxFromAnimationPoint = (viewBox: Size, animat
 
 export const AnimationCanvas = ({
     animationFunction,
-    lineColor,
+    lineColor = DEFAULT_LINE_COLOR,
     endpointColor,
     gridColor,
     showGrid,

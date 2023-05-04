@@ -189,7 +189,7 @@ export type CardTextProps = {
 
 export type AnimationCanvasProps = {
     animationFunction: AnimationFunction;
-    lineColor: Color;
+    lineColor?: Color;
     endpointColor: Color;
     gridColor: Color;
     showGrid: boolean;
@@ -205,7 +205,6 @@ export type AnimationCanvasProps = {
 export type AnimationCurveFlyoutProps = {
     animationCurve: AnimationCurve;
     isFlyoutOpen: boolean;
-    lineColor: Color;
     endpointColor: Color;
     gridColor: Color;
     onSave: (id: string, animationCurvePatch: AnimationCurvePatch) => void;
