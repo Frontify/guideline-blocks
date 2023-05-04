@@ -230,6 +230,22 @@ describe('AnimationCurve Block', () => {
         cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'padding', '16px 20px');
     });
 
+    it('should render the animation curve block with background, border radius and no border, the card and the canvas wrapper should have the border radius', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
+            blockSettings: {
+                content: [AnimationCurveDummy.with()],
+                hasBackground: true,
+                backgroundColor: RED,
+                hasBorder: false,
+                hasRadius: true,
+                radiusValue: '42px',
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(CARD_SELECTOR).should('have.css', 'border-radius', '42px');
+        cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'border-radius', '42px');
+    });
+
     it('should render one animation curve with a red line', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {

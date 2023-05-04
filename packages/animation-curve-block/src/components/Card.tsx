@@ -134,6 +134,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             className={merge([(hasBorder || hasBackground) && 'tw-px-5 tw-py-4'])}
                             style={{
                                 ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
+                                ...(hasBackground &&
+                                    !hasBorder &&
+                                    getRadiusStyles(radiusChoice, hasRadius, radiusValue)),
                             }}
                         >
                             <AnimationCanvas
