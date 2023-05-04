@@ -50,7 +50,7 @@ export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
         ],
     },
     {
-        id: 'easeIn',
+        id: 'easeInGroup',
         ariaLabel: 'Ease in',
         menuItems: [
             {
@@ -88,7 +88,7 @@ export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
         ],
     },
     {
-        id: 'easeOut',
+        id: 'easeOutGroup',
         ariaLabel: 'Ease out',
         menuItems: [
             {
@@ -126,7 +126,7 @@ export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
         ],
     },
     {
-        id: 'easeInOut',
+        id: 'easeInOutGroup',
         ariaLabel: 'Ease in out',
         menuItems: [
             {
