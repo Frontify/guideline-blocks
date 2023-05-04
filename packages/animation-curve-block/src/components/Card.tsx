@@ -3,14 +3,7 @@
 import { forwardRef, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 
-import {
-    IconArrowMove16,
-    IconCaretRight12,
-    IconDotsHorizontal16,
-    IconTrashBin16,
-    merge,
-    useCopy,
-} from '@frontify/fondue';
+import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge, useCopy } from '@frontify/fondue';
 import {
     BlockItemWrapper,
     getBackgroundColorStyles,
@@ -184,11 +177,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                     ])}
                                     onClick={() => copy(JSON.stringify(parameters))}
                                 >
-                                    {parameters['x1']},<span className="tw-ml-1">{parameters['y1']}</span>
-                                    <span className="tw-mx-1">
-                                        <IconCaretRight12 />
-                                    </span>
-                                    {parameters['x2']},<span className="tw-ml-1">{parameters['y2']}</span>
+                                    {`${parameters['x1']}, `} {`${parameters['y1']}, `} {`${parameters['x2']}, `}
+                                    {`${parameters['y2']}, `}
                                 </p>
                             )}
                             {hasDuration && <p data-test-id="animation-curve-card-duration">Duration: {duration} s</p>}

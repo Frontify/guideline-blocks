@@ -38,10 +38,6 @@ export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
                 title: 'Ease in out',
             },
             {
-                id: AnimationCurveType.Instant,
-                title: 'Instant',
-            },
-            {
                 id: AnimationCurveType.Custom,
                 title: 'Custom',
             },

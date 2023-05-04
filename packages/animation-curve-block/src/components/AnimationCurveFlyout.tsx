@@ -157,50 +157,42 @@ export const AnimationCurveFlyout = ({
                 <div className="tw-flex tw-items-center tw-justify-between">
                     <div className="tw-flex tw-justify-start tw-items-center tw-gap-1">
                         <div className="tw-relative tw-w-[74px]">
-                            <span className="tw-absolute tw-top-2.5 tw-left-[3px] tw-z-10 tw-text-s tw-text-text-weak">
-                                X
-                            </span>
                             <TextInput
                                 onChange={(value) => updateAnimationCurveParameters({ x1: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.x1 as unknown as string}
                                 validation={x1Validation}
                                 required
+                                decorator="X"
                             />
                         </div>
                         <div className="tw-relative tw-w-[74px]">
-                            <span className="tw-absolute tw-top-2.5 tw-left-[3px] tw-z-10 tw-text-s tw-text-text-weak">
-                                Y
-                            </span>
                             <TextInput
                                 onChange={(value) => updateAnimationCurveParameters({ y1: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.y1 as unknown as string}
                                 required
+                                decorator="Y"
                             />
                         </div>
                         <IconCaretRight16 />
                         <div className="tw-relative tw-w-[74px]">
-                            <span className="tw-absolute tw-top-2.5 tw-left-[3px] tw-z-10 tw-text-s tw-text-text-weak">
-                                X
-                            </span>
                             <TextInput
                                 onChange={(value) => updateAnimationCurveParameters({ x2: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.x2.toString()}
                                 validation={x2Validation}
                                 required
+                                decorator="X"
                             />
                         </div>
                         <div className="tw-relative tw-w-[74px]">
-                            <span className="tw-absolute tw-top-2.5 tw-left-[3px] tw-z-10 tw-text-s tw-text-text-weak">
-                                Y
-                            </span>
                             <TextInput
                                 onChange={(value) => updateAnimationCurveParameters({ y2: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.y2.toString()}
                                 required
+                                decorator="Y"
                             />
                         </div>
                     </div>
