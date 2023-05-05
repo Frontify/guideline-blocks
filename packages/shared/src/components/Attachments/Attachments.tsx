@@ -127,10 +127,11 @@ export const Attachments = ({
             const newIndex = internalItems.findIndex((i) => i.id === over.id);
             const sortedItems = arrayMove(internalItems, oldIndex, newIndex);
             setInternalItems(sortedItems);
-            setDraggedAssetId(undefined);
             onSorted(sortedItems);
         }
+        setDraggedAssetId(undefined);
     };
+
     return (
         <>
             {(isEditing || (internalItems?.length ?? 0) > 0) && (

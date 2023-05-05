@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { MutableRefObject, forwardRef, useEffect, useState } from 'react';
 import { Asset, useAssetUpload, useFileInput } from '@frontify/app-bridge';
 import { useSortable } from '@dnd-kit/sortable';
 import { useFocusRing } from '@react-aria/focus';
@@ -61,7 +61,7 @@ export const AttachmentItem = forwardRef<HTMLButtonElement, AttachmentItemProps>
         const [selectedAsset, setSelectedAsset] = useState<Asset | undefined>();
         const [openFileDialog, { selectedFiles }] = useFileInput({ multiple: true, accept: 'image/*' });
         const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
-        const { isFocused, focusProps } = useFocusRing();
+        const { focusProps, isFocusVisible } = useFocusRing();
 
         useEffect(() => {
             if (selectedFiles) {
@@ -122,33 +122,40 @@ export const AttachmentItem = forwardRef<HTMLButtonElement, AttachmentItemProps>
                 {isEditing && (
                     <div
                         data-test-id="attachments-actionbar"
-                        className="tw-flex tw-gap-0.5 tw-invisible group-focus:tw-visible group-focus-within:tw-visible group-hover:tw-visible"
+                        className={joinClassNames([
+                            'tw-flex tw-gap-0.5 group-focus:tw-opacity-100 [&:has(:focus-visible)]:tw-opacity-100  group-hover:tw-opacity-100',
+                            isOverlay || selectedAsset?.id === item.id ? 'tw-opacity-100' : 'tw-opacity-0',
+                        ])}
                     >
                         <button
                             {...focusProps}
                             {...draggableProps}
                             className={joinClassNames([
-                                'tw-bg-button-background tw-border-button-border hover:tw-bg-button-background-hover active:tw-bg-button-background-pressed tw-group tw-border tw-box-box tw-relative tw-flex tw-items-center tw-justify-center tw-outline-none tw-font-medium tw-rounded tw-h-9 tw-w-9 ',
-                                isDragging ? 'tw-cursor-grabbing' : 'tw-cursor-grab',
-                                isFocused && FOCUS_STYLE,
+                                ' tw-border-button-border tw-bg-button-background active:tw-bg-button-background-pressed tw-group tw-border tw-box-box tw-relative tw-flex tw-items-center tw-justify-center tw-outline-none tw-font-medium tw-rounded tw-h-9 tw-w-9 ',
+                                isDragging || isOverlay
+                                    ? 'tw-cursor-grabbing tw-bg-button-background-pressed hover:tw-bg-button-background-pressed'
+                                    : 'tw-cursor-grab hover:tw-bg-button-background-hover',
+                                isFocusVisible && FOCUS_STYLE,
+                                isFocusVisible && 'tw-z-[2]',
                             ])}
                         >
                             <IconGrabHandle20 />
                         </button>
-                        <div className="-tw-mx-3">
+                        <div data-test-id="attachments-actionbar-flyout">
                             <Flyout
                                 placement={FlyoutPlacement.Right}
                                 isOpen={selectedAsset?.id === item.id}
                                 fitContent
                                 legacyFooter={false}
                                 onOpenChange={(isOpen) => setSelectedAsset(isOpen ? item : undefined)}
-                                trigger={
+                                trigger={(_, ref) => (
                                     <Button
+                                        ref={ref as MutableRefObject<HTMLButtonElement>}
                                         icon={<IconPen20 />}
                                         emphasis={ButtonEmphasis.Default}
                                         onClick={() => setSelectedAsset(item)}
                                     />
-                                }
+                                )}
                             >
                                 <ActionMenu
                                     menuBlocks={[

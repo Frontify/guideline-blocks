@@ -12,8 +12,8 @@ const FlyoutButtonSelector = '[data-test-id="attachments-flyout-button"]';
 const AssetInputSelector = '[data-test-id="asset-input-placeholder"]';
 const ActionBarSelector = '[data-test-id="attachments-actionbar"]';
 const DragHandleSelector = '[data-test-id="attachments-actionbar"] > button';
+const FlyoutTriggerSelector = '[data-test-id="attachments-actionbar-flyout"] button';
 const AttachmentItemSelector = '[data-test-id="attachments-item"]';
-const FlyoutTriggerSelector = '[data-test-id="flyout-trigger"]';
 const MenuItemSelector = '[data-test-id="menu-item"]';
 const LoadingCircleSelector = '[data-test-id="loading-circle"]';
 
@@ -132,8 +132,8 @@ describe('Attachments', () => {
             .trigger('keydown', { key: 'Tab' })
             .trigger('keydown', { key: 'Tab' })
             .trigger('keydown', { key: 'Tab' });
-        cy.get(FlyoutTriggerSelector).eq(1).should('have.class', 'tw-ring-blue');
-        cy.get(FlyoutTriggerSelector).eq(1).type('{enter}');
+        cy.get(FlyoutTriggerSelector).eq(0).should('have.class', 'focus-visible:tw-ring-blue');
+        cy.get(FlyoutTriggerSelector).eq(0).type('{enter}');
         cy.get(MenuItemSelector).should('exist');
     });
 
