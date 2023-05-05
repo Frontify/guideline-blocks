@@ -51,6 +51,7 @@ export const BlankSlate = ({
     return (
         <div data-test-id="blank-slate">
             <AnimationCurveFlyout
+                key={animationCurve.id}
                 animationCurve={animationCurve}
                 onSave={addAnimationCurve}
                 onCancel={() => setIsFlyoutOpen(false)}
