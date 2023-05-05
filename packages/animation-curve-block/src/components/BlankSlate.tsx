@@ -58,11 +58,7 @@ export const BlankSlate = ({
                 onAnimationCurveChange={setAnimationCurve}
                 isFlyoutOpen={isFlyoutOpen}
             />
-            <div
-                style={{
-                    height,
-                }}
-            >
+            <div style={{ height }}>
                 <BlockInjectButton
                     label="Add animation curve"
                     icon={<IconPlus24 />}

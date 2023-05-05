@@ -37,8 +37,6 @@
         "@frontify/fondue-tokens": "3.2.1",
         "@frontify/guideline-blocks-settings": "0.26.2",
         "@frontify/guideline-blocks-shared": "workspace:*",
-        "@uiw/codemirror-extensions-langs": "4.19.9",
-        "@uiw/react-codemirror": "4.19.9",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     }

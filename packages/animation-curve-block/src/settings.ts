@@ -120,6 +120,12 @@ export const settings = defineSettings({
                     type: 'switch',
                     defaultValue: true,
                 },
+                {
+                    id: 'displayCss',
+                    label: 'Show CSS Code',
+                    type: 'switch',
+                    defaultValue: false,
+                },
             ],
         },
     ],
