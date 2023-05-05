@@ -100,6 +100,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         },
                     ]}
                     toolbarFlyoutItems={[]}
+                    shouldBeShown={isEditFlyoutOpen}
                 >
                     <div
                         data-test-id="animation-curve-card"
