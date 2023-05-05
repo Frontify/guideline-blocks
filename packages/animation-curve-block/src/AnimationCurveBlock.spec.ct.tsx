@@ -390,12 +390,14 @@ describe('AnimationCurve Block', () => {
         cy.get(CARD_SELECTOR).should('have.length', 1);
         cy.get(BLANK_SLATE_BUTTON_SELECTOR).click();
         cy.get(FLYOUT_SELECTOR).should('exist');
-        cy.get(ENDPOINT_SELECTOR).realMouseDown().realMouseMove(10, -10).realMouseUp();
-        cy.get(STARTPOINT_SELECTOR).realMouseDown().realMouseMove(20, 20).realMouseUp();
-        cy.get(TEXT_INPUT_SELECTOR).eq(0).invoke('val').should('eq', '0.45');
-        cy.get(TEXT_INPUT_SELECTOR).eq(1).invoke('val').should('eq', '-0.08');
-        cy.get(TEXT_INPUT_SELECTOR).eq(2).invoke('val').should('eq', '0.58');
-        cy.get(TEXT_INPUT_SELECTOR).eq(3).invoke('val').should('eq', '1');
+        cy.get(DROPDOWN_SELECTOR).click();
+        cy.get(DROWDOWN_ITEM_SELECTOR).eq(4).click();
+        cy.get(ENDPOINT_SELECTOR).realMouseDown().realMouseMove(-10, -10).realMouseUp();
+        cy.get(STARTPOINT_SELECTOR).realMouseDown().realMouseMove(20, -54).realMouseUp();
+        cy.get(TEXT_INPUT_SELECTOR).eq(0).invoke('val').should('eq', '0.03');
+        cy.get(TEXT_INPUT_SELECTOR).eq(1).invoke('val').should('eq', '0.3');
+        cy.get(TEXT_INPUT_SELECTOR).eq(2).invoke('val').should('eq', '0.97');
+        cy.get(TEXT_INPUT_SELECTOR).eq(3).invoke('val').should('eq', '1.08');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().realClick();
         cy.get(CARD_SELECTOR).should('have.length', 2);
     });
@@ -502,8 +504,6 @@ describe('AnimationCurve Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(CSS_VALUE_SELECTOR).should('have.length', 1);
-        cy.get(CSS_VALUE_SELECTOR)
-            .eq(0)
-            .should('contain.text', 'animation-timing-function: cubic-bezier(0.42, 0, 1, 1)');
+        cy.get(CSS_VALUE_SELECTOR).eq(0).should('contain.text', 'cubic-bezier(0.42, 0, 1, 1)');
     });
 });

@@ -8,7 +8,6 @@ import { AnimationCurveCanvasGrid, Circle, Line } from './';
 import { AnimationCanvasProps, AnimationCurveType, AnimationFunction, ControlPoint, Point, Size } from '../types';
 import '../styles.css';
 import { DEFAULT_LINE_COLOR } from '../constants';
-
 export const getPositionWithinViewBoxFromAnimationPoint = (viewBox: Size, animationPoint: Point): Point => {
     return {
         x: viewBox.width * animationPoint.x,
@@ -161,12 +160,19 @@ export const AnimationCanvas = ({
     }, [handleDragEnd, handleMovePoint]);
 
     useEffect(() => {
-        window.addEventListener('resize', updateScale);
+        const resizeObserver = new ResizeObserver(() => {
+            updateScale();
+        });
 
+        const svgNode = svgRef.current;
+        if (!svgNode) {
+            return;
+        }
+        resizeObserver.observe(svgNode);
         return () => {
-            window.removeEventListener('resize', updateScale);
+            resizeObserver.unobserve(svgNode);
         };
-    }, [updateScale]);
+    }, [updateScale, svgRef]);
 
     return (
         <svg
@@ -182,7 +188,7 @@ export const AnimationCanvas = ({
                 data-test-id="animation-curves-canvas-path"
                 ref={animationCurvePathRef}
                 className="animated"
-                style={animationCurvePathStyle}
+                style={shouldAnimate ? animationCurvePathStyle : {}}
                 d={cubicBezier}
                 fill="none"
                 stroke={toHexString(lineColor)}

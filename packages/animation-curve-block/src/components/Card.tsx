@@ -104,11 +104,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     <div
                         data-test-id="animation-curve-card"
                         onMouseEnter={!isEditFlyoutOpen ? () => setIsHovered(true) : undefined}
-                        // onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
+                        onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
                         className={joinClassNames([
                             (hasBackground || hasBorder) && 'tw-overflow-hidden',
-                            displayCss && 'tw-pb-4',
-                            'tw-flex tw-flex-col tw-relative tw-bg-base',
+                            'tw-flex tw-flex-col tw-relative tw-bg-base tw-pb-4',
                         ])}
                         style={{
                             ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
@@ -189,11 +188,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             {hasDuration && <p data-test-id="animation-curve-card-duration">Duration: {duration} s</p>}
                         </div>
 
-                        {displayCss && (
-                            <CssValueDisplay
-                                cssValue={`animation-timing-function: cubic-bezier(${parametersString});`}
-                            />
-                        )}
+                        {displayCss && <CssValueDisplay cssValue={`cubic-bezier(${parametersString})`} />}
                     </div>
                 </BlockItemWrapper>
                 <div
