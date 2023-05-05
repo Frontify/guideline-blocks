@@ -6,8 +6,8 @@ import { AnimationCurveType, AnimationFunction, Size, defaultAnimationCurveTypeV
 export const BLANK_SLATE_INITIAL_HEIGHT = '82px';
 
 export const DEFAULT_ANIMATION_FUNCTION: AnimationFunction = {
-    type: AnimationCurveType.EaseInOut,
-    parameters: defaultAnimationCurveTypeValues[AnimationCurveType.EaseInOut],
+    type: AnimationCurveType.Linear,
+    parameters: defaultAnimationCurveTypeValues[AnimationCurveType.Linear],
     duration: 1.0,
 };
 

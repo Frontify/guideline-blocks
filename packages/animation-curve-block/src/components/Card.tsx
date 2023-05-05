@@ -6,6 +6,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge, useCopy } from '@frontify/fondue';
 import {
     BlockItemWrapper,
+    CssValueDisplay,
     getBackgroundColorStyles,
     getBorderStyles,
     getRadiusStyles,
@@ -56,6 +57,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             hasParameter,
             hasDuration,
             hasBackground,
+            displayCss,
         } = blockSettings;
 
         const { title, description, animationFunction } = localAnimationCurve;
@@ -71,6 +73,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             setLocalAnimationCurve({ ...localAnimationCurve, description });
             onUpdate(animationCurve.id, { description });
         };
+
+        const parametersString = `${parameters['x1']}, ${parameters['y1']}, ${parameters['x2']}, ${parameters['y2']}`;
+
         return (
             <div
                 ref={ref}
@@ -102,6 +107,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         // onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
                         className={joinClassNames([
                             (hasBackground || hasBorder) && 'tw-overflow-hidden',
+                            displayCss && 'tw-pb-4',
                             'tw-flex tw-flex-col tw-relative tw-bg-base',
                         ])}
                         style={{
@@ -167,7 +173,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             updateValueOnChange={false}
                             isEditing={isEditing}
                         />
-                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-s tw-test-text tw-pb-4'])}>
+                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-s tw-test-text'])}>
                             {hasParameter && (
                                 <p
                                     data-test-id="animation-curve-card-parameters"
@@ -177,12 +183,17 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                     ])}
                                     onClick={() => copy(JSON.stringify(parameters))}
                                 >
-                                    {`${parameters['x1']}, `} {`${parameters['y1']}, `} {`${parameters['x2']}, `}
-                                    {`${parameters['y2']}, `}
+                                    {parametersString}
                                 </p>
                             )}
                             {hasDuration && <p data-test-id="animation-curve-card-duration">Duration: {duration} s</p>}
                         </div>
+
+                        {displayCss && (
+                            <CssValueDisplay
+                                cssValue={`animation-timing-function: cubic-bezier(${parametersString});`}
+                            />
+                        )}
                     </div>
                 </BlockItemWrapper>
                 <div

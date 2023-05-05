@@ -28,6 +28,7 @@ const STARTPOINT_SELECTOR = '[data-test-id="startPoint"]';
 const TEXT_INPUT_SELECTOR = '[data-test-id="text-input"]';
 const DROPDOWN_SELECTOR = '[data-test-id="dropdown-trigger"]';
 const DROWDOWN_ITEM_SELECTOR = '[data-test-id="menu-item"]';
+const CSS_VALUE_SELECTOR = '[data-test-id="css-value-display"]';
 
 class AnimationCurveDummy {
     static with(id?: string): AnimationCurve {
@@ -51,6 +52,7 @@ describe('AnimationCurve Block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock);
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_SELECTOR).should('exist');
+        cy.get(CSS_VALUE_SELECTOR).should('not.exist');
     });
 
     it('should render an animation curve block in edit mode only showing blank slate', () => {
@@ -489,5 +491,19 @@ describe('AnimationCurve Block', () => {
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('not.be.disabled');
         cy.get(TEXT_INPUT_SELECTOR).eq(2).clear().realPress('ArrowDown');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
+    });
+
+    it('should show the correct cubic-bezier values of an Eas In curve ', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
+            blockSettings: {
+                content: [AnimationCurveDummy.with()],
+                displayCss: true,
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(CSS_VALUE_SELECTOR).should('have.length', 1);
+        cy.get(CSS_VALUE_SELECTOR)
+            .eq(0)
+            .should('contain.text', 'animation-timing-function: cubic-bezier(0.42, 0, 1, 1)');
     });
 });

@@ -137,6 +137,7 @@ export type Settings = {
     hasMotion: boolean;
     hasParameter: boolean;
     hasDuration: boolean;
+    displayCss: boolean;
 };
 
 export type AnimationCurveCanvasGridProps = {
