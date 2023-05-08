@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, useBlockSettings } from "@frontify/app-bridge";
-import { Color } from "@frontify/fondue";
-import { ReactElement } from "react";
+import { AppBridgeBlock, useBlockSettings } from '@frontify/app-bridge';
+import { Color } from '@frontify/fondue';
+import { ReactElement } from 'react';
 import {
     DEFAULT_BACKGROUND_COLOR,
     DEFAULT_BORDER_COLOR,
@@ -14,7 +14,7 @@ import {
     DEFAULT_FONT_SIZE,
     DEFAULT_FONT_WEIGHT,
     FULL_WIDTH,
-} from "./settings";
+} from './settings';
 
 type Settings = {
     width: string;
@@ -40,13 +40,13 @@ const toRgbaString = (color: Color): string => {
 const toFontStack = (fontFamily: string): string => {
     const fontStack = [];
 
-    if (fontFamily !== "default") {
+    if (fontFamily !== 'default') {
         fontStack.push(fontFamily);
     }
 
-    fontStack.push("inherit");
+    fontStack.push('inherit');
 
-    return fontStack.join(",");
+    return fontStack.join(',');
 };
 
 export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
@@ -85,7 +85,7 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
         outlineColor: toRgbaString(borderColor),
     };
 
-    const items = (chars as string).split(",").map((char, index) => {
+    const items = (chars as string).split(',').map((char, index) => {
         if (!isNaN(Number(char))) {
             return (
                 <li key={index} style={itemCustomStyles}>
