@@ -107,3 +107,8 @@ export type MarginExtendedSettings = {
     extendedMarginBottom: string;
     extendedMarginLeft: string;
 };
+
+export enum Security {
+    Global = 'Global',
+    Custom = 'Custom',
+}

@@ -11,14 +11,18 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-import { Alignment, CaptionPosition, ImageSecurity, Padding, Ratio, paddingValues, radiusValues } from './types';
+import {
+    getBorderRadiusSettings,
+    getBorderSettings,
+    getSecurityDownloadableSetting,
+    getSecurityGlobalControlSetting,
+} from '@frontify/guideline-blocks-shared';
+import { Alignment, CaptionPosition, Padding, Ratio, paddingValues, radiusValues } from './types';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
-const SECURITY_ID = 'security';
 export const IMAGE_ID = 'image';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
 
@@ -183,21 +187,7 @@ export const settings = defineSettings({
         }),
     ],
     security: [
-        {
-            id: SECURITY_ID,
-            type: 'segmentedControls',
-            defaultValue: ImageSecurity.Global,
-            choices: [
-                {
-                    value: ImageSecurity.Global,
-                    label: 'Global Settings',
-                },
-                {
-                    value: ImageSecurity.Custom,
-                    label: 'Custom',
-                },
-            ],
-        },
+        getSecurityGlobalControlSetting(),
         {
             id: 'globalSettingsInfo',
             type: 'notification',
@@ -206,12 +196,6 @@ export const settings = defineSettings({
                 replace: { here: { event: 'design-settings.open' } },
             }),
         },
-        {
-            id: 'downloadable',
-            type: 'switch',
-            defaultValue: false,
-            label: 'Downloadable',
-            show: (bundle) => bundle.getBlock(SECURITY_ID)?.value === ImageSecurity.Custom,
-        },
+        getSecurityDownloadableSetting(),
     ],
 });
