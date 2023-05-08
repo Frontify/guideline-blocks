@@ -1,1 +1,1 @@
-# Frontify Block Boilerplate
+# Frontify Glyphs Block

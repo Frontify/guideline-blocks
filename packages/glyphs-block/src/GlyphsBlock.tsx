@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, useBlockSettings } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
-import { FC } from 'react';
+import { AppBridgeBlock, useBlockSettings } from "@frontify/app-bridge";
+import { Color } from "@frontify/fondue";
+import { ReactElement } from "react";
 import {
     DEFAULT_BACKGROUND_COLOR,
     DEFAULT_BORDER_COLOR,
@@ -14,8 +14,7 @@ import {
     DEFAULT_FONT_SIZE,
     DEFAULT_FONT_WEIGHT,
     FULL_WIDTH,
-} from './settings';
-import style from './style.module.css';
+} from "./settings";
 
 type Settings = {
     width: string;
@@ -30,7 +29,7 @@ type Settings = {
     borderColor: Color;
 };
 
-type Props = {
+type BlockProps = {
     appBridge: AppBridgeBlock;
 };
 
@@ -41,16 +40,16 @@ const toRgbaString = (color: Color): string => {
 const toFontStack = (fontFamily: string): string => {
     const fontStack = [];
 
-    if (fontFamily !== 'default') {
+    if (fontFamily !== "default") {
         fontStack.push(fontFamily);
     }
 
-    fontStack.push('inherit');
+    fontStack.push("inherit");
 
-    return fontStack.join(',');
+    return fontStack.join(",");
 };
 
-export const GlyphsPreviewBlock: FC<Props> = ({ appBridge }) => {
+export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     const {
@@ -86,16 +85,16 @@ export const GlyphsPreviewBlock: FC<Props> = ({ appBridge }) => {
         outlineColor: toRgbaString(borderColor),
     };
 
-    const items = (chars as string).split(',').map((char, index) => {
+    const items = (chars as string).split(",").map((char, index) => {
         if (!isNaN(Number(char))) {
             return (
-                <li key={index} className={style.list_item} style={itemCustomStyles}>
+                <li key={index} style={itemCustomStyles}>
                     {char}
                 </li>
             );
         } else {
             return (
-                <li key={index} className={style.list_item} style={itemCustomStyles}>
+                <li key={index} style={itemCustomStyles}>
                     {char}
                     {char.toLowerCase()}
                 </li>
@@ -104,10 +103,8 @@ export const GlyphsPreviewBlock: FC<Props> = ({ appBridge }) => {
     });
 
     return (
-        <div className={style.container} style={containerCustomStyles}>
-            <ul className={style.list} style={listCustomStyles}>
-                {items}
-            </ul>
+        <div style={containerCustomStyles}>
+            <ul style={listCustomStyles}>{items}</ul>
         </div>
     );
 };

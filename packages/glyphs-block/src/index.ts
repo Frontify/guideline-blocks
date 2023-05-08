@@ -1,9 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { GlyphsPreviewBlock } from './Block';
-import { settings } from './settings';
+import { defineBlock } from "@frontify/guideline-blocks-settings";
+import "tailwindcss/tailwind.css";
+import { GlyphsBlock } from "./GlyphsBlock";
+import { settings } from "./settings";
 
-export default {
-    block: GlyphsPreviewBlock,
+export default defineBlock({
+    block: GlyphsBlock,
     settings,
-};
+});
