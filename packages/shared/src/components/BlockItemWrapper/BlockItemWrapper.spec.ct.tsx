@@ -115,4 +115,22 @@ describe('Block Item Wrapper', () => {
         cy.get(BlockItemWrapperSelector).focus();
         cy.get(ToolbarSelector).should('be.visible');
     });
+
+    it('should render the outline and the toolbar if should be shown is true', () => {
+        mount(
+            <BlockItemWrapper
+                toolbarFlyoutItems={[]}
+                toolbarItems={[
+                    { icon: <IconMagnifier16 />, onClick: cy.stub(), tooltip: 'Test tooltip' },
+                    { icon: <IconMagnifier16 />, onClick: cy.stub(), tooltip: 'Test tooltip' },
+                ]}
+                shouldBeShown
+            >
+                <div data-test-id="block-item-wrapper-child" className="tw-w-8 tw-h-8 tw-bg-red-50" />
+            </BlockItemWrapper>
+        );
+        cy.get(ChildSelector).should('exist');
+        cy.get(BlockItemWrapperSelector).should('have.css', 'outline-style', 'solid');
+        cy.get(ToolbarSelector).should('be.visible');
+    });
 });
