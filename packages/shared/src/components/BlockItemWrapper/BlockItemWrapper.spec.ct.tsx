@@ -116,7 +116,7 @@ describe('Block Item Wrapper', () => {
         cy.get(ToolbarSelector).should('be.visible');
     });
 
-    it('should render the outline and the toolbar if should be shown is true', () => {
+    it('should render the outline and the toolbar if enabled', () => {
         mount(
             <BlockItemWrapper
                 toolbarFlyoutItems={[]}
