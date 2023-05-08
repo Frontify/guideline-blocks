@@ -5,12 +5,14 @@ import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { AudioBlock } from './AudioBlock';
 import { TextPosition } from './types';
 import { AUDIO_ID } from './settings';
+import { Security } from '@frontify/guideline-blocks-shared';
 
 const AudioBlockSelector = '[data-test-id="audio-block"]';
 const AudioTagSelector = '[data-test-id="audio-block-audio-tag"]';
 const UploadPlaceholderSelector = '[data-test-id="block-inject-button"]';
 const AudioBlockTitleHtmlSelector = '[data-test-id="block-title"] [data-test-id="rte-content-html"]';
 const AudioBlockDescriptionHtmlSelector = '[data-test-id="block-description"] [data-test-id="rte-content-html"]';
+const DownloadButtonSelector = '[data-test-id="download-button"]';
 
 const Title = '[{"type":"heading3","children":[{"text":"Audio Title"}]}]';
 const Description = '[{"type":"p","children":[{"text":"Audio Description"}]}]';
@@ -132,5 +134,35 @@ describe('Audio Block', () => {
         });
         mount(<AudioBlockWithStubs />);
         cy.get(AudioBlockSelector).should('have.css', 'flex-direction', 'column');
+    });
+
+    it('renders an audio block with download button as its set in the security settings', () => {
+        const asset = AssetDummy.with(312);
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            blockSettings: {
+                security: Security.Custom,
+                downloadable: true,
+            },
+            blockAssets: {
+                [AUDIO_ID]: [asset],
+            },
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(DownloadButtonSelector).should('exist');
+    });
+
+    it('renders an audio block without download button as its not allowed by the security settings', () => {
+        const asset = AssetDummy.with(312);
+        const [AudioBlockWithStubs] = withAppBridgeBlockStubs(AudioBlock, {
+            blockSettings: {
+                security: Security.Custom,
+                downloadable: false,
+            },
+            blockAssets: {
+                [AUDIO_ID]: [asset],
+            },
+        });
+        mount(<AudioBlockWithStubs />);
+        cy.get(DownloadButtonSelector).should('not.exist');
     });
 });

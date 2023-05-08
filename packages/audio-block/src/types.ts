@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock } from '@frontify/app-bridge';
+import { Security } from '@frontify/guideline-blocks-shared';
 
 export enum TextPosition {
     Below = 'Below',
@@ -8,6 +9,7 @@ export enum TextPosition {
 }
 
 export type BlockSettings = {
+    security: Security;
     downloadable: boolean;
     positioning: TextPosition;
     description?: string;
@@ -24,8 +26,3 @@ export type UploadPlaceholderProps = {
     onFilesDrop: (files: FileList) => void;
     loading: boolean;
 };
-
-export enum AudioSecurity {
-    Global = 'Global',
-    Custom = 'Custom',
-}

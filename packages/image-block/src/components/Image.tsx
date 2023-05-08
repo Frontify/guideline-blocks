@@ -13,11 +13,12 @@ import {
     Attachments,
     DownloadButton,
     downloadAsset,
+    isDownloadable,
     joinClassNames,
     toRgbaString,
     useAttachments,
 } from '@frontify/guideline-blocks-shared';
-import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
 
 type ImageProps = {
@@ -29,7 +30,6 @@ type ImageProps = {
 
 export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) => {
     const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
-
     return (
         <>
             {link && !isEditing ? (
@@ -70,6 +70,8 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
     const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachments(appBridge, ATTACHMENTS_ASSET_ID);
 
+    const { assetDownloadEnabled } = usePrivacySettings(appBridge);
+
     const borderRadius = blockSettings.hasRadius_cornerRadius
         ? blockSettings.radiusValue_cornerRadius
         : radiusValues[blockSettings.radiusChoice_cornerRadius];
@@ -101,7 +103,10 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
             <div className="tw-relative">
                 <div className="tw-absolute tw-top-2 tw-right-2">
                     <div className="tw-flex tw-gap-2">
-                        <DownloadButton onDownload={() => downloadAsset(image)} />
+                        {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
+                            <DownloadButton onDownload={() => downloadAsset(image)} />
+                        )}
+
                         <Attachments
                             onUpload={onAddAttachments}
                             onDelete={onAttachmentDelete}
