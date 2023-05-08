@@ -1,0 +1,33 @@
+{
+    "name": "glyphs_preview_block",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "scripts": {
+        "serve": "frontify-cli block serve --entryPath src/index.ts",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write .",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@frontify/app-bridge": "3.0.0-beta.25",
+        "@frontify/fondue": "12.0.0-beta.20",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "root": "github:Frontify/guideline-blocks#main"
+    },
+    "devDependencies": {
+        "@frontify/eslint-config-react": "0.15.2",
+        "@frontify/frontify-cli": "5.1.2",
+        "@frontify/guideline-blocks-settings": "0.25.0",
+        "@types/react": "17.0.50",
+        "@types/react-dom": "17.0.17",
+        "autoprefixer": "10.4.13",
+        "eslint": "8.27.0",
+        "postcss": "8.4.18",
+        "postcss-modules": "6.0.0",
+        "prettier": "2.7.1",
+        "typescript": "4.8.4"
+    }
+}
