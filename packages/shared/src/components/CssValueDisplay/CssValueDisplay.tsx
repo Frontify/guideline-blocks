@@ -1,15 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { langs } from '@uiw/codemirror-extensions-langs';
 
 import { IconCheckMark16, IconClipboard16, useCopy } from '@frontify/fondue';
 
-import { CssValueDisplayProps } from '../types';
+import { CssValueDisplayProps } from './types';
 
 const CSS_LANG = langs.css();
 
-export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
+export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssValueDisplayProps) => {
     const { copy, status } = useCopy();
     const isCopied = status === 'success';
 
@@ -49,7 +50,7 @@ export const CssValueDisplay = ({ cssValue }: CssValueDisplayProps) => {
                         highlightActiveLineGutter: false,
                         highlightActiveLine: false,
                     }}
-                    placeholder={cssValue ? '' : '<add colors to generate CSS code>'}
+                    placeholder={cssValue ? '' : placeholder}
                 />
             </div>
         </div>

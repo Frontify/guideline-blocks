@@ -35,7 +35,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: COLUMNS_ID,
-                    label: 'Number',
+                    label: 'Columns',
                     type: 'slider',
                     defaultValue: 3,
                     choices: [
@@ -62,8 +62,8 @@ export const settings = defineSettings({
                     type: 'switch',
                     defaultValue: false,
                     switchLabel: 'Custom',
-                    label: 'Spacing',
-                    info: 'Another word for ‘gap’. Refers to both column gutter and row gutter.',
+                    label: 'Gutter',
+                    info: 'An official nerds term for ‘gap’',
                     onChange: (bundle) =>
                         presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_CUSTOM_ID, spacingValues),
                     show: (bundle) => bundle.getBlock(COLUMNS_ID)?.value !== '1',
@@ -109,16 +109,22 @@ export const settings = defineSettings({
             label: 'Data',
             blocks: [
                 {
+                    id: 'hasParameter',
+                    label: 'Parameter',
+                    type: 'switch',
+                    defaultValue: true,
+                },
+                {
                     id: 'hasDuration',
                     label: 'Duration',
                     type: 'switch',
                     defaultValue: true,
                 },
                 {
-                    id: 'hasParameter',
-                    label: 'Parameter',
+                    id: 'displayCss',
+                    label: 'Show CSS Code',
                     type: 'switch',
-                    defaultValue: true,
+                    defaultValue: false,
                 },
             ],
         },
@@ -164,7 +170,7 @@ export const settings = defineSettings({
             type: 'switch',
             defaultValue: false,
             label: 'Motion',
-            info: 'Hover over the card to see an animated version of the animation curve in action.',
+            info: 'Hover over the curve to see it animated.',
         },
     ],
 });

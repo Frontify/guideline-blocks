@@ -14,8 +14,9 @@ export const BlockItemWrapper = ({
     isDragging,
     shouldFillContainer,
     outlineOffset = 2,
+    shouldBeShown = false,
 }: PropsWithChildren<BlockItemWrapperProps>) => {
-    const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
+    const [isFlyoutOpen, setIsFlyoutOpen] = useState(shouldBeShown);
     const [isFlyoutDisabled, setIsFlyoutDisabled] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +49,7 @@ export const BlockItemWrapper = ({
                 'tw-relative tw-group tw-outline-1 tw-outline-box-selected-inverse',
                 shouldFillContainer && 'tw-flex-1 tw-h-full tw-w-full',
                 !shouldHideWrapper && 'hover:tw-outline focus:tw-outline focus-within:tw-outline',
-                isFlyoutOpen && 'tw-outline',
+                (isFlyoutOpen || shouldBeShown) && 'tw-outline',
                 shouldHideComponent && 'tw-opacity-0',
             ])}
         >
@@ -61,7 +62,7 @@ export const BlockItemWrapper = ({
                     'tw-absolute tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full tw-opacity-0 tw-z-10',
                     !shouldHideWrapper &&
                         'group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
-                    isFlyoutOpen && 'tw-opacity-100',
+                    (isFlyoutOpen || shouldBeShown) && 'tw-opacity-100',
                 ])}
             >
                 <Toolbar

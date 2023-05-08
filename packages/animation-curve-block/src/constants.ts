@@ -1,19 +1,25 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MenuBlock } from '@frontify/fondue';
+import { Color, MenuBlock } from '@frontify/fondue';
 import { AnimationCurveType, AnimationFunction, Size, defaultAnimationCurveTypeValues } from './types';
 
 export const BLANK_SLATE_INITIAL_HEIGHT = '82px';
 
 export const DEFAULT_ANIMATION_FUNCTION: AnimationFunction = {
-    type: AnimationCurveType.EaseInOut,
-    parameters: defaultAnimationCurveTypeValues[AnimationCurveType.EaseInOut],
+    type: AnimationCurveType.Linear,
+    parameters: defaultAnimationCurveTypeValues[AnimationCurveType.Linear],
     duration: 1.0,
 };
 
 export const DEFAULT_ANIMATION_CANVAS_VIEWBOX: Size = {
     width: 350,
     height: 200,
+};
+
+export const DEFAULT_LINE_COLOR: Color = {
+    red: 45,
+    green: 50,
+    blue: 50,
 };
 
 export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
@@ -38,17 +44,13 @@ export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
                 title: 'Ease in out',
             },
             {
-                id: AnimationCurveType.Instant,
-                title: 'Instant',
-            },
-            {
                 id: AnimationCurveType.Custom,
                 title: 'Custom',
             },
         ],
     },
     {
-        id: 'easeIn',
+        id: 'easeInGroup',
         ariaLabel: 'Ease in',
         menuItems: [
             {
@@ -86,7 +88,7 @@ export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
         ],
     },
     {
-        id: 'easeOut',
+        id: 'easeOutGroup',
         ariaLabel: 'Ease out',
         menuItems: [
             {
@@ -124,7 +126,7 @@ export const DROPDOWN_MENU_ITEMS: MenuBlock[] = [
         ],
     },
     {
-        id: 'easeInOut',
+        id: 'easeInOutGroup',
         ariaLabel: 'Ease in out',
         menuItems: [
             {

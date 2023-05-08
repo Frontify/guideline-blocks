@@ -1312,12 +1312,6 @@ importers:
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
-      '@uiw/codemirror-extensions-langs':
-        specifier: 4.19.9
-        version: 4.19.9(@codemirror/language-data@6.1.0)(@codemirror/legacy-modes@6.3.1)(@codemirror/state@6.1.4)(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
-      '@uiw/react-codemirror':
-        specifier: 4.19.9
-        version: 4.19.9(@babel/runtime@7.20.6)(@codemirror/autocomplete@6.3.4)(@codemirror/language@6.3.1)(@codemirror/lint@6.1.0)(@codemirror/search@6.2.3)(@codemirror/state@6.1.4)(@codemirror/theme-one-dark@6.1.0)(@codemirror/view@6.5.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -1610,6 +1604,12 @@ importers:
       '@udecode/plate':
         specifier: 19.6.0
         version: 19.6.0(@babel/core@7.20.2)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.86.0)(slate-hyperscript@0.77.0)(slate-react@0.88.0)(slate@0.87.0)(styled-components@5.3.6)
+      '@uiw/codemirror-extensions-langs':
+        specifier: 4.19.9
+        version: 4.19.9(@codemirror/language-data@6.1.0)(@codemirror/legacy-modes@6.3.1)(@codemirror/state@6.1.4)(@codemirror/view@6.5.1)(@lezer/common@1.0.2)
+      '@uiw/react-codemirror':
+        specifier: 4.19.9
+        version: 4.19.9(@babel/runtime@7.20.6)(@codemirror/autocomplete@6.3.4)(@codemirror/language@6.3.1)(@codemirror/lint@6.1.0)(@codemirror/search@6.2.3)(@codemirror/state@6.1.4)(@codemirror/theme-one-dark@6.1.0)(@codemirror/view@6.5.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
       slate:
         specifier: 0.87.0
         version: 0.87.0

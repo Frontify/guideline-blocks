@@ -36,15 +36,13 @@ export const validateXValue = (value: number): Validation => {
 export const AnimationCurveFlyout = ({
     animationCurve,
     isFlyoutOpen,
-    lineColor,
-    endpointColor,
-    gridColor,
     onSave,
     onCancel,
     onOpenChange,
     onAnimationCurveUpdate,
     onAnimationCurveChange,
 }: AnimationCurveFlyoutProps) => {
+    const [isInputFocused, setIsInputFocused] = useState(false);
     const [x1Validation, setX1Validation] = useState<Validation>(Validation.Default);
     const [x2Validation, setX2Validation] = useState<Validation>(Validation.Default);
     const [localAnimationFunction, setLocalAnimationFunction] = useState(animationCurve.animationFunction);
@@ -120,7 +118,6 @@ export const AnimationCurveFlyout = ({
                     ]}
                 />
             }
-            offset={20}
             placement={FlyoutPlacement.BottomLeft}
         >
             <div className="tw-p-6 tw-w-[498px]">
@@ -137,75 +134,79 @@ export const AnimationCurveFlyout = ({
                     }
                     menuBlocks={DROPDOWN_MENU_ITEMS}
                 />
-                <div className="tw-my-3 tw-bg-base-alt tw-border tw-border-line">
-                    <AnimationCanvas
-                        animationFunction={localAnimationFunction}
-                        setAnimationFunction={updateAnimationFunction}
-                        showGrid={false}
-                        showEndPoints={false}
-                        showHandles
-                        lineColor={lineColor}
-                        endpointColor={endpointColor}
-                        gridColor={gridColor}
-                        viewBox={{
-                            width: 450,
-                            height: 200,
-                        }}
-                        shouldAnimate={false}
-                    />
+                <div className="tw-relative tw-h-[200px] tw-w-[450px] tw-my-3">
+                    <div
+                        className="tw-absolute tw-w-full tw-bg-base-alt tw-border tw-border-line"
+                        style={{ zIndex: isInputFocused ? 0 : 1 }}
+                    >
+                        <AnimationCanvas
+                            animationFunction={localAnimationFunction}
+                            setAnimationFunction={updateAnimationFunction}
+                            showGrid={false}
+                            showEndPoints={false}
+                            showHandles
+                            viewBox={{
+                                width: 450,
+                                height: 200,
+                            }}
+                            shouldAnimate={false}
+                        />
+                    </div>
                 </div>
                 <div className="tw-flex tw-items-center tw-justify-between">
                     <div className="tw-flex tw-justify-start tw-items-center tw-gap-1">
                         <div className="tw-relative tw-w-[74px]">
-                            <span className="tw-absolute tw-top-2.5 tw-left-[3px] tw-z-10 tw-text-s tw-text-text-weak">
-                                X
-                            </span>
                             <TextInput
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
                                 onChange={(value) => updateAnimationCurveParameters({ x1: Number(value) || 0 })}
                                 type={TextInputType.Number}
-                                value={localAnimationFunction.parameters.x1 as unknown as string}
+                                value={localAnimationFunction.parameters.x1.toString()}
                                 validation={x1Validation}
                                 required
+                                decorator="X"
                             />
                         </div>
                         <div className="tw-relative tw-w-[74px]">
-                            <span className="tw-absolute tw-top-2.5 tw-left-[3px] tw-z-10 tw-text-s tw-text-text-weak">
-                                Y
-                            </span>
                             <TextInput
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
                                 onChange={(value) => updateAnimationCurveParameters({ y1: Number(value) || 0 })}
                                 type={TextInputType.Number}
-                                value={localAnimationFunction.parameters.y1 as unknown as string}
+                                value={localAnimationFunction.parameters.y1.toString()}
                                 required
+                                decorator="Y"
                             />
                         </div>
                         <IconCaretRight16 />
                         <div className="tw-relative tw-w-[74px]">
-                            <span className="tw-absolute tw-top-2.5 tw-left-[3px] tw-z-10 tw-text-s tw-text-text-weak">
-                                X
-                            </span>
                             <TextInput
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
                                 onChange={(value) => updateAnimationCurveParameters({ x2: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.x2.toString()}
                                 validation={x2Validation}
                                 required
+                                decorator="X"
                             />
                         </div>
                         <div className="tw-relative tw-w-[74px]">
-                            <span className="tw-absolute tw-top-2.5 tw-left-[3px] tw-z-10 tw-text-s tw-text-text-weak">
-                                Y
-                            </span>
                             <TextInput
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
                                 onChange={(value) => updateAnimationCurveParameters({ y2: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.y2.toString()}
                                 required
+                                decorator="Y"
                             />
                         </div>
                     </div>
                     <div className="tw-w-20 tw-relative">
                         <TextInput
+                            onFocus={() => setIsInputFocused(true)}
+                            onBlur={() => setIsInputFocused(false)}
                             onChange={(value) =>
                                 updateAnimationFunction({
                                     ...animationCurve.animationFunction,

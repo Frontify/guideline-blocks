@@ -7,7 +7,7 @@ import { toHexString } from '@frontify/guideline-blocks-shared';
 import { AnimationCurveCanvasGrid, Circle, Line } from './';
 import { AnimationCanvasProps, AnimationCurveType, AnimationFunction, ControlPoint, Point, Size } from '../types';
 import '../styles.css';
-
+import { DEFAULT_LINE_COLOR } from '../constants';
 export const getPositionWithinViewBoxFromAnimationPoint = (viewBox: Size, animationPoint: Point): Point => {
     return {
         x: viewBox.width * animationPoint.x,
@@ -17,7 +17,7 @@ export const getPositionWithinViewBoxFromAnimationPoint = (viewBox: Size, animat
 
 export const AnimationCanvas = ({
     animationFunction,
-    lineColor,
+    lineColor = DEFAULT_LINE_COLOR,
     endpointColor,
     gridColor,
     showGrid,
@@ -109,7 +109,9 @@ export const AnimationCanvas = ({
                 y: 1 - positionWithinViewBox.y / viewBox.height,
             };
 
-            setAnimationFunction && setAnimationFunction(updatedAnimationFunction(animationValues, draggingPoint));
+            if (animationValues.x >= 0 && animationValues.x <= 1) {
+                setAnimationFunction && setAnimationFunction(updatedAnimationFunction(animationValues, draggingPoint));
+            }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [draggingPoint, viewBox.width, viewBox.height]
@@ -158,12 +160,19 @@ export const AnimationCanvas = ({
     }, [handleDragEnd, handleMovePoint]);
 
     useEffect(() => {
-        window.addEventListener('resize', updateScale);
+        const resizeObserver = new ResizeObserver(() => {
+            updateScale();
+        });
 
+        const svgNode = svgRef.current;
+        if (!svgNode) {
+            return;
+        }
+        resizeObserver.observe(svgNode);
         return () => {
-            window.removeEventListener('resize', updateScale);
+            resizeObserver.unobserve(svgNode);
         };
-    }, [updateScale]);
+    }, [updateScale, svgRef]);
 
     return (
         <svg
@@ -173,13 +182,13 @@ export const AnimationCanvas = ({
             role="img"
         >
             <title>{title ? title : 'Animation Curve'}</title>
-            {showGrid && <AnimationCurveCanvasGrid viewBox={viewBox} lineColor={gridColor} />}
+            {showGrid && gridColor && <AnimationCurveCanvasGrid viewBox={viewBox} lineColor={gridColor} />}
 
             <path
                 data-test-id="animation-curves-canvas-path"
                 ref={animationCurvePathRef}
                 className="animated"
-                style={animationCurvePathStyle}
+                style={shouldAnimate ? animationCurvePathStyle : {}}
                 d={cubicBezier}
                 fill="none"
                 stroke={toHexString(lineColor)}
@@ -217,7 +226,7 @@ export const AnimationCanvas = ({
                 </>
             )}
 
-            {showEndPoints && (
+            {showEndPoints && endpointColor && (
                 <>
                     <Circle
                         testId="animation-canvas-endpoint"

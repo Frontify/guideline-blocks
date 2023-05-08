@@ -20,6 +20,7 @@ const ANIMATION_CURVES_LINE_SELECTOR = '[data-test-id="animation-curves-line"]';
 const ANIMATION_CURVES_ENDPOINTS_SELECTOR = '[data-test-id="animation-canvas-endpoint"]';
 const ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR = '[data-test-id="animation-curves-canvas-wrapper"]';
 const ANIMATION_CURVES_CANVAS_PATH_SELECTOR = '[data-test-id="animation-curves-canvas-path"]';
+const BLOCK_ITEM_WRAPPER = '[data-test-id="block-item-wrapper"]';
 const BLOCK_ITEM_WRAPPER_TOOLBAR_BTN = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 const FLYOUT_SELECTOR = '[role="dialog"]';
 const BUTTON_SELECTOR = '[data-test-id="button"]';
@@ -28,6 +29,7 @@ const STARTPOINT_SELECTOR = '[data-test-id="startPoint"]';
 const TEXT_INPUT_SELECTOR = '[data-test-id="text-input"]';
 const DROPDOWN_SELECTOR = '[data-test-id="dropdown-trigger"]';
 const DROWDOWN_ITEM_SELECTOR = '[data-test-id="menu-item"]';
+const CSS_VALUE_SELECTOR = '[data-test-id="css-value-display"]';
 
 class AnimationCurveDummy {
     static with(id?: string): AnimationCurve {
@@ -51,6 +53,7 @@ describe('AnimationCurve Block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock);
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_SELECTOR).should('exist');
+        cy.get(CSS_VALUE_SELECTOR).should('not.exist');
     });
 
     it('should render an animation curve block in edit mode only showing blank slate', () => {
@@ -230,6 +233,22 @@ describe('AnimationCurve Block', () => {
         cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'padding', '16px 20px');
     });
 
+    it('should render the animation curve block with background, border radius and no border, the card and the canvas wrapper should have the border radius', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
+            blockSettings: {
+                content: [AnimationCurveDummy.with()],
+                hasBackground: true,
+                backgroundColor: RED,
+                hasBorder: false,
+                hasRadius: true,
+                radiusValue: '42px',
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(CARD_SELECTOR).should('have.css', 'border-radius', '42px');
+        cy.get(ANIMATION_CURVES_CANVAS_WRAPPER_SELECTOR).should('have.css', 'border-radius', '42px');
+    });
+
     it('should render one animation curve with a red line', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
@@ -372,12 +391,14 @@ describe('AnimationCurve Block', () => {
         cy.get(CARD_SELECTOR).should('have.length', 1);
         cy.get(BLANK_SLATE_BUTTON_SELECTOR).click();
         cy.get(FLYOUT_SELECTOR).should('exist');
-        cy.get(ENDPOINT_SELECTOR).realMouseDown().realMouseMove(10, -10).realMouseUp();
-        cy.get(STARTPOINT_SELECTOR).realMouseDown().realMouseMove(20, 20).realMouseUp();
-        cy.get(TEXT_INPUT_SELECTOR).eq(0).invoke('val').should('eq', '0.45');
-        cy.get(TEXT_INPUT_SELECTOR).eq(1).invoke('val').should('eq', '-0.08');
-        cy.get(TEXT_INPUT_SELECTOR).eq(2).invoke('val').should('eq', '0.58');
-        cy.get(TEXT_INPUT_SELECTOR).eq(3).invoke('val').should('eq', '1');
+        cy.get(DROPDOWN_SELECTOR).click();
+        cy.get(DROWDOWN_ITEM_SELECTOR).eq(4).click();
+        cy.get(ENDPOINT_SELECTOR).realMouseDown().realMouseMove(-10, -10).realMouseUp();
+        cy.get(STARTPOINT_SELECTOR).realMouseDown().realMouseMove(20, -54).realMouseUp();
+        cy.get(TEXT_INPUT_SELECTOR).eq(0).invoke('val').should('eq', '0.03');
+        cy.get(TEXT_INPUT_SELECTOR).eq(1).invoke('val').should('eq', '0.3');
+        cy.get(TEXT_INPUT_SELECTOR).eq(2).invoke('val').should('eq', '0.97');
+        cy.get(TEXT_INPUT_SELECTOR).eq(3).invoke('val').should('eq', '1.08');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().realClick();
         cy.get(CARD_SELECTOR).should('have.length', 2);
     });
@@ -415,6 +436,8 @@ describe('AnimationCurve Block', () => {
         cy.get(CARD_SELECTOR).should('have.length', 1);
         cy.get(CARD_SELECTOR).parent().find(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).eq(2).click({ force: true });
         cy.get(FLYOUT_SELECTOR).should('exist');
+        cy.get(BLOCK_ITEM_WRAPPER).first().should('have.css', 'outline-width', '1px');
+        cy.get(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).eq(1).should('exist');
         cy.get(ENDPOINT_SELECTOR).realMouseDown().realMouseMove(0, 50).realMouseUp();
         cy.get(STARTPOINT_SELECTOR).realMouseDown().realMouseMove(0, 50).realMouseUp();
         cy.get(TEXT_INPUT_SELECTOR).eq(0).invoke('val').should('eq', '0.41');
@@ -473,5 +496,17 @@ describe('AnimationCurve Block', () => {
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('not.be.disabled');
         cy.get(TEXT_INPUT_SELECTOR).eq(2).clear().realPress('ArrowDown');
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
+    });
+
+    it('should show the correct cubic-bezier values of an ease in animation curve', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
+            blockSettings: {
+                content: [AnimationCurveDummy.with()],
+                displayCss: true,
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(CSS_VALUE_SELECTOR).should('have.length', 1);
+        cy.get(CSS_VALUE_SELECTOR).eq(0).should('contain.text', 'cubic-bezier(0.42, 0, 1, 1)');
     });
 });

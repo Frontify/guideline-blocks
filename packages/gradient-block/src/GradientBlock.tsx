@@ -4,9 +4,9 @@ import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/ap
 import { Divider, Palette } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { mapColorPalettes, toHexString } from '@frontify/guideline-blocks-shared';
+import { CssValueDisplay, mapColorPalettes, toHexString } from '@frontify/guideline-blocks-shared';
 import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';
-import { AddColorButton, ColorFlyout, ColorTooltip, CssValueDisplay, SquareBadgesRow } from './components';
+import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { parseGradientColorsToCss } from './helpers';
 import { GradientColor, Settings, gradientHeightValues, gradientOrientationValues } from './types';
@@ -138,7 +138,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                     />
                 )
             )}
-            {displayCss && <CssValueDisplay cssValue={cssValue} />}
+            {displayCss && <CssValueDisplay cssValue={cssValue} placeholder="<add colors to generate CSS code>" />}
         </div>
     );
 };

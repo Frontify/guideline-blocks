@@ -3,16 +3,10 @@
 import { forwardRef, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 
-import {
-    IconArrowMove16,
-    IconCaretRight12,
-    IconDotsHorizontal16,
-    IconTrashBin16,
-    merge,
-    useCopy,
-} from '@frontify/fondue';
+import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge, useCopy } from '@frontify/fondue';
 import {
     BlockItemWrapper,
+    CssValueDisplay,
     getBackgroundColorStyles,
     getBorderStyles,
     getRadiusStyles,
@@ -63,6 +57,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             hasParameter,
             hasDuration,
             hasBackground,
+            displayCss,
         } = blockSettings;
 
         const { title, description, animationFunction } = localAnimationCurve;
@@ -78,6 +73,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             setLocalAnimationCurve({ ...localAnimationCurve, description });
             onUpdate(animationCurve.id, { description });
         };
+
+        const parametersString = `${parameters['x1']}, ${parameters['y1']}, ${parameters['x2']}, ${parameters['y2']}`;
+
         return (
             <div
                 ref={ref}
@@ -102,6 +100,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         },
                     ]}
                     toolbarFlyoutItems={[]}
+                    shouldBeShown={isEditFlyoutOpen}
                 >
                     <div
                         data-test-id="animation-curve-card"
@@ -109,7 +108,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
                         className={joinClassNames([
                             (hasBackground || hasBorder) && 'tw-overflow-hidden',
-                            'tw-flex tw-flex-col tw-relative tw-bg-base',
+                            'tw-flex tw-flex-col tw-relative tw-bg-base tw-pb-4',
                         ])}
                         style={{
                             ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
@@ -119,9 +118,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         <AnimationCurveFlyout
                             animationCurve={localAnimationCurve}
                             isFlyoutOpen={isEditFlyoutOpen}
-                            lineColor={lineColor}
-                            endpointColor={endpointsColor}
-                            gridColor={gridColor}
                             onSave={(id) => {
                                 onUpdate(id, localAnimationCurve);
                                 setIsEditFlyoutOpen(false);
@@ -144,6 +140,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             className={merge([(hasBorder || hasBackground) && 'tw-px-5 tw-py-4'])}
                             style={{
                                 ...(hasBackground && getBackgroundColorStyles(backgroundColor)),
+                                ...(hasBackground &&
+                                    !hasBorder &&
+                                    getRadiusStyles(radiusChoice, hasRadius, radiusValue)),
                             }}
                         >
                             <AnimationCanvas
@@ -174,7 +173,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             updateValueOnChange={false}
                             isEditing={isEditing}
                         />
-                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-s tw-test-text tw-pb-4'])}>
+                        <div className={merge([hasBorder && 'tw-px-4', 'tw-text-s tw-test-text'])}>
                             {hasParameter && (
                                 <p
                                     data-test-id="animation-curve-card-parameters"
@@ -184,15 +183,13 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                     ])}
                                     onClick={() => copy(JSON.stringify(parameters))}
                                 >
-                                    {parameters['x1']},<span className="tw-ml-1">{parameters['y1']}</span>
-                                    <span className="tw-mx-1">
-                                        <IconCaretRight12 />
-                                    </span>
-                                    {parameters['x2']},<span className="tw-ml-1">{parameters['y2']}</span>
+                                    {parametersString}
                                 </p>
                             )}
                             {hasDuration && <p data-test-id="animation-curve-card-duration">Duration: {duration} s</p>}
                         </div>
+
+                        {displayCss && <CssValueDisplay cssValue={`cubic-bezier(${parametersString})`} />}
                     </div>
                 </BlockItemWrapper>
                 <div

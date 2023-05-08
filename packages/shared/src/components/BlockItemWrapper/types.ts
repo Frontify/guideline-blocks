@@ -10,6 +10,7 @@ export type BlockItemWrapperProps = {
     isDragging?: boolean;
     shouldFillContainer?: boolean;
     outlineOffset?: number;
+    shouldBeShown?: boolean;
 };
 
 export type ToolbarProps = {
