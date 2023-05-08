@@ -498,7 +498,7 @@ describe('AnimationCurve Block', () => {
         cy.get(FLYOUT_SELECTOR).find(BUTTON_SELECTOR).last().should('be.disabled');
     });
 
-    it('should show the correct cubic-bezier values of an Eas In curve ', () => {
+    it('should show the correct cubic-bezier values of an ease in animation curve', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
                 content: [AnimationCurveDummy.with()],

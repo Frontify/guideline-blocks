@@ -42,7 +42,7 @@ export const AnimationCurveFlyout = ({
     onAnimationCurveUpdate,
     onAnimationCurveChange,
 }: AnimationCurveFlyoutProps) => {
-    const [zIndex, setZIndex] = useState(1000);
+    const [isInputFocused, setIsInputFocused] = useState(false);
     const [x1Validation, setX1Validation] = useState<Validation>(Validation.Default);
     const [x2Validation, setX2Validation] = useState<Validation>(Validation.Default);
     const [localAnimationFunction, setLocalAnimationFunction] = useState(animationCurve.animationFunction);
@@ -135,7 +135,10 @@ export const AnimationCurveFlyout = ({
                     menuBlocks={DROPDOWN_MENU_ITEMS}
                 />
                 <div className="tw-relative tw-h-[200px] tw-w-[450px] tw-my-3">
-                    <div className="tw-absolute tw-w-full tw-bg-base-alt tw-border tw-border-line" style={{ zIndex }}>
+                    <div
+                        className="tw-absolute tw-w-full tw-bg-base-alt tw-border tw-border-line"
+                        style={{ zIndex: isInputFocused ? 0 : 1 }}
+                    >
                         <AnimationCanvas
                             animationFunction={localAnimationFunction}
                             setAnimationFunction={updateAnimationFunction}
@@ -154,8 +157,8 @@ export const AnimationCurveFlyout = ({
                     <div className="tw-flex tw-justify-start tw-items-center tw-gap-1">
                         <div className="tw-relative tw-w-[74px]">
                             <TextInput
-                                onFocus={() => setZIndex(0)}
-                                onBlur={() => setZIndex(1000)}
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
                                 onChange={(value) => updateAnimationCurveParameters({ x1: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.x1.toString()}
@@ -166,8 +169,8 @@ export const AnimationCurveFlyout = ({
                         </div>
                         <div className="tw-relative tw-w-[74px]">
                             <TextInput
-                                onFocus={() => setZIndex(0)}
-                                onBlur={() => setZIndex(1000)}
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
                                 onChange={(value) => updateAnimationCurveParameters({ y1: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.y1.toString()}
@@ -178,8 +181,8 @@ export const AnimationCurveFlyout = ({
                         <IconCaretRight16 />
                         <div className="tw-relative tw-w-[74px]">
                             <TextInput
-                                onFocus={() => setZIndex(0)}
-                                onBlur={() => setZIndex(1000)}
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
                                 onChange={(value) => updateAnimationCurveParameters({ x2: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.x2.toString()}
@@ -190,8 +193,8 @@ export const AnimationCurveFlyout = ({
                         </div>
                         <div className="tw-relative tw-w-[74px]">
                             <TextInput
-                                onFocus={() => setZIndex(0)}
-                                onBlur={() => setZIndex(1000)}
+                                onFocus={() => setIsInputFocused(true)}
+                                onBlur={() => setIsInputFocused(false)}
                                 onChange={(value) => updateAnimationCurveParameters({ y2: Number(value) || 0 })}
                                 type={TextInputType.Number}
                                 value={localAnimationFunction.parameters.y2.toString()}
@@ -202,8 +205,8 @@ export const AnimationCurveFlyout = ({
                     </div>
                     <div className="tw-w-20 tw-relative">
                         <TextInput
-                            onFocus={() => setZIndex(0)}
-                            onBlur={() => setZIndex(1000)}
+                            onFocus={() => setIsInputFocused(true)}
+                            onBlur={() => setIsInputFocused(false)}
                             onChange={(value) =>
                                 updateAnimationFunction({
                                     ...animationCurve.animationFunction,
