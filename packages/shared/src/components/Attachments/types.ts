@@ -2,12 +2,14 @@
 
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { DesignTokenName, TokenValues } from '../../hooks';
+import { DesignTokens } from '@frontify/fondue';
 
 export type AttachmentsProps = {
     items: Asset[] | undefined;
     appBridge: AppBridgeBlock;
-    onReplaceWithUpload: (attachmentToReplace: Asset, newAsset: Asset) => void;
-    onReplaceWithBrowse: (attachmentToReplace: Asset, newAsset: Asset) => void;
+    designTokens: DesignTokens;
+    onReplaceWithUpload: (attachmentToReplace: Asset, newAsset: Asset) => Promise<void>;
+    onReplaceWithBrowse: (attachmentToReplace: Asset, newAsset: Asset) => Promise<void>;
     onDelete: (attachmentToDelete: Asset) => void;
     onUpload: (uploadedAttachments: Asset[]) => Promise<void>;
     onBrowse: (browserAttachments: Asset[]) => void;
@@ -26,6 +28,7 @@ export type SortableAttachmentItemProps = {
     isEditing: boolean;
     designTokens: Partial<Record<DesignTokenName, TokenValues>> | null;
     onDelete: () => void;
+    isLoading?: boolean;
     onReplaceWithBrowse: () => void;
     onReplaceWithUpload: (uploadedAsset: Asset) => void;
 };
