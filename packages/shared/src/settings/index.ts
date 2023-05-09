@@ -4,6 +4,7 @@ export * from './background';
 export * from './border';
 export * from './borderRadius';
 export * from './borderRadiusExtended';
+export * from './gutter';
 export * from './margin';
 export * from './marginExtended';
 export * from './padding';

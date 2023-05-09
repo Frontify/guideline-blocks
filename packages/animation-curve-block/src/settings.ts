@@ -1,24 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    appendUnit,
-    defineSettings,
-    numericalOrPixelRule,
-    presetCustomValue,
-} from '@frontify/guideline-blocks-settings';
+import { defineSettings } from '@frontify/guideline-blocks-settings';
 import {
     Radius,
     getBackgroundSettings,
     getBorderRadiusSettings,
     getBorderSettings,
+    getGutterSettings,
 } from '@frontify/guideline-blocks-shared';
 
-import { Spacing, spacingValues } from './types';
-
 const COLUMNS_ID = 'columns';
-const CUSTOM_SPACING_ID = 'hasCustomSpacing';
-const SPACING_CHOICE_ID = 'spacingChoice';
-const SPACING_CUSTOM_ID = 'spacingCustom';
 const LINE_COLOR_ID = 'lineColor';
 const END_POINTS_ID = 'hasEndpoints';
 const END_POINTS_COLOR_ID = 'endpointsColor';
@@ -57,50 +48,7 @@ export const settings = defineSettings({
                         },
                     ],
                 },
-                {
-                    id: CUSTOM_SPACING_ID,
-                    type: 'switch',
-                    defaultValue: false,
-                    switchLabel: 'Custom',
-                    label: 'Gutter',
-                    info: 'An official nerds term for ‘gap’',
-                    onChange: (bundle) =>
-                        presetCustomValue(bundle, SPACING_CHOICE_ID, SPACING_CUSTOM_ID, spacingValues),
-                    show: (bundle) => bundle.getBlock(COLUMNS_ID)?.value !== '1',
-                    on: [
-                        {
-                            id: SPACING_CUSTOM_ID,
-                            type: 'input',
-                            rules: [numericalOrPixelRule],
-                            onChange: (bundle) => appendUnit(bundle, SPACING_CUSTOM_ID),
-                        },
-                    ],
-                    off: [
-                        {
-                            id: SPACING_CHOICE_ID,
-                            type: 'slider',
-                            defaultValue: Spacing.Medium,
-                            choices: [
-                                {
-                                    value: Spacing.None,
-                                    label: 'None',
-                                },
-                                {
-                                    value: Spacing.Small,
-                                    label: 'S',
-                                },
-                                {
-                                    value: Spacing.Medium,
-                                    label: 'M',
-                                },
-                                {
-                                    value: Spacing.Large,
-                                    label: 'L',
-                                },
-                            ],
-                        },
-                    ],
-                },
+                getGutterSettings(),
             ],
         },
         {

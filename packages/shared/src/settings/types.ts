@@ -112,3 +112,17 @@ export enum Security {
     Global = 'Global',
     Custom = 'Custom',
 }
+
+export enum GutterSpacing {
+    Auto = 'Auto',
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+}
+
+export const gutterSpacingStyleMap: Record<GutterSpacing, string> = {
+    [GutterSpacing.Auto]: '4px',
+    [GutterSpacing.Small]: '10px',
+    [GutterSpacing.Medium]: '30px',
+    [GutterSpacing.Large]: '50px',
+};
