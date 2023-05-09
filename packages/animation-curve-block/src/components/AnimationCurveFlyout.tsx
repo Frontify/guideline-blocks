@@ -16,7 +16,7 @@ import {
     Validation,
 } from '@frontify/fondue';
 
-import { DROPDOWN_MENU_ITEMS } from '../constants';
+import { DEFAULT_ANIMATION_FUNCTION, DROPDOWN_MENU_ITEMS } from '../constants';
 import { roundAnimationCurveParameters } from '../helpers';
 import {
     AnimationCurve,
@@ -26,7 +26,6 @@ import {
     AnimationFunctionPatch,
     defaultAnimationCurveTypeValues,
 } from '../types';
-
 import { AnimationCanvas } from './';
 
 export const validateXValue = (value: number): Validation => {
@@ -36,6 +35,7 @@ export const validateXValue = (value: number): Validation => {
 export const AnimationCurveFlyout = ({
     animationCurve,
     isFlyoutOpen,
+    initialAnimationFunction = DEFAULT_ANIMATION_FUNCTION,
     onSave,
     onCancel,
     onOpenChange,
@@ -96,7 +96,6 @@ export const AnimationCurveFlyout = ({
             trigger={(props, ref) => <div ref={ref as MutableRefObject<HTMLDivElement>} />}
             isOpen={isFlyoutOpen}
             onOpenChange={onOpenChange}
-            onCancel={onCancel}
             legacyFooter={false}
             fixedFooter={
                 <FlyoutFooter
@@ -105,7 +104,10 @@ export const AnimationCurveFlyout = ({
                             style: ButtonStyle.Default,
                             emphasis: ButtonEmphasis.Default,
                             children: 'Cancel',
-                            onClick: onCancel,
+                            onClick: () => {
+                                setLocalAnimationFunction(initialAnimationFunction);
+                                onCancel();
+                            },
                         },
                         {
                             style: ButtonStyle.Default,

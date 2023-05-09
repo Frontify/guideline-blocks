@@ -189,6 +189,7 @@ export type AnimationCanvasProps = {
 export type AnimationCurveFlyoutProps = {
     animationCurve: AnimationCurve;
     isFlyoutOpen: boolean;
+    initialAnimationFunction?: AnimationFunction;
     onSave: (id: string, animationCurvePatch: AnimationCurvePatch) => void;
     onCancel: () => void;
     onOpenChange: (isOpen: boolean) => void;

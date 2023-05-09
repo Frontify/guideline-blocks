@@ -116,6 +116,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     >
                         <AnimationCurveFlyout
                             animationCurve={localAnimationCurve}
+                            initialAnimationFunction={initialAnimationCurve.animationFunction}
                             isFlyoutOpen={isEditFlyoutOpen}
                             onSave={(id) => {
                                 onUpdate(id, localAnimationCurve);
