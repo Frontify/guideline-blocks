@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 
 import {
     ButtonEmphasis,
@@ -93,7 +93,7 @@ export const AnimationCurveFlyout = ({
 
     return (
         <Flyout
-            trigger={<></>}
+            trigger={(props, ref) => <div ref={ref as MutableRefObject<HTMLDivElement>} />}
             isOpen={isFlyoutOpen}
             onOpenChange={onOpenChange}
             onCancel={onCancel}
@@ -118,7 +118,7 @@ export const AnimationCurveFlyout = ({
                     ]}
                 />
             }
-            placement={FlyoutPlacement.BottomLeft}
+            placement={FlyoutPlacement.BottomRight}
         >
             <div className="tw-p-6 tw-w-[498px]">
                 <Dropdown

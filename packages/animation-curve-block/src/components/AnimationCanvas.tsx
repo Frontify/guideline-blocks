@@ -105,17 +105,26 @@ export const AnimationCanvas = ({
             };
 
             const animationValues = {
-                x: positionWithinViewBox.x / viewBox.width,
+                x: calculateXValue(positionWithinViewBox.x, viewBox.width),
                 y: 1 - positionWithinViewBox.y / viewBox.height,
             };
 
-            if (animationValues.x >= 0 && animationValues.x <= 1) {
-                setAnimationFunction && setAnimationFunction(updatedAnimationFunction(animationValues, draggingPoint));
-            }
+            setAnimationFunction && setAnimationFunction(updatedAnimationFunction(animationValues, draggingPoint));
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [draggingPoint, viewBox.width, viewBox.height]
     );
+
+    const calculateXValue = (viewBoxX: number, viewBoxWidth: number) => {
+        const x = viewBoxX / viewBoxWidth;
+        if (x < 0) {
+            return 0;
+        }
+        if (x > 1) {
+            return 1;
+        }
+        return x;
+    };
 
     const updatedAnimationFunction = (animationValues: Point, draggingPoint: ControlPoint): AnimationFunction => {
         if (draggingPoint === ControlPoint.Start) {

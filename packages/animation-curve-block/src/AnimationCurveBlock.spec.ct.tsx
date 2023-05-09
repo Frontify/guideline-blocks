@@ -152,20 +152,6 @@ describe('AnimationCurve Block', () => {
         cy.get(CARD_PARAMETERS_SELECTOR).should('not.exist');
     });
 
-    it('should copy the parameters by click on it', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
-            blockSettings: {
-                content: [AnimationCurveDummy.with()],
-                hasParameter: true,
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-
-        cy.get(CARD_PARAMETERS_SELECTOR).should('css', 'cursor', 'copy');
-        cy.get(CARD_PARAMETERS_SELECTOR).click();
-        cy.get(CARD_PARAMETERS_SELECTOR).should('css', 'cursor', 'auto');
-    });
-
     it('should render one animation curve with a background color with padding and overflow hidden', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {

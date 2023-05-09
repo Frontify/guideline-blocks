@@ -38,7 +38,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     ) => {
         const [isHovered, setIsHovered] = useState(false);
         const [isEditFlyoutOpen, setIsEditFlyoutOpen] = useState(false);
-        const [localAnimationCurve, setLocalAnimationCurve] = useState<AnimationCurve>(animationCurve);
+        const initialAnimationCurve = animationCurve;
+        const [localAnimationCurve, setLocalAnimationCurve] = useState<AnimationCurve>(initialAnimationCurve);
         const {
             hasBorder,
             backgroundColor,
@@ -122,6 +123,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 setIsHovered(false);
                             }}
                             onCancel={() => {
+                                setLocalAnimationCurve(initialAnimationCurve);
                                 setIsEditFlyoutOpen(false);
                                 setIsHovered(false);
                             }}
