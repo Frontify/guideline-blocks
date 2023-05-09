@@ -1,40 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock, useBlockSettings } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
+import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { ReactElement } from 'react';
-import {
-    DEFAULT_BACKGROUND_COLOR,
-    DEFAULT_BORDER_COLOR,
-    DEFAULT_BORDER_STYLE,
-    DEFAULT_BORDER_WIDTH,
-    DEFAULT_CHARS,
-    DEFAULT_COLOR,
-    DEFAULT_FONT_FAMILY,
-    DEFAULT_FONT_SIZE,
-    DEFAULT_FONT_WEIGHT,
-    FULL_WIDTH,
-} from './settings';
-
-type Settings = {
-    width: string;
-    backgroundColor: Color;
-    chars: string;
-    color: Color;
-    fontWeight: string;
-    fontSize: string;
-    fontFamily: string;
-    borderStyle: string;
-    borderWidth: string;
-    borderColor: Color;
-};
+import { Settings } from './types';
 
 type BlockProps = {
     appBridge: AppBridgeBlock;
-};
-
-const toRgbaString = (color: Color): string => {
-    return `rgba(${color.red}, ${color.green}, ${color.blue}, ${color.alpha})`;
 };
 
 const toFontStack = (fontFamily: string): string => {
@@ -49,26 +21,16 @@ const toFontStack = (fontFamily: string): string => {
     return fontStack.join(',');
 };
 
+const itemClassNames = 'tw-aspect-square tw-flex tw-items-center tw-justify-center tw-text-center';
+
 export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
-    const {
-        width = FULL_WIDTH,
-        backgroundColor = DEFAULT_BACKGROUND_COLOR,
-        chars = DEFAULT_CHARS,
-        fontWeight = DEFAULT_FONT_WEIGHT,
-        fontSize = DEFAULT_FONT_SIZE,
-        color = DEFAULT_COLOR,
-        fontFamily = DEFAULT_FONT_FAMILY,
-        borderStyle = DEFAULT_BORDER_STYLE,
-        borderWidth = DEFAULT_BORDER_WIDTH,
-        borderColor = DEFAULT_BORDER_COLOR,
-    } = blockSettings;
+    const { backgroundColor, chars, color, fontFamily, borderStyle, borderWidth, borderColor } = blockSettings;
 
     const containerCustomStyles = {
-        width,
-        fontWeight,
-        fontSize,
+        fontWeight: blockSettings.fontWeight,
+        fontSize: blockSettings.fontSize,
         fontFamily: toFontStack(fontFamily),
         color: toRgbaString(color),
     };
@@ -88,13 +50,13 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     const items = (chars as string).split(',').map((char, index) => {
         if (!isNaN(Number(char))) {
             return (
-                <li key={index} style={itemCustomStyles}>
+                <li key={index} className={itemClassNames} style={itemCustomStyles}>
                     {char}
                 </li>
             );
         } else {
             return (
-                <li key={index} style={itemCustomStyles}>
+                <li key={index} className={itemClassNames} style={itemCustomStyles}>
                     {char}
                     {char.toLowerCase()}
                 </li>
@@ -103,8 +65,10 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     });
 
     return (
-        <div style={containerCustomStyles}>
-            <ul style={listCustomStyles}>{items}</ul>
+        <div data-test-id="glyphs-block" style={containerCustomStyles}>
+            <ul className="tw-grid tw-grid-cols-6" style={listCustomStyles}>
+                {items}
+            </ul>
         </div>
     );
 };
