@@ -3,11 +3,11 @@
 import { mount } from 'cypress/react';
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { BorderStyle, Radius, convertToRteValue } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, GutterSpacing, Radius, convertToRteValue } from '@frontify/guideline-blocks-shared';
 import { TextStyles } from '@frontify/fondue';
 
 import { AnimationCurveBlock } from './AnimationCurveBlock';
-import { AnimationCurve, AnimationCurveType, Spacing } from './types';
+import { AnimationCurve, AnimationCurveType } from './types';
 
 const BLOCK_SELECTOR = '[data-test-id="animation-curve-block"]';
 const CARD_SELECTOR = '[data-test-id="animation-curve-card"]';
@@ -79,7 +79,7 @@ describe('AnimationCurve Block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
                 columns: 2,
-                spacingChoice: Spacing.Large,
+                spacingChoice: GutterSpacing.Large,
             },
         });
         mount(<AssetKitBlockWithStubs />);

@@ -70,7 +70,7 @@ export const settings = defineSettings({
                 },
                 {
                     id: 'displayCss',
-                    label: 'Show CSS Code',
+                    label: 'Show CSS code',
                     type: 'switch',
                     defaultValue: false,
                 },
