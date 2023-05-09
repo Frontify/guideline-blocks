@@ -4,11 +4,14 @@ import { SettingBlock, appendUnit, numericalOrPixelRule, presetCustomValue } fro
 import { GutterSpacing, gutterSpacingStyleMap } from './types';
 
 /**
- * Returns background settings: background switch, background color
+ * Returns gutter settings: gutter switch, gutter choices or gutter custom input
  *
  * @param options Options for the settings
  * @param options.id Custom id for the gutters switch
- * @returns {SettingBlock} Returns background settings
+ * @param options.dependentSettingId Id of the dependent setting
+ * @param options.spacingChoiceId Id of the spacing choice
+ * @param options.defaultValueChoices Default value for the spacing choice
+ * @returns {SettingBlock} Returns the gutter settings
  */
 
 type GutterSettingsType = {
