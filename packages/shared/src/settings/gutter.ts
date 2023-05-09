@@ -24,7 +24,7 @@ export const getGutterSettings = (options?: GutterSettingsType): SettingBlock =>
     const dependentSettingId = options?.dependentSettingId ? options.dependentSettingId : 'columns';
     const spacingChoiceId = options?.spacingChoiceId ? options.spacingChoiceId : 'spacingChoice';
     const spacingCustomId = options?.defaultValueChoices ? options.defaultValueChoices : 'spacingCustom';
-    const defaultValueChoices = options?.defaultValueChoices ? options.defaultValueChoices : GutterSpacing.Medium;
+    const defaultValueChoices = options?.defaultValueChoices ? options.defaultValueChoices : GutterSpacing.M;
 
     return {
         id,
@@ -54,15 +54,15 @@ export const getGutterSettings = (options?: GutterSettingsType): SettingBlock =>
                         label: 'Auto',
                     },
                     {
-                        value: GutterSpacing.Small,
+                        value: GutterSpacing.S,
                         label: 'S',
                     },
                     {
-                        value: GutterSpacing.Medium,
+                        value: GutterSpacing.M,
                         label: 'M',
                     },
                     {
-                        value: GutterSpacing.Large,
+                        value: GutterSpacing.L,
                         label: 'L',
                     },
                 ],

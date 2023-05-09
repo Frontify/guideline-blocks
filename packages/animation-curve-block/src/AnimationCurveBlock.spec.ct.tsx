@@ -79,7 +79,7 @@ describe('AnimationCurve Block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
                 columns: 2,
-                spacingChoice: GutterSpacing.Large,
+                spacingChoice: GutterSpacing.L,
             },
         });
         mount(<AssetKitBlockWithStubs />);

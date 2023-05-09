@@ -12,7 +12,7 @@ export type Settings = {
 
 export const spacingValues: Record<GutterSpacing, string> = {
     [GutterSpacing.Auto]: 'normal',
-    [GutterSpacing.Small]: '10px',
-    [GutterSpacing.Medium]: '30px',
-    [GutterSpacing.Large]: '50px',
+    [GutterSpacing.S]: '10px',
+    [GutterSpacing.M]: '30px',
+    [GutterSpacing.L]: '50px',
 };
