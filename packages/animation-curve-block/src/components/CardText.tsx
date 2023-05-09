@@ -55,7 +55,7 @@ export const CardText = ({
     return (
         <div className={joinClassNames([hasBorder && 'tw-px-4', 'tw-pt-4 tw-flex-1'])}>
             {memoTitleRte}
-            <div className="tw-pb-3">{memoDescriptionRte}</div>
+            <div>{memoDescriptionRte}</div>
         </div>
     );
 };

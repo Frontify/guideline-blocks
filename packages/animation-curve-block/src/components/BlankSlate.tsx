@@ -14,9 +14,6 @@ export const BlankSlate = ({
     content,
     designTokens,
     hasBorder,
-    lineColor,
-    endpointColor,
-    gridColor,
     canvasHeight,
     setLocalItems,
     setBlockSettings,
@@ -54,21 +51,15 @@ export const BlankSlate = ({
     return (
         <div data-test-id="blank-slate">
             <AnimationCurveFlyout
+                key={animationCurve.id}
                 animationCurve={animationCurve}
                 onSave={addAnimationCurve}
                 onCancel={() => setIsFlyoutOpen(false)}
                 onOpenChange={(isOpen) => setIsFlyoutOpen(isOpen)}
                 onAnimationCurveChange={setAnimationCurve}
                 isFlyoutOpen={isFlyoutOpen}
-                lineColor={lineColor}
-                endpointColor={endpointColor}
-                gridColor={gridColor}
             />
-            <div
-                style={{
-                    height,
-                }}
-            >
+            <div style={{ height }}>
                 <BlockInjectButton
                     label="Add animation curve"
                     icon={<IconPlus24 />}

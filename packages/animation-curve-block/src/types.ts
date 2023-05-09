@@ -36,7 +36,6 @@ export enum AnimationCurveType {
     EaseIn = 'easeIn',
     EaseOut = 'easeOut',
     EaseInOut = 'easeInOut',
-    Instant = 'instant',
     Custom = 'custom',
     EaseInSine = 'easeInSine',
     EaseInQuad = 'easeInQuad',
@@ -69,7 +68,6 @@ export const defaultAnimationCurveTypeValues: Record<AnimationCurveType, Animati
     [AnimationCurveType.EaseIn]: { x1: 0.42, y1: 0.0, x2: 1.0, y2: 1.0 },
     [AnimationCurveType.EaseOut]: { x1: 0.0, y1: 0.0, x2: 0.58, y2: 1.0 },
     [AnimationCurveType.EaseInOut]: { x1: 0.42, y1: 0.0, x2: 0.58, y2: 1.0 },
-    [AnimationCurveType.Instant]: { x1: 1.0, y1: 1.0, x2: 1.0, y2: 1.0 },
     [AnimationCurveType.Custom]: { x1: 0.42, y1: 0.0, x2: 0.58, y2: 1.0 },
     [AnimationCurveType.EaseInSine]: { x1: 0.12, y1: 0.0, x2: 0.39, y2: 0 },
     [AnimationCurveType.EaseInQuad]: { x1: 0.11, y1: 0.0, x2: 0.5, y2: 0 },
@@ -139,6 +137,7 @@ export type Settings = {
     hasMotion: boolean;
     hasParameter: boolean;
     hasDuration: boolean;
+    displayCss: boolean;
 };
 
 export type AnimationCurveCanvasGridProps = {
@@ -151,9 +150,6 @@ export type BlankSlateProps = {
     content: AnimationCurve[];
     hasBorder: boolean;
     designTokens: Partial<Record<DesignTokenName, TokenValues>>;
-    lineColor: Color;
-    endpointColor: Color;
-    gridColor: Color;
     canvasHeight: number;
     setBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     setLocalItems: (items: AnimationCurve[]) => void;
@@ -191,9 +187,9 @@ export type CardTextProps = {
 
 export type AnimationCanvasProps = {
     animationFunction: AnimationFunction;
-    lineColor: Color;
-    endpointColor: Color;
-    gridColor: Color;
+    lineColor?: Color;
+    endpointColor?: Color;
+    gridColor?: Color;
     showGrid: boolean;
     showEndPoints: boolean;
     showHandles?: boolean;
@@ -207,9 +203,6 @@ export type AnimationCanvasProps = {
 export type AnimationCurveFlyoutProps = {
     animationCurve: AnimationCurve;
     isFlyoutOpen: boolean;
-    lineColor: Color;
-    endpointColor: Color;
-    gridColor: Color;
     onSave: (id: string, animationCurvePatch: AnimationCurvePatch) => void;
     onCancel: () => void;
     onOpenChange: (isOpen: boolean) => void;
