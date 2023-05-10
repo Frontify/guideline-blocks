@@ -18,10 +18,10 @@ import '@frontify/fondue-tokens/styles';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 
-import { AnimationCurve, AnimationCurvePatch, Settings, spacingValues } from './types';
+import { AnimationCurve, AnimationCurvePatch, Settings } from './types';
 import { gridClasses } from './constants';
 import { BlankSlate, Card, SortableCard } from './components';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { gutterSpacingStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 
 export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -73,7 +73,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                 data-test-id="animation-curve-block"
                 className={`tw-grid tw-auto-rows-auto ${gridClasses[columns]}`}
                 style={{
-                    gap: hasCustomSpacing ? spacingCustom : spacingValues[spacingChoice],
+                    gap: hasCustomSpacing ? spacingCustom : gutterSpacingStyleMap[spacingChoice],
                 }}
             >
                 <SortableContext items={localItems} strategy={rectSortingStrategy}>

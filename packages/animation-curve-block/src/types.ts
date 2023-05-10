@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, DesignTokenName, Radius, TokenValues } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, DesignTokenName, GutterSpacing, Radius, TokenValues } from '@frontify/guideline-blocks-shared';
 
 export type Size = {
     width: number;
@@ -98,26 +98,12 @@ export const defaultAnimationCurveTypeValues: Record<AnimationCurveType, Animati
 export type AnimationCurveParameters = { x1: number; y1: number; x2: number; y2: number };
 export type AnimationCurveParametersPatch = Partial<AnimationCurveParameters>;
 
-export enum Spacing {
-    None = 'None',
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large',
-}
-
-export const spacingValues: Record<Spacing, string> = {
-    [Spacing.None]: '4px',
-    [Spacing.Small]: '10px',
-    [Spacing.Medium]: '30px',
-    [Spacing.Large]: '50px',
-};
-
 export type Settings = {
     content: AnimationCurve[];
     columns: number;
     hasCustomSpacing: boolean;
     spacingCustom?: string;
-    spacingChoice: Spacing;
+    spacingChoice: GutterSpacing;
     duration: boolean;
     parameter: boolean;
     hasBackground: boolean;
@@ -203,6 +189,7 @@ export type AnimationCanvasProps = {
 export type AnimationCurveFlyoutProps = {
     animationCurve: AnimationCurve;
     isFlyoutOpen: boolean;
+    initialAnimationFunction?: AnimationFunction;
     onSave: (id: string, animationCurvePatch: AnimationCurvePatch) => void;
     onCancel: () => void;
     onOpenChange: (isOpen: boolean) => void;

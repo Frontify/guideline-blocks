@@ -17,7 +17,7 @@ export const CssValueDisplay = ({ cssValue, placeholder = 'No CSS value' }: CssV
     return (
         <div
             data-test-id="css-value-display"
-            className="tw-mt-8 tw-overflow-hidden tw-border tw-border-line tw-rounded"
+            className="tw-mt-[30px] tw-overflow-hidden tw-border tw-border-line tw-rounded"
             style={{
                 fontFamily: 'Menlo, Courier, monospace',
                 fontSize: '12px',

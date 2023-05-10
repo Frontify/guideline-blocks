@@ -3,7 +3,7 @@
 import { forwardRef, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 
-import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge, useCopy } from '@frontify/fondue';
+import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge } from '@frontify/fondue';
 import {
     BlockItemWrapper,
     CssValueDisplay,
@@ -38,7 +38,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     ) => {
         const [isHovered, setIsHovered] = useState(false);
         const [isEditFlyoutOpen, setIsEditFlyoutOpen] = useState(false);
-        const [localAnimationCurve, setLocalAnimationCurve] = useState<AnimationCurve>(animationCurve);
+        const initialAnimationCurve = animationCurve;
+        const [localAnimationCurve, setLocalAnimationCurve] = useState<AnimationCurve>(initialAnimationCurve);
         const {
             hasBorder,
             backgroundColor,
@@ -62,8 +63,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
         const { title, description, animationFunction } = localAnimationCurve;
         const { parameters, duration } = animationFunction;
-        const { copy, status } = useCopy();
-        const isCopied = status === 'success';
 
         const onTitleChange = (title: string) => {
             setLocalAnimationCurve({ ...localAnimationCurve, title });
@@ -117,6 +116,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     >
                         <AnimationCurveFlyout
                             animationCurve={localAnimationCurve}
+                            initialAnimationFunction={initialAnimationCurve.animationFunction}
                             isFlyoutOpen={isEditFlyoutOpen}
                             onSave={(id) => {
                                 onUpdate(id, localAnimationCurve);
@@ -124,6 +124,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 setIsHovered(false);
                             }}
                             onCancel={() => {
+                                setLocalAnimationCurve(initialAnimationCurve);
                                 setIsEditFlyoutOpen(false);
                                 setIsHovered(false);
                             }}
@@ -177,11 +178,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             {hasParameter && (
                                 <p
                                     data-test-id="animation-curve-card-parameters"
-                                    className={joinClassNames([
-                                        'tw-flex tw-items-center tw-my-0.5',
-                                        isCopied ? 'tw-cursor-auto' : 'tw-cursor-copy',
-                                    ])}
-                                    onClick={() => copy(JSON.stringify(parameters))}
+                                    className="tw-flex tw-items-center tw-my-0.5"
                                 >
                                     {parametersString}
                                 </p>
