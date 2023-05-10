@@ -10,18 +10,6 @@ type BlockProps = {
     appBridge: AppBridgeBlock;
 };
 
-const toFontStack = (fontFamily: string): string => {
-    const fontStack = [];
-
-    if (fontFamily !== 'default') {
-        fontStack.push(fontFamily);
-    }
-
-    fontStack.push('inherit');
-
-    return fontStack.join(',');
-};
-
 export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
@@ -37,18 +25,6 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
         hasRadius,
         radiusValue,
     } = blockSettings;
-
-    const containerCustomStyles = {
-        fontWeight: blockSettings.fontWeight,
-        fontSize: blockSettings.fontSize,
-        fontFamily: toFontStack(fontFamily),
-        color: toRgbaString(fontColor),
-    };
-
-    const listCustomStyles = {
-        gap: borderWidth,
-        padding: borderWidth,
-    };
 
     const itemCustomStyles = {
         backgroundColor: toRgbaString(backgroundColor),
@@ -73,8 +49,22 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     });
 
     return (
-        <div data-test-id="glyphs-block" style={containerCustomStyles}>
-            <ul className="tw-grid tw-grid-cols-6" style={listCustomStyles}>
+        <div
+            data-test-id="glyphs-block"
+            style={{
+                fontWeight: blockSettings.fontWeight,
+                fontSize: blockSettings.fontSize,
+                fontFamily: fontFamily || 'inherit',
+                color: toRgbaString(fontColor),
+            }}
+        >
+            <ul
+                className="tw-grid tw-grid-cols-6"
+                style={{
+                    gap: borderWidth,
+                    padding: borderWidth,
+                }}
+            >
                 {items}
             </ul>
         </div>
