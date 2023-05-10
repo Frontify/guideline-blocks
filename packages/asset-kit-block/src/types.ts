@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, BulkDownloadState } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
@@ -26,6 +26,8 @@ export type Settings = {
     radiusValue_thumbnails?: number;
     description?: string;
     title?: string;
+    downloadExpiration?: number;
+    downloadUrlBlock: string;
 };
 
 export type AssetGridProps = {
@@ -34,6 +36,7 @@ export type AssetGridProps = {
     isEditing: boolean;
     deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     updateAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
+    saveDownloadUrl: (downloadUrlBlock: string) => void;
 };
 
 export type AssetSelectionProps = {
@@ -42,10 +45,12 @@ export type AssetSelectionProps = {
     currentAssets: Asset[];
     addAssetIdsToKey: (key: string, assetIds: number[]) => Promise<void>;
     setIsUploadingAssets: (isUploadingAssets: boolean) => void;
+    saveDownloadUrl: (downloadUrlBlock: string) => void;
 };
 
 export type DownloadMessageProps = {
     blockStyle: CSSProperties;
+    status: BulkDownloadState;
 };
 
 export type InformationSectionProps = {
@@ -71,23 +76,4 @@ export type ThumbnailToolbarProps = {
     onReplaceAsset: (toReplaceId: number, newId: number) => Promise<void>;
     setIsUploading: (isLoading: boolean) => void;
     isUploading: boolean;
-};
-
-export type GenerateBulkDownloadTokenRequest = {
-    asset_ids: number[];
-    set_ids: number[];
-    language: string;
-};
-
-export type GenerateBulkDownloadTokenData = {
-    token: string;
-};
-
-export type GenerateBulkDownloadRequest = {
-    token: string;
-};
-
-export type GenerateBulkDownloadData = {
-    signature: string;
-    download_url: string;
 };

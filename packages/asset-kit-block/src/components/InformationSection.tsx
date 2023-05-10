@@ -1,31 +1,29 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { convertToRteValue, hasRichTextValue, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
 import {
     BoldPlugin,
     ItalicPlugin,
+    Plugin,
     PluginComposer,
+    PluginProps,
     ResetFormattingPlugin,
-    RichTextEditor,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     TextStyles,
     UnderlinePlugin,
-    parseRawValue,
-    serializeRawToHtml,
 } from '@frontify/fondue';
-import { Plugin, PluginProps } from '@frontify/fondue/dist/components/RichTextEditor/Plugins/Plugin';
-import { InformationSectionProps } from '../types';
+import {
+    RichTextEditor,
+    convertToRteValue,
+    hasRichTextValue,
+    useGuidelineDesignTokens,
+} from '@frontify/guideline-blocks-shared';
 import { useMemo } from 'react';
+import { InformationSectionProps } from '../types';
 
 export const InformationSection = ({ description, isEditing, setBlockSettings, title }: InformationSectionProps) => {
     const { designTokens } = useGuidelineDesignTokens();
-
-    const rawTitleValue = JSON.stringify(parseRawValue({ raw: title }));
-    const htmlTitle = serializeRawToHtml(rawTitleValue, designTokens);
-    const rawDescriptionValue = JSON.stringify(parseRawValue({ raw: description }));
-    const htmlDescription = serializeRawToHtml(rawDescriptionValue, designTokens);
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
@@ -49,43 +47,27 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
     return (
         <div className="tw-flex-1 tw-space-y-2">
             <div data-test-id="block-title">
-                {!isEditing ? (
-                    <>
-                        {hasRichTextValue(title) && (
-                            <div data-test-id="block-title-rte" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
-                        )}
-                    </>
-                ) : (
-                    <RichTextEditor
-                        designTokens={designTokens}
-                        value={title ?? convertToRteValue(TextStyles.ELEMENT_HEADING3)}
-                        onBlur={saveTitle}
-                        placeholder="Add a title here ..."
-                        border={false}
-                        plugins={customTitlePlugins}
-                    />
-                )}
+                <RichTextEditor
+                    id="block-title"
+                    designTokens={designTokens}
+                    isEditing={isEditing}
+                    plugins={customTitlePlugins}
+                    onBlur={saveTitle}
+                    placeholder="Add a title here ..."
+                    showSerializedText={hasRichTextValue(title)}
+                    value={title ?? convertToRteValue(TextStyles.ELEMENT_HEADING3)}
+                />
             </div>
-
             <div data-test-id="block-description">
-                {!isEditing ? (
-                    <>
-                        {hasRichTextValue(description) && (
-                            <div
-                                data-test-id="block-description-rte"
-                                dangerouslySetInnerHTML={{ __html: htmlDescription }}
-                            />
-                        )}
-                    </>
-                ) : (
-                    <RichTextEditor
-                        designTokens={designTokens}
-                        onBlur={saveDescription}
-                        placeholder="Add a description here ..."
-                        value={description}
-                        border={false}
-                    />
-                )}
+                <RichTextEditor
+                    id="block-description"
+                    designTokens={designTokens}
+                    isEditing={isEditing}
+                    onBlur={saveDescription}
+                    placeholder="Add a description here ..."
+                    showSerializedText={hasRichTextValue(description)}
+                    value={description}
+                />
             </div>
         </div>
     );

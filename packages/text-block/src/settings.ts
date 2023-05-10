@@ -1,18 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    appendUnit,
-    betweenPixelRule,
-    defineSettings,
-    numericalOrPixelRule,
-    presetCustomValue,
-} from '@frontify/guideline-blocks-settings';
-import { TextGutter, spacingValues } from './types';
-
-const presetSpacingValues: Record<TextGutter, string> = {
-    ...spacingValues,
-    [TextGutter.Auto]: '',
-};
+import { defineSettings } from '@frontify/guideline-blocks-settings';
+import { GutterSpacing, getGutterSettings } from '@frontify/guideline-blocks-shared';
 
 export const PLACEHOLDER = 'Your text here';
 const CUSTOM_GUTTER_ID = 'columnGutterCustom';
@@ -23,7 +12,7 @@ export const settings = defineSettings({
     layout: [
         {
             id: COLUMN_NR_ID,
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Columns',
             defaultValue: 1,
             choices: [
@@ -45,49 +34,12 @@ export const settings = defineSettings({
                 },
             ],
         },
-        {
+        getGutterSettings({
             id: 'isColumnGutterCustom',
-            label: 'Gutter',
-            type: 'switch',
-            switchLabel: 'Custom',
-            defaultValue: false,
-            info: "An official nerd's term for 'column gap'",
-            onChange: (bundle) => presetCustomValue(bundle, SIMPLE_GUTTER_ID, CUSTOM_GUTTER_ID, presetSpacingValues),
-            show: (bundle) => Number(bundle.getBlock(COLUMN_NR_ID)?.value) > 1,
-            on: [
-                {
-                    id: CUSTOM_GUTTER_ID,
-                    type: 'input',
-                    defaultValue: presetSpacingValues[TextGutter.Auto],
-                    rules: [numericalOrPixelRule, betweenPixelRule(0, 200)],
-                    onChange: (bundle) => appendUnit(bundle, CUSTOM_GUTTER_ID),
-                },
-            ],
-            off: [
-                {
-                    id: SIMPLE_GUTTER_ID,
-                    type: 'slider',
-                    defaultValue: TextGutter.Auto,
-                    choices: [
-                        {
-                            value: TextGutter.Auto,
-                            label: TextGutter.Auto,
-                        },
-                        {
-                            value: TextGutter.S,
-                            label: TextGutter.S,
-                        },
-                        {
-                            value: TextGutter.M,
-                            label: TextGutter.M,
-                        },
-                        {
-                            value: TextGutter.L,
-                            label: TextGutter.L,
-                        },
-                    ],
-                },
-            ],
-        },
+            dependentSettingId: COLUMN_NR_ID,
+            spacingChoiceId: SIMPLE_GUTTER_ID,
+            spacingCustomId: CUSTOM_GUTTER_ID,
+            defaultValueChoices: GutterSpacing.Auto,
+        }),
     ],
 });

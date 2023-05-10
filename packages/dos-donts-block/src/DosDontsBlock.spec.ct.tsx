@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { DONT_COLOR_DEFAULT_VALUE, DO_COLOR_DEFAULT_VALUE, DosDontsBlock } from './DosDontsBlock';
 import { DoDontSpacing, DoDontStyle, ItemIconChoice } from './types';
@@ -9,6 +9,9 @@ const DosDontsBlockSelector = '[data-test-id="dos-donts-block"]';
 const DosDontsHeading = '[data-test-id="dos-donts-heading"]';
 const DosDontsContent = '[data-test-id="dos-donts-content"]';
 const DosDontsIcon = '[data-test-id="dos-donts-icon"]';
+const FLOATING_LINK_BUTTON = '[data-plugin-id="a"]';
+const FLOATING_BUTTON_BUTTON = '[data-plugin-id="button"]';
+const INTERNAL_LINK_SELECTOR = '[data-test-id="internal-link-selector"]';
 
 describe("Dos & Don'ts Block", () => {
     it('renders a dos donts block', () => {
@@ -18,11 +21,11 @@ describe("Dos & Don'ts Block", () => {
         cy.get(DosDontsBlockSelector).should('exist');
     });
 
-    it('renders an empty dos donts block in view mode', () => {
+    it('renders an dos donts block in view mode', () => {
         const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {});
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get('[data-test-id="rte-content-html"]').should('exist');
+        cy.get('[data-test-id="rte-content-html"]').should('not.exist');
         cy.get('[data-test-id="rich-text-editor"]').should('not.exist');
     });
 
@@ -111,5 +114,45 @@ describe("Dos & Don'ts Block", () => {
             .type('This is an example dont description.', { force: true })
             .blur();
         cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').contains('This is an example dont description.');
+    });
+
+    it('has an internal link chooser in the RTE', () => {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+            editorState: true,
+            blockSettings: {
+                columnGutterChoice: DoDontSpacing.Large,
+                rowGutterChoice: DoDontSpacing.Large,
+            },
+        });
+
+        mount(<DosDontsBlockWithStubs />);
+        cy.get(DosDontsContent)
+            .first()
+            .find('[contenteditable=true]')
+            .dblclick()
+            .type('This is an example do description.{selectall}', { force: true });
+
+        cy.get(FLOATING_LINK_BUTTON).should('exist').click();
+        cy.get(INTERNAL_LINK_SELECTOR).should('exist');
+    });
+
+    it('has an internal link chooser for buttons in the RTE', () => {
+        const [DosDontsBlockWithStubs] = withAppBridgeBlockStubs(DosDontsBlock, {
+            editorState: true,
+            blockSettings: {
+                columnGutterChoice: DoDontSpacing.Large,
+                rowGutterChoice: DoDontSpacing.Large,
+            },
+        });
+
+        mount(<DosDontsBlockWithStubs />);
+        cy.get(DosDontsContent)
+            .first()
+            .find('[contenteditable=true]')
+            .dblclick()
+            .type('This is an example do description.{selectall}', { force: true });
+
+        cy.get(FLOATING_BUTTON_BUTTON).should('exist').click();
+        cy.get(INTERNAL_LINK_SELECTOR).should('exist');
     });
 });

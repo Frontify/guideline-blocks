@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { joinClassNames, toHexString } from '@frontify/guideline-blocks-shared';
-import { EditAndDeleteColorBox } from './';
-import { ColorTooltipProps } from '../types';
 import { useHover } from '@react-aria/interactions';
+import { ColorTooltipProps } from '../types';
+import { EditAndDeleteColorBox } from './';
 
 export const ColorTooltip = ({
     gradientColor,

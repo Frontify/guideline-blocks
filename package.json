@@ -7,43 +7,41 @@
         "npm": "<=0"
     },
     "scripts": {
-        "build": "npm run build:shared",
-        "build:shared": "npm -C packages/shared run build",
-        "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint",
-        "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel lint:fix",
-        "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier",
-        "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel prettier:fix",
-        "test": "npm run test:unit && npm run test:components",
+        "lint": "pnpm --stream --filter {packages/**} --filter {examples/**} lint",
+        "lint:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} lint:fix",
+        "prettier": "pnpm --stream --filter {packages/**} --filter {examples/**} prettier",
+        "prettier:fix": "pnpm --stream --filter {packages/**} --filter {examples/**} prettier:fix",
+        "test": "pnpm test:unit && pnpm test:components",
         "test:components": "cypress run --component",
         "test:components:browser": "cypress open --component",
         "test:unit": "vitest run",
         "test:unit:watch": "vitest",
-        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} --parallel typecheck"
+        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} typecheck"
     },
     "devDependencies": {
         "@babel/core": "7.20.2",
         "@cypress/vite-dev-server": "4.0.1",
-        "@testing-library/react-hooks": "8.0.1",
+        "@testing-library/react": "14.0.0",
         "@4tw/cypress-drag-drop": "2.2.1",
         "@types/node": "18.7.21",
-        "@types/react": "17.0.50",
-        "@types/react-dom": "17.0.17",
+        "@types/react": "18.0.35",
+        "@types/react-dom": "18.2.1",
         "@vitejs/plugin-react": "2.2.0",
-        "cypress": "11.0.1",
-        "cypress-real-events": "1.7.4",
+        "cypress": "12.5.1",
+        "cypress-real-events": "1.7.6",
         "happy-dom": "7.6.7",
         "msw": "0.48.1",
         "postcss": "8.4.19",
-        "tailwindcss": "3.2.3",
+        "tailwindcss": "3.2.7",
         "ts-node": "10.9.1",
         "typescript": "4.8.4",
         "vite": "3.2.3",
         "vitest": "0.25.0"
     },
     "dependencies": {
-        "@frontify/fondue": "12.0.0-beta.162",
-        "glob": "8.0.3",
-        "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "@frontify/fondue": "12.0.0-beta.186",
+        "glob": "10.0.0",
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
     }
 }

@@ -4,7 +4,7 @@ import { Attachments, useAttachments } from '@frontify/guideline-blocks-shared';
 import { BlockAttachmentsProps } from '../types';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
 
-export const BlockAttachments = ({ appBridge }: BlockAttachmentsProps) => {
+export const BlockAttachments = ({ appBridge, designTokens }: BlockAttachmentsProps) => {
     const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachments(appBridge, ATTACHMENTS_ASSET_ID);
 
@@ -18,6 +18,7 @@ export const BlockAttachments = ({ appBridge }: BlockAttachmentsProps) => {
             onBrowse={onAddAttachments}
             items={attachments}
             appBridge={appBridge}
+            designTokens={designTokens}
         />
     );
 };

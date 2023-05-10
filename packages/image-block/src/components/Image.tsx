@@ -13,23 +13,25 @@ import {
     Attachments,
     DownloadButton,
     downloadAsset,
+    isDownloadable,
     joinClassNames,
     toRgbaString,
     useAttachments,
 } from '@frontify/guideline-blocks-shared';
-import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
+import { DesignTokens } from '@frontify/fondue';
 
 type ImageProps = {
     image: Asset;
     blockSettings: Settings;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
+    designTokens: DesignTokens;
 };
 
-export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
+export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) => {
     const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
-
     return (
         <>
             {link && !isEditing ? (
@@ -37,30 +39,40 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                     className="tw-w-full"
                     href={link.link.link}
                     target={link.openInNewTab ? '_blank' : undefined}
-                    rel="noreferrer"
+                    rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
                 >
-                    <ImageComponent
-                        appBridge={appBridge}
-                        blockSettings={blockSettings}
-                        isEditing={isEditing}
-                        image={image}
+                    <img
+                        data-test-id="image-block-img"
+                        className="tw-flex"
+                        loading="lazy"
+                        src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+                        alt={image.fileName}
+                        style={{
+                            width: image.width,
+                        }}
                     />
                 </a>
             ) : (
-                <ImageComponent
-                    appBridge={appBridge}
-                    blockSettings={blockSettings}
-                    isEditing={isEditing}
-                    image={image}
+                <img
+                    data-test-id="image-block-img"
+                    className="tw-flex"
+                    loading="lazy"
+                    src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+                    alt={image.fileName}
+                    style={{
+                        width: image.width,
+                    }}
                 />
             )}
         </>
     );
 };
 
-export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) => {
+export const Image = ({ image, appBridge, blockSettings, isEditing, designTokens }: ImageProps) => {
     const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachments(appBridge, ATTACHMENTS_ASSET_ID);
+
+    const { assetDownloadEnabled } = usePrivacySettings(appBridge);
 
     const borderRadius = blockSettings.hasRadius_cornerRadius
         ? blockSettings.radiusValue_cornerRadius
@@ -93,7 +105,10 @@ export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) 
             <div className="tw-relative">
                 <div className="tw-absolute tw-top-2 tw-right-2">
                     <div className="tw-flex tw-gap-2">
-                        <DownloadButton onDownload={() => downloadAsset(image)} />
+                        {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
+                            <DownloadButton onDownload={() => downloadAsset(image)} />
+                        )}
+
                         <Attachments
                             onUpload={onAddAttachments}
                             onDelete={onAttachmentDelete}
@@ -103,18 +118,16 @@ export const ImageComponent = ({ image, appBridge, blockSettings }: ImageProps) 
                             onBrowse={onAddAttachments}
                             items={attachments}
                             appBridge={appBridge}
+                            designTokens={designTokens}
                         />
                     </div>
                 </div>
-                <img
-                    data-test-id="image-block-img"
-                    className="tw-flex"
-                    loading="lazy"
-                    src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                    alt={image.fileName}
-                    style={{
-                        width: image.width,
-                    }}
+                <ImageComponent
+                    appBridge={appBridge}
+                    blockSettings={blockSettings}
+                    image={image}
+                    isEditing={isEditing}
+                    designTokens={designTokens}
                 />
             </div>
         </div>

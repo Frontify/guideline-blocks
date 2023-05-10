@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { ImageBlock } from './ImageBlock';
 import { ATTACHMENTS_ASSET_ID, IMAGE_ID } from './settings';
 import {
@@ -12,6 +12,7 @@ import {
     mapCaptionPositionClasses,
     rationValues,
 } from './types';
+import { Security } from '@frontify/guideline-blocks-shared';
 
 const ImageBlockSelector = '[data-test-id="image-block"]';
 const ImageBlockImageWrapperSelector = '[data-test-id="image-block-img-wrapper"]';
@@ -50,8 +51,12 @@ describe('Image Block', () => {
         cy.get(ImageBlockImageSelector).should('exist');
     });
 
-    it('should render the download button if the image is uploaded', () => {
+    it('should render the download button if the image is uploaded and security settings allows it', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockSettings: {
+                security: Security.Custom,
+                downloadable: true,
+            },
             blockAssets: {
                 [IMAGE_ID]: [AssetDummy.with(1)],
             },
@@ -60,8 +65,12 @@ describe('Image Block', () => {
         cy.get(DownloadSelector).should('exist');
     });
 
-    it('should render the download button if the image is uploaded', () => {
+    it('should not render the download button if the security settings disallow it', () => {
         const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockSettings: {
+                security: Security.Custom,
+                downloadable: false,
+            },
             blockAssets: {},
         });
         mount(<ImageBlockWithStubs />);

@@ -1,25 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { BorderStyle, borderStyleMap, radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { getBackgroundColorStyles, getBorderStyles, getRadiusStyles } from '@frontify/guideline-blocks-shared';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from '../settings';
 import { CSSProperties } from 'react';
-import { Color } from '@frontify/fondue';
-import { GenerateBulkDownloadTokenRequest, Settings } from '../types';
-import { Asset } from '@frontify/app-bridge';
-import { generateBulkDownloadRequest } from '../repository';
-
-export const getBorderStyles = (
-    style = BorderStyle.Solid,
-    width = '1px',
-    color = BORDER_COLOR_DEFAULT_VALUE
-): CSSProperties => ({
-    borderStyle: borderStyleMap[style],
-    borderWidth: width,
-    borderColor: toRgbaString(color),
-});
-
-export const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
-    backgroundColor ? { backgroundColor: toRgbaString(backgroundColor) } : {};
+import { Settings } from '../types';
 
 export const thumbnailStyle = (blockSetting: Settings): CSSProperties => {
     const {
@@ -35,10 +19,10 @@ export const thumbnailStyle = (blockSetting: Settings): CSSProperties => {
     } = blockSetting;
 
     return {
-        ...(hasBackgroundThumbnails && getBackgroundStyles(backgroundColorThumbnails)),
+        ...(hasBackgroundThumbnails && getBackgroundColorStyles(backgroundColorThumbnails)),
         ...(hasBorder_thumbnails &&
             getBorderStyles(borderStyle_thumbnails, borderWidth_thumbnails, borderColor_thumbnails)),
-        borderRadius: hasRadius_thumbnails ? radiusValue_thumbnails : radiusStyleMap[radiusChoice_thumbnails],
+        ...getRadiusStyles(radiusChoice_thumbnails, hasRadius_thumbnails, radiusValue_thumbnails),
     };
 };
 
@@ -55,27 +39,8 @@ export const blockStyle = (blockSetting: Settings): CSSProperties => {
         radiusValue_blocks,
     } = blockSetting;
     return {
-        ...(hasBackgroundBlocks && getBackgroundStyles(backgroundColorBlocks)),
+        ...(hasBackgroundBlocks && getBackgroundColorStyles(backgroundColorBlocks)),
         ...(hasBorder_blocks && getBorderStyles(borderStyle_blocks, borderWidth_blocks, borderColor_blocks)),
-        borderRadius: hasRadius_blocks ? radiusValue_blocks : radiusStyleMap[radiusChoice_blocks],
+        ...getRadiusStyles(radiusChoice_blocks, hasRadius_blocks, radiusValue_blocks),
     };
-};
-
-const data: GenerateBulkDownloadTokenRequest = {
-    asset_ids: [],
-    set_ids: [],
-    language: 'en',
-};
-
-export const generateBulkDownload = (
-    projectId: number,
-    downloadAssets: Asset[],
-    setIsDownloadingAssets: (isDownloadAssets: boolean) => void
-): void => {
-    if (downloadAssets.length === undefined || downloadAssets.length <= 0) {
-        return;
-    }
-    setIsDownloadingAssets(true);
-    data.asset_ids = downloadAssets.map((asset) => asset.id);
-    generateBulkDownloadRequest(projectId, data).then(() => setIsDownloadingAssets(false));
 };

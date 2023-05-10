@@ -2,13 +2,11 @@
 
 import {
     AssetChooserObjectType,
-    AssetInputSize,
-    DropdownSize,
     FileExtension,
     IconEnum,
-    MultiInputLayout,
     NotificationStyleType,
     appendUnit,
+    createFooter,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
@@ -29,7 +27,7 @@ export const settings = defineSettings({
             id: 'type',
             type: 'dropdown',
             defaultValue: Type.Info,
-            size: DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: Type.Info,
@@ -57,7 +55,7 @@ export const settings = defineSettings({
     basics: [
         {
             id: 'appearance',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Appearance',
             defaultValue: Appearance.Light,
             info: 'Defines how the accent color is shown on this block. Select between a subtle and more prominent style.',
@@ -84,7 +82,7 @@ export const settings = defineSettings({
                 {
                     id: ICON_ASSET_ID,
                     type: 'assetInput',
-                    size: AssetInputSize.Small,
+                    size: 'small',
                     extensions: [FileExtension.Svg],
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                 },
@@ -92,7 +90,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: 'iconType',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: Icon.None,
                     choices: [
                         {
@@ -124,7 +122,7 @@ export const settings = defineSettings({
             blocks: [
                 {
                     id: 'width',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Width',
                     defaultValue: Width.FullWidth,
                     info: 'Determines the width of the content',
@@ -141,7 +139,7 @@ export const settings = defineSettings({
                 },
                 {
                     id: 'alignment',
-                    type: 'slider',
+                    type: 'segmentedControls',
                     label: 'Alignment',
                     defaultValue: Alignment.Left,
                     show: (bundle) => bundle.getBlock('width')?.value === Width.HugContents,
@@ -180,7 +178,7 @@ export const settings = defineSettings({
                         {
                             id: 'customPadding',
                             type: 'multiInput',
-                            layout: MultiInputLayout.Spider,
+                            layout: 'spider',
                             blocks: [
                                 {
                                     id: PADDING_TOP_ID,
@@ -216,7 +214,7 @@ export const settings = defineSettings({
                     off: [
                         {
                             id: PADDING_CHOICE_ID,
-                            type: 'slider',
+                            type: 'segmentedControls',
                             defaultValue: Padding.M,
                             choices: [
                                 {
@@ -244,15 +242,13 @@ export const settings = defineSettings({
             id: 'colorInGlobalSettingsInfo',
             type: 'notification',
             title: 'Color',
-            text: 'This has been defined in the Global Settings.',
+            footer: createFooter({
+                label: 'This has been defined in the Global Settings. View or change it [here].',
+                replace: { here: { event: 'design-settings.open' } },
+            }),
             styles: {
                 type: NotificationStyleType.Info,
                 icon: true,
-            },
-            link: {
-                href: 'https://help.frontify.com/en/articles/1346386-how-to-customize-your-style-guide',
-                label: 'Read more here.',
-                target: '_blank',
             },
         },
     ],

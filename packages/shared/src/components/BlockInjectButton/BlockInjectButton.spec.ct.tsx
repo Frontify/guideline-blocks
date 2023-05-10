@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { BlockInjectButton } from './BlockInjectButton';
 import React from 'react';
 import { IconAdobeCreativeCloud } from '@frontify/fondue';
@@ -23,7 +23,7 @@ describe('Block Inject Button', () => {
         );
         cy.get(BlockInjectButtonSelector)
             .should('exist')
-            .should('have.class', 'first:tw-rounded-tl first:tw-rounded-bl last:tw-rounded-tr last:tw-rounded-br');
+            .should('have.class', 'first:tw-rounded-tl last:tw-rounded-br', 'first:tw-rounded-bl last:tw-rounded-tr');
     });
 
     it('renders a block inject button with Menu upload and asset', () => {

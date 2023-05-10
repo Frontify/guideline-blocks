@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { TextBlock } from './TextBlock';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { PLACEHOLDER } from './settings';
 
@@ -26,9 +26,12 @@ describe('Text Block', () => {
     });
 
     it('should not be able to input to a text block when in view mode', () => {
-        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {});
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            blockSettings: { content: JSON.stringify(defaultContent) },
+        });
 
         mount(<TextBlockWithStubs />);
+        cy.get(RichTextEditor).should('not.exist');
         cy.get(TextBlockSelectorHtml).should('exist');
     });
 

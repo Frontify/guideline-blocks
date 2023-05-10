@@ -14,23 +14,21 @@ import {
     ItalicPlugin,
     LoadingCircle,
     PluginComposer,
-    Position,
     ResetFormattingPlugin,
-    RichTextEditor,
     SoftBreakPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
     TextStyles,
     UnderlinePlugin,
-    parseRawValue,
-    serializeRawToHtml,
 } from '@frontify/fondue';
 import {
     BlockItemWrapper,
     DownloadButton,
+    RichTextEditor,
     convertToRteValue,
     downloadAsset,
     hasRichTextValue,
+    isDownloadable,
     joinClassNames,
     useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
@@ -44,6 +42,7 @@ import {
     useBlockSettings,
     useEditorState,
     useFileInput,
+    usePrivacySettings,
 } from '@frontify/app-bridge';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings, TextPosition } from './types';
@@ -61,13 +60,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { designTokens } = useGuidelineDesignTokens();
-    const { title, description, downloadable, positioning } = blockSettings;
-    const audio = blockAssets?.[AUDIO_ID]?.[0];
+    const { assetDownloadEnabled } = usePrivacySettings(appBridge);
 
-    const rawTitleValue = JSON.stringify(parseRawValue({ raw: title }));
-    const htmlTitle = serializeRawToHtml(rawTitleValue, designTokens);
-    const rawDescriptionValue = JSON.stringify(parseRawValue({ raw: description }));
-    const htmlDescription = serializeRawToHtml(rawDescriptionValue, designTokens);
+    const { title, description, downloadable, positioning, security } = blockSettings;
+    const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
@@ -86,22 +82,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             ]);
     }, []);
 
-    const saveTitle = (title: string) => {
-        if (title !== blockSettings.title) {
-            setBlockSettings({ title });
-        }
-    };
+    const saveTitle = (title: string) => setBlockSettings({ title });
+    const saveDescription = (description: string) => setBlockSettings({ description });
 
-    const saveDescription = (description: string) => {
-        if (description !== blockSettings.description) {
-            setBlockSettings({ description });
-        }
-    };
-
-    const onRemoveAsset = () => {
-        deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
-    };
-
+    const onRemoveAsset = () => deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(title)) {
             saveTitle(convertToRteValue(TextStyles.ELEMENT_HEADING3, audio.title));
@@ -207,47 +191,36 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
             )}
             <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full">
                 <div className="tw-flex-1">
-                    {isEditing ? (
+                    <div data-test-id="block-title">
                         <RichTextEditor
+                            id={`${appBridge.getBlockId().toString()}-title`}
                             designTokens={designTokens}
-                            border={false}
-                            onBlur={saveTitle}
-                            placeholder="Asset name"
+                            isEditing={isEditing}
                             value={title ?? DEFAULT_CONTENT_TITLE}
+                            placeholder="Asset name"
                             plugins={customTitlePlugins}
                             updateValueOnChange
+                            onBlur={saveTitle}
                         />
-                    ) : (
-                        <>
-                            {hasRichTextValue(title) && (
-                                <div data-test-id="block-title-html" dangerouslySetInnerHTML={{ __html: htmlTitle }} />
-                            )}
-                        </>
-                    )}
-                    {isEditing ? (
+                    </div>
+
+                    <div data-test-id="block-description">
                         <RichTextEditor
+                            id={`${appBridge.getBlockId().toString()}-description`}
                             designTokens={designTokens}
-                            border={false}
-                            position={Position.FLOATING}
-                            onBlur={saveDescription}
-                            placeholder="Add a description here"
+                            isEditing={isEditing}
                             value={description ?? DEFAULT_CONTENT_DESCRIPTION}
+                            placeholder="Add a description here"
+                            onBlur={saveDescription}
                         />
-                    ) : (
-                        <>
-                            {hasRichTextValue(description) && (
-                                <div
-                                    data-test-id="block-description-html"
-                                    dangerouslySetInnerHTML={{ __html: htmlDescription }}
-                                />
-                            )}
-                        </>
-                    )}
+                    </div>
                 </div>
                 {audio && (
                     <div className="tw-flex tw-gap-2">
-                        {downloadable && <DownloadButton onDownload={() => downloadAsset(audio)} />}
-                        <BlockAttachments appBridge={appBridge} />
+                        {isDownloadable(security, downloadable, assetDownloadEnabled) && (
+                            <DownloadButton onDownload={() => downloadAsset(audio)} />
+                        )}
+                        <BlockAttachments appBridge={appBridge} designTokens={designTokens} />
                     </div>
                 )}
             </div>

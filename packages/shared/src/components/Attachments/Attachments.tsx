@@ -6,6 +6,7 @@ import {
     DragEndEvent,
     DragOverlay,
     DragStartEvent,
+    KeyboardSensor,
     PointerSensor,
     closestCenter,
     useSensor,
@@ -23,9 +24,9 @@ import {
     Tooltip,
     TooltipPosition,
 } from '@frontify/fondue';
-import { useGuidelineDesignTokens } from '../../hooks';
 import { AttachmentItem, SortableAttachmentItem } from './AttachmentItem';
 import { AttachmentsProps } from './types';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 
 export const Attachments = ({
     items = [],
@@ -36,13 +37,14 @@ export const Attachments = ({
     onUpload,
     onSorted,
     appBridge,
+    designTokens,
 }: AttachmentsProps) => {
     const [internalItems, setInternalItems] = useState<Asset[]>(items);
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
-    const sensors = useSensors(useSensor(PointerSensor));
+    const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
     const [draggedAssetId, setDraggedAssetId] = useState<number | undefined>(undefined);
-    const { designTokens } = useGuidelineDesignTokens();
     const [isUploadLoading, setIsUploadLoading] = useState(false);
+    const [assetIdsLoading, setAssetIdsLoading] = useState<number[]>([]);
     const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
     const isEditing = useEditorState(appBridge);
 
@@ -85,6 +87,7 @@ export const Attachments = ({
             },
             {
                 multiSelection: true,
+                selectedValueIds: internalItems.map((internalItem) => internalItem.id),
             }
         );
     };
@@ -92,19 +95,24 @@ export const Attachments = ({
     const onReplaceItemWithBrowse = (toReplace: Asset) => {
         setIsFlyoutOpen(false);
         appBridge.openAssetChooser(
-            (result: Asset[]) => {
-                onReplaceWithBrowse(toReplace, result[0]);
-                appBridge.closeAssetChooser();
+            async (result: Asset[]) => {
                 setIsFlyoutOpen(true);
+                appBridge.closeAssetChooser();
+                setAssetIdsLoading([...assetIdsLoading, toReplace.id]);
+                await onReplaceWithBrowse(toReplace, result[0]);
+                setAssetIdsLoading(assetIdsLoading.filter((id) => id !== toReplace.id));
             },
             {
                 multiSelection: false,
+                selectedValueIds: internalItems.map((internalItem) => internalItem.id),
             }
         );
     };
 
-    const onReplaceItemWithUpload = (toReplace: Asset, uploadedAsset: Asset) => {
-        onReplaceWithUpload(toReplace, uploadedAsset);
+    const onReplaceItemWithUpload = async (toReplace: Asset, uploadedAsset: Asset) => {
+        setAssetIdsLoading([...assetIdsLoading, toReplace.id]);
+        await onReplaceWithUpload(toReplace, uploadedAsset);
+        setAssetIdsLoading(assetIdsLoading.filter((id) => id !== toReplace.id));
     };
 
     const handleDragStart = (event: DragStartEvent) => {
@@ -119,9 +127,9 @@ export const Attachments = ({
             const newIndex = internalItems.findIndex((i) => i.id === over.id);
             const sortedItems = arrayMove(internalItems, oldIndex, newIndex);
             setInternalItems(sortedItems);
-            setDraggedAssetId(undefined);
             onSorted(sortedItems);
         }
+        setDraggedAssetId(undefined);
     };
 
     return (
@@ -132,11 +140,12 @@ export const Attachments = ({
                     position={TooltipPosition.Top}
                     content="Attachments"
                     disabled={isFlyoutOpen}
+                    enterDelay={500}
                     triggerElement={
                         <div className="-tw-mx-3" data-test-id="attachments-flyout-button">
                             <Flyout
                                 placement={FlyoutPlacement.BottomRight}
-                                onOpenChange={setIsFlyoutOpen}
+                                onOpenChange={(isOpen) => setIsFlyoutOpen(!!draggedItem ? true : isOpen)}
                                 isOpen={isFlyoutOpen}
                                 fitContent
                                 legacyFooter={false}
@@ -155,12 +164,14 @@ export const Attachments = ({
                                             collisionDetection={closestCenter}
                                             onDragStart={handleDragStart}
                                             onDragEnd={handleDragEnd}
+                                            modifiers={[restrictToWindowEdges]}
                                         >
                                             <SortableContext items={internalItems} strategy={rectSortingStrategy}>
                                                 <div className="tw-border-b tw-border-b-line">
                                                     {internalItems.map((item) => (
                                                         <SortableAttachmentItem
                                                             isEditing={isEditing}
+                                                            isLoading={assetIdsLoading.includes(item.id)}
                                                             designTokens={designTokens}
                                                             key={item.id}
                                                             item={item}

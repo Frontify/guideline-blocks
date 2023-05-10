@@ -3,22 +3,26 @@
 import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     AssetChooserObjectType,
-    AssetInputSize,
     IconEnum,
     NotificationStyleType,
     appendUnit,
+    createFooter,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-import { Alignment, CaptionPosition, ImageSecurity, Padding, Ratio, paddingValues, radiusValues } from './types';
+import {
+    getBorderRadiusSettings,
+    getBorderSettings,
+    getSecurityDownloadableSetting,
+    getSecurityGlobalControlSetting,
+} from '@frontify/guideline-blocks-shared';
+import { Alignment, CaptionPosition, Padding, Ratio, paddingValues, radiusValues } from './types';
 
 const POSITIONING_ID = 'positioning';
 const HAS_BACKGROUND_ID = 'hasBackground';
 const PADDING_CHOICE_ID = 'paddingChoice';
 const PADDING_CUSTOM_ID = 'paddingCustom';
-const SECURITY_ID = 'security';
 export const IMAGE_ID = 'image';
 export const ATTACHMENTS_ASSET_ID = 'attachments';
 
@@ -33,7 +37,7 @@ export const settings = defineSettings({
                     id: IMAGE_ID,
                     type: 'assetInput',
                     label: 'Image',
-                    size: AssetInputSize.Small,
+                    size: 'small',
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets.Images,
                 },
@@ -61,7 +65,7 @@ export const settings = defineSettings({
                 type: NotificationStyleType.Info,
                 icon: true,
             },
-            link: {
+            footer: {
                 label: 'Follow our guide for image resolution',
                 href: 'https://help.frontify.com/en/articles/4796048-image-resolutions',
                 target: '_blank',
@@ -72,7 +76,7 @@ export const settings = defineSettings({
         {
             id: POSITIONING_ID,
             label: 'Positioning',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: CaptionPosition.Below,
             choices: [
                 { value: CaptionPosition.Below, icon: IconEnum.MediaObjectTextBottom },
@@ -84,7 +88,7 @@ export const settings = defineSettings({
         {
             id: 'ratio',
             label: 'Ratio',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: Ratio.Ratio2To1,
             show: (bundle) =>
                 bundle.getBlock(POSITIONING_ID)?.value === CaptionPosition.Left ||
@@ -97,7 +101,7 @@ export const settings = defineSettings({
         },
         {
             id: 'alignment',
-            type: 'slider',
+            type: 'segmentedControls',
             label: 'Alignment',
             info: 'For images that are smaller than the width of the Content Block.',
             defaultValue: Alignment.Left,
@@ -138,7 +142,7 @@ export const settings = defineSettings({
             off: [
                 {
                     id: PADDING_CHOICE_ID,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: Padding.None,
                     choices: [
                         {
@@ -183,28 +187,15 @@ export const settings = defineSettings({
         }),
     ],
     security: [
+        getSecurityGlobalControlSetting(),
         {
-            id: SECURITY_ID,
-            type: 'slider',
-            defaultValue: ImageSecurity.Global,
-            helperText: 'Change global settings here.',
-            choices: [
-                {
-                    value: ImageSecurity.Global,
-                    label: 'Global Settings',
-                },
-                {
-                    value: ImageSecurity.Custom,
-                    label: 'Custom',
-                },
-            ],
+            id: 'globalSettingsInfo',
+            type: 'notification',
+            footer: createFooter({
+                label: 'Change global settings [here].',
+                replace: { here: { event: 'design-settings.open' } },
+            }),
         },
-        {
-            id: 'downloadable',
-            type: 'switch',
-            defaultValue: false,
-            label: 'Downloadable',
-            show: (bundle) => bundle.getBlock(SECURITY_ID)?.value === ImageSecurity.Custom,
-        },
+        getSecurityDownloadableSetting(),
     ],
 });

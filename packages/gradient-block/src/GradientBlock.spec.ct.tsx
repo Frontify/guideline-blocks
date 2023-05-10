@@ -1,10 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { GradientBlock } from './GradientBlock';
-import { GradientHeight, GradientOrientation } from './types';
+import { mount } from 'cypress/react18';
 import { HEIGHT_OF_SQUARE_BADGE } from './constants';
+import { GradientBlock } from './GradientBlock';
 import {
     HEIGHT_CUSTOM_ID,
     HEIGHT_SIMPLE_ID,
@@ -13,10 +12,10 @@ import {
     ORIENTATION_CUSTOM_ID,
     ORIENTATION_SIMPLE_ID,
 } from './settings';
+import { GradientHeight, GradientOrientation } from './types';
 
 const AddColorButtonSelector = '[data-test-id="add-color-button"]';
-const ColorPickerFlyoutSelector = '[data-test-id="color-picker-flyout"]';
-const ColorPickerFlyoutFooterSelector = '[data-test-id="color-picker-flyout-footer"]';
+const ColorPickerFlyoutSelector = '[role="dialog"]';
 const ColorTooltipSelector = '[data-test-id="color-tooltip"]';
 const ColorPointsSelector = '[data-test-id="color-points"]';
 const ColorPickerForm = '[data-test-id="color-picker-form"]';
@@ -30,9 +29,11 @@ const SquareBadgeCheckmark = '[data-test-id="square-badge-checkmark"]';
 const SquareBadgeClipboard = '[data-test-id="square-badge-clipboard"]';
 const ButtonSelector = '[data-test-id="button"]';
 const ColorInputSelector = '[data-test-id="color-input"]';
-const ColorPreviewSelector = '[data-test-id="color-preview"]';
-const PositionInputSelector = '[data-test-id="text-input"]';
+const ColorPreviewSelector = '[role="dialog"]';
 const TriggerSelector = '[data-test-id="trigger"]';
+const TextInputSelector = '[data-test-id="text-input"]';
+const TextInputErrorSelector = '[data-test-id="error-state-exclamation-mark-icon"]';
+const FormControlHelperTextSelector = '[data-test-id="form-control-helper-text"]';
 
 const GradientColor = [
     {
@@ -272,13 +273,15 @@ describe('Gradient Block', () => {
         cy.get(GradientBlockDividerSelector).realHover();
         cy.get(AddColorButtonSelector).realClick();
         cy.get(ColorPickerFlyoutSelector).should('exist');
-        cy.get(PositionInputSelector).clear().type('75');
-        cy.get(ColorPickerFlyoutFooterSelector).find(ButtonSelector).realClick();
+        cy.get(ColorPickerForm).find(TriggerSelector).realClick();
+        cy.get('[data-test-id="brand-color"]').first().click();
+        cy.get(ColorPickerFlyoutSelector).find(ButtonSelector).last().realClick();
+        cy.get(ColorPickerFlyoutSelector).find(ButtonSelector).last().realClick();
         cy.get(ColorPointsSelector).should('have.length', 4);
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
             'background-image',
-            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(0, 0, 0) 75%, rgb(255, 255, 255) 100%)'
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 25%, rgb(255, 0, 0) 50%, rgb(255, 255, 255) 100%)'
         );
     });
 
@@ -309,9 +312,10 @@ describe('Gradient Block', () => {
         cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').first().realClick();
         cy.get(ColorPickerFlyoutSelector).should('exist');
         cy.get(ColorPickerForm).find(TriggerSelector).realClick();
-        cy.get(ColorInputSelector).first().find('input').clear().type('#0000ff');
+        cy.get('[data-test-id="fondue-segmented-controls-item-text"]').last().realClick();
+        cy.get(ColorInputSelector).first().find('input').clear().type('#0000ff').blur();
         cy.get(ColorPreviewSelector).parent().find(ButtonSelector).last().realClick();
-        cy.get(ColorPickerFlyoutFooterSelector).find(ButtonSelector).realClick();
+        cy.get(ColorPickerFlyoutSelector).find(ButtonSelector).realClick();
 
         cy.get(ColorPointsSelector).should('have.length', 3);
         cy.get(GradientBlockDisplaySelector).should(
@@ -445,5 +449,42 @@ describe('Gradient Block', () => {
             cy.wrap(badge).should('have.css', 'left', '0px');
             cy.wrap(badge).should('have.css', 'top', `${index * HEIGHT_OF_SQUARE_BADGE}px`);
         });
+    });
+
+    it('should display the helper text and input form with exclamation mark if the position is already taken', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.get(GradientBlockDividerSelector).realHover();
+        cy.get(AddColorButtonSelector).realClick();
+        cy.get(ColorPickerForm).find(TextInputSelector).clear().type('0');
+        cy.get(FormControlHelperTextSelector).should('exist');
+        cy.get(TextInputErrorSelector).should('exist');
+    });
+
+    it('square badge should not overlay the gradient block if just one color is present', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            blockSettings: {
+                gradientColors: [
+                    {
+                        color: {
+                            red: 255,
+                            green: 255,
+                            blue: 255,
+                            alpha: 1,
+                        },
+                        position: 0,
+                    },
+                ],
+            },
+        });
+        mount(<GradientBlockWithStubs />);
+        cy.get(SquareBadgesSelector).should('have.length', 1);
+        cy.get(SquareBadgesSelector).first().should('have.css', 'top', '0px');
     });
 });

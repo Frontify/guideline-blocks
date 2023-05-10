@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { Color } from '@frontify/fondue';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { Radius } from '@frontify/guideline-blocks-shared';
@@ -164,15 +164,14 @@ it('can copy using the copy button in the header', () => {
     mount(<CodeSnippetWithStubs />);
 
     cy.get('[data-test-id=header-copy-button]').should('be.visible');
-    cy.get('[data-test-id=header-copy-button]').contains('Copy');
-    cy.get('[data-test-id=header-copy-button]').click();
+    cy.get('[data-test-id=header-copy-button]').contains('Copy').realClick();
+    cy.get('[data-test-id=header-copy-button]').contains('Copied');
     cy.window()
         .its('navigator.clipboard')
         .invoke('readText')
-        .then((text) => {
-            expect(text).to.eq(content);
+        .then(async (text) => {
+            expect(await text).to.eq(content);
         });
-    cy.get('[data-test-id=header-copy-button]').contains('Copied');
 });
 
 it('can copy using the copy button without a header', () => {
@@ -202,8 +201,8 @@ it('can copy using the copy button without a header', () => {
     cy.window()
         .its('navigator.clipboard')
         .invoke('readText')
-        .then((text) => {
-            expect(text).to.eq(content);
+        .then(async (text) => {
+            expect(await text).to.eq(content);
         });
     cy.get('[data-test-id=tooltip]').contains('Copied');
 });

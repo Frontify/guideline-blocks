@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Color } from '@frontify/fondue';
+import { Security } from '@frontify/guideline-blocks-shared';
 
 type Link = { link: { link: string }; openInNewTab: boolean };
 
@@ -15,7 +16,7 @@ export type Settings = {
     borderColor: Color;
     borderStyle: BorderStyle;
     borderWidth: string;
-    downloadable?: boolean;
+    downloadable: boolean;
     hasBackground?: boolean;
     hasBorder: boolean;
     hasCustomPadding: boolean;
@@ -26,12 +27,8 @@ export type Settings = {
     radiusValue_cornerRadius: string;
     positioning: CaptionPosition;
     ratio: Ratio;
+    security: Security;
 };
-
-export enum ImageSecurity {
-    Global = 'Global',
-    Custom = 'Custom',
-}
 
 export enum Alignment {
     Left = 'Left',
