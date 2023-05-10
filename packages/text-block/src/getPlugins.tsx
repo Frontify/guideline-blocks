@@ -18,11 +18,10 @@ import {
     ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
-    TextStylePlugin,
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
+import { ButtonPlugin, LinkPlugin, TextStylePlugin } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {

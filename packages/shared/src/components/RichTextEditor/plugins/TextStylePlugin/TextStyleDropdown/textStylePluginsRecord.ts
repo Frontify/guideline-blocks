@@ -1,6 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PlatePlugin } from '@udecode/plate';
+import { createParagraphPlugin } from '@frontify/fondue';
 import { SelectableTextStyles, TextStyles } from '../TextStyles';
 import { createCustom1Plugin } from '../TextStyles/createCustom1Plugin';
 import { createCustom2Plugin } from '../TextStyles/createCustom2Plugin';
@@ -10,7 +11,6 @@ import { createHeading2Plugin } from '../TextStyles/createHeading2Plugin';
 import { createHeading3Plugin } from '../TextStyles/createHeading3Plugin';
 import { createHeading4Plugin } from '../TextStyles/createHeading4Plugin';
 import { createQuotePlugin } from '../TextStyles/createQuotePlugin';
-import { createParagraphPlugin } from '../../ParagraphPlugin/createParagraphPlugin';
 import { createImageCaptionPlugin } from '../TextStyles/createImageCaptionPlugin';
 import { createImageTitlePlugin } from '../TextStyles/createImageTitlePlugin';
 
