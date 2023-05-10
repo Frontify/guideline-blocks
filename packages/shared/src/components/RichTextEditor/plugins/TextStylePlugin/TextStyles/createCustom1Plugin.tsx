@@ -2,20 +2,28 @@
 
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
 import React from 'react';
-import { getColumnBreakClasses, merge, useRichTextEditorContext } from '@frontify/fondue';
+import { getColumnBreakClasses, merge } from '@frontify/fondue';
 
 import { alignmentClassnames } from './alignment';
 import { TextStyles } from './textStyles';
 
 export const Custom1MarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
-    const { designTokens } = useRichTextEditorContext();
     const align = element.align as string;
 
     return (
         <p
             {...attributes}
-            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
-            style={designTokens.custom1}
+            className={merge([
+                align && alignmentClassnames[align],
+                getColumnBreakClasses(element),
+                'tw-font-[var(--f-theme-settings-custom1-font-family)] tw-text-[color:var(--f-theme-settings-custom1-color)] tw-text-[length:var(--f-theme-settings-custom1-font-size)] tw-tracking-[var(--f-theme-settings-custom1-letter-spacing)] tw-leading-[var(--f-theme-settings-custom1-line-height)]',
+            ])}
+            style={{
+                fontWeight: 'var(--f-theme-settings-custom1-font-weight)' as any,
+                fontStyle: 'var(--f-theme-settings-custom1-font-style)' as any,
+                textDecoration: 'var(--f-theme-settings-custom1-text-decoration)' as any,
+                textTransform: 'var(--f-theme-settings-custom1-text-transform)' as any,
+            }}
         >
             {children}
         </p>
