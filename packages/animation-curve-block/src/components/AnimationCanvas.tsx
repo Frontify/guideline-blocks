@@ -105,7 +105,7 @@ export const AnimationCanvas = ({
             };
 
             const animationValues = {
-                x: calculateXValue(positionWithinViewBox.x, viewBox.width),
+                x: Math.max(Math.min(positionWithinViewBox.x / viewBox.width, 1), 0),
                 y: 1 - positionWithinViewBox.y / viewBox.height,
             };
 
@@ -114,17 +114,6 @@ export const AnimationCanvas = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [draggingPoint, viewBox.width, viewBox.height]
     );
-
-    const calculateXValue = (viewBoxX: number, viewBoxWidth: number) => {
-        const x = viewBoxX / viewBoxWidth;
-        if (x < 0) {
-            return 0;
-        }
-        if (x > 1) {
-            return 1;
-        }
-        return x;
-    };
 
     const updatedAnimationFunction = (animationValues: Point, draggingPoint: ControlPoint): AnimationFunction => {
         if (draggingPoint === ControlPoint.Start) {
