@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import React from 'react';
-import { DesignTokens, useRichTextEditorContext } from '@frontify/fondue';
-import { textStyleTitle } from '../TextStyles';
+import { getTextStyleCssProperties, textStyleTitle } from '../TextStyles';
 import { defaultTextStyles } from '../TextStyles/defaultTextStyles';
 import { DropdownItem } from './DropdownItem';
 import { DropdownTrigger } from './DropdownTrigger';
@@ -10,7 +9,6 @@ import { TextStyleDropdownProps } from './types';
 import { useTextStyleDropdown } from './useTextStyleDropdown';
 
 export const TextStyleDropdown = ({ editorId, textStyles = defaultTextStyles }: TextStyleDropdownProps) => {
-    const { designTokens } = useRichTextEditorContext();
     const {
         state: { editor, toggle, isOpen },
         dropdownProps,
@@ -30,9 +28,7 @@ export const TextStyleDropdown = ({ editorId, textStyles = defaultTextStyles }: 
                 >
                     {textStyles.map((style) => (
                         <DropdownItem editor={editor} type={style} key={style}>
-                            <span style={designTokens[style as unknown as keyof DesignTokens]}>
-                                {textStyleTitle[style]}
-                            </span>
+                            <span style={getTextStyleCssProperties(style as string)}>{textStyleTitle[style]}</span>
                         </DropdownItem>
                     ))}
                 </div>

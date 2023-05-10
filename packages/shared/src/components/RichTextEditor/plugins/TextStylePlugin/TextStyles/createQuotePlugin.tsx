@@ -3,7 +3,7 @@
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
 import React from 'react';
 import { alignmentClassnames } from './alignment';
-import { TextStyles } from './textStyles';
+import { TextStyles, getTextStyleCssProperties } from './textStyles';
 import { getColumnBreakClasses, merge } from '@frontify/fondue';
 
 export const QuoteMarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
@@ -12,17 +12,8 @@ export const QuoteMarkupElementNode = ({ element, attributes, children }: PlateR
     return (
         <blockquote
             {...attributes}
-            className={merge([
-                align && alignmentClassnames[align],
-                getColumnBreakClasses(element),
-                'tw-font-[var(--f-theme-settings-quote-font-family)] tw-text-[color:var(--f-theme-settings-quote-color)] tw-text-[length:var(--f-theme-settings-quote-font-size)] tw-tracking-[var(--f-theme-settings-quote-letter-spacing)] tw-leading-[var(--f-theme-settings-quote-line-height)]',
-            ])}
-            style={{
-                fontWeight: 'var(--f-theme-settings-quote-font-weight)' as any,
-                fontStyle: 'var(--f-theme-settings-quote-font-style)' as any,
-                textDecoration: 'var(--f-theme-settings-quote-text-decoration)' as any,
-                textTransform: 'var(--f-theme-settings-quote-text-transform)' as any,
-            }}
+            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
+            style={getTextStyleCssProperties(element.type)}
         >
             {children}
         </blockquote>

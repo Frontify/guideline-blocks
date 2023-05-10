@@ -57,3 +57,17 @@ export const AVAILABLE_STYLE_TITLES = { ...listStyleTitle, ...textStyleTitle };
 export const AVAILABLE_STYLE = Object.values({ ...ListStyles, ...TextStyles });
 
 export type AvailableStyles = ListStyles | TextStyles;
+
+export const getTextStyleCssProperties = (textStyle: string) => {
+    return {
+        color: `var(--f-theme-settings-${textStyle}-color)` as any,
+        fontFamily: `var(--f-theme-settings-${textStyle}-font-family)` as any,
+        fontSize: `var(--f-theme-settings-${textStyle}-font-size)` as any,
+        fontStyle: `var(--f-theme-settings-${textStyle}-font-style)` as any,
+        fontWeight: `var(--f-theme-settings-${textStyle}-font-weight)` as any,
+        letterSpacing: `var(--f-theme-settings-${textStyle}-letter-spacing)` as any,
+        lineHeight: `var(--f-theme-settings-${textStyle}-line-height)` as any,
+        textDecoration: `var(--f-theme-settings-${textStyle}-text-decoration)` as any,
+        textTransform: `var(--f-theme-settings-${textStyle}-text-transform)` as any,
+    };
+};

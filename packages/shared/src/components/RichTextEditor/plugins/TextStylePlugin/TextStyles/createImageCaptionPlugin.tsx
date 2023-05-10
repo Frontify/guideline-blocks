@@ -3,7 +3,7 @@
 import React from 'react';
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
 import { getColumnBreakClasses, merge } from '@frontify/fondue';
-import { TextStyles } from './textStyles';
+import { TextStyles, getTextStyleCssProperties } from './textStyles';
 import { alignmentClassnames } from './alignment';
 
 export const ImageCaptionMarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
@@ -12,17 +12,8 @@ export const ImageCaptionMarkupElementNode = ({ element, attributes, children }:
     return (
         <p
             {...attributes}
-            className={merge([
-                align && alignmentClassnames[align],
-                getColumnBreakClasses(element),
-                'tw-font-[var(--f-theme-settings-image-caption-font-family)] tw-text-[color:var(--f-theme-settings-image-caption-color)] tw-text-[length:var(--f-theme-settings-image-caption-font-size)] tw-tracking-[var(--f-theme-settings-image-caption-letter-spacing)] tw-leading-[var(--f-theme-settings-image-caption-line-height)]',
-            ])}
-            style={{
-                fontWeight: 'var(--f-theme-settings-image-caption-font-weight)' as any,
-                fontStyle: 'var(--f-theme-settings-image-caption-font-style)' as any,
-                textDecoration: 'var(--f-theme-settings-image-caption-text-decoration)' as any,
-                textTransform: 'var(--f-theme-settings-image-caption-text-transform)' as any,
-            }}
+            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
+            style={getTextStyleCssProperties(element.type)}
         >
             {children}
         </p>
