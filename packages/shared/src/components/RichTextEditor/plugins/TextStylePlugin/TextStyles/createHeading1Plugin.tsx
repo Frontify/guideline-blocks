@@ -1,10 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useRichTextEditorContext } from '@components/RichTextEditor/context/RichTextEditorContext';
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
-import { merge } from '@utilities/merge';
 import React from 'react';
-import { getColumnBreakClasses } from '../../ColumnBreakPlugin/utils/getColumnBreakClasses';
+import { getColumnBreakClasses, merge, useRichTextEditorContext } from '@frontify/fondue';
 import { alignmentClassnames } from './alignment';
 import { TextStyles } from './textStyles';
 

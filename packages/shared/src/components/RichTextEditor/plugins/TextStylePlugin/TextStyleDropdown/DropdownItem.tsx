@@ -10,10 +10,10 @@ import {
     someNode,
     toggleNodeType,
 } from '@udecode/plate';
-import { merge } from '@utilities/merge';
 import React from 'react';
-import { ELEMENT_CHECK_ITEM } from '../../CheckboxListPlugin';
-import { MARK_TEXT_STYLE } from '../../ListPlugin/ListPlugin';
+
+import { ELEMENT_CHECK_ITEM, MARK_TEXT_STYLE, merge } from '@frontify/fondue';
+
 import { DropdownItemProps } from './types';
 
 const isInList = (editor: PlateEditor) =>

@@ -2,11 +2,9 @@
 
 import React from 'react';
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
-import { merge } from '@utilities/merge';
-import { useRichTextEditorContext } from '@components/RichTextEditor/context/RichTextEditorContext';
+import { getColumnBreakClasses, merge, useRichTextEditorContext } from '@frontify/fondue';
 import { TextStyles } from './textStyles';
 import { alignmentClassnames } from './alignment';
-import { getColumnBreakClasses } from '../../ColumnBreakPlugin/utils/getColumnBreakClasses';
 
 export const ImageCaptionMarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
     const { designTokens } = useRichTextEditorContext();

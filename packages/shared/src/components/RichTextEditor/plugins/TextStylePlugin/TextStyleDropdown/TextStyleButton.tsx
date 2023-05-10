@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import React from 'react';
-import { ButtonWrapper } from '../../helper';
+import { ButtonWrapper } from '@frontify/fondue';
 import { TextStyleDropdown } from '.';
 import { TextStyleButtonProps } from './types';
 

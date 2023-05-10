@@ -12,8 +12,7 @@ import {
     isNode,
     isText,
 } from '@udecode/plate';
-import { ELEMENT_CHECK_ITEM } from '../../CheckboxListPlugin';
-import { MARK_TEXT_STYLE } from '../../ListPlugin/ListPlugin';
+import { ELEMENT_CHECK_ITEM, MARK_TEXT_STYLE } from '@frontify/fondue';
 import { AvailableStyles, TextStyles } from '../TextStyles';
 
 const getTextStyle = (node: ENode<Value>): AvailableStyles => {
@@ -37,7 +36,7 @@ export const useSelectedTextStyles = (editor: PlateEditor): AvailableStyles[] =>
             unhang: true,
             at: editor.selection,
             reverse: true,
-        }),
+        })
     );
 
     return nodeEntries.reduce<AvailableStyles[]>((styles, [node]) => {

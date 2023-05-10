@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { getVerticalPositioning } from '@components/Flyout/helpers/getVerticalPositioning';
+import { getVerticalPositioning } from '@frontify/fondue';
 import { Modifier } from 'react-popper';
 
 const OFFSET = 6;
@@ -17,7 +17,7 @@ export const verticalPositionModifier: Partial<Modifier<'vertical-positioning'>>
             state.elements.reference as HTMLElement,
             state.rects.popper.height,
             OFFSET + VIEWPORT_PADDING,
-            0,
+            0
         );
         if (position === 'top') {
             state.placement = 'top-start';

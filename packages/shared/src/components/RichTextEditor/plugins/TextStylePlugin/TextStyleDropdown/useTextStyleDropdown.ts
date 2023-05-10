@@ -16,7 +16,7 @@ type UseTextStyleDropdownReturn<T, P> = {
 };
 
 export const useTextStyleDropdown = <T extends HTMLElement, P extends HTMLElement>(
-    editorId?: string,
+    editorId?: string
 ): UseTextStyleDropdownReturn<T, P> => {
     const [isOpen, setIsOpen] = useState(false);
     const [triggerElement, setTriggerElement] = useState<T | null>(null);

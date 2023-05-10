@@ -1,8 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DesignTokens } from '@components/RichTextEditor/types';
 import React from 'react';
-import { useRichTextEditorContext } from '../../../context/RichTextEditorContext';
+import { DesignTokens, useRichTextEditorContext } from '@frontify/fondue';
 import { textStyleTitle } from '../TextStyles';
 import { defaultTextStyles } from '../TextStyles/defaultTextStyles';
 import { DropdownItem } from './DropdownItem';

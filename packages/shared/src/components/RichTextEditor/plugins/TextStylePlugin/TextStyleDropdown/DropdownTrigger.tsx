@@ -3,13 +3,13 @@
 
 import React, { ForwardedRef, forwardRef } from 'react';
 import { getPreventDefaultHandler } from '@udecode/plate';
-import { IconCaretDown12 } from '@foundation/Icon/Generated';
-import { merge } from '@utilities/merge';
+
+import { IconCaretDown12, merge } from '@frontify/fondue';
 import { DropdownTriggerProps } from './types';
 
 export const DropdownTriggerComponent = (
     { label, open, onClick }: DropdownTriggerProps,
-    ref: ForwardedRef<HTMLButtonElement>,
+    ref: ForwardedRef<HTMLButtonElement>
 ) => (
     <button
         ref={ref}

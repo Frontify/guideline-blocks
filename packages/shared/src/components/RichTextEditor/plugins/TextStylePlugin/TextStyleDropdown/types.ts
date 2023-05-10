@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 import { PlateEditor } from '@udecode/plate';
 import { SelectableTextStyles, TextStyles } from '../TextStyles';
-import { PluginButtonProps } from '../../types';
+import { PluginButtonProps } from '@frontify/fondue';
 
 export type TextStyleDropdownProps = {
     editorId?: string;
