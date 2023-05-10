@@ -58,7 +58,7 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
         ...getRadiusStyles(radiusChoice, hasRadius, radiusValue),
     };
 
-    const items = (chars as string).split(',').map((char, index) => {
+    const items = chars.split(',').map((char, index) => {
         const isLetter = char.length === 1 && char.match(/[a-z]/i);
         return (
             <li

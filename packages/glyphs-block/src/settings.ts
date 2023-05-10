@@ -4,46 +4,10 @@ import { MultiInputLayout } from '@frontify/fondue';
 import { Choice, appendUnit, defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
+export const DEFAULT_CHARS = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9';
+
 const HAS_BACKGROUND_ID = 'hasBackground';
 const FONT_SIZE_ID = 'fontSize';
-
-export const DEFAULT_CHARS = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-];
 
 const getFonts = async (projectId: number) => {
     const response = await fetch(`/api/project-font-family?project_id=${projectId}`);
@@ -80,7 +44,7 @@ export const settings = defineSettings({
             id: 'chars',
             type: 'textarea',
             label: 'Characters',
-            defaultValue: DEFAULT_CHARS.join(','),
+            defaultValue: DEFAULT_CHARS,
             placeholder: 'e.g. A,B,C',
             info: 'Add characters with a comma between them and only capital letters.',
         },
