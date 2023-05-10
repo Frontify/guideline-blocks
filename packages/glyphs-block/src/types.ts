@@ -17,3 +17,10 @@ export type Settings = {
     hasRadius: boolean;
     radiusValue: number;
 };
+
+export type ApiFontStyle = {
+    name: string;
+    css_family_name: string;
+    font_style: string;
+    font_weight: string;
+};

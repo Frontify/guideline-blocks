@@ -3,41 +3,26 @@
 import { MultiInputLayout } from '@frontify/fondue';
 import { Choice, appendUnit, defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
+import { getFontWeights, getFonts } from './helpers';
 
 export const DEFAULT_CHARS = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9';
 
 const HAS_BACKGROUND_ID = 'hasBackground';
+const FONT_FAMILY_ID = 'fontFamily';
 const FONT_SIZE_ID = 'fontSize';
-
-const getFonts = async (projectId: number) => {
-    const response = await fetch(`/api/project-font-family?project_id=${projectId}`);
-    const responseJson = await response.json();
-    return responseJson.data;
-};
 
 export const settings = defineSettings({
     basics: [
         {
-            id: 'fontFamily',
+            id: FONT_FAMILY_ID,
             defaultValue: 'default',
             type: 'dropdown',
+            info: 'Select a font family from the project.',
             choices: async ({ getAppBridge }): Promise<Choice[]> => {
                 const appBridge = getAppBridge();
-                const fontStyles = await getFonts(appBridge.getProjectId());
-
-                const fonts = fontStyles.map((fontStyle: { name: string }) => {
-                    return {
-                        label: `${fontStyle.name}`,
-                        value: fontStyle.name,
-                    };
-                });
-
-                fonts.unshift({ label: 'Default', value: 'default' });
-
-                return fonts.filter(
-                    (font: { label: string; value: string }, index: number, self: any) =>
-                        index === self.findIndex((t: { label: string; value: string }) => t.label === font.label)
-                );
+                const fonts = await getFonts(appBridge.getProjectId());
+                fonts.unshift({ label: 'Default', value: 'inherit' });
+                return fonts;
             },
         },
         {
@@ -60,16 +45,13 @@ export const settings = defineSettings({
                     id: 'fontWeight',
                     type: 'dropdown',
                     defaultValue: 'normal',
-                    choices: [
-                        {
-                            value: 'normal',
-                            label: 'Normal',
-                        },
-                        {
-                            value: 'bold',
-                            label: 'Bold',
-                        },
-                    ],
+                    choices: async (bundle): Promise<Choice[]> => {
+                        const appBridge = bundle.getAppBridge();
+                        const selectedFont = bundle.getBlock(FONT_FAMILY_ID)?.value as string;
+                        const fontWeights = await getFontWeights(appBridge.getProjectId(), selectedFont);
+                        fontWeights.unshift({ label: 'Normal', value: 'normal' });
+                        return fontWeights;
+                    },
                 },
                 {
                     id: FONT_SIZE_ID,
