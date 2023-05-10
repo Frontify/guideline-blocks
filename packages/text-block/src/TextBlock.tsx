@@ -10,6 +10,8 @@ import { Settings, spacingValues } from './types';
 import { getPlugins } from './getPlugins';
 import { ReactElement } from 'react';
 
+import './styles.css';
+
 export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);

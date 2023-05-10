@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
-import { getColumnBreakClasses, merge } from '@frontify/fondue';
-import { TextStyles, getTextStyleCssProperties } from './textStyles';
+import { getColumnBreakClasses, getTextStyleCssProperties, merge } from '@frontify/fondue';
+import { TextStyles } from './textStyles';
 import { alignmentClassnames } from './alignment';
 
 export const ImageCaptionMarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {

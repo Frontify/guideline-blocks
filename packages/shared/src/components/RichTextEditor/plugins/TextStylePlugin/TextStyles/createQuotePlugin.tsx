@@ -3,8 +3,8 @@
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
 import React from 'react';
 import { alignmentClassnames } from './alignment';
-import { TextStyles, getTextStyleCssProperties } from './textStyles';
-import { getColumnBreakClasses, merge } from '@frontify/fondue';
+import { TextStyles } from './textStyles';
+import { getColumnBreakClasses, getTextStyleCssProperties, merge } from '@frontify/fondue';
 
 export const QuoteMarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
     const align = element.align as string;

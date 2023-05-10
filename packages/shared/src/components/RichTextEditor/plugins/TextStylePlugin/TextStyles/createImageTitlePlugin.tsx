@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
-import { TextStyles, getTextStyleCssProperties } from './textStyles';
+import { TextStyles } from './textStyles';
 import { alignmentClassnames } from './alignment';
-import { getColumnBreakClasses, merge } from '@frontify/fondue';
+import { getColumnBreakClasses, getTextStyleCssProperties, merge } from '@frontify/fondue';
 
 export const ImageTitleMarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
     const align = element.align as string;
