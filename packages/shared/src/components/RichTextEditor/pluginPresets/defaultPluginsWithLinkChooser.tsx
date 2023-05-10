@@ -17,11 +17,10 @@ import {
     ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
-    TextStylePlugin,
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin } from '../plugins';
+import { ButtonPlugin, LinkPlugin, TextStylePlugin } from '../plugins';
 
 export const getDefaultPluginsWithLinkChooser = (appBridge: AppBridgeBlock) => {
     return new PluginComposer()
