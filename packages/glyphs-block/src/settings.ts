@@ -1,13 +1,12 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { MultiInputLayout } from '@frontify/fondue';
-import { Choice, defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
+import { Choice, appendUnit, defineSettings, numericalOrPixelRule } from '@frontify/guideline-blocks-settings';
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
-import { radiusValues } from './types';
 
 const HAS_BACKGROUND_ID = 'hasBackground';
+const FONT_SIZE_ID = 'fontSize';
 
-export const DEFAULT_BACKGROUND_COLOR = { red: 255, green: 255, blue: 255, alpha: 1, name: 'White' };
 export const DEFAULT_CHARS = [
     'A',
     'B',
@@ -82,13 +81,15 @@ export const settings = defineSettings({
             type: 'textarea',
             label: 'Characters',
             defaultValue: DEFAULT_CHARS.join(','),
+            placeholder: 'e.g. A,B,C',
+            info: 'Add characters with a comma between them and only capital letters.',
         },
     ],
     style: [
         {
             id: 'font',
             type: 'multiInput',
-            label: 'Font',
+            label: 'Font selection',
             lastItemFullWidth: true,
             blocks: [
                 {
@@ -107,16 +108,18 @@ export const settings = defineSettings({
                     ],
                 },
                 {
-                    id: 'fontSize',
+                    id: FONT_SIZE_ID,
                     type: 'input',
                     defaultValue: '40px',
                     placeholder: 'e.g. 40px',
                     rules: [numericalOrPixelRule],
+                    onChange: (bundle) => appendUnit(bundle, FONT_SIZE_ID),
                     clearable: false,
                 },
                 {
-                    id: 'color',
+                    id: 'fontColor',
                     type: 'colorInput',
+                    defaultValue: { red: 0, green: 0, blue: 0, alpha: 1, name: 'Black' },
                 },
             ],
             layout: MultiInputLayout.Columns,
@@ -130,14 +133,11 @@ export const settings = defineSettings({
                 {
                     id: 'backgroundColor',
                     type: 'colorInput',
-                    defaultValue: DEFAULT_BACKGROUND_COLOR,
+                    defaultValue: { red: 255, green: 255, blue: 255, alpha: 1, name: 'White' },
                 },
             ],
         },
         getBorderSettings({ defaultValue: true, defaultColor: { red: 0, green: 0, blue: 0, alpha: 1, name: 'Black' } }),
-        getBorderRadiusSettings({
-            id: 'cornerRadius',
-            radiusStyleMap: radiusValues,
-        }),
+        getBorderRadiusSettings(),
     ],
 });
