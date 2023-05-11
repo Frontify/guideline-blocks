@@ -8,7 +8,6 @@ import { SerializedText } from './SerializedText';
 
 export const RichTextEditor = ({
     id = 'rte',
-    designTokens,
     isEditing,
     value,
     columns,
@@ -24,7 +23,6 @@ export const RichTextEditor = ({
         return (
             <FondueRichTextEditor
                 id={id}
-                designTokens={designTokens}
                 value={value}
                 border={false}
                 placeholder={placeholder}
@@ -34,13 +32,5 @@ export const RichTextEditor = ({
             />
         );
     }
-    return (
-        <SerializedText
-            value={value}
-            designTokens={designTokens}
-            columns={columns}
-            gap={gap}
-            show={showSerializedText}
-        />
-    );
+    return <SerializedText value={value} columns={columns} gap={gap} show={showSerializedText} />;
 };

@@ -15,12 +15,6 @@ export const listStyleTitle: Record<ListStyles, string> = {
     [ListStyles.LIC]: 'List Item Content',
 };
 
-export enum ButtonStyles {
-    ELEMENT_BUTTON_PRIMARY = 'buttonPrimary',
-    ELEMENT_BUTTON_SECONDARY = 'buttonSecondary',
-    ELEMENT_BUTTON_TERTIARY = 'buttonTertiary',
-}
-
 export enum TextStyles {
     ELEMENT_HEADING1 = 'heading1',
     ELEMENT_HEADING2 = 'heading2',

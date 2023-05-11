@@ -1,12 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import React from 'react';
-import { getTextStyleCssProperties, textStyleTitle } from '../TextStyles';
+import { textStyleTitle } from '../TextStyles';
 import { defaultTextStyles } from '../TextStyles/defaultTextStyles';
 import { DropdownItem } from './DropdownItem';
 import { DropdownTrigger } from './DropdownTrigger';
 import { TextStyleDropdownProps } from './types';
 import { useTextStyleDropdown } from './useTextStyleDropdown';
+import { getTextStyleCssProperties } from '@frontify/fondue';
 
 export const TextStyleDropdown = ({ editorId, textStyles = defaultTextStyles }: TextStyleDropdownProps) => {
     const {
