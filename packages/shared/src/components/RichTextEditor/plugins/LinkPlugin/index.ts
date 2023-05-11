@@ -7,8 +7,11 @@ import { CustomFloatingLink } from './FloatingLink/CustomFloatingLink';
 import { LINK_PLUGIN } from './id';
 import { LinkButton } from './LinkButton';
 import { LinkMarkupElement } from './LinkMarkupElement';
+import { relativeUrlRegex, telOrMailRegex, urlRegex } from './utils';
 
-export const isValidUrl = (url: string): boolean => !!url.match(/^((https?:\/\/|mailto:|tel:).+)|\/r\/.+/);
+export const isValidUrl = (url: string): boolean => {
+    return urlRegex.test(url) || relativeUrlRegex.test(url) || telOrMailRegex.test(url);
+};
 
 export const createLinkPlugin = (appBridge: AppBridgeBlock) =>
     createPluginFactory({

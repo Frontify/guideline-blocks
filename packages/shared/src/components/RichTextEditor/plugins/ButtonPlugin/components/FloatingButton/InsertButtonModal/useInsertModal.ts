@@ -8,6 +8,7 @@ import { ButtonPlugin, ELEMENT_BUTTON } from '../../../createButtonPlugin';
 import { submitFloatingButton } from '../../../transforms/submitFloatingButton';
 import { RichTextButtonStyle } from '../../../types';
 import { getButtonStyle } from '../../../utils/getButtonStyle';
+import { urlRegex } from '../../../../LinkPlugin/utils';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CheckboxState } from '@frontify/fondue';
 
@@ -101,8 +102,13 @@ export const useInsertModal = () => {
             return;
         }
 
+        let urlToSave = state.url;
+        if (urlRegex.test(urlToSave) && !urlToSave.startsWith('http')) {
+            urlToSave = `https://${urlToSave}`;
+        }
+
         floatingButtonActions.text(state.text);
-        floatingButtonActions.url(state.url);
+        floatingButtonActions.url(urlToSave);
         floatingButtonActions.buttonStyle(state.buttonStyle);
         floatingButtonActions.newTab(state.newTab === CheckboxState.Checked);
 

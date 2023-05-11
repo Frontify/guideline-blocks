@@ -13,7 +13,7 @@ import {
     useHotkeys,
 } from '@udecode/plate';
 import React, { Dispatch, Reducer, useEffect, useReducer } from 'react';
-import { getLegacyUrl, getUrl } from '../../utils';
+import { getLegacyUrl, getUrl, urlRegex } from '../../utils';
 import { InsertModalDispatchType, InsertModalStateProps } from './types';
 
 const initialState: InsertModalStateProps = {
@@ -97,8 +97,13 @@ export const useInsertModal = () => {
             return;
         }
 
+        let urlToSave = state.url;
+        if (urlRegex.test(urlToSave) && !urlToSave.startsWith('http')) {
+            urlToSave = `https://${urlToSave}`;
+        }
+
         floatingLinkActions.text(state.text);
-        floatingLinkActions.url(state.url);
+        floatingLinkActions.url(urlToSave);
         floatingLinkActions.newTab(state.newTab === CheckboxState.Checked);
 
         if (submitFloatingLink(editor)) {
