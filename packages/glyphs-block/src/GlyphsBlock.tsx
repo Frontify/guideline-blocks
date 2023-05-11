@@ -25,10 +25,11 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = blockSettings;
 
     const items = chars.split(',').map((char, index) => {
-        const isLetter = char.length === 1 && char.match(/[a-z]/i);
+        const isLetter = char.length === 1 && char.match(/[A-Z]/);
         return (
             <li
                 key={index}
+                data-test-id="glyphs-item"
                 className="tw-aspect-square tw-flex tw-items-center tw-justify-center tw-text-center"
                 style={{
                     ...(hasBackground && {

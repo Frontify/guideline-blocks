@@ -31,7 +31,7 @@ export const settings = defineSettings({
             label: 'Characters',
             defaultValue: DEFAULT_CHARS,
             placeholder: 'e.g. A,B,C',
-            info: 'Add characters with a comma between them and only capital letters.',
+            info: 'Add characters with a comma between them.',
         },
     ],
     style: [
