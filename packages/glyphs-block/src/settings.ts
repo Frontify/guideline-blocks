@@ -15,7 +15,7 @@ export const settings = defineSettings({
     basics: [
         {
             id: FONT_FAMILY_ID,
-            defaultValue: 'default',
+            defaultValue: 'inherit',
             type: 'dropdown',
             info: 'Select a font family from the project.',
             choices: async ({ getAppBridge }): Promise<Choice[]> => {

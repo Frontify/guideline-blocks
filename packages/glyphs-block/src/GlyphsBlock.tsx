@@ -50,24 +50,19 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
     });
 
     return (
-        <div
+        <ul
             data-test-id="glyphs-block"
+            className="tw-grid tw-grid-cols-6"
             style={{
                 fontWeight: blockSettings.fontWeight,
                 fontSize: blockSettings.fontSize,
                 fontFamily: fontFamily || 'inherit',
                 color: toRgbaString(fontColor),
+                gap: borderWidth,
+                padding: borderWidth,
             }}
         >
-            <ul
-                className="tw-grid tw-grid-cols-6"
-                style={{
-                    gap: borderWidth,
-                    padding: borderWidth,
-                }}
-            >
-                {items}
-            </ul>
-        </div>
+            {items}
+        </ul>
     );
 };
