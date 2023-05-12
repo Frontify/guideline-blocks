@@ -55,8 +55,7 @@
         "tinycolor2": "1.4.2",
         "@udecode/plate": "19.6.0",
         "slate": "0.87.0",
-        "slate-react": "0.88.0",
-        "react-popper": "2.3.0"
+        "slate-react": "0.88.0"
     },
     "peerDependencies": {
         "react": "18.2.0",
