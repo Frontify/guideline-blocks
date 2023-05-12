@@ -17,15 +17,20 @@ import {
     ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
+    TextStylePlugin,
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin, TextStylePlugin } from '../plugins';
+import { AllTextStylePlugins, ButtonPlugin, LinkPlugin } from '../plugins';
 
 export const getDefaultPluginsWithLinkChooser = (appBridge: AppBridgeBlock) => {
     return new PluginComposer()
         .setPlugin(new SoftBreakPlugin(), new ParagraphPlugin())
-        .setPlugin(new TextStylePlugin())
+        .setPlugin(
+            new TextStylePlugin({
+                textStyles: AllTextStylePlugins,
+            })
+        )
         .setPlugin(
             [
                 new BoldPlugin(),
@@ -37,7 +42,7 @@ export const getDefaultPluginsWithLinkChooser = (appBridge: AppBridgeBlock) => {
                 new CodePlugin(),
             ],
             [
-                new AlignLeftPlugin(),
+                new AlignLeftPlugin({ validTypes: ['paragraph'] }),
                 new AlignCenterPlugin(),
                 new AlignRightPlugin(),
                 new AlignJustifyPlugin(),

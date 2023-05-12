@@ -1,10 +1,38 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
 import React from 'react';
-import { alignmentClassnames } from './alignment';
-import { TextStyles } from './textStyles';
-import { getColumnBreakClasses, getTextStyleCssProperties, merge } from '@frontify/fondue';
+import {
+    MarkupElement,
+    Plugin,
+    PluginProps,
+    alignmentClassnames,
+    getColumnBreakClasses,
+    getTextStyleCssProperties,
+    merge,
+} from '@frontify/fondue';
+
+const ID = 'quote';
+
+export class QuotePlugin extends Plugin {
+    constructor(props?: PluginProps) {
+        super(ID, {
+            markupElement: new QuoteMarkupElement(),
+            ...props,
+        });
+    }
+
+    plugins() {
+        return [createQuotePlugin()];
+    }
+}
+
+class QuoteMarkupElement extends MarkupElement {
+    constructor(id = ID, node = QuoteMarkupElementNode) {
+        super(id, node);
+    }
+}
 
 export const QuoteMarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
     const align = element.align as string;
@@ -21,7 +49,7 @@ export const QuoteMarkupElementNode = ({ element, attributes, children }: PlateR
 };
 
 export const createQuotePlugin = createPluginFactory({
-    key: TextStyles.ELEMENT_QUOTE,
+    key: ID,
     isElement: true,
     component: QuoteMarkupElementNode,
     deserializeHtml: {

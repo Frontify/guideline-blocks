@@ -2,4 +2,4 @@
 
 export * from './LinkPlugin';
 export * from './ButtonPlugin';
-export * from './TextStylePlugin';
+export * from './TextStylePlugins';
