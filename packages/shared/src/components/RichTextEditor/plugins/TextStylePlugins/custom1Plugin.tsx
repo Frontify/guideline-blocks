@@ -17,6 +17,7 @@ const ID = 'custom1';
 export class Custom1Plugin extends Plugin {
     constructor(props?: PluginProps) {
         super(ID, {
+            label: 'Custom 1',
             markupElement: new Custom1MarkupElement(),
             ...props,
         });
