@@ -161,67 +161,62 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
 
     return (
-        <>
-            <Grid
-                columnCount={blockSettings.columnCount}
-                gap={
-                    blockSettings.hasCustomSpacing
-                        ? blockSettings.spacingCustom
-                        : gutterSpacingStyleMap[blockSettings.spacingChoice]
-                }
+        <Grid
+            columnCount={blockSettings.columnCount}
+            gap={
+                blockSettings.hasCustomSpacing
+                    ? blockSettings.spacingCustom
+                    : gutterSpacingStyleMap[blockSettings.spacingChoice]
+            }
+        >
+            <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                onDragStart={handleDragStart}
+                modifiers={[restrictToFirstScrollableAncestor]}
             >
-                <DndContext
-                    sensors={sensors}
-                    collisionDetection={closestCenter}
-                    onDragEnd={handleDragEnd}
-                    onDragStart={handleDragStart}
-                    modifiers={[restrictToFirstScrollableAncestor]}
-                >
-                    <SortableContext items={itemsState} strategy={rectSortingStrategy}>
-                        {itemsState.map((item) => (
-                            <Item
-                                key={item.id}
-                                item={item}
-                                image={blockAssets?.[item.id]?.[0]}
-                                isLoading={loadingIds.includes(item.id)}
-                                {...thumbnailProps}
-                            />
-                        ))}
-                    </SortableContext>
-                    <DragOverlay>
-                        {draggedItem && (
-                            <Item
-                                key={draggedItem.id}
-                                item={draggedItem}
-                                image={blockAssets?.[draggedItem.id]?.[0]}
-                                isLoading={loadingIds.includes(draggedItem.id)}
-                                {...thumbnailProps}
-                            />
-                        )}
-                    </DragOverlay>
-                </DndContext>
-                {isEditing && (
-                    <div
-                        className={thumbnailStyles.captionPositionClassNames}
-                        data-test-id="thumbnail-item-placeholder"
-                    >
-                        <ImageWrapper thumbnailStyles={thumbnailStyles} placeholderWrapper>
-                            <UploadPlaceholder
-                                width={thumbnailStyles.width}
-                                isLoading={loadingIds.includes('placeholder')}
-                                openFileDialog={openFileDialog}
-                                onFilesDrop={onFilesDrop}
-                                openAssetChooser={openAssetChooser}
-                            />
-                        </ImageWrapper>
-                        <RichTextEditors
-                            isEditing={isEditing}
-                            designTokens={designTokens}
-                            updateItemWith={updateItemWith}
+                <SortableContext items={itemsState} strategy={rectSortingStrategy}>
+                    {itemsState.map((item) => (
+                        <Item
+                            key={item.id}
+                            item={item}
+                            image={blockAssets?.[item.id]?.[0]}
+                            isLoading={loadingIds.includes(item.id)}
+                            {...thumbnailProps}
                         />
-                    </div>
-                )}
-            </Grid>
-        </>
+                    ))}
+                </SortableContext>
+                <DragOverlay>
+                    {draggedItem && (
+                        <Item
+                            key={draggedItem.id}
+                            item={draggedItem}
+                            image={blockAssets?.[draggedItem.id]?.[0]}
+                            isLoading={loadingIds.includes(draggedItem.id)}
+                            {...thumbnailProps}
+                        />
+                    )}
+                </DragOverlay>
+            </DndContext>
+            {isEditing && (
+                <div className={thumbnailStyles.captionPositionClassNames} data-test-id="thumbnail-item-placeholder">
+                    <ImageWrapper thumbnailStyles={thumbnailStyles} placeholderWrapper>
+                        <UploadPlaceholder
+                            width={thumbnailStyles.width}
+                            isLoading={loadingIds.includes('placeholder')}
+                            openFileDialog={openFileDialog}
+                            onFilesDrop={onFilesDrop}
+                            openAssetChooser={openAssetChooser}
+                        />
+                    </ImageWrapper>
+                    <RichTextEditors
+                        isEditing={isEditing}
+                        designTokens={designTokens}
+                        updateItemWith={updateItemWith}
+                    />
+                </div>
+            )}
+        </Grid>
     );
 };
