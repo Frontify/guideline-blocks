@@ -7,11 +7,7 @@ import { CustomFloatingLink } from './FloatingLink/CustomFloatingLink';
 import { LINK_PLUGIN } from './id';
 import { LinkButton } from './LinkButton';
 import { LinkMarkupElement } from './LinkMarkupElement';
-import { relativeUrlRegex, telOrMailRegex, urlRegexWithHttps } from './utils';
-
-export const isValidUrl = (url: string): boolean => {
-    return urlRegexWithHttps.test(url) || relativeUrlRegex.test(url) || telOrMailRegex.test(url);
-};
+import { isValidUrl } from './utils/url';
 
 export const createLinkPlugin = (appBridge: AppBridgeBlock) =>
     createPluginFactory({

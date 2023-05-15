@@ -3,11 +3,11 @@
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Plugin, PluginProps } from '@frontify/fondue';
 import { RangeBeforeOptions, createPluginFactory } from '@udecode/plate';
-import { isValidUrl } from '../LinkPlugin';
 import { ButtonMarkupElement } from './ButtonMarkupElement';
 import { ButtonButton } from './components/ButtonButton';
 import { CustomFloatingButton } from './components/FloatingButton/CustomFloatingButton';
 import { withButton } from './withButton';
+import { isValidUrl } from '../LinkPlugin/utils/url';
 
 export const ELEMENT_BUTTON = 'button';
 export const BUTTON_PLUGIN = 'button-plugin';
