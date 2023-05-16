@@ -7,8 +7,7 @@ import { CustomFloatingLink } from './FloatingLink/CustomFloatingLink';
 import { LINK_PLUGIN } from './id';
 import { LinkButton } from './LinkButton';
 import { LinkMarkupElement } from './LinkMarkupElement';
-
-export const isValidUrl = (url: string): boolean => !!url.match(/^((https?:\/\/|mailto:|tel:).+)|\/r\/.+/);
+import { isValidUrl } from './utils/url';
 
 export const createLinkPlugin = (appBridge: AppBridgeBlock) =>
     createPluginFactory({
