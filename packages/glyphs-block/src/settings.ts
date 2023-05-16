@@ -5,7 +5,7 @@ import { Choice, appendUnit, defineSettings, numericalOrPixelRule } from '@front
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 import { getFontWeights, getFonts } from './helpers';
 
-export const DEFAULT_CHARS = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9';
+export const DEFAULT_CHARS = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0,1,2,3,4,5,6,7,8,9';
 
 const HAS_BACKGROUND_ID = 'hasBackground';
 const FONT_FAMILY_ID = 'fontFamily';
@@ -17,6 +17,7 @@ export const settings = defineSettings({
             id: FONT_FAMILY_ID,
             defaultValue: 'inherit',
             type: 'dropdown',
+            label: 'Family',
             info: 'Select a font family from the project.',
             choices: async ({ getAppBridge }): Promise<Choice[]> => {
                 const appBridge = getAppBridge();
@@ -38,7 +39,7 @@ export const settings = defineSettings({
         {
             id: 'font',
             type: 'multiInput',
-            label: 'Font selection',
+            label: 'Font',
             lastItemFullWidth: true,
             blocks: [
                 {
