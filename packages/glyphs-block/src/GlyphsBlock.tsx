@@ -32,33 +32,34 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
         const isBottomLeftChar = index === splittedItems.length - 6;
         const isBottomRightChar = index === splittedItems.length - 1 && (index + 1) % 6 === 0;
         const isLetter = char.length === 1 && char.match(/[A-Z]/);
+
+        const style = {
+            ...(hasBackground && {
+                backgroundColor: toRgbaString(backgroundColor),
+            }),
+            ...(hasBorder && {
+                outline: `${toRgbaString(borderColor)} ${borderStyle} ${borderWidth}`,
+            }),
+            ...(isFirstChar && {
+                borderTopLeftRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
+            }),
+            ...(isSixthChar && {
+                borderTopRightRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
+            }),
+            ...(isBottomLeftChar && {
+                borderBottomLeftRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
+            }),
+            ...(isBottomRightChar && {
+                borderBottomRightRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
+            }),
+        };
+
         return (
             <li
                 key={index}
                 data-test-id="glyphs-item"
                 className="tw-aspect-square tw-flex tw-items-center tw-justify-center tw-text-center"
-                style={{
-                    ...(hasBackground && {
-                        backgroundColor: toRgbaString(backgroundColor),
-                    }),
-                    ...(hasBorder && {
-                        outlineStyle: borderStyle,
-                        outlineWidth: borderWidth,
-                        outlineColor: toRgbaString(borderColor),
-                    }),
-                    ...(isFirstChar && {
-                        borderTopLeftRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
-                    }),
-                    ...(isSixthChar && {
-                        borderTopRightRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
-                    }),
-                    ...(isBottomLeftChar && {
-                        borderBottomLeftRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
-                    }),
-                    ...(isBottomRightChar && {
-                        borderBottomRightRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
-                    }),
-                }}
+                style={style}
             >
                 {char}
                 {isLetter && char.toLowerCase()}
