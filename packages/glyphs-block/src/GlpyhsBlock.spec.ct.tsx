@@ -3,7 +3,7 @@
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { GlyphsBlock } from './GlyphsBlock';
-import { Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
 
 const BlockSelector = '[data-test-id="glyphs-block"]';
 const ItemSelector = '[data-test-id="glyphs-item"]';
@@ -20,14 +20,14 @@ describe('Glyphs Block', () => {
         const [GlyphsBlockWithStubs] = withAppBridgeBlockStubs(GlyphsBlock, {
             blockSettings: {
                 hasBorder: true,
-                borderStyle: 'solid',
-                borderWidth: 2,
+                borderStyle: BorderStyle.Dotted,
+                borderWidth: '2px',
                 borderColor: { r: 240, g: 0, b: 0, a: 1 },
             },
         });
 
         mount(<GlyphsBlockWithStubs />);
-        cy.get(ItemSelector).should('have.css', 'outline', 'rgb(240, 0, 0) solid 2px');
+        cy.get(ItemSelector).should('have.css', 'outline', 'rgb(240, 0, 0) dotted 2px');
     });
 
     it('renders a glyphs block with predefined radius', () => {
