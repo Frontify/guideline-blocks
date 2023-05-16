@@ -22,7 +22,7 @@ export type Settings = {
     borderColor: Color;
     radiusChoice: Radius;
     hasRadius: boolean;
-    radiusValue: number;
+    radiusValue: string;
 };
 
 export type ApiFontStyle = {

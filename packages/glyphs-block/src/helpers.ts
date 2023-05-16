@@ -2,6 +2,7 @@
 
 import { Choice } from '@frontify/guideline-blocks-settings';
 import { ApiFontStyle } from './types';
+import { Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
 
 export const getFonts = async (projectId: number): Promise<Choice[]> => {
     const response = await fetch(`/api/project-font-family?project_id=${projectId}`);
@@ -25,3 +26,6 @@ export const getFontWeights = async (projectId: number, font: string): Promise<C
     }));
     return fontWeights.filter((font, index, self) => self.findIndex(({ value }) => value === font.value) === index);
 };
+
+export const getRadiusValue = (radiusChoice: Radius, hasRadius = false, radiusValue?: string): string =>
+    hasRadius ? radiusValue || '0px' : radiusStyleMap[radiusChoice];

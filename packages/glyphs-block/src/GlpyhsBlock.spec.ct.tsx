@@ -3,6 +3,7 @@
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { GlyphsBlock } from './GlyphsBlock';
+import { BorderStyle, Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
 
 const BlockSelector = '[data-test-id="glyphs-block"]';
 const ItemSelector = '[data-test-id="glyphs-item"]';
@@ -19,20 +20,44 @@ describe('Glyphs Block', () => {
         const [GlyphsBlockWithStubs] = withAppBridgeBlockStubs(GlyphsBlock, {
             blockSettings: {
                 hasBorder: true,
-                borderStyle: 'solid',
-                borderWidth: 2,
+                borderStyle: BorderStyle.Dotted,
+                borderWidth: '2px',
                 borderColor: { r: 240, g: 0, b: 0, a: 1 },
-                radiusChoice: 'rounded',
-                hasRadius: true,
-                radiusValue: 4,
             },
         });
 
         mount(<GlyphsBlockWithStubs />);
-        cy.get(ItemSelector).should('have.css', 'outline-style', 'solid');
-        cy.get(ItemSelector).should('have.css', 'outline-width', '2px');
-        cy.get(ItemSelector).should('have.css', 'outline-color', 'rgb(240, 0, 0)');
-        cy.get(ItemSelector).should('have.css', 'border-radius', '4px');
+        cy.get(ItemSelector).should('have.css', 'outline', 'rgb(240, 0, 0) dotted 2px');
+    });
+
+    it('renders a glyphs block with predefined radius', () => {
+        const [GlyphsBlockWithStubs] = withAppBridgeBlockStubs(GlyphsBlock, {
+            blockSettings: {
+                hasRadius: false,
+                radiusChoice: Radius.Large,
+            },
+        });
+
+        mount(<GlyphsBlockWithStubs />);
+        cy.get(ItemSelector).first().should('have.css', 'border-top-left-radius', radiusStyleMap[Radius.Large]);
+        cy.get(ItemSelector).eq(5).should('have.css', 'border-top-right-radius', radiusStyleMap[Radius.Large]);
+        cy.get(ItemSelector).eq(30).should('have.css', 'border-bottom-left-radius', radiusStyleMap[Radius.Large]);
+        cy.get(ItemSelector).last().should('have.css', 'border-bottom-right-radius', radiusStyleMap[Radius.Large]);
+    });
+
+    it('renders a glyphs block with custom radius', () => {
+        const [GlyphsBlockWithStubs] = withAppBridgeBlockStubs(GlyphsBlock, {
+            blockSettings: {
+                hasRadius: true,
+                radiusValue: '10px',
+            },
+        });
+
+        mount(<GlyphsBlockWithStubs />);
+        cy.get(ItemSelector).first().should('have.css', 'border-top-left-radius', '10px');
+        cy.get(ItemSelector).eq(5).should('have.css', 'border-top-right-radius', '10px');
+        cy.get(ItemSelector).eq(30).should('have.css', 'border-bottom-left-radius', '10px');
+        cy.get(ItemSelector).last().should('have.css', 'border-bottom-right-radius', '10px');
     });
 
     it('renders a glyphs block with custom background', () => {
