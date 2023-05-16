@@ -22,17 +22,27 @@ describe('Glyphs Block', () => {
                 borderStyle: 'solid',
                 borderWidth: 2,
                 borderColor: { r: 240, g: 0, b: 0, a: 1 },
-                radiusChoice: 'rounded',
-                hasRadius: true,
-                radiusValue: 4,
             },
         });
 
         mount(<GlyphsBlockWithStubs />);
-        cy.get(ItemSelector).should('have.css', 'outline-style', 'solid');
-        cy.get(ItemSelector).should('have.css', 'outline-width', '2px');
-        cy.get(ItemSelector).should('have.css', 'outline-color', 'rgb(240, 0, 0)');
-        cy.get(ItemSelector).should('have.css', 'border-radius', '4px');
+        cy.get(ItemSelector).should('have.css', 'outline', 'rgb(240, 0, 0) solid 2px');
+    });
+
+    it('renders a glyphs block with custom radius', () => {
+        const [GlyphsBlockWithStubs] = withAppBridgeBlockStubs(GlyphsBlock, {
+            blockSettings: {
+                radiusChoice: 'custom',
+                hasRadius: true,
+                radiusValue: 10,
+            },
+        });
+
+        mount(<GlyphsBlockWithStubs />);
+        cy.get(ItemSelector).first().should('have.css', 'border-top-left-radius', '10px');
+        cy.get(ItemSelector).eq(5).should('have.css', 'border-top-right-radius', '10px');
+        cy.get(ItemSelector).eq(30).should('have.css', 'border-bottom-left-radius', '10px');
+        cy.get(ItemSelector).last().should('have.css', 'border-bottom-right-radius', '10px');
     });
 
     it('renders a glyphs block with custom background', () => {
