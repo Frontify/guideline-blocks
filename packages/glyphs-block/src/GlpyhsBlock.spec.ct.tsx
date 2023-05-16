@@ -3,6 +3,7 @@
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { GlyphsBlock } from './GlyphsBlock';
+import { Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
 
 const BlockSelector = '[data-test-id="glyphs-block"]';
 const ItemSelector = '[data-test-id="glyphs-item"]';
@@ -29,12 +30,26 @@ describe('Glyphs Block', () => {
         cy.get(ItemSelector).should('have.css', 'outline', 'rgb(240, 0, 0) solid 2px');
     });
 
+    it('renders a glyphs block with predefined radius', () => {
+        const [GlyphsBlockWithStubs] = withAppBridgeBlockStubs(GlyphsBlock, {
+            blockSettings: {
+                hasRadius: false,
+                radiusChoice: Radius.Large,
+            },
+        });
+
+        mount(<GlyphsBlockWithStubs />);
+        cy.get(ItemSelector).first().should('have.css', 'border-top-left-radius', radiusStyleMap[Radius.Large]);
+        cy.get(ItemSelector).eq(5).should('have.css', 'border-top-right-radius', radiusStyleMap[Radius.Large]);
+        cy.get(ItemSelector).eq(30).should('have.css', 'border-bottom-left-radius', radiusStyleMap[Radius.Large]);
+        cy.get(ItemSelector).last().should('have.css', 'border-bottom-right-radius', radiusStyleMap[Radius.Large]);
+    });
+
     it('renders a glyphs block with custom radius', () => {
         const [GlyphsBlockWithStubs] = withAppBridgeBlockStubs(GlyphsBlock, {
             blockSettings: {
-                radiusChoice: 'custom',
                 hasRadius: true,
-                radiusValue: 10,
+                radiusValue: '10px',
             },
         });
 
