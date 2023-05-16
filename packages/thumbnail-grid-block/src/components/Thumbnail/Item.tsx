@@ -1,16 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useState } from 'react';
+import { MutableRefObject, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import {
+    ButtonEmphasis,
+    ButtonStyle,
     Flyout,
+    FlyoutFooter,
     FlyoutPlacement,
     FormControl,
     HelperPosition,
     IconArrowCircleUp20,
     IconArrowMove16,
+    IconCheckMark16,
     IconImageStack20,
-    IconSpeechBubbleQuote,
+    IconSpeechBubbleQuote20,
     IconTrashBin16,
     TextInput,
     merge,
@@ -61,31 +65,32 @@ export const Item = ({
             key={id}
             ref={setNodeRef}
             style={{ ...transformStyle, ...(!isDragging ? { zIndex: undefined } : {}) }}
-            className="tw-w-full tw-h-full tw-bg-white"
+            className={merge([!isEditing && !image && 'tw-hidden', 'tw-w-full tw-h-full tw-bg-white'])}
         >
             <BlockItemWrapper
                 shouldHideWrapper={isDragging || !isEditing}
                 shouldHideComponent={isDragging}
                 isDragging={isDragging}
                 shouldFillContainer={true}
+                shouldBeShown={showAltTextMenu}
                 toolbarFlyoutItems={[
                     image
                         ? [
                               {
                                   title: 'Set alt text',
                                   onClick: () => setShowAltTextMenu(true),
-                                  icon: <IconSpeechBubbleQuote />,
+                                  icon: <IconSpeechBubbleQuote20 />,
                               },
                           ]
                         : [],
                     [
                         {
-                            title: 'Replace image with upload',
+                            title: 'Replace with upload',
                             icon: <IconArrowCircleUp20 />,
                             onClick: onOpenFileDialog,
                         },
                         {
-                            title: 'Replace image with asset',
+                            title: 'Replace with asset',
                             icon: <IconImageStack20 />,
                             onClick: onAssetChooserClick,
                         },
@@ -108,6 +113,66 @@ export const Item = ({
                 ]}
             >
                 <div className={thumbnailStyles.captionPositionClassNames} data-test-id="thumbnail-item">
+                    <Flyout
+                        fitContent
+                        isTriggerDisabled
+                        trigger={(_, ref) => (
+                            <div
+                                className="tw-absolute tw-top-0 tw-right-6"
+                                ref={ref as MutableRefObject<HTMLDivElement>}
+                            />
+                        )}
+                        onOpenChange={setShowAltTextMenu}
+                        hug={false}
+                        isOpen={showAltTextMenu}
+                        placement={FlyoutPlacement.BottomLeft}
+                        legacyFooter={false}
+                        fixedFooter={
+                            <FlyoutFooter
+                                buttons={[
+                                    {
+                                        style: ButtonStyle.Default,
+                                        emphasis: ButtonEmphasis.Default,
+                                        children: 'Cancel',
+                                        onClick: () => {
+                                            setLocalAltText(defaultAltText);
+                                            setShowAltTextMenu(false);
+                                        },
+                                    },
+                                    {
+                                        style: ButtonStyle.Default,
+                                        emphasis: ButtonEmphasis.Strong,
+                                        icon: <IconCheckMark16 />,
+                                        children: 'Save',
+                                        onClick: () => {
+                                            updateItemWith('altText', localAltText, id);
+                                            setShowAltTextMenu(false);
+                                        },
+                                    },
+                                ]}
+                            />
+                        }
+                    >
+                        <div className="tw-flex tw-flex-col tw-p-6 tw-max-w-[20rem]">
+                            <FormControl
+                                label={{
+                                    children: 'Alt text',
+                                    htmlFor: 'alt-text-input',
+                                }}
+                                helper={{
+                                    text: 'The best alt text describes the most relevant content of the image.',
+                                    position: HelperPosition.After,
+                                }}
+                            >
+                                <TextInput
+                                    value={localAltText ?? defaultAltText}
+                                    onChange={setLocalAltText}
+                                    id="alt-text-input"
+                                    placeholder="Enter alt text"
+                                />
+                            </FormControl>
+                        </div>
+                    </Flyout>
                     <Image
                         id={id}
                         image={image}
@@ -137,43 +202,6 @@ export const Item = ({
                     'tw-absolute tw-left-0 tw-top-0 tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded tw-bg-box-selected-hover tw-h-full tw-w-full',
                 ])}
             />
-            <Flyout
-                isTriggerDisabled
-                trigger={<></>}
-                onOpenChange={setShowAltTextMenu}
-                fitContent
-                hug={false}
-                isOpen={showAltTextMenu}
-                placement={FlyoutPlacement.Right}
-                onConfirm={() => {
-                    updateItemWith('altText', localAltText, id);
-                    setShowAltTextMenu(false);
-                }}
-                onCancel={() => {
-                    setLocalAltText(defaultAltText);
-                    setShowAltTextMenu(false);
-                }}
-            >
-                <div className="tw-flex tw-flex-col tw-gap-y-8 tw-p-8 tw-max-w-[20rem]">
-                    <FormControl
-                        label={{
-                            children: 'Alt text',
-                            htmlFor: 'alt-text-input',
-                        }}
-                        helper={{
-                            text: 'The best alt text describes the most relevant content of the image.',
-                            position: HelperPosition.After,
-                        }}
-                    >
-                        <TextInput
-                            value={localAltText || defaultAltText}
-                            onChange={setLocalAltText}
-                            id="alt-text-input"
-                            placeholder="Enter alt text"
-                        />
-                    </FormControl>
-                </div>
-            </Flyout>
         </div>
     );
 };

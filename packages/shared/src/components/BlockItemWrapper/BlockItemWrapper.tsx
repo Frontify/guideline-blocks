@@ -63,6 +63,7 @@ export const BlockItemWrapper = ({
                     !shouldHideWrapper &&
                         'group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
                     (isFlyoutOpen || shouldBeShown) && 'tw-opacity-100',
+                    shouldHideWrapper && 'tw-hidden',
                 ])}
             >
                 <Toolbar
