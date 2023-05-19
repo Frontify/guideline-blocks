@@ -57,6 +57,7 @@ export type InformationSectionProps = {
     description: string;
     isEditing: boolean;
     title: string;
+    appBridge: AppBridgeBlock;
     setBlockSettings: (newSettings: Partial<Settings>) => void;
 };
 

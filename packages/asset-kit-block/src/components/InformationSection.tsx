@@ -3,9 +3,7 @@
 import {
     BoldPlugin,
     ItalicPlugin,
-    Plugin,
     PluginComposer,
-    PluginProps,
     ResetFormattingPlugin,
     SoftBreakPlugin,
     StrikethroughPlugin,
@@ -15,19 +13,24 @@ import {
 } from '@frontify/fondue';
 import {
     RichTextEditor,
+    TextStylePluginsWithoutImage,
     convertToRteValue,
+    getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
-    useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import { useMemo } from 'react';
 import { InformationSectionProps } from '../types';
 
-export const InformationSection = ({ description, isEditing, setBlockSettings, title }: InformationSectionProps) => {
-    const { designTokens } = useGuidelineDesignTokens();
-
+export const InformationSection = ({
+    description,
+    isEditing,
+    setBlockSettings,
+    title,
+    appBridge,
+}: InformationSectionProps) => {
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
-            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin() as Plugin<PluginProps>])
+            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])
             .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
             .setPlugin([new ResetFormattingPlugin()]);
     }, []);
@@ -49,24 +52,23 @@ export const InformationSection = ({ description, isEditing, setBlockSettings, t
             <div data-test-id="block-title">
                 <RichTextEditor
                     id="block-title"
-                    designTokens={designTokens}
                     isEditing={isEditing}
                     plugins={customTitlePlugins}
                     onBlur={saveTitle}
                     placeholder="Add a title here ..."
                     showSerializedText={hasRichTextValue(title)}
-                    value={title ?? convertToRteValue(TextStyles.ELEMENT_HEADING3)}
+                    value={title ?? convertToRteValue(TextStyles.heading3)}
                 />
             </div>
             <div data-test-id="block-description">
                 <RichTextEditor
                     id="block-description"
-                    designTokens={designTokens}
                     isEditing={isEditing}
                     onBlur={saveDescription}
                     placeholder="Add a description here ..."
                     showSerializedText={hasRichTextValue(description)}
                     value={description}
+                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                 />
             </div>
         </div>

@@ -9,17 +9,17 @@ import {
 } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
+import { getButtonStyleCssProperties } from '@frontify/fondue';
 
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const screenReaderRef = useRef<HTMLDivElement>(null);
-    const { designTokens } = useGuidelineDesignTokens();
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
@@ -83,6 +83,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                     isEditing={isEditing}
                     setBlockSettings={setBlockSettings}
                     title={title ?? ''}
+                    appBridge={appBridge}
                 />
                 <div className="tw-flex-none">
                     <button
@@ -93,7 +94,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                             ) || currentAssets.length === 0
                         }
                         onClick={startDownload}
-                        style={designTokens.buttonPrimary}
+                        style={getButtonStyleCssProperties('primary')}
                     >
                         Download package
                         <span
