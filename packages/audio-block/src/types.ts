@@ -2,7 +2,6 @@
 
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Security } from '@frontify/guideline-blocks-shared';
-import { DesignTokens } from '@frontify/fondue';
 
 export enum TextPosition {
     Below = 'Below',
@@ -19,7 +18,6 @@ export type BlockSettings = {
 
 export type BlockAttachmentsProps = {
     appBridge: AppBridgeBlock;
-    designTokens: DesignTokens;
 };
 
 export type UploadPlaceholderProps = {

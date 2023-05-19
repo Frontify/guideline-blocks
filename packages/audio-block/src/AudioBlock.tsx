@@ -25,12 +25,14 @@ import {
     BlockItemWrapper,
     DownloadButton,
     RichTextEditor,
+    TextStylePluginsWithoutImage,
+    TextStylesWithoutImage,
     convertToRteValue,
     downloadAsset,
+    getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     isDownloadable,
     joinClassNames,
-    useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import {
     Asset,
@@ -50,8 +52,8 @@ import { AUDIO_ID } from './settings';
 import { BlockAttachments, UploadPlaceholder } from './components';
 import { useEffect, useMemo, useState } from 'react';
 
-const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.ELEMENT_HEADING3);
-const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.ELEMENT_PARAGRAPH);
+const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.heading3);
+const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue();
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -59,7 +61,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
-    const { designTokens } = useGuidelineDesignTokens();
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
 
     const { title, description, downloadable, positioning, security } = blockSettings;
@@ -71,13 +72,13 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const customTitlePlugins = useMemo(() => {
         return new PluginComposer()
-            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin()])
+            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])
             .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
             .setPlugin([
-                new AlignLeftPlugin(),
-                new AlignCenterPlugin(),
-                new AlignRightPlugin(),
-                new AlignJustifyPlugin(),
+                new AlignLeftPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignCenterPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignRightPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignJustifyPlugin({ validTypes: TextStylesWithoutImage }),
                 new ResetFormattingPlugin(),
             ]);
     }, []);
@@ -88,7 +89,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const onRemoveAsset = () => deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(title)) {
-            saveTitle(convertToRteValue(TextStyles.ELEMENT_HEADING3, audio.title));
+            saveTitle(convertToRteValue(TextStyles.heading3, audio.title));
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
@@ -194,7 +195,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     <div data-test-id="block-title">
                         <RichTextEditor
                             id={`${appBridge.getBlockId().toString()}-title`}
-                            designTokens={designTokens}
                             isEditing={isEditing}
                             value={title ?? DEFAULT_CONTENT_TITLE}
                             placeholder="Asset name"
@@ -207,7 +207,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     <div data-test-id="block-description">
                         <RichTextEditor
                             id={`${appBridge.getBlockId().toString()}-description`}
-                            designTokens={designTokens}
+                            plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                             isEditing={isEditing}
                             value={description ?? DEFAULT_CONTENT_DESCRIPTION}
                             placeholder="Add a description here"
@@ -220,7 +220,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                         {isDownloadable(security, downloadable, assetDownloadEnabled) && (
                             <DownloadButton onDownload={() => downloadAsset(audio)} />
                         )}
-                        <BlockAttachments appBridge={appBridge} designTokens={designTokens} />
+                        <BlockAttachments appBridge={appBridge} />
                     </div>
                 )}
             </div>
