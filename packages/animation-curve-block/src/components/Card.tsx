@@ -25,7 +25,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             animationCurve,
             isEditing,
             blockSettings,
-            designTokens,
             onUpdate,
             onDelete,
             setCanvasHeight,
@@ -167,7 +166,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             title={title ?? ''}
                             description={description ?? ''}
                             hasBorder={hasBorder}
-                            designTokens={designTokens}
                             setTitle={onTitleChange}
                             setDescription={onDescriptionChange}
                             updateValueOnChange={false}
