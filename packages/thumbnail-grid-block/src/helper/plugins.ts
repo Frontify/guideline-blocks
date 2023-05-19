@@ -20,14 +20,23 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
+import { TextStylePluginsWithoutImage, TextStylesWithoutImage } from '@frontify/guideline-blocks-shared';
 
 export const captionPlugins = new PluginComposer();
-const textStylePlugins = [new SoftBreakPlugin(), new TextStylePlugin()];
+const textStylePlugins = [new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })];
 const alignmentPlugins = [
-    new AlignLeftPlugin(),
-    new AlignCenterPlugin(),
-    new AlignRightPlugin(),
-    new AlignJustifyPlugin(),
+    new AlignLeftPlugin({
+        validTypes: TextStylesWithoutImage,
+    }),
+    new AlignCenterPlugin({
+        validTypes: TextStylesWithoutImage,
+    }),
+    new AlignRightPlugin({
+        validTypes: TextStylesWithoutImage,
+    }),
+    new AlignJustifyPlugin({
+        validTypes: TextStylesWithoutImage,
+    }),
 ];
 const markStylesPlugins = [new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()];
 captionPlugins

@@ -26,7 +26,7 @@ import {
 } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { gutterSpacingStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { gutterSpacingStyleMap } from '@frontify/guideline-blocks-shared';
 import { generateRandomId } from '@frontify/fondue';
 
 import { Settings, Thumbnail } from './types';
@@ -34,7 +34,6 @@ import { getThumbnailStyles } from './helper';
 import { Grid, ImageWrapper, Item, RichTextEditors, UploadPlaceholder } from './components/';
 
 export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
-    const { designTokens } = useGuidelineDesignTokens();
     const isEditing = useEditorState(appBridge);
     const sensors = useSensors(useSensor(PointerSensor));
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -149,7 +148,6 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const thumbnailStyles = getThumbnailStyles(blockSettings);
     const thumbnailProps = {
         isEditing,
-        designTokens,
         thumbnailStyles,
         showGrabHandle: isEditing && itemsState.length > 2,
         setUploadedId: setUploadId,
@@ -210,11 +208,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                             openAssetChooser={openAssetChooser}
                         />
                     </ImageWrapper>
-                    <RichTextEditors
-                        isEditing={isEditing}
-                        designTokens={designTokens}
-                        updateItemWith={updateItemWith}
-                    />
+                    <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} />
                 </div>
             )}
         </Grid>
