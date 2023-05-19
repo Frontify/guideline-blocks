@@ -22,7 +22,6 @@ import {
     convertToRteValue,
     hasRichTextValue,
     joinClassNames,
-    useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import { Image } from './components/Image';
 import { useEffect, useState } from 'react';
@@ -40,7 +39,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
-    const { designTokens } = useGuidelineDesignTokens();
 
     const [isLoading, setIsLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string>();
@@ -61,7 +59,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const updateImage = async (image: Asset) => {
         setErrorMsg(undefined);
         if (!hasRichTextValue(name)) {
-            saveTitle(convertToRteValue(TextStyles.ELEMENT_IMAGE_TITLE, image?.title, 'center'));
+            saveTitle(convertToRteValue(TextStyles.imageTitle, image?.title, 'center'));
         }
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
         setIsLoading(false);
@@ -159,7 +157,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                             blockSettings={blockSettings}
                             isEditing={isEditing}
                             image={image}
-                            designTokens={designTokens}
                         />
                     )}
                 </BlockItemWrapper>
@@ -181,7 +178,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 onNameChange={saveTitle}
                 onDescriptionChange={(value) => value !== description && setBlockSettings({ description: value })}
                 isEditing={isEditing}
-                designTokens={designTokens}
             />
         </div>
     );
