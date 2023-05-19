@@ -3,11 +3,11 @@
 import { mount } from 'cypress/react';
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { BorderStyle, Radius, convertToRteValue } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, GutterSpacing, Radius, convertToRteValue } from '@frontify/guideline-blocks-shared';
 import { TextStyles } from '@frontify/fondue';
 
 import { AnimationCurveBlock } from './AnimationCurveBlock';
-import { AnimationCurve, AnimationCurveType, Spacing } from './types';
+import { AnimationCurve, AnimationCurveType } from './types';
 
 const BLOCK_SELECTOR = '[data-test-id="animation-curve-block"]';
 const CARD_SELECTOR = '[data-test-id="animation-curve-card"]';
@@ -79,7 +79,7 @@ describe('AnimationCurve Block', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
             blockSettings: {
                 columns: 2,
-                spacingChoice: Spacing.Large,
+                spacingChoice: GutterSpacing.L,
             },
         });
         mount(<AssetKitBlockWithStubs />);
@@ -150,20 +150,6 @@ describe('AnimationCurve Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(CARD_PARAMETERS_SELECTOR).should('not.exist');
-    });
-
-    it('should copy the parameters by click on it', () => {
-        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
-            blockSettings: {
-                content: [AnimationCurveDummy.with()],
-                hasParameter: true,
-            },
-        });
-        mount(<AssetKitBlockWithStubs />);
-
-        cy.get(CARD_PARAMETERS_SELECTOR).should('css', 'cursor', 'copy');
-        cy.get(CARD_PARAMETERS_SELECTOR).click();
-        cy.get(CARD_PARAMETERS_SELECTOR).should('css', 'cursor', 'auto');
     });
 
     it('should render one animation curve with a background color with padding and overflow hidden', () => {

@@ -15,6 +15,7 @@ const ToolbarButtonSelector = '[data-testid="ToolbarButton"]';
 const InternalDocumentLinkSelector = '[data-test-id="internal-link-selector-document-link"]';
 const FloatingLinkModalSelector = '[data-test-id="floating-link-insert"]';
 const FloatingButtonModalSelector = '[data-test-id="floating-button-insert"]';
+const UrlInputSelector = 'input[id="url"]';
 
 const apiDocuments = [{ ...DocumentApiDummy.with(1), permanentLink: '/r/document' }];
 
@@ -79,6 +80,65 @@ describe('RichTextEditor', () => {
         cy.get(ButtonSelector).last().click();
         cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().click();
         cy.get(RichTextSelector).find('a[href="/r/document"]').should('exist');
+    });
+
+    it('should prepend the URL with https:// if not exists', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+                value={convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'This is a link')}
+            />
+        );
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('{selectall}');
+        cy.get(ToolbarButtonSelector).click();
+        cy.get(UrlInputSelector).type('frontify.com');
+        cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().click();
+        cy.get(RichTextSelector).find('a[href="https://frontify.com"]').should('exist');
+    });
+
+    it('should allow URLs that start with /document/', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+                value={convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'This is a link')}
+            />
+        );
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('{selectall}');
+        cy.get(ToolbarButtonSelector).click();
+        cy.get(UrlInputSelector).type('/document/test');
+        cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().click();
+        cy.get(RichTextSelector).find('a[href="/document/test"]').should('exist');
+    });
+
+    it('should not allow random strings without TLDs', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+                value={convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'This is a link')}
+            />
+        );
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('{selectall}');
+        cy.get(ToolbarButtonSelector).click();
+        cy.get(UrlInputSelector).type('notalink');
+        cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().should('be.disabled');
     });
 
     it('should be able to select internal button link', () => {

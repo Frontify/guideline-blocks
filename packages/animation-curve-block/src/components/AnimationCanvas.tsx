@@ -105,13 +105,11 @@ export const AnimationCanvas = ({
             };
 
             const animationValues = {
-                x: positionWithinViewBox.x / viewBox.width,
+                x: Math.max(Math.min(positionWithinViewBox.x / viewBox.width, 1), 0),
                 y: 1 - positionWithinViewBox.y / viewBox.height,
             };
 
-            if (animationValues.x >= 0 && animationValues.x <= 1) {
-                setAnimationFunction && setAnimationFunction(updatedAnimationFunction(animationValues, draggingPoint));
-            }
+            setAnimationFunction && setAnimationFunction(updatedAnimationFunction(animationValues, draggingPoint));
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [draggingPoint, viewBox.width, viewBox.height]

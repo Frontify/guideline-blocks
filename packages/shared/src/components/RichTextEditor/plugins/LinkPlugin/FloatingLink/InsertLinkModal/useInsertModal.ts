@@ -4,7 +4,6 @@ import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CheckboxState } from '@frontify/fondue';
 import {
     ELEMENT_LINK,
-    LinkPlugin,
     floatingLinkActions,
     floatingLinkSelectors,
     getPluginOptions,
@@ -13,7 +12,7 @@ import {
     useHotkeys,
 } from '@udecode/plate';
 import React, { Dispatch, Reducer, useEffect, useReducer } from 'react';
-import { getLegacyUrl, getUrl } from '../../utils';
+import { getLegacyUrl, getUrl, relativeUrlRegex, telOrMailRegex, urlRegex } from '../../utils';
 import { InsertModalDispatchType, InsertModalStateProps } from './types';
 
 const initialState: InsertModalStateProps = {
@@ -97,8 +96,13 @@ export const useInsertModal = () => {
             return;
         }
 
+        let urlToSave = state.url;
+        if (urlRegex.test(urlToSave) && !urlToSave.startsWith('http')) {
+            urlToSave = `https://${urlToSave}`;
+        }
+
         floatingLinkActions.text(state.text);
-        floatingLinkActions.url(state.url);
+        floatingLinkActions.url(urlToSave);
         floatingLinkActions.newTab(state.newTab === CheckboxState.Checked);
 
         if (submitFloatingLink(editor)) {
@@ -108,9 +112,12 @@ export const useInsertModal = () => {
 
     const hasValues = state.url !== '' && state.text !== '';
 
+    const isValidUrl = (url: string): boolean => {
+        return urlRegex.test(url) || relativeUrlRegex.test(url) || telOrMailRegex.test(url);
+    };
+
     const isValidUrlOrEmpty = () => {
-        const { isUrl } = getPluginOptions<LinkPlugin>(editor, ELEMENT_LINK);
-        return !state.url || (isUrl && isUrl(state.url));
+        return !state.url || isValidUrl(state.url);
     };
 
     const { appBridge } = getPluginOptions<{ appBridge: AppBridgeBlock }>(editor, ELEMENT_LINK);

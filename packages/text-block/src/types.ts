@@ -1,23 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { GutterSpacing } from '@frontify/guideline-blocks-shared';
+
 export type Settings = {
     columnGutterCustom: string;
-    columnGutterSimple: TextGutter;
+    columnGutterSimple: GutterSpacing;
     columnNumber: number;
     isColumnGutterCustom: boolean;
     content?: string;
 };
 
-export enum TextGutter {
-    Auto = 'Auto',
-    S = 'S',
-    M = 'M',
-    L = 'L',
-}
-
-export const spacingValues: Record<TextGutter, string> = {
-    [TextGutter.Auto]: 'normal',
-    [TextGutter.S]: '10px',
-    [TextGutter.M]: '30px',
-    [TextGutter.L]: '50px',
+export const spacingValues: Record<GutterSpacing, string> = {
+    [GutterSpacing.Auto]: 'normal',
+    [GutterSpacing.S]: '10px',
+    [GutterSpacing.M]: '30px',
+    [GutterSpacing.L]: '50px',
 };
