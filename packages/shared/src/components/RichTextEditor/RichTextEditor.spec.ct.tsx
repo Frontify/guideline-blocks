@@ -39,7 +39,7 @@ describe('RichTextEditor', () => {
             <RichTextEditor
                 isEditing={false}
                 onBlur={cy.stub}
-                value={convertToRteValue(TextStyles.ELEMENT_HEADING1, 'Test Heading')}
+                value={convertToRteValue(TextStyles.heading1, 'Test Heading')}
             />
         );
         cy.get(RteHtmlSelector).should('exist');
@@ -69,7 +69,7 @@ describe('RichTextEditor', () => {
                 isEditing={true}
                 onBlur={cy.stub}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
-                value={convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'This is a link')}
+                value={convertToRteValue('p', 'This is a link')}
             />
         );
         cy.get(RichTextSelector).click();
@@ -91,7 +91,7 @@ describe('RichTextEditor', () => {
                 isEditing={true}
                 onBlur={cy.stub}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
-                value={convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'This is a link')}
+                value={convertToRteValue('p', 'This is a link')}
             />
         );
         cy.get(RichTextSelector).click();
@@ -111,7 +111,7 @@ describe('RichTextEditor', () => {
                 isEditing={true}
                 onBlur={cy.stub}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
-                value={convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'This is a link')}
+                value={convertToRteValue('p', 'This is a link')}
             />
         );
         cy.get(RichTextSelector).click();
@@ -131,7 +131,7 @@ describe('RichTextEditor', () => {
                 isEditing={true}
                 onBlur={cy.stub}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
-                value={convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'This is a link')}
+                value={convertToRteValue('p', 'This is a link')}
             />
         );
         cy.get(RichTextSelector).click();
@@ -150,7 +150,7 @@ describe('RichTextEditor', () => {
                 isEditing={true}
                 onBlur={cy.stub}
                 plugins={new PluginComposer().setPlugin([new ButtonPlugin({ appBridge })])}
-                value={convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'This is a button')}
+                value={convertToRteValue('p', 'This is a button')}
             />
         );
         cy.get(RichTextSelector).click();

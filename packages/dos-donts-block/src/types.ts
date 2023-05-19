@@ -3,7 +3,6 @@
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
-import React from 'react';
 
 export type Settings = {
     mode: BlockMode;
@@ -107,7 +106,6 @@ export type SortableDoDontItemProps = {
     radiusChoice: Radius;
     hasBackground: boolean;
     backgroundColor: Color;
-    designTokens: Record<string, React.CSSProperties>;
 };
 
 export type DoDontItemProps = SortableDoDontItemProps & {
