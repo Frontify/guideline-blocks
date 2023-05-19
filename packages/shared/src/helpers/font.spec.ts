@@ -3,7 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import { getFont } from './font';
 
-describe('provideDefaultCalloutColors', () => {
+describe('getFont', () => {
     it('should use main font', () => {
         const result = getFont('inherit', 'Arial');
         expect(result).toBe('Arial');
