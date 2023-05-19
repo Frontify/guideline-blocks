@@ -6,17 +6,19 @@ import {
     MarkupElement,
     Plugin,
     PluginProps,
+    TextStyles,
     alignmentClassnames,
     getColumnBreakClasses,
     getTextStyleCssProperties,
     merge,
 } from '@frontify/fondue';
 
-const ID = 'heading4';
+const ID = 'textstyle-heading4-plugin';
 
 export class Heading4Plugin extends Plugin {
     constructor(props?: PluginProps) {
-        super(ID, {
+        super(TextStyles.heading4, {
+            label: 'Heading 4',
             markupElement: new Heading4MarkupElement(),
             ...props,
         });
@@ -47,7 +49,7 @@ const Heading4MarkupElementNode = ({ element, attributes, children }: PlateRende
 };
 
 const createHeading4Plugin = createPluginFactory({
-    key: ID,
+    key: TextStyles.heading4,
     isElement: true,
     component: Heading4MarkupElementNode,
     deserializeHtml: {

@@ -6,17 +6,18 @@ import {
     MarkupElement,
     Plugin,
     PluginProps,
+    TextStyles,
     alignmentClassnames,
     getColumnBreakClasses,
     getTextStyleCssProperties,
     merge,
 } from '@frontify/fondue';
 
-const ID = 'custom1';
+const ID = 'textstyle-custom1-plugin';
 
 export class Custom1Plugin extends Plugin {
     constructor(props?: PluginProps) {
-        super(ID, {
+        super(TextStyles.custom1, {
             label: 'Custom 1',
             markupElement: new Custom1MarkupElement(),
             ...props,
@@ -49,7 +50,7 @@ const Custom1MarkupElementNode = ({ element, attributes, children }: PlateRender
 };
 
 const createCustom1Plugin = createPluginFactory({
-    key: ID,
+    key: 'custom1',
     isElement: true,
     component: Custom1MarkupElementNode,
     deserializeHtml: {

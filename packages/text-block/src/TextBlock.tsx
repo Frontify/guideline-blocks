@@ -1,5 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { ReactElement } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -8,9 +9,6 @@ import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';
 import { getPlugins } from './getPlugins';
-import { ReactElement } from 'react';
-
-import './styles.css';
 
 export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);

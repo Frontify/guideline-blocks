@@ -6,17 +6,19 @@ import {
     MarkupElement,
     Plugin,
     PluginProps,
+    TextStyles,
     alignmentClassnames,
     getColumnBreakClasses,
     getTextStyleCssProperties,
     merge,
 } from '@frontify/fondue';
 
-const ID = 'imageCaption';
+const ID = 'textstyle-imageCaption-plugin';
 
 export class ImageCaptionPlugin extends Plugin {
     constructor(props?: PluginProps) {
-        super(ID, {
+        super(TextStyles.imageCaption, {
+            label: 'Image Caption',
             markupElement: new ImageCaptionMarkupElement(),
             ...props,
         });
@@ -47,7 +49,7 @@ const ImageCaptionMarkupElementNode = ({ element, attributes, children }: PlateR
 };
 
 const createImageCaptionPlugin = createPluginFactory({
-    key: ID,
+    key: TextStyles.imageCaption,
     isElement: true,
     component: ImageCaptionMarkupElementNode,
     deserializeHtml: {
