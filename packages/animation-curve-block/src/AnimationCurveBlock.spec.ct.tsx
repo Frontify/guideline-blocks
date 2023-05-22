@@ -35,8 +35,8 @@ class AnimationCurveDummy {
     static with(id?: string): AnimationCurve {
         return {
             id: id ?? '1',
-            title: convertToRteValue(TextStyles.ELEMENT_HEADING3, 'Animation Title'),
-            description: convertToRteValue(TextStyles.ELEMENT_PARAGRAPH, 'Animation Description'),
+            title: convertToRteValue(TextStyles.heading3, 'Animation Title'),
+            description: convertToRteValue('p', 'Animation Description'),
             animationFunction: {
                 type: AnimationCurveType.EaseIn,
                 parameters: { x1: 0.42, y1: 0, x2: 1, y2: 1 },
