@@ -33,6 +33,7 @@ import {
     StrikethroughWrapper,
     UploadView,
 } from './components';
+import { THEME_PREFIX } from '@frontify/fondue';
 
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -270,7 +271,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                     color={
                         strikethroughColorSource === InheritSettings.OVERRIDE
                             ? toRgbaString(customStrikeThroughColor)
-                            : style.getPropertyValue('--f-theme-settings-accent-color-warning-color')
+                            : style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)
                     }
                 />
             </StrikethroughWrapper>

@@ -37,6 +37,7 @@ import {
     ModalButton,
     PatternDesign,
     PatternTheme,
+    THEME_PREFIX,
     generateRandomId,
 } from '@frontify/fondue';
 
@@ -99,10 +100,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const themeStyle = getComputedStyle(document.body);
     const defaultDoColor =
-        rgbStringToRgbObject(themeStyle.getPropertyValue('--f-theme-settings-accent-color-tip-color')) ||
+        rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`)) ||
         DO_COLOR_DEFAULT_VALUE;
     const defaultDontColor =
-        rgbStringToRgbObject(themeStyle.getPropertyValue('--f-theme-settings-accent-color-warning-color')) ||
+        rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)) ||
         DONT_COLOR_DEFAULT_VALUE;
     const doColor = hasCustomDoColor ? customDoColor : defaultDoColor;
     const dontColor = hasCustomDontColor ? customDontColor : defaultDontColor;

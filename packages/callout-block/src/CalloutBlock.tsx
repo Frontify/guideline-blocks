@@ -17,6 +17,7 @@ import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
+import { THEME_PREFIX } from '@frontify/fondue';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -32,13 +33,13 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
         const style = getComputedStyle(document.body);
         switch (type) {
             case Type.Info:
-                return style.getPropertyValue('--f-theme-settings-accent-color-info-color');
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
             case Type.Note:
-                return style.getPropertyValue('--f-theme-settings-accent-color-note-color');
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-note-color`);
             case Type.Tip:
-                return style.getPropertyValue('--f-theme-settings-accent-color-tip-color');
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`);
             case Type.Warning:
-                return style.getPropertyValue('--f-theme-settings-accent-color-warning-color');
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`);
         }
     };
 
@@ -74,17 +75,17 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
         <div data-test-id="callout-block" className={containerDivClassNames}>
             <style>{`
                 :root { 
-                    --f-theme-settings-heading1-color: ${textColor};
-                    --f-theme-settings-heading2-color: ${textColor};
-                    --f-theme-settings-heading3-color: ${textColor};
-                    --f-theme-settings-heading4-color: ${textColor};
-                    --f-theme-settings-custom1-color: ${textColor};
-                    --f-theme-settings-custom2-color: ${textColor};
-                    --f-theme-settings-custom3-color: ${textColor};
-                    --f-theme-settings-body-color: ${textColor};
-                    --f-theme-settings-quote-color: ${textColor};
-                    --f-theme-settings-link-color: ${textColor};
-                    --f-theme-settings-link-text-decoration: underline;
+                    ${THEME_PREFIX}heading1-color: ${textColor};
+                    ${THEME_PREFIX}heading2-color: ${textColor};
+                    ${THEME_PREFIX}heading3-color: ${textColor};
+                    ${THEME_PREFIX}heading4-color: ${textColor};
+                    ${THEME_PREFIX}custom1-color: ${textColor};
+                    ${THEME_PREFIX}custom2-color: ${textColor};
+                    ${THEME_PREFIX}custom3-color: ${textColor};
+                    ${THEME_PREFIX}body-color: ${textColor};
+                    ${THEME_PREFIX}quote-color: ${textColor};
+                    ${THEME_PREFIX}link-color: ${textColor};
+                    ${THEME_PREFIX}link-text-decoration: underline;
                 }
             `}</style>
             <div
