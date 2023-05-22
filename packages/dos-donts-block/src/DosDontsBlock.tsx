@@ -98,9 +98,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const [localItems, setLocalItems] = useState<Item[]>(items);
 
     const themeStyle = getComputedStyle(document.body);
-
-    rgbStringToRgbObject;
-
     const defaultDoColor =
         rgbStringToRgbObject(themeStyle.getPropertyValue('--f-theme-settings-accent-color-tip-color')) ||
         DO_COLOR_DEFAULT_VALUE;
