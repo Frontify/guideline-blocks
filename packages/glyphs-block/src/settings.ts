@@ -31,7 +31,6 @@ export const settings = defineSettings({
             id: 'chars',
             type: 'textarea',
             label: 'Characters',
-            size: 'large',
             defaultValue: DEFAULT_CHARS,
             placeholder: 'e.g. A,B,C',
             info: 'Add characters with a comma between them.',
