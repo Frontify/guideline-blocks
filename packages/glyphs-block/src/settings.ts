@@ -5,7 +5,8 @@ import { Choice, appendUnit, defineSettings, numericalOrPixelRule } from '@front
 import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 import { getFontWeights, getFonts } from './helpers';
 
-export const DEFAULT_CHARS = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0,1,2,3,4,5,6,7,8,9';
+export const DEFAULT_CHARS =
+    'Aa, Bb, Cc, Dd, Ee, Ff, Gg, Hh, Ii, Jj, Kk, Ll, Mm, Nn, Oo, Pp, Qq, Rr, Ss, Tt, Uu, Vv, Ww, Xx, Yy, Zz, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9';
 
 const HAS_BACKGROUND_ID = 'hasBackground';
 const FONT_FAMILY_ID = 'fontFamily';
@@ -30,6 +31,7 @@ export const settings = defineSettings({
             id: 'chars',
             type: 'textarea',
             label: 'Characters',
+            size: 'large',
             defaultValue: DEFAULT_CHARS,
             placeholder: 'e.g. A,B,C',
             info: 'Add characters with a comma between them.',
