@@ -10,7 +10,6 @@ import {
     BreakAfterPlugin,
     CheckboxListPlugin,
     CodePlugin,
-    EmojiPlugin,
     ItalicPlugin,
     OrderedListPlugin,
     ParagraphPlugin,
@@ -74,7 +73,6 @@ export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CS
         new CheckboxListPlugin(),
         new OrderedListPlugin(),
         new ResetFormattingPlugin(),
-        new EmojiPlugin(),
     ]);
     return plugins;
 };
