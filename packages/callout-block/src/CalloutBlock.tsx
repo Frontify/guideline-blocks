@@ -69,6 +69,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
+    const showIcon = blockSettings.iconSwitch ? !!iconUrl : blockSettings.iconType !== Icon.None;
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
 
@@ -83,7 +84,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     ...customCornerRadiusStyle,
                 }}
             >
-                {blockSettings.iconType === Icon.None || (blockSettings.iconSwitch && !iconUrl) ? null : (
+                {showIcon && (
                     <CalloutIcon
                         iconUrl={iconUrl}
                         isActive={hasRichTextValue(blockSettings.textValue)}
