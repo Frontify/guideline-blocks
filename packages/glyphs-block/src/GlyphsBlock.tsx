@@ -25,12 +25,13 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
         radiusValue,
     } = blockSettings;
 
+    const ITEMS_PER_ROW = 6;
     const splittedItems = chars.split(',').map((char) => char.trim());
-    const numberOfRows = Math.ceil(splittedItems.length / 6);
-    const lastRowFirstItem = (numberOfRows - 1) * 6;
+    const numberOfRows = Math.ceil(splittedItems.length / ITEMS_PER_ROW);
+    const lastRowFirstItem = (numberOfRows - 1) * ITEMS_PER_ROW;
 
     const items = splittedItems.map((char, index) => {
-        const isBottomRightChar = index === splittedItems.length - 1 && (index + 1) % 6 === 0;
+        const isBottomRightChar = index === splittedItems.length - 1 && (index + 1) % ITEMS_PER_ROW === 0;
 
         const style = {
             ...(hasBackground && {
@@ -42,7 +43,7 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
             ...(index === 0 && {
                 borderTopLeftRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
             }),
-            ...(index === 5 && {
+            ...(index === ITEMS_PER_ROW - 1 && {
                 borderTopRightRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
             }),
             ...(index === lastRowFirstItem && {
