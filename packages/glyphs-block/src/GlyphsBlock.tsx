@@ -25,13 +25,13 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
         radiusValue,
     } = blockSettings;
 
-    const splittedItems = chars.split(',');
+    const ITEMS_PER_ROW = 6;
+    const splittedItems = chars.split(',').map((char) => char.trim());
+    const numberOfRows = Math.ceil(splittedItems.length / ITEMS_PER_ROW);
+    const lastRowFirstItem = (numberOfRows - 1) * ITEMS_PER_ROW;
+
     const items = splittedItems.map((char, index) => {
-        const isFirstChar = index === 0;
-        const isSixthChar = index === 5;
-        const isBottomLeftChar = index === splittedItems.length - 6;
-        const isBottomRightChar = index === splittedItems.length - 1 && (index + 1) % 6 === 0;
-        const isLetter = char.length === 1 && char.match(/[A-Z]/);
+        const isBottomRightChar = index === splittedItems.length - 1 && (index + 1) % ITEMS_PER_ROW === 0;
 
         const style = {
             ...(hasBackground && {
@@ -40,13 +40,13 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
             ...(hasBorder && {
                 outline: `${toRgbaString(borderColor)} ${borderStyle} ${borderWidth}`,
             }),
-            ...(isFirstChar && {
+            ...(index === 0 && {
                 borderTopLeftRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
             }),
-            ...(isSixthChar && {
+            ...(index === ITEMS_PER_ROW - 1 && {
                 borderTopRightRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
             }),
-            ...(isBottomLeftChar && {
+            ...(index === lastRowFirstItem && {
                 borderBottomLeftRadius: getRadiusValue(radiusChoice, hasRadius, radiusValue),
             }),
             ...(isBottomRightChar && {
@@ -62,7 +62,6 @@ export const GlyphsBlock = ({ appBridge }: BlockProps): ReactElement => {
                 style={style}
             >
                 {char}
-                {isLetter && char.toLowerCase()}
             </li>
         );
     });

@@ -88,17 +88,4 @@ describe('Glyphs Block', () => {
         cy.get(BlockSelector).should('have.css', 'font-size', '24px');
         cy.get(BlockSelector).should('have.css', 'color', 'rgb(240, 0, 0)');
     });
-
-    it('renders a glyphs block with uppercase and lowercase letters', () => {
-        const [GlyphsBlockWithStubs] = withAppBridgeBlockStubs(GlyphsBlock, {
-            blockSettings: {
-                chars: 'A,&,2',
-            },
-        });
-
-        mount(<GlyphsBlockWithStubs />);
-        cy.get(ItemSelector).first().contains(/^Aa$/);
-        cy.get(ItemSelector).eq(1).contains(/^&$/);
-        cy.get(ItemSelector).eq(2).contains(/^2$/);
-    });
 });
