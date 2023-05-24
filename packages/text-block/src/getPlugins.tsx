@@ -10,7 +10,6 @@ import {
     BreakAfterPlugin,
     CheckboxListPlugin,
     CodePlugin,
-    EmojiPlugin,
     ItalicPlugin,
     OrderedListPlugin,
     ParagraphPlugin,
@@ -22,12 +21,31 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
+import { AllTextStylePlugins, ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
+
+const VALID_ALIGN_TYPES = [
+    'heading1',
+    'heading2',
+    'heading3',
+    'heading4',
+    'custom1',
+    'custom2',
+    'custom3',
+    'imageTitle',
+    'imageCaption',
+    'quote',
+];
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
     const plugins = new PluginComposer();
-    plugins.setPlugin([new SoftBreakPlugin(), new ParagraphPlugin(), new TextStylePlugin()]);
+    plugins.setPlugin([
+        new SoftBreakPlugin(),
+        new ParagraphPlugin(),
+        new TextStylePlugin({
+            textStyles: AllTextStylePlugins,
+        }),
+    ]);
     plugins.setPlugin([
         new BoldPlugin(),
         new ItalicPlugin(),
@@ -39,15 +57,22 @@ export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CS
         new BreakAfterPlugin({ columns, gap }),
     ]);
     plugins.setPlugin([
-        new AlignLeftPlugin(),
-        new AlignCenterPlugin(),
-        new AlignRightPlugin(),
-        new AlignJustifyPlugin(),
+        new AlignLeftPlugin({
+            validTypes: VALID_ALIGN_TYPES,
+        }),
+        new AlignCenterPlugin({
+            validTypes: VALID_ALIGN_TYPES,
+        }),
+        new AlignRightPlugin({
+            validTypes: VALID_ALIGN_TYPES,
+        }),
+        new AlignJustifyPlugin({
+            validTypes: VALID_ALIGN_TYPES,
+        }),
         new UnorderedListPlugin(),
         new CheckboxListPlugin(),
         new OrderedListPlugin(),
         new ResetFormattingPlugin(),
-        new EmojiPlugin(),
     ]);
     return plugins;
 };

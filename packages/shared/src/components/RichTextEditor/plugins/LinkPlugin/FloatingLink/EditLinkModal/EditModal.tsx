@@ -1,18 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPen16, IconTrashBin16, useRichTextEditorContext } from '@frontify/fondue';
+import { IconPen16, IconTrashBin16, getTextStyleCssProperties } from '@frontify/fondue';
 import { useFloatingLinkUrlInput } from '@udecode/plate';
 import React from 'react';
 import { FloatingLink } from '../FloatingLink';
 
 export const EditModal = () => {
     const urlHtmlProps = useFloatingLinkUrlInput({});
-    const { designTokens } = useRichTextEditorContext();
 
     return (
         <div data-test-id="floating-link-edit" className="tw-bg-white tw-rounded tw-shadow tw-p-4 tw-min-w-[400px]">
             <span data-test-id={'preview-link-flyout'} className="tw-flex tw-justify-between">
-                <span className="tw-pointer-events-none" style={designTokens.p}>
+                <span className="tw-pointer-events-none" style={getTextStyleCssProperties('body')}>
                     {urlHtmlProps.defaultValue}
                 </span>
                 <span className="tw-flex tw-gap-2">

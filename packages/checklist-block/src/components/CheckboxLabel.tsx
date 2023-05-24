@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/fondue';
+import { Color, getTextStyleCssProperties } from '@frontify/fondue';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -46,13 +46,7 @@ const decorateLabelChildren = (children: string, style: CSSProperties) =>
         </Fragment>
     ));
 
-export const CheckboxLabel: FC<CheckboxLabelProps> = ({
-    children = '',
-    htmlFor,
-    disabled = false,
-    dateInMs,
-    designTokens,
-}) => {
+export const CheckboxLabel: FC<CheckboxLabelProps> = ({ children = '', htmlFor, disabled = false, dateInMs }) => {
     const {
         strikethroughStyle,
         strikethroughWidth,
@@ -69,8 +63,6 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({
         strikethroughColor,
         highlightColor
     )[completedDecoration];
-
-    const imageCaptionStyles = designTokens?.imageCaption ?? {};
 
     const labelStyles = { color: toHex8String(completeTextColor), ...decorationStyles };
 
@@ -89,7 +81,11 @@ export const CheckboxLabel: FC<CheckboxLabelProps> = ({
                 {decoratedChildren}
             </label>
             {dateVisible && Boolean(dateInMs) && (
-                <span className="tw-block tw-mt-[2px]" style={imageCaptionStyles} data-test-id="checkbox-date">
+                <span
+                    className="tw-block tw-mt-[2px]"
+                    style={getTextStyleCssProperties('imageCaption')}
+                    data-test-id="checkbox-date"
+                >
                     {dayjs(dateInMs).fromNow()}
                 </span>
             )}

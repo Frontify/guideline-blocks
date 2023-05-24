@@ -21,11 +21,10 @@ import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import { AnimationCurve, AnimationCurvePatch, Settings } from './types';
 import { gridClasses } from './constants';
 import { BlankSlate, Card, SortableCard } from './components';
-import { gutterSpacingStyleMap, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { gutterSpacingStyleMap } from '@frontify/guideline-blocks-shared';
 
 export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
     const [activeItem, setActiveItem] = useState<AnimationCurve | null>(null);
     const [canvasHeight, setCanvasHeight] = useState(0);
     const { content, hasCustomSpacing, spacingCustom, spacingChoice, columns, hasBorder } = blockSettings;
@@ -86,7 +85,6 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                             blockSettings={blockSettings}
                             onDelete={deleteAnimationCurve}
                             onUpdate={updateAnimationCurve}
-                            designTokens={designTokens}
                             setCanvasHeight={setCanvasHeight}
                         />
                     ))}
@@ -101,7 +99,6 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                                 blockSettings={blockSettings}
                                 onDelete={deleteAnimationCurve}
                                 onUpdate={updateAnimationCurve}
-                                designTokens={designTokens}
                                 setCanvasHeight={setCanvasHeight}
                             />
                         )}
@@ -114,7 +111,6 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                         hasBorder={hasBorder}
                         setLocalItems={setLocalItems}
                         setBlockSettings={setBlockSettings}
-                        designTokens={designTokens}
                         canvasHeight={canvasHeight}
                     />
                 )}

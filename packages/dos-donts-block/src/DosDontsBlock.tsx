@@ -3,6 +3,7 @@
 import {
     Asset,
     AssetChooserObjectType,
+    rgbStringToRgbObject,
     useAssetUpload,
     useBlockAssets,
     useBlockSettings,
@@ -21,12 +22,7 @@ import {
 } from '@dnd-kit/core';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import {
-    BlockInjectButton,
-    joinClassNames,
-    toColorObject,
-    useGuidelineDesignTokens,
-} from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
@@ -41,6 +37,7 @@ import {
     ModalButton,
     PatternDesign,
     PatternTheme,
+    THEME_PREFIX,
     generateRandomId,
 } from '@frontify/fondue';
 
@@ -52,7 +49,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const { designTokens } = useGuidelineDesignTokens();
     const [minRowHeight, setMinRowHeight] = useState(60);
     const [isUploadLoading, setIsUploadLoading] = useState(false);
     const [selectedType, setSelectedType] = useState<DoDontType | undefined>();
@@ -101,12 +97,14 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const sensors = useSensors(useSensor(PointerSensor));
     const { dontIconAsset, doIconAsset, itemImages } = blockAssets;
     const [localItems, setLocalItems] = useState<Item[]>(items);
-    const defaultDoColor = designTokens?.callout?.tip
-        ? toColorObject(designTokens.callout.tip)
-        : DO_COLOR_DEFAULT_VALUE;
-    const defaultDontColor = designTokens?.callout?.warning
-        ? toColorObject(designTokens.callout.warning)
-        : DONT_COLOR_DEFAULT_VALUE;
+
+    const themeStyle = getComputedStyle(document.body);
+    const defaultDoColor =
+        rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`)) ||
+        DO_COLOR_DEFAULT_VALUE;
+    const defaultDontColor =
+        rgbStringToRgbObject(themeStyle.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)) ||
+        DONT_COLOR_DEFAULT_VALUE;
     const doColor = hasCustomDoColor ? customDoColor : defaultDoColor;
     const dontColor = hasCustomDontColor ? customDontColor : defaultDontColor;
 
@@ -114,14 +112,14 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
      * Save the design tokens to the settings initially
      */
     useEffect(() => {
-        if (designTokens && !customDoColor && !customDontColor) {
+        if (!customDoColor && !customDontColor) {
             setBlockSettings({
                 doColor,
                 dontColor,
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [designTokens, customDoColor, customDontColor]);
+    }, [customDoColor, customDontColor]);
 
     /**
      * Create placeholders on mount if empty
@@ -293,7 +291,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusChoice,
         radiusValue,
         borderWidth,
-        designTokens,
     });
 
     const openAssetChooser = () => {

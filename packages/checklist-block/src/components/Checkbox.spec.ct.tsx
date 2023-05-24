@@ -14,7 +14,6 @@ const DefaultCheckbox = (props: Partial<CheckboxProps>) => {
         label: 'label',
         checked: false,
         onChange: cy.stub(),
-        designTokens: {},
     };
     const checkboxProps = { ...defaults, ...props };
 

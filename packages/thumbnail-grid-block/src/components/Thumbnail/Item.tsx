@@ -33,7 +33,6 @@ export const Item = ({
     openAssetChooser,
     setUploadedId,
     isLoading,
-    designTokens,
 }: ThumbnailItemProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const { id, title, description, altText } = item;
@@ -125,7 +124,6 @@ export const Item = ({
                             title={title}
                             isEditing={isEditing}
                             description={description}
-                            designTokens={designTokens}
                             updateItemWith={updateItemWith}
                         />
                     )}

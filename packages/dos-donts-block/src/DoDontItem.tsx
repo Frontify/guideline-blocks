@@ -9,6 +9,7 @@ import {
     IconImageStack20,
     IconTrashBin16,
     IconTrashBin20,
+    getTextStyleCssProperties,
 } from '@frontify/fondue';
 import {
     BlockItemWrapper,
@@ -65,7 +66,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             hasRadius,
             radiusChoice,
             radiusValue,
-            designTokens,
         },
         ref
     ) => {
@@ -132,10 +132,10 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         }, []);
 
         useEffect(() => {
-            if (designTokens && titleRef.current) {
+            if (titleRef.current) {
                 autosize.update(titleRef.current);
             }
-        }, [designTokens]);
+        }, []);
 
         useEffect(() => {
             if (doneAll) {
@@ -156,14 +156,13 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             () => (
                 <RichTextEditor
                     isEditing={editing}
-                    designTokens={designTokens}
                     value={body}
                     onBlur={onBodyTextChange}
                     plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                     placeholder="Add a description"
                 />
             ),
-            [body, designTokens, onBodyTextChange, editing, appBridge]
+            [body, onBodyTextChange, editing, appBridge]
         );
 
         return (
@@ -275,7 +274,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                     onBlur={() => onChangeItem(id, internalTitle, 'title')}
                                     style={
                                         {
-                                            ...designTokens?.heading3,
+                                            ...getTextStyleCssProperties('heading3'),
                                             marginBottom: 0,
                                             marginTop: 0,
                                             color: headingColor,

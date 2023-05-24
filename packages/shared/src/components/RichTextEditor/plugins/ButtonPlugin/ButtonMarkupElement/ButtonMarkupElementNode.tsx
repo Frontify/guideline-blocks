@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DesignTokens, useRichTextEditorContext } from '@frontify/fondue';
+import { useRichTextEditorContext } from '@frontify/fondue';
 import { HTMLPropsAs, PlateRenderElementProps, Value, useElementProps } from '@udecode/plate';
 import React, { CSSProperties, HTMLAttributeAnchorTarget, ReactElement, ReactNode, useState } from 'react';
 import { RichTextButtonStyle, TButtonElement } from '../types';
+import { getButtonStyleCssProperties } from '@frontify/fondue';
 
 export type ButtonRootProps = PlateRenderElementProps<Value, TButtonElement> & HTMLPropsAs<'a'>;
 
@@ -36,28 +37,11 @@ export const ButtonMarkupElementNode = (props: ButtonRootProps) => {
             attributes={attributes}
             href={href}
             target={target}
-            styles={context ? getButtonStyle(context.designTokens, buttonStyle) : undefined}
+            styles={context ? getButtonStyleCssProperties(buttonStyle) : undefined}
         >
             {children}
         </HoverableButtonLink>
     );
-};
-
-export const getButtonStyle = (designTokens: DesignTokens, buttonStyle: RichTextButtonStyle) => {
-    let styles;
-    const design = designTokens as DesignTokens;
-    switch (buttonStyle) {
-        case 'primary':
-            styles = design.buttonPrimary;
-            break;
-        case 'secondary':
-            styles = design.buttonSecondary;
-            break;
-        case 'tertiary':
-            styles = design.buttonTertiary;
-            break;
-    }
-    return { ...styles, cursor: 'pointer', display: 'inline-block', margin: '10px 0' };
 };
 
 type Props = {

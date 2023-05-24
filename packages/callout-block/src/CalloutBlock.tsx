@@ -5,25 +5,24 @@ import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     RichTextEditor,
+    getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     isDark,
     joinClassNames,
     radiusStyleMap,
     setAlpha,
-    useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
-import { useCalloutColors } from './utils/useCalloutColors';
+import { THEME_PREFIX } from '@frontify/fondue';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
 
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
@@ -31,15 +30,16 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     ]);
 
     const getAccentColor = (type: Type) => {
+        const style = getComputedStyle(document.body);
         switch (type) {
             case Type.Info:
-                return designTokens?.callout?.info;
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
             case Type.Note:
-                return designTokens?.callout?.note;
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-note-color`);
             case Type.Tip:
-                return designTokens?.callout?.tip;
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`);
             case Type.Warning:
-                return designTokens?.callout?.warning;
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`);
         }
     };
 
@@ -54,7 +54,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const defaultTextColor = isDark(color) ? 'white' : 'black';
     const textColor = blockSettings.appearance === Appearance.Light ? color : defaultTextColor;
-    const calloutDesignTokens = useCalloutColors(designTokens, textColor);
 
     const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center',
@@ -74,6 +73,21 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
+            <style>{`
+                :root { 
+                    ${THEME_PREFIX}heading1-color: ${textColor};
+                    ${THEME_PREFIX}heading2-color: ${textColor};
+                    ${THEME_PREFIX}heading3-color: ${textColor};
+                    ${THEME_PREFIX}heading4-color: ${textColor};
+                    ${THEME_PREFIX}custom1-color: ${textColor};
+                    ${THEME_PREFIX}custom2-color: ${textColor};
+                    ${THEME_PREFIX}custom3-color: ${textColor};
+                    ${THEME_PREFIX}body-color: ${textColor};
+                    ${THEME_PREFIX}quote-color: ${textColor};
+                    ${THEME_PREFIX}link-color: ${textColor};
+                    ${THEME_PREFIX}link-text-decoration: underline;
+                }
+            `}</style>
             <div
                 data-test-id="callout-wrapper"
                 className={textDivClassNames}
@@ -93,11 +107,11 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                 )}
                 <RichTextEditor
                     id={appBridge.getBlockId().toString()}
-                    designTokens={calloutDesignTokens}
                     isEditing={isEditing}
                     onBlur={onTextChange}
                     placeholder="Type your text here"
                     value={blockSettings.textValue}
+                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                 />
             </div>
         </div>

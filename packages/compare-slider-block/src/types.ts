@@ -2,7 +2,7 @@
 
 import { Asset } from '@frontify/app-bridge';
 import { Color } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, DesignTokenName, Radius, TokenValues } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, ReactNode } from 'react';
 
 export const FIRST_ASSET_ID = 'firstAsset';
@@ -130,7 +130,6 @@ export enum Handle {
 export type LabelProps = {
     isEditing: boolean;
     blockId: string;
-    designTokens: Partial<Record<DesignTokenName, TokenValues>>;
     value: string;
     onBlur: (newValue: string) => void;
 };

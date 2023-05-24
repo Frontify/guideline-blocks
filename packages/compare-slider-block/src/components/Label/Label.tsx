@@ -4,7 +4,7 @@ import { RichTextEditor, hasRichTextValue } from '@frontify/guideline-blocks-sha
 import { labelPlugins } from '../../helpers';
 import { LabelProps } from '../../types';
 
-export const Label = ({ designTokens, onBlur, value, isEditing, blockId }: LabelProps) => {
+export const Label = ({ onBlur, value, isEditing, blockId }: LabelProps) => {
     const isEditorEmpty = !hasRichTextValue(value);
 
     return isEditorEmpty && !isEditing ? (
@@ -16,7 +16,6 @@ export const Label = ({ designTokens, onBlur, value, isEditing, blockId }: Label
         >
             <RichTextEditor
                 id={`${blockId}-title`}
-                designTokens={designTokens}
                 isEditing={isEditing}
                 plugins={labelPlugins}
                 onBlur={onBlur}

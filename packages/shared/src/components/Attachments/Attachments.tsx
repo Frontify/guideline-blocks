@@ -37,7 +37,6 @@ export const Attachments = ({
     onUpload,
     onSorted,
     appBridge,
-    designTokens,
 }: AttachmentsProps) => {
     const [internalItems, setInternalItems] = useState<Asset[]>(items);
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
@@ -172,7 +171,6 @@ export const Attachments = ({
                                                         <SortableAttachmentItem
                                                             isEditing={isEditing}
                                                             isLoading={assetIdsLoading.includes(item.id)}
-                                                            designTokens={designTokens}
                                                             key={item.id}
                                                             item={item}
                                                             onDelete={() => onDelete(item)}
@@ -190,7 +188,6 @@ export const Attachments = ({
                                                         isOverlay={true}
                                                         isEditing={isEditing}
                                                         key={draggedAssetId}
-                                                        designTokens={designTokens}
                                                         item={draggedItem}
                                                         isDragging={true}
                                                         onDelete={() => onDelete(draggedItem)}

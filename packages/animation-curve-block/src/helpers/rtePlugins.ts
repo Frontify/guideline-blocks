@@ -14,16 +14,25 @@ import {
     TextStylePlugin,
     UnderlinePlugin,
 } from '@frontify/fondue';
+import { TextStylePluginsWithoutImage, TextStylesWithoutImage } from '@frontify/guideline-blocks-shared';
 
 export const getTitlePlugin = () => {
     return new PluginComposer()
-        .setPlugin([new SoftBreakPlugin(), new TextStylePlugin()])
+        .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])
         .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
         .setPlugin([
-            new AlignLeftPlugin(),
-            new AlignCenterPlugin(),
-            new AlignRightPlugin(),
-            new AlignJustifyPlugin(),
+            new AlignLeftPlugin({
+                validTypes: TextStylesWithoutImage,
+            }),
+            new AlignCenterPlugin({
+                validTypes: TextStylesWithoutImage,
+            }),
+            new AlignRightPlugin({
+                validTypes: TextStylesWithoutImage,
+            }),
+            new AlignJustifyPlugin({
+                validTypes: TextStylesWithoutImage,
+            }),
             new ResetFormattingPlugin(),
         ]);
 };

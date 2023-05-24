@@ -4,15 +4,14 @@ import React, { useEffect, useState } from 'react';
 import { serializeRawToHtmlAsync } from '@frontify/fondue';
 import { SerializedTextProps } from './types';
 
-export const SerializedText = ({ value = '', designTokens, gap, columns, show = true }: SerializedTextProps) => {
+export const SerializedText = ({ value = '', gap, columns, show = true }: SerializedTextProps) => {
     const [html, setHtml] = useState<string | null>(null);
-
     useEffect(() => {
         (async () => {
-            setHtml(await serializeRawToHtmlAsync(value, designTokens, columns, gap));
+            setHtml(await serializeRawToHtmlAsync(value, columns, gap));
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [value, designTokens, columns, gap]);
+    }, [value, columns, gap]);
 
     if (!show || html === '<br />') {
         return null;

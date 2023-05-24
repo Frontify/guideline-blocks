@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DesignTokens } from '@frontify/fondue';
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, GutterSpacing, Radius } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
@@ -62,7 +61,6 @@ export type ThumbnailItemProps = {
     openAssetChooser: (id?: string) => void;
     setUploadedId: (id: string) => void;
     isLoading: boolean;
-    designTokens: DesignTokens;
 };
 
 export enum CaptionPosition {

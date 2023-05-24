@@ -11,33 +11,25 @@ import {
     ResetFormattingPlugin,
     StrikethroughPlugin,
     TextStylePlugin,
-    TextStyles,
     UnderlinePlugin,
 } from '@frontify/fondue';
+import { AllTextStylePlugins, AllTextStyles } from '@frontify/guideline-blocks-shared';
 
-const textStylePlugins = [
-    new TextStylePlugin({
-        textStyles: [
-            TextStyles.ELEMENT_IMAGE_TITLE,
-            TextStyles.ELEMENT_IMAGE_CAPTION,
-            TextStyles.ELEMENT_HEADING1,
-            TextStyles.ELEMENT_HEADING2,
-            TextStyles.ELEMENT_HEADING3,
-            TextStyles.ELEMENT_HEADING4,
-            TextStyles.ELEMENT_CUSTOM1,
-            TextStyles.ELEMENT_CUSTOM2,
-            TextStyles.ELEMENT_CUSTOM3,
-            TextStyles.ELEMENT_QUOTE,
-            TextStyles.ELEMENT_PARAGRAPH,
-        ],
-    }),
-];
+const textStylePlugins = [new TextStylePlugin({ textStyles: AllTextStylePlugins })];
 
 const alignmentPlugins = [
-    new AlignLeftPlugin(),
-    new AlignRightPlugin(),
-    new AlignCenterPlugin(),
-    new AlignJustifyPlugin(),
+    new AlignLeftPlugin({
+        validTypes: AllTextStyles,
+    }),
+    new AlignRightPlugin({
+        validTypes: AllTextStyles,
+    }),
+    new AlignCenterPlugin({
+        validTypes: AllTextStyles,
+    }),
+    new AlignJustifyPlugin({
+        validTypes: AllTextStyles,
+    }),
 ];
 const markStylesPlugins = [new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()];
 
