@@ -26,7 +26,7 @@ export const RichTextEditors = ({ isEditing, updateItemWith, id, title, descript
                     value={title ?? convertToRteValue(TextStyles.heading3)}
                     placeholder="Add a title"
                     plugins={titlePlugins}
-                    updateValueOnChange
+                    updateValueOnChange={!id} // only used for placeholder items
                 />
             </div>
         ),
@@ -41,7 +41,7 @@ export const RichTextEditors = ({ isEditing, updateItemWith, id, title, descript
                 plugins={captionPlugins}
                 onBlur={(value) => updateItemWith('description', value, id)}
                 placeholder="Add a description"
-                updateValueOnChange
+                updateValueOnChange={!id}
             />
         ),
         [id, description, isEditing, updateItemWith]
