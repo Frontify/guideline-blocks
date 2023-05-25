@@ -164,7 +164,6 @@ export type CardTextProps = {
     hasBorder: boolean;
     updateValueOnChange: boolean;
     isEditing: boolean;
-    textShown: boolean;
     setTitle: (title: string) => void;
     setDescription: (description: string) => void;
 };

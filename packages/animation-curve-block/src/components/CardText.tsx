@@ -20,7 +20,6 @@ export const CardText = ({
     hasBorder,
     updateValueOnChange,
     isEditing,
-    textShown,
     setTitle,
     setDescription,
 }: CardTextProps) => {
@@ -51,13 +50,9 @@ export const CardText = ({
     }, [description, isEditing, updateValueOnChange, setDescription, appBridge]);
 
     return (
-        <>
-            {textShown ? (
-                <div className={joinClassNames([hasBorder && 'tw-px-4', 'tw-pt-4 tw-flex-1'])}>
-                    {memoTitleRte}
-                    <div>{memoDescriptionRte}</div>
-                </div>
-            ) : null}
-        </>
+        <div className={joinClassNames([hasBorder && 'tw-px-4', 'tw-pt-4 tw-flex-1'])}>
+            {memoTitleRte}
+            <div>{memoDescriptionRte}</div>
+        </div>
     );
 };
