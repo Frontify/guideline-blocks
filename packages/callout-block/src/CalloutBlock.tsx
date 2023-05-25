@@ -75,8 +75,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
 
-    //document.documentElement.style.setProperty(`${THEME_PREFIX}heading1-color`, textColor);
-
     return (
         <>
             <style type="text/css">{`
