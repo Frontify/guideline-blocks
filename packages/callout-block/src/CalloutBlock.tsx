@@ -24,6 +24,11 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
 
+    if (blockSettings.appearance !== Appearance.Strong && blockSettings.appearance !== Appearance.Light) {
+        // workaround as the appearance could be hubAppearance
+        setBlockSettings({ appearance: Appearance.Light });
+    }
+
     const containerClass = `callout-block-${appBridge.getBlockId().toString()}`;
 
     const containerDivClassNames = joinClassNames([
