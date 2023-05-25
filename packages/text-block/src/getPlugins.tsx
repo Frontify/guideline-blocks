@@ -21,21 +21,10 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { AllTextStylePlugins, ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
+import { ButtonPlugin, LinkPlugin, TextStylePluginsWithoutImage } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 
-const VALID_ALIGN_TYPES = [
-    'heading1',
-    'heading2',
-    'heading3',
-    'heading4',
-    'custom1',
-    'custom2',
-    'custom3',
-    'imageTitle',
-    'imageCaption',
-    'quote',
-];
+const VALID_ALIGN_TYPES = ['heading1', 'heading2', 'heading3', 'heading4', 'custom1', 'custom2', 'custom3', 'quote'];
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
     const plugins = new PluginComposer();
@@ -43,7 +32,7 @@ export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CS
         new SoftBreakPlugin(),
         new ParagraphPlugin(),
         new TextStylePlugin({
-            textStyles: AllTextStylePlugins,
+            textStyles: TextStylePluginsWithoutImage,
         }),
     ]);
     plugins.setPlugin([
