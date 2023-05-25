@@ -5,6 +5,7 @@ import React from 'react';
 import { RichTextEditor as FondueRichTextEditor } from '@frontify/fondue';
 import { RichTextEditorProps } from './types';
 import { SerializedText } from './SerializedText';
+import { convertToRteValue } from '../../helpers';
 
 export const RichTextEditor = ({
     id = 'rte',
@@ -23,7 +24,7 @@ export const RichTextEditor = ({
         return (
             <FondueRichTextEditor
                 id={id}
-                value={value}
+                value={value || convertToRteValue()}
                 border={false}
                 placeholder={placeholder}
                 onBlur={saveText}
