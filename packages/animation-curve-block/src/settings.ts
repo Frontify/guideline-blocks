@@ -91,7 +91,7 @@ export const settings = defineSettings({
             id: END_POINTS_ID,
             type: 'switch',
             defaultValue: true,
-            label: 'End Points',
+            label: 'End points',
             on: [
                 {
                     id: END_POINTS_COLOR_ID,
