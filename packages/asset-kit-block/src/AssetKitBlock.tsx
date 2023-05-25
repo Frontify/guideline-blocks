@@ -7,6 +7,7 @@ import {
     useBulkDownload,
     useEditorState,
 } from '@frontify/app-bridge';
+import { getButtonStyleCssProperties } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { BlockStyles, joinClassNames } from '@frontify/guideline-blocks-shared';
@@ -23,8 +24,16 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
-    const { title, description, hasBorder_blocks, hasBackgroundBlocks, downloadUrlBlock, downloadExpiration } =
-        blockSettings;
+    const {
+        title,
+        description,
+        hasBorder_blocks,
+        hasBackgroundBlocks,
+        downloadUrlBlock,
+        downloadExpiration,
+        showThumbnails,
+        showCount,
+    } = blockSettings;
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
 
@@ -117,6 +126,8 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 updateAssetIdsFromKey={updateAssetIdsFromKey}
                 saveDownloadUrl={saveDownloadUrl}
                 isEditing={isEditing}
+                showThumbnails={showThumbnails}
+                showCount={showCount}
             />
 
             {isEditing && (

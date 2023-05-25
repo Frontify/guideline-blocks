@@ -28,12 +28,16 @@ export type Settings = {
     title?: string;
     downloadExpiration?: number;
     downloadUrlBlock: string;
+    showThumbnails?: boolean;
+    showCount?: boolean;
 };
 
 export type AssetGridProps = {
     currentAssets: Asset[];
     appBridge: AppBridgeBlock;
     isEditing: boolean;
+    showThumbnails?: boolean;
+    showCount?: boolean;
     deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     updateAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     saveDownloadUrl: (downloadUrlBlock: string) => void;

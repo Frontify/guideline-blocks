@@ -18,6 +18,20 @@ export const BORDER_COLOR_DEFAULT_VALUE: Color = {
 };
 
 export const settings = defineSettings({
+    layout: [
+        {
+            id: 'showThumbnails',
+            type: 'switch',
+            label: 'Thumbnails',
+            defaultValue: true,
+        },
+        {
+            id: 'showCount',
+            type: 'switch',
+            label: 'Asset count',
+            defaultValue: true,
+        },
+    ],
     style: [
         {
             id: 'blockSection',

@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
-import { AssetKitBlock } from './AssetKitBlock';
 import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { ASSET_SETTINGS_ID } from './settings';
 import { BorderStyle } from '@frontify/guideline-blocks-shared';
+import { mount } from 'cypress/react18';
+import { AssetKitBlock } from './AssetKitBlock';
+import { ASSET_SETTINGS_ID } from './settings';
 
 const BLOCK_SELECTOR = '[data-test-id="asset-kit-block"]';
 const BLOCK_TITLE = '[data-test-id="block-title"]';
