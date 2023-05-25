@@ -24,8 +24,11 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
 
+    const containerClass = `callout-block-${appBridge.getBlockId().toString()}`;
+
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
+        containerClass,
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
@@ -72,10 +75,12 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
 
+    //document.documentElement.style.setProperty(`${THEME_PREFIX}heading1-color`, textColor);
+
     return (
-        <div data-test-id="callout-block" className={containerDivClassNames}>
-            <style>{`
-                :root { 
+        <>
+            <style type="text/css">{`
+                .${containerClass} { 
                     ${THEME_PREFIX}heading1-color: ${textColor};
                     ${THEME_PREFIX}heading2-color: ${textColor};
                     ${THEME_PREFIX}heading3-color: ${textColor};
@@ -90,31 +95,37 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                 }
             `}</style>
             <div
-                data-test-id="callout-wrapper"
-                className={textDivClassNames}
-                style={{
-                    backgroundColor,
-                    ...customPaddingStyle,
-                    ...customCornerRadiusStyle,
-                }}
+                data-test-id="callout-block"
+                className={`${containerDivClassNames}`}
+                style={{ color: `var${THEME_PREFIX}heading1-color` }}
             >
-                {showIcon && (
-                    <CalloutIcon
-                        iconUrl={iconUrl}
-                        isActive={hasRichTextValue(blockSettings.textValue)}
-                        iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
-                        color={textColor}
+                <div
+                    data-test-id="callout-wrapper"
+                    className={textDivClassNames}
+                    style={{
+                        backgroundColor,
+                        ...customPaddingStyle,
+                        ...customCornerRadiusStyle,
+                    }}
+                >
+                    {showIcon && (
+                        <CalloutIcon
+                            iconUrl={iconUrl}
+                            isActive={hasRichTextValue(blockSettings.textValue)}
+                            iconType={blockSettings.iconSwitch ? Icon.Custom : blockSettings.iconType}
+                            color={textColor}
+                        />
+                    )}
+                    <RichTextEditor
+                        id={appBridge.getBlockId().toString()}
+                        isEditing={isEditing}
+                        onBlur={onTextChange}
+                        placeholder="Type your text here"
+                        value={blockSettings.textValue}
+                        plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                     />
-                )}
-                <RichTextEditor
-                    id={appBridge.getBlockId().toString()}
-                    isEditing={isEditing}
-                    onBlur={onTextChange}
-                    placeholder="Type your text here"
-                    value={blockSettings.textValue}
-                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
-                />
+                </div>
             </div>
-        </div>
+        </>
     );
 };
