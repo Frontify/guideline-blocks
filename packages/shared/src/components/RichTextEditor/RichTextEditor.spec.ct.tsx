@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { DocumentApiDummy, getAppBridgeBlockStub } from '@frontify/app-bridge';
-import { PluginComposer, TextStyles } from '@frontify/fondue';
+import { PluginComposer } from '@frontify/fondue';
 import { mount } from 'cypress/react18';
 import { SinonStub } from 'cypress/types/sinon';
 import React from 'react';
-import { ButtonPlugin, LinkPlugin, RichTextEditor } from '.';
+import { ButtonPlugin, LinkPlugin, RichTextEditor, TextStyles } from '.';
 import { convertToRteValue } from '../../helpers';
 
 const RteHtmlSelector = '[data-test-id="rte-content-html"]';

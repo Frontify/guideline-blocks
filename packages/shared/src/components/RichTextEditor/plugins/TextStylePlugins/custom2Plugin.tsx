@@ -1,31 +1,33 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
-import React from 'react';
+import { createPluginFactory } from '@udecode/plate';
+import React, { CSSProperties } from 'react';
 import {
     MarkupElement,
     Plugin,
     PluginProps,
-    TextStyles,
+    TextStyleRenderElementProps,
     alignmentClassnames,
     getColumnBreakClasses,
-    getTextStyleCssProperties,
     merge,
 } from '@frontify/fondue';
+import { BlockStyles, TextStyles } from '../styles';
 
 const ID = 'textstyle-custom2-plugin';
 
 export class Custom2Plugin extends Plugin {
-    constructor(props?: PluginProps) {
+    public styles: CSSProperties = {};
+    constructor({ styles = BlockStyles.custom2, ...props }: PluginProps = {}) {
         super(TextStyles.custom2, {
             label: 'Custom 2',
             markupElement: new Custom2MarkupElement(),
             ...props,
         });
+        this.styles = styles;
     }
 
     plugins() {
-        return [createCustom2Plugin()];
+        return [createCustom2Plugin(this.styles)];
     }
 }
 
@@ -35,25 +37,26 @@ class Custom2MarkupElement extends MarkupElement {
     }
 }
 
-const Custom2MarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
+const Custom2MarkupElementNode = ({ element, attributes, children, styles }: TextStyleRenderElementProps) => {
     const align = element.align as string;
-
     return (
         <p
             {...attributes}
             className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
-            style={getTextStyleCssProperties(element.type)}
+            style={styles}
         >
             {children}
         </p>
     );
 };
 
-const createCustom2Plugin = createPluginFactory({
-    key: TextStyles.custom2,
-    isElement: true,
-    component: Custom2MarkupElementNode,
-    deserializeHtml: {
-        rules: [{ validClassName: 'custom2' }],
-    },
-});
+const createCustom2Plugin = (styles: CSSProperties) =>
+    createPluginFactory({
+        key: TextStyles.custom2,
+        isElement: true,
+        deserializeHtml: {
+            rules: [{ validClassName: TextStyles.custom2 }],
+        },
+    })({
+        component: (props: TextStyleRenderElementProps) => <Custom2MarkupElementNode {...props} styles={styles} />,
+    });

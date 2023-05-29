@@ -1,31 +1,32 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import {
     MarkupElement,
     Plugin,
     PluginProps,
-    TextStyles,
+    TextStyleRenderElementProps,
     alignmentClassnames,
     getColumnBreakClasses,
-    getTextStyleCssProperties,
     merge,
 } from '@frontify/fondue';
+import { BlockStyles, TextStyles } from '../styles';
 
 const ID = 'textstyle-heading1-plugin';
-
 export class Heading1Plugin extends Plugin {
-    constructor(props?: PluginProps) {
+    public styles: CSSProperties = {};
+    constructor({ styles = BlockStyles.heading1, ...props }: PluginProps = {}) {
         super(TextStyles.heading1, {
-            markupElement: new Heading1MarkupElement(),
             label: 'Heading 1',
+            markupElement: new Heading1MarkupElement(),
             ...props,
         });
+        this.styles = styles;
     }
 
     plugins() {
-        return [createHeading1Plugin()];
+        return [createHeading1Plugin(this.styles)];
     }
 }
 
@@ -35,24 +36,27 @@ class Heading1MarkupElement extends MarkupElement {
     }
 }
 
-const Heading1MarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
+const Heading1MarkupElementNode = ({ element, attributes, children, styles }: TextStyleRenderElementProps) => {
     const align = element.align as string;
     return (
         <h1
             {...attributes}
             className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
-            style={getTextStyleCssProperties(element.type)}
+            style={styles}
         >
             {children}
         </h1>
     );
 };
 
-const createHeading1Plugin = createPluginFactory({
-    key: TextStyles.heading1,
-    isElement: true,
-    component: Heading1MarkupElementNode,
-    deserializeHtml: {
-        rules: [{ validNodeName: ['h1', 'H1'] }],
-    },
-});
+const createHeading1Plugin = (styles: CSSProperties) =>
+    createPluginFactory({
+        key: TextStyles.heading1,
+        isElement: true,
+        component: Heading1MarkupElementNode,
+        deserializeHtml: {
+            rules: [{ validNodeName: ['h1', 'H1'] }],
+        },
+    })({
+        component: (props: PlateRenderElementProps) => <Heading1MarkupElementNode {...props} styles={styles} />,
+    });

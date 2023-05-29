@@ -5,3 +5,4 @@ export * from './createButtonNode';
 export * from './triggerFloatingButton';
 export * from './triggerFloatingButtonEdit';
 export * from './triggerFloatingButtonInsert';
+export * from './styles';

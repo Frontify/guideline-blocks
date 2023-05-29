@@ -1,9 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { FormControl, getButtonStyleCssProperties } from '@frontify/fondue';
+import { FormControl } from '@frontify/fondue';
 import React, { CSSProperties, ReactElement, ReactNode, useState } from 'react';
 import { InsertModal } from '../../../../LinkPlugin/FloatingLink/InsertLinkModal/InsertModal';
 import { useInsertModal } from './useInsertModal';
+import { BlockStyles } from '../../../../styles';
 
 export const InsertButtonModal = () => {
     const modalProps = useInsertModal();
@@ -21,7 +22,7 @@ export const InsertButtonModal = () => {
                 >
                     <HoverableButton
                         id="primary"
-                        styles={getButtonStyleCssProperties('primary')}
+                        styles={BlockStyles.buttonPrimary}
                         isActive={state.buttonStyle === 'primary'}
                         onClick={() => onButtonStyleChange('primary')}
                     >
@@ -30,7 +31,7 @@ export const InsertButtonModal = () => {
 
                     <HoverableButton
                         id="secondary"
-                        styles={getButtonStyleCssProperties('secondary')}
+                        styles={BlockStyles.buttonSecondary}
                         isActive={state.buttonStyle === 'secondary'}
                         onClick={() => onButtonStyleChange('secondary')}
                     >
@@ -39,7 +40,7 @@ export const InsertButtonModal = () => {
 
                     <HoverableButton
                         id="tertiary"
-                        styles={getButtonStyleCssProperties('tertiary')}
+                        styles={BlockStyles.buttonTertiary}
                         isActive={state.buttonStyle === 'tertiary'}
                         onClick={() => onButtonStyleChange('tertiary')}
                     >

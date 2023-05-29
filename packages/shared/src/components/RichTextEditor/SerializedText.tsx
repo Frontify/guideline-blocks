@@ -3,12 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import { serializeRawToHtmlAsync } from '@frontify/fondue';
 import { SerializedTextProps } from './types';
+import { BlockStyles } from './plugins';
 
 export const SerializedText = ({ value = '', gap, columns, show = true }: SerializedTextProps) => {
     const [html, setHtml] = useState<string | null>(null);
     useEffect(() => {
         (async () => {
-            setHtml(await serializeRawToHtmlAsync(value, columns, gap));
+            setHtml(await serializeRawToHtmlAsync(value, columns, gap, BlockStyles));
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value, columns, gap]);

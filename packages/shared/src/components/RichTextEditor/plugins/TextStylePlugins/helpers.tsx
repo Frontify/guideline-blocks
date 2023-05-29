@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ParagraphPlugin, TextStyles } from '@frontify/fondue';
 import {
     Custom1Plugin,
     Custom2Plugin,
@@ -11,8 +10,10 @@ import {
     Heading4Plugin,
     ImageCaptionPlugin,
     ImageTitlePlugin,
+    ParagraphPlugin,
     QuotePlugin,
 } from '.';
+import { TextStyles } from '../styles';
 
 export const TextStylePluginsWithoutImage = [
     new Heading1Plugin(),
@@ -35,7 +36,7 @@ export const TextStylesWithoutImage = [
     TextStyles.custom2,
     TextStyles.custom3,
     TextStyles.quote,
-    'p',
+    TextStyles.p,
 ];
 
 export const AllTextStylePlugins = [...TextStylePluginsWithoutImage, new ImageCaptionPlugin(), new ImageTitlePlugin()];

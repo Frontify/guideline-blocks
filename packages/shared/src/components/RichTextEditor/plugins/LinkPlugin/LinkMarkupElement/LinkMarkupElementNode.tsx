@@ -3,7 +3,8 @@
 import { HTMLPropsAs, LinkRootProps, useElementProps } from '@udecode/plate';
 import React, { MouseEvent } from 'react';
 import { TLinkElement } from '../types';
-import { getTextStyleCssProperties } from '@frontify/fondue';
+import { BlockStyles } from '../../styles';
+import { LINK_PLUGIN } from '../id';
 
 const useLink = (props: LinkRootProps): HTMLPropsAs<'a'> => {
     const _props = useElementProps<TLinkElement, 'a'>({
@@ -28,7 +29,7 @@ export const LinkMarkupElementNode = (props: LinkRootProps) => {
     const { attributes, children } = props;
 
     return (
-        <a {...attributes} href={htmlProps.href} target={htmlProps.target} style={getTextStyleCssProperties('link')}>
+        <a {...attributes} href={htmlProps.href} target={htmlProps.target} style={BlockStyles[LINK_PLUGIN]}>
             {children}
         </a>
     );
