@@ -178,6 +178,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 onNameChange={saveTitle}
                 onDescriptionChange={(value) => value !== description && setBlockSettings({ description: value })}
                 isEditing={isEditing}
+                appBridge={appBridge}
             />
         </div>
     );

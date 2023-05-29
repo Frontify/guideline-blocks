@@ -37,6 +37,7 @@ export const Item = ({
     openAssetChooser,
     setUploadedId,
     isLoading,
+    appBridge,
 }: ThumbnailItemProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const { id, title, description, altText } = item;
@@ -190,6 +191,7 @@ export const Item = ({
                             isEditing={isEditing}
                             description={description}
                             updateItemWith={updateItemWith}
+                            appBridge={appBridge}
                         />
                     )}
                 </div>

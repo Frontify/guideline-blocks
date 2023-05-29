@@ -2,7 +2,8 @@
 
 import { TextStyles } from '@frontify/fondue';
 import { RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-shared';
-import { captionPlugins, titlePlugins } from './helpers';
+import { getCaptionPlugins, titlePlugins } from './helpers';
+import { AppBridgeBlock } from '@frontify/app-bridge';
 
 type ImageCaptionProps = {
     name?: string;
@@ -11,6 +12,7 @@ type ImageCaptionProps = {
     description?: string;
     onNameChange: (value: string) => void;
     onDescriptionChange: (value: string) => void;
+    appBridge: AppBridgeBlock;
 };
 
 export const ImageCaption = ({
@@ -20,6 +22,7 @@ export const ImageCaption = ({
     onNameChange,
     blockId,
     onDescriptionChange,
+    appBridge,
 }: ImageCaptionProps) => {
     return (
         <div className="tw-mt-3 tw-gap-1 tw-flex-1 tw-w-full" data-test-id="image-caption">
@@ -36,7 +39,7 @@ export const ImageCaption = ({
             <RichTextEditor
                 id={`${blockId}_description`}
                 isEditing={isEditing}
-                plugins={captionPlugins}
+                plugins={getCaptionPlugins(appBridge)}
                 onBlur={onDescriptionChange}
                 placeholder="Add a description here"
                 showSerializedText={hasRichTextValue(description)}
