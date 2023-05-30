@@ -44,3 +44,7 @@ export const blockStyle = (blockSetting: Settings): CSSProperties => {
         ...getRadiusStyles(radiusChoice_blocks, hasRadius_blocks, radiusValue_blocks),
     };
 };
+
+export const getSmallPreviewUrl = (url: string) => {
+    return url.replace('{width}', '218');
+};

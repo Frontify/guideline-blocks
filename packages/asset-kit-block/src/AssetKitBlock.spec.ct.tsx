@@ -68,6 +68,43 @@ describe('AssetKit Block', () => {
         cy.get(BLOCK_THUMBNAIL).should('have.length', 2);
     });
 
+    it('should display assets with small width', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width={width}' }],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_THUMBNAIL).should('have.attr', 'src', 'https://picsum.photos/width=218');
+    });
+
+    it('shoud not display thumbnails in view mode if showThumbnails is set to false', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                showThumbnails: false,
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_THUMBNAIL).should('not.exist');
+    });
+
+    it('should display thumbnails in edit mode if showThumbnails is set to false', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            editorState: true,
+            blockSettings: {
+                showThumbnails: false,
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_THUMBNAIL).should('have.length', 2);
+    });
+
     it('should display no padding on block if no border and no background is set', () => {
         const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
             blockSettings: {
