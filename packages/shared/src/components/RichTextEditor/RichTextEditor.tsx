@@ -32,5 +32,5 @@ export const RichTextEditor = ({
             />
         );
     }
-    return <SerializedText value={value} columns={columns} gap={gap} show={showSerializedText} />;
+    return <SerializedText value={value} columns={columns} gap={gap} show={showSerializedText} plugins={plugins} />;
 };

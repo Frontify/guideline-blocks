@@ -20,4 +20,5 @@ export type SerializedTextProps = {
     show?: boolean;
     columns?: number;
     gap?: string;
+    plugins?: PluginComposer;
 };
