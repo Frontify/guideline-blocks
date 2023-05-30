@@ -1,10 +1,41 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import {
+    AlignCenterPlugin,
+    AlignJustifyPlugin,
+    AlignLeftPlugin,
+    AlignRightPlugin,
+    BoldPlugin,
+    CheckboxListPlugin,
+    CodePlugin,
+    Custom1Plugin,
+    Custom2Plugin,
+    Custom3Plugin,
+    Heading1Plugin,
+    Heading2Plugin,
+    Heading3Plugin,
+    Heading4Plugin,
+    ItalicPlugin,
+    OrderedListPlugin,
+    ParagraphPlugin,
+    PluginComposer,
+    QuotePlugin,
+    ResetFormattingPlugin,
+    SoftBreakPlugin,
+    StrikethroughPlugin,
+    TextStylePlugin,
+    UnderlinePlugin,
+    UnorderedListPlugin,
+} from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    ButtonPlugin,
+    LinkPlugin,
     RichTextEditor,
+    THEME_PREFIX,
+    TextStylesWithoutImage,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     isDark,
@@ -17,7 +48,6 @@ import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
-import { THEME_PREFIX } from '@frontify/guideline-blocks-shared';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
@@ -72,23 +102,69 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
 
+    console.log({ textColor });
+
+    const RICH_TEXT_PLUGINS = new PluginComposer();
+    RICH_TEXT_PLUGINS.setPlugin(new SoftBreakPlugin(), new ParagraphPlugin())
+        .setPlugin(
+            new TextStylePlugin({
+                textStyles: [
+                    new Heading1Plugin({
+                        styles: { color: textColor },
+                    }),
+                    new Heading2Plugin({
+                        styles: { color: textColor },
+                    }),
+                    new Heading3Plugin({
+                        styles: { color: textColor },
+                    }),
+                    new Heading4Plugin({
+                        styles: { color: textColor },
+                    }),
+                    new Custom1Plugin({
+                        styles: { color: textColor },
+                    }),
+                    new Custom2Plugin({
+                        styles: { color: textColor },
+                    }),
+                    new Custom3Plugin({
+                        styles: { color: textColor },
+                    }),
+                    new ParagraphPlugin({ styles: { color: textColor } }),
+                    new QuotePlugin({ styles: { color: textColor } }),
+                ],
+            })
+        )
+        .setPlugin(
+            [
+                new BoldPlugin(),
+                new ItalicPlugin(),
+                new UnderlinePlugin(),
+                new StrikethroughPlugin(),
+                new LinkPlugin({ appBridge }),
+                new ButtonPlugin({ appBridge }),
+                new CodePlugin(),
+            ],
+            [
+                new AlignLeftPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignCenterPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignRightPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignJustifyPlugin({ validTypes: TextStylesWithoutImage }),
+                new UnorderedListPlugin(),
+                new CheckboxListPlugin(),
+                new OrderedListPlugin(),
+                new ResetFormattingPlugin(),
+            ]
+        );
+
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
-            <style>{`
-                :root { 
-                    ${THEME_PREFIX}heading1-color: ${textColor};
-                    ${THEME_PREFIX}heading2-color: ${textColor};
-                    ${THEME_PREFIX}heading3-color: ${textColor};
-                    ${THEME_PREFIX}heading4-color: ${textColor};
-                    ${THEME_PREFIX}custom1-color: ${textColor};
-                    ${THEME_PREFIX}custom2-color: ${textColor};
-                    ${THEME_PREFIX}custom3-color: ${textColor};
-                    ${THEME_PREFIX}body-color: ${textColor};
-                    ${THEME_PREFIX}quote-color: ${textColor};
+            {/* <style>{`
+                :root {
                     ${THEME_PREFIX}link-color: ${textColor};
                     ${THEME_PREFIX}link-text-decoration: underline;
                 }
-            `}</style>
+            `}</style> */}
             <div
                 data-test-id="callout-wrapper"
                 className={textDivClassNames}
