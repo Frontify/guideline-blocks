@@ -5,8 +5,8 @@ importers:
   .:
     dependencies:
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       glob:
         specifier: 10.0.0
         version: 10.0.0
@@ -78,8 +78,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -151,8 +151,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -218,8 +218,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -288,8 +288,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -358,8 +358,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -425,8 +425,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -492,8 +492,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -592,8 +592,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -671,8 +671,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.0
         version: 3.2.0(ts-node@10.9.1)
@@ -747,8 +747,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -814,8 +814,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -890,8 +890,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -951,8 +951,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1027,8 +1027,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1100,8 +1100,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -1167,8 +1167,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1234,8 +1234,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -1307,8 +1307,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -1380,8 +1380,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1450,8 +1450,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1520,8 +1520,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1596,8 +1596,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.26.8
         version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
@@ -1616,9 +1616,6 @@ importers:
       '@uiw/react-codemirror':
         specifier: 4.19.9
         version: 4.19.9(@babel/runtime@7.20.6)(@codemirror/autocomplete@6.3.4)(@codemirror/language@6.3.1)(@codemirror/lint@6.1.0)(@codemirror/search@6.2.3)(@codemirror/state@6.1.4)(@codemirror/theme-one-dark@6.1.0)(@codemirror/view@6.5.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
-      escape-html:
-        specifier: 1.0.3
-        version: 1.0.3
       slate:
         specifier: 0.87.0
         version: 0.87.0
@@ -1638,9 +1635,6 @@ importers:
       '@testing-library/react':
         specifier: 14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/escape-html':
-        specifier: 1.0.2
-        version: 1.0.2
       '@types/node':
         specifier: 18.7.21
         version: 18.7.21
@@ -1714,8 +1708,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1781,8 +1775,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1851,8 +1845,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -1936,8 +1930,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.231
-        version: 12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.228
+        version: 12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
@@ -3804,8 +3798,8 @@ packages:
       - tailwindcss
       - ts-node
 
-  /@frontify/fondue@12.0.0-beta.231(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-HK2snF88d+5i4zy0jSam7kA/kLomV4euITA4laxgS3607Ty+lRTQ44U/SomopSgESIrzBLx4Y6RxiiN34iingw==}
+  /@frontify/fondue@12.0.0-beta.228(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-ElCAW3hwRI1K8GVGwkXOSk/wXwdVwepMJwMLMjUQ3sP1qLyA+PvMY+JhEwKmABP6Qnks7Mwrml87xcvJaRl6/g==}
     engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
     peerDependencies:
       '@udecode/plate': ^19
@@ -5527,10 +5521,6 @@ packages:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
     dependencies:
       '@types/ms': 0.7.31
-
-  /@types/escape-html@1.0.2:
-    resolution: {integrity: sha512-gaBLT8pdcexFztLSPRtriHeXY/Kn4907uOCZ4Q3lncFBkheAWOuNt53ypsF8szgxbEJ513UeBzcf4utN0EzEwA==}
-    dev: true
 
   /@types/form-data@0.0.33:
     resolution: {integrity: sha512-8BSvG1kGm83cyJITQMZSulnl6QV8jqAGreJsc5tPu1Jq0vTSOiY/k24Wx82JRpWwZSqrala6sd5rWi6aNXvqcw==}
