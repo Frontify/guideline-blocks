@@ -53,6 +53,30 @@ export const settings = defineSettings({
                 getBorderRadiusSettings({ id: 'thumbnails' }),
             ],
         },
+        {
+            id: 'textSection',
+            type: 'sectionHeading',
+            label: 'Text',
+            blocks: [
+                {
+                    id: 'assetCountColor',
+                    type: 'slider',
+                    label: 'Asset count color',
+                    info: 'This setting is defined in the text style and you can override it here.',
+                    defaultValue: 'inherit',
+                    choices: [
+                        {
+                            value: 'inherit',
+                            label: 'Inherit settings',
+                        },
+                        {
+                            value: 'override',
+                            label: 'Override',
+                        },
+                    ],
+                },
+            ],
+        },
     ],
     targets: [],
 });
