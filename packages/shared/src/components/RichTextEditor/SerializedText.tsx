@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { SerializedTextProps } from './types';
 import { BlockStyles } from './plugins';
-import { serializeRawToHtmlAsync } from './helper';
+import { serializeRawToHtmlAsync } from './serializer';
 
 export const SerializedText = ({ value = '', gap, columns, show = true, plugins }: SerializedTextProps) => {
     const [html, setHtml] = useState<string | null>(null);

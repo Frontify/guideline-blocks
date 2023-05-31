@@ -42,10 +42,9 @@ export const QuoteMarkupElementNode = ({ element, attributes, children, styles }
     return (
         <blockquote
             {...attributes}
-            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
-            style={styles}
+            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element), 'quote'])}
         >
-            {children}
+            <span style={styles}>{children}</span>
         </blockquote>
     );
 };

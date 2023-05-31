@@ -42,10 +42,9 @@ const Custom1MarkupElementNode = ({ element, attributes, children, styles }: Tex
     return (
         <p
             {...attributes}
-            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
-            style={styles}
+            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element), 'a-custom1'])}
         >
-            {children}
+            <span style={styles}>{children}</span>
         </p>
     );
 };

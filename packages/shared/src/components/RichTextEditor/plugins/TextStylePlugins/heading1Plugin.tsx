@@ -39,12 +39,8 @@ class Heading1MarkupElement extends MarkupElement {
 const Heading1MarkupElementNode = ({ element, attributes, children, styles }: TextStyleRenderElementProps) => {
     const align = element.align as string;
     return (
-        <h1
-            {...attributes}
-            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
-            style={styles}
-        >
-            {children}
+        <h1 {...attributes} className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}>
+            <span style={styles}>{children}</span>
         </h1>
     );
 };
