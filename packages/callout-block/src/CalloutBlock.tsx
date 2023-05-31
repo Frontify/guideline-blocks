@@ -79,8 +79,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
 
-    console.log(color);
-
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
             <div
