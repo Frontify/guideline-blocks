@@ -9,16 +9,8 @@ import {
     BoldPlugin,
     CheckboxListPlugin,
     CodePlugin,
-    Custom1Plugin,
-    Custom2Plugin,
-    Custom3Plugin,
-    Heading1Plugin,
-    Heading2Plugin,
-    Heading3Plugin,
-    Heading4Plugin,
     ItalicPlugin,
     OrderedListPlugin,
-    ParagraphPlugin,
     PluginComposer,
     QuotePlugin,
     ResetFormattingPlugin,
@@ -29,11 +21,24 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { BlockStyles, ButtonPlugin, LinkPlugin, TextStylesWithoutImage } from '@frontify/guideline-blocks-shared';
+import {
+    BlockStyles,
+    ButtonPlugin,
+    Custom1Plugin,
+    Custom2Plugin,
+    Custom3Plugin,
+    Heading1Plugin,
+    Heading2Plugin,
+    Heading3Plugin,
+    Heading4Plugin,
+    LinkPlugin,
+    ParagraphPlugin,
+    TextStylesWithoutImage,
+} from '@frontify/guideline-blocks-shared';
 
 export const getRtePlugins = (textColor: string, appBridge: AppBridgeBlock) => {
     const RICH_TEXT_PLUGINS = new PluginComposer();
-    RICH_TEXT_PLUGINS.setPlugin(new SoftBreakPlugin(), new ParagraphPlugin())
+    RICH_TEXT_PLUGINS.setPlugin(new SoftBreakPlugin())
         .setPlugin(
             new TextStylePlugin({
                 textStyles: [
