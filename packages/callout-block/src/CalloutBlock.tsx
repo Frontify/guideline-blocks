@@ -36,7 +36,6 @@ import {
     RichTextEditor,
     THEME_PREFIX,
     TextStylesWithoutImage,
-    getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     isDark,
     joinClassNames,
@@ -188,7 +187,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     onBlur={onTextChange}
                     placeholder="Type your text here"
                     value={blockSettings.textValue}
-                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                    plugins={RICH_TEXT_PLUGINS}
                 />
             </div>
         </div>
