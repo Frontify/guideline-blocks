@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { generateRandomString, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
@@ -24,8 +24,16 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
 
+    if (blockSettings.appearance !== Appearance.Strong && blockSettings.appearance !== Appearance.Light) {
+        // workaround as the appearance could be hubAppearance
+        setBlockSettings({ appearance: Appearance.Light });
+    }
+
+    const containerClass = `callout-block-${generateRandomString()}`;
+
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
+        containerClass,
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
@@ -75,7 +83,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
             <style>{`
-                :root { 
+                .${containerClass} { 
                     ${THEME_PREFIX}heading1-color: ${textColor};
                     ${THEME_PREFIX}heading2-color: ${textColor};
                     ${THEME_PREFIX}heading3-color: ${textColor};
@@ -87,6 +95,9 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     ${THEME_PREFIX}quote-color: ${textColor};
                     ${THEME_PREFIX}link-color: ${textColor};
                     ${THEME_PREFIX}link-text-decoration: underline;
+                }
+                .page-content section h1, .page-content section h2, .page-content section h3, .page-content section h4, .page-content section p, .page-content section blockquote, .page-content section a {
+                    margin: 0;
                 }
             `}</style>
             <div
