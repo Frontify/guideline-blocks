@@ -10,7 +10,7 @@ export const defaultNode = (node: TElement, children: string, styles: CSSPropert
     const defaultStyles = reactCssPropsToCss(styles);
 
     if (node.type === TextStyles.heading1) {
-        return `<h1 class="${defaultClassNames}">${getStyledChild(children, defaultStyles)}</h1>`;
+        return `<h1 class="${merge([defaultClassNames, 'a-h1'])}">${getStyledChild(children, defaultStyles)}</h1>`;
     }
     if (node.type === TextStyles.heading2) {
         return `<h2 class="${defaultClassNames}">${getStyledChild(children, defaultStyles)}</h2>`;
