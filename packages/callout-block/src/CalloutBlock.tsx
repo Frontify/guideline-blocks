@@ -31,10 +31,12 @@ import {
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    BlockStyles,
     ButtonPlugin,
     LinkPlugin,
     RichTextEditor,
     THEME_PREFIX,
+    TextStyles,
     TextStylesWithoutImage,
     hasRichTextValue,
     isDark,
@@ -107,28 +109,28 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
             new TextStylePlugin({
                 textStyles: [
                     new Heading1Plugin({
-                        styles: { color: textColor },
+                        styles: { ...BlockStyles[TextStyles.heading1], color: textColor },
                     }),
                     new Heading2Plugin({
-                        styles: { color: textColor },
+                        styles: { ...BlockStyles[TextStyles.heading2], color: textColor },
                     }),
                     new Heading3Plugin({
-                        styles: { color: textColor },
+                        styles: { ...BlockStyles[TextStyles.heading3], color: textColor },
                     }),
                     new Heading4Plugin({
-                        styles: { color: textColor },
+                        styles: { ...BlockStyles[TextStyles.heading4], color: textColor },
                     }),
                     new Custom1Plugin({
-                        styles: { color: textColor },
+                        styles: { ...BlockStyles[TextStyles.custom1], color: textColor },
                     }),
                     new Custom2Plugin({
-                        styles: { color: textColor },
+                        styles: { ...BlockStyles[TextStyles.custom2], color: textColor },
                     }),
                     new Custom3Plugin({
-                        styles: { color: textColor },
+                        styles: { ...BlockStyles[TextStyles.custom3], color: textColor },
                     }),
-                    new ParagraphPlugin({ styles: { color: textColor } }),
-                    new QuotePlugin({ styles: { color: textColor } }),
+                    new ParagraphPlugin({ styles: { ...BlockStyles[TextStyles.p], color: textColor } }),
+                    new QuotePlugin({ styles: { ...BlockStyles[TextStyles.quote], color: textColor } }),
                 ],
             })
         )
@@ -156,12 +158,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
-            <style>{`
-                :root {
-                    ${THEME_PREFIX}link-color: ${textColor};
-                    ${THEME_PREFIX}link-text-decoration: underline;
-                }
-            `}</style>
             <div
                 data-test-id="callout-wrapper"
                 className={textDivClassNames}
