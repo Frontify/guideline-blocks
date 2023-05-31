@@ -7,7 +7,6 @@ import {
     useBulkDownload,
     useEditorState,
 } from '@frontify/app-bridge';
-import { getButtonStyleCssProperties } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { BlockStyles, joinClassNames } from '@frontify/guideline-blocks-shared';
@@ -80,12 +79,15 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     return (
         <div
             data-test-id="asset-kit-block"
-            className={joinClassNames(['tw-w-full', (hasBorder_blocks || hasBackgroundBlocks) && 'tw-p-5 sm:tw-p-8'])}
+            className={joinClassNames([
+                'tw-w-full tw-space-y-8',
+                (hasBorder_blocks || hasBackgroundBlocks) && 'tw-p-5 sm:tw-p-8',
+            ])}
             style={{
                 ...blockStyle(blockSettings),
             }}
         >
-            <div className="tw-mb-8 sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
+            <div className="sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
                 <InformationSection
                     description={description ?? ''}
                     isEditing={isEditing}

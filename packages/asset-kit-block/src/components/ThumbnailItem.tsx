@@ -72,7 +72,7 @@ export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onRe
                 ) : (
                     <img
                         data-test-id="block-thumbnail-image"
-                        className="tw-object-scale-down tw-w-full tw-h-full"
+                        className="tw-object-cover tw-w-full tw-h-full"
                         src={getSmallPreviewUrl(asset.previewUrl)}
                         style={thumbnailStyle(blockSettings)}
                         alt={asset.title}
