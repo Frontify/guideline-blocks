@@ -24,13 +24,18 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
 
+    if (blockSettings.appearance !== Appearance.Strong && blockSettings.appearance !== Appearance.Light) {
+        // workaround as the appearance could be hubAppearance
+        setBlockSettings({ appearance: Appearance.Light });
+    }
+
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
     const getAccentColor = (type: Type) => {
-        const style = getComputedStyle(document.body);
+        const style = getComputedStyle(document.head);
         switch (type) {
             case Type.Info:
                 return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
@@ -40,6 +45,8 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                 return style.getPropertyValue(`${THEME_PREFIX}accent-color-tip-color`);
             case Type.Warning:
                 return style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`);
+            default:
+                return style.getPropertyValue(`${THEME_PREFIX}accent-color-info-color`);
         }
     };
 
