@@ -96,9 +96,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     ${THEME_PREFIX}link-color: ${textColor};
                     ${THEME_PREFIX}link-text-decoration: underline;
                 }
-                .page-content section h1, .page-content section h2, .page-content section h3, .page-content section h4, .page-content section p, .page-content section blockquote, .page-content section a {
-                    margin: 0;
-                }
             `}</style>
             <div
                 data-test-id="callout-wrapper"
