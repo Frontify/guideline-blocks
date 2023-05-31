@@ -9,13 +9,13 @@ import { BlockStyles } from './plugins';
 
 export const RichTextEditor = ({
     id = 'rte',
+    styles = BlockStyles,
     isEditing,
     value,
     columns,
     gap,
     placeholder,
     plugins,
-    styles = BlockStyles,
     onBlur,
     updateValueOnChange,
     showSerializedText,

@@ -10,7 +10,7 @@ export type RichTextEditorProps = {
     placeholder?: string;
     columns?: number;
     gap?: string;
-    styles: Record<string, CSSProperties & { hover?: CSSProperties }>;
+    styles?: Record<string, CSSProperties & { hover?: CSSProperties }>;
     plugins?: PluginComposer;
     updateValueOnChange?: boolean;
     showSerializedText?: boolean;
