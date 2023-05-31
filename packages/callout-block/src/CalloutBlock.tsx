@@ -1,43 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import {
-    AlignCenterPlugin,
-    AlignJustifyPlugin,
-    AlignLeftPlugin,
-    AlignRightPlugin,
-    BoldPlugin,
-    CheckboxListPlugin,
-    CodePlugin,
-    Custom1Plugin,
-    Custom2Plugin,
-    Custom3Plugin,
-    Heading1Plugin,
-    Heading2Plugin,
-    Heading3Plugin,
-    Heading4Plugin,
-    ItalicPlugin,
-    OrderedListPlugin,
-    ParagraphPlugin,
-    PluginComposer,
-    QuotePlugin,
-    ResetFormattingPlugin,
-    SoftBreakPlugin,
-    StrikethroughPlugin,
-    TextStylePlugin,
-    UnderlinePlugin,
-    UnorderedListPlugin,
-} from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
-    BlockStyles,
-    ButtonPlugin,
-    LinkPlugin,
     RichTextEditor,
     THEME_PREFIX,
-    TextStyles,
-    TextStylesWithoutImage,
     hasRichTextValue,
     isDark,
     joinClassNames,
@@ -47,6 +15,7 @@ import {
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
+import { getRtePlugins } from './helpers/RtePlugins';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
@@ -103,59 +72,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
 
-    const RICH_TEXT_PLUGINS = new PluginComposer();
-    RICH_TEXT_PLUGINS.setPlugin(new SoftBreakPlugin(), new ParagraphPlugin())
-        .setPlugin(
-            new TextStylePlugin({
-                textStyles: [
-                    new Heading1Plugin({
-                        styles: { ...BlockStyles[TextStyles.heading1], color: textColor },
-                    }),
-                    new Heading2Plugin({
-                        styles: { ...BlockStyles[TextStyles.heading2], color: textColor },
-                    }),
-                    new Heading3Plugin({
-                        styles: { ...BlockStyles[TextStyles.heading3], color: textColor },
-                    }),
-                    new Heading4Plugin({
-                        styles: { ...BlockStyles[TextStyles.heading4], color: textColor },
-                    }),
-                    new Custom1Plugin({
-                        styles: { ...BlockStyles[TextStyles.custom1], color: textColor },
-                    }),
-                    new Custom2Plugin({
-                        styles: { ...BlockStyles[TextStyles.custom2], color: textColor },
-                    }),
-                    new Custom3Plugin({
-                        styles: { ...BlockStyles[TextStyles.custom3], color: textColor },
-                    }),
-                    new ParagraphPlugin({ styles: { ...BlockStyles[TextStyles.p], color: textColor } }),
-                    new QuotePlugin({ styles: { ...BlockStyles[TextStyles.quote], color: textColor } }),
-                ],
-            })
-        )
-        .setPlugin(
-            [
-                new BoldPlugin(),
-                new ItalicPlugin(),
-                new UnderlinePlugin(),
-                new StrikethroughPlugin(),
-                new LinkPlugin({ appBridge }),
-                new ButtonPlugin({ appBridge }),
-                new CodePlugin(),
-            ],
-            [
-                new AlignLeftPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignCenterPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignRightPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignJustifyPlugin({ validTypes: TextStylesWithoutImage }),
-                new UnorderedListPlugin(),
-                new CheckboxListPlugin(),
-                new OrderedListPlugin(),
-                new ResetFormattingPlugin(),
-            ]
-        );
-
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
             <div
@@ -181,7 +97,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     onBlur={onTextChange}
                     placeholder="Type your text here"
                     value={blockSettings.textValue}
-                    plugins={RICH_TEXT_PLUGINS}
+                    plugins={getRtePlugins(textColor, appBridge)}
                 />
             </div>
         </div>
