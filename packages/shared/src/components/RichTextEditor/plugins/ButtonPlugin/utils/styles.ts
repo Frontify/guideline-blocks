@@ -19,6 +19,7 @@ export const BlockButtonStyles: Record<string, CSSProperties & { hover?: CSSProp
         borderRadius: 'var(--f-theme-settings-button-primary-border-radius)',
         borderWidth: 'var(--f-theme-settings-button-primary-border-width)',
         color: 'var(--f-theme-settings-button-primary-color)',
+        display: 'inline-block',
         hover: {
             backgroundColor: 'var(--f-theme-settings-button-primary-background-color-hover)',
             borderColor: 'var(--f-theme-settings-button-primary-border-color-hover)',
@@ -42,6 +43,7 @@ export const BlockButtonStyles: Record<string, CSSProperties & { hover?: CSSProp
         borderRadius: 'var(--f-theme-settings-button-secondary-border-radius)',
         borderWidth: 'var(--f-theme-settings-button-secondary-border-width)',
         color: 'var(--f-theme-settings-button-secondary-color)',
+        display: 'inline-block',
         hover: {
             backgroundColor: 'var(--f-theme-settings-button-secondary-background-color-hover)',
             borderColor: 'var(--f-theme-settings-button-secondary-border-color-hover)',
@@ -65,6 +67,7 @@ export const BlockButtonStyles: Record<string, CSSProperties & { hover?: CSSProp
         borderRadius: 'var(--f-theme-settings-button-tertiary-border-radius)',
         borderWidth: 'var(--f-theme-settings-button-tertiary-border-width)',
         color: 'var(--f-theme-settings-button-tertiary-color)',
+        display: 'inline-block',
         hover: {
             backgroundColor: 'var(--f-theme-settings-button-tertiary-background-color-hover)',
             borderColor: 'var(--f-theme-settings-button-tertiary-border-color-hover)',
