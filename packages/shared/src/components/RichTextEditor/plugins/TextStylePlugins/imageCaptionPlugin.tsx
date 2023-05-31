@@ -1,31 +1,33 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { PlateRenderElementProps, createPluginFactory } from '@udecode/plate';
-import React from 'react';
+import { createPluginFactory } from '@udecode/plate';
+import React, { CSSProperties } from 'react';
 import {
     MarkupElement,
     Plugin,
     PluginProps,
-    TextStyles,
+    TextStyleRenderElementProps,
     alignmentClassnames,
     getColumnBreakClasses,
-    getTextStyleCssProperties,
     merge,
 } from '@frontify/fondue';
+import { BlockStyles, TextStyles } from '../styles';
 
 const ID = 'textstyle-imageCaption-plugin';
 
 export class ImageCaptionPlugin extends Plugin {
-    constructor(props?: PluginProps) {
+    public styles: CSSProperties = {};
+    constructor({ styles = BlockStyles.imageCaption, ...props }: PluginProps = {}) {
         super(TextStyles.imageCaption, {
             label: 'Image Caption',
             markupElement: new ImageCaptionMarkupElement(),
             ...props,
         });
+        this.styles = styles;
     }
 
     plugins() {
-        return [createImageCaptionPlugin()];
+        return [createImageCaptionPlugin(this.styles)];
     }
 }
 
@@ -34,25 +36,26 @@ class ImageCaptionMarkupElement extends MarkupElement {
         super(id, node);
     }
 }
-const ImageCaptionMarkupElementNode = ({ element, attributes, children }: PlateRenderElementProps) => {
+const ImageCaptionMarkupElementNode = ({ element, attributes, children, styles }: TextStyleRenderElementProps) => {
     const align = element.align as string;
-
     return (
         <p
             {...attributes}
-            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element)])}
-            style={getTextStyleCssProperties(element.type)}
+            className={merge([align && alignmentClassnames[align], getColumnBreakClasses(element), 'a-image-caption'])}
         >
-            {children}
+            <span style={styles}>{children}</span>
         </p>
     );
 };
 
-const createImageCaptionPlugin = createPluginFactory({
-    key: TextStyles.imageCaption,
-    isElement: true,
-    component: ImageCaptionMarkupElementNode,
-    deserializeHtml: {
-        rules: [{ validClassName: 'imageCaption' }],
-    },
-});
+const createImageCaptionPlugin = (styles: CSSProperties) =>
+    createPluginFactory({
+        key: TextStyles.imageCaption,
+        isElement: true,
+        component: ImageCaptionMarkupElementNode,
+        deserializeHtml: {
+            rules: [{ validClassName: TextStyles.imageCaption }],
+        },
+    })({
+        component: (props: TextStyleRenderElementProps) => <ImageCaptionMarkupElementNode {...props} styles={styles} />,
+    });

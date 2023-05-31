@@ -33,7 +33,7 @@ import {
     StrikethroughWrapper,
     UploadView,
 } from './components';
-import { THEME_PREFIX } from '@frontify/fondue';
+import { THEME_PREFIX } from '@frontify/guideline-blocks-shared';
 
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);

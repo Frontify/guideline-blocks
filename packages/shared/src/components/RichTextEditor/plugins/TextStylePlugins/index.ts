@@ -9,6 +9,7 @@ export * from './heading3Plugin';
 export * from './heading4Plugin';
 export * from './imageCaptionPlugin';
 export * from './imageTitlePlugin';
+export * from './paragraphPlugin';
 export * from './quotePlugin';
 
 export * from './helpers';

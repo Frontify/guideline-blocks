@@ -9,14 +9,13 @@ import {
 } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { BlockStyles, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
 import { blockStyle } from './helpers';
 import { ASSET_SETTINGS_ID } from './settings';
 import { Settings } from './types';
-import { getButtonStyleCssProperties } from '@frontify/fondue';
 
 export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const screenReaderRef = useRef<HTMLDivElement>(null);
@@ -94,7 +93,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                             ) || currentAssets.length === 0
                         }
                         onClick={startDownload}
-                        style={getButtonStyleCssProperties('primary')}
+                        style={BlockStyles.buttonPrimary}
                     >
                         Download package
                         <span

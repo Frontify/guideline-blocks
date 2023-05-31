@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconPen16, IconTrashBin16, getTextStyleCssProperties } from '@frontify/fondue';
+import { IconPen16, IconTrashBin16 } from '@frontify/fondue';
 import React from 'react';
 import { FloatingButton, useFloatingButtonUrlInput } from '../';
+import { BlockStyles } from '../../../../';
 
 export const EditModal = () => {
     const urlHtmlProps = useFloatingButtonUrlInput({});
@@ -10,7 +11,7 @@ export const EditModal = () => {
     return (
         <div data-test-id="floating-button-edit" className="tw-bg-white tw-rounded tw-shadow tw-p-4 tw-min-w-[400px]">
             <span data-test-id="preview-button-flyout" className="tw-flex tw-justify-between">
-                <span className="tw-pointer-events-none" style={getTextStyleCssProperties('body')}>
+                <span className="tw-pointer-events-none" style={BlockStyles.p}>
                     {urlHtmlProps.defaultValue}
                 </span>
                 <span className="tw-flex tw-gap-2">

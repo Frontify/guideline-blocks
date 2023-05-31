@@ -156,6 +156,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         openFileDialog,
         onRemoveAsset,
         updateItemWith,
+        appBridge,
     };
 
     return (
@@ -208,7 +209,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                             openAssetChooser={openAssetChooser}
                         />
                     </ImageWrapper>
-                    <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} />
+                    <RichTextEditors isEditing={isEditing} updateItemWith={updateItemWith} appBridge={appBridge} />
                 </div>
             )}
         </Grid>

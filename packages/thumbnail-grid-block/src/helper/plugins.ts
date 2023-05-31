@@ -1,16 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { AppBridgeBlock } from '@frontify/app-bridge';
 import {
     AlignCenterPlugin,
     AlignJustifyPlugin,
     AlignLeftPlugin,
     AlignRightPlugin,
     BoldPlugin,
-    ButtonPlugin,
     CheckboxListPlugin,
     CodePlugin,
     ItalicPlugin,
-    LinkPlugin,
     OrderedListPlugin,
     PluginComposer,
     ResetFormattingPlugin,
@@ -20,9 +19,13 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { TextStylePluginsWithoutImage, TextStylesWithoutImage } from '@frontify/guideline-blocks-shared';
+import {
+    ButtonPlugin,
+    LinkPlugin,
+    TextStylePluginsWithoutImage,
+    TextStylesWithoutImage,
+} from '@frontify/guideline-blocks-shared';
 
-export const captionPlugins = new PluginComposer();
 const textStylePlugins = [new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })];
 const alignmentPlugins = [
     new AlignLeftPlugin({
@@ -39,19 +42,26 @@ const alignmentPlugins = [
     }),
 ];
 const markStylesPlugins = [new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()];
-captionPlugins
-    .setPlugin(textStylePlugins)
-    .setPlugin([...markStylesPlugins, new LinkPlugin(), new ButtonPlugin(), new CodePlugin()])
-    .setPlugin([
-        ...alignmentPlugins,
-        new UnorderedListPlugin(),
-        new CheckboxListPlugin(),
-        new OrderedListPlugin(),
-        new ResetFormattingPlugin(),
-    ]);
 
 export const titlePlugins = new PluginComposer();
 titlePlugins
     .setPlugin(textStylePlugins)
     .setPlugin(markStylesPlugins)
     .setPlugin([...alignmentPlugins, new ResetFormattingPlugin()]);
+
+export const getCaptionPlugins = (appBridge: AppBridgeBlock) =>
+    new PluginComposer()
+        .setPlugin(textStylePlugins)
+        .setPlugin([
+            ...markStylesPlugins,
+            new LinkPlugin({ appBridge }),
+            new ButtonPlugin({ appBridge }),
+            new CodePlugin(),
+        ])
+        .setPlugin([
+            ...alignmentPlugins,
+            new UnorderedListPlugin(),
+            new CheckboxListPlugin(),
+            new OrderedListPlugin(),
+            new ResetFormattingPlugin(),
+        ]);

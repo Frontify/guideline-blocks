@@ -7,7 +7,6 @@ import {
     PluginComposer,
     RichTextEditor,
     StrikethroughPlugin,
-    THEME_PREFIX,
     TextStylePlugin,
     TextStyles,
     UnderlinePlugin,
@@ -15,7 +14,7 @@ import {
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { AllTextStylePlugins, convertToRteValue, toRgbaString } from '@frontify/guideline-blocks-shared';
+import { AllTextStylePlugins, THEME_PREFIX, convertToRteValue, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';

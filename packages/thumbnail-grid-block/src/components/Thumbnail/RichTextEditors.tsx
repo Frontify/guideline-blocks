@@ -2,8 +2,8 @@
 
 import { Thumbnail } from '../../types';
 import { RichTextEditor, convertToRteValue } from '@frontify/guideline-blocks-shared';
-import { captionPlugins, titlePlugins } from '../../helper/plugins';
-import { Asset } from '@frontify/app-bridge';
+import { getCaptionPlugins, titlePlugins } from '../../helper/plugins';
+import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { TextStyles } from '@frontify/fondue';
 import { useMemo } from 'react';
 
@@ -13,9 +13,17 @@ type RichTextEditorsProps = {
     id?: string;
     title?: string;
     description?: string;
+    appBridge: AppBridgeBlock;
 };
 
-export const RichTextEditors = ({ isEditing, updateItemWith, id, title, description }: RichTextEditorsProps) => {
+export const RichTextEditors = ({
+    isEditing,
+    updateItemWith,
+    id,
+    title,
+    description,
+    appBridge,
+}: RichTextEditorsProps) => {
     const memoizedTitle = useMemo(
         () => (
             <div className="[&>div>div>*]:!tw-mt-0">
@@ -38,13 +46,13 @@ export const RichTextEditors = ({ isEditing, updateItemWith, id, title, descript
                 id={`${id}-description`}
                 isEditing={isEditing}
                 value={description ?? convertToRteValue()}
-                plugins={captionPlugins}
+                plugins={getCaptionPlugins(appBridge)}
                 onBlur={(value) => updateItemWith('description', value, id)}
                 placeholder="Add a description"
                 updateValueOnChange={!id}
             />
         ),
-        [id, description, isEditing, updateItemWith]
+        [id, description, isEditing, updateItemWith, appBridge]
     );
 
     return (

@@ -12,7 +12,6 @@ import {
     CodePlugin,
     ItalicPlugin,
     OrderedListPlugin,
-    ParagraphPlugin,
     PluginComposer,
     ResetFormattingPlugin,
     SoftBreakPlugin,
@@ -21,16 +20,18 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin, TextStylePluginsWithoutImage } from '@frontify/guideline-blocks-shared';
+import {
+    ButtonPlugin,
+    LinkPlugin,
+    TextStylePluginsWithoutImage,
+    TextStylesWithoutImage,
+} from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
-
-const VALID_ALIGN_TYPES = ['heading1', 'heading2', 'heading3', 'heading4', 'custom1', 'custom2', 'custom3', 'quote'];
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
     const plugins = new PluginComposer();
     plugins.setPlugin([
         new SoftBreakPlugin(),
-        new ParagraphPlugin(),
         new TextStylePlugin({
             textStyles: TextStylePluginsWithoutImage,
         }),
@@ -47,16 +48,16 @@ export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CS
     ]);
     plugins.setPlugin([
         new AlignLeftPlugin({
-            validTypes: VALID_ALIGN_TYPES,
+            validTypes: TextStylesWithoutImage,
         }),
         new AlignCenterPlugin({
-            validTypes: VALID_ALIGN_TYPES,
+            validTypes: TextStylesWithoutImage,
         }),
         new AlignRightPlugin({
-            validTypes: VALID_ALIGN_TYPES,
+            validTypes: TextStylesWithoutImage,
         }),
         new AlignJustifyPlugin({
-            validTypes: VALID_ALIGN_TYPES,
+            validTypes: TextStylesWithoutImage,
         }),
         new UnorderedListPlugin(),
         new CheckboxListPlugin(),

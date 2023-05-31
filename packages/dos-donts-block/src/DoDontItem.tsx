@@ -9,10 +9,10 @@ import {
     IconImageStack20,
     IconTrashBin16,
     IconTrashBin20,
-    getTextStyleCssProperties,
 } from '@frontify/fondue';
 import {
     BlockItemWrapper,
+    BlockStyles,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     joinClassNames,
@@ -274,7 +274,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                     onBlur={() => onChangeItem(id, internalTitle, 'title')}
                                     style={
                                         {
-                                            ...getTextStyleCssProperties('heading3'),
+                                            ...BlockStyles.heading3,
                                             marginBottom: 0,
                                             marginTop: 0,
                                             color: headingColor,

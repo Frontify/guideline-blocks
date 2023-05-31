@@ -3,7 +3,7 @@
 import { Color } from '@frontify/guideline-blocks-settings';
 import { BorderStyle, GutterSpacing, Radius } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
-import { Asset } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 
 export type Thumbnail = {
     id: string;
@@ -61,6 +61,7 @@ export type ThumbnailItemProps = {
     openAssetChooser: (id?: string) => void;
     setUploadedId: (id: string) => void;
     isLoading: boolean;
+    appBridge: AppBridgeBlock;
 };
 
 export enum CaptionPosition {
