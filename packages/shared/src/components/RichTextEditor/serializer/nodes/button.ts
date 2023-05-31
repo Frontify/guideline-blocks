@@ -9,7 +9,7 @@ export const buttonNode = (
     defaultClassNames: string,
     styles: Record<string, CSSProperties & { hover?: CSSProperties }>
 ) => {
-    const buttonTypeString = (node.buttonType as string) ?? 'primary';
+    const buttonTypeString = (node.buttonStyle as string) ?? 'primary';
     const buttonType = `button${buttonTypeString.charAt(0).toUpperCase()}${buttonTypeString.slice(1)}`;
     const buttonStyle = styles[buttonType];
 
