@@ -5,6 +5,7 @@ import React from 'react';
 import { RichTextEditor as FondueRichTextEditor } from '@frontify/fondue';
 import { RichTextEditorProps } from './types';
 import { SerializedText } from './SerializedText';
+import { BlockStyles } from './plugins';
 
 export const RichTextEditor = ({
     id = 'rte',
@@ -14,6 +15,7 @@ export const RichTextEditor = ({
     gap,
     placeholder,
     plugins,
+    styles = BlockStyles,
     onBlur,
     updateValueOnChange,
     showSerializedText,
@@ -32,5 +34,14 @@ export const RichTextEditor = ({
             />
         );
     }
-    return <SerializedText value={value} columns={columns} gap={gap} show={showSerializedText} plugins={plugins} />;
+    return (
+        <SerializedText
+            value={value}
+            columns={columns}
+            gap={gap}
+            show={showSerializedText}
+            plugins={plugins}
+            styles={styles}
+        />
+    );
 };

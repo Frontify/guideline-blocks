@@ -5,12 +5,19 @@ import { SerializedTextProps } from './types';
 import { BlockStyles } from './plugins';
 import { serializeRawToHtmlAsync } from './serializer';
 
-export const SerializedText = ({ value = '', gap, columns, show = true, plugins }: SerializedTextProps) => {
+export const SerializedText = ({
+    value = '',
+    gap,
+    columns,
+    show = true,
+    plugins,
+    styles = BlockStyles,
+}: SerializedTextProps) => {
     const [html, setHtml] = useState<string | null>(null);
 
     useEffect(() => {
         (async () => {
-            setHtml(await serializeRawToHtmlAsync(value, columns, gap, BlockStyles, plugins));
+            setHtml(await serializeRawToHtmlAsync(value, columns, gap, styles, plugins));
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value, columns, gap, plugins]);
