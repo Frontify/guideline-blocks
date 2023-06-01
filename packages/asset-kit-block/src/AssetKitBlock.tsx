@@ -7,10 +7,10 @@ import {
     useBulkDownload,
     useEditorState,
 } from '@frontify/app-bridge';
-import { PaddingSizes, ParagraphPlugin, PluginComposer, RichTextEditor } from '@frontify/fondue';
+import { PluginComposer } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { BlockStyles, hasRichTextValue, joinClassNames } from '@frontify/guideline-blocks-shared';
+import { BlockStyles, RichTextEditor, hasRichTextValue, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
@@ -80,8 +80,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [downloadUrl]);
 
-    const RtePlugins = new PluginComposer({ noToolbar: true });
-    RtePlugins.setPlugin([new ParagraphPlugin()]);
+    const RtePlugins = new PluginComposer({ noToolbar: true }).setPlugin();
 
     return (
         <div
@@ -114,12 +113,11 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                         style={BlockStyles.buttonPrimary}
                     >
                         <RichTextEditor
+                            id="asset-kit-block-download-button-text"
                             value={hasRichTextValue(buttonText) ? buttonText : 'Download package'}
-                            readonly={!isEditing}
+                            isEditing={isEditing}
                             plugins={RtePlugins}
                             onBlur={(value) => setBlockSettings({ buttonText: value })}
-                            padding={PaddingSizes.None}
-                            border={false}
                         />
                         <span
                             data-test-id="asset-kit-block-screen-reader"

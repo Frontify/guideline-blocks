@@ -3,17 +3,16 @@
 import { TDescendant } from '@udecode/plate';
 import { PluginComposer, SerializeNodesToHtmlOptions, mapMentionable, parseRawValue } from '@frontify/fondue';
 import { BlockStyles } from '../plugins';
-import { CSSProperties } from 'react';
 import { serializeNodeToHtmlRecursive } from './serializeNodesToHtmlRecursive';
 
 export const serializeRawToHtmlAsync = async (
     raw: string,
     columns: SerializeNodesToHtmlOptions['columns'] = 1,
     columnGap: SerializeNodesToHtmlOptions['columnGap'] = 'normal',
-    styles: Record<string, CSSProperties & { hover?: CSSProperties }> = BlockStyles,
     plugins: PluginComposer = new PluginComposer()
 ): Promise<string> => {
     const nodes = parseRawValue({ raw, plugins });
+    const styles = plugins.getStyles;
     return Promise.resolve(serializeNodesToHtml(nodes, { columns, columnGap, styles }));
 };
 
