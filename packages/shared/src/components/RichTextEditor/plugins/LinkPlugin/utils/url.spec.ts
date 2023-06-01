@@ -15,6 +15,14 @@ describe('LinkPlugin URL utils', () => {
                 shouldBeValid: true,
             },
             {
+                input: 'http://frontify.com/any/path',
+                shouldBeValid: true,
+            },
+            {
+                input: 'https://product.frontify.com/any/path/with#3/',
+                shouldBeValid: true,
+            },
+            {
                 input: 'mailto:hello@frontify.com',
                 shouldBeValid: true,
             },
