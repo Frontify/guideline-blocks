@@ -1,18 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    ELEMENT_H1,
-    ELEMENT_LI,
-    ELEMENT_LIC,
-    ELEMENT_LINK,
-    ELEMENT_OL,
-    ELEMENT_PARAGRAPH,
-    ELEMENT_UL,
-} from '@udecode/plate';
+import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_LINK, ELEMENT_OL, ELEMENT_PARAGRAPH, ELEMENT_UL } from '@udecode/plate';
 import { serializeNodeToHtmlRecursive } from './serializeNodesToHtmlRecursive';
 import { orderedListValue, unorderedListValue } from './__tests__/exampleValues';
 import { BlockStyles, TextStyles } from '../plugins';
-import { ELEMENT_CHECK_ITEM, Text } from '@frontify/fondue';
+import { ELEMENT_CHECK_ITEM } from '@frontify/fondue';
 
 type ChildElement = {
     type: string;
