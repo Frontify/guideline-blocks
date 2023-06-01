@@ -8,8 +8,9 @@ export const isValidUrl = (url: string) => {
         return true;
     }
     try {
-        new URL(url);
-        return true;
+        const parsedUrl = new URL(url);
+        const validProtocols = ['http:', 'https:', 'mailto:', 'tel:'];
+        return validProtocols.includes(parsedUrl.protocol);
     } catch (error) {
         return false;
     }
