@@ -10,7 +10,13 @@ import {
 import { PluginComposer } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { BlockStyles, RichTextEditor, hasRichTextValue, joinClassNames } from '@frontify/guideline-blocks-shared';
+import {
+    BlockStyles,
+    RichTextEditor,
+    convertToRteValue,
+    hasRichTextValue,
+    joinClassNames,
+} from '@frontify/guideline-blocks-shared';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
@@ -35,8 +41,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         showCount = true,
         assetCountColor,
         countCustomColor,
-        buttonText = 'Download package',
+        buttonText,
     } = blockSettings;
+
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
 
@@ -114,7 +121,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                     >
                         <RichTextEditor
                             id="asset-kit-block-download-button-text"
-                            value={hasRichTextValue(buttonText) ? buttonText : 'Download package'}
+                            value={
+                                hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Download package')
+                            }
                             isEditing={isEditing}
                             plugins={RtePlugins}
                             onBlur={(value) => setBlockSettings({ buttonText: value })}
