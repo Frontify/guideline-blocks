@@ -122,6 +122,38 @@ describe('RichTextEditor', () => {
         cy.get(RichTextSelector).find('a[href="mailto:info@frontify.com"]').should('exist');
     });
 
+    it('should create a link with a link typed in the RTE', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+            />
+        );
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('mailto:info@frontify.com {enter}');
+        cy.get(RichTextSelector).find('a[href="mailto:info@frontify.com"]').should('exist');
+    });
+
+    it('should not create a link with a : after a word', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+            />
+        );
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('list:{enter}');
+        cy.get(RichTextSelector).find('a').should('not.exist');
+    });
+
     it('should allow URLs that start with /document/', () => {
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
         (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
