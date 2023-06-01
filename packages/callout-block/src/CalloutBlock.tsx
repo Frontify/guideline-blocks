@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { generateRandomString, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     RichTextEditor,
+    THEME_PREFIX,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     isDark,
@@ -17,15 +18,21 @@ import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
-import { THEME_PREFIX } from '@frontify/guideline-blocks-shared';
 
 export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
+    if (blockSettings.appearance !== Appearance.Strong && blockSettings.appearance !== Appearance.Light) {
+        // workaround as the appearance could be hubAppearance
+        setBlockSettings({ appearance: Appearance.Light });
+    }
+
+    const containerClass = `callout-block-${generateRandomString()}`;
 
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
+        containerClass,
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
@@ -48,7 +55,6 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
             ? `${blockSettings.paddingTop} ${blockSettings.paddingRight} ${blockSettings.paddingBottom} ${blockSettings.paddingLeft}`
             : '',
     };
-
     const color = getAccentColor(blockSettings.type);
     const backgroundColor = blockSettings.appearance === Appearance.Strong ? color : setAlpha(0.1, color);
 
@@ -75,7 +81,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
             <style>{`
-                :root { 
+                .${containerClass} { 
                     ${THEME_PREFIX}heading1-color: ${textColor};
                     ${THEME_PREFIX}heading2-color: ${textColor};
                     ${THEME_PREFIX}heading3-color: ${textColor};

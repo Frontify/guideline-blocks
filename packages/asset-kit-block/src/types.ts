@@ -28,12 +28,20 @@ export type Settings = {
     title?: string;
     downloadExpiration?: number;
     downloadUrlBlock: string;
+    showThumbnails?: boolean;
+    showCount?: boolean;
+    assetCountColor?: 'inherit' | 'override';
+    countCustomColor?: Color;
+    buttonText?: string;
 };
 
 export type AssetGridProps = {
     currentAssets: Asset[];
     appBridge: AppBridgeBlock;
     isEditing: boolean;
+    showThumbnails?: boolean;
+    showCount?: boolean;
+    countColor?: Color;
     deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     updateAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     saveDownloadUrl: (downloadUrlBlock: string) => void;
@@ -54,9 +62,9 @@ export type DownloadMessageProps = {
 };
 
 export type InformationSectionProps = {
-    description: string;
+    title?: string;
+    description?: string;
     isEditing: boolean;
-    title: string;
     appBridge: AppBridgeBlock;
     setBlockSettings: (newSettings: Partial<Settings>) => void;
 };
@@ -77,4 +85,9 @@ export type ThumbnailToolbarProps = {
     onReplaceAsset: (toReplaceId: number, newId: number) => Promise<void>;
     setIsUploading: (isLoading: boolean) => void;
     isUploading: boolean;
+};
+
+export type AssetCountProps = {
+    count: number;
+    color?: Color;
 };

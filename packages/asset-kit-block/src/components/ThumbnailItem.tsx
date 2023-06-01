@@ -5,7 +5,7 @@ import { Settings, ThumbnailItemProps } from '../types';
 import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16, LoadingCircle } from '@frontify/fondue';
 import { BlockItemWrapper } from '@frontify/guideline-blocks-shared';
 import { AssetChooserObjectType, useAssetUpload, useBlockSettings, useFileInput } from '@frontify/app-bridge';
-import { thumbnailStyle } from '../helpers';
+import { getSmallPreviewUrl, thumbnailStyle } from '../helpers';
 
 export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onReplaceAsset }: ThumbnailItemProps) => {
     const [isUploading, setIsUploading] = useState(false);
@@ -72,8 +72,8 @@ export const ThumbnailItem = ({ asset, isEditing, appBridge, onRemoveAsset, onRe
                 ) : (
                     <img
                         data-test-id="block-thumbnail-image"
-                        className="tw-object-scale-down tw-w-full tw-h-full"
-                        src={asset.previewUrl}
+                        className="tw-object-cover tw-w-full tw-h-full"
+                        src={getSmallPreviewUrl(asset.previewUrl)}
                         style={thumbnailStyle(blockSettings)}
                         alt={asset.title}
                     />
