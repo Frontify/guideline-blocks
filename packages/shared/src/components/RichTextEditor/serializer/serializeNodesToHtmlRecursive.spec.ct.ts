@@ -1,10 +1,18 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ELEMENT_LI, ELEMENT_LIC, ELEMENT_LINK, ELEMENT_OL, ELEMENT_PARAGRAPH, ELEMENT_UL } from '@udecode/plate';
+import {
+    ELEMENT_H1,
+    ELEMENT_LI,
+    ELEMENT_LIC,
+    ELEMENT_LINK,
+    ELEMENT_OL,
+    ELEMENT_PARAGRAPH,
+    ELEMENT_UL,
+} from '@udecode/plate';
 import { serializeNodeToHtmlRecursive } from './serializeNodesToHtmlRecursive';
 import { orderedListValue, unorderedListValue } from './__tests__/exampleValues';
 import { BlockStyles, TextStyles } from '../plugins';
-import { ELEMENT_CHECK_ITEM } from '@frontify/fondue';
+import { ELEMENT_CHECK_ITEM, Text } from '@frontify/fondue';
 
 type ChildElement = {
     type: string;
@@ -335,6 +343,38 @@ describe('serializeNodeToHtmlRecursive()', () => {
 
         expect(result).to.be.equal(
             '<p class="tw-break-words"><span style="font-size: var(--f-theme-settings-body-font-size); line-height: var(--f-theme-settings-body-line-height); margin-top: var(--f-theme-settings-body-margin-top); margin-bottom: var(--f-theme-settings-body-margin-bottom); text-decoration: var(--f-theme-settings-body-text-decoration); font-style: var(--f-theme-settings-body-font-style); text-transform: var(--f-theme-settings-body-text-transform); letter-spacing: var(--f-theme-settings-body-letter-spacing); font-weight: var(--f-theme-settings-body-font-weight); font-family: var(--f-theme-settings-body-font-family); color: var(--f-theme-settings-body-color);"><a class="tw-break-words" style="font-size: var(--f-theme-settings-link-font-size); line-height: var(--f-theme-settings-link-line-height); margin-top: var(--f-theme-settings-link-margin-top); margin-bottom: var(--f-theme-settings-link-margin-bottom); text-decoration: var(--f-theme-settings-link-text-decoration); font-style: var(--f-theme-settings-link-font-style); text-transform: var(--f-theme-settings-link-text-transform); letter-spacing: var(--f-theme-settings-link-letter-spacing); font-weight: var(--f-theme-settings-link-font-weight); font-family: var(--f-theme-settings-link-font-family); color: var(--f-theme-settings-link-color);" target="_blank" href="https://frontify.com">This is a Link.</a></span></p>'
+        );
+    });
+
+    it('serializes heading 1 with custom styles', () => {
+        const node = {
+            type: TextStyles.heading1,
+            children: [{ text: 'This is a h1.' }],
+        };
+        const result = serializeNodeToHtmlRecursive(
+            node,
+            { [TextStyles.heading1]: { fontSize: '12px', marginTop: '20px', color: 'red' } },
+            {}
+        );
+
+        expect(result).to.be.equal(
+            '<h1 class="tw-break-words a-h1"><span style="font-size: 12px; margin-top: 20px; color: red;">This is a h1.</span></h1>'
+        );
+    });
+
+    it('serializes custom2 with custom styles', () => {
+        const node = {
+            type: TextStyles.custom2,
+            children: [{ text: 'This is a custom2.' }],
+        };
+        const result = serializeNodeToHtmlRecursive(
+            node,
+            { [TextStyles.custom2]: { fontSize: '18px', marginTop: '25px', textDecoration: 'underline' } },
+            {}
+        );
+
+        expect(result).to.be.equal(
+            '<p class="tw-break-words a-custom2"><span style="font-size: 18px; margin-top: 25px; text-decoration: underline;">This is a custom2.</span></p>'
         );
     });
 });
