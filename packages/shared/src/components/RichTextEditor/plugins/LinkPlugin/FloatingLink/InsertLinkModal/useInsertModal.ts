@@ -14,6 +14,7 @@ import {
 import React, { Dispatch, Reducer, useEffect, useReducer } from 'react';
 import { getLegacyUrl, getUrl, relativeUrlRegex, telOrMailRegex, urlRegex } from '../../utils';
 import { InsertModalDispatchType, InsertModalStateProps } from './types';
+import { addHttps } from '../../../../../../helpers/addHttps';
 
 const initialState: InsertModalStateProps = {
     url: '',
@@ -96,15 +97,7 @@ export const useInsertModal = () => {
             return;
         }
 
-        let urlToSave = state.url;
-        if (
-            urlRegex.test(urlToSave) &&
-            !urlToSave.startsWith('http') &&
-            !telOrMailRegex.test(urlToSave) &&
-            !relativeUrlRegex.test(urlToSave)
-        ) {
-            urlToSave = `https://${urlToSave}`;
-        }
+        const urlToSave = addHttps(state.url);
 
         floatingLinkActions.text(state.text);
         floatingLinkActions.url(urlToSave);

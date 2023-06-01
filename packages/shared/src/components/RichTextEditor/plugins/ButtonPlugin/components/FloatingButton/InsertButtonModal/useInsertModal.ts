@@ -11,6 +11,7 @@ import { getButtonStyle } from '../../../utils/getButtonStyle';
 import { relativeUrlRegex, telOrMailRegex, urlRegex } from '../../../../LinkPlugin/utils';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CheckboxState } from '@frontify/fondue';
+import { addHttps } from '../../../../../../../helpers/addHttps';
 
 const initialState: InsertModalStateProps = {
     url: '',
@@ -102,15 +103,7 @@ export const useInsertModal = () => {
             return;
         }
 
-        let urlToSave = state.url;
-        if (
-            urlRegex.test(urlToSave) &&
-            !urlToSave.startsWith('http') &&
-            !telOrMailRegex.test(urlToSave) &&
-            !relativeUrlRegex.test(urlToSave)
-        ) {
-            urlToSave = `https://${urlToSave}`;
-        }
+        const urlToSave = addHttps(state.url);
 
         floatingButtonActions.text(state.text);
         floatingButtonActions.url(urlToSave);
