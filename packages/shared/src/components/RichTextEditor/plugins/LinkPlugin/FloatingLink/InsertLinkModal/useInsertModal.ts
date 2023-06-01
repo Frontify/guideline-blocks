@@ -97,7 +97,12 @@ export const useInsertModal = () => {
         }
 
         let urlToSave = state.url;
-        if (urlRegex.test(urlToSave) && !urlToSave.startsWith('http')) {
+        if (
+            urlRegex.test(urlToSave) &&
+            !urlToSave.startsWith('http') &&
+            !telOrMailRegex.test(urlToSave) &&
+            !relativeUrlRegex.test(urlToSave)
+        ) {
             urlToSave = `https://${urlToSave}`;
         }
 
