@@ -31,6 +31,10 @@ describe('LinkPlugin URL utils', () => {
                 shouldBeValid: true,
             },
             {
+                input: 'tel:',
+                shouldBeValid: false,
+            },
+            {
                 input: 'anyword:',
                 shouldBeValid: false,
             },
