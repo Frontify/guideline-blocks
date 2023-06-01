@@ -32,6 +32,7 @@ export type Settings = {
     showCount?: boolean;
     assetCountColor?: 'inherit' | 'override';
     countCustomColor?: Color;
+    buttonText?: string;
 };
 
 export type AssetGridProps = {

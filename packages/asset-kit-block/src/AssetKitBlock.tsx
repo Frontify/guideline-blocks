@@ -7,9 +7,10 @@ import {
     useBulkDownload,
     useEditorState,
 } from '@frontify/app-bridge';
+import { PaddingSizes, ParagraphPlugin, PluginComposer, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { BlockStyles, joinClassNames } from '@frontify/guideline-blocks-shared';
+import { BlockStyles, hasRichTextValue, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
@@ -34,11 +35,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         showCount = true,
         assetCountColor,
         countCustomColor,
+        buttonText = 'Download package',
     } = blockSettings;
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
-
-    console.log({ currentAssets });
 
     const startDownload = () => {
         if (downloadUrlBlock && downloadExpiration && downloadExpiration > Math.floor(Date.now() / 1000)) {
@@ -80,6 +80,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [downloadUrl]);
 
+    const RtePlugins = new PluginComposer({ noToolbar: true });
+    RtePlugins.setPlugin([new ParagraphPlugin()]);
+
     return (
         <div
             data-test-id="asset-kit-block"
@@ -110,7 +113,14 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                         onClick={startDownload}
                         style={BlockStyles.buttonPrimary}
                     >
-                        Download package
+                        <RichTextEditor
+                            value={hasRichTextValue(buttonText) ? buttonText : 'Download package'}
+                            readonly={!isEditing}
+                            plugins={RtePlugins}
+                            onBlur={(value) => setBlockSettings({ buttonText: value })}
+                            padding={PaddingSizes.None}
+                            border={false}
+                        />
                         <span
                             data-test-id="asset-kit-block-screen-reader"
                             ref={screenReaderRef}
