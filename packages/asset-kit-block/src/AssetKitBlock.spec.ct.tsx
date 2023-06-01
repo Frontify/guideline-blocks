@@ -77,7 +77,7 @@ describe('AssetKit Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).should('have.attr', 'src', 'https://picsum.photos/width=218');
+        cy.get(BLOCK_THUMBNAIL_IMAGE).should('have.attr', 'src', 'https://picsum.photos/width=218');
     });
 
     it('shoud not display thumbnails in view mode if showThumbnails is set to false', () => {

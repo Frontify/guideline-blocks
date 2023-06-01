@@ -30,13 +30,15 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         hasBackgroundBlocks,
         downloadUrlBlock,
         downloadExpiration,
-        showThumbnails,
-        showCount,
+        showThumbnails = true,
+        showCount = true,
         assetCountColor,
         countCustomColor,
     } = blockSettings;
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
+
+    console.log({ currentAssets });
 
     const startDownload = () => {
         if (downloadUrlBlock && downloadExpiration && downloadExpiration > Math.floor(Date.now() / 1000)) {
