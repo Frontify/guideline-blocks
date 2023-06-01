@@ -110,7 +110,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 status
                             ) || currentAssets.length === 0
                         }
-                        onClick={startDownload}
+                        onClick={isEditing ? undefined : startDownload}
                         style={BlockStyles.buttonPrimary}
                     >
                         <RichTextEditor
