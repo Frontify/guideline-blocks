@@ -30,6 +30,8 @@ export type Settings = {
     downloadUrlBlock: string;
     showThumbnails?: boolean;
     showCount?: boolean;
+    assetCountColor?: 'inherit' | 'override';
+    countCustomColor?: Color;
 };
 
 export type AssetGridProps = {
@@ -38,6 +40,7 @@ export type AssetGridProps = {
     isEditing: boolean;
     showThumbnails?: boolean;
     showCount?: boolean;
+    countColor?: Color;
     deleteAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     updateAssetIdsFromKey: (key: string, assetIds: number[]) => Promise<void>;
     saveDownloadUrl: (downloadUrlBlock: string) => void;
@@ -58,9 +61,9 @@ export type DownloadMessageProps = {
 };
 
 export type InformationSectionProps = {
-    description: string;
+    title?: string;
+    description?: string;
     isEditing: boolean;
-    title: string;
     appBridge: AppBridgeBlock;
     setBlockSettings: (newSettings: Partial<Settings>) => void;
 };

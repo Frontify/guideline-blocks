@@ -4,12 +4,18 @@ import { ReactElement } from 'react';
 import { ThumbnailItem } from '.';
 import { ASSET_SETTINGS_ID } from '../settings';
 import { AssetGridProps } from '../types';
+import { Color } from '@frontify/fondue';
+import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
-const AssetCount = ({ count }: { count: number }): ReactElement => {
+const AssetCount = ({ count, color }: { count: number; color?: Color }): ReactElement => {
     if (count > 0) {
-        return <span>{`${count} asset${count > 1 ? 's' : ''}`}</span>;
+        return (
+            <div style={{ color: color ? toRgbaString(color) : undefined }}>{`${count} asset${
+                count > 1 ? 's' : ''
+            }`}</div>
+        );
     } else {
-        return <span className="tw-text-black-50">Add assets to make them available</span>;
+        return <div className="tw-text-black-50">Add assets to make them available</div>;
     }
 };
 
@@ -21,6 +27,7 @@ export const AssetGrid = ({
     isEditing,
     showCount,
     showThumbnails,
+    countColor,
     appBridge,
 }: AssetGridProps) => {
     const onRemoveAsset = async (assetId: number) => {
@@ -38,8 +45,8 @@ export const AssetGrid = ({
 
     return (
         <>
-            {showCount && <AssetCount count={currentAssets.length} />}
-            {shouldShowThumbnails && (
+            {showCount && <AssetCount count={currentAssets.length} color={countColor} />}
+            {shouldShowThumbnails && currentAssets.length > 0 && (
                 <div className="tw-mt-2.5 tw-grid tw-grid-cols-3 sm:tw-grid-cols-4 md:tw-grid-cols-6 tw-gap-4">
                     {currentAssets
                         ? currentAssets.map((asset) => (

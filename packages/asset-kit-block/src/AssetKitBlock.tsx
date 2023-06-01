@@ -32,6 +32,8 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         downloadExpiration,
         showThumbnails,
         showCount,
+        assetCountColor,
+        countCustomColor,
     } = blockSettings;
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
@@ -89,10 +91,10 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         >
             <div className="sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
                 <InformationSection
-                    description={description ?? ''}
+                    description={description}
                     isEditing={isEditing}
                     setBlockSettings={setBlockSettings}
-                    title={title ?? ''}
+                    title={title}
                     appBridge={appBridge}
                 />
                 <div className="tw-flex-none">
@@ -121,27 +123,30 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <DownloadMessage blockStyle={blockStyle(blockSettings)} status={status} />
             )}
 
-            <AssetGrid
-                appBridge={appBridge}
-                currentAssets={currentAssets}
-                deleteAssetIdsFromKey={deleteAssetIdsFromKey}
-                updateAssetIdsFromKey={updateAssetIdsFromKey}
-                saveDownloadUrl={saveDownloadUrl}
-                isEditing={isEditing}
-                showThumbnails={showThumbnails}
-                showCount={showCount}
-            />
-
-            {isEditing && (
-                <AssetSelection
+            <div>
+                <AssetGrid
                     appBridge={appBridge}
-                    isUploadingAssets={isUploadingAssets}
-                    setIsUploadingAssets={setIsUploadingAssets}
-                    addAssetIdsToKey={addAssetIdsToKey}
-                    saveDownloadUrl={saveDownloadUrl}
                     currentAssets={currentAssets}
+                    deleteAssetIdsFromKey={deleteAssetIdsFromKey}
+                    updateAssetIdsFromKey={updateAssetIdsFromKey}
+                    saveDownloadUrl={saveDownloadUrl}
+                    isEditing={isEditing}
+                    showThumbnails={showThumbnails}
+                    showCount={showCount}
+                    countColor={assetCountColor === 'override' ? countCustomColor : undefined}
                 />
-            )}
+
+                {isEditing && (
+                    <AssetSelection
+                        appBridge={appBridge}
+                        isUploadingAssets={isUploadingAssets}
+                        setIsUploadingAssets={setIsUploadingAssets}
+                        addAssetIdsToKey={addAssetIdsToKey}
+                        saveDownloadUrl={saveDownloadUrl}
+                        currentAssets={currentAssets}
+                    />
+                )}
+            </div>
         </div>
     );
 };
