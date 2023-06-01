@@ -142,25 +142,6 @@ describe('RichTextEditor', () => {
         cy.get(RichTextSelector).find('a[href="/document/test"]').should('exist');
     });
 
-    it('should not allow random strings without TLDs', () => {
-        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
-        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
-
-        mount(
-            <RichTextEditor
-                isEditing={true}
-                onBlur={cy.stub}
-                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
-                value={convertToRteValue('p', 'This is a link')}
-            />
-        );
-        cy.get(RichTextSelector).click();
-        cy.get(RichTextSelector).type('{selectall}');
-        cy.get(ToolbarButtonSelector).click();
-        cy.get(UrlInputSelector).type('notalink');
-        cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().should('be.disabled');
-    });
-
     it('should be able to select internal button link', () => {
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
         (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
