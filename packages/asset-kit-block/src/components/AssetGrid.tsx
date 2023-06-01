@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ThumbnailItem } from '.';
 import { ASSET_SETTINGS_ID } from '../settings';
 import { AssetGridProps } from '../types';
+import { AssetCount } from './AssetCount';
+import { ThumbnailItem } from './ThumbnailItem';
 
 export const AssetGrid = ({
     currentAssets,
@@ -10,6 +11,9 @@ export const AssetGrid = ({
     updateAssetIdsFromKey,
     saveDownloadUrl,
     isEditing,
+    showCount,
+    showThumbnails,
+    countColor,
     appBridge,
 }: AssetGridProps) => {
     const onRemoveAsset = async (assetId: number) => {
@@ -23,27 +27,27 @@ export const AssetGrid = ({
         await updateAssetIdsFromKey(ASSET_SETTINGS_ID, assetIds);
     };
 
+    const shouldShowThumbnails = isEditing || showThumbnails;
+
     return (
         <>
-            {currentAssets.length > 0 ? (
-                <span>{`${currentAssets.length} asset${currentAssets.length > 1 ? 's' : ''}`}</span>
-            ) : (
-                <span className="tw-text-black-50">Add assets to make them available</span>
+            {showCount && <AssetCount count={currentAssets.length} color={countColor} />}
+            {shouldShowThumbnails && currentAssets.length > 0 && (
+                <div className="tw-mt-2.5 tw-grid tw-grid-cols-3 sm:tw-grid-cols-4 md:tw-grid-cols-6 tw-gap-4">
+                    {currentAssets
+                        ? currentAssets.map((asset) => (
+                              <ThumbnailItem
+                                  key={asset.id}
+                                  asset={asset}
+                                  isEditing={isEditing}
+                                  onRemoveAsset={onRemoveAsset}
+                                  onReplaceAsset={onReplaceAsset}
+                                  appBridge={appBridge}
+                              />
+                          ))
+                        : null}
+                </div>
             )}
-            <div className="tw-mt-2.5 tw-grid tw-grid-cols-3 sm:tw-grid-cols-4 md:tw-grid-cols-6 tw-gap-4">
-                {currentAssets
-                    ? currentAssets.map((asset) => (
-                          <ThumbnailItem
-                              key={asset.id}
-                              asset={asset}
-                              isEditing={isEditing}
-                              onRemoveAsset={onRemoveAsset}
-                              onReplaceAsset={onReplaceAsset}
-                              appBridge={appBridge}
-                          />
-                      ))
-                    : null}
-            </div>
         </>
     );
 };

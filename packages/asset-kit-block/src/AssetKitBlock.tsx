@@ -7,9 +7,16 @@ import {
     useBulkDownload,
     useEditorState,
 } from '@frontify/app-bridge';
+import { PluginComposer } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { BlockStyles, joinClassNames } from '@frontify/guideline-blocks-shared';
+import {
+    BlockStyles,
+    RichTextEditor,
+    convertToRteValue,
+    hasRichTextValue,
+    joinClassNames,
+} from '@frontify/guideline-blocks-shared';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AssetGrid, AssetSelection, DownloadMessage, InformationSection } from './components';
@@ -23,8 +30,20 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
-    const { title, description, hasBorder_blocks, hasBackgroundBlocks, downloadUrlBlock, downloadExpiration } =
-        blockSettings;
+    const {
+        title,
+        description,
+        hasBorder_blocks,
+        hasBackgroundBlocks,
+        downloadUrlBlock,
+        downloadExpiration,
+        showThumbnails = true,
+        showCount = true,
+        assetCountColor,
+        countCustomColor,
+        buttonText,
+    } = blockSettings;
+
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
     const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
 
@@ -68,20 +87,25 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [downloadUrl]);
 
+    const RtePlugins = new PluginComposer({ noToolbar: true }).setPlugin();
+
     return (
         <div
             data-test-id="asset-kit-block"
-            className={joinClassNames(['tw-w-full', (hasBorder_blocks || hasBackgroundBlocks) && 'tw-p-5 sm:tw-p-8'])}
+            className={joinClassNames([
+                'tw-w-full tw-space-y-8',
+                (hasBorder_blocks || hasBackgroundBlocks) && 'tw-p-5 sm:tw-p-8',
+            ])}
             style={{
                 ...blockStyle(blockSettings),
             }}
         >
-            <div className="tw-mb-8 sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
+            <div className="sm:tw-flex tw-gap-8 tw-space-y-3 md:tw-space-y-0">
                 <InformationSection
-                    description={description ?? ''}
+                    description={description}
                     isEditing={isEditing}
                     setBlockSettings={setBlockSettings}
-                    title={title ?? ''}
+                    title={title}
                     appBridge={appBridge}
                 />
                 <div className="tw-flex-none">
@@ -92,10 +116,18 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 status
                             ) || currentAssets.length === 0
                         }
-                        onClick={startDownload}
+                        onClick={isEditing ? undefined : startDownload}
                         style={BlockStyles.buttonPrimary}
                     >
-                        Download package
+                        <RichTextEditor
+                            id="asset-kit-block-download-button-text"
+                            value={
+                                hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Download package')
+                            }
+                            isEditing={isEditing}
+                            plugins={RtePlugins}
+                            onBlur={(value) => setBlockSettings({ buttonText: value })}
+                        />
                         <span
                             data-test-id="asset-kit-block-screen-reader"
                             ref={screenReaderRef}
@@ -110,25 +142,30 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <DownloadMessage blockStyle={blockStyle(blockSettings)} status={status} />
             )}
 
-            <AssetGrid
-                appBridge={appBridge}
-                currentAssets={currentAssets}
-                deleteAssetIdsFromKey={deleteAssetIdsFromKey}
-                updateAssetIdsFromKey={updateAssetIdsFromKey}
-                saveDownloadUrl={saveDownloadUrl}
-                isEditing={isEditing}
-            />
-
-            {isEditing && (
-                <AssetSelection
+            <div>
+                <AssetGrid
                     appBridge={appBridge}
-                    isUploadingAssets={isUploadingAssets}
-                    setIsUploadingAssets={setIsUploadingAssets}
-                    addAssetIdsToKey={addAssetIdsToKey}
-                    saveDownloadUrl={saveDownloadUrl}
                     currentAssets={currentAssets}
+                    deleteAssetIdsFromKey={deleteAssetIdsFromKey}
+                    updateAssetIdsFromKey={updateAssetIdsFromKey}
+                    saveDownloadUrl={saveDownloadUrl}
+                    isEditing={isEditing}
+                    showThumbnails={showThumbnails}
+                    showCount={showCount}
+                    countColor={assetCountColor === 'override' ? countCustomColor : undefined}
                 />
-            )}
+
+                {isEditing && (
+                    <AssetSelection
+                        appBridge={appBridge}
+                        isUploadingAssets={isUploadingAssets}
+                        setIsUploadingAssets={setIsUploadingAssets}
+                        addAssetIdsToKey={addAssetIdsToKey}
+                        saveDownloadUrl={saveDownloadUrl}
+                        currentAssets={currentAssets}
+                    />
+                )}
+            </div>
         </div>
     );
 };

@@ -1,11 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { mount } from 'cypress/react18';
-import { AssetKitBlock } from './AssetKitBlock';
 import { AssetDummy, getAppBridgeBlockStub, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { ASSET_SETTINGS_ID } from './settings';
 import { BorderStyle } from '@frontify/guideline-blocks-shared';
+import { mount } from 'cypress/react18';
+import { AssetKitBlock } from './AssetKitBlock';
+import { ASSET_SETTINGS_ID } from './settings';
 
 const BLOCK_SELECTOR = '[data-test-id="asset-kit-block"]';
 const BLOCK_TITLE = '[data-test-id="block-title"]';
@@ -22,8 +22,10 @@ const BLOCK_DOWNLOAD_MESSAGE_ERROR = '[data-test-id="asset-kit-error-message"]';
 const BLOCK_DOWNLOAD_MESSAGE_LOADING_CIRCLE =
     '[data-test-id="asset-kit-download-message"] [data-test-id="loading-circle"]';
 const BLOCK_DOWNLOAD_ANNOUNCEMENT = '[data-test-id="asset-kit-block-screen-reader"]';
+const BLOCK_ASSET_COUNT = '[data-test-id="asset-kit-count"]';
 
 const BLACK: Color = { red: 0, green: 0, blue: 0, alpha: 1 };
+const PINK: Color = { red: 255, green: 0, blue: 255, alpha: 1 };
 const WHITE: Color = { red: 255, green: 255, blue: 255, alpha: 1 };
 
 describe('AssetKit Block', () => {
@@ -66,6 +68,84 @@ describe('AssetKit Block', () => {
         });
         mount(<AssetKitBlockWithStubs />);
         cy.get(BLOCK_THUMBNAIL).should('have.length', 2);
+    });
+
+    it('should display assets with small width', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [{ ...AssetDummy.with(1), previewUrl: 'https://picsum.photos/width={width}' }],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_THUMBNAIL_IMAGE).should('have.attr', 'src', 'https://picsum.photos/width=218');
+    });
+
+    it('shoud not display thumbnails in view mode if showThumbnails is set to false', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                showThumbnails: false,
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_THUMBNAIL).should('not.exist');
+    });
+
+    it('should display thumbnails in edit mode if showThumbnails is set to false', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            editorState: true,
+            blockSettings: {
+                showThumbnails: false,
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_THUMBNAIL).should('have.length', 2);
+    });
+
+    it('should display asset count if enabled', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                showAssetCount: true,
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_ASSET_COUNT).should('include.text', '2 assets');
+    });
+
+    it('should not display asset count if disabled', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                showAssetCount: true,
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_ASSET_COUNT).should('not.exist');
+    });
+
+    it('should display asset count in custom color if enabled', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AssetKitBlock, {
+            blockSettings: {
+                showAssetCount: true,
+                assetCountColor: 'override',
+                countCustomColor: PINK,
+            },
+            blockAssets: {
+                [ASSET_SETTINGS_ID]: [AssetDummy.with(1), AssetDummy.with(2)],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(BLOCK_ASSET_COUNT).should('have.css', 'color', 'rgb(255, 0, 255)');
     });
 
     it('should display no padding on block if no border and no background is set', () => {
