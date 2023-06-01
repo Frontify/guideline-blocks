@@ -27,6 +27,7 @@ describe('String converted to Richtext value', () => {
         const result = addHttps(url);
         expect(result).toBe('https://frontify.com');
     });
+
     test('It should not add https:// for relative url', () => {
         const url = '/document/123';
         const result = addHttps(url);

@@ -1,7 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { relativeUrlRegex, telOrMailRegex, urlRegexWithHttps } from '.';
+import { addHttps } from '../../../../../helpers';
+import { relativeUrlRegex } from './regex';
 
-export const isValidUrl = (url: string): boolean => {
-    return urlRegexWithHttps.test(url) || relativeUrlRegex.test(url) || telOrMailRegex.test(url);
+export const isValidUrl = (url: string) => {
+    if (relativeUrlRegex.test(url)) {
+        return true;
+    }
+    try {
+        new URL(url);
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
+export const isValidUrlOrEmpty = (url: string) => {
+    return isValidUrl(addHttps(url)) || url === '';
 };

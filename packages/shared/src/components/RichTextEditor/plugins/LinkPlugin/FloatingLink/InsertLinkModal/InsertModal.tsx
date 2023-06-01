@@ -23,7 +23,7 @@ type Props = {
     onCancel: () => void;
     onSave: (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | KeyboardEvent | undefined) => void;
     hasValues: boolean;
-    isValidUrlOrEmpty: () => boolean | undefined;
+    isValidUrlOrEmpty: (url: string) => boolean | undefined;
     testId?: string;
     children?: ReactNode;
     appBridge: AppBridgeBlock;
@@ -71,7 +71,7 @@ export const InsertModal: FC<Props> = ({
                     onChange={onUrlChange}
                 />
             </FormControl>
-            {!isValidUrlOrEmpty() && <div className="tw-text-red-65 tw-mt-3">Please enter a valid URL.</div>}
+            {!isValidUrlOrEmpty(state?.url) && <div className="tw-text-red-65 tw-mt-3">Please enter a valid URL.</div>}
         </div>
 
         <div className="tw-mt-3">
@@ -95,7 +95,7 @@ export const InsertModal: FC<Props> = ({
                     onClick={onSave}
                     size={ButtonSize.Medium}
                     icon={<IconCheckMark20 />}
-                    disabled={!isValidUrlOrEmpty() || !hasValues}
+                    disabled={!hasValues || !isValidUrlOrEmpty(state?.url)}
                 >
                     Save
                 </Button>
