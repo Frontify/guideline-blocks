@@ -85,3 +85,8 @@ export type ThumbnailToolbarProps = {
     setIsUploading: (isLoading: boolean) => void;
     isUploading: boolean;
 };
+
+export type AssetCountProps = {
+    count: number;
+    color?: Color;
+};

@@ -1,23 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
-import { ThumbnailItem } from '.';
 import { ASSET_SETTINGS_ID } from '../settings';
 import { AssetGridProps } from '../types';
-import { Color } from '@frontify/fondue';
-import { toRgbaString } from '@frontify/guideline-blocks-shared';
-
-const AssetCount = ({ count, color }: { count: number; color?: Color }): ReactElement => {
-    if (count > 0) {
-        return (
-            <div style={{ color: color ? toRgbaString(color) : undefined }}>{`${count} asset${
-                count > 1 ? 's' : ''
-            }`}</div>
-        );
-    } else {
-        return <div className="tw-text-black-50">Add assets to make them available</div>;
-    }
-};
+import { AssetCount } from './AssetCount';
+import { ThumbnailItem } from './ThumbnailItem';
 
 export const AssetGrid = ({
     currentAssets,
