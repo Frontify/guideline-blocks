@@ -11,7 +11,7 @@ import { getButtonStyle } from '../../../utils/getButtonStyle';
 import { relativeUrlRegex, telOrMailRegex, urlRegex } from '../../../../LinkPlugin/utils';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CheckboxState } from '@frontify/fondue';
-import { addHttps } from '../../../../../../../helpers/addHttps';
+import { addHttps } from '../../../../../../../helpers';
 
 const initialState: InsertModalStateProps = {
     url: '',

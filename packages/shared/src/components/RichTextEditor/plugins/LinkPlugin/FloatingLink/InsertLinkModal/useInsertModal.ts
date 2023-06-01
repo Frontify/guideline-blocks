@@ -14,7 +14,7 @@ import {
 import React, { Dispatch, Reducer, useEffect, useReducer } from 'react';
 import { getLegacyUrl, getUrl, relativeUrlRegex, telOrMailRegex, urlRegex } from '../../utils';
 import { InsertModalDispatchType, InsertModalStateProps } from './types';
-import { addHttps } from '../../../../../../helpers/addHttps';
+import { addHttps } from '../../../../../../helpers';
 
 const initialState: InsertModalStateProps = {
     url: '',
