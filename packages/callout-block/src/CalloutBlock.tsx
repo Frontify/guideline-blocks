@@ -81,7 +81,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
     return (
         <div data-test-id="callout-block" className={containerDivClassNames}>
             <style>{`
-                .${containerClass} { 
+                .${containerClass} {
                     ${THEME_PREFIX}heading1-color: ${textColor};
                     ${THEME_PREFIX}heading2-color: ${textColor};
                     ${THEME_PREFIX}heading3-color: ${textColor};
@@ -93,6 +93,7 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
                     ${THEME_PREFIX}quote-color: ${textColor};
                     ${THEME_PREFIX}link-color: ${textColor};
                     ${THEME_PREFIX}link-text-decoration: underline;
+                    color: ${textColor};
                 }
             `}</style>
             <div
