@@ -4,7 +4,7 @@ import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { CalloutBlock } from './CalloutBlock';
 import { ICON_ASSET_ID } from './settings';
-import { Alignment, Icon, Padding, Width } from './types';
+import { Alignment, Icon, Padding, Type, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
@@ -13,6 +13,9 @@ const CalloutWrapper = '[data-test-id="callout-wrapper"]';
 const CalloutIcon = '[data-test-id="callout-icon"]';
 const CalloutIconCustom = '[data-test-id="callout-icon-custom"]';
 const CalloutIconInfo = '[data-test-id="callout-icon-info"]';
+
+const EXAMPLE_THEME_SETTINGS =
+    ':root {--f-theme-settings-accent-color-info-color: rgba(26, 199, 211, 1); --f-theme-settings-accent-color-note-color: rgba(246, 216, 56, 1); --f-theme-settings-accent-color-tip-color: rgba(42, 191, 24, 1); --f-theme-settings-accent-color-warning-color: rgba(222, 27, 27, 1);}';
 
 describe('Callout Block', () => {
     it('renders a callout block in edit mode', () => {
@@ -60,7 +63,7 @@ describe('Callout Block', () => {
         });
 
         mount(<CalloutBlockWithStubs />);
-        cy.get(CalloutWrapper).should('have.css', 'border-radius').and('eq', '10px 20px 30px 40px');
+        cy.get(CalloutWrapper).should('have.css', 'border-radius', '10px 20px 30px 40px');
     });
 
     it('renders a callout block with a predefined icon', () => {
@@ -113,5 +116,81 @@ describe('Callout Block', () => {
 
         mount(<CalloutBlockWithStubs />);
         cy.get(CalloutIcon).should('not.exist');
+    });
+
+    it('renders a callout block with the correct colors for type info', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is an info',
+                type: Type.Info,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+        cy.document().then((doc) => {
+            const style = doc.createElement('style');
+            style.innerHTML = EXAMPLE_THEME_SETTINGS;
+            doc.head.appendChild(style);
+        });
+
+        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(26, 199, 211, 0.1)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(26, 199, 211)');
+    });
+
+    it('renders a callout block with the correct colors for type note', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is a note',
+                type: Type.Note,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+        cy.document().then((doc) => {
+            const style = doc.createElement('style');
+            style.innerHTML = EXAMPLE_THEME_SETTINGS;
+            doc.head.appendChild(style);
+        });
+
+        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(246, 216, 56)');
+    });
+
+    it('renders a callout block with the correct colors for type tip', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is a tip',
+                type: Type.Tip,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+        cy.document().then((doc) => {
+            const style = doc.createElement('style');
+            style.innerHTML = EXAMPLE_THEME_SETTINGS;
+            doc.head.appendChild(style);
+        });
+
+        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(42, 191, 24, 0.1)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(42, 191, 24)');
+    });
+
+    it('renders a callout block with the correct colors for type warning', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is a warning',
+                type: Type.Warning,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+        cy.document().then((doc) => {
+            const style = doc.createElement('style');
+            style.innerHTML = EXAMPLE_THEME_SETTINGS;
+            doc.head.appendChild(style);
+        });
+
+        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(222, 27, 27, 0.1)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(222, 27, 27)');
     });
 });
