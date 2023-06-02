@@ -193,4 +193,33 @@ describe('Callout Block', () => {
         cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(222, 27, 27, 0.1)');
         cy.get(HtmlContent).should('have.css', 'color', 'rgb(222, 27, 27)');
     });
+
+    it('renders a callout block with the overwritten css variables for the theme styles', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is a warning',
+                type: Type.Warning,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+        cy.document().then((doc) => {
+            const style = doc.createElement('style');
+            style.innerHTML = EXAMPLE_THEME_SETTINGS;
+            doc.head.appendChild(style);
+        });
+
+        cy.get(CalloutBlockSelector)
+            .find('style')
+            .should('contain', '--f-theme-settings-heading1-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-heading2-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-heading3-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-heading4-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-custom1-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-custom2-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-custom3-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-body-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-quote-color: rgba(222, 27, 27, 1)')
+            .and('contain', '--f-theme-settings-link-color: rgba(222, 27, 27, 1)');
+    });
 });
