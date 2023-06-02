@@ -194,7 +194,7 @@ describe('Callout Block', () => {
         cy.get(HtmlContent).should('have.css', 'color', 'rgb(222, 27, 27)');
     });
 
-    it('renders a callout block with the overwritten css variables for the theme styles', () => {
+    it('renders a warning block with the overwritten css variables for the theme styles', () => {
         const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
             blockSettings: {
                 textValue: 'This is a warning',
@@ -209,17 +209,32 @@ describe('Callout Block', () => {
             doc.head.appendChild(style);
         });
 
-        cy.get(CalloutBlockSelector)
-            .find('style')
-            .should('contain', '--f-theme-settings-heading1-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-heading2-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-heading3-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-heading4-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-custom1-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-custom2-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-custom3-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-body-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-quote-color: rgba(222, 27, 27, 1)')
-            .and('contain', '--f-theme-settings-link-color: rgba(222, 27, 27, 1)');
+        cy.get(CalloutBlockSelector).should(
+            'have.attr',
+            'style',
+            '--f-theme-settings-heading1-color:rgba(222, 27, 27, 1); --f-theme-settings-heading2-color:rgba(222, 27, 27, 1); --f-theme-settings-heading3-color:rgba(222, 27, 27, 1); --f-theme-settings-heading4-color:rgba(222, 27, 27, 1); --f-theme-settings-custom1-color:rgba(222, 27, 27, 1); --f-theme-settings-custom2-color:rgba(222, 27, 27, 1); --f-theme-settings-custom3-color:rgba(222, 27, 27, 1); --f-theme-settings-body-color:rgba(222, 27, 27, 1); --f-theme-settings-quote-color:rgba(222, 27, 27, 1); --f-theme-settings-link-color:rgba(222, 27, 27, 1); --f-theme-settings-link-text-decoration:underline; color: rgb(222, 27, 27);'
+        );
+    });
+
+    it('renders a npte block with the overwritten css variables for the theme styles', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is a note',
+                type: Type.Note,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+        cy.document().then((doc) => {
+            const style = doc.createElement('style');
+            style.innerHTML = EXAMPLE_THEME_SETTINGS;
+            doc.head.appendChild(style);
+        });
+
+        cy.get(CalloutBlockSelector).should(
+            'have.attr',
+            'style',
+            '--f-theme-settings-heading1-color:rgba(246, 216, 56, 1); --f-theme-settings-heading2-color:rgba(246, 216, 56, 1); --f-theme-settings-heading3-color:rgba(246, 216, 56, 1); --f-theme-settings-heading4-color:rgba(246, 216, 56, 1); --f-theme-settings-custom1-color:rgba(246, 216, 56, 1); --f-theme-settings-custom2-color:rgba(246, 216, 56, 1); --f-theme-settings-custom3-color:rgba(246, 216, 56, 1); --f-theme-settings-body-color:rgba(246, 216, 56, 1); --f-theme-settings-quote-color:rgba(246, 216, 56, 1); --f-theme-settings-link-color:rgba(246, 216, 56, 1); --f-theme-settings-link-text-decoration:underline; color: rgb(246, 216, 56);'
+        );
     });
 });

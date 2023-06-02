@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { generateRandomString, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
@@ -13,13 +13,13 @@ import {
     radiusStyleMap,
     setAlpha,
 } from '@frontify/guideline-blocks-shared';
-import { FC } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
-export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
+export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
@@ -28,11 +28,8 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
         setBlockSettings({ appearance: Appearance.Light });
     }
 
-    const containerClass = `callout-block-${generateRandomString()}`;
-
     const containerDivClassNames = joinClassNames([
         outerWidthMap[blockSettings.width],
-        containerClass,
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
@@ -78,24 +75,23 @@ export const CalloutBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
 
+    const overwrittenThemeSettings = {
+        [`${THEME_PREFIX}heading1-color`]: textColor,
+        [`${THEME_PREFIX}heading2-color`]: textColor,
+        [`${THEME_PREFIX}heading3-color`]: textColor,
+        [`${THEME_PREFIX}heading4-color`]: textColor,
+        [`${THEME_PREFIX}custom1-color`]: textColor,
+        [`${THEME_PREFIX}custom2-color`]: textColor,
+        [`${THEME_PREFIX}custom3-color`]: textColor,
+        [`${THEME_PREFIX}body-color`]: textColor,
+        [`${THEME_PREFIX}quote-color`]: textColor,
+        [`${THEME_PREFIX}link-color`]: textColor,
+        [`${THEME_PREFIX}link-text-decoration`]: 'underline',
+        color: textColor,
+    } as CSSProperties;
+
     return (
-        <div data-test-id="callout-block" className={containerDivClassNames}>
-            <style>{`
-                .${containerClass} {
-                    ${THEME_PREFIX}heading1-color: ${textColor};
-                    ${THEME_PREFIX}heading2-color: ${textColor};
-                    ${THEME_PREFIX}heading3-color: ${textColor};
-                    ${THEME_PREFIX}heading4-color: ${textColor};
-                    ${THEME_PREFIX}custom1-color: ${textColor};
-                    ${THEME_PREFIX}custom2-color: ${textColor};
-                    ${THEME_PREFIX}custom3-color: ${textColor};
-                    ${THEME_PREFIX}body-color: ${textColor};
-                    ${THEME_PREFIX}quote-color: ${textColor};
-                    ${THEME_PREFIX}link-color: ${textColor};
-                    ${THEME_PREFIX}link-text-decoration: underline;
-                    color: ${textColor};
-                }
-            `}</style>
+        <div data-test-id="callout-block" style={overwrittenThemeSettings} className={containerDivClassNames}>
             <div
                 data-test-id="callout-wrapper"
                 className={textDivClassNames}
