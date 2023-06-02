@@ -216,7 +216,7 @@ describe('Callout Block', () => {
         );
     });
 
-    it('renders a npte block with the overwritten css variables for the theme styles', () => {
+    it('renders a note block with the overwritten css variables for the theme styles', () => {
         const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
             blockSettings: {
                 textValue: 'This is a note',
