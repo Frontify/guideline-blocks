@@ -26,7 +26,7 @@ import {
 import { serializeLeafToHtml } from './utlis/serializeLeafToHtml';
 import { reactCssPropsToCss } from './utlis/reactCssPropsToCss';
 import { CSSProperties } from 'react';
-import { buttonNode } from './nodes/button';
+import { ButtonStylesType, buttonNode } from './nodes/button';
 import { linkNode } from './nodes/link';
 import { defaultNode } from './nodes/default';
 import { checkItemNode } from './nodes/checkItemNode';
@@ -56,7 +56,7 @@ type SerializeNodeToHtmlRecursiveOptions = {
 
 export const serializeNodeToHtmlRecursive = (
     node: TDescendant,
-    styles: Record<string, CSSProperties & { hover?: CSSProperties }>,
+    styles: Record<string, CSSProperties & { hover?: CSSProperties }> | ButtonStylesType,
     { mappedMentionable, nestingCount = {} }: SerializeNodeToHtmlRecursiveOptions
 ): string => {
     if (isText(node)) {
@@ -101,7 +101,7 @@ type Arguments = {
     rootNestingCount: number;
     node: TElement;
     mappedMentionable?: MappedMentionableItems;
-    styles: Record<string, CSSProperties & { hover?: CSSProperties }>;
+    styles: Record<string, CSSProperties & { hover?: CSSProperties }> | ButtonStylesType;
 };
 
 const MapNodeTypesToHtml: { [key: string]: ({ ...args }: Arguments) => string } = {
@@ -119,7 +119,8 @@ const MapNodeTypesToHtml: { [key: string]: ({ ...args }: Arguments) => string } 
     [ELEMENT_LIC]: ({ classNames, children, node }) =>
         `<p class="${classNames} ${getLicElementClassNames(node)}"><span>${children}</span></p>`,
     [ELEMENT_LINK]: ({ node, children, classNames, styles }) => linkNode(node, children, classNames, styles),
-    [ELEMENT_BUTTON]: ({ node, children, classNames, styles }) => buttonNode(node, children, classNames, styles),
+    [ELEMENT_BUTTON]: ({ node, children, classNames, styles }) =>
+        buttonNode(node, children, classNames, styles as ButtonStylesType),
     [ELEMENT_CHECK_ITEM]: ({ node, children, classNames, styles }) => checkItemNode(node, children, classNames, styles),
     [ELEMENT_MENTION]: ({ node, mappedMentionable }) => mentionHtmlNode(node, { mentionable: mappedMentionable }),
 };
