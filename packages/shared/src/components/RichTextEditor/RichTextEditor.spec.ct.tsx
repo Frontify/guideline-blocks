@@ -102,6 +102,18 @@ describe('RichTextEditor', () => {
         cy.get(RichTextSelector).find('a[href="https://frontify.com"]').should('exist');
     });
 
+    it('should allow URLs that start with /document/', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('{selectall}');
+        cy.get(ToolbarButtonSelector).click();
+        cy.get(UrlInputSelector).type('/document/test');
+        cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().click();
+        cy.get(RichTextSelector).find('a[href="/document/test"]').should('exist');
+    });
+
     it('should not add https:// to the URL for mailto: links', () => {
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
         (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
