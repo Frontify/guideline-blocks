@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { addHttps } from '../../../../../helpers';
-import { relativeUrlRegex } from './regex';
+import { relativeUrlRegex } from './relativeUrlregex';
 
 export const isValidUrl = (url: string) => {
     if (relativeUrlRegex.test(url)) {

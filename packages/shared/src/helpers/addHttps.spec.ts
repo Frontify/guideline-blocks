@@ -33,4 +33,10 @@ describe('String converted to Richtext value', () => {
         const result = addHttps(url);
         expect(result).toBe(url);
     });
+
+    test('It should not add https:// for http://', () => {
+        const url = 'http://localhost:3000/document/123';
+        const result = addHttps(url);
+        expect(result).toBe(url);
+    });
 });

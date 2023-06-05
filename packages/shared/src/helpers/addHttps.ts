@@ -1,10 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { relativeUrlRegex, telOrMailRegex } from '../components/RichTextEditor/plugins/LinkPlugin/utils';
+import { relativeUrlRegex } from '../components/RichTextEditor/plugins/LinkPlugin/utils';
 
 export const addHttps = (url: string) => {
-    if (!url.startsWith('http') && !telOrMailRegex.test(url) && !relativeUrlRegex.test(url)) {
+    if (relativeUrlRegex.test(url)) {
+        return url;
+    }
+    try {
+        new URL(url);
+        return url;
+    } catch {
         return `https://${url}`;
     }
-    return url;
 };
