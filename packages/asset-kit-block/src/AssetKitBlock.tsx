@@ -30,6 +30,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const { blockAssets, addAssetIdsToKey, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [isUploadingAssets, setIsUploadingAssets] = useState<boolean>(false);
+    const [buttonHover, setButtonHover] = useState<boolean>(false);
     const {
         title,
         description,
@@ -117,7 +118,12 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                             ) || currentAssets.length === 0
                         }
                         onClick={isEditing ? undefined : startDownload}
-                        style={BlockStyles.buttonPrimary}
+                        onMouseEnter={() => setButtonHover(true)}
+                        onMouseLeave={() => setButtonHover(false)}
+                        style={{
+                            ...BlockStyles.buttonPrimary,
+                            ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
+                        }}
                     >
                         <RichTextEditor
                             id="asset-kit-block-download-button-text"
