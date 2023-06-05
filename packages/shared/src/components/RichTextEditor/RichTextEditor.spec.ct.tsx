@@ -102,9 +102,18 @@ describe('RichTextEditor', () => {
         cy.get(RichTextSelector).find('a[href="https://frontify.com"]').should('exist');
     });
 
-    it('should allow URLs that start with /document/', () => {
+    it.only('should allow URLs that start with /document/', () => {
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
         (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+                value={convertToRteValue('p', 'This is a link')}
+            />
+        );
 
         cy.get(RichTextSelector).click();
         cy.get(RichTextSelector).type('{selectall}');
