@@ -8,9 +8,10 @@ import { ELEMENT_BUTTON } from '../../../createButtonPlugin';
 import { submitFloatingButton } from '../../../transforms/submitFloatingButton';
 import { RichTextButtonStyle } from '../../../types';
 import { getButtonStyle } from '../../../utils/getButtonStyle';
-import { relativeUrlRegex, telOrMailRegex, urlRegex } from '../../../../LinkPlugin/utils';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CheckboxState } from '@frontify/fondue';
+import { addHttps } from '../../../../../../../helpers';
+import { isValidUrlOrEmpty } from '../../../../LinkPlugin/utils/url';
 
 const initialState: InsertModalStateProps = {
     url: '',
@@ -98,14 +99,11 @@ export const useInsertModal = () => {
     };
 
     const onSave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | KeyboardEvent | undefined) => {
-        if (!isValidUrlOrEmpty() || !hasValues) {
+        if (!isValidUrlOrEmpty(state.url) || !hasValues) {
             return;
         }
 
-        let urlToSave = state.url;
-        if (urlRegex.test(urlToSave) && !urlToSave.startsWith('http')) {
-            urlToSave = `https://${urlToSave}`;
-        }
+        const urlToSave = addHttps(state.url);
 
         floatingButtonActions.text(state.text);
         floatingButtonActions.url(urlToSave);
@@ -118,14 +116,6 @@ export const useInsertModal = () => {
     };
 
     const hasValues = state.url !== '' && state.text !== '';
-
-    const isValidUrl = (url: string): boolean => {
-        return urlRegex.test(url) || relativeUrlRegex.test(url) || telOrMailRegex.test(url);
-    };
-
-    const isValidUrlOrEmpty = () => {
-        return !state.url || isValidUrl(state.url);
-    };
 
     const { appBridge } = getPluginOptions<{ appBridge: AppBridgeBlock }>(editor, ELEMENT_BUTTON);
 

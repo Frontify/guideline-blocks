@@ -114,6 +114,7 @@ describe('RichTextEditor', () => {
                 value={convertToRteValue('p', 'This is a link')}
             />
         );
+
         cy.get(RichTextSelector).click();
         cy.get(RichTextSelector).type('{selectall}');
         cy.get(ToolbarButtonSelector).click();
@@ -122,7 +123,7 @@ describe('RichTextEditor', () => {
         cy.get(RichTextSelector).find('a[href="/document/test"]').should('exist');
     });
 
-    it('should not allow random strings without TLDs', () => {
+    it('should not add https:// to the URL for mailto: links', () => {
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
         (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
 
@@ -137,8 +138,61 @@ describe('RichTextEditor', () => {
         cy.get(RichTextSelector).click();
         cy.get(RichTextSelector).type('{selectall}');
         cy.get(ToolbarButtonSelector).click();
-        cy.get(UrlInputSelector).type('notalink');
-        cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().should('be.disabled');
+        cy.get(UrlInputSelector).type('mailto:info@frontify.com');
+        cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().click();
+        cy.get(RichTextSelector).find('a[href="mailto:info@frontify.com"]').should('exist');
+    });
+
+    it('should create a link with a link typed in the RTE', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+            />
+        );
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('mailto:info@frontify.com {enter}');
+        cy.get(RichTextSelector).find('a[href="mailto:info@frontify.com"]').should('exist');
+    });
+
+    it('should not create a link with a : after a word', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+            />
+        );
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('list:{enter}');
+        cy.get(RichTextSelector).find('a').should('not.exist');
+    });
+
+    it('should allow URLs that start with /document/', () => {
+        (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
+        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+
+        mount(
+            <RichTextEditor
+                isEditing={true}
+                onBlur={cy.stub}
+                plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
+                value={convertToRteValue('p', 'This is a link')}
+            />
+        );
+        cy.get(RichTextSelector).click();
+        cy.get(RichTextSelector).type('{selectall}');
+        cy.get(ToolbarButtonSelector).click();
+        cy.get(UrlInputSelector).type('/document/test');
+        cy.get(FloatingLinkModalSelector).find(ButtonSelector).last().click();
+        cy.get(RichTextSelector).find('a[href="/document/test"]').should('exist');
     });
 
     it('should be able to select internal button link', () => {
