@@ -15,19 +15,20 @@ export const RichTextEditor = ({
     placeholder,
     plugins,
     onBlur,
+    onTextChange,
     updateValueOnChange,
     showSerializedText,
 }: RichTextEditorProps) => {
     if (isEditing) {
-        const saveText = (newValue: string) => newValue !== value && onBlur(newValue);
         return (
             <FondueRichTextEditor
                 id={id}
                 value={value}
                 border={false}
                 placeholder={placeholder}
-                onBlur={saveText}
+                onBlur={onBlur}
                 plugins={plugins}
+                onTextChange={onTextChange}
                 updateValueOnChange={updateValueOnChange}
             />
         );

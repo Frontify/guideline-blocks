@@ -12,7 +12,8 @@ export type RichTextEditorProps = {
     plugins?: PluginComposer;
     updateValueOnChange?: boolean;
     showSerializedText?: boolean;
-    onBlur: (value: string) => void;
+    onBlur?: (value: string) => void;
+    onTextChange?: (value: string) => void;
 };
 
 export type SerializedTextProps = {
