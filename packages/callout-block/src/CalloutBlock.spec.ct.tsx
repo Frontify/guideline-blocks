@@ -4,7 +4,7 @@ import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { CalloutBlock } from './CalloutBlock';
 import { ICON_ASSET_ID } from './settings';
-import { Alignment, Icon, Padding, Type, Width } from './types';
+import { Alignment, Appearance, Icon, Padding, Type, Width } from './types';
 
 const CalloutBlockSelector = '[data-test-id="callout-block"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
@@ -134,7 +134,7 @@ describe('Callout Block', () => {
         });
 
         cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(26, 199, 211, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(26, 199, 211)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(9, 70, 75)');
     });
 
     it('renders a callout block with the correct colors for type note', () => {
@@ -153,7 +153,7 @@ describe('Callout Block', () => {
         });
 
         cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(246, 216, 56)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(103, 88, 5)');
     });
 
     it('renders a callout block with the correct colors for type tip', () => {
@@ -234,7 +234,47 @@ describe('Callout Block', () => {
         cy.get(CalloutBlockSelector).should(
             'have.attr',
             'style',
-            '--f-theme-settings-heading1-color:rgba(246, 216, 56, 1); --f-theme-settings-heading2-color:rgba(246, 216, 56, 1); --f-theme-settings-heading3-color:rgba(246, 216, 56, 1); --f-theme-settings-heading4-color:rgba(246, 216, 56, 1); --f-theme-settings-custom1-color:rgba(246, 216, 56, 1); --f-theme-settings-custom2-color:rgba(246, 216, 56, 1); --f-theme-settings-custom3-color:rgba(246, 216, 56, 1); --f-theme-settings-body-color:rgba(246, 216, 56, 1); --f-theme-settings-quote-color:rgba(246, 216, 56, 1); --f-theme-settings-link-color:rgba(246, 216, 56, 1); --f-theme-settings-link-text-decoration:underline; color: rgb(246, 216, 56);'
+            '--f-theme-settings-heading1-color:rgb(103, 88, 5); --f-theme-settings-heading2-color:rgb(103, 88, 5); --f-theme-settings-heading3-color:rgb(103, 88, 5); --f-theme-settings-heading4-color:rgb(103, 88, 5); --f-theme-settings-custom1-color:rgb(103, 88, 5); --f-theme-settings-custom2-color:rgb(103, 88, 5); --f-theme-settings-custom3-color:rgb(103, 88, 5); --f-theme-settings-body-color:rgb(103, 88, 5); --f-theme-settings-quote-color:rgb(103, 88, 5); --f-theme-settings-link-color:rgb(103, 88, 5); --f-theme-settings-link-text-decoration:underline; color: rgb(103, 88, 5);'
         );
+    });
+
+    it('renders a callout block with light appearance', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is a note',
+                type: Type.Note,
+                appearance: Appearance.Light,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+        cy.document().then((doc) => {
+            const style = doc.createElement('style');
+            style.innerHTML = ':root {--f-theme-settings-accent-color-note-color: rgba(50, 40, 145, 1);';
+            doc.head.appendChild(style);
+        });
+
+        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(50, 40, 145, 0.1)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(50, 40, 145)');
+    });
+
+    it('renders a callout block with strong appearance', () => {
+        const [CalloutBlockWithStubs] = withAppBridgeBlockStubs(CalloutBlock, {
+            blockSettings: {
+                textValue: 'This is a note',
+                type: Type.Note,
+                appearance: Appearance.Strong,
+            },
+        });
+
+        mount(<CalloutBlockWithStubs />);
+        cy.document().then((doc) => {
+            const style = doc.createElement('style');
+            style.innerHTML = ':root {--f-theme-settings-accent-color-note-color: rgba(50, 40, 145, 1);';
+            doc.head.appendChild(style);
+        });
+
+        cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgb(50, 40, 145)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(255, 255, 255)');
     });
 });
