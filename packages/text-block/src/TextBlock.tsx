@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useMemo, useState } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -15,37 +15,44 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
-    const [isTextSaving, setIsTextSaving] = useState(false);
+    const [isApiRequestPending, setIsApiRequestPending] = useState(false);
+
     const onTextChange = (content: string) => {
-        setIsTextSaving(true);
         setBlockSettings({ content }).finally(() => {
-            setIsTextSaving(false);
+            setIsApiRequestPending(false);
         });
     };
 
     useEffect(() => {
         const unloadHandler = (e: BeforeUnloadEvent) => {
-            if (isTextSaving) {
-                e.preventDefault();
-                return (e.returnValue = 'Unsaved changes');
-            }
-            return;
+            e.preventDefault();
+            return (e.returnValue = 'Unsaved changes');
         };
-        window.addEventListener('beforeunload', unloadHandler);
-        return () => window.removeEventListener('beforeunload', unloadHandler);
-    }, [isTextSaving]);
 
-    return (
-        <RichTextEditor
-            id={appBridge.getBlockId().toString()}
-            isEditing={isEditing}
-            value={content}
-            columns={columnNumber}
-            gap={gap}
-            plugins={getPlugins(appBridge, columnNumber, gap)}
-            placeholder={PLACEHOLDER}
-            onBlur={onTextChange}
-            onTextChange={onTextChange}
-        />
-    );
+        if (isApiRequestPending) {
+            window.addEventListener('beforeunload', unloadHandler);
+        }
+
+        return () => window.removeEventListener('beforeunload', unloadHandler);
+    }, [isApiRequestPending]);
+
+    const richTextEditor = useMemo(() => {
+        return (
+            <RichTextEditor
+                id={appBridge.getBlockId().toString()}
+                isEditing={isEditing}
+                value={content}
+                columns={columnNumber}
+                gap={gap}
+                plugins={getPlugins(appBridge, columnNumber, gap)}
+                placeholder={PLACEHOLDER}
+                onBlur={onTextChange}
+                onTextChange={onTextChange}
+                onValueChanged={!isApiRequestPending ? () => setIsApiRequestPending(true) : undefined}
+            />
+        );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [appBridge, isEditing, content, columnNumber, gap]);
+
+    return richTextEditor;
 };

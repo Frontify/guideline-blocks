@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { PluginComposer } from '@frontify/fondue';
+import { PluginComposer, TreeOfNodes } from '@frontify/fondue';
 
 export type RichTextEditorProps = {
     id?: string;
@@ -14,6 +14,7 @@ export type RichTextEditorProps = {
     showSerializedText?: boolean;
     onBlur?: (value: string) => void;
     onTextChange?: (value: string) => void;
+    onValueChanged?: (value: TreeOfNodes | null) => void;
 };
 
 export type SerializedTextProps = {

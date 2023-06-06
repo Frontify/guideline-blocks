@@ -16,6 +16,7 @@ export const RichTextEditor = ({
     plugins,
     onBlur,
     onTextChange,
+    onValueChanged,
     updateValueOnChange,
     showSerializedText,
 }: RichTextEditorProps) => {
@@ -29,6 +30,7 @@ export const RichTextEditor = ({
                 onBlur={onBlur}
                 plugins={plugins}
                 onTextChange={onTextChange}
+                onValueChanged={onValueChanged}
                 updateValueOnChange={updateValueOnChange}
             />
         );
