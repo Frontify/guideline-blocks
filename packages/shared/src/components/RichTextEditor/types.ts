@@ -12,6 +12,7 @@ export type RichTextEditorProps = {
     plugins?: PluginComposer;
     updateValueOnChange?: boolean;
     showSerializedText?: boolean;
+    shouldPreventPageLeave?: boolean;
     onBlur?: (value: string) => void;
     onTextChange?: (value: string) => void;
     onValueChanged?: (value: TreeOfNodes | null) => void;

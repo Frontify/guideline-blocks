@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { RichTextEditor as FondueRichTextEditor } from '@frontify/fondue';
 import { RichTextEditorProps } from './types';
@@ -19,7 +19,21 @@ export const RichTextEditor = ({
     onValueChanged,
     updateValueOnChange,
     showSerializedText,
+    shouldPreventPageLeave,
 }: RichTextEditorProps) => {
+    useEffect(() => {
+        const unloadHandler = (e: BeforeUnloadEvent) => {
+            e.preventDefault();
+            return (e.returnValue = 'Unprocessed changes');
+        };
+
+        if (shouldPreventPageLeave) {
+            window.addEventListener('beforeunload', unloadHandler);
+        }
+
+        return () => window.removeEventListener('beforeunload', unloadHandler);
+    }, [shouldPreventPageLeave]);
+
     if (isEditing) {
         return (
             <FondueRichTextEditor
