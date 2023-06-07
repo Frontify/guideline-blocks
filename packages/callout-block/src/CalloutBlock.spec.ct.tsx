@@ -134,7 +134,7 @@ describe('Callout Block', () => {
         });
 
         cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(26, 199, 211, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(9, 70, 75)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(26, 199, 211)');
     });
 
     it('renders a callout block with the correct colors for type note', () => {
