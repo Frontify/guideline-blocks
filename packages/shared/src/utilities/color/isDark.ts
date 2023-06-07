@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color } from '@frontify/guideline-blocks-settings';
-import tinycolor, { ColorInput } from 'tinycolor2';
+import tinycolor from 'tinycolor2';
 import { toShortRgba } from './toShortRgba';
 
 /**
@@ -11,13 +10,8 @@ import { toShortRgba } from './toShortRgba';
  * @returns {Boolean} Return if the color is dark
  */
 
-const isRgbaLongFormat = (value: unknown): value is Color => {
-    const requiredKeys = ['red', 'green', 'blue'];
-    return typeof value === 'object' && requiredKeys.every((i) => value?.hasOwnProperty(i));
-};
-
 export const isDark = (color: unknown): boolean => {
-    const inputColor = isRgbaLongFormat(color) ? toShortRgba(color) : (color as ColorInput);
+    const inputColor = toShortRgba(color);
     const parsedColor = tinycolor(inputColor);
     return parsedColor.isDark() || (parsedColor.getAlpha() > 0.25 && parsedColor.getAlpha() < 1);
 };
