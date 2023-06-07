@@ -8,7 +8,6 @@ import {
     THEME_PREFIX,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
-    isDark,
     joinClassNames,
     radiusStyleMap,
     setAlpha,
@@ -16,6 +15,7 @@ import {
 import { CSSProperties, ReactElement, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
+import { getTextColor } from './helpers/getTextColor';
 import { ICON_ASSET_ID } from './settings';
 import { Appearance, BlockSettings, Icon, Type, Width, alignmentMap, outerWidthMap, paddingMap } from './types';
 
@@ -35,7 +35,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         blockSettings.width === Width.HugContents && alignmentMap[blockSettings.alignment],
     ]);
 
-    const getAccentColor = (type: Type) => {
+    const getAccentColor = (type: Type): string => {
         const style = getComputedStyle(document.body);
         switch (type) {
             case Type.Info:
@@ -49,22 +49,29 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     };
 
+    const accentColor = getAccentColor(blockSettings.type);
+    const backgroundColor = blockSettings.appearance === Appearance.Strong ? accentColor : setAlpha(0.1, accentColor);
+    const textColor = getTextColor(blockSettings.appearance, accentColor, backgroundColor);
+
+    const textDivClassNames = joinClassNames([
+        'tw-flex tw-items-center',
+        '[&>div>*:first-child]:tw-mt-0', // Remove margin top from first child in view mode
+        '[&>div>*:first-child>span]:!tw-mt-0',
+        '[&>div>div>*:first-child]:tw-mt-0', // Remove margin top from first child in edit mode
+        '[&>div>div>*:first-child>span]:!tw-mt-0',
+        '[&>div>*:last-child]:tw-mb-0', // Remove margin bottom from last child in view mode
+        '[&>div>*:last-child>span]:!tw-mb-0',
+        '[&>div>div>*:last-child]:tw-mb-0', // Remove margin bottom from last child in edit mode
+        '[&>div>div>*:last-child>span]:!tw-mb-0',
+        blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
+        !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
+    ]);
+
     const customPaddingStyle = {
         padding: blockSettings.hasCustomPadding
             ? `${blockSettings.paddingTop} ${blockSettings.paddingRight} ${blockSettings.paddingBottom} ${blockSettings.paddingLeft}`
             : '',
     };
-    const color = getAccentColor(blockSettings.type);
-    const backgroundColor = blockSettings.appearance === Appearance.Strong ? color : setAlpha(0.1, color);
-
-    const defaultTextColor = isDark(color) ? 'white' : 'black';
-    const textColor = blockSettings.appearance === Appearance.Light ? color : defaultTextColor;
-
-    const textDivClassNames = joinClassNames([
-        'tw-flex tw-items-center',
-        blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
-        !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
-    ]);
 
     const customCornerRadiusStyle = {
         borderRadius: blockSettings.hasExtendedCustomRadius
