@@ -88,7 +88,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [downloadUrl]);
 
-    const RtePlugins = new PluginComposer({ noToolbar: true }).setPlugin();
+    const isButtonDisabled =
+        [BulkDownloadState.Error, BulkDownloadState.Pending, BulkDownloadState.Started].includes(status) ||
+        currentAssets.length === 0;
 
     return (
         <div
@@ -112,17 +114,14 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <div className="tw-flex-none">
                     <button
                         data-test-id="asset-kit-block-download-button"
-                        disabled={
-                            [BulkDownloadState.Error, BulkDownloadState.Pending, BulkDownloadState.Started].includes(
-                                status
-                            ) || currentAssets.length === 0
-                        }
+                        disabled={isButtonDisabled}
                         onClick={isEditing ? undefined : startDownload}
                         onMouseEnter={() => setButtonHover(true)}
                         onMouseLeave={() => setButtonHover(false)}
                         style={{
                             ...BlockStyles.buttonPrimary,
                             ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
+                            ...(isButtonDisabled ? { opacity: 0.5 } : null),
                         }}
                     >
                         <RichTextEditor
@@ -131,7 +130,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 hasRichTextValue(buttonText) ? buttonText : convertToRteValue('p', 'Download package')
                             }
                             isEditing={isEditing}
-                            plugins={RtePlugins}
+                            plugins={new PluginComposer({ noToolbar: true }).setPlugin()}
                             onBlur={(value) => setBlockSettings({ buttonText: value })}
                         />
                         <span
