@@ -1,7 +1,3 @@
-type AssetSubmissionsMetadata = {
-    id: string;
-    value: string;
-};
 export type CreateAssetSubmissionsInput = {
     requestId: string;
     token: string;
@@ -11,4 +7,11 @@ export type CreateAssetSubmissionsInput = {
         email: string;
     };
     metadata: string;
+};
+
+export type AssetSubmissionRequestType = {
+    configuration: string;
+    id: string;
+    title: string;
+    description: string;
 };

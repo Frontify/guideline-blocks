@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-import { testMetadata } from "./constant";
 import { CustomMetadataFactory } from "./CustomMetadata";
 import { MetadataProps } from "./type";
 import { OnChangeProps } from "./Form/type";
@@ -12,39 +11,32 @@ import {
 } from "./StandardMetadata";
 import { useBlockSettings } from "@frontify/app-bridge";
 import { Settings } from "../../types";
-import { RequiredSettingsType } from "./StandardMetadata/type";
 import { REQUIRED_FORM_DATA } from "./StandardMetadata/constant";
+import { useFormValidation } from "./hooks/UseFormValidation";
+import { useMetadataConfig } from "./hooks/useMetadataConfig";
 
 type MetaDataSubmitProps = {
     onSubmit: (formData: FormValues) => void;
     metadataConfiguration?: MetadataProps[];
+    children?: React.ReactNode;
 };
 
-type FormValues = {
-    [key: string]: string;
+export type FormValues = {
+    [key: string]: any;
 };
+
 export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
     onSubmit,
     children,
     appBridge,
-    metadataConfiguration = testMetadata,
 }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
-
-    let initialValues: FormValues;
-
-    //Todo: This one forces to many rerenders
-    initialValues = metadataConfiguration
-        .filter((item) => !!item.defaultValue)
-        .reduce((prev, cur) => {
-            return {
-                ...prev,
-                [cur.id]: cur.defaultValue,
-            };
-        }, [] as unknown as FormValues);
-
+    const [initialValues, metadataConfiguration] =
+        useMetadataConfig(blockSettings);
     const [formValues, setFormValues] = useState<FormValues>(initialValues);
     const [errorFields, setErrorFields] = useState<string[]>([]);
+    const validateFormOrTriggerError = useFormValidation(formValues);
+
     const handleInputChange = ({ id, value }: OnChangeProps) => {
         setFormValues((prevState) => ({
             ...prevState,
@@ -64,40 +56,6 @@ export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
         ) {
             onSubmit(formValues);
         }
-    };
-
-    // This one to extract and add some test
-    const validateFormOrTriggerError = (
-        requiredStandardMetadata: (keyof RequiredSettingsType)[],
-        metaConfigurationData: MetadataProps[],
-        setMissingFields: (
-            value: ((prevState: string[]) => string[]) | string[]
-        ) => void,
-        fromBlockSettings: Settings
-    ): boolean => {
-        // All the Standard Metadata is required
-        const requiredStandartMetadata = requiredStandardMetadata.filter(
-            (item) => fromBlockSettings[item]
-        );
-        const requiredCustomMetadataId = metaConfigurationData
-            .filter((item) => item.isRequired)
-            .map((item) => item.id);
-
-        const requiredFields = [
-            ...requiredCustomMetadataId,
-            ...requiredStandartMetadata,
-        ];
-
-        const missingRequiredFields = requiredFields.filter(
-            (item) =>
-                !Object.keys(formValues).includes(item) ||
-                (Object.keys(formValues).includes(item) &&
-                    formValues[item] === "")
-        );
-
-        setMissingFields(missingRequiredFields);
-
-        return missingRequiredFields.length === 0;
     };
 
     return (

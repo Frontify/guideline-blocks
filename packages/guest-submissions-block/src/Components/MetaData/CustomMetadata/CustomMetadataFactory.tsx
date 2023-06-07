@@ -33,7 +33,6 @@ export class CustomMetadataFactory {
     ) {
         return metadataList.map((metadata) => {
             const { propertyType } = metadata.valueType;
-
             const Template =
                 CustomMetadataFactory.MetadataTypeMap[propertyType];
 

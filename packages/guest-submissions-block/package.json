@@ -6,29 +6,31 @@
         "serve": "frontify-cli serve --entryPath src/index.ts",
         "deploy": "frontify-cli deploy --entryPath src/index.ts",
         "lint": "eslint .",
-        "test": "vitest",
-        "test:ui": "vitest --ui",
         "lint:fix": "eslint . --fix",
         "typecheck": "tsc --noEmit"
     },
-    "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.59",
-        "@frontify/guideline-blocks-shared": "workspace:*",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
-    },
     "devDependencies": {
+        "@babel/core": "7.20.2",
         "@frontify/eslint-config-react": "0.15.5",
-        "@frontify/frontify-cli": "5.3.6",
-        "@frontify/guideline-blocks-settings": "0.25.10",
-        "@types/react": "17.0.53",
-        "@types/react-dom": "17.0.18",
+        "@frontify/frontify-cli": "5.3.10",
+        "@types/lodash-es": "4.17.6",
+        "@types/react": "18.0.35",
+        "@types/react-dom": "18.2.1",
         "autoprefixer": "10.4.13",
-        "eslint": "8.33.0",
-        "prettier": "2.8.3",
-        "tailwind": "4.0.0",
-        "typescript": "4.9.4",
-        "vite": "3.2.3",
-        "vitest": "0.25.0"
+        "cypress": "11.0.1",
+        "eslint": "8.27.0",
+        "eslint-plugin-notice": "0.9.10",
+        "postcss": "8.4.19",
+        "prettier": "2.7.1",
+        "sinon": "15.0.2",
+        "tailwindcss": "3.2.7",
+        "typescript": "4.8.4"
+    },
+    "dependencies": {
+        "@frontify/app-bridge": "3.0.0-beta.67",
+        "@frontify/guideline-blocks-settings": "0.26.2",
+        "@frontify/guideline-blocks-shared": "workspace:*",
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
     }
 }

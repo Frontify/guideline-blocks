@@ -1,4 +1,7 @@
-import { CreateAssetSubmissionsInput } from "./type";
+import {
+    AssetSubmissionRequestType,
+    CreateAssetSubmissionsInput,
+} from "./type";
 import { AssetSubmissionRequest, CreateAssetSubmissionsMutation } from "./api";
 
 export class AssetSubmission {
@@ -16,7 +19,9 @@ export class AssetSubmission {
         await AssetSubmission.queryGraphql(JSON.stringify(uploadBody));
     }
 
-    static async getAssetSubmissionRequests() {
+    static async getAssetSubmissionRequests(): Promise<
+        AssetSubmissionRequestType[]
+    > {
         const uploadBody = JSON.stringify({
             query: AssetSubmissionRequest,
         });

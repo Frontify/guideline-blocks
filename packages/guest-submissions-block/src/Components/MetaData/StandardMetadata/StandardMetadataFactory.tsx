@@ -4,13 +4,7 @@ import { Settings } from "../../../types";
 import { InputText } from "../Form";
 import { Validation } from "@frontify/fondue";
 import { MetadataType } from "../type";
-
-import {
-    REQUIRED_FORM_DATA,
-    REQUIRED_FORM_DATA_LABEL,
-    STANDARD_METADATA,
-    STANDARD_METADATA_LABEL,
-} from "./constant";
+import { useFormConfiguration } from "./hooks/useFormConfiguration";
 
 export class StandardMetadataFactory {
     static getFormElements(
@@ -18,29 +12,22 @@ export class StandardMetadataFactory {
         onChange: (val: OnChangeProps) => void,
         errorFields: string[]
     ) {
-        const metadataForm = [...REQUIRED_FORM_DATA, ...STANDARD_METADATA];
-        const metadataFormLabels = {
-            ...REQUIRED_FORM_DATA_LABEL,
-            ...STANDARD_METADATA_LABEL,
-        };
+        const [metaData, metaDataLabels, requiredFields] =
+            useFormConfiguration(blockSettings);
 
-        const activeMetadataList = metadataForm
-            .filter((item) => blockSettings[item])
-            .filter((item) => item !== "disclaimer");
-
-        return activeMetadataList.map((metadata) => (
+        return metaData.map((entry) => (
             <InputText
-                id={metadata}
-                key={metadata}
+                id={entry}
+                key={entry}
                 onChange={onChange}
                 isRequired={
-                    REQUIRED_FORM_DATA.filter((item) => item === metadata)
+                    requiredFields.filter((item: any) => item === entry)
                         .length > 0
                 }
-                name={metadataFormLabels[metadata]}
+                name={metaDataLabels[entry]}
                 valueType={{ propertyType: MetadataType.TEXT }}
                 validation={
-                    errorFields.includes(metadata)
+                    errorFields.includes(entry)
                         ? Validation.Error
                         : Validation.Default
                 }

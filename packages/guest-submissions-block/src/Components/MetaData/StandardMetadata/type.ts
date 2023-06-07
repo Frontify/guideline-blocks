@@ -8,5 +8,9 @@ export type PartialSettingsType = Partial<
 >;
 
 export type RequiredSettingsType = Partial<
-    Pick<Settings, "name" | "email" | "disclaimer">
+    Pick<Settings, "disclaimer" | "name" | "email">
+>;
+
+export type DefaultStandardMetadataType = Partial<
+    Pick<Settings, "name" | "email">
 >;

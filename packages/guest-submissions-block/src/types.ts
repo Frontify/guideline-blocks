@@ -1,7 +1,9 @@
+import { AssetSubmissionRequestType } from "./module/AssetSubmission/type";
+
 export type Settings = {
-    assetSubmission: {
-        id: string;
-    };
+    assetSubmissionMetadataConfig: AssetSubmissionRequestType;
+
+    assetSubmission: string;
     columnNumber: number;
     content?: string;
     modalcontent?: string;
@@ -9,9 +11,10 @@ export type Settings = {
     dropzoneUpload: string;
     dropzoneDrop: string;
 
-    // Standard Metadata
+    // Default Metadata
     name: boolean;
     email: boolean;
+    // Standard Metadata
     description: boolean;
     creator: boolean;
     copyrightStatus: boolean;

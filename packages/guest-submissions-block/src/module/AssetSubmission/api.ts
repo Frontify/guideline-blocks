@@ -15,8 +15,8 @@ query assetSubmissionRequest {
         assetSubmissionRequests {
           id
           title
+          description
           configuration
-
         }
       }
     }

@@ -100,20 +100,23 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                     appBridge={appBridge}
                                     onSubmit={(formData) => {
                                         setModalOpen(false);
-                                        // Todo: Adjust data structure when Endpoint is set
+
                                         AssetSubmission.createAssetSubmissions({
                                             requestId:
-                                                blockSettings.assetSubmission
-                                                    .id,
+                                                blockSettings.assetSubmission,
                                             token: "Nas2YR66rKBSXfoo",
                                             fileIds: fileList.map(
                                                 (item) => item.uploadUrlId!
                                             ),
                                             submitter: {
-                                                name: "hans",
-                                                email: "peter@hans.ch",
+                                                name: "Peter",
+                                                email: "mark@hans.ch",
                                             },
-                                            metadata: JSON.stringify(formData),
+                                            metadata: `[${JSON.stringify(
+                                                formData
+                                            )}]`,
+                                            //  "custom": {id: "id of custom metadta", value: "value"}
+                                            //  "standard": {id: field_key, value: value }
                                         });
                                     }}
                                 >

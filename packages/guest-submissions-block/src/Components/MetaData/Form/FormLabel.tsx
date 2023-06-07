@@ -4,6 +4,7 @@ import { Text } from "@frontify/fondue";
 interface FormLabelProps {
     id: string;
     isRequired: boolean;
+    children?: React.ReactNode;
 }
 
 // we can just use the FormLabel and make a new Component around it

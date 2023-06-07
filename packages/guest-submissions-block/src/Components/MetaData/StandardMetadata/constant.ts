@@ -1,4 +1,8 @@
-import { PartialSettingsType, RequiredSettingsType } from "./type";
+import {
+    DefaultStandardMetadataType,
+    PartialSettingsType,
+    RequiredSettingsType,
+} from "./type";
 
 export const STANDARD_METADATA: (keyof PartialSettingsType)[] = [
     "description",
@@ -17,8 +21,6 @@ export const STANDARD_METADATA_LABEL: Record<
 };
 
 export const REQUIRED_FORM_DATA: (keyof RequiredSettingsType)[] = [
-    "name",
-    "email",
     "disclaimer",
 ];
 
@@ -30,3 +32,8 @@ export const REQUIRED_FORM_DATA_LABEL: Record<
     email: "Email",
     disclaimer: "disclaimer",
 };
+
+export const defaultStandardMetaData: (keyof DefaultStandardMetadataType)[] = [
+    "name",
+    "email",
+];
