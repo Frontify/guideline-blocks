@@ -21,7 +21,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
         if (newContent === content) {
             setIsApiRequestPending(false);
         } else {
-            setBlockSettings({ content }).finally(() => {
+            setBlockSettings({ content: newContent }).finally(() => {
                 setIsApiRequestPending(false);
             });
         }
