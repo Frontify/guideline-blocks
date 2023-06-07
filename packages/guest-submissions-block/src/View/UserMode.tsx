@@ -120,6 +120,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                             //  "custom": {id: "id of custom metadta", value: "value"}
                                             //  "standard": {id: field_key, value: value }
                                         });
+                                        setFileList([]);
                                     }}
                                 >
                                     <Divider color="rgb(234, 235, 235)" />
