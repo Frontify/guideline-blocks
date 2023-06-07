@@ -43,12 +43,7 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
             <div className="tw-rounded tw-bg-base-alt">
                 <Stack padding="l" spacing="s" direction={"column"}>
                     <ModalHeadline appBridge={appBridge} />
-                    <Metadata
-                        onSubmit={() => {
-                            console.log(false);
-                        }}
-                        appBridge={appBridge}
-                    />
+                    <Metadata onSubmit={() => {}} appBridge={appBridge} />
                 </Stack>
             </div>
         </Stack>

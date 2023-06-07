@@ -4,6 +4,11 @@ import { Settings } from "../../../types";
 import { defaultStandardMetaData } from "../StandardMetadata/constant";
 import { FormValues } from "../Metadata";
 
+const validateEmail = (email: string): string => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return !emailRegex.test(email) ? "email" : "";
+};
+
 export function useFormValidation(formValues: FormValues) {
     return (
         requiredStandardMetaData: (keyof RequiredSettingsType)[],
@@ -13,7 +18,6 @@ export function useFormValidation(formValues: FormValues) {
         ) => void,
         fromBlockSettings: Settings
     ): boolean => {
-        // All the Standard Metadata is required
         const standardMetaData = requiredStandardMetaData.filter(
             (item) => fromBlockSettings[item]
         );
@@ -28,11 +32,13 @@ export function useFormValidation(formValues: FormValues) {
         ];
 
         const missingRequiredFields = requiredFields.filter(
-            (item) =>
-                !Object.keys(formValues).includes(item) ||
-                (Object.keys(formValues).includes(item) &&
-                    formValues[item] === "")
+            (item) => !formValues[item] || formValues[item] === ""
         );
+
+        const emailValidationError = validateEmail(formValues.email);
+        if (emailValidationError) {
+            missingRequiredFields.push(emailValidationError);
+        }
 
         setMissingFields(missingRequiredFields);
 

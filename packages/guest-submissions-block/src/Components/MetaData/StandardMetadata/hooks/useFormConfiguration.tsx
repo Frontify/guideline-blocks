@@ -7,9 +7,7 @@ import {
 } from "../constant";
 import { Settings } from "../../../../types";
 
-export const useFormConfiguration = (
-    blockSettings: Settings
-): [
+type FormConfigurationResponse = [
     (
         | "name"
         | "email"
@@ -29,7 +27,11 @@ export const useFormConfiguration = (
         disclaimer: string;
     },
     ("disclaimer" | "name" | "email")[]
-] => {
+];
+
+export const useFormConfiguration = (
+    blockSettings: Settings
+): FormConfigurationResponse => {
     const metadataForm = [...REQUIRED_FORM_DATA, ...STANDARD_METADATA];
     const metaDataLabels = {
         ...REQUIRED_FORM_DATA_LABEL,

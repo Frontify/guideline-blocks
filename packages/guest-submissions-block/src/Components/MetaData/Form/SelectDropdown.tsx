@@ -20,10 +20,8 @@ export const SelectDropdown = ({
     >(initialValue);
 
     const onInput = (activeItemId: string | number | undefined) => {
-        const value =
-            options?.find((item) => item.id === activeItemId)?.value ?? "";
         setActiveItemId(activeItemId);
-        onChange({ id, value: value });
+        onChange({ id, value: activeItemId as string });
     };
 
     return (

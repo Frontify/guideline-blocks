@@ -71,17 +71,19 @@ export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
                     handleInputChange,
                     errorFields
                 )}
-                <Divider color="rgb(234, 235, 235)" />
                 {blockSettings.disclaimer && (
-                    <Disclaimer
-                        appBridge={appBridge}
-                        onChange={handleInputChange}
-                        validation={
-                            errorFields.includes(DISCLAIMER_NAME)
-                                ? Validation.Error
-                                : Validation.Default
-                        }
-                    />
+                    <>
+                        <Divider color="rgb(234, 235, 235)" />
+                        <Disclaimer
+                            appBridge={appBridge}
+                            onChange={handleInputChange}
+                            validation={
+                                errorFields.includes(DISCLAIMER_NAME)
+                                    ? Validation.Error
+                                    : Validation.Default
+                            }
+                        />
+                    </>
                 )}
                 {children}
             </Stack>

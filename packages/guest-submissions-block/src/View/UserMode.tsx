@@ -28,7 +28,13 @@ import { AssetSubmission } from "../module/AssetSubmission/AssetSubmission";
 import { assetSubmissionDTO } from "../module/AssetSubmission/AssetSubmissionDTO";
 
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
-    const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const [
+        {
+            assetSubmission,
+            assetSubmissionMetadataConfig: { tokens },
+            buttonText,
+        },
+    ] = useBlockSettings<Settings>(appBridge);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [fileList, setFileList] = useState<
         QueryFile[] | (QueryFile & File)[]
@@ -74,7 +80,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                 <Headline appBridge={appBridge} />
                 <div>
                     <Button onClick={() => setModalOpen(!modalOpen)}>
-                        {blockSettings.buttonText}
+                        {buttonText}
                     </Button>
                 </div>
             </div>
@@ -104,11 +110,8 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
 
                                         // We gad a response of ids and need to
                                         AssetSubmission.createAssetSubmissions({
-                                            requestId:
-                                                blockSettings.assetSubmission,
-                                            token: blockSettings
-                                                .assetSubmissionMetadataConfig
-                                                .tokens[0].token,
+                                            requestId: assetSubmission,
+                                            token: tokens[0].token,
                                             fileIds: fileList.map(
                                                 (item) => item.uploadUrlId!
                                             ),
@@ -116,14 +119,11 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                                 name: formData.name,
                                                 email: formData.email,
                                             },
-                                            metadata: `${JSON.stringify(
-                                                assetSubmissionDTO(formData)
-                                            )}`,
-                                            //  "custom": {id: "id of custom metadta", value: "value"}
-                                            //  "standard": {id: field_key, value: value }
+                                            metadata: JSON.stringify([
+                                                assetSubmissionDTO(formData),
+                                            ]),
                                         });
 
-                                        console.log(formData);
                                         setFileList([]);
                                     }}
                                 >
