@@ -25,6 +25,7 @@ import { Metadata } from "../Components/MetaData";
 import { useBlockSettings } from "@frontify/app-bridge";
 import { Settings } from "../types";
 import { AssetSubmission } from "../module/AssetSubmission/AssetSubmission";
+import { assetSubmissionDTO } from "../module/AssetSubmission/AssetSubmissionDTO";
 
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
@@ -101,6 +102,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                     onSubmit={(formData) => {
                                         setModalOpen(false);
 
+                                        // We gad a response of ids and need to
                                         AssetSubmission.createAssetSubmissions({
                                             requestId:
                                                 blockSettings.assetSubmission,
@@ -111,15 +113,17 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                                 (item) => item.uploadUrlId!
                                             ),
                                             submitter: {
-                                                name: "Peter",
-                                                email: "mark@hans.ch",
+                                                name: formData.name,
+                                                email: formData.email,
                                             },
-                                            metadata: `[${JSON.stringify(
-                                                formData
-                                            )}]`,
+                                            metadata: `${JSON.stringify(
+                                                assetSubmissionDTO(formData)
+                                            )}`,
                                             //  "custom": {id: "id of custom metadta", value: "value"}
                                             //  "standard": {id: field_key, value: value }
                                         });
+
+                                        console.log(formData);
                                         setFileList([]);
                                     }}
                                 >
