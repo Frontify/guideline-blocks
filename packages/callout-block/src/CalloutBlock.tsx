@@ -53,10 +53,14 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const textDivClassNames = joinClassNames([
         'tw-flex tw-items-center',
-        '[&>div>*:last-child]:tw-my-0', // Remove margin from last child in view mode
-        '[&>div>*:last-child>span]:!tw-my-0',
-        '[&>div>div>*:last-child]:tw-my-0', // Remove margin from last child in edit mode
-        '[&>div>div>*:last-child>span]:!tw-my-0',
+        '[&>div>*:first-child]:tw-mt-0', // Remove margin top from first child in view mode
+        '[&>div>*:first-child>span]:!tw-mt-0',
+        '[&>div>div>*:first-child]:tw-mt-0', // Remove margin top from first child in edit mode
+        '[&>div>div>*:first-child>span]:!tw-mt-0',
+        '[&>div>*:last-child]:tw-mb-0', // Remove margin bottom from last child in view mode
+        '[&>div>*:last-child>span]:!tw-mb-0',
+        '[&>div>div>*:last-child]:tw-mb-0', // Remove margin bottom from last child in edit mode
+        '[&>div>div>*:last-child>span]:!tw-mb-0',
         blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
         !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
     ]);
