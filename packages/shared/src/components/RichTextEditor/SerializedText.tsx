@@ -19,7 +19,7 @@ export const SerializedText = ({ value = '', gap, columns, show = true, plugins 
     }
 
     return html !== null ? (
-        <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+        <div className="tw-w-full" data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
     ) : (
         <div className="tw-rounded-sm tw-bg-base-alt tw-animate-pulse tw-h-full tw-min-h-[10px] tw-w-full" />
     );

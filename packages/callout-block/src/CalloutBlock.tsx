@@ -52,7 +52,7 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const textColor = getTextColor(blockSettings.appearance, accentColor, backgroundColor);
 
     const textDivClassNames = joinClassNames([
-        'tw-flex tw-items-center',
+        'callout-block tw-flex tw-items-center',
         blockSettings.width === Width.FullWidth && alignmentMap[blockSettings.alignment],
         !blockSettings.hasCustomPadding && paddingMap[blockSettings.paddingChoice],
     ]);
@@ -117,6 +117,19 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                     plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                 />
             </div>
+
+            {/* Hacky way to remove margin from the last element, so that the text is vertically centered in the callout block */}
+            <style>{`
+                .callout-block > div > *:last-child,
+                .callout-block > div > div > *:last-child {
+                    margin-bottom: 0;
+                }
+
+                .callout-block > div > *:last-child > span,
+                .callout-block > div > div > *:last-child > span {
+                    margin-bottom: 0 !important;
+                }
+            `}</style>
         </div>
     );
 };
