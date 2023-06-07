@@ -17,6 +17,9 @@ query assetSubmissionRequest {
           title
           description
           configuration
+          tokens {
+             token
+          }
         }
       }
     }

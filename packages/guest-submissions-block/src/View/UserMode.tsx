@@ -104,7 +104,9 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                         AssetSubmission.createAssetSubmissions({
                                             requestId:
                                                 blockSettings.assetSubmission,
-                                            token: "Nas2YR66rKBSXfoo",
+                                            token: blockSettings
+                                                .assetSubmissionMetadataConfig
+                                                .tokens[0].token,
                                             fileIds: fileList.map(
                                                 (item) => item.uploadUrlId!
                                             ),

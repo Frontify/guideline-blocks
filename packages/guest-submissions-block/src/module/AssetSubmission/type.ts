@@ -14,4 +14,7 @@ export type AssetSubmissionRequestType = {
     id: string;
     title: string;
     description: string;
+    tokens: {
+        token: string;
+    }[];
 };
