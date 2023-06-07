@@ -13,7 +13,7 @@ import {
     radiusStyleMap,
     setAlpha,
 } from '@frontify/guideline-blocks-shared';
-import { CSSProperties, ReactElement } from 'react';
+import { CSSProperties, ReactElement, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';
 import { ICON_ASSET_ID } from './settings';
@@ -23,6 +23,8 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
+    const [isApiRequestPending, setIsApiRequestPending] = useState(false);
+
     if (blockSettings.appearance !== Appearance.Strong && blockSettings.appearance !== Appearance.Light) {
         // workaround as the appearance could be hubAppearance
         setBlockSettings({ appearance: Appearance.Light });
@@ -73,7 +75,15 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
     const iconUrl = blockSettings.iconSwitch ? blockAssets?.[ICON_ASSET_ID]?.[0]?.genericUrl : '';
     const showIcon = blockSettings.iconSwitch ? !!iconUrl : blockSettings.iconType !== Icon.None;
 
-    const onTextChange = (value: string) => value !== blockSettings.textValue && setBlockSettings({ textValue: value });
+    const onTextChange = (value: string) => {
+        if (value === blockSettings.textValue) {
+            setIsApiRequestPending(false);
+        } else {
+            setBlockSettings({ textValue: value }).finally(() => {
+                setIsApiRequestPending(false);
+            });
+        }
+    };
 
     const overwrittenThemeSettings = {
         [`${THEME_PREFIX}heading1-color`]: textColor,
@@ -113,9 +123,12 @@ export const CalloutBlock = ({ appBridge }: BlockProps): ReactElement => {
                     id={appBridge.getBlockId().toString()}
                     isEditing={isEditing}
                     onBlur={onTextChange}
+                    onTextChange={onTextChange}
                     placeholder="Type your text here"
                     value={blockSettings.textValue}
                     plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                    onValueChanged={() => setIsApiRequestPending(true)}
+                    shouldPreventPageLeave={isApiRequestPending}
                 />
             </div>
         </div>
