@@ -7,6 +7,8 @@ type MetadataIds = {
     [key: string]: string | boolean | number | AssetSubmissionRequestType;
 };
 
+export const DATA_DELIMINATOR = "--#--";
+
 export const useMetadataConfig = (
     blockSettings: Settings
 ): [FormValues, MetadataProps[]] => {
@@ -37,7 +39,7 @@ const parseAndSetRequiredFields = (
 
 const filterActiveMetadata = (blockSettings: Settings): MetadataIds[] =>
     Object.entries(blockSettings)
-        .filter(([key, value]) => key.includes("--#--") && !!value)
+        .filter(([key, value]) => key.includes(DATA_DELIMINATOR) && !!value)
         .map(([key, value]) => ({ [key]: value }));
 
 const setActiveMetadataFields = (
@@ -46,7 +48,7 @@ const setActiveMetadataFields = (
 ): MetadataProps[] =>
     activeMetadataIds.reduce((acc: MetadataProps[], cur) => {
         const [key] = Object.keys(cur);
-        const [_, id, modifier] = key.split("--#--");
+        const [_, id, modifier] = key.split(DATA_DELIMINATOR);
         const metadataEntry = initialMetadataConfig.find(
             (item) => item.id === id
         );
@@ -74,7 +76,7 @@ const withConditionalFields = (
                 (key.includes("required") || key.includes("label"))
         );
         if (matchingKey) {
-            const [, , modifier] = matchingKey.split("--#--");
+            const [, , modifier] = matchingKey.split(DATA_DELIMINATOR);
             if (modifier === "required") {
                 metadataConfig.isRequired = !!entry[matchingKey];
             } else if (modifier === "label") {

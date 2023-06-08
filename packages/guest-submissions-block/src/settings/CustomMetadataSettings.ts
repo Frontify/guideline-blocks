@@ -1,4 +1,5 @@
 import { AssetSubmissionRequestType } from "../module/AssetSubmission/type";
+import { DATA_DELIMINATOR } from "../Components/MetaData/hooks/useMetadataConfig";
 
 export const defineCustomMetadataEntries = (
     assetSubmissions: AssetSubmissionRequestType[]
@@ -17,7 +18,7 @@ export const defineCustomMetadataEntries = (
                         assetSubmission.id,
                     blocks: [
                         {
-                            id: `${metaDataEntry.name}--#--${metaDataEntry.id}`,
+                            id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}`,
                             type: "switch",
                             label: "Show",
                             labelStyle: "heading",
@@ -27,7 +28,7 @@ export const defineCustomMetadataEntries = (
                                 assetSubmission.id,
                             on: [
                                 {
-                                    id: `${metaDataEntry.name}--#--${metaDataEntry.id}--#--required`,
+                                    id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}required`,
                                     type: "switch",
                                     label: "Required",
                                     info: `${
@@ -38,7 +39,7 @@ export const defineCustomMetadataEntries = (
                                     size: "small",
                                 },
                                 {
-                                    id: `${metaDataEntry.name}--#--${metaDataEntry.id}--#--label`,
+                                    id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}label`,
                                     type: "input",
                                     inputType: "text",
                                     label: "Custom Label",
