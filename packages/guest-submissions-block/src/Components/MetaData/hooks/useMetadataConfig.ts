@@ -21,10 +21,10 @@ const getMetadataConfiguration = (blockSettings: Settings): MetadataProps[] => {
     const initialMetadataConfiguration = parseAndSetRequiredFields(
         blockSettings.assetSubmissionMetadataConfig
     );
-    const activatedMetadataIds = filterActiveMetadata(blockSettings);
+    const activeMetadataFromSettings = filterActiveMetadata(blockSettings);
 
     return setActiveMetadataFields(
-        activatedMetadataIds,
+        activeMetadataFromSettings,
         initialMetadataConfiguration
     );
 };
@@ -43,36 +43,34 @@ const filterActiveMetadata = (blockSettings: Settings): MetadataIds[] =>
         .map(([key, value]) => ({ [key]: value }));
 
 const setActiveMetadataFields = (
-    activeMetadataIds: MetadataIds[],
+    activeMetadataFromSettings: MetadataIds[],
     initialMetadataConfig: MetadataProps[]
 ): MetadataProps[] =>
-    activeMetadataIds.reduce((acc: MetadataProps[], cur) => {
+    activeMetadataFromSettings.reduce((acc: MetadataProps[], cur) => {
         const [key] = Object.keys(cur);
-        const [_, id, modifier] = key.split(DATA_DELIMINATOR);
+        const [, id, modifier] = key.split(DATA_DELIMINATOR);
         const metadataEntry = initialMetadataConfig.find(
             (item) => item.id === id
         );
         if (!!modifier || !metadataEntry) {
             return acc || [];
         }
-        const metadataConfig = withConditionalFields(
-            activeMetadataIds,
-            id,
-            metadataEntry
+        const metadataConfig = withLabelAndRequiredFromSettings(
+            metadataEntry,
+            activeMetadataFromSettings
         );
 
         return acc ? [...acc, metadataConfig] : [metadataConfig];
     }, []);
 
-const withConditionalFields = (
-    activeMetadataIds: MetadataIds[],
-    id: string,
-    metadataConfig: MetadataProps
+const withLabelAndRequiredFromSettings = (
+    metadataConfig: MetadataProps,
+    activeMetadataIds: MetadataIds[]
 ): MetadataProps => {
     activeMetadataIds.forEach((entry) => {
         const matchingKey = Object.keys(entry).find(
             (key) =>
-                key.includes(id) &&
+                key.includes(metadataConfig.id) &&
                 (key.includes("required") || key.includes("label"))
         );
         if (matchingKey) {
