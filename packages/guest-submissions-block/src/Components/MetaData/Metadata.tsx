@@ -13,7 +13,7 @@ import { useBlockSettings } from "@frontify/app-bridge";
 import { Settings } from "../../types";
 import { REQUIRED_FORM_DATA } from "./StandardMetadata/constant";
 import { useFormValidation } from "./hooks/UseFormValidation";
-import { useMetadataConfig } from "./hooks/useMetadataConfig";
+import { useMetadataSettingsConfig } from "./hooks/useMetadataSettingsConfig";
 
 type MetaDataSubmitProps = {
     onSubmit: (formData: FormValues) => void;
@@ -32,7 +32,7 @@ export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({
 }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const [initialValues, metadataConfiguration] =
-        useMetadataConfig(blockSettings);
+        useMetadataSettingsConfig(blockSettings);
     const [formValues, setFormValues] = useState<FormValues>(initialValues);
     const [errorFields, setErrorFields] = useState<string[]>([]);
     const validateFormOrTriggerError = useFormValidation(formValues);

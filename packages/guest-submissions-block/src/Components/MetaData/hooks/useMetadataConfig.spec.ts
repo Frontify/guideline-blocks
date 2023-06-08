@@ -1,9 +1,11 @@
 import { describe, expect, test } from "vitest";
-import { useMetadataConfig } from "./useMetadataConfig";
+import { useMetadataSettingsConfig } from "./useMetadataSettingsConfig";
 
 describe("Metadata Config", () => {
     test("MetadataConfig Spec ", () => {
-        const [initialValue, metadata] = useMetadataConfig(testObject as any);
+        const [initialValue, metadata] = useMetadataSettingsConfig(
+            testObject as any
+        );
 
         const desiredInitialValue = {
             "eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==":
@@ -24,7 +26,7 @@ describe("Metadata Config", () => {
     });
 
     test("MetadataConfig works without metadata ", () => {
-        const [initialValue, metadata] = useMetadataConfig(
+        const [initialValue, metadata] = useMetadataSettingsConfig(
             testObjectNoConfiguration as any
         );
 

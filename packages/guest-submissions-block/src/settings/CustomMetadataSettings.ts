@@ -1,5 +1,5 @@
 import { AssetSubmissionRequestType } from "../module/AssetSubmission/type";
-import { DATA_DELIMINATOR } from "../Components/MetaData/hooks/useMetadataConfig";
+import { DATA_DELIMINATOR } from "../Components/MetaData/hooks/useMetadataSettingsConfig";
 
 export const defineCustomMetadataEntries = (
     assetSubmissions: AssetSubmissionRequestType[]

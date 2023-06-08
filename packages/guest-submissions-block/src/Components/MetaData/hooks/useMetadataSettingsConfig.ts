@@ -9,7 +9,7 @@ type MetadataIds = {
 
 export const DATA_DELIMINATOR = "--#--";
 
-export const useMetadataConfig = (
+export const useMetadataSettingsConfig = (
     blockSettings: Settings
 ): [FormValues, MetadataProps[]] => {
     const metadataConfiguration = getMetadataConfiguration(blockSettings);
