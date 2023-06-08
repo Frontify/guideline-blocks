@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -15,7 +15,17 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
-    const onTextChange = (content: string) => setBlockSettings({ content });
+    const [isApiRequestPending, setIsApiRequestPending] = useState(false);
+
+    const onTextChange = (newContent: string) => {
+        if (newContent === content) {
+            setIsApiRequestPending(false);
+        } else {
+            setBlockSettings({ content: newContent }).finally(() => {
+                setIsApiRequestPending(false);
+            });
+        }
+    };
 
     return (
         <RichTextEditor
@@ -27,6 +37,9 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
             plugins={getPlugins(appBridge, columnNumber, gap)}
             placeholder={PLACEHOLDER}
             onBlur={onTextChange}
+            onTextChange={onTextChange}
+            onValueChanged={() => setIsApiRequestPending(true)}
+            shouldPreventPageLeave={isApiRequestPending}
         />
     );
 };
