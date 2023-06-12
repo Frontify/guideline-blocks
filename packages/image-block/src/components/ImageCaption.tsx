@@ -11,9 +11,10 @@ type ImageCaptionProps = {
     blockId: string;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
+    updateValueOnChange: boolean;
 };
 
-export const ImageCaption = ({ isEditing, blockId, appBridge }: ImageCaptionProps) => {
+export const ImageCaption = ({ isEditing, blockId, appBridge, updateValueOnChange }: ImageCaptionProps) => {
     const [isApiRequestPending, setIsApiRequestPending] = useState(false);
     const [isApiRequestNamePending, setIsApiRequestNamePending] = useState(false);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -56,6 +57,7 @@ export const ImageCaption = ({ isEditing, blockId, appBridge }: ImageCaptionProp
                 onBlur={onTitleChange}
                 onValueChanged={() => setIsApiRequestNamePending(true)}
                 shouldPreventPageLeave={isApiRequestNamePending}
+                updateValueOnChange={updateValueOnChange}
             />
             <RichTextEditor
                 id={`${blockId}_description`}

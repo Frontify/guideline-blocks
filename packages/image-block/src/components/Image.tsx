@@ -20,9 +20,20 @@ type ImageProps = {
     appBridge: AppBridgeBlock;
 };
 
-export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) => {
+export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: ImageProps) => {
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const imageStyle = getImageStyle(blockSettings, image.width);
+
+    const Image = (
+        <img
+            data-test-id="image-block-img"
+            className="tw-flex tw-w-full"
+            loading="lazy"
+            src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+            alt={image.fileName}
+            style={imageStyle}
+        />
+    );
     return (
         <>
             {link && !isEditing ? (
@@ -32,24 +43,10 @@ export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) 
                     target={link.openInNewTab ? '_blank' : undefined}
                     rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
                 >
-                    <img
-                        data-test-id="image-block-img"
-                        className="tw-flex"
-                        loading="lazy"
-                        src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                        alt={image.fileName}
-                        style={imageStyle}
-                    />
+                    {Image}
                 </a>
             ) : (
-                <img
-                    data-test-id="image-block-img"
-                    className="tw-flex"
-                    loading="lazy"
-                    src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                    alt={image.fileName}
-                    style={imageStyle}
-                />
+                <button onClick={isEditing ? undefined : () => appBridge.openAssetViewer(image.token)}>{Image}</button>
             )}
         </>
     );

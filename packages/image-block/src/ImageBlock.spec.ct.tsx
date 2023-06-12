@@ -10,7 +10,7 @@ import {
     Ratio,
     mapAlignmentClasses,
     mapCaptionPositionClasses,
-    rationValues,
+    ratioValues,
 } from './types';
 import { Security } from '@frontify/guideline-blocks-shared';
 
@@ -166,7 +166,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(`${ImageBlockSelector}>div`).should('have.class', rationValues[Ratio.Ratio1To2]);
+        cy.get(`${ImageBlockSelector}>div`).should('have.class', ratioValues[Ratio.Ratio1To2]);
     });
 
     it('should add background color if provided', () => {

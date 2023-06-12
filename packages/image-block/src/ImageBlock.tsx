@@ -14,7 +14,7 @@ import {
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import 'tailwindcss/tailwind.css';
-import { CaptionPosition, Settings, mapCaptionPositionClasses, rationValues } from './types';
+import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';
 import {
@@ -41,6 +41,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const blockId = appBridge.getBlockId().toString();
 
     const [isLoading, setIsLoading] = useState(false);
+    const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string>();
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
@@ -53,9 +54,11 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         setErrorMsg(undefined);
         if (!hasRichTextValue(blockSettings.name)) {
             setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
+            setUpdateValueOnChange(true);
         }
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
         setIsLoading(false);
+        setUpdateValueOnChange(false);
     };
 
     const openAssetChooser = () => {
@@ -118,7 +121,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                     blockSettings.positioning === CaptionPosition.Above ||
                     blockSettings.positioning === CaptionPosition.Below
                         ? 'tw-w-full'
-                        : rationValues[blockSettings.ratio]
+                        : ratioValues[blockSettings.ratio]
                 }
             >
                 {image ? (
@@ -173,7 +176,12 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                     )
                 )}
             </div>
-            <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
+            <ImageCaption
+                blockId={blockId}
+                isEditing={isEditing}
+                appBridge={appBridge}
+                updateValueOnChange={updateValueOnChange}
+            />
         </div>
     );
 };

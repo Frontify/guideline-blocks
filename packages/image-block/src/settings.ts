@@ -4,6 +4,7 @@ import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     AssetChooserObjectType,
     IconEnum,
+    NotificationBlockDividerPosition,
     NotificationStyleType,
     appendUnit,
     defineSettings,
@@ -63,6 +64,7 @@ export const settings = defineSettings({
             styles: {
                 type: NotificationStyleType.Info,
                 icon: true,
+                divider: NotificationBlockDividerPosition.Top,
             },
             footer: {
                 label: 'Follow our guide for image resolution',
@@ -108,17 +110,14 @@ export const settings = defineSettings({
                 {
                     value: Alignment.Left,
                     icon: IconEnum.ArrowAlignLeft,
-                    label: 'Left',
                 },
                 {
                     value: Alignment.Center,
                     icon: IconEnum.ArrowAlignVerticalCentre,
-                    label: 'Center',
                 },
                 {
                     value: Alignment.Right,
                     icon: IconEnum.ArrowAlignRight,
-                    label: 'Right',
                 },
             ],
         },

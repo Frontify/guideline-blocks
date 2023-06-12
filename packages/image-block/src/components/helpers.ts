@@ -89,7 +89,7 @@ export const getImageStyle = (blockSettings: Settings, width: string): CSSProper
     return {
         padding,
         border,
-        width,
+        maxWidth: width,
         borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
         backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
     };

@@ -84,7 +84,9 @@ export const BlockInjectButton = ({
                     ? '[&:not(:first-child)]:tw-border-t-0 first:tw-rounded-tr last:tw-rounded-bl'
                     : '[&:not(:first-child)]:tw-border-l-0  first:tw-rounded-bl last:tw-rounded-tr',
                 !isLoading &&
-                    'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover active:tw-text-blank-state-pressed active:tw-bg-blank-state-pressed-inverse active:tw-border-blank-state-line-hover',
+                    'hover:tw-text-blank-state-hover hover:tw-bg-blank-state-hover-inverse hover:tw-border-blank-state-line-hover',
+                menuPosition &&
+                    'tw-border-blank-state-line-hover tw-bg-blank-state-hover-inverse tw-text-blank-state-hover',
                 isDraggingOver && '[&>*]:tw-pointer-events-none',
                 isDraggingOver || !!menuPosition
                     ? 'tw-text-blank-state-pressed tw-bg-blank-state-pressed-inverse tw-border-blank-state-line-hover'
