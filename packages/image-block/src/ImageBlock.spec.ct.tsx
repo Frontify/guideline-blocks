@@ -140,7 +140,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageWrapperSelector).should('have.css', 'border', '1px solid rgb(0, 0, 255)');
+        cy.get(ImageBlockImageSelector).should('have.css', 'border', '1px solid rgb(0, 0, 255)');
     });
 
     it('should change layout according to provided positioning', () => {
@@ -166,7 +166,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageWrapperSelector).should('have.class', rationValues[Ratio.Ratio1To2]);
+        cy.get(`${ImageBlockSelector}>div`).should('have.class', rationValues[Ratio.Ratio1To2]);
     });
 
     it('should add background color if provided', () => {
@@ -180,7 +180,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageWrapperSelector).should('have.css', 'backgroundColor', 'rgb(0, 0, 255)');
+        cy.get(ImageBlockImageSelector).should('have.css', 'backgroundColor', 'rgb(0, 0, 255)');
     });
 
     it('should add padding provided', () => {
@@ -194,7 +194,7 @@ describe('Image Block', () => {
             },
         });
         mount(<ImageBlockWithStubs />);
-        cy.get(ImageBlockImageWrapperSelector).should('have.css', 'padding', '16px');
+        cy.get(ImageBlockImageSelector).should('have.css', 'padding', '16px');
     });
 
     it('should add alignment of the image if provided', () => {
