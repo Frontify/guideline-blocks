@@ -35,7 +35,9 @@
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "0.26.8",
         "@frontify/guideline-blocks-shared": "workspace:*",
+        "@types/tinycolor2": "1.4.3",
         "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "tinycolor2": "1.4.2"
     }
 }
