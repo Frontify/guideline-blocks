@@ -19,7 +19,15 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { AllTextStylePlugins, AllTextStyles, ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
+import {
+    AllTextStylePlugins,
+    AllTextStyles,
+    ButtonPlugin,
+    LinkPlugin,
+    toRgbaString,
+} from '@frontify/guideline-blocks-shared';
+import { CornerRadius, Settings, paddingValues, radiusValues } from '../types';
+import { CSSProperties } from 'react';
 
 const textStylePlugins = [
     new SoftBreakPlugin(),
@@ -65,3 +73,24 @@ export const getCaptionPlugins = (appBridge: AppBridgeBlock) =>
             new OrderedListPlugin(),
             new ResetFormattingPlugin(),
         ]);
+
+export const getImageStyle = (blockSettings: Settings, width: string): CSSProperties => {
+    const borderRadius = blockSettings.hasRadius_cornerRadius
+        ? blockSettings.radiusValue_cornerRadius
+        : radiusValues[blockSettings.radiusChoice_cornerRadius];
+    const border = blockSettings.hasBorder
+        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
+        : undefined;
+
+    const padding = blockSettings.hasCustomPadding
+        ? blockSettings.paddingCustom
+        : paddingValues[blockSettings.paddingChoice];
+
+    return {
+        padding,
+        border,
+        width,
+        borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
+        backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
+    };
+};

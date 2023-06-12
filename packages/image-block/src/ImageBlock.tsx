@@ -14,7 +14,7 @@ import {
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import 'tailwindcss/tailwind.css';
-import { Settings, mapCaptionPositionClasses } from './types';
+import { CaptionPosition, Settings, mapCaptionPositionClasses, rationValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';
 import {
@@ -48,18 +48,11 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
-    const { name, description } = blockSettings;
-
-    const saveTitle = (name: string) => {
-        if (name !== blockSettings.name) {
-            setBlockSettings({ name });
-        }
-    };
 
     const updateImage = async (image: Asset) => {
         setErrorMsg(undefined);
-        if (!hasRichTextValue(name)) {
-            saveTitle(convertToRteValue(TextStyles.imageTitle, image?.title, 'center'));
+        if (!hasRichTextValue(blockSettings.name)) {
+            setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
         }
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
         setIsLoading(false);
@@ -120,66 +113,67 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 mapCaptionPositionClasses[blockSettings.positioning],
             ])}
         >
-            {image ? (
-                <BlockItemWrapper
-                    shouldHideWrapper={!isEditing}
-                    toolbarFlyoutItems={[
-                        [
-                            {
-                                title: 'Replace with upload',
-                                icon: <IconArrowCircleUp20 />,
-                                onClick: openFileDialog,
-                            },
-                            {
-                                title: 'Replace with asset',
-                                icon: <IconImageStack20 />,
-                                onClick: openAssetChooser,
-                            },
-                        ],
-                        [
-                            {
-                                title: 'Delete',
-                                icon: <IconTrashBin20 />,
-                                style: MenuItemStyle.Danger,
-                                onClick: () => onRemoveAsset(),
-                            },
-                        ],
-                    ]}
-                    toolbarItems={[]}
-                >
-                    {isLoading ? (
-                        <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
-                            <LoadingCircle />
-                        </div>
-                    ) : (
-                        <Image
-                            appBridge={appBridge}
-                            blockSettings={blockSettings}
-                            isEditing={isEditing}
-                            image={image}
+            <div
+                className={
+                    blockSettings.positioning === CaptionPosition.Above ||
+                    blockSettings.positioning === CaptionPosition.Below
+                        ? 'tw-w-full'
+                        : rationValues[blockSettings.ratio]
+                }
+            >
+                {image ? (
+                    <BlockItemWrapper
+                        shouldHideWrapper={!isEditing}
+                        toolbarFlyoutItems={[
+                            [
+                                {
+                                    title: 'Replace with upload',
+                                    icon: <IconArrowCircleUp20 />,
+                                    onClick: openFileDialog,
+                                },
+                                {
+                                    title: 'Replace with asset',
+                                    icon: <IconImageStack20 />,
+                                    onClick: openAssetChooser,
+                                },
+                            ],
+                            [
+                                {
+                                    title: 'Delete',
+                                    icon: <IconTrashBin20 />,
+                                    style: MenuItemStyle.Danger,
+                                    onClick: () => onRemoveAsset(),
+                                },
+                            ],
+                        ]}
+                        toolbarItems={[]}
+                    >
+                        {isLoading ? (
+                            <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
+                                <LoadingCircle />
+                            </div>
+                        ) : (
+                            <Image
+                                appBridge={appBridge}
+                                blockSettings={blockSettings}
+                                isEditing={isEditing}
+                                image={image}
+                            />
+                        )}
+                    </BlockItemWrapper>
+                ) : (
+                    isEditing && (
+                        <UploadPlaceholder
+                            errorMsg={errorMsg}
+                            loading={isLoading}
+                            onUploadClick={openFileDialog}
+                            onFilesDrop={onFilesDrop}
+                            onAssetChooseClick={openAssetChooser}
                         />
-                    )}
-                </BlockItemWrapper>
-            ) : (
-                isEditing && (
-                    <UploadPlaceholder
-                        errorMsg={errorMsg}
-                        loading={isLoading}
-                        onUploadClick={openFileDialog}
-                        onFilesDrop={onFilesDrop}
-                        onAssetChooseClick={openAssetChooser}
-                    />
-                )
-            )}
-            <ImageCaption
-                blockId={blockId}
-                name={name}
-                description={description}
-                onNameChange={saveTitle}
-                onDescriptionChange={(value) => value !== description && setBlockSettings({ description: value })}
-                isEditing={isEditing}
-                appBridge={appBridge}
-            />
+                    )
+                )}
+            </div>
+            <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
         </div>
     );
 };

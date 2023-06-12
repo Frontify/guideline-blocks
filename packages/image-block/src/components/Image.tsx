@@ -1,25 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    CaptionPosition,
-    CornerRadius,
-    Settings,
-    mapAlignmentClasses,
-    paddingValues,
-    radiusValues,
-    rationValues,
-} from '../types';
+import { Settings, mapAlignmentClasses } from '../types';
 import {
     Attachments,
     DownloadButton,
     downloadAsset,
     isDownloadable,
     joinClassNames,
-    toRgbaString,
     useAttachments,
 } from '@frontify/guideline-blocks-shared';
 import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
+import { getImageStyle } from './helpers';
 
 type ImageProps = {
     image: Asset;
@@ -29,7 +21,8 @@ type ImageProps = {
 };
 
 export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) => {
-    const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
+    const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
+    const imageStyle = getImageStyle(blockSettings, image.width);
     return (
         <>
             {link && !isEditing ? (
@@ -45,9 +38,7 @@ export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) 
                         loading="lazy"
                         src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
                         alt={image.fileName}
-                        style={{
-                            width: image.width,
-                        }}
+                        style={imageStyle}
                     />
                 </a>
             ) : (
@@ -57,9 +48,7 @@ export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) 
                     loading="lazy"
                     src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
                     alt={image.fileName}
-                    style={{
-                        width: image.width,
-                    }}
+                    style={imageStyle}
                 />
             )}
         </>
@@ -72,32 +61,12 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
 
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
 
-    const borderRadius = blockSettings.hasRadius_cornerRadius
-        ? blockSettings.radiusValue_cornerRadius
-        : radiusValues[blockSettings.radiusChoice_cornerRadius];
-    const border = blockSettings.hasBorder
-        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
-        : undefined;
-
-    const padding = blockSettings.hasCustomPadding
-        ? blockSettings.paddingCustom
-        : paddingValues[blockSettings.paddingChoice];
     return (
         <div
-            style={{
-                padding,
-                border,
-                borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
-                backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
-            }}
             data-test-id="image-block-img-wrapper"
             className={joinClassNames([
                 'tw-relative tw-flex tw-h-auto tw-overflow-hidden',
                 mapAlignmentClasses[blockSettings.alignment],
-                blockSettings.positioning === CaptionPosition.Above ||
-                blockSettings.positioning === CaptionPosition.Below
-                    ? 'tw-w-full'
-                    : rationValues[blockSettings.ratio],
             ])}
         >
             <div className="tw-relative">
