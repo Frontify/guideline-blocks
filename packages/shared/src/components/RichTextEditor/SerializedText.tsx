@@ -1,25 +1,25 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import React, { useEffect, useState } from 'react';
-import { serializeRawToHtmlAsync } from '@frontify/fondue';
 import { SerializedTextProps } from './types';
+import { serializeRawToHtmlAsync } from './serializer';
 
-export const SerializedText = ({ value = '', designTokens, gap, columns, show = true }: SerializedTextProps) => {
+export const SerializedText = ({ value = '', gap, columns, show = true, plugins }: SerializedTextProps) => {
     const [html, setHtml] = useState<string | null>(null);
 
     useEffect(() => {
         (async () => {
-            setHtml(await serializeRawToHtmlAsync(value, designTokens, columns, gap));
+            setHtml(await serializeRawToHtmlAsync(value, columns, gap, plugins));
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [value, designTokens, columns, gap]);
+    }, [value, columns, gap, plugins]);
 
     if (!show || html === '<br />') {
         return null;
     }
 
     return html !== null ? (
-        <div data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
+        <div className="tw-w-full" data-test-id="rte-content-html" dangerouslySetInnerHTML={{ __html: html }} />
     ) : (
         <div className="tw-rounded-sm tw-bg-base-alt tw-animate-pulse tw-h-full tw-min-h-[10px] tw-w-full" />
     );

@@ -14,7 +14,7 @@ import {
 } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { convertToRteValue, toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { AllTextStylePlugins, THEME_PREFIX, convertToRteValue, toRgbaString } from '@frontify/guideline-blocks-shared';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';
@@ -24,13 +24,12 @@ import { flexBoxAlignmentClassNames, textAlignmentClassNames } from './utilities
 
 const customPlugins = new PluginComposer();
 customPlugins
-    .setPlugin([new TextStylePlugin()])
+    .setPlugin([new TextStylePlugin({ textStyles: AllTextStylePlugins })])
     .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()]);
 
 export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
     const { blockAssets } = useBlockAssets(appBridge);
 
     const isQuotationMarkType = blockSettings.type !== QuoteType.Indentation;
@@ -38,13 +37,14 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
         blockSettings.quotationMarksAnchoring !== QuotationMarksAnchoring.HugText && isQuotationMarkType;
     const textAlignment = !isQuotationMarkType ? 'left' : blockSettings.textAlignment ?? 'left';
 
+    const themeStyle = getComputedStyle(document.body);
     const iconColor = blockSettings.isCustomQuotesColor
         ? toRgbaString(blockSettings.quotesColor ?? DEFAULT_COLOR_VALUE)
-        : designTokens?.quote?.color ?? toRgbaString(DEFAULT_COLOR_VALUE);
+        : themeStyle.getPropertyValue(`${THEME_PREFIX}quote-color`) ?? toRgbaString(DEFAULT_COLOR_VALUE);
 
     const accentLineColor = blockSettings.isCustomLineColor
         ? toRgbaString(blockSettings.accentLineColor ?? DEFAULT_COLOR_VALUE)
-        : designTokens?.quote?.color ?? toRgbaString(DEFAULT_COLOR_VALUE);
+        : themeStyle.getPropertyValue(`${THEME_PREFIX}quote-color`) ?? toRgbaString(DEFAULT_COLOR_VALUE);
 
     const borderStyles = blockSettings.showAccentLine
         ? {
@@ -103,10 +103,9 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     >
                         <RichTextEditor
                             id={appBridge.getBlockId().toString()}
-                            designTokens={designTokens}
                             border={false}
                             placeholder={isEditing ? 'Add your quote text here' : undefined}
-                            value={blockSettings.content ?? convertToRteValue(TextStyles.ELEMENT_QUOTE)}
+                            value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
                             onTextChange={onChangeContent}
                             onBlur={onChangeContent}
                             plugins={customPlugins}

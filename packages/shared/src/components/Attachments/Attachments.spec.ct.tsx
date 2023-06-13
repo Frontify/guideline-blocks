@@ -5,7 +5,6 @@ import { AssetDummy, getAppBridgeBlockStub } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { Attachments as AttachmentsComponent } from './Attachments';
 import { AttachmentsProps } from './types';
-import { defaultDesignTokens } from '@frontify/fondue';
 import { SinonStub } from 'cypress/types/sinon';
 
 const FlyoutButtonSelector = '[data-test-id="attachments-flyout-button"]';
@@ -37,7 +36,6 @@ const Attachments = ({
             onSorted={onSorted}
             onBrowse={onBrowse}
             onUpload={onUpload}
-            designTokens={defaultDesignTokens}
         />
     );
 };

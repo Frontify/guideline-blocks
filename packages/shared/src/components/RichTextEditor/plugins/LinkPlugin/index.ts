@@ -7,8 +7,9 @@ import { CustomFloatingLink } from './FloatingLink/CustomFloatingLink';
 import { LINK_PLUGIN } from './id';
 import { LinkButton } from './LinkButton';
 import { LinkMarkupElement } from './LinkMarkupElement';
-
-export const isValidUrl = (url: string): boolean => !!url.match(/^((https?:\/\/|mailto:|tel:).+)|\/r\/.+/);
+import { isValidUrl } from './utils/url';
+import { CSSProperties } from 'react';
+import { BlockStyles } from '../styles';
 
 export const createLinkPlugin = (appBridge: AppBridgeBlock) =>
     createPluginFactory({
@@ -30,13 +31,14 @@ export type LinkPluginProps = PluginProps & { appBridge: AppBridgeBlock };
 
 export class LinkPlugin extends Plugin {
     private appBridge: AppBridgeBlock;
-
-    constructor(props?: LinkPluginProps) {
+    public styles: CSSProperties = {};
+    constructor(props?: LinkPluginProps, styles = BlockStyles[LINK_PLUGIN]) {
         super(LINK_PLUGIN, {
             button: LinkButton,
             markupElement: new LinkMarkupElement(),
             ...props,
         });
+        this.styles = styles;
         this.appBridge = props?.appBridge as AppBridgeBlock;
     }
 

@@ -20,14 +20,12 @@ import {
 } from '@frontify/guideline-blocks-shared';
 import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
-import { DesignTokens } from '@frontify/fondue';
 
 type ImageProps = {
     image: Asset;
     blockSettings: Settings;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
-    designTokens: DesignTokens;
 };
 
 export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) => {
@@ -68,7 +66,7 @@ export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) 
     );
 };
 
-export const Image = ({ image, appBridge, blockSettings, isEditing, designTokens }: ImageProps) => {
+export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps) => {
     const { attachments, onAddAttachments, onAttachmentDelete, onAttachmentReplace, onAttachmentsSorted } =
         useAttachments(appBridge, ATTACHMENTS_ASSET_ID);
 
@@ -118,7 +116,6 @@ export const Image = ({ image, appBridge, blockSettings, isEditing, designTokens
                             onBrowse={onAddAttachments}
                             items={attachments}
                             appBridge={appBridge}
-                            designTokens={designTokens}
                         />
                     </div>
                 </div>
@@ -127,7 +124,6 @@ export const Image = ({ image, appBridge, blockSettings, isEditing, designTokens
                     blockSettings={blockSettings}
                     image={image}
                     isEditing={isEditing}
-                    designTokens={designTokens}
                 />
             </div>
         </div>

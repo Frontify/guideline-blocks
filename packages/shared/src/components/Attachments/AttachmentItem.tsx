@@ -46,7 +46,6 @@ export const AttachmentItem = forwardRef<HTMLButtonElement, AttachmentItemProps>
         {
             item,
             isEditing,
-            designTokens,
             draggableProps,
             transformStyle,
             isDragging,
@@ -99,7 +98,7 @@ export const AttachmentItem = forwardRef<HTMLButtonElement, AttachmentItemProps>
                 style={{
                     ...transformStyle,
                     opacity: isDragging && !isOverlay ? 0.3 : 1,
-                    fontFamily: designTokens?.p?.fontFamily,
+                    fontFamily: 'var(-f-theme-settings-body-font-family)',
                 }}
                 className={joinClassNames([
                     'tw-cursor-pointer tw-text-left tw-w-full tw-relative tw-flex tw-gap-3 tw-px-5 tw-py-3 tw-items-center tw-group hover:tw-bg-box-neutral-hover',

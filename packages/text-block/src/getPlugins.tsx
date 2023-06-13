@@ -10,10 +10,8 @@ import {
     BreakAfterPlugin,
     CheckboxListPlugin,
     CodePlugin,
-    EmojiPlugin,
     ItalicPlugin,
     OrderedListPlugin,
-    ParagraphPlugin,
     PluginComposer,
     ResetFormattingPlugin,
     SoftBreakPlugin,
@@ -22,12 +20,22 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
+import {
+    ButtonPlugin,
+    LinkPlugin,
+    TextStylePluginsWithoutImage,
+    TextStylesWithoutImage,
+} from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {
     const plugins = new PluginComposer();
-    plugins.setPlugin([new SoftBreakPlugin(), new ParagraphPlugin(), new TextStylePlugin()]);
+    plugins.setPlugin([
+        new SoftBreakPlugin(),
+        new TextStylePlugin({
+            textStyles: TextStylePluginsWithoutImage,
+        }),
+    ]);
     plugins.setPlugin([
         new BoldPlugin(),
         new ItalicPlugin(),
@@ -39,15 +47,22 @@ export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CS
         new BreakAfterPlugin({ columns, gap }),
     ]);
     plugins.setPlugin([
-        new AlignLeftPlugin(),
-        new AlignCenterPlugin(),
-        new AlignRightPlugin(),
-        new AlignJustifyPlugin(),
+        new AlignLeftPlugin({
+            validTypes: TextStylesWithoutImage,
+        }),
+        new AlignCenterPlugin({
+            validTypes: TextStylesWithoutImage,
+        }),
+        new AlignRightPlugin({
+            validTypes: TextStylesWithoutImage,
+        }),
+        new AlignJustifyPlugin({
+            validTypes: TextStylesWithoutImage,
+        }),
         new UnorderedListPlugin(),
         new CheckboxListPlugin(),
         new OrderedListPlugin(),
         new ResetFormattingPlugin(),
-        new EmojiPlugin(),
     ]);
     return plugins;
 };

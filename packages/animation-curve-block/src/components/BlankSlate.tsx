@@ -12,7 +12,6 @@ import { AnimationCurveFlyout, CardText } from './';
 export const BlankSlate = ({
     appBridge,
     content,
-    designTokens,
     hasBorder,
     canvasHeight,
     setLocalItems,
@@ -74,7 +73,6 @@ export const BlankSlate = ({
                 title={title}
                 description={description}
                 hasBorder={hasBorder}
-                designTokens={designTokens}
                 setDescription={setDescription}
                 setTitle={setTitle}
                 updateValueOnChange

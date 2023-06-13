@@ -9,7 +9,6 @@ import {
     BoldPlugin,
     CheckboxListPlugin,
     CodePlugin,
-    EmojiPlugin,
     ItalicPlugin,
     OrderedListPlugin,
     ParagraphPlugin,
@@ -21,12 +20,16 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin } from '../plugins';
+import { ButtonPlugin, LinkPlugin, TextStylePluginsWithoutImage, TextStylesWithoutImage } from '../plugins';
 
 export const getDefaultPluginsWithLinkChooser = (appBridge: AppBridgeBlock) => {
     return new PluginComposer()
         .setPlugin(new SoftBreakPlugin(), new ParagraphPlugin())
-        .setPlugin(new TextStylePlugin())
+        .setPlugin(
+            new TextStylePlugin({
+                textStyles: TextStylePluginsWithoutImage,
+            })
+        )
         .setPlugin(
             [
                 new BoldPlugin(),
@@ -38,15 +41,14 @@ export const getDefaultPluginsWithLinkChooser = (appBridge: AppBridgeBlock) => {
                 new CodePlugin(),
             ],
             [
-                new AlignLeftPlugin(),
-                new AlignCenterPlugin(),
-                new AlignRightPlugin(),
-                new AlignJustifyPlugin(),
+                new AlignLeftPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignCenterPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignRightPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignJustifyPlugin({ validTypes: TextStylesWithoutImage }),
                 new UnorderedListPlugin(),
                 new CheckboxListPlugin(),
                 new OrderedListPlugin(),
                 new ResetFormattingPlugin(),
-                new EmojiPlugin(),
             ]
         );
 };

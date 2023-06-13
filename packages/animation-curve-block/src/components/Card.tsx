@@ -25,7 +25,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             animationCurve,
             isEditing,
             blockSettings,
-            designTokens,
             onUpdate,
             onDelete,
             setCanvasHeight,
@@ -75,6 +74,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
         const parametersString = `${parameters['x1']}, ${parameters['y1']}, ${parameters['x2']}, ${parameters['y2']}`;
 
+        const textShown = hasRichTextValue(title) || hasRichTextValue(description) || isEditing;
+
         return (
             <div
                 ref={ref}
@@ -107,7 +108,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         onMouseLeave={!isEditFlyoutOpen ? () => setIsHovered(false) : undefined}
                         className={joinClassNames([
                             (hasBackground || hasBorder) && 'tw-overflow-hidden',
-                            'tw-flex tw-flex-col tw-relative tw-bg-base tw-pb-4',
+                            (textShown || hasParameter) && 'tw-pb-4',
+                            'tw-flex tw-flex-col tw-relative tw-bg-base',
                         ])}
                         style={{
                             ...(hasBorder && getBorderStyles(borderStyle, borderWidth, borderColor)),
@@ -163,22 +165,23 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 }
                             />
                         </div>
-                        <CardText
-                            appBridge={appBridge}
-                            title={title ?? ''}
-                            description={description ?? ''}
-                            hasBorder={hasBorder}
-                            designTokens={designTokens}
-                            setTitle={onTitleChange}
-                            setDescription={onDescriptionChange}
-                            updateValueOnChange={false}
-                            isEditing={isEditing}
-                        />
+                        {textShown && (
+                            <CardText
+                                appBridge={appBridge}
+                                title={title ?? ''}
+                                description={description ?? ''}
+                                hasBorder={hasBorder}
+                                setTitle={onTitleChange}
+                                setDescription={onDescriptionChange}
+                                updateValueOnChange={false}
+                                isEditing={isEditing}
+                            />
+                        )}
                         <div className={merge([hasBorder && 'tw-px-4', 'tw-text-s tw-test-text'])}>
                             {hasParameter && (
                                 <p
                                     data-test-id="animation-curve-card-parameters"
-                                    className="tw-flex tw-items-center tw-my-0.5"
+                                    className={merge(['tw-flex tw-items-center tw-my-0.5', !textShown && 'tw-mt-4'])}
                                 >
                                     {parametersString}
                                 </p>

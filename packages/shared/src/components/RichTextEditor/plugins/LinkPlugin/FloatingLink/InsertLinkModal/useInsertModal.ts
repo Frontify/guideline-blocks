@@ -4,7 +4,6 @@ import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CheckboxState } from '@frontify/fondue';
 import {
     ELEMENT_LINK,
-    LinkPlugin,
     floatingLinkActions,
     floatingLinkSelectors,
     getPluginOptions,
@@ -15,6 +14,8 @@ import {
 import React, { Dispatch, Reducer, useEffect, useReducer } from 'react';
 import { getLegacyUrl, getUrl } from '../../utils';
 import { InsertModalDispatchType, InsertModalStateProps } from './types';
+import { addHttps } from '../../../../../../helpers';
+import { isValidUrlOrEmpty } from '../../utils/url';
 
 const initialState: InsertModalStateProps = {
     url: '',
@@ -93,12 +94,14 @@ export const useInsertModal = () => {
     };
 
     const onSave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | KeyboardEvent | undefined) => {
-        if (!isValidUrlOrEmpty() || !hasValues) {
+        if (!isValidUrlOrEmpty(state.url) || !hasValues) {
             return;
         }
 
+        const urlToSave = addHttps(state.url);
+
         floatingLinkActions.text(state.text);
-        floatingLinkActions.url(state.url);
+        floatingLinkActions.url(urlToSave);
         floatingLinkActions.newTab(state.newTab === CheckboxState.Checked);
 
         if (submitFloatingLink(editor)) {
@@ -107,11 +110,6 @@ export const useInsertModal = () => {
     };
 
     const hasValues = state.url !== '' && state.text !== '';
-
-    const isValidUrlOrEmpty = () => {
-        const { isUrl } = getPluginOptions<LinkPlugin>(editor, ELEMENT_LINK);
-        return !state.url || (isUrl && isUrl(state.url));
-    };
 
     const { appBridge } = getPluginOptions<{ appBridge: AppBridgeBlock }>(editor, ELEMENT_LINK);
 
@@ -124,5 +122,15 @@ export const useInsertModal = () => {
         []
     );
 
-    return { state, onTextChange, onUrlChange, onToggleTab, onCancel, onSave, hasValues, isValidUrlOrEmpty, appBridge };
+    return {
+        state,
+        onTextChange,
+        onUrlChange,
+        onToggleTab,
+        onCancel,
+        onSave,
+        hasValues,
+        isValidUrlOrEmpty,
+        appBridge,
+    };
 };

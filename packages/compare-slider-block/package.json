@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "3.0.0-beta.67",
-        "@frontify/fondue": "12.0.0-beta.186",
+        "@frontify/fondue": "12.0.0-beta.239",
         "@frontify/fondue-tokens": "3.2.1",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "18.2.0",
@@ -23,7 +23,7 @@
     "devDependencies": {
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.8",
-        "@frontify/guideline-blocks-settings": "0.26.2",
+        "@frontify/guideline-blocks-settings": "0.26.8",
         "@types/react": "18.0.35",
         "@types/react-dom": "18.2.1",
         "autoprefixer": "10.4.13",

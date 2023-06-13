@@ -18,7 +18,6 @@ export const CardText = ({
     title,
     description,
     hasBorder,
-    designTokens,
     updateValueOnChange,
     isEditing,
     setTitle,
@@ -27,30 +26,28 @@ export const CardText = ({
     const memoTitleRte = useMemo(() => {
         return (
             <RichTextEditor
-                value={title || convertToRteValue(TextStyles.ELEMENT_HEADING3)}
+                value={title || convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
                 onBlur={setTitle}
-                designTokens={designTokens}
                 isEditing={isEditing}
                 updateValueOnChange={updateValueOnChange}
                 plugins={getTitlePlugin()}
             />
         );
-    }, [title, designTokens, isEditing, updateValueOnChange, setTitle]);
+    }, [title, isEditing, updateValueOnChange, setTitle]);
 
     const memoDescriptionRte = useMemo(() => {
         return (
             <RichTextEditor
-                value={description || convertToRteValue(TextStyles.ELEMENT_PARAGRAPH)}
+                value={description || convertToRteValue()}
                 placeholder="Add a description"
                 onBlur={setDescription}
-                designTokens={designTokens}
                 isEditing={isEditing}
                 updateValueOnChange={updateValueOnChange}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         );
-    }, [description, designTokens, isEditing, updateValueOnChange, setDescription, appBridge]);
+    }, [description, isEditing, updateValueOnChange, setDescription, appBridge]);
 
     return (
         <div className={joinClassNames([hasBorder && 'tw-px-4', 'tw-pt-4 tw-flex-1'])}>

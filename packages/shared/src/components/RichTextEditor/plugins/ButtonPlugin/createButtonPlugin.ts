@@ -3,10 +3,12 @@
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Plugin, PluginProps } from '@frontify/fondue';
 import { RangeBeforeOptions, createPluginFactory } from '@udecode/plate';
-import { isValidUrl } from '../LinkPlugin';
+import { CSSProperties } from 'react';
+import { isValidUrl } from '../LinkPlugin/utils/url';
 import { ButtonMarkupElement } from './ButtonMarkupElement';
 import { ButtonButton } from './components/ButtonButton';
 import { CustomFloatingButton } from './components/FloatingButton/CustomFloatingButton';
+import { BlockButtonStyles } from './utils';
 import { withButton } from './withButton';
 
 export const ELEMENT_BUTTON = 'button';
@@ -91,17 +93,20 @@ export const createButtonPlugin = (appBridge: AppBridgeBlock) =>
         }),
     })();
 
-export type ButtonPluginProps = PluginProps & { appBridge: AppBridgeBlock };
+export type ButtonPluginProps = Omit<PluginProps, 'styles'> & {
+    styles?: Record<string, CSSProperties & { hover?: CSSProperties }>;
+} & { appBridge: AppBridgeBlock };
 
 export class ButtonPlugin extends Plugin {
+    public styles: CSSProperties = {};
     private appBridge: AppBridgeBlock;
-
-    constructor(props?: ButtonPluginProps) {
+    constructor({ styles = BlockButtonStyles, ...props }: ButtonPluginProps) {
         super(BUTTON_PLUGIN, {
             button: ButtonButton,
             markupElement: new ButtonMarkupElement(),
             ...props,
         });
+        this.styles = styles;
         this.appBridge = props?.appBridge as AppBridgeBlock;
     }
 

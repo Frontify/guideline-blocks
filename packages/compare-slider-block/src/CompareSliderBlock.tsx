@@ -13,7 +13,7 @@ import {
     useEditorState,
     useFileInput,
 } from '@frontify/app-bridge';
-import { radiusStyleMap, toRgbaString, useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { radiusStyleMap, toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import {
     Alignment,
@@ -24,7 +24,6 @@ import {
     heightMap,
     slotAssetSettingMap,
 } from './types';
-import { DEFAULT_STRIKETHROUGH_COLOR } from './const';
 import {
     EditorOverlay,
     Label,
@@ -34,11 +33,11 @@ import {
     StrikethroughWrapper,
     UploadView,
 } from './components';
+import { THEME_PREFIX } from '@frontify/guideline-blocks-shared';
 
 export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<BlockSettings>(appBridge);
     const { blockAssets, updateAssetIdsFromKey, deleteAssetIdsFromKey } = useBlockAssets(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
     const isEditing = useEditorState(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*', multiple: false });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload();
@@ -257,6 +256,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
     };
 
     const renderStrikethrough = (slot: SliderImageSlot) => {
+        const style = getComputedStyle(document.body);
         return (
             <StrikethroughWrapper
                 alignment={alignment}
@@ -271,7 +271,7 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                     color={
                         strikethroughColorSource === InheritSettings.OVERRIDE
                             ? toRgbaString(customStrikeThroughColor)
-                            : designTokens.callout?.warning ?? toRgbaString(DEFAULT_STRIKETHROUGH_COLOR)
+                            : style.getPropertyValue(`${THEME_PREFIX}accent-color-warning-color`)
                     }
                 />
             </StrikethroughWrapper>
@@ -295,7 +295,6 @@ export const CompareSliderBlock = ({ appBridge }: BlockProps) => {
                 <Label
                     blockId={appBridge.getBlockId().toString()}
                     isEditing={isEditing}
-                    designTokens={designTokens}
                     value={label}
                     onBlur={(newValue: string) => setBlockSettings({ [key]: newValue })}
                 />

@@ -4,12 +4,14 @@ import React, { Dispatch, Reducer, useEffect, useReducer } from 'react';
 import { getPluginOptions, useEditorRef, useHotkeys } from '@udecode/plate';
 import { InsertModalDispatchType, InsertModalStateProps } from './types';
 import { floatingButtonActions, floatingButtonSelectors } from '../floatingButtonStore';
-import { ButtonPlugin, ELEMENT_BUTTON } from '../../../createButtonPlugin';
+import { ELEMENT_BUTTON } from '../../../createButtonPlugin';
 import { submitFloatingButton } from '../../../transforms/submitFloatingButton';
 import { RichTextButtonStyle } from '../../../types';
 import { getButtonStyle } from '../../../utils/getButtonStyle';
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { CheckboxState } from '@frontify/fondue';
+import { addHttps } from '../../../../../../../helpers';
+import { isValidUrlOrEmpty } from '../../../../LinkPlugin/utils/url';
 
 const initialState: InsertModalStateProps = {
     url: '',
@@ -97,12 +99,14 @@ export const useInsertModal = () => {
     };
 
     const onSave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | KeyboardEvent | undefined) => {
-        if (!isValidUrlOrEmpty() || !hasValues) {
+        if (!isValidUrlOrEmpty(state.url) || !hasValues) {
             return;
         }
 
+        const urlToSave = addHttps(state.url);
+
         floatingButtonActions.text(state.text);
-        floatingButtonActions.url(state.url);
+        floatingButtonActions.url(urlToSave);
         floatingButtonActions.buttonStyle(state.buttonStyle);
         floatingButtonActions.newTab(state.newTab === CheckboxState.Checked);
 
@@ -112,11 +116,6 @@ export const useInsertModal = () => {
     };
 
     const hasValues = state.url !== '' && state.text !== '';
-
-    const isValidUrlOrEmpty = () => {
-        const { isUrl } = getPluginOptions<ButtonPlugin>(editor, ELEMENT_BUTTON);
-        return !state.url || (isUrl && isUrl(state.url));
-    };
 
     const { appBridge } = getPluginOptions<{ appBridge: AppBridgeBlock }>(editor, ELEMENT_BUTTON);
 

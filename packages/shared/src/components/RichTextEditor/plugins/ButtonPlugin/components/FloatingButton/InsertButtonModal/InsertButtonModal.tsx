@@ -1,16 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DesignTokens, FormControl, useRichTextEditorContext } from '@frontify/fondue';
+import { FormControl } from '@frontify/fondue';
 import React, { CSSProperties, ReactElement, ReactNode, useState } from 'react';
 import { InsertModal } from '../../../../LinkPlugin/FloatingLink/InsertLinkModal/InsertModal';
 import { useInsertModal } from './useInsertModal';
+import { BlockStyles } from '../../../../styles';
 
 export const InsertButtonModal = () => {
     const modalProps = useInsertModal();
     const { state, onButtonStyleChange } = modalProps;
-    const context = useRichTextEditorContext();
-
-    const designTokens = context.designTokens as DesignTokens;
 
     return (
         <InsertModal {...modalProps} testId="floating-button-insert">
@@ -24,7 +22,7 @@ export const InsertButtonModal = () => {
                 >
                     <HoverableButton
                         id="primary"
-                        styles={designTokens.buttonPrimary}
+                        styles={BlockStyles.buttonPrimary}
                         isActive={state.buttonStyle === 'primary'}
                         onClick={() => onButtonStyleChange('primary')}
                     >
@@ -33,7 +31,7 @@ export const InsertButtonModal = () => {
 
                     <HoverableButton
                         id="secondary"
-                        styles={designTokens.buttonSecondary}
+                        styles={BlockStyles.buttonSecondary}
                         isActive={state.buttonStyle === 'secondary'}
                         onClick={() => onButtonStyleChange('secondary')}
                     >
@@ -42,7 +40,7 @@ export const InsertButtonModal = () => {
 
                     <HoverableButton
                         id="tertiary"
-                        styles={designTokens.buttonTertiary}
+                        styles={BlockStyles.buttonTertiary}
                         isActive={state.buttonStyle === 'tertiary'}
                         onClick={() => onButtonStyleChange('tertiary')}
                     >

@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/guideline-blocks-settings';
-import { BorderStyle, DesignTokenName, GutterSpacing, Radius, TokenValues } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, GutterSpacing, Radius } from '@frontify/guideline-blocks-shared';
 
 export type Size = {
     width: number;
@@ -135,7 +135,6 @@ export type BlankSlateProps = {
     appBridge: AppBridgeBlock;
     content: AnimationCurve[];
     hasBorder: boolean;
-    designTokens: Partial<Record<DesignTokenName, TokenValues>>;
     canvasHeight: number;
     setBlockSettings: (newSettings: Partial<Settings>) => Promise<void>;
     setLocalItems: (items: AnimationCurve[]) => void;
@@ -146,7 +145,6 @@ export type SortableCardProps = {
     animationCurve: AnimationCurve;
     isEditing: boolean;
     blockSettings: Settings;
-    designTokens: Partial<Record<DesignTokenName, TokenValues>>;
     onDelete: (id: string) => void;
     onUpdate: (id: string, animationCurvePatch: AnimationCurvePatch) => void;
     setCanvasHeight: (height: number) => void;
@@ -164,7 +162,6 @@ export type CardTextProps = {
     title: string;
     description: string;
     hasBorder: boolean;
-    designTokens: Partial<Record<DesignTokenName, TokenValues>>;
     updateValueOnChange: boolean;
     isEditing: boolean;
     setTitle: (title: string) => void;

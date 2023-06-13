@@ -5,8 +5,8 @@ importers:
   .:
     dependencies:
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       glob:
         specifier: 10.0.0
         version: 10.0.0
@@ -78,14 +78,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -123,73 +123,6 @@ importers:
       eslint-plugin-notice:
         specifier: 0.9.10
         version: 0.9.10(eslint@8.27.0)
-      postcss:
-        specifier: 8.4.19
-        version: 8.4.19
-      prettier:
-        specifier: 2.7.1
-        version: 2.7.1
-      sinon:
-        specifier: 15.0.2
-        version: 15.0.2
-      tailwindcss:
-        specifier: 3.2.7
-        version: 3.2.7(postcss@8.4.19)(ts-node@10.9.1)
-      typescript:
-        specifier: 4.8.4
-        version: 4.8.4
-
-  examples/guideline-design-tokens:
-    dependencies:
-      '@frontify/app-bridge':
-        specifier: 3.0.0-beta.61
-        version: 3.0.0-beta.61(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
-      '@frontify/fondue-tokens':
-        specifier: 3.2.1
-        version: 3.2.1(ts-node@10.9.1)
-      '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
-    devDependencies:
-      '@babel/core':
-        specifier: 7.20.2
-        version: 7.20.2
-      '@frontify/eslint-config-react':
-        specifier: 0.15.5
-        version: 0.15.5(eslint@8.27.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
-      '@frontify/frontify-cli':
-        specifier: 5.3.10
-        version: 5.3.10(@types/node@18.7.21)
-      '@frontify/guideline-blocks-shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@types/react':
-        specifier: 18.0.35
-        version: 18.0.35
-      '@types/react-dom':
-        specifier: 18.2.1
-        version: 18.2.1
-      autoprefixer:
-        specifier: 10.4.13
-        version: 10.4.13(postcss@8.4.19)
-      cypress:
-        specifier: 11.0.1
-        version: 11.0.1
-      eslint:
-        specifier: 8.27.0
-        version: 8.27.0
-      eslint-plugin-notice:
-        specifier: 0.9.10
-        version: 0.9.10(eslint@8.27.0)
-      mitt:
-        specifier: ^3.0.0
-        version: 3.0.0
       postcss:
         specifier: 8.4.19
         version: 8.4.19
@@ -218,14 +151,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -285,14 +218,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -355,14 +288,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -425,14 +358,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -492,14 +425,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -559,14 +492,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -659,14 +592,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -738,14 +671,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.0
         version: 3.2.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -814,14 +747,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -881,14 +814,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -957,8 +890,8 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
@@ -982,8 +915,8 @@ importers:
         specifier: 5.3.8
         version: 5.3.8(@types/node@18.7.21)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@types/react':
         specifier: 18.0.35
         version: 18.0.35
@@ -1018,14 +951,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1094,14 +1027,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1167,14 +1100,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1234,14 +1167,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1295,20 +1228,93 @@ importers:
         specifier: 4.8.4
         version: 4.8.4
 
+  packages/glyphs-block:
+    dependencies:
+      '@frontify/app-bridge':
+        specifier: 3.0.0-beta.67
+        version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
+      '@frontify/fondue':
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/fondue-tokens':
+        specifier: 3.2.1
+        version: 3.2.1(ts-node@10.9.1)
+      '@frontify/guideline-blocks-settings':
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/guideline-blocks-shared':
+        specifier: workspace:*
+        version: link:../shared
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.21.0
+        version: 7.21.0
+      '@frontify/eslint-config-react':
+        specifier: 0.15.6
+        version: 0.15.6(eslint@8.35.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5)
+      '@frontify/frontify-cli':
+        specifier: 5.3.10
+        version: 5.3.10(@types/node@18.7.21)
+      '@react-aria/interactions':
+        specifier: 3.14.0
+        version: 3.14.0(react@18.2.0)
+      '@types/react':
+        specifier: 18.0.35
+        version: 18.0.35
+      '@types/react-dom':
+        specifier: 18.2.1
+        version: 18.2.1
+      autoprefixer:
+        specifier: 10.4.13
+        version: 10.4.13(postcss@8.4.21)
+      cypress:
+        specifier: 11.0.1
+        version: 11.0.1
+      cypress-real-events:
+        specifier: 1.7.4
+        version: 1.7.4(cypress@11.0.1)
+      eslint:
+        specifier: 8.35.0
+        version: 8.35.0
+      eslint-plugin-notice:
+        specifier: 0.9.10
+        version: 0.9.10(eslint@8.35.0)
+      postcss:
+        specifier: 8.4.21
+        version: 8.4.21
+      prettier:
+        specifier: 2.8.4
+        version: 2.8.4
+      sinon:
+        specifier: 15.0.2
+        version: 15.0.2
+      tailwindcss:
+        specifier: 3.2.7
+        version: 3.2.7(postcss@8.4.21)(ts-node@10.9.1)
+      typescript:
+        specifier: 4.9.5
+        version: 4.9.5
+
   packages/gradient-block:
     dependencies:
       '@frontify/app-bridge':
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.2.1
         version: 3.2.1(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1374,14 +1380,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1444,14 +1450,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1514,14 +1520,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1590,11 +1596,11 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@react-aria/focus':
         specifier: 3.11.0
         version: 3.11.0(react@18.2.0)
@@ -1610,6 +1616,9 @@ importers:
       '@uiw/react-codemirror':
         specifier: 4.19.9
         version: 4.19.9(@babel/runtime@7.20.6)(@codemirror/autocomplete@6.3.4)(@codemirror/language@6.3.1)(@codemirror/lint@6.1.0)(@codemirror/search@6.2.3)(@codemirror/state@6.1.4)(@codemirror/theme-one-dark@6.1.0)(@codemirror/view@6.5.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
+      escape-html:
+        specifier: 1.0.3
+        version: 1.0.3
       slate:
         specifier: 0.87.0
         version: 0.87.0
@@ -1629,6 +1638,9 @@ importers:
       '@testing-library/react':
         specifier: 14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@types/escape-html':
+        specifier: 1.0.2
+        version: 1.0.2
       '@types/node':
         specifier: 18.7.21
         version: 18.7.21
@@ -1702,14 +1714,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1769,14 +1781,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1839,14 +1851,99 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.186
-        version: 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.1.0
         version: 3.1.0(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
-        specifier: 0.26.2
-        version: 0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/guideline-blocks-shared':
+        specifier: workspace:*
+        version: link:../shared
+      lodash-es:
+        specifier: 4.17.21
+        version: 4.17.21
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.20.2
+        version: 7.20.2
+      '@frontify/eslint-config-react':
+        specifier: 0.15.5
+        version: 0.15.5(eslint@8.27.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+      '@frontify/frontify-cli':
+        specifier: 5.3.10
+        version: 5.3.10(@types/node@18.7.21)
+      '@types/lodash-es':
+        specifier: 4.17.6
+        version: 4.17.6
+      '@types/react':
+        specifier: 18.0.35
+        version: 18.0.35
+      '@types/react-dom':
+        specifier: 18.2.1
+        version: 18.2.1
+      autoprefixer:
+        specifier: 10.4.13
+        version: 10.4.13(postcss@8.4.19)
+      cypress:
+        specifier: 11.0.1
+        version: 11.0.1
+      eslint:
+        specifier: 8.27.0
+        version: 8.27.0
+      eslint-plugin-notice:
+        specifier: 0.9.10
+        version: 0.9.10(eslint@8.27.0)
+      postcss:
+        specifier: 8.4.19
+        version: 8.4.19
+      prettier:
+        specifier: 2.7.1
+        version: 2.7.1
+      sinon:
+        specifier: 15.0.2
+        version: 15.0.2
+      tailwindcss:
+        specifier: 3.2.7
+        version: 3.2.7(postcss@8.4.19)(ts-node@10.9.1)
+      typescript:
+        specifier: 4.8.4
+        version: 4.8.4
+
+  packages/thumbnail-grid-block:
+    dependencies:
+      '@dnd-kit/core':
+        specifier: 6.0.5
+        version: 6.0.5(react-dom@18.2.0)(react@18.2.0)
+      '@dnd-kit/modifiers':
+        specifier: 6.0.1
+        version: 6.0.1(@dnd-kit/core@6.0.5)(react@18.2.0)
+      '@dnd-kit/sortable':
+        specifier: 7.0.1
+        version: 7.0.1(@dnd-kit/core@6.0.5)(react@18.2.0)
+      '@dnd-kit/utilities':
+        specifier: 3.2.1
+        version: 3.2.1(react@18.2.0)
+      '@frontify/app-bridge':
+        specifier: 3.0.0-beta.67
+        version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
+      '@frontify/fondue':
+        specifier: 12.0.0-beta.239
+        version: 12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/fondue-tokens':
+        specifier: 3.1.0
+        version: 3.1.0(ts-node@10.9.1)
+      '@frontify/guideline-blocks-settings':
+        specifier: 0.26.8
+        version: 0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -3217,6 +3314,16 @@ packages:
     dev: true
     optional: true
 
+  /@eslint-community/eslint-utils@4.2.0(eslint@8.34.0):
+    resolution: {integrity: sha512-gB8T4H4DEfX2IV9zGDJPOBgP1e/DbfCPDTtEqUMckpvzS1OYtva8JdFYBqMwYk7xAQ429WGF/UPqn8uQ//h2vQ==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
+    dependencies:
+      eslint: 8.34.0
+      eslint-visitor-keys: 3.3.0
+    dev: true
+
   /@eslint-community/eslint-utils@4.2.0(eslint@8.35.0):
     resolution: {integrity: sha512-gB8T4H4DEfX2IV9zGDJPOBgP1e/DbfCPDTtEqUMckpvzS1OYtva8JdFYBqMwYk7xAQ429WGF/UPqn8uQ//h2vQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -3230,23 +3337,6 @@ packages:
   /@eslint-community/regexpp@4.4.0:
     resolution: {integrity: sha512-A9983Q0LnDGdLPjxyXQ00sbV+K+O+ko2Dr+CZigbHWtX9pNfxlaBkMR8X1CztI73zuEyEBXTVjx7CE+/VSwDiQ==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
-    dev: true
-
-  /@eslint/eslintrc@1.3.3:
-    resolution: {integrity: sha512-uj3pT6Mg+3t39fvLrj8iuCIJ38zKO9FpGtJ4BBJebJhEwjoT+KLVNCcHT5QC9NGRIEi7fZ0ZR8YRb884auB4Lg==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      ajv: 6.12.6
-      debug: 4.3.4(supports-color@5.5.0)
-      espree: 9.5.0
-      globals: 13.20.0
-      ignore: 5.2.1
-      import-fresh: 3.3.0
-      js-yaml: 4.1.0
-      minimatch: 3.1.2
-      strip-json-comments: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@eslint/eslintrc@1.4.1:
@@ -3403,22 +3493,6 @@ packages:
     dependencies:
       tslib: 2.4.0
 
-  /@frontify/app-bridge@3.0.0-beta.61(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2):
-    resolution: {integrity: sha512-yG9VezRYeqEBkTJH93eniwPo19FwJGnuTWjlPTBomKgpeJgFjdmp7pqw3a0lZAh/tl2dREeUBI990hksAlk6dA==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      react: ^17 || ^18
-      react-dom: ^17 || ^18
-      sinon: ^15
-    dependencies:
-      lodash-es: 4.17.21
-      mitt: 3.0.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      sinon: 15.0.2
-      type-fest: 3.6.0
-    dev: false
-
   /@frontify/app-bridge@3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2):
     resolution: {integrity: sha512-g1pYHWgN4W3SFu8Jd+4mgoHr83t3iVqyc+MHn+r61KSabqWM4bchJ9LKe0yY5IBvUmfartH4kpzURT6623TIyQ==}
     engines: {node: '>=16'}
@@ -3457,23 +3531,23 @@ packages:
       - supports-color
     dev: true
 
-  /@frontify/eslint-config-basic@0.17.0(eslint@8.34.0)(prettier@2.8.4):
-    resolution: {integrity: sha512-ItI+e0+WXZgHGnhNPjlfQKAeeHn70V9gBvYLQrzq8uQ3pjwf+GkAyexHZjRblSlkdsG5kmJHeP6ymkxpRswzBQ==}
+  /@frontify/eslint-config-basic@0.17.1(eslint@8.34.0)(prettier@2.8.4):
+    resolution: {integrity: sha512-4ABaJVqrXk/IwfRBN7nwmFaJuLsDbpex0gKp43uOg1N+Yjmtx+CuPl3gYO/klYhg5ptlaTfEGScRkN1B6iNKig==}
     peerDependencies:
       eslint: '>=8.27.0'
-      prettier: '>=2.7.0'
+      prettier: '>=2.8.0'
     dependencies:
       eslint: 8.34.0
-      eslint-config-prettier: 8.5.0(eslint@8.34.0)
+      eslint-config-prettier: 8.7.0(eslint@8.34.0)
       eslint-plugin-html: 7.1.0
-      eslint-plugin-jsonc: 2.5.0(eslint@8.34.0)
+      eslint-plugin-jsonc: 2.6.0(eslint@8.34.0)
       eslint-plugin-markdown: 3.0.0(eslint@8.34.0)
       eslint-plugin-no-only-tests: 3.1.0
       eslint-plugin-node: 11.1.0(eslint@8.34.0)
-      eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.5.0)(eslint@8.34.0)(prettier@2.8.4)
+      eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.7.0)(eslint@8.34.0)(prettier@2.8.4)
       eslint-plugin-promise: 6.1.1(eslint@8.34.0)
-      eslint-plugin-unicorn: 44.0.2(eslint@8.34.0)
-      eslint-plugin-yml: 1.2.0(eslint@8.34.0)
+      eslint-plugin-unicorn: 45.0.2(eslint@8.34.0)
+      eslint-plugin-yml: 1.5.0(eslint@8.34.0)
       prettier: 2.8.4
       yaml-eslint-parser: 1.1.0
     transitivePeerDependencies:
@@ -3581,9 +3655,9 @@ packages:
       prettier: '>=2.7.0'
       typescript: '>=4.8.0'
     dependencies:
-      '@frontify/eslint-config-basic': 0.17.0(eslint@8.34.0)(prettier@2.8.4)
-      '@typescript-eslint/eslint-plugin': 5.45.0(@typescript-eslint/parser@5.45.0)(eslint@8.34.0)(typescript@4.9.5)
-      '@typescript-eslint/parser': 5.45.0(eslint@8.34.0)(typescript@4.9.5)
+      '@frontify/eslint-config-basic': 0.17.1(eslint@8.34.0)(prettier@2.8.4)
+      '@typescript-eslint/eslint-plugin': 5.55.0(@typescript-eslint/parser@5.55.0)(eslint@8.34.0)(typescript@4.9.5)
+      '@typescript-eslint/parser': 5.55.0(eslint@8.34.0)(typescript@4.9.5)
       eslint: 8.34.0
       prettier: 2.8.4
       typescript: 4.9.5
@@ -3643,8 +3717,8 @@ packages:
       - ts-node
     dev: false
 
-  /@frontify/fondue@12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-siakoZqy0q+1/Cseg4ZbgvGK/rzHlgngmYOCvCymEjPeoe4m8xp6tBZVO4HrljjPi3z/kskwIDljKwSBfA14Ig==}
+  /@frontify/fondue@12.0.0-beta.213(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-bFHYZfmJWIXvkMx+zpWFx105+ggNYQ1DGN4fYPNuSZ49V7wxN5n+FoITjXvxKzYmhA00itfhEpdTFOaU8fTe3Q==}
     engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
     peerDependencies:
       '@udecode/plate': ^19
@@ -3658,8 +3732,8 @@ packages:
       '@dnd-kit/utilities': 3.2.1(react@18.2.0)
       '@frontify/fondue-tokens': 3.1.0-next.5(ts-node@10.9.1)
       '@popperjs/core': 2.11.6
-      '@react-aria/accordion': 3.0.0-alpha.13(react@18.2.0)
-      '@react-aria/aria-modal-polyfill': 3.6.1(@types/react@18.0.35)(react@18.2.0)
+      '@react-aria/accordion': 3.0.0-alpha.17(react@18.2.0)
+      '@react-aria/aria-modal-polyfill': 3.7.1(@types/react@18.0.35)(react@18.2.0)
       '@react-aria/breadcrumbs': 3.4.0(react@18.2.0)
       '@react-aria/button': 3.6.3(react@18.2.0)
       '@react-aria/checkbox': 3.7.0(react@18.2.0)
@@ -3707,6 +3781,7 @@ packages:
       react-dnd: 16.0.1(@types/node@18.7.21)(@types/react@18.0.35)(react@18.2.0)
       react-dnd-html5-backend: 15.1.2
       react-dom: 18.2.0(react@18.2.0)
+      react-fast-compare: 3.2.2
       react-is: 18.2.0
       react-popper: 2.3.0(@popperjs/core@2.11.6)(react-dom@18.2.0)(react@18.2.0)
       react-textarea-autosize: 8.4.0(@types/react@18.0.35)(react@18.2.0)
@@ -3728,6 +3803,94 @@ packages:
       - supports-color
       - tailwindcss
       - ts-node
+
+  /@frontify/fondue@12.0.0-beta.239(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-Kl4MUBsMXbM9pWJLCnUd4lKJILPXKjFpfV/c23L4xXgD6awdIIV1Dd96wQtzwjc0H8pWuVeHN7Z3T2/0xKrwIw==}
+    engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
+    peerDependencies:
+      '@udecode/plate': ^19
+      framer-motion: ^10
+      react: ^17 || ^18
+      react-dom: ^17 || ^18
+    dependencies:
+      '@dnd-kit/core': 6.0.8(react-dom@18.2.0)(react@18.2.0)
+      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
+      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
+      '@dnd-kit/utilities': 3.2.1(react@18.2.0)
+      '@frontify/fondue-tokens': 3.1.0-next.5(ts-node@10.9.1)
+      '@popperjs/core': 2.11.6
+      '@react-aria/accordion': 3.0.0-alpha.17(react@18.2.0)
+      '@react-aria/aria-modal-polyfill': 3.7.1(@types/react@18.0.35)(react@18.2.0)
+      '@react-aria/breadcrumbs': 3.4.0(react@18.2.0)
+      '@react-aria/button': 3.6.3(react@18.2.0)
+      '@react-aria/checkbox': 3.7.0(react@18.2.0)
+      '@react-aria/combobox': 3.4.3(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/dialog': 3.4.1(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/focus': 3.12.0(react@18.2.0)
+      '@react-aria/interactions': 3.13.0(react@18.2.0)
+      '@react-aria/link': 3.3.5(react@18.2.0)
+      '@react-aria/listbox': 3.7.1(react@18.2.0)
+      '@react-aria/menu': 3.7.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/overlays': 3.12.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/radio': 3.4.1(react@18.2.0)
+      '@react-aria/select': 3.8.3(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/selection': 3.12.0(react@18.2.0)
+      '@react-aria/table': 3.6.0(react-dom@18.2.0)(react@18.2.0)
+      '@react-aria/tooltip': 3.3.3(react@18.2.0)
+      '@react-aria/utils': 3.14.1(react@18.2.0)
+      '@react-aria/visually-hidden': 3.6.0(react@18.2.0)
+      '@react-stately/checkbox': 3.3.2(react@18.2.0)
+      '@react-stately/collections': 3.4.4(react@18.2.0)
+      '@react-stately/combobox': 3.2.2(react@18.2.0)
+      '@react-stately/list': 3.5.4(react@18.2.0)
+      '@react-stately/menu': 3.4.4(react@18.2.0)
+      '@react-stately/overlays': 3.4.2(react@18.2.0)
+      '@react-stately/radio': 3.6.0(react@18.2.0)
+      '@react-stately/select': 3.3.2(react@18.2.0)
+      '@react-stately/table': 3.5.0(react@18.2.0)
+      '@react-stately/toggle': 3.4.2(react@18.2.0)
+      '@react-stately/tooltip': 3.2.2(react@18.2.0)
+      '@react-stately/tree': 3.3.4(react@18.2.0)
+      '@react-types/dialog': 3.4.5(react@18.2.0)
+      '@react-types/shared': 3.16.0(react@18.2.0)
+      '@tailwindcss/forms': 0.5.3(tailwindcss@3.2.7)
+      '@udecode/plate': 19.6.0(@babel/core@7.20.2)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.86.0)(slate-hyperscript@0.77.0)(slate-react@0.88.0)(slate@0.87.0)(styled-components@5.3.6)
+      '@xstate/immer': 0.3.1(immer@9.0.12)(xstate@4.28.1)
+      '@xstate/react': 1.6.3(@types/react@18.0.35)(react@18.2.0)(xstate@4.28.1)
+      date-fns: 2.29.3
+      escape-html: 1.0.3
+      framer-motion: 10.12.4(react-dom@18.2.0)(react@18.2.0)
+      immer: 9.0.12
+      is-hotkey: 0.2.0
+      react: 18.2.0
+      react-colorful: 5.6.1(react-dom@18.2.0)(react@18.2.0)
+      react-datepicker: 4.8.0(react-dom@18.2.0)(react@18.2.0)
+      react-dnd: 16.0.1(@types/node@18.7.21)(@types/react@18.0.35)(react@18.2.0)
+      react-dnd-html5-backend: 15.1.2
+      react-dom: 18.2.0(react@18.2.0)
+      react-fast-compare: 3.2.2
+      react-is: 18.2.0
+      react-popper: 2.3.0(@popperjs/core@2.11.6)(react-dom@18.2.0)(react@18.2.0)
+      react-textarea-autosize: 8.4.0(@types/react@18.0.35)(react@18.2.0)
+      remark-gfm: 3.0.1
+      remark-parse: 10.0.1
+      scheduler: 0.23.0
+      slate: 0.87.0
+      slate-react: 0.88.0(react-dom@18.2.0)(react@18.2.0)(slate@0.87.0)
+      styled-components: 5.3.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+      tinycolor2: 1.4.2
+      unified: 10.1.2
+      unist-util-visit: 4.1.2
+      xstate: 4.28.1
+    transitivePeerDependencies:
+      - '@types/hoist-non-react-statics'
+      - '@types/node'
+      - '@types/react'
+      - '@xstate/fsm'
+      - supports-color
+      - tailwindcss
+      - ts-node
+    dev: false
 
   /@frontify/frontify-cli@5.3.10(@types/node@18.7.21):
     resolution: {integrity: sha512-5JRCstOGU+24EpQ1IQNlc3Bp5kV8NK+44DDoHibTN2fRLzG8F804tnbKL1yVfKKfhgESNhgRaIYd6UsIfw+H6w==}
@@ -3787,15 +3950,14 @@ packages:
       - terser
     dev: true
 
-  /@frontify/guideline-blocks-settings@0.26.2(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-tRuq7F2I8ayps4SBRiVL3HrasJzMi5zlonRFlhXninorT2tCWe3l2m8h6DJV+pzzi7IcGyfkpZlLdG2bmBCttw==}
+  /@frontify/guideline-blocks-settings@0.26.8(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-0bBlQzSKf3RxDmpBsane5PVnbxI1dIAMhiJqbwSFDR5rUPhvjYJXHV6WLGBlKesk08MEch16OacuiRZRyGkl4Q==}
     peerDependencies:
-      react: ^17 || ^18
-      react-dom: ^17 || ^18
+      react: ^18
+      react-dom: ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
-      '@frontify/fondue': 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
-      '@frontify/sidebar-settings': 0.2.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/sidebar-settings': 0.4.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -3810,14 +3972,14 @@ packages:
       - tailwindcss
       - ts-node
 
-  /@frontify/sidebar-settings@0.2.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-PZsARsoJS4CSkD0u7YAPtWUWwtqE7j4tW3Dp0pMUblWfM1Zzbm2mSTdKKO5MZfzhajHhovCYlUErwiWB4sCTyA==}
+  /@frontify/sidebar-settings@0.4.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-8ULMneCcoTYjw4noDxM0Ht/kIO0ltQz6DnpLUXXGg4oqmtQl4GO/boYN/9kEo9iaabJFVHtJtp924Y3lC6QkfA==}
     peerDependencies:
-      react: ^17 || ^18
-      react-dom: ^17 || ^18
+      react: ^18
+      react-dom: ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
-      '@frontify/fondue': 12.0.0-beta.186(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/fondue': 12.0.0-beta.213(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@19.6.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -3831,17 +3993,6 @@ packages:
       - supports-color
       - tailwindcss
       - ts-node
-
-  /@humanwhocodes/config-array@0.11.7:
-    resolution: {integrity: sha512-kBbPWzN8oVMLb0hOUYXhmxggL/1cJE6ydvjDIGi9EnAGUyA7cLVKQg+d/Dsm+KZwx2czGHrCmMVLiyg8s5JPKw==}
-    engines: {node: '>=10.10.0'}
-    dependencies:
-      '@humanwhocodes/object-schema': 1.2.1
-      debug: 4.3.4(supports-color@5.5.0)
-      minimatch: 3.1.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -3863,26 +4014,26 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@internationalized/date@3.0.1:
-    resolution: {integrity: sha512-E/3lASs4mAeJ2Z2ye6ab7eUD0bPUfTeNVTAv6IS+ne9UtMu9Uepb9A1U2Ae0hDr6WAlBuvUtrakaxEdYB9TV6Q==}
+  /@internationalized/date@3.2.0:
+    resolution: {integrity: sha512-VDMHN1m33L4eqPs5BaihzgQJXyaORbMoHOtrapFxx179J8ucY5CRIHYsq5RRLKPHZWgjNfa5v6amWWDkkMFywA==}
     dependencies:
-      '@babel/runtime': 7.20.6
+      '@swc/helpers': 0.4.14
 
-  /@internationalized/message@3.0.9:
-    resolution: {integrity: sha512-yHQggKWUuSvj1GznVtie4tcYq+xMrkd/lTKCFHp6gG18KbIliDw+UI7sL9+yJPGuWiR083xuLyyhzqiPbNOEww==}
+  /@internationalized/message@3.1.0:
+    resolution: {integrity: sha512-Oo5m70FcBdADf7G8NkUffVSfuCdeAYVfsvNjZDi9ELpjvkc4YNJVTHt/NyTI9K7FgAVoELxiP9YmN0sJ+HNHYQ==}
     dependencies:
-      '@babel/runtime': 7.20.6
+      '@swc/helpers': 0.4.14
       intl-messageformat: 10.2.2
 
-  /@internationalized/number@3.1.1:
-    resolution: {integrity: sha512-dBxCQKIxvsZvW2IBt3KsqrCfaw2nV6o6a8xsloJn/hjW0ayeyhKuiiMtTwW3/WGNPP7ZRyDbtuiUEjMwif1ENQ==}
+  /@internationalized/number@3.2.0:
+    resolution: {integrity: sha512-GUXkhXSX1Ee2RURnzl+47uvbOxnlMnvP9Er+QePTjDjOPWuunmLKlEkYkEcLiiJp7y4l9QxGDLOlVr8m69LS5w==}
     dependencies:
-      '@babel/runtime': 7.20.6
+      '@swc/helpers': 0.4.14
 
-  /@internationalized/string@3.0.0:
-    resolution: {integrity: sha512-NUSr4u+mNu5BysXFeVWZW4kvjXylPkU/YYqaWzdNuz1eABfehFiZTEYhWAAMzI3U8DTxfqF9PM3zyhk5gcfz6w==}
+  /@internationalized/string@3.1.0:
+    resolution: {integrity: sha512-TJQKiyUb+wyAfKF59UNeZ/kELMnkxyecnyPCnBI1ma4NaXReJW+7Cc2mObXAqraIBJUVv7rgI46RLKrLgi35ng==}
     dependencies:
-      '@babel/runtime': 7.20.6
+      '@swc/helpers': 0.4.14
 
   /@jridgewell/gen-mapping@0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
@@ -4128,29 +4279,29 @@ packages:
       '@radix-ui/react-compose-refs': 1.0.0(react@18.2.0)
       react: 18.2.0
 
-  /@react-aria/accordion@3.0.0-alpha.13(react@18.2.0):
-    resolution: {integrity: sha512-xq9R6Op9UeKRG/dUcA64SXPJ71+sS3GTtaccsl0BYpMn1wEwmpEazMMOFJw2piPdWEllMDa51Twked77CEYMnA==}
+  /@react-aria/accordion@3.0.0-alpha.17(react@18.2.0):
+    resolution: {integrity: sha512-Kp1AYZ+iPcsLRZ7JHVagaViHXblszAtyU0nglT97/a90eC0TcdTrmt/APNK+ltZzvFhkaBQu4Anf99l9q9g1HQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.6
-      '@react-aria/button': 3.6.3(react@18.2.0)
-      '@react-aria/interactions': 3.14.0(react@18.2.0)
-      '@react-aria/selection': 3.12.0(react@18.2.0)
+      '@react-aria/button': 3.7.1(react@18.2.0)
+      '@react-aria/interactions': 3.15.0(react@18.2.0)
+      '@react-aria/selection': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
-      '@react-stately/tree': 3.4.0(react@18.2.0)
-      '@react-types/accordion': 3.0.0-alpha.11(react@18.2.0)
-      '@react-types/button': 3.7.0(react@18.2.0)
+      '@react-stately/tree': 3.6.0(react@18.2.0)
+      '@react-types/accordion': 3.0.0-alpha.13(react@18.2.0)
+      '@react-types/button': 3.7.2(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
+      '@swc/helpers': 0.4.14
       react: 18.2.0
 
-  /@react-aria/aria-modal-polyfill@3.6.1(@types/react@18.0.35)(react@18.2.0):
-    resolution: {integrity: sha512-Tbcrd+ec7ygELIJuqd6w7D7xtCVw4dnp/b9rey2/7xjJ+5W92tgb5/ntIM0/jlBWesDZjVj977rPRJY/+MnBgQ==}
+  /@react-aria/aria-modal-polyfill@3.7.1(@types/react@18.0.35)(react@18.2.0):
+    resolution: {integrity: sha512-wF4/dF2+C2dwqTV4bLoSa4HBTWdTFLlWoJAxidDBsVz+3D+PB6a7rnfWv527Iqll789z5nvmRUQ9A8KiTMovJA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.6
       '@react-types/shared': 3.18.0(react@18.2.0)
+      '@swc/helpers': 0.4.14
       aria-hidden: 1.2.2(@types/react@18.0.35)(react@18.2.0)
       react: 18.2.0
     transitivePeerDependencies:
@@ -4162,7 +4313,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/link': 3.3.5(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
@@ -4179,9 +4330,23 @@ packages:
       '@react-aria/focus': 3.11.0(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
-      '@react-stately/toggle': 3.4.4(react@18.2.0)
-      '@react-types/button': 3.7.0(react@18.2.0)
+      '@react-stately/toggle': 3.5.1(react@18.2.0)
+      '@react-types/button': 3.7.2(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
+      react: 18.2.0
+
+  /@react-aria/button@3.7.1(react@18.2.0):
+    resolution: {integrity: sha512-l4Xqu83mT9STB89JLNsejHjHdFZClp/xez07LYfqibdvgcXiH311I76n1QCZqga2OGuIsW+fKmpMtuVPDdS61g==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/focus': 3.12.0(react@18.2.0)
+      '@react-aria/interactions': 3.15.0(react@18.2.0)
+      '@react-aria/utils': 3.16.0(react@18.2.0)
+      '@react-stately/toggle': 3.5.1(react@18.2.0)
+      '@react-types/button': 3.7.2(react@18.2.0)
+      '@react-types/shared': 3.18.0(react@18.2.0)
+      '@swc/helpers': 0.4.14
       react: 18.2.0
 
   /@react-aria/checkbox@3.5.1(react@18.2.0):
@@ -4210,8 +4375,8 @@ packages:
       '@react-aria/toggle': 3.4.1(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
       '@react-stately/checkbox': 3.3.2(react@18.2.0)
-      '@react-stately/toggle': 3.4.4(react@18.2.0)
-      '@react-types/checkbox': 3.4.1(react@18.2.0)
+      '@react-stately/toggle': 3.5.1(react@18.2.0)
+      '@react-types/checkbox': 3.4.3(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
 
@@ -4222,19 +4387,19 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/listbox': 3.7.1(react@18.2.0)
       '@react-aria/live-announcer': 3.1.1
       '@react-aria/menu': 3.7.0(react-dom@18.2.0)(react@18.2.0)
       '@react-aria/overlays': 3.12.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/selection': 3.12.0(react@18.2.0)
+      '@react-aria/selection': 3.14.0(react@18.2.0)
       '@react-aria/textfield': 3.8.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
-      '@react-stately/collections': 3.5.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
       '@react-stately/combobox': 3.3.0(react@18.2.0)
       '@react-stately/layout': 3.9.0(react@18.2.0)
-      '@react-types/button': 3.7.0(react@18.2.0)
+      '@react-types/button': 3.7.2(react@18.2.0)
       '@react-types/combobox': 3.5.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
@@ -4301,33 +4466,33 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@18.2.0)
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/live-announcer': 3.1.1
-      '@react-aria/selection': 3.12.0(react@18.2.0)
+      '@react-aria/selection': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
       '@react-stately/grid': 3.4.1(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-stately/virtualizer': 3.4.0(react@18.2.0)
-      '@react-types/checkbox': 3.4.1(react@18.2.0)
+      '@react-types/checkbox': 3.4.3(react@18.2.0)
       '@react-types/grid': 3.1.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /@react-aria/i18n@3.6.2(react@18.2.0):
-    resolution: {integrity: sha512-/G22mZQcISX6DcKLBn4j/X53y2SOnFfiD4wOEuY7sIZZDryktd+3I/QHukCnNlf0tKK3PdixQLvWa9Q1RqTSaw==}
+  /@react-aria/i18n@3.7.1(react@18.2.0):
+    resolution: {integrity: sha512-2fu1cv8yD3V+rlhOqstTdGAubadoMFuPE7lA1FfYdaJNxXa09iWqvpipUPlxYJrahW0eazkesOPDKFwOEMF1iA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.6
-      '@internationalized/date': 3.0.1
-      '@internationalized/message': 3.0.9
-      '@internationalized/number': 3.1.1
-      '@internationalized/string': 3.0.0
+      '@internationalized/date': 3.2.0
+      '@internationalized/message': 3.1.0
+      '@internationalized/number': 3.2.0
+      '@internationalized/string': 3.1.0
       '@react-aria/ssr': 3.6.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
+      '@swc/helpers': 0.4.14
       react: 18.2.0
 
   /@react-aria/interactions@3.11.0(react@18.2.0):
@@ -4356,8 +4521,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-aria/utils': 3.15.0(react@18.2.0)
-      '@react-types/shared': 3.17.0(react@18.2.0)
+      '@react-aria/utils': 3.16.0(react@18.2.0)
+      '@react-types/shared': 3.18.0(react@18.2.0)
       '@swc/helpers': 0.4.14
       react: 18.2.0
 
@@ -4416,9 +4581,9 @@ packages:
       '@react-aria/focus': 3.11.0(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/label': 3.4.3(react@18.2.0)
-      '@react-aria/selection': 3.12.0(react@18.2.0)
+      '@react-aria/selection': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
-      '@react-stately/collections': 3.5.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
       '@react-stately/list': 3.6.0(react@18.2.0)
       '@react-types/listbox': 3.3.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
@@ -4436,15 +4601,15 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/overlays': 3.12.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/selection': 3.12.0(react@18.2.0)
+      '@react-aria/selection': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
-      '@react-stately/collections': 3.5.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
       '@react-stately/menu': 3.4.4(react@18.2.0)
-      '@react-stately/tree': 3.4.0(react@18.2.0)
-      '@react-types/button': 3.7.0(react@18.2.0)
+      '@react-stately/tree': 3.6.0(react@18.2.0)
+      '@react-types/button': 3.7.2(react@18.2.0)
       '@react-types/menu': 3.7.3(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
@@ -4458,13 +4623,13 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@18.2.0)
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/ssr': 3.6.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
       '@react-aria/visually-hidden': 3.6.0(react@18.2.0)
       '@react-stately/overlays': 3.4.4(react@18.2.0)
-      '@react-types/button': 3.7.0(react@18.2.0)
+      '@react-types/button': 3.7.2(react@18.2.0)
       '@react-types/overlays': 3.6.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
@@ -4477,7 +4642,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@18.2.0)
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/label': 3.4.3(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
@@ -4493,16 +4658,16 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/label': 3.4.3(react@18.2.0)
       '@react-aria/listbox': 3.7.1(react@18.2.0)
       '@react-aria/menu': 3.7.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/selection': 3.12.0(react@18.2.0)
+      '@react-aria/selection': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
       '@react-aria/visually-hidden': 3.6.0(react@18.2.0)
       '@react-stately/select': 3.3.3(react@18.2.0)
-      '@react-types/button': 3.7.0(react@18.2.0)
+      '@react-types/button': 3.7.2(react@18.2.0)
       '@react-types/select': 3.6.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
@@ -4515,12 +4680,27 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@18.2.0)
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
-      '@react-stately/collections': 3.5.0(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
+      react: 18.2.0
+
+  /@react-aria/selection@3.14.0(react@18.2.0):
+    resolution: {integrity: sha512-4/cq3mP75/qbhz2OkWmrfL6MJ+7+KfFsT6wvVNvxgOWR0n4jivHToKi3DXo2TzInvNU+10Ha7FCWavZoUNgSlA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/focus': 3.12.0(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
+      '@react-aria/interactions': 3.15.0(react@18.2.0)
+      '@react-aria/utils': 3.16.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
+      '@react-types/shared': 3.18.0(react@18.2.0)
+      '@swc/helpers': 0.4.14
       react: 18.2.0
 
   /@react-aria/ssr@3.5.0(react@18.2.0):
@@ -4530,6 +4710,7 @@ packages:
     dependencies:
       '@swc/helpers': 0.4.14
       react: 18.2.0
+    dev: false
 
   /@react-aria/ssr@3.6.0(react@18.2.0):
     resolution: {integrity: sha512-OFiYQdv+Yk7AO7IsQu/fAEPijbeTwrrEYvdNoJ3sblBBedD5j5fBTNWrUPNVlwC4XWWnWTCMaRIVsJujsFiWXg==}
@@ -4548,14 +4729,14 @@ packages:
       '@babel/runtime': 7.20.6
       '@react-aria/focus': 3.11.0(react@18.2.0)
       '@react-aria/grid': 3.5.1(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/i18n': 3.6.2(react@18.2.0)
+      '@react-aria/i18n': 3.7.1(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/live-announcer': 3.1.1
-      '@react-aria/selection': 3.12.0(react@18.2.0)
+      '@react-aria/selection': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
       '@react-stately/table': 3.6.0(react@18.2.0)
       '@react-stately/virtualizer': 3.4.0(react@18.2.0)
-      '@react-types/checkbox': 3.4.1(react@18.2.0)
+      '@react-types/checkbox': 3.4.3(react@18.2.0)
       '@react-types/grid': 3.1.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       '@react-types/table': 3.3.3(react@18.2.0)
@@ -4584,8 +4765,8 @@ packages:
       '@react-aria/focus': 3.11.0(react@18.2.0)
       '@react-aria/interactions': 3.14.0(react@18.2.0)
       '@react-aria/utils': 3.16.0(react@18.2.0)
-      '@react-stately/toggle': 3.4.4(react@18.2.0)
-      '@react-types/checkbox': 3.4.1(react@18.2.0)
+      '@react-stately/toggle': 3.5.1(react@18.2.0)
+      '@react-types/checkbox': 3.4.3(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       '@react-types/switch': 3.2.5(react@18.2.0)
       react: 18.2.0
@@ -4626,18 +4807,6 @@ packages:
       '@react-aria/ssr': 3.6.0(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
-      clsx: 1.2.1
-      react: 18.2.0
-
-  /@react-aria/utils@3.15.0(react@18.2.0):
-    resolution: {integrity: sha512-aJZBG++iz1UwTW5gXFaHicKju4p0MPhAyBTcf2awHYWeTUUslDjJcEnNg7kjBYZBOrOSlA2rAt7/7C5CCURQPg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-    dependencies:
-      '@react-aria/ssr': 3.5.0(react@18.2.0)
-      '@react-stately/utils': 3.6.0(react@18.2.0)
-      '@react-types/shared': 3.18.0(react@18.2.0)
-      '@swc/helpers': 0.4.14
       clsx: 1.2.1
       react: 18.2.0
 
@@ -4685,9 +4854,9 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-stately/toggle': 3.4.4(react@18.2.0)
+      '@react-stately/toggle': 3.5.1(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
-      '@react-types/checkbox': 3.4.1(react@18.2.0)
+      '@react-types/checkbox': 3.4.3(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       '@swc/helpers': 0.4.14
       react: 18.2.0
@@ -4701,13 +4870,13 @@ packages:
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
 
-  /@react-stately/collections@3.5.0(react@18.2.0):
-    resolution: {integrity: sha512-3BAMRjJqrka0IGvyK4m3WslqCeiEfQGx7YsXEIgIgMJoLpk6Fi1Eh4CI8coBnl/wcVLiIRMCIvxubwFRWTgzdg==}
+  /@react-stately/collections@3.7.0(react@18.2.0):
+    resolution: {integrity: sha512-xZHJxjGXFe3LUbuNgR1yATBVSIQnm+ItLq2DJZo3JzTtRu3gEwLoRRoapPsBQnC5VsjcaimgoqvT05P0AlvCTQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.6
       '@react-types/shared': 3.18.0(react@18.2.0)
+      '@swc/helpers': 0.4.14
       react: 18.2.0
 
   /@react-stately/combobox@3.2.2(react@18.2.0):
@@ -4744,7 +4913,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-types/grid': 3.1.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
@@ -4767,8 +4936,8 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
@@ -4779,8 +4948,8 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
@@ -4845,10 +5014,10 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
       '@react-stately/list': 3.6.0(react@18.2.0)
       '@react-stately/menu': 3.4.4(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
       '@react-types/select': 3.6.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
@@ -4860,24 +5029,24 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
       '@react-stately/list': 3.6.0(react@18.2.0)
       '@react-stately/menu': 3.4.4(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
       '@react-types/select': 3.6.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
 
-  /@react-stately/selection@3.11.1(react@18.2.0):
-    resolution: {integrity: sha512-UHB6/eH5NJ+Q70G+pmnxohHfR3bh0szT+lOlWPj7Mh76WPu9bu07IHKLEob6PSzyJ81h7+Ysk3hdIgS3TewGog==}
+  /@react-stately/selection@3.13.0(react@18.2.0):
+    resolution: {integrity: sha512-F6FiB5GIS6wdmDDJtD2ofr+y6ysLHcvHVyUZHm00aEup2hcNjtNx3x4MlFIc3tO1LvxDSIIWXJhPXdB4sb32uw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
+      '@swc/helpers': 0.4.14
       react: 18.2.0
 
   /@react-stately/table@3.5.0(react@18.2.0):
@@ -4886,9 +5055,9 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
       '@react-stately/grid': 3.4.1(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-types/grid': 3.1.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       '@react-types/table': 3.3.3(react@18.2.0)
@@ -4900,9 +5069,9 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
       '@react-stately/grid': 3.4.1(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-types/grid': 3.1.5(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       '@react-types/table': 3.3.3(react@18.2.0)
@@ -4927,17 +5096,17 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@react-stately/utils': 3.6.0(react@18.2.0)
-      '@react-types/checkbox': 3.4.1(react@18.2.0)
+      '@react-types/checkbox': 3.4.3(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
 
-  /@react-stately/toggle@3.4.4(react@18.2.0):
-    resolution: {integrity: sha512-OwVJpd2M7P7fekTWpl3TUdD3Brq+Z/xElOCJYP5QuVytXCa5seKsk40YPld8JQnA5dRKojpbUxMDOJpb6hOOfw==}
+  /@react-stately/toggle@3.5.1(react@18.2.0):
+    resolution: {integrity: sha512-PF4ZaATpXWu7DkneGSZ2/PA6LJ1MrhKNiaENTZlbojXMRr5kK33wPzaDW7I8O25IUm0+rvQicv7A6QkEOxgOPg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@react-stately/utils': 3.6.0(react@18.2.0)
-      '@react-types/checkbox': 3.4.1(react@18.2.0)
+      '@react-types/checkbox': 3.4.3(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       '@swc/helpers': 0.4.14
       react: 18.2.0
@@ -4970,22 +5139,22 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
 
-  /@react-stately/tree@3.4.0(react@18.2.0):
-    resolution: {integrity: sha512-MqxSABMzykwI6Wj1B7+jBcCoYc0b05CueRTQDyoL+PfVhnV0SzOH6P84UPD+FHlz8x3RG/2hTTmLr4A8McO2nQ==}
+  /@react-stately/tree@3.6.0(react@18.2.0):
+    resolution: {integrity: sha512-9ekYGaebgMmd2p6PGRzsvr8KsDsDnrJF2uLV1GMq9hBaMxOLN5/dpxgfZGdHWoF3MXgeHeLloqrleMNfO6g64Q==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.6
-      '@react-stately/collections': 3.5.0(react@18.2.0)
-      '@react-stately/selection': 3.11.1(react@18.2.0)
+      '@react-stately/collections': 3.7.0(react@18.2.0)
+      '@react-stately/selection': 3.13.0(react@18.2.0)
       '@react-stately/utils': 3.6.0(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
+      '@swc/helpers': 0.4.14
       react: 18.2.0
 
   /@react-stately/utils@3.6.0(react@18.2.0):
@@ -5006,8 +5175,8 @@ packages:
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
 
-  /@react-types/accordion@3.0.0-alpha.11(react@18.2.0):
-    resolution: {integrity: sha512-7TAvvMnfSWtX4gkmRg3pE31y/E/oTWfUAIi9WT4hPJBbE/8zItjD2P5cQ5tLizXT87fnm+4s8jvci7gZcN2/pw==}
+  /@react-types/accordion@3.0.0-alpha.13(react@18.2.0):
+    resolution: {integrity: sha512-RQP+UInEdPjyyX8IbmUbPXgx6NJaKYpNrMDa8yxqDKLH0MIfsKQldu/lBHuRP3OIrVTr18r/ICjdOZjtVObtLw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
@@ -5023,8 +5192,8 @@ packages:
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
 
-  /@react-types/button@3.7.0(react@18.2.0):
-    resolution: {integrity: sha512-81BQO3QxSgF9PTXsVozNdNCKxBOB1lpbCWocV99dN1ws9s8uaYw8pmJJZ0LJKLiOsIECQ/3QrhQjmWTDW/qTug==}
+  /@react-types/button@3.7.2(react@18.2.0):
+    resolution: {integrity: sha512-P7L+r+k4yVrvsfEWx3wlzbb+G7c9XNWzxEBfy6WX9HnKb/J5bo4sP5Zi8/TFVaKTlaG60wmVhdr+8KWSjL0GuQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
@@ -5033,6 +5202,15 @@ packages:
 
   /@react-types/checkbox@3.4.1(react@18.2.0):
     resolution: {integrity: sha512-kDMpy9SntjGQ7x00m5zmW8GENPouOtyiDgiEDKsPXUr2iYqHsNtricqVyG9S9+6hqpzuu8BzTcvZamc/xYjzlg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-types/shared': 3.18.0(react@18.2.0)
+      react: 18.2.0
+    dev: false
+
+  /@react-types/checkbox@3.4.3(react@18.2.0):
+    resolution: {integrity: sha512-kn2f8mK88yvRrCfh8jYCDL2xpPhSApFWk9+qjWGsX/bnGGob7D5n71YYQ4cS58117YK2nrLc/AyQJXcZnJiA7Q==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
@@ -5143,6 +5321,7 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
 
   /@react-types/shared@3.18.0(react@18.2.0):
     resolution: {integrity: sha512-WJj7RAPj7NLdR/VzFObgvCju9NMDktWSruSPJ3DrL5qyrrvJoyMW67L4YjNoVp2b7Y+k10E0q4fSMV0PlJoL0w==}
@@ -5156,7 +5335,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
-      '@react-types/checkbox': 3.4.1(react@18.2.0)
+      '@react-types/checkbox': 3.4.3(react@18.2.0)
       '@react-types/shared': 3.18.0(react@18.2.0)
       react: 18.2.0
 
@@ -5349,6 +5528,10 @@ packages:
     dependencies:
       '@types/ms': 0.7.31
 
+  /@types/escape-html@1.0.2:
+    resolution: {integrity: sha512-gaBLT8pdcexFztLSPRtriHeXY/Kn4907uOCZ4Q3lncFBkheAWOuNt53ypsF8szgxbEJ513UeBzcf4utN0EzEwA==}
+    dev: true
+
   /@types/form-data@0.0.33:
     resolution: {integrity: sha512-8BSvG1kGm83cyJITQMZSulnl6QV8jqAGreJsc5tPu1Jq0vTSOiY/k24Wx82JRpWwZSqrala6sd5rWi6aNXvqcw==}
     dependencies:
@@ -5498,8 +5681,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/eslint-plugin@5.45.0(@typescript-eslint/parser@5.45.0)(eslint@8.34.0)(typescript@4.9.5):
-    resolution: {integrity: sha512-CXXHNlf0oL+Yg021cxgOdMHNTXD17rHkq7iW6RFHoybdFgQBjU3yIXhhcPpGwr1CjZlo6ET8C6tzX5juQoXeGA==}
+  /@typescript-eslint/eslint-plugin@5.55.0(@typescript-eslint/parser@5.55.0)(eslint@8.34.0)(typescript@4.9.5):
+    resolution: {integrity: sha512-IZGc50rtbjk+xp5YQoJvmMPmJEYoC53SiKPXyqWfv15XoD2Y5Kju6zN0DwlmaGJp1Iw33JsWJcQ7nw0lGCGjVg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       '@typescript-eslint/parser': ^5.0.0
@@ -5509,15 +5692,16 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.45.0(eslint@8.34.0)(typescript@4.9.5)
-      '@typescript-eslint/scope-manager': 5.45.0
-      '@typescript-eslint/type-utils': 5.45.0(eslint@8.34.0)(typescript@4.9.5)
-      '@typescript-eslint/utils': 5.45.0(eslint@8.34.0)(typescript@4.9.5)
+      '@eslint-community/regexpp': 4.4.0
+      '@typescript-eslint/parser': 5.55.0(eslint@8.34.0)(typescript@4.9.5)
+      '@typescript-eslint/scope-manager': 5.55.0
+      '@typescript-eslint/type-utils': 5.55.0(eslint@8.34.0)(typescript@4.9.5)
+      '@typescript-eslint/utils': 5.55.0(eslint@8.34.0)(typescript@4.9.5)
       debug: 4.3.4(supports-color@5.5.0)
       eslint: 8.34.0
+      grapheme-splitter: 1.0.4
       ignore: 5.2.1
       natural-compare-lite: 1.4.0
-      regexpp: 3.2.0
       semver: 7.3.8
       tsutils: 3.21.0(typescript@4.9.5)
       typescript: 4.9.5
@@ -5573,8 +5757,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/parser@5.45.0(eslint@8.34.0)(typescript@4.9.5):
-    resolution: {integrity: sha512-brvs/WSM4fKUmF5Ot/gEve6qYiCMjm6w4HkHPfS6ZNmxTS0m0iNN4yOChImaCkqc1hRwFGqUyanMXuGal6oyyQ==}
+  /@typescript-eslint/parser@5.55.0(eslint@8.34.0)(typescript@4.9.5):
+    resolution: {integrity: sha512-ppvmeF7hvdhUUZWSd2EEWfzcFkjJzgNQzVST22nzg958CR+sphy8A6K7LXQZd6V75m1VKjp+J4g/PCEfSCmzhw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -5583,9 +5767,9 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/scope-manager': 5.45.0
-      '@typescript-eslint/types': 5.45.0
-      '@typescript-eslint/typescript-estree': 5.45.0(typescript@4.9.5)
+      '@typescript-eslint/scope-manager': 5.55.0
+      '@typescript-eslint/types': 5.55.0
+      '@typescript-eslint/typescript-estree': 5.55.0(typescript@4.9.5)
       debug: 4.3.4(supports-color@5.5.0)
       eslint: 8.34.0
       typescript: 4.9.5
@@ -5649,8 +5833,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/type-utils@5.45.0(eslint@8.34.0)(typescript@4.9.5):
-    resolution: {integrity: sha512-DY7BXVFSIGRGFZ574hTEyLPRiQIvI/9oGcN8t1A7f6zIs6ftbrU0nhyV26ZW//6f85avkwrLag424n+fkuoJ1Q==}
+  /@typescript-eslint/type-utils@5.55.0(eslint@8.34.0)(typescript@4.9.5):
+    resolution: {integrity: sha512-ObqxBgHIXj8rBNm0yh8oORFrICcJuZPZTqtAFh0oZQyr5DnAHZWfyw54RwpEEH+fD8suZaI0YxvWu5tYE/WswA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '*'
@@ -5659,8 +5843,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/typescript-estree': 5.45.0(typescript@4.9.5)
-      '@typescript-eslint/utils': 5.45.0(eslint@8.34.0)(typescript@4.9.5)
+      '@typescript-eslint/typescript-estree': 5.55.0(typescript@4.9.5)
+      '@typescript-eslint/utils': 5.55.0(eslint@8.34.0)(typescript@4.9.5)
       debug: 4.3.4(supports-color@5.5.0)
       eslint: 8.34.0
       tsutils: 3.21.0(typescript@4.9.5)
@@ -5720,27 +5904,6 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/typescript-estree@5.45.0(typescript@4.9.5):
-    resolution: {integrity: sha512-maRhLGSzqUpFcZgXxg1qc/+H0bT36lHK4APhp0AEUVrpSwXiRAomm/JGjSG+kNUio5kAa3uekCYu/47cnGn5EQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/types': 5.45.0
-      '@typescript-eslint/visitor-keys': 5.45.0
-      debug: 4.3.4(supports-color@5.5.0)
-      globby: 11.1.0
-      is-glob: 4.0.3
-      semver: 7.3.8
-      tsutils: 3.21.0(typescript@4.9.5)
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@typescript-eslint/typescript-estree@5.55.0(typescript@4.9.5):
     resolution: {integrity: sha512-I7X4A9ovA8gdpWMpr7b1BN9eEbvlEtWhQvpxp/yogt48fy9Lj3iE3ild/1H3jKBBIYj5YYJmS2+9ystVhC7eaQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -5782,20 +5945,20 @@ packages:
       - typescript
     dev: true
 
-  /@typescript-eslint/utils@5.45.0(eslint@8.34.0)(typescript@4.9.5):
-    resolution: {integrity: sha512-OUg2JvsVI1oIee/SwiejTot2OxwU8a7UfTFMOdlhD2y+Hl6memUSL4s98bpUTo8EpVEr0lmwlU7JSu/p2QpSvA==}
+  /@typescript-eslint/utils@5.55.0(eslint@8.34.0)(typescript@4.9.5):
+    resolution: {integrity: sha512-FkW+i2pQKcpDC3AY6DU54yl8Lfl14FVGYDgBTyGKB75cCwV3KpkpTMFi9d9j2WAJ4271LR2HeC5SEWF/CZmmfw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
+      '@eslint-community/eslint-utils': 4.2.0(eslint@8.34.0)
       '@types/json-schema': 7.0.11
       '@types/semver': 7.3.13
-      '@typescript-eslint/scope-manager': 5.45.0
-      '@typescript-eslint/types': 5.45.0
-      '@typescript-eslint/typescript-estree': 5.45.0(typescript@4.9.5)
+      '@typescript-eslint/scope-manager': 5.55.0
+      '@typescript-eslint/types': 5.55.0
+      '@typescript-eslint/typescript-estree': 5.55.0(typescript@4.9.5)
       eslint: 8.34.0
       eslint-scope: 5.1.1
-      eslint-utils: 3.0.0(eslint@8.34.0)
       semver: 7.3.8
     transitivePeerDependencies:
       - supports-color
@@ -10195,8 +10358,8 @@ packages:
       eslint: 8.27.0
     dev: true
 
-  /eslint-config-prettier@8.5.0(eslint@8.34.0):
-    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
+  /eslint-config-prettier@8.7.0(eslint@8.34.0):
+    resolution: {integrity: sha512-HHVXLSlVUhMSmyW4ZzEuvjpwqamgmlfkutD53cYXLikh4pt/modINRcCIApJ84czDxM4GZInwUrromsDdTImTA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -10264,8 +10427,8 @@ packages:
       natural-compare: 1.4.0
     dev: true
 
-  /eslint-plugin-jsonc@2.5.0(eslint@8.34.0):
-    resolution: {integrity: sha512-G257khwkrOQ5MJpSzz4yQh5K12W4xFZRcHmVlhVFWh2GCLDX+JwHnmkQoUoFDbOieSPBMsPFZDTJScwrXiWlIg==}
+  /eslint-plugin-jsonc@2.6.0(eslint@8.34.0):
+    resolution: {integrity: sha512-4bA9YTx58QaWalua1Q1b82zt7eZMB7i+ed8q8cKkbKP75ofOA2SXbtFyCSok7RY6jIXeCqQnKjN9If8zCgv6PA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -10424,7 +10587,7 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.5.0)(eslint@8.34.0)(prettier@2.8.4):
+  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.7.0)(eslint@8.34.0)(prettier@2.8.4):
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -10436,7 +10599,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.34.0
-      eslint-config-prettier: 8.5.0(eslint@8.34.0)
+      eslint-config-prettier: 8.7.0(eslint@8.34.0)
       prettier: 2.8.4
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -10607,24 +10770,26 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
-  /eslint-plugin-unicorn@44.0.2(eslint@8.34.0):
-    resolution: {integrity: sha512-GLIDX1wmeEqpGaKcnMcqRvMVsoabeF0Ton0EX4Th5u6Kmf7RM9WBl705AXFEsns56ESkEs0uyelLuUTvz9Tr0w==}
+  /eslint-plugin-unicorn@45.0.2(eslint@8.34.0):
+    resolution: {integrity: sha512-Y0WUDXRyGDMcKLiwgL3zSMpHrXI00xmdyixEGIg90gHnj0PcHY4moNv3Ppje/kDivdAy5vUeUr7z211ImPv2gw==}
     engines: {node: '>=14.18'}
     peerDependencies:
-      eslint: '>=8.23.1'
+      eslint: '>=8.28.0'
     dependencies:
       '@babel/helper-validator-identifier': 7.19.1
+      '@eslint-community/eslint-utils': 4.2.0(eslint@8.34.0)
       ci-info: 3.7.0
       clean-regexp: 1.0.0
       eslint: 8.34.0
-      eslint-utils: 3.0.0(eslint@8.34.0)
       esquery: 1.5.0
       indent-string: 4.0.0
       is-builtin-module: 3.2.0
+      jsesc: 3.0.2
       lodash: 4.17.21
       pluralize: 8.0.0
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.24
+      regjsparser: 0.9.1
       safe-regex: 2.1.1
       semver: 7.3.8
       strip-indent: 3.0.0
@@ -10670,8 +10835,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-yml@1.2.0(eslint@8.34.0):
-    resolution: {integrity: sha512-v0jAU/F5SJg28zkpxwGpY04eGZMWFP6os8u2qaEAIRjSH2GqrNl0yBR5+sMHLU/026kAduxVbvLSqmT3Mu3O0g==}
+  /eslint-plugin-yml@1.5.0(eslint@8.34.0):
+    resolution: {integrity: sha512-iygN054g+ZrnYmtOXMnT+sx9iDNXt89/m0+506cQHeG0+5jJN8hY5iOPQLd3yfd50AfK/mSasajBWruf1SoHpQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -10773,8 +10938,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@eslint/eslintrc': 1.3.3
-      '@humanwhocodes/config-array': 0.11.7
+      '@eslint/eslintrc': 1.4.1
+      '@humanwhocodes/config-array': 0.11.8
       '@humanwhocodes/module-importer': 1.0.1
       '@nodelib/fs.walk': 1.2.8
       ajv: 6.12.6
@@ -10786,14 +10951,14 @@ packages:
       eslint-scope: 7.1.1
       eslint-utils: 3.0.0(eslint@8.27.0)
       eslint-visitor-keys: 3.3.0
-      espree: 9.4.1
-      esquery: 1.4.0
+      espree: 9.5.0
+      esquery: 1.5.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
       file-entry-cache: 6.0.1
       find-up: 5.0.0
       glob-parent: 6.0.2
-      globals: 13.18.0
+      globals: 13.20.0
       grapheme-splitter: 1.0.4
       ignore: 5.2.1
       import-fresh: 3.3.0
@@ -10913,15 +11078,6 @@ packages:
       - supports-color
     dev: true
 
-  /espree@9.4.1:
-    resolution: {integrity: sha512-XwctdmTO6SIvCzd9810yyNzIrOrqNYV9Koizx4C/mRhf9uq0o4yHoCEU/670pOxOL/MSraektvSAji79kX90Vg==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      acorn: 8.8.1
-      acorn-jsx: 5.3.2(acorn@8.8.1)
-      eslint-visitor-keys: 3.3.0
-    dev: true
-
   /espree@9.5.0:
     resolution: {integrity: sha512-JPbJGhKc47++oo4JkEoTe2wjy4fmMwvFpgJT9cQzmfXKp22Dr6Hf1tdCteLz1h0P3t+mGvWZ+4Uankvh8+c6zw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -10929,13 +11085,6 @@ packages:
       acorn: 8.8.1
       acorn-jsx: 5.3.2(acorn@8.8.1)
       eslint-visitor-keys: 3.3.0
-    dev: true
-
-  /esquery@1.4.0:
-    resolution: {integrity: sha512-cCDispWt5vHHtwMY2YrAQ4ibFkAL8RbH5YGBnZBc90MolvvfkkQcJro/aZiAQUlQ3qgrYS6D6v8Gc5G5CQsc9w==}
-    engines: {node: '>=0.10'}
-    dependencies:
-      estraverse: 5.3.0
     dev: true
 
   /esquery@1.5.0:
@@ -11597,13 +11746,6 @@ packages:
   /globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
-
-  /globals@13.18.0:
-    resolution: {integrity: sha512-/mR4KI8Ps2spmoc0Ulu9L7agOF0du1CZNQ3dke8yItYlyKNmGrkONemBbd6V8UTc1Wgcqn21t3WYB7dbRmh6/A==}
-    engines: {node: '>=8'}
-    dependencies:
-      type-fest: 0.20.2
-    dev: true
 
   /globals@13.20.0:
     resolution: {integrity: sha512-Qg5QtVkCy/kv3FUSlu4ukeZDVf9ee0iXLAUYX13gbR17bnejFTzr4iS9bY7kwCf1NztRNm1t91fjOiyx4CSwPQ==}
@@ -14140,8 +14282,8 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
-  /react-fast-compare@3.2.0:
-    resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+  /react-fast-compare@3.2.2:
+    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
 
   /react-hotkeys-hook@3.4.7(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-+bbPmhPAl6ns9VkXkNNyxlmCAIyDAcWbB76O4I0ntr3uWCRuIQf/aRLartUahe9chVMPj+OEzzfk3CQSjclUEQ==}
@@ -14181,7 +14323,7 @@ packages:
       '@popperjs/core': 2.11.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-fast-compare: 3.2.0
+      react-fast-compare: 3.2.2
       warning: 4.0.3
 
   /react-refresh@0.14.0:
@@ -15445,11 +15587,6 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
     dev: true
-
-  /type-fest@3.6.0:
-    resolution: {integrity: sha512-RqTRtKTzvPpNdDUp1dVkKQRunlPITk4mXeqFlAZoJsS+fLRn8AdPK0TcQDumGayhU7fjlBfiBjsq3pe3rIfXZQ==}
-    engines: {node: '>=14.16'}
-    dev: false
 
   /type-fest@3.9.0:
     resolution: {integrity: sha512-hR8JP2e8UiH7SME5JZjsobBlEiatFoxpzCP+R3ZeCo7kAaG1jXQE5X/buLzogM6GJu8le9Y4OcfNuIQX0rZskA==}
