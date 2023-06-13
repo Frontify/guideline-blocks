@@ -49,7 +49,7 @@
         "@frontify/app-bridge": "3.0.0-beta.67",
         "@frontify/fondue": "12.0.0-beta.239",
         "escape-html": "1.0.3",
-        "@frontify/guideline-blocks-settings": "0.26.8",
+        "@frontify/guideline-blocks-settings": "0.27.0",
         "@react-aria/focus": "3.11.0",
         "@react-stately/overlays": "3.4.2",
         "@uiw/codemirror-extensions-langs": "4.19.9",
