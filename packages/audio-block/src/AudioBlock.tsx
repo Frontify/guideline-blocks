@@ -42,7 +42,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
-    const [isApiRequestPending, setIsApiRequestPending] = useState(false);
+    const [isTitlePending, setIsTitlePending] = useState(false);
+    const [isDescriptionPending, setIsDescriptionPending] = useState(false);
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -85,20 +86,20 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
 
     const onTitleChange = (value: string) => {
         if (value === blockSettings.title) {
-            setIsApiRequestPending(false);
+            setIsTitlePending(false);
         } else {
             setBlockSettings({ title: value }).finally(() => {
-                setIsApiRequestPending(false);
+                setIsTitlePending(false);
             });
         }
     };
 
     const onDescriptionChange = (value: string) => {
         if (value === blockSettings.description) {
-            setIsApiRequestPending(false);
+            setIsDescriptionPending(false);
         } else {
             setBlockSettings({ description: value }).finally(() => {
-                setIsApiRequestPending(false);
+                setIsDescriptionPending(false);
             });
         }
     };
@@ -156,8 +157,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             onTextChange={onTitleChange}
                             value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
                             placeholder="Asset name"
-                            onValueChanged={() => setIsApiRequestPending(true)}
-                            shouldPreventPageLeave={isApiRequestPending}
+                            onValueChanged={() => setIsTitlePending(true)}
+                            shouldPreventPageLeave={isTitlePending}
                             updateValueOnChange
                         />
                     </div>
@@ -171,8 +172,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             onTextChange={onDescriptionChange}
                             value={blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION}
                             placeholder="Add a description here"
-                            onValueChanged={() => setIsApiRequestPending(true)}
-                            shouldPreventPageLeave={isApiRequestPending}
+                            onValueChanged={() => setIsDescriptionPending(true)}
+                            shouldPreventPageLeave={isDescriptionPending}
                         />
                     </div>
                 </div>
