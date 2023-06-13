@@ -6,7 +6,6 @@ import {
     IconEnum,
     NotificationStyleType,
     appendUnit,
-    createFooter,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
@@ -186,16 +185,5 @@ export const settings = defineSettings({
             radiusStyleMap: radiusValues,
         }),
     ],
-    security: [
-        getSecurityGlobalControlSetting(),
-        {
-            id: 'globalSettingsInfo',
-            type: 'notification',
-            footer: createFooter({
-                label: 'Change global settings [here].',
-                replace: { here: { event: 'design-settings.open' } },
-            }),
-        },
-        getSecurityDownloadableSetting(),
-    ],
+    security: [...getSecurityGlobalControlSetting(), getSecurityDownloadableSetting()],
 });

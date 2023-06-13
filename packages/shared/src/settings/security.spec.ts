@@ -3,44 +3,63 @@
 import { describe, expect, it } from 'vitest';
 import { getSecurityDownloadableSetting, getSecurityGlobalControlSetting } from './security';
 import { Security } from './types';
+import { createFooter } from '@frontify/guideline-blocks-settings';
 
 describe('getSecurityGlobalControlSetting', () => {
     it('should return global control setting without id', () => {
-        expect(getSecurityGlobalControlSetting()).toEqual({
-            id: 'security',
-            type: 'segmentedControls',
-            defaultValue: Security.Global,
-            helperText: 'Change global settings here.',
-            choices: [
-                {
-                    value: Security.Global,
-                    label: 'Global Settings',
-                },
-                {
-                    value: Security.Custom,
-                    label: 'Custom',
-                },
-            ],
-        });
+        expect(getSecurityGlobalControlSetting()).toEqual([
+            {
+                id: 'security',
+                type: 'segmentedControls',
+                defaultValue: Security.Global,
+                choices: [
+                    {
+                        value: Security.Global,
+                        label: 'Global Settings',
+                    },
+                    {
+                        value: Security.Custom,
+                        label: 'Custom',
+                    },
+                ],
+            },
+            {
+                id: 'globalSettingsInfo',
+                type: 'notification',
+                footer: createFooter({
+                    label: 'Change global settings [here].',
+                    replace: { here: { event: 'general-settings.open' } },
+                }),
+            },
+        ]);
     });
 
     it('should return global control setting with custom id', () => {
-        expect(getSecurityGlobalControlSetting('customId')).toEqual({
-            id: 'customId',
-            type: 'segmentedControls',
-            defaultValue: Security.Global,
-            helperText: 'Change global settings here.',
-            choices: [
-                {
-                    value: Security.Global,
-                    label: 'Global Settings',
-                },
-                {
-                    value: Security.Custom,
-                    label: 'Custom',
-                },
-            ],
-        });
+        expect(getSecurityGlobalControlSetting('customId')).toEqual([
+            {
+                id: 'customId',
+                type: 'segmentedControls',
+                defaultValue: Security.Global,
+                choices: [
+                    {
+                        value: Security.Global,
+                        label: 'Global Settings',
+                    },
+                    {
+                        value: Security.Custom,
+                        label: 'Custom',
+                    },
+                ],
+            },
+            {
+                id: 'globalSettingsInfo',
+                type: 'notification',
+                footer: createFooter({
+                    label: 'Change global settings [here].',
+                    replace: { here: { event: 'general-settings.open' } },
+                }),
+            },
+        ]);
     });
 });
 

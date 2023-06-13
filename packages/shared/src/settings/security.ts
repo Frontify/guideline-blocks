@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { SettingBlock } from '@frontify/guideline-blocks-settings';
+import { SettingBlock, createFooter } from '@frontify/guideline-blocks-settings';
 import { Security } from './types';
 
 /**
@@ -11,24 +11,33 @@ import { Security } from './types';
  * @returns {SettingBlock} Returns
  */
 
-export const getSecurityGlobalControlSetting = (id?: string): SettingBlock => {
+export const getSecurityGlobalControlSetting = (id?: string): SettingBlock[] => {
     const securityId = getSecurityGlobalControlId(id);
-    return {
-        id: securityId,
-        type: 'segmentedControls',
-        defaultValue: Security.Global,
-        helperText: 'Change global settings here.',
-        choices: [
-            {
-                value: Security.Global,
-                label: 'Global Settings',
-            },
-            {
-                value: Security.Custom,
-                label: 'Custom',
-            },
-        ],
-    };
+    return [
+        {
+            id: securityId,
+            type: 'segmentedControls',
+            defaultValue: Security.Global,
+            choices: [
+                {
+                    value: Security.Global,
+                    label: 'Global Settings',
+                },
+                {
+                    value: Security.Custom,
+                    label: 'Custom',
+                },
+            ],
+        },
+        {
+            id: 'globalSettingsInfo',
+            type: 'notification',
+            footer: createFooter({
+                label: 'Change global settings [here].',
+                replace: { here: { event: 'general-settings.open' } },
+            }),
+        },
+    ];
 };
 
 /**
