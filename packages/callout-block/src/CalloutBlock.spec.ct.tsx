@@ -134,7 +134,7 @@ describe('Callout Block', () => {
         });
 
         cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(26, 199, 211, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(9, 70, 75)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(26, 199, 211)');
     });
 
     it('renders a callout block with the correct colors for type note', () => {
@@ -153,7 +153,7 @@ describe('Callout Block', () => {
         });
 
         cy.get(CalloutWrapper).should('have.css', 'background-color', 'rgba(246, 216, 56, 0.1)');
-        cy.get(HtmlContent).should('have.css', 'color', 'rgb(103, 88, 5)');
+        cy.get(HtmlContent).should('have.css', 'color', 'rgb(108, 92, 5)');
     });
 
     it('renders a callout block with the correct colors for type tip', () => {
@@ -234,7 +234,7 @@ describe('Callout Block', () => {
         cy.get(CalloutBlockSelector).should(
             'have.attr',
             'style',
-            '--f-theme-settings-heading1-color:rgb(103, 88, 5); --f-theme-settings-heading2-color:rgb(103, 88, 5); --f-theme-settings-heading3-color:rgb(103, 88, 5); --f-theme-settings-heading4-color:rgb(103, 88, 5); --f-theme-settings-custom1-color:rgb(103, 88, 5); --f-theme-settings-custom2-color:rgb(103, 88, 5); --f-theme-settings-custom3-color:rgb(103, 88, 5); --f-theme-settings-body-color:rgb(103, 88, 5); --f-theme-settings-quote-color:rgb(103, 88, 5); --f-theme-settings-link-color:rgb(103, 88, 5); --f-theme-settings-link-text-decoration:underline; color: rgb(103, 88, 5);'
+            '--f-theme-settings-heading1-color:rgb(108, 92, 5); --f-theme-settings-heading2-color:rgb(108, 92, 5); --f-theme-settings-heading3-color:rgb(108, 92, 5); --f-theme-settings-heading4-color:rgb(108, 92, 5); --f-theme-settings-custom1-color:rgb(108, 92, 5); --f-theme-settings-custom2-color:rgb(108, 92, 5); --f-theme-settings-custom3-color:rgb(108, 92, 5); --f-theme-settings-body-color:rgb(108, 92, 5); --f-theme-settings-quote-color:rgb(108, 92, 5); --f-theme-settings-link-color:rgb(108, 92, 5); --f-theme-settings-link-text-decoration:underline; color: rgb(108, 92, 5);'
         );
     });
 

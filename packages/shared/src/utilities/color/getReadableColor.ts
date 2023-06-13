@@ -27,7 +27,7 @@ export const getReadableColor = (textColor: unknown, backgroundColor: unknown): 
 
     // darken the text color until readability is good
     while (tinycolor.readability(parsedTextColor, parsedBackgroundColor) < 4.5) {
-        parsedTextColor.darken(2);
+        parsedTextColor.darken(1);
     }
 
     return parsedTextColor.toRgbString();
