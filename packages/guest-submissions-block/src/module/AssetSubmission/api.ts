@@ -11,12 +11,13 @@ query assetSubmissionRequest {
  brands {
     libraries {
       items {
+        id
         name
         assetSubmissionRequests {
           id
+          projectId
           title
           description
-          configuration
           tokens {
              token
           }

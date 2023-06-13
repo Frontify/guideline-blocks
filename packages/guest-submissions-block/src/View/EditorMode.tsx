@@ -6,6 +6,7 @@ import { Headline, ModalHeadline } from "../Components/Headline";
 import { Settings } from "../types";
 import { useBlockSettings } from "@frontify/app-bridge";
 import { AssetSubmission } from "../module/AssetSubmission/AssetSubmission";
+import { getLibraryById } from "../module/Library/Library";
 
 export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] =
@@ -21,12 +22,28 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
             const assetSubmissionRequests =
                 await AssetSubmission.getAssetSubmissionRequests();
             const assetSubmissionMetadataConfig = assetSubmissionRequests.find(
-                (submission: any) =>
-                    submission.id === blockSettings.assetSubmission
+                (submission) =>
+                    submission.projectId === blockSettings.assetSubmission
             );
-            await setBlockSettings({
-                assetSubmissionMetadataConfig: assetSubmissionMetadataConfig,
-            });
+            if (assetSubmissionMetadataConfig) {
+                const libraryMetadata = await getLibraryById(
+                    assetSubmissionMetadataConfig?.projectId
+                );
+
+                await setBlockSettings({
+                    assetSubmissionMetadataConfig:
+                        libraryMetadata.customMetadataProperties,
+                });
+
+                await setBlockSettings({
+                    assetSubmissionToken:
+                        assetSubmissionMetadataConfig.tokens[0].token,
+                });
+
+                await setBlockSettings({
+                    assetSubmissionId: assetSubmissionMetadataConfig.id,
+                });
+            }
         })();
     }, [blockSettings.assetSubmission]);
 

@@ -1,3 +1,5 @@
+import { CopyRightStatus } from "../../Components/MetaData/StandardMetadata/type";
+
 export type CreateAssetSubmissionsInput = {
     requestId: string;
     token: string;
@@ -6,12 +8,25 @@ export type CreateAssetSubmissionsInput = {
         name: string;
         email: string;
     };
-    metadata: string;
+    metadata: AssetSubmissionMetadata;
+};
+
+export type AssetSubmissionMetadata = {
+    description?: string;
+    copyright?: {
+        author?: string;
+        status?: CopyRightStatus;
+        notice?: string;
+    };
+    custom?: {
+        propertyId: string;
+        value: string | string[];
+    }[];
 };
 
 export type AssetSubmissionRequestType = {
-    configuration: string;
     id: string;
+    projectId: string;
     title: string;
     description: string;
     tokens: {

@@ -1,10 +1,9 @@
 import { Settings } from "../../../types";
 import { FormValues } from "../Metadata";
 import { MetadataProps } from "../type";
-import { AssetSubmissionRequestType } from "../../../module/AssetSubmission/type";
 
 type MetadataIds = {
-    [key: string]: string | boolean | number | AssetSubmissionRequestType;
+    [key: string]: string | boolean | number | MetadataProps[];
 };
 
 export const DATA_DELIMINATOR = "--#--";
@@ -30,12 +29,18 @@ const getMetadataConfiguration = (blockSettings: Settings): MetadataProps[] => {
 };
 
 const parseAndSetRequiredFields = (
-    assetSubmissionMetadataConfig: AssetSubmissionRequestType,
+    assetSubmissionMetadataConfig: MetadataProps[],
     required: boolean = false
-): MetadataProps[] =>
-    JSON.parse(assetSubmissionMetadataConfig.configuration).map(
-        (entry: MetadataProps) => ({ ...entry, isRequired: required })
-    );
+): MetadataProps[] => {
+    if (!!assetSubmissionMetadataConfig) {
+        return assetSubmissionMetadataConfig.map((entry: MetadataProps) => ({
+            ...entry,
+            isRequired: required,
+        }));
+    } else {
+        return [];
+    }
+};
 
 const filterActiveMetadata = (blockSettings: Settings): MetadataIds[] =>
     Object.entries(blockSettings)

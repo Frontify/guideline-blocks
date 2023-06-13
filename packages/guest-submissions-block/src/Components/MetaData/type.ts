@@ -12,11 +12,12 @@ export type MetadataProps = {
     isRequired: boolean;
     defaultValue?: any;
     name: string;
-    valueType: {
-        propertyType: MetadataType;
+    type: {
+        name: MetadataType;
         options?: {
-            id: string;
             value: string;
+            id: string;
+            isDefault: boolean;
         }[];
     };
 };

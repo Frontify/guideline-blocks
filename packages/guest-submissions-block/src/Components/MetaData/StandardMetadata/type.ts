@@ -14,3 +14,9 @@ export type RequiredSettingsType = Partial<
 export type DefaultStandardMetadataType = Partial<
     Pick<Settings, "name" | "email">
 >;
+
+export enum CopyRightStatus {
+    "UNKNOWN" = "UNKNOWN",
+    "COPYRIGHTED" = "COPYRIGHTED",
+    "PUBLIC" = "PUBLIC",
+}

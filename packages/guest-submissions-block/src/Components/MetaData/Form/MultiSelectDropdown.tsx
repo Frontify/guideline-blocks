@@ -11,7 +11,7 @@ export const MultiSelectDropdown = ({
     name,
     onChange,
     validation,
-    valueType: { options },
+    type: { options },
 }: MetadataProps & FormUtilities) => {
     const initialValue =
         defaultValue && defaultValue.value ? [defaultValue.value] : [];
@@ -20,7 +20,12 @@ export const MultiSelectDropdown = ({
 
     const onInput = (value: (string | number)[]) => {
         setActiveItemKeys(value);
-        onChange({ id, value: value.join(",") });
+        const entries = options
+            ?.filter((option) => value.includes(option.value))
+            .map((item) => ({ propertyId: id, value: item.id }));
+
+        console.log(entries ?? []);
+        onChange({ id, value: entries ?? [] });
     };
 
     return (

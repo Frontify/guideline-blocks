@@ -32,9 +32,8 @@ export class CustomMetadataFactory {
         errorFields: string[]
     ) {
         return metadataList.map((metadata) => {
-            const { propertyType } = metadata.valueType;
-            const Template =
-                CustomMetadataFactory.MetadataTypeMap[propertyType];
+            const { name } = metadata.type;
+            const Template = CustomMetadataFactory.MetadataTypeMap[name];
 
             return !!Template ? (
                 <Template

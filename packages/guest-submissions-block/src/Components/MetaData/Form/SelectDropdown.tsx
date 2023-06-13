@@ -11,7 +11,7 @@ export const SelectDropdown = ({
     name,
     onChange,
     validation,
-    valueType: { options },
+    type: { options },
 }: MetadataProps & FormUtilities) => {
     const initialValue = defaultValue ? defaultValue.value : "";
 

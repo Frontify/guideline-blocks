@@ -1,7 +1,9 @@
-import { AssetSubmissionRequestType } from "./module/AssetSubmission/type";
+import { MetadataProps } from "./Components/MetaData/type";
 
 export type Settings = {
-    assetSubmissionMetadataConfig: AssetSubmissionRequestType;
+    assetSubmissionMetadataConfig: MetadataProps[];
+    assetSubmissionToken: string;
+    assetSubmissionId: string;
 
     assetSubmission: string;
     columnNumber: number;

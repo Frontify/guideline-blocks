@@ -1,20 +1,5 @@
 import { FormValues } from "../../Components/MetaData";
-
-type AssetSubmissionMetadata = {
-    standard: {
-        description?: string;
-        legal?: {
-            creator?: string;
-            copyright: {
-                status?: string;
-                notice?: string;
-            };
-        };
-    };
-    custom: {
-        [key: string]: string;
-    };
-};
+import { AssetSubmissionMetadata } from "./type";
 
 export const assetSubmissionDTO = ({
     name,
@@ -26,15 +11,14 @@ export const assetSubmissionDTO = ({
     copyrightNotice,
     ...customFields
 }: FormValues): AssetSubmissionMetadata => ({
-    standard: {
-        description,
-        legal: {
-            creator,
-            copyright: {
-                status: copyrightStatus,
-                notice: copyrightNotice,
-            },
-        },
+    description,
+    copyright: {
+        author: creator,
+        status: copyrightStatus,
+        notice: copyrightNotice,
     },
-    custom: customFields,
+    custom: Object.entries(customFields).map(([propertyId, value]) => ({
+        propertyId,
+        value,
+    })),
 });

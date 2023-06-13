@@ -5,6 +5,7 @@ import { InputText, SelectDropdown } from "../Form";
 import { Validation } from "@frontify/fondue";
 import { MetadataType } from "../type";
 import { useFormConfiguration } from "./hooks/useFormConfiguration";
+import { CopyRightStatus } from "./type";
 
 export class StandardMetadataFactory {
     static getFormElements(
@@ -27,15 +28,24 @@ export class StandardMetadataFactory {
                                 .length > 0
                         }
                         name={metaDataLabels[entry]}
-                        valueType={{
-                            propertyType: MetadataType.SELECT,
+                        type={{
+                            name: MetadataType.SELECT,
                             options: [
-                                { id: "Unknown", value: "Unknown" },
                                 {
-                                    id: "Copyrighted",
-                                    value: "Copyrighted",
+                                    id: CopyRightStatus.UNKNOWN,
+                                    value: "Unknown",
+                                    isDefault: true,
                                 },
-                                { id: "Public Domain", value: "Public Domain" },
+                                {
+                                    id: CopyRightStatus.COPYRIGHTED,
+                                    value: "Copyrighted",
+                                    isDefault: false,
+                                },
+                                {
+                                    id: CopyRightStatus.PUBLIC,
+                                    value: "Public Domain",
+                                    isDefault: false,
+                                },
                             ],
                         }}
                         validation={
@@ -56,7 +66,7 @@ export class StandardMetadataFactory {
                                 .length > 0
                         }
                         name={metaDataLabels[entry]}
-                        valueType={{ propertyType: MetadataType.TEXT }}
+                        type={{ name: MetadataType.TEXT }}
                         validation={
                             errorFields.includes(entry)
                                 ? Validation.Error

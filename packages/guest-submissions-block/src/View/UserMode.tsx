@@ -31,8 +31,9 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     const [
         {
             assetSubmission,
-            assetSubmissionMetadataConfig: { tokens },
             buttonText,
+            assetSubmissionToken,
+            assetSubmissionId,
         },
     ] = useBlockSettings<Settings>(appBridge);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -71,6 +72,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
         );
         setFileList(updatedUploadList);
     };
+    console.log(assetSubmission);
 
     const CARD_CONTAINER =
         "tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4";
@@ -108,10 +110,18 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                     onSubmit={(formData) => {
                                         setModalOpen(false);
 
+                                        console.log(
+                                            "assetSubmission Id",
+                                            assetSubmission
+                                        );
+                                        console.log(formData);
+                                        console.log(
+                                            assetSubmissionDTO(formData)
+                                        );
                                         // We gad a response of ids and need to
                                         AssetSubmission.createAssetSubmissions({
-                                            requestId: assetSubmission,
-                                            token: tokens[0].token,
+                                            requestId: assetSubmissionId,
+                                            token: assetSubmissionToken,
                                             fileIds: fileList.map(
                                                 (item) => item.uploadUrlId!
                                             ),
@@ -119,11 +129,9 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                                 name: formData.name,
                                                 email: formData.email,
                                             },
-                                            metadata: JSON.stringify([
+                                            metadata:
                                                 assetSubmissionDTO(formData),
-                                            ]),
                                         });
-
                                         setFileList([]);
                                     }}
                                 >
