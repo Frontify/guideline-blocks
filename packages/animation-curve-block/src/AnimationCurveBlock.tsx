@@ -2,16 +2,7 @@
 
 import { useState } from 'react';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
-import {
-    DndContext,
-    DragEndEvent,
-    DragOverlay,
-    DragStartEvent,
-    PointerSensor,
-    closestCenter,
-    useSensor,
-    useSensors,
-} from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, closestCenter } from '@dnd-kit/core';
 import 'tailwindcss/tailwind.css';
 
 import '@frontify/fondue-tokens/styles';
@@ -21,7 +12,7 @@ import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import { AnimationCurve, AnimationCurvePatch, Settings } from './types';
 import { gridClasses } from './constants';
 import { BlankSlate, Card, SortableCard } from './components';
-import { gutterSpacingStyleMap } from '@frontify/guideline-blocks-shared';
+import { gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-shared';
 
 export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -30,7 +21,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const { content, hasCustomSpacing, spacingCustom, spacingChoice, columns, hasBorder } = blockSettings;
     const [localItems, setLocalItems] = useState<AnimationCurve[]>(content ?? []);
     const isEditing = useEditorState(appBridge);
-    const sensors = useSensors(useSensor(PointerSensor));
+    const sensors = useDndSensors(10);
 
     const deleteAnimationCurve = (id: string) => {
         const newContent = content.filter((animationCurve) => animationCurve.id !== id);
