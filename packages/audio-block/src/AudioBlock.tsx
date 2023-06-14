@@ -123,8 +123,8 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         <div
             data-test-id="audio-block"
             className={joinClassNames([
-                'tw-flex tw-flex-col tw-gap-3',
-                blockSettings.positioning === TextPosition.Below ? 'tw-mt-5' : 'tw-flex-col-reverse',
+                'tw-flex tw-gap-3',
+                blockSettings.positioning === TextPosition.Below ? 'tw-flex-col' : 'tw-flex-col-reverse',
             ])}
         >
             {audio ? (
@@ -159,7 +159,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             placeholder="Asset name"
                             onValueChanged={() => setIsTitlePending(true)}
                             shouldPreventPageLeave={isTitlePending}
-                            updateValueOnChange
                         />
                     </div>
 

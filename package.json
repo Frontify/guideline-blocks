@@ -16,7 +16,8 @@
         "test:components:browser": "cypress open --component",
         "test:unit": "vitest run",
         "test:unit:watch": "vitest",
-        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} typecheck"
+        "typecheck": "pnpm --stream --filter {packages/**} --filter {examples/**} typecheck",
+        "ci": "pnpm install --frozen-lockfile"
     },
     "devDependencies": {
         "@babel/core": "7.20.2",
