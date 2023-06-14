@@ -1,1 +1,3 @@
-export * from "./Query";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+export * from './Query';

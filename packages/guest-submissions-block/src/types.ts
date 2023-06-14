@@ -1,4 +1,6 @@
-import { MetadataProps } from "./Components/MetaData/type";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { MetadataProps } from './Components/MetaData/type';
 
 export type Settings = {
     assetSubmissionMetadataConfig: MetadataProps[];

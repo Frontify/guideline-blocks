@@ -1,18 +1,17 @@
-import { QueryFile } from "./Entity/QueryFile";
-import { WorkerService } from "./Service/WorkerService";
-import { FileUploadProperties } from "./Contract/FileUploadProperties";
-import { FileUploadResponse } from "./Contract/FileUploadResponse";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { QueryFile } from './Entity/QueryFile';
+import { WorkerService } from './Service/WorkerService';
+import { FileUploadProperties } from './Contract/FileUploadProperties';
+import { FileUploadResponse } from './Contract/FileUploadResponse';
 
 export class FileUploadModule implements FileUploadProperties {
-    uploadFiles(
-        files: QueryFile[],
-        onChange: (e: MessageEvent<FileUploadResponse>) => void
-    ) {
+    uploadFiles(files: QueryFile[], onChange: (e: MessageEvent<FileUploadResponse>) => void) {
         const service = new WorkerService();
         const chunks = this.chunkify(files, 10);
-        chunks.forEach((chunk) => {
+        for (const chunk of chunks) {
             service.processFileChunks(chunk, onChange);
-        });
+        }
     }
 
     private chunkify<T>(arr: T[], chunkSize: number): T[][] {

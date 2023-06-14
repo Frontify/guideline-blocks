@@ -1,36 +1,31 @@
-import { Settings } from "../../../types";
-import { FormValues } from "../Metadata";
-import { MetadataProps } from "../type";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { Settings } from '../../../types';
+import { FormValues } from '../Metadata';
+import { MetadataProps } from '../type';
 
 type MetadataIds = {
     [key: string]: string | boolean | number | MetadataProps[];
 };
 
-export const DATA_DELIMINATOR = "--#--";
+export const DATA_DELIMINATOR = '--#--';
 
-export const useMetadataSettingsConfig = (
-    blockSettings: Settings
-): [FormValues, MetadataProps[]] => {
+export const useMetadataSettingsConfig = (blockSettings: Settings): [FormValues, MetadataProps[]] => {
     const metadataConfiguration = getMetadataConfiguration(blockSettings);
 
     return [getDefaultValues(metadataConfiguration), metadataConfiguration];
 };
 
 const getMetadataConfiguration = (blockSettings: Settings): MetadataProps[] => {
-    const initialMetadataConfiguration = parseAndSetRequiredFields(
-        blockSettings.assetSubmissionMetadataConfig
-    );
+    const initialMetadataConfiguration = parseAndSetRequiredFields(blockSettings.assetSubmissionMetadataConfig);
     const activeMetadataFromSettings = filterActiveMetadata(blockSettings);
 
-    return setActiveMetadataFields(
-        activeMetadataFromSettings,
-        initialMetadataConfiguration
-    );
+    return setActiveMetadataFields(activeMetadataFromSettings, initialMetadataConfiguration);
 };
 
 const parseAndSetRequiredFields = (
     assetSubmissionMetadataConfig: MetadataProps[],
-    required: boolean = false
+    required = false
 ): MetadataProps[] => {
     if (!!assetSubmissionMetadataConfig) {
         return assetSubmissionMetadataConfig.map((entry: MetadataProps) => ({
@@ -54,16 +49,11 @@ const setActiveMetadataFields = (
     activeMetadataFromSettings.reduce((acc: MetadataProps[], cur) => {
         const [key] = Object.keys(cur);
         const [, id, modifier] = key.split(DATA_DELIMINATOR);
-        const metadataEntry = initialMetadataConfig.find(
-            (item) => item.id === id
-        );
+        const metadataEntry = initialMetadataConfig.find((item) => item.id === id);
         if (!!modifier || !metadataEntry) {
             return acc || [];
         }
-        const metadataConfig = withLabelAndRequiredFromSettings(
-            metadataEntry,
-            activeMetadataFromSettings
-        );
+        const metadataConfig = withLabelAndRequiredFromSettings(metadataEntry, activeMetadataFromSettings);
 
         return acc ? [...acc, metadataConfig] : [metadataConfig];
     }, []);
@@ -72,21 +62,19 @@ const withLabelAndRequiredFromSettings = (
     metadataConfig: MetadataProps,
     activeMetadataIds: MetadataIds[]
 ): MetadataProps => {
-    activeMetadataIds.forEach((entry) => {
+    for (const entry of activeMetadataIds) {
         const matchingKey = Object.keys(entry).find(
-            (key) =>
-                key.includes(metadataConfig.id) &&
-                (key.includes("required") || key.includes("label"))
+            (key) => key.includes(metadataConfig.id) && (key.includes('required') || key.includes('label'))
         );
         if (matchingKey) {
             const [, , modifier] = matchingKey.split(DATA_DELIMINATOR);
-            if (modifier === "required") {
+            if (modifier === 'required') {
                 metadataConfig.isRequired = !!entry[matchingKey];
-            } else if (modifier === "label") {
+            } else if (modifier === 'label') {
                 metadataConfig.name = entry[matchingKey] as string;
             }
         }
-    });
+    }
 
     return metadataConfig;
 };

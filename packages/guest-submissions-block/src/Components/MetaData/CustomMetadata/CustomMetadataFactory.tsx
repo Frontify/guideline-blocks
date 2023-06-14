@@ -1,20 +1,12 @@
-import React from "react";
-import { MetadataProps, MetadataType } from "../type";
-import { FormUtilities, OnChangeProps } from "../Form/type";
-import {
-    InputDate,
-    InputLong,
-    InputNumber,
-    InputText,
-    MultiSelectDropdown,
-    SelectDropdown,
-} from "../Form";
-import { Validation } from "@frontify/fondue";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
 
-type TypeMapObject = Record<
-    MetadataType,
-    React.FC<MetadataProps & FormUtilities>
->;
+import React from 'react';
+import { MetadataProps, MetadataType } from '../type';
+import { FormUtilities, OnChangeProps } from '../Form/type';
+import { InputDate, InputLong, InputNumber, InputText, MultiSelectDropdown, SelectDropdown } from '../Form';
+import { Validation } from '@frontify/fondue';
+
+type TypeMapObject = Record<MetadataType, React.FC<MetadataProps & FormUtilities>>;
 
 export class CustomMetadataFactory {
     static MetadataTypeMap: TypeMapObject = {
@@ -40,11 +32,7 @@ export class CustomMetadataFactory {
                     {...metadata}
                     key={metadata.id}
                     onChange={onChange}
-                    validation={
-                        errorFields.includes(metadata.id)
-                            ? Validation.Error
-                            : Validation.Default
-                    }
+                    validation={errorFields.includes(metadata.id) ? Validation.Error : Validation.Default}
                 />
             ) : (
                 <></>

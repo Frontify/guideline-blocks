@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export const LibraryRequest = (id: string) => `
 query LibraryMetadata{
   library(id: "${id}") {

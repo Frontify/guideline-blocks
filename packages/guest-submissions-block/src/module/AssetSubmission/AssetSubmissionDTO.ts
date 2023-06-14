@@ -1,5 +1,7 @@
-import { FormValues } from "../../Components/MetaData";
-import { AssetSubmissionMetadata } from "./type";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { FormValues } from '../../Components/MetaData';
+import { AssetSubmissionMetadata } from './type';
 
 export const assetSubmissionDTO = ({
     name,
@@ -10,7 +12,7 @@ export const assetSubmissionDTO = ({
     copyrightStatus,
     copyrightNotice,
     ...customFields
-}: FormValues): AssetSubmissionMetadata => ({
+}: Omit<FormValues, 'name'>): AssetSubmissionMetadata => ({
     description,
     copyright: {
         author: creator,

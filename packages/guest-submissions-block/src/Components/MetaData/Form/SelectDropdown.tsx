@@ -1,8 +1,10 @@
-import { Dropdown, DropdownSize, MenuItemContentSize } from "@frontify/fondue";
-import React, { useState } from "react";
-import { MetadataProps } from "../type";
-import { FormUtilities } from "./type";
-import { FormLabel } from "./FormLabel";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { Dropdown, DropdownSize, MenuItemContentSize } from '@frontify/fondue';
+import React, { useState } from 'react';
+import { MetadataProps } from '../type';
+import { FormUtilities } from './type';
+import { FormLabel } from './FormLabel';
 
 export const SelectDropdown = ({
     id,
@@ -13,11 +15,9 @@ export const SelectDropdown = ({
     validation,
     type: { options },
 }: MetadataProps & FormUtilities) => {
-    const initialValue = defaultValue ? defaultValue.value : "";
+    const initialValue = defaultValue ? defaultValue.value : '';
 
-    const [activeItemId, setActiveItemId] = useState<
-        string | number | undefined
-    >(initialValue);
+    const [activeItemId, setActiveItemId] = useState<string | number | undefined>(initialValue);
 
     const onInput = (activeItemId: string | number | undefined) => {
         setActiveItemId(activeItemId);
@@ -34,8 +34,8 @@ export const SelectDropdown = ({
                 activeItemId={activeItemId}
                 menuBlocks={[
                     {
-                        id: "block1",
-                        ariaLabel: "First section",
+                        id: 'block1',
+                        ariaLabel: 'First section',
                         menuItems:
                             options?.map((item) => ({
                                 id: item.id,

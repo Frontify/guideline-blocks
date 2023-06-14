@@ -1,4 +1,6 @@
-import { CopyRightStatus } from "../../Components/MetaData/StandardMetadata/type";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { CopyRightStatus } from '../../Components/MetaData/StandardMetadata/type';
 
 export type CreateAssetSubmissionsInput = {
     requestId: string;

@@ -1,5 +1,7 @@
-import { Validation } from "@frontify/fondue";
-import React from "react";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { Validation } from '@frontify/fondue';
+import React from 'react';
 
 export type OnChangeProps = {
     id: string;

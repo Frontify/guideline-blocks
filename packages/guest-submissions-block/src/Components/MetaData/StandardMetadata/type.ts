@@ -1,22 +1,17 @@
-import { Settings } from "../../../types";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { Settings } from '../../../types';
 
 export type PartialSettingsType = Partial<
-    Pick<
-        Settings,
-        "description" | "creator" | "copyrightStatus" | "copyrightNotice"
-    >
+    Pick<Settings, 'description' | 'creator' | 'copyrightStatus' | 'copyrightNotice'>
 >;
 
-export type RequiredSettingsType = Partial<
-    Pick<Settings, "disclaimer" | "name" | "email">
->;
+export type RequiredSettingsType = Partial<Pick<Settings, 'disclaimer' | 'name' | 'email'>>;
 
-export type DefaultStandardMetadataType = Partial<
-    Pick<Settings, "name" | "email">
->;
+export type DefaultStandardMetadataType = Partial<Pick<Settings, 'name' | 'email'>>;
 
 export enum CopyRightStatus {
-    "UNKNOWN" = "UNKNOWN",
-    "COPYRIGHTED" = "COPYRIGHTED",
-    "PUBLIC" = "PUBLIC",
+    'UNKNOWN' = 'UNKNOWN',
+    'COPYRIGHTED' = 'COPYRIGHTED',
+    'PUBLIC' = 'PUBLIC',
 }

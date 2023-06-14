@@ -1,22 +1,16 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 import {
-    defaultStandardMetaData,
     REQUIRED_FORM_DATA,
     REQUIRED_FORM_DATA_LABEL,
     STANDARD_METADATA,
     STANDARD_METADATA_LABEL,
-} from "../constant";
-import { Settings } from "../../../../types";
+    defaultStandardMetaData,
+} from '../constant';
+import { Settings } from '../../../../types';
 
 type FormConfigurationResponse = [
-    (
-        | "name"
-        | "email"
-        | "disclaimer"
-        | "description"
-        | "creator"
-        | "copyrightStatus"
-        | "copyrightNotice"
-    )[],
+    ('name' | 'email' | 'disclaimer' | 'description' | 'creator' | 'copyrightStatus' | 'copyrightNotice')[],
     {
         creator: string;
         copyrightStatus: string;
@@ -26,12 +20,10 @@ type FormConfigurationResponse = [
         email: string;
         disclaimer: string;
     },
-    ("disclaimer" | "name" | "email")[]
+    ('disclaimer' | 'name' | 'email')[]
 ];
 
-export const useFormConfiguration = (
-    blockSettings: Settings
-): FormConfigurationResponse => {
+export const getFormConfiguration = (blockSettings: Settings): FormConfigurationResponse => {
     const metadataForm = [...REQUIRED_FORM_DATA, ...STANDARD_METADATA];
     const metaDataLabels = {
         ...REQUIRED_FORM_DATA_LABEL,
@@ -40,7 +32,7 @@ export const useFormConfiguration = (
 
     const activeMetadataList = metadataForm
         .filter((item) => blockSettings[item])
-        .filter((item) => item !== "disclaimer");
+        .filter((item) => item !== 'disclaimer');
 
     const metaData = [...defaultStandardMetaData, ...activeMetadataList];
 

@@ -1,8 +1,10 @@
-import { MultiSelect } from "@frontify/fondue";
-import React, { useState } from "react";
-import { MetadataProps } from "../type";
-import { FormUtilities } from "./type";
-import { FormLabel } from "./FormLabel";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { MultiSelect } from '@frontify/fondue';
+import React, { useState } from 'react';
+import { MetadataProps } from '../type';
+import { FormUtilities } from './type';
+import { FormLabel } from './FormLabel';
 
 export const MultiSelectDropdown = ({
     id,
@@ -13,10 +15,8 @@ export const MultiSelectDropdown = ({
     validation,
     type: { options },
 }: MetadataProps & FormUtilities) => {
-    const initialValue =
-        defaultValue && defaultValue.value ? [defaultValue.value] : [];
-    const [activeItemKeys, setActiveItemKeys] =
-        useState<(string | number)[]>(initialValue);
+    const initialValue = defaultValue && defaultValue.value ? [defaultValue.value] : [];
+    const [activeItemKeys, setActiveItemKeys] = useState<(string | number)[]>(initialValue);
 
     const onInput = (value: (string | number)[]) => {
         setActiveItemKeys(value);
@@ -24,7 +24,6 @@ export const MultiSelectDropdown = ({
             ?.filter((option) => value.includes(option.value))
             .map((item) => ({ propertyId: id, value: item.id }));
 
-        console.log(entries ?? []);
         onChange({ id, value: entries ?? [] });
     };
 

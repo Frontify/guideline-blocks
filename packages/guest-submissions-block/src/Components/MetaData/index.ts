@@ -1,2 +1,4 @@
-export * from "./Metadata";
-export { useFormValidation } from "./hooks/UseFormValidation";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+export * from './Metadata';
+export { useFormValidation } from './hooks/UseFormValidation';

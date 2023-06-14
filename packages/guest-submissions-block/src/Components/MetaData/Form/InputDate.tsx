@@ -1,8 +1,10 @@
-import { DatePicker } from "@frontify/fondue";
-import React, { useState } from "react";
-import { MetadataProps } from "../type";
-import { FormUtilities } from "./type";
-import { FormLabel } from "./FormLabel";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { DatePicker } from '@frontify/fondue';
+import React, { useState } from 'react';
+import { MetadataProps } from '../type';
+import { FormUtilities } from './type';
+import { FormLabel } from './FormLabel';
 
 export const InputDate = ({
     id,
@@ -12,13 +14,11 @@ export const InputDate = ({
     onChange,
     validation,
 }: MetadataProps & FormUtilities) => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(
-        defaultValue as Date | null
-    );
+    const [selectedDate, setSelectedDate] = useState<Date | null>(defaultValue as Date | null);
 
     const onInput = (date: Date | null) => {
         setSelectedDate(date);
-        onChange({ id, value: date?.toString() ?? "" });
+        onChange({ id, value: date?.toString() ?? '' });
     };
 
     return (

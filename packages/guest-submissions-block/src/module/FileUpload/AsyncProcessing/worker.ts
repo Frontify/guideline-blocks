@@ -1,4 +1,6 @@
-import { FileUploadMessageEvent } from "./type";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { FileUploadMessageEvent } from './type';
 
 export default () => {
     self.onmessage = async (event: MessageEvent<FileUploadMessageEvent>) => {
@@ -28,41 +30,41 @@ export default () => {
 
         try {
             const response = await fetch(`${self.location.origin}/graphql`, {
-                method: "POST",
+                method: 'POST',
                 headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(uploadBody),
             });
 
             const uploadFileResponse = await response.json();
 
-            // @ts-ignore
+            // @ts-ignore -- fileReaderSync only exists in a web worker
             const reader = new FileReaderSync();
             const arrayBuffer = reader.readAsArrayBuffer(file);
             const blob = new Blob([arrayBuffer], { type: file.type });
 
             for (const url of uploadFileResponse.data.uploadFile.urls) {
                 await fetch(url, {
-                    method: "PUT",
+                    method: 'PUT',
                     headers: {
-                        "content-type": "binary",
+                        'content-type': 'binary',
                     },
                     body: blob,
                 });
             }
 
             self.postMessage({
-                identifier: identifier,
-                status: "SUCCESS",
+                identifier,
+                status: 'SUCCESS',
                 id: uploadFileResponse.data.uploadFile.id,
             });
         } catch (error) {
             self.postMessage({
-                identifier: identifier,
-                status: "ERROR",
-                error: error,
+                identifier,
+                status: 'ERROR',
+                error,
             });
         }
     };

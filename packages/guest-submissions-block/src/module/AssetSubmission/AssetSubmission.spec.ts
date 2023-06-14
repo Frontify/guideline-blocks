@@ -1,5 +1,7 @@
-import { describe, expect, test } from "vitest";
-import { AssetSubmission } from "./AssetSubmission";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { describe, expect, test } from 'vitest';
+import { AssetSubmission } from './AssetSubmission';
 
 const testQuery = {
     data: {
@@ -8,21 +10,21 @@ const testQuery = {
                 libraries: {
                     items: [
                         {
-                            name: "test",
+                            name: 'test',
                             assetSubmissionRequests: [
                                 {
-                                    id: "eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9",
-                                    title: "test title",
-                                    configuration: "[]",
+                                    id: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
+                                    title: 'test title',
+                                    configuration: '[]',
                                 },
                             ],
                         },
                         {
-                            name: "Icon library",
+                            name: 'Icon library',
                             assetSubmissionRequests: [],
                         },
                         {
-                            name: "Submissions",
+                            name: 'Submissions',
                             assetSubmissionRequests: [],
                         },
                     ],
@@ -42,13 +44,13 @@ const testQuery = {
     },
 };
 
-describe("AssetSubmission", () => {
-    test("Should return Flat Array with AssetSubmissionRequest Object", () => {
+describe('AssetSubmission', () => {
+    test('Should return Flat Array with AssetSubmissionRequest Object', () => {
         const desiredOutput = [
             {
-                id: "eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9",
-                title: "test title",
-                configuration: "[]",
+                id: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
+                title: 'test title',
+                configuration: '[]',
             },
         ];
         const output = AssetSubmission.filterEmptySubmissionRequests(testQuery);

@@ -1,9 +1,8 @@
-import { QueryFile } from "../Entity/QueryFile";
-import { FileUploadResponse } from "./FileUploadResponse";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { QueryFile } from '../Entity/QueryFile';
+import { FileUploadResponse } from './FileUploadResponse';
 
 export interface WebWorkerProperties {
-    processFileChunks(
-        files: QueryFile[],
-        listener: (e: MessageEvent<FileUploadResponse>) => void
-    ): void;
+    processFileChunks(files: QueryFile[], listener: (e: MessageEvent<FileUploadResponse>) => void): void;
 }

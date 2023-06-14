@@ -1,1 +1,3 @@
-export * from "./UploadFileList";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+export * from './UploadFileList';

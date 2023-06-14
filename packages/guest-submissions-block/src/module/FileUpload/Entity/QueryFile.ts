@@ -1,5 +1,7 @@
-import { genUniqueId } from "../Utils/GenUniqueId";
-import { Status } from "../Contract/Status";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { genUniqueId } from '../Utils/GenUniqueId';
+import { Status } from '../Contract/Status';
 
 export interface QueryFile {
     uploadUrlId?: string;

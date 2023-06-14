@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export const genUniqueId = (): string => {
     const dateStr = Date.now().toString(36);
 

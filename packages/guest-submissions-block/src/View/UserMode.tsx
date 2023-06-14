@@ -1,6 +1,8 @@
-import type { FC } from "react";
-import React, { useState } from "react";
-import type { BlockProps } from "@frontify/guideline-blocks-settings";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import type { FC } from 'react';
+import React, { useState } from 'react';
+import type { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     Button,
     ButtonEmphasis,
@@ -8,38 +10,27 @@ import {
     ButtonType,
     Divider,
     IconArrowRight24,
+    LegacyStack,
     Modal,
     ModalWidth,
-    Stack,
-} from "@frontify/fondue";
-import { AssetDropzone } from "../Components/AssetDropzone";
-import { Headline, ModalHeadline } from "../Components/Headline";
-import { UploadFileList } from "../Components/UploadFileList";
-import {
-    QueryFile,
-    queryFilesDTO,
-} from "../module/FileUpload/Entity/QueryFile";
-import { FileUploadModule } from "../module/FileUpload/FileUploadModule";
-import { FileUploadResponse } from "../module/FileUpload/Contract/FileUploadResponse";
-import { Metadata } from "../Components/MetaData";
-import { useBlockSettings } from "@frontify/app-bridge";
-import { Settings } from "../types";
-import { AssetSubmission } from "../module/AssetSubmission/AssetSubmission";
-import { assetSubmissionDTO } from "../module/AssetSubmission/AssetSubmissionDTO";
+} from '@frontify/fondue';
+import { AssetDropzone } from '../Components/AssetDropzone';
+import { UploadFileList } from '../Components/UploadFileList';
+import { QueryFile, queryFilesDTO } from '../module/FileUpload/Entity/QueryFile';
+import { FileUploadModule } from '../module/FileUpload/FileUploadModule';
+import { FileUploadResponse } from '../module/FileUpload/Contract/FileUploadResponse';
+import { Metadata } from '../Components/MetaData';
+import { useBlockSettings } from '@frontify/app-bridge';
+import { Settings } from '../types';
+import { AssetSubmission } from '../module/AssetSubmission/AssetSubmission';
+import { assetSubmissionDTO } from '../module/AssetSubmission/AssetSubmissionDTO';
+import { Headline, ModalHeadline } from '../Components/Headline';
 
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
-    const [
-        {
-            assetSubmission,
-            buttonText,
-            assetSubmissionToken,
-            assetSubmissionId,
-        },
-    ] = useBlockSettings<Settings>(appBridge);
+    const [{ assetSubmission, buttonText, assetSubmissionToken, assetSubmissionId }] =
+        useBlockSettings<Settings>(appBridge);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const [fileList, setFileList] = useState<
-        QueryFile[] | (QueryFile & File)[]
-    >([]);
+    const [fileList, setFileList] = useState<QueryFile[] | (QueryFile & File)[]>([]);
 
     const onFileUpdate = (e: MessageEvent<FileUploadResponse>) => {
         setFileList((prevList) =>
@@ -67,40 +58,27 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const onFileDeletion = (identifer: string) => {
-        const updatedUploadList = fileList.filter(
-            (item) => item.identifier !== identifer
-        );
+        const updatedUploadList = fileList.filter((item) => item.identifier !== identifer);
         setFileList(updatedUploadList);
     };
-    console.log(assetSubmission);
 
     const CARD_CONTAINER =
-        "tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4";
+        'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4';
     return (
         <>
             <div className={CARD_CONTAINER}>
                 <Headline appBridge={appBridge} />
                 <div>
-                    <Button onClick={() => setModalOpen(!modalOpen)}>
-                        {buttonText}
-                    </Button>
+                    <Button onClick={() => setModalOpen(!modalOpen)}>{buttonText}</Button>
                 </div>
             </div>
-            <Modal
-                width={ModalWidth.Default}
-                onClose={() => setModalOpen(false)}
-                isOpen={modalOpen}
-                isDismissable
-            >
+            <Modal width={ModalWidth.Default} onClose={() => setModalOpen(false)} isOpen={modalOpen} isDismissable>
                 <Modal.Body horizontalPadding={false}>
                     <div className="tw-p-6">
-                        <Stack spacing="s" padding="none" direction="column">
+                        <LegacyStack spacing="s" padding="none" direction="column">
                             <ModalHeadline appBridge={appBridge} />
                             <AssetDropzone onFileUpload={onFileUploadHandler} />
-                            <UploadFileList
-                                entries={fileList}
-                                onEntryDeletion={onFileDeletion}
-                            />
+                            <UploadFileList entries={fileList} onEntryDeletion={onFileDeletion} />
 
                             <Divider color="rgb(234, 235, 235)" />
 
@@ -110,27 +88,16 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                     onSubmit={(formData) => {
                                         setModalOpen(false);
 
-                                        console.log(
-                                            "assetSubmission Id",
-                                            assetSubmission
-                                        );
-                                        console.log(formData);
-                                        console.log(
-                                            assetSubmissionDTO(formData)
-                                        );
                                         // We gad a response of ids and need to
                                         AssetSubmission.createAssetSubmissions({
                                             requestId: assetSubmissionId,
                                             token: assetSubmissionToken,
-                                            fileIds: fileList.map(
-                                                (item) => item.uploadUrlId!
-                                            ),
+                                            fileIds: fileList.map((item) => item.uploadUrlId),
                                             submitter: {
                                                 name: formData.name,
                                                 email: formData.email,
                                             },
-                                            metadata:
-                                                assetSubmissionDTO(formData),
+                                            metadata: assetSubmissionDTO(formData),
                                         });
                                         setFileList([]);
                                     }}
@@ -141,20 +108,13 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                         <div className="tw-pr-3">
                                             <Button
                                                 style={ButtonStyle.Default}
-                                                emphasis={
-                                                    ButtonEmphasis.Default
-                                                }
-                                                onClick={() =>
-                                                    setModalOpen(false)
-                                                }
+                                                emphasis={ButtonEmphasis.Default}
+                                                onClick={() => setModalOpen(false)}
                                             >
                                                 Cancel
                                             </Button>
                                         </div>
-                                        <Button
-                                            icon={<IconArrowRight24 />}
-                                            type={ButtonType.Submit}
-                                        >
+                                        <Button icon={<IconArrowRight24 />} type={ButtonType.Submit}>
                                             Submit
                                         </Button>
                                     </div>
@@ -169,7 +129,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                     Cancel
                                 </Button>
                             )}
-                        </Stack>
+                        </LegacyStack>
                     </div>
                 </Modal.Body>
             </Modal>

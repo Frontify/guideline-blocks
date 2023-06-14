@@ -1,6 +1,8 @@
-import { MetadataProps } from "../../Components/MetaData/type";
-import { LibraryRequest } from "./api";
-import { queryGraphql } from "../Common";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { MetadataProps } from '../../Components/MetaData/type';
+import { LibraryRequest } from './api';
+import { queryGraphql } from '../Common';
 
 type LibraryQuery = {
     data: {
@@ -13,15 +15,11 @@ export type Library = {
     customMetadataProperties: MetadataProps[];
 };
 
-export const queryLibrariesByIds = async (
-    libraryIds: string[]
-): Promise<Library[]> => {
+export const queryLibrariesByIds = async (libraryIds: string[]): Promise<Library[]> => {
     try {
-        return await Promise.all(
-            libraryIds.map((libraryId) => getLibraryById(libraryId))
-        );
+        return await Promise.all(libraryIds.map((libraryId) => getLibraryById(libraryId)));
     } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
         return [];
     }
 };

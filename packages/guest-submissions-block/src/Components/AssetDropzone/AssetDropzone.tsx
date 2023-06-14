@@ -1,12 +1,9 @@
-import React, { ChangeEvent, DragEvent, FC, useRef, useState } from "react";
-import { joinClassNames } from "@frontify/guideline-blocks-shared";
-import {
-    AssetDropzoneStyling,
-    BackgroundActive,
-    BackgroundBase,
-    contentCenter,
-} from "./styling";
-import { IconPlus24, IconSize, Stack, Text } from "@frontify/fondue";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import React, { ChangeEvent, DragEvent, FC, useRef, useState } from 'react';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
+import { AssetDropzoneStyling, BackgroundActive, BackgroundBase, contentCenter } from './styling';
+import { IconPlus24, IconSize, LegacyStack, Text } from '@frontify/fondue';
 
 type AssetDropzoneProps = {
     onFileUpload: (payload: FileList) => void;
@@ -39,7 +36,7 @@ export const AssetDropzone: FC<AssetDropzoneProps> = ({ onFileUpload }) => {
     };
 
     const handleKeyDown = (keyDown: React.KeyboardEvent<HTMLButtonElement>) => {
-        if (keyDown.key === "Enter") {
+        if (keyDown.key === 'Enter') {
             keyDown.preventDefault();
             fileInputRef.current?.click();
         }
@@ -52,10 +49,7 @@ export const AssetDropzone: FC<AssetDropzoneProps> = ({ onFileUpload }) => {
 
     return (
         <button
-            className={joinClassNames([
-                AssetDropzoneStyling,
-                !highlight ? BackgroundBase : BackgroundActive,
-            ])}
+            className={joinClassNames([AssetDropzoneStyling, !highlight ? BackgroundBase : BackgroundActive])}
             onDragOver={handleDropOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
@@ -63,42 +57,19 @@ export const AssetDropzone: FC<AssetDropzoneProps> = ({ onFileUpload }) => {
             onKeyDown={handleKeyDown}
             ref={buttonRef}
         >
-            <input
-                type="file"
-                className="tw-hidden"
-                onChange={handleFileChange}
-                ref={fileInputRef}
-                multiple
-            />
+            <input type="file" className="tw-hidden" onChange={handleFileChange} ref={fileInputRef} multiple />
             <div className={contentCenter}>
-                <Stack padding="none" spacing="s" align="center">
+                <LegacyStack padding="none" spacing="s" align="center">
                     <IconPlus24 size={IconSize.Size24} />
-                    <Stack
-                        padding="none"
-                        spacing="xxs"
-                        direction="column"
-                        align="start"
-                    >
-                        <Text
-                            as="p"
-                            color="weak"
-                            overflow="visible"
-                            size="medium"
-                            weight="strong"
-                        >
+                    <LegacyStack padding="none" spacing="xxs" direction="column" align="start">
+                        <Text as="p" color="weak" overflow="visible" size="medium" weight="strong">
                             Upload from your disk
                         </Text>
-                        <Text
-                            as="p"
-                            color="weak"
-                            overflow="visible"
-                            size="medium"
-                            weight="default"
-                        >
+                        <Text as="p" color="weak" overflow="visible" size="medium" weight="default">
                             Drop your files here
                         </Text>
-                    </Stack>
-                </Stack>
+                    </LegacyStack>
+                </LegacyStack>
             </div>
         </button>
     );

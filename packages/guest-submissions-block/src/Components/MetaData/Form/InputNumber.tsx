@@ -1,8 +1,10 @@
-import { TextInput, TextInputType } from "@frontify/fondue";
-import React, { useState } from "react";
-import { MetadataProps } from "../type";
-import { FormUtilities } from "./type";
-import { FormLabel } from "./FormLabel";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { TextInput, TextInputType } from '@frontify/fondue';
+import React, { useState } from 'react';
+import { MetadataProps } from '../type';
+import { FormUtilities } from './type';
+import { FormLabel } from './FormLabel';
 
 export const InputNumber = ({
     id,
@@ -12,7 +14,7 @@ export const InputNumber = ({
     onChange,
     validation,
 }: MetadataProps & FormUtilities) => {
-    const [textInput, setTextInput] = useState<string>(defaultValue ?? "");
+    const [textInput, setTextInput] = useState<string>(defaultValue ?? '');
     const onFocus = () => {};
 
     const onInput = (value: string) => {

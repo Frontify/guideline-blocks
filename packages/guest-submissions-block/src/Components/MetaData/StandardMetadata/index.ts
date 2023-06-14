@@ -1,4 +1,6 @@
-export * from "./StandardMetadataFactory";
-export * from "./Disclaimer";
-export { STANDARD_METADATA_LABEL } from "./constant";
-export { STANDARD_METADATA } from "./constant";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+export * from './StandardMetadataFactory';
+export * from './Disclaimer';
+export { STANDARD_METADATA_LABEL } from './constant';
+export { STANDARD_METADATA } from './constant';

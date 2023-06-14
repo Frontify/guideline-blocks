@@ -1,3 +1,5 @@
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
 export default class WorkerFactory extends Worker {
     constructor(worker: () => void) {
         const code = worker.toString();

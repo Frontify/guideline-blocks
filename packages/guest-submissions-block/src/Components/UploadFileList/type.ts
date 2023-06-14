@@ -1,4 +1,6 @@
-import { Status } from "../../module/FileUpload/Contract/Status";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { Status } from '../../module/FileUpload/Contract/Status';
 
 export type UploadFileProps = {
     type: string;

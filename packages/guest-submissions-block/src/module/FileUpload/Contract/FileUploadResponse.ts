@@ -1,4 +1,6 @@
-import { Status } from "./Status";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import { Status } from './Status';
 
 export type FileUploadResponse = {
     id: string;

@@ -1,5 +1,7 @@
-import React, { FC } from "react";
-import { Text } from "@frontify/fondue";
+/* (c) Copyright Frontify Ltd., all rights reserved. */
+
+import React, { FC } from 'react';
+import { Text } from '@frontify/fondue';
 
 interface FormLabelProps {
     id: string;
@@ -17,8 +19,8 @@ export const FormLabel: FC<FormLabelProps> = ({ id, children, isRequired }) => (
         >
             {children}
             {isRequired && (
-                <Text as="span" color={"negative"}>
-                    {" *"}
+                <Text as="span" color={'negative'}>
+                    {' *'}
                 </Text>
             )}
         </label>
