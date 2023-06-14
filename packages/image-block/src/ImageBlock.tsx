@@ -3,7 +3,6 @@
 import {
     Asset,
     AssetChooserObjectType,
-    FileExtension,
     FileExtensionSets,
     useAssetUpload,
     useBlockAssets,
@@ -42,7 +41,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
-    const [errorMsg, setErrorMsg] = useState<string>();
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
@@ -51,7 +49,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     });
 
     const updateImage = async (image: Asset) => {
-        setErrorMsg(undefined);
         if (!hasRichTextValue(blockSettings.name)) {
             setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
             setUpdateValueOnChange(true);
@@ -77,16 +74,8 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     };
 
     const onFilesDrop = (files: FileList) => {
-        if (!files) {
-            return;
-        }
-        const droppedFileExtension = files[0].name.split('.').pop()?.toLocaleLowerCase() as FileExtension;
-        if (FileExtensionSets.Images.includes(droppedFileExtension)) {
-            setIsLoading(true);
-            uploadFile(files[0]);
-        } else {
-            setErrorMsg('Please drop a correct image format.');
-        }
+        setIsLoading(true);
+        uploadFile(files[0]);
     };
 
     useEffect(() => {
@@ -145,7 +134,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                                     title: 'Delete',
                                     icon: <IconTrashBin20 />,
                                     style: MenuItemStyle.Danger,
-                                    onClick: () => onRemoveAsset(),
+                                    onClick: onRemoveAsset,
                                 },
                             ],
                         ]}
@@ -167,7 +156,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 ) : (
                     isEditing && (
                         <UploadPlaceholder
-                            errorMsg={errorMsg}
                             loading={isLoading}
                             onUploadClick={openFileDialog}
                             onFilesDrop={onFilesDrop}
