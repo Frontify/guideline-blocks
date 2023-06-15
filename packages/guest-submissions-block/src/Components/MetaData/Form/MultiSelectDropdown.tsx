@@ -15,7 +15,10 @@ export const MultiSelectDropdown = ({
     validation,
     type: { options },
 }: MetadataProps & FormUtilities) => {
-    const initialValue = defaultValue && defaultValue.value ? [defaultValue.value] : [];
+    const initialValue =
+        typeof defaultValue === 'object' && defaultValue !== null && 'id' in defaultValue && 'value' in defaultValue
+            ? [defaultValue.value]
+            : [];
     const [activeItemKeys, setActiveItemKeys] = useState<(string | number)[]>(initialValue);
 
     const onInput = (value: (string | number)[]) => {

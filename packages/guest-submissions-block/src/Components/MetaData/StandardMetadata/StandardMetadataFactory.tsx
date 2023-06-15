@@ -20,7 +20,7 @@ export class StandardMetadataFactory {
                         id={entry}
                         key={entry}
                         onChange={onChange}
-                        isRequired={requiredFields.filter((item: any) => item === entry).length > 0}
+                        isRequired={false}
                         name={metaDataLabels[entry]}
                         type={{
                             name: MetadataType.SELECT,
@@ -51,7 +51,7 @@ export class StandardMetadataFactory {
                         id={entry}
                         key={entry}
                         onChange={onChange}
-                        isRequired={requiredFields.filter((item: any) => item === entry).length > 0}
+                        isRequired={requiredFields.filter((item) => item === entry).length > 0}
                         name={metaDataLabels[entry]}
                         type={{ name: MetadataType.TEXT }}
                         validation={errorFields.includes(entry) ? Validation.Error : Validation.Default}

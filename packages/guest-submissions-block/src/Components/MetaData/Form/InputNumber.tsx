@@ -14,7 +14,8 @@ export const InputNumber = ({
     onChange,
     validation,
 }: MetadataProps & FormUtilities) => {
-    const [textInput, setTextInput] = useState<string>(defaultValue ?? '');
+    const initialValue = typeof defaultValue === 'string' ? defaultValue : '';
+    const [textInput, setTextInput] = useState<string>(initialValue);
 
     const onInput = (value: string) => {
         setTextInput(value);

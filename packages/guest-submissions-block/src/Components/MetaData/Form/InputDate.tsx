@@ -14,7 +14,8 @@ export const InputDate = ({
     onChange,
     validation,
 }: MetadataProps & FormUtilities) => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(defaultValue as Date | null);
+    const initialValue = typeof defaultValue === 'string' ? defaultValue : '';
+    const [selectedDate, setSelectedDate] = useState<Date | null>(initialValue as unknown as Date | null);
 
     const onInput = (date: Date | null) => {
         setSelectedDate(date);

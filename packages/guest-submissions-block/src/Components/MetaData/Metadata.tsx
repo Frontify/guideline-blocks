@@ -21,7 +21,15 @@ type MetaDataSubmitProps = {
 };
 
 export type CustomMetadataFormValues = {
-    [key: string]: string | string[] | { propertyId: string; value: string }[] | undefined;
+    [key: string]:
+        | string
+        | string[]
+        | { propertyId: string; value: string }[]
+        | undefined
+        | {
+              id: string;
+              value: string;
+          };
 };
 
 export type FormValues = {

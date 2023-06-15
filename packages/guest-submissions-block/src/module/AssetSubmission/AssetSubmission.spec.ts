@@ -10,20 +10,30 @@ const testQuery = {
                 libraries: {
                     items: [
                         {
+                            id: 'test',
                             name: 'test',
                             assetSubmissionRequests: [
                                 {
                                     id: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
-                                    title: 'test title',
-                                    configuration: '[]',
+                                    name: 'test title',
+                                    projectId: '1234',
+                                    title: '1234',
+                                    description: '1234',
+                                    tokens: [
+                                        {
+                                            token: 'asdf',
+                                        },
+                                    ],
                                 },
                             ],
                         },
                         {
+                            id: 'test',
                             name: 'Icon library',
                             assetSubmissionRequests: [],
                         },
                         {
+                            id: 'test',
                             name: 'Submissions',
                             assetSubmissionRequests: [],
                         },

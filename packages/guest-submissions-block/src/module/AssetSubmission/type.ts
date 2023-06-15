@@ -22,7 +22,7 @@ export type AssetSubmissionMetadata = {
     };
     custom?: {
         propertyId: string;
-        value: string | string[] | { propertyId: string; value: string }[] | undefined;
+        value: string | string[] | { propertyId: string; value: string }[] | undefined | { id: string; value: string };
     }[];
 };
 
