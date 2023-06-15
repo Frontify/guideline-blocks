@@ -27,8 +27,7 @@ import { assetSubmissionDTO } from '../module/AssetSubmission/AssetSubmissionDTO
 import { Headline, ModalHeadline } from '../Components/Headline';
 
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
-    const [{ assetSubmission, buttonText, assetSubmissionToken, assetSubmissionId }] =
-        useBlockSettings<Settings>(appBridge);
+    const [{ buttonText, assetSubmissionToken, assetSubmissionId }] = useBlockSettings<Settings>(appBridge);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [fileList, setFileList] = useState<QueryFile[] | (QueryFile & File)[]>([]);
 

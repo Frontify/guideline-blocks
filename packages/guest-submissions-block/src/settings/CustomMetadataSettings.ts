@@ -4,9 +4,8 @@ import { DATA_DELIMINATOR } from '../Components/MetaData/hooks/useMetadataSettin
 import { Library } from '../module/Library/Library';
 import { MetadataProps } from '../Components/MetaData/type';
 import { Bundle } from '@frontify/guideline-blocks-settings';
-import { SettingBlock } from '@frontify/guideline-blocks-settings/src';
 
-export const defineCustomMetadataEntries = (libraries: Library[]): SettingBlock[] | any => {
+export const defineCustomMetadataEntries = (libraries: Library[]) => {
     return libraries
         .map((library: Library, parentIndex: number) => {
             const { customMetadataProperties } = library;

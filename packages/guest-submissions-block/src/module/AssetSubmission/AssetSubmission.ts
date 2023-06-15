@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetSubmissionRequestType, CreateAssetSubmissionsInput } from './type';
+import { AssetSubmissionRequestType, CreateAssetSubmissionsInput, DataBrandAssetRequest } from './type';
 import { AssetSubmissionRequest, CreateAssetSubmissionsMutation } from './api';
 import { queryGraphql } from '../Common';
 
@@ -18,24 +18,23 @@ export class AssetSubmission {
         const uploadBody = JSON.stringify({
             query: AssetSubmissionRequest,
         });
+        const brands = await queryGraphql<DataBrandAssetRequest>(uploadBody);
 
-        const brands = await queryGraphql(uploadBody);
-
-        return AssetSubmission.filterEmptySubmissionRequests(brands);
+        return AssetSubmission.filterEmptySubmissionRequests(brands) ?? [];
     }
 
-    static filterEmptySubmissionRequests(input: any) {
-        const output = input.data.brands.reduce((prev: any, cur: any) => {
-            if (cur.libraries.items.length > 0) {
-                const assetSubmissionEntries = cur.libraries.items
-                    .filter((library: any) => library.assetSubmissionRequests.length > 0)
-                    .map((item: any) => item.assetSubmissionRequests);
-                return [...prev, assetSubmissionEntries];
-            } else {
-                return prev;
-            }
-        }, []);
-
-        return output.flat(2);
+    static filterEmptySubmissionRequests(input?: DataBrandAssetRequest) {
+        return input?.data.brands
+            .reduce((prev, cur) => {
+                if (cur.libraries.items.length > 0) {
+                    const assetSubmissionEntries = cur.libraries.items
+                        .filter((library) => library.assetSubmissionRequests.length > 0)
+                        .map((item) => item.assetSubmissionRequests);
+                    return [...prev, ...assetSubmissionEntries];
+                } else {
+                    return prev;
+                }
+            }, [] as AssetSubmissionRequestType[][])
+            .flat(1);
     }
 }

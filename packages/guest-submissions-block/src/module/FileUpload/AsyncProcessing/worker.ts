@@ -40,7 +40,6 @@ export default () => {
 
             const uploadFileResponse = await response.json();
 
-            // @ts-ignore -- fileReaderSync only exists in a web worker
             const reader = new FileReaderSync();
             const arrayBuffer = reader.readAsArrayBuffer(file);
             const blob = new Blob([arrayBuffer], { type: file.type });

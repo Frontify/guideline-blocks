@@ -1,8 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { QueryFile } from '../Entity/QueryFile';
-
 export type FileUploadMessageEvent = {
-    file: QueryFile;
+    file: Blob & { name: string };
     identifier: string;
 };

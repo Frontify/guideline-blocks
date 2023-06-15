@@ -2,22 +2,25 @@
 
 import { describe, expect, test } from 'vitest';
 import { useMetadataSettingsConfig } from './useMetadataSettingsConfig';
+import { MetadataType } from '../type';
 
 describe('Metadata Config', () => {
     test('MetadataConfig Spec ', () => {
-        const [initialValue, metadata] = useMetadataSettingsConfig(testObject as any);
+        const [initialValue, metadata] = useMetadataSettingsConfig(testObject);
 
         const desiredInitialValue = {
-            'eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'text',
+            'eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'Default Value',
         };
 
         const desiredMetadata = [
             {
-                id: 'eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
-                name: 'asdfasdf',
-                valueType: { propertyType: 'TEXT' },
+                id: 'eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
                 isRequired: false,
-                defaultValue: 'text',
+                defaultValue: 'Default Value',
+                name: 'test',
+                type: {
+                    name: 'TEXT',
+                },
             },
         ];
         expect(initialValue).toStrictEqual(desiredInitialValue);
@@ -25,7 +28,7 @@ describe('Metadata Config', () => {
     });
 
     test('MetadataConfig works without metadata ', () => {
-        const [initialValue, metadata] = useMetadataSettingsConfig(testObjectNoConfiguration as any);
+        const [initialValue, metadata] = useMetadataSettingsConfig(testObjectNoConfiguration);
 
         expect(initialValue).toStrictEqual({});
         expect(metadata).toStrictEqual([]);
@@ -33,60 +36,162 @@ describe('Metadata Config', () => {
 });
 
 const testObjectNoConfiguration = {
+    name: false,
+    email: false,
+    content: '[{"type":"p","children":[{"text":"cc<yxc<yxcasdf","textStyle":"p"}]}]',
     buttonText: 'New Submission',
-    disclaimer: false,
+    disclaimer: true,
     description: false,
     creator: false,
     copyrightStatus: false,
     copyrightNotice: false,
-    assetSubmission: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
-    'New Summer Field Name--#--eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': true,
-    'New Summer Field Name--#--eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--required':
-        false,
-    'New Summer Field Name--#--eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--label':
-        'asdfasdf',
-    customMetaData: 'JSON.stringify(assetSubmissionRequests[0])',
-    assetSubmissionMetadataConfig: {
-        id: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
-        title: 'Summer Query',
-        description: 'New Summer Query',
-        configuration: '[]',
-    },
-    'Winter Queryy--#--eyJpZGVudGlmaWVyIjoxaggaaMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': false,
-    'Winter Queryy--#--eyJpZGVudGlmaWVyIjoxaggaaMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--required': false,
-    'Winter Queryy--#--eyJpZGVudGlmaWVyIjoxaggaaMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--label': '',
-    'Single Select--#--eyJpZGVudGlmaWVasasayIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': false,
-    'Single Select--#--eyJpZGVudGlmaWVasasayIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--required': false,
-    'Campaign Description--#--eyJpZGVudfsfsfGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': false,
-    modalcontent: '[{"type":"p","children":[{"text":"jlkjsadfasdf"}]}]',
+    assetSubmission: 'eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==',
+    assetSubmissionMetadataConfig: [],
+    assetSubmissionToken: 'Nas2YR66rKBSXfoo',
+    assetSubmissionId: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
+    'test--#--eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': true,
+    disclaimerText:
+        '[{"type":"p","children":[{"text":"By continuing, I agree that I will not upload malware, unlawful materials or content that violates the intellectual property rights of others.","textStyle":"p"}]}]',
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-0-0':
+        null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-1-0':
+        null,
+    'Long Text--#--eyJpZGVudGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-2-0':
+        null,
+    'Number--#--eyJpZGVudGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-3-0':
+        null,
+    'Single Select--#--eyJpZGVudGlmaWVyIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxNiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-4-0':
+        null,
+    'Multi-select--#--eyJpZGVudGlmaWVyIjoxNiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxNywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-5-0':
+        null,
+    'Date--#--eyJpZGVudGlmaWVyIjoxNywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjozMiwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxOCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-0-1':
+        null,
+    'Required--#--eyJpZGVudGlmaWVyIjoxOCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
 };
 
 const testObject = {
+    name: false,
+    email: false,
+    content: '[{"type":"p","children":[{"text":"cc<yxc<yxcasdf","textStyle":"p"}]}]',
     buttonText: 'New Submission',
-    disclaimer: false,
+    disclaimer: true,
     description: false,
     creator: false,
     copyrightStatus: false,
     copyrightNotice: false,
-    assetSubmission: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
-    'New Summer Field Name--#--eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': true,
-    'New Summer Field Name--#--eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--required':
-        false,
-    'New Summer Field Name--#--eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--label':
-        'asdfasdf',
-    customMetaData: 'JSON.stringify(assetSubmissionRequests[0])',
-    assetSubmissionMetadataConfig: {
-        id: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
-        title: 'Summer Query',
-        description: 'New Summer Query',
-        configuration:
-            '[{"id":"eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==","name":"New Summer Field Name","valueType":{"propertyType":"TEXT"},"isRequired":true,"defaultValue":"text"},{"id":"eyJpZGVudGlmaWVyIjoxNSwfdsidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==","name":"double Select","valueType":{"options":[{"id":"eyJpZGVudGlmaWVyIjoxLasCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9","value":"My Birthday Party"},{"id":"eyJpZGVudGlmaWVyIjoyLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9","value":"This is something else"}],"propertyType":"SELECT"},"isRequired":true,"defaultValue":""},{"id":"eyJpZGVudGlmasaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==","name":"Campaign Description","valueType":{"propertyType":"LONGTEXT"},"isRequired":false,"defaultValue":"Campaign Description"},{"id":"eyJpZGVudfdsGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==","name":"Event Number","valueType":{"propertyType":"NUMBER"},"isRequired":false,"defaultValue":null},{"id":"eyJpZGVudagaaGlmaWVyIjoxNywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==","name":"Campaign Date","valueType":{"propertyType":"DATE"},"isRequired":false,"defaultValue":null}]',
-    },
-    'Winter Queryy--#--eyJpZGVudGlmaWVyIjoxaggaaMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': false,
-    'Winter Queryy--#--eyJpZGVudGlmaWVyIjoxaggaaMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--required': false,
-    'Winter Queryy--#--eyJpZGVudGlmaWVyIjoxaggaaMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--label': '',
-    'Single Select--#--eyJpZGVudGlmaWVasasayIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': false,
-    'Single Select--#--eyJpZGVudGlmaWVasasayIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==--#--required': false,
-    'Campaign Description--#--eyJpZGVudfsfsfGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': false,
-    modalcontent: '[{"type":"p","children":[{"text":"jlkjsadfasdf"}]}]',
+    assetSubmission: 'eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==',
+    assetSubmissionMetadataConfig: [
+        {
+            id: 'eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+            isRequired: false,
+            defaultValue: 'Default Value',
+            name: 'test',
+            type: {
+                name: MetadataType.TEXT,
+            },
+        },
+        {
+            id: 'eyJpZGVudGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+            isRequired: false,
+            name: 'Long Text',
+            type: {
+                name: MetadataType.LONGTEXT,
+            },
+        },
+        {
+            id: 'eyJpZGVudGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+            isRequired: false,
+            name: 'Number',
+            type: {
+                name: MetadataType.NUMBER,
+            },
+        },
+        {
+            id: 'eyJpZGVudGlmaWVyIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+            isRequired: false,
+            name: 'Single Select',
+            type: {
+                name: MetadataType.SELECT,
+                options: [
+                    {
+                        value: 'one',
+                        id: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9',
+                        isDefault: false,
+                    },
+                    {
+                        value: 'two',
+                        id: 'eyJpZGVudGlmaWVyIjoyLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9',
+                        isDefault: false,
+                    },
+                ],
+            },
+        },
+        {
+            id: 'eyJpZGVudGlmaWVyIjoxNiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+            isRequired: false,
+            defaultValue: {
+                id: 'eyJpZGVudGlmaWVyIjozLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9',
+                value: 'one',
+            },
+            name: 'Multi-select',
+            type: {
+                name: MetadataType.MULTISELECT,
+                options: [
+                    {
+                        value: 'one',
+                        id: 'eyJpZGVudGlmaWVyIjozLCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9',
+                        isDefault: true,
+                    },
+                    {
+                        value: 'two',
+                        id: 'eyJpZGVudGlmaWVyIjo0LCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9',
+                        isDefault: false,
+                    },
+                    {
+                        value: 'three',
+                        id: 'eyJpZGVudGlmaWVyIjo1LCJ0eXBlIjoiY3VzdG9tTWV0YWRhdGFQcm9wZXJ0eU9wdGlvbiJ9',
+                        isDefault: false,
+                    },
+                ],
+            },
+        },
+        {
+            id: 'eyJpZGVudGlmaWVyIjoxNywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+            isRequired: false,
+            name: MetadataType.DATE,
+            type: {
+                name: MetadataType.DATE,
+            },
+        },
+    ],
+    assetSubmissionToken: 'Nas2YR66rKBSXfoo',
+    assetSubmissionId: 'eyJpZGVudGlmaWVyIjoxLCJ0eXBlIjoiYXNzZXRTdWJtaXNzaW9uUmVxdWVzdCJ9',
+    'test--#--eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': true,
+    disclaimerText:
+        '[{"type":"p","children":[{"text":"By continuing, I agree that I will not upload malware, unlawful materials or content that violates the intellectual property rights of others.","textStyle":"p"}]}]',
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxMiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-0-0':
+        null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-1-0':
+        null,
+    'Long Text--#--eyJpZGVudGlmaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-2-0':
+        null,
+    'Number--#--eyJpZGVudGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-3-0':
+        null,
+    'Single Select--#--eyJpZGVudGlmaWVyIjoxNSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxNiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-4-0':
+        null,
+    'Multi-select--#--eyJpZGVudGlmaWVyIjoxNiwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxNywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-5-0':
+        null,
+    'Date--#--eyJpZGVudGlmaWVyIjoxNywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
+    'metadata-eyJpZGVudGlmaWVyIjozMiwidHlwZSI6InByb2plY3QifQ==-heading-eyJpZGVudGlmaWVyIjoxOCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==-0-1':
+        null,
+    'Required--#--eyJpZGVudGlmaWVyIjoxOCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': null,
 };

@@ -15,7 +15,6 @@ export const InputText = ({
     validation,
 }: MetadataProps & FormUtilities) => {
     const [textInput, setTextInput] = useState<string>(defaultValue ?? '');
-    const onFocus = () => {};
 
     const onInput = (value: string) => {
         setTextInput(value);
@@ -29,10 +28,8 @@ export const InputText = ({
             </FormLabel>
             <TextInput
                 id={id}
-                onFocus={onFocus}
                 onChange={onInput}
                 onBlur={(event) => onInput(event.target.value)}
-                // onEnterPressed={(event) => onChange(event.target}
                 validation={validation}
                 value={textInput}
             />

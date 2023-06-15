@@ -40,7 +40,7 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                 });
             }
         })();
-    }, [blockSettings.assetSubmission]);
+    }, [blockSettings.assetSubmission, setBlockSettings]);
 
     return (
         <LegacyStack padding="s" spacing="s" direction={'column'}>

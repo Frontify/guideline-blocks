@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { FC, useState } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 import { CustomMetadataFactory } from './CustomMetadata';
 import { MetadataProps } from './type';
 import { OnChangeProps } from './Form/type';
@@ -12,6 +12,7 @@ import { Settings } from '../../types';
 import { REQUIRED_FORM_DATA } from './StandardMetadata/constant';
 import { useFormValidation } from './hooks/UseFormValidation';
 import { useMetadataSettingsConfig } from './hooks/useMetadataSettingsConfig';
+import { CopyRightStatus } from './StandardMetadata/type';
 
 type MetaDataSubmitProps = {
     onSubmit: (formData: FormValues) => void;
@@ -19,14 +20,23 @@ type MetaDataSubmitProps = {
     children?: React.ReactNode;
 };
 
-export type FormValues = {
-    [key: string]: any;
+export type CustomMetadataFormValues = {
+    [key: string]: string | string[] | { propertyId: string; value: string }[] | undefined;
 };
+
+export type FormValues = {
+    email: string;
+    name: string;
+    description?: string;
+    creator?: string;
+    copyrightStatus?: CopyRightStatus;
+    copyrightNotice?: string;
+} & CustomMetadataFormValues;
 
 export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({ onSubmit, children, appBridge }) => {
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
     const [initialValues, metadataConfiguration] = useMetadataSettingsConfig(blockSettings);
-    const [formValues, setFormValues] = useState<FormValues>(initialValues);
+    const [formValues, setFormValues] = useState<FormValues>(initialValues as FormValues);
     const [errorFields, setErrorFields] = useState<string[]>([]);
     const validateFormOrTriggerError = useFormValidation(formValues);
 
@@ -37,7 +47,7 @@ export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({ onSubmit, child
         }));
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (validateFormOrTriggerError(REQUIRED_FORM_DATA, metadataConfiguration, setErrorFields, blockSettings)) {
             onSubmit(formValues);

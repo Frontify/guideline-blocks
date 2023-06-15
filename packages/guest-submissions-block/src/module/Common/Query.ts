@@ -5,7 +5,7 @@ const getCsrfToken = (): string => {
     return (tokenElement[0] as HTMLMetaElement).content;
 };
 
-export const queryGraphql = async (uploadBody: string) => {
+export const queryGraphql = async <T>(uploadBody: string) => {
     try {
         const response = await fetch(`${window.location.origin}/graphql-internal`, {
             method: 'POST',
@@ -18,8 +18,9 @@ export const queryGraphql = async (uploadBody: string) => {
             body: uploadBody,
         });
 
-        return await response.json();
+        return (await response.json()) as Promise<T>;
     } catch (error) {
         console.warn(error);
+        throw Error;
     }
 };

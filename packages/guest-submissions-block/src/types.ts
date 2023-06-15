@@ -8,12 +8,9 @@ export type Settings = {
     assetSubmissionId: string;
 
     assetSubmission: string;
-    columnNumber: number;
     content?: string;
     modalcontent?: string;
     buttonText: string;
-    dropzoneUpload: string;
-    dropzoneDrop: string;
 
     // Default Metadata
     name: boolean;

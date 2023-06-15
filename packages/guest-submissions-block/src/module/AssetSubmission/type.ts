@@ -22,7 +22,7 @@ export type AssetSubmissionMetadata = {
     };
     custom?: {
         propertyId: string;
-        value: string | string[];
+        value: string | string[] | { propertyId: string; value: string }[] | undefined;
     }[];
 };
 
@@ -34,4 +34,18 @@ export type AssetSubmissionRequestType = {
     tokens: {
         token: string;
     }[];
+};
+
+export type DataBrandAssetRequest = {
+    data: {
+        brands: {
+            libraries: {
+                items: {
+                    id: string;
+                    name: string;
+                    assetSubmissionRequests: AssetSubmissionRequestType[];
+                }[];
+            };
+        }[];
+    };
 };

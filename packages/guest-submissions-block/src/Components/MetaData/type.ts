@@ -12,7 +12,7 @@ export enum MetadataType {
 export type MetadataProps = {
     id: string;
     isRequired: boolean;
-    defaultValue?: any;
+    defaultValue?: string | string[] | { id: string; value: string };
     name: string;
     type: {
         name: MetadataType;

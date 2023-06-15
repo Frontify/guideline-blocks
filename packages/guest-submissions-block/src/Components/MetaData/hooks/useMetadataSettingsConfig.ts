@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Settings } from '../../../types';
-import { FormValues } from '../Metadata';
+import { CustomMetadataFormValues } from '../Metadata';
 import { MetadataProps } from '../type';
 
 type MetadataIds = {
@@ -10,10 +10,10 @@ type MetadataIds = {
 
 export const DATA_DELIMINATOR = '--#--';
 
-export const useMetadataSettingsConfig = (blockSettings: Settings): [FormValues, MetadataProps[]] => {
+export const useMetadataSettingsConfig = (blockSettings: Settings): [CustomMetadataFormValues, MetadataProps[]] => {
     const metadataConfiguration = getMetadataConfiguration(blockSettings);
 
-    return [getDefaultValues(metadataConfiguration), metadataConfiguration];
+    return [getInitialValues(metadataConfiguration), metadataConfiguration];
 };
 
 const getMetadataConfiguration = (blockSettings: Settings): MetadataProps[] => {
@@ -79,10 +79,14 @@ const withLabelAndRequiredFromSettings = (
     return metadataConfig;
 };
 
-const getDefaultValues = (metadataConfiguration: MetadataProps[]): FormValues =>
-    metadataConfiguration.reduce((prev: FormValues, cur) => {
-        if (!!cur.defaultValue) {
-            return { ...prev, [cur.id]: cur.defaultValue };
-        }
-        return prev;
-    }, {});
+const getInitialValues = (metadataConfiguration: MetadataProps[]): CustomMetadataFormValues =>
+    metadataConfiguration.reduce(
+        (prev: CustomMetadataFormValues, cur) =>
+            !!cur.defaultValue
+                ? {
+                      ...prev,
+                      [cur.id]: cur.defaultValue,
+                  }
+                : prev,
+        {}
+    );

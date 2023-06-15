@@ -15,7 +15,6 @@ export const InputLong = ({
     validation,
 }: MetadataProps & FormUtilities) => {
     const [textInput, setTextInput] = useState<string>(defaultValue ?? '');
-    const onFocus = () => {};
 
     const onInput = (value: string) => {
         setTextInput(value);
@@ -29,7 +28,6 @@ export const InputLong = ({
             </FormLabel>
             <Textarea
                 id={id}
-                onFocus={onFocus}
                 onInput={onInput}
                 onBlur={(value) => onInput(value)}
                 // onEnterPressed={(event) => onChange(event.target}

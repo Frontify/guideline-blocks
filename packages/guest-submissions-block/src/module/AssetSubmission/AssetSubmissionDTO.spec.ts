@@ -2,6 +2,7 @@
 
 import { describe, expect, test } from 'vitest';
 import { assetSubmissionDTO } from './AssetSubmissionDTO';
+import { CopyRightStatus } from '../../Components/MetaData/StandardMetadata/type';
 
 describe('AssetSubmissionDTO', () => {
     test('Should Transform Input to correct output', () => {
@@ -12,7 +13,7 @@ describe('AssetSubmissionDTO', () => {
             disclaimer: 'Checked',
             description: 'Descriptio',
             copyrightNotice: 'notice',
-            copyrightStatus: 'status',
+            copyrightStatus: CopyRightStatus.COPYRIGHTED,
             'eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'text',
             'eyJpZGVudGlmasaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'Campaign Description',
             'eyJpZGVudGlmaWVyIjoxNSwfdsidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'My Birthday Party',
@@ -25,7 +26,7 @@ describe('AssetSubmissionDTO', () => {
                 legal: {
                     creator: 'Creator',
                     copyright: {
-                        status: 'status',
+                        status: CopyRightStatus.COPYRIGHTED,
                         notice: 'notice',
                     },
                 },

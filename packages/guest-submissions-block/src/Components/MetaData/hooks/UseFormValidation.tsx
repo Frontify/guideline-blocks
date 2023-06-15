@@ -20,10 +20,11 @@ export function useFormValidation(formValues: FormValues) {
     ): boolean => {
         const standardMetaData = requiredStandardMetaData.filter((item) => fromBlockSettings[item]);
         const requiredCustomMetadataId = metaConfigurationData.filter((item) => item.isRequired).map((item) => item.id);
-
-        const requiredFields = [...requiredCustomMetadataId, ...standardMetaData, ...defaultStandardMetaData];
-
-        const missingRequiredFields = requiredFields.filter((item) => !formValues[item] || formValues[item] === '');
+        const missingRequiredFields = [
+            ...requiredCustomMetadataId,
+            ...standardMetaData,
+            ...defaultStandardMetaData,
+        ].filter((item) => !formValues[item] || formValues[item] === '');
 
         const emailValidationError = validateEmail(formValues.email);
         if (emailValidationError) {
