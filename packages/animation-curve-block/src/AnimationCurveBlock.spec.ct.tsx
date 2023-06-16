@@ -32,11 +32,11 @@ const DROWDOWN_ITEM_SELECTOR = '[data-test-id="menu-item"]';
 const CSS_VALUE_SELECTOR = '[data-test-id="css-value-display"]';
 
 class AnimationCurveDummy {
-    static with(id?: string): AnimationCurve {
+    static with(id = '1'): AnimationCurve {
         return {
-            id: id ?? '1',
-            title: convertToRteValue(TextStyles.heading3, 'Animation Title'),
-            description: convertToRteValue('p', 'Animation Description'),
+            id,
+            title: convertToRteValue(TextStyles.heading3, `Animation Title ${id}`),
+            description: convertToRteValue('p', `Animation Description ${id}`),
             animationFunction: {
                 type: AnimationCurveType.EaseIn,
                 parameters: { x1: 0.42, y1: 0, x2: 1, y2: 1 },
@@ -336,6 +336,68 @@ describe('AnimationCurve Block', () => {
             .realMouseMove(0, 1000)
             .realMouseUp();
         cy.get(CARD_SELECTOR).last().should('not.eq', last);
+    });
+
+    it('should move the first animation curve to fourth position by keyboard', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
+            editorState: true,
+            blockSettings: {
+                columns: 2,
+                content: [
+                    AnimationCurveDummy.with(),
+                    AnimationCurveDummy.with('2'),
+                    AnimationCurveDummy.with('3'),
+                    AnimationCurveDummy.with('4'),
+                    AnimationCurveDummy.with('5'),
+                ],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(CARD_SELECTOR)
+            .first()
+            .then((first) => {
+                cy.wrap(first).parent().find(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).eq(0).focus();
+                cy.realPress('Enter');
+                cy.realPress('ArrowDown');
+                cy.realPress('ArrowRight');
+                cy.realPress('Enter');
+                cy.get(CARD_SELECTOR)
+                    .eq(3)
+                    .then((fourth) => {
+                        expect(fourth.get(0)).to.eq(first.get(0));
+                    });
+            });
+    });
+
+    it('should move the fourth animation curve to first position by keyboard', () => {
+        const [AssetKitBlockWithStubs] = withAppBridgeBlockStubs(AnimationCurveBlock, {
+            editorState: true,
+            blockSettings: {
+                columns: 2,
+                content: [
+                    AnimationCurveDummy.with(),
+                    AnimationCurveDummy.with('2'),
+                    AnimationCurveDummy.with('3'),
+                    AnimationCurveDummy.with('4'),
+                    AnimationCurveDummy.with('5'),
+                ],
+            },
+        });
+        mount(<AssetKitBlockWithStubs />);
+        cy.get(CARD_SELECTOR)
+            .eq(3)
+            .then((fourth) => {
+                cy.wrap(fourth).parent().find(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).eq(0).focus();
+                cy.realPress('Enter');
+                cy.realPress('ArrowUp');
+                cy.realPress('ArrowLeft');
+                cy.realPress('Enter');
+                cy.get(CARD_SELECTOR)
+                    .first()
+                    .then((first) => {
+                        expect(first.get(0)).to.eq(fourth.get(0));
+                    });
+            });
     });
 
     it('should add an new animation curve', () => {

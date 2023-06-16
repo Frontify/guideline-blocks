@@ -11,11 +11,15 @@ import { KeyboardSensorOptions } from '@dnd-kit/core';
 describe('useDndSensors', () => {
     it('should create a PointerSensor and a KeyboardSensor with a coordinate getter', () => {
         const { result } = renderHook(() => useDndSensors());
-
-        // we have two sensors
         expect(result.current.length).toBe(2);
+        expect(result.current[0].sensor.name).toBe('PointerSensor');
+        expect(result.current[1].sensor.name).toBe('KeyboardSensor');
+        expect(typeof (result.current[1].options as KeyboardSensorOptions).coordinateGetter).toBe('function');
+    });
 
-        // we have a PointerSensor and a KeyboardSensor
+    it('should create a PointerSensor and a KeyboardSensor with a coordinate getter with gap', () => {
+        const { result } = renderHook(() => useDndSensors(100));
+        expect(result.current.length).toBe(2);
         expect(result.current[0].sensor.name).toBe('PointerSensor');
         expect(result.current[1].sensor.name).toBe('KeyboardSensor');
         expect(typeof (result.current[1].options as KeyboardSensorOptions).coordinateGetter).toBe('function');
