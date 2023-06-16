@@ -1,8 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useState } from 'react';
-import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, closestCenter } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
+import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import 'tailwindcss/tailwind.css';
 
 import '@frontify/fondue-tokens/styles';
@@ -21,7 +22,8 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const { content, hasCustomSpacing, spacingCustom, spacingChoice, columns, hasBorder } = blockSettings;
     const [localItems, setLocalItems] = useState<AnimationCurve[]>(content ?? []);
     const isEditing = useEditorState(appBridge);
-    const sensors = useDndSensors(10);
+    const gap = hasCustomSpacing ? spacingCustom : gutterSpacingStyleMap[spacingChoice];
+    const sensors = useDndSensors(parseInt(gap ?? '0'));
 
     const deleteAnimationCurve = (id: string) => {
         const newContent = content.filter((animationCurve) => animationCurve.id !== id);
@@ -58,12 +60,13 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
             onDragStart={handleDragStart}
+            modifiers={[restrictToParentElement]}
         >
             <div
                 data-test-id="animation-curve-block"
                 className={`tw-grid tw-auto-rows-auto ${gridClasses[columns]}`}
                 style={{
-                    gap: hasCustomSpacing ? spacingCustom : gutterSpacingStyleMap[spacingChoice],
+                    gap,
                 }}
             >
                 <SortableContext items={localItems} strategy={rectSortingStrategy}>

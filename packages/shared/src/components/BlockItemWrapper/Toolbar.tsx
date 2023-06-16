@@ -23,17 +23,18 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                             withArrow
                             hoverDelay={0}
                             enterDelay={300}
-                            disabled={isDragging}
+                            open={isDragging}
                             position={TooltipPosition.Top}
-                            content={<div>{item.tooltip}</div>}
+                            content={<div>{isDragging ? item.draggingTooltip : item.tooltip}</div>}
                             triggerElement={
                                 <button
+                                    ref={item.setActivatorNodeRef}
                                     data-test-id="block-item-wrapper-toolbar-btn"
                                     {...item.draggableProps}
                                     className={joinClassNames([
-                                        'tw-bg-base  tw-inline-flex  tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm',
+                                        'tw-bg-base tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm',
                                         isDragging
-                                            ? 'tw-cursor-grabbing hover:tw-bg-box-selected-pressed'
+                                            ? 'tw-cursor-grabbing tw-bg-box-selected-pressed'
                                             : 'tw-cursor-grab hover:tw-bg-box-selected-hover',
                                     ])}
                                 >

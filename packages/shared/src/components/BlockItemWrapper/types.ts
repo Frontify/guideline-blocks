@@ -29,6 +29,8 @@ type BaseToolbarItem = {
 
 type DraghandleToolbarItem = BaseToolbarItem & {
     draggableProps: Record<string, unknown>;
+    draggingTooltip: string;
+    setActivatorNodeRef?: (node: HTMLElement | null) => void;
 };
 
 type ButtonToolbarItem = BaseToolbarItem & {

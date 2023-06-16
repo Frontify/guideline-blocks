@@ -30,6 +30,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             setCanvasHeight,
             transformStyle = {},
             draggableProps = {},
+            setActivatorNodeRef,
             isDragging = false,
             replaceWithPlaceholder = false,
         },
@@ -89,8 +90,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     toolbarItems={[
                         {
                             icon: <IconArrowMove16 />,
-                            tooltip: 'Drag to move or press enter and use the arrows',
+                            tooltip: 'Drag or press ↵ to move',
+                            draggingTooltip: 'Move with ↑↓←→ and confirm with ↵',
                             draggableProps,
+                            setActivatorNodeRef,
                         },
                         {
                             icon: <IconTrashBin16 />,
@@ -212,9 +215,13 @@ Card.displayName = 'Card';
 export const SortableCard = (props: SortableCardProps) => {
     const { animationCurve, isEditing } = props;
     const { id } = animationCurve;
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-        id,
-    });
+    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging, isSorting } =
+        useSortable({
+            id,
+        });
+
+    console.log('isDragging', isDragging, id);
+    console.log('isSorting', isSorting, id);
 
     const transformStyle = {
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
@@ -229,6 +236,7 @@ export const SortableCard = (props: SortableCardProps) => {
             ref={setNodeRef}
             {...props}
             isDragging={isDragging}
+            setActivatorNodeRef={setActivatorNodeRef}
             replaceWithPlaceholder={isDragging}
             transformStyle={transformStyle}
             draggableProps={draggableProps}
