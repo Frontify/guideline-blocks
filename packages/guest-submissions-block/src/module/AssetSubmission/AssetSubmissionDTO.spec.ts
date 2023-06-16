@@ -21,22 +21,38 @@ describe('AssetSubmissionDTO', () => {
         };
 
         const desiredOutput = {
-            standard: {
-                description: 'Descriptio',
-                legal: {
-                    creator: 'Creator',
-                    copyright: {
-                        status: CopyRightStatus.COPYRIGHTED,
-                        notice: 'notice',
-                    },
+            copyright: {
+                author: 'Creator',
+                notice: 'notice',
+                status: 'COPYRIGHTED',
+            },
+            custom: [
+                {
+                    propertyId: 'email',
+                    value: 'Iffgasdf.ch',
                 },
-            },
-            custom: {
-                'eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'text',
-                'eyJpZGVudGlmasaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'Campaign Description',
-                'eyJpZGVudGlmaWVyIjoxNSwfdsidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'My Birthday Party',
-                'eyJpZGVudfdsGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': '123123',
-            },
+                {
+                    propertyId: 'disclaimer',
+                    value: 'Checked',
+                },
+                {
+                    propertyId: 'eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+                    value: 'text',
+                },
+                {
+                    propertyId: 'eyJpZGVudGlmasaWVyIjoxMywidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+                    value: 'Campaign Description',
+                },
+                {
+                    propertyId: 'eyJpZGVudGlmaWVyIjoxNSwfdsidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+                    value: 'My Birthday Party',
+                },
+                {
+                    propertyId: 'eyJpZGVudfdsGlmaWVyIjoxNCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+                    value: '123123',
+                },
+            ],
+            description: 'Descriptio',
         };
         const output = assetSubmissionDTO(input);
         expect(output).toStrictEqual(desiredOutput);
