@@ -215,13 +215,9 @@ Card.displayName = 'Card';
 export const SortableCard = (props: SortableCardProps) => {
     const { animationCurve, isEditing } = props;
     const { id } = animationCurve;
-    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging, isSorting } =
-        useSortable({
-            id,
-        });
-
-    console.log('isDragging', isDragging, id);
-    console.log('isSorting', isSorting, id);
+    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
+        id,
+    });
 
     const transformStyle = {
         transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : '',
