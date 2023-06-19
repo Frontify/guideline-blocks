@@ -14,8 +14,8 @@ export const settings = async () => {
             {
                 id: 'assetSubmission',
                 type: 'dropdown',
-                label: 'Destination library',
-                info: 'You can choose from only libraries which allow an external asset upload. You can allow this in library settings.',
+                label: 'Library',
+                info: 'You can choose from libraries which are enabled for guest asset upload. The setting can be found in the Libraries.',
                 size: DropdownSize.Large,
                 placeholder: 'Choose a Submission Request',
                 choices: async () => {
@@ -34,6 +34,29 @@ export const settings = async () => {
                 label: 'Button Text',
                 defaultValue: 'New Submission',
                 placeholder: 'Button Label',
+            },
+        ],
+        test: [
+            {
+                id: 'testCheck',
+                type: 'checklist',
+                defaultValue: [''],
+                choices: [{ id: 'asdfdsasdf-checkbox-aggaag', label: 'label' }],
+                showClearAndSelectAllButtons: false,
+                columns: 1,
+            },
+            {
+                id: 'asdfdsasdf-required-asdfdsasdf',
+                type: 'switch',
+                label: 'Required',
+                size: 'small',
+            },
+            {
+                id: 'asdfasdfdsasdf-label-asdfdsasdfasdf',
+                type: 'input',
+                label: 'Custom Label',
+                inputType: 'text',
+                placeholder: 'Enter a custom label',
             },
         ],
         Form: [

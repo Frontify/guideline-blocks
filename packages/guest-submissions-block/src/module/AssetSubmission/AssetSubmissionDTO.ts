@@ -22,6 +22,8 @@ export const assetSubmissionDTO = ({
                 propertyId,
                 value,
             }))
-            .filter((item) => item.propertyId !== ('name' || 'email' || 'disclaimer')),
+            .filter(
+                (item) => item.propertyId !== 'name' && item.propertyId !== 'email' && item.propertyId !== 'disclaimer'
+            ),
     };
 };

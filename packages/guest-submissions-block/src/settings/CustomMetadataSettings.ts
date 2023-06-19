@@ -5,38 +5,79 @@ import { Library } from '../module/Library/Library';
 import { MetadataProps } from '../Components/MetaData/type';
 import { Bundle, SettingBlock } from '@frontify/guideline-blocks-settings';
 
+type checkListProps = {
+    value: string[];
+};
+
+type switchProps = {
+    value: boolean | null;
+};
+
 const settingsEntry = (id: string, metaDataEntry: MetadataProps, index: number, parentIndex: number): SettingBlock => {
     return {
         id: `metadata-${id}-heading-${metaDataEntry.id}-${index}-${parentIndex}`,
         type: 'sectionHeading',
-        label: metaDataEntry.name,
         show: (bundle: Bundle) => bundle.getBlock('assetSubmission')?.value === id,
         blocks: [
             {
                 id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}`,
+                type: 'checklist',
+                defaultValue: [''],
+                choices: [{ id: `${id}-checkbox-${metaDataEntry.id}`, label: `${metaDataEntry.name}` }],
+                showClearAndSelectAllButtons: false,
+                columns: 1,
+            },
+            {
+                id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}required`,
                 type: 'switch',
-                label: 'Show',
-                show: (bundle: Bundle) => bundle.getBlock('assetSubmission')?.value === id,
-                on: [
-                    {
-                        id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}required`,
-                        type: 'switch',
-                        label: 'Required',
-                        info: `${
-                            metaDataEntry.isRequired
-                                ? 'This field is required by the Library, but its okey to disable it for submissions'
-                                : ''
-                        }`,
-                        size: 'small',
-                    },
-                    {
-                        id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}label`,
-                        type: 'input',
-                        inputType: 'text',
-                        label: 'Custom Label',
-                        placeholder: 'Enter a custom label',
-                    },
-                ],
+                label: 'Required',
+                size: 'small',
+                show: (bundle) => {
+                    const { value } = bundle.getBlock(
+                        `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}`
+                    ) as checkListProps;
+                    return value.length > 1;
+                },
+            },
+            {
+                id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}customize`,
+                type: 'switch',
+                label: 'Custom Label',
+                size: 'small',
+                show: (bundle) => {
+                    const { value } = bundle.getBlock(
+                        `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}`
+                    ) as checkListProps;
+                    return value.length > 1;
+                },
+                onChange: (bundle) => {
+                    if (
+                        bundle.getBlock(
+                            `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}customize`
+                        )?.value === false
+                    ) {
+                        bundle.setBlockValue(
+                            `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}label`,
+                            ''
+                        );
+                    }
+                },
+            },
+            {
+                id: `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}label`,
+                type: 'input',
+                inputType: 'text',
+                placeholder: 'Enter a custom label',
+                show: (bundle) => {
+                    const { value } = bundle.getBlock(
+                        `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}`
+                    ) as checkListProps;
+                    const customLabel = bundle.getBlock(
+                        `${metaDataEntry.name}${DATA_DELIMINATOR}${metaDataEntry.id}${DATA_DELIMINATOR}customize`
+                    ) as switchProps;
+
+                    return value.length > 1 && !!customLabel.value;
+                },
             },
         ],
     };

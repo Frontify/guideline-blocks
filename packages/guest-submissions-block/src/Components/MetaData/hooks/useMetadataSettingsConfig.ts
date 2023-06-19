@@ -5,7 +5,7 @@ import { CustomMetadataFormValues } from '../Metadata';
 import { MetadataProps } from '../type';
 
 type MetadataIds = {
-    [key: string]: string | boolean | number | MetadataProps[];
+    [key: string]: string | string[] | boolean | number | MetadataProps[];
 };
 
 export const DATA_DELIMINATOR = '--#--';
@@ -17,27 +17,21 @@ export const useMetadataSettingsConfig = (blockSettings: Settings): [CustomMetad
 };
 
 const getMetadataConfiguration = (blockSettings: Settings): MetadataProps[] => {
-    const initialMetadataConfiguration = parseAndSetRequiredFields(blockSettings.assetSubmissionMetadataConfig);
-    const activeMetadataFromSettings = filterActiveMetadata(blockSettings);
+    const initialMetadataConfiguration = setRequiredToFalse(blockSettings.assetSubmissionMetadataConfig);
+    const activeMetadataFromSettings = filterOutCustomMetadataFields(blockSettings);
 
     return setActiveMetadataFields(activeMetadataFromSettings, initialMetadataConfiguration);
 };
 
-const parseAndSetRequiredFields = (
-    assetSubmissionMetadataConfig: MetadataProps[],
-    required = false
-): MetadataProps[] => {
-    if (!!assetSubmissionMetadataConfig) {
-        return assetSubmissionMetadataConfig.map((entry: MetadataProps) => ({
-            ...entry,
-            isRequired: required,
-        }));
-    } else {
-        return [];
-    }
-};
+const setRequiredToFalse = (assetSubmissionMetadataConfig: MetadataProps[]): MetadataProps[] =>
+    !!assetSubmissionMetadataConfig
+        ? assetSubmissionMetadataConfig.map((entry: MetadataProps) => ({
+              ...entry,
+              isRequired: false,
+          }))
+        : [];
 
-const filterActiveMetadata = (blockSettings: Settings): MetadataIds[] =>
+const filterOutCustomMetadataFields = (blockSettings: Settings): MetadataIds[] =>
     Object.entries(blockSettings)
         .filter(([key, value]) => key.includes(DATA_DELIMINATOR) && !!value)
         .map(([key, value]) => ({ [key]: value }));
@@ -48,20 +42,26 @@ const setActiveMetadataFields = (
 ): MetadataProps[] =>
     activeMetadataFromSettings.reduce((acc: MetadataProps[], cur) => {
         const [key] = Object.keys(cur);
-        const [, id, modifier] = key.split(DATA_DELIMINATOR);
+        const [, id] = key.split(DATA_DELIMINATOR);
+
         const metadataEntry = initialMetadataConfig.find((item) => item.id === id);
-        if (!!modifier || !metadataEntry) {
+        if (!isMetadataProperty(key, Object.values(cur)[0]) || !metadataEntry) {
             return acc || [];
         }
-        const metadataConfig = withLabelAndRequiredFromSettings(metadataEntry, activeMetadataFromSettings);
+        const metadataConfig = setOptionalModifiers(metadataEntry, activeMetadataFromSettings);
 
         return acc ? [...acc, metadataConfig] : [metadataConfig];
     }, []);
 
-const withLabelAndRequiredFromSettings = (
-    metadataConfig: MetadataProps,
-    activeMetadataIds: MetadataIds[]
-): MetadataProps => {
+const isMetadataProperty = (key: string, value: string | string[] | boolean | number | MetadataProps[]) => {
+    const [, , modifier] = key.split(DATA_DELIMINATOR);
+    if (!modifier) {
+        return Array.isArray(value) ? value.length > 1 : false;
+    }
+    return false;
+};
+
+const setOptionalModifiers = (metadataConfig: MetadataProps, activeMetadataIds: MetadataIds[]): MetadataProps => {
     for (const entry of activeMetadataIds) {
         const matchingKey = Object.keys(entry).find(
             (key) => key.includes(metadataConfig.id) && (key.includes('required') || key.includes('label'))

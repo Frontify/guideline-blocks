@@ -30,7 +30,7 @@ export class CustomMetadataFactory {
             return !!Template ? (
                 <Template
                     {...metadata}
-                    key={metadata.id}
+                    key={`${metadata.id}custom-metadata`}
                     onChange={onChange}
                     validation={errorFields.includes(metadata.id) ? Validation.Error : Validation.Default}
                 />
