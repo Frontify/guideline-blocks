@@ -18,6 +18,7 @@ import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';
 import {
     BlockItemWrapper,
+    EditAltTextFlyout,
     convertToRteValue,
     hasRichTextValue,
     joinClassNames,
@@ -27,6 +28,7 @@ import { useEffect, useState } from 'react';
 import {
     IconArrowCircleUp20,
     IconImageStack20,
+    IconSpeechBubbleQuote20,
     IconTrashBin20,
     LoadingCircle,
     MenuItemStyle,
@@ -38,6 +40,8 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
+    const [showAltTextMenu, setShowAltTextMenu] = useState(false);
+    const [localAltText, setLocalAltText] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
     const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
@@ -53,6 +57,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
             setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
             setUpdateValueOnChange(true);
         }
+        setBlockSettings({ altText: image?.title ?? image?.fileName ?? '' });
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
         setIsLoading(false);
         setUpdateValueOnChange(false);
@@ -94,6 +99,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     }, [doneAll, uploadResults]);
 
     const onRemoveAsset = () => {
+        setBlockSettings({ altText: '' });
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 
@@ -116,7 +122,17 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 {image ? (
                     <BlockItemWrapper
                         shouldHideWrapper={!isEditing}
+                        shouldBeShown={showAltTextMenu}
                         toolbarFlyoutItems={[
+                            image
+                                ? [
+                                      {
+                                          title: 'Set alt text',
+                                          onClick: () => setShowAltTextMenu(true),
+                                          icon: <IconSpeechBubbleQuote20 />,
+                                      },
+                                  ]
+                                : [],
                             [
                                 {
                                     title: 'Replace with upload',
@@ -152,6 +168,14 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                                 image={image}
                             />
                         )}
+                        <EditAltTextFlyout
+                            setShowAltTextMenu={setShowAltTextMenu}
+                            showAltTextMenu={showAltTextMenu}
+                            setLocalAltText={setLocalAltText}
+                            defaultAltText={blockSettings.altText}
+                            onSave={() => setBlockSettings({ altText: localAltText })}
+                            localAltText={localAltText}
+                        />
                     </BlockItemWrapper>
                 ) : (
                     isEditing && (

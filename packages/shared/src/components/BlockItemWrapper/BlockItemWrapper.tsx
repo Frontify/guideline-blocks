@@ -27,6 +27,9 @@ export const BlockItemWrapper = ({
         }
     }, [isFlyoutOpen]);
 
+    if (shouldHideWrapper) {
+        return <>{children}</>;
+    }
     const handlePointerLeave = () => {
         if (wrapperRef.current?.contains(document.activeElement)) {
             (document.activeElement as HTMLElement).blur();
@@ -36,7 +39,6 @@ export const BlockItemWrapper = ({
 
     return (
         <div
-            tabIndex={0}
             ref={wrapperRef}
             onFocus={() => setIsFlyoutDisabled(false)}
             onPointerEnter={() => setIsFlyoutDisabled(false)}

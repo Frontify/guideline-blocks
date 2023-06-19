@@ -6,3 +6,4 @@ export * from './Attachments';
 export * from './DownloadButton';
 export * from './RichTextEditor';
 export * from './CssValueDisplay';
+export * from './EditAltTextFlyout';
