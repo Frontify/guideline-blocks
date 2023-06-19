@@ -14,7 +14,6 @@ import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge'
 import { ATTACHMENTS_ASSET_ID } from '../settings';
 import { getImageStyle } from './helpers';
 import { FOCUS_STYLE } from '@frontify/fondue';
-import { useEffect } from 'react';
 
 type ImageProps = {
     image: Asset;
@@ -42,12 +41,7 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
             style={imageStyle}
         />
     );
-    useEffect(() => {
-        document.body.setAttribute('tabIndex', '-1');
-        return () => {
-            document.body.removeAttribute('tabIndex');
-        };
-    }, []);
+
     return (
         <>
             {isEditing ? (
