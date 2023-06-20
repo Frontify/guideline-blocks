@@ -11,18 +11,11 @@ import {
     useFileInput,
 } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
-import {
-    DndContext,
-    DragEndEvent,
-    DragOverlay,
-    PointerSensor,
-    closestCenter,
-    useSensor,
-    useSensors,
-} from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { BlockInjectButton, joinClassNames } from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton, joinClassNames, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
@@ -94,7 +87,8 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusChoice,
         radiusValue,
     } = blockSettings;
-    const sensors = useSensors(useSensor(PointerSensor));
+
+    const sensors = useDndSensors();
     const { dontIconAsset, doIconAsset, itemImages } = blockAssets;
     const [localItems, setLocalItems] = useState<Item[]>(items);
 
@@ -329,6 +323,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 collisionDetection={closestCenter}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
+                modifiers={[restrictToParentElement]}
             >
                 <SortableContext items={localItems} strategy={rectSortingStrategy}>
                     <div

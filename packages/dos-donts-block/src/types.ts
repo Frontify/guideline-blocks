@@ -113,6 +113,7 @@ export type DoDontItemProps = SortableDoDontItemProps & {
     replaceWithPlaceholder?: boolean;
     transformStyle?: Record<string, unknown>;
     draggableProps?: Record<string, unknown>;
+    setActivatorNodeRef?: (node: HTMLElement | null) => void;
 };
 
 export type ItemToolbarProps = {

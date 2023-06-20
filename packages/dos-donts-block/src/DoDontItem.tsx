@@ -66,6 +66,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             hasRadius,
             radiusChoice,
             radiusValue,
+            setActivatorNodeRef,
         },
         ref
     ) => {
@@ -176,7 +177,13 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     shouldHideWrapper={replaceWithPlaceholder || !editing}
                     shouldHideComponent={replaceWithPlaceholder}
                     toolbarItems={[
-                        { icon: <IconArrowMove16 />, tooltip: 'Drag to move', draggableProps },
+                        {
+                            icon: <IconArrowMove16 />,
+                            tooltip: 'Drag or press ↵ to move',
+                            draggingTooltip: 'Move with ↑↓←→ and confirm with ↵',
+                            draggableProps,
+                            setActivatorNodeRef,
+                        },
                         { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
                     ]}
                     toolbarFlyoutItems={[
@@ -318,7 +325,7 @@ DoDontItem.displayName = 'DoDontItem';
 
 export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
     const { id, editing } = props;
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
 
@@ -339,6 +346,7 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
             replaceWithPlaceholder={isDragging}
             transformStyle={transformStyle}
             draggableProps={draggableProps}
+            setActivatorNodeRef={setActivatorNodeRef}
         />
     );
 };
