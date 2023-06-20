@@ -3,7 +3,6 @@
 import {
     Asset,
     AssetChooserObjectType,
-    FileExtension,
     FileExtensionSets,
     useAssetUpload,
     useBlockAssets,
@@ -14,7 +13,7 @@ import {
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import 'tailwindcss/tailwind.css';
-import { Settings, mapCaptionPositionClasses } from './types';
+import { CaptionPosition, Settings, mapCaptionPositionClasses, ratioValues } from './types';
 import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';
 import {
@@ -41,28 +40,22 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const blockId = appBridge.getBlockId().toString();
 
     const [isLoading, setIsLoading] = useState(false);
-    const [errorMsg, setErrorMsg] = useState<string>();
+    const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
-    const { name, description } = blockSettings;
-
-    const saveTitle = (name: string) => {
-        if (name !== blockSettings.name) {
-            setBlockSettings({ name });
-        }
-    };
 
     const updateImage = async (image: Asset) => {
-        setErrorMsg(undefined);
-        if (!hasRichTextValue(name)) {
-            saveTitle(convertToRteValue(TextStyles.imageTitle, image?.title, 'center'));
+        if (!hasRichTextValue(blockSettings.name)) {
+            setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
+            setUpdateValueOnChange(true);
         }
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
         setIsLoading(false);
+        setUpdateValueOnChange(false);
     };
 
     const openAssetChooser = () => {
@@ -81,16 +74,8 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     };
 
     const onFilesDrop = (files: FileList) => {
-        if (!files) {
-            return;
-        }
-        const droppedFileExtension = files[0].name.split('.').pop()?.toLocaleLowerCase() as FileExtension;
-        if (FileExtensionSets.Images.includes(droppedFileExtension)) {
-            setIsLoading(true);
-            uploadFile(files[0]);
-        } else {
-            setErrorMsg('Please drop a correct image format.');
-        }
+        setIsLoading(true);
+        uploadFile(files[0]);
     };
 
     useEffect(() => {
@@ -120,65 +105,70 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 mapCaptionPositionClasses[blockSettings.positioning],
             ])}
         >
-            {image ? (
-                <BlockItemWrapper
-                    shouldHideWrapper={!isEditing}
-                    toolbarFlyoutItems={[
-                        [
-                            {
-                                title: 'Replace with upload',
-                                icon: <IconArrowCircleUp20 />,
-                                onClick: openFileDialog,
-                            },
-                            {
-                                title: 'Replace with asset',
-                                icon: <IconImageStack20 />,
-                                onClick: openAssetChooser,
-                            },
-                        ],
-                        [
-                            {
-                                title: 'Delete',
-                                icon: <IconTrashBin20 />,
-                                style: MenuItemStyle.Danger,
-                                onClick: () => onRemoveAsset(),
-                            },
-                        ],
-                    ]}
-                    toolbarItems={[]}
-                >
-                    {isLoading ? (
-                        <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
-                            <LoadingCircle />
-                        </div>
-                    ) : (
-                        <Image
-                            appBridge={appBridge}
-                            blockSettings={blockSettings}
-                            isEditing={isEditing}
-                            image={image}
+            <div
+                className={
+                    blockSettings.positioning === CaptionPosition.Above ||
+                    blockSettings.positioning === CaptionPosition.Below
+                        ? 'tw-w-full'
+                        : ratioValues[blockSettings.ratio]
+                }
+            >
+                {image ? (
+                    <BlockItemWrapper
+                        shouldHideWrapper={!isEditing}
+                        toolbarFlyoutItems={[
+                            [
+                                {
+                                    title: 'Replace with upload',
+                                    icon: <IconArrowCircleUp20 />,
+                                    onClick: openFileDialog,
+                                },
+                                {
+                                    title: 'Replace with asset',
+                                    icon: <IconImageStack20 />,
+                                    onClick: openAssetChooser,
+                                },
+                            ],
+                            [
+                                {
+                                    title: 'Delete',
+                                    icon: <IconTrashBin20 />,
+                                    style: MenuItemStyle.Danger,
+                                    onClick: onRemoveAsset,
+                                },
+                            ],
+                        ]}
+                        toolbarItems={[]}
+                    >
+                        {isLoading ? (
+                            <div className="tw-flex tw-items-center tw-justify-center tw-h-64">
+                                <LoadingCircle />
+                            </div>
+                        ) : (
+                            <Image
+                                appBridge={appBridge}
+                                blockSettings={blockSettings}
+                                isEditing={isEditing}
+                                image={image}
+                            />
+                        )}
+                    </BlockItemWrapper>
+                ) : (
+                    isEditing && (
+                        <UploadPlaceholder
+                            loading={isLoading}
+                            onUploadClick={openFileDialog}
+                            onFilesDrop={onFilesDrop}
+                            onAssetChooseClick={openAssetChooser}
                         />
-                    )}
-                </BlockItemWrapper>
-            ) : (
-                isEditing && (
-                    <UploadPlaceholder
-                        errorMsg={errorMsg}
-                        loading={isLoading}
-                        onUploadClick={openFileDialog}
-                        onFilesDrop={onFilesDrop}
-                        onAssetChooseClick={openAssetChooser}
-                    />
-                )
-            )}
+                    )
+                )}
+            </div>
             <ImageCaption
                 blockId={blockId}
-                name={name}
-                description={description}
-                onNameChange={saveTitle}
-                onDescriptionChange={(value) => value !== description && setBlockSettings({ description: value })}
                 isEditing={isEditing}
                 appBridge={appBridge}
+                updateValueOnChange={updateValueOnChange}
             />
         </div>
     );

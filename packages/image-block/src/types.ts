@@ -48,7 +48,7 @@ export enum Ratio {
     Ratio1To1 = '1:1',
     Ratio1To2 = '1:2',
 }
-export const rationValues: Record<Ratio, string> = {
+export const ratioValues: Record<Ratio, string> = {
     [Ratio.Ratio2To1]: 'tw-w-full md:tw-w-2/3',
     [Ratio.Ratio1To1]: 'tw-w-full md:tw-w-1/2',
     [Ratio.Ratio1To2]: 'tw-w-full md:tw-w-1/3',
