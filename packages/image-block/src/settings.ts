@@ -126,7 +126,7 @@ export const settings = defineSettings({
             type: 'switch',
             defaultValue: false,
             switchLabel: 'Custom',
-            label: 'Image padding',
+            label: 'Padding',
             info: 'The spacing around the image.',
             onChange: (bundle) => presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_CUSTOM_ID, paddingValues),
             on: [
