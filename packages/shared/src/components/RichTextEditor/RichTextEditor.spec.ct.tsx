@@ -23,34 +23,42 @@ const appBridge = getAppBridgeBlockStub({
     blockId: 1,
 });
 
+const onTextChange = () => cy.stub().as('onTextChange');
+
 describe('RichTextEditor', () => {
     it('should render a rich text editor in edit mode', () => {
-        mount(<RichTextEditor isEditing />);
+        mount(<RichTextEditor isEditing onTextChange={onTextChange} />);
         cy.get(RichTextSelector).should('exist');
     });
 
     it('should render a rich text html in view mode', () => {
-        mount(<RichTextEditor isEditing={false} value="test" />);
+        mount(<RichTextEditor onTextChange={onTextChange} isEditing={false} value="test" />);
         cy.get(RteHtmlSelector).should('exist');
     });
 
     it('should render a json value in view mode', () => {
-        mount(<RichTextEditor isEditing={false} value={convertToRteValue(TextStyles.heading1, 'Test Heading')} />);
+        mount(
+            <RichTextEditor
+                onTextChange={onTextChange}
+                isEditing={false}
+                value={convertToRteValue(TextStyles.heading1, 'Test Heading')}
+            />
+        );
         cy.get(RteHtmlSelector).should('exist');
     });
 
     it('should render a html value in view mode', () => {
-        mount(<RichTextEditor isEditing={false} value="<p>Test Paragraph</p>" />);
+        mount(<RichTextEditor onTextChange={onTextChange} isEditing={false} value="<p>Test Paragraph</p>" />);
         cy.get(RteHtmlSelector).should('exist');
     });
 
     it('should not render html output if value is empty', () => {
-        mount(<RichTextEditor isEditing={false} value="" />);
+        mount(<RichTextEditor onTextChange={onTextChange} isEditing={false} value="" />);
         cy.get(RteHtmlSelector).should('not.exist');
     });
 
     it('should not render html output if value is undefined', () => {
-        mount(<RichTextEditor isEditing={false} />);
+        mount(<RichTextEditor onTextChange={onTextChange} isEditing={false} />);
         cy.get(RteHtmlSelector).should('not.exist');
     });
 
@@ -60,6 +68,7 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
+                onTextChange={onTextChange}
                 isEditing={true}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
                 value={convertToRteValue('p', 'This is a link')}
@@ -81,6 +90,7 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
+                onTextChange={onTextChange}
                 isEditing={true}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
                 value={convertToRteValue('p', 'This is a link')}
@@ -100,6 +110,7 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
+                onTextChange={onTextChange}
                 isEditing={true}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
                 value={convertToRteValue('p', 'This is a link')}
@@ -120,6 +131,7 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
+                onTextChange={onTextChange}
                 isEditing={true}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
                 value={convertToRteValue('p', 'This is a link')}
@@ -139,6 +151,7 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
+                onTextChange={onTextChange}
                 isEditing={true}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
             />
@@ -154,6 +167,7 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
+                onTextChange={onTextChange}
                 isEditing={true}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
             />
@@ -169,6 +183,7 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
+                onTextChange={onTextChange}
                 isEditing={true}
                 plugins={new PluginComposer().setPlugin([new LinkPlugin({ appBridge })])}
                 value={convertToRteValue('p', 'This is a link')}
@@ -188,7 +203,8 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
-                isEditing={true}
+                onTextChange={onTextChange}
+                isEditing
                 plugins={new PluginComposer().setPlugin([new ButtonPlugin({ appBridge })])}
                 value={convertToRteValue('p', 'This is a button')}
             />

@@ -28,7 +28,7 @@ export const CardText = ({
             <RichTextEditor
                 value={title || convertToRteValue(TextStyles.heading3)}
                 placeholder="Add a title"
-                onBlur={setTitle}
+                onTextChange={setTitle}
                 isEditing={isEditing}
                 updateValueOnChange={updateValueOnChange}
                 plugins={getTitlePlugin()}
@@ -41,7 +41,7 @@ export const CardText = ({
             <RichTextEditor
                 value={description || convertToRteValue()}
                 placeholder="Add a description"
-                onBlur={setDescription}
+                onTextChange={setDescription}
                 isEditing={isEditing}
                 updateValueOnChange={updateValueOnChange}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}

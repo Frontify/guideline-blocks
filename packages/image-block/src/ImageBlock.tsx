@@ -40,7 +40,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const blockId = appBridge.getBlockId().toString();
 
     const [isLoading, setIsLoading] = useState(false);
-    const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
@@ -51,11 +50,9 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const updateImage = async (image: Asset) => {
         if (!hasRichTextValue(blockSettings.name)) {
             setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
-            setUpdateValueOnChange(true);
         }
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
         setIsLoading(false);
-        setUpdateValueOnChange(false);
     };
 
     const openAssetChooser = () => {
@@ -164,12 +161,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                     )
                 )}
             </div>
-            <ImageCaption
-                blockId={blockId}
-                isEditing={isEditing}
-                appBridge={appBridge}
-                updateValueOnChange={updateValueOnChange}
-            />
+            <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
         </div>
     );
 };

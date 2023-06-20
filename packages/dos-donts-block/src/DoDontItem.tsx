@@ -157,7 +157,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                 <RichTextEditor
                     isEditing={editing}
                     value={body}
-                    onBlur={onBodyTextChange}
+                    onTextChange={onBodyTextChange}
                     plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                     placeholder="Add a description"
                 />

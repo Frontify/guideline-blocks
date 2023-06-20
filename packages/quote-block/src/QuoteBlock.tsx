@@ -107,7 +107,6 @@ export const QuoteBlock: FC<BlockProps> = ({ appBridge }) => {
                             placeholder={isEditing ? 'Add your quote text here' : undefined}
                             value={blockSettings.content ?? convertToRteValue(TextStyles.quote)}
                             onTextChange={onChangeContent}
-                            onBlur={onChangeContent}
                             plugins={customPlugins}
                             readonly={!isEditing}
                         />
