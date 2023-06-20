@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, closestCenter } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
-import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
+import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import 'tailwindcss/tailwind.css';
 
 import '@frontify/fondue-tokens/styles';
@@ -69,7 +69,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                     gap,
                 }}
             >
-                <SortableContext items={localItems} strategy={rectSortingStrategy}>
+                <SortableContext items={localItems}>
                     {localItems?.map((animationCurve) => (
                         <SortableCard
                             appBridge={appBridge}

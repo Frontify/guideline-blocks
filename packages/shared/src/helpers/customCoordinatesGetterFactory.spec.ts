@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { KeyboardCoordinateGetter, SensorContext } from '@dnd-kit/core';
-import { customCoordinatesGetterFactory } from './customCoordinatesGetterFactory';
 import { beforeEach, describe, expect, it } from 'vitest';
+import { KeyboardCode, KeyboardCoordinateGetter, SensorContext } from '@dnd-kit/core';
+import { customCoordinatesGetterFactory } from './customCoordinatesGetterFactory';
 
 /**
  * @vitest-environment happy-dom
@@ -24,7 +24,7 @@ describe('customCoordinatesGetterFactory', () => {
     });
 
     it('should respond to ArrowRight', () => {
-        const result = customCoordinatesGetter(new KeyboardEvent('keydown', { code: 'ArrowRight' }), {
+        const result = customCoordinatesGetter(new KeyboardEvent(KeyboardCode.Right, { code: KeyboardCode.Right }), {
             active,
             currentCoordinates: initialCoordinates,
             context,
@@ -33,7 +33,7 @@ describe('customCoordinatesGetterFactory', () => {
     });
 
     it('should respond to ArrowLeft', () => {
-        const result = customCoordinatesGetter(new KeyboardEvent('keydown', { code: 'ArrowLeft' }), {
+        const result = customCoordinatesGetter(new KeyboardEvent(KeyboardCode.Left, { code: KeyboardCode.Left }), {
             active,
             currentCoordinates: initialCoordinates,
             context,
@@ -42,7 +42,7 @@ describe('customCoordinatesGetterFactory', () => {
     });
 
     it('should respond to ArrowDown', () => {
-        const result = customCoordinatesGetter(new KeyboardEvent('keydown', { code: 'ArrowDown' }), {
+        const result = customCoordinatesGetter(new KeyboardEvent(KeyboardCode.Down, { code: KeyboardCode.Down }), {
             active,
             currentCoordinates: initialCoordinates,
             context,
@@ -51,7 +51,7 @@ describe('customCoordinatesGetterFactory', () => {
     });
 
     it('should respond to ArrowUp', () => {
-        const result = customCoordinatesGetter(new KeyboardEvent('keydown', { code: 'ArrowUp' }), {
+        const result = customCoordinatesGetter(new KeyboardEvent(KeyboardCode.Up, { code: KeyboardCode.Up }), {
             active,
             currentCoordinates: initialCoordinates,
             context,
@@ -60,7 +60,7 @@ describe('customCoordinatesGetterFactory', () => {
     });
 
     it('should return undefined for other keys', () => {
-        const result = customCoordinatesGetter(new KeyboardEvent('keydown', { code: 'KeyA' }), {
+        const result = customCoordinatesGetter(new KeyboardEvent(KeyboardCode.Enter, { code: KeyboardCode.Enter }), {
             active,
             currentCoordinates: initialCoordinates,
             context,

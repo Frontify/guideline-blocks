@@ -9,12 +9,17 @@ import { KeyboardSensorOptions } from '@dnd-kit/core';
  * @vitest-environment happy-dom
  */
 describe('useDndSensors', () => {
-    it('should create a PointerSensor and a KeyboardSensor with a coordinate getter', () => {
+    it('should create a PointerSensor and a KeyboardSensor with a coordinate getter function and custom keyboardCodes', () => {
         const { result } = renderHook(() => useDndSensors());
         expect(result.current.length).toBe(2);
         expect(result.current[0].sensor.name).toBe('PointerSensor');
         expect(result.current[1].sensor.name).toBe('KeyboardSensor');
         expect(typeof (result.current[1].options as KeyboardSensorOptions).coordinateGetter).toBe('function');
+        expect((result.current[1].options as KeyboardSensorOptions).keyboardCodes).toEqual({
+            start: ['Space', 'Enter'],
+            cancel: [],
+            end: ['Space', 'Enter', 'Escape'],
+        });
     });
 
     it('should create a PointerSensor and a KeyboardSensor with a coordinate getter with gap', () => {
