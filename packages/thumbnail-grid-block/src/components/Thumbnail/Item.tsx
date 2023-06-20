@@ -32,8 +32,7 @@ export const Item = ({
 }: ThumbnailItemProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const { id, title, description, altText } = item;
-    const defaultAltText = altText ?? image?.title ?? image?.fileName ?? '';
-    const [localAltText, setLocalAltText] = useState<string>('');
+    const [localAltText, setLocalAltText] = useState<string | undefined>();
 
     const onOpenFileDialog = () => {
         setUploadedId(id);
@@ -90,7 +89,6 @@ export const Item = ({
                 toolbarItems={[
                     showGrabHandle
                         ? {
-                              onClick: () => console.log('todo: handle drag (wait for shared component)'),
                               icon: <IconArrowMove16 />,
                               tooltip: 'Drag to move',
                               draggableProps,
@@ -108,8 +106,8 @@ export const Item = ({
                         setShowAltTextMenu={setShowAltTextMenu}
                         showAltTextMenu={showAltTextMenu}
                         setLocalAltText={setLocalAltText}
-                        defaultAltText={defaultAltText}
-                        onSave={() => updateItemWith('altText', localAltText, id)}
+                        defaultAltText={altText}
+                        onSave={() => updateItemWith('altText', localAltText ?? '', id)}
                         localAltText={localAltText}
                     />
                     <Image
@@ -118,7 +116,7 @@ export const Item = ({
                         isLoading={isLoading}
                         isEditing={isEditing}
                         thumbnailStyles={thumbnailStyles}
-                        defaultAltText={defaultAltText}
+                        defaultAltText={altText}
                         onOpenFileDialog={onOpenFileDialog}
                         onFilesDrop={onFilesDrop}
                         onAssetChooserClick={onAssetChooserClick}

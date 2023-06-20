@@ -10,7 +10,7 @@ export type Settings = {
     linkObject?: Link;
     image?: string;
     name?: string;
-    altText: string;
+    altText?: string;
     description?: string;
     alignment: Alignment;
     backgroundColor: Color;

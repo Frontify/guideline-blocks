@@ -26,10 +26,6 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const imageStyle = getImageStyle(blockSettings, image.width);
     const { isFocused, focusProps } = useFocusRing();
-    const props = {
-        ...focusProps,
-        className: joinClassNames(['tw-flex tw-w-full tw-outline-none tw-rounded tw-m-1.5', isFocused && FOCUS_STYLE]),
-    };
 
     const Image = (
         <img
@@ -41,6 +37,11 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
             style={imageStyle}
         />
     );
+
+    const props = {
+        ...focusProps,
+        className: joinClassNames(['tw-rounded', isFocused && FOCUS_STYLE]),
+    };
 
     return (
         <>
@@ -77,10 +78,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
     return (
         <div
             data-test-id="image-block-img-wrapper"
-            className={joinClassNames([
-                'tw-relative tw-flex tw-h-auto tw-overflow-hidden',
-                mapAlignmentClasses[blockSettings.alignment],
-            ])}
+            className={joinClassNames(['tw-relative tw-flex tw-h-auto', mapAlignmentClasses[blockSettings.alignment]])}
         >
             <div className="tw-flex tw-items-start">
                 <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">

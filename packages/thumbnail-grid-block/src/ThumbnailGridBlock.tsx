@@ -94,13 +94,19 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         setLoadingIds(loadingIds.filter((i) => i !== (loadingId ?? id)));
         setUploadId(undefined);
     };
-    const addItem = (id: string, type: keyof Thumbnail, value: string) => {
-        setItemsState((old) => [...old, { id, [type]: value }]); // cannot use saveItems here, as it overwrites the array when adding multiple image
-        setBlockSettings({ items: [...itemsState, { id, [type]: value }] });
+    const addItem = (id: string, type: keyof Thumbnail, value: string, altText?: string) => {
+        setItemsState((old) => [...old, { id, [type]: value, altText }]); // cannot use saveItems here, as it overwrites the array when adding multiple image
+
+        setBlockSettings({ items: [...itemsState, { id, [type]: value, altText }] });
     };
-    const updateItems = (id: string, type: keyof Thumbnail, value: string) => {
+
+    const updateItems = (id: string, type: keyof Thumbnail, value: string, altText?: string) => {
+        if (altText) {
+            return saveItems(itemsState.map((item) => (item.id === id ? { ...item, [type]: value, altText } : item)));
+        }
         saveItems(itemsState.map((item) => (item.id === id ? { ...item, [type]: value } : item)));
     };
+
     const updateItemWith = async (type: keyof Thumbnail, value: string | Asset[], updateId?: string) => {
         if (typeof value === 'string' && type !== 'image') {
             updateId ? updateItems(updateId, type, value) : addItem(generateRandomId(), type, value);
@@ -110,12 +116,13 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
             return;
         }
         for (const [index, file] of value.entries()) {
+            const altText = file.title ?? file.fileName;
             if (index === 0 && updateId) {
                 await updateImage(file, updateId, updateId);
-                updateItems(updateId, type, updateId);
+                updateItems(updateId, type, updateId, altText);
             } else {
                 const newId = generateRandomId();
-                addItem(newId, type, newId);
+                addItem(newId, type, newId, altText);
                 setLoadingIds((ids) =>
                     index === value.length - 1 ? [...ids.filter((i) => i !== 'placeholder'), newId] : [...ids, newId]
                 );

@@ -17,10 +17,10 @@ import React from 'react';
 type EditAltTextFlyoutProps = {
     setShowAltTextMenu: (showAltTextMenu: boolean) => void;
     showAltTextMenu: boolean;
-    setLocalAltText: (localAltText: string) => void;
-    defaultAltText: string;
+    setLocalAltText: (localAltText?: string) => void;
+    defaultAltText?: string;
     onSave: () => void;
-    localAltText: string;
+    localAltText?: string;
 };
 
 export const EditAltTextFlyout = ({
@@ -60,7 +60,7 @@ export const EditAltTextFlyout = ({
                         icon: <IconCheckMark16 />,
                         children: 'Save',
                         onClick: () => {
-                            onSave;
+                            onSave();
                             setShowAltTextMenu(false);
                         },
                     },
@@ -80,7 +80,7 @@ export const EditAltTextFlyout = ({
                 }}
             >
                 <TextInput
-                    value={localAltText ?? defaultAltText}
+                    value={localAltText || defaultAltText}
                     onChange={setLocalAltText}
                     id="alt-text-input"
                     placeholder="Enter alt text"

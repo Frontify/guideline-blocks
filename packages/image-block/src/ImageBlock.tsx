@@ -41,7 +41,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
-    const [localAltText, setLocalAltText] = useState('');
+    const [localAltText, setLocalAltText] = useState<string | undefined>();
 
     const [isLoading, setIsLoading] = useState(false);
     const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
@@ -99,8 +99,13 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     }, [doneAll, uploadResults]);
 
     const onRemoveAsset = () => {
-        setBlockSettings({ altText: '' });
+        saveLocalAltText(undefined);
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
+    };
+
+    const saveLocalAltText = (altText?: string) => {
+        setBlockSettings({ altText });
+        setLocalAltText(altText);
     };
 
     return (
@@ -173,7 +178,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                             showAltTextMenu={showAltTextMenu}
                             setLocalAltText={setLocalAltText}
                             defaultAltText={blockSettings.altText}
-                            onSave={() => setBlockSettings({ altText: localAltText })}
+                            onSave={() => setBlockSettings({ altText: localAltText || undefined })}
                             localAltText={localAltText}
                         />
                     </BlockItemWrapper>

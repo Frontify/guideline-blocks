@@ -10,7 +10,7 @@ type ImageProps = {
     thumbnailStyles: ThumbnailStylesProps;
     image: Asset | undefined;
     isLoading: boolean;
-    defaultAltText: string;
+    defaultAltText?: string;
     isEditing: boolean;
     onOpenFileDialog: () => void;
     onFilesDrop: (files: FileList, id?: string) => void;
