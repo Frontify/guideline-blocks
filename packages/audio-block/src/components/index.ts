@@ -2,3 +2,4 @@
 
 export * from './BlockAttachments';
 export * from './UploadPlaceholder';
+export * from './AudioPlayer';
