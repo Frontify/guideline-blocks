@@ -3,11 +3,10 @@
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import type { FC } from 'react';
 import React from 'react';
-import { RichTextEditor } from '@frontify/guideline-blocks-shared';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { Settings } from '../../types';
+import { RichText } from './RichText';
 import { PLACEHOLDER } from './constant';
-
+import { Settings } from '../../types';
 import '@frontify/fondue-tokens/styles';
 import 'tailwindcss/tailwind.css';
 
@@ -22,13 +21,13 @@ export const Headline: FC<BlockProps> = ({ appBridge }) => {
     const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
 
     return (
-        <RichTextEditor
-            id={appBridge.getBlockId().toString()}
+        <RichText
             isEditing={isEditing}
-            value={content ?? DEFAULT_VALUE}
-            placeholder={PLACEHOLDER}
+            appBridge={appBridge}
+            content={content}
             onTextChange={onTextChange}
-            onBlur={onTextChange}
+            defaultValue={DEFAULT_VALUE}
+            placeholder={PLACEHOLDER}
         />
     );
 };

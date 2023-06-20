@@ -4,8 +4,8 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import type { FC } from 'react';
 import React from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/guideline-blocks-shared';
 import { Settings } from '../../types';
+import { RichText } from './RichText';
 
 export const ModalHeadline: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
@@ -15,13 +15,13 @@ export const ModalHeadline: FC<BlockProps> = ({ appBridge }) => {
     const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
 
     return (
-        <RichTextEditor
-            id={appBridge.getBlockId().toString()}
+        <RichText
             isEditing={isEditing}
-            value={modalcontent}
-            placeholder={'note / description'}
+            appBridge={appBridge}
+            content={modalcontent}
             onTextChange={onTextChange}
-            onBlur={onTextChange}
+            defaultValue={''}
+            placeholder={'note / description'}
         />
     );
 };
