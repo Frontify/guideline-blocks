@@ -84,11 +84,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         }
     };
 
-    const onTitleChange = (newTitle: string) =>
-        newTitle !== blockSettings.title && setBlockSettings({ title: newTitle });
+    const onTitleChange = (title: string) => title !== blockSettings.title && setBlockSettings({ title });
 
-    const onDescriptionChange = (newDescription: string) =>
-        newDescription !== blockSettings.description && setBlockSettings({ description: newDescription });
+    const onDescriptionChange = (description: string) =>
+        description !== blockSettings.description && setBlockSettings({ description });
 
     useEffect(() => {
         if (selectedFiles) {
