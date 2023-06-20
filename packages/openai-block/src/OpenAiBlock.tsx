@@ -15,6 +15,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [currentSearchIndex, setCurrentSearchIndex] = useState<number>(0);
+    const [navigationMode, setNavigationMode] = useState<'current' | 'history'>('current');
 
     const blockId = appBridge.getBlockId();
 
@@ -46,7 +47,18 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
         setIsLoading(false);
         // Reset search index to latest
         setCurrentSearchIndex(searches.length);
+        setNavigationMode('current');
     }, [doTheApiThings, inputValue, searches]);
+
+    const handlePrev = useCallback(() => {
+        setCurrentSearchIndex((curr) => curr - 1);
+        setNavigationMode('history');
+    }, []);
+
+    const handleNext = useCallback(() => {
+        setCurrentSearchIndex((curr) => curr + 1);
+        setNavigationMode('history');
+    }, []);
 
     const currentSearch = searches[currentSearchIndex];
 
@@ -68,16 +80,26 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </Button>
             </div>
 
-            {searches.length > 0 ? <SearchResult searchData={currentSearch} /> : <EmptySearchResults />}
+            {searches.length > 0 ? (
+                <SearchResult
+                    index={currentSearchIndex}
+                    searchData={currentSearch}
+                    shouldAnimateResult={navigationMode === 'current'}
+                />
+            ) : (
+                <EmptySearchResults />
+            )}
             {searches.length > 1 && (
-                <div className="tw-flex tw-justify-between ">
-                    {currentSearchIndex > 0 && (
-                        <ControlButton onClick={() => setCurrentSearchIndex((curr) => curr - 1)}>
+                <div className="tw-flex tw-justify-between">
+                    {currentSearchIndex > 0 ? (
+                        <ControlButton onClick={handlePrev}>
                             <IconArrowLeft16 /> Previous Question
                         </ControlButton>
+                    ) : (
+                        <div />
                     )}
                     {currentSearchIndex < searches.length - 1 && (
-                        <ControlButton onClick={() => setCurrentSearchIndex((curr) => curr + 1)}>
+                        <ControlButton onClick={handleNext}>
                             Next Question
                             <IconArrowRight16 />
                         </ControlButton>

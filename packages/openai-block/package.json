@@ -35,6 +35,7 @@
         "@frontify/fondue-tokens": "3.2.1",
         "@frontify/guideline-blocks-settings": "0.26.8",
         "@frontify/guideline-blocks-shared": "workspace:*",
+        "framer-motion":"10.12.16",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     }
