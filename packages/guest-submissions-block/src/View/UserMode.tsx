@@ -25,6 +25,7 @@ import { Settings } from '../types';
 import { AssetSubmission } from '../module/AssetSubmission/AssetSubmission';
 import { assetSubmissionDTO } from '../module/AssetSubmission/AssetSubmissionDTO';
 import { Headline, ModalHeadline } from '../Components/Headline';
+import { Status } from '../module/FileUpload/Contract/Status';
 
 export const CARD_CONTAINER =
     'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4';
@@ -113,7 +114,11 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                                 Cancel
                                             </Button>
                                         </div>
-                                        <Button icon={<IconArrowRight24 />} type={ButtonType.Submit}>
+                                        <Button
+                                            icon={<IconArrowRight24 />}
+                                            type={ButtonType.Submit}
+                                            disabled={fileList.some((file) => file.status === Status.PENDING)}
+                                        >
                                             Submit
                                         </Button>
                                     </div>

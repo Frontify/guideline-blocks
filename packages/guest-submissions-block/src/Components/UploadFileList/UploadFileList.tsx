@@ -19,9 +19,18 @@ const CenterWithGap = 'tw-flex tw-justify-center tw-items-end tw-p-[18px] tw-gap
 export const UploadFileList = ({ entries, onEntryDeletion }: FileUploadListProps) => {
     const [open, setOpen] = useState<boolean>(false);
 
-    const loadingBar = () =>
-        entries.some((item) => item.status === Status.PENDING) && (
-            <LoadingCircle size={LoadingCircleSize.Small} style={LoadingCircleStyle.Progress} />
+    const uploadingBar = () =>
+        entries.some((item) => item.status === Status.PENDING) ? (
+            <>
+                <LoadingCircle size={LoadingCircleSize.Small} style={LoadingCircleStyle.Progress} />{' '}
+                <Text as="p" color="weak" overflow="visible" size="medium" weight="strong">
+                    {entries.length} files uploading
+                </Text>
+            </>
+        ) : (
+            <Text as="p" color="weak" overflow="visible" size="medium" weight="strong">
+                {entries.length} files ready to be submitted
+            </Text>
         );
 
     const getFileList = () => (
@@ -44,10 +53,7 @@ export const UploadFileList = ({ entries, onEntryDeletion }: FileUploadListProps
         <div className={joinClassNames([BackgroundBase, BorderShape, 'tw-border-line-xx-strong'])}>
             <div onClick={() => setOpen(!open)}>
                 <div className={joinClassNames([CenterWithGap, open && 'tw-border-b tw-border-[#08080826] tw-mx-2'])}>
-                    {loadingBar()}
-                    <Text as="p" color="weak" overflow="visible" size="medium" weight="strong">
-                        {entries.length} files uploading
-                    </Text>
+                    {uploadingBar()}
 
                     <div
                         className={joinClassNames([
