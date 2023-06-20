@@ -29,7 +29,7 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
             data-test-id="image-block-img"
             className="tw-flex tw-w-full"
             loading="lazy"
-            src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+            src={image.genericUrl.replace('{width}', `${800 * (window?.devicePixelRatio ?? 1)}`)}
             alt={image.fileName}
             style={imageStyle}
         />

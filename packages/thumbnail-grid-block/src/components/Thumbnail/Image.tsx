@@ -42,7 +42,7 @@ export const Image = ({
                         className="tw-object-scale-down"
                         style={thumbnailStyles.imageStyles}
                         loading="lazy"
-                        src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
+                        src={image.genericUrl.replace('{width}', `${800 * (window?.devicePixelRatio ?? 1)}`)}
                         alt={defaultAltText}
                     />
                 )}
