@@ -25,6 +25,7 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
             const assetSubmissionMetadataConfig = assetSubmissionRequests.find(
                 (submission) => submission.projectId === blockSettings.assetSubmission
             );
+
             if (assetSubmissionMetadataConfig) {
                 const libraryMetadata = await getLibraryById(assetSubmissionMetadataConfig?.projectId);
 
