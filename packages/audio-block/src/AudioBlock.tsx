@@ -12,15 +12,14 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import { TextStyles } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     DownloadButton,
     RichTextEditor,
+    TextStyles,
     convertToRteValue,
     downloadAsset,
-    getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
     isDownloadable,
     joinClassNames,
@@ -28,12 +27,12 @@ import {
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
-import { getRteTitlePlugins } from './helpers/getRteTitlePlugins';
+import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { AUDIO_ID } from './settings';
 import { BlockSettings, TextPosition } from './types';
 
-const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.heading3);
-const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue();
+const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
+const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -42,8 +41,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
-    const [isTitlePending, setIsTitlePending] = useState(false);
-    const [isDescriptionPending, setIsDescriptionPending] = useState(false);
+    const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -53,10 +51,12 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const onRemoveAsset = () => deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(blockSettings.title)) {
+            setUpdateValueOnChange(true);
             onTitleChange(convertToRteValue(TextStyles.heading3, audio.title));
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
+        setUpdateValueOnChange(false);
     };
 
     const openAssetChooser = () => {
@@ -84,25 +84,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         }
     };
 
-    const onTitleChange = (value: string) => {
-        if (value === blockSettings.title) {
-            setIsTitlePending(false);
-        } else {
-            setBlockSettings({ title: value }).finally(() => {
-                setIsTitlePending(false);
-            });
-        }
-    };
+    const onTitleChange = (newTitle: string) =>
+        newTitle !== blockSettings.title && setBlockSettings({ title: newTitle });
 
-    const onDescriptionChange = (value: string) => {
-        if (value === blockSettings.description) {
-            setIsDescriptionPending(false);
-        } else {
-            setBlockSettings({ description: value }).finally(() => {
-                setIsDescriptionPending(false);
-            });
-        }
-    };
+    const onDescriptionChange = (newDescription: string) =>
+        newDescription !== blockSettings.title && setBlockSettings({ description: newDescription });
 
     useEffect(() => {
         if (selectedFiles) {
@@ -151,28 +137,23 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     <div data-test-id="block-title">
                         <RichTextEditor
                             id={`${appBridge.getBlockId().toString()}-title`}
-                            plugins={getRteTitlePlugins()}
+                            plugins={titlePlugins}
                             isEditing={isEditing}
-                            onBlur={onTitleChange}
                             onTextChange={onTitleChange}
                             value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
                             placeholder="Asset name"
-                            onValueChanged={() => setIsTitlePending(true)}
-                            shouldPreventPageLeave={isTitlePending}
+                            updateValueOnChange={updateValueOnChange}
                         />
                     </div>
 
                     <div data-test-id="block-description">
                         <RichTextEditor
                             id={`${appBridge.getBlockId().toString()}-description`}
-                            plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                            plugins={getDescriptionPlugins(appBridge)}
                             isEditing={isEditing}
-                            onBlur={onDescriptionChange}
                             onTextChange={onDescriptionChange}
                             value={blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION}
                             placeholder="Add a description here"
-                            onValueChanged={() => setIsDescriptionPending(true)}
-                            shouldPreventPageLeave={isDescriptionPending}
                         />
                     </div>
                 </div>
