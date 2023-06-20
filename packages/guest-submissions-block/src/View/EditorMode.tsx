@@ -54,7 +54,7 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                     <Button>{blockSettings.buttonText}</Button>
                 </div>
             </div>
-            <div className="tw-rounded tw-bg-base-alt">
+            <div className="tw-p-10 tw-rounded tw-border tw-border-black-10 tw-border-dashed">
                 <LegacyStack padding="l" spacing="s" direction={'column'}>
                     <ModalHeadline appBridge={appBridge} />
                     <Metadata onSubmit={() => null} appBridge={appBridge} />
