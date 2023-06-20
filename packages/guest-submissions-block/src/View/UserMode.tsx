@@ -76,7 +76,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
             </div>
             <Modal width={ModalWidth.Default} onClose={() => setModalOpen(false)} isOpen={modalOpen} isDismissable>
                 <Modal.Body horizontalPadding={false}>
-                    <div className="tw-p-16 tw-pr-115tw-pb-15">
+                    <div className="tw-p-16 tw-pr-14 tw-pb-14">
                         <LegacyStack spacing="s" padding="none" direction="column">
                             <ModalHeadline appBridge={appBridge} />
                             <AssetDropzone onFileUpload={onFileUploadHandler} />
