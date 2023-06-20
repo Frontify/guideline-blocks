@@ -32,7 +32,7 @@ export const Item = ({
 }: ThumbnailItemProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const { id, title, description, altText } = item;
-    const [localAltText, setLocalAltText] = useState<string | undefined>();
+    const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
 
     const onOpenFileDialog = () => {
         setUploadedId(id);
@@ -116,7 +116,7 @@ export const Item = ({
                         isLoading={isLoading}
                         isEditing={isEditing}
                         thumbnailStyles={thumbnailStyles}
-                        defaultAltText={altText}
+                        altText={altText}
                         onOpenFileDialog={onOpenFileDialog}
                         onFilesDrop={onFilesDrop}
                         onAssetChooserClick={onAssetChooserClick}

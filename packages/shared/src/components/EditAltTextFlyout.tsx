@@ -80,7 +80,7 @@ export const EditAltTextFlyout = ({
                 }}
             >
                 <TextInput
-                    value={localAltText || defaultAltText}
+                    value={localAltText}
                     onChange={setLocalAltText}
                     id="alt-text-input"
                     placeholder="Enter alt text"
