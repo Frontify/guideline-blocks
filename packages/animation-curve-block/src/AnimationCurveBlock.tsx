@@ -23,7 +23,8 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
     const [localItems, setLocalItems] = useState<AnimationCurve[]>(content ?? []);
     const isEditing = useEditorState(appBridge);
     const gap = hasCustomSpacing ? spacingCustom : gutterSpacingStyleMap[spacingChoice];
-    const sensors = useDndSensors(parseInt(gap ?? '0'));
+    const gapNumber = parseInt(gap ?? '0');
+    const sensors = useDndSensors(gapNumber, gapNumber);
 
     const deleteAnimationCurve = (id: string) => {
         const newContent = content.filter((animationCurve) => animationCurve.id !== id);

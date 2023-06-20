@@ -176,6 +176,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     isDragging={isDragging}
                     shouldHideWrapper={replaceWithPlaceholder || !editing}
                     shouldHideComponent={replaceWithPlaceholder}
+                    shouldBeShown={isDragging}
                     toolbarItems={[
                         {
                             icon: <IconArrowMove16 />,

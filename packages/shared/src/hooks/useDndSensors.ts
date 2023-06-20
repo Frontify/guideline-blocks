@@ -9,8 +9,8 @@ const keyboardCodes = {
     end: ['Space', 'Enter', 'Escape'],
 };
 
-export const useDndSensors = (gap = 0) => {
-    const customCoordinatesGetter = customCoordinatesGetterFactory(gap);
+export const useDndSensors = (columnGap = 0, rowGap = 0) => {
+    const customCoordinatesGetter = customCoordinatesGetterFactory(columnGap, rowGap);
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {

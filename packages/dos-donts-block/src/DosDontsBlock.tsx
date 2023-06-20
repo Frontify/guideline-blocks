@@ -88,7 +88,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusValue,
     } = blockSettings;
 
-    const sensors = useDndSensors();
+    const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
+    const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
+    const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
     const { dontIconAsset, doIconAsset, itemImages } = blockAssets;
     const [localItems, setLocalItems] = useState<Item[]>(items);
 
@@ -311,10 +313,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
               ][columns - 1];
 
     const activeItem = localItems.find((x) => x.id === activeId);
-
-    const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
-
-    const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
 
     return (
         <>
