@@ -1,39 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import {
-    AlignCenterPlugin,
-    AlignJustifyPlugin,
-    AlignLeftPlugin,
-    AlignRightPlugin,
-    BoldPlugin,
-    IconArrowCircleUp20,
-    IconImageStack20,
-    IconTrashBin16,
-    ItalicPlugin,
-    LoadingCircle,
-    PluginComposer,
-    ResetFormattingPlugin,
-    SoftBreakPlugin,
-    StrikethroughPlugin,
-    TextStylePlugin,
-    TextStyles,
-    UnderlinePlugin,
-} from '@frontify/fondue';
-import {
-    BlockItemWrapper,
-    DownloadButton,
-    RichTextEditor,
-    TextStylePluginsWithoutImage,
-    TextStylesWithoutImage,
-    convertToRteValue,
-    downloadAsset,
-    getDefaultPluginsWithLinkChooser,
-    hasRichTextValue,
-    isDownloadable,
-    joinClassNames,
-} from '@frontify/guideline-blocks-shared';
 import {
     Asset,
     AssetChooserObjectType,
@@ -46,14 +12,27 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
+import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
+import {
+    DownloadButton,
+    RichTextEditor,
+    TextStyles,
+    convertToRteValue,
+    downloadAsset,
+    hasRichTextValue,
+    isDownloadable,
+    joinClassNames,
+} from '@frontify/guideline-blocks-shared';
+import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import { BlockSettings, TextPosition } from './types';
+import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';
+import { getDescriptionPlugins, titlePlugins } from './helpers/plugins';
 import { AUDIO_ID } from './settings';
-import { BlockAttachments, UploadPlaceholder } from './components';
-import { useEffect, useMemo, useState } from 'react';
+import { BlockSettings, TextPosition } from './types';
 
-const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.heading3);
-const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue();
+const DEFAULT_CONTENT_TITLE = convertToRteValue(TextStyles.imageTitle);
+const DEFAULT_CONTENT_DESCRIPTION = convertToRteValue(TextStyles.imageCaption);
 
 export const AudioBlock = ({ appBridge }: BlockProps) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -62,37 +41,22 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
-
-    const { title, description, downloadable, positioning, security } = blockSettings;
+    const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
         onUploadProgress: () => !isLoading && setIsLoading(true),
     });
 
-    const customTitlePlugins = useMemo(() => {
-        return new PluginComposer()
-            .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })])
-            .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
-            .setPlugin([
-                new AlignLeftPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignCenterPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignRightPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignJustifyPlugin({ validTypes: TextStylesWithoutImage }),
-                new ResetFormattingPlugin(),
-            ]);
-    }, []);
-
-    const saveTitle = (title: string) => setBlockSettings({ title });
-    const saveDescription = (description: string) => setBlockSettings({ description });
-
     const onRemoveAsset = () => deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     const updateAudioAsset = async (audio: Asset) => {
-        if (!hasRichTextValue(title)) {
-            saveTitle(convertToRteValue(TextStyles.heading3, audio.title));
+        if (!hasRichTextValue(blockSettings.title)) {
+            setUpdateValueOnChange(true);
+            onTitleChange(convertToRteValue(TextStyles.heading3, audio.title));
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
+        setUpdateValueOnChange(false);
     };
 
     const openAssetChooser = () => {
@@ -120,6 +84,11 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         }
     };
 
+    const onTitleChange = (title: string) => title !== blockSettings.title && setBlockSettings({ title });
+
+    const onDescriptionChange = (description: string) =>
+        description !== blockSettings.description && setBlockSettings({ description });
+
     useEffect(() => {
         if (selectedFiles) {
             setIsLoading(true);
@@ -139,47 +108,19 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
         <div
             data-test-id="audio-block"
             className={joinClassNames([
-                'tw-flex tw-flex-col tw-gap-3',
-                positioning === TextPosition.Below ? 'tw-mt-5' : 'tw-flex-col-reverse',
+                'tw-flex tw-gap-3',
+                blockSettings.positioning === TextPosition.Below ? 'tw-flex-col' : 'tw-flex-col-reverse',
             ])}
         >
             {audio ? (
-                <BlockItemWrapper
-                    shouldHideWrapper={!isEditing}
-                    toolbarFlyoutItems={[
-                        [
-                            {
-                                title: 'Replace with upload',
-                                icon: <IconArrowCircleUp20 />,
-                                onClick: openFileDialog,
-                            },
-                            {
-                                title: 'Replace with asset',
-                                icon: <IconImageStack20 />,
-                                onClick: openAssetChooser,
-                            },
-                        ],
-                    ]}
-                    toolbarItems={[
-                        { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: () => onRemoveAsset() },
-                    ]}
-                >
-                    {isLoading ? (
-                        <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
-                            <LoadingCircle />
-                        </div>
-                    ) : (
-                        <audio
-                            data-test-id="audio-block-audio-tag"
-                            key={audio.id}
-                            controls
-                            className="tw-w-full tw-outline-none"
-                            controlsList="nodownload"
-                            preload="metadata"
-                            src={audio.genericUrl}
-                        />
-                    )}
-                </BlockItemWrapper>
+                <AudioPlayer
+                    audio={audio}
+                    isEditing={isEditing}
+                    isLoading={isLoading}
+                    openFileDialog={openFileDialog}
+                    openAssetChooser={openAssetChooser}
+                    onRemoveAsset={onRemoveAsset}
+                />
             ) : (
                 isEditing && (
                     <UploadPlaceholder
@@ -195,29 +136,29 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     <div data-test-id="block-title">
                         <RichTextEditor
                             id={`${appBridge.getBlockId().toString()}-title`}
+                            plugins={titlePlugins}
                             isEditing={isEditing}
-                            value={title ?? DEFAULT_CONTENT_TITLE}
+                            onTextChange={onTitleChange}
+                            value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
                             placeholder="Asset name"
-                            plugins={customTitlePlugins}
-                            updateValueOnChange
-                            onBlur={saveTitle}
+                            updateValueOnChange={updateValueOnChange}
                         />
                     </div>
 
                     <div data-test-id="block-description">
                         <RichTextEditor
                             id={`${appBridge.getBlockId().toString()}-description`}
-                            plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                            plugins={getDescriptionPlugins(appBridge)}
                             isEditing={isEditing}
-                            value={description ?? DEFAULT_CONTENT_DESCRIPTION}
+                            onTextChange={onDescriptionChange}
+                            value={blockSettings.description ?? DEFAULT_CONTENT_DESCRIPTION}
                             placeholder="Add a description here"
-                            onBlur={saveDescription}
                         />
                     </div>
                 </div>
                 {audio && (
                     <div className="tw-flex tw-gap-2">
-                        {isDownloadable(security, downloadable, assetDownloadEnabled) && (
+                        {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
                             <DownloadButton onDownload={() => downloadAsset(audio)} />
                         )}
                         <BlockAttachments appBridge={appBridge} />
