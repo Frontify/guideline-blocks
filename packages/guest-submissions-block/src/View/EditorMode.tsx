@@ -9,6 +9,7 @@ import { useBlockSettings } from '@frontify/app-bridge';
 import { AssetSubmission } from '../module/AssetSubmission/AssetSubmission';
 import { getLibraryById } from '../module/Library/Library';
 import { Headline, ModalHeadline } from '../Components/Headline';
+import { CARD_CONTAINER } from './UserMode';
 
 export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -40,11 +41,11 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                 });
             }
         })();
-    }, [blockSettings.assetSubmission, setBlockSettings]);
+    }, [blockSettings.assetSubmission]);
 
     return (
         <LegacyStack padding="s" spacing="s" direction={'column'}>
-            <div className="tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4">
+            <div className={CARD_CONTAINER}>
                 <Headline appBridge={appBridge} />
                 <div>
                     <Button>{blockSettings.buttonText}</Button>

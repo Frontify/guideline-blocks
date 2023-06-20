@@ -26,6 +26,8 @@ import { AssetSubmission } from '../module/AssetSubmission/AssetSubmission';
 import { assetSubmissionDTO } from '../module/AssetSubmission/AssetSubmissionDTO';
 import { Headline, ModalHeadline } from '../Components/Headline';
 
+export const CARD_CONTAINER =
+    'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4';
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     const [{ buttonText, assetSubmissionToken, assetSubmissionId }] = useBlockSettings<Settings>(appBridge);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -61,8 +63,6 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
         setFileList(updatedUploadList);
     };
 
-    const CARD_CONTAINER =
-        'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4';
     return (
         <>
             <div className={CARD_CONTAINER}>
