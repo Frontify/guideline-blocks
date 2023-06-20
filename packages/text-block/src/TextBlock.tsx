@@ -25,7 +25,7 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
             gap={gap}
             plugins={getPlugins(appBridge, columnNumber, gap)}
             placeholder={PLACEHOLDER}
-            onTextChange={(value: string) => setBlockSettings({ content: value })}
+            onTextChange={(content: string) => setBlockSettings({ content })}
         />
     );
 };
