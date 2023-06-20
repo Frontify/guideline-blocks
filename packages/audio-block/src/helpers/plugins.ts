@@ -19,14 +19,25 @@ import {
     UnderlinePlugin,
     UnorderedListPlugin,
 } from '@frontify/fondue';
-import { ButtonPlugin, LinkPlugin, TextStylePluginsWithoutImage, TextStylesWithoutImage } from '../plugins';
+import { AllTextStylePlugins, AllTextStyles, ButtonPlugin, LinkPlugin } from '@frontify/guideline-blocks-shared';
 
-export const getDefaultPluginsWithLinkChooser = (appBridge: AppBridgeBlock) => {
-    return new PluginComposer()
+export const titlePlugins = new PluginComposer()
+    .setPlugin([new SoftBreakPlugin(), new TextStylePlugin({ textStyles: AllTextStylePlugins })])
+    .setPlugin([new BoldPlugin(), new ItalicPlugin(), new UnderlinePlugin(), new StrikethroughPlugin()])
+    .setPlugin([
+        new AlignLeftPlugin({ validTypes: AllTextStyles }),
+        new AlignCenterPlugin({ validTypes: AllTextStyles }),
+        new AlignRightPlugin({ validTypes: AllTextStyles }),
+        new AlignJustifyPlugin({ validTypes: AllTextStyles }),
+        new ResetFormattingPlugin(),
+    ]);
+
+export const getDescriptionPlugins = (appBridge: AppBridgeBlock): PluginComposer =>
+    new PluginComposer()
         .setPlugin(
             new SoftBreakPlugin(),
             new TextStylePlugin({
-                textStyles: TextStylePluginsWithoutImage,
+                textStyles: AllTextStylePlugins,
             })
         )
         .setPlugin(
@@ -40,14 +51,13 @@ export const getDefaultPluginsWithLinkChooser = (appBridge: AppBridgeBlock) => {
                 new CodePlugin(),
             ],
             [
-                new AlignLeftPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignCenterPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignRightPlugin({ validTypes: TextStylesWithoutImage }),
-                new AlignJustifyPlugin({ validTypes: TextStylesWithoutImage }),
+                new AlignLeftPlugin({ validTypes: AllTextStyles }),
+                new AlignCenterPlugin({ validTypes: AllTextStyles }),
+                new AlignRightPlugin({ validTypes: AllTextStyles }),
+                new AlignJustifyPlugin({ validTypes: AllTextStyles }),
                 new UnorderedListPlugin(),
                 new CheckboxListPlugin(),
                 new OrderedListPlugin(),
                 new ResetFormattingPlugin(),
             ]
         );
-};
