@@ -46,7 +46,9 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
     return (
         <LegacyStack padding="s" spacing="s" direction={'column'}>
             <div className={CARD_CONTAINER}>
-                <Headline appBridge={appBridge} />
+                <div className={'tw-w-2/3'}>
+                    <Headline appBridge={appBridge} />
+                </div>
                 <div>
                     <Button>{blockSettings.buttonText}</Button>
                 </div>

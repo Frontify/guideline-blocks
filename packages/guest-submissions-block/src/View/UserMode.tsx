@@ -67,7 +67,9 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     return (
         <>
             <div className={CARD_CONTAINER}>
-                <Headline appBridge={appBridge} />
+                <div className={'tw-w-2/3'}>
+                    <Headline appBridge={appBridge} />
+                </div>
                 <div>
                     <Button onClick={() => setModalOpen(!modalOpen)}>{buttonText}</Button>
                 </div>
