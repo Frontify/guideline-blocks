@@ -15,7 +15,7 @@ export const settings = async () => {
                 id: 'assetSubmission',
                 type: 'dropdown',
                 label: 'Library',
-                info: 'You can choose from libraries which are enabled for guest asset upload. The setting can be found in the Libraries.',
+                info: 'Can’t find your library? Turn on “Asset Submissions” in the settings of your library.',
                 size: DropdownSize.Large,
                 placeholder: 'Choose a Submission Request',
                 choices: async () => {
@@ -64,7 +64,7 @@ export const settings = async () => {
                 id: 'disclaimer',
                 type: 'switch',
                 defaultValue: true,
-                info: 'Show or Hide the disclaimer Notice',
+                info: 'Turn on the disclaimer to require users to accept it before submitting the form.',
                 label: 'Disclaimer',
             },
         ],
@@ -85,13 +85,13 @@ export const settings = async () => {
                 id: 'copyrightStatus',
                 type: 'switch',
                 defaultValue: false,
-                label: 'CopyrightStatus',
+                label: 'Copyright Status',
             },
             {
                 id: 'copyrightNotice',
                 type: 'switch',
                 defaultValue: false,
-                label: 'CopyrightNotice',
+                label: 'Copyright Notice',
             },
         ],
     });
