@@ -28,14 +28,6 @@ describe('AssetSubmissionDTO', () => {
             },
             custom: [
                 {
-                    propertyId: 'email',
-                    value: 'Iffgasdf.ch',
-                },
-                {
-                    propertyId: 'disclaimer',
-                    value: 'Checked',
-                },
-                {
                     propertyId: 'eyJpZGVudGlmaWVyIjoxMiwidHlwsdZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
                     value: 'text',
                 },
