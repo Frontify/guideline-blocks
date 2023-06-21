@@ -90,6 +90,7 @@ export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void 
                                 <Metadata
                                     appBridge={appBridge}
                                     onSubmit={async (formData) => {
+                                        await setBlockSettings({ uploadedFiles: fileList.length });
                                         AssetSubmission.createAssetSubmissions({
                                             requestId: assetSubmissionId,
                                             token: assetSubmissionToken,
@@ -100,7 +101,7 @@ export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void 
                                             },
                                             metadata: assetSubmissionDTO(formData),
                                         });
-                                        await setBlockSettings({ uploadedFiles: fileList.length });
+
                                         setFileList([]);
 
                                         setModalOpen(false);
