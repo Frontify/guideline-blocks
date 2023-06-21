@@ -12,7 +12,7 @@ export type RichTextEditorProps = {
     plugins?: PluginComposer;
     showSerializedText?: boolean;
     updateValueOnChange?: boolean;
-    onTextChange: (value: string) => void;
+    onTextChange?: (value: string) => void;
 };
 
 export type SerializedTextProps = {
