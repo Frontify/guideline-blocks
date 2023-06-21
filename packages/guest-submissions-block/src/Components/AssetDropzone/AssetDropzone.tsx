@@ -60,13 +60,12 @@ export const AssetDropzone: FC<AssetDropzoneProps> = ({ onFileUpload }) => {
             <input type="file" className="tw-hidden" onChange={handleFileChange} ref={fileInputRef} multiple />
             <div className={contentCenter}>
                 <LegacyStack padding="none" spacing="s" align="center">
-                    <IconPlus24 size={IconSize.Size24} />
+                    <div className={'tw-text-[var(--text-color-weak)]'}>
+                        <IconPlus24 size={IconSize.Size24} />
+                    </div>
                     <LegacyStack padding="none" spacing="xxs" direction="column" align="start">
-                        <Text as="p" color="weak" overflow="visible" size="medium" weight="strong">
-                            Upload from your disk
-                        </Text>
                         <Text as="p" color="weak" overflow="visible" size="medium" weight="default">
-                            Drop your files here
+                            Choose or drag files here …
                         </Text>
                     </LegacyStack>
                 </LegacyStack>
