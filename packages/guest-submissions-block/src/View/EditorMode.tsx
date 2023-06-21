@@ -10,6 +10,7 @@ import { AssetSubmission } from '../module/AssetSubmission/AssetSubmission';
 import { getLibraryById } from '../module/Library/Library';
 import { Headline, ModalHeadline } from '../Components/Headline';
 import { CARD_CONTAINER } from './UserMode';
+import { SuccessPage } from './SuccessPage';
 
 export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -59,6 +60,9 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                     <ModalHeadline appBridge={appBridge} />
                     <Metadata onSubmit={() => null} appBridge={appBridge} />
                 </LegacyStack>
+            </div>
+            <div className="tw-p-10 tw-rounded tw-border tw-border-black-10 tw-border-dashed">
+                <SuccessPage appBridge={appBridge} />
             </div>
         </LegacyStack>
     );

@@ -8,10 +8,15 @@ export type Settings = {
     assetSubmissionId: string;
 
     assetSubmission: string;
+
+    // Rich Text
     content?: string;
     modalcontent?: string;
-    buttonText: string;
+    successContent?: string;
 
+    uploadedFiles?: number;
+
+    buttonText: string;
     // Default Metadata
     name: boolean;
     email: boolean;

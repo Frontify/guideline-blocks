@@ -26,11 +26,13 @@ import { AssetSubmission } from '../module/AssetSubmission/AssetSubmission';
 import { assetSubmissionDTO } from '../module/AssetSubmission/AssetSubmissionDTO';
 import { Headline, ModalHeadline } from '../Components/Headline';
 import { Status } from '../module/FileUpload/Contract/Status';
+import { BlockRoutes } from './Router';
 
 export const CARD_CONTAINER =
     'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-8';
-export const UserMode: FC<BlockProps> = ({ appBridge }) => {
-    const [{ buttonText, assetSubmissionToken, assetSubmissionId }] = useBlockSettings<Settings>(appBridge);
+export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void }> = ({ appBridge, setView }) => {
+    const [{ buttonText, assetSubmissionToken, assetSubmissionId }, setBlockSettings] =
+        useBlockSettings<Settings>(appBridge);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [fileList, setFileList] = useState<QueryFile[] | (QueryFile & File)[]>([]);
 
@@ -87,10 +89,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                             {fileList.length > 0 && (
                                 <Metadata
                                     appBridge={appBridge}
-                                    onSubmit={(formData) => {
-                                        setModalOpen(false);
-
-                                        // We gad a response of ids and need to
+                                    onSubmit={async (formData) => {
                                         AssetSubmission.createAssetSubmissions({
                                             requestId: assetSubmissionId,
                                             token: assetSubmissionToken,
@@ -101,7 +100,11 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
                                             },
                                             metadata: assetSubmissionDTO(formData),
                                         });
+                                        await setBlockSettings({ uploadedFiles: fileList.length });
                                         setFileList([]);
+
+                                        setModalOpen(false);
+                                        setView(BlockRoutes.SUCCESS_PAGE);
                                     }}
                                 >
                                     <Divider color="rgb(234, 235, 235)" />

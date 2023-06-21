@@ -5,10 +5,12 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useEditorState } from '@frontify/app-bridge';
 import { EditorMode } from './EditorMode';
 import { UserMode } from './UserMode';
+import { SuccessPage } from './SuccessPage';
 
-enum BlockRoutes {
+export enum BlockRoutes {
     'EDITOR_MODE' = 'EDITOR_MODE',
     'VIEW_MODE' = 'VIEW_MODE',
+    'SUCCESS_PAGE' = 'SUCCESS_PAGE',
 }
 
 export const Router: FC<BlockProps> = ({ appBridge }) => {
@@ -17,7 +19,8 @@ export const Router: FC<BlockProps> = ({ appBridge }) => {
 
     const viewComponents: Record<BlockRoutes, ReactElement> = {
         EDITOR_MODE: <EditorMode appBridge={appBridge} />,
-        VIEW_MODE: <UserMode appBridge={appBridge} />,
+        VIEW_MODE: <UserMode appBridge={appBridge} setView={setCurrentView} />,
+        SUCCESS_PAGE: <SuccessPage appBridge={appBridge} />,
     };
 
     useEffect(() => {
