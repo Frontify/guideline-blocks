@@ -61,3 +61,16 @@ export function cosineSimilarity(A: number[], B: number[]): number {
 
     return dotProductAB / (magnitudeA * magnitudeB);
 }
+
+export const getWordCount = (text: string) => {
+    // Replace newline characters with spaces
+    const textWithoutNewline = text.replace(/\n/g, ' ');
+
+    // Split the string into words using spaces as separators and filter out any empty strings
+    const words = textWithoutNewline.split(' ').filter((word) => {
+        return word.length > 0;
+    });
+
+    // Return the number of words
+    return words.length;
+};

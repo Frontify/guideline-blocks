@@ -5,7 +5,7 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ControlButton, EmptySearchResults, SearchResult } from './components';
 import 'tailwindcss/tailwind.css';
-import { cosineSimilarity, splitText } from './helper';
+import { cosineSimilarity, getWordCount, splitText } from './helper';
 import { Configuration, OpenAIApi } from 'openai';
 import { OPENAI_API_KEY } from './const-private';
 import { mergeDeep, useBlockSettings } from '@frontify/app-bridge';
@@ -72,14 +72,43 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const currentSearch = searches[currentSearchIndex];
 
+    const getTextFromBlocks = () => {
+        const newSplitTexts = [];
+        let textInProgress = '';
+        let wordCountOfTextInProgress = 0;
+        const blocks = Array.from(document.querySelectorAll('.block')) as HTMLDivElement[];
+        for (const block of blocks) {
+            const wordCountOfBlockToAdd = getWordCount(block.innerText);
+            if (wordCountOfTextInProgress + wordCountOfBlockToAdd < 500) {
+                textInProgress += `\n\n${block.innerText}`;
+                wordCountOfTextInProgress += wordCountOfBlockToAdd;
+            } else {
+                newSplitTexts.push(textInProgress);
+                if (wordCountOfBlockToAdd > 500) {
+                    const subpartsOfBlock = splitText(block.innerText, 500);
+                    for (const part of subpartsOfBlock) {
+                        newSplitTexts.push(part);
+                    }
+                    textInProgress = '';
+                    wordCountOfTextInProgress = 0;
+                } else {
+                    textInProgress = block.innerText;
+                    wordCountOfTextInProgress = wordCountOfBlockToAdd;
+                }
+            }
+        }
+        if (textInProgress) {
+            newSplitTexts.push(textInProgress);
+        }
+        return newSplitTexts;
+    };
+
     const createPageEmbeddings = async () => {
         if (pageEmbeddings.length > 0) {
             return;
         }
 
-        const pageContent = document.querySelector('.page-content') as HTMLDivElement;
-        const pageContextText = pageContent.innerText;
-        const splitTexts = splitText(pageContextText, 500);
+        const splitTexts = getTextFromBlocks();
         const embeddingResponse = await openai.createEmbedding({
             input: splitTexts,
             model: 'text-embedding-ada-002',
@@ -103,7 +132,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                 }))
                 .sort((a, b) => b.similarity - a.similarity);
 
-            const topSimilarity = similarities.slice(0, Math.min(5, similarities.length));
+            const topSimilarity = similarities.slice(0, Math.min(2, similarities.length));
             const chatGPTResponse = await openai.createChatCompletion({
                 model: 'gpt-3.5-turbo',
                 temperature: 1,
@@ -115,7 +144,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                     },
                     {
                         role: 'user',
-                        content: `Only use the provided context to generate the answer, nothing else. Do not add extra information to the context. Do not use your own trained data to add to the context. Do not try to justify your answers. If the answer is not in the context, strictly say "Sorry, I could not find any information on that.". If the question is not a question, or does not make sense, just respons with "Sorry, I could not find any information on that.". Make sure the answer is less than 300 words. Provided context to use: ${topSimilarity
+                        content: `Only use the provided context to generate the answer, nothing else. Do not mention that there is a provided context. Do not add extra information to the context. Do not use your own trained data to add to the context. Do not try to justify your answers. If the answer is not in the context, strictly say "Sorry, I could not find any information on that.". If the question is not a question, or does not make sense, just respons with "Sorry, I could not find any information on that.". Make sure the answer is less than 300 words. Provided context to use: ${topSimilarity
                             .map((similarity) => similarity.text)
                             .join('\n\n')}.
 
