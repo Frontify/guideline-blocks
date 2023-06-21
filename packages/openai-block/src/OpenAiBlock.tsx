@@ -8,8 +8,8 @@ import 'tailwindcss/tailwind.css';
 import { cosineSimilarity, splitText } from './helper';
 import { Configuration, OpenAIApi } from 'openai';
 import { OPENAI_API_KEY } from './const';
-import { useBlockSettings } from '@frontify/app-bridge';
-import { Settings } from './settings';
+import { mergeDeep, useBlockSettings } from '@frontify/app-bridge';
+import { DEFAULT_VALUES, Settings } from './settings';
 
 export type SearchData = { query: string; result: Result | null; error: string | null };
 
@@ -30,6 +30,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [questionEmbedding, setQuestionEmbedding] = useState<{ text: string; embedding: number[] }>();
 
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    // mergeDeep required because blockSetting defaults don't seem to be applied
     const {
         isPersonalityCustom,
         personalityChoice,
@@ -37,7 +38,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
         showHistory,
         isAnimationEnabled,
         animationSpeed,
-    } = blockSettings;
+    } = mergeDeep<Settings>(DEFAULT_VALUES, blockSettings);
     const chatPersonality = isPersonalityCustom ? personalityCustom : personalityChoice;
 
     const blockId = appBridge.getBlockId();
@@ -172,7 +173,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                     index={currentSearchIndex}
                     searchData={currentSearch}
                     shouldAnimateResult={navigationMode === 'current' && isAnimationEnabled}
-                    animationSpeed={animationSpeed}
+                    animationSpeed={parseInt(animationSpeed)}
                 />
             ) : (
                 <EmptySearchResults />
