@@ -15,9 +15,9 @@ export const settings = async () => {
                 id: 'assetSubmission',
                 type: 'dropdown',
                 label: 'Library',
-                info: 'You can choose from libraries which are enabled for guest asset upload. The setting can be found in the Libraries.',
+                info: 'Can’t find your library? Turn on “Asset Submissions” in the settings of your library.',
                 size: DropdownSize.Large,
-                placeholder: 'Choose a Submission Request',
+                placeholder: 'Choose a library...',
                 choices: async () => {
                     return assetSubmissionRequests.map((submission) => ({
                         value: submission.projectId,
@@ -26,7 +26,6 @@ export const settings = async () => {
                 },
             },
         ],
-        'Custom Metadata': defineCustomMetadataEntries(libraries),
         Card: [
             {
                 id: 'buttonText',
@@ -36,35 +35,12 @@ export const settings = async () => {
                 placeholder: 'Button Label',
             },
         ],
-        test: [
-            {
-                id: 'testCheck',
-                type: 'checklist',
-                defaultValue: [''],
-                choices: [{ id: 'asdfdsasdf-checkbox-aggaag', label: 'label' }],
-                showClearAndSelectAllButtons: false,
-                columns: 1,
-            },
-            {
-                id: 'asdfdsasdf-required-asdfdsasdf',
-                type: 'switch',
-                label: 'Required',
-                size: 'small',
-            },
-            {
-                id: 'asdfasdfdsasdf-label-asdfdsasdfasdf',
-                type: 'input',
-                label: 'Custom Label',
-                inputType: 'text',
-                placeholder: 'Enter a custom label',
-            },
-        ],
         Form: [
             {
                 id: 'disclaimer',
                 type: 'switch',
                 defaultValue: true,
-                info: 'Show or Hide the disclaimer Notice',
+                info: 'Turn on the disclaimer to require users to accept it before submitting the form.',
                 label: 'Disclaimer',
             },
         ],
@@ -94,5 +70,6 @@ export const settings = async () => {
                 label: 'CopyrightNotice',
             },
         ],
+        'Custom Metadata': defineCustomMetadataEntries(libraries),
     });
 };
