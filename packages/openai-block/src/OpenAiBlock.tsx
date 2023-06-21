@@ -89,7 +89,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                 }))
                 .sort((a, b) => b.similarity - a.similarity);
 
-            const topSimilarity = similarities.slice(0, Math.min(2, similarities.length));
+            const topSimilarity = similarities.slice(0, Math.min(5, similarities.length));
             const chatGPTResponse = await openai.createChatCompletion({
                 model: 'gpt-3.5-turbo',
                 temperature: 1,
@@ -97,10 +97,11 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                 messages: [
                     {
                         role: 'user',
-                        content: `
-                        Only use the provided context to generate the answer, nothing else. Do not add extra information to the context. Do not use your own trained data to add to the context. Do not try to justify your answers. If the answer is not in the context, strictly say "Sorry, I could not find any information on that.". If the question is not a question, or does not make sense, just respons with "Sorry, I could not find any information on that.". Make sure the answer is less than 300 words. Context to use: ${topSimilarity
+                        content: `Only use the provided context to generate the answer, nothing else. Do not add extra information to the context. Do not use your own trained data to add to the context. Do not try to justify your answers. If the answer is not in the context, strictly say "Sorry, I could not find any information on that.". If the question is not a question, or does not make sense, just respons with "Sorry, I could not find any information on that.". Make sure the answer is less than 300 words. Provided context to use: ${topSimilarity
                             .map((similarity) => similarity.text)
-                            .join('\n\n')}
+                            .join('\n\n')}.
+
+                            To answer my question please only and only use informations in the provided context above.
                         My question: ${questionEmbedding.text}`,
                     },
                 ],
