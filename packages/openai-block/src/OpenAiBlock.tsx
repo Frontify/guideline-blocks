@@ -7,7 +7,7 @@ import { ControlButton, EmptySearchResults, SearchResult } from './components';
 import 'tailwindcss/tailwind.css';
 import { cosineSimilarity, splitText } from './helper';
 import { Configuration, OpenAIApi } from 'openai';
-import { OPENAI_API_KEY } from './const';
+import { OPENAI_API_KEY } from './const-private';
 import { mergeDeep, useBlockSettings } from '@frontify/app-bridge';
 import { DEFAULT_VALUES, Settings } from './settings';
 
