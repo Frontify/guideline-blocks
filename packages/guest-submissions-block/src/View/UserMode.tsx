@@ -28,7 +28,7 @@ import { Headline, ModalHeadline } from '../Components/Headline';
 import { Status } from '../module/FileUpload/Contract/Status';
 
 export const CARD_CONTAINER =
-    'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-4';
+    'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-8';
 export const UserMode: FC<BlockProps> = ({ appBridge }) => {
     const [{ buttonText, assetSubmissionToken, assetSubmissionId }] = useBlockSettings<Settings>(appBridge);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -76,7 +76,7 @@ export const UserMode: FC<BlockProps> = ({ appBridge }) => {
             </div>
             <Modal width={ModalWidth.Default} onClose={() => setModalOpen(false)} isOpen={modalOpen} isDismissable>
                 <Modal.Body horizontalPadding={false}>
-                    <div className="tw-p-6">
+                    <div className="tw-p-16 tw-pr-14 tw-pb-14">
                         <LegacyStack spacing="s" padding="none" direction="column">
                             <ModalHeadline appBridge={appBridge} />
                             <AssetDropzone onFileUpload={onFileUploadHandler} />
