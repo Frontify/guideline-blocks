@@ -4,34 +4,6 @@ import { SettingBlock } from '@frontify/guideline-blocks-settings';
 import { Security } from './types';
 
 /**
- * Returns segment controls for global security settings.
- *
- * @param {string} id custom id for the setting block
- *
- * @returns {SettingBlock} Returns
- */
-
-export const getSecurityGlobalControlSetting = (id?: string): SettingBlock => {
-    const securityId = getSecurityGlobalControlId(id);
-    return {
-        id: securityId,
-        type: 'segmentedControls',
-        defaultValue: Security.Global,
-        helperText: 'Change global settings here.',
-        choices: [
-            {
-                value: Security.Global,
-                label: 'Global Settings',
-            },
-            {
-                value: Security.Custom,
-                label: 'Custom',
-            },
-        ],
-    };
-};
-
-/**
  * Returns the downloadable security settings.
  *
  * @param {string} id custom id for the setting block
@@ -56,6 +28,6 @@ export const getSecurityDownloadableSetting = (options?: SecurityDownloadableSet
     };
 };
 
-const getSecurityGlobalControlId = (id?: string): string => {
+export const getSecurityGlobalControlId = (id?: string): string => {
     return id ? id : 'security';
 };
