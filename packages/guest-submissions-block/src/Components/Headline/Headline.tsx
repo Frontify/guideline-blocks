@@ -11,7 +11,7 @@ import '@frontify/fondue-tokens/styles';
 import 'tailwindcss/tailwind.css';
 
 const DEFAULT_VALUE =
-    '[{"type":"heading1","children":[{"text":"Headline","textStyle":"heading1"}]},{"type":"p","children":[{"text":"Subheadline for the Submission.","textStyle":"p"}]}]';
+    '[{"type":"heading3","children":[{"text":"Title of the submission block","textStyle":"heading3"}]},{"type":"p","children":[{"text":"Subtitle of the submission block","textStyle":"p"}]}]';
 
 export const Headline: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);

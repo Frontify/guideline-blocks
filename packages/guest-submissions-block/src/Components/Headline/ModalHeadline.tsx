@@ -12,7 +12,8 @@ export const ModalHeadline: FC<BlockProps> = ({ appBridge }) => {
 
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { modalcontent } = blockSettings;
-    const onTextChange = (value: string) => value !== blockSettings.content && setBlockSettings({ content: value });
+    const onTextChange = (value: string) =>
+        value !== blockSettings.modalcontent && setBlockSettings({ modalcontent: value });
 
     return (
         <RichText
