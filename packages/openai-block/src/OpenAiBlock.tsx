@@ -9,7 +9,7 @@ import { cosineSimilarity, getWordCount, splitText } from './helper';
 import { Configuration, OpenAIApi } from 'openai';
 import { OPENAI_API_KEY } from './const-private';
 import { mergeDeep, useBlockSettings } from '@frontify/app-bridge';
-import { DEFAULT_VALUES, Settings } from './settings';
+import { CHAT_PERSONALITIES, DEFAULT_VALUES, Settings } from './settings';
 
 export type SearchData = { query: string; result: Result | null; error: string | null };
 
@@ -38,6 +38,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
         showHistory,
         isAnimationEnabled,
         animationSpeed,
+        shouldUseEmojis,
     } = mergeDeep<Settings>(DEFAULT_VALUES, blockSettings);
     const chatPersonality = isPersonalityCustom ? personalityCustom : personalityChoice;
 
@@ -45,20 +46,40 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     const TEXT_ID = `${blockId}-open-ai-input`;
 
+    const reset = useCallback(() => {
+        setInputValue('');
+        setQuestionEmbedding(undefined);
+        setIsLoading(false);
+        // Reset search index to latest
+        setCurrentSearchIndex(searches.length);
+        setNavigationMode('current');
+    }, [searches]);
+
     const handleSubmit = useCallback(async () => {
         if (inputValue === '') {
             return;
         }
         setIsLoading(true);
+        try {
+            const questionEmbeddingResponse = await openai.createEmbedding({
+                input: inputValue,
+                model: 'text-embedding-ada-002',
+            });
 
-        const questionEmbeddingResponse = await openai.createEmbedding({
-            input: inputValue,
-            model: 'text-embedding-ada-002',
-        });
-
-        const _questionEmbedding = questionEmbeddingResponse.data.data[0].embedding;
-        setQuestionEmbedding({ text: inputValue, embedding: _questionEmbedding });
-    }, [inputValue]);
+            const _questionEmbedding = questionEmbeddingResponse.data.data[0].embedding;
+            setQuestionEmbedding({ text: inputValue, embedding: _questionEmbedding });
+        } catch (error) {
+            setSearches([
+                ...searches,
+                {
+                    query: inputValue || 'Unable to answer question',
+                    result: null,
+                    error: 'Unable to answer question at this time',
+                },
+            ]);
+            reset();
+        }
+    }, [inputValue, reset, searches]);
 
     const handlePrev = useCallback(() => {
         setCurrentSearchIndex((curr) => curr - 1);
@@ -107,17 +128,28 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
         if (pageEmbeddings.length > 0) {
             return;
         }
-
-        const splitTexts = getTextFromBlocks();
-        const embeddingResponse = await openai.createEmbedding({
-            input: splitTexts,
-            model: 'text-embedding-ada-002',
-        });
-        const _pageEmbeddings = embeddingResponse.data.data.map((embedding, i) => ({
-            text: splitTexts[i],
-            embedding: embedding.embedding,
-        }));
-        setPageEmbeddings(_pageEmbeddings);
+        try {
+            const splitTexts = getTextFromBlocks();
+            const embeddingResponse = await openai.createEmbedding({
+                input: splitTexts,
+                model: 'text-embedding-ada-002',
+            });
+            const _pageEmbeddings = embeddingResponse.data.data.map((embedding, i) => ({
+                text: splitTexts[i],
+                embedding: embedding.embedding,
+            }));
+            setPageEmbeddings(_pageEmbeddings);
+        } catch (error) {
+            setSearches([
+                ...searches,
+                {
+                    query: inputValue || 'Unable to answer question',
+                    result: null,
+                    error: 'Unable to answer question at this time',
+                },
+            ]);
+            reset();
+        }
     };
 
     useEffect(() => {
@@ -125,36 +157,39 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
             return;
         }
         const generateAnswer = async () => {
-            const similarities = pageEmbeddings
-                .map((pageEmbedding) => ({
-                    text: pageEmbedding.text,
-                    similarity: cosineSimilarity(questionEmbedding.embedding, pageEmbedding.embedding),
-                }))
-                .sort((a, b) => b.similarity - a.similarity);
-
-            const topSimilarity = similarities.slice(0, Math.min(2, similarities.length));
-            const chatGPTResponse = await openai.createChatCompletion({
-                model: 'gpt-3.5-turbo',
-                temperature: 1,
-                max_tokens: 500,
-                messages: [
-                    {
-                        role: 'system',
-                        content: `Answer all prompts as if you are a ${chatPersonality}`,
-                    },
-                    {
-                        role: 'user',
-                        content: `Only use the provided context to generate the answer, nothing else. Do not mention that there is a provided context. Do not add extra information to the context. Do not use your own trained data to add to the context. Do not try to justify your answers. If the answer is not in the context, strictly say "Sorry, I could not find any information on that.". If the question is not a question, or does not make sense, just respons with "Sorry, I could not find any information on that.". Make sure the answer is less than 300 words. Provided context to use: ${topSimilarity
-                            .map((similarity) => similarity.text)
-                            .join('\n\n')}.
-
-                            To answer my question please only and only use informations in the provided context above.
-                        My question: ${questionEmbedding.text}`,
-                    },
-                ],
-            });
-
             try {
+                const similarities = pageEmbeddings
+                    .map((pageEmbedding) => ({
+                        text: pageEmbedding.text,
+                        similarity: cosineSimilarity(questionEmbedding.embedding, pageEmbedding.embedding),
+                    }))
+                    .sort((a, b) => b.similarity - a.similarity);
+
+                const topSimilarity = similarities.slice(0, Math.min(2, similarities.length));
+                const chatGPTResponse = await openai.createChatCompletion({
+                    model: 'gpt-3.5-turbo',
+                    temperature: 1,
+                    max_tokens: 500,
+                    messages: [
+                        {
+                            role: 'user',
+                            content: `Answer this prompt as if you are a ${chatPersonality}. ${
+                                chatPersonality !== CHAT_PERSONALITIES[0]
+                                    ? 'Your personality should be very very extreme and dramatic.'
+                                    : ''
+                            } Only use the provided context to generate the answer, nothing else. Do not add extra information to the context. Do not use your own trained data to add to the context. Do not try to justify your answers. If the answer is not in the context, strictly say "Sorry, I could not find any information on that.". Make sure the answer is less than 300 words.\n----------\n Provided context to use: ${topSimilarity
+                                .map((similarity) => similarity.text)
+                                .join('\n\n')}.
+                            \n----------\n
+                            To answer my question please only and only use informations in the provided context above. ${
+                                shouldUseEmojis ? 'Use a LOT of emojis.' : ''
+                            }.
+                            \n----------\n
+                        My question: ${questionEmbedding.text}`,
+                        },
+                    ],
+                });
+
                 setSearches([
                     ...searches,
                     {
@@ -169,15 +204,10 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                     { query: questionEmbedding.text, result: null, error: 'Unable to answer question at this time' },
                 ]);
             }
-            setInputValue('');
-            setQuestionEmbedding(undefined);
-            setIsLoading(false);
-            // Reset search index to latest
-            setCurrentSearchIndex(searches.length);
-            setNavigationMode('current');
+            reset();
         };
         generateAnswer();
-    }, [pageEmbeddings, questionEmbedding, searches, chatPersonality]);
+    }, [pageEmbeddings, questionEmbedding, searches, chatPersonality, reset, shouldUseEmojis]);
 
     return (
         <div data-test-id="openai-block" className="tw-flex tw-flex-col tw-gap-y-6">

@@ -9,6 +9,7 @@ enum SettingsKeys {
     isAnimationEnabled = 'isAnimationEnabled',
     animationSpeed = 'animationSpeed',
     showHistory = 'showHistory',
+    shouldUseEmojis = 'shouldUseEmojis',
 }
 
 export type Settings = {
@@ -18,9 +19,10 @@ export type Settings = {
     [SettingsKeys.isAnimationEnabled]: boolean;
     [SettingsKeys.animationSpeed]: string;
     [SettingsKeys.showHistory]: boolean;
+    [SettingsKeys.shouldUseEmojis]: boolean;
 };
 
-const CHAT_PERSONALITIES = [
+export const CHAT_PERSONALITIES = [
     'Chat Assistant',
     '18th Century Poet',
     'Jolly Wizard',
@@ -36,6 +38,7 @@ export const DEFAULT_VALUES: Settings = {
     isAnimationEnabled: true,
     animationSpeed: '300',
     showHistory: true,
+    shouldUseEmojis: false,
 };
 
 export const settings = defineSettings({
@@ -63,6 +66,13 @@ export const settings = defineSettings({
                     defaultValue: DEFAULT_VALUES.personalityChoice,
                 },
             ],
+        },
+        {
+            id: SettingsKeys.shouldUseEmojis,
+            label: 'Use Emojis',
+            info: 'Whether the response should include emojis.',
+            type: 'switch',
+            defaultValue: DEFAULT_VALUES.shouldUseEmojis,
         },
     ],
     layout: [
