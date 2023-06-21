@@ -8,23 +8,23 @@ type SearchResultProps = {
     searchData: SearchData;
     index: number;
     shouldAnimateResult: boolean;
+    animationSpeed: number;
 };
 
-const container = {
-    hidden: {},
-    show: {
-        transition: {
-            staggerChildren: 0.5,
+export const SearchResult = ({ searchData, index, shouldAnimateResult, animationSpeed }: SearchResultProps) => {
+    const container = {
+        hidden: {},
+        show: {
+            transition: {
+                staggerChildren: 0.5,
+            },
         },
-    },
-};
+    };
 
-const item = {
-    hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0 },
-};
-
-export const SearchResult = ({ searchData, index, shouldAnimateResult }: SearchResultProps) => {
+    const item = {
+        hidden: { opacity: 0, y: 10 },
+        show: { opacity: 1, y: 0, duration: animationSpeed },
+    };
     return (
         <div className="tw-text-l tw-max-h-[400px]">
             {searchData.error ? (

@@ -8,6 +8,8 @@ import 'tailwindcss/tailwind.css';
 import { cosineSimilarity, splitText } from './helper';
 import { Configuration, OpenAIApi } from 'openai';
 import { OPENAI_API_KEY } from './const';
+import { useBlockSettings } from '@frontify/app-bridge';
+import { Settings } from './settings';
 
 export type SearchData = { query: string; result: Result | null; error: string | null };
 
@@ -26,6 +28,17 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [navigationMode, setNavigationMode] = useState<'current' | 'history'>('current');
     const [pageEmbeddings, setPageEmbeddings] = useState<{ text: string; embedding: number[] }[]>([]);
     const [questionEmbedding, setQuestionEmbedding] = useState<{ text: string; embedding: number[] }>();
+
+    const [blockSettings] = useBlockSettings<Settings>(appBridge);
+    const {
+        isPersonalityCustom,
+        personalityChoice,
+        personalityCustom,
+        showHistory,
+        isAnimationEnabled,
+        animationSpeed,
+    } = blockSettings;
+    const chatPersonality = isPersonalityCustom ? personalityCustom : personalityChoice;
 
     const blockId = appBridge.getBlockId();
 
@@ -96,6 +109,10 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                 max_tokens: 500,
                 messages: [
                     {
+                        role: 'system',
+                        content: `Answer all prompts as if you are a ${chatPersonality}`,
+                    },
+                    {
                         role: 'user',
                         content: `Only use the provided context to generate the answer, nothing else. Do not add extra information to the context. Do not use your own trained data to add to the context. Do not try to justify your answers. If the answer is not in the context, strictly say "Sorry, I could not find any information on that.". If the question is not a question, or does not make sense, just respons with "Sorry, I could not find any information on that.". Make sure the answer is less than 300 words. Provided context to use: ${topSimilarity
                             .map((similarity) => similarity.text)
@@ -130,7 +147,7 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
             setNavigationMode('current');
         };
         generateAnswer();
-    }, [pageEmbeddings, questionEmbedding, searches]);
+    }, [pageEmbeddings, questionEmbedding, searches, chatPersonality]);
 
     return (
         <div data-test-id="openai-block" className="tw-flex tw-flex-col tw-gap-y-6">
@@ -154,12 +171,13 @@ export const OpenAiBlock = ({ appBridge }: BlockProps): ReactElement => {
                 <SearchResult
                     index={currentSearchIndex}
                     searchData={currentSearch}
-                    shouldAnimateResult={navigationMode === 'current'}
+                    shouldAnimateResult={navigationMode === 'current' && isAnimationEnabled}
+                    animationSpeed={animationSpeed}
                 />
             ) : (
                 <EmptySearchResults />
             )}
-            {searches.length > 1 && (
+            {searches.length > 1 && showHistory && (
                 <div className="tw-flex tw-justify-between">
                     {currentSearchIndex > 0 ? (
                         <ControlButton onClick={handlePrev}>
