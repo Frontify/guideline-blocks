@@ -16,7 +16,6 @@ export const SuccessPage: FC<BlockProps> = ({ appBridge }) => {
     const { uploadedFiles, successContent: successContent1 } = blockSettings;
     const onTextChange = (value: string) => value !== successContent1 && setBlockSettings({ successContent: value });
 
-    console.log(successContent);
     return (
         <div className="tw-bg-base-alt tw-rounded tw-p-8">
             <Stack direction={'row'} alignItems={'center'}>
