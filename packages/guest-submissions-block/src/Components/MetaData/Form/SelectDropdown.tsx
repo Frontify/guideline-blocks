@@ -48,7 +48,6 @@ export const SelectDropdown = ({
                     },
                 ]}
                 onChange={onInput}
-                placeholder="select item"
                 size={DropdownSize.Small}
                 validation={validation}
             />
