@@ -50,7 +50,7 @@ export const Item = ({
     };
     const onAssetChooserClick = () => openAssetChooser(id);
 
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
     const transformStyle = {
@@ -68,11 +68,11 @@ export const Item = ({
             className={merge([!isEditing && !image && 'tw-hidden', 'tw-w-full tw-h-full tw-bg-white'])}
         >
             <BlockItemWrapper
-                shouldHideWrapper={isDragging || !isEditing}
-                shouldHideComponent={isDragging}
                 isDragging={isDragging}
                 shouldFillContainer={true}
-                shouldBeShown={showAltTextMenu}
+                shouldHideWrapper={isDragging || !isEditing}
+                //shouldHideComponent={isDragging}
+                shouldBeShown={showAltTextMenu || isDragging}
                 toolbarFlyoutItems={[
                     image
                         ? [
@@ -99,10 +99,11 @@ export const Item = ({
                 toolbarItems={[
                     showGrabHandle
                         ? {
-                              onClick: () => console.log('todo: handle drag (wait for shared component)'),
                               icon: <IconArrowMove16 />,
-                              tooltip: 'Drag to move',
+                              tooltip: 'Drag or press ↵ to move',
+                              draggingTooltip: 'Move with ↑↓←→ and confirm with ↵',
                               draggableProps,
+                              setActivatorNodeRef,
                           }
                         : undefined,
                     {

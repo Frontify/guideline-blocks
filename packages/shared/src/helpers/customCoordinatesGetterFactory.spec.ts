@@ -20,7 +20,7 @@ describe('customCoordinatesGetterFactory', () => {
     const active = 'mock-active-id';
     let customCoordinatesGetter: KeyboardCoordinateGetter;
     beforeEach(() => {
-        customCoordinatesGetter = customCoordinatesGetterFactory(gap);
+        customCoordinatesGetter = customCoordinatesGetterFactory(gap, gap);
     });
 
     it('should respond to ArrowRight', () => {
