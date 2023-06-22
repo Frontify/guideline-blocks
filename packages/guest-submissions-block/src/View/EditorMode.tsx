@@ -1,8 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { Button, LegacyStack } from '@frontify/fondue';
+import { LegacyStack } from '@frontify/fondue';
 import { Metadata } from '../Components/MetaData';
 import { Settings } from '../types';
 import { useBlockSettings } from '@frontify/app-bridge';
@@ -11,9 +11,11 @@ import { getLibraryById } from '../module/Library/Library';
 import { Headline, ModalHeadline } from '../Components/Headline';
 import { CARD_CONTAINER } from './UserMode';
 import { SuccessPage } from './SuccessPage';
+import { BlockStyles } from '@frontify/guideline-blocks-shared';
 
 export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [buttonHover, setButtonHover] = useState<boolean>(false);
 
     /**
      * Workaround to store the metadata fields of the library
@@ -45,6 +47,7 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
         })();
     }, [blockSettings.assetSubmission]);
 
+    console.log(BlockStyles.buttonPrimary);
     return (
         <LegacyStack padding="s" spacing="s" direction={'column'}>
             <div className={CARD_CONTAINER}>
@@ -52,7 +55,16 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                     <Headline appBridge={appBridge} />
                 </div>
                 <div>
-                    <Button>{blockSettings.buttonText}</Button>
+                    <button
+                        onMouseEnter={() => setButtonHover(true)}
+                        onMouseLeave={() => setButtonHover(false)}
+                        style={{
+                            ...BlockStyles.buttonPrimary,
+                            ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
+                        }}
+                    >
+                        <span style={{}}>{blockSettings.buttonText}</span>
+                    </button>
                 </div>
             </div>
             <div className="tw-p-10 tw-rounded tw-border tw-border-black-10 tw-border-dashed">

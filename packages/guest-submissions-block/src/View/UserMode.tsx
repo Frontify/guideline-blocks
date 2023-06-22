@@ -27,6 +27,7 @@ import { assetSubmissionDTO } from '../module/AssetSubmission/AssetSubmissionDTO
 import { Headline, ModalHeadline } from '../Components/Headline';
 import { Status } from '../module/FileUpload/Contract/Status';
 import { BlockRoutes } from './Router';
+import { BlockStyles } from '@frontify/guideline-blocks-shared';
 
 export const CARD_CONTAINER =
     'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-8';
@@ -35,6 +36,7 @@ export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void 
         useBlockSettings<Settings>(appBridge);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [fileList, setFileList] = useState<QueryFile[] | (QueryFile & File)[]>([]);
+    const [buttonHover, setButtonHover] = useState<boolean>(false);
 
     const onFileUpdate = (e: MessageEvent<FileUploadResponse>) => {
         setFileList((prevList) =>
@@ -73,7 +75,17 @@ export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void 
                     <Headline appBridge={appBridge} />
                 </div>
                 <div>
-                    <Button onClick={() => setModalOpen(!modalOpen)}>{buttonText}</Button>
+                    <button
+                        onMouseEnter={() => setButtonHover(true)}
+                        onMouseLeave={() => setButtonHover(false)}
+                        style={{
+                            ...BlockStyles.buttonPrimary,
+                            ...(buttonHover ? BlockStyles.buttonPrimary?.hover : null),
+                        }}
+                        onClick={() => setModalOpen(!modalOpen)}
+                    >
+                        {buttonText}
+                    </button>
                 </div>
             </div>
             <Modal width={ModalWidth.Default} onClose={() => setModalOpen(false)} isOpen={modalOpen} isDismissable>
