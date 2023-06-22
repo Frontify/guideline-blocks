@@ -10,7 +10,7 @@ export const BlockItemWrapper = ({
     toolbarFlyoutItems,
     toolbarItems,
     shouldHideWrapper,
-    shouldHideComponent,
+    shouldHideComponent = false,
     isDragging,
     shouldFillContainer,
     outlineOffset = 2,
@@ -39,6 +39,7 @@ export const BlockItemWrapper = ({
 
     return (
         <div
+            tabIndex={0}
             ref={wrapperRef}
             onFocus={() => setIsFlyoutDisabled(false)}
             onPointerEnter={() => setIsFlyoutDisabled(false)}
@@ -50,7 +51,7 @@ export const BlockItemWrapper = ({
             className={joinClassNames([
                 'tw-relative tw-group tw-outline-1 tw-outline-box-selected-inverse',
                 shouldFillContainer && 'tw-flex-1 tw-h-full tw-w-full',
-                !shouldHideWrapper && 'hover:tw-outline focus:tw-outline focus-within:tw-outline',
+                'hover:tw-outline focus:tw-outline focus-within:tw-outline',
                 (isFlyoutOpen || shouldBeShown) && 'tw-outline',
                 shouldHideComponent && 'tw-opacity-0',
             ])}
@@ -62,10 +63,8 @@ export const BlockItemWrapper = ({
                 }}
                 className={joinClassNames([
                     'tw-absolute tw-bottom-[calc(100%-4px)] tw-right-[-3px] tw-w-full tw-opacity-0 tw-z-10',
-                    !shouldHideWrapper &&
-                        'group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
+                    'group-hover:tw-opacity-100 group-focus:tw-opacity-100 focus-within:tw-opacity-100',
                     (isFlyoutOpen || shouldBeShown) && 'tw-opacity-100',
-                    shouldHideWrapper && 'tw-hidden',
                 ])}
             >
                 <Toolbar

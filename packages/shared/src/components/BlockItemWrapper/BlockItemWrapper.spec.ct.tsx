@@ -38,7 +38,7 @@ describe('Block Item Wrapper', () => {
                 <div data-test-id="block-item-wrapper-child" className="tw-w-8 tw-h-8 tw-bg-red-50" />
             </BlockItemWrapper>
         );
-        cy.get(BlockItemWrapperSelector).should('not.have.class', 'hover:tw-outline');
+        cy.get(BlockItemWrapperSelector).should('not.exist');
     });
 
     it('should render the right amount of toolbar items', () => {
@@ -104,6 +104,7 @@ describe('Block Item Wrapper', () => {
         mount(
             <BlockItemWrapper
                 toolbarFlyoutItems={[]}
+                shouldHideComponent={false}
                 toolbarItems={[
                     { icon: <IconMagnifier16 />, onClick: cy.stub(), tooltip: 'Test tooltip' },
                     { icon: <IconMagnifier16 />, onClick: cy.stub(), tooltip: 'Test tooltip' },
@@ -112,8 +113,7 @@ describe('Block Item Wrapper', () => {
                 <div data-test-id="block-item-wrapper-child" className="tw-w-8 tw-h-8 tw-bg-red-50" />
             </BlockItemWrapper>
         );
-        cy.get(BlockItemWrapperSelector).focus();
-        cy.get(ToolbarSelector).should('be.visible');
+        cy.get(BlockItemWrapperSelector).focus().get(ToolbarSelector).should('be.visible');
     });
 
     it('should render the outline and the toolbar if enabled', () => {
