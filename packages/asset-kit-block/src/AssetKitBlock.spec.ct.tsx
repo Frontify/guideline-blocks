@@ -12,7 +12,8 @@ const BLOCK_TITLE = '[data-test-id="block-title"]';
 const BLOCK_TITLE_HTML = '[data-test-id="block-title-rte"]';
 const BLOCK_DESCRIPTION = '[data-test-id="block-description"]';
 const BLOCK_DESCRIPTION_HTML = '[data-test-id="block-description-rte"]';
-const BLOCK_THUMBNAIL = '[data-test-id="block-item-wrapper"]';
+const BLOCK_ITEM_WRAPPER = '[data-test-id="block-item-wrapper"]';
+const BLOCK_THUMBNAIL = '[data-test-id="block-thumbnail"]';
 const BLOCK_THUMBNAIL_IMAGE = '[data-test-id="block-thumbnail-image"]';
 const BLOCK_ITEM_WRAPPER_TOOLBAR_BTN = '[data-test-id="block-item-wrapper-toolbar-btn"]';
 const BLOCK_DOWNLOAD_BTN = '[data-test-id="asset-kit-block-download-button"]';
@@ -90,7 +91,7 @@ describe('AssetKit Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).should('not.exist');
+        cy.get(BLOCK_ITEM_WRAPPER).should('not.exist');
     });
 
     it('should display thumbnails in edit mode if showThumbnails is set to false', () => {
@@ -104,7 +105,7 @@ describe('AssetKit Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).should('have.length', 2);
+        cy.get(BLOCK_ITEM_WRAPPER).should('have.length', 2);
     });
 
     it('should display asset count if enabled', () => {
@@ -294,9 +295,9 @@ describe('AssetKit Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).first().realHover();
+        cy.get(BLOCK_ITEM_WRAPPER).first().realHover();
         cy.get(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).first().click({ force: true });
-        cy.get(BLOCK_THUMBNAIL).should('have.length', 1);
+        cy.get(BLOCK_ITEM_WRAPPER).should('have.length', 1);
     });
 
     it('should display a outline if asset is hover', () => {
@@ -307,8 +308,8 @@ describe('AssetKit Block', () => {
             },
         });
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_THUMBNAIL).first().realHover();
-        cy.get(BLOCK_THUMBNAIL).first().should('have.css', 'outline-style', 'solid');
+        cy.get(BLOCK_ITEM_WRAPPER).first().realHover();
+        cy.get(BLOCK_ITEM_WRAPPER).first().should('have.css', 'outline-style', 'solid');
     });
 
     it('should disable the button if no assets are set', () => {
