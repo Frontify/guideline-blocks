@@ -1,48 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { describe, expect, it } from 'vitest';
-import { getSecurityDownloadableSetting, getSecurityGlobalControlSetting } from './security';
-import { Security } from './types';
-
-describe('getSecurityGlobalControlSetting', () => {
-    it('should return global control setting without id', () => {
-        expect(getSecurityGlobalControlSetting()).toEqual({
-            id: 'security',
-            type: 'segmentedControls',
-            defaultValue: Security.Global,
-            helperText: 'Change global settings here.',
-            choices: [
-                {
-                    value: Security.Global,
-                    label: 'Global Settings',
-                },
-                {
-                    value: Security.Custom,
-                    label: 'Custom',
-                },
-            ],
-        });
-    });
-
-    it('should return global control setting with custom id', () => {
-        expect(getSecurityGlobalControlSetting('customId')).toEqual({
-            id: 'customId',
-            type: 'segmentedControls',
-            defaultValue: Security.Global,
-            helperText: 'Change global settings here.',
-            choices: [
-                {
-                    value: Security.Global,
-                    label: 'Global Settings',
-                },
-                {
-                    value: Security.Custom,
-                    label: 'Custom',
-                },
-            ],
-        });
-    });
-});
+import { getSecurityDownloadableSetting } from './securityDownloadable';
 
 describe('getSecurityDownloadableSetting', () => {
     it('should return downloadable setting without arguments', () => {
