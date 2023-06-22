@@ -27,7 +27,7 @@ export const RichTextEditor = ({
                 placeholder={placeholder}
                 plugins={plugins}
                 updateValueOnChange={updateValueOnChange}
-                onTextChange={(newContent: string) => newContent !== value && onTextChange(newContent)}
+                onTextChange={(newContent: string) => onTextChange && newContent !== value && onTextChange(newContent)}
             />
         );
     }
