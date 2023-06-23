@@ -48,7 +48,7 @@ export type Settings = {
     items: Thumbnail[];
 };
 
-export type ThumbnailItemProps = {
+export type SortableThumbnailItemProps = {
     isEditing: boolean;
     onRemoveAsset: (id: string, imageId?: number) => void;
     showGrabHandle: boolean;
@@ -62,6 +62,14 @@ export type ThumbnailItemProps = {
     setUploadedId: (id: string) => void;
     isLoading: boolean;
     appBridge: AppBridgeBlock;
+};
+
+export type ThumbnailItemProps = SortableThumbnailItemProps & {
+    isDragging?: boolean;
+    setActivatorNodeRef?: (node: HTMLElement | null) => void;
+    replaceWithPlaceholder?: boolean;
+    transformStyle?: Record<string, unknown>;
+    draggableProps?: Record<string, unknown>;
 };
 
 export enum CaptionPosition {

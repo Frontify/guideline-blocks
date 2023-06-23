@@ -23,7 +23,7 @@ import { generateRandomId } from '@frontify/fondue';
 
 import { Settings, Thumbnail } from './types';
 import { getThumbnailStyles } from './helper';
-import { Grid, ImageWrapper, Item, RichTextEditors, UploadPlaceholder } from './components/';
+import { Grid, ImageWrapper, Item, RichTextEditors, SortableItem, UploadPlaceholder } from './components/';
 
 export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
@@ -168,7 +168,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
             >
                 <SortableContext items={itemsState} strategy={rectSortingStrategy}>
                     {itemsState.map((item) => (
-                        <Item
+                        <SortableItem
                             key={item.id}
                             item={item}
                             image={blockAssets?.[item.id]?.[0]}
