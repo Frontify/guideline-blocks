@@ -33,5 +33,5 @@ export const settings = defineSettings({
             ],
         },
     ],
-    security: [getSecurityGlobalControlSetting(), getSecurityDownloadableSetting()],
+    security: [...getSecurityGlobalControlSetting(), getSecurityDownloadableSetting()],
 });

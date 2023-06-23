@@ -184,5 +184,5 @@ export const settings = defineSettings({
             radiusStyleMap: radiusValues,
         }),
     ],
-    security: [getSecurityGlobalControlSetting(), getSecurityDownloadableSetting()],
+    security: [...getSecurityGlobalControlSetting(), getSecurityDownloadableSetting()],
 });
