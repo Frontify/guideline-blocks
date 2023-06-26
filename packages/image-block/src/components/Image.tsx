@@ -9,9 +9,11 @@ import {
     joinClassNames,
     useAttachments,
 } from '@frontify/guideline-blocks-shared';
+import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
 import { getImageStyle } from './helpers';
+import { FOCUS_STYLE } from '@frontify/fondue';
 
 type ImageProps = {
     image: Asset;
@@ -23,6 +25,7 @@ type ImageProps = {
 export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: ImageProps) => {
     const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
     const imageStyle = getImageStyle(blockSettings, image.width);
+    const { isFocused, focusProps } = useFocusRing();
 
     const Image = (
         <img
@@ -30,23 +33,37 @@ export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: I
             className="tw-flex tw-w-full"
             loading="lazy"
             src={image.genericUrl.replace('{width}', `${800 * (window?.devicePixelRatio ?? 1)}`)}
-            alt={image.fileName}
+            alt={blockSettings.altText || undefined}
             style={imageStyle}
         />
     );
+
+    const props = {
+        ...focusProps,
+        className: joinClassNames(['tw-rounded', isFocused && FOCUS_STYLE]),
+    };
+
     return (
         <>
-            {link && !isEditing ? (
-                <a
-                    className="tw-w-full"
-                    href={link.link.link}
-                    target={link.openInNewTab ? '_blank' : undefined}
-                    rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
-                >
-                    {Image}
-                </a>
+            {isEditing ? (
+                Image
             ) : (
-                <button onClick={isEditing ? undefined : () => appBridge.openAssetViewer(image.token)}>{Image}</button>
+                <>
+                    {link ? (
+                        <a
+                            {...props}
+                            href={link.link.link}
+                            target={link.openInNewTab ? '_blank' : undefined}
+                            rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
+                        >
+                            {Image}
+                        </a>
+                    ) : (
+                        <button {...props} onClick={() => appBridge.openAssetViewer(image.token)}>
+                            {Image}
+                        </button>
+                    )}
+                </>
             )}
         </>
     );
@@ -61,13 +78,10 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
     return (
         <div
             data-test-id="image-block-img-wrapper"
-            className={joinClassNames([
-                'tw-relative tw-flex tw-h-auto tw-overflow-hidden',
-                mapAlignmentClasses[blockSettings.alignment],
-            ])}
+            className={joinClassNames(['tw-relative tw-flex tw-h-auto', mapAlignmentClasses[blockSettings.alignment]])}
         >
-            <div className="tw-relative">
-                <div className="tw-absolute tw-top-2 tw-right-2">
+            <div className="tw-flex tw-items-start">
+                <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
                     <div className="tw-flex tw-gap-2">
                         {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
                             <DownloadButton onDownload={() => downloadAsset(image)} />

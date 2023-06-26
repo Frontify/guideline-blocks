@@ -17,6 +17,7 @@ export const DownloadButton = ({ onDownload }: DownloadButtonProps) => {
             triggerElement={
                 <button
                     tabIndex={0}
+                    aria-label="Download"
                     {...focusProps}
                     className={joinClassNames(['tw-outline-none tw-rounded', isFocused && FOCUS_STYLE])}
                     onClick={onDownload}

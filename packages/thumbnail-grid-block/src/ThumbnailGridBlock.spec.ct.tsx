@@ -143,15 +143,11 @@ describe('Thumbnail Grid Block', () => {
             .should('contain.text', 'Title 1', 'Title 2')
             .should('contain.text', 'Test Description 1', 'Test Description 2');
         cy.get(ThumbnailItem).should('have.length', 2);
-        cy.get(ThumbnailImage)
-            .should('have.length', 2)
-            .first()
-            .should('have.attr', 'alt', 'A title')
-            .should('have.attr', 'src', 'https://generic.url');
+        cy.get(ThumbnailImage).should('have.length', 2).first().should('have.attr', 'src', 'https://generic.url');
         cy.get(ThumbnailImagePlaceholder).should('not.exist');
     });
 
-    it('should render the imagestyles if they are provided', () => {
+    it('should render the image styles if they are provided', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: false,
             blockSettings: {

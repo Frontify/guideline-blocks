@@ -18,6 +18,7 @@ import { ImageCaption } from './components/ImageCaption';
 import { IMAGE_ID } from './settings';
 import {
     BlockItemWrapper,
+    EditAltTextFlyout,
     convertToRteValue,
     hasRichTextValue,
     joinClassNames,
@@ -27,6 +28,7 @@ import { useEffect, useState } from 'react';
 import {
     IconArrowCircleUp20,
     IconImageStack20,
+    IconSpeechBubbleQuote20,
     IconTrashBin20,
     LoadingCircle,
     MenuItemStyle,
@@ -38,9 +40,10 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
+    const [showAltTextMenu, setShowAltTextMenu] = useState(false);
+    const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
 
     const [isLoading, setIsLoading] = useState(false);
-    const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'image/*' });
@@ -51,11 +54,10 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const updateImage = async (image: Asset) => {
         if (!hasRichTextValue(blockSettings.name)) {
             setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
-            setUpdateValueOnChange(true);
         }
+        setBlockSettings({ altText: image?.title ?? image?.fileName ?? '' });
         await updateAssetIdsFromKey(IMAGE_ID, [image.id]);
         setIsLoading(false);
-        setUpdateValueOnChange(false);
     };
 
     const openAssetChooser = () => {
@@ -94,6 +96,8 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     }, [doneAll, uploadResults]);
 
     const onRemoveAsset = () => {
+        setBlockSettings({ altText: undefined });
+        setLocalAltText(undefined);
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 
@@ -116,7 +120,17 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                 {image ? (
                     <BlockItemWrapper
                         shouldHideWrapper={!isEditing}
+                        shouldBeShown={showAltTextMenu}
                         toolbarFlyoutItems={[
+                            image
+                                ? [
+                                      {
+                                          title: 'Set alt text',
+                                          onClick: () => setShowAltTextMenu(true),
+                                          icon: <IconSpeechBubbleQuote20 />,
+                                      },
+                                  ]
+                                : [],
                             [
                                 {
                                     title: 'Replace with upload',
@@ -152,6 +166,14 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                                 image={image}
                             />
                         )}
+                        <EditAltTextFlyout
+                            setShowAltTextMenu={setShowAltTextMenu}
+                            showAltTextMenu={showAltTextMenu}
+                            setLocalAltText={setLocalAltText}
+                            defaultAltText={blockSettings.altText}
+                            onSave={() => setBlockSettings({ altText: localAltText || undefined })}
+                            localAltText={localAltText}
+                        />
                     </BlockItemWrapper>
                 ) : (
                     isEditing && (
@@ -164,12 +186,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                     )
                 )}
             </div>
-            <ImageCaption
-                blockId={blockId}
-                isEditing={isEditing}
-                appBridge={appBridge}
-                updateValueOnChange={updateValueOnChange}
-            />
+            <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
         </div>
     );
 };

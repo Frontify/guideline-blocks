@@ -486,7 +486,6 @@ describe('AnimationCurve Block', () => {
         cy.get(FLYOUT_SELECTOR).should('exist');
         cy.get(BLOCK_ITEM_WRAPPER).first().should('have.css', 'outline-width', '1px');
         cy.get(BLOCK_ITEM_WRAPPER_TOOLBAR_BTN).eq(1).should('exist');
-        cy.get(ENDPOINT_SELECTOR).realMouseDown().realMouseMove(0, 50).realMouseUp();
         cy.get(STARTPOINT_SELECTOR).realMouseDown().realMouseMove(0, 50).realMouseUp();
         cy.get(TEXT_INPUT_SELECTOR).eq(0).invoke('val').should('eq', '0.41');
         cy.get(TEXT_INPUT_SELECTOR).eq(1).invoke('val').should('eq', '-0.23');
