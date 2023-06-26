@@ -65,13 +65,7 @@ describe('Thumbnail Grid Block', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: true,
             blockSettings: {
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title',
-                        description: 'Test Description',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -83,13 +77,7 @@ describe('Thumbnail Grid Block', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: false,
             blockSettings: {
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title',
-                        description: 'Test Description',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -103,18 +91,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: true,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title',
-                        description: 'Test Description',
-                    },
-                    {
-                        id: '2',
-                        title: 'Title',
-                        description: 'Test Description',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -129,20 +106,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: false,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                    {
-                        id: '2',
-                        title: 'Title 2',
-                        description: 'Test Description 2',
-                        image: '2',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
             },
             blockAssets: {
                 ['1']: [AssetDummy.with(1)],
@@ -164,14 +128,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: false,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
                 height: '50%',
                 radiusValue: '12px',
                 hasRadius: false,
@@ -203,15 +160,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: true,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                        altText: 'A custom alt text',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
             },
             blockAssets: {
                 ['1']: [AssetDummy.with(1)],
@@ -220,7 +169,7 @@ describe('Thumbnail Grid Block', () => {
         mount(<ThumbnailGridBlockWithStubs />);
         cy.get(ThumbnailImage)
             .first()
-            .should('have.attr', 'alt', 'A custom alt text')
+            .should('have.attr', 'alt', 'A custom alt text 1')
             .should('have.attr', 'src', 'https://generic.url');
         cy.get(ThumbnailImage).first().click();
     });
@@ -231,14 +180,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: true,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
                 imagePosition: CaptionPosition.Left,
                 verticalImageAlignment: VerticalAlignment.Center,
                 horizontalImageAlignment: HorizontalAlignment.Left,
@@ -257,14 +199,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: false,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
                 imagePosition: CaptionPosition.Above,
                 verticalImageAlignment: VerticalAlignment.Start,
                 horizontalImageAlignment: HorizontalAlignment.Right,
