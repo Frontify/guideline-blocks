@@ -183,6 +183,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                             item={draggedItem}
                             image={blockAssets?.[draggedItem.id]?.[0]}
                             isLoading={loadingIds.includes(draggedItem.id)}
+                            isDragging
                             {...thumbnailProps}
                         />
                     )}

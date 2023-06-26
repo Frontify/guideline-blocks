@@ -67,10 +67,10 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             >
                 <BlockItemWrapper
                     isDragging={isDragging}
-                    shouldHideWrapper={isDragging || !isEditing}
+                    shouldFillContainer={true}
+                    shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
-                    shouldBeShown={isDragging}
-                    shouldFillContainer
+                    shouldBeShown={showAltTextMenu || isDragging}
                     toolbarFlyoutItems={[
                         image
                             ? [
@@ -195,7 +195,7 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                 </BlockItemWrapper>
                 <div
                     className={merge([
-                        !isDragging && 'tw-hidden',
+                        !replaceWithPlaceholder && 'tw-hidden',
                         'tw-absolute tw-left-0 tw-top-0 tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded tw-bg-box-selected-hover tw-h-full tw-w-full',
                     ])}
                 />
