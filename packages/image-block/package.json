@@ -36,6 +36,7 @@
         "@frontify/fondue-tokens": "3.1.0",
         "@frontify/guideline-blocks-settings": "0.27.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
+        "@react-aria/focus": "3.11.0",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     }

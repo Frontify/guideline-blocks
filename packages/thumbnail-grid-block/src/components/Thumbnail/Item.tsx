@@ -1,25 +1,16 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MutableRefObject, useState } from 'react';
+import { useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import {
-    ButtonEmphasis,
-    ButtonStyle,
-    Flyout,
-    FlyoutFooter,
-    FlyoutPlacement,
-    FormControl,
-    HelperPosition,
     IconArrowCircleUp20,
     IconArrowMove16,
-    IconCheckMark16,
     IconImageStack20,
     IconSpeechBubbleQuote20,
     IconTrashBin16,
-    TextInput,
     merge,
 } from '@frontify/fondue';
-import { BlockItemWrapper } from '@frontify/guideline-blocks-shared';
+import { BlockItemWrapper, EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
 import { Image } from './Image';
 import { RichTextEditors } from './RichTextEditors';
 import { ThumbnailItemProps } from '../../types';
@@ -41,8 +32,7 @@ export const Item = ({
 }: ThumbnailItemProps) => {
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const { id, title, description, altText } = item;
-    const defaultAltText = altText ?? image?.title ?? image?.fileName ?? '';
-    const [localAltText, setLocalAltText] = useState<string>('');
+    const [localAltText, setLocalAltText] = useState<string | undefined>(altText);
 
     const onOpenFileDialog = () => {
         setUploadedId(id);
@@ -99,7 +89,6 @@ export const Item = ({
                 toolbarItems={[
                     showGrabHandle
                         ? {
-                              onClick: () => console.log('todo: handle drag (wait for shared component)'),
                               icon: <IconArrowMove16 />,
                               tooltip: 'Drag to move',
                               draggableProps,
@@ -113,73 +102,21 @@ export const Item = ({
                 ]}
             >
                 <div className={thumbnailStyles.captionPositionClassNames} data-test-id="thumbnail-item">
-                    <Flyout
-                        fitContent
-                        isTriggerDisabled
-                        trigger={(_, ref) => (
-                            <div
-                                className="tw-absolute tw-top-0 tw-right-6"
-                                ref={ref as MutableRefObject<HTMLDivElement>}
-                            />
-                        )}
-                        onOpenChange={setShowAltTextMenu}
-                        hug={false}
-                        isOpen={showAltTextMenu}
-                        placement={FlyoutPlacement.BottomLeft}
-                        legacyFooter={false}
-                        fixedFooter={
-                            <FlyoutFooter
-                                buttons={[
-                                    {
-                                        style: ButtonStyle.Default,
-                                        emphasis: ButtonEmphasis.Default,
-                                        children: 'Cancel',
-                                        onClick: () => {
-                                            setLocalAltText(defaultAltText);
-                                            setShowAltTextMenu(false);
-                                        },
-                                    },
-                                    {
-                                        style: ButtonStyle.Default,
-                                        emphasis: ButtonEmphasis.Strong,
-                                        icon: <IconCheckMark16 />,
-                                        children: 'Save',
-                                        onClick: () => {
-                                            updateItemWith('altText', localAltText, id);
-                                            setShowAltTextMenu(false);
-                                        },
-                                    },
-                                ]}
-                            />
-                        }
-                    >
-                        <div className="tw-flex tw-flex-col tw-p-6 tw-max-w-[20rem]">
-                            <FormControl
-                                label={{
-                                    children: 'Alt text',
-                                    htmlFor: 'alt-text-input',
-                                }}
-                                helper={{
-                                    text: 'The best alt text describes the most relevant content of the image.',
-                                    position: HelperPosition.After,
-                                }}
-                            >
-                                <TextInput
-                                    value={localAltText ?? defaultAltText}
-                                    onChange={setLocalAltText}
-                                    id="alt-text-input"
-                                    placeholder="Enter alt text"
-                                />
-                            </FormControl>
-                        </div>
-                    </Flyout>
+                    <EditAltTextFlyout
+                        setShowAltTextMenu={setShowAltTextMenu}
+                        showAltTextMenu={showAltTextMenu}
+                        setLocalAltText={setLocalAltText}
+                        defaultAltText={altText}
+                        onSave={() => updateItemWith('altText', localAltText ?? '', id)}
+                        localAltText={localAltText}
+                    />
                     <Image
                         id={id}
                         image={image}
                         isLoading={isLoading}
                         isEditing={isEditing}
                         thumbnailStyles={thumbnailStyles}
-                        defaultAltText={defaultAltText}
+                        altText={altText}
                         onOpenFileDialog={onOpenFileDialog}
                         onFilesDrop={onFilesDrop}
                         onAssetChooserClick={onAssetChooserClick}
