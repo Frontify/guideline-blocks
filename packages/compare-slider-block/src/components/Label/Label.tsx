@@ -18,7 +18,7 @@ export const Label = ({ onBlur, value, isEditing, blockId }: LabelProps) => {
                 id={`${blockId}-title`}
                 isEditing={isEditing}
                 plugins={labelPlugins}
-                onBlur={onBlur}
+                onTextChange={onBlur}
                 placeholder="Label content"
                 value={value}
             />

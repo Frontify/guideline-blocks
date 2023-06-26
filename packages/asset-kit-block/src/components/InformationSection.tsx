@@ -54,7 +54,7 @@ export const InformationSection = ({
                     id="block-title"
                     isEditing={isEditing}
                     plugins={customTitlePlugins}
-                    onBlur={saveTitle}
+                    onTextChange={saveTitle}
                     placeholder="Add a title here ..."
                     showSerializedText={hasRichTextValue(title)}
                     value={title ?? convertToRteValue(TextStyles.heading3)}
@@ -64,7 +64,7 @@ export const InformationSection = ({
                 <RichTextEditor
                     id="block-description"
                     isEditing={isEditing}
-                    onBlur={saveDescription}
+                    onTextChange={saveDescription}
                     placeholder="Add a description here ..."
                     showSerializedText={hasRichTextValue(description)}
                     value={description}
