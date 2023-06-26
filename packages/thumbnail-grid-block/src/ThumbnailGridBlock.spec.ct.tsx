@@ -334,7 +334,7 @@ describe('Thumbnail Grid Block', () => {
         );
         cy.get(ThumbnailCaption).should('have.length', 3);
         cy.get(ThumbnailCaption).first().click();
-        cy.get(BlockItemWrapperBtn).first().click();
+        cy.get(BlockItemWrapperBtn).eq(1).click();
         cy.get(ThumbnailCaption).should('have.length', 2);
     });
 });

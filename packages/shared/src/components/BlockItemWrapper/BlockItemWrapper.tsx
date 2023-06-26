@@ -34,11 +34,6 @@ export const BlockItemWrapper = ({
     };
     const items = toolbarItems?.filter((item): item is ToolbarItem => item !== undefined);
 
-    console.log('shouldHideWrapper', shouldHideWrapper);
-    console.log('shouldHideComponent', shouldHideComponent);
-    console.log('isDragging', isDragging);
-    console.log('shouldFillContainer', shouldFillContainer);
-
     return (
         <div
             tabIndex={0}
@@ -72,7 +67,7 @@ export const BlockItemWrapper = ({
                 ])}
             >
                 <Toolbar
-                    isFlyoutOpen={false}
+                    isFlyoutOpen={isFlyoutOpen}
                     isFlyoutDisabled={isFlyoutDisabled}
                     setIsFlyoutOpen={setIsFlyoutOpen}
                     flyoutItems={toolbarFlyoutItems}
