@@ -18,6 +18,9 @@ type EditAltTextFlyoutProps = {
     setShowAltTextMenu: (showAltTextMenu: boolean) => void;
     showAltTextMenu: boolean;
     setLocalAltText: (localAltText?: string) => void;
+    /*
+     * To reset the alt text to its default value after canceling the flyout.
+     */
     defaultAltText?: string;
     onSave: () => void;
     localAltText?: string;
@@ -49,6 +52,7 @@ export const EditAltTextFlyout = ({
                         style: ButtonStyle.Default,
                         emphasis: ButtonEmphasis.Default,
                         children: 'Cancel',
+                        'data-test-id': 'cancel-button',
                         onClick: () => {
                             setLocalAltText(defaultAltText);
                             setShowAltTextMenu(false);
@@ -59,6 +63,7 @@ export const EditAltTextFlyout = ({
                         emphasis: ButtonEmphasis.Strong,
                         icon: <IconCheckMark16 />,
                         children: 'Save',
+                        'data-test-id': 'save-button',
                         onClick: () => {
                             onSave();
                             setShowAltTextMenu(false);
@@ -68,7 +73,7 @@ export const EditAltTextFlyout = ({
             />
         }
     >
-        <div className="tw-flex tw-flex-col tw-p-6 tw-max-w-[20rem]">
+        <div className="tw-flex tw-flex-col tw-p-6 tw-max-w-[20rem]" data-test-id="flyout-menu">
             <FormControl
                 label={{
                     children: 'Alt text',
