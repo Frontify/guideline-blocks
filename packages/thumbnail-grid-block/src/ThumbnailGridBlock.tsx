@@ -141,7 +141,6 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const thumbnailProps = {
         isEditing,
         thumbnailStyles,
-        showGrabHandle: isEditing && itemsState.length > 2,
         setUploadedId: setUploadId,
         onFilesDrop,
         openAssetChooser,

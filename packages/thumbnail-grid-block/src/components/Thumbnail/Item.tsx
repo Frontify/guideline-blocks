@@ -36,7 +36,6 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             setActivatorNodeRef,
             isDragging = false,
             setUploadedId,
-            showGrabHandle = true,
             openAssetChooser,
             openFileDialog,
             updateItemWith,
@@ -68,10 +67,10 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
             >
                 <BlockItemWrapper
                     isDragging={isDragging}
-                    shouldFillContainer={true}
-                    shouldHideWrapper={replaceWithPlaceholder || !isEditing}
+                    shouldHideWrapper={isDragging || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
-                    shouldBeShown={showAltTextMenu || isDragging}
+                    shouldBeShown={isDragging}
+                    shouldFillContainer
                     toolbarFlyoutItems={[
                         image
                             ? [
@@ -94,17 +93,15 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                                 onClick: onAssetChooserClick,
                             },
                         ],
-                    ].filter((item) => item.length > 0)}
+                    ]}
                     toolbarItems={[
-                        showGrabHandle
-                            ? {
-                                  icon: <IconArrowMove16 />,
-                                  tooltip: 'Drag or press ↵ to move',
-                                  draggingTooltip: 'Move with ↑↓←→ and confirm with ↵',
-                                  draggableProps,
-                                  setActivatorNodeRef,
-                              }
-                            : undefined,
+                        {
+                            icon: <IconArrowMove16 />,
+                            tooltip: 'Drag or press ↵ to move',
+                            draggingTooltip: 'Move with ↑↓←→ and confirm with ↵',
+                            draggableProps,
+                            setActivatorNodeRef,
+                        },
                         {
                             icon: <IconTrashBin16 />,
                             tooltip: 'Delete Item',

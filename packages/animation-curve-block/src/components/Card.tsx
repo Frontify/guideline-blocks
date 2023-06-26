@@ -87,6 +87,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     isDragging={isDragging}
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
+                    shouldBeShown={isEditFlyoutOpen || isDragging}
                     toolbarItems={[
                         {
                             icon: <IconArrowMove16 />,
@@ -107,7 +108,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                         },
                     ]}
                     toolbarFlyoutItems={[]}
-                    shouldBeShown={isEditFlyoutOpen || isDragging}
                 >
                     <div
                         data-test-id="animation-curve-card"
