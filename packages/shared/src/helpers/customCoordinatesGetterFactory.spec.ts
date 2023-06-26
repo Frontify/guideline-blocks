@@ -8,7 +8,6 @@ import { customCoordinatesGetterFactory } from './customCoordinatesGetterFactory
  * @vitest-environment happy-dom
  */
 describe('customCoordinatesGetterFactory', () => {
-    const gap = 10;
     const initialCoordinates = { x: 0, y: 0 };
     const context = {
         activeNode: {
@@ -20,7 +19,7 @@ describe('customCoordinatesGetterFactory', () => {
     const active = 'mock-active-id';
     let customCoordinatesGetter: KeyboardCoordinateGetter;
     beforeEach(() => {
-        customCoordinatesGetter = customCoordinatesGetterFactory(gap, gap);
+        customCoordinatesGetter = customCoordinatesGetterFactory(10, 20);
     });
 
     it('should respond to ArrowRight', () => {
@@ -47,7 +46,7 @@ describe('customCoordinatesGetterFactory', () => {
             currentCoordinates: initialCoordinates,
             context,
         });
-        expect(result).toEqual({ x: 0, y: 210 });
+        expect(result).toEqual({ x: 0, y: 220 });
     });
 
     it('should respond to ArrowUp', () => {
@@ -56,7 +55,7 @@ describe('customCoordinatesGetterFactory', () => {
             currentCoordinates: initialCoordinates,
             context,
         });
-        expect(result).toEqual({ x: 0, y: -210 });
+        expect(result).toEqual({ x: 0, y: -220 });
     });
 
     it('should return undefined for other keys', () => {
