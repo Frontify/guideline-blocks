@@ -129,14 +129,9 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         useEffect(() => {
             if (titleRef.current) {
                 autosize(titleRef.current);
-            }
-        }, []);
-
-        useEffect(() => {
-            if (titleRef.current) {
                 autosize.update(titleRef.current);
             }
-        }, []);
+        });
 
         useEffect(() => {
             if (doneAll) {
