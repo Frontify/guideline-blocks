@@ -13,8 +13,6 @@ import {
 import {
     BlockItemWrapper,
     BlockStyles,
-    DEFAULT_DRAGGING_TOOLTIP,
-    DEFAULT_DRAG_TOOLTIP,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     joinClassNames,
@@ -181,8 +179,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     toolbarItems={[
                         {
                             icon: <IconArrowMove16 />,
-                            tooltip: DEFAULT_DRAG_TOOLTIP,
-                            draggingTooltip: DEFAULT_DRAGGING_TOOLTIP,
                             draggableProps,
                             setActivatorNodeRef,
                         },

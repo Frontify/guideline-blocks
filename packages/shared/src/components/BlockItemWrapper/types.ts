@@ -24,12 +24,11 @@ export type ToolbarProps = {
 
 type BaseToolbarItem = {
     icon: JSX.Element;
-    tooltip: string;
+    tooltip?: string;
 };
 
 type DraghandleToolbarItem = BaseToolbarItem & {
     draggableProps: Record<string, unknown>;
-    draggingTooltip?: string;
     setActivatorNodeRef?: (node: HTMLElement | null) => void;
 };
 

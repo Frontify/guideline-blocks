@@ -11,6 +11,7 @@ import {
 } from '@frontify/fondue';
 import { ToolbarProps } from './types';
 import { joinClassNames } from '../../utilities';
+import { DEFAULT_DRAGGING_TOOLTIP, DEFAULT_DRAG_TOOLTIP } from './constants';
 
 const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging, isFlyoutDisabled }: ToolbarProps) => {
     return (
@@ -25,7 +26,11 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                             enterDelay={300}
                             open={isDragging}
                             position={TooltipPosition.Top}
-                            content={<div>{isDragging ? item.draggingTooltip : item.tooltip}</div>}
+                            content={
+                                <div>
+                                    {isDragging ? DEFAULT_DRAGGING_TOOLTIP : item.tooltip ?? DEFAULT_DRAG_TOOLTIP}
+                                </div>
+                            }
                             triggerElement={
                                 <button
                                     ref={item.setActivatorNodeRef}
@@ -50,7 +55,7 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                             hoverDelay={0}
                             disabled={isDragging}
                             position={TooltipPosition.Top}
-                            content={<div>{item.tooltip}</div>}
+                            content={<div>{item.tooltip ?? ''}</div>}
                             triggerElement={
                                 <button
                                     data-test-id="block-item-wrapper-toolbar-btn"
