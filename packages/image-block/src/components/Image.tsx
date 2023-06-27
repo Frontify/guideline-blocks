@@ -81,6 +81,12 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
             className={joinClassNames(['tw-relative tw-flex tw-h-auto', mapAlignmentClasses[blockSettings.alignment]])}
         >
             <div className="tw-flex tw-items-start">
+                <ImageComponent
+                    appBridge={appBridge}
+                    blockSettings={blockSettings}
+                    image={image}
+                    isEditing={isEditing}
+                />
                 <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
                     <div className="tw-flex tw-gap-2">
                         {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
@@ -99,12 +105,6 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                         />
                     </div>
                 </div>
-                <ImageComponent
-                    appBridge={appBridge}
-                    blockSettings={blockSettings}
-                    image={image}
-                    isEditing={isEditing}
-                />
             </div>
         </div>
     );
