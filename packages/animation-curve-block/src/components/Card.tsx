@@ -87,7 +87,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     isDragging={isDragging}
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
-                    shouldBeShown={isEditFlyoutOpen || isDragging}
                     toolbarItems={[
                         {
                             icon: <IconArrowMove16 />,
@@ -107,6 +106,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             onClick: () => setIsEditFlyoutOpen(true),
                         },
                     ]}
+                    shouldBeShown={isEditFlyoutOpen || isDragging}
                     toolbarFlyoutItems={[]}
                 >
                     <div
