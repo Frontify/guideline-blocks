@@ -51,6 +51,7 @@ export type Settings = {
 export type SortableThumbnailItemProps = {
     isEditing: boolean;
     onRemoveAsset: (id: string, imageId?: number) => void;
+    showGrabHandle: boolean;
     image: Asset | undefined;
     updateItemWith: (type: keyof Thumbnail, value: string | Asset[], id?: string) => void;
     thumbnailStyles: ThumbnailStylesProps;
