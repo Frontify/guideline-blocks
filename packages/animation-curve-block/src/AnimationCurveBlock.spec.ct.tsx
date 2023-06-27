@@ -71,8 +71,9 @@ describe('AnimationCurve Block', () => {
                 columns: 4,
             },
         });
+        cy.viewport(1280, 800);
         mount(<AssetKitBlockWithStubs />);
-        cy.get(BLOCK_SELECTOR).should('have.css', 'grid-template-columns', '200px 200px 200px 200px');
+        cy.get(BLOCK_SELECTOR).should('have.css', 'grid-template-columns', '320px 320px 320px 320px');
     });
 
     it('should render with a large spacing', () => {
