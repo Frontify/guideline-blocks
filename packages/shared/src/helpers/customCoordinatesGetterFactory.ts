@@ -7,9 +7,8 @@ const directions: string[] = [KeyboardCode.Down, KeyboardCode.Right, KeyboardCod
 export const customCoordinatesGetterFactory =
     (columnGap: number, rowGap: number): KeyboardCoordinateGetter =>
     (event, { currentCoordinates, context: { activeNode } }) => {
+        event.preventDefault();
         if (directions.includes(event.code)) {
-            event.preventDefault();
-
             const width = activeNode?.offsetWidth ?? 0;
             const height = activeNode?.offsetHeight ?? 0;
 
