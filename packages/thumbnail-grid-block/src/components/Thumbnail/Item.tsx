@@ -10,7 +10,12 @@ import {
     IconTrashBin16,
     merge,
 } from '@frontify/fondue';
-import { BlockItemWrapper, EditAltTextFlyout } from '@frontify/guideline-blocks-shared';
+import {
+    BlockItemWrapper,
+    DEFAULT_DRAGGING_TOOLTIP,
+    DEFAULT_DRAG_TOOLTIP,
+    EditAltTextFlyout,
+} from '@frontify/guideline-blocks-shared';
 import { Image } from './Image';
 import { RichTextEditors } from './RichTextEditors';
 import { SortableThumbnailItemProps, ThumbnailItemProps } from '../../types';
@@ -89,8 +94,8 @@ export const Item = forwardRef<HTMLDivElement, ThumbnailItemProps>(
                         showGrabHandle
                             ? {
                                   icon: <IconArrowMove16 />,
-                                  tooltip: 'Drag or press ↵ to move',
-                                  draggingTooltip: 'Move with ↑↓←→ and confirm with ↵',
+                                  tooltip: DEFAULT_DRAG_TOOLTIP,
+                                  draggingTooltip: DEFAULT_DRAGGING_TOOLTIP,
                                   draggableProps,
                                   setActivatorNodeRef,
                               }

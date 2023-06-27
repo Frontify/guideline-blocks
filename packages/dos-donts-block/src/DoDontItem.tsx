@@ -13,6 +13,8 @@ import {
 import {
     BlockItemWrapper,
     BlockStyles,
+    DEFAULT_DRAGGING_TOOLTIP,
+    DEFAULT_DRAG_TOOLTIP,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
     joinClassNames,
@@ -51,7 +53,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             draggableProps = {},
             appBridge,
             linkedImage,
-            minRowHeight,
             mode,
             customImageHeightValue,
             imageDisplay,
@@ -129,9 +130,14 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         useEffect(() => {
             if (titleRef.current) {
                 autosize(titleRef.current);
-                autosize.update(titleRef.current);
             }
         });
+
+        useEffect(() => {
+            if (titleRef.current) {
+                autosize.update(titleRef.current);
+            }
+        }, []);
 
         useEffect(() => {
             if (doneAll) {
@@ -175,8 +181,8 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     toolbarItems={[
                         {
                             icon: <IconArrowMove16 />,
-                            tooltip: 'Drag or press ↵ to move',
-                            draggingTooltip: 'Move with ↑↓←→ and confirm with ↵',
+                            tooltip: DEFAULT_DRAG_TOOLTIP,
+                            draggingTooltip: DEFAULT_DRAGGING_TOOLTIP,
                             draggableProps,
                             setActivatorNodeRef,
                         },
@@ -306,10 +312,9 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     </div>
                 </BlockItemWrapper>
                 <div
-                    style={{ height: minRowHeight }}
                     className={joinClassNames([
                         !replaceWithPlaceholder && 'tw-hidden',
-                        'tw-absolute tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
+                        'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
                     ])}
                 />
             </div>

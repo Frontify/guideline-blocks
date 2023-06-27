@@ -42,7 +42,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const [minRowHeight, setMinRowHeight] = useState(60);
     const [isUploadLoading, setIsUploadLoading] = useState(false);
     const [selectedType, setSelectedType] = useState<DoDontType | undefined>();
     const [selectedAssets, setSelectedAssets] = useState<Asset[] | undefined>();
@@ -219,15 +218,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const handleDragStart = (event: DragEndEvent) => {
         const { active } = event;
         setActiveId(active.id as string);
-        if (wrapperRef.current) {
-            setMinRowHeight(
-                Math.min(
-                    ...Array.from(wrapperRef.current.children).map((x) =>
-                        x.firstChild ? (x.firstChild as HTMLElement).getBoundingClientRect().height : 0
-                    )
-                )
-            );
-        }
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
@@ -272,7 +262,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         mode,
         columns,
         appBridge,
-        minRowHeight,
         isCustomImageHeight,
         customImageHeightValue,
         imageDisplay,

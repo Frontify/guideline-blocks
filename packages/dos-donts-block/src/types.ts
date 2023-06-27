@@ -91,7 +91,6 @@ export type SortableDoDontItemProps = {
     columns: number;
     linkedImage?: string;
     appBridge: AppBridgeBlock;
-    minRowHeight: number;
     isCustomImageHeight: boolean;
     customImageHeightValue: string;
     imageDisplay: ImageFitChoice;

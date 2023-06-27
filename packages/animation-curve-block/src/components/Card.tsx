@@ -7,6 +7,8 @@ import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge } from '@f
 import {
     BlockItemWrapper,
     CssValueDisplay,
+    DEFAULT_DRAGGING_TOOLTIP,
+    DEFAULT_DRAG_TOOLTIP,
     getBackgroundColorStyles,
     getBorderStyles,
     getRadiusStyles,
@@ -90,8 +92,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     toolbarItems={[
                         {
                             icon: <IconArrowMove16 />,
-                            tooltip: 'Drag or press ↵ to move',
-                            draggingTooltip: 'Move with ↑↓←→ and confirm with ↵',
+                            tooltip: DEFAULT_DRAG_TOOLTIP,
+                            draggingTooltip: DEFAULT_DRAGGING_TOOLTIP,
                             draggableProps,
                             setActivatorNodeRef,
                         },
