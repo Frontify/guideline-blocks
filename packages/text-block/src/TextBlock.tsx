@@ -15,17 +15,27 @@ export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
     const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
-
+    // console.log('blockSettings.link', blockSettings.link);
     return (
-        <RichTextEditor
-            id={appBridge.getBlockId().toString()}
-            isEditing={isEditing}
-            value={content}
-            columns={columnNumber}
-            gap={gap}
-            plugins={getPlugins(appBridge, columnNumber, gap)}
-            placeholder={PLACEHOLDER}
-            onTextChange={(content: string) => setBlockSettings({ content })}
-        />
+        <div>
+            <RichTextEditor
+                id={appBridge.getBlockId().toString()}
+                isEditing={isEditing}
+                value={content}
+                columns={columnNumber}
+                gap={gap}
+                plugins={getPlugins(appBridge, columnNumber, gap)}
+                placeholder={PLACEHOLDER}
+                onTextChange={(content: string) => setBlockSettings({ content })}
+            />
+            link:
+            <br />
+            {/* {blockSettings.link?.link} */}
+            <br />
+            <br />
+            new tab:
+            <br />
+            {/* {blockSettings.link?.openInNewTab} */}
+        </div>
     );
 };

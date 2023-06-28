@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, useDocuments } from '@frontify/app-bridge';
+import { AppBridgeBlock, useUngroupedDocuments } from '@frontify/app-bridge';
 import { LoadingCircle } from '@frontify/fondue';
-import React, { ReactElement, useEffect, useState } from 'react';
-import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
+import { ReactElement, useEffect, useState } from 'react';
 import { DocumentLink } from './DocumentLink';
+import { InitiallyExpandedItems } from './types';
+import React from 'react';
 
 type DocumentLinksProps = {
     appBridge: AppBridgeBlock;
@@ -13,7 +14,7 @@ type DocumentLinksProps = {
 };
 
 export const DocumentLinks = ({ appBridge, selectedUrl, onSelectUrl }: DocumentLinksProps): ReactElement => {
-    const { documents, isLoading } = useDocuments(appBridge);
+    const { documents, isLoading } = useUngroupedDocuments(appBridge);
     const [itemsToExpandInitially, setItemsToExpandInitially] = useState<InitiallyExpandedItems>({
         documentId: undefined,
         pageId: undefined,

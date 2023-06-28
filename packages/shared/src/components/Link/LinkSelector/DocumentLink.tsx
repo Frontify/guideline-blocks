@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PageLinks } from './PageLinks';
 import { IconColorFan16, merge } from '@frontify/fondue';
-import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
+import { InitiallyExpandedItems } from './types';
+import { AppBridgeBlock } from '@frontify/app-bridge';
+import React from 'react';
 
 type DocumentLinkProps = {
     document: {
@@ -52,6 +53,7 @@ export const DocumentLink = ({
                     tabIndex={0}
                     data-test-id="tree-item-toggle"
                     className="tw-flex tw-items-center tw-justify-center tw-p-1.5 tw-cursor-pointer"
+                    onKeyDown={(event) => event.key === 'Enter' && setIsExpanded(!isExpanded)}
                     onClick={() => setIsExpanded(!isExpanded)}
                     onFocus={() => setIsExpanded(!isExpanded)}
                 >
@@ -60,7 +62,7 @@ export const DocumentLink = ({
                             'tw-transition-transform tw-w-0 tw-h-0 tw-font-normal tw-border-t-4 tw-border-t-transparent tw-border-b-4 tw-border-b-transparent tw-border-l-4 tw-border-l-x-strong',
                             isExpanded ? 'tw-rotate-90' : '',
                         ])}
-                    ></div>
+                    />
                 </div>
                 <IconColorFan16 />
                 <span className="tw-text-s">{document.title}</span>

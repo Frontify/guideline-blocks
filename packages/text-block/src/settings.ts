@@ -9,6 +9,15 @@ const SIMPLE_GUTTER_ID = 'columnGutterSimple';
 const COLUMN_NR_ID = 'columnNumber';
 
 export const settings = defineSettings({
+    basics: [
+        {
+            id: 'link',
+            type: 'link',
+            label: 'Link',
+            clearable: true,
+            required: true,
+        },
+    ],
     layout: [
         {
             id: COLUMN_NR_ID,

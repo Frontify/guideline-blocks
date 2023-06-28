@@ -1,10 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, useDocumentPages } from '@frontify/app-bridge';
+import { AppBridgeBlock, useUncategorizedDocumentPages } from '@frontify/app-bridge';
 import { LoadingCircle } from '@frontify/fondue';
-import React, { ReactElement } from 'react';
-import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
+import { ReactElement } from 'react';
 import { PageLink } from './PageLink';
+import { InitiallyExpandedItems } from './types';
+import React from 'react';
 
 type PageLinksProps = {
     appBridge: AppBridgeBlock;
@@ -21,8 +22,9 @@ export const PageLinks = ({
     onSelectUrl,
     itemsToExpandInitially,
 }: PageLinksProps): ReactElement => {
-    const { pages, isLoading } = useDocumentPages(appBridge, documentId);
-    const pagesArray = [...pages.values()];
+    const { documentPages, isLoading } = useUncategorizedDocumentPages(appBridge, documentId);
+
+    const pagesArray = [...documentPages.values()];
     const hasPages = !isLoading && pagesArray.length > 0;
 
     if (isLoading) {

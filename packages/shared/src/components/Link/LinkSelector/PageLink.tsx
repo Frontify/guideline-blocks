@@ -2,9 +2,10 @@
 
 import { AppBridgeBlock, useDocumentSection } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
-import React, { useEffect, useState } from 'react';
-import { InitiallyExpandedItems } from '../../LinkPlugin/FloatingLink/InsertLinkModal/types';
+import { useEffect, useState } from 'react';
 import { SectionLink } from './SectionLink';
+import { InitiallyExpandedItems } from './types';
+import React from 'react';
 
 type DocumentLinkProps = {
     page: {
@@ -34,6 +35,7 @@ export const PageLink = ({ page, selectedUrl, onSelectUrl, itemsToExpandInitiall
     return (
         <>
             <div
+                role="button"
                 tabIndex={0}
                 data-test-id="internal-link-selector-page-link"
                 className={merge([
@@ -43,6 +45,7 @@ export const PageLink = ({ page, selectedUrl, onSelectUrl, itemsToExpandInitiall
                         ? 'tw-bg-box-selected-strong tw-text-box-selected-strong-inverse hover:tw-bg-box-selected-strong-hover:hover hover:tw-text-box-selected-strong-inverse-hover:hover'
                         : 'hover:tw-bg-box-neutral-hover hover:tw-text-box-neutral-inverse-hover',
                 ])}
+                onKeyDown={(event) => event.key === 'Enter' && onSelectUrl(page.permanentLink)}
                 onClick={() => onSelectUrl(page.permanentLink)}
                 onFocus={() => onSelectUrl(page.permanentLink)}
             >

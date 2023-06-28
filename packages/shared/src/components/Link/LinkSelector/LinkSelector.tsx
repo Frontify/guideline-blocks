@@ -1,18 +1,20 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock } from '@frontify/app-bridge';
 import { Button, ButtonEmphasis, ButtonSize, ButtonStyle, ButtonType, IconLink, Modal } from '@frontify/fondue';
 import { useOverlayTriggerState } from '@react-stately/overlays';
-import React, { KeyboardEvent, ReactElement, useEffect, useState } from 'react';
+import { KeyboardEvent, ReactElement, useEffect, useState } from 'react';
 import { DocumentLinks } from './DocumentLinks';
+import { AppBridgeBlock } from '@frontify/app-bridge';
+import React from 'react';
 
 type LinkSelectorProps = {
     appBridge: AppBridgeBlock;
     url: string;
-    onUrlChange: (value: string) => void;
+    onUrlChange?: (value: string) => void;
+    buttonSize?: ButtonSize;
 };
 
-export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps): ReactElement => {
+export const LinkSelector = ({ appBridge, url, onUrlChange, buttonSize }: LinkSelectorProps): ReactElement => {
     const { open: openLinkTree, isOpen: isLinkTreeOpen, close: closeLinkTree } = useOverlayTriggerState({});
     const [selectedUrl, setSelectedUrl] = useState<string>(url);
 
@@ -33,15 +35,15 @@ export const LinkSelector = ({ appBridge, url, onUrlChange }: LinkSelectorProps)
     }, [url, selectedUrl]);
 
     const saveLink = () => {
-        onUrlChange(selectedUrl);
+        onUrlChange && onUrlChange(selectedUrl);
         closeLinkTree();
     };
 
     return (
-        <div data-test-id="internal-link-selector" onKeyDown={onPressEnter}>
+        <div role="button" tabIndex={0} data-test-id="internal-link-selector" onKeyDown={onPressEnter}>
             <Button
                 icon={<IconLink />}
-                size={ButtonSize.Medium}
+                size={buttonSize ?? ButtonSize.Medium}
                 type={ButtonType.Button}
                 style={ButtonStyle.Default}
                 emphasis={ButtonEmphasis.Default}
