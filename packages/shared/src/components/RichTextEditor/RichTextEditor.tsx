@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { RichTextEditor as FondueRichTextEditor } from '@frontify/fondue';
 import { RichTextEditorProps } from './types';
@@ -18,6 +18,26 @@ export const RichTextEditor = ({
     showSerializedText,
     updateValueOnChange,
 }: RichTextEditorProps) => {
+    const [shouldPreventPageLeave, setShouldPreventPageLeave] = useState(false);
+
+    const saveText = (newContent: string) => {
+        onTextChange && newContent !== value && onTextChange(newContent);
+        setShouldPreventPageLeave(false);
+    };
+
+    useEffect(() => {
+        const unloadHandler = (e: BeforeUnloadEvent) => {
+            e.preventDefault();
+            return (e.returnValue = 'Unprocessed changes');
+        };
+
+        if (shouldPreventPageLeave) {
+            window.addEventListener('beforeunload', unloadHandler);
+        }
+
+        return () => window.removeEventListener('beforeunload', unloadHandler);
+    }, [shouldPreventPageLeave]);
+
     if (isEditing) {
         return (
             <FondueRichTextEditor
@@ -27,7 +47,8 @@ export const RichTextEditor = ({
                 placeholder={placeholder}
                 plugins={plugins}
                 updateValueOnChange={updateValueOnChange}
-                onTextChange={(newContent: string) => onTextChange && newContent !== value && onTextChange(newContent)}
+                onValueChanged={() => setShouldPreventPageLeave(true)}
+                onTextChange={saveText}
             />
         );
     }
