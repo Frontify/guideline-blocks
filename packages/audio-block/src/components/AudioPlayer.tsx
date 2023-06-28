@@ -1,8 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Asset } from '@frontify/app-bridge';
-import { IconArrowCircleUp20, IconImageStack20, IconTrashBin16, LoadingCircle } from '@frontify/fondue';
-import { BlockItemWrapper } from '@frontify/guideline-blocks-shared';
+import {
+    FOCUS_VISIBLE_STYLE,
+    IconArrowCircleUp20,
+    IconImageStack20,
+    IconTrashBin16,
+    LoadingCircle,
+} from '@frontify/fondue';
+import { BlockItemWrapper, joinClassNames } from '@frontify/guideline-blocks-shared';
 import { ReactElement } from 'react';
 
 type AudioPlayerProps = {
@@ -38,7 +44,7 @@ export const AudioPlayer = ({
                 },
             ],
         ]}
-        toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: () => onRemoveAsset() }]}
+        toolbarItems={[{ icon: <IconTrashBin16 />, tooltip: 'Delete item', onClick: () => onRemoveAsset() }]}
     >
         {isLoading ? (
             <div className="tw-flex tw-items-center tw-justify-center tw-h-14">
@@ -49,7 +55,7 @@ export const AudioPlayer = ({
                 data-test-id="audio-block-audio-tag"
                 key={audio.id}
                 controls
-                className="tw-w-full tw-outline-none"
+                className={joinClassNames(['tw-w-full tw-outline-none', FOCUS_VISIBLE_STYLE])}
                 controlsList="nodownload"
                 preload="metadata"
                 src={audio.genericUrl}
