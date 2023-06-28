@@ -3,7 +3,7 @@
 import { mount } from 'cypress/react18';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { ThumbnailGridBlock } from './ThumbnailGridBlock';
-import { CaptionPosition, HorizontalAlignment, VerticalAlignment } from './types';
+import { CaptionPosition, HorizontalAlignment, Thumbnail, VerticalAlignment } from './types';
 import { BorderStyle, GutterSpacing, Radius } from '@frontify/guideline-blocks-shared';
 
 const ThumbnailGridBlockSelector = '[data-test-id="thumbnail-grid-block"]';
@@ -29,6 +29,18 @@ const defaultSettings = {
     backgroundColor: { red: 45, green: 50, blue: 50, alpha: 1, name: 'Background color' },
 };
 
+class ThumbnailDummy {
+    static with(id = '1'): Thumbnail {
+        return {
+            id,
+            title: `Title ${id}`,
+            description: `Test Description ${id}`,
+            image: id,
+            altText: `A custom alt text ${id}`,
+        };
+    }
+}
+
 describe('Thumbnail Grid Block', () => {
     // BASIC states without images
     it('renders an empty thumbnail grid block with default settings', () => {
@@ -53,13 +65,7 @@ describe('Thumbnail Grid Block', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: true,
             blockSettings: {
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title',
-                        description: 'Test Description',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -71,13 +77,7 @@ describe('Thumbnail Grid Block', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: false,
             blockSettings: {
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title',
-                        description: 'Test Description',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -91,18 +91,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: true,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title',
-                        description: 'Test Description',
-                    },
-                    {
-                        id: '2',
-                        title: 'Title',
-                        description: 'Test Description',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
             },
         });
         mount(<ThumbnailGridBlockWithStubs />);
@@ -117,20 +106,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: false,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                    {
-                        id: '2',
-                        title: 'Title 2',
-                        description: 'Test Description 2',
-                        image: '2',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
             },
             blockAssets: {
                 ['1']: [AssetDummy.with(1)],
@@ -147,19 +123,12 @@ describe('Thumbnail Grid Block', () => {
         cy.get(ThumbnailImagePlaceholder).should('not.exist');
     });
 
-    it('should render the imagestyles if they are provided', () => {
+    it('should render the image styles if they are provided', () => {
         const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
             editorState: false,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
                 height: '50%',
                 radiusValue: '12px',
                 hasRadius: false,
@@ -191,15 +160,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: true,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                        altText: 'A custom alt text',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
             },
             blockAssets: {
                 ['1']: [AssetDummy.with(1)],
@@ -208,7 +169,7 @@ describe('Thumbnail Grid Block', () => {
         mount(<ThumbnailGridBlockWithStubs />);
         cy.get(ThumbnailImage)
             .first()
-            .should('have.attr', 'alt', 'A custom alt text')
+            .should('have.attr', 'alt', 'A custom alt text 1')
             .should('have.attr', 'src', 'https://generic.url');
         cy.get(ThumbnailImage).first().click();
     });
@@ -219,14 +180,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: true,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
                 imagePosition: CaptionPosition.Left,
                 verticalImageAlignment: VerticalAlignment.Center,
                 horizontalImageAlignment: HorizontalAlignment.Left,
@@ -245,14 +199,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: false,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1')],
                 imagePosition: CaptionPosition.Above,
                 verticalImageAlignment: VerticalAlignment.Start,
                 horizontalImageAlignment: HorizontalAlignment.Right,
@@ -303,20 +250,7 @@ describe('Thumbnail Grid Block', () => {
             editorState: true,
             blockSettings: {
                 ...defaultSettings,
-                items: [
-                    {
-                        id: '1',
-                        title: 'Title 1',
-                        description: 'Test Description 1',
-                        image: '1',
-                    },
-                    {
-                        id: '2',
-                        title: 'Title 2',
-                        description: 'Test Description 2',
-                        image: '2',
-                    },
-                ],
+                items: [ThumbnailDummy.with('1'), ThumbnailDummy.with('2')],
             },
             blockAssets: {
                 ['1']: [AssetDummy.with(1)],
@@ -330,7 +264,97 @@ describe('Thumbnail Grid Block', () => {
         );
         cy.get(ThumbnailCaption).should('have.length', 3);
         cy.get(ThumbnailCaption).first().click();
-        cy.get(BlockItemWrapperBtn).first().click();
+        cy.get(BlockItemWrapperBtn).eq(1).click();
         cy.get(ThumbnailCaption).should('have.length', 2);
+    });
+
+    it('should move the first item to fifth position by keyboard', () => {
+        const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
+            editorState: true,
+            blockSettings: {
+                ...defaultSettings,
+                items: [
+                    ThumbnailDummy.with('1'),
+                    ThumbnailDummy.with('2'),
+                    ThumbnailDummy.with('3'),
+                    ThumbnailDummy.with('4'),
+                    ThumbnailDummy.with('5'),
+                    ThumbnailDummy.with('6'),
+                ],
+            },
+            blockAssets: {
+                ['1']: [AssetDummy.with(1)],
+                ['2']: [AssetDummy.with(2)],
+                ['3']: [AssetDummy.with(3)],
+                ['4']: [AssetDummy.with(4)],
+                ['5']: [AssetDummy.with(5)],
+                ['6']: [AssetDummy.with(6)],
+            },
+        });
+        mount(
+            <div className="tw-mt-12">
+                <ThumbnailGridBlockWithStubs />
+            </div>
+        );
+
+        cy.get(ThumbnailItem)
+            .first()
+            .then((first) => {
+                cy.wrap(first).parent().find(BlockItemWrapperBtn).eq(0).focus();
+                cy.realPress('Enter');
+                cy.realPress('ArrowDown');
+                cy.realPress('ArrowRight');
+                cy.realPress('Enter');
+                cy.get(ThumbnailItem)
+                    .eq(4)
+                    .then((fifth) => {
+                        expect(fifth.get(0).textContent).contains(first.get(0).textContent);
+                    });
+            });
+    });
+
+    it('should move the fifth position to first by keyboard', () => {
+        const [ThumbnailGridBlockWithStubs] = withAppBridgeBlockStubs(ThumbnailGridBlock, {
+            editorState: true,
+            blockSettings: {
+                ...defaultSettings,
+                items: [
+                    ThumbnailDummy.with('1'),
+                    ThumbnailDummy.with('2'),
+                    ThumbnailDummy.with('3'),
+                    ThumbnailDummy.with('4'),
+                    ThumbnailDummy.with('5'),
+                    ThumbnailDummy.with('6'),
+                ],
+            },
+            blockAssets: {
+                ['1']: [AssetDummy.with(1)],
+                ['2']: [AssetDummy.with(2)],
+                ['3']: [AssetDummy.with(3)],
+                ['4']: [AssetDummy.with(4)],
+                ['5']: [AssetDummy.with(5)],
+                ['6']: [AssetDummy.with(6)],
+            },
+        });
+        mount(
+            <div className="tw-mt-12">
+                <ThumbnailGridBlockWithStubs />
+            </div>
+        );
+
+        cy.get(ThumbnailItem)
+            .eq(4)
+            .then((fifth) => {
+                cy.wrap(fifth).parent().find(BlockItemWrapperBtn).eq(0).focus();
+                cy.realPress('Enter');
+                cy.realPress('ArrowUp');
+                cy.realPress('ArrowLeft');
+                cy.realPress('Enter');
+                cy.get(ThumbnailItem)
+                    .first()
+                    .then((first) => {
+                        expect(first.get(0).textContent).contains(fifth.get(0).textContent);
+                    });
+            });
     });
 });

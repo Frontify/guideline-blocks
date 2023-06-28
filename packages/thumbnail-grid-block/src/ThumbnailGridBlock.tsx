@@ -1,17 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useEffect, useState } from 'react';
-import {
-    DndContext,
-    DragEndEvent,
-    DragOverlay,
-    PointerSensor,
-    closestCenter,
-    useSensor,
-    useSensors,
-} from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
-import { restrictToFirstScrollableAncestor } from '@dnd-kit/modifiers';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
 import 'tailwindcss/tailwind.css';
 
 import {
@@ -26,16 +18,16 @@ import {
 } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { gutterSpacingStyleMap } from '@frontify/guideline-blocks-shared';
+import { gutterSpacingStyleMap, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { generateRandomId } from '@frontify/fondue';
 
 import { Settings, Thumbnail } from './types';
 import { getThumbnailStyles } from './helper';
-import { Grid, ImageWrapper, Item, RichTextEditors, UploadPlaceholder } from './components/';
+import { Grid, ImageWrapper, Item, RichTextEditors, SortableItem, UploadPlaceholder } from './components/';
 
 export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
-    const sensors = useSensors(useSensor(PointerSensor));
+
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [itemsState, setItemsState] = useState(blockSettings.items ?? []);
     const [draggedItem, setDraggedItem] = useState<Thumbnail | undefined>(undefined);
@@ -156,7 +148,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     const thumbnailProps = {
         isEditing,
         thumbnailStyles,
-        showGrabHandle: isEditing && itemsState.length > 2,
+        showGrabHandle: isEditing && itemsState.length > 1,
         setUploadedId: setUploadId,
         onFilesDrop,
         openAssetChooser,
@@ -166,25 +158,24 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         appBridge,
     };
 
+    const gap = blockSettings.hasCustomSpacing
+        ? blockSettings.spacingCustom
+        : gutterSpacingStyleMap[blockSettings.spacingChoice];
+
+    const sensors = useDndSensors(parseInt(gap), parseInt(gap));
+
     return (
-        <Grid
-            columnCount={blockSettings.columnCount}
-            gap={
-                blockSettings.hasCustomSpacing
-                    ? blockSettings.spacingCustom
-                    : gutterSpacingStyleMap[blockSettings.spacingChoice]
-            }
-        >
+        <Grid columnCount={blockSettings.columnCount} gap={gap}>
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
                 onDragEnd={handleDragEnd}
                 onDragStart={handleDragStart}
-                modifiers={[restrictToFirstScrollableAncestor]}
+                modifiers={[restrictToParentElement]}
             >
                 <SortableContext items={itemsState} strategy={rectSortingStrategy}>
                     {itemsState.map((item) => (
-                        <Item
+                        <SortableItem
                             key={item.id}
                             item={item}
                             image={blockAssets?.[item.id]?.[0]}
@@ -200,6 +191,7 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                             item={draggedItem}
                             image={blockAssets?.[draggedItem.id]?.[0]}
                             isLoading={loadingIds.includes(draggedItem.id)}
+                            isDragging
                             {...thumbnailProps}
                         />
                     )}

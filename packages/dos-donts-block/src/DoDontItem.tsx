@@ -51,7 +51,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             draggableProps = {},
             appBridge,
             linkedImage,
-            minRowHeight,
             mode,
             customImageHeightValue,
             imageDisplay,
@@ -66,6 +65,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             hasRadius,
             radiusChoice,
             radiusValue,
+            setActivatorNodeRef,
         },
         ref
     ) => {
@@ -129,7 +129,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             if (titleRef.current) {
                 autosize(titleRef.current);
             }
-        }, []);
+        });
 
         useEffect(() => {
             if (titleRef.current) {
@@ -175,8 +175,13 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     isDragging={isDragging}
                     shouldHideWrapper={replaceWithPlaceholder || !editing}
                     shouldHideComponent={replaceWithPlaceholder}
+                    shouldBeShown={isDragging}
                     toolbarItems={[
-                        { icon: <IconArrowMove16 />, tooltip: 'Drag to move', draggableProps },
+                        {
+                            icon: <IconArrowMove16 />,
+                            draggableProps,
+                            setActivatorNodeRef,
+                        },
                         { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
                     ]}
                     toolbarFlyoutItems={[
@@ -303,10 +308,9 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     </div>
                 </BlockItemWrapper>
                 <div
-                    style={{ height: minRowHeight }}
                     className={joinClassNames([
                         !replaceWithPlaceholder && 'tw-hidden',
-                        'tw-absolute tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
+                        'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
                     ])}
                 />
             </div>
@@ -318,7 +322,7 @@ DoDontItem.displayName = 'DoDontItem';
 
 export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
     const { id, editing } = props;
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
 
@@ -339,6 +343,7 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
             replaceWithPlaceholder={isDragging}
             transformStyle={transformStyle}
             draggableProps={draggableProps}
+            setActivatorNodeRef={setActivatorNodeRef}
         />
     );
 };

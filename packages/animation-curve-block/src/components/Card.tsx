@@ -30,6 +30,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             setCanvasHeight,
             transformStyle = {},
             draggableProps = {},
+            setActivatorNodeRef,
             isDragging = false,
             replaceWithPlaceholder = false,
         },
@@ -87,7 +88,11 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                     shouldHideWrapper={replaceWithPlaceholder || !isEditing}
                     shouldHideComponent={replaceWithPlaceholder}
                     toolbarItems={[
-                        { icon: <IconArrowMove16 />, tooltip: 'Drag to move', draggableProps },
+                        {
+                            icon: <IconArrowMove16 />,
+                            draggableProps,
+                            setActivatorNodeRef,
+                        },
                         {
                             icon: <IconTrashBin16 />,
                             tooltip: 'Delete Item',
@@ -99,8 +104,8 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                             onClick: () => setIsEditFlyoutOpen(true),
                         },
                     ]}
+                    shouldBeShown={isEditFlyoutOpen || isDragging}
                     toolbarFlyoutItems={[]}
-                    shouldBeShown={isEditFlyoutOpen}
                 >
                     <div
                         data-test-id="animation-curve-card"
@@ -208,7 +213,7 @@ Card.displayName = 'Card';
 export const SortableCard = (props: SortableCardProps) => {
     const { animationCurve, isEditing } = props;
     const { id } = animationCurve;
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
 
@@ -225,6 +230,7 @@ export const SortableCard = (props: SortableCardProps) => {
             ref={setNodeRef}
             {...props}
             isDragging={isDragging}
+            setActivatorNodeRef={setActivatorNodeRef}
             replaceWithPlaceholder={isDragging}
             transformStyle={transformStyle}
             draggableProps={draggableProps}
