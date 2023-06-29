@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { Asset } from '@frontify/app-bridge';
-import { useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
+import { Asset, useAssetUpload, useBlockAssets, useFileInput } from '@frontify/app-bridge';
 import { Button } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
