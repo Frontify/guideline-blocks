@@ -49,7 +49,7 @@ export const settings = defineSettings({
                     on: [
                         {
                             id: 'linkObject',
-                            type: 'link',
+                            type: 'linkChooser',
                             label: 'Link',
                             info: 'info',
                             clearable: true,
