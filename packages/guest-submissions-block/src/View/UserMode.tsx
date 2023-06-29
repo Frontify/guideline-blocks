@@ -112,6 +112,7 @@ export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void 
                                                 email: formData.email,
                                             },
                                             metadata: assetSubmissionDTO(formData),
+                                            autoApprove: true,
                                         });
 
                                         setFileList([]);

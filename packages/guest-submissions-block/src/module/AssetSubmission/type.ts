@@ -11,6 +11,7 @@ export type CreateAssetSubmissionsInput = {
         email: string;
     };
     metadata: AssetSubmissionMetadata;
+    autoApprove: boolean;
 };
 
 export type AssetSubmissionMetadata = {
