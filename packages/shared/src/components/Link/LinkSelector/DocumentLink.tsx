@@ -1,11 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PageLinks } from './PageLinks';
 import { IconColorFan16, merge } from '@frontify/fondue';
 import { InitiallyExpandedItems } from './types';
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import React from 'react';
 
 type DocumentLinkProps = {
     document: {

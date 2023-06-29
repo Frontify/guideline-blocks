@@ -4,34 +4,35 @@ import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { LinkInput } from './LinkInput';
 import React from 'react';
+import { ButtonSize, CheckboxState } from '@frontify/fondue';
 
-const LINK_COMPONENT_ID = '[data-test-id="link-component"]';
+const LINK_INPUT_ID = '[data-test-id="link-input"]';
 const TEXT_INPUT_ID = '[data-test-id="text-input"]';
 const INPUT_LABEL_CONTAINER_ID = '[data-test-id="input-label-container"]';
 const BUTTON_ID = '[data-test-id="button"]';
 const CLEAR_ICON_ID = '[data-test-id="clear-icon"]';
 const CHECKBOX_ID = '[data-test-id="checkbox-input"]';
 
-describe('Link Component', () => {
-    it('renders the link component', () => {
+describe('Link Input', () => {
+    it('renders the link input', () => {
         const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
         mount(<LinkInputWithStubs />);
-        cy.get(LINK_COMPONENT_ID).should('exist');
+        cy.get(LINK_INPUT_ID).should('exist');
     });
 
-    it('renders the link components label, placeholder and info', () => {
+    it('renders the link inpus label, placeholder and info', () => {
         const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
         mount(<LinkInputWithStubs label="Custom Label" info="Custom Info" placeholder="Custom Placeholder" />);
-        cy.get(LINK_COMPONENT_ID).should('exist');
+        cy.get(LINK_INPUT_ID).should('exist');
         cy.get(INPUT_LABEL_CONTAINER_ID).contains('Custom Label');
         cy.get(INPUT_LABEL_CONTAINER_ID).contains('Custom Info');
         cy.get(TEXT_INPUT_ID).should('have.attr', 'placeholder', 'Custom Placeholder');
     });
 
-    it('renders the link component with a valid url', () => {
+    it('renders the link inpu with a valid url', () => {
         const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
         mount(<LinkInputWithStubs url="https://example.com" />);
-        cy.get(LINK_COMPONENT_ID).should('exist');
+        cy.get(LINK_INPUT_ID).should('exist');
         cy.get(TEXT_INPUT_ID).should('have.value', 'https://example.com');
     });
 
@@ -66,6 +67,43 @@ describe('Link Component', () => {
         cy.get('@onToggleTab').should('be.called.with', true);
     });
 
+    it('toggles checkbox on click if its already checked', () => {
+        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
+        mount(<LinkInputWithStubs onToggleTab={cy.stub().as('onToggleTab')} url="https://frontify.com" openInNewTab />);
+
+        cy.get(CHECKBOX_ID).should('be.checked');
+        cy.get(CHECKBOX_ID).click({ force: true });
+        cy.get('@onToggleTab').should('be.called.with', false);
+    });
+
+    it('handles "Checked" state from newTab', () => {
+        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
+        mount(
+            <LinkInputWithStubs
+                onToggleTab={cy.stub().as('onToggleTab')}
+                url="https://frontify.com"
+                newTab={CheckboxState.Checked}
+            />
+        );
+        cy.get(CHECKBOX_ID).should('be.checked');
+        cy.get(CHECKBOX_ID).click({ force: true });
+        cy.get('@onToggleTab').should('be.called.with', false);
+    });
+
+    it('handles "Unchecked" state from newTab', () => {
+        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
+        mount(
+            <LinkInputWithStubs
+                onToggleTab={cy.stub().as('onToggleTab')}
+                url="https://frontify.com"
+                newTab={CheckboxState.Unchecked}
+            />
+        );
+        cy.get(CHECKBOX_ID).should('not.be.checked');
+        cy.get(CHECKBOX_ID).click({ force: true });
+        cy.get('@onToggleTab').should('be.called.with', true);
+    });
+
     it('types into search field', () => {
         const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
         mount(<LinkInputWithStubs onUrlChange={cy.stub().as('onUrlChange')} />);
@@ -87,5 +125,34 @@ describe('Link Component', () => {
         mount(<LinkInputWithStubs hideInternalLinkButton />);
 
         cy.get(BUTTON_ID).should('not.exist');
+    });
+
+    it('renders * if input is required', () => {
+        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
+        mount(<LinkInputWithStubs required />);
+
+        cy.get(INPUT_LABEL_CONTAINER_ID).contains('*');
+    });
+    it('renders custom buttonsize', () => {
+        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
+        mount(<LinkInputWithStubs buttonSize={ButtonSize.Small} />);
+
+        cy.get(BUTTON_ID).should('have.class', 'small');
+    });
+
+    it('renders error msg if url is not valid', () => {
+        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
+        mount(<LinkInputWithStubs />);
+
+        cy.get(TEXT_INPUT_ID).click({ force: true }).type('tte:');
+        cy.get(LINK_INPUT_ID).should('contain.text', 'Please enter a valid URL.');
+    });
+
+    it('doesnt render error msg if url is valid', () => {
+        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
+        mount(<LinkInputWithStubs />);
+
+        cy.get(TEXT_INPUT_ID).click({ force: true }).type('tel:+418923');
+        cy.get(LINK_INPUT_ID).should('contain.not.text', 'Please enter a valid URL.');
     });
 });

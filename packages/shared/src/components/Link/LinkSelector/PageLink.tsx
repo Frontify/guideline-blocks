@@ -2,10 +2,9 @@
 
 import { AppBridgeBlock, useDocumentSection } from '@frontify/app-bridge';
 import { merge } from '@frontify/fondue';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SectionLink } from './SectionLink';
 import { InitiallyExpandedItems } from './types';
-import React from 'react';
 
 type DocumentLinkProps = {
     page: {

@@ -2,10 +2,9 @@
 
 import { AppBridgeBlock, useUncategorizedDocumentPages } from '@frontify/app-bridge';
 import { LoadingCircle } from '@frontify/fondue';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { PageLink } from './PageLink';
 import { InitiallyExpandedItems } from './types';
-import React from 'react';
 
 type PageLinksProps = {
     appBridge: AppBridgeBlock;

@@ -41,7 +41,7 @@ export const LinkInput = ({
     const isUrlValid = isValidUrlOrEmpty ? isValidUrlOrEmpty(url) : 'import';
     const checkedState = newTab ?? (openInNewTab ? CheckboxState.Checked : CheckboxState.Unchecked);
     return (
-        <div data-test-id="link-component">
+        <div data-test-id="link-input">
             <FormControl
                 label={{
                     children: label,

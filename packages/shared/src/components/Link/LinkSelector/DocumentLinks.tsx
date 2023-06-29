@@ -1,11 +1,10 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, useUngroupedDocuments } from '@frontify/app-bridge';
+import React, { AppBridgeBlock, useUngroupedDocuments } from '@frontify/app-bridge';
 import { LoadingCircle } from '@frontify/fondue';
 import { ReactElement, useEffect, useState } from 'react';
 import { DocumentLink } from './DocumentLink';
 import { InitiallyExpandedItems } from './types';
-import React from 'react';
 
 type DocumentLinksProps = {
     appBridge: AppBridgeBlock;

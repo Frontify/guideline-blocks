@@ -7,9 +7,9 @@ import { CustomFloatingLink } from './FloatingLink/CustomFloatingLink';
 import { LINK_PLUGIN } from './id';
 import { LinkButton } from './LinkButton';
 import { LinkMarkupElement } from './LinkMarkupElement';
-import { isValidUrl } from './utils/url';
 import { CSSProperties } from 'react';
 import { BlockStyles } from '../styles';
+import { isValidUrl } from './utils';
 
 export const createLinkPlugin = (appBridge: AppBridgeBlock) =>
     createPluginFactory({

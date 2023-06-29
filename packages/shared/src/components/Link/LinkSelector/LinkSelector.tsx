@@ -2,10 +2,9 @@
 
 import { Button, ButtonEmphasis, ButtonSize, ButtonStyle, ButtonType, IconLink, Modal } from '@frontify/fondue';
 import { useOverlayTriggerState } from '@react-stately/overlays';
-import { KeyboardEvent, ReactElement, useEffect, useState } from 'react';
+import React, { KeyboardEvent, ReactElement, useEffect, useState } from 'react';
 import { DocumentLinks } from './DocumentLinks';
 import { AppBridgeBlock } from '@frontify/app-bridge';
-import React from 'react';
 
 type LinkSelectorProps = {
     appBridge: AppBridgeBlock;
