@@ -21,6 +21,7 @@ const ImageBlockCaption = '[data-test-id="image-caption"]';
 const PlaceholderSelector = '[data-test-id="block-inject-button"]';
 const DownloadSelector = '[data-test-id="download-button"]';
 const AttachmentsSelector = '[data-test-id="attachments-flyout-button"]';
+const ButtonsWrapper = '[data-test-id="buttons-wrapper"]';
 
 describe('Image Block', () => {
     it('renders an image block', () => {
@@ -208,5 +209,51 @@ describe('Image Block', () => {
         });
         mount(<ImageBlockWithStubs />);
         cy.get(ImageBlockImageWrapperSelector).should('have.class', mapAlignmentClasses[Alignment.Right]);
+    });
+
+    it('should add padding to buttons when padding is added to image', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockSettings: {
+                hasCustomPadding: true,
+                paddingCustom: '16px',
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ButtonsWrapper).should('have.css', 'padding-top', '16px').and('have.css', 'padding-right', '16px');
+    });
+
+    it('should add padding to buttons when border is added to image', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockSettings: {
+                hasBorder: true,
+                borderWidth: '12px',
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ButtonsWrapper).should('have.css', 'padding-top', '12px').and('have.css', 'padding-right', '12px');
+    });
+
+    it('should add padding to buttons when padding and border is added to image', () => {
+        const [ImageBlockWithStubs] = withAppBridgeBlockStubs(ImageBlock, {
+            blockSettings: {
+                hasBorder: true,
+                borderWidth: '12px',
+                borderColor: { r: 0, g: 0, b: 255 },
+                borderStyle: 'solid',
+                hasCustomPadding: true,
+                paddingCustom: '16px',
+            },
+            blockAssets: {
+                [IMAGE_ID]: [AssetDummy.with(1)],
+            },
+        });
+        mount(<ImageBlockWithStubs />);
+        cy.get(ButtonsWrapper).should('have.css', 'padding-top', '28px').and('have.css', 'padding-right', '28px');
     });
 });
