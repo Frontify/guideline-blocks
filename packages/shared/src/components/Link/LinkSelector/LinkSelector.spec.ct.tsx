@@ -50,7 +50,7 @@ describe('Link Selector', () => {
         });
         const apiDocuments = [DocumentApiDummy.with(1)];
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
-        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+        (appBridge.getUngroupedDocuments as SinonStub) = cy.stub().returns(apiDocuments);
 
         mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub()} />);
         cy.get(LinkSelectorButtonSelector).click();
@@ -62,7 +62,7 @@ describe('Link Selector', () => {
             blockId: 1,
         });
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
-        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+        (appBridge.getUngroupedDocuments as SinonStub) = cy.stub().returns(apiDocuments);
 
         mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub()} />);
         cy.get(LinkSelectorButtonSelector).click();
@@ -75,8 +75,8 @@ describe('Link Selector', () => {
         });
 
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
-        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
-        (appBridge.getDocumentPagesByDocumentId as SinonStub) = cy.stub().returns(apiPages);
+        (appBridge.getUngroupedDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+        (appBridge.getDocumentPagesByDocumentCategoryId as SinonStub) = cy.stub().returns(apiPages);
         (appBridge.getDocumentSectionsByDocumentPageId as SinonStub) = cy.stub().returns(apiSections);
 
         mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub()} />);
@@ -90,8 +90,8 @@ describe('Link Selector', () => {
             blockId: 1,
         });
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
-        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
-        (appBridge.getDocumentPagesByDocumentId as SinonStub) = cy.stub().returns(apiPages);
+        (appBridge.getUngroupedDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+        (appBridge.getUncategorizedDocumentPagesByDocumentId as SinonStub) = cy.stub().returns(apiPages);
         (appBridge.getDocumentSectionsByDocumentPageId as SinonStub) = cy.stub().returns(apiSections);
 
         mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub()} />);
@@ -106,8 +106,8 @@ describe('Link Selector', () => {
             blockId: 1,
         });
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
-        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
-        (appBridge.getDocumentPagesByDocumentId as SinonStub) = cy.stub().returns(apiPages);
+        (appBridge.getUngroupedDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+        (appBridge.getUncategorizedDocumentPagesByDocumentId as SinonStub) = cy.stub().returns(apiPages);
         (appBridge.getDocumentSectionsByDocumentPageId as SinonStub) = cy.stub().returns(apiSections);
 
         mount(<LinkSelector appBridge={appBridge} url="/7" onUrlChange={cy.stub()} />);
@@ -120,8 +120,8 @@ describe('Link Selector', () => {
             blockId: 1,
         });
         (appBridge.getDocumentGroups as SinonStub) = cy.stub().returns([]);
-        (appBridge.getAllDocuments as SinonStub) = cy.stub().returns(apiDocuments);
-        (appBridge.getDocumentPagesByDocumentId as SinonStub) = cy.stub().returns(apiPages);
+        (appBridge.getUngroupedDocuments as SinonStub) = cy.stub().returns(apiDocuments);
+        (appBridge.getUncategorizedDocumentPagesByDocumentId as SinonStub) = cy.stub().returns(apiPages);
         (appBridge.getDocumentSectionsByDocumentPageId as SinonStub) = cy.stub().returns(apiSections);
 
         mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub().as('urlChange')} />);
