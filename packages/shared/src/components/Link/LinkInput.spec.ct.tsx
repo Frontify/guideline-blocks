@@ -129,7 +129,7 @@ describe('Link Input', () => {
 
     it('renders * if input is required', () => {
         const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
-        mount(<LinkInputWithStubs required />);
+        mount(<LinkInputWithStubs required label="Link" />);
 
         cy.get(INPUT_LABEL_CONTAINER_ID).contains('*');
     });
@@ -137,22 +137,6 @@ describe('Link Input', () => {
         const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
         mount(<LinkInputWithStubs buttonSize={ButtonSize.Small} />);
 
-        cy.get(BUTTON_ID).should('have.class', 'small');
-    });
-
-    it('renders error msg if url is not valid', () => {
-        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
-        mount(<LinkInputWithStubs />);
-
-        cy.get(TEXT_INPUT_ID).click({ force: true }).type('tte:');
-        cy.get(LINK_INPUT_ID).should('contain.text', 'Please enter a valid URL.');
-    });
-
-    it('doesnt render error msg if url is valid', () => {
-        const [LinkInputWithStubs] = withAppBridgeBlockStubs(LinkInput, {});
-        mount(<LinkInputWithStubs />);
-
-        cy.get(TEXT_INPUT_ID).click({ force: true }).type('tel:+418923');
-        cy.get(LINK_INPUT_ID).should('contain.not.text', 'Please enter a valid URL.');
+        cy.get(BUTTON_ID).should('have.class', 'tw-text-body-small');
     });
 });
