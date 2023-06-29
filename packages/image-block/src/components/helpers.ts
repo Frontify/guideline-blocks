@@ -74,6 +74,19 @@ export const getCaptionPlugins = (appBridge: AppBridgeBlock) =>
             new ResetFormattingPlugin(),
         ]);
 
+export const getTotalImagePadding = (blockSettings: Settings): CSSProperties => {
+    const border = blockSettings.hasBorder ? blockSettings.borderWidth?.replace('px', '') : undefined;
+    const totalPadding = Number(border ?? 0) + Number(getPadding(blockSettings)?.replace('px', ''));
+
+    return {
+        paddingTop: `${totalPadding}px`,
+        paddingRight: `${totalPadding}px`,
+    };
+};
+
+const getPadding = (blockSettings: Settings): string =>
+    blockSettings.hasCustomPadding ? blockSettings.paddingCustom : paddingValues[blockSettings.paddingChoice];
+
 export const getImageStyle = (blockSettings: Settings, width: string): CSSProperties => {
     const borderRadius = blockSettings.hasRadius_cornerRadius
         ? blockSettings.radiusValue_cornerRadius
@@ -82,12 +95,8 @@ export const getImageStyle = (blockSettings: Settings, width: string): CSSProper
         ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
         : undefined;
 
-    const padding = blockSettings.hasCustomPadding
-        ? blockSettings.paddingCustom
-        : paddingValues[blockSettings.paddingChoice];
-
     return {
-        padding,
+        padding: getPadding(blockSettings),
         border,
         maxWidth: width,
         borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
