@@ -5,7 +5,7 @@ import { ButtonSize, Checkbox, CheckboxState, FormControl, TextInput, TooltipPos
 import { LinkSelector } from './LinkSelector';
 import React from 'react';
 
-type LinkComponentProps = {
+type LinkInputProps = {
     url?: string;
     info?: string;
     label?: string;
@@ -22,7 +22,7 @@ type LinkComponentProps = {
     hideInternalLinkButton?: boolean;
 };
 
-export const LinkComponent = ({
+export const LinkInput = ({
     onUrlChange,
     onToggleTab,
     isValidUrlOrEmpty,
@@ -37,7 +37,7 @@ export const LinkComponent = ({
     label,
     buttonSize,
     hideInternalLinkButton,
-}: LinkComponentProps) => {
+}: LinkInputProps) => {
     const isUrlValid = isValidUrlOrEmpty ? isValidUrlOrEmpty(url) : 'import';
     const checkedState = newTab ?? (openInNewTab ? CheckboxState.Checked : CheckboxState.Unchecked);
     return (

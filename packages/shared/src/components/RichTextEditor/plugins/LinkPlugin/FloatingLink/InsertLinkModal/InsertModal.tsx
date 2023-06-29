@@ -12,7 +12,7 @@ import {
 } from '@frontify/fondue';
 import React, { FC, ReactNode } from 'react';
 import { InsertModalStateProps } from './types';
-import { LinkComponent } from '../../../../../Link/LinkComponent';
+import { LinkInput } from '../../../../../Link/LinkInput';
 
 type Props = {
     state: InsertModalStateProps;
@@ -54,7 +54,7 @@ export const InsertModal: FC<Props> = ({
 
         {children}
         <div className="tw-mt-5">
-            <LinkComponent
+            <LinkInput
                 url={state.url}
                 newTab={state.newTab}
                 onUrlChange={onUrlChange}
