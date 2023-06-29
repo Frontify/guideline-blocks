@@ -88,7 +88,11 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                     isEditing={isEditing}
                 />
                 <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
-                    <div className="tw-flex tw-gap-2" style={getTotalImagePadding(blockSettings)}>
+                    <div
+                        className="tw-flex tw-gap-2"
+                        data-test-id="buttons-wrapper"
+                        style={getTotalImagePadding(blockSettings)}
+                    >
                         {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
                             <DownloadButton onDownload={() => downloadAsset(image)} />
                         )}

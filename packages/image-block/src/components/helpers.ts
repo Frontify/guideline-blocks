@@ -76,7 +76,7 @@ export const getCaptionPlugins = (appBridge: AppBridgeBlock) =>
 
 export const getTotalImagePadding = (blockSettings: Settings): CSSProperties => {
     const border = blockSettings.hasBorder ? blockSettings.borderWidth?.replace('px', '') : undefined;
-    const totalPadding = Number(border ?? 0) + Number(getPadding(blockSettings)?.replace('px', ''));
+    const totalPadding = Number(border ?? 0) + Number(getPadding(blockSettings)?.replace('px', '') ?? 0);
 
     return {
         paddingTop: `${totalPadding}px`,
