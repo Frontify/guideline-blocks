@@ -141,7 +141,7 @@ export const Attachments = ({
                     disabled={isFlyoutOpen}
                     enterDelay={500}
                     triggerElement={
-                        <div className="-tw-mx-3" data-test-id="attachments-flyout-button">
+                        <div data-test-id="attachments-flyout-button">
                             <Flyout
                                 placement={FlyoutPlacement.BottomRight}
                                 onOpenChange={(isOpen) => setIsFlyoutOpen(!!draggedItem ? true : isOpen)}
@@ -149,7 +149,7 @@ export const Attachments = ({
                                 fitContent
                                 legacyFooter={false}
                                 trigger={
-                                    <div className="tw-flex tw-text-[13px] tw-font-body tw-items-center tw-gap-1 tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed  tw-text-box-neutral-strong tw-outline tw-outline-1 tw-outline-offset-[1px] tw-p-[6px] tw-outline-line">
+                                    <div className="tw-flex -tw-mx-3 tw-text-[13px] tw-font-body tw-items-center tw-gap-1 tw-rounded-full tw-bg-box-neutral-strong-inverse hover:tw-bg-box-neutral-strong-inverse-hover active:tw-bg-box-neutral-strong-inverse-pressed tw-text-box-neutral-strong tw-outline tw-outline-1 tw-outline-offset-[1px] tw-p-[6px] tw-outline-line">
                                         <IconPaperclip16 />
                                         <div>{items.length > 0 ? items.length : 'Add'}</div>
                                         <IconCaretDown12 />
