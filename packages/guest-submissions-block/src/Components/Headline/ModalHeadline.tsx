@@ -22,7 +22,7 @@ export const ModalHeadline: FC<BlockProps> = ({ appBridge }) => {
             content={modalcontent}
             onTextChange={onTextChange}
             defaultValue={''}
-            placeholder={'Instructional text'}
+            placeholder="Instructional text"
         />
     );
 };

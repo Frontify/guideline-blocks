@@ -31,7 +31,7 @@ export const SuccessPage: FC<BlockProps> = ({ appBridge }) => {
                         content={successContent}
                         onTextChange={onTextChange}
                         defaultValue={DEFAULT_SUCCESS_MESSAGE}
-                        placeholder={'Description'}
+                        placeholder="Description"
                     />
                 </Stack>
             </Stack>
