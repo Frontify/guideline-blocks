@@ -125,11 +125,14 @@ describe('Attachments', () => {
             />
         );
         cy.get(FlyoutButtonSelector).click();
-        cy.get(AttachmentItemSelector)
-            .eq(0)
-            .trigger('keydown', { key: 'Tab' })
-            .trigger('keydown', { key: 'Tab' })
-            .trigger('keydown', { key: 'Tab' });
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        // cy.get(AttachmentItemSelector)
+        //     .eq(0)
+        //     .trigger('keydown', { key: 'Tab' })
+        //     .trigger('keydown', { key: 'Tab' })
+        //     .trigger('keydown', { key: 'Tab' });
         cy.get(FlyoutTriggerSelector).eq(0).should('have.class', 'focus-visible:tw-ring-blue');
         cy.get(FlyoutTriggerSelector).eq(0).type('{enter}');
         cy.get(MenuItemSelector).should('exist');
@@ -145,7 +148,9 @@ describe('Attachments', () => {
             />
         );
         cy.get(FlyoutButtonSelector).click();
-        cy.get(AttachmentItemSelector).eq(0).trigger('keydown', { key: 'Tab' }).trigger('keydown', { key: 'Tab' });
+        cy.realPress('Tab');
+        cy.realPress('Tab');
+        cy.realPress('Tab');
         cy.get(DragHandleSelector).eq(0).type(' {downarrow}{downarrow} ');
         cy.get(AttachmentItemSelector).eq(1).should('contain.text', 'Moved item');
     });

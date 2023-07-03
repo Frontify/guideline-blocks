@@ -40,16 +40,18 @@ export const RichTextEditor = ({
 
     if (isEditing) {
         return (
-            <FondueRichTextEditor
-                id={id}
-                value={value}
-                border={false}
-                placeholder={placeholder}
-                plugins={plugins}
-                updateValueOnChange={updateValueOnChange}
-                onValueChanged={() => setShouldPreventPageLeave(true)}
-                onTextChange={saveText}
-            />
+            <div className="[&_[contenteditable]]:tw-outline-none">
+                <FondueRichTextEditor
+                    id={id}
+                    value={value}
+                    border={false}
+                    placeholder={placeholder}
+                    plugins={plugins}
+                    updateValueOnChange={updateValueOnChange}
+                    onValueChanged={() => setShouldPreventPageLeave(true)}
+                    onTextChange={saveText}
+                />
+            </div>
         );
     }
     return <SerializedText value={value} columns={columns} gap={gap} show={showSerializedText} plugins={plugins} />;
