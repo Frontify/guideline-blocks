@@ -32,9 +32,9 @@ export type Settings = {
 };
 
 export const gradientHeightValues: Record<GradientHeight, string> = {
-    [GradientHeight.Small]: '48px',
-    [GradientHeight.Medium]: '72px',
-    [GradientHeight.Large]: '96px',
+    [GradientHeight.Small]: '50px',
+    [GradientHeight.Medium]: '70px',
+    [GradientHeight.Large]: '100px',
 };
 
 export const gradientOrientationValues: Record<GradientOrientation, number> = {

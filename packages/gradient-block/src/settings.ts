@@ -21,26 +21,11 @@ export const ORIENTATION_CUSTOM_ID = 'orientationCustom';
 export const ORIENTATION_SIMPLE_ID = 'orientationSimple';
 
 export const settings = defineSettings({
-    basics: [
-        {
-            id: 'gradientInspect',
-            type: 'sectionHeading',
-            label: 'Inspect',
-            blocks: [
-                {
-                    id: 'displayCss',
-                    label: 'Display CSS Code',
-                    type: 'switch',
-                    defaultValue: false,
-                },
-            ],
-        },
-    ],
     layout: [
         {
             id: 'gradientLayout',
             type: 'sectionHeading',
-            label: '',
+            label: 'Gradient',
             blocks: [
                 {
                     id: IS_CUSTOM_HEIGHT_ID,
@@ -112,6 +97,26 @@ export const settings = defineSettings({
                                 {
                                     icon: IconEnum.ArrowBidirectional16,
                                     value: GradientOrientation.Vertical,
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    id: 'dataLayout',
+                    type: 'sectionHeading',
+                    label: 'Data',
+                    blocks: [
+                        {
+                            id: 'gradientInspect',
+                            type: 'sectionHeading',
+                            label: '',
+                            blocks: [
+                                {
+                                    id: 'displayCss',
+                                    label: 'Display CSS code',
+                                    type: 'switch',
+                                    defaultValue: false,
                                 },
                             ],
                         },
