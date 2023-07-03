@@ -11,8 +11,8 @@ export const STANDARD_METADATA: (keyof PartialSettingsType)[] = [
 export const STANDARD_METADATA_LABEL: Record<keyof PartialSettingsType, string> = {
     description: 'Description',
     creator: 'Creator',
-    copyrightStatus: 'Copyright Status',
-    copyrightNotice: 'Copyright Notice',
+    copyrightStatus: 'Copyright status',
+    copyrightNotice: 'Copyright notice',
 };
 
 export const REQUIRED_FORM_DATA: (keyof RequiredSettingsType)[] = ['disclaimer'];
@@ -20,7 +20,7 @@ export const REQUIRED_FORM_DATA: (keyof RequiredSettingsType)[] = ['disclaimer']
 export const REQUIRED_FORM_DATA_LABEL: Record<keyof RequiredSettingsType, string> = {
     name: 'Name',
     email: 'Email',
-    disclaimer: 'disclaimer',
+    disclaimer: 'Disclaimer',
 };
 
 export const defaultStandardMetaData: (keyof DefaultStandardMetadataType)[] = ['name', 'email'];
