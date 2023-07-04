@@ -263,7 +263,8 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                             </div>
                         )}
                         <div className="tw-w-full tw-flex tw-items-center">
-                            <h3
+                            <span
+                                className="a-h3"
                                 style={{
                                     marginBottom: 0,
                                     marginTop: 0,
@@ -291,7 +292,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                     placeholder={editing ? 'Add a title' : ''}
                                     className="tw-text-s tw-pointer-ev tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-30 tw-placeholder-opacity-30 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
                                 />
-                            </h3>
+                            </span>
                         </div>
                     </div>
                     {style === DoDontStyle.Underline && (
