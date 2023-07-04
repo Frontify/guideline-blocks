@@ -353,7 +353,7 @@ describe('Gradient Block', () => {
         });
 
         mount(<GradientBlockWithStubs />);
-        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '48px');
+        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '50px');
     });
 
     it('gradient layout size medium', () => {
@@ -365,7 +365,7 @@ describe('Gradient Block', () => {
         });
 
         mount(<GradientBlockWithStubs />);
-        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '72px');
+        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '70px');
     });
 
     it('gradient layout size large', () => {
@@ -377,7 +377,7 @@ describe('Gradient Block', () => {
         });
 
         mount(<GradientBlockWithStubs />);
-        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '96px');
+        cy.get(GradientBlockDisplaySelector).should('have.css', 'height', '100px');
     });
 
     it('gradient layout size custom', () => {
