@@ -102,23 +102,23 @@ export const settings = defineSettings({
                         },
                     ],
                 },
+            ],
+        },
+        {
+            id: 'dataLayout',
+            type: 'sectionHeading',
+            label: 'Data',
+            blocks: [
                 {
-                    id: 'dataLayout',
+                    id: 'gradientInspect',
                     type: 'sectionHeading',
-                    label: 'Data',
+                    label: '',
                     blocks: [
                         {
-                            id: 'gradientInspect',
-                            type: 'sectionHeading',
-                            label: '',
-                            blocks: [
-                                {
-                                    id: 'displayCss',
-                                    label: 'Display CSS code',
-                                    type: 'switch',
-                                    defaultValue: false,
-                                },
-                            ],
+                            id: 'displayCss',
+                            label: 'Display CSS code',
+                            type: 'switch',
+                            defaultValue: false,
                         },
                     ],
                 },

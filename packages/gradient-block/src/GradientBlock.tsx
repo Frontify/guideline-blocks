@@ -76,10 +76,10 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div data-test-id="gradient-block" ref={gradientBlockRef}>
-            <div className="tw-border tw-border-line-strong tw-rounded tw-p-0.5">
+            <div className="tw-border tw-border-line-strong tw-rounded-md tw-p-0.5">
                 <div
                     data-test-id="gradient-block-display"
-                    className="tw-w-full tw-h-4 tw-rounded"
+                    className="tw-w-full tw-h-4 tw-rounded-md"
                     style={{
                         height: gradientBlockHeight,
                         background: cssValue,

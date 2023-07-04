@@ -71,12 +71,12 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
             }}
         >
             <div
-                className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded tw-group tw-cursor-pointer"
+                className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded-md tw-group tw-cursor-pointer"
                 onClick={() => copy(toHexString(gradientColor.color))}
             >
                 <div className={getBadgeClasses(gradientColor.isReverse || false)}>
                     <div
-                        className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded tw-mx-0"
+                        className="tw-inline-flex tw-w-4 tw-h-4 tw-rounded-md tw-mx-0"
                         style={{
                             backgroundColor: toHexString(gradientColor.color),
                         }}
