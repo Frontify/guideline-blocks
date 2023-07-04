@@ -65,7 +65,7 @@ export const AssetDropzone: FC<AssetDropzoneProps> = ({ onFileUpload }) => {
                     </div>
                     <LegacyStack padding="none" spacing="xxs" direction="column" align="start">
                         <Text as="p" color="weak" overflow="visible" size="medium" weight="default">
-                            Choose or drag files here …
+                            Add or drop your assets here
                         </Text>
                     </LegacyStack>
                 </LegacyStack>
