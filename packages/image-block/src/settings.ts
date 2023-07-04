@@ -41,19 +41,6 @@ export const settings = defineSettings({
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets.Images,
                 },
-                /*{
-                    id: 'hasLink',
-                    type: 'switch',
-                    label: 'Link',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'linkObject',
-                            type: 'linkChooser',
-                            placeholder: 'Paste link, or type to search',
-                        },
-                    ],
-                },*/
             ],
         },
         {
