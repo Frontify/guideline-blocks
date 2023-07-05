@@ -51,7 +51,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const gradientOrientation = isOrientationCustom
-        ? orientationCustom
+        ? parseInt(orientationCustom)
         : gradientOrientationValues[orientationSimple ?? DEFAULT_ORIENTATION_VALUE];
 
     const gradientBlockHeight = isHeightCustom

@@ -25,7 +25,7 @@ export type Settings = {
     heightCustom?: string;
     heightSimple?: GradientHeight;
     isOrientationCustom: boolean;
-    orientationCustom: number;
+    orientationCustom: string;
     orientationSimple: GradientOrientation;
     displayCss?: boolean;
     gradientColors?: GradientColor[];
