@@ -15,6 +15,7 @@ export const ColorTooltip = ({
 }: ColorTooltipProps) => {
     const left = gradientColor.position > 95 ? `calc(${gradientColor.position}% - 8px)` : `${gradientColor.position}%`;
     const { hoverProps, isHovered } = useHover({});
+    const isActive = showColorModal || isHovered;
 
     return (
         <div className="tw-absolute tw-z-[1]" style={{ left }} {...hoverProps}>
@@ -22,21 +23,21 @@ export const ColorTooltip = ({
                 data-test-id="color-points"
                 className={joinClassNames([
                     'tw-w-2 tw-h-2 tw-rounded-full -tw-mt-[22px]',
-                    isHovered ? 'tw-bg-[var(--box-selected-strong-color-hover)]' : 'tw-bg-black-20',
+                    isActive ? 'tw-bg-[var(--box-selected-strong-color-hover)]' : 'tw-bg-black-20',
                 ])}
             />
             <div data-test-id="color-tooltip" role="tooltip" className="tw-inline-block tw-mt-2.5 -tw-ml-1">
                 <div
                     className={joinClassNames([
                         'tw-absolute tw-w-2 tw-h-2 tw-left-0 tw-pointer-events-none -tw-top-[11px] before:tw-absolute before:tw-bg-white before:tw-w-2 before:tw-h-2 before:tw-rotate-45 before:tw-border before:tw-border-b-0 before:tw-border-r-0',
-                        isHovered ? 'before:tw-border-box-selected-strong-hover' : 'before:tw-border-black-20',
+                        isActive ? 'before:tw-border-box-selected-strong-hover' : 'before:tw-border-black-20',
                     ])}
                 />
 
                 <div
                     className={joinClassNames([
                         'tw-w-4 tw-h-4 tw-rounded tw-outline tw-outline-1 tw-outline-offset-2',
-                        isHovered ? 'tw-outline-box-selected-inverse' : 'tw-outline-black-20',
+                        isActive ? 'tw-outline-box-selected-inverse' : 'tw-outline-black-20',
                     ])}
                 >
                     <div
@@ -46,7 +47,7 @@ export const ColorTooltip = ({
                         }}
                     />
                 </div>
-                {!showColorModal && isHovered ? (
+                {isActive ? (
                     <EditAndDeleteColorBox
                         color={gradientColor}
                         gradientColors={gradientColors}
