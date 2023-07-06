@@ -309,7 +309,7 @@ describe('Gradient Block', () => {
 
         mount(<GradientBlockWithStubs />);
         cy.get(ColorPointsSelector).eq(1).realHover();
-        cy.get(EditAndDeleteColorBoxSelector).first().find('button').last().realClick();
+        cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').last().realClick();
         cy.get(ColorPickerFlyoutSelector).should('exist');
         cy.get(ColorPickerForm).find(TriggerSelector).realClick();
         cy.get('[data-test-id="fondue-segmented-controls-item-text"]').last().realClick();
@@ -335,7 +335,7 @@ describe('Gradient Block', () => {
 
         mount(<GradientBlockWithStubs />);
         cy.get(ColorPointsSelector).eq(1).realHover();
-        cy.get(EditAndDeleteColorBoxSelector).first().find('button').first().realClick();
+        cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').first().realClick();
         cy.get(ColorPointsSelector).should('have.length', 2);
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',

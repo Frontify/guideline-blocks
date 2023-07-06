@@ -24,7 +24,12 @@ export const ColorTooltip = ({
     const isActive = showColorModal || isFocusWithin;
 
     return (
-        <div {...focusWithinProps} className="tw-absolute tw-z-[1] tw-group" style={{ left }} tabIndex={0}>
+        <div
+            {...focusWithinProps}
+            className="tw-absolute tw-z-[1] tw-group tw-outline-none"
+            style={{ left }}
+            tabIndex={0}
+        >
             <div
                 data-test-id="color-points"
                 className={joinClassNames([
