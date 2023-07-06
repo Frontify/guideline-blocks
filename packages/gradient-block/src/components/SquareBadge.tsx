@@ -21,7 +21,7 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
 
     const getCopyButtonClasses = (isLeft: boolean) => {
         return joinClassNames([
-            'tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex',
+            'tw-items-center tw-justify-end tw-gap-1 tw-flex tw-hidden group-hover:tw-inline-flex group-focus:tw-inline-flex',
             isLeft && gradientOrientation === 90 ? 'tw-pl-1' : 'tw-pr-1',
         ]);
     };
@@ -73,6 +73,13 @@ export const SquareBadge = ({ gradientColor, gradientOrientation, index, blockWi
             <div
                 className="tw-flex tw-items-center tw-h-5 tw-bg-base tw-border-line hover:tw-line-box-selected-strong tw-border tw-rounded-md tw-group tw-cursor-pointer"
                 onClick={() => copy(toHexString(gradientColor.color))}
+                aria-label="Copy color to clipboard"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                    if (e.key === 'c' && (e.metaKey || e.ctrlKey)) {
+                        copy(toHexString(gradientColor.color));
+                    }
+                }}
             >
                 <div className={getBadgeClasses(gradientColor.isReverse || false)}>
                     <div

@@ -1,13 +1,11 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';
-
 import { useBlockSettings, useColorPalettes, useEditorState } from '@frontify/app-bridge';
 import { Divider, Palette } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { CssValueDisplay, mapColorPalettes, toHexString } from '@frontify/guideline-blocks-shared';
-
+import { MouseEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import { AddColorButton, ColorFlyout, ColorTooltip, SquareBadgesRow } from './components';
 import { DEFAULT_GRADIENT_COLORS, DEFAULT_HEIGHT_VALUE, DEFAULT_ORIENTATION_VALUE } from './constants';
 import { parseGradientColorsToCss } from './helpers';
