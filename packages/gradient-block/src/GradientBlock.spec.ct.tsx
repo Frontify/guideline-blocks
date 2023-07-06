@@ -325,6 +325,42 @@ describe('Gradient Block', () => {
         );
     });
 
+    it('edit an existing color change to blue by keyboard', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+        mount(<GradientBlockWithStubs />);
+        cy.realPress('Tab')
+            .realPress('Tab')
+            .realPress('Tab')
+            .realPress('Tab')
+            .realPress('Tab')
+            .realPress('Tab')
+            .realPress('Enter');
+        cy.get(ColorPickerFlyoutSelector).should('exist');
+        cy.realPress('Tab').realPress('Enter');
+        cy.get('[data-test-id="fondue-segmented-controls-item-text"]').last().realClick();
+        cy.realPress('Tab').realPress('Tab').realPress('Tab').realPress('Enter');
+        cy.realType('#0000ff');
+        cy.realPress('Tab')
+            .realPress('Tab')
+            .realPress('Tab')
+            .realPress('Tab')
+            .realPress('Tab')
+            .realPress('Tab')
+            .realPress('Enter');
+
+        cy.get(ColorPointsSelector).should('have.length', 3);
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(0, 0, 255) 25%, rgb(255, 255, 255) 100%)'
+        );
+    });
+
     it('delete an existing color', () => {
         const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
             editorState: true,
@@ -336,6 +372,24 @@ describe('Gradient Block', () => {
         mount(<GradientBlockWithStubs />);
         cy.get(ColorPointsSelector).eq(1).realHover();
         cy.get(EditAndDeleteColorBoxSelector).eq(1).find('button').first().realClick();
+        cy.get(ColorPointsSelector).should('have.length', 2);
+        cy.get(GradientBlockDisplaySelector).should(
+            'have.css',
+            'background-image',
+            'linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)'
+        );
+    });
+
+    it('delete an existing color by keyboard', () => {
+        const [GradientBlockWithStubs] = withAppBridgeBlockStubs(GradientBlock, {
+            editorState: true,
+            blockSettings: {
+                gradientColors: GradientColor,
+            },
+        });
+
+        mount(<GradientBlockWithStubs />);
+        cy.realPress('Tab').realPress('Tab').realPress('Tab').realPress('Tab').realPress('Tab').realPress('Enter');
         cy.get(ColorPointsSelector).should('have.length', 2);
         cy.get(GradientBlockDisplaySelector).should(
             'have.css',
