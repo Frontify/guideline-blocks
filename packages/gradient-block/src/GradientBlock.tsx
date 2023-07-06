@@ -123,7 +123,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                             key={toHexString(gradientColor.color) + gradientColor.position}
                             gradientColor={gradientColor}
                             gradientColors={gradientColors}
-                            showColorModal={showColorModal}
+                            showColorModal={showColorModal && currentlyEditingPosition === gradientColor.position}
                             setColors={setGradientColors}
                             setShowColorModal={setShowColorModal}
                             setCurrentlyEditingPosition={setCurrentlyEditingPosition}

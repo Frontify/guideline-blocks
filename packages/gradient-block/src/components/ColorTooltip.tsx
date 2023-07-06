@@ -15,7 +15,7 @@ export const ColorTooltip = ({
     setCurrentlyEditingPosition,
 }: ColorTooltipProps) => {
     const left = gradientColor.position > 95 ? `calc(${gradientColor.position}% - 8px)` : `${gradientColor.position}%`;
-    const [isFocusWithin, setFocusWithin] = useState(true);
+    const [isFocusWithin, setFocusWithin] = useState(false);
     const { focusWithinProps } = useFocusWithin({
         onFocusWithinChange: (focused) => {
             setFocusWithin(focused);
