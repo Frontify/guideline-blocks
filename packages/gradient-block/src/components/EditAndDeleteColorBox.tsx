@@ -2,6 +2,7 @@
 
 import { Button, ButtonEmphasis, ButtonSize, IconDotsHorizontal16, IconTrashBin16 } from '@frontify/fondue';
 import { EditAndDeleteColorBoxProps, GradientColor } from '../types';
+import { joinClassNames } from '@frontify/guideline-blocks-shared';
 
 export const EditAndDeleteColorBox = ({
     color,
@@ -9,6 +10,7 @@ export const EditAndDeleteColorBox = ({
     setColors,
     setShowColorModal,
     setCurrentlyEditingPosition,
+    shouldShow,
 }: EditAndDeleteColorBoxProps) => {
     const deleteColor = (color: GradientColor) => {
         setColors(gradientColors.filter((colorItem) => colorItem.position !== color.position));
@@ -17,7 +19,10 @@ export const EditAndDeleteColorBox = ({
     return (
         <div
             data-test-id="edit-and-delete-color-box"
-            className="tw-flex tw-mt-1.5 -tw-ml-4 tw-border tw-border-box-selected-strong tw-rounded tw-bg-white"
+            className={joinClassNames([
+                'tw-flex tw-mt-1.5 -tw-ml-4 tw-border tw-border-box-selected-strong tw-rounded tw-bg-white group-hover:tw-visible',
+                shouldShow ? 'tw-visible' : 'tw-invisible',
+            ])}
         >
             <Button
                 aria-label="Delete color"

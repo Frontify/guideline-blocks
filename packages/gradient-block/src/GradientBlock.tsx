@@ -89,7 +89,7 @@ export const GradientBlock = ({ appBridge }: BlockProps): ReactElement => {
                 />
             </div>
             {isEditing ? (
-                <div className="tw-relative tw-h-[70px]">
+                <div className="tw-h-[70px]">
                     <div className="tw-relative">
                         <div
                             data-test-id="gradient-block-divider"
