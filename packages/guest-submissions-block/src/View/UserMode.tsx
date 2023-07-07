@@ -32,8 +32,9 @@ import { BlockStyles } from '@frontify/guideline-blocks-shared';
 export const CARD_CONTAINER =
     'tw-bg-base-alt tw-rounded tw-flex tw-justify-between tw-content-center tw-items-center tw-p-8';
 export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void }> = ({ appBridge, setView }) => {
-    const [{ buttonText, assetSubmissionToken, assetSubmissionId }, setBlockSettings] =
-        useBlockSettings<Settings>(appBridge);
+    const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+
+    const { buttonText, assetSubmissionToken, assetSubmissionId } = blockSettings;
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [fileList, setFileList] = useState<QueryFile[] | (QueryFile & File)[]>([]);
     const [buttonHover, setButtonHover] = useState<boolean>(false);
@@ -100,6 +101,7 @@ export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void 
 
                             {fileList.length > 0 && (
                                 <Metadata
+                                    blockSettings={blockSettings}
                                     appBridge={appBridge}
                                     onSubmit={async (formData) => {
                                         await setBlockSettings({ uploadedFiles: fileList.length });

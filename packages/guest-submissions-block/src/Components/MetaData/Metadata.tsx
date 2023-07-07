@@ -7,7 +7,6 @@ import { OnChangeProps } from './Form/type';
 import { Divider, LegacyStack, Validation } from '@frontify/fondue';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { DISCLAIMER_NAME, Disclaimer, StandardMetadataFactory } from './StandardMetadata';
-import { useBlockSettings } from '@frontify/app-bridge';
 import { Settings } from '../../types';
 import { REQUIRED_FORM_DATA } from './StandardMetadata/constant';
 import { useFormValidation } from './hooks/UseFormValidation';
@@ -41,8 +40,12 @@ export type FormValues = {
     copyrightNotice?: string;
 } & CustomMetadataFormValues;
 
-export const Metadata: FC<MetaDataSubmitProps & BlockProps> = ({ onSubmit, children, appBridge }) => {
-    const [blockSettings] = useBlockSettings<Settings>(appBridge);
+export const Metadata: FC<MetaDataSubmitProps & BlockProps & { blockSettings: Settings }> = ({
+    onSubmit,
+    children,
+    appBridge,
+    blockSettings,
+}) => {
     const [initialValues, metadataConfiguration] = useMetadataSettingsConfig(blockSettings);
     const [formValues, setFormValues] = useState<FormValues>(initialValues as FormValues);
     const [errorFields, setErrorFields] = useState<string[]>([]);

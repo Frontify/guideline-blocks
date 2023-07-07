@@ -3,6 +3,7 @@
 import { Settings } from '../../../types';
 import { CustomMetadataFormValues } from '../Metadata';
 import { MetadataProps } from '../type';
+import { useEffect, useState } from 'react';
 
 type MetadataIds = {
     [key: string]: string | string[] | boolean | number | MetadataProps[];
@@ -11,13 +12,18 @@ type MetadataIds = {
 export const DATA_DELIMINATOR = '--#--';
 
 export const useMetadataSettingsConfig = (blockSettings: Settings): [CustomMetadataFormValues, MetadataProps[]] => {
-    const metadataConfiguration = getMetadataConfiguration(blockSettings);
+    const [metadataConfiguration, setMetadataConfiguration] = useState<MetadataProps[]>([]);
+
+    useEffect(() => {
+        setMetadataConfiguration(getMetadataConfiguration(blockSettings));
+    }, [blockSettings]);
 
     return [getInitialValues(metadataConfiguration), metadataConfiguration];
 };
 
 const getMetadataConfiguration = (blockSettings: Settings): MetadataProps[] => {
-    const initialMetadataConfiguration = setRequiredToFalse(blockSettings.assetSubmissionMetadataConfig);
+    const { assetSubmissionMetadataConfig } = blockSettings;
+    const initialMetadataConfiguration = setRequiredToFalse(assetSubmissionMetadataConfig);
     const activeMetadataFromSettings = filterOutCustomMetadataFields(blockSettings);
 
     return setActiveMetadataFields(activeMetadataFromSettings, initialMetadataConfiguration);
@@ -44,10 +50,15 @@ const setActiveMetadataFields = (
         const [key] = Object.keys(cur);
         const [, id] = key.split(DATA_DELIMINATOR);
 
-        const metadataEntry = initialMetadataConfig.find((item) => item.id === id);
-        if (!isMetadataProperty(key, Object.values(cur)[0]) || !metadataEntry) {
+        if (!isMetadataProperty(key, Object.values(cur)[0])) {
             return acc || [];
         }
+
+        const metadataEntry = initialMetadataConfig.find((item) => item.id === id);
+        if (!metadataEntry) {
+            return acc || [];
+        }
+
         const metadataConfig = setOptionalModifiers(metadataEntry, activeMetadataFromSettings);
 
         return acc ? [...acc, metadataConfig] : [metadataConfig];

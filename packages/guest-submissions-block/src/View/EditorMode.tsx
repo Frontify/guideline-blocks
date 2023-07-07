@@ -7,7 +7,7 @@ import { Metadata } from '../Components/MetaData';
 import { Settings } from '../types';
 import { useBlockSettings } from '@frontify/app-bridge';
 import { AssetSubmission } from '../module/AssetSubmission/AssetSubmission';
-import { getLibraryById } from '../module/Library/Library';
+import { Library, getLibraryById } from '../module/Library/Library';
 import { Headline, ModalHeadline } from '../Components/Headline';
 import { CARD_CONTAINER } from './UserMode';
 import { SuccessPage } from './SuccessPage';
@@ -22,6 +22,8 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
      * We cannot directly store them from the Settings
      * Listen to a change in the settings and query the endpoint again to then store them
      */
+
+    const [libraryMetadata, setLibraryMetadata] = useState<Library>();
     useEffect(() => {
         (async () => {
             const assetSubmissionRequests = await AssetSubmission.getAssetSubmissionRequests();
@@ -30,11 +32,8 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
             );
 
             if (assetSubmissionMetadataConfig) {
-                const libraryMetadata = await getLibraryById(assetSubmissionMetadataConfig?.projectId);
-
-                await setBlockSettings({
-                    assetSubmissionMetadataConfig: libraryMetadata.customMetadataProperties,
-                });
+                const libraryMetadataResponse = await getLibraryById(assetSubmissionMetadataConfig?.projectId);
+                setLibraryMetadata(libraryMetadataResponse);
 
                 await setBlockSettings({
                     assetSubmissionToken: assetSubmissionMetadataConfig.tokens[0].token,
@@ -47,7 +46,16 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
         })();
     }, [blockSettings.assetSubmission]);
 
-    console.log(BlockStyles.buttonPrimary);
+    useEffect(() => {
+        (async () => {
+            if (libraryMetadata) {
+                await setBlockSettings({
+                    assetSubmissionMetadataConfig: libraryMetadata.customMetadataProperties,
+                });
+            }
+        })();
+    }, [libraryMetadata]);
+
     return (
         <LegacyStack padding="s" spacing="s" direction={'column'}>
             <div className={CARD_CONTAINER}>
@@ -70,7 +78,7 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
             <div className="tw-p-10 tw-rounded tw-border tw-border-black-10 tw-border-dashed">
                 <LegacyStack padding="l" spacing="s" direction={'column'}>
                     <ModalHeadline appBridge={appBridge} />
-                    <Metadata onSubmit={() => null} appBridge={appBridge} />
+                    <Metadata onSubmit={() => null} appBridge={appBridge} blockSettings={blockSettings} />
                 </LegacyStack>
             </div>
             <div className="tw-p-10 tw-rounded tw-border tw-border-black-10 tw-border-dashed">
