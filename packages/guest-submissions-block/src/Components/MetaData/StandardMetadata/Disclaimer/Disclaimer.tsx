@@ -20,7 +20,7 @@ import { PLACEHOLDER } from '../../../Headline/constant';
 
 export const DISCLAIMER_NAME = 'disclaimer';
 
-const DEFAULT_VALUE = '[{"type":"p","children":[{"text":"Text of the disclaimer.","textStyle":"p"}]}]';
+const DEFAULT_VALUE = '[{"type":"p","children":[{"text":"Disclaimer text","textStyle":"p"}]}]';
 export const Disclaimer: FC<
     BlockProps & {
         validation: Validation;

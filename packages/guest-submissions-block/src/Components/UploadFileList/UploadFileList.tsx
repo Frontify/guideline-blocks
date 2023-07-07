@@ -6,6 +6,7 @@ import { IconCaretUp16, LoadingCircle, LoadingCircleSize, LoadingCircleStyle, Te
 import { joinClassNames } from '@frontify/guideline-blocks-shared';
 import { BackgroundBase } from '../AssetDropzone';
 import { BorderShape } from '../styling';
+import { pluralizeFile } from '../../helpers';
 import { Status } from '../../module/FileUpload/Contract/Status';
 import { QueryFile } from '../../module/FileUpload/Entity/QueryFile';
 
@@ -24,12 +25,12 @@ export const UploadFileList = ({ entries, onEntryDeletion }: FileUploadListProps
             <>
                 <LoadingCircle size={LoadingCircleSize.Small} style={LoadingCircleStyle.Progress} />{' '}
                 <Text as="p" color="weak" overflow="visible" size="medium" weight="strong">
-                    {entries.length} files uploading
+                    {entries.length} {pluralizeFile(entries.length)} uploading
                 </Text>
             </>
         ) : (
             <Text as="p" color="weak" overflow="visible" size="medium" weight="strong">
-                {entries.length} files ready to be submitted
+                {entries.length} {pluralizeFile(entries.length)} ready for submission
             </Text>
         );
 
