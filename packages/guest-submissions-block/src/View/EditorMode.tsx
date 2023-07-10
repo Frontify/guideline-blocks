@@ -15,6 +15,7 @@ import { BlockStyles } from '@frontify/guideline-blocks-shared';
 
 export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [{ assetSubmission, assetSubmissionMetadataConfig }] = useBlockSettings<Settings>(appBridge);
     const [buttonHover, setButtonHover] = useState<boolean>(false);
 
     /**
@@ -27,34 +28,35 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
     useEffect(() => {
         (async () => {
             const assetSubmissionRequests = await AssetSubmission.getAssetSubmissionRequests();
-            const assetSubmissionMetadataConfig = assetSubmissionRequests.find(
+            const assetSubmissionRequestMetadataConfig = assetSubmissionRequests.find(
                 (submission) => submission.projectId === blockSettings.assetSubmission
             );
 
-            if (assetSubmissionMetadataConfig) {
-                const libraryMetadataResponse = await getLibraryById(assetSubmissionMetadataConfig?.projectId);
-                setLibraryMetadata(libraryMetadataResponse);
+            if (assetSubmissionRequestMetadataConfig) {
+                const libraryMetadataResponse = await getLibraryById(assetSubmissionRequestMetadataConfig?.projectId);
+                setLibraryMetadata((prev) => {
+                    if (prev?.customMetadataProperties === libraryMetadataResponse.customMetadataProperties) {
+                        return prev;
+                    }
+                    return libraryMetadataResponse;
+                });
+
+                if (libraryMetadataResponse.customMetadataProperties !== assetSubmissionMetadataConfig) {
+                    await setBlockSettings({
+                        assetSubmissionMetadataConfig: libraryMetadataResponse.customMetadataProperties,
+                    });
+                }
 
                 await setBlockSettings({
-                    assetSubmissionToken: assetSubmissionMetadataConfig.tokens[0].token,
+                    assetSubmissionToken: assetSubmissionRequestMetadataConfig.tokens[0].token,
                 });
 
                 await setBlockSettings({
-                    assetSubmissionId: assetSubmissionMetadataConfig.id,
+                    assetSubmissionId: assetSubmissionRequestMetadataConfig.id,
                 });
             }
         })();
-    }, [blockSettings.assetSubmission]);
-
-    useEffect(() => {
-        (async () => {
-            if (libraryMetadata) {
-                await setBlockSettings({
-                    assetSubmissionMetadataConfig: libraryMetadata.customMetadataProperties,
-                });
-            }
-        })();
-    }, [libraryMetadata]);
+    }, [assetSubmission]);
 
     return (
         <LegacyStack padding="s" spacing="s" direction={'column'}>
@@ -78,7 +80,12 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
             <div className="tw-p-10 tw-rounded tw-border tw-border-black-10 tw-border-dashed">
                 <LegacyStack padding="l" spacing="s" direction={'column'}>
                     <ModalHeadline appBridge={appBridge} />
-                    <Metadata onSubmit={() => null} appBridge={appBridge} blockSettings={blockSettings} />
+                    <Metadata
+                        onSubmit={() => null}
+                        appBridge={appBridge}
+                        blockSettings={blockSettings}
+                        assetSubmissionMetadataConfig={libraryMetadata ? libraryMetadata.customMetadataProperties : []}
+                    />
                 </LegacyStack>
             </div>
             <div className="tw-p-10 tw-rounded tw-border tw-border-black-10 tw-border-dashed">

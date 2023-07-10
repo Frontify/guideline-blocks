@@ -101,6 +101,7 @@ export const UserMode: FC<BlockProps & { setView: (routes: BlockRoutes) => void 
 
                             {fileList.length > 0 && (
                                 <Metadata
+                                    assetSubmissionMetadataConfig={blockSettings.assetSubmissionMetadataConfig}
                                     blockSettings={blockSettings}
                                     appBridge={appBridge}
                                     onSubmit={async (formData) => {

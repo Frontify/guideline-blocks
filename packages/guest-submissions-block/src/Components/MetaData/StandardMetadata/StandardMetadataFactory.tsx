@@ -18,7 +18,7 @@ export class StandardMetadataFactory {
                 return (
                     <SelectDropdown
                         id={entry}
-                        key={entry}
+                        key={`${entry}-standard-metadata`}
                         onChange={onChange}
                         isRequired={false}
                         name={metaDataLabels[entry]}
@@ -49,7 +49,7 @@ export class StandardMetadataFactory {
                 return (
                     <InputText
                         id={entry}
-                        key={entry}
+                        key={`${entry}-standard-metadata`}
                         onChange={onChange}
                         isRequired={requiredFields.filter((item) => item === entry).length > 0}
                         name={metaDataLabels[entry]}

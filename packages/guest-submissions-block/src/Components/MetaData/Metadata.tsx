@@ -40,13 +40,16 @@ export type FormValues = {
     copyrightNotice?: string;
 } & CustomMetadataFormValues;
 
-export const Metadata: FC<MetaDataSubmitProps & BlockProps & { blockSettings: Settings }> = ({
-    onSubmit,
-    children,
-    appBridge,
-    blockSettings,
-}) => {
-    const [initialValues, metadataConfiguration] = useMetadataSettingsConfig(blockSettings);
+export const Metadata: FC<
+    MetaDataSubmitProps &
+        BlockProps & { blockSettings: Settings } & {
+            assetSubmissionMetadataConfig: MetadataProps[];
+        }
+> = ({ onSubmit, children, appBridge, blockSettings, assetSubmissionMetadataConfig }) => {
+    const [initialValues, metadataConfiguration] = useMetadataSettingsConfig(
+        blockSettings,
+        assetSubmissionMetadataConfig
+    );
     const [formValues, setFormValues] = useState<FormValues>(initialValues as FormValues);
     const [errorFields, setErrorFields] = useState<string[]>([]);
     const validateFormOrTriggerError = useFormValidation(formValues);

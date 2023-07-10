@@ -6,7 +6,7 @@ import { MetadataType } from '../type';
 
 describe('Metadata Config', () => {
     test('MetadataConfig Spec ', () => {
-        const [initialValue, metadata] = useMetadataSettingsConfig(testObject);
+        const [initialValue, metadata] = useMetadataSettingsConfig(testObject, assetSubmissionConfig);
 
         const desiredInitialValue = {
             'eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==': 'just some text',
@@ -26,12 +26,32 @@ describe('Metadata Config', () => {
     });
 
     test('MetadataConfig works without metadata ', () => {
-        const [initialValue, metadata] = useMetadataSettingsConfig(testObjectNoConfiguration);
+        const [initialValue, metadata] = useMetadataSettingsConfig(testObjectNoConfiguration, []);
 
         expect(initialValue).toStrictEqual({});
         expect(metadata).toStrictEqual([]);
     });
 });
+
+const assetSubmissionConfig = [
+    {
+        id: 'eyJpZGVudGlmaWVyIjoxOSwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+        isRequired: false,
+        name: 'A Short Text',
+        defaultValue: 'just some text',
+        type: {
+            name: MetadataType.TEXT,
+        },
+    },
+    {
+        id: 'eyJpZGVudGlmaWVyIjoyMCwidHlwZSI6ImN1c3RvbU1ldGFkYXRhUHJvcGVydHkifQ==',
+        isRequired: false,
+        name: 'Another Short Text',
+        type: {
+            name: MetadataType.TEXT,
+        },
+    },
+];
 
 const testObjectNoConfiguration = {
     name: false,

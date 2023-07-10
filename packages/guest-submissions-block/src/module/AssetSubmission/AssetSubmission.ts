@@ -28,7 +28,10 @@ export class AssetSubmission {
             .reduce((prev, cur) => {
                 if (cur.libraries.items.length > 0) {
                     const assetSubmissionEntries = cur.libraries.items
-                        .filter((library) => library.assetSubmissionRequests.length > 0)
+                        .filter(
+                            (library) =>
+                                library && library.assetSubmissionRequests && library.assetSubmissionRequests.length > 0
+                        )
                         .map((item) => item.assetSubmissionRequests);
                     return [...prev, ...assetSubmissionEntries];
                 } else {

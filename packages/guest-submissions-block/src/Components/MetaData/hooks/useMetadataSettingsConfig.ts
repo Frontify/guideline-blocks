@@ -11,18 +11,23 @@ type MetadataIds = {
 
 export const DATA_DELIMINATOR = '--#--';
 
-export const useMetadataSettingsConfig = (blockSettings: Settings): [CustomMetadataFormValues, MetadataProps[]] => {
+export const useMetadataSettingsConfig = (
+    blockSettings: Settings,
+    assetSubmissionMetadataConfig: MetadataProps[]
+): [CustomMetadataFormValues, MetadataProps[]] => {
     const [metadataConfiguration, setMetadataConfiguration] = useState<MetadataProps[]>([]);
 
     useEffect(() => {
-        setMetadataConfiguration(getMetadataConfiguration(blockSettings));
-    }, [blockSettings]);
+        setMetadataConfiguration(getMetadataConfiguration(blockSettings, assetSubmissionMetadataConfig));
+    }, [blockSettings, assetSubmissionMetadataConfig]);
 
     return [getInitialValues(metadataConfiguration), metadataConfiguration];
 };
 
-const getMetadataConfiguration = (blockSettings: Settings): MetadataProps[] => {
-    const { assetSubmissionMetadataConfig } = blockSettings;
+const getMetadataConfiguration = (
+    blockSettings: Settings,
+    assetSubmissionMetadataConfig: MetadataProps[]
+): MetadataProps[] => {
     const initialMetadataConfiguration = setRequiredToFalse(assetSubmissionMetadataConfig);
     const activeMetadataFromSettings = filterOutCustomMetadataFields(blockSettings);
 
