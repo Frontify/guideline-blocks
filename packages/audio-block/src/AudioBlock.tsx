@@ -131,7 +131,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     />
                 )
             )}
-            <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative tw-z-20">
+            <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative">
                 <div className="tw-flex-1">
                     <div data-test-id="block-title">
                         <RichTextEditor
