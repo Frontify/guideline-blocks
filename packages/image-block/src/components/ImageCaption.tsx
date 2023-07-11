@@ -17,7 +17,7 @@ export const ImageCaption = ({ isEditing, blockId, appBridge, isNameUpdatable }:
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { name, description } = blockSettings;
-    console.log('name isUpdatable', name, isNameUpdatable);
+
     return (
         <div
             className="tw-mt-3 tw-gap-1 tw-flex-1 tw-w-full"
