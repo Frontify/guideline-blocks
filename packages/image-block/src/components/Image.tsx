@@ -78,7 +78,7 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
     return (
         <div
             data-test-id="image-block-img-wrapper"
-            className={joinClassNames(['tw-flex tw-h-auto', mapAlignmentClasses[blockSettings.alignment]])}
+            className={`tw-flex tw-h-auto ${mapAlignmentClasses[blockSettings.alignment]}`}
         >
             <div className="tw-relative ">
                 <ImageComponent

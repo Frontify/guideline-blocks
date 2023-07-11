@@ -21,7 +21,6 @@ import {
     EditAltTextFlyout,
     convertToRteValue,
     hasRichTextValue,
-    joinClassNames,
 } from '@frontify/guideline-blocks-shared';
 import { Image } from './components/Image';
 import { useEffect, useState } from 'react';
@@ -104,10 +103,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     return (
         <div
             data-test-id="image-block"
-            className={joinClassNames([
-                'tw-flex tw-h-auto tw-gap-3',
-                mapCaptionPositionClasses[blockSettings.positioning],
-            ])}
+            className={`tw-flex tw-h-auto tw-gap-3 ${mapCaptionPositionClasses[blockSettings.positioning]}`}
         >
             <div
                 className={
