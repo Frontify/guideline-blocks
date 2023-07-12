@@ -198,7 +198,11 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
                 </DragOverlay>
             </DndContext>
             {isEditing && (
-                <div className={thumbnailStyles.captionPositionClassNames} data-test-id="thumbnail-item-placeholder">
+                <div
+                    key={itemsState.length}
+                    className={thumbnailStyles.captionPositionClassNames}
+                    data-test-id="thumbnail-item-placeholder"
+                >
                     <ImageWrapper thumbnailStyles={thumbnailStyles} placeholderWrapper>
                         <UploadPlaceholder
                             width={thumbnailStyles.width}

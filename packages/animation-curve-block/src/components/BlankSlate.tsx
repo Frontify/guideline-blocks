@@ -75,7 +75,6 @@ export const BlankSlate = ({
                 hasBorder={hasBorder}
                 setDescription={setDescription}
                 setTitle={setTitle}
-                updateValueOnChange
                 isEditing
             />
         </div>

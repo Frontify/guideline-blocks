@@ -101,6 +101,7 @@ export const AnimationCurveBlock = ({ appBridge }: BlockProps) => {
                 </SortableContext>
                 {isEditing && (
                     <BlankSlate
+                        key={localItems.length}
                         appBridge={appBridge}
                         content={localItems}
                         hasBorder={hasBorder}

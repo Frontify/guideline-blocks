@@ -18,7 +18,6 @@ export const CardText = ({
     title,
     description,
     hasBorder,
-    updateValueOnChange,
     isEditing,
     setTitle,
     setDescription,
@@ -30,11 +29,10 @@ export const CardText = ({
                 placeholder="Add a title"
                 onTextChange={setTitle}
                 isEditing={isEditing}
-                updateValueOnChange={updateValueOnChange}
                 plugins={getTitlePlugin()}
             />
         );
-    }, [title, isEditing, updateValueOnChange, setTitle]);
+    }, [title, isEditing, setTitle]);
 
     const memoDescriptionRte = useMemo(() => {
         return (
@@ -43,11 +41,10 @@ export const CardText = ({
                 placeholder="Add a description"
                 onTextChange={setDescription}
                 isEditing={isEditing}
-                updateValueOnChange={updateValueOnChange}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         );
-    }, [description, isEditing, updateValueOnChange, setDescription, appBridge]);
+    }, [description, isEditing, setDescription, appBridge]);
 
     return (
         <div className={joinClassNames([hasBorder && 'tw-px-4', 'tw-pt-4 tw-flex-1'])}>

@@ -10,10 +10,9 @@ type ImageCaptionProps = {
     blockId: string;
     isEditing: boolean;
     appBridge: AppBridgeBlock;
-    isNameUpdatable?: boolean;
 };
 
-export const ImageCaption = ({ isEditing, blockId, appBridge, isNameUpdatable }: ImageCaptionProps) => {
+export const ImageCaption = ({ isEditing, blockId, appBridge }: ImageCaptionProps) => {
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { name, description } = blockSettings;
@@ -32,7 +31,6 @@ export const ImageCaption = ({ isEditing, blockId, appBridge, isNameUpdatable }:
                 showSerializedText={hasRichTextValue(name)}
                 value={name ?? convertToRteValue(TextStyles.imageTitle, '', 'center')}
                 onTextChange={(name) => setBlockSettings({ name })}
-                updateValueOnChange={isNameUpdatable}
             />
             <RichTextEditor
                 id={`${blockId}_description`}

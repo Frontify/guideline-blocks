@@ -17,7 +17,6 @@ export const RichTextEditor = ({
     plugins,
     onTextChange,
     showSerializedText,
-    updateValueOnChange,
 }: RichTextEditorProps) => {
     const [shouldPreventPageLeave, setShouldPreventPageLeave] = useState(false);
 
@@ -47,7 +46,6 @@ export const RichTextEditor = ({
                 border={false}
                 placeholder={placeholder}
                 plugins={plugins}
-                updateValueOnChange={updateValueOnChange}
                 onValueChanged={() => setShouldPreventPageLeave(true)}
                 onTextChange={saveText}
                 hideExternalFloatingModals={(editorId: string) => {
