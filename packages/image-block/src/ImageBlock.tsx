@@ -21,7 +21,6 @@ import {
     EditAltTextFlyout,
     convertToRteValue,
     hasRichTextValue,
-    joinClassNames,
 } from '@frontify/guideline-blocks-shared';
 import { Image } from './components/Image';
 import { useEffect, useState } from 'react';
@@ -42,7 +41,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const blockId = appBridge.getBlockId().toString();
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
-
+    const [isTitleUpdatable, setIsTitleUpdatable] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
@@ -53,6 +52,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
 
     const updateImage = async (image: Asset) => {
         if (!hasRichTextValue(blockSettings.name)) {
+            setIsTitleUpdatable(true);
             setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
         }
         setBlockSettings({ altText: image?.title ?? image?.fileName ?? '' });
@@ -101,13 +101,14 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
 
+    useEffect(() => {
+        blockSettings.name && setIsTitleUpdatable(false);
+    }, [blockSettings.name]);
+
     return (
         <div
             data-test-id="image-block"
-            className={joinClassNames([
-                'tw-flex tw-h-auto tw-gap-3',
-                mapCaptionPositionClasses[blockSettings.positioning],
-            ])}
+            className={`tw-flex tw-h-auto tw-gap-3 ${mapCaptionPositionClasses[blockSettings.positioning]}`}
         >
             <div
                 className={
@@ -186,7 +187,12 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                     )
                 )}
             </div>
-            <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
+            <ImageCaption
+                blockId={blockId}
+                isEditing={isEditing}
+                appBridge={appBridge}
+                isNameUpdatable={isTitleUpdatable}
+            />
         </div>
     );
 };
