@@ -40,7 +40,7 @@
         "vitest": "0.25.0"
     },
     "dependencies": {
-        "@frontify/fondue": "12.0.0-beta.239",
+        "@frontify/fondue": "12.0.0-beta.279",
         "glob": "10.0.0",
         "react": "18.2.0",
         "react-dom": "18.2.0"

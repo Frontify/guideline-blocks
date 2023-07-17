@@ -30,20 +30,14 @@ export const BlockItemWrapper = ({
     if (shouldHideWrapper) {
         return <>{children}</>;
     }
-    const handlePointerLeave = () => {
-        if (wrapperRef.current?.contains(document.activeElement)) {
-            (document.activeElement as HTMLElement).blur();
-        }
-    };
+
     const items = toolbarItems?.filter((item): item is ToolbarItem => item !== undefined);
 
     return (
         <div
-            tabIndex={0}
             ref={wrapperRef}
             onFocus={() => setIsFlyoutDisabled(false)}
             onPointerEnter={() => setIsFlyoutDisabled(false)}
-            onPointerLeave={handlePointerLeave}
             data-test-id="block-item-wrapper"
             style={{
                 outlineOffset,
@@ -51,7 +45,7 @@ export const BlockItemWrapper = ({
             className={joinClassNames([
                 'tw-relative tw-group tw-outline-1 tw-outline-box-selected-inverse',
                 shouldFillContainer && 'tw-flex-1 tw-h-full tw-w-full',
-                'hover:tw-outline focus:tw-outline focus-within:tw-outline',
+                'hover:tw-outline focus-within:tw-outline',
                 (isFlyoutOpen || shouldBeShown) && 'tw-outline',
                 shouldHideComponent && 'tw-opacity-0',
             ])}

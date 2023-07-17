@@ -12,6 +12,7 @@
         "target": "es6",
         "jsx": "react-jsx",
         "lib": ["ES2021", "DOM"],
+        "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"],
         "resolveJsonModule": true,
         "skipLibCheck": true
     },

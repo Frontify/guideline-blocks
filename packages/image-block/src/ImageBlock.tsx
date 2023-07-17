@@ -41,7 +41,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
     const blockId = appBridge.getBlockId().toString();
     const [showAltTextMenu, setShowAltTextMenu] = useState(false);
     const [localAltText, setLocalAltText] = useState<string | undefined>(blockSettings.altText);
-    const [isTitleUpdatable, setIsTitleUpdatable] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const image = blockAssets?.[IMAGE_ID]?.[0];
@@ -52,7 +51,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
 
     const updateImage = async (image: Asset) => {
         if (!hasRichTextValue(blockSettings.name)) {
-            setIsTitleUpdatable(true);
             setBlockSettings({ name: convertToRteValue(TextStyles.imageTitle, image?.title, 'center') });
         }
         setBlockSettings({ altText: image?.title ?? image?.fileName ?? '' });
@@ -100,10 +98,6 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
         setLocalAltText(undefined);
         deleteAssetIdsFromKey(IMAGE_ID, [image?.id]);
     };
-
-    useEffect(() => {
-        blockSettings.name && setIsTitleUpdatable(false);
-    }, [blockSettings.name]);
 
     return (
         <div
@@ -187,12 +181,7 @@ export const ImageBlock = ({ appBridge }: BlockProps) => {
                     )
                 )}
             </div>
-            <ImageCaption
-                blockId={blockId}
-                isEditing={isEditing}
-                appBridge={appBridge}
-                isNameUpdatable={isTitleUpdatable}
-            />
+            <ImageCaption blockId={blockId} isEditing={isEditing} appBridge={appBridge} />
         </div>
     );
 };

@@ -178,7 +178,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                                 hasBorder={hasBorder}
                                 setTitle={onTitleChange}
                                 setDescription={onDescriptionChange}
-                                updateValueOnChange={false}
                                 isEditing={isEditing}
                             />
                         )}

@@ -97,23 +97,24 @@ describe("Dos & Don'ts Block", () => {
         });
 
         mount(<DosDontsBlockWithStubs />);
-        cy.get(DosDontsHeading).first().find('textarea').type('Do this', { force: true }).blur();
+        cy.get(DosDontsHeading).first().find('textarea').type('Do this');
         cy.get(DosDontsHeading).first().find('textarea').contains('Do this');
+        cy.get(DosDontsContent).first().find('[contenteditable=true]').click().should('be.focused');
         cy.get(DosDontsContent)
             .first()
             .find('[contenteditable=true]')
-            .dblclick()
-            .type('This is an example do description.', { force: true })
-            .blur();
+            .click()
+            .type('This is an example do description.');
         cy.get(DosDontsContent).first().find('[contenteditable=true]').contains('This is an example do description.');
-        cy.get(DosDontsHeading).eq(1).find('textarea').type('Dont do this', { force: true }).blur();
+        cy.get(DosDontsHeading).eq(1).find('textarea').type('Dont do this');
         cy.get(DosDontsHeading).eq(1).find('textarea').contains('Dont do this');
+        cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').click();
+        cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').click().should('be.focused');
         cy.get(DosDontsContent)
             .eq(1)
             .find('[contenteditable=true]')
-            .dblclick()
-            .type('This is an example dont description.', { force: true })
-            .blur();
+            .click()
+            .type('This is an example dont description.');
         cy.get(DosDontsContent).eq(1).find('[contenteditable=true]').contains('This is an example dont description.');
     });
 

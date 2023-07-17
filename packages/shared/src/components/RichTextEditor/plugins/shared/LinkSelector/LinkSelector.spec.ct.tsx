@@ -12,7 +12,6 @@ import { mount } from 'cypress/react18';
 import { LinkSelector } from './LinkSelector';
 import { SinonStub } from 'cypress/types/sinon';
 
-const BodySelector = 'body';
 const LinkSelectorSelector = '[data-test-id="internal-link-selector"]';
 const LinkSelectorButtonSelector = '[data-test-id="internal-link-selector"] > button';
 const LinkSelectorModalSelector = '[data-test-id="modal-body"]';
@@ -127,12 +126,14 @@ describe('Link Selector', () => {
         mount(<LinkSelector appBridge={appBridge} url="" onUrlChange={cy.stub().as('urlChange')} />);
         cy.get(LinkSelectorButtonSelector).click();
         cy.get(DocumentLinkSelector).should('have.length', 2);
-        cy.get(LinkSelectorModalSelector).trigger('keydown', { key: 'Tab' }).trigger('keydown', { key: 'Tab' });
+        cy.realPress('Tab');
+        cy.realPress('Tab');
         cy.get(PageLinkSelector).should('have.length', 3);
-        cy.get(LinkSelectorModalSelector).trigger('keydown', { key: 'Tab' }).trigger('keydown', { key: 'Tab' });
+        cy.realPress('Tab');
+        cy.realPress('Tab');
         cy.get(SectionLinkSelector).should('have.length', 4);
-        cy.get(LinkSelectorModalSelector).trigger('keydown', { key: 'Tab' });
-        cy.get(BodySelector).trigger('keydown', { key: 'Enter' });
+        cy.realPress('Tab');
+        cy.realPress('Enter');
         cy.get('@urlChange').should('be.calledWith', '/6');
     });
 });

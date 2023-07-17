@@ -11,7 +11,6 @@ export type RichTextEditorProps = {
     gap?: string;
     plugins?: PluginComposer;
     showSerializedText?: boolean;
-    updateValueOnChange?: boolean;
     onTextChange?: (value: string) => void;
 };
 

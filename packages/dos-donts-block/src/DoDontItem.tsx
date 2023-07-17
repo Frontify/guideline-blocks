@@ -155,6 +155,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const memoizedRichTextEditor = useMemo(
             () => (
                 <RichTextEditor
+                    id={id.toString()}
                     isEditing={editing}
                     value={body}
                     onTextChange={onBodyTextChange}
@@ -162,7 +163,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     placeholder="Add a description"
                 />
             ),
-            [body, onBodyTextChange, editing, appBridge]
+            [body, onBodyTextChange, editing, appBridge, id]
         );
 
         return (

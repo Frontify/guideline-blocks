@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { RichTextEditor as FondueRichTextEditor } from '@frontify/fondue';
 import { RichTextEditorProps } from './types';
 import { SerializedText } from './SerializedText';
+import { floatingButtonActions, floatingButtonSelectors } from './plugins/ButtonPlugin/components';
 
 export const RichTextEditor = ({
     id = 'rte',
@@ -16,7 +17,6 @@ export const RichTextEditor = ({
     plugins,
     onTextChange,
     showSerializedText,
-    updateValueOnChange,
 }: RichTextEditorProps) => {
     const [shouldPreventPageLeave, setShouldPreventPageLeave] = useState(false);
 
@@ -46,9 +46,13 @@ export const RichTextEditor = ({
                 border={false}
                 placeholder={placeholder}
                 plugins={plugins}
-                updateValueOnChange={updateValueOnChange}
                 onValueChanged={() => setShouldPreventPageLeave(true)}
                 onTextChange={saveText}
+                hideExternalFloatingModals={(editorId: string) => {
+                    if (floatingButtonSelectors.isOpen(editorId)) {
+                        floatingButtonActions.reset();
+                    }
+                }}
             />
         );
     }

@@ -41,7 +41,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const { blockAssets, deleteAssetIdsFromKey, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const [openFileDialog, { selectedFiles }] = useFileInput({ accept: 'audio/*' });
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
-    const [updateValueOnChange, setUpdateValueOnChange] = useState(false);
     const audio = blockAssets?.[AUDIO_ID]?.[0];
 
     const [uploadFile, { results: uploadResults, doneAll }] = useAssetUpload({
@@ -51,12 +50,10 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
     const onRemoveAsset = () => deleteAssetIdsFromKey(AUDIO_ID, [audio?.id]);
     const updateAudioAsset = async (audio: Asset) => {
         if (!hasRichTextValue(blockSettings.title)) {
-            setUpdateValueOnChange(true);
             onTitleChange(convertToRteValue(TextStyles.heading3, audio.title));
         }
         await updateAssetIdsFromKey(AUDIO_ID, [audio.id]);
         setIsLoading(false);
-        setUpdateValueOnChange(false);
     };
 
     const openAssetChooser = () => {
@@ -131,7 +128,7 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                     />
                 )
             )}
-            <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative tw-z-20">
+            <div className="tw-flex tw-gap-4 tw-justify-between tw-w-full tw-relative">
                 <div className="tw-flex-1">
                     <div data-test-id="block-title">
                         <RichTextEditor
@@ -141,7 +138,6 @@ export const AudioBlock = ({ appBridge }: BlockProps) => {
                             onTextChange={onTitleChange}
                             value={blockSettings.title ?? DEFAULT_CONTENT_TITLE}
                             placeholder="Asset name"
-                            updateValueOnChange={updateValueOnChange}
                         />
                     </div>
 
