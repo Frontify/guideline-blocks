@@ -40,11 +40,11 @@ export const Checkbox: FC<CheckboxProps> = ({
         inputRef
     );
 
-    const { completeCheckboxColor, incompleteCheckboxColor } = useContext(SettingsContext);
+    const { completeCheckboxColor, checkboxColor } = useContext(SettingsContext);
 
     const checkboxStyles = {
         background: checked ? toHex8String(completeCheckboxColor) : '',
-        borderColor: checked ? toHex8String(completeCheckboxColor) : toHex8String(incompleteCheckboxColor),
+        borderColor: checked ? toHex8String(completeCheckboxColor) : toHex8String(checkboxColor),
     };
 
     const handleLabelClick = (event: MouseEvent<HTMLLabelElement>) => {

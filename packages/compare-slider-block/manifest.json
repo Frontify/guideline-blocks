@@ -1,0 +1,8 @@
+{
+    "appId": "cle76j1n70001cyw40exodwao",
+    "searchFields": [
+        { "type": "fondueRte", "settingId": "firstAssetLabel" },
+        { "type": "fondueRte", "settingId": "secondAssetLabel" }
+    ],
+    "i18nFields": ["firstAssetLabel", "secondAssetLabel"]
+}

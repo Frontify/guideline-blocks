@@ -1,12 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { AppBridgeBlock } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { CSSProperties } from 'react';
-
-export type Props = {
-    appBridge: AppBridgeBlock;
-};
 
 export type Settings = {
     type?: QuoteType;
@@ -20,7 +15,9 @@ export type Settings = {
     showAccentLine?: boolean;
     lineType?: LineType;
     lineWidthValue?: string;
+    isCustomLineColor?: boolean;
     accentLineColor?: Color;
+    isCustomQuotesColor?: boolean;
     quotesColor?: Color;
     content?: string;
     textAlignment?: string;

@@ -3,22 +3,15 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconLinkBox, IconSize, Text, TextInput } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeBorderStyles } from './helpers';
 import { URL_INPUT_PLACEHOLDER } from './settings';
-import {
-    Settings,
-    SketchfabAccount,
-    SketchfabBlockProps,
-    SketchfabNavigation,
-    SketchfabTheme,
-    heights,
-    radiusClassMap,
-} from './types';
+import { Settings, SketchfabAccount, SketchfabNavigation, SketchfabTheme, heights, radiusClassMap } from './types';
 
-export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
+export const SketchfabBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
     const [localUrl, setLocalUrl] = useState('');
@@ -29,7 +22,6 @@ export const SketchfabBlock = ({ appBridge }: SketchfabBlockProps) => {
         const embedUrl = generateSketchfabEmbedUrl(localUrl);
         if (embedUrl) {
             setBlockSettings({
-                ...blockSettings,
                 url: embedUrl,
             });
             setInputError(false);

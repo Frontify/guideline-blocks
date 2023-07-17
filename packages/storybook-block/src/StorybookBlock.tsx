@@ -11,7 +11,6 @@ import { RemoveButton } from './components/RemoveButton';
 import { Resizeable } from './components/Resizable';
 import { BORDER_COLOR_DEFAULT_VALUE, ERROR_MSG, URL_INPUT_PLACEHOLDER } from './settings';
 import {
-    BlockProps,
     Settings,
     StorybookBorderRadius,
     StorybookBorderStyle,
@@ -24,6 +23,7 @@ import { addMissingUrlProtocol } from './utils/addMissingUrlProtocol';
 import { buildIframeUrl } from './utils/buildIframeUrl';
 import { decodeEntities } from './utils/decodeEntities';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 
 const DEFAULT_BORDER_WIDTH = '1px';
 
@@ -60,7 +60,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
         if (isValidStorybookUrl(input)) {
             setBlockSettings({
-                ...blockSettings,
                 url: addMissingUrlProtocol(input),
             });
         }
@@ -77,7 +76,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const saveHeight = (height: number) => {
         setBlockSettings({
-            ...blockSettings,
             heightValue: `${height}px`,
             isCustomHeight: true,
         });
@@ -114,7 +112,6 @@ export const StorybookBlock: FC<BlockProps> = ({ appBridge }) => {
                             <RemoveButton
                                 onClick={() => {
                                     setBlockSettings({
-                                        ...blockSettings,
                                         url: '',
                                     });
                                 }}

@@ -7,10 +7,10 @@
         "noUnusedLocals": true,
         "strict": true,
         "target": "ES6",
-        "jsx": "react-jsx",
+        "jsx": "react",
         "skipLibCheck": true,
         "resolveJsonModule": true,
-        "types": ["cypress"],
+        "types": ["cypress", "cypress-real-events", "@4tw/cypress-drag-drop"],
         "outDir": "dist"
     },
     "include": ["src/**/*"],

@@ -1,7 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { DropdownSize, IconEnum } from '@frontify/fondue';
-import { BlockSettings, Bundle, NotificationStyleType } from '@frontify/guideline-blocks-settings';
+import { IconEnum, NotificationStyleType, defineSettings } from '@frontify/guideline-blocks-settings';
 import { ColorSpaceLabels } from './types';
 
 const COLORSPACES_ID = 'colorspaces';
@@ -91,13 +90,13 @@ const COLORSPACES = [
     },
 ];
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: 'view',
             type: 'dropdown',
             defaultValue: 'cards',
-            size: DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: 'list',
@@ -134,11 +133,11 @@ export const settings: BlockSettings = {
             styles: {
                 type: NotificationStyleType.Warning,
             },
-            show: (bundle: Bundle) => {
+            show: (bundle) => {
                 const colorSpacesValue = bundle?.getBlock(COLORSPACES_ID)?.value as string[];
 
                 return !colorSpacesValue || colorSpacesValue?.length === 0;
             },
         },
     ],
-};
+});

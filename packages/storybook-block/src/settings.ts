@@ -1,15 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
+    IconEnum,
     appendUnit,
-    getBorderRadiusSettings,
-    getBorderSettings,
+    defineSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
+import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 import { StorybookHeight, StorybookPosition, StorybookStyle, heights } from './types';
 import { isValidStorybookUrl } from './utils/isValidStorybookUrl';
 
@@ -29,22 +28,22 @@ const HEIGHT_VALUE_ID = 'heightValue';
 const HEIGHT_CHOICE_ID = 'heightChoice';
 
 export const MIN_HEIGHT_VALUE = 30;
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: STYLE_ID,
             type: 'dropdown',
             defaultValue: StorybookStyle.Default,
-            size: 'Large' as DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: StorybookStyle.Default,
-                    icon: 'CodeFrame' as IconEnum.CodeFrame,
+                    icon: IconEnum.CodeFrame,
                     label: 'Story only',
                 },
                 {
                     value: StorybookStyle.WithAddons,
-                    icon: 'CodeFrame' as IconEnum.CodeFrame,
+                    icon: IconEnum.CodeFrame,
                     label: 'Story with add-ons',
                 },
             ],
@@ -56,7 +55,7 @@ export const settings: BlockSettings = {
             label: 'Link',
             type: 'input',
             placeholder: URL_INPUT_PLACEHOLDER,
-            rules: [{ validate: (value: string) => isValidStorybookUrl(value), errorMessage: ERROR_MSG }],
+            rules: [{ validate: (value) => isValidStorybookUrl(value), errorMessage: ERROR_MSG }],
         },
     ],
     layout: [
@@ -67,7 +66,7 @@ export const settings: BlockSettings = {
             switchLabel: 'Custom',
             defaultValue: false,
             info: 'Determines the maximum height. Height is predefined or restricted to make sure UI elements don’t look broken or strange when viewed on different devices',
-            onChange: (bundle: Bundle): void => presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
+            onChange: (bundle) => presetCustomValue(bundle, HEIGHT_CHOICE_ID, HEIGHT_VALUE_ID, heights),
 
             on: [
                 {
@@ -76,13 +75,13 @@ export const settings: BlockSettings = {
                     placeholder: 'e.g. 500px',
                     defaultValue: StorybookHeight.Medium,
                     rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(MIN_HEIGHT_VALUE)],
-                    onChange: (bundle: Bundle): void => appendUnit(bundle, HEIGHT_VALUE_ID),
+                    onChange: (bundle) => appendUnit(bundle, HEIGHT_VALUE_ID),
                 },
             ],
             off: [
                 {
                     id: HEIGHT_CHOICE_ID,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: StorybookHeight.Medium,
                     choices: [
                         {
@@ -104,21 +103,21 @@ export const settings: BlockSettings = {
         {
             id: 'positioning',
             label: 'Positioning',
-            type: 'slider',
+            type: 'segmentedControls',
             defaultValue: StorybookPosition.Vertical,
             info: 'Where the UI elements are in relation to one another',
-            show: (bundle: Bundle): boolean => bundle.getBlock('style')?.value === StorybookStyle.WithAddons,
+            show: (bundle) => bundle.getBlock('style')?.value === StorybookStyle.WithAddons,
             choices: [
                 {
                     value: StorybookPosition.Horizontal,
-                    icon: 'MediaObjectTextRight' as IconEnum.MediaObjectTextRight,
+                    icon: IconEnum.MediaObjectTextRight,
                 },
                 {
                     value: StorybookPosition.Vertical,
-                    icon: 'MediaObjectTextBottom' as IconEnum.MediaObjectTextBottom,
+                    icon: IconEnum.MediaObjectTextBottom,
                 },
             ],
         },
     ],
     style: [getBorderSettings(), getBorderRadiusSettings({ dependentSettingId: 'hasBorder' })],
-};
+});

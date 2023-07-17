@@ -1,39 +1,109 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { CSSProperties } from 'react';
-import { Color } from '@frontify/fondue';
-import { Globals, Property } from 'csstype';
-import { AppBridgeBlock } from '@frontify/app-bridge';
+import { Color } from '@frontify/guideline-blocks-settings';
 import { RadiusExtendedSettings } from '@frontify/guideline-blocks-shared';
 
-export type Language = 'js' | 'html' | 'css' | 'php' | 'json' | 'jsx' | 'ts';
+export type Language =
+    | 'coffeescript'
+    | 'css'
+    | 'sass'
+    | 'html'
+    | 'java'
+    | 'javascript'
+    | 'json'
+    | 'jsx'
+    | 'kotlin'
+    | 'livescript'
+    | 'markdown'
+    | 'php'
+    | 'shell'
+    | 'sql'
+    | 'swift'
+    | 'typescript'
+    | 'tsx'
+    | 'xml'
+    | 'yaml'
+    | 'python'
+    | 'go'
+    | 'c'
+    | 'cpp'
+    | 'csharp'
+    | 'plain';
+
+export const languageNameMap: Record<Language, string> = {
+    coffeescript: 'CoffeeScript',
+    css: 'CSS',
+    sass: 'Sass',
+    c: 'C',
+    cpp: 'C++',
+    csharp: 'C#',
+    go: 'Go',
+    html: 'HTML',
+    java: 'Java',
+    javascript: 'JavaScript',
+    json: 'JSON',
+    jsx: 'JSX',
+    kotlin: 'Kotlin',
+    livescript: 'LiveScript',
+    markdown: 'Markdown',
+    plain: 'Plain text',
+    python: 'Python',
+    php: 'PHP',
+    shell: 'Shell',
+    sql: 'SQL',
+    swift: 'Swift',
+    typescript: 'TypeScript',
+    tsx: 'TSX',
+    xml: 'XML',
+    yaml: 'Yaml',
+};
 
 export type Theme =
-    | 'cobalt'
     | 'default'
+    | 'abcdef'
+    | 'androidstudio'
+    | 'atomone'
+    | 'bbedit'
+    | 'bespin'
+    | 'darcula'
     | 'dracula'
-    | 'oneDark'
-    | 'oneLight'
-    | 'evaLight'
-    | 'base16Dark'
-    | 'gitHubDark'
-    | 'gitHubLight'
-    | 'base16Light'
-    | 'materialDarker'
-    | 'materialLighter'
-    | 'materialPalenight';
+    | 'duotoneDark'
+    | 'duotoneLight'
+    | 'eclipse'
+    | 'githubDark'
+    | 'githubLight'
+    | 'gruvboxDark'
+    | 'okaidia'
+    | 'sublime'
+    | 'xcodeDark'
+    | 'xcodeLight';
 
-export type TwBorderInlineStyle = Exclude<
-    Property.BorderInlineStyle,
-    Globals | 'groove' | 'inset' | 'outset' | 'ridge' | 'hidden'
->;
+export const themeNameMap: Record<Theme, string> = {
+    default: 'Default theme',
+    abcdef: 'Abcdef',
+    androidstudio: 'Android Studio',
+    atomone: 'Atom One',
+    bbedit: 'BBEdit',
+    bespin: 'Bespin',
+    darcula: 'Darcula',
+    dracula: 'Dracula',
+    duotoneDark: 'Duotone Dark',
+    duotoneLight: 'Duotone Light',
+    eclipse: 'Eclipse',
+    githubDark: 'GitHub Dark',
+    githubLight: 'GitHub Light',
+    gruvboxDark: 'Gruvbox Dark',
+    okaidia: 'Okaidia',
+    sublime: 'Sublime',
+    xcodeDark: 'Xcode Dark',
+    xcodeLight: 'Xcode Light',
+};
 
-export interface CodeMirrorEditorStyle extends CSSProperties {
-    '--editor-border': Property.Border;
-    '--editor-border-radius': Property.BorderRadius;
+export enum CodeSnippetBorderStyle {
+    Solid = 'Solid',
+    Dotted = 'Dotted',
+    Dashed = 'Dashed',
 }
-
-export type BorderRadiusSize = '0px' | '2px' | '4px' | '12px';
 
 export type Settings = {
     theme?: Theme;
@@ -43,23 +113,12 @@ export type Settings = {
     hasBorder?: boolean;
     withHeading?: boolean;
     withRowNumbers?: boolean;
-    borderStyle: TwBorderInlineStyle;
-    borderWidth: Property.BorderWidth;
+    borderStyle: CodeSnippetBorderStyle;
+    borderWidth: string;
 } & RadiusExtendedSettings;
 
-export type CodeMirrorEditorProps = {
-    id?: string;
-    theme: Theme;
-    initValue?: string;
-    isEditing?: boolean;
-    language?: Language;
-    withHeading?: boolean;
-    withRowNumbers?: boolean;
-    border?: Property.Border;
-    onChange: (value: string) => void;
-    borderRadius: Property.BorderRadius;
-};
-
-export type CodeSnippetProps = {
-    appBridge: AppBridgeBlock;
+export const borderStyles: Record<CodeSnippetBorderStyle, string> = {
+    [CodeSnippetBorderStyle.Solid]: 'solid',
+    [CodeSnippetBorderStyle.Dotted]: 'dotted',
+    [CodeSnippetBorderStyle.Dashed]: 'dashed',
 };

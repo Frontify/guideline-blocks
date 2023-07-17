@@ -2,12 +2,8 @@
 
 import { FocusEvent, ReactNode } from 'react';
 
-import { AppBridgeBlock, Color, ColorPatch } from '@frontify/app-bridge';
+import { Color, ColorPatch } from '@frontify/app-bridge';
 import { Color as ColorFondue } from '@frontify/fondue';
-
-export type ColorBlockProps = {
-    appBridge: AppBridgeBlock;
-};
 
 export type Settings = {
     colorPaletteId: number;

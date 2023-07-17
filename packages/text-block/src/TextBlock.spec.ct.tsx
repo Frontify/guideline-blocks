@@ -1,53 +1,74 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { TextBlock } from './TextBlock';
-import { mount } from 'cypress/react';
+import { mount } from 'cypress/react18';
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
+import { PLACEHOLDER } from './settings';
 
-const TextBlockSelector = '[data-test-id="text-block"]';
+const TextBlockSelectorHtml = '[data-test-id="rte-content-html"]';
 const RichTextEditor = '[data-test-id="rich-text-editor"]';
+
+const defaultContent = [
+    {
+        type: 'p',
+        children: [{ text: 'Rich Text Editor Value' }],
+    },
+];
 
 describe('Text Block', () => {
     it('renders a text block', () => {
-        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {});
-
-        mount(<TextBlockWithStubs />);
-        cy.get(TextBlockSelector).should('exist');
-    });
-
-    it('should not be able to input to a text block when in view mode', () => {
-        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {});
-
-        mount(<TextBlockWithStubs />);
-        cy.get(RichTextEditor).find('[contenteditable=true]').should('not.exist');
-    });
-
-    it('should be able input to two text blocks when in edit mode', () => {
         const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
-            blockSettings: {
-                columnNumber: 2,
-            },
             editorState: true,
         });
 
         mount(<TextBlockWithStubs />);
-        cy.get(RichTextEditor).first().find('[contenteditable=true]').type('Hello, this is my text.').blur();
-        cy.get(RichTextEditor).first().find('[contenteditable=true]').contains('Hello, this is my text.');
-        cy.get(RichTextEditor).eq(1).find('[contenteditable=true]').type('And this is my other text.').blur();
-        cy.get(RichTextEditor).eq(1).find('[contenteditable=true]').contains('And this is my other text.');
+        cy.get(RichTextEditor).should('exist');
     });
 
-    it('should render a text block with the correct amount of columns and correct spacing', () => {
+    it('should not be able to input to a text block when in view mode', () => {
         const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
-            blockSettings: {
-                columnNumber: 4,
-                isColumnGutterCustom: true,
-                columnGutterCustom: '13px',
-            },
+            blockSettings: { content: JSON.stringify(defaultContent) },
+        });
+
+        mount(<TextBlockWithStubs />);
+        cy.get(RichTextEditor).should('not.exist');
+        cy.get(TextBlockSelectorHtml).should('exist');
+    });
+
+    it('placeholder should be visible when there is no content', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            editorState: true,
         });
         mount(<TextBlockWithStubs />);
-        cy.get(RichTextEditor).should('have.length', 4);
-        cy.get(TextBlockSelector).should('have.class', 'tw-grid-cols-4');
-        cy.get(TextBlockSelector).should('have.css', 'gap', '13px');
+        cy.get(RichTextEditor).find('[contenteditable=true]').contains(PLACEHOLDER);
+    });
+
+    // renders html in view mode
+    it('renders html content with RichTextEditor content passed', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            blockSettings: { content: JSON.stringify(defaultContent) },
+        });
+
+        mount(<TextBlockWithStubs />);
+
+        cy.get(TextBlockSelectorHtml).should('have.text', 'Rich Text Editor Value');
+    });
+
+    it('renders html content with html passed', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            blockSettings: { content: '<p>Html Text</p>' },
+        });
+
+        mount(<TextBlockWithStubs />);
+        cy.get(TextBlockSelectorHtml).should('have.text', 'Html Text');
+    });
+
+    it('renders html content with string only passed', () => {
+        const [TextBlockWithStubs] = withAppBridgeBlockStubs(TextBlock, {
+            blockSettings: { content: 'string' },
+        });
+
+        mount(<TextBlockWithStubs />);
+        cy.get(TextBlockSelectorHtml).should('have.text', 'string');
     });
 });

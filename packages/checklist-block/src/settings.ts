@@ -1,13 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import type { DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
 import {
+    Bundle,
+    IconEnum,
     appendUnit,
-    getPaddingExtendedSettings,
+    defineSettings,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { ChecklistDecoration, DefaultValues, ProgressBarType, StrikethroughType } from './types';
 
 const COMPLETED_DECORATION = 'completedDecoration';
@@ -18,57 +18,57 @@ const PROGRESS_BAR_TYPE = 'progressBarType';
 const showProgressStyles = (bundle: Bundle): boolean =>
     !!bundle.getBlock(PROGRESS_BAR_VISIBLE)?.value && bundle.getBlock(PROGRESS_BAR_TYPE)?.value === ProgressBarType.Bar;
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [
         {
             id: COMPLETED_DECORATION,
             type: 'dropdown',
             defaultValue: DefaultValues.completedDecoration,
-            size: 'Large' as DropdownSize.Large,
+            size: 'large',
             choices: [
                 {
                     value: ChecklistDecoration.Checkbox,
-                    icon: 'ListCheck' as IconEnum.ListCheck,
+                    icon: IconEnum.ListCheck,
                     label: 'Checkbox',
                 },
                 {
-                    value: ChecklistDecoration.Strikethrough,
-                    icon: 'TextFormatStrikethrough' as IconEnum.TextFormatStrikethrough,
-                    label: 'Strikethrough',
+                    value: ChecklistDecoration.Highlight,
+                    icon: IconEnum.Highlighter,
+                    label: 'Highlight',
                 },
                 {
-                    value: ChecklistDecoration.Highlight,
-                    icon: 'Highlighter' as IconEnum.Highlighter,
-                    label: 'Highlight',
+                    value: ChecklistDecoration.Strikethrough,
+                    icon: IconEnum.TextFormatStrikethrough,
+                    label: 'Strikethrough',
                 },
             ],
         },
     ],
     layout: [
-        getPaddingExtendedSettings(),
         {
             id: PROGRESS_BAR_VISIBLE,
             label: 'Progress Indicator',
             type: 'switch',
+            size: 'small',
             defaultValue: DefaultValues.progressBarVisible,
             info: 'Change the type of progress indicator for your checklist',
             on: [
                 {
                     id: PROGRESS_BAR_TYPE,
-                    type: 'slider',
+                    type: 'segmentedControls',
                     defaultValue: DefaultValues.progressBarType,
                     choices: [
                         {
-                            value: ProgressBarType.Percentage,
-                            label: 'Percentage',
+                            value: ProgressBarType.Bar,
+                            label: 'Bar',
                         },
                         {
                             value: ProgressBarType.Fraction,
                             label: 'Fraction',
                         },
                         {
-                            value: ProgressBarType.Bar,
-                            label: 'Bar',
+                            value: ProgressBarType.Percentage,
+                            label: 'Percentage',
                         },
                     ],
                 },
@@ -79,62 +79,76 @@ export const settings: BlockSettings = {
             id: 'dateVisible',
             label: 'Date completed',
             type: 'switch',
+            size: 'small',
             info: 'Show the completion date for each checklist item',
             defaultValue: DefaultValues.dateVisible,
         },
     ],
     style: [
         {
-            id: 'incompleteSection',
+            id: 'textSection',
             type: 'sectionHeading',
-            label: 'Incomplete',
+            label: 'Text',
             blocks: [
                 {
-                    id: 'incompleteTextColor',
+                    id: 'textColor',
                     type: 'colorInput',
-                    label: 'Text',
-                    defaultValue: DefaultValues.incompleteTextColor,
+                    label: 'Default',
+                    defaultValue: DefaultValues.textColor,
                 },
                 {
-                    id: 'incompleteCheckboxColor',
+                    id: 'completeTextColor',
                     type: 'colorInput',
-                    label: 'Checkbox',
-                    defaultValue: DefaultValues.incompleteCheckboxColor,
+                    label: 'Completed',
+                    defaultValue: DefaultValues.completeTextColor,
                 },
             ],
         },
         {
-            id: 'completeSection',
+            id: 'checkboxSection',
             type: 'sectionHeading',
-            label: 'Complete',
+            label: 'Checkbox',
             blocks: [
                 {
-                    id: 'completeTextColor',
+                    id: 'checkboxColor',
                     type: 'colorInput',
-                    label: 'Text',
-                    defaultValue: DefaultValues.completeTextColor,
+                    label: 'Default',
+                    defaultValue: DefaultValues.checkboxColor,
                 },
                 {
                     id: 'completeCheckboxColor',
                     type: 'colorInput',
-                    label: 'Checkbox',
+                    label: 'Completed',
                     defaultValue: DefaultValues.completeCheckboxColor,
                 },
+            ],
+        },
+        {
+            id: 'highlightSection',
+            type: 'sectionHeading',
+            label: 'Highlight',
+            blocks: [
                 {
                     id: 'highlightColor',
                     type: 'colorInput',
-                    label: 'Highlight',
+                    label: 'Completed',
                     defaultValue: DefaultValues.highlightColor,
-                    show: (bundle: Bundle) =>
-                        bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
+                    show: (bundle) => bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Highlight,
                 },
+            ],
+        },
+        {
+            id: 'strikethroughSection',
+            type: 'sectionHeading',
+            label: 'Line',
+            blocks: [
                 {
                     id: 'strikethroughMultiInput',
                     type: 'multiInput',
-                    label: 'Line',
-                    layout: 'Columns' as MultiInputLayout.Columns,
+                    label: 'Completed',
+                    layout: 'columns',
                     lastItemFullWidth: true,
-                    show: (bundle: Bundle) =>
+                    show: (bundle) =>
                         bundle.getBlock(COMPLETED_DECORATION)?.value === ChecklistDecoration.Strikethrough,
                     blocks: [
                         {
@@ -168,7 +182,7 @@ export const settings: BlockSettings = {
                             id: STRIKETHROUGH_WIDTH,
                             type: 'input',
                             defaultValue: DefaultValues.strikethroughWidth,
-                            onChange: (bundle: Bundle): void => appendUnit(bundle, STRIKETHROUGH_WIDTH),
+                            onChange: (bundle) => appendUnit(bundle, STRIKETHROUGH_WIDTH),
                             rules: [numericalOrPixelRule, minimumNumericalOrPixelOrAutoRule(1)],
                         },
                         {
@@ -187,18 +201,18 @@ export const settings: BlockSettings = {
             show: showProgressStyles,
             blocks: [
                 {
-                    id: 'progressBarFillColor',
-                    type: 'colorInput',
-                    label: 'Complete',
-                    defaultValue: DefaultValues.progressBarFillColor,
-                },
-                {
                     id: 'progressBarTrackColor',
                     type: 'colorInput',
-                    label: 'Track',
+                    label: 'Default',
                     defaultValue: DefaultValues.progressBarTrackColor,
+                },
+                {
+                    id: 'progressBarFillColor',
+                    type: 'colorInput',
+                    label: 'Completed',
+                    defaultValue: DefaultValues.progressBarFillColor,
                 },
             ],
         },
     ],
-};
+});

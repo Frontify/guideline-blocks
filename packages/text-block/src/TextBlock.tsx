@@ -1,56 +1,31 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
+import { ReactElement } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import { RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
-import { FC } from 'react';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
+import { RichTextEditor } from '@frontify/guideline-blocks-shared';
 import 'tailwindcss/tailwind.css';
-import { DEFAULT_COLUMN_NUMBER, PLACEHOLDER } from './settings';
-import './styles.css';
-import { GRID_CLASSES, Props, Settings } from './types';
+import { PLACEHOLDER } from './settings';
+import { Settings, spacingValues } from './types';
+import { getPlugins } from './getPlugins';
 
-export const TextBlock: FC<Props> = ({ appBridge }) => {
+export const TextBlock = ({ appBridge }: BlockProps): ReactElement => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
-
-    const {
-        columnNumber = DEFAULT_COLUMN_NUMBER,
-        content = [...Array(parseInt(columnNumber.toString()))],
-        isColumnGutterCustom,
-        columnGutterCustom,
-        columnGutterSimple,
-    } = blockSettings;
-
-    const onTextChange = (value: string, index: number) => {
-        const newContent = [...content, (content[index] = value)];
-        setBlockSettings({ ...blockSettings, content: newContent });
-    };
+    const { content, columnNumber, columnGutterSimple, columnGutterCustom, isColumnGutterCustom } = blockSettings;
+    const gap = isColumnGutterCustom ? columnGutterCustom : spacingValues[columnGutterSimple];
 
     return (
-        <div
-            data-test-id="text-block"
-            style={{
-                gap: isColumnGutterCustom ? columnGutterCustom : columnGutterSimple,
-            }}
-            className={`text-block tw-grid ${GRID_CLASSES[columnNumber]}`}
-        >
-            {
-                // TODO: parseInt and toString cast can be remove after https://app.clickup.com/t/263cwaw is done
-                [...Array(parseInt(columnNumber.toString()))].map((_, index) => {
-                    return (
-                        <RichTextEditor
-                            designTokens={designTokens ?? undefined}
-                            key={`text-block-editor-${index}`}
-                            value={content[index]}
-                            placeholder={PLACEHOLDER}
-                            readonly={!isEditing}
-                            onTextChange={(value) => onTextChange(value, index)}
-                        />
-                    );
-                })
-            }
-        </div>
+        <RichTextEditor
+            id={appBridge.getBlockId().toString()}
+            isEditing={isEditing}
+            value={content}
+            columns={columnNumber}
+            gap={gap}
+            plugins={getPlugins(appBridge, columnNumber, gap)}
+            placeholder={PLACEHOLDER}
+            onTextChange={(content: string) => setBlockSettings({ content })}
+        />
     );
 };

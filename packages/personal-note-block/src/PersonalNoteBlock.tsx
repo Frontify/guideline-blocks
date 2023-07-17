@@ -3,21 +3,22 @@
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/fondue';
 import '@frontify/fondue-tokens/styles';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
     BorderStyle,
     Padding,
     Radius,
     borderStyleMap,
+    getDefaultPluginsWithLinkChooser,
     isDark,
     radiusStyleMap,
     toRgbaString,
-    useGuidelineDesignTokens,
 } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';
 import { BACKGROUND_COLOR_DEFAULT_VALUE, BORDER_COLOR_DEFAULT_VALUE } from './settings';
-import { BlockProps, Settings, paddingStyleMap } from './types';
+import { Settings, paddingStyleMap } from './types';
 
 const getBorderStyles = (
     style = BorderStyle.Solid,
@@ -35,8 +36,6 @@ const getBackgroundStyles = (backgroundColor: Color): CSSProperties =>
 export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
     const isEditing = useEditorState(appBridge);
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
-
     const {
         backgroundColor = BACKGROUND_COLOR_DEFAULT_VALUE,
         radiusChoice = Radius.None,
@@ -59,13 +58,12 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
         avatar,
     } = blockSettings;
 
-    const saveNote = (value: string) => {
+    const saveNote = (value: string) =>
+        value !== blockSettings.note &&
         setBlockSettings({
-            ...blockSettings,
             note: value,
             dateEdited: new Date().toString(),
         });
-    };
 
     useEffect(() => {
         async function getUserData() {
@@ -74,7 +72,6 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                     const { id, name, image } = data;
                     if (!createdByUser) {
                         setBlockSettings({
-                            ...blockSettings,
                             createdByUser: id,
                             username: name,
                             avatar: image?.image || '',
@@ -110,11 +107,13 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
             )}
 
             <RichTextEditor
-                designTokens={designTokens ?? undefined}
+                id={`${appBridge.getBlockId().toString()}-title`}
                 value={note}
+                border={false}
                 onTextChange={saveNote}
                 placeholder="Write personal note here ..."
                 readonly={!isEditing}
+                plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         </div>
     );
