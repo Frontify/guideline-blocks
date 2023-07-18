@@ -13,7 +13,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@babel/core": "7.20.2",
+        "@babel/core": "7.22.9",
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.10",
         "@frontify/guideline-blocks-shared": "workspace:*",
