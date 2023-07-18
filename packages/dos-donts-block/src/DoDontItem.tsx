@@ -128,6 +128,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         useLayoutEffect(() => {
             if (titleRef.current) {
                 autosize(titleRef.current);
+                autosize.update(titleRef.current);
             }
         });
 
