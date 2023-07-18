@@ -20,7 +20,7 @@
         "ci": "pnpm install --frozen-lockfile"
     },
     "devDependencies": {
-        "@babel/core": "7.20.2",
+        "@babel/core": "7.22.9",
         "@cypress/vite-dev-server": "4.0.1",
         "@testing-library/react": "14.0.0",
         "@4tw/cypress-drag-drop": "2.2.1",
@@ -40,7 +40,7 @@
         "vitest": "0.25.0"
     },
     "dependencies": {
-        "@frontify/fondue": "12.0.0-beta.279",
+        "@frontify/fondue": "12.0.0-beta.282",
         "glob": "10.0.0",
         "react": "18.2.0",
         "react-dom": "18.2.0"
