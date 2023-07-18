@@ -19,7 +19,7 @@ import {
     toRgbaString,
 } from '@frontify/guideline-blocks-shared';
 import autosize from 'autosize';
-import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
@@ -125,17 +125,12 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [selectedFiles]);
 
-        useEffect(() => {
+        useLayoutEffect(() => {
             if (titleRef.current) {
                 autosize(titleRef.current);
-            }
-        });
-
-        useEffect(() => {
-            if (titleRef.current) {
                 autosize.update(titleRef.current);
             }
-        }, []);
+        });
 
         useEffect(() => {
             if (doneAll) {
@@ -250,7 +245,14 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                         {style === DoDontStyle.Icons && (title || body || editing) && (
                             <div
                                 data-test-id="dos-donts-icon"
-                                className={joinClassNames(['tw-mr-2 tw-w-auto', !internalTitle ? 'tw-opacity-30' : ''])}
+                                style={{
+                                    height: 'var(--f-theme-settings-heading3-line-height)',
+                                    fontSize: 'var(--f-theme-settings-heading3-font-size)',
+                                }}
+                                className={joinClassNames([
+                                    'tw-mr-2 tw-w-auto tw-flex tw-items-center',
+                                    !internalTitle ? 'tw-opacity-30' : '',
+                                ])}
                             >
                                 <IconComponent
                                     type={type}
