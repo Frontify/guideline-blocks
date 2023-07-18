@@ -152,6 +152,7 @@ export type SortableCardProps = {
 
 export type CardProps = SortableCardProps & {
     isDragging?: boolean;
+    setActivatorNodeRef?: (node: HTMLElement | null) => void;
     replaceWithPlaceholder?: boolean;
     transformStyle?: Record<string, unknown>;
     draggableProps?: Record<string, unknown>;
@@ -162,7 +163,6 @@ export type CardTextProps = {
     title: string;
     description: string;
     hasBorder: boolean;
-    updateValueOnChange: boolean;
     isEditing: boolean;
     setTitle: (title: string) => void;
     setDescription: (description: string) => void;

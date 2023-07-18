@@ -8,7 +8,6 @@ type UploadPlaceholderProps = {
     onFilesDrop: (files: FileList) => void;
     onAssetChooseClick: () => void;
     loading: boolean;
-    errorMsg?: string;
 };
 
 export const UploadPlaceholder = ({
@@ -16,7 +15,6 @@ export const UploadPlaceholder = ({
     onFilesDrop,
     onAssetChooseClick,
     loading,
-    errorMsg,
 }: UploadPlaceholderProps) => {
     return (
         <div className="tw-h-64">
@@ -28,8 +26,8 @@ export const UploadPlaceholder = ({
                 onAssetChooseClick={onAssetChooseClick}
                 onDrop={onFilesDrop}
                 isLoading={loading}
+                validFileType={'Images'}
             />
-            {errorMsg && <p className="tw-text-red-60">{errorMsg}</p>}
         </div>
     );
 };

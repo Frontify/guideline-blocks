@@ -1,25 +1,19 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import {
-    CaptionPosition,
-    CornerRadius,
-    Settings,
-    mapAlignmentClasses,
-    paddingValues,
-    radiusValues,
-    rationValues,
-} from '../types';
+import { Settings, mapAlignmentClasses } from '../types';
 import {
     Attachments,
     DownloadButton,
     downloadAsset,
     isDownloadable,
     joinClassNames,
-    toRgbaString,
     useAttachments,
 } from '@frontify/guideline-blocks-shared';
+import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
+import { getImageStyle, getTotalImagePadding } from './helpers';
+import { FOCUS_STYLE } from '@frontify/fondue';
 
 type ImageProps = {
     image: Asset;
@@ -28,39 +22,48 @@ type ImageProps = {
     appBridge: AppBridgeBlock;
 };
 
-export const ImageComponent = ({ image, blockSettings, isEditing }: ImageProps) => {
-    const link = blockSettings.hasLink ? blockSettings.linkObject : undefined;
+export const ImageComponent = ({ image, blockSettings, isEditing, appBridge }: ImageProps) => {
+    const link = blockSettings?.hasLink && blockSettings?.linkObject?.link && blockSettings?.linkObject;
+    const imageStyle = getImageStyle(blockSettings, image.width);
+    const { isFocused, focusProps } = useFocusRing();
+
+    const Image = (
+        <img
+            data-test-id="image-block-img"
+            className="tw-flex tw-w-full"
+            loading="lazy"
+            src={image.genericUrl.replace('{width}', `${800 * (window?.devicePixelRatio ?? 1)}`)}
+            alt={blockSettings.altText || undefined}
+            style={imageStyle}
+        />
+    );
+
+    const props = {
+        ...focusProps,
+        className: joinClassNames(['tw-rounded', isFocused && FOCUS_STYLE]),
+    };
+
     return (
         <>
-            {link && !isEditing ? (
-                <a
-                    className="tw-w-full"
-                    href={link.link.link}
-                    target={link.openInNewTab ? '_blank' : undefined}
-                    rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
-                >
-                    <img
-                        data-test-id="image-block-img"
-                        className="tw-flex"
-                        loading="lazy"
-                        src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                        alt={image.fileName}
-                        style={{
-                            width: image.width,
-                        }}
-                    />
-                </a>
+            {isEditing ? (
+                Image
             ) : (
-                <img
-                    data-test-id="image-block-img"
-                    className="tw-flex"
-                    loading="lazy"
-                    src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                    alt={image.fileName}
-                    style={{
-                        width: image.width,
-                    }}
-                />
+                <>
+                    {link ? (
+                        <a
+                            {...props}
+                            href={link.link.link}
+                            target={link.openInNewTab ? '_blank' : undefined}
+                            rel={link.openInNewTab ? 'noopener noreferrer' : 'noreferrer'}
+                        >
+                            {Image}
+                        </a>
+                    ) : (
+                        <button {...props} onClick={() => appBridge.openAssetViewer(image.token)}>
+                            {Image}
+                        </button>
+                    )}
+                </>
             )}
         </>
     );
@@ -72,37 +75,24 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
 
     const { assetDownloadEnabled } = usePrivacySettings(appBridge);
 
-    const borderRadius = blockSettings.hasRadius_cornerRadius
-        ? blockSettings.radiusValue_cornerRadius
-        : radiusValues[blockSettings.radiusChoice_cornerRadius];
-    const border = blockSettings.hasBorder
-        ? `${blockSettings.borderWidth} ${blockSettings.borderStyle} ${toRgbaString(blockSettings.borderColor)}`
-        : undefined;
-
-    const padding = blockSettings.hasCustomPadding
-        ? blockSettings.paddingCustom
-        : paddingValues[blockSettings.paddingChoice];
     return (
         <div
-            style={{
-                padding,
-                border,
-                borderRadius: borderRadius ?? radiusValues[CornerRadius.None],
-                backgroundColor: blockSettings.hasBackground ? toRgbaString(blockSettings.backgroundColor) : undefined,
-            }}
             data-test-id="image-block-img-wrapper"
-            className={joinClassNames([
-                'tw-relative tw-flex tw-h-auto tw-overflow-hidden',
-                mapAlignmentClasses[blockSettings.alignment],
-                blockSettings.positioning === CaptionPosition.Above ||
-                blockSettings.positioning === CaptionPosition.Below
-                    ? 'tw-w-full'
-                    : rationValues[blockSettings.ratio],
-            ])}
+            className={`tw-flex tw-h-auto ${mapAlignmentClasses[blockSettings.alignment]}`}
         >
-            <div className="tw-relative">
-                <div className="tw-absolute tw-top-2 tw-right-2">
-                    <div className="tw-flex tw-gap-2">
+            <div className="tw-relative ">
+                <ImageComponent
+                    appBridge={appBridge}
+                    blockSettings={blockSettings}
+                    image={image}
+                    isEditing={isEditing}
+                />
+                <div className="tw-absolute tw-top-2 tw-right-2 tw-z-50">
+                    <div
+                        className="tw-flex tw-gap-2"
+                        data-test-id="buttons-wrapper"
+                        style={getTotalImagePadding(blockSettings)}
+                    >
                         {isDownloadable(blockSettings.security, blockSettings.downloadable, assetDownloadEnabled) && (
                             <DownloadButton onDownload={() => downloadAsset(image)} />
                         )}
@@ -119,12 +109,6 @@ export const Image = ({ image, appBridge, blockSettings, isEditing }: ImageProps
                         />
                     </div>
                 </div>
-                <ImageComponent
-                    appBridge={appBridge}
-                    blockSettings={blockSettings}
-                    image={image}
-                    isEditing={isEditing}
-                />
             </div>
         </div>
     );

@@ -10,7 +10,7 @@ type ImageProps = {
     thumbnailStyles: ThumbnailStylesProps;
     image: Asset | undefined;
     isLoading: boolean;
-    defaultAltText: string;
+    altText?: string;
     isEditing: boolean;
     onOpenFileDialog: () => void;
     onFilesDrop: (files: FileList, id?: string) => void;
@@ -21,7 +21,7 @@ type ImageProps = {
 export const Image = ({
     image,
     isLoading,
-    defaultAltText,
+    altText,
     thumbnailStyles,
     isEditing,
     onOpenFileDialog,
@@ -42,8 +42,8 @@ export const Image = ({
                         className="tw-object-scale-down"
                         style={thumbnailStyles.imageStyles}
                         loading="lazy"
-                        src={image.genericUrl.replace('{width}', `${800 * window.devicePixelRatio}`)}
-                        alt={defaultAltText}
+                        src={image.genericUrl.replace('{width}', `${800 * (window?.devicePixelRatio ?? 1)}`)}
+                        alt={altText || undefined}
                     />
                 )}
             </>

@@ -154,7 +154,10 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                         <button
                             data-test-id="header-copy-button"
                             className="tw-items-center tw-justify-end tw-gap-1 tw-flex"
-                            style={getStyle()}
+                            style={{
+                                ...getStyle(),
+                                color: blockSettings.theme === 'default' ? '#000000' : getStyle().color,
+                            }}
                             onClick={handleCopy}
                         >
                             {getCopyButtonText()}
@@ -169,7 +172,6 @@ export const CodeSnippetBlock: FC<BlockProps> = ({ appBridge }) => {
                     readOnly={!isEditing}
                     basicSetup={{
                         lineNumbers: withRowNumbers,
-                        foldGutter: false,
                         searchKeymap: false,
                         highlightActiveLineGutter: false,
                         highlightActiveLine: false,

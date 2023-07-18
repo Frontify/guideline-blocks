@@ -13,6 +13,7 @@ import {
 } from '@frontify/fondue';
 import { ToolbarProps } from './types';
 import { joinClassNames } from '../../utilities';
+import { DEFAULT_DRAGGING_TOOLTIP, DEFAULT_DRAG_TOOLTIP } from './constants';
 
 const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging, isFlyoutDisabled }: ToolbarProps) => {
     return (
@@ -25,18 +26,23 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                             withArrow
                             hoverDelay={0}
                             enterDelay={300}
-                            disabled={isDragging}
+                            open={isDragging}
                             position={TooltipPosition.Top}
-                            content={<div>{item.tooltip}</div>}
+                            content={
+                                <div>
+                                    {isDragging ? DEFAULT_DRAGGING_TOOLTIP : item.tooltip ?? DEFAULT_DRAG_TOOLTIP}
+                                </div>
+                            }
                             triggerElement={
                                 <button
+                                    ref={item.setActivatorNodeRef}
                                     data-test-id="block-item-wrapper-toolbar-btn"
                                     {...item.draggableProps}
                                     className={joinClassNames([
                                         'tw-bg-base tw-relative tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm focus-visible:tw-z-10',
                                         FOCUS_VISIBLE_STYLE,
                                         isDragging
-                                            ? 'tw-cursor-grabbing hover:tw-bg-box-selected-pressed'
+                                            ? 'tw-cursor-grabbing tw-bg-box-selected-pressed'
                                             : 'tw-cursor-grab hover:tw-bg-box-selected-hover',
                                     ])}
                                 >
@@ -52,7 +58,7 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                             hoverDelay={0}
                             disabled={isDragging}
                             position={TooltipPosition.Top}
-                            content={<div>{item.tooltip}</div>}
+                            content={<div>{item.tooltip ?? ''}</div>}
                             triggerElement={
                                 <button
                                     data-test-id="block-item-wrapper-toolbar-btn"
@@ -71,7 +77,7 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                 {flyoutItems.length > 0 && (
                     <div className="tw-flex tw-flex-shrink-0 tw-flex-1 tw-h-6">
                         <Flyout
-                            isOpen={isFlyoutOpen}
+                            isOpen={isFlyoutOpen && !isDragging}
                             isTriggerDisabled={isFlyoutDisabled}
                             legacyFooter={false}
                             fitContent

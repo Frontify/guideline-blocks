@@ -4,9 +4,9 @@ import { FileExtensionSets } from '@frontify/app-bridge';
 import {
     AssetChooserObjectType,
     IconEnum,
+    NotificationBlockDividerPosition,
     NotificationStyleType,
     appendUnit,
-    createFooter,
     defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
@@ -41,19 +41,6 @@ export const settings = defineSettings({
                     objectTypes: [AssetChooserObjectType.ImageVideo],
                     extensions: FileExtensionSets.Images,
                 },
-                {
-                    id: 'hasLink',
-                    type: 'switch',
-                    label: 'Link',
-                    defaultValue: false,
-                    on: [
-                        {
-                            id: 'linkObject',
-                            type: 'linkChooser',
-                            placeholder: 'Paste link, or type to search',
-                        },
-                    ],
-                },
             ],
         },
         {
@@ -64,6 +51,7 @@ export const settings = defineSettings({
             styles: {
                 type: NotificationStyleType.Info,
                 icon: true,
+                divider: NotificationBlockDividerPosition.Top,
             },
             footer: {
                 label: 'Follow our guide for image resolution',
@@ -109,17 +97,14 @@ export const settings = defineSettings({
                 {
                     value: Alignment.Left,
                     icon: IconEnum.ArrowAlignLeft,
-                    label: 'Left',
                 },
                 {
                     value: Alignment.Center,
                     icon: IconEnum.ArrowAlignVerticalCentre,
-                    label: 'Center',
                 },
                 {
                     value: Alignment.Right,
                     icon: IconEnum.ArrowAlignRight,
-                    label: 'Right',
                 },
             ],
         },
@@ -128,7 +113,7 @@ export const settings = defineSettings({
             type: 'switch',
             defaultValue: false,
             switchLabel: 'Custom',
-            label: 'Image padding',
+            label: 'Padding',
             info: 'The spacing around the image.',
             onChange: (bundle) => presetCustomValue(bundle, PADDING_CHOICE_ID, PADDING_CUSTOM_ID, paddingValues),
             on: [
@@ -186,16 +171,5 @@ export const settings = defineSettings({
             radiusStyleMap: radiusValues,
         }),
     ],
-    security: [
-        getSecurityGlobalControlSetting(),
-        {
-            id: 'globalSettingsInfo',
-            type: 'notification',
-            footer: createFooter({
-                label: 'Change global settings [here].',
-                replace: { here: { event: 'design-settings.open' } },
-            }),
-        },
-        getSecurityDownloadableSetting(),
-    ],
+    security: [...getSecurityGlobalControlSetting(), getSecurityDownloadableSetting()],
 });

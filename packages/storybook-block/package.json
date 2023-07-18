@@ -13,7 +13,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@babel/core": "7.20.2",
+        "@babel/core": "7.22.9",
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.10",
         "@types/react": "18.0.35",
@@ -30,9 +30,9 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "3.0.0-beta.67",
-        "@frontify/fondue": "12.0.0-beta.239",
+        "@frontify/fondue": "12.0.0-beta.282",
         "@frontify/fondue-tokens": "3.1.0",
-        "@frontify/guideline-blocks-settings": "0.26.8",
+        "@frontify/guideline-blocks-settings": "0.27.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@react-aria/interactions": "3.7.0",
         "react": "18.2.0",

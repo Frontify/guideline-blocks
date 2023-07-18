@@ -30,11 +30,10 @@ export const RichTextEditors = ({
                 <RichTextEditor
                     id={`${id}-title`}
                     isEditing={isEditing}
-                    onBlur={(value) => updateItemWith('title', value, id)}
+                    onTextChange={(value) => updateItemWith('title', value, id)}
                     value={title ?? convertToRteValue(TextStyles.heading3)}
                     placeholder="Add a title"
                     plugins={titlePlugins}
-                    updateValueOnChange={!id} // only used for placeholder items
                 />
             </div>
         ),
@@ -47,9 +46,8 @@ export const RichTextEditors = ({
                 isEditing={isEditing}
                 value={description ?? convertToRteValue()}
                 plugins={getCaptionPlugins(appBridge)}
-                onBlur={(value) => updateItemWith('description', value, id)}
+                onTextChange={(value) => updateItemWith('description', value, id)}
                 placeholder="Add a description"
-                updateValueOnChange={!id}
             />
         ),
         [id, description, isEditing, updateItemWith, appBridge]

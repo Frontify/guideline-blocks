@@ -11,18 +11,11 @@ import {
     useFileInput,
 } from '@frontify/app-bridge';
 import '@frontify/fondue-tokens/styles';
-import {
-    DndContext,
-    DragEndEvent,
-    DragOverlay,
-    PointerSensor,
-    closestCenter,
-    useSensor,
-    useSensors,
-} from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, arrayMove, rectSortingStrategy } from '@dnd-kit/sortable';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { BlockInjectButton, joinClassNames } from '@frontify/guideline-blocks-shared';
+import { BlockInjectButton, joinClassNames, useDndSensors } from '@frontify/guideline-blocks-shared';
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
@@ -49,7 +42,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const [minRowHeight, setMinRowHeight] = useState(60);
     const [isUploadLoading, setIsUploadLoading] = useState(false);
     const [selectedType, setSelectedType] = useState<DoDontType | undefined>();
     const [selectedAssets, setSelectedAssets] = useState<Asset[] | undefined>();
@@ -94,7 +86,10 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         radiusChoice,
         radiusValue,
     } = blockSettings;
-    const sensors = useSensors(useSensor(PointerSensor));
+
+    const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
+    const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
+    const sensors = useDndSensors(parseInt(columnGap ?? '0'), parseInt(rowGap ?? '0'));
     const { dontIconAsset, doIconAsset, itemImages } = blockAssets;
     const [localItems, setLocalItems] = useState<Item[]>(items);
 
@@ -223,15 +218,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const handleDragStart = (event: DragEndEvent) => {
         const { active } = event;
         setActiveId(active.id as string);
-        if (wrapperRef.current) {
-            setMinRowHeight(
-                Math.min(
-                    ...Array.from(wrapperRef.current.children).map((x) =>
-                        x.firstChild ? (x.firstChild as HTMLElement).getBoundingClientRect().height : 0
-                    )
-                )
-            );
-        }
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
@@ -276,7 +262,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         mode,
         columns,
         appBridge,
-        minRowHeight,
         isCustomImageHeight,
         customImageHeightValue,
         imageDisplay,
@@ -318,10 +303,6 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
 
     const activeItem = localItems.find((x) => x.id === activeId);
 
-    const columnGap = isCustomColumnGutter ? customColumnGutterValue : GUTTER_VALUES[columnGutterChoice];
-
-    const rowGap = isCustomRowGutter ? customRowGutterValue : GUTTER_VALUES[rowGutterChoice];
-
     return (
         <>
             <DndContext
@@ -329,6 +310,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
                 collisionDetection={closestCenter}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
+                modifiers={[restrictToParentElement]}
             >
                 <SortableContext items={localItems} strategy={rectSortingStrategy}>
                     <div

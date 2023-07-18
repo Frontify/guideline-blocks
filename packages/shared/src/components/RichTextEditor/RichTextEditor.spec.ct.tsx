@@ -188,7 +188,7 @@ describe('RichTextEditor', () => {
 
         mount(
             <RichTextEditor
-                isEditing={true}
+                isEditing
                 plugins={new PluginComposer().setPlugin([new ButtonPlugin({ appBridge })])}
                 value={convertToRteValue('p', 'This is a button')}
             />

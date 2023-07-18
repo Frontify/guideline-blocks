@@ -19,7 +19,7 @@ import {
     toRgbaString,
 } from '@frontify/guideline-blocks-shared';
 import autosize from 'autosize';
-import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import IconComponent from './components/IconComponent';
 import ImageComponent from './components/ImageComponent';
 import { BlockMode, DoDontItemProps, DoDontStyle, DoDontType, SortableDoDontItemProps } from './types';
@@ -51,7 +51,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             draggableProps = {},
             appBridge,
             linkedImage,
-            minRowHeight,
             mode,
             customImageHeightValue,
             imageDisplay,
@@ -66,6 +65,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             hasRadius,
             radiusChoice,
             radiusValue,
+            setActivatorNodeRef,
         },
         ref
     ) => {
@@ -125,17 +125,12 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [selectedFiles]);
 
-        useEffect(() => {
+        useLayoutEffect(() => {
             if (titleRef.current) {
                 autosize(titleRef.current);
-            }
-        }, []);
-
-        useEffect(() => {
-            if (titleRef.current) {
                 autosize.update(titleRef.current);
             }
-        }, []);
+        });
 
         useEffect(() => {
             if (doneAll) {
@@ -155,14 +150,15 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const memoizedRichTextEditor = useMemo(
             () => (
                 <RichTextEditor
+                    id={id.toString()}
                     isEditing={editing}
                     value={body}
-                    onBlur={onBodyTextChange}
+                    onTextChange={onBodyTextChange}
                     plugins={getDefaultPluginsWithLinkChooser(appBridge)}
                     placeholder="Add a description"
                 />
             ),
-            [body, onBodyTextChange, editing, appBridge]
+            [body, onBodyTextChange, editing, appBridge, id]
         );
 
         return (
@@ -175,8 +171,13 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     isDragging={isDragging}
                     shouldHideWrapper={replaceWithPlaceholder || !editing}
                     shouldHideComponent={replaceWithPlaceholder}
+                    shouldBeShown={isDragging}
                     toolbarItems={[
-                        { icon: <IconArrowMove16 />, tooltip: 'Drag to move', draggableProps },
+                        {
+                            icon: <IconArrowMove16 />,
+                            draggableProps,
+                            setActivatorNodeRef,
+                        },
                         { icon: <IconTrashBin16 />, tooltip: 'Delete Item', onClick: onRemoveSelf },
                     ]}
                     toolbarFlyoutItems={[
@@ -244,7 +245,14 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                         {style === DoDontStyle.Icons && (title || body || editing) && (
                             <div
                                 data-test-id="dos-donts-icon"
-                                className={joinClassNames(['tw-mr-2 tw-w-auto', !internalTitle ? 'tw-opacity-30' : ''])}
+                                style={{
+                                    height: 'var(--f-theme-settings-heading3-line-height)',
+                                    fontSize: 'var(--f-theme-settings-heading3-font-size)',
+                                }}
+                                className={joinClassNames([
+                                    'tw-mr-2 tw-w-auto tw-flex tw-items-center',
+                                    !internalTitle ? 'tw-opacity-30' : '',
+                                ])}
                             >
                                 <IconComponent
                                     type={type}
@@ -258,7 +266,8 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                             </div>
                         )}
                         <div className="tw-w-full tw-flex tw-items-center">
-                            <h3
+                            <span
+                                className="a-h3"
                                 style={{
                                     marginBottom: 0,
                                     marginTop: 0,
@@ -286,7 +295,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                     placeholder={editing ? 'Add a title' : ''}
                                     className="tw-text-s tw-pointer-ev tw-w-full tw-placeholder-[var(--placeholder-color)] placeholder:tw-opacity-30 tw-placeholder-opacity-30 tw-bg-transparent tw-resize-none tw-text-text-weak tw-break-words tw-outline-none tw-whitespace-pre-wrap"
                                 />
-                            </h3>
+                            </span>
                         </div>
                     </div>
                     {style === DoDontStyle.Underline && (
@@ -303,10 +312,9 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     </div>
                 </BlockItemWrapper>
                 <div
-                    style={{ height: minRowHeight }}
                     className={joinClassNames([
                         !replaceWithPlaceholder && 'tw-hidden',
-                        'tw-absolute tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
+                        'tw-absolute tw-h-full tw-left-0 tw-top-0 tw-w-full tw-border-2 tw-border-box-selected-strong tw-border-dashed tw-rounded-[4px] tw-bg-box-selected-hover',
                     ])}
                 />
             </div>
@@ -318,7 +326,7 @@ DoDontItem.displayName = 'DoDontItem';
 
 export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
     const { id, editing } = props;
-    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({
         id,
     });
 
@@ -339,6 +347,7 @@ export const SortableDoDontItem = (props: SortableDoDontItemProps) => {
             replaceWithPlaceholder={isDragging}
             transformStyle={transformStyle}
             draggableProps={draggableProps}
+            setActivatorNodeRef={setActivatorNodeRef}
         />
     );
 };

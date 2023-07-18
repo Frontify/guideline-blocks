@@ -10,6 +10,7 @@ export type Settings = {
     linkObject?: Link;
     image?: string;
     name?: string;
+    altText?: string;
     description?: string;
     alignment: Alignment;
     backgroundColor: Color;
@@ -48,10 +49,10 @@ export enum Ratio {
     Ratio1To1 = '1:1',
     Ratio1To2 = '1:2',
 }
-export const rationValues: Record<Ratio, string> = {
-    [Ratio.Ratio2To1]: 'tw-w-full md:tw-w-2/3',
-    [Ratio.Ratio1To1]: 'tw-w-full md:tw-w-1/2',
-    [Ratio.Ratio1To2]: 'tw-w-full md:tw-w-1/3',
+export const ratioValues: Record<Ratio, string> = {
+    [Ratio.Ratio2To1]: 'tw-w-full md:!tw-w-2/3',
+    [Ratio.Ratio1To1]: 'tw-w-full md:!tw-w-1/2',
+    [Ratio.Ratio1To2]: 'tw-w-full md:!tw-w-1/3',
 };
 
 export enum Padding {
@@ -96,7 +97,7 @@ export const mapAlignmentClasses: Record<Alignment, string> = {
 
 export const mapCaptionPositionClasses: Record<CaptionPosition, string> = {
     [CaptionPosition.Below]: 'tw-flex-col',
-    [CaptionPosition.Above]: 'md:tw-flex-col-reverse tw-flex-col',
-    [CaptionPosition.Right]: 'md:tw-flex-row tw-flex-col',
-    [CaptionPosition.Left]: 'md:tw-flex-row-reverse tw-flex-col',
+    [CaptionPosition.Above]: 'tw-flex-col-reverse',
+    [CaptionPosition.Right]: 'tw-flex-col md:!tw-flex-row',
+    [CaptionPosition.Left]: 'tw-flex-col md:!tw-flex-row-reverse',
 };

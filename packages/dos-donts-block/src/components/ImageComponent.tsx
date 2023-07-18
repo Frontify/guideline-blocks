@@ -38,7 +38,7 @@ const ImageComponent = ({
             : '';
 
     const getImage = () => {
-        const width = (isEditing ? 800 : 800 / columns) * window.devicePixelRatio;
+        const width = (isEditing ? 800 : 800 / columns) * (window?.devicePixelRatio ?? 1);
 
         return src ? (
             <div className="tw-relative tw-w-full">
