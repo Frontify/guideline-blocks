@@ -12,24 +12,10 @@ import {
     cornerRadiusValues,
     textPositioningToFlexDirection,
 } from './types';
-import { EditorActions, RichTextEditor, Text, merge } from '@frontify/fondue';
+import { RichTextEditor, Text, merge } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { Buttons } from './components/Buttons';
 import { Preview } from './components/Preview';
-
-const TITLE_ACTIONS = [[EditorActions.TEXT_STYLES], [EditorActions.BOLD, EditorActions.ITALIC]];
-const DESCRIPTION_ACTIONS = [
-    [EditorActions.TEXT_STYLES],
-    [EditorActions.BOLD, EditorActions.ITALIC, EditorActions.UNDERLINE, EditorActions.LINK],
-    [
-        EditorActions.ALIGN_LEFT,
-        EditorActions.ALIGN_CENTER,
-        EditorActions.ALIGN_RIGHT,
-        EditorActions.ALIGN_JUSTIFY,
-        EditorActions.UNORDERED_LIST,
-        EditorActions.ORDERED_LIST,
-    ],
-];
 
 const GAP = '32px';
 
@@ -114,7 +100,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     value={title}
                                     placeholder={isEditing ? 'Template Name' : undefined}
                                     onTextChange={(value) => onChangeSetting('title', value)}
-                                    actions={TITLE_ACTIONS}
                                     readonly={!isEditing}
                                 />
                                 <Text size={'small'}>0 pages</Text>
@@ -128,7 +113,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                         : undefined
                                 }
                                 onTextChange={(value) => onChangeSetting('description', value)}
-                                actions={DESCRIPTION_ACTIONS}
                                 readonly={!isEditing}
                             />
                         </div>

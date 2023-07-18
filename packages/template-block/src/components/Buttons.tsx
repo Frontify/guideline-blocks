@@ -2,7 +2,7 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Flyout } from '@frontify/fondue';
-import { useGuidelineDesignTokens } from '@frontify/guideline-blocks-shared';
+import { BlockButtonStyles } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
 import { BlockProps, Settings } from '../types';
 import { ButtonModal } from './ButtonModal';
@@ -10,16 +10,12 @@ import { CustomButton } from './CustomButton';
 
 export const Buttons = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
-    const { designTokens } = useGuidelineDesignTokens();
+    // const { designTokens } = useGuidelineDesignTokens();
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { buttonStyle, buttonText } = blockSettings;
 
     const [isButtonFlyoutOpen, setIsButtonFlyoutOpen] = useState(false);
-
-    if (!designTokens) {
-        return null;
-    }
 
     if (isEditing) {
         return (
@@ -29,7 +25,11 @@ export const Buttons = ({ appBridge }: BlockProps) => {
                 trigger={
                     <CustomButton
                         id="use-template"
-                        styles={buttonStyle && designTokens ? designTokens[buttonStyle] : designTokens?.button_primary}
+                        styles={
+                            buttonStyle && BlockButtonStyles
+                                ? BlockButtonStyles[buttonStyle]
+                                : BlockButtonStyles['buttonPrimary']
+                        }
                         onClick={() => setIsButtonFlyoutOpen(!isButtonFlyoutOpen)}
                     >
                         {buttonText ? buttonText : 'Use this template'}
@@ -38,18 +38,18 @@ export const Buttons = ({ appBridge }: BlockProps) => {
                 hug={false}
                 legacyFooter={false}
             >
-                <ButtonModal
-                    closeModal={() => setIsButtonFlyoutOpen(false)}
-                    designTokens={designTokens}
-                    appBridge={appBridge}
-                />
+                <ButtonModal closeModal={() => setIsButtonFlyoutOpen(false)} appBridge={appBridge} />
             </Flyout>
         );
     } else {
         return (
             <CustomButton
                 id="use-template"
-                styles={buttonStyle && designTokens ? designTokens[buttonStyle] : designTokens?.button_primary}
+                styles={
+                    buttonStyle && BlockButtonStyles
+                        ? BlockButtonStyles[buttonStyle]
+                        : BlockButtonStyles['buttonPrimary']
+                }
                 onClick={() => console.log('use template')}
             >
                 {buttonText ? buttonText : 'Use this template'}

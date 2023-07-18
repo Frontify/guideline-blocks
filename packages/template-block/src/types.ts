@@ -2,7 +2,7 @@
 
 import { AppBridgeBlock, Asset, Template } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { DesignTokenName } from '@frontify/guideline-blocks-shared';
+import { RichTextButtonStyle } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, ReactNode } from 'react';
 
 export type BlockProps = {
@@ -19,7 +19,7 @@ export type Settings = {
     templateId?: number;
     preview: PreviewType;
     previewCustom?: Asset;
-    buttonStyle?: DesignTokenName;
+    buttonStyle?: RichTextButtonStyle;
     buttonText?: string;
 
     // layout

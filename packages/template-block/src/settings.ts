@@ -2,13 +2,13 @@
 
 import { FileExtensionSets } from '@frontify/app-bridge';
 import { Color, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import type { BlockSettings, Bundle } from '@frontify/guideline-blocks-settings';
+import type { Bundle } from '@frontify/guideline-blocks-settings';
 import {
     appendUnit,
     minimumNumericalOrPixelOrAutoRule,
     numericalOrPixelRule,
     presetCustomValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import {
     AnchoringType,
     BorderStyleType,
@@ -23,11 +23,12 @@ import {
     cornerRadiusValues,
     previewHeightValues,
 } from './types';
+import { defineSettings } from '@frontify/guideline-blocks-settings';
 
 const BACKGROUND_COLOR_DEFAULT_VALUE: Color = { red: 250, green: 250, blue: 250, alpha: 1, name: 'Background Default' };
 const BORDER_COLOR_DEFAULT_VALUE: Color = { red: 8, green: 8, blue: 8, alpha: 0.1, name: 'Border Default' };
 
-export const settings: BlockSettings = {
+export const settings = defineSettings({
     main: [],
     basics: [
         {
@@ -623,4 +624,4 @@ export const settings: BlockSettings = {
         },
     ],
     security: [],
-};
+});

@@ -10,26 +10,18 @@ import {
     IconCheckMark,
     TextInput,
 } from '@frontify/fondue';
-import { DesignTokenName, TokenValues } from '@frontify/guideline-blocks-shared';
+import { BlockButtonStyles, type RichTextButtonStyle } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
-import { Settings } from '../types';
+import type { Settings } from '../types';
 import { CustomButton } from './CustomButton';
 
-export const ButtonModal = ({
-    closeModal,
-    designTokens,
-    appBridge,
-}: {
-    closeModal: () => void;
-    designTokens: Partial<Record<DesignTokenName, TokenValues>> | null;
-    appBridge: AppBridgeBlock;
-}) => {
+export const ButtonModal = ({ closeModal, appBridge }: { closeModal: () => void; appBridge: AppBridgeBlock }) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { buttonStyle, buttonText } = blockSettings;
 
     const [buttonTextValue, setButtonTextValue] = useState<string>(buttonText || 'Use this template');
-    const [buttonStyleValue, setButtonStyleValue] = useState<DesignTokenName>(buttonStyle || 'button_primary');
+    const [buttonStyleValue, setButtonStyleValue] = useState<RichTextButtonStyle>(buttonStyle || 'primary');
 
     const onSave = () => {
         updateBlockSettings({
@@ -64,27 +56,27 @@ export const ButtonModal = ({
                 >
                     <CustomButton
                         id="primary"
-                        styles={designTokens?.button_primary}
-                        isActive={buttonStyleValue === 'button_primary'}
-                        onClick={() => setButtonStyleValue('button_primary')}
+                        styles={BlockButtonStyles['buttonPrimary']}
+                        isActive={buttonStyleValue === 'primary'}
+                        onClick={() => setButtonStyleValue('primary')}
                     >
                         Primary Button
                     </CustomButton>
 
                     <CustomButton
                         id="secondary"
-                        styles={designTokens?.button_secondary}
-                        isActive={buttonStyleValue === 'button_secondary'}
-                        onClick={() => setButtonStyleValue('button_secondary')}
+                        styles={BlockButtonStyles['buttonSecondary']}
+                        isActive={buttonStyleValue === 'secondary'}
+                        onClick={() => setButtonStyleValue('secondary')}
                     >
                         Secondary Button
                     </CustomButton>
 
                     <CustomButton
                         id="tertiary"
-                        styles={designTokens?.button_tertiary}
-                        isActive={buttonStyleValue === 'button_tertiary'}
-                        onClick={() => setButtonStyleValue('button_tertiary')}
+                        styles={BlockButtonStyles['buttonTertiary']}
+                        isActive={buttonStyleValue === 'tertiary'}
+                        onClick={() => setButtonStyleValue('tertiary')}
                     >
                         Tertiary Button
                     </CustomButton>
