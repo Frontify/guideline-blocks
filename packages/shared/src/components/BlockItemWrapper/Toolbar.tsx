@@ -75,7 +75,7 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                     )
                 )}
                 {flyoutItems.length > 0 && (
-                    <div className="tw-flex tw-flex-shrink-0 tw-flex-1 tw-h-6">
+                    <div className="tw-flex tw-flex-shrink-0 tw-flex-1 tw-h-6 tw-relative">
                         <Flyout
                             isOpen={isFlyoutOpen && !isDragging}
                             isTriggerDisabled={isFlyoutDisabled}
