@@ -9,7 +9,6 @@ import {
     MenuItemContentSize,
     Tooltip,
     TooltipPosition,
-    merge,
 } from '@frontify/fondue';
 import { ToolbarProps } from './types';
 import { joinClassNames } from '../../utilities';
@@ -63,7 +62,7 @@ const Toolbar = ({ items, flyoutItems, isFlyoutOpen, setIsFlyoutOpen, isDragging
                                 <button
                                     data-test-id="block-item-wrapper-toolbar-btn"
                                     onClick={item.onClick}
-                                    className={merge([
+                                    className={joinClassNames([
                                         'tw-bg-base tw-relative hover:tw-bg-box-selected-hover active:tw-bg-box-selected-pressed tw-cursor-pointer tw-inline-flex tw-items-center tw-justify-center tw-w-6 tw-h-6 tw-rounded-sm focus-visible:tw-z-10',
                                         FOCUS_VISIBLE_STYLE,
                                     ])}
