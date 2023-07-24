@@ -269,6 +269,7 @@ export const settings = defineSettings({
             id: 'imagesSection',
             type: 'sectionHeading',
             label: 'Images',
+            show: (bundle) => bundle.getBlock('mode')?.value === BlockMode.TEXT_AND_IMAGE,
             blocks: [
                 {
                     id: 'isCustomImageHeight',
