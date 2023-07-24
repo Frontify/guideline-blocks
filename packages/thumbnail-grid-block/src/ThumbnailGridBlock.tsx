@@ -71,6 +71,11 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [doneAll, uploadResults]);
 
+    useEffect(() => {
+        setBlockSettings({ items: itemsState });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [itemsState]);
+
     const updateImages = async (images: Asset[], id?: string) => {
         if (!loadingIds.includes(id ?? 'placeholder')) {
             setLoadingIds((ids) => [...ids, id ?? 'placeholder']);
@@ -79,17 +84,16 @@ export const ThumbnailGridBlock = ({ appBridge }: BlockProps) => {
     };
     const saveItems = (items: Thumbnail[]) => {
         setItemsState(items);
-        setBlockSettings({ items });
     };
+
     const updateImage = async (image: Asset, id: string, loadingId?: string) => {
         await updateAssetIdsFromKey(id, [image.id]);
         setLoadingIds(loadingIds.filter((i) => i !== (loadingId ?? id)));
         setUploadId(undefined);
     };
+
     const addItem = (id: string, type: keyof Thumbnail, value: string, altText?: string) => {
         setItemsState((old) => [...old, { id, [type]: value, altText }]); // cannot use saveItems here, as it overwrites the array when adding multiple image
-
-        setBlockSettings({ items: [...itemsState, { id, [type]: value, altText }] });
     };
 
     const updateItems = (id: string, type: keyof Thumbnail, value: string, altText?: string) => {
