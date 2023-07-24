@@ -4,13 +4,13 @@ import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Flyout } from '@frontify/fondue';
 import { BlockButtonStyles } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
-import { BlockProps, Settings } from '../types';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
+import { Settings } from '../types';
 import { ButtonModal } from './ButtonModal';
 import { CustomButton } from './CustomButton';
 
 export const Buttons = ({ appBridge }: BlockProps) => {
     const isEditing = useEditorState(appBridge);
-    // const { designTokens } = useGuidelineDesignTokens();
     const [blockSettings] = useBlockSettings<Settings>(appBridge);
 
     const { buttonStyle, buttonText } = blockSettings;

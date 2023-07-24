@@ -1,27 +1,23 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, Template, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { TemplateLegacy, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import {
     ActionMenu,
     Button,
-    ButtonCommonClasses,
-    ButtonElements,
-    ButtonEmphasis,
     ButtonRounding,
-    ButtonRoundingClasses,
     ButtonSize,
     ButtonStyle,
-    ButtonStyleClasses,
+    ButtonType,
+    Color,
     Flyout,
     IconDotsVertical,
     IconPlus20,
-    IconSpacingClasses,
     merge,
 } from '@frontify/fondue';
-import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { getRgbaString } from '../utils';
 import { useCallback, useState } from 'react';
+import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
-    BlockProps,
     Settings,
     cornerRadiusValues,
     previewDisplayValues,
@@ -62,18 +58,9 @@ export const Preview = ({ appBridge }: BlockProps) => {
     const flexDirection = textPositioningToFlexDirection[textPositioning];
     const isRows = useCallback(() => flexDirection === 'row' || flexDirection === 'row-reverse', [flexDirection]);
 
-    const getButtonStyles = (kind: keyof ButtonElements) =>
-        `${ButtonStyleClasses[ButtonEmphasis.Default][ButtonStyle.Default][kind]}`;
-
-    const buttonClasses = merge([
-        getButtonStyles('button'),
-        ButtonCommonClasses,
-        ButtonRoundingClasses[ButtonRounding.Medium],
-    ]);
-
     const [isActionFlyoutOpen, setIsActionFlyoutOpen] = useState(false);
 
-    const onTemplateSelected = useCallback((result: Template) => {
+    const onTemplateSelected = useCallback((result: TemplateLegacy) => {
         const newTitleValue = title
             ? title
             : JSON.stringify([{ type: 'heading3', children: [{ text: result.title }] }]);
@@ -106,13 +93,15 @@ export const Preview = ({ appBridge }: BlockProps) => {
                     className="tw-relative"
                     style={{
                         backgroundColor: hasPreviewBackgroundColor
-                            ? toRgbaString(previewBackgroundColor as Color)
+                            ? getRgbaString(previewBackgroundColor as Color)
                             : undefined,
                         borderRadius: isPreviewCorderRadiusCustom
                             ? previewCornerRadiusCustom
                             : cornerRadiusValues[previewCornerRadiusSimple],
                         border: hasPreviewBorder
-                            ? `${previewBorderWidth} ${previewBorderStyle} ${toRgbaString(previewBorderColor as Color)}`
+                            ? `${previewBorderWidth} ${previewBorderStyle} ${getRgbaString(
+                                  previewBorderColor as Color
+                              )}`
                             : 'none',
                         height: isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple],
                     }}
@@ -138,8 +127,6 @@ export const Preview = ({ appBridge }: BlockProps) => {
                                 trigger={
                                     <Button
                                         icon={<IconDotsVertical />}
-                                        hideLabel={true}
-                                        emphasis={ButtonEmphasis.Default}
                                         onClick={() => setIsActionFlyoutOpen(!isActionFlyoutOpen)}
                                     />
                                 }
@@ -169,21 +156,17 @@ export const Preview = ({ appBridge }: BlockProps) => {
                     )}
                 </div>
             ) : (
-                <button
-                    className={merge([buttonClasses, 'tw-w-full tw-h-full'])}
-                    style={{
-                        height: isPreviewHeightCustom ? previewHeightCustom : previewHeightValues[previewHeightSimple],
-                    }}
+                <Button
+                    hugWidth
+                    icon={<IconPlus20 />}
                     onClick={openTemplateChooser}
+                    rounding={ButtonRounding.Medium}
+                    size={ButtonSize.Medium}
+                    style={ButtonStyle.Primary}
+                    type={ButtonType.Button}
                 >
-                    <span
-                        data-test-id="button-icon"
-                        className={merge([IconSpacingClasses[ButtonSize.Medium], getButtonStyles('icon')])}
-                    >
-                        <IconPlus20 />
-                    </span>
-                    <span>Choose existing template</span>
-                </button>
+                    Choose existing template
+                </Button>
             )}
         </div>
     );

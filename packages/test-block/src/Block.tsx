@@ -1,19 +1,19 @@
-/* (c) Copyright Frontify Ltd., all rights reserved. */
-
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-// import '@frontify/fondue-tokens/styles';
-import { ReactElement, useCallback } from 'react';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { PreviewType, Settings, cardPaddingValues, cornerRadiusValues, textPositioningToFlexDirection } from './types';
-import { Color, RichTextEditor, Text, merge } from '@frontify/fondue';
-// import { toRgbaString } from '@frontify/guideline-blocks-shared';
-import { getRgbaString } from './utils';
-import { Buttons } from './components/Buttons';
-import { Preview } from './components/Preview';
+import type { FC } from 'react';
+import { Color, merge, RichTextEditor, Text } from '@frontify/fondue';
+import { useBlockSettings, useBlockTemplates, useEditorState } from '@frontify/app-bridge';
+import type { BlockProps } from '@frontify/guideline-blocks-settings';
+import { useCallback, useEffect } from 'react';
+import {
+    PreviewType,
+    type Settings,
+    cardPaddingValues,
+    cornerRadiusValues,
+    textPositioningToFlexDirection,
+} from './types';
 
 const GAP = '32px';
 
-export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
+export const AnExampleBlock: FC<BlockProps> = ({ appBridge }) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
@@ -54,6 +54,31 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         updateBlockSettings({ ...blockSettings, [key]: value });
     };
 
+    //TODO: this is quick and dirty alternative for toRgbaString() function which causes the errors while building the block
+    //TODO: should be investigated in more depth
+    const getRgbaString = (color: Color): string => {
+        const redChannel = color.red ?? 0;
+        const greenChannel = color.green ?? 0;
+        const blueChannel = color.blue ?? 0;
+        const alphaChannel = color.alpha ?? 0.0;
+
+        return `rgba(${redChannel}, ${greenChannel}, ${blueChannel}, ${alphaChannel})`;
+    };
+
+    // const { blockTemplates } = useBlockTemplates(appBridge);
+    //
+    // useEffect(() => {
+    //     console.log(blockTemplates);
+    // }, [blockTemplates]);
+
+    useEffect(() => {
+        console.log(hasCardBackgroundColor, cardBackgroundColor);
+        // const colorRgba = toRgbaString(cardBackgroundColor);
+        if (cardBackgroundColor) {
+            console.log(getRgbaString(cardBackgroundColor));
+        }
+    }, [hasCardBackgroundColor, cardBackgroundColor]);
+
     return (
         <div data-test-id="template-block">
             <div
@@ -79,7 +104,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         alignItems: isRows() ? textAnchoringHorizontal : textAnchoringVertical,
                     }}
                 >
-                    {hasPreview() && <Preview appBridge={appBridge} />}
+                    {hasPreview() && <span>PREVIEW</span>}
                     <div
                         className={merge(['tw-flex', isRows() && hasPreview() ? 'tw-flex-col' : 'tw-flex-row'])}
                         style={{
@@ -98,21 +123,21 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 />
                                 <Text size={'small'}>0 pages</Text>
                             </div>
-                            <RichTextEditor
-                                id={`${blockId}-description`}
-                                value={description}
-                                placeholder={
-                                    isEditing
-                                        ? 'Use default Template description if available, add your own or leave it empty'
-                                        : undefined
-                                }
-                                onTextChange={(value) => onChangeSetting('description', value)}
-                                readonly={!isEditing}
-                            />
                         </div>
-                        <div className="tw-shrink-0">
-                            <Buttons appBridge={appBridge} />
-                        </div>
+                        <RichTextEditor
+                            id={`${blockId}-description`}
+                            value={description}
+                            placeholder={
+                                isEditing
+                                    ? 'Use default Template description if available, add your own or leave it empty'
+                                    : undefined
+                            }
+                            onTextChange={(value) => onChangeSetting('description', value)}
+                            readonly={!isEditing}
+                        />
+                    </div>
+                    <div className="tw-shrink-0">
+                        <span>BUTTONS</span>
                     </div>
                 </div>
             </div>

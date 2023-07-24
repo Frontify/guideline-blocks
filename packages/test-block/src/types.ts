@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Asset, TemplateLegacy } from '@frontify/app-bridge';
-import { Color } from '@frontify/fondue';
-import { RichTextButtonStyle } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, ReactNode } from 'react';
+import { Color } from '@frontify/fondue';
+import { Asset, TemplateLegacy } from '@frontify/app-bridge';
+import { RichTextButtonStyle } from '@frontify/guideline-blocks-shared';
 
 export type Settings = {
     title: string;

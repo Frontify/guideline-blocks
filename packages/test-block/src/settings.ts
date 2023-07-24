@@ -1,29 +1,27 @@
-/* (c) Copyright Frontify Ltd., all rights reserved. */
-
-import { FileExtensionSets } from '@frontify/app-bridge';
-import { Color, DropdownSize, IconEnum, MultiInputLayout } from '@frontify/fondue';
-import type { Bundle } from '@frontify/guideline-blocks-settings';
 import {
+    Bundle,
     appendUnit,
-    minimumNumericalOrPixelOrAutoRule,
+    defineSettings,
     numericalOrPixelRule,
     presetCustomValue,
+    minimumNumericalOrPixelOrAutoRule,
 } from '@frontify/guideline-blocks-settings';
+import { FileExtensionSets } from '@frontify/app-bridge';
+import { Color, DropdownSize, MultiInputLayout, IconEnum } from '@frontify/fondue';
 import {
-    AnchoringType,
     BorderStyleType,
     CardPaddingType,
-    CornerRadiusType,
-    PreviewDisplayType,
-    PreviewHeightType,
     PreviewType,
     TextPositioningType,
     TextRatioType,
+    AnchoringType,
     cardPaddingValues,
     cornerRadiusValues,
+    CornerRadiusType,
     previewHeightValues,
+    PreviewHeightType,
+    PreviewDisplayType,
 } from './types';
-import { defineSettings } from '@frontify/guideline-blocks-settings';
 
 const BACKGROUND_COLOR_DEFAULT_VALUE: Color = { red: 250, green: 250, blue: 250, alpha: 1, name: 'Background Default' };
 const BORDER_COLOR_DEFAULT_VALUE: Color = { red: 8, green: 8, blue: 8, alpha: 0.1, name: 'Border Default' };
@@ -619,6 +617,18 @@ export const settings = defineSettings({
                         },
                     ],
                 },
+            ],
+        },
+        {
+            id: 'color',
+            label: 'Text Color',
+            type: 'slider',
+            defaultValue: 'violet',
+            choices: [
+                { label: 'Violet', value: 'violet' },
+                { label: 'Blue', value: 'blue' },
+                { label: 'Green', value: 'green' },
+                { label: 'Red', value: 'red' },
             ],
         },
     ],

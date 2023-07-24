@@ -1,22 +1,14 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { AppBridgeBlock, useBlockSettings } from '@frontify/app-bridge';
-import {
-    Button,
-    ButtonEmphasis,
-    ButtonSize,
-    ButtonStyle,
-    FormControl,
-    IconCheckMark,
-    TextInput,
-} from '@frontify/fondue';
+import { Button, ButtonSize, ButtonStyle, FormControl, IconCheckMark, TextInput } from '@frontify/fondue';
 import { BlockButtonStyles, type RichTextButtonStyle } from '@frontify/guideline-blocks-shared';
 import { useState } from 'react';
-import type { Settings } from '../types';
+import type { Types } from '../types';
 import { CustomButton } from './CustomButton';
 
 export const ButtonModal = ({ closeModal, appBridge }: { closeModal: () => void; appBridge: AppBridgeBlock }) => {
-    const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [blockSettings, updateBlockSettings] = useBlockSettings<Types>(appBridge);
 
     const { buttonStyle, buttonText } = blockSettings;
 
@@ -84,12 +76,7 @@ export const ButtonModal = ({ closeModal, appBridge }: { closeModal: () => void;
             </div>
             <div className="tw-mt-3">
                 <div className={'tw-pt-5 tw-flex tw-gap-x-3 tw-justify-end tw-border-t tw-border-t-black-10'}>
-                    <Button
-                        onClick={closeModal}
-                        size={ButtonSize.Medium}
-                        style={ButtonStyle.Default}
-                        emphasis={ButtonEmphasis.Default}
-                    >
+                    <Button onClick={closeModal} size={ButtonSize.Medium} style={ButtonStyle.Primary}>
                         Cancel
                     </Button>
                     <Button onClick={onSave} size={ButtonSize.Medium} icon={<IconCheckMark />}>
