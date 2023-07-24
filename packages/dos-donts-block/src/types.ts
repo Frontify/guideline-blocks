@@ -77,6 +77,11 @@ export type SortableDoDontItemProps = {
     doColor: Color;
     dontColor: Color;
     onChangeItem: (id: string, value: string | number | undefined, type: 'title' | 'body' | 'type' | 'imageId') => void;
+    onChangeLocalItem: (
+        id: string,
+        value: string | number | undefined,
+        type: 'title' | 'body' | 'type' | 'imageId'
+    ) => void;
     title?: string;
     body?: string;
     editing: boolean;
