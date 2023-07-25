@@ -205,8 +205,9 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         value: string | number | undefined,
         type: 'title' | 'body' | 'type' | 'imageId'
     ) => {
-        const newItems: Item[] = localItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item));
-        setLocalItems(newItems);
+        setLocalItems((previousItems) =>
+            previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
+        );
     };
 
     const onChangeItem = (
@@ -214,8 +215,12 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         value: string | number | undefined,
         type: 'title' | 'body' | 'type' | 'imageId'
     ) => {
-        const newItems: Item[] = localItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item));
-        setAndSaveItems(newItems);
+        setLocalItems((previousItems) =>
+            previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
+        );
+        setBlockSettings({
+            items: blockSettings.items.map((item) => (item.id === itemId ? { ...item, [type]: value } : item)),
+        });
     };
 
     const setAndSaveItems = (newItems: Item[]) => {
