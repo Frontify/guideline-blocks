@@ -379,6 +379,7 @@ export const settings = defineSettings({
             id: 'styleImagesSection',
             type: 'sectionHeading',
             label: 'Image',
+            show: (bundle) => bundle.getBlock('mode')?.value === BlockMode.TEXT_AND_IMAGE,
             blocks: [
                 {
                     id: 'hasBackground',

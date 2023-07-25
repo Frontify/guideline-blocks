@@ -19,7 +19,7 @@ import { BlockInjectButton, joinClassNames, useDndSensors } from '@frontify/guid
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
-import { BlockMode, DoDontType, GUTTER_VALUES, Item, Settings } from './types';
+import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
 import {
     ButtonEmphasis,
     ButtonStyle,
@@ -200,21 +200,13 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         setAndSaveItems(newItems);
     };
 
-    const onChangeLocalItem = (
-        itemId: string,
-        value: string | number | undefined,
-        type: 'title' | 'body' | 'type' | 'imageId'
-    ) => {
+    const onChangeLocalItem = (itemId: string, value: ValueType, type: ChangeType) => {
         setLocalItems((previousItems) =>
             previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
         );
     };
 
-    const onChangeItem = (
-        itemId: string,
-        value: string | number | undefined,
-        type: 'title' | 'body' | 'type' | 'imageId'
-    ) => {
+    const onChangeItem = (itemId: string, value: ValueType, type: ChangeType) => {
         setLocalItems((previousItems) =>
             previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
         );
