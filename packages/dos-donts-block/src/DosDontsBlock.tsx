@@ -207,11 +207,12 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     };
 
     const onChangeItem = (itemId: string, value: ValueType, type: ChangeType) => {
-        setLocalItems((previousItems) =>
-            previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
-        );
-        setBlockSettings({
-            items: blockSettings.items.map((item) => (item.id === itemId ? { ...item, [type]: value } : item)),
+        setLocalItems((previousItems) => {
+            const newItems = previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item));
+            setBlockSettings({
+                items: newItems,
+            });
+            return newItems;
         });
     };
 
