@@ -15,6 +15,7 @@ import {
     BlockStyles,
     RichTextEditor,
     getDefaultPluginsWithLinkChooser,
+    hasRichTextValue,
     joinClassNames,
     toRgbaString,
 } from '@frontify/guideline-blocks-shared';
@@ -33,6 +34,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             doColor,
             dontColor,
             onChangeItem,
+            onChangeLocalItem,
             title = '',
             body = '',
             editing = false,
@@ -73,7 +75,6 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const dontColorString = toRgbaString(dontColor);
         const { blockAssets, updateAssetIdsFromKey } = useBlockAssets(appBridge);
         const { itemImages } = blockAssets;
-        const [internalTitle, setInternalTitle] = useState(title);
         const titleRef = useRef<HTMLTextAreaElement>(null);
 
         const [isUploadLoading, setIsUploadLoading] = useState(false);
@@ -147,6 +148,8 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [doneAll, uploadResults]);
 
+        const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
+
         const memoizedRichTextEditor = useMemo(
             () => (
                 <RichTextEditor
@@ -158,7 +161,8 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     placeholder="Add a description"
                 />
             ),
-            [body, onBodyTextChange, editing, appBridge, id]
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            [body, shouldRerenderDependency, editing, appBridge, id]
         );
 
         return (
@@ -251,7 +255,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                 }}
                                 className={joinClassNames([
                                     'tw-mr-2 tw-w-auto tw-flex tw-items-center',
-                                    !internalTitle ? 'tw-opacity-30' : '',
+                                    !title ? 'tw-opacity-30' : '',
                                 ])}
                             >
                                 <IconComponent
@@ -279,8 +283,8 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                 <textarea
                                     rows={1}
                                     ref={titleRef}
-                                    onChange={(event) => setInternalTitle(event.target.value)}
-                                    onBlur={() => onChangeItem(id, internalTitle, 'title')}
+                                    onChange={(event) => onChangeLocalItem(id, event.target.value, 'title')}
+                                    onBlur={() => onChangeItem(id, title, 'title')}
                                     style={
                                         {
                                             ...BlockStyles.heading3,
@@ -290,7 +294,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                                             '--placeholder-color': headingColor,
                                         } as CSSProperties
                                     }
-                                    value={internalTitle}
+                                    value={title}
                                     disabled={!editing}
                                     aria-label="Title"
                                     placeholder={editing ? 'Add a title' : ''}
