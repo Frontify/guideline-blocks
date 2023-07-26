@@ -124,7 +124,7 @@ export type ItemToolbarProps = {
     setIsFlyoutOpen: (x: boolean) => void;
     type: DoDontType;
     isDragging: boolean;
-    onChangeItem: (id: string, value: string | number | undefined, type: 'title' | 'body' | 'type' | 'imageId') => void;
+    onChangeItem: (id: string, value: ValueType, type: ChangeType) => void;
     onAssetChooseClick: (() => void) | undefined;
     onUploadClick: (() => void) | undefined;
 };
