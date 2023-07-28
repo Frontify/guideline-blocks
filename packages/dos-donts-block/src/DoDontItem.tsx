@@ -150,6 +150,12 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
 
         const shouldRerenderDependency = hasRichTextValue(body) && onBodyTextChange;
 
+        const plugins = useMemo(
+            () => getDefaultPluginsWithLinkChooser(appBridge),
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            []
+        );
+
         const memoizedRichTextEditor = useMemo(
             () => (
                 <RichTextEditor
@@ -157,7 +163,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
                     isEditing={editing}
                     value={body}
                     onTextChange={onBodyTextChange}
-                    plugins={getDefaultPluginsWithLinkChooser(appBridge)}
+                    plugins={plugins}
                     placeholder="Add a description"
                 />
             ),
