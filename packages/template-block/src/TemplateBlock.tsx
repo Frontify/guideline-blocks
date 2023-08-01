@@ -1,10 +1,17 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import { Template, useBlockSettings, useBlockTemplates, useEditorState } from '@frontify/app-bridge';
 // import '@frontify/fondue-tokens/styles';
-import { ReactElement, useCallback } from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { PreviewType, Settings, cardPaddingValues, cornerRadiusValues, textPositioningToFlexDirection } from './types';
+import {
+    PreviewType,
+    SETTING_ID,
+    Settings,
+    cardPaddingValues,
+    cornerRadiusValues,
+    textPositioningToFlexDirection,
+} from './types';
 import { Color, RichTextEditor, Text, merge } from '@frontify/fondue';
 // import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { getRgbaString } from './utils';
@@ -15,8 +22,10 @@ const GAP = '32px';
 
 export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
+    const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
     const isEditing = useEditorState(appBridge);
     const blockId = appBridge.getBlockId().toString();
+    const { blockTemplates, updateTemplateIdsFromKey } = useBlockTemplates(appBridge);
 
     const {
         title,
@@ -49,6 +58,18 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         () => hasPreview() && (flexDirection === 'row' || flexDirection === 'row-reverse'),
         [flexDirection, hasPreview]
     );
+    const updateSelectedTemplate = useCallback(
+        (templates: Template[]) => {
+            templates.map((template) => setSelectedTemplate(template));
+        },
+        [setSelectedTemplate]
+    );
+
+    useEffect(() => {
+        if (blockTemplates[SETTING_ID]) {
+            updateSelectedTemplate(blockTemplates[SETTING_ID]);
+        }
+    }, [blockTemplates, updateSelectedTemplate]);
 
     const onChangeSetting = (key: string, value: string) => {
         updateBlockSettings({ ...blockSettings, [key]: value });
@@ -79,7 +100,13 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                         alignItems: isRows() ? textAnchoringHorizontal : textAnchoringVertical,
                     }}
                 >
-                    {hasPreview() && <Preview appBridge={appBridge} />}
+                    {hasPreview() && (
+                        <Preview
+                            appBridge={appBridge}
+                            template={selectedTemplate}
+                            onUpdateTemplate={updateTemplateIdsFromKey}
+                        />
+                    )}
                     <div
                         className={merge(['tw-flex', isRows() && hasPreview() ? 'tw-flex-col' : 'tw-flex-row'])}
                         style={{
@@ -110,9 +137,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 readonly={!isEditing}
                             />
                         </div>
-                        <div className="tw-shrink-0">
-                            <Buttons appBridge={appBridge} />
-                        </div>
+                        <div className="tw-shrink-0">buttons placeholder</div>
                     </div>
                 </div>
             </div>

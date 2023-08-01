@@ -17,6 +17,7 @@ import {
     PreviewDisplayType,
     PreviewHeightType,
     PreviewType,
+    SETTING_ID,
     TextPositioningType,
     TextRatioType,
     cardPaddingValues,
@@ -32,7 +33,7 @@ export const settings = defineSettings({
     main: [],
     basics: [
         {
-            id: 'templateId',
+            id: SETTING_ID,
             type: 'templateInput',
             label: 'Template',
         },

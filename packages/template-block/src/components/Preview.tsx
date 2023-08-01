@@ -1,6 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { TemplateLegacy, useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
+import {
+    AppBridgeBlock,
+    Template,
+    TemplateLegacy,
+    useBlockAssets,
+    useBlockSettings,
+    useEditorState,
+} from '@frontify/app-bridge';
 import {
     ActionMenu,
     Button,
@@ -16,8 +23,8 @@ import {
 } from '@frontify/fondue';
 import { getRgbaString } from '../utils';
 import { useCallback, useState } from 'react';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
+    SETTING_ID,
     Settings,
     cornerRadiusValues,
     previewDisplayValues,
@@ -26,7 +33,13 @@ import {
     textPositioningToFlexDirection,
 } from '../types';
 
-export const Preview = ({ appBridge }: BlockProps) => {
+export type PreviewProps = {
+    appBridge: AppBridgeBlock;
+    template: Template | null;
+    onUpdateTemplate: (key: string, newTemplateIds: number[]) => Promise<void>;
+};
+
+export const Preview = ({ appBridge, template, onUpdateTemplate }: PreviewProps) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
@@ -34,7 +47,6 @@ export const Preview = ({ appBridge }: BlockProps) => {
     const {
         title,
         description,
-        template,
         hasPreviewBackgroundColor,
         previewBackgroundColor,
         hasPreviewBorder,
@@ -60,7 +72,7 @@ export const Preview = ({ appBridge }: BlockProps) => {
 
     const [isActionFlyoutOpen, setIsActionFlyoutOpen] = useState(false);
 
-    const onTemplateSelected = useCallback((result: TemplateLegacy) => {
+    const onTemplateSelected = useCallback(async (result: TemplateLegacy) => {
         const newTitleValue = title
             ? title
             : JSON.stringify([{ type: 'heading3', children: [{ text: result.title }] }]);
@@ -68,6 +80,7 @@ export const Preview = ({ appBridge }: BlockProps) => {
             ? description
             : JSON.stringify([{ type: 'p', children: [{ text: result.description }] }]);
 
+        await onUpdateTemplate(SETTING_ID, [result.id]);
         updateBlockSettings({
             ...blockSettings,
             template: result,
@@ -88,7 +101,7 @@ export const Preview = ({ appBridge }: BlockProps) => {
                 width: isRows() ? `${100 - parseInt(textRatio)}%` : '100%',
             }}
         >
-            {template || previewCustom ? (
+            {template !== null || previewCustom ? (
                 <div
                     className="tw-relative"
                     style={{
@@ -117,8 +130,8 @@ export const Preview = ({ appBridge }: BlockProps) => {
                                 ? previewImageAnchoringValues[previewImageAnchoring]
                                 : 'center',
                         }}
-                        width={previewCustom ? previewCustom[0].width : template?.width}
-                        height={previewCustom ? previewCustom[0].height : template?.height}
+                        width={previewCustom ? previewCustom[0].width : 'auto'}
+                        height={previewCustom ? previewCustom[0].height : 'auto'}
                     />
                     {isEditing && (
                         <div className="tw-absolute tw-top-0 tw-right-0 tw-flex tw-justify-end tw-pt-3">

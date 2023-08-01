@@ -5,6 +5,8 @@ import { Color } from '@frontify/fondue';
 import { RichTextButtonStyle } from '@frontify/guideline-blocks-shared';
 import { CSSProperties, ReactNode } from 'react';
 
+export const SETTING_ID = 'template';
+
 export type Settings = {
     title: string;
     description: string;
