@@ -32,8 +32,8 @@
     },
     "dependencies": {
         "@frontify/app-bridge": "3.0.0-beta.67",
-        "@frontify/fondue": "12.0.0-beta.288",
-        "@frontify/fondue-tokens": "3.1.0",
+        "@frontify/fondue": "12.0.0-beta.295",
+        "@frontify/fondue-tokens": "3.3.0-next.5",
         "@frontify/guideline-blocks-settings": "0.27.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "lodash-es": "4.17.21",
