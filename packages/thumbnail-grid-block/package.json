@@ -32,14 +32,14 @@
         "typescript": "4.8.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.67",
-        "@frontify/fondue": "12.0.0-beta.288",
-        "@frontify/fondue-tokens": "3.1.0",
-        "@frontify/guideline-blocks-settings": "0.27.0",
         "@dnd-kit/core": "6.0.5",
         "@dnd-kit/modifiers": "6.0.1",
         "@dnd-kit/sortable": "7.0.1",
         "@dnd-kit/utilities": "3.2.1",
+        "@frontify/app-bridge": "3.0.0-beta.67",
+        "@frontify/fondue": "12.0.0-beta.295",
+        "@frontify/fondue-tokens": "3.3.0-next.5",
+        "@frontify/guideline-blocks-settings": "0.27.0",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "lodash-es": "4.17.21",
         "react": "18.2.0",
