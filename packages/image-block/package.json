@@ -17,7 +17,7 @@
         "@babel/core": "7.22.9",
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.10",
-        "@types/lodash-es": "4.17.6",
+        "@types/lodash-es": "4.17.8",
         "@types/react": "18.0.35",
         "@types/react-dom": "18.2.1",
         "autoprefixer": "10.4.13",
