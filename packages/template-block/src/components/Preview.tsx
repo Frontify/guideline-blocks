@@ -132,6 +132,7 @@ export const Preview = ({ appBridge, template, onUpdateTemplate }: PreviewProps)
                         }}
                         width={previewCustom ? previewCustom[0].width : 'auto'}
                         height={previewCustom ? previewCustom[0].height : 'auto'}
+                        alt={template?.name}
                     />
                     {isEditing && (
                         <div className="tw-absolute tw-top-0 tw-right-0 tw-flex tw-justify-end tw-pt-3">

@@ -1,6 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Template, useBlockSettings, useBlockTemplates, useEditorState } from '@frontify/app-bridge';
+import {
+    CreateNewPublicationOptions,
+    Template,
+    createNewPublication,
+    useBlockSettings,
+    useBlockTemplates,
+    useEditorState,
+} from '@frontify/app-bridge';
 // import '@frontify/fondue-tokens/styles';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
@@ -12,10 +19,9 @@ import {
     cornerRadiusValues,
     textPositioningToFlexDirection,
 } from './types';
-import { Color, RichTextEditor, Text, merge } from '@frontify/fondue';
+import { Button, ButtonEmphasis, Color, RichTextEditor, Text, merge } from '@frontify/fondue';
 // import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { getRgbaString } from './utils';
-import { Buttons } from './components/Buttons';
 import { Preview } from './components/Preview';
 
 const GAP = '32px';
@@ -52,6 +58,10 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         textAnchoringVertical,
     } = blockSettings;
 
+    const [templatePageCount, setTemplatePageCount] = useState<number>(
+        selectedTemplate ? selectedTemplate.pages.length : 0
+    );
+
     const hasPreview = useCallback(() => preview !== PreviewType.None, [preview]);
     const flexDirection = hasPreview() ? textPositioningToFlexDirection[textPositioning] : 'row';
     const isRows = useCallback(
@@ -71,8 +81,23 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         }
     }, [blockTemplates, updateSelectedTemplate]);
 
+    useEffect(() => {
+        if (selectedTemplate) {
+            setTemplatePageCount(selectedTemplate.pages.length);
+        }
+    }, [selectedTemplate]);
+
     const onChangeSetting = (key: string, value: string) => {
         updateBlockSettings({ ...blockSettings, [key]: value });
+    };
+
+    const handleNewPublication = () => {
+        const options: CreateNewPublicationOptions = {
+            template: selectedTemplate,
+            projectId: selectedTemplate?.projectId,
+        };
+
+        appBridge.dispatch(createNewPublication(options));
     };
 
     return (
@@ -123,7 +148,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                     onTextChange={(value) => onChangeSetting('title', value)}
                                     readonly={!isEditing}
                                 />
-                                <Text size={'small'}>0 pages</Text>
+                                <Text size={'small'}>{templatePageCount} pages</Text>
                             </div>
                             <RichTextEditor
                                 id={`${blockId}-description`}
@@ -137,7 +162,11 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 readonly={!isEditing}
                             />
                         </div>
-                        <div className="tw-shrink-0">buttons placeholder</div>
+                        <div className="tw-shrink-0">
+                            <Button emphasis={ButtonEmphasis.Default} onClick={handleNewPublication}>
+                                Use this Template
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
