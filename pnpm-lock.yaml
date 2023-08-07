@@ -1418,8 +1418,8 @@ importers:
         specifier: 5.3.10
         version: 5.3.10(@types/node@18.7.21)
       '@types/lodash-es':
-        specifier: 4.17.6
-        version: 4.17.6
+        specifier: 4.17.8
+        version: 4.17.8
       '@types/react':
         specifier: 18.0.35
         version: 18.0.35
@@ -1892,8 +1892,8 @@ importers:
         specifier: 5.3.10
         version: 5.3.10(@types/node@18.7.21)
       '@types/lodash-es':
-        specifier: 4.17.6
-        version: 4.17.6
+        specifier: 4.17.8
+        version: 4.17.8
       '@types/react':
         specifier: 18.0.35
         version: 18.0.35
@@ -1977,8 +1977,8 @@ importers:
         specifier: 5.3.10
         version: 5.3.10(@types/node@18.7.21)
       '@types/lodash-es':
-        specifier: 4.17.6
-        version: 4.17.6
+        specifier: 4.17.8
+        version: 4.17.8
       '@types/react':
         specifier: 18.0.35
         version: 18.0.35
@@ -6465,8 +6465,8 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
-  /@types/lodash-es@4.17.6:
-    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
+  /@types/lodash-es@4.17.8:
+    resolution: {integrity: sha512-euY3XQcZmIzSy7YH5+Unb3b2X12Wtk54YWINBvvGQ5SmMvwb11JQskGsfkH/5HXK77Kr8GF0wkVDIxzAisWtog==}
     dependencies:
       '@types/lodash': 4.14.190
     dev: true
