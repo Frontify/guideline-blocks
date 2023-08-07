@@ -22,8 +22,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@4tw/cypress-drag-drop':
-        specifier: 2.2.1
-        version: 2.2.1(cypress@12.5.1)
+        specifier: 2.2.4
+        version: 2.2.4(cypress@12.5.1)
       '@babel/core':
         specifier: 7.22.9
         version: 7.22.9
@@ -846,8 +846,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@4tw/cypress-drag-drop':
-        specifier: 2.2.1
-        version: 2.2.1(cypress@11.0.1)
+        specifier: 2.2.4
+        version: 2.2.4(cypress@11.0.1)
       '@babel/core':
         specifier: 7.22.9
         version: 7.22.9
@@ -2018,18 +2018,18 @@ importers:
 
 packages:
 
-  /@4tw/cypress-drag-drop@2.2.1(cypress@11.0.1):
-    resolution: {integrity: sha512-+ioJSnEwx70IiMyb4pLEjOS5u6AMWRIVCV20toCY7lb0YcvA0ipbjQBa9DdxEI7Zg2E2jtcIj7Rx0e3WNUbk/w==}
+  /@4tw/cypress-drag-drop@2.2.4(cypress@11.0.1):
+    resolution: {integrity: sha512-6mmjJ0SHjciI0JNofdVcN1LYLbvUcUT3oY2O+1HaTlQlpKPlX9kBc040Sik6RYFK7cgWvUNwoDoDoGSKA4IS/g==}
     peerDependencies:
-      cypress: ^2.1.0 || ^3.1.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
+      cypress: ^2.1.0 || ^3.1.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0
     dependencies:
       cypress: 11.0.1
     dev: true
 
-  /@4tw/cypress-drag-drop@2.2.1(cypress@12.5.1):
-    resolution: {integrity: sha512-+ioJSnEwx70IiMyb4pLEjOS5u6AMWRIVCV20toCY7lb0YcvA0ipbjQBa9DdxEI7Zg2E2jtcIj7Rx0e3WNUbk/w==}
+  /@4tw/cypress-drag-drop@2.2.4(cypress@12.5.1):
+    resolution: {integrity: sha512-6mmjJ0SHjciI0JNofdVcN1LYLbvUcUT3oY2O+1HaTlQlpKPlX9kBc040Sik6RYFK7cgWvUNwoDoDoGSKA4IS/g==}
     peerDependencies:
-      cypress: ^2.1.0 || ^3.1.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
+      cypress: ^2.1.0 || ^3.1.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0
     dependencies:
       cypress: 12.5.1
     dev: true

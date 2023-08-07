@@ -14,7 +14,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@4tw/cypress-drag-drop": "2.2.1",
+        "@4tw/cypress-drag-drop": "2.2.4",
         "@babel/core": "7.22.9",
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.10",

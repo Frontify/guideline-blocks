@@ -20,7 +20,7 @@
         "ci": "pnpm install --frozen-lockfile"
     },
     "devDependencies": {
-        "@4tw/cypress-drag-drop": "2.2.1",
+        "@4tw/cypress-drag-drop": "2.2.4",
         "@babel/core": "7.22.9",
         "@cypress/vite-dev-server": "4.0.1",
         "@testing-library/react": "14.0.0",
