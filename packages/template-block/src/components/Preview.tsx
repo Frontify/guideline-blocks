@@ -37,16 +37,22 @@ export type PreviewProps = {
     appBridge: AppBridgeBlock;
     template: Template | null;
     onUpdateTemplate: (key: string, newTemplateIds: number[]) => Promise<void>;
+    onUpdateTemplateTitle: (value: string) => void;
+    onUpdateTemplateDescription: (value: string) => void;
 };
 
-export const Preview = ({ appBridge, template, onUpdateTemplate }: PreviewProps) => {
+export const Preview = ({
+    appBridge,
+    template,
+    onUpdateTemplate,
+    onUpdateTemplateTitle,
+    onUpdateTemplateDescription,
+}: PreviewProps) => {
     const [blockSettings, updateBlockSettings] = useBlockSettings<Settings>(appBridge);
     const { blockAssets } = useBlockAssets(appBridge);
     const isEditing = useEditorState(appBridge);
 
     const {
-        title,
-        description,
         hasPreviewBackgroundColor,
         previewBackgroundColor,
         hasPreviewBorder,
@@ -72,21 +78,24 @@ export const Preview = ({ appBridge, template, onUpdateTemplate }: PreviewProps)
 
     const [isActionFlyoutOpen, setIsActionFlyoutOpen] = useState(false);
 
-    const onTemplateSelected = useCallback(async (result: TemplateLegacy) => {
-        const newTitleValue = title
-            ? title
-            : JSON.stringify([{ type: 'heading3', children: [{ text: result.title }] }]);
-        const newDescriptionValue = description
-            ? description
-            : JSON.stringify([{ type: 'p', children: [{ text: result.description }] }]);
+    const updateTemplateTitleAndDescription = (template: TemplateLegacy) => {
+        const { title, description } = blockSettings;
+        const newTitleValue = title ? title : template.title;
+        const newDescriptionValue = description ? description : template.description;
 
+        onUpdateTemplateTitle(newTitleValue);
+        onUpdateTemplateDescription(newDescriptionValue);
+    };
+
+    const onTemplateSelected = useCallback(async (result: TemplateLegacy) => {
         await onUpdateTemplate(SETTING_ID, [result.id]);
+
         updateBlockSettings({
             ...blockSettings,
             template: result,
             templateId: result.id,
-            title: newTitleValue,
-            description: newDescriptionValue,
+        }).then(() => {
+            updateTemplateTitleAndDescription(result);
         });
 
         appBridge.closeTemplateChooser();

@@ -8,7 +8,6 @@ import {
     useBlockTemplates,
     useEditorState,
 } from '@frontify/app-bridge';
-// import '@frontify/fondue-tokens/styles';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { BlockProps } from '@frontify/guideline-blocks-settings';
 import {
@@ -19,7 +18,7 @@ import {
     cornerRadiusValues,
     textPositioningToFlexDirection,
 } from './types';
-import { Button, ButtonEmphasis, Color, RichTextEditor, Text, merge } from '@frontify/fondue';
+import { Button, ButtonEmphasis, Color, Heading, Text, TextInput, Textarea, merge } from '@frontify/fondue';
 // import { toRgbaString } from '@frontify/guideline-blocks-shared';
 import { getRgbaString } from './utils';
 import { Preview } from './components/Preview';
@@ -58,6 +57,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         textAnchoringVertical,
     } = blockSettings;
 
+    const [templateTitle, setTemplateTitle] = useState<string>(title || undefined);
+    const [templateDescription, setTemplateDescription] = useState<string>(description || undefined);
     const [templatePageCount, setTemplatePageCount] = useState<number>(
         selectedTemplate ? selectedTemplate.pages.length : 0
     );
@@ -68,6 +69,17 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         () => hasPreview() && (flexDirection === 'row' || flexDirection === 'row-reverse'),
         [flexDirection, hasPreview]
     );
+
+    const updateTemplateTitle = (value: string) => {
+        setTemplateTitle(value);
+        onChangeSetting('title', value);
+    };
+
+    const updateTemplateDescription = (value: string) => {
+        setTemplateDescription(value);
+        onChangeSetting('description', value);
+    };
+
     const updateSelectedTemplate = useCallback(
         (templates: Template[]) => {
             templates.map((template) => setSelectedTemplate(template));
@@ -85,7 +97,7 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         if (selectedTemplate) {
             setTemplatePageCount(selectedTemplate.pages.length);
         }
-    }, [selectedTemplate]);
+    }, [description, selectedTemplate, title]);
 
     const onChangeSetting = (key: string, value: string) => {
         updateBlockSettings({ ...blockSettings, [key]: value });
@@ -94,7 +106,6 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     const handleNewPublication = () => {
         const options: CreateNewPublicationOptions = {
             template: selectedTemplate,
-            projectId: selectedTemplate?.projectId,
         };
 
         appBridge.dispatch(createNewPublication(options));
@@ -102,74 +113,94 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
 
     return (
         <div data-test-id="template-block">
-            <div
-                className="tw-border tw-border-black-20"
-                style={{
-                    backgroundColor: hasCardBackgroundColor ? getRgbaString(cardBackgroundColor as Color) : undefined,
-                    borderRadius: isCardCornerRadiusCustom
-                        ? cardCornerRadiusCustom
-                        : cornerRadiusValues[cardCornerRadiusSimple],
-                    border: hasCardBorder
-                        ? `${cardBorderWidth} ${cardBorderStyle} ${getRgbaString(cardBorderColor as Color)}`
-                        : 'none',
-                    padding: isCardPaddingCustom
-                        ? `${cardPaddingCustomTop} ${cardPaddingCustomRight} ${cardPaddingCustomBottom} ${cardPaddingCustomLeft}`
-                        : cardPaddingValues[cardPaddingSimple],
-                }}
-            >
+            {!selectedTemplate && !isEditing ? (
+                <div></div>
+            ) : (
                 <div
-                    className="tw-flex"
+                    className="tw-border tw-border-black-20"
                     style={{
-                        flexDirection,
-                        gap: GAP,
-                        alignItems: isRows() ? textAnchoringHorizontal : textAnchoringVertical,
+                        backgroundColor: hasCardBackgroundColor
+                            ? getRgbaString(cardBackgroundColor as Color)
+                            : undefined,
+                        borderRadius: isCardCornerRadiusCustom
+                            ? cardCornerRadiusCustom
+                            : cornerRadiusValues[cardCornerRadiusSimple],
+                        border: hasCardBorder
+                            ? `${cardBorderWidth} ${cardBorderStyle} ${getRgbaString(cardBorderColor as Color)}`
+                            : 'none',
+                        padding: isCardPaddingCustom
+                            ? `${cardPaddingCustomTop} ${cardPaddingCustomRight} ${cardPaddingCustomBottom} ${cardPaddingCustomLeft}`
+                            : cardPaddingValues[cardPaddingSimple],
                     }}
                 >
-                    {hasPreview() && (
-                        <Preview
-                            appBridge={appBridge}
-                            template={selectedTemplate}
-                            onUpdateTemplate={updateTemplateIdsFromKey}
-                        />
-                    )}
                     <div
-                        className={merge(['tw-flex', isRows() && hasPreview() ? 'tw-flex-col' : 'tw-flex-row'])}
+                        className="tw-flex"
                         style={{
-                            width: isRows() && hasPreview() ? `${textRatio}%` : '100%',
+                            flexDirection,
                             gap: GAP,
+                            alignItems: isRows() ? textAnchoringHorizontal : textAnchoringVertical,
                         }}
                     >
-                        <div className="tw-grow tw-min-w-0">
-                            <div className="tw-mb-2">
-                                <RichTextEditor
-                                    id={`${blockId}-title`}
-                                    value={title}
-                                    placeholder={isEditing ? 'Template Name' : undefined}
-                                    onTextChange={(value) => onChangeSetting('title', value)}
-                                    readonly={!isEditing}
-                                />
-                                <Text size={'small'}>{templatePageCount} pages</Text>
-                            </div>
-                            <RichTextEditor
-                                id={`${blockId}-description`}
-                                value={description}
-                                placeholder={
-                                    isEditing
-                                        ? 'Use default Template description if available, add your own or leave it empty'
-                                        : undefined
-                                }
-                                onTextChange={(value) => onChangeSetting('description', value)}
-                                readonly={!isEditing}
+                        {hasPreview() && (
+                            <Preview
+                                appBridge={appBridge}
+                                template={selectedTemplate}
+                                onUpdateTemplate={updateTemplateIdsFromKey}
+                                onUpdateTemplateTitle={updateTemplateTitle}
+                                onUpdateTemplateDescription={updateTemplateDescription}
                             />
-                        </div>
-                        <div className="tw-shrink-0">
-                            <Button emphasis={ButtonEmphasis.Default} onClick={handleNewPublication}>
-                                Use this Template
-                            </Button>
+                        )}
+                        <div
+                            className={merge(['tw-flex', isRows() && hasPreview() ? 'tw-flex-col' : 'tw-flex-row'])}
+                            style={{
+                                width: isRows() && hasPreview() ? `${textRatio}%` : '100%',
+                                gap: GAP,
+                            }}
+                        >
+                            <div className="tw-grow tw-min-w-0">
+                                <div className="tw-mb-2">
+                                    {isEditing ? (
+                                        <TextInput
+                                            id={`${blockId}-title`}
+                                            value={templateTitle}
+                                            placeholder={isEditing ? 'Template Name' : undefined}
+                                            onChange={updateTemplateTitle}
+                                        />
+                                    ) : (
+                                        <Heading size="xx-large" weight="strong">
+                                            {templateTitle}
+                                        </Heading>
+                                    )}
+                                    <div>
+                                        <Text size={'small'}>{templatePageCount} pages</Text>
+                                    </div>
+                                </div>
+                                {isEditing ? (
+                                    <Textarea
+                                        id={`${blockId}-description`}
+                                        value={templateDescription}
+                                        autosize={true}
+                                        resizeable={false}
+                                        placeholder={
+                                            isEditing
+                                                ? 'Use default Template description if available, add your own or leave it empty'
+                                                : undefined
+                                        }
+                                        onInput={updateTemplateDescription}
+                                    />
+                                ) : (
+                                    <Text>{templateDescription}</Text>
+                                )}
+                            </div>
+                            <div className="tw-shrink-0">
+                                <Button emphasis={ButtonEmphasis.Default} onClick={handleNewPublication}>
+                                    Use this Template
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
