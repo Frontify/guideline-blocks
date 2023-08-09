@@ -159,7 +159,7 @@ export const DoDontItem = React.forwardRef<HTMLDivElement, DoDontItemProps>(
         const memoizedRichTextEditor = useMemo(
             () => (
                 <RichTextEditor
-                    id={id.toString()}
+                    id={`${appBridge.getBlockId()}-${id}-editor`}
                     isEditing={editing}
                     value={body}
                     onTextChange={onBodyTextChange}
