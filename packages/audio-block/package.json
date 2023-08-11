@@ -16,7 +16,7 @@
     "devDependencies": {
         "@babel/core": "7.22.9",
         "@frontify/eslint-config-react": "0.15.6",
-        "@frontify/frontify-cli": "5.3.10",
+        "@frontify/frontify-cli": "5.3.15",
         "@types/react": "18.0.35",
         "@types/react-dom": "18.2.1",
         "autoprefixer": "10.4.14",
