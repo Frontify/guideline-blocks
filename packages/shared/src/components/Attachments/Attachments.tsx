@@ -21,7 +21,7 @@ import {
     FlyoutPlacement,
     IconCaretDown12,
     IconPaperclip16,
-    Tooltip,
+    LegacyTooltip,
     TooltipPosition,
 } from '@frontify/fondue';
 import { AttachmentItem, SortableAttachmentItem } from './AttachmentItem';
@@ -134,7 +134,7 @@ export const Attachments = ({
     return (
         <>
             {(isEditing || (internalItems?.length ?? 0) > 0) && (
-                <Tooltip
+                <LegacyTooltip
                     withArrow
                     position={TooltipPosition.Top}
                     content="Attachments"
