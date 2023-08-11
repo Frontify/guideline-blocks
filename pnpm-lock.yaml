@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       glob:
         specifier: 10.0.0
         version: 10.0.0
@@ -82,14 +82,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.288
-        version: 12.0.0-beta.288(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
-        specifier: 3.2.1
-        version: 3.2.1(postcss@8.4.19)(ts-node@10.9.1)
+        specifier: 3.3.0-next.5
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -158,14 +158,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.21)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -225,14 +225,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.21)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -295,14 +295,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.21)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -365,14 +365,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -432,14 +432,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -499,14 +499,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -599,14 +599,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -678,14 +678,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -754,14 +754,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -821,14 +821,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -897,11 +897,11 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.21)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -923,7 +923,7 @@ importers:
         version: 5.3.8(@types/node@18.7.21)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@types/react':
         specifier: 18.0.35
         version: 18.0.35
@@ -958,14 +958,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1034,14 +1034,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1107,14 +1107,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1174,14 +1174,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1241,14 +1241,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.21)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1314,14 +1314,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.21)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1387,14 +1387,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1460,14 +1460,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1530,14 +1530,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1606,11 +1606,11 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@react-aria/focus':
         specifier: 3.11.0
         version: 3.11.0(react@18.2.0)
@@ -1724,14 +1724,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1791,14 +1791,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1861,14 +1861,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -1946,14 +1946,14 @@ importers:
         specifier: 3.0.0-beta.67
         version: 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
       '@frontify/fondue':
-        specifier: 12.0.0-beta.295
-        version: 12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        specifier: 12.0.0-beta.304
+        version: 12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/fondue-tokens':
         specifier: 3.3.0-next.5
-        version: 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+        version: 3.3.0-next.5(ts-node@10.9.1)
       '@frontify/guideline-blocks-settings':
         specifier: 0.27.0
-        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+        version: 0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       '@frontify/guideline-blocks-shared':
         specifier: workspace:*
         version: link:../shared
@@ -3797,60 +3797,24 @@ packages:
       - supports-color
     dev: true
 
-  /@frontify/fondue-tokens@3.1.0-next.5(postcss@8.4.19)(ts-node@10.9.1):
+  /@frontify/fondue-tokens@3.1.0-next.5(ts-node@10.9.1):
     resolution: {integrity: sha512-snjEROg5Ak6ra051EMF86+TgxRPgkpxoi4JmJUp71S4cjhdC8DUwMI/Zg81zacrZDb4XOkamttFmVNPsn0BMUg==}
     dependencies:
-      tailwindcss: 3.2.7(postcss@8.4.19)(ts-node@10.9.1)
-    transitivePeerDependencies:
-      - postcss
-      - ts-node
-    dev: false
-
-  /@frontify/fondue-tokens@3.1.0-next.5(postcss@8.4.21)(ts-node@10.9.1):
-    resolution: {integrity: sha512-snjEROg5Ak6ra051EMF86+TgxRPgkpxoi4JmJUp71S4cjhdC8DUwMI/Zg81zacrZDb4XOkamttFmVNPsn0BMUg==}
-    dependencies:
+      postcss: 8.4.21
       tailwindcss: 3.2.7(postcss@8.4.21)(ts-node@10.9.1)
     transitivePeerDependencies:
-      - postcss
       - ts-node
 
-  /@frontify/fondue-tokens@3.2.1(postcss@8.4.19)(ts-node@10.9.1):
-    resolution: {integrity: sha512-EAXgbiy1+Yg2panx4XVOUvJ97wyOe0HeRiqGujDdxa2c4nACkK2Q+dQmSAe/aEiZupRGIjkmpiMFcKHbNFlnew==}
-    dependencies:
-      tailwindcss: 3.2.7(postcss@8.4.19)(ts-node@10.9.1)
-    transitivePeerDependencies:
-      - postcss
-      - ts-node
-    dev: false
-
-  /@frontify/fondue-tokens@3.3.0(postcss@8.4.19)(ts-node@10.9.1):
-    resolution: {integrity: sha512-UbuAa5Z8C8k+xz0YpeAUIGXWYkrA4JRhYMF/C88ESNHEXWJ5YXaqkkmINT43lAZH1n3CpliRg9o7Jdew3nhtkg==}
-    dependencies:
-      tailwindcss: 3.2.7(postcss@8.4.19)(ts-node@10.9.1)
-    transitivePeerDependencies:
-      - postcss
-      - ts-node
-    dev: false
-
-  /@frontify/fondue-tokens@3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1):
+  /@frontify/fondue-tokens@3.3.0-next.5(ts-node@10.9.1):
     resolution: {integrity: sha512-6M919jnfqZnSW1GFSJ3jDiUx3Ml4L6FjA+IJR19LSVWK7de/xiXOiNDa4Rh1UAzZmA1NgzPAJKyu2FI3RZza/Q==}
     dependencies:
-      tailwindcss: 3.2.7(postcss@8.4.19)(ts-node@10.9.1)
-    transitivePeerDependencies:
-      - postcss
-      - ts-node
-    dev: false
-
-  /@frontify/fondue-tokens@3.3.0-next.5(postcss@8.4.21)(ts-node@10.9.1):
-    resolution: {integrity: sha512-6M919jnfqZnSW1GFSJ3jDiUx3Ml4L6FjA+IJR19LSVWK7de/xiXOiNDa4Rh1UAzZmA1NgzPAJKyu2FI3RZza/Q==}
-    dependencies:
+      postcss: 8.4.21
       tailwindcss: 3.2.7(postcss@8.4.21)(ts-node@10.9.1)
     transitivePeerDependencies:
-      - postcss
       - ts-node
     dev: false
 
-  /@frontify/fondue@12.0.0-beta.245(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
+  /@frontify/fondue@12.0.0-beta.245(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
     resolution: {integrity: sha512-karK6NLZtJRTWpLLupF7buc3o9Dsmm41va2ORLgQXmmPwkDwIUY14m4aeXYmD7+zHFLjs4p+Q3Gk0MN2p9pfvw==}
     engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
     peerDependencies:
@@ -3863,7 +3827,7 @@ packages:
       '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
       '@dnd-kit/utilities': 3.2.1(react@18.2.0)
-      '@frontify/fondue-tokens': 3.1.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+      '@frontify/fondue-tokens': 3.1.0-next.5(ts-node@10.9.1)
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.17(react@18.2.0)
       '@react-aria/aria-modal-polyfill': 3.7.1(@types/react@18.0.35)(react@18.2.0)
@@ -3920,6 +3884,7 @@ packages:
       react-textarea-autosize: 8.4.0(@types/react@18.0.35)(react@18.2.0)
       remark-gfm: 3.0.1
       remark-parse: 10.0.1
+      scheduler: 0.23.0
       slate: 0.87.0
       slate-react: 0.88.0(react-dom@18.2.0)(react@18.2.0)(slate@0.87.0)
       styled-components: 5.3.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
@@ -3932,14 +3897,12 @@ packages:
       - '@types/node'
       - '@types/react'
       - '@xstate/fsm'
-      - postcss
       - supports-color
       - tailwindcss
       - ts-node
-    dev: false
 
-  /@frontify/fondue@12.0.0-beta.245(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-karK6NLZtJRTWpLLupF7buc3o9Dsmm41va2ORLgQXmmPwkDwIUY14m4aeXYmD7+zHFLjs4p+Q3Gk0MN2p9pfvw==}
+  /@frontify/fondue@12.0.0-beta.304(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
+    resolution: {integrity: sha512-/vwcLz4iMa15GqchzN4CyxO4g3aPK1eIHYBY65z7yPDuZF89NhN4N7+zU6o/cuu9pWojq4Jd2YgQ4fRDWJ5dWQ==}
     engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
     peerDependencies:
       '@udecode/plate': ^21
@@ -3951,182 +3914,7 @@ packages:
       '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
       '@dnd-kit/utilities': 3.2.1(react@18.2.0)
-      '@frontify/fondue-tokens': 3.1.0-next.5(postcss@8.4.21)(ts-node@10.9.1)
-      '@popperjs/core': 2.11.6
-      '@react-aria/accordion': 3.0.0-alpha.17(react@18.2.0)
-      '@react-aria/aria-modal-polyfill': 3.7.1(@types/react@18.0.35)(react@18.2.0)
-      '@react-aria/breadcrumbs': 3.4.0(react@18.2.0)
-      '@react-aria/button': 3.6.3(react@18.2.0)
-      '@react-aria/checkbox': 3.7.0(react@18.2.0)
-      '@react-aria/combobox': 3.4.3(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/dialog': 3.4.1(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/focus': 3.12.0(react@18.2.0)
-      '@react-aria/interactions': 3.13.0(react@18.2.0)
-      '@react-aria/link': 3.3.5(react@18.2.0)
-      '@react-aria/listbox': 3.7.1(react@18.2.0)
-      '@react-aria/menu': 3.7.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/overlays': 3.12.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/radio': 3.4.1(react@18.2.0)
-      '@react-aria/select': 3.8.3(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/selection': 3.12.0(react@18.2.0)
-      '@react-aria/table': 3.6.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/tooltip': 3.3.3(react@18.2.0)
-      '@react-aria/utils': 3.14.1(react@18.2.0)
-      '@react-aria/visually-hidden': 3.6.0(react@18.2.0)
-      '@react-stately/checkbox': 3.3.2(react@18.2.0)
-      '@react-stately/collections': 3.4.4(react@18.2.0)
-      '@react-stately/combobox': 3.2.2(react@18.2.0)
-      '@react-stately/list': 3.5.4(react@18.2.0)
-      '@react-stately/menu': 3.4.4(react@18.2.0)
-      '@react-stately/overlays': 3.4.2(react@18.2.0)
-      '@react-stately/radio': 3.6.0(react@18.2.0)
-      '@react-stately/select': 3.3.2(react@18.2.0)
-      '@react-stately/table': 3.5.0(react@18.2.0)
-      '@react-stately/toggle': 3.4.2(react@18.2.0)
-      '@react-stately/tooltip': 3.2.2(react@18.2.0)
-      '@react-stately/tree': 3.3.4(react@18.2.0)
-      '@react-types/dialog': 3.4.5(react@18.2.0)
-      '@react-types/shared': 3.16.0(react@18.2.0)
-      '@tailwindcss/forms': 0.5.3(tailwindcss@3.2.7)
-      '@udecode/plate': 21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6)
-      '@xstate/immer': 0.3.1(immer@9.0.12)(xstate@4.28.1)
-      '@xstate/react': 1.6.3(@types/react@18.0.35)(react@18.2.0)(xstate@4.28.1)
-      date-fns: 2.29.3
-      escape-html: 1.0.3
-      framer-motion: 10.12.4(react-dom@18.2.0)(react@18.2.0)
-      immer: 9.0.12
-      is-hotkey: 0.2.0
-      react: 18.2.0
-      react-colorful: 5.6.1(react-dom@18.2.0)(react@18.2.0)
-      react-datepicker: 4.8.0(react-dom@18.2.0)(react@18.2.0)
-      react-dnd: 16.0.1(@types/node@18.7.21)(@types/react@18.0.35)(react@18.2.0)
-      react-dnd-html5-backend: 15.1.2
-      react-dom: 18.2.0(react@18.2.0)
-      react-fast-compare: 3.2.2
-      react-is: 18.2.0
-      react-popper: 2.3.0(@popperjs/core@2.11.6)(react-dom@18.2.0)(react@18.2.0)
-      react-textarea-autosize: 8.4.0(@types/react@18.0.35)(react@18.2.0)
-      remark-gfm: 3.0.1
-      remark-parse: 10.0.1
-      slate: 0.87.0
-      slate-react: 0.88.0(react-dom@18.2.0)(react@18.2.0)(slate@0.87.0)
-      styled-components: 5.3.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      tinycolor2: 1.4.2
-      unified: 10.1.2
-      unist-util-visit: 4.1.2
-      xstate: 4.28.1
-    transitivePeerDependencies:
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@xstate/fsm'
-      - postcss
-      - supports-color
-      - tailwindcss
-      - ts-node
-
-  /@frontify/fondue@12.0.0-beta.288(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-VahA84zVcBWkJ3IyN0KJge1vUoolhoiG7zq8oLa4OkJe48B3YkZeyKbB7rcBZYWWl3DmQ4bwyXEGu+LZHf/GRg==}
-    engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
-    peerDependencies:
-      '@udecode/plate': ^21
-      framer-motion: ^10
-      react: ^17 || ^18
-      react-dom: ^17 || ^18
-    dependencies:
-      '@dnd-kit/core': 6.0.8(react-dom@18.2.0)(react@18.2.0)
-      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
-      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
-      '@dnd-kit/utilities': 3.2.1(react@18.2.0)
-      '@frontify/fondue-tokens': 3.3.0(postcss@8.4.19)(ts-node@10.9.1)
-      '@popperjs/core': 2.11.6
-      '@react-aria/accordion': 3.0.0-alpha.17(react@18.2.0)
-      '@react-aria/aria-modal-polyfill': 3.7.1(@types/react@18.0.35)(react@18.2.0)
-      '@react-aria/breadcrumbs': 3.5.2(react@18.2.0)
-      '@react-aria/button': 3.6.3(react@18.2.0)
-      '@react-aria/checkbox': 3.7.0(react@18.2.0)
-      '@react-aria/combobox': 3.4.3(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/dialog': 3.4.1(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/focus': 3.12.0(react@18.2.0)
-      '@react-aria/interactions': 3.13.0(react@18.2.0)
-      '@react-aria/link': 3.3.5(react@18.2.0)
-      '@react-aria/listbox': 3.7.1(react@18.2.0)
-      '@react-aria/menu': 3.7.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/overlays': 3.12.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/radio': 3.4.1(react@18.2.0)
-      '@react-aria/select': 3.8.3(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/selection': 3.12.0(react@18.2.0)
-      '@react-aria/table': 3.6.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/tooltip': 3.3.3(react@18.2.0)
-      '@react-aria/utils': 3.14.1(react@18.2.0)
-      '@react-aria/visually-hidden': 3.6.0(react@18.2.0)
-      '@react-stately/checkbox': 3.3.2(react@18.2.0)
-      '@react-stately/collections': 3.4.4(react@18.2.0)
-      '@react-stately/combobox': 3.2.2(react@18.2.0)
-      '@react-stately/list': 3.5.4(react@18.2.0)
-      '@react-stately/menu': 3.4.4(react@18.2.0)
-      '@react-stately/overlays': 3.4.2(react@18.2.0)
-      '@react-stately/radio': 3.6.0(react@18.2.0)
-      '@react-stately/select': 3.3.2(react@18.2.0)
-      '@react-stately/table': 3.5.0(react@18.2.0)
-      '@react-stately/toggle': 3.4.2(react@18.2.0)
-      '@react-stately/tooltip': 3.2.2(react@18.2.0)
-      '@react-stately/tree': 3.3.4(react@18.2.0)
-      '@react-types/dialog': 3.4.5(react@18.2.0)
-      '@react-types/shared': 3.16.0(react@18.2.0)
-      '@tailwindcss/forms': 0.5.3(tailwindcss@3.2.7)
-      '@udecode/plate': 21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6)
-      '@xstate/immer': 0.3.1(immer@9.0.12)(xstate@4.28.1)
-      '@xstate/react': 1.6.3(@types/react@18.0.35)(react@18.2.0)(xstate@4.28.1)
-      date-fns: 2.29.3
-      escape-html: 1.0.3
-      framer-motion: 10.12.4(react-dom@18.2.0)(react@18.2.0)
-      immer: 9.0.12
-      is-hotkey: 0.2.0
-      react: 18.2.0
-      react-colorful: 5.6.1(react-dom@18.2.0)(react@18.2.0)
-      react-datepicker: 4.8.0(react-dom@18.2.0)(react@18.2.0)
-      react-dnd: 16.0.1(@types/node@18.7.21)(@types/react@18.0.35)(react@18.2.0)
-      react-dnd-html5-backend: 15.1.2
-      react-dom: 18.2.0(react@18.2.0)
-      react-fast-compare: 3.2.2
-      react-is: 18.2.0
-      react-popper: 2.3.0(@popperjs/core@2.11.6)(react-dom@18.2.0)(react@18.2.0)
-      react-textarea-autosize: 8.4.0(@types/react@18.0.35)(react@18.2.0)
-      remark-gfm: 3.0.1
-      remark-parse: 10.0.1
-      slate: 0.94.1
-      slate-react: 0.97.1(react-dom@18.2.0)(react@18.2.0)(slate@0.94.1)
-      styled-components: 5.3.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      tinycolor2: 1.4.2
-      unified: 10.1.2
-      unist-util-visit: 4.1.2
-      xstate: 4.28.1
-    transitivePeerDependencies:
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@xstate/fsm'
-      - postcss
-      - supports-color
-      - tailwindcss
-      - ts-node
-    dev: false
-
-  /@frontify/fondue@12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-Xmv1u+HzVTwlS+A/NxCYjSnPx0tYoSiwPb9Uy8CDBj+p0AM0o9uUGN5nDtnasDgk8I4+itP8t5CmumVByBlSEw==}
-    engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
-    peerDependencies:
-      '@udecode/plate': ^21
-      framer-motion: ^10
-      react: ^17 || ^18
-      react-dom: ^17 || ^18
-    dependencies:
-      '@dnd-kit/core': 6.0.8(react-dom@18.2.0)(react@18.2.0)
-      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
-      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
-      '@dnd-kit/utilities': 3.2.1(react@18.2.0)
-      '@frontify/fondue-tokens': 3.3.0-next.5(postcss@8.4.19)(ts-node@10.9.1)
+      '@frontify/fondue-tokens': 3.3.0-next.5(ts-node@10.9.1)
       '@popperjs/core': 2.11.6
       '@react-aria/accordion': 3.0.0-alpha.17(react@18.2.0)
       '@react-aria/aria-modal-polyfill': 3.7.1(@types/react@18.0.35)(react@18.2.0)
@@ -4183,6 +3971,7 @@ packages:
       react-textarea-autosize: 8.4.0(@types/react@18.0.35)(react@18.2.0)
       remark-gfm: 3.0.1
       remark-parse: 10.0.1
+      scheduler: 0.23.0
       slate: 0.94.1
       slate-react: 0.97.1(react-dom@18.2.0)(react@18.2.0)(slate@0.94.1)
       styled-components: 5.3.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
@@ -4195,95 +3984,6 @@ packages:
       - '@types/node'
       - '@types/react'
       - '@xstate/fsm'
-      - postcss
-      - supports-color
-      - tailwindcss
-      - ts-node
-    dev: false
-
-  /@frontify/fondue@12.0.0-beta.295(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-Xmv1u+HzVTwlS+A/NxCYjSnPx0tYoSiwPb9Uy8CDBj+p0AM0o9uUGN5nDtnasDgk8I4+itP8t5CmumVByBlSEw==}
-    engines: {node: '>=16', npm: <=0, pnpm: '>=8'}
-    peerDependencies:
-      '@udecode/plate': ^21
-      framer-motion: ^10
-      react: ^17 || ^18
-      react-dom: ^17 || ^18
-    dependencies:
-      '@dnd-kit/core': 6.0.8(react-dom@18.2.0)(react@18.2.0)
-      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
-      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
-      '@dnd-kit/utilities': 3.2.1(react@18.2.0)
-      '@frontify/fondue-tokens': 3.3.0-next.5(postcss@8.4.21)(ts-node@10.9.1)
-      '@popperjs/core': 2.11.6
-      '@react-aria/accordion': 3.0.0-alpha.17(react@18.2.0)
-      '@react-aria/aria-modal-polyfill': 3.7.1(@types/react@18.0.35)(react@18.2.0)
-      '@react-aria/breadcrumbs': 3.5.2(react@18.2.0)
-      '@react-aria/button': 3.6.3(react@18.2.0)
-      '@react-aria/checkbox': 3.7.0(react@18.2.0)
-      '@react-aria/combobox': 3.4.3(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/dialog': 3.4.1(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/focus': 3.12.0(react@18.2.0)
-      '@react-aria/interactions': 3.13.0(react@18.2.0)
-      '@react-aria/link': 3.3.5(react@18.2.0)
-      '@react-aria/listbox': 3.7.1(react@18.2.0)
-      '@react-aria/menu': 3.7.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/overlays': 3.12.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/radio': 3.4.1(react@18.2.0)
-      '@react-aria/select': 3.8.3(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/selection': 3.12.0(react@18.2.0)
-      '@react-aria/table': 3.6.0(react-dom@18.2.0)(react@18.2.0)
-      '@react-aria/tooltip': 3.3.3(react@18.2.0)
-      '@react-aria/utils': 3.14.1(react@18.2.0)
-      '@react-aria/visually-hidden': 3.6.0(react@18.2.0)
-      '@react-stately/checkbox': 3.3.2(react@18.2.0)
-      '@react-stately/collections': 3.4.4(react@18.2.0)
-      '@react-stately/combobox': 3.2.2(react@18.2.0)
-      '@react-stately/list': 3.5.4(react@18.2.0)
-      '@react-stately/menu': 3.4.4(react@18.2.0)
-      '@react-stately/overlays': 3.4.2(react@18.2.0)
-      '@react-stately/radio': 3.6.0(react@18.2.0)
-      '@react-stately/select': 3.3.2(react@18.2.0)
-      '@react-stately/table': 3.5.0(react@18.2.0)
-      '@react-stately/toggle': 3.4.2(react@18.2.0)
-      '@react-stately/tooltip': 3.2.2(react@18.2.0)
-      '@react-stately/tree': 3.3.4(react@18.2.0)
-      '@react-types/dialog': 3.4.5(react@18.2.0)
-      '@react-types/shared': 3.16.0(react@18.2.0)
-      '@tailwindcss/forms': 0.5.3(tailwindcss@3.2.7)
-      '@udecode/plate': 21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6)
-      '@xstate/immer': 0.3.1(immer@9.0.12)(xstate@4.28.1)
-      '@xstate/react': 1.6.3(@types/react@18.0.35)(react@18.2.0)(xstate@4.28.1)
-      date-fns: 2.29.3
-      escape-html: 1.0.3
-      framer-motion: 10.12.4(react-dom@18.2.0)(react@18.2.0)
-      immer: 9.0.12
-      is-hotkey: 0.2.0
-      react: 18.2.0
-      react-colorful: 5.6.1(react-dom@18.2.0)(react@18.2.0)
-      react-datepicker: 4.8.0(react-dom@18.2.0)(react@18.2.0)
-      react-dnd: 16.0.1(@types/node@18.7.21)(@types/react@18.0.35)(react@18.2.0)
-      react-dnd-html5-backend: 15.1.2
-      react-dom: 18.2.0(react@18.2.0)
-      react-fast-compare: 3.2.2
-      react-is: 18.2.0
-      react-popper: 2.3.0(@popperjs/core@2.11.6)(react-dom@18.2.0)(react@18.2.0)
-      react-textarea-autosize: 8.4.0(@types/react@18.0.35)(react@18.2.0)
-      remark-gfm: 3.0.1
-      remark-parse: 10.0.1
-      slate: 0.94.1
-      slate-react: 0.97.1(react-dom@18.2.0)(react@18.2.0)(slate@0.94.1)
-      styled-components: 5.3.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      tinycolor2: 1.4.2
-      unified: 10.1.2
-      unist-util-visit: 4.1.2
-      xstate: 4.28.1
-    transitivePeerDependencies:
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@xstate/fsm'
-      - postcss
       - supports-color
       - tailwindcss
       - ts-node
@@ -4347,14 +4047,14 @@ packages:
       - terser
     dev: true
 
-  /@frontify/guideline-blocks-settings@0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+  /@frontify/guideline-blocks-settings@0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
     resolution: {integrity: sha512-qF7s0JCMdsi6dX6Th/Y0PYd36suNaHLZKodV+Zs2AAmoXa52wJVcTB0c/dmNv7pi47D8zxTMfh3QjlRMdDh5hA==}
     peerDependencies:
       react: ^18
       react-dom: ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
-      '@frontify/sidebar-settings': 0.5.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/sidebar-settings': 0.5.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -4364,44 +4064,19 @@ packages:
       - '@udecode/plate'
       - '@xstate/fsm'
       - framer-motion
-      - postcss
-      - sinon
-      - supports-color
-      - tailwindcss
-      - ts-node
-    dev: false
-
-  /@frontify/guideline-blocks-settings@0.27.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-qF7s0JCMdsi6dX6Th/Y0PYd36suNaHLZKodV+Zs2AAmoXa52wJVcTB0c/dmNv7pi47D8zxTMfh3QjlRMdDh5hA==}
-    peerDependencies:
-      react: ^18
-      react-dom: ^18
-    dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
-      '@frontify/sidebar-settings': 0.5.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@udecode/plate'
-      - '@xstate/fsm'
-      - framer-motion
-      - postcss
       - sinon
       - supports-color
       - tailwindcss
       - ts-node
 
-  /@frontify/sidebar-settings@0.5.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
+  /@frontify/sidebar-settings@0.5.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
     resolution: {integrity: sha512-bkWiXJ8rZPMe4eTq1VV42iIp8g0PRjf0jYttq9EvZW8fZC+Aayz+RNbKmtNtpri0tnCLnAOOQZYU5X3Lhmq67Q==}
     peerDependencies:
       react: ^18
       react-dom: ^18
     dependencies:
       '@frontify/app-bridge': 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
-      '@frontify/fondue': 12.0.0-beta.245(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.19)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
+      '@frontify/fondue': 12.0.0-beta.245(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -4411,31 +4086,6 @@ packages:
       - '@udecode/plate'
       - '@xstate/fsm'
       - framer-motion
-      - postcss
-      - sinon
-      - supports-color
-      - tailwindcss
-      - ts-node
-    dev: false
-
-  /@frontify/sidebar-settings@0.5.0(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)(tailwindcss@3.2.7)(ts-node@10.9.1):
-    resolution: {integrity: sha512-bkWiXJ8rZPMe4eTq1VV42iIp8g0PRjf0jYttq9EvZW8fZC+Aayz+RNbKmtNtpri0tnCLnAOOQZYU5X3Lhmq67Q==}
-    peerDependencies:
-      react: ^18
-      react-dom: ^18
-    dependencies:
-      '@frontify/app-bridge': 3.0.0-beta.67(react-dom@18.2.0)(react@18.2.0)(sinon@15.0.2)
-      '@frontify/fondue': 12.0.0-beta.245(@types/node@18.7.21)(@types/react@18.0.35)(@udecode/plate@21.4.2)(framer-motion@10.12.4)(postcss@8.4.21)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.2.7)(ts-node@10.9.1)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - '@types/hoist-non-react-statics'
-      - '@types/node'
-      - '@types/react'
-      - '@udecode/plate'
-      - '@xstate/fsm'
-      - framer-motion
-      - postcss
       - sinon
       - supports-color
       - tailwindcss
@@ -6962,7 +6612,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-alignment@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-jG3NB/alGKS1fMv/NHapFNcd8POH40pTeDF/k36yWwnqX9ZEsl1diBbYk2K9hJ6aqdPG4IwmspAhoU/u1hpYhw==}
@@ -6993,6 +6642,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-autoformat@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-yy8V6wcEy/CzXpd8oMNnY9BzUP0h7DKRGZem/FYam1lUgVlX00aMgAJqYVUPy0mQwpkiVeYtlE6qjcQcrDQvCw==}
@@ -7023,7 +6673,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-autoformat@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-yy8V6wcEy/CzXpd8oMNnY9BzUP0h7DKRGZem/FYam1lUgVlX00aMgAJqYVUPy0mQwpkiVeYtlE6qjcQcrDQvCw==}
@@ -7054,6 +6703,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-basic-elements@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-4yeoiHWo/98DwhKiG0n6JNXiD9UYF2ddlwmxeR7LPx9ApoS2rfX3aUSR7RK2iYATRKJZPXnQkZ9yUMP06wgvZg==}
@@ -7088,7 +6738,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-basic-elements@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-4yeoiHWo/98DwhKiG0n6JNXiD9UYF2ddlwmxeR7LPx9ApoS2rfX3aUSR7RK2iYATRKJZPXnQkZ9yUMP06wgvZg==}
@@ -7123,6 +6772,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-basic-marks@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-s/fY46pp6F6cBaTqMkHHherflygk5c5SSqpvr1MDbW/5Lj2XvVJ6sgtM6M2Ljt2Yc6VFCsa9Fa5o8Qkd1AKZcA==}
@@ -7153,7 +6803,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-basic-marks@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-s/fY46pp6F6cBaTqMkHHherflygk5c5SSqpvr1MDbW/5Lj2XvVJ6sgtM6M2Ljt2Yc6VFCsa9Fa5o8Qkd1AKZcA==}
@@ -7184,6 +6833,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-block-quote@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-blGABmBbl9aR2yqNcE6eG8MjmpTnkNW31AonY6DGkOaD0QzRwLwvRxKKpzWm0taJ4RBuantK0Zv0Q4nP5qdZAA==}
@@ -7214,7 +6864,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-block-quote@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-blGABmBbl9aR2yqNcE6eG8MjmpTnkNW31AonY6DGkOaD0QzRwLwvRxKKpzWm0taJ4RBuantK0Zv0Q4nP5qdZAA==}
@@ -7245,6 +6894,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-break@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-fvYN1eOKOwrBJBZFLX7wOXPDhJsFzGQpCQHJDzJ2Fx9RZMjZ22xG1y/ut0FrAAvCtZ/vjfwTdbD6l7BZhjVDkg==}
@@ -7275,7 +6925,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-break@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-fvYN1eOKOwrBJBZFLX7wOXPDhJsFzGQpCQHJDzJ2Fx9RZMjZ22xG1y/ut0FrAAvCtZ/vjfwTdbD6l7BZhjVDkg==}
@@ -7306,6 +6955,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-button@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-hGg1MQRnqDcaAYqPvb/3o3zQKKBwWbDeGE+bmfFMGQsrfW+BhAXTqqquuBFc4CvjIPkNraTRARWh4F2dijXAxw==}
@@ -7336,7 +6986,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-button@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-hGg1MQRnqDcaAYqPvb/3o3zQKKBwWbDeGE+bmfFMGQsrfW+BhAXTqqquuBFc4CvjIPkNraTRARWh4F2dijXAxw==}
@@ -7367,6 +7016,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-code-block@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-PjAMitVv4tI/sYHGXhV1XPrmLw/v9JaeAejgqn0LuQwemHIkPxLOJGJPrUH3S4Ep5Ve3Ce1KqJqcH8JWDpUeFQ==}
@@ -7398,7 +7048,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-code-block@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-PjAMitVv4tI/sYHGXhV1XPrmLw/v9JaeAejgqn0LuQwemHIkPxLOJGJPrUH3S4Ep5Ve3Ce1KqJqcH8JWDpUeFQ==}
@@ -7430,6 +7079,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-combobox@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-DOkCOIgdKMYQ3KALwxT9pGxJkJfjuKWG1Vk3sNGrvi6+hCnKbLMG/oUs3lIK1QHHnp7ZUHxJGpXK7KEvwM4nlQ==}
@@ -7463,7 +7113,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-combobox@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-DOkCOIgdKMYQ3KALwxT9pGxJkJfjuKWG1Vk3sNGrvi6+hCnKbLMG/oUs3lIK1QHHnp7ZUHxJGpXK7KEvwM4nlQ==}
@@ -7497,6 +7146,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-comments@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-TKzFhny7QI1u7eWh2H9XOe9rpB5XAkCovj343/bY283QNuN5UspjMHHP3jHJSevqcWFKgnnA9Q4TkKZ/zOwA3A==}
@@ -7528,7 +7178,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-comments@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-TKzFhny7QI1u7eWh2H9XOe9rpB5XAkCovj343/bY283QNuN5UspjMHHP3jHJSevqcWFKgnnA9Q4TkKZ/zOwA3A==}
@@ -7560,6 +7209,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-common@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-cLOAOkwoOY7Cp/KEdqb9M5lzTmkq52d+UwO8F9jTUPZNhsRF1zSCCob3sLwbLFOlrNpxGs3vdkegphP1wbZCCw==}
@@ -7595,7 +7245,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-common@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-cLOAOkwoOY7Cp/KEdqb9M5lzTmkq52d+UwO8F9jTUPZNhsRF1zSCCob3sLwbLFOlrNpxGs3vdkegphP1wbZCCw==}
@@ -7631,6 +7280,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-core@21.4.2(@babel/core@7.20.2)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-K/V1zEMeW0/Hd8edkF9zSSTqTpha8C09g1jGnLN7im+DvrYfJQ/6Pip9zO45w5YBdnQoljDBGj3d7Lh888SyQA==}
@@ -7670,7 +7320,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-core@21.4.2(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-K/V1zEMeW0/Hd8edkF9zSSTqTpha8C09g1jGnLN7im+DvrYfJQ/6Pip9zO45w5YBdnQoljDBGj3d7Lh888SyQA==}
@@ -7710,6 +7359,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-emoji@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-8GiF+QGgshNLbA1871cLYJfQyU9DIkOIiN+H31kd8WnXSgKgS5hbMxVw0RomgY+O50sftOtAFrzI2z8UF6iImw==}
@@ -7743,7 +7393,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-emoji@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-8GiF+QGgshNLbA1871cLYJfQyU9DIkOIiN+H31kd8WnXSgKgS5hbMxVw0RomgY+O50sftOtAFrzI2z8UF6iImw==}
@@ -7777,6 +7426,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-find-replace@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-lqWERhU0Syt96zFrS2EsPQWKOlDuv/tlzjP6qy291wTkifO1kjyfmZO4otN+xiRCVMTaOGjOGIz2JEBUpvjGTw==}
@@ -7807,7 +7457,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-find-replace@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-lqWERhU0Syt96zFrS2EsPQWKOlDuv/tlzjP6qy291wTkifO1kjyfmZO4otN+xiRCVMTaOGjOGIz2JEBUpvjGTw==}
@@ -7838,6 +7487,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-floating@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-2Y0Z/axxrZDRv5kBs87SNsiuZKaPj63RX1PbnLnZFQHzZhsWdH1C402bHRAnFVghuHuv32VK49ZDRyJaKxVk4w==}
@@ -7871,7 +7521,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-floating@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-2Y0Z/axxrZDRv5kBs87SNsiuZKaPj63RX1PbnLnZFQHzZhsWdH1C402bHRAnFVghuHuv32VK49ZDRyJaKxVk4w==}
@@ -7905,6 +7554,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-font@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-R4plZRyLzJik3BbiydSYjzDwqmLBFiYQ0LURLj2sbPVKGnX+3BOkyKnTnz4olwmI1rdkuI2nE2YgqtEHZjaRIQ==}
@@ -7935,7 +7585,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-font@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-R4plZRyLzJik3BbiydSYjzDwqmLBFiYQ0LURLj2sbPVKGnX+3BOkyKnTnz4olwmI1rdkuI2nE2YgqtEHZjaRIQ==}
@@ -7966,6 +7615,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-heading@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-OYsaH/OiuB6LpVmC4DNHx+euQ07FY+73IuAMNMz9EqoeRLD9G02ptjeI6D5BhCz+mkCV1CwVxDyCkXreEhy1iw==}
@@ -7996,7 +7646,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-heading@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-OYsaH/OiuB6LpVmC4DNHx+euQ07FY+73IuAMNMz9EqoeRLD9G02ptjeI6D5BhCz+mkCV1CwVxDyCkXreEhy1iw==}
@@ -8027,6 +7676,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-headless@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-81/lwJ6d+cRyCNdrtBZjrWwhu5p4Lir/V87XcuYUWw7a0ABpfz/52V72DxzqrV5WBMubNaxYy8hk1qRaLxWDtQ==}
@@ -8100,7 +7750,6 @@ packages:
       - react-native
       - scheduler
       - supports-color
-    dev: false
 
   /@udecode/plate-headless@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-81/lwJ6d+cRyCNdrtBZjrWwhu5p4Lir/V87XcuYUWw7a0ABpfz/52V72DxzqrV5WBMubNaxYy8hk1qRaLxWDtQ==}
@@ -8174,6 +7823,7 @@ packages:
       - react-native
       - scheduler
       - supports-color
+    dev: false
 
   /@udecode/plate-highlight@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-51Y5CJXiPfu8hwvQZeE+kwyuwHweHYerv8twhUaNWQyHACMi9tIg7rahC0xKWUQ571aR9IGwnpPdHXqvDmBHow==}
@@ -8204,7 +7854,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-highlight@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-51Y5CJXiPfu8hwvQZeE+kwyuwHweHYerv8twhUaNWQyHACMi9tIg7rahC0xKWUQ571aR9IGwnpPdHXqvDmBHow==}
@@ -8235,6 +7884,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-horizontal-rule@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-5I6xxKNFXL6uLA2K06ig6Ye29ppZwkpH8414CIYyhyf7EJd5iQA2Zc8RHLP3hsYNft2jxJUYkUhAVCnxNdQvrw==}
@@ -8265,7 +7915,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-horizontal-rule@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-5I6xxKNFXL6uLA2K06ig6Ye29ppZwkpH8414CIYyhyf7EJd5iQA2Zc8RHLP3hsYNft2jxJUYkUhAVCnxNdQvrw==}
@@ -8296,6 +7945,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-indent-list@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-qJ/DzW+s95fKcSud+AurJD9HBUzobF/VM+lVMfD0BZ/PJLLI7FOY8h4hxfiscgv4FL3GDYc8oCUkqJ4UOldhEQ==}
@@ -8328,7 +7978,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-indent-list@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-qJ/DzW+s95fKcSud+AurJD9HBUzobF/VM+lVMfD0BZ/PJLLI7FOY8h4hxfiscgv4FL3GDYc8oCUkqJ4UOldhEQ==}
@@ -8361,6 +8010,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-indent@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-l7/K/wikN+K8EBBxAEhatcglnOF6s8xkmnNY6Jne6Bner4zvjs1yrt7cFBjo0oTAwy07yiwY1n0D+b/s7DdNWQ==}
@@ -8391,7 +8041,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-indent@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-l7/K/wikN+K8EBBxAEhatcglnOF6s8xkmnNY6Jne6Bner4zvjs1yrt7cFBjo0oTAwy07yiwY1n0D+b/s7DdNWQ==}
@@ -8422,6 +8071,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-kbd@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-9Q8J06uVRQoY2HsrY5INosm1YtF53ABeDxyVxcnp4Ddu0yGMkMXVdKsb8Z1zUtFiVcffku66+ckB9ctz4skzSA==}
@@ -8452,7 +8102,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-kbd@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-9Q8J06uVRQoY2HsrY5INosm1YtF53ABeDxyVxcnp4Ddu0yGMkMXVdKsb8Z1zUtFiVcffku66+ckB9ctz4skzSA==}
@@ -8483,6 +8132,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-line-height@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-wTnqSSiVCd7fxgreKQrbu2spyyaxjKg7zmPmK6O9qg+8WFqY94sgQb6D+MMwSiXEOmb6E5fgWEjQR8puQdqeCA==}
@@ -8513,7 +8163,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-line-height@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-wTnqSSiVCd7fxgreKQrbu2spyyaxjKg7zmPmK6O9qg+8WFqY94sgQb6D+MMwSiXEOmb6E5fgWEjQR8puQdqeCA==}
@@ -8544,6 +8193,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-link@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-pJ84WJ8v0ryOSTTLrzbG5bB+DHIgP6eneRWWOG8KZBXEorI6gWpAIp8WQEnzhWtATCLlr9NIeomlcFxj30OIEg==}
@@ -8576,7 +8226,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-link@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-pJ84WJ8v0ryOSTTLrzbG5bB+DHIgP6eneRWWOG8KZBXEorI6gWpAIp8WQEnzhWtATCLlr9NIeomlcFxj30OIEg==}
@@ -8609,6 +8258,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-list@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-oUwq3Ofu5dIH/L7egganid9CH7iXNi9W0U/6sIJwl/x0ewELFxqGT4I6cZFLsI8mtCoWn1al6AMJCRayCKEssQ==}
@@ -8640,7 +8290,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-list@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-oUwq3Ofu5dIH/L7egganid9CH7iXNi9W0U/6sIJwl/x0ewELFxqGT4I6cZFLsI8mtCoWn1al6AMJCRayCKEssQ==}
@@ -8672,6 +8321,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-media@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-yGZgDDSyD1FfEjI5cLZUM3ZQQ7KjbDqwyHzQ+O6NWGZ97udq07Qx7G6J+qgn+fxoigQRIjLVxDhGx5YBdwDPzw==}
@@ -8706,7 +8356,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-media@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-yGZgDDSyD1FfEjI5cLZUM3ZQQ7KjbDqwyHzQ+O6NWGZ97udq07Qx7G6J+qgn+fxoigQRIjLVxDhGx5YBdwDPzw==}
@@ -8741,6 +8390,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-mention@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-VbovlvbiLtOtoqpNQsJJx/Mr710NuJdDaXCytACcGH5RapcRySFycPIgJaDZG6QRRiCNQTgCAifbWl11G1XZPw==}
@@ -8773,7 +8423,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-mention@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-VbovlvbiLtOtoqpNQsJJx/Mr710NuJdDaXCytACcGH5RapcRySFycPIgJaDZG6QRRiCNQTgCAifbWl11G1XZPw==}
@@ -8806,6 +8455,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-node-id@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-NlFHhBK4CUKRV9MveghtvyRClK1frHN3FEYubqTFKfgmPSAZfgqULeZWnUWyyEB4dUg7KkoS34o5bPaBZNfeGg==}
@@ -8836,7 +8486,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-node-id@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-NlFHhBK4CUKRV9MveghtvyRClK1frHN3FEYubqTFKfgmPSAZfgqULeZWnUWyyEB4dUg7KkoS34o5bPaBZNfeGg==}
@@ -8867,6 +8516,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-normalizers@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-ziq8D7EFH19flLNE28EqEPd2Zmx83Dngdsb/u5dJ0FwDWJFyXN/8sM5eblzr8wOMqkY7T0nbla3Ju+HGq8CyoA==}
@@ -8897,7 +8547,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-normalizers@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-ziq8D7EFH19flLNE28EqEPd2Zmx83Dngdsb/u5dJ0FwDWJFyXN/8sM5eblzr8wOMqkY7T0nbla3Ju+HGq8CyoA==}
@@ -8928,6 +8577,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-paragraph@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-9lb3F+CNkhh5aEelvpZhVOvlsOKd4LMk9uZzCDNAiJ28IS1HCUuGOaDEDTsiIwp3DZLXCoNd6Sldp06meUTd3A==}
@@ -8958,7 +8608,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-paragraph@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-9lb3F+CNkhh5aEelvpZhVOvlsOKd4LMk9uZzCDNAiJ28IS1HCUuGOaDEDTsiIwp3DZLXCoNd6Sldp06meUTd3A==}
@@ -8989,6 +8638,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-reset-node@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-r/L7VjhDQvrGSWx7hFwD7DL+Vudkh/HdcxTBQ1VQpP+O4i9lfPQzdQ6chblwq2hYLynzAUin6TFVA+Vp/inZiA==}
@@ -9019,7 +8669,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-reset-node@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-r/L7VjhDQvrGSWx7hFwD7DL+Vudkh/HdcxTBQ1VQpP+O4i9lfPQzdQ6chblwq2hYLynzAUin6TFVA+Vp/inZiA==}
@@ -9050,6 +8699,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-select@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-mROcfF0kqbrUuikiK1ovRgsovyfpSMJucHwpxsRWc8aXibYHUugioxFfVNsEaIQwZ/2uUJloq3/f3SzqgQVvkw==}
@@ -9080,7 +8730,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-select@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-mROcfF0kqbrUuikiK1ovRgsovyfpSMJucHwpxsRWc8aXibYHUugioxFfVNsEaIQwZ/2uUJloq3/f3SzqgQVvkw==}
@@ -9111,6 +8760,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-serializer-csv@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-6U7hS5UUn0isDWRta+MGD+OX2MBWAEKmKFdALXcttRtygh3hGkhF1bzMF9t6ppP/v+3hAi/Dlkt6So9fBEiV4w==}
@@ -9144,7 +8794,6 @@ packages:
       - react-native
       - scheduler
       - slate-history
-    dev: false
 
   /@udecode/plate-serializer-csv@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-6U7hS5UUn0isDWRta+MGD+OX2MBWAEKmKFdALXcttRtygh3hGkhF1bzMF9t6ppP/v+3hAi/Dlkt6So9fBEiV4w==}
@@ -9178,6 +8827,7 @@ packages:
       - react-native
       - scheduler
       - slate-history
+    dev: false
 
   /@udecode/plate-serializer-docx@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-aEBw+7DPRECbJGmkRWQWhILO2+JWQ4+Y+cIsi+2rB3gSRT8CfCb8SUJ5HMGmgmgtHXlhfr8jjZWUjFe6cHzNig==}
@@ -9217,7 +8867,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-serializer-docx@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-aEBw+7DPRECbJGmkRWQWhILO2+JWQ4+Y+cIsi+2rB3gSRT8CfCb8SUJ5HMGmgmgtHXlhfr8jjZWUjFe6cHzNig==}
@@ -9257,6 +8906,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-serializer-html@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-1cW5X8LRuynQprzS6i7qxBSr46NtNtukYDIwwpczTkxgOLGvu/Mn9khFwJi83Ll6LiH17TfctPKM53FingxA6w==}
@@ -9290,7 +8940,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-serializer-html@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-1cW5X8LRuynQprzS6i7qxBSr46NtNtukYDIwwpczTkxgOLGvu/Mn9khFwJi83Ll6LiH17TfctPKM53FingxA6w==}
@@ -9324,6 +8973,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-serializer-md@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-35ZT0Z/4zST/cOTTkSExaV49XW4aBlukp1BgilRi4So9yYlapyvlectJtk/CDTToQduNzYyHa9eckzkbnSlSVg==}
@@ -9363,7 +9013,6 @@ packages:
       - react-native
       - scheduler
       - supports-color
-    dev: false
 
   /@udecode/plate-serializer-md@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-35ZT0Z/4zST/cOTTkSExaV49XW4aBlukp1BgilRi4So9yYlapyvlectJtk/CDTToQduNzYyHa9eckzkbnSlSVg==}
@@ -9403,6 +9052,7 @@ packages:
       - react-native
       - scheduler
       - supports-color
+    dev: false
 
   /@udecode/plate-styled-components@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-v3pZPM/xrreYyaARE/zYORKJhV7ahmZl0Ci2vAkZrvct/krbBhc3QJ2nuF/KOnfxn0V75scthDTMYSBOO1h7eg==}
@@ -9438,7 +9088,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-styled-components@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-v3pZPM/xrreYyaARE/zYORKJhV7ahmZl0Ci2vAkZrvct/krbBhc3QJ2nuF/KOnfxn0V75scthDTMYSBOO1h7eg==}
@@ -9474,6 +9123,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-suggestion@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-QL10LwgeNxcnhIbkTkMTaYzPu2VSLeJFo8Xfea6z3Nd+ZzZ6l+isLesZNGrXNjRIsgf+g5EJn/m8OV53lOIR/A==}
@@ -9504,7 +9154,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-suggestion@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-QL10LwgeNxcnhIbkTkMTaYzPu2VSLeJFo8Xfea6z3Nd+ZzZ6l+isLesZNGrXNjRIsgf+g5EJn/m8OV53lOIR/A==}
@@ -9535,6 +9184,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-tabbable@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-mRm0+8GMBwr8SJaRCqKRWLFYRH16CVNJrsssR0dssMW7SxqoHTIO+JAsqu/vT15yn3Zzlly/neg4YE1VClBcDw==}
@@ -9566,7 +9216,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-tabbable@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-mRm0+8GMBwr8SJaRCqKRWLFYRH16CVNJrsssR0dssMW7SxqoHTIO+JAsqu/vT15yn3Zzlly/neg4YE1VClBcDw==}
@@ -9598,6 +9247,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-table@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-JdgmUVizxUKdS2IHzfuKWrxn+IftFcOhkqx1710REuFi2IoudLKTu2HC4xXQNxJ+5o7Xo12NV3XRRtgy9mUuyQ==}
@@ -9629,7 +9279,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-table@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-JdgmUVizxUKdS2IHzfuKWrxn+IftFcOhkqx1710REuFi2IoudLKTu2HC4xXQNxJ+5o7Xo12NV3XRRtgy9mUuyQ==}
@@ -9661,6 +9310,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-trailing-block@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-xilneAy76qMUxuk9mEPWQTnbmAhC4U4VDIGxBIJ1FZLw5N7ns8nKj50xj02EOtPTemTuj6HCWeN6jmcbK3JGdg==}
@@ -9691,7 +9341,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-trailing-block@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-xilneAy76qMUxuk9mEPWQTnbmAhC4U4VDIGxBIJ1FZLw5N7ns8nKj50xj02EOtPTemTuj6HCWeN6jmcbK3JGdg==}
@@ -9722,6 +9371,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-alignment@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-/TYR/VexW7923YmPWspKPgiUUxNvF95T2VXP9m/LoJyfYyFnuzZLwlAIHP1nqek/IvPgAeygi/Z432KNM8lP/Q==}
@@ -9759,7 +9409,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-alignment@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-/TYR/VexW7923YmPWspKPgiUUxNvF95T2VXP9m/LoJyfYyFnuzZLwlAIHP1nqek/IvPgAeygi/Z432KNM8lP/Q==}
@@ -9797,6 +9446,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-block-quote@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-L8sby8wtLjO4PiH8MjEWybxGWGfCxiaFtDjRwtYZjeGPKrRSX8SqJX+7xHZvpZDp/Gmpr5wkVdDKaClIUoGLdA==}
@@ -9832,7 +9482,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-block-quote@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-L8sby8wtLjO4PiH8MjEWybxGWGfCxiaFtDjRwtYZjeGPKrRSX8SqJX+7xHZvpZDp/Gmpr5wkVdDKaClIUoGLdA==}
@@ -9868,6 +9517,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-button@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-zv6uLDH/4Ri5mX/lBw+iKSaP7RWxF/AnnUvzymfUcx+pshUm6xVg33eUL7ITLT89SSu6/o7dXEW6LRgIIGs1BA==}
@@ -9903,7 +9553,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-button@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-zv6uLDH/4Ri5mX/lBw+iKSaP7RWxF/AnnUvzymfUcx+pshUm6xVg33eUL7ITLT89SSu6/o7dXEW6LRgIIGs1BA==}
@@ -9939,6 +9588,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-code-block@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-kmXU4guftsLu9163sUtOMWF/pUe0ShzfaLrAyJszqF7CGkrOXYhg2+BkdSUV60dTUcMweUwadX0dO/pVVhs3qg==}
@@ -9976,7 +9626,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-code-block@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-kmXU4guftsLu9163sUtOMWF/pUe0ShzfaLrAyJszqF7CGkrOXYhg2+BkdSUV60dTUcMweUwadX0dO/pVVhs3qg==}
@@ -10014,6 +9663,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-combobox@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-ZuZAioYYxL6VhUnLd8lbeHdYFYucs+TClBHvQBBcbBgYKTBBBMpU1UYNHGijGgHwduYvd/8Ys/JfyCVO9mwdQA==}
@@ -10051,7 +9701,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-combobox@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-ZuZAioYYxL6VhUnLd8lbeHdYFYucs+TClBHvQBBcbBgYKTBBBMpU1UYNHGijGgHwduYvd/8Ys/JfyCVO9mwdQA==}
@@ -10089,6 +9738,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-comments@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-2eeeKO8JBzQsmO37O973FgbEsyOvxQuDYD+0lusDbBdcDzIsA/AlCeXkJx6IJrSueT7cmwL0tBaluarVxq8KVQ==}
@@ -10127,7 +9777,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-comments@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-2eeeKO8JBzQsmO37O973FgbEsyOvxQuDYD+0lusDbBdcDzIsA/AlCeXkJx6IJrSueT7cmwL0tBaluarVxq8KVQ==}
@@ -10166,6 +9815,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-cursor@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-pd45K8PZjAiAVD7BASEWgOuQs2VZGdjUubQ4Vpuyr/ZSQ3Q8gfl6rDL3WyTGJlLJwwLQqtEKDUv/iaqTSmCUvg==}
@@ -10200,7 +9850,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-cursor@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-pd45K8PZjAiAVD7BASEWgOuQs2VZGdjUubQ4Vpuyr/ZSQ3Q8gfl6rDL3WyTGJlLJwwLQqtEKDUv/iaqTSmCUvg==}
@@ -10235,6 +9884,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-emoji@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-XGr9L7/Xxl08hkPtUsBzjfh++9TYGEKc2K58HBYEFk1sxlLau+/7olAI5UVeWJtuoUyh2+E2baEN8a9jFWr4UQ==}
@@ -10274,7 +9924,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-emoji@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-XGr9L7/Xxl08hkPtUsBzjfh++9TYGEKc2K58HBYEFk1sxlLau+/7olAI5UVeWJtuoUyh2+E2baEN8a9jFWr4UQ==}
@@ -10314,6 +9963,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-find-replace@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-w3ZUh7UCFiqcPkrGQzNj2rUCZxuD7KwDonpa5ZO42//BXXrQ2oLbYdKC3PPvFcDj+kBlLyV6d/u/u8fs5w3EZQ==}
@@ -10351,7 +10001,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-find-replace@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-w3ZUh7UCFiqcPkrGQzNj2rUCZxuD7KwDonpa5ZO42//BXXrQ2oLbYdKC3PPvFcDj+kBlLyV6d/u/u8fs5w3EZQ==}
@@ -10389,6 +10038,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-font@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-iTsUMey3Ur+iap5dgg6SL5/qSF/+gz0jv69iCXS/4gSZlGMk3UbUvbjuZpbAZanQQqKDF4+zhiRn/TsKmG6iKw==}
@@ -10427,7 +10077,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-font@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-iTsUMey3Ur+iap5dgg6SL5/qSF/+gz0jv69iCXS/4gSZlGMk3UbUvbjuZpbAZanQQqKDF4+zhiRn/TsKmG6iKw==}
@@ -10466,6 +10115,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-line-height@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-ra9tgnpGJpdQV70+g8I9YTbUl1ScQfk6fGE3c4XqmHbKYjrI1ofjcxc4Qi5khOLVdgJ2Foo0eRFSfSDKea2DzA==}
@@ -10503,7 +10153,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-line-height@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-ra9tgnpGJpdQV70+g8I9YTbUl1ScQfk6fGE3c4XqmHbKYjrI1ofjcxc4Qi5khOLVdgJ2Foo0eRFSfSDKea2DzA==}
@@ -10541,6 +10190,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-link@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-vrhYtkW4GEIS32LBiX1lcHDo8ZgeEZvUO69dtOwcj1uu6oTF4t0726jaNGqvHGi4UXnUtVilKqX6I+UWP88V/Q==}
@@ -10579,7 +10229,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-link@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-vrhYtkW4GEIS32LBiX1lcHDo8ZgeEZvUO69dtOwcj1uu6oTF4t0726jaNGqvHGi4UXnUtVilKqX6I+UWP88V/Q==}
@@ -10618,6 +10267,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-list@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-lFLcgmAn6Yae+mREZk8QJaN9xLy11Ekz4hMgfjkybgDI1AUHdq886oJ7XGDnDNFkVptXB3Af5r9HDsvbDRfWgA==}
@@ -10655,7 +10305,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-list@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-lFLcgmAn6Yae+mREZk8QJaN9xLy11Ekz4hMgfjkybgDI1AUHdq886oJ7XGDnDNFkVptXB3Af5r9HDsvbDRfWgA==}
@@ -10693,6 +10342,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-media@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-w5Gn4JKdpOQLliw9hVlXQOS6brZfN9n71Eq6rgjAyY0oksAcNVEKN4ZBgvORnwVe5vrn4sE6G3Lr5zRVKqDXKg==}
@@ -10734,7 +10384,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-media@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-w5Gn4JKdpOQLliw9hVlXQOS6brZfN9n71Eq6rgjAyY0oksAcNVEKN4ZBgvORnwVe5vrn4sE6G3Lr5zRVKqDXKg==}
@@ -10776,6 +10425,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-mention@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-2k6oUfCblhIgKLWH/njw9oEACPNjjJSefRMo+UOdgf+3eDRdK8eXqXbzJX0TybrWjJ/jdOu/r2B2M501WJlyGQ==}
@@ -10814,7 +10464,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-mention@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-2k6oUfCblhIgKLWH/njw9oEACPNjjJSefRMo+UOdgf+3eDRdK8eXqXbzJX0TybrWjJ/jdOu/r2B2M501WJlyGQ==}
@@ -10853,6 +10502,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-placeholder@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-rnw+sB4pW5N/Omv52p7Mq/HXfALzNkF/eWnQbxGse4DX98qO23WAjTCg9rDJSZiGtopZ0CHkHm/2bEucPrDjIw==}
@@ -10887,7 +10537,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-placeholder@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-rnw+sB4pW5N/Omv52p7Mq/HXfALzNkF/eWnQbxGse4DX98qO23WAjTCg9rDJSZiGtopZ0CHkHm/2bEucPrDjIw==}
@@ -10922,6 +10571,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-table@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-CxFaUxWNxFfi36sStkvYl71v/z6wNUhipWQRnv4IHefPrCMrhZ6P9l2f9pmNcvKJu02CxkPgCZRDVRzHd4pbWg==}
@@ -10961,7 +10611,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-table@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-CxFaUxWNxFfi36sStkvYl71v/z6wNUhipWQRnv4IHefPrCMrhZ6P9l2f9pmNcvKJu02CxkPgCZRDVRzHd4pbWg==}
@@ -11001,6 +10650,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui-toolbar@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-VaC52Xm4qT1a2WObek5KjVaGsS7yaYF/8I5iRiXOeOOD1IT27vvJm1cirEE7zwZ8YezHm2gQq/GDQkkSL1GMig==}
@@ -11040,7 +10690,6 @@ packages:
       - react-is
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-ui-toolbar@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-VaC52Xm4qT1a2WObek5KjVaGsS7yaYF/8I5iRiXOeOOD1IT27vvJm1cirEE7zwZ8YezHm2gQq/GDQkkSL1GMig==}
@@ -11080,6 +10729,7 @@ packages:
       - react-is
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate-ui@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-BW+LZXZbQWqrE/m8/2LeJuTMYIhW/qm1olXAZPBkNEUB/ED6MkMOaA38/Eh+PFSQG0WbGNg/knsahtfsPmeRuQ==}
@@ -11141,7 +10791,6 @@ packages:
       - react-native
       - scheduler
       - supports-color
-    dev: false
 
   /@udecode/plate-ui@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-BW+LZXZbQWqrE/m8/2LeJuTMYIhW/qm1olXAZPBkNEUB/ED6MkMOaA38/Eh+PFSQG0WbGNg/knsahtfsPmeRuQ==}
@@ -11203,6 +10852,7 @@ packages:
       - react-native
       - scheduler
       - supports-color
+    dev: false
 
   /@udecode/plate-utils@21.4.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-xkMLT0wBhuFPq5YE+oxwpIetg5U8sIwMgPrTswTOfsY9Eim6M0Y9m+IiW/+uktIKrL5Ty5MqpLmg7Ob0xRgeqw==}
@@ -11238,7 +10888,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/plate-utils@21.4.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-xkMLT0wBhuFPq5YE+oxwpIetg5U8sIwMgPrTswTOfsY9Eim6M0Y9m+IiW/+uktIKrL5Ty5MqpLmg7Ob0xRgeqw==}
@@ -11274,6 +10923,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/plate@21.4.2(@babel/core@7.20.2)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-rxlMtlu5ztGnRHhOpRvRbktpNex+r3uuAaUXRYDocqAG1bogFuEjGK4WRxPkjJYR4rnMbX9GE9RlCo4/Fo1pvQ==}
@@ -11314,7 +10964,6 @@ packages:
       - react-native
       - scheduler
       - supports-color
-    dev: false
 
   /@udecode/plate@21.4.2(@babel/core@7.22.9)(@types/react-dom@18.2.1)(@types/react@18.0.35)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-hyperscript@0.77.0)(slate-react@0.97.1)(slate@0.94.1)(styled-components@5.3.6):
     resolution: {integrity: sha512-rxlMtlu5ztGnRHhOpRvRbktpNex+r3uuAaUXRYDocqAG1bogFuEjGK4WRxPkjJYR4rnMbX9GE9RlCo4/Fo1pvQ==}
@@ -11355,6 +11004,7 @@ packages:
       - react-native
       - scheduler
       - supports-color
+    dev: false
 
   /@udecode/resizable@20.5.2(@babel/core@7.20.2)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-t7TsoDzbW479iD34Y2VDKau6SDsi4BdL/AHjmUpwsKoxQANNqB0xn7PkKR3Ply7A2PxdQcb6QXVFHQ+5S7KZ3g==}
@@ -11385,7 +11035,6 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
-    dev: false
 
   /@udecode/resizable@20.5.2(@babel/core@7.22.9)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)(scheduler@0.23.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-t7TsoDzbW479iD34Y2VDKau6SDsi4BdL/AHjmUpwsKoxQANNqB0xn7PkKR3Ply7A2PxdQcb6QXVFHQ+5S7KZ3g==}
@@ -11416,6 +11065,7 @@ packages:
       - jotai-zustand
       - react-native
       - scheduler
+    dev: false
 
   /@udecode/slate-react@21.4.1(react-dom@18.2.0)(react@18.2.0)(slate-history@0.93.0)(slate-react@0.97.1)(slate@0.94.1):
     resolution: {integrity: sha512-IXuH3Icafegm4hmlRvOoBIzTN+INcR3tb8s+ZuRsa78ItNvTrlJ6O8yw0Bgqtl0sZ5PfwHwnPjELxwq0aWg8bg==}
@@ -15893,7 +15543,6 @@ packages:
     dependencies:
       '@babel/core': 7.20.2
       react: 18.2.0
-    dev: false
 
   /jotai@1.10.0(@babel/core@7.22.9)(react@18.2.0):
     resolution: {integrity: sha512-3Q8kQU3Ktds+80Ku4dVcvnwSXEcK0Fg0b6mC1+4wz3rmF64lOGNUySKXQ4njvYCWodR8bw2HygOKYSYkHxQQmA==}
@@ -15934,6 +15583,7 @@ packages:
     dependencies:
       '@babel/core': 7.22.9
       react: 18.2.0
+    dev: false
 
   /js-cookie@2.2.1:
     resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==}
