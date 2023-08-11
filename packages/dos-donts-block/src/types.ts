@@ -76,7 +76,8 @@ export type SortableDoDontItemProps = {
     style: DoDontStyle;
     doColor: Color;
     dontColor: Color;
-    onChangeItem: (id: string, value: string | number | undefined, type: 'title' | 'body' | 'type' | 'imageId') => void;
+    onChangeItem: (id: string, value: ValueType, type: ChangeType) => void;
+    onChangeLocalItem: (id: string, value: ValueType, type: ChangeType) => void;
     title?: string;
     body?: string;
     editing: boolean;
@@ -123,7 +124,7 @@ export type ItemToolbarProps = {
     setIsFlyoutOpen: (x: boolean) => void;
     type: DoDontType;
     isDragging: boolean;
-    onChangeItem: (id: string, value: string | number | undefined, type: 'title' | 'body' | 'type' | 'imageId') => void;
+    onChangeItem: (id: string, value: ValueType, type: ChangeType) => void;
     onAssetChooseClick: (() => void) | undefined;
     onUploadClick: (() => void) | undefined;
 };
@@ -223,3 +224,7 @@ export const columnsClasses: Record<number, string> = {
     3: 'tw-grid-cols-3',
     4: 'tw-grid-cols-4',
 };
+
+export type ChangeType = 'title' | 'body' | 'type' | 'imageId';
+
+export type ValueType = string | number | undefined;

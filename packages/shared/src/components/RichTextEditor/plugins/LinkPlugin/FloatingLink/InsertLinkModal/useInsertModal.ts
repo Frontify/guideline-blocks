@@ -90,7 +90,7 @@ export const useInsertModal = () => {
     };
 
     const onCancel = () => {
-        floatingLinkActions.hide();
+        floatingLinkActions.reset();
     };
 
     const onSave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | KeyboardEvent | undefined) => {
