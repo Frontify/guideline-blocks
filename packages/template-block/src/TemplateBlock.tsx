@@ -193,7 +193,11 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
                                 )}
                             </div>
                             <div className="tw-shrink-0">
-                                <Button emphasis={ButtonEmphasis.Default} onClick={handleNewPublication}>
+                                <Button
+                                    data-test-id="template-block-new-publication-btn"
+                                    emphasis={ButtonEmphasis.Default}
+                                    onClick={handleNewPublication}
+                                >
                                     Use this Template
                                 </Button>
                             </div>

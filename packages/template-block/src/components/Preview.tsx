@@ -106,6 +106,7 @@ export const Preview = ({
 
     return (
         <div
+            data-test-id="template-block-preview"
             style={{
                 width: isRows() ? `${100 - parseInt(textRatio)}%` : '100%',
             }}
@@ -129,6 +130,7 @@ export const Preview = ({
                     }}
                 >
                     <img
+                        data-test-id="template-block-preview-img"
                         src={previewCustom ? previewCustom[0].previewUrl : template?.previewUrl}
                         className={merge([
                             'tw-relative tw-w-full tw-h-full',
@@ -180,6 +182,7 @@ export const Preview = ({
                 </div>
             ) : (
                 <Button
+                    data-test-id="template-block-preview-templatechooser-btn"
                     hugWidth
                     icon={<IconPlus20 />}
                     onClick={openTemplateChooser}
