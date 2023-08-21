@@ -14,7 +14,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@babel/core": "7.22.9",
+        "@babel/core": "7.22.10",
         "@frontify/eslint-config-react": "0.15.6",
         "@frontify/frontify-cli": "5.3.15",
         "@react-aria/interactions": "3.14.0",
