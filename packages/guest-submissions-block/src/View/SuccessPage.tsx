@@ -5,11 +5,12 @@ import { BlockProps } from '@frontify/guideline-blocks-settings';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Settings } from '../types';
 import { RichText } from '../Components/Headline/RichText';
-import { IconCheckMark32, Stack, Text } from '@frontify/fondue';
+import { Button, ButtonEmphasis, Divider, IconCheckMark32, Stack, Text } from '@frontify/fondue';
 import { pluralizeFile } from '../helpers';
+import { BlockRoutes } from './Router';
 
 const DEFAULT_SUCCESS_MESSAGE = '[{"type":"p","children":[{"text":"Thank you for submitting the files."}]}]';
-export const SuccessPage: FC<BlockProps> = ({ appBridge }) => {
+export const SuccessPage: FC<BlockProps & { setView: (routes: BlockRoutes) => void }> = ({ appBridge, setView }) => {
     const isEditing = useEditorState(appBridge);
 
     const [blockSettings, setBlockSettings] = useBlockSettings<Settings>(appBridge);
@@ -19,7 +20,7 @@ export const SuccessPage: FC<BlockProps> = ({ appBridge }) => {
 
     return (
         <div className="tw-bg-base-alt tw-rounded tw-p-8">
-            <Stack direction={'row'} alignItems={'center'}>
+            <Stack direction={'row'} alignItems={'center'} spacing={16} padding={8}>
                 <IconCheckMark32 />
                 <Stack direction={'column'}>
                     <Text as="p" color="default" overflow="visible" size="large" weight="strong">
@@ -35,6 +36,10 @@ export const SuccessPage: FC<BlockProps> = ({ appBridge }) => {
                     />
                 </Stack>
             </Stack>
+            <Divider />
+            <Button emphasis={ButtonEmphasis.Default} onClick={() => setView(BlockRoutes.VIEW_MODE)}>
+                Submit more files
+            </Button>
         </div>
     );
 };

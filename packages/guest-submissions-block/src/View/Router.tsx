@@ -20,7 +20,7 @@ export const Router: FC<BlockProps> = ({ appBridge }) => {
     const viewComponents: Record<BlockRoutes, ReactElement> = {
         EDITOR_MODE: <EditorMode appBridge={appBridge} />,
         VIEW_MODE: <UserMode appBridge={appBridge} setView={setCurrentView} />,
-        SUCCESS_PAGE: <SuccessPage appBridge={appBridge} />,
+        SUCCESS_PAGE: <SuccessPage appBridge={appBridge} setView={setCurrentView} />,
     };
 
     useEffect(() => {
