@@ -10,11 +10,7 @@ export const CreateAssetSubmissionsMutation = `
 
 export const AssetSubmissionRequest = `
 query assetSubmissionRequest {
- brands {
-    libraries {
-      items {
-        id
-        name
+  account {
         assetSubmissionRequests {
           id
           projectId
@@ -24,8 +20,6 @@ query assetSubmissionRequest {
              token
           }
         }
-      }
     }
-  }
 }
 `;

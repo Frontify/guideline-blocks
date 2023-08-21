@@ -37,16 +37,10 @@ export type AssetSubmissionRequestType = {
     }[];
 };
 
-export type DataBrandAssetRequest = {
+export type DataAccountAssetSubmissionRequests = {
     data: {
-        brands: {
-            libraries: {
-                items: {
-                    id: string;
-                    name: string;
-                    assetSubmissionRequests: AssetSubmissionRequestType[];
-                }[];
-            };
-        }[];
+        account: {
+            assetSubmissionRequests: AssetSubmissionRequestType[];
+        };
     };
 };

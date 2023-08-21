@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AssetSubmissionRequestType, CreateAssetSubmissionsInput, DataBrandAssetRequest } from './type';
+import { AssetSubmissionRequestType, CreateAssetSubmissionsInput, DataAccountAssetSubmissionRequests } from './type';
 import { AssetSubmissionRequest, CreateAssetSubmissionsMutation } from './api';
 import { queryGraphql } from '../Common';
 
@@ -18,26 +18,11 @@ export class AssetSubmission {
         const uploadBody = JSON.stringify({
             query: AssetSubmissionRequest,
         });
-        const brands = await queryGraphql<DataBrandAssetRequest>(uploadBody);
-
-        return AssetSubmission.filterEmptySubmissionRequests(brands) ?? [];
-    }
-
-    static filterEmptySubmissionRequests(input?: DataBrandAssetRequest) {
-        return input?.data.brands
-            .reduce((prev, cur) => {
-                if (cur.libraries.items.length > 0) {
-                    const assetSubmissionEntries = cur.libraries.items
-                        .filter(
-                            (library) =>
-                                library && library.assetSubmissionRequests && library.assetSubmissionRequests.length > 0
-                        )
-                        .map((item) => item.assetSubmissionRequests);
-                    return [...prev, ...assetSubmissionEntries];
-                } else {
-                    return prev;
-                }
-            }, [] as AssetSubmissionRequestType[][])
-            .flat(1);
+        const {
+            data: {
+                account: { assetSubmissionRequests },
+            },
+        } = await queryGraphql<DataAccountAssetSubmissionRequests>(uploadBody);
+        return assetSubmissionRequests;
     }
 }
