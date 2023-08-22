@@ -21,7 +21,7 @@
     },
     "devDependencies": {
         "@4tw/cypress-drag-drop": "2.2.4",
-        "@babel/core": "7.22.9",
+        "@babel/core": "7.22.10",
         "@cypress/vite-dev-server": "4.0.1",
         "@testing-library/react": "14.0.0",
         "@types/node": "18.7.21",
