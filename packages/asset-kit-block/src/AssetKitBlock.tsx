@@ -2,9 +2,9 @@
 
 import {
     BulkDownloadState,
+    useAssetBulkDownload,
     useBlockAssets,
     useBlockSettings,
-    useBulkDownload,
     useEditorState,
 } from '@frontify/app-bridge';
 import { PluginComposer } from '@frontify/fondue';
@@ -46,7 +46,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     } = blockSettings;
 
     const currentAssets = blockAssets[ASSET_SETTINGS_ID] ?? [];
-    const { generateBulkDownload, status, downloadUrl } = useBulkDownload(appBridge);
+    const { generateBulkDownload, status, downloadUrl } = useAssetBulkDownload(appBridge);
 
     const startDownload = () => {
         if (downloadUrlBlock && downloadExpiration && downloadExpiration > Math.floor(Date.now() / 1000)) {
