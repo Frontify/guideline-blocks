@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { AppBridgeBlock, Asset, BulkDownloadState } from '@frontify/app-bridge';
+import { AppBridgeBlock, Asset, AssetBulkDownloadState } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
 import { BorderStyle, Radius } from '@frontify/guideline-blocks-shared';
 import { CSSProperties } from 'react';
@@ -58,7 +58,7 @@ export type AssetSelectionProps = {
 
 export type DownloadMessageProps = {
     blockStyle: CSSProperties;
-    status: BulkDownloadState;
+    status: AssetBulkDownloadState;
 };
 
 export type InformationSectionProps = {

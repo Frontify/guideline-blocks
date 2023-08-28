@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    BulkDownloadState,
+    AssetBulkDownloadState,
     useAssetBulkDownload,
     useBlockAssets,
     useBlockSettings,
@@ -81,7 +81,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     useEffect(() => {
-        if (status === BulkDownloadState.Ready && downloadUrl) {
+        if (status === AssetBulkDownloadState.Ready && downloadUrl) {
             downloadAssets(downloadUrl);
             saveDownloadUrl(downloadUrl);
         }
@@ -89,8 +89,9 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
     }, [downloadUrl]);
 
     const isButtonDisabled =
-        [BulkDownloadState.Error, BulkDownloadState.Pending, BulkDownloadState.Started].includes(status) ||
-        currentAssets.length === 0;
+        [AssetBulkDownloadState.Error, AssetBulkDownloadState.Pending, AssetBulkDownloadState.Started].includes(
+            status
+        ) || currentAssets.length === 0;
 
     return (
         <div
@@ -143,7 +144,7 @@ export const AssetKitBlock = ({ appBridge }: BlockProps): ReactElement => {
                 </div>
             </div>
 
-            {![BulkDownloadState.Init, BulkDownloadState.Ready].includes(status) && (
+            {![AssetBulkDownloadState.Init, AssetBulkDownloadState.Ready].includes(status) && (
                 <DownloadMessage blockStyle={blockStyle(blockSettings)} status={status} />
             )}
 
