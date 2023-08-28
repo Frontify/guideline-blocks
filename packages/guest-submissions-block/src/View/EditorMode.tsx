@@ -89,7 +89,7 @@ export const EditorMode: FC<BlockProps> = ({ appBridge }) => {
                 </LegacyStack>
             </div>
             <div className="tw-p-10 tw-rounded tw-border tw-border-black-10 tw-border-dashed">
-                <SuccessPage appBridge={appBridge} />
+                <SuccessPage appBridge={appBridge} setView={() => console.log('')} />
             </div>
         </LegacyStack>
     );
