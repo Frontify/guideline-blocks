@@ -2,6 +2,7 @@
 
 import {
     AssetChooserObjectType,
+    BorderStyle,
     Bundle,
     Choice,
     FileExtension,
@@ -11,7 +12,6 @@ import {
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { BorderStyle } from '@frontify/guideline-blocks-shared';
 import { IconDoubleQuotesDown } from './foundation/IconDoubleQuotesDown';
 import { IconDoubleQuotesUp } from './foundation/IconDoubleQuotesUp';
 import { IconHookBracketLeft } from './foundation/IconHookBracketLeft';

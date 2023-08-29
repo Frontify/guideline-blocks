@@ -1,10 +1,15 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { FileExtensionSets } from '@frontify/app-bridge';
-import { AssetChooserObjectType, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
 
 import { TextPosition } from './types';
-import { getSecurityDownloadableSetting, getSecurityGlobalControlSetting } from '@frontify/guideline-blocks-shared';
+import {
+    AssetChooserObjectType,
+    IconEnum,
+    defineSettings,
+    getSecurityDownloadableSetting,
+    getSecurityGlobalControlSetting,
+} from '@frontify/guideline-blocks-settings';
 
 export const AUDIO_ID = 'audio';
 export const ATTACHMENTS_ASSET_ID = 'attachments';

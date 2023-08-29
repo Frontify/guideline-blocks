@@ -11,7 +11,7 @@ import {
     useEditorState,
 } from '@frontify/app-bridge';
 import { Color } from '@frontify/fondue';
-import { joinClassNames, moveItemInArray } from '@frontify/guideline-blocks-shared';
+import { BlockProps, joinClassNames, moveItemInArray } from '@frontify/guideline-blocks-settings';
 
 import { CardsItem } from './components/cards/CardsItem';
 import { CardsItemAdd } from './components/cards/CardsItemAdd';
@@ -21,7 +21,6 @@ import { DropZone } from './components/DropZone';
 import { ListItem } from './components/list/ListItem';
 import { ListItemAdd } from './components/list/ListItemAdd';
 import { ColorBlockType, ColorSpaceValues, ItemProps, Settings } from './types';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
 
 const wrapperClasses: Record<ColorBlockType, string> = {
     [ColorBlockType.List]: 'tw-py-2 tw-overflow-x-hidden',

@@ -7,7 +7,7 @@ import {
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
     joinClassNames,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { TextStyles } from '@frontify/fondue';
 
 import { CardTextProps } from '../types';

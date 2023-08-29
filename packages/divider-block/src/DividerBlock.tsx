@@ -1,9 +1,8 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, toRgbaString } from '@frontify/guideline-blocks-shared';
+
+import { BlockProps, joinClassNames, toRgbaString } from '@frontify/guideline-blocks-settings';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import {

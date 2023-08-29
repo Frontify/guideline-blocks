@@ -12,9 +12,14 @@ import {
     UnderlinePlugin,
     merge,
 } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { AllTextStylePlugins, THEME_PREFIX, convertToRteValue, toRgbaString } from '@frontify/guideline-blocks-shared';
+
+import {
+    AllTextStylePlugins,
+    BlockProps,
+    THEME_PREFIX,
+    convertToRteValue,
+    toRgbaString,
+} from '@frontify/guideline-blocks-settings';
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteBlockIcon } from './QuoteBlockIcon';

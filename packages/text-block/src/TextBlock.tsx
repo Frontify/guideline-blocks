@@ -2,9 +2,8 @@
 
 import { ReactElement } from 'react';
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { RichTextEditor } from '@frontify/guideline-blocks-shared';
+
+import { BlockProps, RichTextEditor } from '@frontify/guideline-blocks-settings';
 import 'tailwindcss/tailwind.css';
 import { PLACEHOLDER } from './settings';
 import { Settings, spacingValues } from './types';

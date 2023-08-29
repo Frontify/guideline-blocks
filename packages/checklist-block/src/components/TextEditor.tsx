@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { toHex8String } from '@frontify/guideline-blocks-shared';
+import { toHex8String } from '@frontify/guideline-blocks-settings';
 import {
     ClipboardEvent,
     FocusEvent,

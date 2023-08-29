@@ -24,7 +24,7 @@ import {
     LinkPlugin,
     TextStylePluginsWithoutImage,
     TextStylesWithoutImage,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 
 const textStylePlugins = [new SoftBreakPlugin(), new TextStylePlugin({ textStyles: TextStylePluginsWithoutImage })];
 const alignmentPlugins = [

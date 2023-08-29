@@ -2,9 +2,9 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Color, RichTextEditor } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+
 import {
+    BlockProps,
     BorderStyle,
     Padding,
     Radius,
@@ -13,7 +13,7 @@ import {
     isDark,
     radiusStyleMap,
     toRgbaString,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { CSSProperties, FC, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
 import { NoteHeader } from './components/NoteHeader';

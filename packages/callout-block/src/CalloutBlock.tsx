@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockAssets, useBlockSettings, useEditorState } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import type { BlockProps } from '@frontify/guideline-blocks-settings';
+
 import {
+    BlockProps,
     RichTextEditor,
     THEME_PREFIX,
     getDefaultPluginsWithLinkChooser,
@@ -11,7 +11,7 @@ import {
     joinClassNames,
     radiusStyleMap,
     setAlpha,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { CSSProperties, ReactElement } from 'react';
 import 'tailwindcss/tailwind.css';
 import { CalloutIcon } from './components/CalloutIcon';

@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Asset } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
+
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { QuoteSize, QuoteStyle, quoteSizeMap } from './types';

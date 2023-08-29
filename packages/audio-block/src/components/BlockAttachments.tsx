@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Attachments, useAttachments } from '@frontify/guideline-blocks-shared';
+import { Attachments, useAttachments } from '@frontify/guideline-blocks-settings';
 import { BlockAttachmentsProps } from '../types';
 import { ATTACHMENTS_ASSET_ID } from '../settings';
 

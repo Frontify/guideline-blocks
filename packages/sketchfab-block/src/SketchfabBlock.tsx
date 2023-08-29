@@ -2,9 +2,8 @@
 
 import { useBlockSettings, useEditorState } from '@frontify/app-bridge';
 import { Button, FormControl, FormControlStyle, IconLinkBox, IconSize, Text, TextInput } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, toHex8String } from '@frontify/guideline-blocks-shared';
+
+import { BlockProps, joinClassNames, toHex8String } from '@frontify/guideline-blocks-settings';
 import { FC, useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { SKETCHFAB_RULE_ERROR, generateIframeUrl, generateSketchfabEmbedUrl, getIframeBorderStyles } from './helpers';

@@ -25,7 +25,7 @@ import {
     LinkPlugin,
     TextStylePluginsWithoutImage,
     TextStylesWithoutImage,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { CSSProperties } from 'react';
 
 export const getPlugins = (appBridge: AppBridgeBlock, columns?: number, gap?: CSSProperties['gap']) => {

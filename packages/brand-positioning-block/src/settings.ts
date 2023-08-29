@@ -4,10 +4,11 @@ import {
     Color,
     appendUnit,
     defineSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
     numericalOrPixelRule,
     presetCustomValue,
 } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings } from '@frontify/guideline-blocks-shared';
 
 import { brandItemBrandItemSizeMap } from './types';
 

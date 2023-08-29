@@ -2,12 +2,15 @@
 
 import {
     IconEnum,
+    Radius,
     appendUnit,
     defineSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
     numericalOrPixelRule,
     presetCustomValue,
+    radiusStyleMap,
 } from '@frontify/guideline-blocks-settings';
-import { Radius, getBorderRadiusSettings, getBorderSettings, radiusStyleMap } from '@frontify/guideline-blocks-shared';
 import {
     BlockMode,
     DoDontImageHeight,

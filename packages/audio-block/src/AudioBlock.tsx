@@ -12,18 +12,17 @@ import {
     useFileInput,
     usePrivacySettings,
 } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
+import { downloadAsset } from '@frontify/guideline-blocks-shared';
 import {
+    BlockProps,
     DownloadButton,
     RichTextEditor,
     TextStyles,
     convertToRteValue,
-    downloadAsset,
     hasRichTextValue,
     isDownloadable,
     joinClassNames,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { AudioPlayer, BlockAttachments, UploadPlaceholder } from './components';

@@ -17,7 +17,7 @@ import {
     convertToRteValue,
     getDefaultPluginsWithLinkChooser,
     hasRichTextValue,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
 import { useMemo } from 'react';
 import { InformationSectionProps } from '../types';
 

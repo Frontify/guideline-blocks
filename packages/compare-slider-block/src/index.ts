@@ -1,6 +1,5 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import '@frontify/fondue-tokens/styles';
 import 'tailwindcss/tailwind.css';
 
 import { defineBlock } from '@frontify/guideline-blocks-settings';

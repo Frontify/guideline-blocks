@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { Thumbnail } from '../../types';
-import { RichTextEditor, convertToRteValue } from '@frontify/guideline-blocks-shared';
+import { RichTextEditor, convertToRteValue } from '@frontify/guideline-blocks-settings';
 import { getCaptionPlugins, titlePlugins } from '../../helper/plugins';
 import { AppBridgeBlock, Asset } from '@frontify/app-bridge';
 import { TextStyles } from '@frontify/fondue';

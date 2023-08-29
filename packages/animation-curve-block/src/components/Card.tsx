@@ -6,14 +6,13 @@ import { useSortable } from '@dnd-kit/sortable';
 import { IconArrowMove16, IconDotsHorizontal16, IconTrashBin16, merge } from '@frontify/fondue';
 import {
     BlockItemWrapper,
-    CssValueDisplay,
     getBackgroundColorStyles,
     getBorderStyles,
     getRadiusStyles,
     hasRichTextValue,
     joinClassNames,
-} from '@frontify/guideline-blocks-shared';
-
+} from '@frontify/guideline-blocks-settings';
+import { CssValueDisplay } from '@frontify/guideline-blocks-shared';
 import { AnimationCurve, CardProps, SortableCardProps } from '../types';
 import { DEFAULT_ANIMATION_CANVAS_VIEWBOX } from '../constants';
 import { AnimationCanvas, AnimationCurveFlyout, CardText } from './';

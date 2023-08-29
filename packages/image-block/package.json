@@ -18,7 +18,7 @@
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.16",
         "@types/lodash-es": "4.17.8",
-        "@types/react": "18.0.35",
+        "@types/react": "18.2.20",
         "@types/react-dom": "18.2.1",
         "autoprefixer": "10.4.15",
         "cypress": "11.0.1",
@@ -31,10 +31,9 @@
         "typescript": "4.8.4"
     },
     "dependencies": {
-        "@frontify/app-bridge": "3.0.0-beta.67",
+        "@frontify/app-bridge": "3.0.0-beta.88",
         "@frontify/fondue": "12.0.0-beta.304",
-        "@frontify/fondue-tokens": "3.3.0-next.5",
-        "@frontify/guideline-blocks-settings": "0.27.0",
+        "@frontify/guideline-blocks-settings": "0.28.5",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "@react-aria/focus": "3.11.0",
         "react": "18.2.0",

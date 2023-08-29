@@ -1,7 +1,13 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { Color, IconEnum, defineSettings } from '@frontify/guideline-blocks-settings';
-import { getBorderRadiusSettings, getBorderSettings, getPaddingSettings } from '@frontify/guideline-blocks-shared';
+import {
+    Color,
+    IconEnum,
+    defineSettings,
+    getBorderRadiusSettings,
+    getBorderSettings,
+    getPaddingSettings,
+} from '@frontify/guideline-blocks-settings';
 import { NoteStyle, NoteVisibility, paddingStyleMap } from './types';
 
 export const BACKGROUND_COLOR_DEFAULT_VALUE: Color = {

@@ -3,7 +3,7 @@
 import { mount } from 'cypress/react18';
 import { AssetDummy, withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { CompareSliderBlock } from './CompareSliderBlock';
-import { convertToRteValue } from '@frontify/guideline-blocks-shared';
+import { convertToRteValue } from '@frontify/guideline-blocks-settings';
 
 const CompareSliderBlockSelector = '[data-test-id="compare-slider-block"]';
 const CompareSliderSelector = '[data-test-id="compare-slider-block-slider"]';

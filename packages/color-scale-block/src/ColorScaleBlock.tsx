@@ -18,9 +18,8 @@ import {
     IconPlus12,
     Palette,
 } from '@frontify/fondue';
-import '@frontify/fondue-tokens/styles';
-import { BlockProps } from '@frontify/guideline-blocks-settings';
-import { joinClassNames, mapColorPalettes } from '@frontify/guideline-blocks-shared';
+
+import { BlockProps, joinClassNames, mapColorPalettes } from '@frontify/guideline-blocks-settings';
 
 import { ColorSquare } from './components/ColorSquare';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';

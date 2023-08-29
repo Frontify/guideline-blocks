@@ -1,7 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { useBlockSettings } from '@frontify/app-bridge';
-import '@frontify/fondue-tokens/styles';
+
 import { FC } from 'react';
 import 'tailwindcss/tailwind.css';
 import { BlockSettings } from './types';

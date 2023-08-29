@@ -3,7 +3,7 @@
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
 import { mount } from 'cypress/react18';
 import { GlyphsBlock } from './GlyphsBlock';
-import { BorderStyle, Radius, radiusStyleMap } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, Radius, radiusStyleMap } from '@frontify/guideline-blocks-settings';
 
 const BlockSelector = '[data-test-id="glyphs-block"]';
 const ItemSelector = '[data-test-id="glyphs-item"]';

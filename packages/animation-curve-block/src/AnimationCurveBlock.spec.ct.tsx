@@ -3,7 +3,7 @@
 import { mount } from 'cypress/react18';
 
 import { withAppBridgeBlockStubs } from '@frontify/app-bridge';
-import { BorderStyle, GutterSpacing, Radius, convertToRteValue } from '@frontify/guideline-blocks-shared';
+import { BorderStyle, GutterSpacing, Radius, convertToRteValue } from '@frontify/guideline-blocks-settings';
 import { TextStyles } from '@frontify/fondue';
 
 import { AnimationCurveBlock } from './AnimationCurveBlock';

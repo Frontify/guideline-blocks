@@ -4,11 +4,11 @@ import { Settings, mapAlignmentClasses } from '../types';
 import {
     Attachments,
     DownloadButton,
-    downloadAsset,
     isDownloadable,
     joinClassNames,
     useAttachments,
-} from '@frontify/guideline-blocks-shared';
+} from '@frontify/guideline-blocks-settings';
+import { downloadAsset } from '@frontify/guideline-blocks-shared';
 import { useFocusRing } from '@react-aria/focus';
 import { AppBridgeBlock, Asset, usePrivacySettings } from '@frontify/app-bridge';
 import { ATTACHMENTS_ASSET_ID } from '../settings';

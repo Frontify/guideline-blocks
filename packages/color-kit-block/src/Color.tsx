@@ -3,7 +3,7 @@
 import type { ReactElement } from 'react';
 import type { Color as ColorType } from '@frontify/app-bridge';
 import { LegacyTooltip, TooltipPosition, merge, useCopy } from '@frontify/fondue';
-import { toRgbaString } from '@frontify/guideline-blocks-shared';
+import { toRgbaString } from '@frontify/guideline-blocks-settings';
 
 import { TooltipContent } from './TooltipContent';
 
