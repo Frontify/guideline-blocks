@@ -16,7 +16,7 @@
     "devDependencies": {
         "@babel/core": "7.22.11",
         "@frontify/eslint-config-react": "0.15.6",
-        "@frontify/frontify-cli": "5.3.10",
+        "@frontify/frontify-cli": "5.3.16",
         "@types/react": "18.2.20",
         "@types/react-dom": "18.2.1",
         "autoprefixer": "10.4.15",
@@ -34,7 +34,7 @@
         "@dnd-kit/modifiers": "6.0.1",
         "@dnd-kit/sortable": "7.0.1",
         "@frontify/app-bridge": "3.0.0-beta.88",
-        "@frontify/fondue": "12.0.0-beta.309",
+        "@frontify/fondue": "12.0.0-beta.312",
         "@frontify/guideline-blocks-settings": "0.28.6",
         "@frontify/guideline-blocks-shared": "workspace:*",
         "react": "18.2.0",

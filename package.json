@@ -24,7 +24,7 @@
         "@babel/core": "7.22.11",
         "@cypress/vite-dev-server": "4.0.1",
         "@testing-library/react": "14.0.0",
-        "@types/node": "20.4.9",
+        "@types/node": "18.17.12",
         "@types/react": "18.2.20",
         "@types/react-dom": "18.2.1",
         "@vitejs/plugin-react": "2.2.0",
@@ -40,7 +40,7 @@
         "vitest": "0.25.0"
     },
     "dependencies": {
-        "@frontify/fondue": "12.0.0-beta.309",
+        "@frontify/fondue": "12.0.0-beta.312",
         "glob": "10.0.0",
         "react": "18.2.0",
         "react-dom": "18.2.0"
