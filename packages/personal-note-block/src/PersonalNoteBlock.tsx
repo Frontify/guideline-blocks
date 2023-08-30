@@ -112,7 +112,7 @@ export const PersonalNoteBlock: FC<BlockProps> = ({ appBridge }) => {
                 value={note}
                 onTextChange={saveNote}
                 placeholder="Write personal note here ..."
-                isEditing={!isEditing}
+                isEditing={isEditing}
                 plugins={getDefaultPluginsWithLinkChooser(appBridge)}
             />
         </div>
