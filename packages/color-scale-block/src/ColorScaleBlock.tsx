@@ -19,7 +19,11 @@ import {
     Palette,
 } from '@frontify/fondue';
 
-import { BlockProps, joinClassNames, mapColorPalettes } from '@frontify/guideline-blocks-settings';
+import {
+    BlockProps,
+    joinClassNames,
+    mapAppBridgeColorPalettesToFonduePalettes,
+} from '@frontify/guideline-blocks-settings';
 
 import { ColorSquare } from './components/ColorSquare';
 import { ColorPickerFlyout } from './components/ColorPickerFlyout';
@@ -57,7 +61,7 @@ export const ColorScaleBlock: FC<BlockProps> = ({ appBridge }) => {
     const timerToUpdateBlockSettings = useRef<ReturnType<typeof setTimeout> | undefined>();
 
     useEffect(() => {
-        setColorPickerPalettes(mapColorPalettes(appBridgePalettes));
+        setColorPickerPalettes(mapAppBridgeColorPalettesToFonduePalettes(appBridgePalettes));
     }, [appBridgePalettes, appBridge]);
 
     const { customHeight, heightInput, heightSlider } = blockSettings;

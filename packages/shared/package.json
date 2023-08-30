@@ -44,8 +44,8 @@
         "@frontify/app-bridge": "3.0.0-beta.88",
         "@frontify/fondue": "12.0.0-beta.312",
         "@frontify/guideline-blocks-settings": "0.28.6",
-        "@uiw/codemirror-extensions-langs": "4.19.9",
-        "@uiw/react-codemirror": "4.19.9"
+        "@uiw/codemirror-extensions-langs": "4.21.12",
+        "@uiw/react-codemirror": "4.21.12"
     },
     "peerDependencies": {
         "react": "18.2.0",
