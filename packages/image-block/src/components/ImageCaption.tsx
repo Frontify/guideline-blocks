@@ -1,12 +1,7 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import { TextStyles } from '@frontify/fondue';
-import {
-    RichTextEditor,
-    convertToRteValue,
-    getDefaultPluginsWithLinkChooser,
-    hasRichTextValue,
-} from '@frontify/guideline-blocks-settings';
+import { RichTextEditor, convertToRteValue, hasRichTextValue } from '@frontify/guideline-blocks-settings';
 import { getCaptionPlugins, titlePlugins } from './helpers';
 import { AppBridgeBlock, useBlockSettings } from '@frontify/app-bridge';
 import { Settings } from '../types';

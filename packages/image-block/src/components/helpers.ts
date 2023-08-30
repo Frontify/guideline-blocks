@@ -22,9 +22,9 @@ import {
 import {
     AllTextStylePlugins,
     AllTextStyles,
+    ButtonPlugin,
     LinkPlugin,
     toRgbaString,
-    ButtonPlugin,
 } from '@frontify/guideline-blocks-settings';
 import { CornerRadius, Settings, paddingValues, radiusValues } from '../types';
 import { CSSProperties } from 'react';
