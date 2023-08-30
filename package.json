@@ -45,7 +45,7 @@
         }
     },
     "dependencies": {
-        "@frontify/fondue": "12.0.0-beta.304",
+        "@frontify/fondue": "12.0.0-beta.309",
         "@udecode/plate": "21.4.0",
         "glob": "10.0.0",
         "react": "18.2.0",
