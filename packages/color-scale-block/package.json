@@ -15,7 +15,7 @@
     },
     "devDependencies": {
         "@4tw/cypress-drag-drop": "2.2.4",
-        "@babel/core": "7.22.9",
+        "@babel/core": "7.22.11",
         "@frontify/eslint-config-react": "0.15.5",
         "@frontify/frontify-cli": "5.3.10",
         "@types/react": "18.2.20",
