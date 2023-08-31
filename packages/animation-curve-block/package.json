@@ -30,9 +30,9 @@
         "typescript": "4.9.5"
     },
     "dependencies": {
-        "@dnd-kit/core": "6.0.5",
+        "@dnd-kit/core": "6.0.8",
         "@dnd-kit/modifiers": "6.0.1",
-        "@dnd-kit/sortable": "7.0.1",
+        "@dnd-kit/sortable": "7.0.2",
         "@frontify/app-bridge": "3.0.0-beta.88",
         "@frontify/fondue": "12.0.0-beta.312",
         "@frontify/guideline-blocks-settings": "0.28.6",
