@@ -24,7 +24,7 @@
         "@frontify/frontify-cli": "5.3.16",
         "@frontify/guideline-blocks-settings": "0.28.6",
         "@types/react": "18.2.21",
-        "@types/react-dom": "18.2.1",
+        "@types/react-dom": "18.2.7",
         "autoprefixer": "10.4.15",
         "eslint": "8.48.0",
         "eslint-plugin-notice": "0.9.10",
