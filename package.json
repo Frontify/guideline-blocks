@@ -41,7 +41,7 @@
     },
     "dependencies": {
         "@frontify/fondue": "12.0.0-beta.312",
-        "glob": "10.0.0",
+        "glob": "10.3.4",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     }
