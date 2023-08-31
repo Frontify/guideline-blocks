@@ -99,7 +99,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -128,8 +128,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -175,7 +175,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.6
-        version: 0.15.6(eslint@8.48.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5)
+        version: 0.15.6(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -204,8 +204,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.8.4
-        version: 2.8.4
+        specifier: 2.8.8
+        version: 2.8.8
       tailwindcss:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
@@ -239,7 +239,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.6
-        version: 0.15.6(eslint@8.48.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5)
+        version: 0.15.6(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -268,8 +268,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.8.4
-        version: 2.8.4
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -306,7 +306,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.6
-        version: 0.15.6(eslint@8.48.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5)
+        version: 0.15.6(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -335,8 +335,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.8.4
-        version: 2.8.4
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -373,7 +373,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -399,8 +399,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -437,7 +437,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -463,8 +463,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -519,7 +519,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -551,8 +551,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -607,7 +607,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -636,8 +636,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -680,7 +680,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -709,8 +709,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -747,7 +747,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -773,8 +773,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -820,7 +820,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -846,8 +846,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -881,7 +881,7 @@ importers:
     devDependencies:
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -907,8 +907,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.8.4
-        version: 2.8.4
+        specifier: 2.8.8
+        version: 2.8.8
       tailwindcss:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
@@ -942,7 +942,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -968,8 +968,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1018,7 +1018,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1047,8 +1047,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1085,7 +1085,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1111,8 +1111,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1149,7 +1149,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1175,8 +1175,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1213,7 +1213,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.6
-        version: 0.15.6(eslint@8.48.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5)
+        version: 0.15.6(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1245,8 +1245,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.8.4
-        version: 2.8.4
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1283,7 +1283,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.6
-        version: 0.15.6(eslint@8.48.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5)
+        version: 0.15.6(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1315,8 +1315,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.8.4
-        version: 2.8.4
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1356,7 +1356,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1385,8 +1385,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1426,7 +1426,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1452,8 +1452,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1490,7 +1490,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1516,8 +1516,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1551,7 +1551,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-typescript':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.8.4)
       '@testing-library/react':
         specifier: 14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -1589,8 +1589,8 @@ importers:
         specifier: ^8.4.21
         version: 8.4.21
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -1645,7 +1645,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1671,8 +1671,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1712,7 +1712,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1738,8 +1738,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1779,7 +1779,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1808,8 +1808,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -1861,7 +1861,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1893,8 +1893,8 @@ importers:
         specifier: 8.4.28
         version: 8.4.28
       prettier:
-        specifier: 2.7.1
-        version: 2.7.1
+        specifier: 2.8.8
+        version: 2.8.8
       sinon:
         specifier: 15.2.0
         version: 15.2.0
@@ -3980,7 +3980,7 @@ packages:
       sinon: 15.2.0
       type-fest: 4.3.1
 
-  /@frontify/eslint-config-basic@0.17.3(eslint@8.48.0)(prettier@2.7.1):
+  /@frontify/eslint-config-basic@0.17.3(eslint@8.48.0)(prettier@2.8.8):
     resolution: {integrity: sha512-SzvfOS/Dvm6KAqWpD5MoEM7jsLnlDo0SYkX5x5XP3WSjucLsr0n/BipL7+X59JjFMDv322kz/Be35dCsmP6Ulw==}
     peerDependencies:
       eslint: '>=8.27.0'
@@ -3994,140 +3994,116 @@ packages:
       eslint-plugin-markdown: 3.0.1(eslint@8.48.0)
       eslint-plugin-no-only-tests: 3.1.0
       eslint-plugin-node: 11.1.0(eslint@8.48.0)
-      eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.10.0)(eslint@8.48.0)(prettier@2.7.1)
+      eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.10.0)(eslint@8.48.0)(prettier@2.8.8)
       eslint-plugin-promise: 6.1.1(eslint@8.48.0)
       eslint-plugin-unicorn: 47.0.0(eslint@8.48.0)
       eslint-plugin-yml: 1.8.0(eslint@8.48.0)
-      prettier: 2.7.1
+      prettier: 2.8.8
       yaml-eslint-parser: 1.2.2
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@frontify/eslint-config-basic@0.17.3(eslint@8.48.0)(prettier@2.8.4):
-    resolution: {integrity: sha512-SzvfOS/Dvm6KAqWpD5MoEM7jsLnlDo0SYkX5x5XP3WSjucLsr0n/BipL7+X59JjFMDv322kz/Be35dCsmP6Ulw==}
-    peerDependencies:
-      eslint: '>=8.27.0'
-      prettier: '>=2.8.0'
-    dependencies:
-      eslint: 8.48.0
-      eslint-config-prettier: 8.10.0(eslint@8.48.0)
-      eslint-plugin-html: 7.1.0
-      eslint-plugin-jsonc: 2.9.0(eslint@8.48.0)
-      eslint-plugin-lodash: 7.4.0(eslint@8.48.0)
-      eslint-plugin-markdown: 3.0.1(eslint@8.48.0)
-      eslint-plugin-no-only-tests: 3.1.0
-      eslint-plugin-node: 11.1.0(eslint@8.48.0)
-      eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.10.0)(eslint@8.48.0)(prettier@2.8.4)
-      eslint-plugin-promise: 6.1.1(eslint@8.48.0)
-      eslint-plugin-unicorn: 47.0.0(eslint@8.48.0)
-      eslint-plugin-yml: 1.8.0(eslint@8.48.0)
-      prettier: 2.8.4
-      yaml-eslint-parser: 1.2.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@frontify/eslint-config-react@0.15.5(eslint@8.48.0)(prettier@2.7.1)(react@18.2.0)(typescript@4.8.4):
+  /@frontify/eslint-config-react@0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4):
     resolution: {integrity: sha512-OfXQtNw/NcnbBRo1LTLBj3LI16VK+koMpF01yo44jFDsibpHgh+onSwOdhbJ416dk82PVxm0r91irwOOc5cCUA==}
     peerDependencies:
       eslint: '>=8.27.0'
       prettier: '>=2.7.0'
       react: '>=17.0.0'
     dependencies:
-      '@frontify/eslint-config-typescript': 0.15.5(eslint@8.48.0)(prettier@2.7.1)(typescript@4.8.4)
+      '@frontify/eslint-config-typescript': 0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.8.4)
       eslint: 8.48.0
       eslint-plugin-react: 7.33.2(eslint@8.48.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.48.0)
-      prettier: 2.7.1
+      prettier: 2.8.8
       react: 18.2.0
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /@frontify/eslint-config-react@0.15.5(eslint@8.48.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5):
+  /@frontify/eslint-config-react@0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5):
     resolution: {integrity: sha512-OfXQtNw/NcnbBRo1LTLBj3LI16VK+koMpF01yo44jFDsibpHgh+onSwOdhbJ416dk82PVxm0r91irwOOc5cCUA==}
     peerDependencies:
       eslint: '>=8.27.0'
       prettier: '>=2.7.0'
       react: '>=17.0.0'
     dependencies:
-      '@frontify/eslint-config-typescript': 0.15.5(eslint@8.48.0)(prettier@2.8.4)(typescript@4.9.5)
+      '@frontify/eslint-config-typescript': 0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.9.5)
       eslint: 8.48.0
       eslint-plugin-react: 7.33.2(eslint@8.48.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.48.0)
-      prettier: 2.8.4
+      prettier: 2.8.8
       react: 18.2.0
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /@frontify/eslint-config-react@0.15.6(eslint@8.48.0)(prettier@2.8.4)(react@18.2.0)(typescript@4.9.5):
+  /@frontify/eslint-config-react@0.15.6(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5):
     resolution: {integrity: sha512-up6kEoB8mE8yzeVKZeW0twdo/oqlil3nTn5v/7DijIPkvmE3LZAwHNwMVJ88+srBg4ZCsoSt4nWWj2ofDCz81A==}
     peerDependencies:
       eslint: '>=8.27.0'
       prettier: '>=2.8.0'
       react: '>=17.0.0'
     dependencies:
-      '@frontify/eslint-config-typescript': 0.15.8(eslint@8.48.0)(prettier@2.8.4)(typescript@4.9.5)
+      '@frontify/eslint-config-typescript': 0.15.8(eslint@8.48.0)(prettier@2.8.8)(typescript@4.9.5)
       eslint: 8.48.0
       eslint-plugin-react: 7.33.2(eslint@8.48.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.48.0)
-      prettier: 2.8.4
+      prettier: 2.8.8
       react: 18.2.0
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /@frontify/eslint-config-typescript@0.15.5(eslint@8.48.0)(prettier@2.7.1)(typescript@4.8.4):
+  /@frontify/eslint-config-typescript@0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.8.4):
     resolution: {integrity: sha512-U6RRWC2JA9bff/VqWgTpnYA6tO3Uez3sbfuU7SeIaHp+dRRbTnquMlzsMAV9VJfMpqDNP+wyExm42JKd/W700Q==}
     peerDependencies:
       eslint: '>=8.27.0'
       prettier: '>=2.7.0'
       typescript: '>=4.8.0'
     dependencies:
-      '@frontify/eslint-config-basic': 0.17.3(eslint@8.48.0)(prettier@2.7.1)
+      '@frontify/eslint-config-basic': 0.17.3(eslint@8.48.0)(prettier@2.8.8)
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@4.8.4)
       '@typescript-eslint/parser': 5.62.0(eslint@8.48.0)(typescript@4.8.4)
       eslint: 8.48.0
-      prettier: 2.7.1
+      prettier: 2.8.8
       typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@frontify/eslint-config-typescript@0.15.5(eslint@8.48.0)(prettier@2.8.4)(typescript@4.9.5):
+  /@frontify/eslint-config-typescript@0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.9.5):
     resolution: {integrity: sha512-U6RRWC2JA9bff/VqWgTpnYA6tO3Uez3sbfuU7SeIaHp+dRRbTnquMlzsMAV9VJfMpqDNP+wyExm42JKd/W700Q==}
     peerDependencies:
       eslint: '>=8.27.0'
       prettier: '>=2.7.0'
       typescript: '>=4.8.0'
     dependencies:
-      '@frontify/eslint-config-basic': 0.17.3(eslint@8.48.0)(prettier@2.8.4)
+      '@frontify/eslint-config-basic': 0.17.3(eslint@8.48.0)(prettier@2.8.8)
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@4.9.5)
       '@typescript-eslint/parser': 5.62.0(eslint@8.48.0)(typescript@4.9.5)
       eslint: 8.48.0
-      prettier: 2.8.4
+      prettier: 2.8.8
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@frontify/eslint-config-typescript@0.15.8(eslint@8.48.0)(prettier@2.8.4)(typescript@4.9.5):
+  /@frontify/eslint-config-typescript@0.15.8(eslint@8.48.0)(prettier@2.8.8)(typescript@4.9.5):
     resolution: {integrity: sha512-VlhykV9QqZRnvdBBMO1HJdp7Z50Vb33QYwDFBzEQOgzb6qs5g14Q+vOl15s4tfG99df2EuBAFk9jmJvc4BLvYw==}
     peerDependencies:
       eslint: '>=8.27.0'
       prettier: '>=2.8.0'
       typescript: '>=4.8.0'
     dependencies:
-      '@frontify/eslint-config-basic': 0.17.3(eslint@8.48.0)(prettier@2.8.4)
+      '@frontify/eslint-config-basic': 0.17.3(eslint@8.48.0)(prettier@2.8.8)
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@4.9.5)
       '@typescript-eslint/parser': 5.62.0(eslint@8.48.0)(typescript@4.9.5)
       eslint: 8.48.0
-      prettier: 2.8.4
+      prettier: 2.8.8
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -13980,7 +13956,7 @@ packages:
       metric-lcs: 0.1.2
     dev: true
 
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.10.0)(eslint@8.48.0)(prettier@2.7.1):
+  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.10.0)(eslint@8.48.0)(prettier@2.8.8):
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -13993,24 +13969,7 @@ packages:
     dependencies:
       eslint: 8.48.0
       eslint-config-prettier: 8.10.0(eslint@8.48.0)
-      prettier: 2.7.1
-      prettier-linter-helpers: 1.0.0
-    dev: true
-
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.10.0)(eslint@8.48.0)(prettier@2.8.4):
-    resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      eslint: '>=7.28.0'
-      eslint-config-prettier: '*'
-      prettier: '>=2.0.0'
-    peerDependenciesMeta:
-      eslint-config-prettier:
-        optional: true
-    dependencies:
-      eslint: 8.48.0
-      eslint-config-prettier: 8.10.0(eslint@8.48.0)
-      prettier: 2.8.4
+      prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -16833,14 +16792,8 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier@2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    dev: true
-
-  /prettier@2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+  /prettier@2.8.8:
+    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
