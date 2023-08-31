@@ -1,6 +1,6 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
-import { IconCross, IconSize, Tooltip } from '@frontify/fondue';
+import { IconCross, IconSize, LegacyTooltip } from '@frontify/fondue';
 import { FC } from 'react';
 
 type RemoveButtonProps = {
@@ -10,7 +10,7 @@ type RemoveButtonProps = {
 export const RemoveButton: FC<RemoveButtonProps> = ({ onClick }) => {
     return (
         <div className="tw-absolute tw-top-4 tw-right-4 tw-w-9 tw-h-9">
-            <Tooltip
+            <LegacyTooltip
                 withArrow
                 content="Remove link"
                 triggerElement={

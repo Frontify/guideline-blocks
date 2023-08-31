@@ -6,7 +6,7 @@ import {
     Color,
     IconSize,
     IconTrashBin,
-    Tooltip,
+    LegacyTooltip,
     TooltipPosition,
     merge,
     useCopy,
@@ -61,7 +61,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     </div>
                 </>
             ) : (
-                <Tooltip
+                <LegacyTooltip
                     withArrow
                     position={TooltipPosition.Right}
                     content={
@@ -126,7 +126,7 @@ export const DropsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                         onUpdate={onUpdate}
                                     />
                                 ) : (
-                                    <Tooltip
+                                    <LegacyTooltip
                                         withArrow
                                         position={TooltipPosition.Right}
                                         content={

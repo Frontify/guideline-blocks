@@ -2,7 +2,7 @@
 
 import type { ReactElement } from 'react';
 import type { Color as ColorType } from '@frontify/app-bridge';
-import { Tooltip, TooltipPosition, merge, useCopy } from '@frontify/fondue';
+import { LegacyTooltip, TooltipPosition, merge, useCopy } from '@frontify/fondue';
 import { toRgbaString } from '@frontify/guideline-blocks-shared';
 
 import { TooltipContent } from './TooltipContent';
@@ -54,7 +54,7 @@ export const Color = ({ isEditing, color, colorsLength }: ColorProps): ReactElem
         </div>
     ) : (
         <div className={viewModeSideShadows}>
-            <Tooltip
+            <LegacyTooltip
                 withArrow
                 key={color.id}
                 position={TooltipPosition.Right}

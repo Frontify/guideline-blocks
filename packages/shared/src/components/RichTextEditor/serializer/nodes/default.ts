@@ -13,13 +13,13 @@ export const defaultNode = (node: TElement, children: string, styles: CSSPropert
         return `<h1 class="${merge([defaultClassNames, 'a-h1'])}">${getStyledChild(children, defaultStyles)}</h1>`;
     }
     if (node.type === TextStyles.heading2) {
-        return `<h2 class="${defaultClassNames}">${getStyledChild(children, defaultStyles)}</h2>`;
+        return `<h2 class="${merge([defaultClassNames, 'a-h2'])}">${getStyledChild(children, defaultStyles)}</h2>`;
     }
     if (node.type === TextStyles.heading3) {
-        return `<h3 class="${defaultClassNames}">${getStyledChild(children, defaultStyles)}</h3>`;
+        return `<h3 class="${merge([defaultClassNames, 'a-h3'])}">${getStyledChild(children, defaultStyles)}</h3>`;
     }
     if (node.type === TextStyles.heading4) {
-        return `<h4 class="${defaultClassNames}">${getStyledChild(children, defaultStyles)}</h4>`;
+        return `<h4 class="${merge([defaultClassNames, 'a-h4'])}">${getStyledChild(children, defaultStyles)}</h4>`;
     }
     if (node.type === TextStyles.custom1) {
         return `<p class="${merge([defaultClassNames, 'a-custom1'])}">${getStyledChild(children, defaultStyles)}</p>`;
