@@ -56,7 +56,7 @@ importers:
         version: 7.6.7
       msw:
         specifier: 0.48.1
-        version: 0.48.1(typescript@4.8.4)
+        version: 0.48.1(typescript@4.9.5)
       postcss:
         specifier: 8.4.29
         version: 8.4.29
@@ -65,10 +65,10 @@ importers:
         version: 3.3.3(ts-node@10.9.1)
       ts-node:
         specifier: 10.9.1
-        version: 10.9.1(@types/node@18.17.12)(typescript@4.8.4)
+        version: 10.9.1(@types/node@18.17.12)(typescript@4.9.5)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
       vite:
         specifier: 3.2.7
         version: 3.2.7(@types/node@18.17.12)
@@ -99,7 +99,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -137,8 +137,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/animation-curve-block:
     dependencies:
@@ -373,7 +373,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -408,8 +408,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/callout-block:
     dependencies:
@@ -437,7 +437,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -472,8 +472,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/checklist-block:
     dependencies:
@@ -519,7 +519,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -560,8 +560,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/code-snippet-block:
     dependencies:
@@ -607,7 +607,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -645,8 +645,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/color-block:
     dependencies:
@@ -680,7 +680,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -718,8 +718,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/color-kit-block:
     dependencies:
@@ -747,7 +747,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -782,8 +782,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/color-scale-block:
     dependencies:
@@ -820,7 +820,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -855,8 +855,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/compare-slider-block:
     dependencies:
@@ -942,7 +942,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -977,8 +977,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/dos-donts-block:
     dependencies:
@@ -1018,7 +1018,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1056,8 +1056,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/example:
     dependencies:
@@ -1085,7 +1085,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1120,8 +1120,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/figma-block:
     dependencies:
@@ -1149,7 +1149,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1184,8 +1184,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/glyphs-block:
     dependencies:
@@ -1356,7 +1356,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1394,8 +1394,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/personal-note-block:
     dependencies:
@@ -1426,7 +1426,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1461,8 +1461,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/quote-block:
     dependencies:
@@ -1490,7 +1490,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1525,8 +1525,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/shared:
     dependencies:
@@ -1551,7 +1551,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-typescript':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.9.5)
       '@testing-library/react':
         specifier: 14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -1584,7 +1584,7 @@ importers:
         version: 3.0.0
       msw:
         specifier: 1.2.1
-        version: 1.2.1(typescript@4.8.4)
+        version: 1.2.1(typescript@4.9.5)
       postcss:
         specifier: 8.4.29
         version: 8.4.29
@@ -1605,10 +1605,10 @@ importers:
         version: 3.3.3(ts-node@10.9.1)
       ts-node:
         specifier: 10.9.1
-        version: 10.9.1(@types/node@18.17.12)(typescript@4.8.4)
+        version: 10.9.1(@types/node@18.17.12)(typescript@4.9.5)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
       vite:
         specifier: 3.2.7
         version: 3.2.7(@types/node@18.17.12)
@@ -1645,7 +1645,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1680,8 +1680,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/storybook-block:
     dependencies:
@@ -1712,7 +1712,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1747,8 +1747,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/text-block:
     dependencies:
@@ -1779,7 +1779,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1817,8 +1817,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
   packages/thumbnail-grid-block:
     dependencies:
@@ -1861,7 +1861,7 @@ importers:
         version: 7.22.11
       '@frontify/eslint-config-react':
         specifier: 0.15.5
-        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4)
+        version: 0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5)
       '@frontify/frontify-cli':
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
@@ -1902,8 +1902,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       typescript:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.9.5
+        version: 4.9.5
 
 packages:
 
@@ -4004,24 +4004,6 @@ packages:
       - supports-color
     dev: true
 
-  /@frontify/eslint-config-react@0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.8.4):
-    resolution: {integrity: sha512-OfXQtNw/NcnbBRo1LTLBj3LI16VK+koMpF01yo44jFDsibpHgh+onSwOdhbJ416dk82PVxm0r91irwOOc5cCUA==}
-    peerDependencies:
-      eslint: '>=8.27.0'
-      prettier: '>=2.7.0'
-      react: '>=17.0.0'
-    dependencies:
-      '@frontify/eslint-config-typescript': 0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.8.4)
-      eslint: 8.48.0
-      eslint-plugin-react: 7.33.2(eslint@8.48.0)
-      eslint-plugin-react-hooks: 4.6.0(eslint@8.48.0)
-      prettier: 2.8.8
-      react: 18.2.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    dev: true
-
   /@frontify/eslint-config-react@0.15.5(eslint@8.48.0)(prettier@2.8.8)(react@18.2.0)(typescript@4.9.5):
     resolution: {integrity: sha512-OfXQtNw/NcnbBRo1LTLBj3LI16VK+koMpF01yo44jFDsibpHgh+onSwOdhbJ416dk82PVxm0r91irwOOc5cCUA==}
     peerDependencies:
@@ -4056,23 +4038,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
-    dev: true
-
-  /@frontify/eslint-config-typescript@0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.8.4):
-    resolution: {integrity: sha512-U6RRWC2JA9bff/VqWgTpnYA6tO3Uez3sbfuU7SeIaHp+dRRbTnquMlzsMAV9VJfMpqDNP+wyExm42JKd/W700Q==}
-    peerDependencies:
-      eslint: '>=8.27.0'
-      prettier: '>=2.7.0'
-      typescript: '>=4.8.0'
-    dependencies:
-      '@frontify/eslint-config-basic': 0.17.3(eslint@8.48.0)(prettier@2.8.8)
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@4.8.4)
-      '@typescript-eslint/parser': 5.62.0(eslint@8.48.0)(typescript@4.8.4)
-      eslint: 8.48.0
-      prettier: 2.8.8
-      typescript: 4.8.4
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@frontify/eslint-config-typescript@0.15.5(eslint@8.48.0)(prettier@2.8.8)(typescript@4.9.5):
@@ -6631,34 +6596,6 @@ packages:
     dev: true
     optional: true
 
-  /@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@4.8.4):
-    resolution: {integrity: sha512-TiZzBSJja/LbhNPvk6yc0JrX9XqhQ0hdh6M2svYfsHGejaKFIAGd9MQ+ERIMzLGlN/kZoYIgdxFV0PuljTKXag==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      '@typescript-eslint/parser': ^5.0.0
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@eslint-community/regexpp': 4.8.0
-      '@typescript-eslint/parser': 5.62.0(eslint@8.48.0)(typescript@4.8.4)
-      '@typescript-eslint/scope-manager': 5.62.0
-      '@typescript-eslint/type-utils': 5.62.0(eslint@8.48.0)(typescript@4.8.4)
-      '@typescript-eslint/utils': 5.62.0(eslint@8.48.0)(typescript@4.8.4)
-      debug: 4.3.4
-      eslint: 8.48.0
-      graphemer: 1.4.0
-      ignore: 5.2.4
-      natural-compare-lite: 1.4.0
-      semver: 7.5.4
-      tsutils: 3.21.0(typescript@4.8.4)
-      typescript: 4.8.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@4.9.5):
     resolution: {integrity: sha512-TiZzBSJja/LbhNPvk6yc0JrX9XqhQ0hdh6M2svYfsHGejaKFIAGd9MQ+ERIMzLGlN/kZoYIgdxFV0PuljTKXag==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -6683,26 +6620,6 @@ packages:
       semver: 7.5.4
       tsutils: 3.21.0(typescript@4.9.5)
       typescript: 4.9.5
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@typescript-eslint/parser@5.62.0(eslint@8.48.0)(typescript@4.8.4):
-    resolution: {integrity: sha512-VlJEV0fOQ7BExOsHYAGrgbEiZoi8D+Bl2+f6V2RrXerRSylnp+ZBHmPvaIa8cz0Ajx7WO7Z5RqfgYg7ED1nRhA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/scope-manager': 5.62.0
-      '@typescript-eslint/types': 5.62.0
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.8.4)
-      debug: 4.3.4
-      eslint: 8.48.0
-      typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6735,26 +6652,6 @@ packages:
       '@typescript-eslint/visitor-keys': 5.62.0
     dev: true
 
-  /@typescript-eslint/type-utils@5.62.0(eslint@8.48.0)(typescript@4.8.4):
-    resolution: {integrity: sha512-xsSQreu+VnfbqQpW5vnCJdq1Z3Q0U31qiWmRhr98ONQmcp/yhiPJFPq8MXiJVLiksmOKSjIldZzkebzHuCGzew==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: '*'
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.8.4)
-      '@typescript-eslint/utils': 5.62.0(eslint@8.48.0)(typescript@4.8.4)
-      debug: 4.3.4
-      eslint: 8.48.0
-      tsutils: 3.21.0(typescript@4.8.4)
-      typescript: 4.8.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@typescript-eslint/type-utils@5.62.0(eslint@8.48.0)(typescript@4.9.5):
     resolution: {integrity: sha512-xsSQreu+VnfbqQpW5vnCJdq1Z3Q0U31qiWmRhr98ONQmcp/yhiPJFPq8MXiJVLiksmOKSjIldZzkebzHuCGzew==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -6780,27 +6677,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@typescript-eslint/typescript-estree@5.62.0(typescript@4.8.4):
-    resolution: {integrity: sha512-CmcQ6uY7b9y694lKdRB8FEel7JbU/40iSAPomu++SjLMntB+2Leay2LO6i8VnJk58MtE9/nQSFIH6jpyRWyYzA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/types': 5.62.0
-      '@typescript-eslint/visitor-keys': 5.62.0
-      debug: 4.3.4
-      globby: 11.1.0
-      is-glob: 4.0.3
-      semver: 7.5.4
-      tsutils: 3.21.0(typescript@4.8.4)
-      typescript: 4.8.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@typescript-eslint/typescript-estree@5.62.0(typescript@4.9.5):
     resolution: {integrity: sha512-CmcQ6uY7b9y694lKdRB8FEel7JbU/40iSAPomu++SjLMntB+2Leay2LO6i8VnJk58MtE9/nQSFIH6jpyRWyYzA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -6820,26 +6696,6 @@ packages:
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@typescript-eslint/utils@5.62.0(eslint@8.48.0)(typescript@4.8.4):
-    resolution: {integrity: sha512-n8oxjeb5aIbPFEtmQxQYOLI0i9n5ySBEY/ZEHHZqKQSFnxio1rv6dthascc9dLuwrL0RC5mPCxB7vnAVGAYWAQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.48.0)
-      '@types/json-schema': 7.0.12
-      '@types/semver': 7.5.1
-      '@typescript-eslint/scope-manager': 5.62.0
-      '@typescript-eslint/types': 5.62.0
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.8.4)
-      eslint: 8.48.0
-      eslint-scope: 5.1.1
-      semver: 7.5.4
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
     dev: true
 
   /@typescript-eslint/utils@5.62.0(eslint@8.48.0)(typescript@4.9.5):
@@ -16159,7 +16015,7 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /msw@0.48.1(typescript@4.8.4):
+  /msw@0.48.1(typescript@4.9.5):
     resolution: {integrity: sha512-lnhIsC5aQOpqu5CjJ11CPl6RYGbY9+LhZZw1zKX3S710O9qGQ7kftmfX1FifmZNk2FuKoygprKITSfqHWpE5LQ==}
     engines: {node: '>=14'}
     hasBin: true
@@ -16189,14 +16045,14 @@ packages:
       statuses: 2.0.1
       strict-event-emitter: 0.2.8
       type-fest: 2.19.0
-      typescript: 4.8.4
+      typescript: 4.9.5
       yargs: 17.7.2
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: true
 
-  /msw@1.2.1(typescript@4.8.4):
+  /msw@1.2.1(typescript@4.9.5):
     resolution: {integrity: sha512-bF7qWJQSmKn6bwGYVPXOxhexTCGD5oJSZg8yt8IBClxvo3Dx/1W0zqE1nX9BSWmzRsCKWfeGWcB/vpqV6aclpw==}
     engines: {node: '>=14'}
     hasBin: true
@@ -16225,7 +16081,7 @@ packages:
       path-to-regexp: 6.2.1
       strict-event-emitter: 0.4.6
       type-fest: 2.19.0
-      typescript: 4.8.4
+      typescript: 4.9.5
       yargs: 17.7.2
     transitivePeerDependencies:
       - encoding
@@ -16741,7 +16597,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.29
-      ts-node: 10.9.1(@types/node@18.17.12)(typescript@4.8.4)
+      ts-node: 10.9.1(@types/node@18.17.12)(typescript@4.9.5)
       yaml: 2.3.2
 
   /postcss-nested@6.0.1(postcss@8.4.29):
@@ -18242,7 +18098,7 @@ packages:
       code-block-writer: 11.0.3
     dev: true
 
-  /ts-node@10.9.1(@types/node@18.17.12)(typescript@4.8.4):
+  /ts-node@10.9.1(@types/node@18.17.12)(typescript@4.9.5):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -18268,7 +18124,7 @@ packages:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 4.8.4
+      typescript: 4.9.5
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
@@ -18278,16 +18134,6 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-
-  /tsutils@3.21.0(typescript@4.8.4):
-    resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
-    engines: {node: '>= 6'}
-    peerDependencies:
-      typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
-    dependencies:
-      tslib: 1.14.1
-      typescript: 4.8.4
-    dev: true
 
   /tsutils@3.21.0(typescript@4.9.5):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
@@ -18391,16 +18237,10 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typescript@4.8.4:
-    resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-
   /typescript@4.9.5:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /typescript@5.0.4:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
