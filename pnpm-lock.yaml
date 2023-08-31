@@ -1361,8 +1361,8 @@ importers:
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
       '@types/lodash-es':
-        specifier: 4.17.8
-        version: 4.17.8
+        specifier: 4.17.9
+        version: 4.17.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -1565,8 +1565,8 @@ importers:
         specifier: 18.2.7
         version: 18.2.7
       '@types/sinon':
-        specifier: ^10.0.13
-        version: 10.0.13
+        specifier: ^10.0.16
+        version: 10.0.16
       cypress:
         specifier: 11.0.1
         version: 11.0.1
@@ -1580,11 +1580,11 @@ importers:
         specifier: 7.6.7
         version: 7.6.7
       mitt:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.0.1
+        version: 3.0.1
       msw:
-        specifier: 1.2.1
-        version: 1.2.1(typescript@4.9.5)
+        specifier: 1.2.5
+        version: 1.2.5(typescript@4.9.5)
       postcss:
         specifier: 8.4.29
         version: 8.4.29
@@ -1784,8 +1784,8 @@ importers:
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
       '@types/lodash-es':
-        specifier: 4.17.8
-        version: 4.17.8
+        specifier: 4.17.9
+        version: 4.17.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -1866,8 +1866,8 @@ importers:
         specifier: 5.3.16
         version: 5.3.16(@types/node@18.17.12)
       '@types/lodash-es':
-        specifier: 4.17.8
-        version: 4.17.8
+        specifier: 4.17.9
+        version: 4.17.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -6433,8 +6433,8 @@ packages:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
     dev: true
 
-  /@types/lodash-es@4.17.8:
-    resolution: {integrity: sha512-euY3XQcZmIzSy7YH5+Unb3b2X12Wtk54YWINBvvGQ5SmMvwb11JQskGsfkH/5HXK77Kr8GF0wkVDIxzAisWtog==}
+  /@types/lodash-es@4.17.9:
+    resolution: {integrity: sha512-ZTcmhiI3NNU7dEvWLZJkzG6ao49zOIjEgIE0RgV7wbPxU0f2xT3VSAHw2gmst8swH6V0YkLRGp4qPlX/6I90MQ==}
     dependencies:
       '@types/lodash': 4.14.197
     dev: true
@@ -6501,8 +6501,8 @@ packages:
       '@types/node': 18.17.12
     dev: true
 
-  /@types/sinon@10.0.13:
-    resolution: {integrity: sha512-UVjDqJblVNQYvVNUsj0PuYYw0ELRmgt1Nt5Vk0pT5f16ROGfcKJY8o1HVuMOJOpD727RrGB9EGvoaTQE5tgxZQ==}
+  /@types/sinon@10.0.16:
+    resolution: {integrity: sha512-j2Du5SYpXZjJVJtXBokASpPRj+e2z+VUhCPHmM6WMfe3dpHu6iVKJMU6AiBcMp/XTAYnEj6Wc1trJUWwZ0QaAQ==}
     dependencies:
       '@types/sinonjs__fake-timers': 8.1.2
     dev: true
@@ -15955,10 +15955,6 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /mitt@3.0.0:
-    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
-    dev: true
-
   /mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
 
@@ -16022,13 +16018,13 @@ packages:
       - supports-color
     dev: true
 
-  /msw@1.2.1(typescript@4.9.5):
-    resolution: {integrity: sha512-bF7qWJQSmKn6bwGYVPXOxhexTCGD5oJSZg8yt8IBClxvo3Dx/1W0zqE1nX9BSWmzRsCKWfeGWcB/vpqV6aclpw==}
+  /msw@1.2.5(typescript@4.9.5):
+    resolution: {integrity: sha512-Y3MwnAHX3d162eSWrEUeRdCv3+8hmgz/+Wh7OUkE6VB55+YTswxrep3yU3evZnKWHJGAM63G1s+olAgzIFdYtQ==}
     engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
     peerDependencies:
-      typescript: '>= 4.4.x <= 5.0.x'
+      typescript: '>= 4.4.x <= 5.1.x'
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -16038,7 +16034,7 @@ packages:
       '@open-draft/until': 1.0.3
       '@types/cookie': 0.4.1
       '@types/js-levenshtein': 1.1.1
-      chalk: 4.1.1
+      chalk: 4.1.2
       chokidar: 3.5.3
       cookie: 0.4.2
       graphql: 16.8.0
