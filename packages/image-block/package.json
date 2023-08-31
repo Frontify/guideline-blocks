@@ -35,7 +35,7 @@
         "@frontify/fondue": "12.0.0-beta.312",
         "@frontify/guideline-blocks-settings": "0.28.6",
         "@frontify/guideline-blocks-shared": "workspace:*",
-        "@react-aria/focus": "3.11.0",
+        "@react-aria/focus": "3.14.0",
         "react": "18.2.0",
         "react-dom": "18.2.0"
     }
