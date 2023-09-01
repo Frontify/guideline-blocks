@@ -1,9 +1,9 @@
 /* (c) Copyright Frontify Ltd., all rights reserved. */
 
 import {
-    CreateNewPublicationOptions,
+    OpenNewPublicationPayload,
     Template,
-    createNewPublication,
+    openNewPublication,
     useBlockSettings,
     useBlockTemplates,
     useEditorState,
@@ -57,8 +57,8 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
         textAnchoringVertical,
     } = blockSettings;
 
-    const [templateTitle, setTemplateTitle] = useState<string>(title || undefined);
-    const [templateDescription, setTemplateDescription] = useState<string>(description || undefined);
+    const [templateTitle, setTemplateTitle] = useState<string | undefined>(title || undefined);
+    const [templateDescription, setTemplateDescription] = useState<string | undefined>(description || undefined);
     const [templatePageCount, setTemplatePageCount] = useState<number>(
         selectedTemplate ? selectedTemplate.pages.length : 0
     );
@@ -104,11 +104,13 @@ export const TemplateBlock = ({ appBridge }: BlockProps): ReactElement => {
     };
 
     const handleNewPublication = () => {
-        const options: CreateNewPublicationOptions = {
-            template: selectedTemplate,
-        };
+        if (selectedTemplate !== null) {
+            const options: OpenNewPublicationPayload = {
+                template: selectedTemplate,
+            };
 
-        appBridge.dispatch(createNewPublication(options));
+            appBridge.dispatch(openNewPublication(options));
+        }
     };
 
     return (
