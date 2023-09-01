@@ -6,7 +6,7 @@ import {
     Color,
     IconSize,
     IconTrashBin,
-    Tooltip,
+    LegacyTooltip,
     TooltipPosition,
     merge,
     useCopy,
@@ -62,7 +62,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                     </div>
                 </ColorPickerFlyout>
             ) : (
-                <Tooltip
+                <LegacyTooltip
                     withArrow
                     position={TooltipPosition.Right}
                     content={
@@ -127,7 +127,7 @@ export const CardsItem = ({ color, colorSpaces, isEditing, onBlur, onUpdate, onD
                                             onUpdate={onUpdate}
                                         />
                                     ) : (
-                                        <Tooltip
+                                        <LegacyTooltip
                                             withArrow
                                             position={TooltipPosition.Right}
                                             content={

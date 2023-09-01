@@ -19,7 +19,7 @@ import { BlockInjectButton, joinClassNames, useDndSensors } from '@frontify/guid
 import { FC, useEffect, useRef, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { DoDontItem, SortableDoDontItem } from './DoDontItem';
-import { BlockMode, DoDontType, GUTTER_VALUES, Item, Settings } from './types';
+import { BlockMode, ChangeType, DoDontType, GUTTER_VALUES, Item, Settings, ValueType } from './types';
 import {
     ButtonEmphasis,
     ButtonStyle,
@@ -200,23 +200,36 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
         setAndSaveItems(newItems);
     };
 
-    const onChangeItem = (
-        itemId: string,
-        value: string | number | undefined,
-        type: 'title' | 'body' | 'type' | 'imageId'
-    ) => {
-        const newItems: Item[] = localItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item));
-        setAndSaveItems(newItems);
+    const onChangeLocalItem = (itemId: string, value: ValueType, type: ChangeType) => {
+        setLocalItems((previousItems) =>
+            previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item))
+        );
+    };
+
+    const onChangeItem = (itemId: string, value: ValueType, type: ChangeType) => {
+        setLocalItems((previousItems) => {
+            const newItems = previousItems.map((item) => (item.id === itemId ? { ...item, [type]: value } : item));
+            setBlockSettings({
+                items: newItems,
+            });
+            return newItems;
+        });
     };
 
     const setAndSaveItems = (newItems: Item[]) => {
         setLocalItems(newItems);
+        saveItems(newItems);
+    };
+
+    const saveItems = (newItems: Item[]) => {
         setBlockSettings({
             items: newItems,
         });
     };
+
     const handleDragStart = (event: DragEndEvent) => {
         const { active } = event;
+        saveItems(localItems);
         setActiveId(active.id as string);
     };
 
@@ -244,6 +257,7 @@ export const DosDontsBlock: FC<BlockProps> = ({ appBridge }) => {
     const getDoDontItemProps = (item: Item) => ({
         id: item.id,
         onChangeItem,
+        onChangeLocalItem,
         onRemoveSelf: () => removeItemById(item.id),
         title: item.title,
         body: item.body,

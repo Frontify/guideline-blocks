@@ -8,7 +8,7 @@ import {
     IconSize,
     IconTrashBin,
     ItemDragState,
-    Tooltip,
+    LegacyTooltip,
     TooltipAlignment,
     TooltipPosition,
     useCopy,
@@ -107,7 +107,7 @@ export const ColorSquare = ({
                     ])}
                 >
                     {!isEditing && (
-                        <Tooltip
+                        <LegacyTooltip
                             alignment={TooltipAlignment.Middle}
                             content={
                                 <TooltipContent
